@@ -12,6 +12,7 @@ import 'sample_library.dart';
 import 'studio_chrome.dart';
 import 'studio_files.dart';
 import 'studio_find_pane.dart';
+import 'studio_linguistic_analysis.dart';
 import 'studio_pdf_gallery.dart';
 import 'studio_pdf_gallery_dialog.dart';
 import 'studio_pdf_office.dart';
@@ -2719,6 +2720,16 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   List<StudioRibbonGroup> _wordReview() {
     return <StudioRibbonGroup>[
       StudioRibbonGroup(
+        title: _arabic ? 'تحليل لغوي' : 'Language analysis',
+        children: <Widget>[
+          _cmd(
+            Icons.manage_search,
+            _arabic ? 'تحليل الألمانية' : 'German analysis',
+            _showLinguisticAnalysis,
+          ),
+        ],
+      ),
+      StudioRibbonGroup(
         title: _arabic ? 'تحديد' : 'Select',
         children: <Widget>[
           _cmd(Icons.select_all, _arabic ? 'الكل' : 'All', _selectAllDocument),
@@ -4878,6 +4889,14 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       return;
     }
     _toast(_arabic ? 'التدقيق للمستندات' : 'Spelling is available in Word');
+  }
+
+  Future<void> _showLinguisticAnalysis() async {
+    await showDialog<void>(
+      context: context,
+      builder: (_) => StudioLinguisticAnalysisDialog(controller: _word),
+    );
+    if (mounted) _wordFocus.requestFocus();
   }
 
   Future<void> _showProperties() async {

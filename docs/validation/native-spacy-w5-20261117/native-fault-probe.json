@@ -1,0 +1,173 @@
+{
+  "schema": "quds.spacy.dart.native-faults.v1",
+  "scope": "Real Dart binding against a model-free malformed C ABI fixture; no trained model, linguistic, native inference or performance claim.",
+  "fixture_library_sha256": "2c66cf8dea3116af54421680022ec85f0da7d152a4a8adab8f63126708bfbfb3",
+  "source_sha256_before": {
+    "packages/quds_proofing_spacy/lib/quds_proofing_spacy.dart": "d2ec35f73260fc3bee0d86726aecb9478665355258f0722e77055f09b5e8eb19",
+    "packages/quds_proofing_spacy/lib/quds_proofing_spacy_native.dart": "b4d68e940536d8272680f21057f1a7695eb78d8a02c338320b2376c6a159a002",
+    "packages/quds_proofing_spacy/lib/src/analysis.dart": "65d0577b9ff41e498df5a8606b85a6058623a3bc5591e1efb05a74b5b97c0464",
+    "packages/quds_proofing_spacy/lib/src/backend.dart": "4b3cf6561ec8811d8a85a48a7025efda7714ad0a088add42fc065a738993a732",
+    "packages/quds_proofing_spacy/lib/src/bundle.dart": "970ec6672efada2bcbacd7223804b8cf8d504ec647aec0c289ee43e5c1f802cb",
+    "packages/quds_proofing_spacy/lib/src/native_backend.dart": "fe15180d48d19b0e79874615708106a88d6f948a026eaef61d26f39961ce9f1b",
+    "packages/quds_proofing_spacy/lib/src/native_backend_unsupported.dart": "ff38d1a0fd5fa93c2157649fdd064dd73830047497359ed2d51d7a07ff2814ae",
+    "packages/quds_proofing_spacy/lib/src/source_text.dart": "fd2f2fdda8e608d32bf3b4a05c10b8777a106495cf97cbfafd3b05dd5e559330",
+    "packages/quds_proofing_spacy/lib/src/transport.dart": "78b38b82fcec385d0d2d96d5861f0e2b0333b8af58bc542dd6d5cc23677f6305",
+    "packages/quds_proofing_spacy/lib/src/worker_native.dart": "4d63dcc14292025493cbab07b839a26fefb66c6e5d4a2558c4fd01e74d46da80",
+    "packages/quds_proofing_spacy/lib/src/worker_unsupported.dart": "074c3ad98e4a873ec5d55535b3c1a404da4eb557068437a3b4eb9a622d1e3078",
+    "packages/quds_proofing_spacy/tool/native_fault_fixture.c": "51caed1bfe6573c13a0e9fce8cafd47543336097b7d55ff80b3775d71cc77ac7",
+    "packages/quds_proofing_spacy/tool/native_fault_probe.dart": "4b3815c0cb30eaba6b7390363d539ab335c6a76e2d06937507653e45c948b086"
+  },
+  "passed": true,
+  "controls": [
+    {
+      "id": "counted-nul-unicode-copy",
+      "passed": true
+    },
+    {
+      "id": "error-with-owned-document",
+      "status": "failed",
+      "native_document_freed": true,
+      "recovered": true,
+      "passed": true
+    },
+    {
+      "id": "success-null-document",
+      "status": "failed",
+      "native_document_freed": false,
+      "recovered": true,
+      "passed": true
+    },
+    {
+      "id": "excessive-token-count",
+      "status": "failed",
+      "native_document_freed": true,
+      "recovered": true,
+      "passed": true
+    },
+    {
+      "id": "unanalyzed-document",
+      "status": "failed",
+      "native_document_freed": true,
+      "recovered": true,
+      "passed": true
+    },
+    {
+      "id": "token-view-error",
+      "status": "failed",
+      "native_document_freed": true,
+      "recovered": true,
+      "passed": true
+    },
+    {
+      "id": "excessive-counted-string",
+      "status": "failed",
+      "native_document_freed": true,
+      "recovered": true,
+      "passed": true
+    },
+    {
+      "id": "null-nonempty-string",
+      "status": "failed",
+      "native_document_freed": true,
+      "recovered": true,
+      "passed": true
+    },
+    {
+      "id": "malformed-utf8-output",
+      "status": "failed",
+      "native_document_freed": true,
+      "recovered": true,
+      "passed": true
+    },
+    {
+      "id": "split-byte-span",
+      "status": "failed",
+      "native_document_freed": true,
+      "recovered": true,
+      "passed": true
+    },
+    {
+      "id": "wrong-utf16-span",
+      "status": "failed",
+      "native_document_freed": true,
+      "recovered": true,
+      "passed": true
+    },
+    {
+      "id": "invalid-head",
+      "status": "failed",
+      "native_document_freed": true,
+      "recovered": true,
+      "passed": true
+    },
+    {
+      "id": "unknown-flags",
+      "status": "failed",
+      "native_document_freed": true,
+      "recovered": true,
+      "passed": true
+    },
+    {
+      "id": "bounded-nonterminated-error",
+      "status": "failed",
+      "native_document_freed": true,
+      "recovered": true,
+      "passed": true
+    },
+    {
+      "id": "wrong-scalar-span",
+      "status": "failed",
+      "native_document_freed": true,
+      "recovered": true,
+      "passed": true
+    },
+    {
+      "id": "missing-sentence-end",
+      "status": "failed",
+      "native_document_freed": true,
+      "recovered": true,
+      "passed": true
+    },
+    {
+      "id": "result-after-idempotent-dispose",
+      "passed": true
+    },
+    {
+      "id": "startup-20",
+      "rejected": true,
+      "live_contexts": 0,
+      "passed": true
+    },
+    {
+      "id": "startup-21",
+      "rejected": true,
+      "live_contexts": 0,
+      "passed": true
+    },
+    {
+      "id": "startup-22",
+      "rejected": true,
+      "live_contexts": 0,
+      "passed": true
+    }
+  ],
+  "native_document_frees": 30,
+  "live_documents": 0,
+  "live_contexts": 0,
+  "source_sha256_after": {
+    "packages/quds_proofing_spacy/lib/quds_proofing_spacy.dart": "d2ec35f73260fc3bee0d86726aecb9478665355258f0722e77055f09b5e8eb19",
+    "packages/quds_proofing_spacy/lib/quds_proofing_spacy_native.dart": "b4d68e940536d8272680f21057f1a7695eb78d8a02c338320b2376c6a159a002",
+    "packages/quds_proofing_spacy/lib/src/analysis.dart": "65d0577b9ff41e498df5a8606b85a6058623a3bc5591e1efb05a74b5b97c0464",
+    "packages/quds_proofing_spacy/lib/src/backend.dart": "4b3cf6561ec8811d8a85a48a7025efda7714ad0a088add42fc065a738993a732",
+    "packages/quds_proofing_spacy/lib/src/bundle.dart": "970ec6672efada2bcbacd7223804b8cf8d504ec647aec0c289ee43e5c1f802cb",
+    "packages/quds_proofing_spacy/lib/src/native_backend.dart": "fe15180d48d19b0e79874615708106a88d6f948a026eaef61d26f39961ce9f1b",
+    "packages/quds_proofing_spacy/lib/src/native_backend_unsupported.dart": "ff38d1a0fd5fa93c2157649fdd064dd73830047497359ed2d51d7a07ff2814ae",
+    "packages/quds_proofing_spacy/lib/src/source_text.dart": "fd2f2fdda8e608d32bf3b4a05c10b8777a106495cf97cbfafd3b05dd5e559330",
+    "packages/quds_proofing_spacy/lib/src/transport.dart": "78b38b82fcec385d0d2d96d5861f0e2b0333b8af58bc542dd6d5cc23677f6305",
+    "packages/quds_proofing_spacy/lib/src/worker_native.dart": "4d63dcc14292025493cbab07b839a26fefb66c6e5d4a2558c4fd01e74d46da80",
+    "packages/quds_proofing_spacy/lib/src/worker_unsupported.dart": "074c3ad98e4a873ec5d55535b3c1a404da4eb557068437a3b4eb9a622d1e3078",
+    "packages/quds_proofing_spacy/tool/native_fault_fixture.c": "51caed1bfe6573c13a0e9fce8cafd47543336097b7d55ff80b3775d71cc77ac7",
+    "packages/quds_proofing_spacy/tool/native_fault_probe.dart": "4b3815c0cb30eaba6b7390363d539ab335c6a76e2d06937507653e45c948b086"
+  },
+  "source_unchanged": true
+}

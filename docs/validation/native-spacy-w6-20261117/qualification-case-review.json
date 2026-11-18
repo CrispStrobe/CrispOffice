@@ -1,0 +1,5387 @@
+{
+  "schema": "quds.spacy.w6.qualification_case_review.v1",
+  "reviewed_utc": "2026-11-17T22:47:11.194817+00:00",
+  "review_type": "Postqualification read-only explanatory review of the first retained result; no output-informed changes or additional model executions.",
+  "reviewer_relationship": "Implementation contributor reviewing newly authorized qualification outputs; this is not independent human linguistic adjudication.",
+  "source_inputs": {
+    "qualification_report": {
+      "path": "docs/validation/native-spacy-w6-20261117/qualification-first.json",
+      "sha256": "2e85b9721368e9e69b7fbeba0ec05105190374d757068706b90f2d7e2f615d58"
+    },
+    "qualification_panel": {
+      "path": "docs/validation/native-spacy-w6-20261117/qualification-panel.json",
+      "sha256": "52bede2f915db66489b45657d9b605f357d000b2024c8c734b57c10b3457a826"
+    },
+    "protocol": {
+      "path": "docs/validation/native-spacy-w6-20261117/protocol.json",
+      "sha256": "099bbb7de42c0317a0e21c685aa707e1c0c17ba8a33f832c1b7ad38b18dbbf54"
+    },
+    "planner": {
+      "path": "packages/quds_proofing_spacy/lib/src/grammar_planner.dart",
+      "sha256": "898ff9f67a4acc20e825968f422c9fd1ae1def654ce63ef2942ba0e0cf317314"
+    },
+    "shared_facts": {
+      "path": "packages/quds_office_engine/lib/src/proofing/german_agreement_facts.dart",
+      "sha256": "4370c5c7d848e123f4059765e19e3c8e284480fe66203e17f2b9d9cc2e9d02b1"
+    },
+    "evaluator": {
+      "path": "packages/quds_proofing_spacy/tool/evaluate_grammar.dart",
+      "sha256": "ae2ef1b2c81b4bba313ca7e9245d691b7e2d30d43b1b81c3736cfb654e47ffc2"
+    }
+  },
+  "candidate_commit": "da18e29c20e2d42036cee911e85ff8bb22c328ae",
+  "deterministic_baseline_main": "6245a6956a76a38f925e1eb18851c0086730112d",
+  "authored_panel_scope": {
+    "authorship": "Independently authored by the coordinating assistant before native or planner outputs; no external corpus or human gold claim. Implementing agent is not given this panel.",
+    "definition": "86 pre-frozen assistant-authored cases, with 30 intended agreement errors, 42 valid controls, 10 policy/structure guards and 4 unsupported locales.",
+    "counts": {
+      "error": 30,
+      "valid": 42,
+      "guard": 10,
+      "unsupported": 4
+    },
+    "paired_error_and_valid_controls": 24,
+    "paired_case_ids": [
+      {
+        "error_id": "subject-pp-error-01",
+        "valid_id": "subject-pp-valid-01"
+      },
+      {
+        "error_id": "subject-pp-error-02",
+        "valid_id": "subject-pp-valid-02"
+      },
+      {
+        "error_id": "subject-pp-error-03",
+        "valid_id": "subject-pp-valid-03"
+      },
+      {
+        "error_id": "subject-pp-error-04",
+        "valid_id": "subject-pp-valid-04"
+      },
+      {
+        "error_id": "subject-pp-error-05",
+        "valid_id": "subject-pp-valid-05"
+      },
+      {
+        "error_id": "subject-pp-error-06",
+        "valid_id": "subject-pp-valid-06"
+      },
+      {
+        "error_id": "subject-pp-error-07",
+        "valid_id": "subject-pp-valid-07"
+      },
+      {
+        "error_id": "subject-pp-error-08",
+        "valid_id": "subject-pp-valid-08"
+      },
+      {
+        "error_id": "subject-pp-error-09",
+        "valid_id": "subject-pp-valid-09"
+      },
+      {
+        "error_id": "subject-pp-error-10",
+        "valid_id": "subject-pp-valid-10"
+      },
+      {
+        "error_id": "subject-pp-error-11",
+        "valid_id": "subject-pp-valid-11"
+      },
+      {
+        "error_id": "subject-pp-error-12",
+        "valid_id": "subject-pp-valid-12"
+      },
+      {
+        "error_id": "inversion-error-01",
+        "valid_id": "inversion-valid-01"
+      },
+      {
+        "error_id": "inversion-error-02",
+        "valid_id": "inversion-valid-02"
+      },
+      {
+        "error_id": "inversion-error-03",
+        "valid_id": "inversion-valid-03"
+      },
+      {
+        "error_id": "inversion-error-04",
+        "valid_id": "inversion-valid-04"
+      },
+      {
+        "error_id": "inversion-error-05",
+        "valid_id": "inversion-valid-05"
+      },
+      {
+        "error_id": "inversion-error-06",
+        "valid_id": "inversion-valid-06"
+      },
+      {
+        "error_id": "inversion-error-07",
+        "valid_id": "inversion-valid-07"
+      },
+      {
+        "error_id": "inversion-error-08",
+        "valid_id": "inversion-valid-08"
+      },
+      {
+        "error_id": "inversion-error-09",
+        "valid_id": "inversion-valid-09"
+      },
+      {
+        "error_id": "inversion-error-10",
+        "valid_id": "inversion-valid-10"
+      },
+      {
+        "error_id": "inversion-error-11",
+        "valid_id": "inversion-valid-11"
+      },
+      {
+        "error_id": "inversion-error-12",
+        "valid_id": "inversion-valid-12"
+      }
+    ],
+    "limitations": [
+      "This demonstrates a finite incremental exact-correction gain on this selected authored panel. It does not estimate general German precision, recall, prevalence, or production safety.",
+      "The 24 error/valid pairs intentionally share wording and structure; neither these pairs nor corrected rechecks are additional independent linguistic samples.",
+      "The 22 corrected rechecks repeat selected qualification content and do not increase the 86-case or 30-error denominators.",
+      "A guard is not a claim that its text is grammatical. A successful empty planner result may be explicit abstention.",
+      "Unsupported locale cases remain separate from correction coverage and valid-text controls.",
+      "The report marks editor_gate_included false; this linguistic outcome does not replace separately recorded editor safety gates."
+    ]
+  },
+  "qualification_outcome": {
+    "retained_report_passed": true,
+    "linguistic_gate_passed": true,
+    "summary": {
+      "completed_cases": 86,
+      "error_cases": 30,
+      "valid_cases": 42,
+      "guard_cases": 10,
+      "unsupported_cases": 4,
+      "baseline_exact_errors": 5,
+      "model_exact_errors": 22,
+      "combined_exact_errors": 22,
+      "combined_missed_errors": 8,
+      "additional_exact_errors": 17,
+      "baseline_exact_lost": 0,
+      "baseline_valid_flagged": 0,
+      "model_valid_flagged": 0,
+      "combined_valid_flagged": 0,
+      "model_guard_flagged": 0,
+      "baseline_changed_valid": 0,
+      "model_changed_valid": 0,
+      "combined_changed_valid": 0,
+      "added_changed_valid": 0,
+      "operational_failures": 0,
+      "model_proposals": 22,
+      "merge_suppressed_proposals": 5,
+      "model_abstentions_or_compatible_cases": 60,
+      "recheck_executions": 22,
+      "recheck_model_findings": 0
+    },
+    "family_breakdown": [
+      {
+        "family": "subject-pp",
+        "error_cases": 12,
+        "baseline_exact": 0,
+        "native_planner_exact": 11,
+        "combined_exact": 11,
+        "additional_exact": 11,
+        "missed": 1,
+        "additional_exact_case_ids": [
+          "subject-pp-error-01",
+          "subject-pp-error-02",
+          "subject-pp-error-03",
+          "subject-pp-error-04",
+          "subject-pp-error-05",
+          "subject-pp-error-06",
+          "subject-pp-error-07",
+          "subject-pp-error-08",
+          "subject-pp-error-09",
+          "subject-pp-error-10",
+          "subject-pp-error-12"
+        ],
+        "baseline_overlap_case_ids": [],
+        "missed_case_ids": [
+          "subject-pp-error-11"
+        ]
+      },
+      {
+        "family": "inversion",
+        "error_cases": 12,
+        "baseline_exact": 0,
+        "native_planner_exact": 6,
+        "combined_exact": 6,
+        "additional_exact": 6,
+        "missed": 6,
+        "additional_exact_case_ids": [
+          "inversion-error-02",
+          "inversion-error-05",
+          "inversion-error-06",
+          "inversion-error-07",
+          "inversion-error-09",
+          "inversion-error-10"
+        ],
+        "baseline_overlap_case_ids": [],
+        "missed_case_ids": [
+          "inversion-error-01",
+          "inversion-error-03",
+          "inversion-error-04",
+          "inversion-error-08",
+          "inversion-error-11",
+          "inversion-error-12"
+        ]
+      },
+      {
+        "family": "baseline-overlap",
+        "error_cases": 6,
+        "baseline_exact": 5,
+        "native_planner_exact": 5,
+        "combined_exact": 5,
+        "additional_exact": 0,
+        "missed": 1,
+        "additional_exact_case_ids": [],
+        "baseline_overlap_case_ids": [
+          "baseline-overlap-error-01",
+          "baseline-overlap-error-03",
+          "baseline-overlap-error-04",
+          "baseline-overlap-error-05",
+          "baseline-overlap-error-06"
+        ],
+        "missed_case_ids": [
+          "baseline-overlap-error-02"
+        ]
+      }
+    ],
+    "interpretation": "The 17 added exact corrections consist of 11 subject-prepositional-modifier errors and 6 initial-adverb inversion errors. Five baseline exact corrections remain exact with duplicate native findings suppressed; no error case was changed incorrectly."
+  },
+  "baseline_detection_and_choice_handling": {
+    "error_cases_with_baseline_findings": 5,
+    "baseline_detected_case_ids": [
+      "baseline-overlap-error-01",
+      "baseline-overlap-error-03",
+      "baseline-overlap-error-04",
+      "baseline-overlap-error-05",
+      "baseline-overlap-error-06"
+    ],
+    "baseline_exact_error_cases": 5,
+    "error_cases_with_unresolved_baseline_choices": 0,
+    "all_cases_with_unresolved_choices_by_arm": {
+      "baseline": [],
+      "model": [],
+      "combined": []
+    },
+    "baseline_guard_findings": 0,
+    "policy": "The frozen evaluator applies only findings containing exactly one replacement, and exact correction additionally requires all choices resolved. A finding with multiple choices remains visible but cannot earn an exact correction through gold-assisted choice.",
+    "observed_scope": "The updated deterministic provider supports complete phrase alternatives, but no multiple-choice finding occurred in this qualification. Its five detected error cases were all singleton exact corrections. No multi-choice cases are relabeled as undetected or automatically solved."
+  },
+  "valid_guard_and_unsupported_behavior": {
+    "valid_count": 42,
+    "valid_native_action_counts": {
+      "abstained": 26,
+      "preserved": 16
+    },
+    "valid_native_reason_counts": {
+      "unsupported-finite-analysis": 3,
+      "compatible-lexical-reading": 16,
+      "unsupported-clause-or-reference": 3,
+      "multiple-prepositional-phrases": 3,
+      "unsupported-word-order": 5,
+      "unknown-noun": 1,
+      "not-one-subject": 2,
+      "unsupported-prepositional-analysis": 3,
+      "unsupported-punctuation-or-source": 3,
+      "missing-determiner": 1,
+      "unknown-prepositional-noun": 1,
+      "multiple-sentences": 1
+    },
+    "guard_count": 10,
+    "guard_native_action_counts": {
+      "abstained": 8,
+      "suppressed": 2
+    },
+    "unsupported_count": 4,
+    "case_details": [
+      {
+        "id": "subject-pp-valid-01",
+        "kind": "valid",
+        "family": "subject-pp",
+        "locale": "de-DE",
+        "text": "Die Katzen auf dem Sofa schlafen.",
+        "decisions": [
+          {
+            "action": "abstained",
+            "reason": "unsupported-finite-analysis",
+            "token_indices": [
+              5
+            ],
+            "construction": null
+          }
+        ],
+        "findings_by_arm": {
+          "baseline": 0,
+          "model": 0,
+          "combined": 0
+        },
+        "changed_by_arm": {
+          "baseline": false,
+          "model": false,
+          "combined": false
+        },
+        "native_statuses": [
+          {
+            "provider": "spacy-german-grammar",
+            "status": "success",
+            "message": null
+          }
+        ]
+      },
+      {
+        "id": "subject-pp-valid-02",
+        "kind": "valid",
+        "family": "subject-pp",
+        "locale": "de-DE",
+        "text": "Der Schüler aus dem Dorf lernt heute.",
+        "decisions": [
+          {
+            "action": "preserved",
+            "reason": "compatible-lexical-reading",
+            "token_indices": [
+              5,
+              1,
+              0
+            ],
+            "construction": "subject-prepositional-modifier"
+          }
+        ],
+        "findings_by_arm": {
+          "baseline": 0,
+          "model": 0,
+          "combined": 0
+        },
+        "changed_by_arm": {
+          "baseline": false,
+          "model": false,
+          "combined": false
+        },
+        "native_statuses": [
+          {
+            "provider": "spacy-german-grammar",
+            "status": "success",
+            "message": null
+          }
+        ]
+      },
+      {
+        "id": "subject-pp-valid-03",
+        "kind": "valid",
+        "family": "subject-pp",
+        "locale": "de-DE",
+        "text": "Die Gäste vor dem Haus warten.",
+        "decisions": [
+          {
+            "action": "abstained",
+            "reason": "unsupported-clause-or-reference",
+            "token_indices": [],
+            "construction": null
+          }
+        ],
+        "findings_by_arm": {
+          "baseline": 0,
+          "model": 0,
+          "combined": 0
+        },
+        "changed_by_arm": {
+          "baseline": false,
+          "model": false,
+          "combined": false
+        },
+        "native_statuses": [
+          {
+            "provider": "spacy-german-grammar",
+            "status": "success",
+            "message": null
+          }
+        ]
+      },
+      {
+        "id": "subject-pp-valid-04",
+        "kind": "valid",
+        "family": "subject-pp",
+        "locale": "de-DE",
+        "text": "Das Fahrrad neben den Autos steht draußen.",
+        "decisions": [
+          {
+            "action": "preserved",
+            "reason": "compatible-lexical-reading",
+            "token_indices": [
+              5,
+              1,
+              0
+            ],
+            "construction": "subject-prepositional-modifier"
+          }
+        ],
+        "findings_by_arm": {
+          "baseline": 0,
+          "model": 0,
+          "combined": 0
+        },
+        "changed_by_arm": {
+          "baseline": false,
+          "model": false,
+          "combined": false
+        },
+        "native_statuses": [
+          {
+            "provider": "spacy-german-grammar",
+            "status": "success",
+            "message": null
+          }
+        ]
+      },
+      {
+        "id": "subject-pp-valid-05",
+        "kind": "valid",
+        "family": "subject-pp",
+        "locale": "de-DE",
+        "text": "Die Hunde hinter der Hecke laufen.",
+        "decisions": [
+          {
+            "action": "abstained",
+            "reason": "unsupported-finite-analysis",
+            "token_indices": [
+              5
+            ],
+            "construction": null
+          }
+        ],
+        "findings_by_arm": {
+          "baseline": 0,
+          "model": 0,
+          "combined": 0
+        },
+        "changed_by_arm": {
+          "baseline": false,
+          "model": false,
+          "combined": false
+        },
+        "native_statuses": [
+          {
+            "provider": "spacy-german-grammar",
+            "status": "success",
+            "message": null
+          }
+        ]
+      },
+      {
+        "id": "subject-pp-valid-06",
+        "kind": "valid",
+        "family": "subject-pp",
+        "locale": "de-DE",
+        "text": "Die Bücher auf dem Tisch liegen hier.",
+        "decisions": [
+          {
+            "action": "preserved",
+            "reason": "compatible-lexical-reading",
+            "token_indices": [
+              5,
+              1,
+              0
+            ],
+            "construction": "subject-prepositional-modifier"
+          }
+        ],
+        "findings_by_arm": {
+          "baseline": 0,
+          "model": 0,
+          "combined": 0
+        },
+        "changed_by_arm": {
+          "baseline": false,
+          "model": false,
+          "combined": false
+        },
+        "native_statuses": [
+          {
+            "provider": "spacy-german-grammar",
+            "status": "success",
+            "message": null
+          }
+        ]
+      },
+      {
+        "id": "subject-pp-valid-07",
+        "kind": "valid",
+        "family": "subject-pp",
+        "locale": "de-DE",
+        "text": "Die Frau mit den Taschen arbeitet heute.",
+        "decisions": [
+          {
+            "action": "preserved",
+            "reason": "compatible-lexical-reading",
+            "token_indices": [
+              5,
+              1,
+              0
+            ],
+            "construction": "subject-prepositional-modifier"
+          }
+        ],
+        "findings_by_arm": {
+          "baseline": 0,
+          "model": 0,
+          "combined": 0
+        },
+        "changed_by_arm": {
+          "baseline": false,
+          "model": false,
+          "combined": false
+        },
+        "native_statuses": [
+          {
+            "provider": "spacy-german-grammar",
+            "status": "success",
+            "message": null
+          }
+        ]
+      },
+      {
+        "id": "subject-pp-valid-08",
+        "kind": "valid",
+        "family": "subject-pp",
+        "locale": "de-DE",
+        "text": "Die Kinder aus dem Dorf kommen morgen.",
+        "decisions": [
+          {
+            "action": "preserved",
+            "reason": "compatible-lexical-reading",
+            "token_indices": [
+              5,
+              1,
+              0
+            ],
+            "construction": "subject-prepositional-modifier"
+          }
+        ],
+        "findings_by_arm": {
+          "baseline": 0,
+          "model": 0,
+          "combined": 0
+        },
+        "changed_by_arm": {
+          "baseline": false,
+          "model": false,
+          "combined": false
+        },
+        "native_statuses": [
+          {
+            "provider": "spacy-german-grammar",
+            "status": "success",
+            "message": null
+          }
+        ]
+      },
+      {
+        "id": "subject-pp-valid-09",
+        "kind": "valid",
+        "family": "subject-pp",
+        "locale": "de-DE",
+        "text": "Die Männer in der Küche arbeiten.",
+        "decisions": [
+          {
+            "action": "abstained",
+            "reason": "unsupported-finite-analysis",
+            "token_indices": [
+              5
+            ],
+            "construction": null
+          }
+        ],
+        "findings_by_arm": {
+          "baseline": 0,
+          "model": 0,
+          "combined": 0
+        },
+        "changed_by_arm": {
+          "baseline": false,
+          "model": false,
+          "combined": false
+        },
+        "native_statuses": [
+          {
+            "provider": "spacy-german-grammar",
+            "status": "success",
+            "message": null
+          }
+        ]
+      },
+      {
+        "id": "subject-pp-valid-10",
+        "kind": "valid",
+        "family": "subject-pp",
+        "locale": "de-DE",
+        "text": "Der Arzt neben den Schwestern hilft heute.",
+        "decisions": [
+          {
+            "action": "preserved",
+            "reason": "compatible-lexical-reading",
+            "token_indices": [
+              5,
+              1,
+              0
+            ],
+            "construction": "subject-prepositional-modifier"
+          }
+        ],
+        "findings_by_arm": {
+          "baseline": 0,
+          "model": 0,
+          "combined": 0
+        },
+        "changed_by_arm": {
+          "baseline": false,
+          "model": false,
+          "combined": false
+        },
+        "native_statuses": [
+          {
+            "provider": "spacy-german-grammar",
+            "status": "success",
+            "message": null
+          }
+        ]
+      },
+      {
+        "id": "subject-pp-valid-11",
+        "kind": "valid",
+        "family": "subject-pp",
+        "locale": "de-DE",
+        "text": "Die Fenster im Flur bleiben offen.",
+        "decisions": [
+          {
+            "action": "abstained",
+            "reason": "multiple-prepositional-phrases",
+            "token_indices": [
+              4,
+              1,
+              0
+            ],
+            "construction": null
+          }
+        ],
+        "findings_by_arm": {
+          "baseline": 0,
+          "model": 0,
+          "combined": 0
+        },
+        "changed_by_arm": {
+          "baseline": false,
+          "model": false,
+          "combined": false
+        },
+        "native_statuses": [
+          {
+            "provider": "spacy-german-grammar",
+            "status": "success",
+            "message": null
+          }
+        ]
+      },
+      {
+        "id": "subject-pp-valid-12",
+        "kind": "valid",
+        "family": "subject-pp",
+        "locale": "de-DE",
+        "text": "Das Pferd auf der Wiese läuft langsam.",
+        "decisions": [
+          {
+            "action": "preserved",
+            "reason": "compatible-lexical-reading",
+            "token_indices": [
+              5,
+              1,
+              0
+            ],
+            "construction": "subject-prepositional-modifier"
+          }
+        ],
+        "findings_by_arm": {
+          "baseline": 0,
+          "model": 0,
+          "combined": 0
+        },
+        "changed_by_arm": {
+          "baseline": false,
+          "model": false,
+          "combined": false
+        },
+        "native_statuses": [
+          {
+            "provider": "spacy-german-grammar",
+            "status": "success",
+            "message": null
+          }
+        ]
+      },
+      {
+        "id": "inversion-valid-01",
+        "kind": "valid",
+        "family": "inversion",
+        "locale": "de-DE",
+        "text": "Heute schläft das Baby.",
+        "decisions": [
+          {
+            "action": "preserved",
+            "reason": "compatible-lexical-reading",
+            "token_indices": [
+              1,
+              3,
+              2
+            ],
+            "construction": "adverbial-inversion"
+          }
+        ],
+        "findings_by_arm": {
+          "baseline": 0,
+          "model": 0,
+          "combined": 0
+        },
+        "changed_by_arm": {
+          "baseline": false,
+          "model": false,
+          "combined": false
+        },
+        "native_statuses": [
+          {
+            "provider": "spacy-german-grammar",
+            "status": "success",
+            "message": null
+          }
+        ]
+      },
+      {
+        "id": "inversion-valid-02",
+        "kind": "valid",
+        "family": "inversion",
+        "locale": "de-DE",
+        "text": "Morgen arbeiten die Kollegen.",
+        "decisions": [
+          {
+            "action": "preserved",
+            "reason": "compatible-lexical-reading",
+            "token_indices": [
+              1,
+              3,
+              2
+            ],
+            "construction": "adverbial-inversion"
+          }
+        ],
+        "findings_by_arm": {
+          "baseline": 0,
+          "model": 0,
+          "combined": 0
+        },
+        "changed_by_arm": {
+          "baseline": false,
+          "model": false,
+          "combined": false
+        },
+        "native_statuses": [
+          {
+            "provider": "spacy-german-grammar",
+            "status": "success",
+            "message": null
+          }
+        ]
+      },
+      {
+        "id": "inversion-valid-03",
+        "kind": "valid",
+        "family": "inversion",
+        "locale": "de-DE",
+        "text": "Draußen warten die Gäste.",
+        "decisions": [
+          {
+            "action": "abstained",
+            "reason": "unsupported-word-order",
+            "token_indices": [
+              1,
+              3,
+              2
+            ],
+            "construction": null
+          }
+        ],
+        "findings_by_arm": {
+          "baseline": 0,
+          "model": 0,
+          "combined": 0
+        },
+        "changed_by_arm": {
+          "baseline": false,
+          "model": false,
+          "combined": false
+        },
+        "native_statuses": [
+          {
+            "provider": "spacy-german-grammar",
+            "status": "success",
+            "message": null
+          }
+        ]
+      },
+      {
+        "id": "inversion-valid-04",
+        "kind": "valid",
+        "family": "inversion",
+        "locale": "de-DE",
+        "text": "Hier liegen die Schlüssel.",
+        "decisions": [
+          {
+            "action": "preserved",
+            "reason": "compatible-lexical-reading",
+            "token_indices": [
+              1,
+              3,
+              2
+            ],
+            "construction": "adverbial-inversion"
+          }
+        ],
+        "findings_by_arm": {
+          "baseline": 0,
+          "model": 0,
+          "combined": 0
+        },
+        "changed_by_arm": {
+          "baseline": false,
+          "model": false,
+          "combined": false
+        },
+        "native_statuses": [
+          {
+            "provider": "spacy-german-grammar",
+            "status": "success",
+            "message": null
+          }
+        ]
+      },
+      {
+        "id": "inversion-valid-05",
+        "kind": "valid",
+        "family": "inversion",
+        "locale": "de-DE",
+        "text": "Jetzt kommt die Mutter.",
+        "decisions": [
+          {
+            "action": "preserved",
+            "reason": "compatible-lexical-reading",
+            "token_indices": [
+              1,
+              3,
+              2
+            ],
+            "construction": "adverbial-inversion"
+          }
+        ],
+        "findings_by_arm": {
+          "baseline": 0,
+          "model": 0,
+          "combined": 0
+        },
+        "changed_by_arm": {
+          "baseline": false,
+          "model": false,
+          "combined": false
+        },
+        "native_statuses": [
+          {
+            "provider": "spacy-german-grammar",
+            "status": "success",
+            "message": null
+          }
+        ]
+      },
+      {
+        "id": "inversion-valid-06",
+        "kind": "valid",
+        "family": "inversion",
+        "locale": "de-DE",
+        "text": "Oft spielt das Mädchen.",
+        "decisions": [
+          {
+            "action": "preserved",
+            "reason": "compatible-lexical-reading",
+            "token_indices": [
+              1,
+              3,
+              2
+            ],
+            "construction": "adverbial-inversion"
+          }
+        ],
+        "findings_by_arm": {
+          "baseline": 0,
+          "model": 0,
+          "combined": 0
+        },
+        "changed_by_arm": {
+          "baseline": false,
+          "model": false,
+          "combined": false
+        },
+        "native_statuses": [
+          {
+            "provider": "spacy-german-grammar",
+            "status": "success",
+            "message": null
+          }
+        ]
+      },
+      {
+        "id": "inversion-valid-07",
+        "kind": "valid",
+        "family": "inversion",
+        "locale": "de-DE",
+        "text": "Bald kommt die Lehrerin.",
+        "decisions": [
+          {
+            "action": "preserved",
+            "reason": "compatible-lexical-reading",
+            "token_indices": [
+              1,
+              3,
+              2
+            ],
+            "construction": "adverbial-inversion"
+          }
+        ],
+        "findings_by_arm": {
+          "baseline": 0,
+          "model": 0,
+          "combined": 0
+        },
+        "changed_by_arm": {
+          "baseline": false,
+          "model": false,
+          "combined": false
+        },
+        "native_statuses": [
+          {
+            "provider": "spacy-german-grammar",
+            "status": "success",
+            "message": null
+          }
+        ]
+      },
+      {
+        "id": "inversion-valid-08",
+        "kind": "valid",
+        "family": "inversion",
+        "locale": "de-DE",
+        "text": "Drinnen sitzen die Hunde.",
+        "decisions": [
+          {
+            "action": "abstained",
+            "reason": "unsupported-word-order",
+            "token_indices": [
+              1,
+              3,
+              2
+            ],
+            "construction": null
+          }
+        ],
+        "findings_by_arm": {
+          "baseline": 0,
+          "model": 0,
+          "combined": 0
+        },
+        "changed_by_arm": {
+          "baseline": false,
+          "model": false,
+          "combined": false
+        },
+        "native_statuses": [
+          {
+            "provider": "spacy-german-grammar",
+            "status": "success",
+            "message": null
+          }
+        ]
+      },
+      {
+        "id": "inversion-valid-09",
+        "kind": "valid",
+        "family": "inversion",
+        "locale": "de-DE",
+        "text": "Heute trinkt der Mann.",
+        "decisions": [
+          {
+            "action": "preserved",
+            "reason": "compatible-lexical-reading",
+            "token_indices": [
+              1,
+              3,
+              2
+            ],
+            "construction": "adverbial-inversion"
+          }
+        ],
+        "findings_by_arm": {
+          "baseline": 0,
+          "model": 0,
+          "combined": 0
+        },
+        "changed_by_arm": {
+          "baseline": false,
+          "model": false,
+          "combined": false
+        },
+        "native_statuses": [
+          {
+            "provider": "spacy-german-grammar",
+            "status": "success",
+            "message": null
+          }
+        ]
+      },
+      {
+        "id": "inversion-valid-10",
+        "kind": "valid",
+        "family": "inversion",
+        "locale": "de-DE",
+        "text": "Dort steht das Auto.",
+        "decisions": [
+          {
+            "action": "preserved",
+            "reason": "compatible-lexical-reading",
+            "token_indices": [
+              1,
+              3,
+              2
+            ],
+            "construction": "adverbial-inversion"
+          }
+        ],
+        "findings_by_arm": {
+          "baseline": 0,
+          "model": 0,
+          "combined": 0
+        },
+        "changed_by_arm": {
+          "baseline": false,
+          "model": false,
+          "combined": false
+        },
+        "native_statuses": [
+          {
+            "provider": "spacy-german-grammar",
+            "status": "success",
+            "message": null
+          }
+        ]
+      },
+      {
+        "id": "inversion-valid-11",
+        "kind": "valid",
+        "family": "inversion",
+        "locale": "de-DE",
+        "text": "Morgen fahren die Züge.",
+        "decisions": [
+          {
+            "action": "abstained",
+            "reason": "unknown-noun",
+            "token_indices": [
+              1,
+              3,
+              2
+            ],
+            "construction": "adverbial-inversion"
+          }
+        ],
+        "findings_by_arm": {
+          "baseline": 0,
+          "model": 0,
+          "combined": 0
+        },
+        "changed_by_arm": {
+          "baseline": false,
+          "model": false,
+          "combined": false
+        },
+        "native_statuses": [
+          {
+            "provider": "spacy-german-grammar",
+            "status": "success",
+            "message": null
+          }
+        ]
+      },
+      {
+        "id": "inversion-valid-12",
+        "kind": "valid",
+        "family": "inversion",
+        "locale": "de-DE",
+        "text": "Gern lesen die Kinder.",
+        "decisions": [
+          {
+            "action": "abstained",
+            "reason": "not-one-subject",
+            "token_indices": [
+              1
+            ],
+            "construction": null
+          }
+        ],
+        "findings_by_arm": {
+          "baseline": 0,
+          "model": 0,
+          "combined": 0
+        },
+        "changed_by_arm": {
+          "baseline": false,
+          "model": false,
+          "combined": false
+        },
+        "native_statuses": [
+          {
+            "provider": "spacy-german-grammar",
+            "status": "success",
+            "message": null
+          }
+        ]
+      },
+      {
+        "id": "valid-leiter-singular",
+        "kind": "valid",
+        "family": "ambiguity",
+        "locale": "de-DE",
+        "text": "Die Leiter neben dem Tor steht sicher.",
+        "decisions": [
+          {
+            "action": "abstained",
+            "reason": "multiple-prepositional-phrases",
+            "token_indices": [
+              5,
+              1,
+              0
+            ],
+            "construction": null
+          }
+        ],
+        "findings_by_arm": {
+          "baseline": 0,
+          "model": 0,
+          "combined": 0
+        },
+        "changed_by_arm": {
+          "baseline": false,
+          "model": false,
+          "combined": false
+        },
+        "native_statuses": [
+          {
+            "provider": "spacy-german-grammar",
+            "status": "success",
+            "message": null
+          }
+        ]
+      },
+      {
+        "id": "valid-leiter-plural",
+        "kind": "valid",
+        "family": "ambiguity",
+        "locale": "de-DE",
+        "text": "Die Leiter aus den Abteilungen arbeiten gemeinsam.",
+        "decisions": [
+          {
+            "action": "abstained",
+            "reason": "multiple-prepositional-phrases",
+            "token_indices": [
+              5,
+              1,
+              0
+            ],
+            "construction": null
+          }
+        ],
+        "findings_by_arm": {
+          "baseline": 0,
+          "model": 0,
+          "combined": 0
+        },
+        "changed_by_arm": {
+          "baseline": false,
+          "model": false,
+          "combined": false
+        },
+        "native_statuses": [
+          {
+            "provider": "spacy-german-grammar",
+            "status": "success",
+            "message": null
+          }
+        ]
+      },
+      {
+        "id": "valid-band-singular",
+        "kind": "valid",
+        "family": "ambiguity",
+        "locale": "de-DE",
+        "text": "Die Band hinter den Kulissen spielt heute.",
+        "decisions": [
+          {
+            "action": "preserved",
+            "reason": "compatible-lexical-reading",
+            "token_indices": [
+              5,
+              1,
+              0
+            ],
+            "construction": "subject-prepositional-modifier"
+          }
+        ],
+        "findings_by_arm": {
+          "baseline": 0,
+          "model": 0,
+          "combined": 0
+        },
+        "changed_by_arm": {
+          "baseline": false,
+          "model": false,
+          "combined": false
+        },
+        "native_statuses": [
+          {
+            "provider": "spacy-german-grammar",
+            "status": "success",
+            "message": null
+          }
+        ]
+      },
+      {
+        "id": "valid-expletive-es",
+        "kind": "valid",
+        "family": "expletive",
+        "locale": "de-DE",
+        "text": "Es stehen drei Fahrräder vor dem Haus.",
+        "decisions": [
+          {
+            "action": "abstained",
+            "reason": "unsupported-clause-or-reference",
+            "token_indices": [],
+            "construction": null
+          }
+        ],
+        "findings_by_arm": {
+          "baseline": 0,
+          "model": 0,
+          "combined": 0
+        },
+        "changed_by_arm": {
+          "baseline": false,
+          "model": false,
+          "combined": false
+        },
+        "native_statuses": [
+          {
+            "provider": "spacy-german-grammar",
+            "status": "success",
+            "message": null
+          }
+        ]
+      },
+      {
+        "id": "valid-fronted-object-plural",
+        "kind": "valid",
+        "family": "fronted-object",
+        "locale": "de-DE",
+        "text": "Die Katzen sieht der Junge heute.",
+        "decisions": [
+          {
+            "action": "abstained",
+            "reason": "unsupported-word-order",
+            "token_indices": [
+              2,
+              4,
+              3
+            ],
+            "construction": null
+          }
+        ],
+        "findings_by_arm": {
+          "baseline": 0,
+          "model": 0,
+          "combined": 0
+        },
+        "changed_by_arm": {
+          "baseline": false,
+          "model": false,
+          "combined": false
+        },
+        "native_statuses": [
+          {
+            "provider": "spacy-german-grammar",
+            "status": "success",
+            "message": null
+          }
+        ]
+      },
+      {
+        "id": "valid-fronted-object-singular",
+        "kind": "valid",
+        "family": "fronted-object",
+        "locale": "de-DE",
+        "text": "Das Fahrrad sehen die Mädchen dort.",
+        "decisions": [
+          {
+            "action": "abstained",
+            "reason": "unsupported-prepositional-analysis",
+            "token_indices": [
+              2,
+              1,
+              0
+            ],
+            "construction": null
+          }
+        ],
+        "findings_by_arm": {
+          "baseline": 0,
+          "model": 0,
+          "combined": 0
+        },
+        "changed_by_arm": {
+          "baseline": false,
+          "model": false,
+          "combined": false
+        },
+        "native_statuses": [
+          {
+            "provider": "spacy-german-grammar",
+            "status": "success",
+            "message": null
+          }
+        ]
+      },
+      {
+        "id": "valid-coordination",
+        "kind": "valid",
+        "family": "coordination",
+        "locale": "de-DE",
+        "text": "Der Lehrer und die Ärztin arbeiten draußen.",
+        "decisions": [
+          {
+            "action": "abstained",
+            "reason": "unsupported-clause-or-reference",
+            "token_indices": [],
+            "construction": null
+          }
+        ],
+        "findings_by_arm": {
+          "baseline": 0,
+          "model": 0,
+          "combined": 0
+        },
+        "changed_by_arm": {
+          "baseline": false,
+          "model": false,
+          "combined": false
+        },
+        "native_statuses": [
+          {
+            "provider": "spacy-german-grammar",
+            "status": "success",
+            "message": null
+          }
+        ]
+      },
+      {
+        "id": "valid-relative-clause",
+        "kind": "valid",
+        "family": "relative-clause",
+        "locale": "de-DE",
+        "text": "Die Katze, die wir kennen, schläft drinnen.",
+        "decisions": [
+          {
+            "action": "abstained",
+            "reason": "unsupported-punctuation-or-source",
+            "token_indices": [],
+            "construction": null
+          }
+        ],
+        "findings_by_arm": {
+          "baseline": 0,
+          "model": 0,
+          "combined": 0
+        },
+        "changed_by_arm": {
+          "baseline": false,
+          "model": false,
+          "combined": false
+        },
+        "native_statuses": [
+          {
+            "provider": "spacy-german-grammar",
+            "status": "success",
+            "message": null
+          }
+        ]
+      },
+      {
+        "id": "valid-proper-name",
+        "kind": "valid",
+        "family": "proper-name",
+        "locale": "de-DE",
+        "text": "Marlene arbeitet heute im Garten.",
+        "decisions": [
+          {
+            "action": "abstained",
+            "reason": "missing-determiner",
+            "token_indices": [
+              1,
+              0
+            ],
+            "construction": null
+          }
+        ],
+        "findings_by_arm": {
+          "baseline": 0,
+          "model": 0,
+          "combined": 0
+        },
+        "changed_by_arm": {
+          "baseline": false,
+          "model": false,
+          "combined": false
+        },
+        "native_statuses": [
+          {
+            "provider": "spacy-german-grammar",
+            "status": "success",
+            "message": null
+          }
+        ]
+      },
+      {
+        "id": "valid-unknown-noun",
+        "kind": "valid",
+        "family": "unknown-noun",
+        "locale": "de-DE",
+        "text": "Die Qudsblume neben dem Tor steht dort.",
+        "decisions": [
+          {
+            "action": "abstained",
+            "reason": "unknown-prepositional-noun",
+            "token_indices": [
+              5,
+              1,
+              0
+            ],
+            "construction": null
+          }
+        ],
+        "findings_by_arm": {
+          "baseline": 0,
+          "model": 0,
+          "combined": 0
+        },
+        "changed_by_arm": {
+          "baseline": false,
+          "model": false,
+          "combined": false
+        },
+        "native_statuses": [
+          {
+            "provider": "spacy-german-grammar",
+            "status": "success",
+            "message": null
+          }
+        ]
+      },
+      {
+        "id": "valid-verb-competing",
+        "kind": "valid",
+        "family": "verb-reading",
+        "locale": "de-DE",
+        "text": "Heute weiß die Lehrerin die Antwort.",
+        "decisions": [
+          {
+            "action": "abstained",
+            "reason": "unsupported-prepositional-analysis",
+            "token_indices": [
+              1,
+              3,
+              2
+            ],
+            "construction": null
+          }
+        ],
+        "findings_by_arm": {
+          "baseline": 0,
+          "model": 0,
+          "combined": 0
+        },
+        "changed_by_arm": {
+          "baseline": false,
+          "model": false,
+          "combined": false
+        },
+        "native_statuses": [
+          {
+            "provider": "spacy-german-grammar",
+            "status": "success",
+            "message": null
+          }
+        ]
+      },
+      {
+        "id": "valid-subjunctive",
+        "kind": "valid",
+        "family": "verb-reading",
+        "locale": "de-DE",
+        "text": "Der Arzt helfe den Kindern, sagte sie.",
+        "decisions": [
+          {
+            "action": "abstained",
+            "reason": "unsupported-punctuation-or-source",
+            "token_indices": [],
+            "construction": null
+          }
+        ],
+        "findings_by_arm": {
+          "baseline": 0,
+          "model": 0,
+          "combined": 0
+        },
+        "changed_by_arm": {
+          "baseline": false,
+          "model": false,
+          "combined": false
+        },
+        "native_statuses": [
+          {
+            "provider": "spacy-german-grammar",
+            "status": "success",
+            "message": null
+          }
+        ]
+      },
+      {
+        "id": "valid-imperative",
+        "kind": "valid",
+        "family": "imperative",
+        "locale": "de-DE",
+        "text": "Helft den Gästen vor dem Haus!",
+        "decisions": [
+          {
+            "action": "abstained",
+            "reason": "unsupported-punctuation-or-source",
+            "token_indices": [],
+            "construction": null
+          }
+        ],
+        "findings_by_arm": {
+          "baseline": 0,
+          "model": 0,
+          "combined": 0
+        },
+        "changed_by_arm": {
+          "baseline": false,
+          "model": false,
+          "combined": false
+        },
+        "native_statuses": [
+          {
+            "provider": "spacy-german-grammar",
+            "status": "success",
+            "message": null
+          }
+        ]
+      },
+      {
+        "id": "valid-predicate-nominative",
+        "kind": "valid",
+        "family": "copular",
+        "locale": "de-DE",
+        "text": "Mein ganzer Stolz sind diese Bücher.",
+        "decisions": [
+          {
+            "action": "abstained",
+            "reason": "unsupported-word-order",
+            "token_indices": [
+              3,
+              5,
+              4
+            ],
+            "construction": null
+          }
+        ],
+        "findings_by_arm": {
+          "baseline": 0,
+          "model": 0,
+          "combined": 0
+        },
+        "changed_by_arm": {
+          "baseline": false,
+          "model": false,
+          "combined": false
+        },
+        "native_statuses": [
+          {
+            "provider": "spacy-german-grammar",
+            "status": "success",
+            "message": null
+          }
+        ]
+      },
+      {
+        "id": "valid-plural-quantity",
+        "kind": "valid",
+        "family": "quantity",
+        "locale": "de-DE",
+        "text": "Ein paar Katzen schlafen draußen.",
+        "decisions": [
+          {
+            "action": "abstained",
+            "reason": "not-one-subject",
+            "token_indices": [
+              3
+            ],
+            "construction": null
+          }
+        ],
+        "findings_by_arm": {
+          "baseline": 0,
+          "model": 0,
+          "combined": 0
+        },
+        "changed_by_arm": {
+          "baseline": false,
+          "model": false,
+          "combined": false
+        },
+        "native_statuses": [
+          {
+            "provider": "spacy-german-grammar",
+            "status": "success",
+            "message": null
+          }
+        ]
+      },
+      {
+        "id": "valid-genitive-modifier",
+        "kind": "valid",
+        "family": "genitive",
+        "locale": "de-DE",
+        "text": "Die Stimme der Kinder klingt leise.",
+        "decisions": [
+          {
+            "action": "abstained",
+            "reason": "unsupported-prepositional-analysis",
+            "token_indices": [
+              4,
+              1,
+              0
+            ],
+            "construction": null
+          }
+        ],
+        "findings_by_arm": {
+          "baseline": 0,
+          "model": 0,
+          "combined": 0
+        },
+        "changed_by_arm": {
+          "baseline": false,
+          "model": false,
+          "combined": false
+        },
+        "native_statuses": [
+          {
+            "provider": "spacy-german-grammar",
+            "status": "success",
+            "message": null
+          }
+        ]
+      },
+      {
+        "id": "valid-fronted-pp",
+        "kind": "valid",
+        "family": "fronted-preposition",
+        "locale": "de-DE",
+        "text": "Vor dem Haus stehen die Fahrräder.",
+        "decisions": [
+          {
+            "action": "abstained",
+            "reason": "unsupported-word-order",
+            "token_indices": [
+              3,
+              5,
+              4
+            ],
+            "construction": null
+          }
+        ],
+        "findings_by_arm": {
+          "baseline": 0,
+          "model": 0,
+          "combined": 0
+        },
+        "changed_by_arm": {
+          "baseline": false,
+          "model": false,
+          "combined": false
+        },
+        "native_statuses": [
+          {
+            "provider": "spacy-german-grammar",
+            "status": "success",
+            "message": null
+          }
+        ]
+      },
+      {
+        "id": "valid-multiple-sentences",
+        "kind": "valid",
+        "family": "multiple-sentences",
+        "locale": "de-DE",
+        "text": "Die Katze schläft. Die Gäste warten.",
+        "decisions": [
+          {
+            "action": "abstained",
+            "reason": "multiple-sentences",
+            "token_indices": [],
+            "construction": null
+          }
+        ],
+        "findings_by_arm": {
+          "baseline": 0,
+          "model": 0,
+          "combined": 0
+        },
+        "changed_by_arm": {
+          "baseline": false,
+          "model": false,
+          "combined": false
+        },
+        "native_statuses": [
+          {
+            "provider": "spacy-german-grammar",
+            "status": "success",
+            "message": null
+          }
+        ]
+      },
+      {
+        "id": "guard-quoted-error",
+        "kind": "guard",
+        "family": "quotation",
+        "locale": "de-DE",
+        "text": "„Die Katzen auf dem Sofa schläft.“ ist unser Beispielsatz.",
+        "decisions": [
+          {
+            "action": "abstained",
+            "reason": "quoted-context",
+            "token_indices": [],
+            "construction": null
+          }
+        ],
+        "findings_by_arm": {
+          "baseline": 0,
+          "model": 0,
+          "combined": 0
+        },
+        "changed_by_arm": {
+          "baseline": false,
+          "model": false,
+          "combined": false
+        },
+        "native_statuses": [
+          {
+            "provider": "spacy-german-grammar",
+            "status": "success",
+            "message": null
+          }
+        ]
+      },
+      {
+        "id": "guard-code-error",
+        "kind": "guard",
+        "family": "code",
+        "locale": "de-DE",
+        "text": "`Die Hunde hinter der Hecke läuft.`",
+        "decisions": [
+          {
+            "action": "abstained",
+            "reason": "multiple-sentences",
+            "token_indices": [],
+            "construction": null
+          }
+        ],
+        "findings_by_arm": {
+          "baseline": 0,
+          "model": 0,
+          "combined": 0
+        },
+        "changed_by_arm": {
+          "baseline": false,
+          "model": false,
+          "combined": false
+        },
+        "native_statuses": [
+          {
+            "provider": "spacy-german-grammar",
+            "status": "success",
+            "message": null
+          }
+        ]
+      },
+      {
+        "id": "guard-url-error",
+        "kind": "guard",
+        "family": "url",
+        "locale": "de-DE",
+        "text": "https://example.org/Die-Katzen-schlaeft",
+        "decisions": [
+          {
+            "action": "abstained",
+            "reason": "protected-context",
+            "token_indices": [],
+            "construction": null
+          }
+        ],
+        "findings_by_arm": {
+          "baseline": 0,
+          "model": 0,
+          "combined": 0
+        },
+        "changed_by_arm": {
+          "baseline": false,
+          "model": false,
+          "combined": false
+        },
+        "native_statuses": [
+          {
+            "provider": "spacy-german-grammar",
+            "status": "success",
+            "message": null
+          }
+        ]
+      },
+      {
+        "id": "guard-unknown-error",
+        "kind": "guard",
+        "family": "unknown-noun",
+        "locale": "de-DE",
+        "text": "Die Qudsmurks im Garten läuft.",
+        "decisions": [
+          {
+            "action": "abstained",
+            "reason": "unknown-noun",
+            "token_indices": [
+              4,
+              1,
+              0
+            ],
+            "construction": "subject-prepositional-modifier"
+          }
+        ],
+        "findings_by_arm": {
+          "baseline": 0,
+          "model": 0,
+          "combined": 0
+        },
+        "changed_by_arm": {
+          "baseline": false,
+          "model": false,
+          "combined": false
+        },
+        "native_statuses": [
+          {
+            "provider": "spacy-german-grammar",
+            "status": "success",
+            "message": null
+          }
+        ]
+      },
+      {
+        "id": "guard-sentence-fragment",
+        "kind": "guard",
+        "family": "incomplete",
+        "locale": "de-DE",
+        "text": "Die Katzen auf dem Sofa",
+        "decisions": [
+          {
+            "action": "abstained",
+            "reason": "unsupported-punctuation-or-source",
+            "token_indices": [],
+            "construction": null
+          }
+        ],
+        "findings_by_arm": {
+          "baseline": 0,
+          "model": 0,
+          "combined": 0
+        },
+        "changed_by_arm": {
+          "baseline": false,
+          "model": false,
+          "combined": false
+        },
+        "native_statuses": [
+          {
+            "provider": "spacy-german-grammar",
+            "status": "success",
+            "message": null
+          }
+        ]
+      },
+      {
+        "id": "guard-ignored-native",
+        "kind": "guard",
+        "family": "ignored-rule",
+        "locale": "de-DE",
+        "text": "Heute schläft die Katzen.",
+        "decisions": [
+          {
+            "action": "suppressed",
+            "reason": "ignored-rule",
+            "token_indices": [
+              1,
+              3,
+              2
+            ],
+            "construction": "adverbial-inversion"
+          }
+        ],
+        "findings_by_arm": {
+          "baseline": 0,
+          "model": 0,
+          "combined": 0
+        },
+        "changed_by_arm": {
+          "baseline": false,
+          "model": false,
+          "combined": false
+        },
+        "native_statuses": [
+          {
+            "provider": "spacy-german-grammar",
+            "status": "success",
+            "message": null
+          }
+        ]
+      },
+      {
+        "id": "guard-ignored-existing",
+        "kind": "guard",
+        "family": "ignored-rule",
+        "locale": "de-DE",
+        "text": "Morgen arbeitet die Frauen.",
+        "decisions": [
+          {
+            "action": "suppressed",
+            "reason": "ignored-rule",
+            "token_indices": [
+              1,
+              3,
+              2
+            ],
+            "construction": "adverbial-inversion"
+          }
+        ],
+        "findings_by_arm": {
+          "baseline": 0,
+          "model": 0,
+          "combined": 0
+        },
+        "changed_by_arm": {
+          "baseline": false,
+          "model": false,
+          "combined": false
+        },
+        "native_statuses": [
+          {
+            "provider": "spacy-german-grammar",
+            "status": "success",
+            "message": null
+          }
+        ]
+      },
+      {
+        "id": "guard-personal-word",
+        "kind": "guard",
+        "family": "personal-vocabulary",
+        "locale": "de-DE",
+        "text": "Hier läuft die Hunde.",
+        "decisions": [
+          {
+            "action": "abstained",
+            "reason": "personal-vocabulary",
+            "token_indices": [],
+            "construction": null
+          }
+        ],
+        "findings_by_arm": {
+          "baseline": 0,
+          "model": 0,
+          "combined": 0
+        },
+        "changed_by_arm": {
+          "baseline": false,
+          "model": false,
+          "combined": false
+        },
+        "native_statuses": [
+          {
+            "provider": "spacy-german-grammar",
+            "status": "success",
+            "message": null
+          }
+        ]
+      },
+      {
+        "id": "guard-marked-word",
+        "kind": "guard",
+        "family": "unicode",
+        "locale": "de-DE",
+        "text": "Die Katzen auf dem Sofa schläft́.",
+        "decisions": [
+          {
+            "action": "abstained",
+            "reason": "unsupported-punctuation-or-source",
+            "token_indices": [],
+            "construction": null
+          }
+        ],
+        "findings_by_arm": {
+          "baseline": 0,
+          "model": 0,
+          "combined": 0
+        },
+        "changed_by_arm": {
+          "baseline": false,
+          "model": false,
+          "combined": false
+        },
+        "native_statuses": [
+          {
+            "provider": "spacy-german-grammar",
+            "status": "success",
+            "message": null
+          }
+        ]
+      },
+      {
+        "id": "guard-multi-error-sentences",
+        "kind": "guard",
+        "family": "multiple-sentences",
+        "locale": "de-DE",
+        "text": "Die Hunde hinter der Hecke läuft. Die Gäste wartet.",
+        "decisions": [
+          {
+            "action": "abstained",
+            "reason": "multiple-sentences",
+            "token_indices": [],
+            "construction": null
+          }
+        ],
+        "findings_by_arm": {
+          "baseline": 0,
+          "model": 0,
+          "combined": 0
+        },
+        "changed_by_arm": {
+          "baseline": false,
+          "model": false,
+          "combined": false
+        },
+        "native_statuses": [
+          {
+            "provider": "spacy-german-grammar",
+            "status": "success",
+            "message": null
+          }
+        ]
+      },
+      {
+        "id": "unsupported-01",
+        "kind": "unsupported",
+        "family": "locale",
+        "locale": "de-AT",
+        "text": "Die Katzen auf dem Sofa schläft.",
+        "decisions": [
+          {
+            "action": "unsupported",
+            "reason": "unsupported-locale",
+            "token_indices": [],
+            "construction": null
+          }
+        ],
+        "findings_by_arm": {
+          "baseline": 0,
+          "model": 0,
+          "combined": 0
+        },
+        "changed_by_arm": {
+          "baseline": false,
+          "model": false,
+          "combined": false
+        },
+        "native_statuses": [
+          {
+            "provider": "spacy-german-grammar",
+            "status": "unsupported",
+            "message": "unsupported-locale"
+          }
+        ]
+      },
+      {
+        "id": "unsupported-02",
+        "kind": "unsupported",
+        "family": "locale",
+        "locale": "de-CH",
+        "text": "Hier läuft die Hunde.",
+        "decisions": [
+          {
+            "action": "unsupported",
+            "reason": "unsupported-locale",
+            "token_indices": [],
+            "construction": null
+          }
+        ],
+        "findings_by_arm": {
+          "baseline": 0,
+          "model": 0,
+          "combined": 0
+        },
+        "changed_by_arm": {
+          "baseline": false,
+          "model": false,
+          "combined": false
+        },
+        "native_statuses": [
+          {
+            "provider": "spacy-german-grammar",
+            "status": "unsupported",
+            "message": "unsupported-locale"
+          }
+        ]
+      },
+      {
+        "id": "unsupported-03",
+        "kind": "unsupported",
+        "family": "locale",
+        "locale": "en-US",
+        "text": "The cats sleeps near the window.",
+        "decisions": [
+          {
+            "action": "unsupported",
+            "reason": "unsupported-locale",
+            "token_indices": [],
+            "construction": null
+          }
+        ],
+        "findings_by_arm": {
+          "baseline": 0,
+          "model": 0,
+          "combined": 0
+        },
+        "changed_by_arm": {
+          "baseline": false,
+          "model": false,
+          "combined": false
+        },
+        "native_statuses": [
+          {
+            "provider": "spacy-german-grammar",
+            "status": "unsupported",
+            "message": "unsupported-locale"
+          }
+        ]
+      },
+      {
+        "id": "unsupported-04",
+        "kind": "unsupported",
+        "family": "locale",
+        "locale": "de-1901",
+        "text": "Die Pferde läuft langsam.",
+        "decisions": [
+          {
+            "action": "unsupported",
+            "reason": "unsupported-locale",
+            "token_indices": [],
+            "construction": null
+          }
+        ],
+        "findings_by_arm": {
+          "baseline": 0,
+          "model": 0,
+          "combined": 0
+        },
+        "changed_by_arm": {
+          "baseline": false,
+          "model": false,
+          "combined": false
+        },
+        "native_statuses": [
+          {
+            "provider": "spacy-german-grammar",
+            "status": "unsupported",
+            "message": "unsupported-locale"
+          }
+        ]
+      }
+    ],
+    "interpretation": "All 42 valid controls remain unchanged; the planner explicitly preserves 16 compatible cases and abstains on 26. Ten guards have no native finding, including two ignored-rule suppressions. Four locale cases report unsupported."
+  },
+  "recheck_interpretation": {
+    "executions": 22,
+    "model_findings": 0,
+    "action_counts": {
+      "abstained": 4,
+      "preserved": 18
+    },
+    "reason_counts": {
+      "unsupported-finite-analysis": 3,
+      "compatible-lexical-reading": 18,
+      "unsupported-clause-or-reference": 1
+    },
+    "abstained_case_ids": [
+      "subject-pp-error-01",
+      "subject-pp-error-03",
+      "subject-pp-error-05",
+      "subject-pp-error-09"
+    ],
+    "meaning": "Clean means zero further native findings: 18 corrected outputs are explicitly compatible and 4 are conservatively outside the analyzed subset. It does not mean all corrected annotations were affirmed grammatical."
+  },
+  "missed_error_review": {
+    "count": 8,
+    "cause_group_counts": {
+      "fixed_vocabulary_or_structure_bound": 4,
+      "native_annotation_conflict": 3,
+      "lexical_spelling_gate": 1
+    },
+    "case_ids": [
+      "subject-pp-error-11",
+      "inversion-error-01",
+      "inversion-error-03",
+      "inversion-error-04",
+      "inversion-error-08",
+      "inversion-error-11",
+      "inversion-error-12",
+      "baseline-overlap-error-02"
+    ],
+    "interpretation": "All eight missed errors remain unchanged in all three arms. Four encounter frozen vocabulary/shape limits, three encounter conflicting or unsupported native annotations, and one fails the lexical spelling gate. These are recorded limits, not requests to tune this consumed qualification panel."
+  },
+  "error_case_details": [
+    {
+      "id": "subject-pp-error-01",
+      "family": "subject-pp",
+      "text": "Die Katzen auf dem Sofa schläft.",
+      "expected": "Die Katzen auf dem Sofa schlafen.",
+      "frozen_target": {
+        "original": "schläft",
+        "replacement": "schlafen"
+      },
+      "baseline": {
+        "exact": false,
+        "output": "Die Katzen auf dem Sofa schläft.",
+        "changed": false,
+        "all_choices_resolved": true,
+        "findings": []
+      },
+      "native_planner": {
+        "exact": true,
+        "output": "Die Katzen auf dem Sofa schlafen.",
+        "changed": true,
+        "all_choices_resolved": true,
+        "findings": [
+          {
+            "provider_id": "spacy-german-grammar",
+            "rule_id": "de.spacy.noun-verb",
+            "start": 47,
+            "end": 54,
+            "original": "schläft",
+            "replacements": [
+              "schlafen"
+            ],
+            "category": "grammar"
+          }
+        ]
+      },
+      "combined": {
+        "exact": true,
+        "output": "Die Katzen auf dem Sofa schlafen.",
+        "changed": true,
+        "all_choices_resolved": true,
+        "findings": [
+          {
+            "provider_id": "spacy-german-grammar",
+            "rule_id": "de.spacy.noun-verb",
+            "start": 47,
+            "end": 54,
+            "original": "schläft",
+            "replacements": [
+              "schlafen"
+            ],
+            "category": "grammar"
+          }
+        ]
+      },
+      "merge_suppressed_native_proposals": 0,
+      "decisions": [
+        {
+          "action": "proposed",
+          "reason": "reviewed-noun-verb-disagreement",
+          "token_indices": [
+            5,
+            1,
+            0
+          ],
+          "construction": "subject-prepositional-modifier"
+        }
+      ],
+      "interpretation": "incremental_exact_correction",
+      "corrected_recheck": {
+        "status": "success",
+        "finding_count": 0,
+        "decisions": [
+          {
+            "action": "abstained",
+            "reason": "unsupported-finite-analysis"
+          }
+        ]
+      }
+    },
+    {
+      "id": "subject-pp-error-02",
+      "family": "subject-pp",
+      "text": "Der Schüler aus dem Dorf lernen heute.",
+      "expected": "Der Schüler aus dem Dorf lernt heute.",
+      "frozen_target": {
+        "original": "lernen",
+        "replacement": "lernt"
+      },
+      "baseline": {
+        "exact": false,
+        "output": "Der Schüler aus dem Dorf lernen heute.",
+        "changed": false,
+        "all_choices_resolved": true,
+        "findings": []
+      },
+      "native_planner": {
+        "exact": true,
+        "output": "Der Schüler aus dem Dorf lernt heute.",
+        "changed": true,
+        "all_choices_resolved": true,
+        "findings": [
+          {
+            "provider_id": "spacy-german-grammar",
+            "rule_id": "de.spacy.noun-verb",
+            "start": 48,
+            "end": 54,
+            "original": "lernen",
+            "replacements": [
+              "lernt"
+            ],
+            "category": "grammar"
+          }
+        ]
+      },
+      "combined": {
+        "exact": true,
+        "output": "Der Schüler aus dem Dorf lernt heute.",
+        "changed": true,
+        "all_choices_resolved": true,
+        "findings": [
+          {
+            "provider_id": "spacy-german-grammar",
+            "rule_id": "de.spacy.noun-verb",
+            "start": 48,
+            "end": 54,
+            "original": "lernen",
+            "replacements": [
+              "lernt"
+            ],
+            "category": "grammar"
+          }
+        ]
+      },
+      "merge_suppressed_native_proposals": 0,
+      "decisions": [
+        {
+          "action": "proposed",
+          "reason": "reviewed-noun-verb-disagreement",
+          "token_indices": [
+            5,
+            1,
+            0
+          ],
+          "construction": "subject-prepositional-modifier"
+        }
+      ],
+      "interpretation": "incremental_exact_correction",
+      "corrected_recheck": {
+        "status": "success",
+        "finding_count": 0,
+        "decisions": [
+          {
+            "action": "preserved",
+            "reason": "compatible-lexical-reading"
+          }
+        ]
+      }
+    },
+    {
+      "id": "subject-pp-error-03",
+      "family": "subject-pp",
+      "text": "Die Gäste vor dem Haus wartet.",
+      "expected": "Die Gäste vor dem Haus warten.",
+      "frozen_target": {
+        "original": "wartet",
+        "replacement": "warten"
+      },
+      "baseline": {
+        "exact": false,
+        "output": "Die Gäste vor dem Haus wartet.",
+        "changed": false,
+        "all_choices_resolved": true,
+        "findings": []
+      },
+      "native_planner": {
+        "exact": true,
+        "output": "Die Gäste vor dem Haus warten.",
+        "changed": true,
+        "all_choices_resolved": true,
+        "findings": [
+          {
+            "provider_id": "spacy-german-grammar",
+            "rule_id": "de.spacy.noun-verb",
+            "start": 46,
+            "end": 52,
+            "original": "wartet",
+            "replacements": [
+              "warten"
+            ],
+            "category": "grammar"
+          }
+        ]
+      },
+      "combined": {
+        "exact": true,
+        "output": "Die Gäste vor dem Haus warten.",
+        "changed": true,
+        "all_choices_resolved": true,
+        "findings": [
+          {
+            "provider_id": "spacy-german-grammar",
+            "rule_id": "de.spacy.noun-verb",
+            "start": 46,
+            "end": 52,
+            "original": "wartet",
+            "replacements": [
+              "warten"
+            ],
+            "category": "grammar"
+          }
+        ]
+      },
+      "merge_suppressed_native_proposals": 0,
+      "decisions": [
+        {
+          "action": "proposed",
+          "reason": "reviewed-noun-verb-disagreement",
+          "token_indices": [
+            5,
+            1,
+            0
+          ],
+          "construction": "subject-prepositional-modifier"
+        }
+      ],
+      "interpretation": "incremental_exact_correction",
+      "corrected_recheck": {
+        "status": "success",
+        "finding_count": 0,
+        "decisions": [
+          {
+            "action": "abstained",
+            "reason": "unsupported-clause-or-reference"
+          }
+        ]
+      }
+    },
+    {
+      "id": "subject-pp-error-04",
+      "family": "subject-pp",
+      "text": "Das Fahrrad neben den Autos stehen draußen.",
+      "expected": "Das Fahrrad neben den Autos steht draußen.",
+      "frozen_target": {
+        "original": "stehen",
+        "replacement": "steht"
+      },
+      "baseline": {
+        "exact": false,
+        "output": "Das Fahrrad neben den Autos stehen draußen.",
+        "changed": false,
+        "all_choices_resolved": true,
+        "findings": []
+      },
+      "native_planner": {
+        "exact": true,
+        "output": "Das Fahrrad neben den Autos steht draußen.",
+        "changed": true,
+        "all_choices_resolved": true,
+        "findings": [
+          {
+            "provider_id": "spacy-german-grammar",
+            "rule_id": "de.spacy.noun-verb",
+            "start": 51,
+            "end": 57,
+            "original": "stehen",
+            "replacements": [
+              "steht"
+            ],
+            "category": "grammar"
+          }
+        ]
+      },
+      "combined": {
+        "exact": true,
+        "output": "Das Fahrrad neben den Autos steht draußen.",
+        "changed": true,
+        "all_choices_resolved": true,
+        "findings": [
+          {
+            "provider_id": "spacy-german-grammar",
+            "rule_id": "de.spacy.noun-verb",
+            "start": 51,
+            "end": 57,
+            "original": "stehen",
+            "replacements": [
+              "steht"
+            ],
+            "category": "grammar"
+          }
+        ]
+      },
+      "merge_suppressed_native_proposals": 0,
+      "decisions": [
+        {
+          "action": "proposed",
+          "reason": "reviewed-noun-verb-disagreement",
+          "token_indices": [
+            5,
+            1,
+            0
+          ],
+          "construction": "subject-prepositional-modifier"
+        }
+      ],
+      "interpretation": "incremental_exact_correction",
+      "corrected_recheck": {
+        "status": "success",
+        "finding_count": 0,
+        "decisions": [
+          {
+            "action": "preserved",
+            "reason": "compatible-lexical-reading"
+          }
+        ]
+      }
+    },
+    {
+      "id": "subject-pp-error-05",
+      "family": "subject-pp",
+      "text": "Die Hunde hinter der Hecke läuft.",
+      "expected": "Die Hunde hinter der Hecke laufen.",
+      "frozen_target": {
+        "original": "läuft",
+        "replacement": "laufen"
+      },
+      "baseline": {
+        "exact": false,
+        "output": "Die Hunde hinter der Hecke läuft.",
+        "changed": false,
+        "all_choices_resolved": true,
+        "findings": []
+      },
+      "native_planner": {
+        "exact": true,
+        "output": "Die Hunde hinter der Hecke laufen.",
+        "changed": true,
+        "all_choices_resolved": true,
+        "findings": [
+          {
+            "provider_id": "spacy-german-grammar",
+            "rule_id": "de.spacy.noun-verb",
+            "start": 50,
+            "end": 55,
+            "original": "läuft",
+            "replacements": [
+              "laufen"
+            ],
+            "category": "grammar"
+          }
+        ]
+      },
+      "combined": {
+        "exact": true,
+        "output": "Die Hunde hinter der Hecke laufen.",
+        "changed": true,
+        "all_choices_resolved": true,
+        "findings": [
+          {
+            "provider_id": "spacy-german-grammar",
+            "rule_id": "de.spacy.noun-verb",
+            "start": 50,
+            "end": 55,
+            "original": "läuft",
+            "replacements": [
+              "laufen"
+            ],
+            "category": "grammar"
+          }
+        ]
+      },
+      "merge_suppressed_native_proposals": 0,
+      "decisions": [
+        {
+          "action": "proposed",
+          "reason": "reviewed-noun-verb-disagreement",
+          "token_indices": [
+            5,
+            1,
+            0
+          ],
+          "construction": "subject-prepositional-modifier"
+        }
+      ],
+      "interpretation": "incremental_exact_correction",
+      "corrected_recheck": {
+        "status": "success",
+        "finding_count": 0,
+        "decisions": [
+          {
+            "action": "abstained",
+            "reason": "unsupported-finite-analysis"
+          }
+        ]
+      }
+    },
+    {
+      "id": "subject-pp-error-06",
+      "family": "subject-pp",
+      "text": "Die Bücher auf dem Tisch liegt hier.",
+      "expected": "Die Bücher auf dem Tisch liegen hier.",
+      "frozen_target": {
+        "original": "liegt",
+        "replacement": "liegen"
+      },
+      "baseline": {
+        "exact": false,
+        "output": "Die Bücher auf dem Tisch liegt hier.",
+        "changed": false,
+        "all_choices_resolved": true,
+        "findings": []
+      },
+      "native_planner": {
+        "exact": true,
+        "output": "Die Bücher auf dem Tisch liegen hier.",
+        "changed": true,
+        "all_choices_resolved": true,
+        "findings": [
+          {
+            "provider_id": "spacy-german-grammar",
+            "rule_id": "de.spacy.noun-verb",
+            "start": 48,
+            "end": 53,
+            "original": "liegt",
+            "replacements": [
+              "liegen"
+            ],
+            "category": "grammar"
+          }
+        ]
+      },
+      "combined": {
+        "exact": true,
+        "output": "Die Bücher auf dem Tisch liegen hier.",
+        "changed": true,
+        "all_choices_resolved": true,
+        "findings": [
+          {
+            "provider_id": "spacy-german-grammar",
+            "rule_id": "de.spacy.noun-verb",
+            "start": 48,
+            "end": 53,
+            "original": "liegt",
+            "replacements": [
+              "liegen"
+            ],
+            "category": "grammar"
+          }
+        ]
+      },
+      "merge_suppressed_native_proposals": 0,
+      "decisions": [
+        {
+          "action": "proposed",
+          "reason": "reviewed-noun-verb-disagreement",
+          "token_indices": [
+            5,
+            1,
+            0
+          ],
+          "construction": "subject-prepositional-modifier"
+        }
+      ],
+      "interpretation": "incremental_exact_correction",
+      "corrected_recheck": {
+        "status": "success",
+        "finding_count": 0,
+        "decisions": [
+          {
+            "action": "preserved",
+            "reason": "compatible-lexical-reading"
+          }
+        ]
+      }
+    },
+    {
+      "id": "subject-pp-error-07",
+      "family": "subject-pp",
+      "text": "Die Frau mit den Taschen arbeiten heute.",
+      "expected": "Die Frau mit den Taschen arbeitet heute.",
+      "frozen_target": {
+        "original": "arbeiten",
+        "replacement": "arbeitet"
+      },
+      "baseline": {
+        "exact": false,
+        "output": "Die Frau mit den Taschen arbeiten heute.",
+        "changed": false,
+        "all_choices_resolved": true,
+        "findings": []
+      },
+      "native_planner": {
+        "exact": true,
+        "output": "Die Frau mit den Taschen arbeitet heute.",
+        "changed": true,
+        "all_choices_resolved": true,
+        "findings": [
+          {
+            "provider_id": "spacy-german-grammar",
+            "rule_id": "de.spacy.noun-verb",
+            "start": 48,
+            "end": 56,
+            "original": "arbeiten",
+            "replacements": [
+              "arbeitet"
+            ],
+            "category": "grammar"
+          }
+        ]
+      },
+      "combined": {
+        "exact": true,
+        "output": "Die Frau mit den Taschen arbeitet heute.",
+        "changed": true,
+        "all_choices_resolved": true,
+        "findings": [
+          {
+            "provider_id": "spacy-german-grammar",
+            "rule_id": "de.spacy.noun-verb",
+            "start": 48,
+            "end": 56,
+            "original": "arbeiten",
+            "replacements": [
+              "arbeitet"
+            ],
+            "category": "grammar"
+          }
+        ]
+      },
+      "merge_suppressed_native_proposals": 0,
+      "decisions": [
+        {
+          "action": "proposed",
+          "reason": "reviewed-noun-verb-disagreement",
+          "token_indices": [
+            5,
+            1,
+            0
+          ],
+          "construction": "subject-prepositional-modifier"
+        }
+      ],
+      "interpretation": "incremental_exact_correction",
+      "corrected_recheck": {
+        "status": "success",
+        "finding_count": 0,
+        "decisions": [
+          {
+            "action": "preserved",
+            "reason": "compatible-lexical-reading"
+          }
+        ]
+      }
+    },
+    {
+      "id": "subject-pp-error-08",
+      "family": "subject-pp",
+      "text": "Die Kinder aus dem Dorf kommt morgen.",
+      "expected": "Die Kinder aus dem Dorf kommen morgen.",
+      "frozen_target": {
+        "original": "kommt",
+        "replacement": "kommen"
+      },
+      "baseline": {
+        "exact": false,
+        "output": "Die Kinder aus dem Dorf kommt morgen.",
+        "changed": false,
+        "all_choices_resolved": true,
+        "findings": []
+      },
+      "native_planner": {
+        "exact": true,
+        "output": "Die Kinder aus dem Dorf kommen morgen.",
+        "changed": true,
+        "all_choices_resolved": true,
+        "findings": [
+          {
+            "provider_id": "spacy-german-grammar",
+            "rule_id": "de.spacy.noun-verb",
+            "start": 47,
+            "end": 52,
+            "original": "kommt",
+            "replacements": [
+              "kommen"
+            ],
+            "category": "grammar"
+          }
+        ]
+      },
+      "combined": {
+        "exact": true,
+        "output": "Die Kinder aus dem Dorf kommen morgen.",
+        "changed": true,
+        "all_choices_resolved": true,
+        "findings": [
+          {
+            "provider_id": "spacy-german-grammar",
+            "rule_id": "de.spacy.noun-verb",
+            "start": 47,
+            "end": 52,
+            "original": "kommt",
+            "replacements": [
+              "kommen"
+            ],
+            "category": "grammar"
+          }
+        ]
+      },
+      "merge_suppressed_native_proposals": 0,
+      "decisions": [
+        {
+          "action": "proposed",
+          "reason": "reviewed-noun-verb-disagreement",
+          "token_indices": [
+            5,
+            1,
+            0
+          ],
+          "construction": "subject-prepositional-modifier"
+        }
+      ],
+      "interpretation": "incremental_exact_correction",
+      "corrected_recheck": {
+        "status": "success",
+        "finding_count": 0,
+        "decisions": [
+          {
+            "action": "preserved",
+            "reason": "compatible-lexical-reading"
+          }
+        ]
+      }
+    },
+    {
+      "id": "subject-pp-error-09",
+      "family": "subject-pp",
+      "text": "Die Männer in der Küche arbeitet.",
+      "expected": "Die Männer in der Küche arbeiten.",
+      "frozen_target": {
+        "original": "arbeitet",
+        "replacement": "arbeiten"
+      },
+      "baseline": {
+        "exact": false,
+        "output": "Die Männer in der Küche arbeitet.",
+        "changed": false,
+        "all_choices_resolved": true,
+        "findings": []
+      },
+      "native_planner": {
+        "exact": true,
+        "output": "Die Männer in der Küche arbeiten.",
+        "changed": true,
+        "all_choices_resolved": true,
+        "findings": [
+          {
+            "provider_id": "spacy-german-grammar",
+            "rule_id": "de.spacy.noun-verb",
+            "start": 47,
+            "end": 55,
+            "original": "arbeitet",
+            "replacements": [
+              "arbeiten"
+            ],
+            "category": "grammar"
+          }
+        ]
+      },
+      "combined": {
+        "exact": true,
+        "output": "Die Männer in der Küche arbeiten.",
+        "changed": true,
+        "all_choices_resolved": true,
+        "findings": [
+          {
+            "provider_id": "spacy-german-grammar",
+            "rule_id": "de.spacy.noun-verb",
+            "start": 47,
+            "end": 55,
+            "original": "arbeitet",
+            "replacements": [
+              "arbeiten"
+            ],
+            "category": "grammar"
+          }
+        ]
+      },
+      "merge_suppressed_native_proposals": 0,
+      "decisions": [
+        {
+          "action": "proposed",
+          "reason": "reviewed-noun-verb-disagreement",
+          "token_indices": [
+            5,
+            1,
+            0
+          ],
+          "construction": "subject-prepositional-modifier"
+        }
+      ],
+      "interpretation": "incremental_exact_correction",
+      "corrected_recheck": {
+        "status": "success",
+        "finding_count": 0,
+        "decisions": [
+          {
+            "action": "abstained",
+            "reason": "unsupported-finite-analysis"
+          }
+        ]
+      }
+    },
+    {
+      "id": "subject-pp-error-10",
+      "family": "subject-pp",
+      "text": "Der Arzt neben den Schwestern helfen heute.",
+      "expected": "Der Arzt neben den Schwestern hilft heute.",
+      "frozen_target": {
+        "original": "helfen",
+        "replacement": "hilft"
+      },
+      "baseline": {
+        "exact": false,
+        "output": "Der Arzt neben den Schwestern helfen heute.",
+        "changed": false,
+        "all_choices_resolved": true,
+        "findings": []
+      },
+      "native_planner": {
+        "exact": true,
+        "output": "Der Arzt neben den Schwestern hilft heute.",
+        "changed": true,
+        "all_choices_resolved": true,
+        "findings": [
+          {
+            "provider_id": "spacy-german-grammar",
+            "rule_id": "de.spacy.noun-verb",
+            "start": 53,
+            "end": 59,
+            "original": "helfen",
+            "replacements": [
+              "hilft"
+            ],
+            "category": "grammar"
+          }
+        ]
+      },
+      "combined": {
+        "exact": true,
+        "output": "Der Arzt neben den Schwestern hilft heute.",
+        "changed": true,
+        "all_choices_resolved": true,
+        "findings": [
+          {
+            "provider_id": "spacy-german-grammar",
+            "rule_id": "de.spacy.noun-verb",
+            "start": 53,
+            "end": 59,
+            "original": "helfen",
+            "replacements": [
+              "hilft"
+            ],
+            "category": "grammar"
+          }
+        ]
+      },
+      "merge_suppressed_native_proposals": 0,
+      "decisions": [
+        {
+          "action": "proposed",
+          "reason": "reviewed-noun-verb-disagreement",
+          "token_indices": [
+            5,
+            1,
+            0
+          ],
+          "construction": "subject-prepositional-modifier"
+        }
+      ],
+      "interpretation": "incremental_exact_correction",
+      "corrected_recheck": {
+        "status": "success",
+        "finding_count": 0,
+        "decisions": [
+          {
+            "action": "preserved",
+            "reason": "compatible-lexical-reading"
+          }
+        ]
+      }
+    },
+    {
+      "id": "subject-pp-error-11",
+      "family": "subject-pp",
+      "text": "Die Fenster im Flur bleibt offen.",
+      "expected": "Die Fenster im Flur bleiben offen.",
+      "frozen_target": {
+        "original": "bleibt",
+        "replacement": "bleiben"
+      },
+      "baseline": {
+        "exact": false,
+        "output": "Die Fenster im Flur bleibt offen.",
+        "changed": false,
+        "all_choices_resolved": true,
+        "findings": []
+      },
+      "native_planner": {
+        "exact": false,
+        "output": "Die Fenster im Flur bleibt offen.",
+        "changed": false,
+        "all_choices_resolved": true,
+        "findings": []
+      },
+      "combined": {
+        "exact": false,
+        "output": "Die Fenster im Flur bleibt offen.",
+        "changed": false,
+        "all_choices_resolved": true,
+        "findings": []
+      },
+      "merge_suppressed_native_proposals": 0,
+      "decisions": [
+        {
+          "action": "abstained",
+          "reason": "multiple-prepositional-phrases",
+          "token_indices": [
+            4,
+            1,
+            0
+          ],
+          "construction": null
+        }
+      ],
+      "interpretation": "missed_error_with_native_abstention",
+      "miss_review": {
+        "cause_group": "fixed_vocabulary_or_structure_bound",
+        "explanation": "The predicate word offen is absent from the shared reviewed predicate vocabulary. The planner retains im Flur as the subject modifier and places the unconsumed offen tail into another residual span; its two-span guard then abstains.",
+        "diagnostic_caveat": "The recorded reason multiple-prepositional-phrases is an internal shape-limit label. This authored sentence contains one actual PP, not two; the second residual span is offen.",
+        "source_basis": [
+          "grammar_planner.dart: tail scan and pps.length > 1",
+          "german_grammar.dart: _grammarPredicateAdverbs"
+        ]
+      },
+      "selected_native_annotations": [
+        {
+          "i": 0,
+          "text": "Die",
+          "lemma": "der",
+          "tag": "ART",
+          "pos": "DET",
+          "morph": "Case=Nom|Definite=Def|Gender=Neut|Number=Plur|PronType=Art",
+          "dep": "nk",
+          "head": 1
+        },
+        {
+          "i": 1,
+          "text": "Fenster",
+          "lemma": "Fenster",
+          "tag": "NN",
+          "pos": "NOUN",
+          "morph": "Case=Nom|Gender=Neut|Number=Plur",
+          "dep": "sb",
+          "head": 4
+        },
+        {
+          "i": 2,
+          "text": "im",
+          "lemma": "in",
+          "tag": "APPRART",
+          "pos": "ADP",
+          "morph": "Case=Dat|Gender=Masc|Number=Sing",
+          "dep": "mnr",
+          "head": 1
+        },
+        {
+          "i": 3,
+          "text": "Flur",
+          "lemma": "Flur",
+          "tag": "NN",
+          "pos": "NOUN",
+          "morph": "Case=Dat|Gender=Masc|Number=Sing",
+          "dep": "nk",
+          "head": 2
+        },
+        {
+          "i": 4,
+          "text": "bleibt",
+          "lemma": "bleiben",
+          "tag": "VVFIN",
+          "pos": "VERB",
+          "morph": "Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin",
+          "dep": "ROOT",
+          "head": 4
+        },
+        {
+          "i": 5,
+          "text": "offen",
+          "lemma": "offen",
+          "tag": "ADJD",
+          "pos": "ADV",
+          "morph": "Degree=Pos",
+          "dep": "pd",
+          "head": 4
+        },
+        {
+          "i": 6,
+          "text": ".",
+          "lemma": "--",
+          "tag": "$.",
+          "pos": "PUNCT",
+          "morph": "",
+          "dep": "punct",
+          "head": 4
+        }
+      ],
+      "recorded_decision_evidence": [
+        {
+          "verb": {
+            "i": 4,
+            "text": "bleibt",
+            "start_byte": 20,
+            "end_byte": 26,
+            "start_codepoint": 20,
+            "end_codepoint": 26,
+            "start_utf16": 20,
+            "end_utf16": 26,
+            "norm": "bleibt",
+            "prefix": "b",
+            "suffix": "ibt",
+            "shape": "xxxx",
+            "lemma": "bleiben",
+            "tag": "VVFIN",
+            "pos": "VERB",
+            "morph": "Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin",
+            "dep": "ROOT",
+            "head": 4,
+            "whitespace": " ",
+            "is_space": false,
+            "is_sent_start": false
+          },
+          "subject": {
+            "i": 1,
+            "text": "Fenster",
+            "start_byte": 4,
+            "end_byte": 11,
+            "start_codepoint": 4,
+            "end_codepoint": 11,
+            "start_utf16": 4,
+            "end_utf16": 11,
+            "norm": "fenster",
+            "prefix": "F",
+            "suffix": "ter",
+            "shape": "Xxxxx",
+            "lemma": "Fenster",
+            "tag": "NN",
+            "pos": "NOUN",
+            "morph": "Case=Nom|Gender=Neut|Number=Plur",
+            "dep": "sb",
+            "head": 4,
+            "whitespace": " ",
+            "is_space": false,
+            "is_sent_start": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "subject-pp-error-12",
+      "family": "subject-pp",
+      "text": "Das Pferd auf der Wiese laufen langsam.",
+      "expected": "Das Pferd auf der Wiese läuft langsam.",
+      "frozen_target": {
+        "original": "laufen",
+        "replacement": "läuft"
+      },
+      "baseline": {
+        "exact": false,
+        "output": "Das Pferd auf der Wiese laufen langsam.",
+        "changed": false,
+        "all_choices_resolved": true,
+        "findings": []
+      },
+      "native_planner": {
+        "exact": true,
+        "output": "Das Pferd auf der Wiese läuft langsam.",
+        "changed": true,
+        "all_choices_resolved": true,
+        "findings": [
+          {
+            "provider_id": "spacy-german-grammar",
+            "rule_id": "de.spacy.noun-verb",
+            "start": 47,
+            "end": 53,
+            "original": "laufen",
+            "replacements": [
+              "läuft"
+            ],
+            "category": "grammar"
+          }
+        ]
+      },
+      "combined": {
+        "exact": true,
+        "output": "Das Pferd auf der Wiese läuft langsam.",
+        "changed": true,
+        "all_choices_resolved": true,
+        "findings": [
+          {
+            "provider_id": "spacy-german-grammar",
+            "rule_id": "de.spacy.noun-verb",
+            "start": 47,
+            "end": 53,
+            "original": "laufen",
+            "replacements": [
+              "läuft"
+            ],
+            "category": "grammar"
+          }
+        ]
+      },
+      "merge_suppressed_native_proposals": 0,
+      "decisions": [
+        {
+          "action": "proposed",
+          "reason": "reviewed-noun-verb-disagreement",
+          "token_indices": [
+            5,
+            1,
+            0
+          ],
+          "construction": "subject-prepositional-modifier"
+        }
+      ],
+      "interpretation": "incremental_exact_correction",
+      "corrected_recheck": {
+        "status": "success",
+        "finding_count": 0,
+        "decisions": [
+          {
+            "action": "preserved",
+            "reason": "compatible-lexical-reading"
+          }
+        ]
+      }
+    },
+    {
+      "id": "inversion-error-01",
+      "family": "inversion",
+      "text": "Heute schlafen das Baby.",
+      "expected": "Heute schläft das Baby.",
+      "frozen_target": {
+        "original": "schlafen",
+        "replacement": "schläft"
+      },
+      "baseline": {
+        "exact": false,
+        "output": "Heute schlafen das Baby.",
+        "changed": false,
+        "all_choices_resolved": true,
+        "findings": []
+      },
+      "native_planner": {
+        "exact": false,
+        "output": "Heute schlafen das Baby.",
+        "changed": false,
+        "all_choices_resolved": true,
+        "findings": []
+      },
+      "combined": {
+        "exact": false,
+        "output": "Heute schlafen das Baby.",
+        "changed": false,
+        "all_choices_resolved": true,
+        "findings": []
+      },
+      "merge_suppressed_native_proposals": 0,
+      "decisions": [
+        {
+          "action": "abstained",
+          "reason": "unsupported-subject-analysis",
+          "token_indices": [
+            1,
+            3
+          ],
+          "construction": null
+        }
+      ],
+      "interpretation": "missed_error_with_native_abstention",
+      "miss_review": {
+        "cause_group": "native_annotation_conflict",
+        "explanation": "Native dependencies attach Baby as sb to the finite root, but its Case feature is Acc. The planner requires a nominative common-noun subject and refuses this internally conflicting annotation.",
+        "source_basis": [
+          "grammar_planner.dart: unsupported-subject-analysis"
+        ]
+      },
+      "selected_native_annotations": [
+        {
+          "i": 0,
+          "text": "Heute",
+          "lemma": "heute",
+          "tag": "ADV",
+          "pos": "ADV",
+          "morph": "",
+          "dep": "mo",
+          "head": 1
+        },
+        {
+          "i": 1,
+          "text": "schlafen",
+          "lemma": "schlafen",
+          "tag": "VVFIN",
+          "pos": "VERB",
+          "morph": "Mood=Ind|Number=Plur|Person=3|Tense=Pres|VerbForm=Fin",
+          "dep": "ROOT",
+          "head": 1
+        },
+        {
+          "i": 2,
+          "text": "das",
+          "lemma": "der",
+          "tag": "ART",
+          "pos": "DET",
+          "morph": "Case=Acc|Definite=Def|Gender=Neut|Number=Sing|PronType=Art",
+          "dep": "nk",
+          "head": 3
+        },
+        {
+          "i": 3,
+          "text": "Baby",
+          "lemma": "Baby",
+          "tag": "NN",
+          "pos": "NOUN",
+          "morph": "Case=Acc|Gender=Neut|Number=Sing",
+          "dep": "sb",
+          "head": 1
+        },
+        {
+          "i": 4,
+          "text": ".",
+          "lemma": "--",
+          "tag": "$.",
+          "pos": "PUNCT",
+          "morph": "",
+          "dep": "punct",
+          "head": 1
+        }
+      ],
+      "recorded_decision_evidence": [
+        {
+          "verb": {
+            "i": 1,
+            "text": "schlafen",
+            "start_byte": 6,
+            "end_byte": 14,
+            "start_codepoint": 6,
+            "end_codepoint": 14,
+            "start_utf16": 6,
+            "end_utf16": 14,
+            "norm": "schlafen",
+            "prefix": "s",
+            "suffix": "fen",
+            "shape": "xxxx",
+            "lemma": "schlafen",
+            "tag": "VVFIN",
+            "pos": "VERB",
+            "morph": "Mood=Ind|Number=Plur|Person=3|Tense=Pres|VerbForm=Fin",
+            "dep": "ROOT",
+            "head": 1,
+            "whitespace": " ",
+            "is_space": false,
+            "is_sent_start": false
+          },
+          "subject": {
+            "i": 3,
+            "text": "Baby",
+            "start_byte": 19,
+            "end_byte": 23,
+            "start_codepoint": 19,
+            "end_codepoint": 23,
+            "start_utf16": 19,
+            "end_utf16": 23,
+            "norm": "baby",
+            "prefix": "B",
+            "suffix": "aby",
+            "shape": "Xxxx",
+            "lemma": "Baby",
+            "tag": "NN",
+            "pos": "NOUN",
+            "morph": "Case=Acc|Gender=Neut|Number=Sing",
+            "dep": "sb",
+            "head": 1,
+            "whitespace": "",
+            "is_space": false,
+            "is_sent_start": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "inversion-error-02",
+      "family": "inversion",
+      "text": "Morgen arbeitet die Kollegen.",
+      "expected": "Morgen arbeiten die Kollegen.",
+      "frozen_target": {
+        "original": "arbeitet",
+        "replacement": "arbeiten"
+      },
+      "baseline": {
+        "exact": false,
+        "output": "Morgen arbeitet die Kollegen.",
+        "changed": false,
+        "all_choices_resolved": true,
+        "findings": []
+      },
+      "native_planner": {
+        "exact": true,
+        "output": "Morgen arbeiten die Kollegen.",
+        "changed": true,
+        "all_choices_resolved": true,
+        "findings": [
+          {
+            "provider_id": "spacy-german-grammar",
+            "rule_id": "de.spacy.noun-verb",
+            "start": 30,
+            "end": 38,
+            "original": "arbeitet",
+            "replacements": [
+              "arbeiten"
+            ],
+            "category": "grammar"
+          }
+        ]
+      },
+      "combined": {
+        "exact": true,
+        "output": "Morgen arbeiten die Kollegen.",
+        "changed": true,
+        "all_choices_resolved": true,
+        "findings": [
+          {
+            "provider_id": "spacy-german-grammar",
+            "rule_id": "de.spacy.noun-verb",
+            "start": 30,
+            "end": 38,
+            "original": "arbeitet",
+            "replacements": [
+              "arbeiten"
+            ],
+            "category": "grammar"
+          }
+        ]
+      },
+      "merge_suppressed_native_proposals": 0,
+      "decisions": [
+        {
+          "action": "proposed",
+          "reason": "reviewed-noun-verb-disagreement",
+          "token_indices": [
+            1,
+            3,
+            2
+          ],
+          "construction": "adverbial-inversion"
+        }
+      ],
+      "interpretation": "incremental_exact_correction",
+      "corrected_recheck": {
+        "status": "success",
+        "finding_count": 0,
+        "decisions": [
+          {
+            "action": "preserved",
+            "reason": "compatible-lexical-reading"
+          }
+        ]
+      }
+    },
+    {
+      "id": "inversion-error-03",
+      "family": "inversion",
+      "text": "Draußen wartet die Gäste.",
+      "expected": "Draußen warten die Gäste.",
+      "frozen_target": {
+        "original": "wartet",
+        "replacement": "warten"
+      },
+      "baseline": {
+        "exact": false,
+        "output": "Draußen wartet die Gäste.",
+        "changed": false,
+        "all_choices_resolved": true,
+        "findings": []
+      },
+      "native_planner": {
+        "exact": false,
+        "output": "Draußen wartet die Gäste.",
+        "changed": false,
+        "all_choices_resolved": true,
+        "findings": []
+      },
+      "combined": {
+        "exact": false,
+        "output": "Draußen wartet die Gäste.",
+        "changed": false,
+        "all_choices_resolved": true,
+        "findings": []
+      },
+      "merge_suppressed_native_proposals": 0,
+      "decisions": [
+        {
+          "action": "abstained",
+          "reason": "unsupported-word-order",
+          "token_indices": [
+            1,
+            3,
+            2
+          ],
+          "construction": null
+        }
+      ],
+      "interpretation": "missed_error_with_native_abstention",
+      "miss_review": {
+        "cause_group": "fixed_vocabulary_or_structure_bound",
+        "explanation": "Draußen is outside the frozen initial-adverb allowlist. Its root-attached ADV/mo analysis does not override that vocabulary boundary.",
+        "source_basis": [
+          "grammar_planner.dart: _initialAdverbs and inversion branch"
+        ]
+      },
+      "selected_native_annotations": [
+        {
+          "i": 0,
+          "text": "Draußen",
+          "lemma": "draußen",
+          "tag": "ADV",
+          "pos": "ADV",
+          "morph": "",
+          "dep": "mo",
+          "head": 1
+        },
+        {
+          "i": 1,
+          "text": "wartet",
+          "lemma": "warten",
+          "tag": "VVFIN",
+          "pos": "VERB",
+          "morph": "Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin",
+          "dep": "ROOT",
+          "head": 1
+        },
+        {
+          "i": 2,
+          "text": "die",
+          "lemma": "der",
+          "tag": "ART",
+          "pos": "DET",
+          "morph": "Case=Nom|Definite=Def|Gender=Masc|Number=Plur|PronType=Art",
+          "dep": "nk",
+          "head": 3
+        },
+        {
+          "i": 3,
+          "text": "Gäste",
+          "lemma": "Gast",
+          "tag": "NN",
+          "pos": "NOUN",
+          "morph": "Case=Nom|Gender=Masc|Number=Plur",
+          "dep": "sb",
+          "head": 1
+        },
+        {
+          "i": 4,
+          "text": ".",
+          "lemma": "--",
+          "tag": "$.",
+          "pos": "PUNCT",
+          "morph": "",
+          "dep": "punct",
+          "head": 1
+        }
+      ],
+      "recorded_decision_evidence": [
+        {
+          "verb": {
+            "i": 1,
+            "text": "wartet",
+            "start_byte": 9,
+            "end_byte": 15,
+            "start_codepoint": 8,
+            "end_codepoint": 14,
+            "start_utf16": 8,
+            "end_utf16": 14,
+            "norm": "wartet",
+            "prefix": "w",
+            "suffix": "tet",
+            "shape": "xxxx",
+            "lemma": "warten",
+            "tag": "VVFIN",
+            "pos": "VERB",
+            "morph": "Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin",
+            "dep": "ROOT",
+            "head": 1,
+            "whitespace": " ",
+            "is_space": false,
+            "is_sent_start": false
+          },
+          "subject": {
+            "i": 3,
+            "text": "Gäste",
+            "start_byte": 20,
+            "end_byte": 26,
+            "start_codepoint": 19,
+            "end_codepoint": 24,
+            "start_utf16": 19,
+            "end_utf16": 24,
+            "norm": "gäste",
+            "prefix": "G",
+            "suffix": "ste",
+            "shape": "Xxxxx",
+            "lemma": "Gast",
+            "tag": "NN",
+            "pos": "NOUN",
+            "morph": "Case=Nom|Gender=Masc|Number=Plur",
+            "dep": "sb",
+            "head": 1,
+            "whitespace": "",
+            "is_space": false,
+            "is_sent_start": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "inversion-error-04",
+      "family": "inversion",
+      "text": "Hier liegt die Schlüssel.",
+      "expected": "Hier liegen die Schlüssel.",
+      "frozen_target": {
+        "original": "liegt",
+        "replacement": "liegen"
+      },
+      "baseline": {
+        "exact": false,
+        "output": "Hier liegt die Schlüssel.",
+        "changed": false,
+        "all_choices_resolved": true,
+        "findings": []
+      },
+      "native_planner": {
+        "exact": false,
+        "output": "Hier liegt die Schlüssel.",
+        "changed": false,
+        "all_choices_resolved": true,
+        "findings": []
+      },
+      "combined": {
+        "exact": false,
+        "output": "Hier liegt die Schlüssel.",
+        "changed": false,
+        "all_choices_resolved": true,
+        "findings": []
+      },
+      "merge_suppressed_native_proposals": 0,
+      "decisions": [
+        {
+          "action": "abstained",
+          "reason": "model-lexicon-number-disagreement",
+          "token_indices": [
+            1,
+            3,
+            2
+          ],
+          "construction": "adverbial-inversion"
+        }
+      ],
+      "interpretation": "missed_error_with_native_abstention",
+      "miss_review": {
+        "cause_group": "native_annotation_conflict",
+        "explanation": "Shared lexical evidence licenses plural for die Schlüssel, whereas the native subject annotation predicts singular feminine. The planner requires model and lexical number to agree before changing the verb.",
+        "source_basis": [
+          "grammar_planner.dart: model-lexicon-number-disagreement"
+        ]
+      },
+      "selected_native_annotations": [
+        {
+          "i": 0,
+          "text": "Hier",
+          "lemma": "hier",
+          "tag": "ADV",
+          "pos": "ADV",
+          "morph": "",
+          "dep": "mo",
+          "head": 1
+        },
+        {
+          "i": 1,
+          "text": "liegt",
+          "lemma": "liegen",
+          "tag": "VVFIN",
+          "pos": "VERB",
+          "morph": "Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin",
+          "dep": "ROOT",
+          "head": 1
+        },
+        {
+          "i": 2,
+          "text": "die",
+          "lemma": "der",
+          "tag": "ART",
+          "pos": "DET",
+          "morph": "Case=Nom|Definite=Def|Gender=Fem|Number=Sing|PronType=Art",
+          "dep": "nk",
+          "head": 3
+        },
+        {
+          "i": 3,
+          "text": "Schlüssel",
+          "lemma": "Schlüssel",
+          "tag": "NN",
+          "pos": "NOUN",
+          "morph": "Case=Nom|Gender=Fem|Number=Sing",
+          "dep": "sb",
+          "head": 1
+        },
+        {
+          "i": 4,
+          "text": ".",
+          "lemma": "--",
+          "tag": "$.",
+          "pos": "PUNCT",
+          "morph": "",
+          "dep": "punct",
+          "head": 1
+        }
+      ],
+      "recorded_decision_evidence": [
+        {
+          "verb": {
+            "i": 1,
+            "text": "liegt",
+            "start_byte": 5,
+            "end_byte": 10,
+            "start_codepoint": 5,
+            "end_codepoint": 10,
+            "start_utf16": 5,
+            "end_utf16": 10,
+            "norm": "liegt",
+            "prefix": "l",
+            "suffix": "egt",
+            "shape": "xxxx",
+            "lemma": "liegen",
+            "tag": "VVFIN",
+            "pos": "VERB",
+            "morph": "Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin",
+            "dep": "ROOT",
+            "head": 1,
+            "whitespace": " ",
+            "is_space": false,
+            "is_sent_start": false
+          },
+          "subject": {
+            "i": 3,
+            "text": "Schlüssel",
+            "start_byte": 15,
+            "end_byte": 25,
+            "start_codepoint": 15,
+            "end_codepoint": 24,
+            "start_utf16": 15,
+            "end_utf16": 24,
+            "norm": "schlüssel",
+            "prefix": "S",
+            "suffix": "sel",
+            "shape": "Xxxxx",
+            "lemma": "Schlüssel",
+            "tag": "NN",
+            "pos": "NOUN",
+            "morph": "Case=Nom|Gender=Fem|Number=Sing",
+            "dep": "sb",
+            "head": 1,
+            "whitespace": "",
+            "is_space": false,
+            "is_sent_start": false
+          },
+          "construction": "adverbial-inversion",
+          "noun_evidence": {
+            "reason": "reviewed",
+            "numbers": [
+              "Plur"
+            ],
+            "readings": [
+              {
+                "gender": "plural",
+                "plural": true,
+                "nominative_forms": [
+                  "Schlüssel"
+                ]
+              }
+            ]
+          },
+          "verb_readings": [
+            {
+              "infinitive": "liegen",
+              "third_singular": "liegt",
+              "third_plural": "liegen",
+              "source_allows_third_person_subjunctive": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "inversion-error-05",
+      "family": "inversion",
+      "text": "Jetzt kommen die Mutter.",
+      "expected": "Jetzt kommt die Mutter.",
+      "frozen_target": {
+        "original": "kommen",
+        "replacement": "kommt"
+      },
+      "baseline": {
+        "exact": false,
+        "output": "Jetzt kommen die Mutter.",
+        "changed": false,
+        "all_choices_resolved": true,
+        "findings": []
+      },
+      "native_planner": {
+        "exact": true,
+        "output": "Jetzt kommt die Mutter.",
+        "changed": true,
+        "all_choices_resolved": true,
+        "findings": [
+          {
+            "provider_id": "spacy-german-grammar",
+            "rule_id": "de.spacy.noun-verb",
+            "start": 29,
+            "end": 35,
+            "original": "kommen",
+            "replacements": [
+              "kommt"
+            ],
+            "category": "grammar"
+          }
+        ]
+      },
+      "combined": {
+        "exact": true,
+        "output": "Jetzt kommt die Mutter.",
+        "changed": true,
+        "all_choices_resolved": true,
+        "findings": [
+          {
+            "provider_id": "spacy-german-grammar",
+            "rule_id": "de.spacy.noun-verb",
+            "start": 29,
+            "end": 35,
+            "original": "kommen",
+            "replacements": [
+              "kommt"
+            ],
+            "category": "grammar"
+          }
+        ]
+      },
+      "merge_suppressed_native_proposals": 0,
+      "decisions": [
+        {
+          "action": "proposed",
+          "reason": "reviewed-noun-verb-disagreement",
+          "token_indices": [
+            1,
+            3,
+            2
+          ],
+          "construction": "adverbial-inversion"
+        }
+      ],
+      "interpretation": "incremental_exact_correction",
+      "corrected_recheck": {
+        "status": "success",
+        "finding_count": 0,
+        "decisions": [
+          {
+            "action": "preserved",
+            "reason": "compatible-lexical-reading"
+          }
+        ]
+      }
+    },
+    {
+      "id": "inversion-error-06",
+      "family": "inversion",
+      "text": "Oft spielen das Mädchen.",
+      "expected": "Oft spielt das Mädchen.",
+      "frozen_target": {
+        "original": "spielen",
+        "replacement": "spielt"
+      },
+      "baseline": {
+        "exact": false,
+        "output": "Oft spielen das Mädchen.",
+        "changed": false,
+        "all_choices_resolved": true,
+        "findings": []
+      },
+      "native_planner": {
+        "exact": true,
+        "output": "Oft spielt das Mädchen.",
+        "changed": true,
+        "all_choices_resolved": true,
+        "findings": [
+          {
+            "provider_id": "spacy-german-grammar",
+            "rule_id": "de.spacy.noun-verb",
+            "start": 27,
+            "end": 34,
+            "original": "spielen",
+            "replacements": [
+              "spielt"
+            ],
+            "category": "grammar"
+          }
+        ]
+      },
+      "combined": {
+        "exact": true,
+        "output": "Oft spielt das Mädchen.",
+        "changed": true,
+        "all_choices_resolved": true,
+        "findings": [
+          {
+            "provider_id": "spacy-german-grammar",
+            "rule_id": "de.spacy.noun-verb",
+            "start": 27,
+            "end": 34,
+            "original": "spielen",
+            "replacements": [
+              "spielt"
+            ],
+            "category": "grammar"
+          }
+        ]
+      },
+      "merge_suppressed_native_proposals": 0,
+      "decisions": [
+        {
+          "action": "proposed",
+          "reason": "reviewed-noun-verb-disagreement",
+          "token_indices": [
+            1,
+            3,
+            2
+          ],
+          "construction": "adverbial-inversion"
+        }
+      ],
+      "interpretation": "incremental_exact_correction",
+      "corrected_recheck": {
+        "status": "success",
+        "finding_count": 0,
+        "decisions": [
+          {
+            "action": "preserved",
+            "reason": "compatible-lexical-reading"
+          }
+        ]
+      }
+    },
+    {
+      "id": "inversion-error-07",
+      "family": "inversion",
+      "text": "Bald kommen die Lehrerin.",
+      "expected": "Bald kommt die Lehrerin.",
+      "frozen_target": {
+        "original": "kommen",
+        "replacement": "kommt"
+      },
+      "baseline": {
+        "exact": false,
+        "output": "Bald kommen die Lehrerin.",
+        "changed": false,
+        "all_choices_resolved": true,
+        "findings": []
+      },
+      "native_planner": {
+        "exact": true,
+        "output": "Bald kommt die Lehrerin.",
+        "changed": true,
+        "all_choices_resolved": true,
+        "findings": [
+          {
+            "provider_id": "spacy-german-grammar",
+            "rule_id": "de.spacy.noun-verb",
+            "start": 28,
+            "end": 34,
+            "original": "kommen",
+            "replacements": [
+              "kommt"
+            ],
+            "category": "grammar"
+          }
+        ]
+      },
+      "combined": {
+        "exact": true,
+        "output": "Bald kommt die Lehrerin.",
+        "changed": true,
+        "all_choices_resolved": true,
+        "findings": [
+          {
+            "provider_id": "spacy-german-grammar",
+            "rule_id": "de.spacy.noun-verb",
+            "start": 28,
+            "end": 34,
+            "original": "kommen",
+            "replacements": [
+              "kommt"
+            ],
+            "category": "grammar"
+          }
+        ]
+      },
+      "merge_suppressed_native_proposals": 0,
+      "decisions": [
+        {
+          "action": "proposed",
+          "reason": "reviewed-noun-verb-disagreement",
+          "token_indices": [
+            1,
+            3,
+            2
+          ],
+          "construction": "adverbial-inversion"
+        }
+      ],
+      "interpretation": "incremental_exact_correction",
+      "corrected_recheck": {
+        "status": "success",
+        "finding_count": 0,
+        "decisions": [
+          {
+            "action": "preserved",
+            "reason": "compatible-lexical-reading"
+          }
+        ]
+      }
+    },
+    {
+      "id": "inversion-error-08",
+      "family": "inversion",
+      "text": "Drinnen sitzt die Hunde.",
+      "expected": "Drinnen sitzen die Hunde.",
+      "frozen_target": {
+        "original": "sitzt",
+        "replacement": "sitzen"
+      },
+      "baseline": {
+        "exact": false,
+        "output": "Drinnen sitzt die Hunde.",
+        "changed": false,
+        "all_choices_resolved": true,
+        "findings": []
+      },
+      "native_planner": {
+        "exact": false,
+        "output": "Drinnen sitzt die Hunde.",
+        "changed": false,
+        "all_choices_resolved": true,
+        "findings": []
+      },
+      "combined": {
+        "exact": false,
+        "output": "Drinnen sitzt die Hunde.",
+        "changed": false,
+        "all_choices_resolved": true,
+        "findings": []
+      },
+      "merge_suppressed_native_proposals": 0,
+      "decisions": [
+        {
+          "action": "abstained",
+          "reason": "unsupported-word-order",
+          "token_indices": [
+            1,
+            3,
+            2
+          ],
+          "construction": null
+        }
+      ],
+      "interpretation": "missed_error_with_native_abstention",
+      "miss_review": {
+        "cause_group": "fixed_vocabulary_or_structure_bound",
+        "explanation": "Drinnen is outside the frozen initial-adverb allowlist. The sentence has a nominative plural subject and a root-attached initial adverb, but those facts do not expand the configured vocabulary.",
+        "source_basis": [
+          "grammar_planner.dart: _initialAdverbs and inversion branch"
+        ]
+      },
+      "selected_native_annotations": [
+        {
+          "i": 0,
+          "text": "Drinnen",
+          "lemma": "drinnen",
+          "tag": "PROAV",
+          "pos": "ADV",
+          "morph": "",
+          "dep": "mo",
+          "head": 1
+        },
+        {
+          "i": 1,
+          "text": "sitzt",
+          "lemma": "sitzen",
+          "tag": "VVFIN",
+          "pos": "VERB",
+          "morph": "Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin",
+          "dep": "ROOT",
+          "head": 1
+        },
+        {
+          "i": 2,
+          "text": "die",
+          "lemma": "der",
+          "tag": "ART",
+          "pos": "DET",
+          "morph": "Case=Nom|Definite=Def|Gender=Masc|Number=Plur|PronType=Art",
+          "dep": "nk",
+          "head": 3
+        },
+        {
+          "i": 3,
+          "text": "Hunde",
+          "lemma": "Hund",
+          "tag": "NN",
+          "pos": "NOUN",
+          "morph": "Case=Nom|Gender=Masc|Number=Plur",
+          "dep": "sb",
+          "head": 1
+        },
+        {
+          "i": 4,
+          "text": ".",
+          "lemma": "--",
+          "tag": "$.",
+          "pos": "PUNCT",
+          "morph": "",
+          "dep": "punct",
+          "head": 1
+        }
+      ],
+      "recorded_decision_evidence": [
+        {
+          "verb": {
+            "i": 1,
+            "text": "sitzt",
+            "start_byte": 8,
+            "end_byte": 13,
+            "start_codepoint": 8,
+            "end_codepoint": 13,
+            "start_utf16": 8,
+            "end_utf16": 13,
+            "norm": "sitzt",
+            "prefix": "s",
+            "suffix": "tzt",
+            "shape": "xxxx",
+            "lemma": "sitzen",
+            "tag": "VVFIN",
+            "pos": "VERB",
+            "morph": "Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin",
+            "dep": "ROOT",
+            "head": 1,
+            "whitespace": " ",
+            "is_space": false,
+            "is_sent_start": false
+          },
+          "subject": {
+            "i": 3,
+            "text": "Hunde",
+            "start_byte": 18,
+            "end_byte": 23,
+            "start_codepoint": 18,
+            "end_codepoint": 23,
+            "start_utf16": 18,
+            "end_utf16": 23,
+            "norm": "hunde",
+            "prefix": "H",
+            "suffix": "nde",
+            "shape": "Xxxxx",
+            "lemma": "Hund",
+            "tag": "NN",
+            "pos": "NOUN",
+            "morph": "Case=Nom|Gender=Masc|Number=Plur",
+            "dep": "sb",
+            "head": 1,
+            "whitespace": "",
+            "is_space": false,
+            "is_sent_start": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "inversion-error-09",
+      "family": "inversion",
+      "text": "Heute trinken der Mann.",
+      "expected": "Heute trinkt der Mann.",
+      "frozen_target": {
+        "original": "trinken",
+        "replacement": "trinkt"
+      },
+      "baseline": {
+        "exact": false,
+        "output": "Heute trinken der Mann.",
+        "changed": false,
+        "all_choices_resolved": true,
+        "findings": []
+      },
+      "native_planner": {
+        "exact": true,
+        "output": "Heute trinkt der Mann.",
+        "changed": true,
+        "all_choices_resolved": true,
+        "findings": [
+          {
+            "provider_id": "spacy-german-grammar",
+            "rule_id": "de.spacy.noun-verb",
+            "start": 29,
+            "end": 36,
+            "original": "trinken",
+            "replacements": [
+              "trinkt"
+            ],
+            "category": "grammar"
+          }
+        ]
+      },
+      "combined": {
+        "exact": true,
+        "output": "Heute trinkt der Mann.",
+        "changed": true,
+        "all_choices_resolved": true,
+        "findings": [
+          {
+            "provider_id": "spacy-german-grammar",
+            "rule_id": "de.spacy.noun-verb",
+            "start": 29,
+            "end": 36,
+            "original": "trinken",
+            "replacements": [
+              "trinkt"
+            ],
+            "category": "grammar"
+          }
+        ]
+      },
+      "merge_suppressed_native_proposals": 0,
+      "decisions": [
+        {
+          "action": "proposed",
+          "reason": "reviewed-noun-verb-disagreement",
+          "token_indices": [
+            1,
+            3,
+            2
+          ],
+          "construction": "adverbial-inversion"
+        }
+      ],
+      "interpretation": "incremental_exact_correction",
+      "corrected_recheck": {
+        "status": "success",
+        "finding_count": 0,
+        "decisions": [
+          {
+            "action": "preserved",
+            "reason": "compatible-lexical-reading"
+          }
+        ]
+      }
+    },
+    {
+      "id": "inversion-error-10",
+      "family": "inversion",
+      "text": "Dort stehen das Auto.",
+      "expected": "Dort steht das Auto.",
+      "frozen_target": {
+        "original": "stehen",
+        "replacement": "steht"
+      },
+      "baseline": {
+        "exact": false,
+        "output": "Dort stehen das Auto.",
+        "changed": false,
+        "all_choices_resolved": true,
+        "findings": []
+      },
+      "native_planner": {
+        "exact": true,
+        "output": "Dort steht das Auto.",
+        "changed": true,
+        "all_choices_resolved": true,
+        "findings": [
+          {
+            "provider_id": "spacy-german-grammar",
+            "rule_id": "de.spacy.noun-verb",
+            "start": 28,
+            "end": 34,
+            "original": "stehen",
+            "replacements": [
+              "steht"
+            ],
+            "category": "grammar"
+          }
+        ]
+      },
+      "combined": {
+        "exact": true,
+        "output": "Dort steht das Auto.",
+        "changed": true,
+        "all_choices_resolved": true,
+        "findings": [
+          {
+            "provider_id": "spacy-german-grammar",
+            "rule_id": "de.spacy.noun-verb",
+            "start": 28,
+            "end": 34,
+            "original": "stehen",
+            "replacements": [
+              "steht"
+            ],
+            "category": "grammar"
+          }
+        ]
+      },
+      "merge_suppressed_native_proposals": 0,
+      "decisions": [
+        {
+          "action": "proposed",
+          "reason": "reviewed-noun-verb-disagreement",
+          "token_indices": [
+            1,
+            3,
+            2
+          ],
+          "construction": "adverbial-inversion"
+        }
+      ],
+      "interpretation": "incremental_exact_correction",
+      "corrected_recheck": {
+        "status": "success",
+        "finding_count": 0,
+        "decisions": [
+          {
+            "action": "preserved",
+            "reason": "compatible-lexical-reading"
+          }
+        ]
+      }
+    },
+    {
+      "id": "inversion-error-11",
+      "family": "inversion",
+      "text": "Morgen fährt die Züge.",
+      "expected": "Morgen fahren die Züge.",
+      "frozen_target": {
+        "original": "fährt",
+        "replacement": "fahren"
+      },
+      "baseline": {
+        "exact": false,
+        "output": "Morgen fährt die Züge.",
+        "changed": false,
+        "all_choices_resolved": true,
+        "findings": []
+      },
+      "native_planner": {
+        "exact": false,
+        "output": "Morgen fährt die Züge.",
+        "changed": false,
+        "all_choices_resolved": true,
+        "findings": []
+      },
+      "combined": {
+        "exact": false,
+        "output": "Morgen fährt die Züge.",
+        "changed": false,
+        "all_choices_resolved": true,
+        "findings": []
+      },
+      "merge_suppressed_native_proposals": 0,
+      "decisions": [
+        {
+          "action": "abstained",
+          "reason": "unknown-noun",
+          "token_indices": [
+            1,
+            3,
+            2
+          ],
+          "construction": "adverbial-inversion"
+        }
+      ],
+      "interpretation": "missed_error_with_native_abstention",
+      "miss_review": {
+        "cause_group": "lexical_spelling_gate",
+        "explanation": "The recorded noun evidence is unknown-noun for Züge. In the shared-facts implementation this reason is produced when the prepared noun fails morphology.acceptsSpelling; a plausible native lemma/number prediction cannot bypass that lexical gate.",
+        "diagnostic_caveat": "This result identifies the specific lexical spelling-acceptance gate. It does not establish that every noun lookup representation lacks Züge, and no new lookup or model execution was performed for this review.",
+        "source_basis": [
+          "german_agreement_facts.dart: nominativePhrase spelling gate"
+        ]
+      },
+      "selected_native_annotations": [
+        {
+          "i": 0,
+          "text": "Morgen",
+          "lemma": "morgen",
+          "tag": "ADV",
+          "pos": "ADV",
+          "morph": "",
+          "dep": "mo",
+          "head": 1
+        },
+        {
+          "i": 1,
+          "text": "fährt",
+          "lemma": "fahren",
+          "tag": "VVFIN",
+          "pos": "VERB",
+          "morph": "Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin",
+          "dep": "ROOT",
+          "head": 1
+        },
+        {
+          "i": 2,
+          "text": "die",
+          "lemma": "der",
+          "tag": "ART",
+          "pos": "DET",
+          "morph": "Case=Nom|Definite=Def|Gender=Masc|Number=Plur|PronType=Art",
+          "dep": "nk",
+          "head": 3
+        },
+        {
+          "i": 3,
+          "text": "Züge",
+          "lemma": "Zug",
+          "tag": "NN",
+          "pos": "NOUN",
+          "morph": "Case=Nom|Gender=Masc|Number=Plur",
+          "dep": "sb",
+          "head": 1
+        },
+        {
+          "i": 4,
+          "text": ".",
+          "lemma": "--",
+          "tag": "$.",
+          "pos": "PUNCT",
+          "morph": "",
+          "dep": "punct",
+          "head": 1
+        }
+      ],
+      "recorded_decision_evidence": [
+        {
+          "verb": {
+            "i": 1,
+            "text": "fährt",
+            "start_byte": 7,
+            "end_byte": 13,
+            "start_codepoint": 7,
+            "end_codepoint": 12,
+            "start_utf16": 7,
+            "end_utf16": 12,
+            "norm": "fährt",
+            "prefix": "f",
+            "suffix": "hrt",
+            "shape": "xxxx",
+            "lemma": "fahren",
+            "tag": "VVFIN",
+            "pos": "VERB",
+            "morph": "Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin",
+            "dep": "ROOT",
+            "head": 1,
+            "whitespace": " ",
+            "is_space": false,
+            "is_sent_start": false
+          },
+          "subject": {
+            "i": 3,
+            "text": "Züge",
+            "start_byte": 18,
+            "end_byte": 23,
+            "start_codepoint": 17,
+            "end_codepoint": 21,
+            "start_utf16": 17,
+            "end_utf16": 21,
+            "norm": "züge",
+            "prefix": "Z",
+            "suffix": "üge",
+            "shape": "Xxxx",
+            "lemma": "Zug",
+            "tag": "NN",
+            "pos": "NOUN",
+            "morph": "Case=Nom|Gender=Masc|Number=Plur",
+            "dep": "sb",
+            "head": 1,
+            "whitespace": "",
+            "is_space": false,
+            "is_sent_start": false
+          },
+          "construction": "adverbial-inversion",
+          "noun_evidence": {
+            "reason": "unknown-noun",
+            "numbers": [],
+            "readings": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "inversion-error-12",
+      "family": "inversion",
+      "text": "Gern liest die Kinder.",
+      "expected": "Gern lesen die Kinder.",
+      "frozen_target": {
+        "original": "liest",
+        "replacement": "lesen"
+      },
+      "baseline": {
+        "exact": false,
+        "output": "Gern liest die Kinder.",
+        "changed": false,
+        "all_choices_resolved": true,
+        "findings": []
+      },
+      "native_planner": {
+        "exact": false,
+        "output": "Gern liest die Kinder.",
+        "changed": false,
+        "all_choices_resolved": true,
+        "findings": []
+      },
+      "combined": {
+        "exact": false,
+        "output": "Gern liest die Kinder.",
+        "changed": false,
+        "all_choices_resolved": true,
+        "findings": []
+      },
+      "merge_suppressed_native_proposals": 0,
+      "decisions": [
+        {
+          "action": "abstained",
+          "reason": "not-one-subject",
+          "token_indices": [
+            1
+          ],
+          "construction": null
+        }
+      ],
+      "interpretation": "missed_error_with_native_abstention",
+      "miss_review": {
+        "cause_group": "native_annotation_conflict",
+        "explanation": "Native analysis assigns Kinder accusative object dependency oa, leaving no sb subject. The planner abstains before reaching later vocabulary/word-order checks.",
+        "diagnostic_caveat": "Gern is also outside the frozen initial-adverb allowlist, but the observed first rejection is not-one-subject; this case is not attributed to an unexecuted later check.",
+        "source_basis": [
+          "grammar_planner.dart: subjects.length != 1"
+        ]
+      },
+      "selected_native_annotations": [
+        {
+          "i": 0,
+          "text": "Gern",
+          "lemma": "gern",
+          "tag": "ADV",
+          "pos": "ADV",
+          "morph": "",
+          "dep": "mo",
+          "head": 1
+        },
+        {
+          "i": 1,
+          "text": "liest",
+          "lemma": "lesen",
+          "tag": "VVFIN",
+          "pos": "VERB",
+          "morph": "Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin",
+          "dep": "ROOT",
+          "head": 1
+        },
+        {
+          "i": 2,
+          "text": "die",
+          "lemma": "der",
+          "tag": "ART",
+          "pos": "DET",
+          "morph": "Case=Acc|Definite=Def|Gender=Neut|Number=Plur|PronType=Art",
+          "dep": "nk",
+          "head": 3
+        },
+        {
+          "i": 3,
+          "text": "Kinder",
+          "lemma": "Kind",
+          "tag": "NN",
+          "pos": "NOUN",
+          "morph": "Case=Acc|Gender=Neut|Number=Plur",
+          "dep": "oa",
+          "head": 1
+        },
+        {
+          "i": 4,
+          "text": ".",
+          "lemma": "--",
+          "tag": "$.",
+          "pos": "PUNCT",
+          "morph": "",
+          "dep": "punct",
+          "head": 1
+        }
+      ],
+      "recorded_decision_evidence": [
+        {
+          "verb": {
+            "i": 1,
+            "text": "liest",
+            "start_byte": 5,
+            "end_byte": 10,
+            "start_codepoint": 5,
+            "end_codepoint": 10,
+            "start_utf16": 5,
+            "end_utf16": 10,
+            "norm": "liest",
+            "prefix": "l",
+            "suffix": "est",
+            "shape": "xxxx",
+            "lemma": "lesen",
+            "tag": "VVFIN",
+            "pos": "VERB",
+            "morph": "Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin",
+            "dep": "ROOT",
+            "head": 1,
+            "whitespace": " ",
+            "is_space": false,
+            "is_sent_start": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "baseline-overlap-error-01",
+      "family": "baseline-overlap",
+      "text": "Die Pferde läuft langsam.",
+      "expected": "Die Pferde laufen langsam.",
+      "frozen_target": {
+        "original": "läuft",
+        "replacement": "laufen"
+      },
+      "baseline": {
+        "exact": true,
+        "output": "Die Pferde laufen langsam.",
+        "changed": true,
+        "all_choices_resolved": true,
+        "findings": [
+          {
+            "provider_id": "german-writing",
+            "rule_id": "de.grammar.noun-verb",
+            "start": 34,
+            "end": 39,
+            "original": "läuft",
+            "replacements": [
+              "laufen"
+            ],
+            "category": "grammar"
+          }
+        ]
+      },
+      "native_planner": {
+        "exact": true,
+        "output": "Die Pferde laufen langsam.",
+        "changed": true,
+        "all_choices_resolved": true,
+        "findings": [
+          {
+            "provider_id": "spacy-german-grammar",
+            "rule_id": "de.spacy.noun-verb",
+            "start": 34,
+            "end": 39,
+            "original": "läuft",
+            "replacements": [
+              "laufen"
+            ],
+            "category": "grammar"
+          }
+        ]
+      },
+      "combined": {
+        "exact": true,
+        "output": "Die Pferde laufen langsam.",
+        "changed": true,
+        "all_choices_resolved": true,
+        "findings": [
+          {
+            "provider_id": "german-writing",
+            "rule_id": "de.grammar.noun-verb",
+            "start": 34,
+            "end": 39,
+            "original": "läuft",
+            "replacements": [
+              "laufen"
+            ],
+            "category": "grammar"
+          }
+        ]
+      },
+      "merge_suppressed_native_proposals": 1,
+      "decisions": [
+        {
+          "action": "proposed",
+          "reason": "reviewed-noun-verb-disagreement",
+          "token_indices": [
+            2,
+            1,
+            0
+          ],
+          "construction": "subject-first"
+        }
+      ],
+      "interpretation": "baseline_exact_preserved_duplicate_suppressed",
+      "corrected_recheck": {
+        "status": "success",
+        "finding_count": 0,
+        "decisions": [
+          {
+            "action": "preserved",
+            "reason": "compatible-lexical-reading"
+          }
+        ]
+      }
+    },
+    {
+      "id": "baseline-overlap-error-02",
+      "family": "baseline-overlap",
+      "text": "Das Fenster bleiben offen.",
+      "expected": "Das Fenster bleibt offen.",
+      "frozen_target": {
+        "original": "bleiben",
+        "replacement": "bleibt"
+      },
+      "baseline": {
+        "exact": false,
+        "output": "Das Fenster bleiben offen.",
+        "changed": false,
+        "all_choices_resolved": true,
+        "findings": []
+      },
+      "native_planner": {
+        "exact": false,
+        "output": "Das Fenster bleiben offen.",
+        "changed": false,
+        "all_choices_resolved": true,
+        "findings": []
+      },
+      "combined": {
+        "exact": false,
+        "output": "Das Fenster bleiben offen.",
+        "changed": false,
+        "all_choices_resolved": true,
+        "findings": []
+      },
+      "merge_suppressed_native_proposals": 0,
+      "decisions": [
+        {
+          "action": "abstained",
+          "reason": "unsupported-phrase-tail",
+          "token_indices": [
+            2,
+            1,
+            0
+          ],
+          "construction": null
+        }
+      ],
+      "interpretation": "missed_error_with_native_abstention",
+      "miss_review": {
+        "cause_group": "fixed_vocabulary_or_structure_bound",
+        "explanation": "Offen is outside the shared reviewed predicate vocabulary. The remaining one-word tail cannot form the one complete optional PP, producing unsupported-phrase-tail. The baseline also leaves this input unchanged.",
+        "source_basis": [
+          "grammar_planner.dart: tail scan and _prepositionalPhrase length gate",
+          "german_grammar.dart: _grammarPredicateAdverbs"
+        ]
+      },
+      "selected_native_annotations": [
+        {
+          "i": 0,
+          "text": "Das",
+          "lemma": "der",
+          "tag": "ART",
+          "pos": "DET",
+          "morph": "Case=Nom|Definite=Def|Gender=Neut|Number=Sing|PronType=Art",
+          "dep": "nk",
+          "head": 1
+        },
+        {
+          "i": 1,
+          "text": "Fenster",
+          "lemma": "Fenster",
+          "tag": "NN",
+          "pos": "NOUN",
+          "morph": "Case=Nom|Gender=Neut|Number=Sing",
+          "dep": "sb",
+          "head": 2
+        },
+        {
+          "i": 2,
+          "text": "bleiben",
+          "lemma": "bleiben",
+          "tag": "VVFIN",
+          "pos": "VERB",
+          "morph": "Mood=Ind|Number=Plur|Person=3|Tense=Pres|VerbForm=Fin",
+          "dep": "ROOT",
+          "head": 2
+        },
+        {
+          "i": 3,
+          "text": "offen",
+          "lemma": "offen",
+          "tag": "ADJD",
+          "pos": "ADV",
+          "morph": "Degree=Pos",
+          "dep": "pd",
+          "head": 2
+        },
+        {
+          "i": 4,
+          "text": ".",
+          "lemma": "--",
+          "tag": "$.",
+          "pos": "PUNCT",
+          "morph": "",
+          "dep": "punct",
+          "head": 2
+        }
+      ],
+      "recorded_decision_evidence": [
+        {
+          "verb": {
+            "i": 2,
+            "text": "bleiben",
+            "start_byte": 12,
+            "end_byte": 19,
+            "start_codepoint": 12,
+            "end_codepoint": 19,
+            "start_utf16": 12,
+            "end_utf16": 19,
+            "norm": "bleiben",
+            "prefix": "b",
+            "suffix": "ben",
+            "shape": "xxxx",
+            "lemma": "bleiben",
+            "tag": "VVFIN",
+            "pos": "VERB",
+            "morph": "Mood=Ind|Number=Plur|Person=3|Tense=Pres|VerbForm=Fin",
+            "dep": "ROOT",
+            "head": 2,
+            "whitespace": " ",
+            "is_space": false,
+            "is_sent_start": false
+          },
+          "subject": {
+            "i": 1,
+            "text": "Fenster",
+            "start_byte": 4,
+            "end_byte": 11,
+            "start_codepoint": 4,
+            "end_codepoint": 11,
+            "start_utf16": 4,
+            "end_utf16": 11,
+            "norm": "fenster",
+            "prefix": "F",
+            "suffix": "ter",
+            "shape": "Xxxxx",
+            "lemma": "Fenster",
+            "tag": "NN",
+            "pos": "NOUN",
+            "morph": "Case=Nom|Gender=Neut|Number=Sing",
+            "dep": "sb",
+            "head": 2,
+            "whitespace": " ",
+            "is_space": false,
+            "is_sent_start": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "baseline-overlap-error-03",
+      "family": "baseline-overlap",
+      "text": "Meine Schwestern kommt morgen.",
+      "expected": "Meine Schwestern kommen morgen.",
+      "frozen_target": {
+        "original": "kommt",
+        "replacement": "kommen"
+      },
+      "baseline": {
+        "exact": true,
+        "output": "Meine Schwestern kommen morgen.",
+        "changed": true,
+        "all_choices_resolved": true,
+        "findings": [
+          {
+            "provider_id": "german-writing",
+            "rule_id": "de.grammar.noun-verb",
+            "start": 40,
+            "end": 45,
+            "original": "kommt",
+            "replacements": [
+              "kommen"
+            ],
+            "category": "grammar"
+          }
+        ]
+      },
+      "native_planner": {
+        "exact": true,
+        "output": "Meine Schwestern kommen morgen.",
+        "changed": true,
+        "all_choices_resolved": true,
+        "findings": [
+          {
+            "provider_id": "spacy-german-grammar",
+            "rule_id": "de.spacy.noun-verb",
+            "start": 40,
+            "end": 45,
+            "original": "kommt",
+            "replacements": [
+              "kommen"
+            ],
+            "category": "grammar"
+          }
+        ]
+      },
+      "combined": {
+        "exact": true,
+        "output": "Meine Schwestern kommen morgen.",
+        "changed": true,
+        "all_choices_resolved": true,
+        "findings": [
+          {
+            "provider_id": "german-writing",
+            "rule_id": "de.grammar.noun-verb",
+            "start": 40,
+            "end": 45,
+            "original": "kommt",
+            "replacements": [
+              "kommen"
+            ],
+            "category": "grammar"
+          }
+        ]
+      },
+      "merge_suppressed_native_proposals": 1,
+      "decisions": [
+        {
+          "action": "proposed",
+          "reason": "reviewed-noun-verb-disagreement",
+          "token_indices": [
+            2,
+            1,
+            0
+          ],
+          "construction": "subject-first"
+        }
+      ],
+      "interpretation": "baseline_exact_preserved_duplicate_suppressed",
+      "corrected_recheck": {
+        "status": "success",
+        "finding_count": 0,
+        "decisions": [
+          {
+            "action": "preserved",
+            "reason": "compatible-lexical-reading"
+          }
+        ]
+      }
+    },
+    {
+      "id": "baseline-overlap-error-04",
+      "family": "baseline-overlap",
+      "text": "Dieser Arzt arbeiten heute.",
+      "expected": "Dieser Arzt arbeitet heute.",
+      "frozen_target": {
+        "original": "arbeiten",
+        "replacement": "arbeitet"
+      },
+      "baseline": {
+        "exact": true,
+        "output": "Dieser Arzt arbeitet heute.",
+        "changed": true,
+        "all_choices_resolved": true,
+        "findings": [
+          {
+            "provider_id": "german-writing",
+            "rule_id": "de.grammar.noun-verb",
+            "start": 35,
+            "end": 43,
+            "original": "arbeiten",
+            "replacements": [
+              "arbeitet"
+            ],
+            "category": "grammar"
+          }
+        ]
+      },
+      "native_planner": {
+        "exact": true,
+        "output": "Dieser Arzt arbeitet heute.",
+        "changed": true,
+        "all_choices_resolved": true,
+        "findings": [
+          {
+            "provider_id": "spacy-german-grammar",
+            "rule_id": "de.spacy.noun-verb",
+            "start": 35,
+            "end": 43,
+            "original": "arbeiten",
+            "replacements": [
+              "arbeitet"
+            ],
+            "category": "grammar"
+          }
+        ]
+      },
+      "combined": {
+        "exact": true,
+        "output": "Dieser Arzt arbeitet heute.",
+        "changed": true,
+        "all_choices_resolved": true,
+        "findings": [
+          {
+            "provider_id": "german-writing",
+            "rule_id": "de.grammar.noun-verb",
+            "start": 35,
+            "end": 43,
+            "original": "arbeiten",
+            "replacements": [
+              "arbeitet"
+            ],
+            "category": "grammar"
+          }
+        ]
+      },
+      "merge_suppressed_native_proposals": 1,
+      "decisions": [
+        {
+          "action": "proposed",
+          "reason": "reviewed-noun-verb-disagreement",
+          "token_indices": [
+            2,
+            1,
+            0
+          ],
+          "construction": "subject-first"
+        }
+      ],
+      "interpretation": "baseline_exact_preserved_duplicate_suppressed",
+      "corrected_recheck": {
+        "status": "success",
+        "finding_count": 0,
+        "decisions": [
+          {
+            "action": "preserved",
+            "reason": "compatible-lexical-reading"
+          }
+        ]
+      }
+    },
+    {
+      "id": "baseline-overlap-error-05",
+      "family": "baseline-overlap",
+      "text": "Die Babys schläft drinnen.",
+      "expected": "Die Babys schlafen drinnen.",
+      "frozen_target": {
+        "original": "schläft",
+        "replacement": "schlafen"
+      },
+      "baseline": {
+        "exact": true,
+        "output": "Die Babys schlafen drinnen.",
+        "changed": true,
+        "all_choices_resolved": true,
+        "findings": [
+          {
+            "provider_id": "german-writing",
+            "rule_id": "de.grammar.noun-verb",
+            "start": 33,
+            "end": 40,
+            "original": "schläft",
+            "replacements": [
+              "schlafen"
+            ],
+            "category": "grammar"
+          }
+        ]
+      },
+      "native_planner": {
+        "exact": true,
+        "output": "Die Babys schlafen drinnen.",
+        "changed": true,
+        "all_choices_resolved": true,
+        "findings": [
+          {
+            "provider_id": "spacy-german-grammar",
+            "rule_id": "de.spacy.noun-verb",
+            "start": 33,
+            "end": 40,
+            "original": "schläft",
+            "replacements": [
+              "schlafen"
+            ],
+            "category": "grammar"
+          }
+        ]
+      },
+      "combined": {
+        "exact": true,
+        "output": "Die Babys schlafen drinnen.",
+        "changed": true,
+        "all_choices_resolved": true,
+        "findings": [
+          {
+            "provider_id": "german-writing",
+            "rule_id": "de.grammar.noun-verb",
+            "start": 33,
+            "end": 40,
+            "original": "schläft",
+            "replacements": [
+              "schlafen"
+            ],
+            "category": "grammar"
+          }
+        ]
+      },
+      "merge_suppressed_native_proposals": 1,
+      "decisions": [
+        {
+          "action": "proposed",
+          "reason": "reviewed-noun-verb-disagreement",
+          "token_indices": [
+            2,
+            1,
+            0
+          ],
+          "construction": "subject-first"
+        }
+      ],
+      "interpretation": "baseline_exact_preserved_duplicate_suppressed",
+      "corrected_recheck": {
+        "status": "success",
+        "finding_count": 0,
+        "decisions": [
+          {
+            "action": "preserved",
+            "reason": "compatible-lexical-reading"
+          }
+        ]
+      }
+    },
+    {
+      "id": "baseline-overlap-error-06",
+      "family": "baseline-overlap",
+      "text": "Die Blumen steht hier.",
+      "expected": "Die Blumen stehen hier.",
+      "frozen_target": {
+        "original": "steht",
+        "replacement": "stehen"
+      },
+      "baseline": {
+        "exact": true,
+        "output": "Die Blumen stehen hier.",
+        "changed": true,
+        "all_choices_resolved": true,
+        "findings": [
+          {
+            "provider_id": "german-writing",
+            "rule_id": "de.grammar.noun-verb",
+            "start": 34,
+            "end": 39,
+            "original": "steht",
+            "replacements": [
+              "stehen"
+            ],
+            "category": "grammar"
+          }
+        ]
+      },
+      "native_planner": {
+        "exact": true,
+        "output": "Die Blumen stehen hier.",
+        "changed": true,
+        "all_choices_resolved": true,
+        "findings": [
+          {
+            "provider_id": "spacy-german-grammar",
+            "rule_id": "de.spacy.noun-verb",
+            "start": 34,
+            "end": 39,
+            "original": "steht",
+            "replacements": [
+              "stehen"
+            ],
+            "category": "grammar"
+          }
+        ]
+      },
+      "combined": {
+        "exact": true,
+        "output": "Die Blumen stehen hier.",
+        "changed": true,
+        "all_choices_resolved": true,
+        "findings": [
+          {
+            "provider_id": "german-writing",
+            "rule_id": "de.grammar.noun-verb",
+            "start": 34,
+            "end": 39,
+            "original": "steht",
+            "replacements": [
+              "stehen"
+            ],
+            "category": "grammar"
+          }
+        ]
+      },
+      "merge_suppressed_native_proposals": 1,
+      "decisions": [
+        {
+          "action": "proposed",
+          "reason": "reviewed-noun-verb-disagreement",
+          "token_indices": [
+            2,
+            1,
+            0
+          ],
+          "construction": "subject-first"
+        }
+      ],
+      "interpretation": "baseline_exact_preserved_duplicate_suppressed",
+      "corrected_recheck": {
+        "status": "success",
+        "finding_count": 0,
+        "decisions": [
+          {
+            "action": "preserved",
+            "reason": "compatible-lexical-reading"
+          }
+        ]
+      }
+    }
+  ],
+  "examples": [
+    {
+      "id": "subject-pp-error-01",
+      "text": "Die Katzen auf dem Sofa schläft.",
+      "expected": "Die Katzen auf dem Sofa schlafen.",
+      "baseline_exact": false,
+      "combined_output": "Die Katzen auf dem Sofa schlafen.",
+      "native_construction": "subject-prepositional-modifier"
+    },
+    {
+      "id": "subject-pp-error-10",
+      "text": "Der Arzt neben den Schwestern helfen heute.",
+      "expected": "Der Arzt neben den Schwestern hilft heute.",
+      "baseline_exact": false,
+      "combined_output": "Der Arzt neben den Schwestern hilft heute.",
+      "native_construction": "subject-prepositional-modifier"
+    },
+    {
+      "id": "inversion-error-02",
+      "text": "Morgen arbeitet die Kollegen.",
+      "expected": "Morgen arbeiten die Kollegen.",
+      "baseline_exact": false,
+      "combined_output": "Morgen arbeiten die Kollegen.",
+      "native_construction": "adverbial-inversion"
+    },
+    {
+      "id": "inversion-error-06",
+      "text": "Oft spielen das Mädchen.",
+      "expected": "Oft spielt das Mädchen.",
+      "baseline_exact": false,
+      "combined_output": "Oft spielt das Mädchen.",
+      "native_construction": "adverbial-inversion"
+    },
+    {
+      "id": "baseline-overlap-error-01",
+      "text": "Die Pferde läuft langsam.",
+      "expected": "Die Pferde laufen langsam.",
+      "baseline_exact": true,
+      "combined_output": "Die Pferde laufen langsam.",
+      "native_construction": "subject-first"
+    }
+  ],
+  "new_native_executions": 0,
+  "source_panel_scorer_or_expectation_changes": false,
+  "qualification_reexecutions": 0,
+  "github_actions_queried_or_waited": false,
+  "reviewed_inputs_unchanged": true
+}

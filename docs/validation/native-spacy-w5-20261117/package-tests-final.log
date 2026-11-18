@@ -1,0 +1,31 @@
+00:00 +0: loading packages/quds_proofing_spacy/test/analysis_test.dart
+00:00 +0: packages/quds_proofing_spacy/test/bundle_test.dart: closed bundle includes exact source notices and never accepts path input
+00:00 +1: packages/quds_proofing_spacy/test/bundle_test.dart: native configuration rejects ambiguous hashes and NUL paths
+00:00 +2: packages/quds_proofing_spacy/test/bundle_test.dart: missing explicit assets fail startup rather than produce empty success
+00:00 +3: packages/quds_proofing_spacy/test/analysis_test.dart: source map keeps UTF8, scalars, UTF16, NUL and decomposed text distinct
+00:00 +4: packages/quds_proofing_spacy/test/worker_test.dart: persistent native ownership serializes calls and recovers after failure
+00:00 +5: packages/quds_proofing_spacy/test/worker_test.dart: persistent native ownership serializes calls and recovers after failure
+00:00 +6: packages/quds_proofing_spacy/test/analysis_test.dart: byte admission checks multibyte input without truncation
+00:00 +7: packages/quds_proofing_spacy/test/analysis_test.dart: byte admission checks multibyte input without truncation
+00:00 +8: packages/quds_proofing_spacy/test/analysis_test.dart: byte admission checks multibyte input without truncation
+00:00 +9: packages/quds_proofing_spacy/test/analysis_test.dart: byte admission checks multibyte input without truncation
+00:00 +10: packages/quds_proofing_spacy/test/worker_test.dart: timeout retains physical slot and never publishes a late result
+00:00 +11: packages/quds_proofing_spacy/test/worker_test.dart: timeout retains physical slot and never publishes a late result
+00:00 +12: packages/quds_proofing_spacy/test/worker_test.dart: timeout retains physical slot and never publishes a late result
+00:00 +13: packages/quds_proofing_spacy/test/worker_test.dart: timeout retains physical slot and never publishes a late result
+00:00 +14: packages/quds_proofing_spacy/test/worker_test.dart: timeout retains physical slot and never publishes a late result
+00:00 +15: packages/quds_proofing_spacy/test/worker_test.dart: timeout retains physical slot and never publishes a late result
+00:00 +16: packages/quds_proofing_spacy/test/worker_test.dart: timeout retains physical slot and never publishes a late result
+00:00 +17: packages/quds_proofing_spacy/test/worker_test.dart: timeout retains physical slot and never publishes a late result
+00:00 +18: packages/quds_proofing_spacy/test/worker_test.dart: timeout retains physical slot and never publishes a late result
+00:00 +19: packages/quds_proofing_spacy/test/worker_test.dart: timeout retains physical slot and never publishes a late result
+00:00 +20: packages/quds_proofing_spacy/test/worker_test.dart: dispose rejects callers immediately and joins the active context safely
+00:00 +21: packages/quds_proofing_spacy/test/worker_test.dart: snapshot and runtime mismatch cannot become success
+00:00 +22: packages/quds_proofing_spacy/test/worker_test.dart: unexpected isolate exit rejects all callers
+00:00 +23: packages/quds_proofing_spacy/test/worker_test.dart: startup failure returns explicit unavailable
+00:00 +24: packages/quds_proofing_spacy/test/worker_test.dart: cleanup failure is explicit and repeated disposal preserves the error
+00:00 +25: packages/quds_proofing_spacy/test/worker_test.dart: spawn failure has no unhandled readiness error
+00:00 +26: packages/quds_proofing_spacy/test/worker_test.dart: startup timeout returns promptly then releases late initialized context
+00:00 +27: packages/quds_proofing_spacy/test/worker_test.dart: web worker boundary reports unavailable without opening backend
+00:00 +28: packages/quds_proofing_spacy/test/worker_test.dart: worker limit admission is explicit
+00:00 +29: All tests passed!

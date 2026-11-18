@@ -1,0 +1,40 @@
+{
+  "schema": "quds.spacy.dart.development.v1",
+  "started_at": "2026-11-17T21:23:06.496688Z",
+  "scope": "Dart FFI and complete exposed annotations on the existing 16 development documents; not a new acceptance or grammar evaluation.",
+  "development_manifest_sha256": "9a3bb6bae6114adcf579840834ddcb64dea4e0aaa8361718dc7a551d663c8f7c",
+  "native_heldout_acceptance_executions": 0,
+  "ci_endpoints_queried": false,
+  "platform": "linux-x86_64",
+  "dart_version": "3.13.7",
+  "passed": false,
+  "open_microseconds": 443777,
+  "identity": {
+    "library_sha256": "ea89842ebf22c08508aff1cfbf18d78a107118af320523009616ff62b6e42977",
+    "bundle_sha256": "d599768375de3dc56abcca5cf1d49da0015857f9d3a10640aebb5317ef5d427e",
+    "model_sha256": "fae2e6ab8d6c611d7a9dddd4b3259a871a1d2f95cacc8259f49c1e4ff31ff6cd",
+    "resources_sha256": "b42496cc373ada57a67ed2f4c2c25f8d22f80c08db5841a7cdb91c8a6e18562a",
+    "abi_version": 1,
+    "text_abi_version": 1,
+    "capability_mask": 15
+  },
+  "failure": "Bad state: whitespace: failed: Invalid dependency sentence/head<quds-root>",
+  "completed_at": "2026-11-17T21:23:07.046781Z",
+  "source_sha256": {
+    "packages/quds_proofing_spacy/tool/replay_development.dart": "16afd4c4ef5b407520c2873af03682febd1857672004c02bd45e8039cb89e7b3",
+    "packages/quds_proofing_spacy/test/analysis_test.dart": "e86673ee6838869fe76467df999a8645b4066d410323890871a2aac14bcb2b81",
+    "packages/quds_proofing_spacy/test/bundle_test.dart": "5b9e754517a778f7efab4cabb697059cff5926b2eb2fc4b5274e626675aa47d4",
+    "packages/quds_proofing_spacy/test/worker_test.dart": "3628976c0c250ca6891c21e1cf2916277d30d07ad1cfed154f12335c7985d76f",
+    "packages/quds_proofing_spacy/lib/src/source_text.dart": "fd2f2fdda8e608d32bf3b4a05c10b8777a106495cf97cbfafd3b05dd5e559330",
+    "packages/quds_proofing_spacy/lib/src/backend.dart": "4b3cf6561ec8811d8a85a48a7025efda7714ad0a088add42fc065a738993a732",
+    "packages/quds_proofing_spacy/lib/src/transport.dart": "78b38b82fcec385d0d2d96d5861f0e2b0333b8af58bc542dd6d5cc23677f6305",
+    "packages/quds_proofing_spacy/lib/src/native_backend_unsupported.dart": "ff38d1a0fd5fa93c2157649fdd064dd73830047497359ed2d51d7a07ff2814ae",
+    "packages/quds_proofing_spacy/lib/src/bundle.dart": "970ec6672efada2bcbacd7223804b8cf8d504ec647aec0c289ee43e5c1f802cb",
+    "packages/quds_proofing_spacy/lib/src/worker_native.dart": "4d63dcc14292025493cbab07b839a26fefb66c6e5d4a2558c4fd01e74d46da80",
+    "packages/quds_proofing_spacy/lib/src/native_backend.dart": "60027b3f8109ff239b8179b38cbd11ddd79b77ccef5014b81767b27a0195cf31",
+    "packages/quds_proofing_spacy/lib/src/worker_unsupported.dart": "074c3ad98e4a873ec5d55535b3c1a404da4eb557068437a3b4eb9a622d1e3078",
+    "packages/quds_proofing_spacy/lib/src/analysis.dart": "ae8e8f77a6b366b05aee575f73fe22925a7741e6bf90c09f1546f9fa71a16820",
+    "packages/quds_proofing_spacy/lib/quds_proofing_spacy_native.dart": "b4d68e940536d8272680f21057f1a7695eb78d8a02c338320b2376c6a159a002",
+    "packages/quds_proofing_spacy/lib/quds_proofing_spacy.dart": "d2ec35f73260fc3bee0d86726aecb9478665355258f0722e77055f09b5e8eb19"
+  }
+}

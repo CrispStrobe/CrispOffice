@@ -1,0 +1,172 @@
+{
+  "additional_control_requests": 5,
+  "cases": [
+    {
+      "coordinates_recomputed": true,
+      "elapsed_microseconds": 7064,
+      "id": "empty",
+      "sentences": 0,
+      "tokens": 0
+    },
+    {
+      "coordinates_recomputed": true,
+      "elapsed_microseconds": 13385,
+      "id": "unicode_emoji",
+      "sentences": 2,
+      "tokens": 9
+    },
+    {
+      "coordinates_recomputed": true,
+      "elapsed_microseconds": 4993,
+      "id": "embedded_nul",
+      "sentences": 1,
+      "tokens": 4
+    },
+    {
+      "coordinates_recomputed": true,
+      "elapsed_microseconds": 8019,
+      "id": "multiple_sentences",
+      "sentences": 2,
+      "tokens": 10
+    },
+    {
+      "coordinates_recomputed": true,
+      "elapsed_microseconds": 2888,
+      "id": "whitespace",
+      "sentences": 1,
+      "tokens": 1
+    },
+    {
+      "coordinates_recomputed": true,
+      "elapsed_microseconds": 5775,
+      "id": "repeated_word",
+      "sentences": 1,
+      "tokens": 6
+    },
+    {
+      "coordinates_recomputed": true,
+      "elapsed_microseconds": 9820,
+      "id": "quotation_punctuation",
+      "sentences": 1,
+      "tokens": 13
+    },
+    {
+      "coordinates_recomputed": true,
+      "elapsed_microseconds": 21154,
+      "id": "moderate_paragraph",
+      "sentences": 4,
+      "tokens": 32
+    }
+  ],
+  "checks": [
+    "All 342 sealed source SHA-256 identities and candidate/current Git blobs match; the one lock-file alias is the published W5 mapping.",
+    "Current-source self-test log authenticates 17 model-free controls, including 8 loader override rejections and 5 source-path controls, with 38 source/configuration identities.",
+    "All 14 current Quds library files and the driver match the executed inventory; 22 external Dart library source identities match the authenticated archive restoration receipt, and the package-config identity agrees.",
+    "Both native reports and corresponding source commits authenticate. Current corrected-source inventory equals compiled self-test inventory; all eight recorded case annotations and coordinates remain exact across the label-only repair.",
+    "Recomputed complete text reconstruction, UTF-8/scalar/UTF-16 token and sentence coordinates, nonzero origin ranges, sentence partitions, one-root and acyclic same-sentence dependencies for all eight cases in both runs.",
+    "Both reports preserve frozen archive/manifest/protocol/native/model pins, six exact preflight and mapped dependency hashes, CPU baseline, explicit unsupported locale and caller cancellation, disposal/reopen/copy assertions, and source stability."
+  ],
+  "conclusion": "The retained evidence supports completion of W7's bounded Dart installed-worker consumer on current source. No actionable source defect was identified in this review. Top-level pending/uncompiled documentation is stale and should be superseded without rewriting historical receipts.",
+  "current_compiled_model_free_controls": 17,
+  "current_operational_cases": 8,
+  "current_shutdown_microseconds": 5279,
+  "current_startup_microseconds": 380894,
+  "driver_sha256": "cecbc3a4c52dc8880c9eae7add5a925b0c74660e9d1ba1aee7aaae0ffe02cdf6",
+  "evidence_files": {
+    "docs/validation/native-spacy-w6-20261117/candidate-seal.json": {
+      "bytes": 53767,
+      "sha256": "b4b3370548ac6ea09a7943d93dcf140f09378bbdd242030147104dd276a11494"
+    },
+    "docs/validation/native-spacy-w6-20261117/source-restoration.json": {
+      "bytes": 1216,
+      "sha256": "0a1026599c4603ba3bbd2ae7760ac53392246b882ec99e5a4d1bfd32b709de05"
+    },
+    "docs/validation/native-spacy-w7-20261118/operational-protocol.json": {
+      "bytes": 4014,
+      "sha256": "60f85df220bb05ff467c6036ce465c841cff3480103720d5139af0644cfd3934"
+    },
+    "docs/validation/native-spacy-w7-20261118/resume-20261118/dart-consumer/corrected-source-execution.json": {
+      "bytes": 2577,
+      "sha256": "3b1af7b48ac1a8050b6d80180c867b8b3395757dd495e84e60c54a73b4e1ea23"
+    },
+    "docs/validation/native-spacy-w7-20261118/resume-20261118/dart-consumer/corrected-source.json": {
+      "bytes": 79684,
+      "sha256": "10f56d4dca10291e7b7bd7db5f9761749bebfc5652057036ace726dfefb58a68"
+    },
+    "docs/validation/native-spacy-w7-20261118/resume-20261118/dart-consumer/corrected-source.log": {
+      "bytes": 174,
+      "sha256": "fefa5614b05d623b6deb63a5bc71ea85488ac9a2f12870f67fa85f9dc10d140e"
+    },
+    "docs/validation/native-spacy-w7-20261118/resume-20261118/dart-consumer/first-execution.json": {
+      "bytes": 2133,
+      "sha256": "13effb5d076c9077b0405272e6fcceb63365d623f0001d623510ce5ee70d21b6"
+    },
+    "docs/validation/native-spacy-w7-20261118/resume-20261118/dart-consumer/first.json": {
+      "bytes": 79657,
+      "sha256": "81c425de85cf8d17893e118b8d352471e460edb94b448fb229026de7f8e92fa2"
+    },
+    "docs/validation/native-spacy-w7-20261118/resume-20261118/dart-consumer/first.log": {
+      "bytes": 163,
+      "sha256": "341c460421981634255ef326503515b665c85e73a7376779cc9897096707f3f6"
+    },
+    "docs/validation/native-spacy-w7-20261118/resume-20261118/dart-controls/runtime-restoration.json": {
+      "bytes": 110984,
+      "sha256": "da4c2373cd64cb2aa536530f7541da09394f4b032eabbb0aa65d76fa551ff851"
+    },
+    "docs/validation/native-spacy-w7-20261118/resume-20261118/dart-source-labels/controls.json": {
+      "bytes": 6639,
+      "sha256": "c0e0782311d0065635d41648421eba73109b45d5421a5cc893c28fe0ef74176e"
+    },
+    "docs/validation/native-spacy-w7-20261118/resume-20261118/dart-source-labels/current-source-inventory.json": {
+      "bytes": 4118,
+      "sha256": "b92568acabe39fbe3bc97434a75b6c7dd4e4cda7387563e674e9ae56b014b193"
+    },
+    "docs/validation/native-spacy-w7-20261118/resume-20261118/dart-source-labels/self-test.log": {
+      "bytes": 4187,
+      "sha256": "de3b0a716848d95827bee785691e7d59667bad861246a162d8e51be040f7ab65"
+    }
+  },
+  "github_actions_queries_waits_reruns_dispatches": 0,
+  "limitations": [
+    "Public report hashes and source identities were independently recomputed. The earlier raw, unredacted reports/logs are not restored in this checkout; their recorded raw hashes are metadata, not newly verified bytes.",
+    "Repeat, cancellation, disposal and reopen outcomes are retained harness assertions corroborated by the matching executed source; raw repeat results and in-memory sentenceEnd fields are not separately serialized for recomputation.",
+    "This covers the preserved Linux x86-64/AVX2 development binary and exact six dependency hashes only; no other host or device qualification follows.",
+    "Caller cancellation settles the request; physical native compute start or interruption was not observed.",
+    "The Dart consumer does not replicate Python context/document RSS/FD cycles or observe Flutter UI/typing behavior.",
+    "No linguistic-quality panel was rerun; W6 qualification remains consumed. Hosted distribution publication/readback and production activation remain separate work."
+  ],
+  "native_inference_executions_this_audit": 0,
+  "quds_library_sources_verified": 14,
+  "reports": {
+    "corrected-source": {
+      "driver_sha256": "cecbc3a4c52dc8880c9eae7add5a925b0c74660e9d1ba1aee7aaae0ffe02cdf6",
+      "elapsed_seconds": 2.4863879680633545,
+      "execution_source_commit": "71e87486489200f7e259594d2967bba8c0682143",
+      "public_report_sha256": "10f56d4dca10291e7b7bd7db5f9761749bebfc5652057036ace726dfefb58a68",
+      "raw_log_sha256_recorded_only": "9f3b5e01f2ad4439db9c54002ff9981436143fba25d8836ec58989a0a0f2d512",
+      "raw_report_sha256_recorded_only": "71a758b47c925ca6b9add1b99bbc0052d81259366ea8a2f2721fa6945c6b3db5"
+    },
+    "first": {
+      "driver_sha256": "2c950b6a5102fc97b59f5ee02355ce662d3d100b409949df330bdff5c25d4ab4",
+      "elapsed_seconds": 2.740773916244507,
+      "execution_source_commit": "99fd56590f8b4203409148af1a954538451e6890",
+      "public_report_sha256": "81c425de85cf8d17893e118b8d352471e460edb94b448fb229026de7f8e92fa2",
+      "raw_log_sha256_recorded_only": "369d41dd3384e2ffae00b47c7be925284f03edb3011f325e341fa8eccbcf08f9",
+      "raw_report_sha256_recorded_only": "d7862a476ba7e1db9d5b638a5c3cb51ba345d41e64ad42ddd6692b9247afdbf8"
+    }
+  },
+  "schema": "quds.spacy.w7.retained_dart_audit.v1",
+  "scope": "Independent retained-report and source audit; no Dart, model, native acceptance, or W6 qualification execution.",
+  "sealed_source": {
+    "candidate_commit": "da18e29c20e2d42036cee911e85ff8bb22c328ae",
+    "count": 342,
+    "inventory_sha256": "a912adde5ec8f4acb743baaedea543a54ac5f43899379f821dccefe88914378d",
+    "lock_file_mapping": {
+      "pubspec.lock": "docs/validation/native-spacy-w5-20261117/workspace-pubspec.lock"
+    },
+    "unchanged": true
+  },
+  "source_commit": "abaefc3ce93eb710f2d13eebbef565fe07854535",
+  "source_configuration_inventory_entries": 38,
+  "status": "passed"
+}

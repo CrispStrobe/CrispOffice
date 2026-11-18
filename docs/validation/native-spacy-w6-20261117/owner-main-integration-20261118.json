@@ -1,0 +1,10 @@
+{
+  "schema": "quds.spacy.owner_main_integration.v1",
+  "source_merge": "5d7f1d87dd8a1261a640b5228cc6096b37625f44",
+  "incoming_main": "c8eca37d1639ac1d20efb83ba2e9da51981a3ad4",
+  "preserved_sealed_sources": 342,
+  "mapping": "pubspec.lock -> docs/validation/native-spacy-w5-20261117/workspace-pubspec.lock",
+  "consumed_native_acceptance_or_W6_reexecuted": false,
+  "library_source_changes": false,
+  "note": "Normal merge preserves all incoming Office history; source/golden identity only, not a new qualification result."
+}

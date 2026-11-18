@@ -1,0 +1,18 @@
+00:00 +0: loading <QUDS>/packages/quds_proofing_spacy/test/grammar_provider_test.dart
+00:00 +0: default disabled provider makes zero analysis calls
+00:00 +1: disabled load refuses before any backend can open
+00:00 +2: unsupported locales and ignored rules make zero analysis calls
+00:00 +3: admitted check preserves the exact request and nonzero source origin
+00:00 +4: personal and ignored words are captured before inference
+00:00 +5: a vocabulary change during inference invalidates the returned snapshot
+00:00 +6: a vocabulary change while lexical planning yields invalidates completion
+00:00 +7: all exact analysis snapshot fields are authenticated before planning
+00:00 +8: reply runtime and grammar-qualified runtime identities are both enforced
+00:00 +9: obsolete request cancellation and completion cannot invalidate its successor
+00:00 +10: current cancellation invalidates even a late successful reply
+00:00 +11: a new ignored request cancels an older pending check without inference
+00:00 +12: independent blocks retain independent cancellation ownership
+00:00 +13: dispose invalidates pending work and joins transport cleanup once
+00:00 +14: native failures and timeouts remain explicit operational outcomes
+00:00 +15: transport exceptions stay failed or unavailable without findings
+00:00 +16: All tests passed!

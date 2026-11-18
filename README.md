@@ -169,11 +169,15 @@ Spelling, automatic German hyphenation and grammar work is tracked in the
 spelling baseline, the MIT/BSD/Apache/MPL component and language-data policy,
 implementation order, and the checks required before claiming each feature.
 
-The [native spaCy handoff](docs/roadmaps/native-spacy/README.md) scopes the next
-optional German analysis backend: C++/ggml in CrispEmbed, no Python runtime or
-daemon in the app, and separate guarded grammar rules. It records source/model
-pins, implementation tasks, validation criteria, and licensing decisions for a
-fresh agent. This is a documented implementation plan, not an enabled backend.
+The optional German spaCy backend uses C++/ggml in CrispEmbed, without a Python
+runtime or daemon in the app, and separate guarded grammar rules. The
+[completed local W7 package and worker evidence](docs/validation/native-spacy-w7-20261118/README.md)
+records immutable installation, exact Python/Dart consumer results and their
+Linux x86-64/AVX2 dependency limits. The
+[native spaCy handoff](docs/roadmaps/native-spacy/README.md) retains source/model
+pins, licensing decisions and earlier qualification boundaries. The manual
+provider stays disabled by default, with no automatic Studio registration;
+hosted distribution, other targets and production activation remain separate.
 
 Legacy `.doc`/`.dot` parsing and separate DOCX/DOCM conversion are maintained in [legacy-doc-parser](https://github.com/CrispStrobe/legacy-doc-parser). The engine exposes compatibility exports from the pinned workspace copy in `packages/legacy_doc_parser`; its `UPSTREAM.json` records the source and workspace-only patches. The suite's MIT license does not replace that dependency's MPL-2.0 license or its third-party notices.
 

@@ -1,0 +1,131 @@
+{
+  "schema_version": 1,
+  "created_utc": "2026-11-18T09:53:26.312557+00:00",
+  "scope": "Native spelling changes and reconciled optional proofing library integration",
+  "implementation_commit": "01e4b7223bf41ab589cbeeaada82cf2d6faee97d",
+  "integration_baseline": "98a2a15056e55699b8ba5651fc79b26f94e5efd3",
+  "local_spelling_validation_passed": true,
+  "groups": {
+    "engine_proofing": {
+      "passed": 1064,
+      "failed": 0,
+      "skipped": 0,
+      "suite_count": 27,
+      "done_success": true,
+      "errors": [],
+      "log_sha256": "7ddc46d526c6cb474675b4d5ff44a1d4a6c4022aab9d13466cd75a6f40121bb5"
+    },
+    "editor_proofing": {
+      "passed": 140,
+      "failed": 0,
+      "skipped": 0,
+      "suite_count": 8,
+      "done_success": true,
+      "errors": [],
+      "log_sha256": "e09bb13e62f024adb276ee1d37010a2f139262c6932d3263cc9938eaf8f88d76"
+    },
+    "harper_adapter": {
+      "passed": 29,
+      "failed": 0,
+      "skipped": 0,
+      "suite_count": 3,
+      "done_success": true,
+      "errors": [],
+      "log_sha256": "b30bad140248d537fdb515f86f9141ae9f81f08ed0ec44120a77ba3a3c8a5b9f"
+    },
+    "gector_adapter": {
+      "passed": 248,
+      "failed": 0,
+      "skipped": 0,
+      "suite_count": 13,
+      "done_success": true,
+      "errors": [],
+      "log_sha256": "5f95e1dde2b73ddcbe62005f4bf2bd5693446cb8e01925548c7bd85a1b90579a"
+    },
+    "spacy_engineering": {
+      "passed": 73,
+      "failed": 0,
+      "skipped": 0,
+      "suite_count": 6,
+      "done_success": true,
+      "errors": [],
+      "log_sha256": "83b995c3f551a382f501fcee14665c5b6a9e41b4e5e85d41370b08cdc61d507a"
+    }
+  },
+  "substantive_tests_passed": 1554,
+  "unexpected_skips": 0,
+  "baseline_defect_controls": {
+    "apostrophes": {
+      "passed": 2,
+      "failed": 7,
+      "current_passed": 9
+    },
+    "compounds": {
+      "passed": 4,
+      "failed": 7,
+      "current_passed": 11
+    },
+    "platform": {
+      "passed": 10,
+      "failed": 11,
+      "current_passed": 21
+    }
+  },
+  "native_smoke": {
+    "cases": 21,
+    "targets": [
+      "dart-vm",
+      "native-aot",
+      "javascript-node"
+    ],
+    "executions": 63,
+    "all_passed": true,
+    "outputs_identical": true,
+    "source_unchanged": true,
+    "receipt_sha256": "e9be4455138e450af7bf9f12e814eff74b761513a5ba746e667ae9193566bb3b"
+  },
+  "strict_analysis": {
+    "engine_proofing_and_smoke": "passed",
+    "editor_library_and_proofing_tests": "passed",
+    "spacy_library_and_tests": "passed",
+    "inherited_spacy_packaging_cli": {
+      "status": "preexisting_9_lint_infos",
+      "full_package_strict_exit_code": 1,
+      "baseline_and_current_logs_identical": true,
+      "source_unchanged": true
+    }
+  },
+  "formatting": {
+    "files": 8,
+    "changes": 0
+  },
+  "production_sha256": {
+    "packages/quds_office_engine/lib/src/proofing/german_spelling.dart": "2a1aeb6d651361418cb1be7f3b3751e60f038cc06f9c435093740fa687157f43",
+    "packages/quds_office_editor/lib/src/proofing/platform_spelling_provider.dart": "abd68bc42b835838330c119f8f306d82b32b181ae57e0312f0a3f2b300d1ad26"
+  },
+  "runtime": {
+    "flutter": "3.47.8",
+    "dart": "3.13.7",
+    "flutter_framework_revision": "737ba8f885dc774b53b442759999a312c9461e4e",
+    "official_archive_url": "https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.47.8-stable.tar.xz",
+    "verified_archive_sha256": "baf7dcc5a3dbba60fe863bf493a6cf203195621f7786eaa5a1bba02cd0d87dd2",
+    "verified_hosted_package_archives": 162,
+    "workspace_lock_sha256": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130",
+    "configured_packages": 110,
+    "dependency_receipt_sha256": "17f7c6025f2e19e6d4c163ea1b1e9395b96b12b17bd498f9fb18c871a86796ea"
+  },
+  "github_actions": {
+    "queried": false,
+    "waited": false,
+    "dispatched": false,
+    "rerun": false,
+    "new_commits_use_skip_ci": true
+  },
+  "limitations": [
+    "Android/iOS behavior is tested through the actual Flutter service and mocked native channel, not installed device dictionaries.",
+    "The finite German word list and bounded suggestions do not establish general German linguistic accuracy.",
+    "Harper/GECToR physical-native tests were excluded; this change did not rebuild their external runtimes/models. Optional spaCy tests are engineering controls, not a new native/model acceptance run.",
+    "The W7 developer packaging consumer retains nine baseline lint infos; its sealed source is unchanged.",
+    "Remote reconciliation covers the initial 193-branch/154-PR snapshot. Later concurrent Zotero work is recorded separately and is not included."
+  ]
+}

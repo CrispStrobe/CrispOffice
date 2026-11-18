@@ -25,8 +25,19 @@ audit and scoped implementation plan for a Python-free, daemon-free German
 analysis backend in CrispEmbed. It specifies the `de_core_news_sm` 3.8.0 CNN,
 native tokenizer/parser/edit-tree work, an optional Dart integration, local
 parity and quality checks, and target-device/distribution evidence. The native
-spaCy backend is not yet implemented. Existing Python syntax experiments remain
-evaluation evidence with their original limits.
+Linux CPU/F32 backend now passes the frozen first acceptance; the
+[W5 continuation](validation/native-spacy-w5-20261117/README.md) qualifies the
+optional Dart analysis worker and manual Studio analysis view on Linux
+x86-64/AVX2. The [W6 continuation](validation/native-spacy-w6-20261117/README.md)
+now qualifies a guarded manual agreement provider against main `6245a695`:
+22/30 exact error corrections versus the updated deterministic baseline's 5/30,
+zero native findings on 42 valid and ten guard controls, four explicit unsupported
+locales and 22 rechecks with no further finding. The panel and thresholds were
+frozen before outputs; its finite authored result is not general German quality.
+All ten real native editor controls and the latest-baseline/package regressions
+pass. The optional manual API defaults off; the Studio analysis view displays
+annotations. Platform/device packaging and release/distribution remain separate.
+Existing Python syntax experiments retain their original evaluation limits.
 
 Main's current Office integration excludes AOT; the handoff retains the earlier
 AOT branch only as historical source. The package and dependencies were removed. It also preserves the user's later clarification
@@ -485,15 +496,23 @@ German morphology. Unknown proper names, new terms and unlisted inflections can
 produce findings. Messages describe absence from the word list, and the UI
 offers personal vocabulary and ignore controls.
 
-Common decomposed accents and soft hyphens are normalized for lookup only;
-findings retain original UTF-16 offsets and original text. German noun casing
+Common decomposed accents, soft hyphens and internal straight/typographic
+apostrophes are normalized for lookup only; findings retain original UTF-16
+offsets and original text. Thus `darf’s` uses the same dictionary entry as
+`darf's`, and declared names such as `O'Connor` also recognize `O’Connor`.
+Quotation delimiters are not apostrophe aliases. German noun casing
 remains significant. Sentence-initial capitals and all-capitals are accepted
 when a corresponding listed form exists. URLs, email addresses and closed code
 spans with matching backtick-run delimiters are excluded. Unmatched delimiters
-do not hide the remaining prose. Explicit hyphen compounds can repair one
-unknown constituent while retaining the other constituents' case and authored
-U+2010/U+2011 separator style. This reuses one bounded component search; it does
-not infer unrestricted closed compounds or import morphology data.
+do not hide the remaining prose. Explicit hyphen compounds can repair multiple
+unknown constituents while retaining known constituents' case and each authored
+apostrophe or U+2010/U+2011 separator. Component reconstruction is limited to
+eight constituents within the existing 64-code-unit suggestion limit, shares
+one candidate budget across all searches, and emits only fully verified
+combinations. For example, `Huas‑Türr` can offer `Haus‑Tür`. This does not infer
+unrestricted closed compounds or import morphology data. Complete-word
+dictionary and personal-name suggestions remain available alongside component
+repairs.
 Suggestions use bounded local edits and German accent/sharp-s variants, with
 defaults of at most five suggestions and 6,000 candidate checks. A shared
 length/anchor index supports an additional distance-two shortlist, including
@@ -774,7 +793,8 @@ WordEditorController createController({
 vocabulary instance referenced by configured providers. Snapshots use
 `OfficeProofingVocabulary.toJson()`/`fromJson()` and retain language-scoped
 personal and ignored words; membership is case-sensitive after canonical
-accent normalization. Ignore-once is tied to the captured issue/source
+accent and lexical-separator normalization. Internal straight/typographic
+apostrophes share membership, including restoration and removal. Ignore-once is tied to the captured issue/source
 snapshot. Rule ignores are session settings exposed through `ignoreRule` and
 `restoreRule`. Neither the shipped lexicon nor the document is changed when a
 word is added, and no shared account storage is selected automatically.
@@ -873,14 +893,36 @@ required, as is real-browser hosting/CSP acceptance.
 Flutter and `dart:ui` out of the pure-Dart engine. It wraps Flutter's
 `DefaultSpellCheckService` for Android/iOS. The host declares the installed
 `supportedLanguages`; Flutter does not provide reliable dictionary enumeration.
-Requests are serialized, the framework's text-only cache is cleared between
-languages, UTF-16 ranges are validated and suggestions are bounded. A null
-platform response is a failure; an empty successful response is distinct.
+Language, script and alphabetic or numeric region subtags are preserved, for
+example `zh-Hant-TW` and `es-419`. Tags containing variants or extensions that
+Flutter's `Locale` cannot represent are unsupported; they never silently select
+a different dictionary. The shared reviewed English/German aliases still apply.
+
+All Quds providers using the default Flutter service share one serialized lane,
+including separate documents and replacement providers. Sharing a custom
+`SpellCheckService` instance also shares its lane; distinct custom services run
+independently. Every request's positive timeout includes time waiting for that
+lane. Disposal settles active and queued callers immediately, and a timeout
+retires that provider. Flutter exposes no way to cancel an outstanding native
+spell check, so only its actual completion releases the occupied lane. A stuck
+system call makes later requests fail within their own deadlines; creating a
+new provider cannot bypass an unfinished call. This coordination covers Quds
+providers, not unrelated host widgets calling Flutter's channel directly.
+
+The framework's text-only cache is cleared when the next call actually starts.
+Findings must use complete grapheme boundaries in the original UTF-16 source;
+malformed ranges fail the request. URLs, email addresses and closed backtick
+spans use the same protected-range policy as the other local spelling providers.
+Suggestions remain bounded to eight. A null platform response is a failure;
+an empty successful response is distinct.
 
 The local tests exercise the provider protocol, including two uses of the real
-Flutter service against a mocked platform channel. They do not demonstrate
-installed dictionaries or spelling behavior on an Android/iOS device. Hosts
-must perform that device acceptance before advertising mobile availability.
+Flutter service for locale isolation and failures, and multiple providers
+against a mocked platform channel. They cover shared-channel scheduling,
+disposal, bounded queued deadlines, recovery after late completion, locale
+mapping and protected source spans. They do not demonstrate installed
+dictionaries or spelling behavior on an Android/iOS device. Hosts must perform
+that device acceptance before advertising mobile availability.
 
 ## Integration contracts
 

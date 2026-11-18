@@ -181,12 +181,22 @@ boundaries are separate from the exercised native and Wasm engines.
 
 `OfficePlatformSpellingProvider` lives in `quds_office_editor`, keeping Flutter
 and `dart:ui` out of the engine. It wraps Flutter's `DefaultSpellCheckService`
-on Android/iOS, queues calls because the system channel supports one pending
-request, and clears the framework's text-only cache between languages. The
-host supplies the installed `supportedLanguages`; Flutter does not offer a
-reliable dictionary-availability enumeration. A null platform result is a
-failed request; an empty successful list is distinct. Mobile runtime behavior
-requires device acceptance in addition to the mock-channel adapter tests.
+on Android/iOS. Quds providers share one queue for the system channel, including
+separate documents and replacement providers. Each deadline includes queue
+time. Disposal settles callers immediately, but the native slot stays occupied
+until the real OS call finishes; Flutter provides no physical cancellation.
+Queued callers have bounded waits even if an OS call never returns. Distinct
+injected custom services remain independent. The framework's text-only cache is
+cleared when the next call starts.
+
+The host supplies installed `supportedLanguages`; Flutter does not offer a
+reliable dictionary-availability enumeration. Language, script and alphabetic
+or numeric regions are preserved. Unrepresentable variants are unsupported
+instead of silently selecting another dictionary. Source ranges must preserve
+graphemes and leave URLs, email and closed backtick spans alone. A null platform
+result is a failed request; an empty successful list is distinct. Coordination
+covers Quds adapters only, and mobile runtime behavior requires device
+acceptance in addition to the mock-channel adapter tests.
 
 ## Primary sources
 

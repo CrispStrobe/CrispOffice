@@ -1,0 +1,374 @@
+{
+  "schema": "quds.spacy.grammar.qualification-audit.v1",
+  "audited_at": "2026-11-17T22:51:38.445259+00:00",
+  "status": "failed",
+  "method": "Independent Python recomputation from frozen raw JSON; UTF-16 byte slicing and Node ICU grapheme boundaries; Git/raw-file hashes. No scorer/planner invocation or model execution.",
+  "audit_source_sha256": "ee22e0efea6a8ce6844675b98e132dfe513f9936fc9d92495ae4a2dfa40938a9",
+  "candidate_commit": "da18e29c20e2d42036cee911e85ff8bb22c328ae",
+  "baseline_commit": "6245a6956a76a38f925e1eb18851c0086730112d",
+  "input_artifacts_sha256": {
+    "qualification-panel.json": "52bede2f915db66489b45657d9b605f357d000b2024c8c734b57c10b3457a826",
+    "protocol.json": "099bbb7de42c0317a0e21c685aa707e1c0c17ba8a33f832c1b7ad38b18dbbf54",
+    "protocol-initial.json": "5fa7ff99f43020fd6506ecf832fc264fa97834ce838733a8d395ba57e6c6978e",
+    "candidate-seal.json": "b4b3370548ac6ea09a7943d93dcf140f09378bbdd242030147104dd276a11494",
+    "candidate-seal.json.consumed.json": "97c706e76f8e4731cfec6968f0a3af48cc90bfeec281736b2e94b8ff8c4870fe",
+    "qualification-first.json": "2e85b9721368e9e69b7fbeba0ec05105190374d757068706b90f2d7e2f615d58",
+    "qualification-first.json.runner.json": "a151dbee9dae822447344364121a9fb1825e0083f864f04cb5e73e2f5131aed1",
+    "qualification-first.log": "42e287e59df93de8665c14991b29dd1ed83113a26b97c7744cecd658f4690484",
+    "freeze_candidate.py": "8006027c992dbc96d0dc7f85c444407ad52ca31d93ab4fa9dd6603e8cf51bc36",
+    "run_qualification.py": "629955e0f393db4d449247d0cef95913b7d0502098b5c91cdc99293303400467"
+  },
+  "recomputed_summary": {
+    "completed_cases": 86,
+    "error_cases": 30,
+    "valid_cases": 42,
+    "guard_cases": 10,
+    "unsupported_cases": 4,
+    "baseline_exact_errors": 5,
+    "model_exact_errors": 22,
+    "combined_exact_errors": 22,
+    "combined_missed_errors": 8,
+    "additional_exact_errors": 17,
+    "baseline_exact_lost": 0,
+    "baseline_valid_flagged": 0,
+    "model_valid_flagged": 0,
+    "combined_valid_flagged": 0,
+    "model_guard_flagged": 0,
+    "baseline_changed_valid": 0,
+    "model_changed_valid": 0,
+    "combined_changed_valid": 0,
+    "added_changed_valid": 0,
+    "operational_failures": 0,
+    "model_proposals": 22,
+    "merge_suppressed_proposals": 5,
+    "model_abstentions_or_compatible_cases": 60,
+    "recheck_executions": 22,
+    "recheck_model_findings": 0
+  },
+  "arm_accounting": {
+    "baseline": {
+      "error": {
+        "cases_with_findings": 5,
+        "findings": 5,
+        "changed_cases": 5,
+        "unresolved_choice_cases": 0
+      },
+      "valid": {
+        "cases_with_findings": 0,
+        "findings": 0,
+        "changed_cases": 0,
+        "unresolved_choice_cases": 0
+      },
+      "guard": {
+        "cases_with_findings": 0,
+        "findings": 0,
+        "changed_cases": 0,
+        "unresolved_choice_cases": 0
+      },
+      "unsupported": {
+        "cases_with_findings": 0,
+        "findings": 0,
+        "changed_cases": 0,
+        "unresolved_choice_cases": 0
+      }
+    },
+    "model": {
+      "error": {
+        "cases_with_findings": 22,
+        "findings": 22,
+        "changed_cases": 22,
+        "unresolved_choice_cases": 0
+      },
+      "valid": {
+        "cases_with_findings": 0,
+        "findings": 0,
+        "changed_cases": 0,
+        "unresolved_choice_cases": 0
+      },
+      "guard": {
+        "cases_with_findings": 0,
+        "findings": 0,
+        "changed_cases": 0,
+        "unresolved_choice_cases": 0
+      },
+      "unsupported": {
+        "cases_with_findings": 0,
+        "findings": 0,
+        "changed_cases": 0,
+        "unresolved_choice_cases": 0
+      }
+    },
+    "combined": {
+      "error": {
+        "cases_with_findings": 22,
+        "findings": 22,
+        "changed_cases": 22,
+        "unresolved_choice_cases": 0
+      },
+      "valid": {
+        "cases_with_findings": 0,
+        "findings": 0,
+        "changed_cases": 0,
+        "unresolved_choice_cases": 0
+      },
+      "guard": {
+        "cases_with_findings": 0,
+        "findings": 0,
+        "changed_cases": 0,
+        "unresolved_choice_cases": 0
+      },
+      "unsupported": {
+        "cases_with_findings": 0,
+        "findings": 0,
+        "changed_cases": 0,
+        "unresolved_choice_cases": 0
+      }
+    }
+  },
+  "baseline_unresolved_choice_case_ids": [],
+  "baseline_interpretation": "Five error cases have baseline findings, all singleton exact repairs. No unresolved alternatives occur in this panel, so the seventeen added exact repairs are not an artifact of excluding ambiguous baseline choices.",
+  "additional_exact_case_ids": [
+    "inversion-error-02",
+    "inversion-error-05",
+    "inversion-error-06",
+    "inversion-error-07",
+    "inversion-error-09",
+    "inversion-error-10",
+    "subject-pp-error-01",
+    "subject-pp-error-02",
+    "subject-pp-error-03",
+    "subject-pp-error-04",
+    "subject-pp-error-05",
+    "subject-pp-error-06",
+    "subject-pp-error-07",
+    "subject-pp-error-08",
+    "subject-pp-error-09",
+    "subject-pp-error-10",
+    "subject-pp-error-12"
+  ],
+  "missed_error_decisions": [
+    {
+      "id": "subject-pp-error-11",
+      "reasons": [
+        "multiple-prepositional-phrases"
+      ]
+    },
+    {
+      "id": "inversion-error-01",
+      "reasons": [
+        "unsupported-subject-analysis"
+      ]
+    },
+    {
+      "id": "inversion-error-03",
+      "reasons": [
+        "unsupported-word-order"
+      ]
+    },
+    {
+      "id": "inversion-error-04",
+      "reasons": [
+        "model-lexicon-number-disagreement"
+      ]
+    },
+    {
+      "id": "inversion-error-08",
+      "reasons": [
+        "unsupported-word-order"
+      ]
+    },
+    {
+      "id": "inversion-error-11",
+      "reasons": [
+        "unknown-noun"
+      ]
+    },
+    {
+      "id": "inversion-error-12",
+      "reasons": [
+        "not-one-subject"
+      ]
+    },
+    {
+      "id": "baseline-overlap-error-02",
+      "reasons": [
+        "unsupported-phrase-tail"
+      ]
+    }
+  ],
+  "corrected_rechecks": {
+    "executions": 22,
+    "findings": 0,
+    "decision_actions": {
+      "abstained": 4,
+      "preserved": 18
+    },
+    "decision_reasons": {
+      "unsupported-finite-analysis": 3,
+      "compatible-lexical-reading": 18,
+      "unsupported-clause-or-reference": 1
+    },
+    "interpretation": "All corrected outputs yield no further finding. Eighteen are preserved as lexically compatible; four conservatively abstain. These are repeated executions, not independent cases or proof of fully correct parsing."
+  },
+  "validation_counts": {
+    "denominator": 5,
+    "panel-binding": 86,
+    "origin": 86,
+    "arm-completeness": 258,
+    "arm-output": 258,
+    "arm-scoring": 258,
+    "finding-range": 49,
+    "finding-original": 49,
+    "finding-graphemes": 49,
+    "finding-provider": 49,
+    "merge-precedence": 86,
+    "merge-count": 86,
+    "analysis-status": 108,
+    "analysis-identity": 104,
+    "token-index": 673,
+    "token-coverage": 673,
+    "token-coordinates": 673,
+    "token-whitespace": 673,
+    "token-whitespace-source": 673,
+    "document-coverage": 104,
+    "sentence-coverage": 107,
+    "sentence-root": 107,
+    "sentence-head": 107,
+    "sentence-start": 107,
+    "sentence-coordinates": 107,
+    "dependency-cycle": 673,
+    "sentence-total": 104,
+    "operational-accounting": 86,
+    "recheck-selection": 86,
+    "recheck-clean": 22,
+    "unsupported-empty": 4,
+    "summary": 1,
+    "decisions": 2,
+    "gates": 1,
+    "candidate": 1,
+    "source": 1,
+    "source-candidate-blob": 342,
+    "prequalification-control-hash": 10,
+    "digest": 9,
+    "protocol": 1,
+    "baseline-source": 8,
+    "baseline-closure": 46,
+    "baseline": 1,
+    "runtime": 7,
+    "package": 5,
+    "freeze": 13,
+    "runner": 1,
+    "report": 1
+  },
+  "annotation_tokens_validated": {
+    "original": 534,
+    "corrected": 139
+  },
+  "runtime_files_hashed": {
+    "installed": 16,
+    "bundle": 5,
+    "system_dependencies": 6
+  },
+  "source_files_matched_to_candidate_and_current": 342,
+  "baseline_closure_files_checked": 46,
+  "prequalification_receipts_authenticated": 10,
+  "retained_initial_failure_note": "The seal intentionally authenticates an initial failed Office receipt alongside its passing summary and later repair controls; retained failures were not overwritten.",
+  "remote_commits_verified": [
+    {
+      "sha": "846fc0371b23bf4a84542db7a3f24eee2d8609dd",
+      "tree": "252422a6245773cdfc356609b3cc3e2d243dd15b",
+      "parents": [
+        "e7c67f29b34f1c1909e51aa25997fc774bb8ac80"
+      ],
+      "commit_date": "2026-11-17T22:04:28Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/commit/846fc0371b23bf4a84542db7a3f24eee2d8609dd",
+      "message": "docs(spacy): freeze independent W6 grammar protocol and panel [skip ci]"
+    },
+    {
+      "sha": "da18e29c20e2d42036cee911e85ff8bb22c328ae",
+      "tree": "4d6d9662a771450fb1993e24e28a44b31e7d8bb8",
+      "parents": [
+        "6cb6169ac5f72d1e6cd992103c8defbec5f7801d"
+      ],
+      "commit_date": "2026-11-17T22:42:42Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/commit/da18e29c20e2d42036cee911e85ff8bb22c328ae",
+      "message": "test(spacy): finalize current-baseline candidate controls before qualification [skip ci]"
+    },
+    {
+      "sha": "84b4120ca29715d9b6f6555d1393f5fcb97e47cf",
+      "tree": "821051b2e51fe9473970266c1608eb4d3be56d3e",
+      "parents": [
+        "da18e29c20e2d42036cee911e85ff8bb22c328ae"
+      ],
+      "commit_date": "2026-11-17T22:43:12Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/commit/84b4120ca29715d9b6f6555d1393f5fcb97e47cf",
+      "message": "test(spacy): publish frozen W6 candidate before first qualification [skip ci]"
+    },
+    {
+      "sha": "3a8bca4f8f8744bbb0fbd6809a700b5768d5ceba",
+      "tree": "684bca6ae5038abe1bfe3e0fe2e4409182ebe628",
+      "parents": [
+        "84b4120ca29715d9b6f6555d1393f5fcb97e47cf"
+      ],
+      "commit_date": "2026-11-17T22:44:31Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/commit/3a8bca4f8f8744bbb0fbd6809a700b5768d5ceba",
+      "message": "test(spacy): retain first sealed W6 qualification with seventeen added corrections [skip ci]"
+    }
+  ],
+  "recorded_freeze_order": [
+    {
+      "event": "original_protocol_commit",
+      "utc": "2026-11-17T22:04:28Z"
+    },
+    {
+      "event": "candidate_commit",
+      "utc": "2026-11-17T22:42:42Z"
+    },
+    {
+      "event": "seal_created",
+      "utc": "2026-11-17T22:43:06.411977+00:00"
+    },
+    {
+      "event": "seal_commit",
+      "utc": "2026-11-17T22:43:12Z"
+    },
+    {
+      "event": "process_started",
+      "utc": "2026-11-17T22:43:26.588024+00:00"
+    },
+    {
+      "event": "reserved_evaluation_started",
+      "utc": "2026-11-17T22:43:35.376432Z"
+    },
+    {
+      "event": "evaluation_finished",
+      "utc": "2026-11-17T22:43:38.232475Z"
+    },
+    {
+      "event": "process_finished",
+      "utc": "2026-11-17T22:43:38.363849+00:00"
+    },
+    {
+      "event": "raw_result_commit",
+      "utc": "2026-11-17T22:44:31Z"
+    }
+  ],
+  "linguistic_gates_recomputed": {
+    "minimum_incremental_exact": true,
+    "no_baseline_exact_loss": true,
+    "no_native_valid_findings": true,
+    "no_native_guard_findings": true,
+    "no_added_changed_valid": true,
+    "no_operational_failures": true,
+    "clean_corrected_recheck": true
+  },
+  "editor_gate_included_in_this_audit": false,
+  "reserved_qualification_processes_in_retained_evidence": 1,
+  "native_or_model_executions_by_auditor": 0,
+  "native_acceptance_executions_by_auditor": 0,
+  "github_actions_queries_waits_or_reruns": 0,
+  "errors": [
+    "source-candidate-blob:pubspec.lock"
+  ],
+  "scope_limit": "Finite assistant-authored de-DE panel on the sealed Linux x86-64/AVX2 CPU/F32 runtime. This is incremental case coverage with conservative abstentions, not population-level German quality or release/platform qualification."
+}

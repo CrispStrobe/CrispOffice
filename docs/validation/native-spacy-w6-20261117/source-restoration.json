@@ -1,0 +1,19 @@
+{
+  "schema": "quds.spacy.w6.source-restoration.v1",
+  "candidate_commit": "da18e29c20e2d42036cee911e85ff8bb22c328ae",
+  "source_map_files": 342,
+  "direct_candidate_tree_files": 341,
+  "logical_to_published_artifact": [
+    {
+      "logical_path": "pubspec.lock",
+      "published_path": "docs/validation/native-spacy-w5-20261117/workspace-pubspec.lock",
+      "published_at_original_w5_commit": "e7c67f29b34f1c1909e51aa25997fc774bb8ac80",
+      "present_in_candidate_tree": true,
+      "sha256": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130",
+      "bytes": 22686,
+      "note": "Root pubspec.lock is deliberately ignored by repository policy. The exact sealed bytes were already published under this W5 evidence path before W6 execution; this is a source-location mapping, not a post-run dependency change."
+    }
+  ],
+  "restore_instruction": "Copy the published workspace lock to the ignored root pubspec.lock before the offline Pub restore described in runtime receipts. Verify the recorded hash. Regenerate package_config.json for the chosen workspace path and verify its package roots; the original qualification remains consumed.",
+  "native_acceptance_or_qualification_rerun": false
+}

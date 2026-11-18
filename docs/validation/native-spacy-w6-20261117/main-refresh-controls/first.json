@@ -1,0 +1,357 @@
+{
+  "all_incoming_office_paths_match_main": true,
+  "calendar_probe_sha256": "c23089f8c78b91f23d7ab7a4b4819742e0bc276c06773c0d6672459b2cbe4c1b",
+  "ci_queried_or_waited": false,
+  "commands": [
+    {
+      "argv": [
+        "flutter",
+        "test",
+        "--no-pub",
+        "--concurrency=1",
+        "packages/quds_office_engine/test/ods_sheet_writer_test.dart",
+        "packages/quds_office_engine/test/sheet_save_cache_and_freeze_test.dart",
+        "packages/quds_office_engine/test/odt_frame_common_style_test.dart",
+        "packages/quds_office_engine/test/odt_inline_field_fidelity_test.dart",
+        "packages/quds_office_engine/test/sheet_conditional_fidelity_test.dart",
+        "packages/quds_office_engine/test/sheet_conditional_rendering_test.dart",
+        "packages/quds_office_engine/test/odt_complex_field_fidelity_test.dart",
+        "packages/quds_office_engine/test/odt_section_fidelity_test.dart",
+        "--reporter",
+        "expanded"
+      ],
+      "elapsed_seconds": 12.360755801000778,
+      "environment": {},
+      "exit_code": 0,
+      "label": "engine",
+      "log": "engine.log",
+      "log_sha256": "383ff52b2171a0123b72030d9d79924dc28e6b2c1371e4745d06d0dfe35ccb3a",
+      "passed_tests": 265
+    },
+    {
+      "argv": [
+        "flutter",
+        "test",
+        "--no-pub",
+        "--concurrency=1",
+        "packages/quds_office_editor/example/test/widget_test.dart",
+        "--reporter",
+        "expanded"
+      ],
+      "elapsed_seconds": 14.403333944001133,
+      "environment": {},
+      "exit_code": 0,
+      "label": "studio",
+      "log": "studio.log",
+      "log_sha256": "8fb592eb196cb919839571998a07754e18cf0405a17d1fb67f4f6a33e8465d92",
+      "passed_tests": 2
+    },
+    {
+      "argv": [
+        "dart",
+        "--packages=.dart_tool/package_config.json",
+        "docs/validation/native-spacy-w6-20261117/main-refresh-controls/calendar_boundary_probe.dart"
+      ],
+      "elapsed_seconds": 7.827020400000038,
+      "environment": {
+        "TZ": "UTC"
+      },
+      "exit_code": 0,
+      "failed_cases": 0,
+      "label": "calendar-utc",
+      "log": "calendar-utc.log",
+      "log_sha256": "92344a22a36024309840815992715b4584f961f8e7754589d7a69aff62e5deb2",
+      "passed_cases": 12
+    },
+    {
+      "argv": [
+        "dart",
+        "--packages=.dart_tool/package_config.json",
+        "docs/validation/native-spacy-w6-20261117/main-refresh-controls/calendar_boundary_probe.dart"
+      ],
+      "elapsed_seconds": 8.42285162799999,
+      "environment": {
+        "TZ": "Europe/Berlin"
+      },
+      "exit_code": 1,
+      "failed_cases": 1,
+      "label": "calendar-berlin",
+      "log": "calendar-berlin.log",
+      "log_sha256": "083f134365627bf916514374c151c40a0eb184f59bb8ae95f07be7582fb19480",
+      "passed_cases": 11
+    },
+    {
+      "argv": [
+        "dart",
+        "--packages=.dart_tool/package_config.json",
+        "docs/validation/native-spacy-w6-20261117/main-refresh-controls/calendar_boundary_probe.dart"
+      ],
+      "elapsed_seconds": 8.025061510999876,
+      "environment": {
+        "TZ": "America/Los_Angeles"
+      },
+      "exit_code": 1,
+      "failed_cases": 7,
+      "label": "calendar-los-angeles",
+      "log": "calendar-los-angeles.log",
+      "log_sha256": "2060063a0282bb91006c598166a0f9dd5e6b70b8d4b6163ae0206d0377e48566",
+      "passed_cases": 5
+    }
+  ],
+  "incoming_base": "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4",
+  "incoming_main": "23f3b4204fce45d38a103e3159bdc7f1e8d37c4e",
+  "index_and_worktree_comparison": {
+    "packages/quds_office_editor/example/test/widget_test.dart": {
+      "index_blob": "4ded3a70495230650599d11f1f0ed71e837b280d",
+      "main_blob": "4ded3a70495230650599d11f1f0ed71e837b280d",
+      "main_sha256": "37b8f1f8373932e3242324191d1ad77ac168452199fb75c5b7345fbf8ec7cb72",
+      "matches_main": true
+    },
+    "packages/quds_office_engine/CHANGELOG.md": {
+      "index_blob": "2d3c9dde8f5f2b3990d1b389bb5e2fae025c31c9",
+      "main_blob": "2d3c9dde8f5f2b3990d1b389bb5e2fae025c31c9",
+      "main_sha256": "f231fea2648c27ed6df9cf7ead70f27f50ffa435dda1502499fedc391c9b39eb",
+      "matches_main": true
+    },
+    "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_reader.dart": {
+      "index_blob": "019cc333487c12aaf34a8fcee06c5857db97441c",
+      "main_blob": "019cc333487c12aaf34a8fcee06c5857db97441c",
+      "main_sha256": "073299c116f15718734101c334b33b6c7a2c82be87933b599f6ce3b5498b266e",
+      "matches_main": true
+    },
+    "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart": {
+      "index_blob": "f1c97290e74dbb54fc0efc7f6ee3c29e348d7e90",
+      "main_blob": "f1c97290e74dbb54fc0efc7f6ee3c29e348d7e90",
+      "main_sha256": "2f95138d1ed01e9bd36295b08535e2bbeb7bfbbd6721747b2c62724d714ad3be",
+      "matches_main": true
+    },
+    "packages/quds_office_engine/lib/src/sheet/model/sml_analysis.dart": {
+      "index_blob": "b94f4565c2e4adc4621f861d5b21558fba82e6b6",
+      "main_blob": "b94f4565c2e4adc4621f861d5b21558fba82e6b6",
+      "main_sha256": "f409c115f4272bc4c96c1278ab81b052175022be1271ce68aeeffeb8c26914e8",
+      "matches_main": true
+    },
+    "packages/quds_office_engine/lib/src/sheet/model/sml_conditional_format.dart": {
+      "index_blob": "c5f20dc40ada7c1405a2465008b890bbea3483d5",
+      "main_blob": "c5f20dc40ada7c1405a2465008b890bbea3483d5",
+      "main_sha256": "50d8ae7ea085d54027d0689c86a642951c0b2dda297f5d65a752c0e6ba03c97e",
+      "matches_main": true
+    },
+    "packages/quds_office_engine/lib/src/sheet/model/sml_workbook.dart": {
+      "index_blob": "29fa6f2df3c50180434bff095d9bb500ae5591a1",
+      "main_blob": "29fa6f2df3c50180434bff095d9bb500ae5591a1",
+      "main_sha256": "d82636f4adc11a975540aea49d71114ccbc8be67585d96759651838b64e83aef",
+      "matches_main": true
+    },
+    "packages/quds_office_engine/lib/src/sheet/serial/sheet_serial.dart": {
+      "index_blob": "91ef617481c01c5ea4ce82179f38f7fb39688c04",
+      "main_blob": "91ef617481c01c5ea4ce82179f38f7fb39688c04",
+      "main_sha256": "ce68acd0f2cb69cec5e60e264c2a600d092db01f54ca1a7e2fd7194697aa0ffc",
+      "matches_main": true
+    },
+    "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart": {
+      "index_blob": "3533eeb152a2d6ece407799eae3ab5cd00fccd02",
+      "main_blob": "3533eeb152a2d6ece407799eae3ab5cd00fccd02",
+      "main_sha256": "24000befe75c5358c2bd06656a4154a35d93d7803d2424218fa6ad2d23c75be3",
+      "matches_main": true
+    },
+    "packages/quds_office_engine/test/ods_sheet_writer_test.dart": {
+      "index_blob": "9ba647755646044369cf784aaf7009f50005fd3b",
+      "main_blob": "9ba647755646044369cf784aaf7009f50005fd3b",
+      "main_sha256": "42abaa9e7f5600185adce8925b6956bc8e53263c68e6d27b24f3db83d77705dc",
+      "matches_main": true
+    },
+    "packages/quds_office_engine/test/odt_complex_field_fidelity_test.dart": {
+      "index_blob": "6384a776be2a9cc43f1a3af5f0f5d6d3673ff2c4",
+      "main_blob": "6384a776be2a9cc43f1a3af5f0f5d6d3673ff2c4",
+      "main_sha256": "941098e6e0da205b7d68a049e2b27aebc521d41d03bcc93a3de8c01823e34b91",
+      "matches_main": true
+    },
+    "packages/quds_office_engine/test/odt_frame_common_style_test.dart": {
+      "index_blob": "2ab4feae144d5e54a11d8de05e30ca030bd30831",
+      "main_blob": "2ab4feae144d5e54a11d8de05e30ca030bd30831",
+      "main_sha256": "61572da32db6b3526db78661a551e83dd670d4cd41f5b7464531f1eda2db1eca",
+      "matches_main": true
+    },
+    "packages/quds_office_engine/test/odt_inline_field_fidelity_test.dart": {
+      "index_blob": "f11bfeeba28d4ecb842bd98ece2d3c68a6fa9cdd",
+      "main_blob": "f11bfeeba28d4ecb842bd98ece2d3c68a6fa9cdd",
+      "main_sha256": "4bc403038fa502f4d475b477bc04c897318e3a93e79a81584749c7a67f9dd221",
+      "matches_main": true
+    },
+    "packages/quds_office_engine/test/odt_section_fidelity_test.dart": {
+      "index_blob": "51aeca05b11fc2f63c7d6261f18113748002c679",
+      "main_blob": "51aeca05b11fc2f63c7d6261f18113748002c679",
+      "main_sha256": "23f0237a257fc97883a54e0c5dc04d804d9c7de8d6752467f9ae0c25a67a3d2f",
+      "matches_main": true
+    },
+    "packages/quds_office_engine/test/sheet_conditional_fidelity_test.dart": {
+      "index_blob": "73856f49b7b5e7640401bf18d2a6b5158019989e",
+      "main_blob": "73856f49b7b5e7640401bf18d2a6b5158019989e",
+      "main_sha256": "c9caee70e4b65e7854014b5ae3c1a8e39ce5032eab441256893eeccb1e2b0e69",
+      "matches_main": true
+    },
+    "packages/quds_office_engine/test/sheet_conditional_rendering_test.dart": {
+      "index_blob": "f475bca8ad0a3bd4c3fe3b94b46d79f92f4b7ad4",
+      "main_blob": "f475bca8ad0a3bd4c3fe3b94b46d79f92f4b7ad4",
+      "main_sha256": "459c973cccc52c83251e32157c6e4d815fc80e185576f8c3d3ad4d30c5ae2122",
+      "matches_main": true
+    },
+    "packages/quds_office_engine/test/sheet_save_cache_and_freeze_test.dart": {
+      "index_blob": "9879de90a84693e06f6dce4cede4df60f7e14b87",
+      "main_blob": "9879de90a84693e06f6dce4cede4df60f7e14b87",
+      "main_sha256": "b6c0a0f26579095f7d4d80b8295a380941f9c701a3444dea3f266ab67f076cea",
+      "matches_main": true
+    }
+  },
+  "lock_after_sha256": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130",
+  "lock_before_sha256": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130",
+  "lock_unchanged": true,
+  "qualification_panel_read": false,
+  "runner_sha256": "c9b0f5efa3cbeb13d2689e5f253064a2261731a4834c34a9ec1fdb43faf0c2e7",
+  "schema": "quds.spacy.w6.main_refresh_controls.v1",
+  "source_after": {
+    "packages/quds_office_editor/example/test/widget_test.dart": {
+      "bytes": 1567,
+      "sha256": "37b8f1f8373932e3242324191d1ad77ac168452199fb75c5b7345fbf8ec7cb72"
+    },
+    "packages/quds_office_engine/CHANGELOG.md": {
+      "bytes": 58020,
+      "sha256": "f231fea2648c27ed6df9cf7ead70f27f50ffa435dda1502499fedc391c9b39eb"
+    },
+    "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_reader.dart": {
+      "bytes": 88160,
+      "sha256": "073299c116f15718734101c334b33b6c7a2c82be87933b599f6ce3b5498b266e"
+    },
+    "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart": {
+      "bytes": 47647,
+      "sha256": "2f95138d1ed01e9bd36295b08535e2bbeb7bfbbd6721747b2c62724d714ad3be"
+    },
+    "packages/quds_office_engine/lib/src/sheet/model/sml_analysis.dart": {
+      "bytes": 26147,
+      "sha256": "f409c115f4272bc4c96c1278ab81b052175022be1271ce68aeeffeb8c26914e8"
+    },
+    "packages/quds_office_engine/lib/src/sheet/model/sml_conditional_format.dart": {
+      "bytes": 18623,
+      "sha256": "50d8ae7ea085d54027d0689c86a642951c0b2dda297f5d65a752c0e6ba03c97e"
+    },
+    "packages/quds_office_engine/lib/src/sheet/model/sml_workbook.dart": {
+      "bytes": 49717,
+      "sha256": "d82636f4adc11a975540aea49d71114ccbc8be67585d96759651838b64e83aef"
+    },
+    "packages/quds_office_engine/lib/src/sheet/serial/sheet_serial.dart": {
+      "bytes": 90796,
+      "sha256": "ce68acd0f2cb69cec5e60e264c2a600d092db01f54ca1a7e2fd7194697aa0ffc"
+    },
+    "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart": {
+      "bytes": 94973,
+      "sha256": "24000befe75c5358c2bd06656a4154a35d93d7803d2424218fa6ad2d23c75be3"
+    },
+    "packages/quds_office_engine/test/ods_sheet_writer_test.dart": {
+      "bytes": 17922,
+      "sha256": "42abaa9e7f5600185adce8925b6956bc8e53263c68e6d27b24f3db83d77705dc"
+    },
+    "packages/quds_office_engine/test/odt_complex_field_fidelity_test.dart": {
+      "bytes": 20221,
+      "sha256": "941098e6e0da205b7d68a049e2b27aebc521d41d03bcc93a3de8c01823e34b91"
+    },
+    "packages/quds_office_engine/test/odt_frame_common_style_test.dart": {
+      "bytes": 5050,
+      "sha256": "61572da32db6b3526db78661a551e83dd670d4cd41f5b7464531f1eda2db1eca"
+    },
+    "packages/quds_office_engine/test/odt_inline_field_fidelity_test.dart": {
+      "bytes": 14815,
+      "sha256": "4bc403038fa502f4d475b477bc04c897318e3a93e79a81584749c7a67f9dd221"
+    },
+    "packages/quds_office_engine/test/odt_section_fidelity_test.dart": {
+      "bytes": 30577,
+      "sha256": "23f0237a257fc97883a54e0c5dc04d804d9c7de8d6752467f9ae0c25a67a3d2f"
+    },
+    "packages/quds_office_engine/test/sheet_conditional_fidelity_test.dart": {
+      "bytes": 31870,
+      "sha256": "c9caee70e4b65e7854014b5ae3c1a8e39ce5032eab441256893eeccb1e2b0e69"
+    },
+    "packages/quds_office_engine/test/sheet_conditional_rendering_test.dart": {
+      "bytes": 28697,
+      "sha256": "459c973cccc52c83251e32157c6e4d815fc80e185576f8c3d3ad4d30c5ae2122"
+    },
+    "packages/quds_office_engine/test/sheet_save_cache_and_freeze_test.dart": {
+      "bytes": 10897,
+      "sha256": "b6c0a0f26579095f7d4d80b8295a380941f9c701a3444dea3f266ab67f076cea"
+    }
+  },
+  "source_before": {
+    "packages/quds_office_editor/example/test/widget_test.dart": {
+      "bytes": 1567,
+      "sha256": "37b8f1f8373932e3242324191d1ad77ac168452199fb75c5b7345fbf8ec7cb72"
+    },
+    "packages/quds_office_engine/CHANGELOG.md": {
+      "bytes": 58020,
+      "sha256": "f231fea2648c27ed6df9cf7ead70f27f50ffa435dda1502499fedc391c9b39eb"
+    },
+    "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_reader.dart": {
+      "bytes": 88160,
+      "sha256": "073299c116f15718734101c334b33b6c7a2c82be87933b599f6ce3b5498b266e"
+    },
+    "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart": {
+      "bytes": 47647,
+      "sha256": "2f95138d1ed01e9bd36295b08535e2bbeb7bfbbd6721747b2c62724d714ad3be"
+    },
+    "packages/quds_office_engine/lib/src/sheet/model/sml_analysis.dart": {
+      "bytes": 26147,
+      "sha256": "f409c115f4272bc4c96c1278ab81b052175022be1271ce68aeeffeb8c26914e8"
+    },
+    "packages/quds_office_engine/lib/src/sheet/model/sml_conditional_format.dart": {
+      "bytes": 18623,
+      "sha256": "50d8ae7ea085d54027d0689c86a642951c0b2dda297f5d65a752c0e6ba03c97e"
+    },
+    "packages/quds_office_engine/lib/src/sheet/model/sml_workbook.dart": {
+      "bytes": 49717,
+      "sha256": "d82636f4adc11a975540aea49d71114ccbc8be67585d96759651838b64e83aef"
+    },
+    "packages/quds_office_engine/lib/src/sheet/serial/sheet_serial.dart": {
+      "bytes": 90796,
+      "sha256": "ce68acd0f2cb69cec5e60e264c2a600d092db01f54ca1a7e2fd7194697aa0ffc"
+    },
+    "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart": {
+      "bytes": 94973,
+      "sha256": "24000befe75c5358c2bd06656a4154a35d93d7803d2424218fa6ad2d23c75be3"
+    },
+    "packages/quds_office_engine/test/ods_sheet_writer_test.dart": {
+      "bytes": 17922,
+      "sha256": "42abaa9e7f5600185adce8925b6956bc8e53263c68e6d27b24f3db83d77705dc"
+    },
+    "packages/quds_office_engine/test/odt_complex_field_fidelity_test.dart": {
+      "bytes": 20221,
+      "sha256": "941098e6e0da205b7d68a049e2b27aebc521d41d03bcc93a3de8c01823e34b91"
+    },
+    "packages/quds_office_engine/test/odt_frame_common_style_test.dart": {
+      "bytes": 5050,
+      "sha256": "61572da32db6b3526db78661a551e83dd670d4cd41f5b7464531f1eda2db1eca"
+    },
+    "packages/quds_office_engine/test/odt_inline_field_fidelity_test.dart": {
+      "bytes": 14815,
+      "sha256": "4bc403038fa502f4d475b477bc04c897318e3a93e79a81584749c7a67f9dd221"
+    },
+    "packages/quds_office_engine/test/odt_section_fidelity_test.dart": {
+      "bytes": 30577,
+      "sha256": "23f0237a257fc97883a54e0c5dc04d804d9c7de8d6752467f9ae0c25a67a3d2f"
+    },
+    "packages/quds_office_engine/test/sheet_conditional_fidelity_test.dart": {
+      "bytes": 31870,
+      "sha256": "c9caee70e4b65e7854014b5ae3c1a8e39ce5032eab441256893eeccb1e2b0e69"
+    },
+    "packages/quds_office_engine/test/sheet_conditional_rendering_test.dart": {
+      "bytes": 28697,
+      "sha256": "459c973cccc52c83251e32157c6e4d815fc80e185576f8c3d3ad4d30c5ae2122"
+    },
+    "packages/quds_office_engine/test/sheet_save_cache_and_freeze_test.dart": {
+      "bytes": 10897,
+      "sha256": "b6c0a0f26579095f7d4d80b8295a380941f9c701a3444dea3f266ab67f076cea"
+    }
+  },
+  "source_head_before": "c1fa00b7283bdd5554d226e9682999e80e49bfc2",
+  "source_modified_by_runner": false,
+  "source_unchanged": true,
+  "status": "failed"
+}

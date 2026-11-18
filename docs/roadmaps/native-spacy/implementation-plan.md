@@ -6,6 +6,14 @@ Status: **implementation specification**, 17 November 2026. Start with the
 that an implementation agent must create; their presence here is not a claim
 that a native spaCy backend already exists.
 
+**Current continuation:** W0–W5 are complete for the bounded Linux CPU/F32
+profile. [W6 evidence](../../validation/native-spacy-w6-20261117/README.md)
+records the first source-sealed 86-case grammar comparison against main
+`6245a695`: 17 added exact corrections (5/30 to 22/30), zero added valid/guard
+findings and ten passing real native editor controls. The manual provider
+defaults off. The original implementation specification below remains the
+scope contract; current work starts at W7 packaging/device qualification.
+
 ## Deliverable and initial decisions
 
 Implement the inference subset of `de_core_news_sm` 3.8.0 needed for German

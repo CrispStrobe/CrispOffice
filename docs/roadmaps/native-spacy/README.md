@@ -6,6 +6,28 @@ fresh implementation agent. It records decisions, inspected source, existing
 experiments, work packages, and acceptance criteria without requiring access to
 the preceding conversation.
 
+**Current continuation, 17 November 2026:** the original status above describes
+the research handoff. Native W0–W4 and the first frozen eight-case acceptance
+are complete at [CrispEmbed `2176c89`](https://github.com/CrispStrobe/CrispEmbed/commit/2176c896dc6bb8c832a9d03b04fd07c7c991fdc5).
+All 98 tokens, 13 sentences, 201 parser transitions, 294 classifier choices and
+851 numerical stages pass with exact annotations/spans. The consumed acceptance
+split remains unchanged. Quds main through `16e2477f` was integrated before W5;
+the later refresh through `4b2b4e78` is preserved in remote merge `8d89e4f7`.
+
+The [W5 continuation](../../validation/native-spacy-w5-20261117/README.md)
+qualifies the optional Dart analysis package, persistent worker and manual
+Studio view on Linux x86-64/AVX2 with the same frozen binary. Local package/UI,
+actual-native widget and existing proofing checks pass after the latest-main
+merge. The [W6 continuation](../../validation/native-spacy-w6-20261117/README.md)
+now completes bounded manual grammar benefit against main `6245a695`: the
+first sealed 86-case panel has 22/30 exact error corrections versus 5/30 for
+current deterministic rules, no native findings on 42 valid and ten guard
+controls, four explicit unsupported locales and ten passing actual-native editor
+controls. Grammar stays default off and requires explicit manual host integration.
+This finite authored panel does not establish general German grammar quality.
+Continue at W7 packaging/device qualification and release/distribution gates.
+The historical roadmap below retains its original source/evidence boundaries.
+
 ## Start here
 
 Build an optional, offline German linguistic-analysis backend for Quds using

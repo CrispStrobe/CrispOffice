@@ -1,0 +1,313 @@
+{
+  "schema": "quds.spacy.grammar.panel.v1",
+  "split": "development",
+  "authorship": "Coordinating assistant; new authored development examples for inspection and debugging, not unseen qualification.",
+  "cases": [
+    {
+      "id": "dev-error-01",
+      "kind": "error",
+      "family": "pp",
+      "text": "Die Katzen im Garten schläft.",
+      "expected": "Die Katzen im Garten schlafen.",
+      "locale": "de-DE",
+      "start_offset": 23
+    },
+    {
+      "id": "dev-valid-01",
+      "kind": "valid",
+      "family": "pp",
+      "text": "Die Katzen im Garten schlafen.",
+      "expected": "Die Katzen im Garten schlafen.",
+      "locale": "de-DE",
+      "start_offset": 23
+    },
+    {
+      "id": "dev-error-02",
+      "kind": "error",
+      "family": "pp",
+      "text": "Das Mädchen mit dem Hund spielen.",
+      "expected": "Das Mädchen mit dem Hund spielt.",
+      "locale": "de-DE",
+      "start_offset": 23
+    },
+    {
+      "id": "dev-valid-02",
+      "kind": "valid",
+      "family": "pp",
+      "text": "Das Mädchen mit dem Hund spielt.",
+      "expected": "Das Mädchen mit dem Hund spielt.",
+      "locale": "de-DE",
+      "start_offset": 23
+    },
+    {
+      "id": "dev-error-03",
+      "kind": "error",
+      "family": "pp",
+      "text": "Die Frauen vor der Schule arbeitet.",
+      "expected": "Die Frauen vor der Schule arbeiten.",
+      "locale": "de-DE",
+      "start_offset": 23
+    },
+    {
+      "id": "dev-valid-03",
+      "kind": "valid",
+      "family": "pp",
+      "text": "Die Frauen vor der Schule arbeiten.",
+      "expected": "Die Frauen vor der Schule arbeiten.",
+      "locale": "de-DE",
+      "start_offset": 23
+    },
+    {
+      "id": "dev-error-04",
+      "kind": "error",
+      "family": "pp",
+      "text": "Der Hund neben der Katze laufen.",
+      "expected": "Der Hund neben der Katze läuft.",
+      "locale": "de-DE",
+      "start_offset": 23
+    },
+    {
+      "id": "dev-valid-04",
+      "kind": "valid",
+      "family": "pp",
+      "text": "Der Hund neben der Katze läuft.",
+      "expected": "Der Hund neben der Katze läuft.",
+      "locale": "de-DE",
+      "start_offset": 23
+    },
+    {
+      "id": "dev-error-05",
+      "kind": "error",
+      "family": "inversion",
+      "text": "Heute schlafen die Katze.",
+      "expected": "Heute schläft die Katze.",
+      "locale": "de-DE",
+      "start_offset": 23
+    },
+    {
+      "id": "dev-valid-05",
+      "kind": "valid",
+      "family": "inversion",
+      "text": "Heute schläft die Katze.",
+      "expected": "Heute schläft die Katze.",
+      "locale": "de-DE",
+      "start_offset": 23
+    },
+    {
+      "id": "dev-error-06",
+      "kind": "error",
+      "family": "inversion",
+      "text": "Morgen arbeitet die Männer.",
+      "expected": "Morgen arbeiten die Männer.",
+      "locale": "de-DE",
+      "start_offset": 23
+    },
+    {
+      "id": "dev-valid-06",
+      "kind": "valid",
+      "family": "inversion",
+      "text": "Morgen arbeiten die Männer.",
+      "expected": "Morgen arbeiten die Männer.",
+      "locale": "de-DE",
+      "start_offset": 23
+    },
+    {
+      "id": "dev-error-07",
+      "kind": "error",
+      "family": "inversion",
+      "text": "Draußen steht die Autos.",
+      "expected": "Draußen stehen die Autos.",
+      "locale": "de-DE",
+      "start_offset": 23
+    },
+    {
+      "id": "dev-valid-07",
+      "kind": "valid",
+      "family": "inversion",
+      "text": "Draußen stehen die Autos.",
+      "expected": "Draußen stehen die Autos.",
+      "locale": "de-DE",
+      "start_offset": 23
+    },
+    {
+      "id": "dev-error-08",
+      "kind": "error",
+      "family": "inversion",
+      "text": "Hier warten der Gast.",
+      "expected": "Hier wartet der Gast.",
+      "locale": "de-DE",
+      "start_offset": 23
+    },
+    {
+      "id": "dev-valid-08",
+      "kind": "valid",
+      "family": "inversion",
+      "text": "Hier wartet der Gast.",
+      "expected": "Hier wartet der Gast.",
+      "locale": "de-DE",
+      "start_offset": 23
+    },
+    {
+      "id": "dev-error-09",
+      "kind": "error",
+      "family": "baseline",
+      "text": "Die Hunde schläft hier.",
+      "expected": "Die Hunde schlafen hier.",
+      "locale": "de-DE",
+      "start_offset": 23
+    },
+    {
+      "id": "dev-valid-09",
+      "kind": "valid",
+      "family": "baseline",
+      "text": "Die Hunde schlafen hier.",
+      "expected": "Die Hunde schlafen hier.",
+      "locale": "de-DE",
+      "start_offset": 23
+    },
+    {
+      "id": "dev-error-10",
+      "kind": "error",
+      "family": "baseline",
+      "text": "Das Mädchen arbeiten dort.",
+      "expected": "Das Mädchen arbeitet dort.",
+      "locale": "de-DE",
+      "start_offset": 23
+    },
+    {
+      "id": "dev-valid-10",
+      "kind": "valid",
+      "family": "baseline",
+      "text": "Das Mädchen arbeitet dort.",
+      "expected": "Das Mädchen arbeitet dort.",
+      "locale": "de-DE",
+      "start_offset": 23
+    },
+    {
+      "id": "dev-control-01",
+      "kind": "valid",
+      "family": "ambiguity",
+      "text": "Die Leiter im Garten steht.",
+      "expected": "Die Leiter im Garten steht.",
+      "locale": "de-DE",
+      "start_offset": 23
+    },
+    {
+      "id": "dev-control-02",
+      "kind": "valid",
+      "family": "ambiguity",
+      "text": "Die Leiter aus der Schule arbeiten.",
+      "expected": "Die Leiter aus der Schule arbeiten.",
+      "locale": "de-DE",
+      "start_offset": 23
+    },
+    {
+      "id": "dev-control-03",
+      "kind": "valid",
+      "family": "fronted-object",
+      "text": "Die Kinder sieht der Lehrer.",
+      "expected": "Die Kinder sieht der Lehrer.",
+      "locale": "de-DE",
+      "start_offset": 23
+    },
+    {
+      "id": "dev-control-04",
+      "kind": "valid",
+      "family": "coordination",
+      "text": "Der Hund und die Katze schlafen.",
+      "expected": "Der Hund und die Katze schlafen.",
+      "locale": "de-DE",
+      "start_offset": 23
+    },
+    {
+      "id": "dev-control-05",
+      "kind": "valid",
+      "family": "relative",
+      "text": "Die Kinder, die ich kenne, spielen.",
+      "expected": "Die Kinder, die ich kenne, spielen.",
+      "locale": "de-DE",
+      "start_offset": 23
+    },
+    {
+      "id": "dev-control-06",
+      "kind": "valid",
+      "family": "expletive",
+      "text": "Es kommen die Gäste.",
+      "expected": "Es kommen die Gäste.",
+      "locale": "de-DE",
+      "start_offset": 23
+    },
+    {
+      "id": "dev-control-07",
+      "kind": "valid",
+      "family": "copular",
+      "text": "Das Problem sind die Hunde.",
+      "expected": "Das Problem sind die Hunde.",
+      "locale": "de-DE",
+      "start_offset": 23
+    },
+    {
+      "id": "dev-control-08",
+      "kind": "valid",
+      "family": "imperative",
+      "text": "Lauft nach Hause!",
+      "expected": "Lauft nach Hause!",
+      "locale": "de-DE",
+      "start_offset": 23
+    },
+    {
+      "id": "dev-control-09",
+      "kind": "guard",
+      "family": "quotation",
+      "text": "„Die Frauen im Haus arbeitet.“",
+      "expected": "„Die Frauen im Haus arbeitet.“",
+      "locale": "de-DE",
+      "start_offset": 23
+    },
+    {
+      "id": "dev-control-10",
+      "kind": "guard",
+      "family": "code",
+      "text": "`Die Katzen im Garten schläft.`",
+      "expected": "`Die Katzen im Garten schläft.`",
+      "locale": "de-DE",
+      "start_offset": 23
+    },
+    {
+      "id": "dev-control-11",
+      "kind": "guard",
+      "family": "unknown",
+      "text": "Die Qudsalien im Haus läuft.",
+      "expected": "Die Qudsalien im Haus läuft.",
+      "locale": "de-DE",
+      "start_offset": 23
+    },
+    {
+      "id": "dev-locale-0",
+      "kind": "unsupported",
+      "family": "locale",
+      "text": "Die Katze schlafen.",
+      "expected": "Die Katze schlafen.",
+      "locale": "de-AT",
+      "start_offset": 23
+    },
+    {
+      "id": "dev-locale-1",
+      "kind": "unsupported",
+      "family": "locale",
+      "text": "Die Katze schlafen.",
+      "expected": "Die Katze schlafen.",
+      "locale": "de-CH",
+      "start_offset": 23
+    },
+    {
+      "id": "dev-locale-2",
+      "kind": "unsupported",
+      "family": "locale",
+      "text": "Die Katze schlafen.",
+      "expected": "Die Katze schlafen.",
+      "locale": "en-US",
+      "start_offset": 23
+    }
+  ]
+}

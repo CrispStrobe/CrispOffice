@@ -1,0 +1,28 @@
+{
+  "corrections": [
+    "Reject four loader override variables, including empty values, before operational validation.",
+    "Resolve ldd through /usr/bin/ldd rather than PATH."
+  ],
+  "current_model_free_controls": 12,
+  "current_source_sha256": "2c950b6a5102fc97b59f5ee02355ce662d3d100b409949df330bdff5c25d4ab4",
+  "evidence_files": [
+    "independent-review.json",
+    "runtime-restoration.json",
+    "self-test-final.json",
+    "self-test-final.log",
+    "self-test-initial.json",
+    "self-test-initial.log",
+    "source-inventory.json"
+  ],
+  "independent_review": "Both source findings closed.",
+  "initial_model_free_controls": 3,
+  "initial_source_sha256": "6c9eb491cacb3857d2fa4cf011e2df20b7d5e06d214ba7d6c66f27d6d84270b3",
+  "model_free_compilation": "passed with pinned Dart 3.13.7 and three authenticated package archives",
+  "native_inference_executions": 0,
+  "native_library_loaded": false,
+  "operational_consumer": "pending remote checkpoint and parent authorization",
+  "raw_restore_receipt_preserved": true,
+  "schema": "quds.spacy.w7.dart_controls_resume.v1",
+  "source_config_runtime_pins_retained": true,
+  "status": "passed"
+}

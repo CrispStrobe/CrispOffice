@@ -1,0 +1,56 @@
+{
+  "schema": "quds.spacy.w6.qualification_runner_review.v1",
+  "reviewed_at_utc": "2026-11-17T22:33:26.030244+00:00",
+  "reviewed_head": "fca57e1c95a1252297aa1f8a5458927b216758cf",
+  "status": "passed",
+  "scope": "Independent source review and read-only hash/configuration/runtime preflight. No utility main function, candidate sealing, qualification process or inference executed.",
+  "utilities": [
+    {
+      "path": "docs/validation/native-spacy-w6-20261117/freeze_candidate.py",
+      "sha256": "8006027c992dbc96d0dc7f85c444407ad52ca31d93ab4fa9dd6603e8cf51bc36",
+      "bytes": 6072
+    },
+    {
+      "path": "docs/validation/native-spacy-w6-20261117/run_qualification.py",
+      "sha256": "629955e0f393db4d449247d0cef95913b7d0502098b5c91cdc99293303400467",
+      "bytes": 5794
+    }
+  ],
+  "issue_resolutions": [
+    {
+      "issue": "Post-run runtime/configuration/report-parse errors could leave the process receipt pending.",
+      "status": "resolved",
+      "resolution": "Post-run validation blocks now retain sanitized validation_errors, initialize failed defaults, require no validation errors for pass, and atomically replace the owned pending receipt with final failed/passed process evidence including exit code and elapsed time."
+    },
+    {
+      "issue": "The explicit Dart --packages configuration was not bound to the candidate/runtime identity.",
+      "status": "resolved",
+      "resolution": "package_configuration() validates workspace root routes for legacy_doc_parser, quds_office_engine and quds_proofing_spacy, hashes the actual package_config.json, includes that record in the seal, and compares it both before and after execution."
+    }
+  ],
+  "checks": {
+    "repository_root_correct": true,
+    "source_map_file_count": 342,
+    "source_map_matches_evaluator_algorithm": "The same six fixed files and the same quds_office_engine/lib and quds_proofing_spacy/lib trees; the current source trees contain no symlinks.",
+    "native_library_sha256": "ea89842ebf22c08508aff1cfbf18d78a107118af320523009616ff62b6e42977",
+    "bundle_files_authenticated": 5,
+    "resolved_native_dependencies_authenticated": 6,
+    "installed_paths_recorded": 16,
+    "package_configuration": {
+      "sha256": "052155723631c8790c5618c9183d1f855c41d7aad390edc2aa0cd91c953d3f87",
+      "workspace_roots_verified": {
+        "legacy_doc_parser": "packages/legacy_doc_parser",
+        "quds_office_engine": "packages/quds_office_engine",
+        "quds_proofing_spacy": "packages/quds_proofing_spacy"
+      }
+    },
+    "exclusive_artifacts": "Candidate seal, runner receipt and stdout log use exclusive creation. The Dart evaluator exclusively reserves its report and consumed-seal claim before native loading. The runner only atomically finalizes its own admitted pending receipt.",
+    "panel_access": "Freeze utility reads the qualification hash from protocol.json; the process wrapper only names the panel as a Dart argument. Neither utility preflight opens case contents."
+  },
+  "qualification_panel_read": false,
+  "qualification_executed": false,
+  "native_inference_executed": false,
+  "seal_created": false,
+  "utility_source_modified_by_reviewer": false,
+  "github_actions_queried_or_waited": false
+}

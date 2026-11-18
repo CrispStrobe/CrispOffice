@@ -1,0 +1,43 @@
+{
+  "acceptance_rerun": false,
+  "argv": [
+    "flutter",
+    "test",
+    "--no-pub",
+    "--concurrency=1",
+    "packages/quds_office_editor/example/test/studio_spacy_grammar_native_gate.dart",
+    "--reporter",
+    "expanded"
+  ],
+  "attempt": "latest-grammar-main",
+  "bundle_manifest_after_sha256": "d599768375de3dc56abcca5cf1d49da0015857f9d3a10640aebb5317ef5d427e",
+  "bundle_manifest_before_sha256": "d599768375de3dc56abcca5cf1d49da0015857f9d3a10640aebb5317ef5d427e",
+  "ci_queried_or_waited": false,
+  "cwd": "repository root",
+  "elapsed_seconds": 13.39045367700055,
+  "environment": {
+    "TMPDIR": "task-owned writable temporary directory"
+  },
+  "exit_code": 0,
+  "gate_sha256": "9ed4e1cb628f348ed0e73cfb8738aa35b55f50e67bd7ac4472d18ab5dfb2bf75",
+  "head_before": "ac9ea09c377184f22f1c9b1a76610b9314c5a79a",
+  "implicit_pub": false,
+  "log": "latest-grammar-main.log",
+  "log_sha256": "dbf336d68d9425be7972c94cfd286504836e319eb3153c3d040887b5f59d0f2d",
+  "native_library_after_sha256": "ea89842ebf22c08508aff1cfbf18d78a107118af320523009616ff62b6e42977",
+  "native_library_before_sha256": "ea89842ebf22c08508aff1cfbf18d78a107118af320523009616ff62b6e42977",
+  "passed_tests": 10,
+  "qualification_panel_read": false,
+  "runner_sha256": "d25d6d7c10f3cc0e101c7801c0a1ec2dcdc0266c7942257749f4e6192cdb325d",
+  "runtime_receipt_sha256": "aec65c3cc094bbef6fae713019b88f9e5f2d7cde54e15f04219a48d01ec19f29",
+  "runtime_unchanged": true,
+  "schema": "quds.spacy.w6.real_editor_gate.v1",
+  "scope": "Real installed native worker and actual manual editor proofing integration, using one authored development sentence. Delayed-reply cases are explicitly identified harness lifecycle controls; native output is never mocked.",
+  "source_count": 422,
+  "source_unchanged": true,
+  "sources_after": "latest-grammar-main.sources-after.json",
+  "sources_after_sha256": "48d21e5f0d690df11a97eac662987c74da300e34dcf72b8298726037292ee799",
+  "sources_before": "latest-grammar-main.sources-before.json",
+  "sources_before_sha256": "48d21e5f0d690df11a97eac662987c74da300e34dcf72b8298726037292ee799",
+  "status": "passed"
+}
