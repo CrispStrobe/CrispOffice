@@ -1,9 +1,26 @@
 # Independent spelling review
 
-The reviewed native identifier and German projection changes have no remaining
-blocking finding in this review. Exact source and regression-file SHA-256 hashes
-are recorded in [independent-review.json](independent-review.json), against
-integrated baseline `4dceb86e9fae51877bb5b7dc01e7a8bc721cb6ea`.
+The reviewed native identifier and German projection changes had no remaining
+blocking finding in the saved review. Its original source and regression-file
+SHA-256 hashes are recorded in [review.json](review.json), against integrated
+baseline `4dceb86e9fae51877bb5b7dc01e7a8bc721cb6ea`.
+
+## Recovery note
+
+The review record was pushed before the previous session ended, but its raw
+before/after test logs and execution receipt were not. References to
+`identifier-review-before.txt`, `identifier-review-after.jsonl` and
+`identifier-review-receipt.json` in the saved JSON name those unavailable
+artifacts; they are not evidence recovered in this continuation. The historical
+observations below are preserved as recorded and excluded from current
+acceptance totals. Use the source-bound qualification in the
+[resume report](README.md) for delivery-level results.
+
+Both implementation-file hashes in the saved review still match checkpoint
+`f482b06fc47545c8b03124c30ea78f54e8e4b9e5`. Two native test files subsequently
+received analyzer-only edits in that checkpoint: removal of a redundant import
+and redundant interpolation braces. Their old hashes therefore describe the
+earlier review inputs, not the final test bytes.
 
 ## Issue found and repaired
 
@@ -15,17 +32,18 @@ The adjacent fragment in `\u06004\u0301Feler` and a soft-hyphen-projected varian
 were also exposed. The German projected guard used the same prefix-only
 assumption.
 
-Independent native regressions reproduced **three failing tests** while two
-preservation controls passed. Both providers now inspect the complete grapheme
-for numeric/connector markers and retain its exact start and end. The reviewer
+The saved review reports that independent native regressions reproduced **three
+failing tests** while two preservation controls passed. Both providers now
+inspect the complete grapheme for numeric/connector markers and retain its exact
+start and end. The reviewer
 did not edit production implementation files.
 
-After the repair, the independent native suite passed **all five tests**, with
-zero failures and zero skips. Source and test hashes remained unchanged during
-that run. The structured [run receipt](identifier-review-receipt.json) and full
-[events](identifier-review-after.jsonl) preserve that execution. The earlier
-[failure log](identifier-review-before.txt) is an observation of the first
-implementation, not a claim of an isolated unchanged-main baseline run.
+After the repair, the saved review reports that the independent native suite
+passed **all five tests**, with zero failures and zero skips, and that source
+and test hashes remained unchanged during that run. The unavailable earlier
+failure log was described as an observation of the first implementation, not
+an isolated unchanged-main baseline run. These counts are historical review
+claims, not newly verified executions.
 
 ## Review conclusions
 
