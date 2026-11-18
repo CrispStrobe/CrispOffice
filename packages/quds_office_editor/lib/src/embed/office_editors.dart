@@ -839,6 +839,7 @@ class _QudsWordEditorState extends State<QudsWordEditor>
 
   void _onFocus() {
     if (_inputGuard()) {
+      _c.clearNoteEditingTarget();
       _c.attachInput();
     } else {
       _directionKeys.reset();
@@ -1003,6 +1004,14 @@ class _QudsWordEditorState extends State<QudsWordEditor>
     final bool ctrl =
         HardwareKeyboard.instance.isControlPressed ||
         HardwareKeyboard.instance.isMetaPressed;
+    if (ctrl &&
+        HardwareKeyboard.instance.isAltPressed &&
+        (event.logicalKey == LogicalKeyboardKey.keyC ||
+            event.logicalKey == LogicalKeyboardKey.keyR)) {
+      // These combinations belong to the host's Zotero commands. In
+      // particular, Alt+C must not be consumed as ordinary Copy here.
+      return KeyEventResult.ignored;
+    }
     if (ctrl && event.logicalKey == LogicalKeyboardKey.keyA) {
       _c.selectAll();
       return KeyEventResult.handled;
@@ -1389,6 +1398,7 @@ class _QudsWordEditorState extends State<QudsWordEditor>
                                 onPreviewRulerEdit: _c.previewRulerEdit,
                                 onCommitRulerEdit: _c.commitRulerEdit,
                                 onChanged: () {
+                                  _c.clearNoteEditingTarget();
                                   _focus.requestFocus();
                                   if (config.allowsMutation) {
                                     _c.attachInput();
