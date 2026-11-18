@@ -52,7 +52,8 @@ class ZoteroImportedReference {
     );
   }
 
-  const ZoteroImportedReference._(this._searchText, {
+  const ZoteroImportedReference._(
+    this._searchText, {
     required this.index,
     required this.item,
     required this.title,

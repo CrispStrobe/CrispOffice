@@ -276,6 +276,9 @@ explanation instead of silently leaving out a selected source.
 Searching, reviewing and copying stored references work in a read-only document
 and make no network requests or document-history changes. The connected
 BibTeX/BibLaTeX/RIS/CSL JSON export choices continue to use the selected library.
+The import view scrolls vertically in smaller windows. Status and error
+messages have their own scroll area when space is limited, so their complete
+text remains available with enlarged text.
 
 ### Find and sort references
 

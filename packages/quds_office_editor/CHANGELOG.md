@@ -10,6 +10,8 @@ All notable changes to `quds_office_editor` are documented here.
 - Copy selected stored CSL JSON offline or across libraries from Library and
   Import. Retain selection order, repeated records, embedded metadata and URI
   aliases without changing the document or requesting updated source data.
+- Keep Zotero import controls, Library content and complete status/error
+  messages usable in narrow windows with enlarged text.
 
 - Add a document review workspace with reviewer attribution, author/type/text
   filters, undoable filtered accept/reject, story-aware navigation, and
