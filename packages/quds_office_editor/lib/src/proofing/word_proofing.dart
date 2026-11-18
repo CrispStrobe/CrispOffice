@@ -899,13 +899,16 @@ final class WordProofingSession extends ChangeNotifier {
           generated,
           emptyField,
           structure,
-          [for (final range in exclusions) [range.start, range.end]],
-          [for (final range in guards) [range.start, range.end]],
+          [
+            for (final range in exclusions) [range.start, range.end],
+          ],
+          [
+            for (final range in guards) [range.start, range.end],
+          ],
           barriers.toList(growable: false),
           insertionBarriers.toList(growable: false),
           [
-            for (final run in languageRuns)
-              [run.start, run.end, run.language],
+            for (final run in languageRuns) [run.start, run.end, run.language],
           ],
         ]);
         final previous = _snapshotCache[paragraph];

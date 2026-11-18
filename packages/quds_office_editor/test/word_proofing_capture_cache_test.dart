@@ -50,10 +50,8 @@ final class _Harness {
   final provider = _CaptureProvider();
   late final WordProofingSession session;
 
-  WordProofingIssue issueFor(WmlParagraph paragraph) =>
-      session.summary.issues.singleWhere(
-        (issue) => identical(issue.paragraph, paragraph),
-      );
+  WordProofingIssue issueFor(WmlParagraph paragraph) => session.summary.issues
+      .singleWhere((issue) => identical(issue.paragraph, paragraph));
 }
 
 WmlParagraph _paragraph(String text) =>
@@ -62,7 +60,7 @@ WmlParagraph _paragraph(String text) =>
 WmlDocument _document(List<WmlParagraph> paragraphs) => WmlDocument(
   proofingLanguage: 'de-DE',
   sections: [
-    WmlSection(blocks: paragraphs),
+    WmlSection(blocks: <WmlBlock>[...paragraphs]),
   ],
 );
 
@@ -215,10 +213,10 @@ void main() {
       expect(h.session.summary.issues, [afterField, retained]);
       final authored = await h.session.checkNow();
       expect(h.provider.requests, hasLength(4));
-      expect(
-        h.provider.requests.skip(2).map((request) => request.text),
-        ['Cached field heading', 'Feler inside'],
-      );
+      expect(h.provider.requests.skip(2).map((request) => request.text), [
+        'Cached field heading',
+        'Feler inside',
+      ]);
       expect(authored.skippedContentCount, 0);
       final inside = h.issueFor(middle);
       expect(h.session.canCorrect(inside), isTrue);
