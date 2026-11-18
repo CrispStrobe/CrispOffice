@@ -1,0 +1,243 @@
+{
+  "repository": "CrispStrobe/quds_office_suite",
+  "branch": "codex/document-review-20261118",
+  "prior_saved_checkpoint": "7c85d83fef2f0b98523653f0d9e5068e9143c7d6",
+  "checkpoints_verified_through": "144553545ffcb556418e86b02b4ab2d2091886c4",
+  "checkpoints": [
+    {
+      "sha": "f6c0e167d9c1c7c0f7fc93073f2becacc7a44d48",
+      "purpose": "Initial complete incoming reconciliation",
+      "parents": [
+        "7c85d83fef2f0b98523653f0d9e5068e9143c7d6"
+      ],
+      "tree": "000dcf7619b0d21f78feaa885399e0e77dd31281",
+      "message": "Reconcile incoming heads before continued live review [skip ci]",
+      "recordedCommitDate": "2026-11-18T15:50:26Z",
+      "usesSkipCi": true,
+      "expected_previous_head": "7c85d83fef2f0b98523653f0d9e5068e9143c7d6",
+      "force": false,
+      "remote_ref_readback_verified": true,
+      "verification_method": "Expected-head update returned success; remote branch head read back; commit metadata verified."
+    },
+    {
+      "sha": "d03a0e32fc34ea7f8b1c6574e9352a6f0093f77a",
+      "purpose": "Retained findings and bounded progressive publication",
+      "parents": [
+        "f6c0e167d9c1c7c0f7fc93073f2becacc7a44d48"
+      ],
+      "tree": "6c430039d924fd8d8531b176735cd28a39542a42",
+      "message": "Retain verified writing findings and publish bounded check progress [skip ci]",
+      "recordedCommitDate": "2026-11-18T15:57:05Z",
+      "usesSkipCi": true,
+      "expected_previous_head": "f6c0e167d9c1c7c0f7fc93073f2becacc7a44d48",
+      "force": false,
+      "remote_ref_readback_verified": true,
+      "verification_method": "Expected-head update returned success; remote branch head read back; commit metadata verified."
+    },
+    {
+      "sha": "8146b3eb439f847b29ebba7ccbcc777001a5109f",
+      "purpose": "Persistent filtered change review and stable request generation",
+      "parents": [
+        "d03a0e32fc34ea7f8b1c6574e9352a6f0093f77a"
+      ],
+      "tree": "0e473a6dc57a039fa5ed7915d6a716fb0dea4b78",
+      "message": "Review filtered changes and original or final text beside the document [skip ci]",
+      "recordedCommitDate": "2026-11-18T15:58:00Z",
+      "usesSkipCi": true,
+      "expected_previous_head": "d03a0e32fc34ea7f8b1c6574e9352a6f0093f77a",
+      "force": false,
+      "remote_ref_readback_verified": true,
+      "verification_method": "Expected-head update returned success; remote branch head read back; commit metadata verified."
+    },
+    {
+      "sha": "58058b1b750b3a71d0602af897eaa790400e878b",
+      "purpose": "Compact filters, attachment safety and incremental regressions",
+      "parents": [
+        "8146b3eb439f847b29ebba7ccbcc777001a5109f"
+      ],
+      "tree": "735c2fd7314eb30b2702dc83915d066bcf3de21a",
+      "message": "Keep review controls compact and cover incremental proofing safety [skip ci]",
+      "recordedCommitDate": "2026-11-18T16:01:07Z",
+      "usesSkipCi": true,
+      "expected_previous_head": "8146b3eb439f847b29ebba7ccbcc777001a5109f",
+      "force": false,
+      "remote_ref_readback_verified": true,
+      "verification_method": "Expected-head update returned success; remote branch head read back; commit metadata verified."
+    },
+    {
+      "sha": "f97e8e848150526aa7a8227364904f120bd5ad1d",
+      "purpose": "Writing language, restore ignored findings, protected previews and menu regression",
+      "parents": [
+        "58058b1b750b3a71d0602af897eaa790400e878b"
+      ],
+      "tree": "084842a085b33e70e67762c44b6531e41f6a3e32",
+      "message": "Complete in-pane writing controls and preserve inline review through progress [skip ci]",
+      "recordedCommitDate": "2026-11-18T16:05:28Z",
+      "usesSkipCi": true,
+      "expected_previous_head": "58058b1b750b3a71d0602af897eaa790400e878b",
+      "force": false,
+      "remote_ref_readback_verified": true,
+      "verification_method": "Expected-head update returned success; remote branch head read back; commit metadata verified."
+    },
+    {
+      "sha": "3a36ae46ea99ceaa1c212ae5cfe08bc501bb0229",
+      "purpose": "Unchanged-paragraph capture reuse and final interaction source",
+      "parents": [
+        "f97e8e848150526aa7a8227364904f120bd5ad1d"
+      ],
+      "tree": "da58e2ca26480a8ae4899da64d2c84f7c51996c7",
+      "message": "Reuse unchanged paragraph snapshots during live checking [skip ci]",
+      "recordedCommitDate": "2026-11-18T16:09:00Z",
+      "usesSkipCi": true,
+      "expected_previous_head": "f97e8e848150526aa7a8227364904f120bd5ad1d",
+      "force": false,
+      "remote_ref_readback_verified": true,
+      "verification_method": "Expected-head update returned success; remote branch head read back; commit metadata verified."
+    },
+    {
+      "sha": "40790cb2c8c0ebe8c4a6472f3378fa581abf0b00",
+      "purpose": "Actual three-way integration of main and Zotero PR166, with reconciliation evidence",
+      "parents": [
+        "3a36ae46ea99ceaa1c212ae5cfe08bc501bb0229",
+        "556c55c0ef312eda2cca11600021d293a81ab44b",
+        "3668ed92829dfa012ec5b129943a86738ebb7992"
+      ],
+      "tree": "02e5b6d5baa127921beff46d4c0aec822f3a5204",
+      "message": "Merge latest main and Zotero citation workflow into live document review [skip ci]",
+      "recordedCommitDate": "2026-11-18T16:16:58Z",
+      "usesSkipCi": true,
+      "expected_previous_head": "3a36ae46ea99ceaa1c212ae5cfe08bc501bb0229",
+      "force": false,
+      "remote_ref_readback_verified": true,
+      "verification_method": "Expected-head update returned success; remote branch head read back; commit metadata verified."
+    },
+    {
+      "sha": "afa14d6e0091af0b27d34ef986afc1890f8a1c44",
+      "purpose": "Integrated, formatted source with performance evidence and reproducible visual fixtures",
+      "parents": [
+        "40790cb2c8c0ebe8c4a6472f3378fa581abf0b00"
+      ],
+      "tree": "f5ca68cd5a063b6e5656181b402ba7d1eaa41de5",
+      "message": "Freeze integrated review source and preserve local performance and visual fixtures [skip ci]",
+      "recordedCommitDate": "2026-11-18T16:17:23Z",
+      "usesSkipCi": true,
+      "expected_previous_head": "40790cb2c8c0ebe8c4a6472f3378fa581abf0b00",
+      "force": false,
+      "remote_ref_readback_verified": true,
+      "verification_method": "Expected-head update returned success; remote branch head read back; commit metadata verified."
+    },
+    {
+      "sha": "2cc6bee1daaedf1f9a6d8922c8cb57c0db1394b6",
+      "purpose": "Desktop original/final and in-flight writing visual evidence",
+      "parents": [
+        "afa14d6e0091af0b27d34ef986afc1890f8a1c44"
+      ],
+      "tree": "43da02ca6350217f74bbb75fadbabebb6f852912",
+      "message": "Preserve desktop review previews from the validated visual fixtures [skip ci]",
+      "recordedCommitDate": "2026-11-18T16:19:04Z",
+      "usesSkipCi": true,
+      "expected_previous_head": "afa14d6e0091af0b27d34ef986afc1890f8a1c44",
+      "force": false,
+      "remote_ref_readback_verified": false,
+      "verification_method": "Expected-head update returned success; committed screenshots read back; subsequent expected-head update confirmed branch continuity."
+    },
+    {
+      "sha": "3925c63fca2f824a95566c1258caf5db1086e530",
+      "purpose": "Visible in-pane action feedback and evidence whitespace correction",
+      "parents": [
+        "2cc6bee1daaedf1f9a6d8922c8cb57c0db1394b6"
+      ],
+      "tree": "5e46936f2bc1d6ae9484aba4e9086a69d4605915",
+      "message": "Keep review feedback visible while pane content scrolls [skip ci]",
+      "recordedCommitDate": "2026-11-18T16:23:27Z",
+      "usesSkipCi": true,
+      "expected_previous_head": "2cc6bee1daaedf1f9a6d8922c8cb57c0db1394b6",
+      "force": false,
+      "remote_ref_readback_verified": true,
+      "verification_method": "Expected-head update returned success; remote branch head read back; commit metadata verified."
+    },
+    {
+      "sha": "ecbb1e0bd8129a5c8737496d1877863dd0eea3f2",
+      "purpose": "Final passing validation, source bindings and runtime provenance",
+      "parents": [
+        "3925c63fca2f824a95566c1258caf5db1086e530"
+      ],
+      "tree": "0deee9cc08c7bb15893edf699369216931911ade",
+      "message": "Preserve final passing local review validation and runtime provenance [skip ci]",
+      "recordedCommitDate": "2026-11-18T16:34:11Z",
+      "usesSkipCi": true,
+      "expected_previous_head": "3925c63fca2f824a95566c1258caf5db1086e530",
+      "force": false,
+      "remote_ref_readback_verified": true,
+      "verification_method": "Expected-head update returned success; remote branch head read back; commit metadata and verification receipt read back."
+    },
+    {
+      "sha": "144553545ffcb556418e86b02b4ab2d2091886c4",
+      "purpose": "Seven final-source visual captures and reproducible screenshot harness",
+      "parents": [
+        "ecbb1e0bd8129a5c8737496d1877863dd0eea3f2"
+      ],
+      "tree": "ec99f9c495c3a213243577d34afa44ed369b4ab8",
+      "message": "Save final desktop and narrow review previews with reproducible fixtures [skip ci]",
+      "recordedCommitDate": "2026-11-18T16:39:36Z",
+      "usesSkipCi": true,
+      "expected_previous_head": "ecbb1e0bd8129a5c8737496d1877863dd0eea3f2",
+      "force": false,
+      "remote_ref_readback_verified": true,
+      "verification_method": "Expected-head update succeeded; remote head and commit metadata read back; screenshot blobs verified by path."
+    }
+  ],
+  "source_validation": {
+    "commit": "3925c63fca2f824a95566c1258caf5db1086e530",
+    "tree": "5e46936f2bc1d6ae9484aba4e9086a69d4605915",
+    "files": 610,
+    "manifest_sha256": "0f13ff2d5d64ee49ddfe8fd9f7f78ea09c560af0527cc2476e16b46e60a8cc28",
+    "passed": 361,
+    "failed": 0,
+    "skipped": 0,
+    "source_unchanged_during_checks": true,
+    "tracked_worktree_clean_after": true,
+    "receipt": "checks/verification.json"
+  },
+  "incoming": {
+    "frontier": {
+      "fork_branches": 205,
+      "pull_request_heads": 166,
+      "upstream_branches": 4
+    },
+    "main": "556c55c0ef312eda2cca11600021d293a81ab44b",
+    "zotero_pr_166": "3668ed92829dfa012ec5b129943a86738ebb7992",
+    "integration_commit": "40790cb2c8c0ebe8c4a6472f3378fa581abf0b00",
+    "actual_git_merge_tree": "02e5b6d5baa127921beff46d4c0aec822f3a5204",
+    "main_behind": 0,
+    "zotero_behind": 0
+  },
+  "github_actions_queried_or_awaited": false,
+  "final_artifact_publication_note": "The commit containing this record publishes final validation and visual evidence. It is a fast-forward from checkpoints_verified_through. Source identity is recorded separately to avoid a self-referential commit hash.",
+  "final_external_head_recheck": {
+    "main": "556c55c0ef312eda2cca11600021d293a81ab44b",
+    "zotero_pr_166": "3668ed92829dfa012ec5b129943a86738ebb7992",
+    "matched_integrated_heads": true,
+    "late_integration_blob": "e10f156664b51748111dac472c3404afdd6de835",
+    "audit_byte_identical_to_merge_preparation": true,
+    "method": "Three bounded connector reads; no repeated enumeration and no CI or Actions requests."
+  },
+  "visual_validation": {
+    "source_commit": "3925c63fca2f824a95566c1258caf5db1086e530",
+    "harness_blob": "a824e125b758e288daf47795c1c89102f590a551",
+    "receipt": "visual-verification.json",
+    "passed_cases": 4,
+    "failed_cases": 0,
+    "skipped_cases": 0,
+    "screenshots": 7,
+    "source_files_verified": 610,
+    "root_inspection": "Four changed images independently fetched and inspected after remote checkpoint; three unchanged images retain the exact blobs inspected earlier."
+  },
+  "preserved_historical_material": {
+    "path": "attempts/root-early-prototype.patch.gz",
+    "raw_patch_blob": "a642fc0aa56064af8275b6b9fd31cb2cff08acd5",
+    "compressed_blob": "e4c14a0fa10ee1c1a371b658bccb67c6a4b6b818",
+    "base_commit": "f6c0e167d9c1c7c0f7fc93073f2becacc7a44d48",
+    "purpose": "Earlier draft from the restored root checkout, preserved separately from final source before fast-forwarding the checkout."
+  }
+}
