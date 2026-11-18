@@ -4,6 +4,13 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Import simple bulleted and numbered Zotero research-note lists as native Word
+  lists, including ordered-list starting values, rich item text and active
+  citations. Keep surrounding prose and existing list counters separate, with
+  scoped numbering-part undo/redo snapshots that preserve unrelated package
+  content. Nested lists, multiple paragraphs per item and custom list markers
+  remain explicitly unsupported.
+
 - Add native Zotero research-note insertion through the HTTP Citing Protocol,
   retaining paragraph/heading structure, supported character formatting,
   hyperlinks and active citation placeholders. Stage complete note operations,

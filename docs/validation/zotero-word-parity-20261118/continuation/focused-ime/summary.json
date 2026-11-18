@@ -1,0 +1,468 @@
+{
+  "commit": "6e6e8a683bd998f5e91e8c946774a6f585539607",
+  "tree": "2ad7d3b44e9039ab4c753bd9c16c6a3d281f6c91",
+  "started_utc": "2026-11-18T21:30:08Z",
+  "gates": {
+    "editor-ime": {
+      "command": [
+        "/workspace/scratch/55eaa121d5ad/runtime-recovery/flutter/bin/cache/dart-sdk/bin/dart",
+        "/workspace/scratch/55eaa121d5ad/runtime-recovery/flutter/bin/cache/flutter_tools.snapshot",
+        "--no-version-check",
+        "test",
+        "--no-pub",
+        "--concurrency=1",
+        "--reporter=json",
+        "test/word_zotero_navigation_test.dart",
+        "test/word_zotero_direct_command_test.dart"
+      ],
+      "cwd": "/workspace/scratch/55eaa121d5ad/quds_baseline/packages/quds_office_editor",
+      "exit_code": 0,
+      "elapsed_seconds": 18.03293683800007,
+      "log_sha256": "66db919ae8ecc66969440bb4cc1798b11d971e602448a2e6ca7a77f437b2cae2",
+      "passed": 54,
+      "failed": 0,
+      "skipped": 0,
+      "errors": 0,
+      "done_success": true,
+      "unfinished": [],
+      "cases": [
+        {
+          "name": "body navigation selects the citation and leaves contents and history",
+          "url": "file:///workspace/scratch/55eaa121d5ad/quds_baseline/packages/quds_office_editor/test/word_zotero_navigation_test.dart",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "locked citations remain navigable in read-only selecting mode",
+          "url": "file:///workspace/scratch/55eaa121d5ad/quds_baseline/packages/quds_office_editor/test/word_zotero_navigation_test.dart",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "view-only mode refuses navigation and keyboard focus",
+          "url": "file:///workspace/scratch/55eaa121d5ad/quds_baseline/packages/quds_office_editor/test/word_zotero_navigation_test.dart",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "stale citation handles cannot select replacement text",
+          "url": "file:///workspace/scratch/55eaa121d5ad/quds_baseline/packages/quds_office_editor/test/word_zotero_navigation_test.dart",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "identically reinserted citations do not revive a stale run handle",
+          "url": "file:///workspace/scratch/55eaa121d5ad/quds_baseline/packages/quds_office_editor/test/word_zotero_navigation_test.dart",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "removed paragraphs and fields from another document are rejected",
+          "url": "file:///workspace/scratch/55eaa121d5ad/quds_baseline/packages/quds_office_editor/test/word_zotero_navigation_test.dart",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "body table cells use their actual flattened paragraph index",
+          "url": "file:///workspace/scratch/55eaa121d5ad/quds_baseline/packages/quds_office_editor/test/word_zotero_navigation_test.dart",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "complete bibliography range is selected across paragraphs in cell false",
+          "url": "file:///workspace/scratch/55eaa121d5ad/quds_baseline/packages/quds_office_editor/test/word_zotero_navigation_test.dart",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "complete bibliography range is selected across paragraphs in cell true",
+          "url": "file:///workspace/scratch/55eaa121d5ad/quds_baseline/packages/quds_office_editor/test/word_zotero_navigation_test.dart",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "bibliography spanning unrelated table cells is not selectable",
+          "url": "file:///workspace/scratch/55eaa121d5ad/quds_baseline/packages/quds_office_editor/test/word_zotero_navigation_test.dart",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "note false paragraph false maps hidden reference-space offsets",
+          "url": "file:///workspace/scratch/55eaa121d5ad/quds_baseline/packages/quds_office_editor/test/word_zotero_navigation_test.dart",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "note false paragraph true maps hidden reference-space offsets",
+          "url": "file:///workspace/scratch/55eaa121d5ad/quds_baseline/packages/quds_office_editor/test/word_zotero_navigation_test.dart",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "note true paragraph false maps hidden reference-space offsets",
+          "url": "file:///workspace/scratch/55eaa121d5ad/quds_baseline/packages/quds_office_editor/test/word_zotero_navigation_test.dart",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "note true paragraph true maps hidden reference-space offsets",
+          "url": "file:///workspace/scratch/55eaa121d5ad/quds_baseline/packages/quds_office_editor/test/word_zotero_navigation_test.dart",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "note bibliography selects all exposed paragraphs",
+          "url": "file:///workspace/scratch/55eaa121d5ad/quds_baseline/packages/quds_office_editor/test/word_zotero_navigation_test.dart",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "unsupported headers comments frames and note tables leave selection alone",
+          "url": "file:///workspace/scratch/55eaa121d5ad/quds_baseline/packages/quds_office_editor/test/word_zotero_navigation_test.dart",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "only an exact complete body bibliography selection resolves its field",
+          "url": "file:///workspace/scratch/55eaa121d5ad/quds_baseline/packages/quds_office_editor/test/word_zotero_navigation_test.dart",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "only an exact complete Notes bibliography selection resolves its field",
+          "url": "file:///workspace/scratch/55eaa121d5ad/quds_baseline/packages/quds_office_editor/test/word_zotero_navigation_test.dart",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "invalid citation JSON is not a navigation target",
+          "url": "file:///workspace/scratch/55eaa121d5ad/quds_baseline/packages/quds_office_editor/test/word_zotero_navigation_test.dart",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "navigation refuses to interrupt active Notes composition",
+          "url": "file:///workspace/scratch/55eaa121d5ad/quds_baseline/packages/quds_office_editor/test/word_zotero_navigation_test.dart",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "body navigation leaves Notes and object contexts before focusing",
+          "url": "file:///workspace/scratch/55eaa121d5ad/quds_baseline/packages/quds_office_editor/test/word_zotero_navigation_test.dart",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "focus requests retain Notes selection and skip stale deleted notes",
+          "url": "file:///workspace/scratch/55eaa121d5ad/quds_baseline/packages/quds_office_editor/test/word_zotero_navigation_test.dart",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "Add Note rejects Notes and noncollapsed body targets before native calls",
+          "url": "file:///workspace/scratch/55eaa121d5ad/quds_baseline/packages/quds_office_editor/test/word_zotero_navigation_test.dart",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "body composition rejects every native command before pending edits commit",
+          "url": "file:///workspace/scratch/55eaa121d5ad/quds_baseline/packages/quds_office_editor/test/word_zotero_navigation_test.dart",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "body composition beginning during native work rejects completed changes",
+          "url": "file:///workspace/scratch/55eaa121d5ad/quds_baseline/packages/quds_office_editor/test/word_zotero_navigation_test.dart",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "body focus return does not clear active composition or change selection",
+          "url": "file:///workspace/scratch/55eaa121d5ad/quds_baseline/packages/quds_office_editor/test/word_zotero_navigation_test.dart",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "Notes focus return does not reveal or interrupt active composition",
+          "url": "file:///workspace/scratch/55eaa121d5ad/quds_baseline/packages/quds_office_editor/test/word_zotero_navigation_test.dart",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "reattaching an unchanged body target preserves the complete IME draft",
+          "url": "file:///workspace/scratch/55eaa121d5ad/quds_baseline/packages/quds_office_editor/test/word_zotero_navigation_test.dart",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "accepted IME text retains its composition through reattachment",
+          "url": "file:///workspace/scratch/55eaa121d5ad/quds_baseline/packages/quds_office_editor/test/word_zotero_navigation_test.dart",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "reattachment does not reuse composition after changing paragraph",
+          "url": "file:///workspace/scratch/55eaa121d5ad/quds_baseline/packages/quds_office_editor/test/word_zotero_navigation_test.dart",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "reattachment does not reuse composition after changing caret",
+          "url": "file:///workspace/scratch/55eaa121d5ad/quds_baseline/packages/quds_office_editor/test/word_zotero_navigation_test.dart",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "reattachment does not reuse composition after changing text",
+          "url": "file:///workspace/scratch/55eaa121d5ad/quds_baseline/packages/quds_office_editor/test/word_zotero_navigation_test.dart",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "direct mode needs a command before opening a dialog",
+          "url": "package:flutter_test/src/widget_tester.dart",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "body composition prevents modal focus changes and native requests",
+          "url": "package:flutter_test/src/widget_tester.dart",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "composition starting during native work remains intact on return",
+          "url": "package:flutter_test/src/widget_tester.dart",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "native citation returns to writing with one undo operation",
+          "url": "package:flutter_test/src/widget_tester.dart",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "direct edit updates the selected field and returns focus",
+          "url": "package:flutter_test/src/widget_tester.dart",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "refresh changes existing text and returns to the document",
+          "url": "package:flutter_test/src/widget_tester.dart",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "unchanged addEditCitation returns without dirtying the file",
+          "url": "package:flutter_test/src/widget_tester.dart",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "unchanged refresh returns without dirtying the file",
+          "url": "package:flutter_test/src/widget_tester.dart",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "unchanged setDocPrefs returns without dirtying the file",
+          "url": "package:flutter_test/src/widget_tester.dart",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "unchanged addEditBibliography returns without dirtying the file",
+          "url": "package:flutter_test/src/widget_tester.dart",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "chosen document preferences persist before returning",
+          "url": "package:flutter_test/src/widget_tester.dart",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "an unavailable host shows a recoverable error",
+          "url": "package:flutter_test/src/widget_tester.dart",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "busy desktop errors stay visible and never restart the request",
+          "url": "package:flutter_test/src/widget_tester.dart",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "formatting review discards then returns",
+          "url": "package:flutter_test/src/widget_tester.dart",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "formatting review applies then returns",
+          "url": "package:flutter_test/src/widget_tester.dart",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "a stale formatting target stays open without applying the result",
+          "url": "package:flutter_test/src/widget_tester.dart",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "cooperative cancellation returns only after the response drains",
+          "url": "package:flutter_test/src/widget_tester.dart",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "completion never dismisses a newer host dialog",
+          "url": "package:flutter_test/src/widget_tester.dart",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "the ordinary references workspace remains available after a command",
+          "url": "package:flutter_test/src/widget_tester.dart",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "the returned body accepts keyboard input immediately",
+          "url": "package:flutter_test/src/widget_tester.dart",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "a direct citation returns to its footnote caret",
+          "url": "package:flutter_test/src/widget_tester.dart",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "a direct citation returns to its endnote caret",
+          "url": "package:flutter_test/src/widget_tester.dart",
+          "result": "success",
+          "skipped": false
+        }
+      ]
+    },
+    "studio-ime": {
+      "command": [
+        "/workspace/scratch/55eaa121d5ad/runtime-recovery/flutter/bin/cache/dart-sdk/bin/dart",
+        "/workspace/scratch/55eaa121d5ad/runtime-recovery/flutter/bin/cache/flutter_tools.snapshot",
+        "--no-version-check",
+        "test",
+        "--no-pub",
+        "--concurrency=1",
+        "--reporter=json",
+        "test/studio_zotero_shortcuts_test.dart"
+      ],
+      "cwd": "/workspace/scratch/55eaa121d5ad/quds_baseline/packages/quds_office_editor/example",
+      "exit_code": 0,
+      "elapsed_seconds": 38.202120014,
+      "log_sha256": "589a86d8e54851a334a04e66cd7633bf7f0cf033edd3f780618284f34e1fa2c0",
+      "passed": 14,
+      "failed": 0,
+      "skipped": 0,
+      "errors": 0,
+      "done_success": true,
+      "unfinished": [],
+      "cases": [
+        {
+          "name": "Ctrl Alt C dispatches addEditCitation from the Word caret",
+          "url": "package:flutter_test/src/widget_tester.dart",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "Ctrl Alt R dispatches refresh from the Word caret",
+          "url": "package:flutter_test/src/widget_tester.dart",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "Cmd Alt C dispatches addEditCitation from the Word caret",
+          "url": "package:flutter_test/src/widget_tester.dart",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "Cmd Alt R dispatches refresh from the Word caret",
+          "url": "package:flutter_test/src/widget_tester.dart",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "body composition blocks shortcuts and saved ribbon callbacks",
+          "url": "package:flutter_test/src/widget_tester.dart",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "successive shortcuts return directly to the writing caret",
+          "url": "package:flutter_test/src/widget_tester.dart",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "Add Zotero note ribbon invokes the native note picker",
+          "url": "package:flutter_test/src/widget_tester.dart",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "Ctrl Alt C finds the citation in the focused Notes editor",
+          "url": "package:flutter_test/src/widget_tester.dart",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "citation shortcuts and saved ribbon callbacks respect viewing mode",
+          "url": "package:flutter_test/src/widget_tester.dart",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "citation commands stay inactive in other Studio applications",
+          "url": "package:flutter_test/src/widget_tester.dart",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "a covering modal blocks Zotero even when Word retains focus",
+          "url": "package:flutter_test/src/widget_tester.dart",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "rapid ribbon and shortcut activation opens one Zotero workspace",
+          "url": "package:flutter_test/src/widget_tester.dart",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "citation ribbon shows shortcuts for linux",
+          "url": "package:flutter_test/src/widget_tester.dart",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "citation ribbon shows shortcuts for macOS",
+          "url": "package:flutter_test/src/widget_tester.dart",
+          "result": "success",
+          "skipped": false
+        }
+      ]
+    }
+  },
+  "source_unchanged": true,
+  "passed": 68,
+  "success": true,
+  "finished_utc": "2026-11-18T21:31:04Z"
+}

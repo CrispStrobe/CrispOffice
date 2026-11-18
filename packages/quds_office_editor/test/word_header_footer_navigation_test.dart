@@ -4,7 +4,6 @@ import 'dart:ui' as ui;
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quds_office_editor/quds_office_editor.dart';
 
@@ -92,7 +91,9 @@ WordEditorController _controller(WmlDocument document, {_Provider? provider}) {
   final controller = WordEditorController(
     document: document,
     config: const OfficeSurfaceConfig(showRulers: false),
-    proofingService: OfficeProofingService(providers: [provider ?? _Provider()]),
+    proofingService: OfficeProofingService(
+      providers: [provider ?? _Provider()],
+    ),
   );
   addTearDown(controller.dispose);
   return controller;
@@ -139,10 +140,11 @@ void main() {
 
           expect(controller.applyProofingSuggestion(issue, 'Fehler'), isTrue);
           expect(paragraph.text, original.replaceFirst('Feler', 'Fehler'));
-          expect(
-            document.paragraphs.map((paragraph) => paragraph.text),
-            ['Body one', 'Body two', 'Body three'],
-          );
+          expect(document.paragraphs.map((paragraph) => paragraph.text), [
+            'Body one',
+            'Body two',
+            'Body three',
+          ]);
           for (final other in WordHeaderFooterVariant.values) {
             if (other == variant) continue;
             expect(
@@ -184,12 +186,19 @@ void main() {
           isTrue,
         );
         expect(
-          paragraphs[1].inlines.whereType<WmlRun>().first.properties.proofingLanguage,
+          paragraphs[1].inlines
+              .whereType<WmlRun>()
+              .first
+              .properties
+              .proofingLanguage,
           'en-US',
         );
         expect(
-          document.sections.single.header[1]
-              .inlines.whereType<WmlRun>().first.properties.proofingLanguage,
+          document.sections.single.header[1].inlines
+              .whereType<WmlRun>()
+              .first
+              .properties
+              .proofingLanguage,
           isNull,
         );
         controller.undo();
@@ -312,13 +321,19 @@ void main() {
         isFalse,
       );
       expect(
-        document.sections.single.firstHeader.first
-            .inlines.whereType<WmlRun>().first.properties.proofingLanguage,
+        document.sections.single.firstHeader.first.inlines
+            .whereType<WmlRun>()
+            .first
+            .properties
+            .proofingLanguage,
         isNull,
       );
       expect(
-        document.sections.single.evenHeader.first
-            .inlines.whereType<WmlRun>().first.properties.proofingLanguage,
+        document.sections.single.evenHeader.first.inlines
+            .whereType<WmlRun>()
+            .first
+            .properties
+            .proofingLanguage,
         isNull,
       );
       expect(controller.canUndo, isFalse);
@@ -348,11 +363,11 @@ void main() {
       expect(controller.caret.selectionAnchor, 2);
       expect(controller.caret.logicalIndex, 6);
       final reopened = WordDeserializer().readBytes(controller.saveBytes());
-      expect(reopened.sections.single.evenFooter[1].text, contains('New Feler'));
       expect(
-        reopened.sections.single.footer[1].text,
-        isNot(contains('New ')),
+        reopened.sections.single.evenFooter[1].text,
+        contains('New Feler'),
       );
+      expect(reopened.sections.single.footer[1].text, isNot(contains('New ')));
     },
   );
 

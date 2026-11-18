@@ -4,6 +4,10 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Keep imported Zotero research-note lists and their numbering definitions in
+  the same undo step as the note and its citations. Restore existing numbering
+  on undo while preserving unrelated package parts and relationships.
+
 - Add inline Notes spelling, grammar and style underlines with nearby
   correction, ignore/dictionary and finding-navigation controls. Keep live-check
   status and explicit checking in the pane; F7 checks and Alt+F7 /
