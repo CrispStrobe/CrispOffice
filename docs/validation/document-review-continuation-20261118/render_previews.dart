@@ -81,7 +81,11 @@ WmlParagraph _paragraph(
 
 WmlDocument _changesDocument({bool arabic = false, bool narrow = false}) {
   final paragraphs = <WmlParagraph>[
-    _paragraph(arabic ? 'خطة التسليم' : 'Delivery plan', title: true, arabic: arabic),
+    _paragraph(
+      arabic ? 'خطة التسليم' : 'Delivery plan',
+      title: true,
+      arabic: arabic,
+    ),
     _paragraph(
       arabic
           ? 'مستند تجريبي للتحرير والمراجعة.'
@@ -128,7 +132,12 @@ WmlDocument _changesDocument({bool arabic = false, bool narrow = false}) {
       ),
     ],
   );
-  void revision(int paragraphIndex, String text, WmlRevisionKind kind, String author) {
+  void revision(
+    int paragraphIndex,
+    String text,
+    WmlRevisionKind kind,
+    String author,
+  ) {
     final paragraph = paragraphs[paragraphIndex];
     final start = paragraph.text.indexOf(text);
     WordRevisions.record(
@@ -142,10 +151,31 @@ WmlDocument _changesDocument({bool arabic = false, bool narrow = false}) {
       author: author,
     ).dateIso = '2026-11-18T10:00:00Z';
   }
-  revision(2, arabic ? 'الجمعة' : 'Friday', WmlRevisionKind.delete, arabic ? 'ميرا' : 'Mira');
-  revision(2, arabic ? 'الاثنين' : 'Monday', WmlRevisionKind.insert, arabic ? 'ميرا' : 'Mira');
-  revision(3, arabic ? 'مراجعة لإمكانية الوصول' : 'an accessibility pass', WmlRevisionKind.insert, arabic ? 'ميرا' : 'Mira');
-  revision(4, arabic ? 'القديم ' : 'obsolete ', WmlRevisionKind.delete, arabic ? 'سامر' : 'Sam');
+
+  revision(
+    2,
+    arabic ? 'الجمعة' : 'Friday',
+    WmlRevisionKind.delete,
+    arabic ? 'ميرا' : 'Mira',
+  );
+  revision(
+    2,
+    arabic ? 'الاثنين' : 'Monday',
+    WmlRevisionKind.insert,
+    arabic ? 'ميرا' : 'Mira',
+  );
+  revision(
+    3,
+    arabic ? 'مراجعة لإمكانية الوصول' : 'an accessibility pass',
+    WmlRevisionKind.insert,
+    arabic ? 'ميرا' : 'Mira',
+  );
+  revision(
+    4,
+    arabic ? 'القديم ' : 'obsolete ',
+    WmlRevisionKind.delete,
+    arabic ? 'سامر' : 'Sam',
+  );
   return document;
 }
 
@@ -183,7 +213,9 @@ class _Harness {
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
             useMaterial3: true,
-            colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF315A83)),
+            colorScheme: ColorScheme.fromSeed(
+              seedColor: const Color(0xFF315A83),
+            ),
             fontFamily: 'Liberation Sans',
             fontFamilyFallback: const <String>['Noto Naskh Arabic'],
           ),
@@ -194,21 +226,32 @@ class _Harness {
                 Directionality(
                   textDirection: arabic ? TextDirection.rtl : TextDirection.ltr,
                   child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 18,
+                      vertical: 12,
+                    ),
                     color: const Color(0xFFEDF2F7),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
-                          arabic ? 'عرض توضيحي لمراجعة المستند' : 'Document review demonstration',
-                          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                          arabic
+                              ? 'عرض توضيحي لمراجعة المستند'
+                              : 'Document review demonstration',
+                          style: const TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
                         const SizedBox(height: 3),
                         Text(
                           arabic
                               ? 'محتوى تجريبي ومدققون محددون للاختبار'
                               : 'Example content and deterministic test checkers',
-                          style: const TextStyle(fontSize: 12, color: Color(0xFF526779)),
+                          style: const TextStyle(
+                            fontSize: 12,
+                            color: Color(0xFF526779),
+                          ),
                         ),
                       ],
                     ),
@@ -222,6 +265,25 @@ class _Harness {
       ),
     );
     await _drain(tester);
+    if (size.width < 760) {
+      // Set a genuine fitted viewport, then center the page using the canvas's
+      // public page-to-window mapping. Page dimensions are in points; the
+      // renderer paints at 96/72 pixels per point before the viewport zoom.
+      final pageWidth = document.sections.first.pageSize.width;
+      controller.viewport.setScale((size.width - 40) / (pageWidth * 96 / 72));
+      controller.refreshView();
+      await _drain(tester);
+      final canvas = tester.renderObject<RenderWordCanvas>(
+        find.byType(WordCanvas),
+      );
+      final left = canvas.windowForPagePoint(0, Offset.zero).dx;
+      final right = canvas.windowForPagePoint(0, Offset(pageWidth, 0)).dx;
+      controller.viewport.pan(
+        Offset((left + right - canvas.size.width) / 2, 0),
+      );
+      controller.refreshView();
+      await _drain(tester);
+    }
     expect(find.byType(Dialog), findsNothing);
     expect(tester.takeException(), isNull);
   }
@@ -256,10 +318,12 @@ Future<void> _reveal(WidgetTester tester, String key) async {
       await tester.scrollUntilVisible(
         finder,
         100,
-        scrollable: find.descendant(
-          of: _key('word-review-pane'),
-          matching: find.byType(Scrollable),
-        ).first,
+        scrollable: find
+            .descendant(
+              of: _key('word-review-pane'),
+              matching: find.byType(Scrollable),
+            )
+            .first,
       );
     }
   }
@@ -269,7 +333,16 @@ Future<void> _reveal(WidgetTester tester, String key) async {
 
 Future<void> _tap(WidgetTester tester, String key) async {
   await _reveal(tester, key);
-  await tester.tap(_key(key));
+  // An expanded ExpansionTile's center is in its children. Hit its actual
+  // header to avoid opening the Author dropdown instead of collapsing it.
+  final target = key == 'live-review-filters'
+      ? find
+            .descendant(of: _key(key), matching: find.text('Filter changes'))
+            .first
+      : _key(key);
+  await tester.ensureVisible(target);
+  await tester.pump();
+  await tester.tap(target);
   await _drain(tester);
 }
 
@@ -283,9 +356,16 @@ Future<void> _choose(WidgetTester tester, String key, String label) async {
 Future<void> _save(WidgetTester tester, String name) async {
   final output = Platform.environment['QUDS_REVIEW_SCREENSHOT_DIR'];
   if (output == null || output.isEmpty) {
-    throw StateError('Set QUDS_REVIEW_SCREENSHOT_DIR to an absolute directory.');
+    throw StateError(
+      'Set QUDS_REVIEW_SCREENSHOT_DIR to an absolute directory.',
+    );
   }
   await tester.pump();
+  expect(
+    find.byType(ModalBarrier).hitTestable(),
+    findsNothing,
+    reason: 'Fixture captures must not contain an accidentally open menu.',
+  );
   final boundary = tester.renderObject<RenderRepaintBoundary>(
     find.byKey(_captureKey),
   );
@@ -309,10 +389,15 @@ Future<void> _fonts() async {
   await OfficeHostFonts.ensureRegistered();
   final sdk = Platform.environment['FLUTTER_ROOT'];
   final configured = Platform.environment['QUDS_REVIEW_ICON_FONT'];
-  final path = configured ??
-      (sdk == null ? null : '$sdk/bin/cache/artifacts/material_fonts/MaterialIcons-Regular.otf');
+  final path =
+      configured ??
+      (sdk == null
+          ? null
+          : '$sdk/bin/cache/artifacts/material_fonts/MaterialIcons-Regular.otf');
   if (path == null || !await File(path).exists()) {
-    throw StateError('A genuine MaterialIcons font is required for these fixtures.');
+    throw StateError(
+      'A genuine MaterialIcons font is required for these fixtures.',
+    );
   }
   final loader = FontLoader('MaterialIcons')
     ..addFont(File(path).readAsBytes().then(ByteData.sublistView));
@@ -323,7 +408,9 @@ void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
   setUpAll(_fonts);
 
-  testWidgets('desktop change projections and filtered batches', (tester) async {
+  testWidgets('desktop change projections and filtered batches', (
+    tester,
+  ) async {
     final harness = _Harness(document: _changesDocument());
     try {
       await harness.mount(tester, WordReviewPaneTab.changes);
@@ -334,6 +421,26 @@ void main() {
       await _tap(tester, 'live-review-filters');
       await _choose(tester, 'live-review-author-filter', 'Mira');
       await _choose(tester, 'live-review-kind-filter', 'Insertions');
+      // A taller desktop fixture exposes filter values and the exact batch
+      // controls together without changing the product layout or UI.
+      tester.view.physicalSize = const Size(1280, 1360);
+      await _drain(tester);
+      final paneList = tester.widget<ListView>(
+        find
+            .descendant(
+              of: _key('word-review-pane'),
+              matching: find.byType(ListView),
+            )
+            .first,
+      );
+      paneList.controller!.jumpTo(0);
+      await _drain(tester);
+      final batch = _key('live-review-accept-shown');
+      expect(batch.hitTestable(), findsOneWidget);
+      expect(_key('live-review-author-filter').hitTestable(), findsOneWidget);
+      await _save(tester, 'changes-filter-controls-desktop');
+      tester.view.physicalSize = const Size(1280, 1000);
+      await _drain(tester);
       await _tap(tester, 'live-review-filters');
       await _reveal(tester, 'live-review-accept-shown');
       expect(
@@ -348,30 +455,46 @@ void main() {
     }
   });
 
-  testWidgets('progressive writing retains actionable findings', (tester) async {
+  testWidgets('progressive writing retains actionable findings', (
+    tester,
+  ) async {
     final gate = Completer<void>();
     final document = WmlDocument(
       proofingLanguage: 'de-DE',
       sections: <WmlSection>[
         WmlSection(
           pageSize: const WmlPageSize(width: 650, height: 840),
-          margins: const WmlPageMargins(top: 50, bottom: 40, left: 50, right: 50),
+          margins: const WmlPageMargins(
+            top: 50,
+            bottom: 40,
+            left: 50,
+            right: 50,
+          ),
           blocks: <WmlBlock>[
             _paragraph('Writing while checks continue', title: true),
-            _paragraph('A Feler remains visible while later paragraphs are checked.'),
+            _paragraph(
+              'A Feler remains visible while later paragraphs are checked.',
+            ),
             _paragraph('Later paragraphs are being checked in the background.'),
-            _paragraph('You can keep editing or choose a correction in the Writing pane.'),
+            _paragraph(
+              'You can keep editing or choose a correction in the Writing pane.',
+            ),
           ],
         ),
       ],
     );
-    final harness = _Harness(document: document, provider: _FixtureProvider(gate: gate.future));
+    final harness = _Harness(
+      document: document,
+      provider: _FixtureProvider(gate: gate.future),
+    );
     try {
       await harness.mount(tester, WordReviewPaneTab.proofing);
       expect(harness.controller.proofing.checking, isTrue);
       await _reveal(tester, 'live-proofing-replace-0');
       expect(
-        tester.widget<OutlinedButton>(_key('live-proofing-replace-0')).onPressed,
+        tester
+            .widget<OutlinedButton>(_key('live-proofing-replace-0'))
+            .onPressed,
         isNotNull,
       );
       await _save(tester, 'writing-in-flight-desktop');
@@ -384,7 +507,9 @@ void main() {
   });
 
   for (final arabic in <bool>[false, true]) {
-    testWidgets('narrow ${arabic ? 'Arabic' : 'English'} changes preview', (tester) async {
+    testWidgets('narrow ${arabic ? 'Arabic' : 'English'} changes preview', (
+      tester,
+    ) async {
       final harness = _Harness(
         document: _changesDocument(arabic: arabic, narrow: true),
         arabic: arabic,
