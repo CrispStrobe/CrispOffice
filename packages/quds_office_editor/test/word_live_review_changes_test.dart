@@ -179,8 +179,6 @@ Future<void> _tap(WidgetTester tester, Finder finder) async {
   await _reveal(tester, finder);
   expect(finder.hitTestable(), findsOneWidget, reason: '$finder');
   await tester.tap(finder);
-  // Start transitions before advancing their duration in the bounded drain.
-  await tester.pump();
   await _drain(tester);
   expect(tester.takeException(), isNull);
 }

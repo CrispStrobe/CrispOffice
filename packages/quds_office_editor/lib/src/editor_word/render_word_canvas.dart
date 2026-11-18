@@ -1889,6 +1889,149 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
     );
   }
 
+  /// Context at the current text caret for keyboard-invoked review menus.
+  ///
+  /// [proofingOffset] may identify the start of a selected finding while the
+  /// menu remains anchored to the visual caret. Only the menu position is
+  /// clamped when the caret is offscreen; the source, selection, viewport and
+  /// layout are left unchanged. An unavailable or mismatched story has no hit.
+  OfficeContextHit? contextHitForCaret({int? proofingOffset}) {
+    if (!attached ||
+        !hasSize ||
+        size.isEmpty ||
+        !size.width.isFinite ||
+        !size.height.isFinite ||
+        laidOut.pages.isEmpty ||
+        (editingHeader && editingFooter)) {
+      return null;
+    }
+    final paragraphs =
+        storyParagraphs ??
+        (_editingHeaderFooter
+            ? null
+            : document.paragraphs.toList(growable: false));
+    final paragraphIndex = caret.paragraphIndex;
+    if (paragraphs == null ||
+        paragraphIndex < 0 ||
+        paragraphIndex >= paragraphs.length) {
+      return null;
+    }
+    final paragraph = paragraphs[paragraphIndex];
+    final textLength = paragraph.text.length;
+    final sourceOffset = proofingOffset ?? caret.logicalIndex;
+    if (caret.logicalIndex < 0 ||
+        caret.logicalIndex > textLength ||
+        sourceOffset < 0 ||
+        sourceOffset > textLength) {
+      return null;
+    }
+
+    LaidOutPage? caretPage;
+    LaidOutLine? caretLine;
+    Offset? anchor;
+    var nearestDistance = double.infinity;
+    for (var pageIndex = 0; pageIndex < laidOut.pages.length; pageIndex++) {
+      final page = laidOut.pages[pageIndex];
+      final lines = editingFooter
+          ? page.footer
+          : editingHeader
+          ? page.header
+          : page.lines;
+      for (final line in lines) {
+        if (line.pageIndex != pageIndex ||
+            line.paragraphIndex != paragraphIndex ||
+            !identical(line.sourceParagraph, paragraph) ||
+            !caret.isOnLine(
+              line,
+              lastOfParagraph:
+                  line.glyphs.isEmpty ||
+                  CaretEngine.logicalSpan(line).max == textLength,
+            )) {
+          continue;
+        }
+        final stem = _caretPaintRect(
+          line,
+          paragraphRtl: _paragraphRtl(paragraphIndex, line: line),
+        );
+        final position = windowForPagePoint(pageIndex, stem.bottomLeft);
+        if (!position.dx.isFinite || !position.dy.isFinite) continue;
+        final visiblePosition = Offset(
+          position.dx.clamp(0.0, math.max(0.0, size.width - 1)),
+          position.dy.clamp(0.0, math.max(0.0, size.height - 1)),
+        );
+        final distance = (position - visiblePosition).distanceSquared;
+        // Repeated headers/footers share source identity. Prefer the visible
+        // occurrence, without revealing another page or moving its caret.
+        if (distance < nearestDistance) {
+          nearestDistance = distance;
+          caretPage = page;
+          caretLine = line;
+          anchor = visiblePosition;
+        }
+      }
+    }
+    if (caretPage == null || caretLine == null || anchor == null) return null;
+    final globalPosition = localToGlobal(anchor);
+    if (!globalPosition.dx.isFinite || !globalPosition.dy.isFinite) return null;
+
+    var cell = _cellForLine(
+      caretPage,
+      caretLine,
+      containingFrame: _frameContaining(paragraph),
+    );
+    if (cell != null) {
+      final table = cell.table;
+      final row = cell.tableRow;
+      final column = cell.tableCol;
+      if (table == null ||
+          row == null ||
+          row < 0 ||
+          row >= table.rows.length ||
+          column == null ||
+          column < 0 ||
+          column >= table.rows[row].cells.length ||
+          !WordTree.paragraphs(
+            table.rows[row].cells[column].blocks,
+          ).any((candidate) => identical(candidate, paragraph))) {
+        cell = null;
+      }
+    }
+
+    WmlRun? caretRun;
+    var runEnd = 0;
+    for (final inline in paragraph.inlines) {
+      if (inline is! WmlRun) continue;
+      caretRun = inline;
+      runEnd += inline.text.length;
+      if (caret.logicalIndex < runEnd) break;
+    }
+    final link = caretRun?.hyperlink ?? caretLine.hyperlink;
+    int? commentId;
+    for (final id in caretRun?.commentIds.reversed ?? const <int>[]) {
+      if (WordComment.byId(document, id) != null) {
+        commentId = id;
+        break;
+      }
+    }
+    return OfficeContextHit(
+      kind: cell != null
+          ? OfficeContextKind.table
+          : commentId != null
+          ? OfficeContextKind.comment
+          : link != null
+          ? OfficeContextKind.hyperlink
+          : OfficeContextKind.document,
+      globalPosition: globalPosition,
+      paragraph: paragraph,
+      proofingOffset: sourceOffset,
+      table: cell?.table,
+      tableRow: cell?.tableRow,
+      tableCol: cell?.tableCol,
+      link: link,
+      commentId: commentId,
+    );
+  }
+
   (int, Offset) _hitPage(Offset window) {
     if (compact) {
       return (0, window);
@@ -2051,6 +2194,9 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
   }
 
   bool? _chromeHit(LaidOutPage page, Offset local) {
+    // A compact story surface has no page chrome. Its first lines can still
+    // overlap the layout's default header band.
+    if (compact) return null;
     if (page.footerBand.contains(local.dx, local.dy)) {
       return true;
     }
@@ -2551,9 +2697,9 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
     if (_visualAt(page, local) != null || _equationAt(page, local) != null) {
       return;
     }
-    final line = page.headerBand.contains(local.dx, local.dy)
+    final line = !compact && page.headerBand.contains(local.dx, local.dy)
         ? _nearestChromeLine(page.header, local)
-        : page.footerBand.contains(local.dx, local.dy)
+        : !compact && page.footerBand.contains(local.dx, local.dy)
         ? _nearestChromeLine(page.footer, local)
         : _proofingLineAt(page, local);
     if (line == null ||
@@ -2644,9 +2790,9 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
     }
     final LaidOutLine? textLine =
         visual == null && equation == null && handle == null
-        ? laidPage.headerBand.contains(local.dx, local.dy)
+        ? !compact && laidPage.headerBand.contains(local.dx, local.dy)
               ? _nearestChromeLine(laidPage.header, local)
-              : laidPage.footerBand.contains(local.dx, local.dy)
+              : !compact && laidPage.footerBand.contains(local.dx, local.dy)
               ? _nearestChromeLine(laidPage.footer, local)
               : _proofingLineAt(laidPage, local)
         : null;

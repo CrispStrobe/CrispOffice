@@ -1,0 +1,41 @@
+{
+  "repository": "CrispStrobe/quds_office_suite",
+  "branch": "codex/zotero-wordlike-20261118",
+  "previous_checkpoint": "b2597485b923003f01c1bd69e02d0c62a6943514",
+  "checkpoints": [
+    {
+      "sha": "8677c59b8dc295baef7befc5f39726b1bdc41112",
+      "purpose": "Reconcile latest review validation receipts."
+    },
+    {
+      "sha": "5e918a8df2f23c0048975005fba8fdea6f3899cc",
+      "purpose": "Resolve native citation fields at anchored note carets."
+    },
+    {
+      "sha": "3b15d1c39667c73ed4bd88c297c3e9d819201d9b",
+      "purpose": "Review connected source selections across searches."
+    },
+    {
+      "sha": "81720ff1cd0004836e52fbccdf909d44ac82411c",
+      "purpose": "Direct native commands, keyboard source selection and atomic document unlinking."
+    },
+    {
+      "sha": "04415170e86180aa3921ebb41cfc38d5a9e7b7fb",
+      "purpose": "Keep one initial field scan and repair connected-search test timing."
+    },
+    {
+      "sha": "1657771b03238390c8339694e42f94e81c24744c",
+      "purpose": "Dispose note editor test fixtures before pending-timer verification."
+    },
+    {
+      "sha": "86b9c03c272baec7277d2f8fb548711a73fe9aee",
+      "purpose": "Integrate the latest inline comment and proofing-control source."
+    },
+    {
+      "sha": "d82d25cc1c89a9a8923601090796f797bcda763f",
+      "purpose": "Qualify inherited proofing language and format integrated regression fixtures."
+    }
+  ],
+  "publication": "Each checkpoint was saved remotely as a fast-forward update guarded by expected_sha, with local/remote tree equality verified. The containing evidence commit is a later documentation-only checkpoint.",
+  "github_actions": "Not queried, awaited, dispatched, rerun or relied upon. Checkpoint messages contain [skip ci]."
+}

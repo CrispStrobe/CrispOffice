@@ -1,0 +1,104 @@
+{
+  "purpose": "Exact setup evidence for the local pinned runtime, separate from final product acceptance.",
+  "runtime": {
+    "frameworkVersion": "3.47.8",
+    "channel": "stable",
+    "repositoryUrl": "https://github.com/flutter/flutter.git",
+    "frameworkRevision": "737ba8f885dc774b53b442759999a312c9461e4e",
+    "frameworkCommitDate": "2026-10-22 21:37:31 -0700",
+    "engineRevision": "cf636b1dfb818dd6a3ff16e390e93b1a036969c8",
+    "engineCommitDate": "2026-10-23 02:13:38.000Z",
+    "engineContentHash": "dfd2e6cb7d319db05e3bf1503f3e2ac60f6288a2",
+    "engineBuildDate": "2026-10-22 20:34:48.330",
+    "dartSdkVersion": "3.13.7",
+    "devToolsVersion": "2.60.0",
+    "flutterVersion": "3.47.8",
+    "flutterRoot": "/workspace/scratch/18d3825b0123/runtime-setup/flutter"
+  },
+  "workspace_lock_sha256": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130",
+  "runtime_receipt_sha256": "67e6966e6ebefac16e3d4cabdf9c6acc4bb2d64c492e3d36fa4bb410bb72ab91",
+  "files": [
+    {
+      "source_relative_to_runtime": "runtime.json",
+      "saved_file": "runtime.json",
+      "source_bytes": 3764,
+      "source_sha256": "67e6966e6ebefac16e3d4cabdf9c6acc4bb2d64c492e3d36fa4bb410bb72ab91",
+      "saved_bytes": 3764,
+      "saved_sha256": "67e6966e6ebefac16e3d4cabdf9c6acc4bb2d64c492e3d36fa4bb410bb72ab91",
+      "compression": null
+    },
+    {
+      "source_relative_to_runtime": "bootstrap_runtime.py",
+      "saved_file": "bootstrap_runtime.py.gz",
+      "source_bytes": 9497,
+      "source_sha256": "fd105a0da20e352f02c8e83ca03a058eaf9a7e97bdd7c24a7115ea3d83573edf",
+      "saved_bytes": 3762,
+      "saved_sha256": "c84dd81dc463d5588263d9fe0bb4f466156209e37e4518a762c96f6fb1228f3f",
+      "compression": "gzip"
+    },
+    {
+      "source_relative_to_runtime": "logs/bootstrap.log",
+      "saved_file": "bootstrap.log",
+      "source_bytes": 477,
+      "source_sha256": "d0b265a65afb11018f5143860f8d130ceac0e8b2437025ae5f0f58665fb0ee47",
+      "saved_bytes": 477,
+      "saved_sha256": "d0b265a65afb11018f5143860f8d130ceac0e8b2437025ae5f0f58665fb0ee47",
+      "compression": null
+    },
+    {
+      "source_relative_to_runtime": "logs/flutter-tools-pub-get.log",
+      "saved_file": "flutter-tools-pub-get.log",
+      "source_bytes": 1016,
+      "source_sha256": "9f349fca172146e2595a50ccbe19f4d21b8845690372a19239884f3b932864c3",
+      "saved_bytes": 1016,
+      "saved_sha256": "9f349fca172146e2595a50ccbe19f4d21b8845690372a19239884f3b932864c3",
+      "compression": null
+    },
+    {
+      "source_relative_to_runtime": "logs/workspace-pub-get.log",
+      "saved_file": "workspace-pub-get.log",
+      "source_bytes": 68,
+      "source_sha256": "d4cb7a3c68b4133b4f6e58c67ff5bfd13725d8021e930388cdc98da8a575919d",
+      "saved_bytes": 68,
+      "saved_sha256": "d4cb7a3c68b4133b4f6e58c67ff5bfd13725d8021e930388cdc98da8a575919d",
+      "compression": null
+    },
+    {
+      "source_relative_to_runtime": "logs/flutter-version.log",
+      "saved_file": "flutter-version.log",
+      "source_bytes": 634,
+      "source_sha256": "fba3095f6175d4759d6303fce1b1dc27b414d6a70933badd518a8603bda3753e",
+      "saved_bytes": 634,
+      "saved_sha256": "fba3095f6175d4759d6303fce1b1dc27b414d6a70933badd518a8603bda3753e",
+      "compression": null
+    },
+    {
+      "source_relative_to_runtime": "logs/editor-smoke.jsonl",
+      "saved_file": "setup-smoke.jsonl.gz",
+      "source_bytes": 7183,
+      "source_sha256": "173fefe3833c90987b2e23b2ffe7e17695db3ca15a6c9d215a9520a829a19291",
+      "saved_bytes": 940,
+      "saved_sha256": "411a59202d484b844ee6f1a5ad39e09fc055d3ea173a66f0d3cc334139b5d330",
+      "compression": "gzip"
+    },
+    {
+      "source_relative_to_runtime": "pub-cache-receipt.json",
+      "saved_file": "pub-cache-receipt.json.gz",
+      "source_bytes": 40844,
+      "source_sha256": "591b64e6ecc94f418fc129064caf1fcac66090911db8e7e25bff0d45ae4ee7a2",
+      "saved_bytes": 10368,
+      "saved_sha256": "3748951de970e0556cb275d66cac389eb9de79eeee835e8d810eb47416b81f57",
+      "compression": "gzip"
+    },
+    {
+      "source_relative_to_runtime": "archive-members.json",
+      "saved_file": "archive-members.json.gz",
+      "source_bytes": 493700,
+      "source_sha256": "8799648215251c6cee363cd1573275efe5389a18fe7878dc9523b7129130438d",
+      "saved_bytes": 46309,
+      "saved_sha256": "1953312e89d1065243236a15f92cdb5eb612f0f671dc2af428e57b7fa4f821ac",
+      "compression": "gzip"
+    }
+  ],
+  "github_actions_queried_or_awaited": false
+}

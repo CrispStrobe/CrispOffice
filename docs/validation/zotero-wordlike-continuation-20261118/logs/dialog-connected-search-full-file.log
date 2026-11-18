@@ -1,0 +1,51 @@
+00:00 +0: loading /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart
+00:00 +0: citation editing searches connected Zotero without leaving the editor
+00:04 +1: refresh batches 50 sources and duplicate citations into one undo
+00:06 +2: refresh batches 51 sources and duplicate citations into one undo
+00:07 +3: refresh batches 101 sources and duplicate citations into one undo
+00:09 +4: refresh batches 1000 sources and duplicate citations into one undo
+00:13 +5: refresh isolates identical keys across libraries; incomplete=false
+00:13 +6: refresh isolates identical keys across libraries; incomplete=true
+00:14 +7: refresh chunks each library without combining matching keys
+00:16 +8: later same-library batch missing CSL keeps all citations
+00:17 +9: later same-library batch server error keeps all citations
+00:18 +10: successful batch backoff stops refresh without partial changes
+00:20 +11: closing during the second batch stops further refresh requests
+00:21 +12: stale target after the second batch stops the third request
+00:23 +13: refresh refuses 1001 distinct sources before any request
+00:26 +14: missing CSL in a later library refuses all staged updates
+00:26 +15: changed edit target stops refresh before the next library
+00:27 +16: unsynced refresh keeps URI aliases and unknown citation data
+00:28 +17: wrong desktop profile with the same item key cannot refresh
+00:29 +18: online operations reject local-only references before a request
+00:30 +19: online refresh can use a numeric alias while retaining old local URI
+00:30 +20: different local profiles are not combined through the same route
+00:31 +21: unsynced single-source preview verifies identity: mismatch false
+00:31 +22: unsynced single-source preview verifies identity: mismatch true
+00:32 +23: unsynced selected export verifies sources before copying reference data
+00:32 +24: changed profile cannot copy another source under a selected item key
+00:33 +25: unsynced bibliography verifies selection and requires review before insertion
+00:33 +26: reviewed bibliography keeps rich runs through save and undo
+00:34 +27: bibliography review offers an explicit editable plain result
+00:34 +28: cancelling rich bibliography review keeps history unchanged
+00:35 +29: a changed caret rejects a reviewed rich bibliography
+00:35 +30: a changed revision rejects a reviewed rich bibliography
+00:36 +31: rich review and format limitation fit a narrow viewport
+00:36 +32: unchanged imported citation keeps its rich cache and native formatting metadata
+00:36 +33: older desktop cannot render an unverified aggregate bibliography
+00:37 +34: local source without CSL or identity is not refetched by a bare key
+00:37 +35: desktop account source inserts without using the saved cloud key
+00:37 +36: desktop unsynced source inserts without using the saved cloud key
+00:38 +37: desktop citation-key source inserts without using the saved cloud key
+00:39 +38: switching sources makes no requests and preserves the cloud credential
+00:39 +39: a host without desktop transport offers only the supported source
+00:39 +40: desktop connection and errors fit a 320 by 640 viewport
+00:39 +41: offline CSL import inserts source metadata and can be undone
+00:40 +42: cancelling the citation composer leaves document and history unchanged
+00:40 +43: a changed caret while the composer is open blocks stale insertion
+00:41 +44: a changed revision while the composer is open blocks stale insertion
+00:41 +45: mock Web API connection, pagination and search keep the key outside the document
+00:42 +46: unchecking Remember removes the saved key immediately without connecting
+00:42 +47: imported bibliography customizations cannot be overwritten by basic update
+00:43 +48: dialog, offline import and composer fit a 320 by 640 viewport
+00:44 +49: All tests passed!

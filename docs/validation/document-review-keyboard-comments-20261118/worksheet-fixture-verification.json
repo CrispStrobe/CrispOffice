@@ -1,0 +1,77 @@
+{
+  "recorded_at": "2026-11-18T17:15:08.858984+00:00",
+  "scope": "Repair the existing Studio worksheet-navigation test setup so the synthetic invalid edit enters the guarded editor input bridge.",
+  "baseline_commit": "ec28480130786cb923d0447ee92a1d3de19f35c0",
+  "baseline_tracked_tree_clean": true,
+  "baseline_test_sha256": "5dcb70b8ec6d14802ebc676f782377331010a0cf714ac2541c6a3c585843039a",
+  "repaired_test": "packages/quds_office_editor/example/test/studio_sheet_navigation_test.dart",
+  "repaired_test_sha256": "91e8098243192ee4595ff285de5fdae80438f51934e0a91e52aed9bf3f120bc7",
+  "baseline_reproduction": {
+    "case": "studio worksheet tab keeps a rejected draft available",
+    "command": "flutter test --no-pub test/studio_sheet_navigation_test.dart --plain-name 'studio worksheet tab keeps a rejected draft available' --reporter expanded",
+    "working_directory": "packages/quds_office_editor/example",
+    "result": "failed at the existing toast assertion (line191)",
+    "log": "checks/worksheet-baseline-repro.log.gz"
+  },
+  "current_reproduction": {
+    "result": "same existing toast assertion failed before fixture repair",
+    "log": "checks/worksheet-current-repro.log.gz"
+  },
+  "diagnostic": {
+    "probe": "worksheet_fixture_probe.dart",
+    "probe_sha256": "299a60b75e1ca31ff978504858729f7317e32bb1ee72cf41cceb471ab40d2955",
+    "baseline_log": "checks/worksheet-baseline-probe.log.gz",
+    "current_log": "checks/worksheet-current-probe.log.gz",
+    "baseline_and_current_before_tab": {
+      "draft": "5",
+      "editing": true,
+      "active_sheet": 0,
+      "validation": null,
+      "primary_focus_debug_label": null
+    },
+    "baseline_and_current_after_tab": {
+      "draft": "Name",
+      "editing": false,
+      "active_sheet": 1,
+      "validation": null,
+      "primary_focus_debug_label": null
+    }
+  },
+  "cause": "The fixture sends updateEditingValue immediately after switching to Excel, before the embedded editor owns primary focus. Its existing input guard drops the synthetic invalid update, leaving the valid value5; navigating therefore succeeds and correctly produces no validation toast. This occurs in both baseline and current source.",
+  "repair": "Request focus on the real QudsSheetEditor, pump focus delivery, and assert primary focus in the Studio fixture. Assert the invalid draft exists before clicking the worksheet tab. All original toast, draft retention, active sheet, accepted-value and content revision assertions remain unchanged.",
+  "product_changes": false,
+  "validation": {
+    "command": "flutter test --no-pub test/studio_sheet_navigation_test.dart --reporter expanded",
+    "working_directory": "packages/quds_office_editor/example",
+    "passed": 8,
+    "failed": 0,
+    "skipped": 0,
+    "exit_code": 0,
+    "log": "checks/worksheet-fixed-suite.log",
+    "strict_analysis": "No issues found",
+    "analysis_log": "checks/worksheet-fixture-analysis.log"
+  },
+  "runtime": "Pinned local Flutter3.47.8 / Dart3.13.7; baseline dependencies resolved offline using the same pinned lock/cache.",
+  "compressed_original_logs": {
+    "checks/worksheet-baseline-probe.log": {
+      "saved_path": "checks/worksheet-baseline-probe.log.gz",
+      "sha256": "51930c99ee6857cb51f2566b22d9cb302dfc59aae4fcc775bb5ea9f2c7df7fb3",
+      "uncompressed_sha256": "b0a476fe099005345b414798a46741725084f11e6c49327346cf1b200c64a903"
+    },
+    "checks/worksheet-baseline-repro.log": {
+      "saved_path": "checks/worksheet-baseline-repro.log.gz",
+      "sha256": "5e0ccea94d9855af3e5cb4d3033912df3a5b6da2b54ce927098f315162aef7ca",
+      "uncompressed_sha256": "4bf57b86e32c62718891a9ff6ba3379268022bcf2e1b21ccfb52d675def62972"
+    },
+    "checks/worksheet-current-probe.log": {
+      "saved_path": "checks/worksheet-current-probe.log.gz",
+      "sha256": "51930c99ee6857cb51f2566b22d9cb302dfc59aae4fcc775bb5ea9f2c7df7fb3",
+      "uncompressed_sha256": "b0a476fe099005345b414798a46741725084f11e6c49327346cf1b200c64a903"
+    },
+    "checks/worksheet-current-repro.log": {
+      "saved_path": "checks/worksheet-current-repro.log.gz",
+      "sha256": "d93f6af95f62a520005678de7926aaa9543ae55f4a8bf332b4fab8a063547162",
+      "uncompressed_sha256": "399882c6b5f6c099620a248b1f7ccbfc353d332928ba8804cdca714935bafebf"
+    }
+  }
+}

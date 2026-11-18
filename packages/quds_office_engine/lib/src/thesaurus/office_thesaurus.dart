@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:crypto/crypto.dart';
@@ -640,9 +641,7 @@ final class OfficeThesaurusService {
       return await future;
     } finally {
       if (identical(_pendingShards[cacheKey], future)) {
-        // This map removal returns the future that was already awaited above.
-        // ignore: unawaited_futures
-        _pendingShards.remove(cacheKey);
+        unawaited(_pendingShards.remove(cacheKey));
       }
     }
   }

@@ -39,6 +39,11 @@ EDITOR_TESTS = [
     'word_proofing_session_test.dart',
 ]
 
+INCOMING_ZOTERO_TESTS = [
+    'word_zotero_stored_details_test.dart',
+    'word_zotero_stored_details_dialog_test.dart',
+]
+
 # These unchanged frozen grammar fixtures register the same input/expected
 # row twice. Preserve their executions and disclose the eight repetitions.
 LEGACY_DUPLICATE_NAMES = {
@@ -150,8 +155,9 @@ def parse_events(path, cwd, selected):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--cohort', choices=('engine', 'editor'), required=True)
+    parser.add_argument('--cohort', choices=('engine', 'editor', 'incoming-zotero'), required=True)
     parser.add_argument('--repo', type=Path, required=True)
+    parser.add_argument('--source-commit', default='HEAD')
     parser.add_argument('--workspace', type=Path, required=True)
     parser.add_argument('--runtime', type=Path, required=True)
     parser.add_argument('--output', type=Path, required=True)
@@ -176,7 +182,8 @@ def main():
                    '--reporter', 'json', '--concurrency', '2'] + [str(workspace / path) for path in selected]
     else:
         cwd = workspace / 'packages/quds_office_editor'
-        selected = ['packages/quds_office_editor/test/' + name for name in EDITOR_TESTS]
+        names = EDITOR_TESTS if args.cohort == 'editor' else INCOMING_ZOTERO_TESTS
+        selected = ['packages/quds_office_editor/test/' + name for name in names]
         command = [str(sdk / 'bin/flutter'), 'test', '--no-pub', '--reporter', 'json', '--concurrency', '2']
         command += [str(workspace / path) for path in selected]
 
@@ -184,7 +191,10 @@ def main():
     relative_inputs = set(selected) | {'pubspec.yaml', 'analysis_options.yaml'}
     for member in members:
         relative_inputs.add(member + '/pubspec.yaml')
-        for folder in ('lib', 'assets'):
+        for name in ('analysis_options.yaml', 'dart_test.yaml'):
+            if (repo / member / name).is_file():
+                relative_inputs.add(member + '/' + name)
+        for folder in ('lib', 'assets', 'fonts'):
             relative_inputs.update(str(path.relative_to(repo)) for path in (repo / member / folder).rglob('*') if path.is_file())
     relative_inputs = sorted(relative_inputs)
 
@@ -213,11 +223,11 @@ def main():
         return {str(path): record(path) for path in sorted(dependency_paths | runtime_paths)}
 
     lock = None
-    if args.cohort == 'editor':
+    if args.cohort != 'engine':
         lock = (runtime / 'flutter-cli.lock').open('a')
         print('Acquiring shared local Flutter CLI lock.', flush=True)
         fcntl.flock(lock.fileno(), fcntl.LOCK_EX)
-    head = subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=repo, text=True).strip()
+    head = subprocess.check_output(['git', 'rev-parse', args.source_commit], cwd=repo, text=True).strip()
     before, environment_before = source_snapshot(), environment_snapshot()
     write_json(out / 'source-before.json', before)
     write_json(out / 'environment-before.json', environment_before)
@@ -227,7 +237,9 @@ def main():
         'command': command, 'cwd': str(cwd), 'selected_files': selected,
         'source_input_count': len(before), 'environment_input_count': len(environment_before),
         'runner': record(Path(__file__)), 'package_count': len(packages),
-        'scope': 'Local genuine Dart/Flutter regression tests; native spelling uses controlled channel responses.',
+        'scope': ('Local genuine Flutter checks for the two incoming Zotero stored-details suites; controlled catalog and clipboard responses.'
+                  if args.cohort == 'incoming-zotero' else
+                  'Local genuine Dart/Flutter regression tests; native spelling uses controlled channel responses.'),
     }
     write_json(out / 'run.json', run)
     started = time.monotonic()

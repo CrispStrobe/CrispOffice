@@ -1,0 +1,31 @@
+{
+  "recorded_at_utc": "2026-11-18T18:30:03.448966+00:00",
+  "observation": "One final bounded Zotero branch and PR-head refresh, following the full 379-ref observation. No later external heads polled.",
+  "previous_observed_head": "86b9c03c272baec7277d2f8fb548711a73fe9aee",
+  "target_sha": "6c993f7406037ba462c6aea32e7e6afeebd28c03",
+  "previous_head_is_ancestor": true,
+  "fetched_refs": {
+    "refs/remotes/origin/codex/zotero-wordlike-20261118": "6c993f7406037ba462c6aea32e7e6afeebd28c03",
+    "refs/remotes/pull/168": "6c993f7406037ba462c6aea32e7e6afeebd28c03"
+  },
+  "repository": "CrispStrobe/quds_office_suite",
+  "full_inventory_record": "final-frontier.json",
+  "full_inventory_observations": [
+    {
+      "scope": "fork_heads_and_pull_heads",
+      "observation_completed_at_utc": "2026-11-18T18:13:33.856523+00:00",
+      "sha256": "bff674deaa5b18809c2aad47ce21e3aec3364e0a769ddea893f43ab76f51d272",
+      "line_count": 375
+    },
+    {
+      "scope": "upstream_heads",
+      "observation_completed_at_utc": "2026-11-18T18:13:33.932522+00:00",
+      "sha256": "77e7e8cc2b1515cdb809f70b12b9fff6422cb256a068d33ccce0d5ff827b1eb6",
+      "line_count": 4
+    }
+  ],
+  "previous_observed_head_is_ancestor": true,
+  "final_incoming_parent": "6c993f7406037ba462c6aea32e7e6afeebd28c03",
+  "later_remote_heads_polled": false,
+  "github_actions": "No Actions or commit-status endpoints queried; no CI waiting."
+}

@@ -1,0 +1,47 @@
+{
+  "recorded_at_utc": "2026-11-18T18:23:08.593239+00:00",
+  "snapshot_kind": "Local remote-tracking refs populated by the bounded fork/upstream/PR refresh before final validation; not a claim about future changes.",
+  "initial_inventory": "incoming.json",
+  "counts": {
+    "fork_branches": 207,
+    "pull_request_heads": 168,
+    "upstream_branches": 4
+  },
+  "changed_refs_since_initial_snapshot": [
+    {
+      "ref": "origin/codex/document-review-20261118",
+      "previous": "97c7ddae9514c6afa9286cd25f7339e92988cee9",
+      "current": "a77d67d04dfe4e1d61bc3dae5c96d5d9d3a4f1f4",
+      "disposition": "ancestor_of_final_source"
+    },
+    {
+      "ref": "origin/codex/zotero-wordlike-20261118",
+      "previous": "8677c59b8dc295baef7befc5f39726b1bdc41112",
+      "current": "d82d25cc1c89a9a8923601090796f797bcda763f",
+      "disposition": "ancestor_of_final_source"
+    },
+    {
+      "ref": "origin/pr/162",
+      "previous": "97c7ddae9514c6afa9286cd25f7339e92988cee9",
+      "current": "a77d67d04dfe4e1d61bc3dae5c96d5d9d3a4f1f4",
+      "disposition": "ancestor_of_final_source"
+    },
+    {
+      "ref": "origin/pr/168",
+      "previous": "b2597485b923003f01c1bd69e02d0c62a6943514",
+      "current": "04415170e86180aa3921ebb41cfc38d5a9e7b7fb",
+      "disposition": "ancestor_of_final_source"
+    }
+  ],
+  "removed_refs_since_initial_snapshot": [],
+  "review_head": "a77d67d04dfe4e1d61bc3dae5c96d5d9d3a4f1f4",
+  "merge_checkpoint": "86b9c03c272baec7277d2f8fb548711a73fe9aee",
+  "review_changes_since_reconciliation": "Inline comment suggestions and text-level proofing controls; five implementation Dart files, three test Dart files and evidence. No engine, dependency or Zotero implementation files changed in the incoming-only delta.",
+  "incoming_only_delta": [
+    "a6058fc538ede9448354a84a46a857c63891a3d4",
+    "a77d67d04dfe4e1d61bc3dae5c96d5d9d3a4f1f4"
+  ],
+  "original_historical_equivalence_checks": "incoming.json#historical_equivalence_checks",
+  "final_implementation_commit": "d82d25cc1c89a9a8923601090796f797bcda763f",
+  "github_actions_used": false
+}

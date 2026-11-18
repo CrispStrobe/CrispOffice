@@ -1,8 +1,9 @@
 {
   "schema": "quds.spelling_resume.status.v1",
-  "status": "local_final_audit_in_progress",
-  "source_commit": "fb1fd4dc3edda824c3e043c035dbfad1f0fe0869",
-  "spelling_checkpoint": "f482b06fc47545c8b03124c30ea78f54e8e4b9e5",
+  "status": "final_source_tests_passed_closeout_in_progress",
+  "source_commit": "04be224b4a7f469476416ee86dc780cb6a1c0990",
+  "source_tree": "9604adf680f86e566ad634f72cba2b19d0340691",
+  "updated_at_utc": "2026-11-18T16:54:30.435161+00:00",
   "regressions": {
     "test_files": 44,
     "passed_registrations": 1303,
@@ -12,14 +13,18 @@
     "failures": 0,
     "skips": 0
   },
-  "incoming_refs": 376,
-  "incoming_distinct_heads": 242,
-  "unaccounted_incoming": 0,
+  "incoming_zotero": {
+    "test_files": 2,
+    "passed": 21,
+    "failures": 0,
+    "skips": 0
+  },
   "pending": [
-    "Finalize isolated baseline classification",
-    "Finalize portable/static source-binding audit",
-    "Package final evidence and verify remote readback",
-    "Publish ready spelling PR"
+    "Complete isolated baseline receipt",
+    "Complete portable/static final receipts",
+    "Complete source asset accounting supplement",
+    "Finalize report, seal and remote readback",
+    "Open ready spelling PR"
   ],
   "github_actions_workflows_checks_status_endpoints_used": false
 }

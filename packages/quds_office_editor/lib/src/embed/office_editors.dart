@@ -102,7 +102,7 @@ class OfficeFindNextIntent extends Intent {
   final bool forward;
 }
 
-/// Handles Ctrl+F/H/P, F3, and F7 from Focus.onKeyEvent (Shortcuts is a child).
+/// Handles document shortcuts from Focus.onKeyEvent (Shortcuts is a child).
 bool officeHandleDocumentShortcut(OfficeController controller, KeyEvent event) {
   if (event is! KeyDownEvent && event is! KeyRepeatEvent) {
     return false;
@@ -134,7 +134,16 @@ bool officeHandleDocumentShortcut(OfficeController controller, KeyEvent event) {
     return true;
   }
   if (event.logicalKey == LogicalKeyboardKey.f7) {
-    if (shift && controller is WordEditorController) {
+    if (controller is WordEditorController &&
+        HardwareKeyboard.instance.isAltPressed &&
+        !ctrl) {
+      _stepWritingFinding(controller, shift ? -1 : 1);
+      return true;
+    }
+    if (controller is WordEditorController &&
+        shift &&
+        !ctrl &&
+        !HardwareKeyboard.instance.isAltPressed) {
       controller.requestThesaurus();
       return true;
     }
@@ -167,6 +176,25 @@ bool officeHandleDocumentShortcut(OfficeController controller, KeyEvent event) {
     }
   }
   return false;
+}
+
+void _stepWritingFinding(WordEditorController controller, int delta) {
+  if (controller.input.composing.isValid &&
+      !controller.input.composing.isCollapsed) {
+    return;
+  }
+  controller.openReviewPane();
+  controller.stepProofingIssue(delta);
+}
+
+class _WritingFindingIntent extends Intent {
+  const _WritingFindingIntent(this.delta);
+
+  final int delta;
+}
+
+class _WordContextIntent extends Intent {
+  const _WordContextIntent();
 }
 
 /// Embeddable Word surface with focus, IME, shortcuts, and chrome slots.
@@ -246,7 +274,9 @@ class _QudsWordEditorState extends State<QudsWordEditor>
   late final FocusNode _focus;
   late final bool _ownsFocus;
   late final Ticker _ticker;
+  final GlobalKey _canvasKey = GlobalKey(debugLabel: 'word-document-canvas');
   OverlayEntry? _contextMenu;
+  bool _contextKeyboard = false;
   bool _proofingOpen = false;
   bool _thesaurusOpen = false;
   WordProofingIssue? _contextProofingIssue;
@@ -314,6 +344,7 @@ class _QudsWordEditorState extends State<QudsWordEditor>
     _inputRoute = route;
     _inputRouteWasCurrent = isCurrent;
     if (!routeChanged) return;
+    if (!isCurrent) _dismissContextMenu();
     // A route can cover or reveal Word without changing its primary focus
     // (for example a requestFocus:false dialog). Reconcile the IME after the
     // route update even when no FocusNode notification will arrive.
@@ -456,6 +487,7 @@ class _QudsWordEditorState extends State<QudsWordEditor>
   @override
   /// dispose API.
   void dispose() {
+    _contextKeyboard = false;
     _dismissContextMenu();
     if (identical(_c.input.inputAllowed, _inputGuard)) {
       _c.detachInput();
@@ -477,12 +509,67 @@ class _QudsWordEditorState extends State<QudsWordEditor>
     super.dispose();
   }
 
+  void _restoreContextFocus() {
+    if (!_contextKeyboard) return;
+    _contextKeyboard = false;
+    if (mounted && (_inputRoute?.isCurrent ?? true)) _focus.requestFocus();
+  }
+
   void _dismissContextMenu() {
     _inlineReviewTimer?.cancel();
     OfficeContextMenu.dismiss(_contextMenu);
     _contextMenu = null;
     _contextProofingIssue = null;
     _contextContentRevision = null;
+    _restoreContextFocus();
+  }
+
+  void _showCaretContext() {
+    if (_c.isEditingComment ||
+        (_c.input.composing.isValid && !_c.input.composing.isCollapsed)) {
+      return;
+    }
+    final canvas = _canvasKey.currentContext?.findRenderObject();
+    if (canvas is! RenderWordCanvas) return;
+    var hit = canvas.contextHitForCaret();
+    if (hit == null) return;
+    // A reviewed range ends just after its source. Preserve explicit identity
+    // as well as its offset: findings can overlap and revisions can be adjacent.
+    final selected = _c.selectedProofingIssue;
+    final selectedRevision = _c.selectedRevision;
+    final caret = _c.caret;
+    bool matchesSelection(int start, int end) =>
+        caret.selectionAnchorParagraph == caret.paragraphIndex &&
+        ((caret.selectionAnchor == start && caret.logicalIndex == end) ||
+            (caret.selectionAnchor == end && caret.logicalIndex == start));
+    WordProofingIssue? preferredIssue;
+    WmlRevision? preferredRevision;
+    if (selected != null &&
+        identical(selected.paragraph, hit.paragraph) &&
+        matchesSelection(selected.finding.start, selected.finding.end)) {
+      preferredIssue = selected;
+    }
+    if (selectedRevision != null &&
+        selectedRevision.accepted == null &&
+        identical(
+          WordRevisions.resolveParagraph(_c.document, selectedRevision),
+          hit.paragraph,
+        ) &&
+        matchesSelection(selectedRevision.start, selectedRevision.end)) {
+      preferredRevision = selectedRevision;
+    }
+    final sourceOffset =
+        preferredIssue?.finding.start ?? preferredRevision?.start;
+    if (sourceOffset != null) {
+      hit = canvas.contextHitForCaret(proofingOffset: sourceOffset);
+      if (hit == null) return;
+    }
+    _showWordContext(
+      hit,
+      keyboardNavigation: true,
+      preferredIssue: preferredIssue,
+      preferredRevision: preferredRevision,
+    );
   }
 
   void _showInlineReview(OfficeContextHit hit) {
@@ -532,15 +619,32 @@ class _QudsWordEditorState extends State<QudsWordEditor>
         .firstOrNull;
   }
 
-  void _showWordContext(OfficeContextHit hit, {bool reviewOnly = false}) {
+  void _showWordContext(
+    OfficeContextHit hit, {
+    bool reviewOnly = false,
+    bool keyboardNavigation = false,
+    WordProofingIssue? preferredIssue,
+    WmlRevision? preferredRevision,
+  }) {
     _dismissContextMenu();
     // Capture before the menu steals focus or detaches an active IME.
     final thesaurusCapture = _c.captureThesaurusTarget();
     final issues = hit.paragraph != null && hit.proofingOffset != null
         ? _c.proofing.issuesAt(hit.paragraph!, hit.proofingOffset!)
         : const <WordProofingIssue>[];
-    final issue = issues.firstOrNull;
-    final revision = _revisionAt(hit);
+    final issue = preferredIssue != null && issues.contains(preferredIssue)
+        ? preferredIssue
+        : issues.firstOrNull;
+    final revision =
+        preferredRevision != null &&
+            preferredRevision.accepted == null &&
+            _c.document.revisions.contains(preferredRevision) &&
+            identical(
+              WordRevisions.resolveParagraph(_c.document, preferredRevision),
+              hit.paragraph,
+            )
+        ? preferredRevision
+        : _revisionAt(hit);
     var canResolveRevision = revision != null && _c.config.allowsMutation;
     if (canResolveRevision) {
       try {
@@ -607,11 +711,19 @@ class _QudsWordEditorState extends State<QudsWordEditor>
     ];
     _contextProofingIssue = issue;
     _contextContentRevision = _c.contentRevision;
+    _contextKeyboard = keyboardNavigation;
     _contextMenu = OfficeContextMenu.show(
       context: context,
       globalPosition: hit.globalPosition,
       actions: actions,
       enableFiltering: !reviewOnly,
+      keyboardNavigation: keyboardNavigation,
+      onDismiss: () {
+        _contextMenu = null;
+        _contextProofingIssue = null;
+        _contextContentRevision = null;
+        _restoreContextFocus();
+      },
       onSelect: (String id) {
         _contextMenu = null;
         if (id == 'thesaurus') {
@@ -756,6 +868,16 @@ class _QudsWordEditorState extends State<QudsWordEditor>
       _dismissContextMenu();
       return KeyEventResult.handled;
     }
+    if (event.logicalKey == LogicalKeyboardKey.contextMenu ||
+        (event.logicalKey == LogicalKeyboardKey.f10 &&
+            HardwareKeyboard.instance.isShiftPressed &&
+            !HardwareKeyboard.instance.isControlPressed &&
+            !HardwareKeyboard.instance.isMetaPressed &&
+            !HardwareKeyboard.instance.isAltPressed)) {
+      if (event is KeyDownEvent) _showCaretContext();
+      return KeyEventResult.handled;
+    }
+    if (event.logicalKey == LogicalKeyboardKey.f7) _dismissContextMenu();
     if (officeHandleDocumentShortcut(_c, event)) {
       return KeyEventResult.handled;
     }
@@ -1034,6 +1156,14 @@ class _QudsWordEditorState extends State<QudsWordEditor>
           const OfficeSpellCheckIntent(),
       const SingleActivator(LogicalKeyboardKey.f7, shift: true):
           const OfficeThesaurusIntent(),
+      const SingleActivator(LogicalKeyboardKey.f7, alt: true):
+          const _WritingFindingIntent(1),
+      const SingleActivator(LogicalKeyboardKey.f7, alt: true, shift: true):
+          const _WritingFindingIntent(-1),
+      const SingleActivator(LogicalKeyboardKey.f10, shift: true):
+          const _WordContextIntent(),
+      const SingleActivator(LogicalKeyboardKey.contextMenu):
+          const _WordContextIntent(),
       const SingleActivator(LogicalKeyboardKey.f3):
           const OfficeFindNextIntent(),
       const SingleActivator(LogicalKeyboardKey.f3, shift: true):
@@ -1079,6 +1209,20 @@ class _QudsWordEditorState extends State<QudsWordEditor>
                           child: Actions(
                             actions: <Type, Action<Intent>>{
                               ..._documentActions(_c),
+                              _WritingFindingIntent:
+                                  CallbackAction<_WritingFindingIntent>(
+                                    onInvoke: (intent) {
+                                      _stepWritingFinding(_c, intent.delta);
+                                      return null;
+                                    },
+                                  ),
+                              _WordContextIntent:
+                                  CallbackAction<_WordContextIntent>(
+                                    onInvoke: (_) {
+                                      _showCaretContext();
+                                      return null;
+                                    },
+                                  ),
                               OfficeUndoIntent:
                                   CallbackAction<OfficeUndoIntent>(
                                     onInvoke: (_) {
@@ -1161,6 +1305,7 @@ class _QudsWordEditorState extends State<QudsWordEditor>
                               readOnly: !config.allowsMutation,
                               textField: config.allowsMutation,
                               child: WordCanvas(
+                                key: _canvasKey,
                                 document: _c.document,
                                 proofingFindings:
                                     _c.proofing.findingsByParagraph,

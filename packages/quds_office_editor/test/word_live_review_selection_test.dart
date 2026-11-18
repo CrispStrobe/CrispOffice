@@ -216,6 +216,9 @@ void main() {
         anchor: controller.caret.selectionAnchor,
         anchorParagraph: controller.caret.selectionAnchorParagraph,
       ), selectedCaret);
+      expect(controller.caret.paragraphIndex, 0);
+      expect(controller.caret.selectionAnchor, 0);
+      expect(controller.caret.logicalIndex, 5);
 
       final checked = await controller.checkDocumentProofing();
       final rebound = checked.issues.single;

@@ -395,7 +395,8 @@ void main() {
       controller.proofing.enabled = true;
       await _mount(tester, controller);
       expect(_key('live-proofing-progress'), findsOneWidget);
-      expect(_enabled(tester, 'live-proofing-check'), isFalse);
+      // An explicit full check remains available while background work runs.
+      expect(_enabled(tester, 'live-proofing-check'), isTrue);
       controller.selectAll();
       controller.insertText('Current clean text');
       await _drain(tester);

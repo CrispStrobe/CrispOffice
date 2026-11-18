@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quds_office_editor/src/embed/word_zotero_composer.dart';
 import 'package:quds_office_engine/quds_office_engine.dart';
@@ -93,6 +94,7 @@ Future<_Result> _open(
   ZoteroCitation? existing,
   String? existingCache,
   Future<String> Function(ZoteroCitationItem)? preview,
+  Future<ZoteroPage<ZoteroCitationItem>> Function(String, int)? searchZotero,
   Size size = const Size(1200, 1000),
   double scale = 1,
   TextDirection direction = TextDirection.ltr,
@@ -122,6 +124,7 @@ Future<_Result> _open(
                   existing: existing,
                   existingCache: existingCache,
                   loadStyleSnapshot: preview,
+                  searchZoteroSources: searchZotero,
                 ),
               );
               result.returned = true;
@@ -145,6 +148,435 @@ Future<void> _add(WidgetTester tester, List<int> indexes) async {
 }
 
 void main() {
+  testWidgets(
+    'connected chooser supports keyboard search and selection beyond visible results',
+    (tester) async {
+      final calls = <(String, int)>[];
+      final remote = List.generate(
+        25,
+        (index) => _source('Remote source $index', id: 'remote-$index'),
+      );
+      final result = await _open(
+        tester,
+        items: [_source('Current')],
+        searchZotero: (query, start) async {
+          calls.add((query, start));
+          return ZoteroPage<ZoteroCitationItem>(
+            items: remote,
+            start: start,
+            limit: 25,
+          );
+        },
+      );
+      await _tap(tester, _key('zotero-composer-search-zotero'));
+      final query = tester.widget<TextField>(
+        _key('zotero-connected-source-query'),
+      );
+      expect(query.focusNode!.hasFocus, isTrue);
+      await _enter(tester, 'zotero-connected-source-query', 'Remote');
+      expect(calls, isEmpty);
+      await tester.testTextInput.receiveAction(TextInputAction.search);
+      await tester.pumpAndSettle();
+      expect(calls, [('Remote', 0)]);
+      expect(query.focusNode!.hasFocus, isTrue);
+
+      await tester.sendKeyEvent(LogicalKeyboardKey.arrowDown);
+      await tester.pumpAndSettle();
+      expect(
+        tester
+            .widget<CheckboxListTile>(_key('zotero-connected-source-0'))
+            .focusNode!
+            .hasFocus,
+        isTrue,
+      );
+      await tester.sendKeyEvent(LogicalKeyboardKey.arrowUp);
+      await tester.pumpAndSettle();
+      expect(query.focusNode!.hasFocus, isTrue);
+      await tester.sendKeyEvent(LogicalKeyboardKey.arrowDown);
+      await tester.pumpAndSettle();
+      await tester.sendKeyEvent(LogicalKeyboardKey.space);
+      await tester.pumpAndSettle();
+      expect(
+        tester
+            .widget<CheckboxListTile>(_key('zotero-connected-source-0'))
+            .value,
+        isTrue,
+      );
+
+      for (var index = 1; index < remote.length; index++) {
+        await tester.sendKeyEvent(LogicalKeyboardKey.arrowDown);
+        await tester.pumpAndSettle();
+        expect(
+          tester
+              .widget<CheckboxListTile>(_key('zotero-connected-source-$index'))
+              .focusNode!
+              .hasFocus,
+          isTrue,
+          reason: 'Arrow navigation reaches result $index across lazy rows',
+        );
+      }
+      await tester.sendKeyEvent(LogicalKeyboardKey.enter);
+      await tester.pumpAndSettle();
+      expect(
+        tester
+            .widget<CheckboxListTile>(_key('zotero-connected-source-24'))
+            .value,
+        isTrue,
+      );
+      await tester.sendKeyEvent(LogicalKeyboardKey.arrowDown);
+      await tester.pumpAndSettle();
+      expect(
+        tester
+            .widget<CheckboxListTile>(_key('zotero-connected-source-24'))
+            .focusNode!
+            .hasFocus,
+        isTrue,
+        reason: 'Down at the last result keeps focus inside the result list',
+      );
+      for (var index = remote.length - 2; index >= 0; index--) {
+        await tester.sendKeyEvent(LogicalKeyboardKey.arrowUp);
+        await tester.pumpAndSettle();
+        expect(
+          tester
+              .widget<CheckboxListTile>(_key('zotero-connected-source-$index'))
+              .focusNode!
+              .hasFocus,
+          isTrue,
+          reason: 'Up reaches result $index after its lazy row is rebuilt',
+        );
+      }
+      await tester.sendKeyEvent(LogicalKeyboardKey.arrowUp);
+      await tester.pumpAndSettle();
+      expect(query.focusNode!.hasFocus, isTrue);
+      expect(calls, [('Remote', 0)]);
+      await _tap(tester, _key('zotero-connected-source-add'));
+      await _tap(tester, _key('zotero-composer-apply'));
+      expect(result.citation!.items.map((item) => item.itemData!['title']), [
+        'Current',
+        'Remote source 0',
+        'Remote source 24',
+      ]);
+    },
+  );
+
+  testWidgets(
+    'connected Zotero search is explicit, paged and staged with fresh options',
+    (tester) async {
+      final calls = <(String, int)>[];
+      final first = _source(
+        'First remote',
+        uris: [_firstUri],
+        options: {'locator': '77', 'prefix': 'old'},
+      );
+      final second = _source('Second remote', uris: [_secondUri]);
+      final result = await _open(
+        tester,
+        items: [_source('Current')],
+        searchZotero: (query, start) async {
+          calls.add((query, start));
+          return ZoteroPage<ZoteroCitationItem>(
+            items: start == 0 ? [first] : [second],
+            start: start,
+            limit: 25,
+            nextStart: start == 0 ? 25 : null,
+          );
+        },
+      );
+      await _tap(tester, _key('zotero-composer-search-zotero'));
+      await _enter(tester, 'zotero-connected-source-query', 'Hassan');
+      expect(calls, isEmpty, reason: 'Typing must not contact the library');
+      await _tap(tester, _key('zotero-connected-source-search'));
+      expect(calls, [('Hassan', 0)]);
+      await _tap(tester, _key('zotero-connected-source-0'));
+      await _tap(tester, _key('zotero-connected-source-more'));
+      expect(calls, [('Hassan', 0), ('Hassan', 25)]);
+      await _tap(tester, _key('zotero-connected-source-1'));
+      await _tap(tester, _key('zotero-connected-source-add'));
+      expect(find.text('3 source(s)'), findsOneWidget);
+      await _tap(tester, _key('zotero-composer-apply'));
+
+      final items = result.citation!.items;
+      expect(items.map((item) => item.itemData!['title']), [
+        'Current',
+        'First remote',
+        'Second remote',
+      ]);
+      expect(items[1].uris, first.uris);
+      expect(items[1].locator, isEmpty);
+      expect(items[1].prefix, isEmpty);
+      expect(first.locator, '77');
+    },
+  );
+
+  testWidgets(
+    'connected selection review includes hidden sources and stages removal and order',
+    (tester) async {
+      final calls = <(String, int)>[];
+      final first = _source('First remote', uris: [_firstUri]);
+      final second = _source('Second remote', uris: [_secondUri]);
+      final third = _source('Third remote', uris: [_thirdUri]);
+      final result = await _open(
+        tester,
+        items: [_source('Current')],
+        searchZotero: (query, start) async {
+          calls.add((query, start));
+          return ZoteroPage<ZoteroCitationItem>(
+            items: query == 'other'
+                ? [third]
+                : start == 0
+                ? [first]
+                : [second],
+            start: start,
+            limit: 25,
+            nextStart: query == 'first' && start == 0 ? 25 : null,
+          );
+        },
+      );
+      await _tap(tester, _key('zotero-composer-search-zotero'));
+      await _enter(tester, 'zotero-connected-source-query', 'first');
+      await _tap(tester, _key('zotero-connected-source-search'));
+      await _tap(tester, _key('zotero-connected-source-0'));
+      await _tap(tester, _key('zotero-connected-source-more'));
+      await _tap(tester, _key('zotero-connected-source-1'));
+      await _enter(tester, 'zotero-connected-source-query', 'other');
+      await _tap(tester, _key('zotero-connected-source-search'));
+      await _tap(tester, _key('zotero-connected-source-0'));
+      expect(
+        find.text('1 results loaded · 3 selected · 2 hidden'),
+        findsOneWidget,
+      );
+
+      await _tap(tester, _key('zotero-connected-source-review'));
+      await _tap(tester, _key('zotero-selection-up-$_thirdUri'));
+      await _tap(tester, _key('zotero-selection-remove-$_firstUri'));
+      await _tap(tester, _key('zotero-selection-cancel'));
+      expect(
+        find.text('1 results loaded · 3 selected · 2 hidden'),
+        findsOneWidget,
+      );
+
+      await _tap(tester, _key('zotero-connected-source-review'));
+      expect(find.text('1. First remote'), findsOneWidget);
+      await _tap(tester, _key('zotero-selection-up-$_thirdUri'));
+      await _tap(tester, _key('zotero-selection-remove-$_firstUri'));
+      await _tap(tester, _key('zotero-selection-details-$_secondUri'));
+      expect(find.text('Second remote'), findsOneWidget);
+      await _tap(tester, _key('zotero-stored-details-close'));
+      await _tap(tester, _key('zotero-selection-apply'));
+      expect(
+        find.text('1 results loaded · 2 selected · 1 hidden'),
+        findsOneWidget,
+      );
+      expect(calls, [('first', 0), ('first', 25), ('other', 0)]);
+
+      await _tap(tester, _key('zotero-connected-source-add'));
+      await _tap(tester, _key('zotero-composer-apply'));
+      expect(result.citation!.items.map((item) => item.itemData!['title']), [
+        'Current',
+        'Third remote',
+        'Second remote',
+      ]);
+      expect(result.citation!.items[1].uris, third.uris);
+      expect(result.citation!.items[2].itemData, second.itemData);
+    },
+  );
+
+  testWidgets(
+    'removing hidden connected selections frees capacity and supports an empty selection',
+    (tester) async {
+      final first = _source('First remote', uris: [_firstUri]);
+      final second = _source('Second remote', uris: [_secondUri]);
+      final third = _source('Third remote', uris: [_thirdUri]);
+      await _open(
+        tester,
+        items: List.generate(
+          18,
+          (index) => _source('Current $index', id: index),
+        ),
+        searchZotero: (query, start) async => ZoteroPage<ZoteroCitationItem>(
+          items: query == 'other' ? [third] : [first, second],
+          start: start,
+          limit: 25,
+        ),
+      );
+      await _tap(tester, _key('zotero-composer-search-zotero'));
+      await _enter(tester, 'zotero-connected-source-query', 'first');
+      await _tap(tester, _key('zotero-connected-source-search'));
+      await _tap(tester, _key('zotero-connected-source-0'));
+      await _tap(tester, _key('zotero-connected-source-1'));
+      await _enter(tester, 'zotero-connected-source-query', 'other');
+      await _tap(tester, _key('zotero-connected-source-search'));
+      await _tap(tester, _key('zotero-connected-source-0'));
+      expect(
+        find.text('Select at most 2 additional source(s).'),
+        findsOneWidget,
+      );
+      await _tap(tester, _key('zotero-connected-source-review'));
+      await _tap(tester, _key('zotero-selection-remove-$_firstUri'));
+      await _tap(tester, _key('zotero-selection-apply'));
+      await _tap(tester, _key('zotero-connected-source-0'));
+      expect(
+        find.text('1 results loaded · 2 selected · 1 hidden'),
+        findsOneWidget,
+      );
+      expect(_key('zotero-connected-source-error'), findsNothing);
+
+      await _tap(tester, _key('zotero-connected-source-review'));
+      await _tap(tester, _key('zotero-selection-remove-$_secondUri'));
+      await _tap(tester, _key('zotero-selection-remove-$_thirdUri'));
+      await _tap(tester, _key('zotero-selection-apply'));
+      expect(
+        tester
+            .widget<FilledButton>(_key('zotero-connected-source-add'))
+            .onPressed,
+        isNull,
+      );
+      expect(
+        tester
+            .widget<TextButton>(_key('zotero-connected-source-review'))
+            .onPressed,
+        isNull,
+      );
+      await _tap(tester, _key('zotero-connected-source-cancel'));
+      expect(find.text('18 source(s)'), findsOneWidget);
+    },
+  );
+
+  testWidgets(
+    'failed connected search and cancellation leave the citation untouched',
+    (tester) async {
+      final original = _source('Original');
+      final result = await _open(
+        tester,
+        items: [original],
+        searchZotero: (query, start) async {
+          throw StateError('Connection unavailable');
+        },
+      );
+      await _tap(tester, _key('zotero-composer-search-zotero'));
+      await _enter(tester, 'zotero-connected-source-query', 'title');
+      await _tap(tester, _key('zotero-connected-source-search'));
+      expect(_key('zotero-connected-source-error'), findsOneWidget);
+      await _tap(tester, _key('zotero-connected-source-cancel'));
+      expect(find.text('1 source(s)'), findsOneWidget);
+      await _tap(tester, _key('zotero-composer-cancel'));
+      expect(result.returned, isTrue);
+      expect(result.citation, isNull);
+      expect(original.itemData!['title'], 'Original');
+    },
+  );
+
+  testWidgets(
+    'connected search remains usable in narrow doubled-text RTL layout',
+    (tester) async {
+      final result = await _open(
+        tester,
+        items: [_source('Original')],
+        size: const Size(320, 480),
+        scale: 2,
+        direction: TextDirection.rtl,
+        searchZotero: (query, start) async => ZoteroPage<ZoteroCitationItem>(
+          items: [
+            _source('Arabic and German source', uris: [_firstUri]),
+          ],
+          start: start,
+          limit: 25,
+        ),
+      );
+      await _tap(tester, _key('zotero-composer-search-zotero'));
+      await _enter(tester, 'zotero-connected-source-query', 'Arabic');
+      await _tap(tester, _key('zotero-connected-source-search'));
+      await tester.sendKeyEvent(LogicalKeyboardKey.arrowDown);
+      await tester.pumpAndSettle();
+      await tester.sendKeyEvent(LogicalKeyboardKey.space);
+      await tester.pumpAndSettle();
+      expect(
+        tester
+            .widget<CheckboxListTile>(_key('zotero-connected-source-0'))
+            .value,
+        isTrue,
+      );
+      await _tap(tester, _key('zotero-connected-source-review'));
+      await tester.ensureVisible(_key('zotero-selected-reference-list'));
+      await tester.scrollUntilVisible(
+        _key('zotero-selection-details-$_firstUri'),
+        120,
+        scrollable: find.descendant(
+          of: _key('zotero-selected-reference-list'),
+          matching: find.byType(Scrollable),
+        ),
+      );
+      await _tap(tester, _key('zotero-selection-details-$_firstUri'));
+      await _tap(tester, _key('zotero-stored-details-close'));
+      await _tap(tester, _key('zotero-selection-apply'));
+      await _tap(tester, _key('zotero-connected-source-add'));
+      await _tap(tester, _key('zotero-composer-apply'));
+      expect(result.citation!.items, hasLength(2));
+      expect(tester.takeException(), isNull);
+    },
+  );
+
+  testWidgets(
+    'editing a custom locator requires text review and clears stale RTF',
+    (tester) async {
+      final first = _source(
+        'Citation with a page',
+        options: {'locator': '12', 'label': 'page'},
+      );
+      final existing = _existing([first]);
+      final result = await _open(
+        tester,
+        items: existing.items,
+        existing: existing,
+      );
+      expect(_canApply(tester), isTrue);
+
+      await _tap(tester, _key('zotero-composer-options-0'));
+      await _enter(tester, 'zotero-composer-locator-0', '34');
+      expect(_preview(tester), 'Original custom text');
+      expect(_canApply(tester), isFalse);
+      expect(_key('zotero-composer-text-review-message'), findsOneWidget);
+      expect(existing.items.single.locator, '12');
+
+      await _tap(tester, _key('zotero-composer-confirm-text'));
+      expect(_canApply(tester), isTrue);
+      await _tap(tester, _key('zotero-composer-apply'));
+      expect(result.citation!.items.single.locator, '34');
+      expect(result.citation!.plainCitation, 'Original custom text');
+      expect(result.citation!.formattedCitation, 'Original custom text');
+      expect(result.citation!.properties['unknownProperty'], 'retain');
+      expect(existing.items.single.locator, '12');
+      expect(existing.formattedCitation, isNotNull);
+    },
+  );
+
+  testWidgets(
+    'author options and affixes invalidate custom cache, undoing edits restores it',
+    (tester) async {
+      final first = _source('Citation options', options: {'prefix': 'see'});
+      final existing = _existing([first]);
+      final result = await _open(
+        tester,
+        items: existing.items,
+        existing: existing,
+      );
+      await _tap(tester, _key('zotero-composer-options-0'));
+      await _enter(tester, 'zotero-composer-prefix-0', 'compare');
+      expect(_canApply(tester), isFalse);
+      await _enter(tester, 'zotero-composer-prefix-0', 'see');
+      expect(_canApply(tester), isTrue);
+
+      await _tap(tester, _key('zotero-composer-author-only-0'));
+      expect(_canApply(tester), isFalse);
+      await _tap(tester, _key('zotero-composer-confirm-text'));
+      await _tap(tester, _key('zotero-composer-apply'));
+      expect(result.citation!.items.single.authorOnly, isTrue);
+      expect(result.citation!.items.single.suppressAuthor, isFalse);
+      expect(result.citation!.formattedCitation, 'Original custom text');
+      expect(existing.items.single.authorOnly, isFalse);
+    },
+  );
+
   testWidgets(
     'reordering duplicate IDs keeps edited options on the correct occurrence',
     (tester) async {

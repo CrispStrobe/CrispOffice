@@ -34,12 +34,18 @@ class _ZoteroSelectionExport {
   final ZoteroExportFormat? format;
 }
 
+/// The workspace page to show when opening Zotero references.
+enum WordZoteroTab { library, document, importCslJson }
+
 /// Shared Quds citation workspace. The host supplies its own network transport
 /// and may opt into its existing credential store. [localTransport] explicitly
 /// enables desktop access and must connect directly to localhost without a
 /// remote proxy. It is never used as a fallback for the web transport.
 /// Without a transport, local
 /// CSL import, field editing, and embedded-source export remain available.
+/// An existing field at the caret opens [WordZoteroTab.document] by default.
+/// Hosts can set [initialTab] explicitly, or pass [initialCommand] to open the
+/// Document page and immediately start an explicitly requested desktop action.
 Future<void> showWordZoteroDialog(
   BuildContext context, {
   required WordEditorController controller,
@@ -47,6 +53,8 @@ Future<void> showWordZoteroDialog(
   ZoteroTransport? localTransport,
   ZoteroSession? session,
   Future<void> Function(String? apiKey)? persistApiKey,
+  WordZoteroTab? initialTab,
+  ZoteroCitingCommand? initialCommand,
 }) {
   controller.commitPendingEdits();
   return showDialog<void>(
@@ -57,6 +65,8 @@ Future<void> showWordZoteroDialog(
       localTransport: localTransport,
       session: session ?? ZoteroSession(),
       persistApiKey: persistApiKey,
+      initialTab: initialTab,
+      initialCommand: initialCommand,
     ),
   );
 }
@@ -90,17 +100,23 @@ class _WordZoteroDialog extends StatefulWidget {
     this.localTransport,
     required this.session,
     this.persistApiKey,
+    required this.initialTab,
+    this.initialCommand,
   });
   final WordEditorController controller;
   final ZoteroTransport? transport;
   final ZoteroTransport? localTransport;
   final ZoteroSession session;
   final Future<void> Function(String? apiKey)? persistApiKey;
+  final WordZoteroTab? initialTab;
+  final ZoteroCitingCommand? initialCommand;
   @override
   State<_WordZoteroDialog> createState() => _WordZoteroDialogState();
 }
 
 class _WordZoteroDialogState extends State<_WordZoteroDialog> {
+  late final WordZoteroTab _initialTab;
+  List<WmlZoteroField>? _initialFields;
   late final TextEditingController _key;
   late final TextEditingController _style;
   late final TextEditingController _locale;
@@ -155,6 +171,16 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
   void initState() {
     super.initState();
     _target = _editTarget(_controller);
+    // Share the opening scan with the initial Document page. This keeps a
+    // 1000-citation document to one parse even when choosing the page from the
+    // current caret. Later builds always obtain fresh, short-lived handles.
+    final fields = _initialFields = _controller.zoteroFields;
+    _initialTab = widget.initialCommand != null
+        ? WordZoteroTab.document
+        : widget.initialTab ??
+              (_controller.findZoteroFieldAtCaret(fields: fields) == null
+                  ? WordZoteroTab.library
+                  : WordZoteroTab.document);
     _key = TextEditingController(text: _session.apiKey ?? '');
     _style = TextEditingController(text: _session.style);
     _locale = TextEditingController(text: _session.locale);
@@ -172,6 +198,12 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
         apiKey: _session.apiKey,
         backoffState: _session._onlineBackoff,
       );
+    }
+    final command = widget.initialCommand;
+    if (command != null) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted) _citeWithDesktop(command);
+      });
     }
   }
 
@@ -242,6 +274,48 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
     _target = _editTarget(_controller);
     setState(() => _notice = 'Document updated. You can undo this change.');
   }
+
+  Future<void> _unlinkAll() => _run(() async {
+    _checkTarget();
+    final fields = _controller.zoteroFields;
+    if (fields.isEmpty) return;
+    final citations = fields
+        .where((field) => field.kind == ZoteroFieldKind.citation)
+        .length;
+    final bibliographies = fields.length - citations;
+    final confirmed = await _showReview<bool>(
+      (dialogContext) => AlertDialog(
+        title: const Text('Unlink all Zotero citations?'),
+        scrollable: true,
+        content: SizedBox(
+          width: 480,
+          child: Text(
+            'Convert $citations citation field(s) and $bibliographies bibliography field(s) throughout this document to ordinary text.\n\n'
+            'The visible text, formatting and notes will stay in place. Zotero will no longer be able to update these references. Save a linked copy first if you will need citation updates later.\n\n'
+            'You can undo the complete conversion while this document remains open. If any field cannot be converted safely, the whole document will be kept unchanged.',
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(dialogContext, false),
+            child: const Text('Cancel'),
+          ),
+          FilledButton(
+            key: const ValueKey('zotero-confirm-unlink-all'),
+            onPressed: () => Navigator.pop(dialogContext, true),
+            child: const Text('Unlink all'),
+          ),
+        ],
+      ),
+    );
+    if (!mounted || confirmed != true) return;
+    var count = 0;
+    _write(() => count = _controller.unlinkZoteroFields());
+    setState(
+      () => _notice =
+          '$count Zotero field(s) converted to ordinary text. You can undo the complete conversion.',
+    );
+  });
 
   void _clearLibrary() {
     _catalogGeneration++;
@@ -779,6 +853,9 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
       ]))
         reference.item,
     ];
+    final searchClient = _client;
+    final searchLibrary = _session.library;
+    final offlineSearchIds = <String, String>{};
     final result = await _showReview<ZoteroCitation>(
       (_) => ZoteroCitationComposer(
         items: items,
@@ -786,6 +863,53 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
         existing: field?.citation,
         existingCache: field?.cachedText,
         style: _session.style,
+        searchZoteroSources: searchClient == null || searchLibrary == null
+            ? null
+            : (query, start) async {
+                // Search the connected library, not just the currently viewed
+                // collection. Only usable citable CSL records enter a draft.
+                final page = await searchClient.items(
+                  searchLibrary,
+                  query: query,
+                  start: start,
+                  limit: 25,
+                );
+                final sources = <ZoteroCitationItem>[];
+                for (final item in page.items) {
+                  if (!item.isCitable || item.cslJson == null) continue;
+                  final uri = item.citationUri;
+                  if (uri != null) {
+                    sources.add(
+                      ZoteroCitationItem.fromCsl(
+                        itemData: item.cslJson!,
+                        uris: [uri.toString()],
+                      ),
+                    );
+                  } else {
+                    // Unsynced local sources cannot be identified by their
+                    // API route; retain a fresh standalone CSL snapshot.
+                    final id = offlineSearchIds.putIfAbsent(item.key, () {
+                      final nonce = Random.secure().nextInt(1 << 30);
+                      final time = DateTime.now().microsecondsSinceEpoch;
+                      return 'quds-offline-$time-$nonce';
+                    });
+                    sources.add(
+                      ZoteroCitationItem.fromJson({
+                        'id': id,
+                        'uris': <String>[],
+                        'itemData': {...item.cslJson!, 'id': id},
+                      }),
+                    );
+                  }
+                }
+                return ZoteroPage<ZoteroCitationItem>(
+                  items: sources,
+                  start: page.start,
+                  limit: page.limit,
+                  totalResults: page.totalResults,
+                  nextStart: page.nextStart,
+                );
+              },
         loadStyleSnapshot: _client == null
             ? null
             : (source) async {
@@ -863,9 +987,21 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
               WordZoteroDocumentData.read(_controller.document),
             ) ==
             null;
+    final current = items == null ? _controller.zoteroFieldAtCaret : null;
+    final selectedField =
+        field ??
+        switch (command) {
+          ZoteroCitingCommand.addEditCitation
+              when current?.kind == ZoteroFieldKind.citation =>
+            current,
+          ZoteroCitingCommand.addEditBibliography
+              when current?.kind == ZoteroFieldKind.bibliography =>
+            current,
+          _ => null,
+        };
     final transaction = _controller.beginZoteroTransaction(
       documentId: id,
-      selectedField: field,
+      selectedField: selectedField,
       seedCitation: chooseStyle ? null : seed,
     );
     final cancellation = ZoteroCitingCancellation();
@@ -1410,6 +1546,7 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
           height: max(160, min(760, size.height - 32)),
           child: DefaultTabController(
             length: 3,
+            initialIndex: _initialTab.index,
             child: Column(
               children: [
                 Padding(
@@ -2388,7 +2525,9 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
   };
 
   Widget _documentTab() {
-    final fields = _controller.zoteroFields;
+    final fields = _initialFields ?? _controller.zoteroFields;
+    _initialFields = null;
+    final current = _controller.findZoteroFieldAtCaret(fields: fields);
     // The field list already parsed every citation for this build. Reuse it
     // for action availability instead of rescanning the entire document for
     // each button, including while the Library tab is visible.
@@ -2403,6 +2542,7 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
+                if (current != null) _currentFieldTools(current),
                 if (widget.localTransport != null) _desktopTools(),
                 const Text(
                   'Citation fields retain source data in DOCX. Basic author–year text supports offline work; Zotero-formatted bibliographies use your selected style.',
@@ -2476,6 +2616,14 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
                           ? null
                           : () => _copySources(),
                       child: const Text('Copy embedded CSL JSON'),
+                    ),
+                    OutlinedButton.icon(
+                      key: const ValueKey('zotero-unlink-all'),
+                      onPressed: _busy || !_canEdit || fields.isEmpty
+                          ? null
+                          : _unlinkAll,
+                      icon: const Icon(Icons.link_off),
+                      label: const Text('Unlink all citations…'),
                     ),
                   ],
                 ),
@@ -2620,6 +2768,54 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
       ),
     );
   }
+
+  Widget _currentFieldTools(WmlZoteroField field) => Card(
+    key: const ValueKey('zotero-current-field'),
+    child: Padding(
+      padding: const EdgeInsets.all(12),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            field.kind == ZoteroFieldKind.citation
+                ? 'Citation at the caret'
+                : 'Bibliography at the caret',
+            style: const TextStyle(fontWeight: FontWeight.bold),
+          ),
+          if (field.canEdit) ...[
+            const SizedBox(height: 8),
+            Wrap(
+              spacing: 8,
+              runSpacing: 6,
+              children: [
+                if (widget.localTransport != null)
+                  FilledButton(
+                    key: const ValueKey('zotero-edit-current-native'),
+                    onPressed: _busy || !_canEdit
+                        ? null
+                        : () => _citeWithDesktop(
+                            field.kind == ZoteroFieldKind.citation
+                                ? ZoteroCitingCommand.addEditCitation
+                                : ZoteroCitingCommand.addEditBibliography,
+                            field: field,
+                          ),
+                    child: const Text('Edit current reference in Zotero…'),
+                  ),
+                if (field.citation != null)
+                  OutlinedButton(
+                    key: const ValueKey('zotero-edit-current'),
+                    onPressed: _busy || !_canEdit
+                        ? null
+                        : () => _compose(field.citation!.items, field: field),
+                    child: const Text('Edit current citation…'),
+                  ),
+              ],
+            ),
+          ],
+        ],
+      ),
+    ),
+  );
 
   void _filterImportedReferences({bool clear = false}) {
     setState(() {

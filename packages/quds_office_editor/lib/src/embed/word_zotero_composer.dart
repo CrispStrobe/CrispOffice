@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:quds_office_engine/quds_office_engine.dart';
 
 import 'word_zotero_format.dart';
@@ -18,6 +19,7 @@ class ZoteroCitationComposer extends StatefulWidget {
     this.existing,
     this.existingCache,
     this.loadStyleSnapshot,
+    this.searchZoteroSources,
     this.style = 'apa',
   });
 
@@ -28,6 +30,14 @@ class ZoteroCitationComposer extends StatefulWidget {
 
   /// Formats the current single source, never the list at workspace entry.
   final Future<String> Function(ZoteroCitationItem item)? loadStyleSnapshot;
+
+  /// Searches the currently connected library without changing the workspace
+  /// selection. The caller pins the connection and returns citable CSL data.
+  final Future<ZoteroPage<ZoteroCitationItem>> Function(
+    String query,
+    int start,
+  )?
+  searchZoteroSources;
   final String style;
 
   @override
@@ -59,8 +69,25 @@ class _ZoteroCitationComposerState extends State<ZoteroCitationComposer> {
       _sources.length != widget.items.length ||
       _sources.indexed.any((entry) => entry.$1 != entry.$2.key);
 
+  // A native or custom citation's visible text and formatted cache depend on
+  // the options of each occurrence, not just which sources are present. Keys
+  // identify the original occurrence even after a reorder (IDs may repeat).
+  bool get _sourceOptionsChanged => _sources.any((source) {
+    if (source.key >= widget.items.length) return false;
+    final before = widget.items[source.key];
+    final after = source.item;
+    return before.locator != after.locator ||
+        before.label != after.label ||
+        before.prefix != after.prefix ||
+        before.suffix != after.suffix ||
+        before.suppressAuthor != after.suppressAuthor ||
+        before.authorOnly != after.authorOnly;
+  });
+
+  bool get _citationChanged => _sourceOrderChanged || _sourceOptionsChanged;
+
   bool get _needsTextReview =>
-      !_basic && _sourceOrderChanged && !_customTextReviewed;
+      !_basic && _citationChanged && !_customTextReviewed;
 
   bool get _canApply =>
       !_loading &&
@@ -156,6 +183,26 @@ class _ZoteroCitationComposerState extends State<ZoteroCitationComposer> {
     });
   }
 
+  Future<void> _searchZoteroSources() async {
+    final search = widget.searchZoteroSources;
+    if (_loading || search == null || _sources.length >= 20) return;
+    final result = await showDialog<List<ZoteroCitationItem>>(
+      context: context,
+      builder: (_) => _ConnectedZoteroSourceChooser(
+        search: search,
+        capacity: 20 - _sources.length,
+      ),
+    );
+    if (!mounted || result == null || result.isEmpty) return;
+    setState(() {
+      _sources.addAll([
+        for (final item in result)
+          _ComposerSource(_nextSourceKey++, zoteroReusableCitationItem(item)),
+      ]);
+      _sourcesChanged();
+    });
+  }
+
   Future<void> _showDetails(ZoteroCitationItem item) => showDialog<void>(
     context: context,
     builder: (_) => ZoteroStoredReferenceDetailsDialog(item: item),
@@ -207,7 +254,7 @@ class _ZoteroCitationComposerState extends State<ZoteroCitationComposer> {
       // Keep it only when both the source sequence and visible cache are intact.
       final formattedCitation =
           !_basic &&
-              !_sourceOrderChanged &&
+              !_citationChanged &&
               existing != null &&
               _text.text == (widget.existingCache ?? existing.plainCitation)
           ? existing.formattedCitation
@@ -272,21 +319,39 @@ class _ZoteroCitationComposerState extends State<ZoteroCitationComposer> {
           const SizedBox(height: 8),
           Align(
             alignment: AlignmentDirectional.centerStart,
-            child: OutlinedButton.icon(
-              key: const ValueKey('zotero-composer-add-sources'),
-              onPressed:
-                  _loading || _sources.length >= 20 || _availableSources.isEmpty
-                  ? null
-                  : _addSources,
-              icon: const Icon(Icons.add),
-              label: const Text('Add sources'),
+            child: Wrap(
+              spacing: 8,
+              runSpacing: 8,
+              children: [
+                OutlinedButton.icon(
+                  key: const ValueKey('zotero-composer-add-sources'),
+                  onPressed:
+                      _loading ||
+                          _sources.length >= 20 ||
+                          _availableSources.isEmpty
+                      ? null
+                      : _addSources,
+                  icon: const Icon(Icons.add),
+                  label: const Text('Add stored sources'),
+                ),
+                if (widget.searchZoteroSources != null)
+                  OutlinedButton.icon(
+                    key: const ValueKey('zotero-composer-search-zotero'),
+                    onPressed: _loading || _sources.length >= 20
+                        ? null
+                        : _searchZoteroSources,
+                    icon: const Icon(Icons.search),
+                    label: const Text('Search Zotero…'),
+                  ),
+              ],
             ),
           ),
           if (_sources.length >= 20)
             const Text(
               'Adding sources is limited to 20 per citation. Existing sources stay available to edit, reorder or remove.',
             )
-          else if (_availableSources.isEmpty)
+          else if (_availableSources.isEmpty &&
+              widget.searchZoteroSources == null)
             const Text(
               'To add sources, select library references or load CSL JSON in the workspace first.',
             ),
@@ -360,10 +425,10 @@ class _ZoteroCitationComposerState extends State<ZoteroCitationComposer> {
               border: OutlineInputBorder(),
             ),
           ),
-          if (!_basic && _sourceOrderChanged) ...[
+          if (!_basic && _citationChanged) ...[
             const SizedBox(height: 8),
             const Text(
-              'The sources or their order changed. Edit the visible text or confirm that it matches the current sources before applying.',
+              'Sources, order or citation options changed. Edit the visible text or confirm that it matches the current sources and options before applying. Previous formatted styling will be discarded.',
               key: ValueKey('zotero-composer-text-review-message'),
             ),
             CheckboxListTile(
@@ -732,6 +797,406 @@ class _CitationSourceChooserState extends State<_CitationSourceChooser> {
               : () => Navigator.pop(context, [
                   for (final index in _selected) widget.sources[index],
                 ]),
+          child: Text('Add ${_selected.length} source(s)'),
+        ),
+      ],
+    );
+  }
+}
+
+/// A deliberately detached, query-on-submit source picker. Searching and
+/// paging never alter the citation; only accepting the chosen records does.
+class _ConnectedZoteroSourceChooser extends StatefulWidget {
+  const _ConnectedZoteroSourceChooser({
+    required this.search,
+    required this.capacity,
+  });
+
+  final Future<ZoteroPage<ZoteroCitationItem>> Function(String query, int start)
+  search;
+  final int capacity;
+
+  @override
+  State<_ConnectedZoteroSourceChooser> createState() =>
+      _ConnectedZoteroSourceChooserState();
+}
+
+class _ConnectedZoteroSourceChooserState
+    extends State<_ConnectedZoteroSourceChooser> {
+  final _query = TextEditingController();
+  final _queryFocus = FocusNode();
+  final _scroll = ScrollController();
+  final _selected = <String, ZoteroCitationItem>{};
+  final _resultFocus = <String, ({FocusNode node, GlobalKey anchor})>{};
+  List<ZoteroCitationItem> _results = const [];
+  String _submittedQuery = '';
+  String? _error;
+  int? _nextStart;
+  bool _loading = false;
+  bool _searched = false;
+  int _focusRequest = 0;
+
+  @override
+  void dispose() {
+    _query.dispose();
+    _queryFocus.dispose();
+    _scroll.dispose();
+    for (final focus in _resultFocus.values) {
+      focus.node.dispose();
+    }
+    super.dispose();
+  }
+
+  String _key(ZoteroCitationItem item) {
+    for (final uri in item.uris) {
+      final address = ZoteroSourceAddress.parse(uri);
+      if (address != null) return address.canonicalUri.toString();
+    }
+    // Offline snapshots returned by one connected library use their CSL ID.
+    return 'offline:${item.id}';
+  }
+
+  void _focusQuery() {
+    if (!mounted || ModalRoute.of(context)?.isCurrent != true) return;
+    _focusRequest++;
+    _queryFocus.requestFocus();
+    final queryContext = _queryFocus.context;
+    if (queryContext != null) Scrollable.ensureVisible(queryContext);
+  }
+
+  Future<void> _focusResult(int index) async {
+    if (_loading || index < 0 || index >= _results.length) return;
+    final request = ++_focusRequest;
+    final target = _resultFocus[_key(_results[index])]!;
+    if (_queryFocus.hasFocus && _scroll.hasClients) {
+      _scroll.jumpTo(0);
+    } else {
+      // Restore the current row before moving from it, even after a pointer
+      // scroll. This also lets the next lazy row be built beside that row.
+      final current = _resultFocus.values
+          .where((focus) => focus.node.hasFocus)
+          .firstOrNull;
+      final currentContext = current?.anchor.currentContext;
+      if (currentContext != null) {
+        await Scrollable.ensureVisible(currentContext);
+      }
+    }
+    while (mounted && request == _focusRequest) {
+      await WidgetsBinding.instance.endOfFrame;
+      if (!mounted ||
+          _loading ||
+          request != _focusRequest ||
+          ModalRoute.of(context)?.isCurrent != true) {
+        return;
+      }
+      final targetContext = target.anchor.currentContext;
+      if (targetContext != null && targetContext.mounted) {
+        await Scrollable.ensureVisible(targetContext, alignment: 0.5);
+        if (mounted && request == _focusRequest) target.node.requestFocus();
+        return;
+      }
+      if (!_scroll.hasClients) return;
+      final firstBuilt = _results.indexWhere(
+        (item) => _resultFocus[_key(item)]!.anchor.currentContext != null,
+      );
+      if (firstBuilt < 0) return;
+      final position = _scroll.position;
+      final direction = index < firstBuilt ? -1 : 1;
+      final next = (position.pixels + direction * position.viewportDimension)
+          .clamp(position.minScrollExtent, position.maxScrollExtent);
+      if (next == position.pixels) return;
+      // Results have variable height, especially at enlarged text sizes. Move
+      // by a viewport until the requested adjacent row exists, then reveal it.
+      _scroll.jumpTo(next);
+    }
+  }
+
+  Future<void> _search({bool more = false}) async {
+    if (_loading) return;
+    final query = more ? _submittedQuery : _query.text.trim();
+    final start = more ? _nextStart : 0;
+    if (query.isEmpty || start == null) return;
+    setState(() {
+      _focusRequest++;
+      _loading = true;
+      _error = null;
+    });
+    try {
+      final page = await widget.search(query, start);
+      if (!mounted) return;
+      setState(() {
+        _submittedQuery = query;
+        _searched = true;
+        _nextStart = page.nextStart;
+        final unique = <String, ZoteroCitationItem>{
+          if (more)
+            for (final item in _results) _key(item): item,
+          for (final item in page.items) _key(item): item,
+        };
+        for (final key in _resultFocus.keys.toList()) {
+          if (!unique.containsKey(key)) {
+            _resultFocus.remove(key)!.node.dispose();
+          }
+        }
+        for (final key in unique.keys) {
+          _resultFocus.putIfAbsent(
+            key,
+            () => (node: FocusNode(), anchor: GlobalKey()),
+          );
+        }
+        _results = List.unmodifiable(unique.values);
+      });
+      if (!more && _scroll.hasClients) _scroll.jumpTo(0);
+    } on ZoteroApiException catch (error) {
+      if (mounted) setState(() => _error = error.message);
+    } on FormatException catch (error) {
+      if (mounted) setState(() => _error = error.message);
+    } catch (_) {
+      if (mounted) {
+        setState(
+          () => _error =
+              'Could not search Zotero. Check the connection and try again. '
+              'Your selections are kept.',
+        );
+      }
+    } finally {
+      if (mounted) {
+        setState(() => _loading = false);
+        if (!more) {
+          WidgetsBinding.instance.addPostFrameCallback((_) => _focusQuery());
+        }
+      }
+    }
+  }
+
+  void _select(ZoteroCitationItem item, bool checked) {
+    final key = _key(item);
+    setState(() {
+      if (!checked) {
+        _selected.remove(key);
+        _error = null;
+      } else if (_selected.length >= widget.capacity) {
+        _error = 'Select at most ${widget.capacity} additional source(s).';
+      } else {
+        _selected[key] = item;
+        _error = null;
+      }
+    });
+  }
+
+  Future<void> _reviewSelection() async {
+    if (_loading || _selected.isEmpty) return;
+    final selection = Map<String, ZoteroCitationItem>.of(_selected);
+    final keys = await showDialog<List<String>>(
+      context: context,
+      builder: (_) => ZoteroSelectedReferencesDialog(selection: selection),
+    );
+    if (!mounted || keys == null) return;
+    setState(() {
+      _selected
+        ..clear()
+        ..addAll({for (final key in keys) key: selection[key]!});
+      _error = null;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final visibleKeys = {for (final item in _results) _key(item)};
+    final hidden = _selected.keys.where((key) => !visibleKeys.contains(key));
+    final hiddenCount = hidden.length;
+    return AlertDialog(
+      key: const ValueKey('zotero-connected-source-chooser'),
+      insetPadding: const EdgeInsets.all(16),
+      scrollable: true,
+      title: const Text('Search Zotero library'),
+      content: SizedBox(
+        width: 620,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            const Text(
+              'Search the connected library without leaving this citation. '
+              'Results are staged until you add them; the document stays '
+              'unchanged until you update the citation.',
+            ),
+            const SizedBox(height: 8),
+            CallbackShortcuts(
+              bindings: {
+                if (!_loading && _results.isNotEmpty)
+                  const SingleActivator(LogicalKeyboardKey.arrowDown): () =>
+                      _focusResult(0),
+              },
+              child: TextField(
+                key: const ValueKey('zotero-connected-source-query'),
+                controller: _query,
+                focusNode: _queryFocus,
+                autofocus: true,
+                enabled: !_loading,
+                maxLength: 1024,
+                textInputAction: TextInputAction.search,
+                onChanged: (_) => setState(() {}),
+                onSubmitted: (_) => _search(),
+                decoration: const InputDecoration(
+                  labelText: 'Search titles, creators or years',
+                  prefixIcon: Icon(Icons.search),
+                ),
+              ),
+            ),
+            Align(
+              alignment: AlignmentDirectional.centerEnd,
+              child: FilledButton(
+                key: const ValueKey('zotero-connected-source-search'),
+                onPressed: _loading || _query.text.trim().isEmpty
+                    ? null
+                    : _search,
+                child: Text(_loading ? 'Searching…' : 'Search'),
+              ),
+            ),
+            if (_error != null)
+              Semantics(
+                liveRegion: true,
+                child: Text(
+                  _error!,
+                  key: const ValueKey('zotero-connected-source-error'),
+                  style: TextStyle(color: Theme.of(context).colorScheme.error),
+                ),
+              ),
+            const SizedBox(height: 8),
+            Text(
+              '${_results.length} results loaded · ${_selected.length} selected'
+              '${hiddenCount == 0 ? '' : ' · $hiddenCount hidden'}',
+              key: const ValueKey('zotero-connected-source-count'),
+            ),
+            Align(
+              alignment: AlignmentDirectional.centerStart,
+              child: TextButton.icon(
+                key: const ValueKey('zotero-connected-source-review'),
+                onPressed: _loading || _selected.isEmpty
+                    ? null
+                    : _reviewSelection,
+                icon: const Icon(Icons.checklist),
+                label: const Text('Review selected'),
+              ),
+            ),
+            if (_results.isNotEmpty)
+              Text(
+                'Use the arrow keys to browse results and Enter or Space to select.',
+                style: Theme.of(context).textTheme.bodySmall,
+              ),
+            const SizedBox(height: 6),
+            SizedBox(
+              height: max(
+                120,
+                min(310, MediaQuery.sizeOf(context).height - 310),
+              ),
+              child: _results.isEmpty
+                  ? Center(
+                      child: Text(
+                        !_searched
+                            ? 'Enter a query to search your connected library.'
+                            : 'No citable sources with CSL data were returned.',
+                      ),
+                    )
+                  : ListView.builder(
+                      key: const ValueKey('zotero-connected-source-list'),
+                      controller: _scroll,
+                      itemCount: _results.length,
+                      itemBuilder: (context, index) {
+                        final item = _results[index];
+                        final reference = ZoteroImportedReference(
+                          index: index,
+                          item: item,
+                        );
+                        final focus = _resultFocus[_key(item)]!;
+                        return CallbackShortcuts(
+                          bindings: {
+                            if (!_loading) ...{
+                              const SingleActivator(
+                                LogicalKeyboardKey.arrowDown,
+                              ): () => _focusResult(
+                                min(index + 1, _results.length - 1),
+                              ),
+                              const SingleActivator(
+                                LogicalKeyboardKey.arrowUp,
+                              ): () => index == 0
+                                  ? _focusQuery()
+                                  : _focusResult(index - 1),
+                            },
+                          },
+                          child: Row(
+                            key: focus.anchor,
+                            children: [
+                              Expanded(
+                                child: CheckboxListTile(
+                                  key: ValueKey(
+                                    'zotero-connected-source-$index',
+                                  ),
+                                  focusNode: focus.node,
+                                  value: _selected.containsKey(_key(item)),
+                                  title: Text(
+                                    reference.title,
+                                    maxLines: 2,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                  subtitle: reference.subtitle.isEmpty
+                                      ? null
+                                      : Text(
+                                          reference.subtitle,
+                                          maxLines: 2,
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                  onChanged: _loading
+                                      ? null
+                                      : (value) =>
+                                            _select(item, value ?? false),
+                                ),
+                              ),
+                              IconButton(
+                                key: ValueKey(
+                                  'zotero-connected-source-details-$index',
+                                ),
+                                tooltip: 'Stored reference details',
+                                onPressed: () => showDialog<void>(
+                                  context: context,
+                                  builder: (_) =>
+                                      ZoteroStoredReferenceDetailsDialog(
+                                        item: item,
+                                      ),
+                                ),
+                                icon: const Icon(Icons.info_outline),
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                    ),
+            ),
+            if (_nextStart != null)
+              Align(
+                alignment: AlignmentDirectional.centerEnd,
+                child: TextButton.icon(
+                  key: const ValueKey('zotero-connected-source-more'),
+                  onPressed: _loading ? null : () => _search(more: true),
+                  icon: const Icon(Icons.more_horiz),
+                  label: const Text('Load more'),
+                ),
+              ),
+          ],
+        ),
+      ),
+      actions: [
+        TextButton(
+          key: const ValueKey('zotero-connected-source-cancel'),
+          onPressed: () => Navigator.pop(context),
+          child: const Text('Cancel'),
+        ),
+        FilledButton(
+          key: const ValueKey('zotero-connected-source-add'),
+          onPressed: _loading || _selected.isEmpty
+              ? null
+              : () => Navigator.pop(context, _selected.values.toList()),
           child: Text('Add ${_selected.length} source(s)'),
         ),
       ],

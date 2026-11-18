@@ -1,17 +1,20 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "status": "passed",
-  "qualified_source_commit": "40e92e5222a26db132f8be05126df285b4227a86",
-  "qualified_source_tree": "c654ff6b764a4400558398b4a0007b930d32454d",
+  "qualified_source_commit": "8002b6748deec2be7b7527d2bab8810d8ec54d05",
+  "qualified_source_tree": "7e47f2c26dc20b572895b5dfc02814f89696c1a2",
   "evidence_checkpoint": "The Git commit containing this file; only documentation and evidence change after the qualified source.",
-  "pull_request": "https://github.com/CrispStrobe/quds_office_suite/pull/166",
   "branch": "codex/zotero-citation-workflow-20261118",
+  "review_target": "codex/document-review-20261118",
+  "implementation_pull_request": "https://github.com/CrispStrobe/quds_office_suite/pull/166",
+  "implementation_merge_commit": "40790cb2c8c0ebe8c4a6472f3378fa581abf0b00",
+  "fixed_integrated_review_base": "ecbb1e0bd8129a5c8737496d1877863dd0eea3f2",
   "cohorts": [
     {
       "name": "editor_zotero",
-      "summary": "editor/summary.json",
-      "executed_source_commit": "3668ed92829dfa012ec5b129943a86738ebb7992",
-      "source_inputs_match_qualified_source": true,
+      "summary": "post-merge/zotero-editor/summary.json",
+      "executed_source_commit": "8002b6748deec2be7b7527d2bab8810d8ec54d05",
+      "source_commit_unchanged_during_run": true,
       "suites": 26,
       "passed": 348,
       "failed": 0,
@@ -19,33 +22,33 @@
       "actual_process_exit": 0,
       "source_input_count": 562,
       "strict_targets": 8,
-      "finished_at_utc": "2026-11-18T16:09:14.698421+00:00"
+      "finished_at_utc": "2026-11-18T16:48:22.008759+00:00"
     },
     {
       "name": "incoming_editor_review",
-      "summary": "incoming/editor/summary.json",
-      "executed_source_commit": "40e92e5222a26db132f8be05126df285b4227a86",
-      "source_inputs_match_qualified_source": true,
-      "suites": 18,
-      "passed": 269,
+      "summary": "post-merge/incoming-editor/summary.json",
+      "executed_source_commit": "8002b6748deec2be7b7527d2bab8810d8ec54d05",
+      "source_commit_unchanged_during_run": true,
+      "suites": 20,
+      "passed": 278,
       "failed": 0,
       "skipped": 0,
       "actual_process_exit": 0,
-      "source_input_count": 550,
-      "strict_targets": 7,
-      "finished_at_utc": "2026-11-18T16:30:39.002901+00:00"
+      "source_input_count": 552,
+      "strict_targets": 9,
+      "finished_at_utc": "2026-11-18T16:49:21.582890+00:00"
     }
   ],
   "combined": {
-    "disjoint_suites": 44,
-    "passed": 617,
+    "disjoint_suites": 46,
+    "passed": 626,
     "failed": 0,
     "skipped": 0,
     "error_events": 0,
     "parser_errors": 0,
     "overflow_or_missed_tap_diagnostics": 0,
-    "distinct_strict_targets": 15,
-    "distinct_source_input_paths": 581
+    "distinct_strict_targets": 17,
+    "distinct_source_input_paths": 583
   },
   "new_zotero_regressions_included_once": 49,
   "guards": {
@@ -64,7 +67,7 @@
     "dart": "3.13.7",
     "verified_hosted_archives": 162
   },
-  "incoming_reconciliation": {
+  "original_fixed_incoming_reconciliation": {
     "snapshot_closed_at_utc": "2026-11-18T16:03:14+00:00",
     "snapshot_closed_at_europe_berlin": "2026-11-18T17:03:14+01:00",
     "refs": 377,
@@ -75,13 +78,23 @@
     "report": "reconciliation-final.json",
     "later_concurrent_activity_claimed": false
   },
-  "independent_audit": "qualification-audit.json",
+  "targeted_post_merge_reconciliation": "post-merge/reconciliation.json",
+  "independent_audit": "post-merge/qualification-audit.json",
   "artifact_index": "index.json",
+  "previous_qualification": {
+    "source": "40e92e5222a26db132f8be05126df285b4227a86",
+    "evidence_commit": "82224f2369572b4f249c67ba70d950ef06d45856",
+    "passed": 617,
+    "suites": 44,
+    "independent_audit": "qualification-audit.json",
+    "counted_in_current_total": false
+  },
   "exclusions": [
+    "All pre-merge passing cohorts",
     "All failed full-cohort attempts",
     "All focused development attempts",
     "Historical engine, Studio and spelling results",
-    "Source-review-only activities"
+    "Static preflight and source-review-only activities"
   ],
   "acceptance_scope": "Real Flutter editor/controller qualification with controlled transport and clipboard channels. No new installed-device, live-account, full application-build or Word/LibreOffice interoperability acceptance.",
   "remote_saving": {

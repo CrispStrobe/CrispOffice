@@ -51,12 +51,18 @@ class _WordReviewPaneState extends State<WordReviewPane> {
   late final TextEditingController _author;
   final TextEditingController _changeSearch = TextEditingController();
   final ScrollController _scroll = ScrollController();
+  final FocusNode _keyboardFocus = FocusNode(
+    debugLabel: 'word-review-navigation',
+    skipTraversal: true,
+  );
   _ProofingFilter _filter = _ProofingFilter.all;
   String? _changeAuthor;
   WmlRevisionKind? _changeKind;
   String _changeQuery = '';
   WordComparisonRevisionView _preview = WordComparisonRevisionView.markup;
   String? _notice;
+  bool _textOptionsWereVisible = false;
+  int _textOptionsRequest = -1;
 
   WordEditorController get _c => widget.controller;
   bool get _arabic => _c.config.textDirection == TextDirection.rtl;
@@ -67,6 +73,7 @@ class _WordReviewPaneState extends State<WordReviewPane> {
     super.initState();
     _tab = widget.initialTab;
     _author = TextEditingController(text: _c.revisionAuthor);
+    _textOptionsWereVisible = _c.reviewTextProofingOptionsVisible;
     _scheduleInitialCheck();
   }
 
@@ -82,6 +89,8 @@ class _WordReviewPaneState extends State<WordReviewPane> {
       _changeQuery = '';
       _preview = WordComparisonRevisionView.markup;
       _notice = null;
+      _textOptionsWereVisible = false;
+      _textOptionsRequest = -1;
       _scheduleInitialCheck();
     }
     if (oldWidget.initialTab != widget.initialTab) {
@@ -96,6 +105,7 @@ class _WordReviewPaneState extends State<WordReviewPane> {
     _author.dispose();
     _changeSearch.dispose();
     _scroll.dispose();
+    _keyboardFocus.dispose();
     super.dispose();
   }
 
@@ -164,6 +174,23 @@ class _WordReviewPaneState extends State<WordReviewPane> {
     });
   }
 
+  void _stepWritingFinding(int delta) {
+    if (!(ModalRoute.of(context)?.isCurrent ?? true)) return;
+    if (_c.input.composing.isValid && !_c.input.composing.isCollapsed) return;
+    _setTab(WordReviewPaneTab.proofing);
+    final issues = _c.proofing.summary.issues.where(_matchesFilter).toList();
+    if (issues.isEmpty) return;
+    final selected = _c.selectedProofingIssue;
+    final current = selected == null ? -1 : issues.indexOf(selected);
+    final next = current < 0
+        ? (delta > 0 ? 0 : issues.length - 1)
+        : (current + delta) % issues.length;
+    _selectIssue(issues[next]);
+    // Revealing text normally focuses the canvas. Keep keyboard review in
+    // this pane so the next shortcut still respects its active category filter.
+    _keyboardFocus.requestFocus();
+  }
+
   void _apply(WordProofingIssue issue, String replacement) {
     final applied = _c.applyProofingSuggestion(issue, replacement);
     setState(() {
@@ -213,6 +240,16 @@ class _WordReviewPaneState extends State<WordReviewPane> {
     animation: _c,
     builder: (context, child) {
       final theme = Theme.of(context);
+      final textOptionsVisible = _c.reviewTextProofingOptionsVisible;
+      final request = _c.textProofingOptionsRequest;
+      if (textOptionsVisible &&
+          (!_textOptionsWereVisible || _textOptionsRequest != request)) {
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          if (mounted && _scroll.hasClients) _scroll.jumpTo(0);
+        });
+      }
+      _textOptionsWereVisible = textOptionsVisible;
+      _textOptionsRequest = request;
       return Directionality(
         textDirection: _c.config.textDirection,
         child: Material(
@@ -221,119 +258,137 @@ class _WordReviewPaneState extends State<WordReviewPane> {
           child: CallbackShortcuts(
             bindings: <ShortcutActivator, VoidCallback>{
               const SingleActivator(LogicalKeyboardKey.f7): () {
+                if (!(ModalRoute.of(context)?.isCurrent ?? true)) return;
                 _setTab(WordReviewPaneTab.proofing);
                 unawaited(_check(includeManualProviders: true));
               },
+              const SingleActivator(LogicalKeyboardKey.f7, alt: true): () =>
+                  _stepWritingFinding(1),
+              const SingleActivator(
+                LogicalKeyboardKey.f7,
+                alt: true,
+                shift: true,
+              ): () =>
+                  _stepWritingFinding(-1),
               if (widget.onClose != null)
-                const SingleActivator(LogicalKeyboardKey.escape):
-                    widget.onClose!,
+                const SingleActivator(LogicalKeyboardKey.escape): () {
+                  if (ModalRoute.of(context)?.isCurrent ?? true) {
+                    widget.onClose!();
+                  }
+                },
             },
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsetsDirectional.only(start: 12, end: 4),
-                  child: Row(
-                    children: <Widget>[
-                      Expanded(
-                        child: Text(
-                          _s('Review', 'مراجعة'),
-                          style: theme.textTheme.titleMedium,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                      IconButton(
-                        key: const ValueKey<String>('live-review-thesaurus'),
-                        tooltip: _s(
-                          'Thesaurus (Shift+F7)',
-                          'قاموس المرادفات (Shift+F7)',
-                        ),
-                        onPressed: widget.controller.requestThesaurus,
-                        icon: const Icon(Icons.menu_book_outlined),
-                      ),
-                      if (widget.onMoreOptions != null)
-                        IconButton(
-                          key: const ValueKey<String>('live-review-more'),
-                          tooltip: _s(
-                            'More review options',
-                            'خيارات مراجعة إضافية',
-                          ),
-                          onPressed: widget.onMoreOptions,
-                          icon: const Icon(Icons.more_horiz),
-                        ),
-                      if (widget.onClose != null)
-                        IconButton(
-                          key: const ValueKey<String>('live-review-close'),
-                          tooltip: _s(
-                            'Close review pane',
-                            'إغلاق لوحة المراجعة',
-                          ),
-                          onPressed: widget.onClose,
-                          icon: const Icon(Icons.close),
-                        ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8),
-                  child: Row(
-                    children: <Widget>[
-                      for (final tab in WordReviewPaneTab.values)
-                        Expanded(
-                          child: TextButton(
-                            key: ValueKey<String>(
-                              'live-review-${tab.name}-tab',
-                            ),
-                            style: TextButton.styleFrom(
-                              backgroundColor: _tab == tab
-                                  ? theme.colorScheme.secondaryContainer
-                                  : null,
-                            ),
-                            onPressed: () => _setTab(tab),
-                            child: Text(
-                              tab == WordReviewPaneTab.proofing
-                                  ? _s('Writing', 'الكتابة')
-                                  : _s('Changes', 'التغييرات'),
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                        ),
-                    ],
-                  ),
-                ),
-                const Divider(height: 8),
-                if (_notice != null)
+            child: Focus(
+              focusNode: _keyboardFocus,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: <Widget>[
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(12, 0, 12, 8),
-                    child: Semantics(
-                      liveRegion: true,
-                      child: Tooltip(
-                        message: _notice!,
-                        child: Text(
-                          _notice!,
-                          key: const ValueKey<String>('live-review-notice'),
-                          style: theme.textTheme.bodySmall,
-                          maxLines: 3,
-                          overflow: TextOverflow.ellipsis,
+                    padding: const EdgeInsetsDirectional.only(
+                      start: 12,
+                      end: 4,
+                    ),
+                    child: Row(
+                      children: <Widget>[
+                        Expanded(
+                          child: Text(
+                            _s('Review', 'مراجعة'),
+                            style: theme.textTheme.titleMedium,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                        IconButton(
+                          key: const ValueKey<String>('live-review-thesaurus'),
+                          tooltip: _s(
+                            'Thesaurus (Shift+F7)',
+                            'قاموس المرادفات (Shift+F7)',
+                          ),
+                          onPressed: widget.controller.requestThesaurus,
+                          icon: const Icon(Icons.menu_book_outlined),
+                        ),
+                        if (widget.onMoreOptions != null)
+                          IconButton(
+                            key: const ValueKey<String>('live-review-more'),
+                            tooltip: _s(
+                              'More review options',
+                              'خيارات مراجعة إضافية',
+                            ),
+                            onPressed: widget.onMoreOptions,
+                            icon: const Icon(Icons.more_horiz),
+                          ),
+                        if (widget.onClose != null)
+                          IconButton(
+                            key: const ValueKey<String>('live-review-close'),
+                            tooltip: _s(
+                              'Close review pane',
+                              'إغلاق لوحة المراجعة',
+                            ),
+                            onPressed: widget.onClose,
+                            icon: const Icon(Icons.close),
+                          ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    child: Row(
+                      children: <Widget>[
+                        for (final tab in WordReviewPaneTab.values)
+                          Expanded(
+                            child: TextButton(
+                              key: ValueKey<String>(
+                                'live-review-${tab.name}-tab',
+                              ),
+                              style: TextButton.styleFrom(
+                                backgroundColor: _tab == tab
+                                    ? theme.colorScheme.secondaryContainer
+                                    : null,
+                              ),
+                              onPressed: () => _setTab(tab),
+                              child: Text(
+                                tab == WordReviewPaneTab.proofing
+                                    ? _s('Writing', 'الكتابة')
+                                    : _s('Changes', 'التغييرات'),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          ),
+                      ],
+                    ),
+                  ),
+                  const Divider(height: 8),
+                  if (_notice != null)
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(12, 0, 12, 8),
+                      child: Semantics(
+                        liveRegion: true,
+                        child: Tooltip(
+                          message: _notice!,
+                          child: Text(
+                            _notice!,
+                            key: const ValueKey<String>('live-review-notice'),
+                            style: theme.textTheme.bodySmall,
+                            maxLines: 3,
+                            overflow: TextOverflow.ellipsis,
+                          ),
                         ),
                       ),
                     ),
+                  Expanded(
+                    child: ListView(
+                      key: ValueKey<String>('live-review-${_tab.name}-content'),
+                      controller: _scroll,
+                      padding: const EdgeInsets.fromLTRB(12, 4, 12, 16),
+                      children: <Widget>[
+                        if (_tab == WordReviewPaneTab.proofing)
+                          ..._proofingContent()
+                        else
+                          ..._changesContent(),
+                      ],
+                    ),
                   ),
-                Expanded(
-                  child: ListView(
-                    key: ValueKey<String>('live-review-${_tab.name}-content'),
-                    controller: _scroll,
-                    padding: const EdgeInsets.fromLTRB(12, 4, 12, 16),
-                    children: <Widget>[
-                      if (_tab == WordReviewPaneTab.proofing)
-                        ..._proofingContent()
-                      else
-                        ..._changesContent(),
-                    ],
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
@@ -358,6 +413,7 @@ class _WordReviewPaneState extends State<WordReviewPane> {
             '${result.providerId}: ${result.message ?? result.status.name}',
     };
     return <Widget>[
+      if (_c.reviewTextProofingOptionsVisible) _textProofingOptions(),
       SwitchListTile.adaptive(
         key: const ValueKey<String>('live-proofing-background'),
         contentPadding: EdgeInsets.zero,
@@ -395,9 +451,7 @@ class _WordReviewPaneState extends State<WordReviewPane> {
         children: <Widget>[
           OutlinedButton.icon(
             key: const ValueKey<String>('live-proofing-check'),
-            onPressed: summary.checking
-                ? null
-                : () => unawaited(_check(includeManualProviders: true)),
+            onPressed: () => unawaited(_check(includeManualProviders: true)),
             icon: const Icon(Icons.spellcheck, size: 18),
             label: Text(_s('Check document', 'تدقيق المستند')),
           ),
@@ -424,7 +478,7 @@ class _WordReviewPaneState extends State<WordReviewPane> {
               child: Text(session.language),
             ),
         ],
-        onChanged: !_c.config.allowsMutation
+        onChanged: !_c.canApplyProofingSuggestions
             ? null
             : (value) {
                 if (value == null) return;
@@ -432,6 +486,7 @@ class _WordReviewPaneState extends State<WordReviewPane> {
                 _refreshAfterChoice();
               },
       ),
+      if (!_c.reviewTextProofingOptionsVisible) _textProofingOptions(),
       const Divider(height: 20),
       DropdownButtonFormField<_ProofingFilter>(
         key: const ValueKey<String>('live-proofing-filter'),
@@ -558,6 +613,165 @@ class _WordReviewPaneState extends State<WordReviewPane> {
         ),
       _historyActions(),
     ];
+  }
+
+  Widget _textProofingOptions() {
+    final target = _c.textProofingTarget;
+    final expanded = _c.reviewTextProofingOptionsVisible;
+    final language = target?.language;
+    final languageLabel = target == null
+        ? _s('Select document text', 'حدد نص المستند')
+        : language == null
+        ? _s('Mixed languages', 'لغات متعددة')
+        : _languages[language] ?? language;
+    final scope = target?.isSelection == true
+        ? _s('Selected text', 'النص المحدد')
+        : _s('Current paragraph', 'الفقرة الحالية');
+    final editable = target?.canEdit ?? false;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: <Widget>[
+        ListTile(
+          key: const ValueKey<String>('live-proofing-text-options'),
+          contentPadding: EdgeInsets.zero,
+          dense: true,
+          title: Text(_s('Language and checking', 'اللغة والتدقيق')),
+          subtitle: Text(
+            target == null ? languageLabel : '$scope · $languageLabel',
+            key: const ValueKey<String>('live-proofing-text-summary'),
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+          ),
+          trailing: Icon(expanded ? Icons.expand_less : Icons.expand_more),
+          onTap: () => _c.setTextProofingOptionsVisible(!expanded),
+        ),
+        if (expanded) ...<Widget>[
+          Text(
+            target?.isSelection == true
+                ? _s('Applies to the selected text.', 'يُطبّق على النص المحدد.')
+                : _s(
+                    'Applies to the current paragraph.',
+                    'يُطبّق على الفقرة الحالية.',
+                  ),
+            key: const ValueKey<String>('live-proofing-text-scope'),
+            style: Theme.of(context).textTheme.bodySmall,
+          ),
+          const SizedBox(height: 8),
+          _changeDropdown<String>(
+            key: const ValueKey<String>('live-proofing-text-language'),
+            label: target?.isSelection == true
+                ? _s('Selected text language', 'لغة النص المحدد')
+                : _s('Paragraph language', 'لغة الفقرة'),
+            value: language,
+            hint: languageLabel,
+            items: <DropdownMenuItem<String>>[
+              for (final entry in _languages.entries)
+                DropdownMenuItem(
+                  value: entry.key,
+                  child: Text(
+                    entry.value,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+              if (language != null && !_languages.containsKey(language))
+                DropdownMenuItem(value: language, child: Text(language)),
+            ],
+            onChanged: !editable
+                ? null
+                : (value) {
+                    if (value != null) _setTextLanguage(target!, value);
+                  },
+          ),
+          Align(
+            alignment: AlignmentDirectional.centerStart,
+            child: TextButton(
+              key: const ValueKey<String>('live-proofing-text-inherit'),
+              onPressed: editable
+                  ? () => _setTextLanguage(target!, null)
+                  : null,
+              child: Text(
+                _s('Use inherited language', 'استخدام اللغة الموروثة'),
+              ),
+            ),
+          ),
+          CheckboxListTile(
+            key: const ValueKey<String>('live-proofing-text-enabled'),
+            contentPadding: EdgeInsets.zero,
+            controlAffinity: ListTileControlAffinity.leading,
+            dense: true,
+            tristate: true,
+            value: target?.checkingEnabled,
+            title: Text(_s('Check this text', 'تدقيق هذا النص')),
+            subtitle: Text(
+              target?.checkingEnabled == null && target != null
+                  ? _s(
+                      'Mixed checking settings. Turn on to check all selected text.',
+                      'إعدادات تدقيق مختلطة. فعّل لتدقيق كل النص المحدد.',
+                    )
+                  : _s(
+                      'Spelling, grammar, and writing suggestions',
+                      'الإملاء والقواعد واقتراحات الكتابة',
+                    ),
+            ),
+            onChanged: !editable
+                ? null
+                : (_) =>
+                      _setTextChecking(target!, target.checkingEnabled != true),
+          ),
+          if (target == null || !editable)
+            Text(
+              target?.unavailableReason ??
+                  _s(
+                    'Select editable document text to change these settings.',
+                    'حدد نصاً قابلاً للتحرير لتغيير هذه الإعدادات.',
+                  ),
+              key: const ValueKey<String>('live-proofing-text-unavailable'),
+              style: Theme.of(context).textTheme.bodySmall,
+            ),
+          const SizedBox(height: 4),
+        ],
+      ],
+    );
+  }
+
+  void _setTextLanguage(WordTextProofingTarget target, String? language) {
+    if (!(ModalRoute.of(context)?.isCurrent ?? true)) return;
+    final revision = _c.contentRevision;
+    _afterTextProofingChange(
+      _c.setTextProofingLanguage(language, target: target),
+      changedFrom: revision,
+    );
+  }
+
+  void _setTextChecking(WordTextProofingTarget target, bool enabled) {
+    if (!(ModalRoute.of(context)?.isCurrent ?? true)) return;
+    final revision = _c.contentRevision;
+    _afterTextProofingChange(
+      _c.setTextProofingEnabled(enabled, target: target),
+      changedFrom: revision,
+    );
+  }
+
+  void _afterTextProofingChange(bool applied, {required int changedFrom}) {
+    final changed = _c.contentRevision != changedFrom;
+    setState(() {
+      _notice = applied
+          ? changed
+                ? _s(
+                    'Text checking settings updated. Undo is available.',
+                    'تم تحديث إعدادات تدقيق النص. يمكنك التراجع.',
+                  )
+                : _s(
+                    'Text checking settings are already up to date.',
+                    'إعدادات تدقيق النص محدّثة بالفعل.',
+                  )
+          : _s(
+              'The text or selection changed, or editing is unavailable. Choose the text again.',
+              'تغير النص أو التحديد، أو أن التحرير غير متاح. حدد النص مجدداً.',
+            );
+    });
+    if (applied && changed) _refreshAfterChoice();
   }
 
   List<({String language, String word})> _ignoredWords(
@@ -1062,7 +1276,7 @@ class _WordReviewPaneState extends State<WordReviewPane> {
   Widget _changeDropdown<T>({
     required Key key,
     required String label,
-    required T value,
+    required T? value,
     String? hint,
     required List<DropdownMenuItem<T>> items,
     required ValueChanged<T?>? onChanged,
