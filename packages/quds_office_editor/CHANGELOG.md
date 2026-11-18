@@ -15,6 +15,14 @@ All notable changes to `quds_office_editor` are documented here.
 - Add document-language selection and restoring ignored findings directly to the
   Writing pane, preserving personal dictionary entries and run languages.
   F7 works from pane controls as well as the document.
+- Search and reuse cited Zotero document references offline, with stored details,
+  occurrence counts, shared selection review and fresh citation options. Preserve
+  mixed-library identities, explicit URI aliases and distinct offline snapshots.
+- Add, remove and reorder sources while composing or editing a Zotero citation.
+  Keep per-occurrence options attached and require review of custom text after
+  source-list changes. Preview the current single source and preserve drafts on
+  cancellation or preview failure.
+
 - Add live writing checks by default in the shared Word editor, preserving an
   explicit off preference. Show debounce, active, paused and incomplete check
   status alongside a count of pending tracked changes.

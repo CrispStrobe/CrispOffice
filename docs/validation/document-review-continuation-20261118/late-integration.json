@@ -1,0 +1,322 @@
+{
+  "recorded_at_utc": "2026-11-18T16:15:58.145Z",
+  "repository": "CrispStrobe/quds_office_suite",
+  "purpose": "Merge the newly observed main documentation and PR166 Zotero work while retaining current live-review source and regressions.",
+  "base_review_sha": "3a36ae46ea99ceaa1c212ae5cfe08bc501bb0229",
+  "intended_commit_parents": [
+    "3a36ae46ea99ceaa1c212ae5cfe08bc501bb0229",
+    "556c55c0ef312eda2cca11600021d293a81ab44b",
+    "3668ed92829dfa012ec5b129943a86738ebb7992"
+  ],
+  "observed_frontier": {
+    "counts": {
+      "fork_branches": 205,
+      "pull_request_heads": 166,
+      "upstream_branches": 4
+    },
+    "compared_to": "docs/validation/document-review-continuation-20261118/incoming-audit.json",
+    "unchanged": {
+      "fork_branches": 202,
+      "pull_request_heads": 164,
+      "upstream_branches": 4
+    },
+    "branch_delta": [
+      {
+        "branch": "codex/document-review-20261118",
+        "sha": "3a36ae46ea99ceaa1c212ae5cfe08bc501bb0229",
+        "previous_sha": "7c85d83fef2f0b98523653f0d9e5068e9143c7d6"
+      },
+      {
+        "branch": "codex/zotero-citation-workflow-20261118",
+        "sha": "3668ed92829dfa012ec5b129943a86738ebb7992",
+        "previous_sha": null
+      },
+      {
+        "branch": "main",
+        "sha": "556c55c0ef312eda2cca11600021d293a81ab44b",
+        "previous_sha": "f383c826205e321eda3ed3bdbcd584e9a2d4da14"
+      }
+    ],
+    "pr_head_delta": [
+      {
+        "number": 166,
+        "head": "3668ed92829dfa012ec5b129943a86738ebb7992",
+        "branch": "codex/zotero-citation-workflow-20261118",
+        "previous_sha": null
+      },
+      {
+        "number": 162,
+        "head": "3a36ae46ea99ceaa1c212ae5cfe08bc501bb0229",
+        "branch": "codex/document-review-20261118",
+        "previous_sha": "7c85d83fef2f0b98523653f0d9e5068e9143c7d6"
+      }
+    ],
+    "removed_fork_branches": [],
+    "removed_pr_numbers": [],
+    "upstream_heads": [
+      {
+        "branch": "ci/flutter-workspace",
+        "sha": "aca2f66941832bd0b19b436baeab1656a1b7de98"
+      },
+      {
+        "branch": "cursor/class-certificates-2db8",
+        "sha": "f45099688e7a3f67a1302efdb442830d052f2240"
+      },
+      {
+        "branch": "cursor/cloud-agent-1790580069020-0rk1h",
+        "sha": "9930be8df44ffe117fb22778c514eea0ee73ce21"
+      },
+      {
+        "branch": "main",
+        "sha": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba"
+      }
+    ],
+    "new_pr": {
+      "number": 166,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/166",
+      "base": "codex/document-review-20261118",
+      "head": "3668ed92829dfa012ec5b129943a86738ebb7992"
+    }
+  },
+  "incoming_unique_commits": {
+    "main": [
+      "60be935c98fae9035e717699cacc1c9a9096c47f",
+      "556c55c0ef312eda2cca11600021d293a81ab44b"
+    ],
+    "zotero": [
+      "60be935c98fae9035e717699cacc1c9a9096c47f",
+      "ee88b8f809e6640ab6218584215c6f1b0f8f2bd2",
+      "d05985334e3507923a259231b117539e6dc95078",
+      "3668ed92829dfa012ec5b129943a86738ebb7992"
+    ]
+  },
+  "actual_merge": {
+    "implementation": "Local Git merge (ort) on a fresh full-history, blob-filtered checkout; sparse worktree covers docs and editor.",
+    "order": [
+      "Merge exact main 556c55c0 into exact review 3a36ae46 with --no-commit --no-ff, then create a local-only merge commit.",
+      "Merge exact Zotero 3668ed92 into that local main integration with --no-commit --no-ff; resolve the three reported content conflicts."
+    ],
+    "main_merge_base": "f383c826205e321eda3ed3bdbcd584e9a2d4da14",
+    "main_merge_conflicts": [],
+    "main_merge_tree": "89c4bfae4c65c0ee60630bd3ed646372ae1e8f2f",
+    "local_only_main_merge_commit": "2bd8851725983f166903391950608f55cd695262",
+    "zotero_merge_bases": [
+      "58058b1b750b3a71d0602af897eaa790400e878b",
+      "60be935c98fae9035e717699cacc1c9a9096c47f"
+    ],
+    "conflicts": [
+      {
+        "path": "packages/quds_office_editor/CHANGELOG.md",
+        "resolution": "Retain all current live-review bullets and all incoming Zotero composer/source-reuse bullets.",
+        "resolved_blob": "3671ee422cc65ad69c477702b214b8d38e5d7f18"
+      },
+      {
+        "path": "packages/quds_office_editor/lib/src/embed/word_review_pane.dart",
+        "resolution": "Retain exact 3a36ae46 source; incoming changes only normalize formatting of earlier 58058b1b source."
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_live_review_changes_test.dart",
+        "resolution": "Retain exact 3a36ae46 regressions; incoming changes only normalize formatting of earlier 58058b1b tests."
+      }
+    ],
+    "formatting_verification": {
+      "method": "Compare prior/incoming tokens preserving quoted strings, excluding whitespace/comments and formatter-normalized trailing commas.",
+      "files": [
+        {
+          "path": "packages/quds_office_editor/lib/src/embed/word_review_pane.dart",
+          "incoming_tokens_equal_prior_source_ignoring_formatter_trailing_commas": true
+        },
+        {
+          "path": "packages/quds_office_editor/test/word_incremental_proofing_test.dart",
+          "incoming_tokens_equal_prior_source_ignoring_formatter_trailing_commas": true
+        },
+        {
+          "path": "packages/quds_office_editor/test/word_live_review_changes_test.dart",
+          "incoming_tokens_equal_prior_source_ignoring_formatter_trailing_commas": true
+        }
+      ]
+    },
+    "merged_source_tree_before_this_audit": "9a61f4e252c6fd52ae9d8b1d2564806d98c39697",
+    "delta_file_count_before_this_audit": 24,
+    "remaining_unmerged_entries": []
+  },
+  "verification": {
+    "current_review_files_exactly_preserved": {
+      "packages/quds_office_editor/lib/src/embed/word_review_pane.dart": true,
+      "packages/quds_office_editor/test/word_incremental_proofing_test.dart": true,
+      "packages/quds_office_editor/test/word_live_review_changes_test.dart": true,
+      "packages/quds_office_editor/lib/src/proofing/word_proofing.dart": true,
+      "packages/quds_office_editor/test/word_proofing_capture_cache_test.dart": true
+    },
+    "main_docs_match_latest_556c55c0": {
+      "docs/PROOFING.md": true,
+      "docs/ROADMAP.md": true,
+      "docs/roadmaps/thesaurus/README.md": true,
+      "docs/roadmaps/thesaurus/hf-pipeline-review.md": true,
+      "docs/roadmaps/thesaurus/licensing-and-notices.md": true
+    },
+    "whitespace_check": {
+      "command": "git diff --cached --check",
+      "exit_code": 0,
+      "output": ""
+    },
+    "final_observed_heads": {
+      "review": "3a36ae46ea99ceaa1c212ae5cfe08bc501bb0229",
+      "main": "556c55c0ef312eda2cca11600021d293a81ab44b",
+      "zotero": "3668ed92829dfa012ec5b129943a86738ebb7992"
+    },
+    "incoming_runtime_tests": "Pending root's integrated local validation; no application test claim is made by this merge audit."
+  },
+  "github_actions": {
+    "queried": false,
+    "waited": false,
+    "dispatched": false
+  },
+  "remote_actions_by_audit_agent": "Only create_blob for the resolved changelog and this audit. No remote commit, ref, PR metadata or Actions mutation.",
+  "delta_tree_elements_before_this_audit": [
+    {
+      "path": "docs/PROOFING.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2a3eb28988bb6bd7468130e1602f8a4a2dae3bd0"
+    },
+    {
+      "path": "docs/ROADMAP.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5544299352be5f0bd8cb8ea04a0656285bbfb963"
+    },
+    {
+      "path": "docs/roadmaps/thesaurus/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "039cd122afe45c4b918cd58648a2ec9345e1b962"
+    },
+    {
+      "path": "docs/roadmaps/thesaurus/hf-pipeline-review.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "868bc927aed34d5424f38eafd15ddb34cecd6872"
+    },
+    {
+      "path": "docs/roadmaps/thesaurus/licensing-and-notices.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d0a731684f828241d545a29eb676c305303eed16"
+    },
+    {
+      "path": "docs/validation/zotero-citation-workflow-20261118/editor/run_editor_zotero.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c5f62d39b406d31ca72833d0c1529a1129377970"
+    },
+    {
+      "path": "docs/validation/zotero-citation-workflow-20261118/reconciliation-initial.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "36cf6b4fa8cbb165bc5b5d9fa208658d55b06580"
+    },
+    {
+      "path": "docs/validation/zotero-citation-workflow-20261118/reconciliation-initial.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6ccf6bbe5ec823d932413cf08b3a9ac3e5784cde"
+    },
+    {
+      "path": "docs/validation/zotero-citation-workflow-20261118/reconciliation-prevalidation.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "128c5b7468ef7a0ce488bf89dd7896ac731512a4"
+    },
+    {
+      "path": "docs/validation/zotero-citation-workflow-20261118/reconciliation-prevalidation.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "eae459990c1a60c33c41d8128923292c2ea7e05f"
+    },
+    {
+      "path": "docs/validation/zotero-citation-workflow-20261118/runtime/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "91f8cc5795293fa862af10ea9ffe2dbaff48e44d"
+    },
+    {
+      "path": "docs/validation/zotero-citation-workflow-20261118/runtime/index.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a09af0dd97bb04fb5966a850a91cd83b48074a3f"
+    },
+    {
+      "path": "docs/validation/zotero-citation-workflow-20261118/runtime/runtime-ready.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3e081251de54ac9395c31c2c4892a76b2e791a0e"
+    },
+    {
+      "path": "docs/validation/zotero-citation-workflow-20261118/runtime/setup.tar.gz",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cfc6ec2172f14835b55f8adda00fbbdf9ad4dd52"
+    },
+    {
+      "path": "docs/zotero-support.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a01539c7edd1569f441e6f2b3aa8b8a588f37f7f"
+    },
+    {
+      "path": "packages/quds_office_editor/CHANGELOG.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3671ee422cc65ad69c477702b214b8d38e5d7f18"
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/word_zotero_composer.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e2bef50ede447905e03ea227f09f55422fb61d0e"
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "edd33ae91b690142d267d1aad9c0ff341c995968"
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/word_zotero_document_sources.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cb9b243e2aea05ddc345361fb512953f98c0c97e"
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/word_zotero_sources.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b24fb0903e8ec9210adb34d84204886a7971905a"
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_zotero_composer_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "99132becb1970bf5917dbda93af525797290bdcb"
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_zotero_document_reuse_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "78b2560278e7703ec1dc30e2c2552ea79b42d076"
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_zotero_document_source_picker_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5ecdc6a986e5d6fcc4c9dd79729dd9f56e19b549"
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_zotero_document_sources_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c5ac5ef6e4c239d22a73fb991b348d13dc43b908"
+    }
+  ]
+}
