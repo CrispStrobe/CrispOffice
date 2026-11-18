@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_utc": "2026-11-18T06:16:54.528484+00:00",
+  "updated_utc": "2026-11-18T06:18:13.212783+00:00",
   "state": "native-sweep-in-progress",
   "branch": "codex/office-local-qualification-20261118",
   "resumed_remote_head": "c9d86b3e543f8ffa7c8114d31c57922f134188ef",
@@ -18,7 +18,9 @@
   "native_sweep": {
     "state": "running",
     "completed_arms": [
-      1
+      1,
+      2,
+      4
     ],
     "full_sweep_acceptance": false,
     "final_guard_acceptance": false,
@@ -34,8 +36,33 @@
           "gguf_at_most_160_mib": true,
           "note": "GGUF size excludes sidecars; target hardware remains unqualified."
         }
+      },
+      {
+        "threads": 2,
+        "exit_code": 0,
+        "p95_ms": 66.157,
+        "rss_mib": 274.0078125,
+        "engineering_budgets": {
+          "p95_at_most_500_ms": true,
+          "peak_rss_at_most_768_mib": true,
+          "gguf_at_most_160_mib": true,
+          "note": "GGUF size excludes sidecars; target hardware remains unqualified."
+        }
+      },
+      {
+        "threads": 4,
+        "exit_code": 0,
+        "p95_ms": 52.068,
+        "rss_mib": 274.99609375,
+        "engineering_budgets": {
+          "p95_at_most_500_ms": true,
+          "peak_rss_at_most_768_mib": true,
+          "gguf_at_most_160_mib": true,
+          "note": "GGUF size excludes sidecars; target hardware remains unqualified."
+        }
       }
-    ]
+    ],
+    "independent_partial_review": "passed-32303-checks-zero-findings-through-2-threads"
   },
   "final_acceptance": false,
   "actions_workflow_check_status_endpoint_calls": 0,

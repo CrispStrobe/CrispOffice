@@ -13,7 +13,7 @@ args = parser.parse_args()
 root = Path(__file__).resolve().parent.parent
 run = args.run.resolve()
 output = args.output.resolve()
-stage = output.with_suffix('').with_suffix('')
+stage = root / 'continuation/native-partial-staging' / output.name.removesuffix('.tar.xz')
 stage.mkdir(parents=True, exist_ok=False)
 receipt_path = run / 'result/serial-receipt.json'
 raw = receipt_path.read_bytes()
