@@ -367,7 +367,24 @@ abstract class MailCodec {
       return null;
     }
     try {
-      return codec.decode(data);
+      final decoded = codec.decode(data);
+      if (codec is! convert.Utf8Codec) {
+        // The selected enough_convert single-byte tables use '?' for
+        // unassigned slots. BaseDecoder does not reject those slots even when
+        // allowInvalid is false. Do not present that replacement as exact
+        // decoding; this check adds no second decoded-byte allocation.
+        for (var i = 0; i < data.length; i++) {
+          if (data[i] > 0x7f &&
+              (decoded.codeUnitAt(i) == 0x3f ||
+                  decoded.codeUnitAt(i) == 0xfffd)) {
+            MimeDiagnostics.report(MimeDiagnosticCode.malformedCharacterData);
+
+            return null;
+          }
+        }
+      }
+
+      return decoded;
     } on FormatException {
       MimeDiagnostics.report(MimeDiagnosticCode.malformedCharacterData);
 

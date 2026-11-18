@@ -307,12 +307,12 @@
     {
       "package": "enough_mail",
       "path": "lib/src/codecs/date_codec.dart",
-      "sha256": "0651b8018d0cafb009ede9b01362780d3d681e8ea6aaf17f932bfb457d6a45ac"
+      "sha256": "3ad1929ee49f3f6aee7d895ace39a50d205b669d728df3d3c264b5c3a792e2a9"
     },
     {
       "package": "enough_mail",
       "path": "lib/src/codecs/mail_codec.dart",
-      "sha256": "2c12603e1fa1ad9ca1754a0a9654369e5c371a6624bb9c76dd7c228bb4cd8649"
+      "sha256": "35f0ed3646441a54613729207af58f45c2ad2172a31601a33ccf0ffbec82b635"
     },
     {
       "package": "enough_mail",

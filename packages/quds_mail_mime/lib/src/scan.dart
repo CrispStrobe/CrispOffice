@@ -237,7 +237,13 @@ extension _RangeScanner on _Reader {
     while (true) {
       final start = line.indexOf('=?', offset);
       if (start == -1) return valid;
-      final end = line.indexOf('?=', start + 2);
+      final charsetEnd = line.indexOf('?', start + 2);
+      final encodingEnd = charsetEnd < 0
+          ? -1
+          : line.indexOf('?', charsetEnd + 1);
+      // A Q payload may start with =XX: its preceding '?' is a separator,
+      // not the '?=' closing delimiter. Search only after both separators.
+      final end = encodingEnd < 0 ? -1 : line.indexOf('?=', encodingEnd + 1);
       if (end == -1) {
         note(
           MailDiagnosticCode.malformedEncoding,

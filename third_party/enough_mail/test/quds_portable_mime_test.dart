@@ -97,6 +97,65 @@ void main() {
     }
   });
 
+  test('undefined single-byte charset slots never become question marks', () {
+    for (final entry in <String, List<int>>{
+      'windows-1252': [0x81, 0x8d, 0x8f, 0x90, 0x9d],
+      'cp-1253': [0x81, 0xff],
+      'iso-8859-3': [0xa5],
+    }.entries) {
+      for (final byte in entry.value) {
+        final codes = <MimeDiagnosticCode>[];
+        final result = MimeDiagnostics.run(
+          () => MailCodec.decodeCharsetStrict(
+            Uint8List.fromList([byte]),
+            entry.key,
+          ),
+          onDiagnostic: codes.add,
+        );
+        expect(result, isNull, reason: '${entry.key}: $byte');
+        expect(codes, [MimeDiagnosticCode.malformedCharacterData]);
+      }
+    }
+    expect(
+      MailCodec.decodeCharsetStrict(Uint8List.fromList([0x3f]), 'windows-1252'),
+      '?',
+    );
+  });
+
+  test('dates reject calendar, clock, zone and weekday normalization', () {
+    for (final date in [
+      'Tue, 31 Feb 2026 12:00:00 +0000',
+      'Wed, 18 Nov 2026 99:00:00 +0000',
+      'Wed, 18 Nov 2026 12:99:00 +0000',
+      'Wed, 18 Nov 2026 12:00:99 +0000',
+      'Wed, 18 Nov 2026 12:00:00 +0060',
+      'Wed, 18 Nov 2026 12:00:00 +9900',
+      'Wed, 18 Nov 2026 12:00:00 12345',
+      'Wed, 18 Nov 2026 12:00:00 --100',
+      'Wed, 18 Nov 2026 12:00:00 ++100',
+      'Wed, 18 Nov 2026 12:00:00 +00-1',
+      'Wed, 18 Nov 2026 12:00:00:00 +0000',
+      'Tue, 18 Nov 2026 12:00:00 +0000',
+      'Sat, 31 Dec 2016 23:59:60 +0000',
+      '18 Nov -1 12:00:00 +0000',
+      '18 Nov 0x7EA 12:00:00 +0000',
+      '0x12 Nov 2026 12:00:00 +0000',
+      '18 Nov 2026 +1:00:00 +0000',
+    ]) {
+      final codes = <MimeDiagnosticCode>[];
+      final result = MimeDiagnostics.run(
+        () => DateCodec.decodeDate(date),
+        onDiagnostic: codes.add,
+      );
+      expect(result, isNull, reason: date);
+      expect(codes, contains(MimeDiagnosticCode.invalidDate), reason: date);
+    }
+    expect(
+      DateCodec.decodeDate('Thu, 29 Feb 2024 12:00:00 +0130')!.toUtc(),
+      DateTime.utc(2024, 2, 29, 10, 30),
+    );
+  });
+
   test('RFC 2231 preserves characters split across encoded sections', () {
     final codes = <MimeDiagnosticCode>[];
     final header = MimeDiagnostics.run(

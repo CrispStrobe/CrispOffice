@@ -5,6 +5,8 @@ class DateCodec {
   // do not allow instantiation
   DateCodec._();
 
+  static final _decimalDigits = RegExp(r'^[0-9]+$');
+
   static const _weekdays = <String>[
     'Mon',
     'Tue',
@@ -435,9 +437,10 @@ Date and time values occur in several header fields.  This section
       return null;
     }
     var reminder = dateText;
+    String? weekday;
     final splitIndex = reminder.indexOf(',');
     if (splitIndex != -1) {
-      // remove weekday
+      weekday = reminder.substring(0, splitIndex).trim().toLowerCase();
       reminder = reminder.substring(splitIndex + 1).trim();
     }
     var spaceIndex = reminder.indexOf(' ');
@@ -462,6 +465,11 @@ Date and time values occur in several header fields.  This section
     spaceIndex = reminder.indexOf(' ');
     var timeText = reminder;
     var zoneText = '+0000';
+    if (spaceIndex == -1) {
+      // Preserve the legacy API's UTC fallback but make its uncertainty
+      // observable. Quds suppresses the projected timestamp on this code.
+      MimeDiagnostics.report(MimeDiagnosticCode.invalidDate);
+    }
     if (spaceIndex != -1) {
       timeText = reminder.substring(0, spaceIndex);
       if (reminder.length > spaceIndex) {
@@ -473,7 +481,10 @@ Date and time values occur in several header fields.  This section
       }
     }
     final dayOfMonth = int.tryParse(dayText);
-    if (dayOfMonth == null || dayOfMonth < 1 || dayOfMonth > 31) {
+    if (!_decimalDigits.hasMatch(dayText) ||
+        dayOfMonth == null ||
+        dayOfMonth < 1 ||
+        dayOfMonth > 31) {
       MimeDiagnostics.report(MimeDiagnosticCode.invalidDate);
 
       return null;
@@ -490,13 +501,30 @@ Date and time values occur in several header fields.  This section
       // 00-49 -> 20xx, 50-99 -> 19xx, three digits -> 1900 + value
       year += yearText.length == 2 ? (year < 50 ? 2000 : 1900) : 1900;
     }
-    if (year == null || year < 0 || year > 9999) {
+    if (!_decimalDigits.hasMatch(yearText) ||
+        yearText.length < 2 ||
+        year == null ||
+        year < 0 ||
+        year > 9999) {
+      MimeDiagnostics.report(MimeDiagnosticCode.invalidDate);
+
+      return null;
+    }
+    final leapYear = year % 4 == 0 && (year % 100 != 0 || year % 400 == 0);
+    final daysInMonth = month == 2
+        ? (leapYear ? 29 : 28)
+        : const <int>[4, 6, 9, 11].contains(month)
+        ? 30
+        : 31;
+    if (dayOfMonth > daysInMonth) {
       MimeDiagnostics.report(MimeDiagnosticCode.invalidDate);
 
       return null;
     }
     final timeParts = timeText.split(':');
-    if (timeParts.length < 2) {
+    if (timeParts.length < 2 ||
+        timeParts.length > 3 ||
+        timeParts.any((part) => !_decimalDigits.hasMatch(part))) {
       MimeDiagnostics.report(MimeDiagnosticCode.invalidDate);
 
       return null;
@@ -507,7 +535,17 @@ Date and time values occur in several header fields.  This section
     if (timeParts.length > 2) {
       second = int.tryParse(timeParts[2]);
     }
-    if (hour == null || minute == null || second == null) {
+    if (hour == null ||
+        minute == null ||
+        second == null ||
+        hour < 0 ||
+        hour > 23 ||
+        minute < 0 ||
+        minute > 59 ||
+        second < 0 ||
+        second > 59) {
+      // Dart DateTime cannot represent a leap second. Report it instead of
+      // normalizing it (or any invalid clock value) into a different instant.
       MimeDiagnostics.report(MimeDiagnosticCode.invalidDate);
 
       return null;
@@ -527,12 +565,26 @@ Date and time values occur in several header fields.  This section
     }
     final timeZoneHours = int.tryParse(zoneText.substring(1, 3));
     final timeZoneMinutes = int.tryParse(zoneText.substring(3));
-    if (timeZoneHours == null || timeZoneMinutes == null) {
+    if (timeZoneHours == null ||
+        timeZoneMinutes == null ||
+        !(zoneText.startsWith('+') || zoneText.startsWith('-')) ||
+        zoneText
+            .substring(1)
+            .codeUnits
+            .any((value) => value < 48 || value > 57) ||
+        timeZoneHours > 23 ||
+        timeZoneMinutes > 59) {
       MimeDiagnostics.report(MimeDiagnosticCode.invalidDate);
 
       return null;
     }
     var dateTime = DateTime.utc(year, month, dayOfMonth, hour, minute, second);
+    if (weekday != null &&
+        weekday != _weekdays[dateTime.weekday - 1].toLowerCase()) {
+      MimeDiagnostics.report(MimeDiagnosticCode.invalidDate);
+
+      return null;
+    }
     final isWesternTimeZone = zoneText.startsWith('+');
     final timeZoneDuration = Duration(
       hours: timeZoneHours,

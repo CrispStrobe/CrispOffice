@@ -10,30 +10,31 @@
   "native_analyze": "PASS: lib, --fatal-infos",
   "native_tests": {
     "status": "PASS",
-    "tests": 168,
-    "files": 14
+    "tests": 170,
+    "files": 14,
+    "concurrency": 2
   },
   "javascript_compile": "PASS",
   "native_node_projection": "PASS: identical JSON",
   "chromium_tests": "BLOCKED before execution: executor sandbox denied process singleton socket",
-  "portable_closure_sha256": "a8ab04bad558bf891b12ac5307eab4f1729fcf521abff8258f08c0870d93f424",
+  "portable_closure_sha256": "7df9cc38e2089fd7787c06dd0adeb607ecfbdc6583d78d1b0d967ad6675c1232",
   "dependency_inventory_sha256": "285d067c0cb99e64d7a9bbe772468b555c65d07382384ed4eaa17789f8a7385c",
   "logs": [
     {
-      "path": "verification/browser_attempt.log",
+      "path": "verification/browser_attempt.txt",
       "sha256": "39f575b6f7aacd1b5151cf3614aec75b34d096a84c6ab3457cd8bfce9fde9cd6"
     },
     {
-      "path": "verification/native_analysis.log",
+      "path": "verification/native_analysis.txt",
       "sha256": "6b7a8871da280b2b7725a31509a42d0e66de8a6281e319414cfeb7d46b48d2ed"
     },
     {
-      "path": "verification/native_tests.log",
-      "sha256": "f1558295f844417f319e03a5b2e2d987cd369ca0c4c1c89b143bb164908cc301"
+      "path": "verification/native_tests.txt",
+      "sha256": "219215b6f328f8e81fc50c23c63a67006c470f008bf0213435c8d27036e22f41"
     },
     {
-      "path": "verification/portable_js_compile.log",
-      "sha256": "e735417aa3fa320c79aa458049afe2592144de35c67f57594996da8e4505bc72"
+      "path": "verification/portable_js_compile.txt",
+      "sha256": "345434ffb6125198b7d1b9cbbb48ad3d64e0a58ee77d106215ee3cdeabc013c4"
     },
     {
       "path": "verification/portable_native.json",

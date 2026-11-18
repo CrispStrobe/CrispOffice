@@ -61,6 +61,21 @@ implemented Quds packages outside this directory keep their own MIT license.
    and encoding assignments. These retain the existing integer-port contract
    and builder behavior. Remove the now-unused conversion import after the
    RFC 2231 implementation change.
+10. Reject undefined entries in the selected single-byte character tables in
+    `MailCodec.decodeCharsetStrict`. The dependency's `allowInvalid: false`
+    setting does not reject its `?` placeholders. The strict helper now reports
+    `malformedCharacterData` and returns `null` for those replacements, while
+    retaining a real ASCII question mark. It checks the decoded string without
+    making another decoded-byte copy. Regressions cover Windows-1252,
+    Windows-1253 and ISO-8859-3 undefined entries.
+11. Validate calendar days, decimal numeric components, numeric zone digits/ranges and
+    an optional weekday before constructing a `DateTime`. Dart's normalizing
+    constructor must not turn a malformed date into a different valid instant.
+    Missing time zones retain the legacy UTC fallback with an explicit
+    `invalidDate` diagnostic so callers can suppress uncertain timestamps.
+    Leap-second values also report `invalidDate`: Dart cannot represent them
+    exactly, so the fork does not silently roll them into the next minute.
+    Regressions include a valid leap day and a nonzero zone offset.
 
 `PORTABLE_CLOSURE.json` records the current 21-file local and 87-file complete
 selected import closure, including external packages. `DEPENDENCIES.json`

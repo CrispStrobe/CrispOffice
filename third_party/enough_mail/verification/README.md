@@ -7,14 +7,15 @@ Linux x64. Dependency resolution uses the Quds root workspace lock, with
 | Check | Actual result |
 | --- | --- |
 | `dart analyze lib --fatal-infos` | PASS, no issues; includes the old native API source |
-| Focused native MIME/codec/builder/account regressions | PASS, 168 tests across 14 files |
+| Focused native MIME/codec/builder/account regressions | PASS, 170 tests across 14 files |
 | Public `mime_core.dart` JavaScript compilation | PASS |
 | Original fixture projected in native Dart and Node JS | PASS, identical JSON |
 | Chromium runtime tests | BLOCKED before fixture execution by executor sandbox socket policy |
 
-Seven fork-specific tests cover portable fixture parsing, redacted diagnostics,
+Nine fork-specific tests cover portable fixture parsing, redacted diagnostics,
 concurrent diagnostic scope isolation, strict charset failures, explicit
-unsupported CJK encodings and RFC 2231 multibyte continuation/error behavior.
+unsupported CJK encodings, RFC 2231 multibyte continuation/error behavior,
+undefined single-byte character slots and invalid date normalization.
 The remaining tests exercise existing upstream parsing, header handling,
 transfer codecs, message building and account settings affected by the fork.
 
@@ -51,16 +52,16 @@ test/mail/mail_account_test.dart
 
 The execution used the resolved `test` package's `bin/test.dart` with
 `dart --packages=<root>/.dart_tool/package_config.json`, the paths above and
-`--reporter expanded`. This avoids resolving the upstream development tool
+`--concurrency=2 --reporter expanded`. This avoids resolving the upstream development tool
 graph separately from the Quds workspace.
 
 Compile `tool/portable_smoke.dart` with `dart compile js`, using that same
 package config. Execute the source in native Dart and the compiled output in
-Node; compare the JSON projections. `portable_js_compile.log`,
+Node; compare the JSON projections. `portable_js_compile.txt`,
 `portable_native.json` and `portable_node.json` retain the actual output.
 
 The first Chromium attempt exited before tests because the sandbox denied the
-browser's process-singleton socket. `browser_attempt.log` retains that observed
+browser's process-singleton socket. `browser_attempt.txt` retains that observed
 failure. Actual browser tests and runtime network observation remain required
 in an environment that can launch the browser; the passing Node projection is
 reported separately. No sandbox permissions were widened.

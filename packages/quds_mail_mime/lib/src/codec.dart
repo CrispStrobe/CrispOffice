@@ -174,6 +174,7 @@ final class _Reader {
   int headerBytes = 0;
   int decodedBytes = 0;
   int bodyBytes = 0;
+  int renderBytes = 0;
   int attachmentCount = 0;
   String currentPath = '1';
   Uint8List get bytes => raw.bytes;
@@ -371,7 +372,6 @@ final class _Reader {
       final text = mime.MailCodec.decodeCharsetStrict(data, charset);
       if (text == null) return const _Body();
       // UTF-8 rendered text can be larger than its legacy encoded source.
-      var renderBytes = 0;
       for (final rune in text.runes) {
         renderBytes += rune < 0x80
             ? 1
