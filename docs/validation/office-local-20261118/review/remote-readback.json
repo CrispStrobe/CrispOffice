@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "kind": "remote-publication-readback",
+  "repository": "CrispStrobe/quds_office_suite",
+  "verified_branch_head": "319f8d8ac9b1535ddf64d9c508044e0c902c21fc",
+  "source_commit": "9a7c80be00258def2dcae3bb288c28558c83aa72",
+  "method": "Fetched complete remote file contents through GitHub fetch_file with explicit base64 encoding; decoded bytes and independently recomputed SHA-256 in the orchestration runtime. SHA-256 implementation passed the standard empty and abc vectors. Text files were compared exactly.",
+  "checks": [
+    {
+      "path": "docs/validation/office-local-20261118/evidence/qualification-helpers.tar.xz",
+      "bytes": 14328,
+      "sha256": "1bcaeeb785d918b155fa47d220c1930198e63668efcaef1e4404e7c8442817d5",
+      "git_blob": "272d9ef81bb85bffb2ca3617aa6c3fbb6579c8c1",
+      "verified": true
+    },
+    {
+      "path": "docs/validation/office-local-20261118/evidence/canonical-attempt-9a7c80be.tar.xz",
+      "bytes": 638988,
+      "sha256": "14a2e5d6d0ae73501eb6e240d67896a3936482188a3344c1eee44c877e161e42",
+      "git_blob": "6b5b465c80824812033f793ce685195e5328f132",
+      "verified": true
+    },
+    {
+      "path": "docs/validation/office-local-20261118/README.md",
+      "git_blob": "0c2ac7582993cef3e0953d09343c3638b674cb17",
+      "exact_text_verified": true
+    },
+    {
+      "path": "docs/validation/office-local-20261118/recovery-handoff.md",
+      "git_blob": "cf807a05f6cd20b4414dd85991707dadd5259e42",
+      "exact_text_verified": true
+    }
+  ],
+  "source_and_artifacts_preserved": true,
+  "qualification_accepted": false,
+  "scope_limit": "This verifies remote file bytes and publication. It does not complete the outstanding archive-member, test, consumer or native-sweep qualification gates.",
+  "github_actions_queried_or_awaited": false
+}
