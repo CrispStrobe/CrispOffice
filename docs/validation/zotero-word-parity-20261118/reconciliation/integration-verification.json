@@ -1,0 +1,810 @@
+{
+  "integration_commit": "a8029e95401ecef674fcbd920f78d2eb68ea89c0",
+  "tree": "f922225fba3d3faa59863f0fe672bfaf4c183207",
+  "parents": [
+    "55c02534868b13e1eb0b5c9391d133e9bac57ecb",
+    "8a6105a7ec217b48105d171703c8d0294c7d2dc6",
+    "840809bbe23f95815a5ddcd2a7ee76c250b9fb8c",
+    "7c4f8bfa67b69e6fa4d8809724ae036cdcde492f"
+  ],
+  "compared_to": "55c02534868b13e1eb0b5c9391d133e9bac57ecb",
+  "files": 131,
+  "expected_file_paths": 131,
+  "unexpected_paths": [],
+  "missing_paths": [],
+  "unchanged_incoming_blobs": 127,
+  "blob_matches": [
+    {
+      "path": "docs/roadmaps/mail/README.md",
+      "expected_sha": "bd7ae0af2c499d5437df09ed7accf6ee8ef60c11",
+      "actual_sha": "bd7ae0af2c499d5437df09ed7accf6ee8ef60c11",
+      "matches": true
+    },
+    {
+      "path": "docs/roadmaps/mail/implementation-plan.md",
+      "expected_sha": "5b235619a25bf1a43b8f33f43afb0578e188fe28",
+      "actual_sha": "5b235619a25bf1a43b8f33f43afb0578e188fe28",
+      "matches": true
+    },
+    {
+      "path": "docs/roadmaps/thesaurus/README.md",
+      "expected_sha": "5dc2a8bfd66ebf8d9f2143b6b3bf1825a25916ad",
+      "actual_sha": "5dc2a8bfd66ebf8d9f2143b6b3bf1825a25916ad",
+      "matches": true
+    },
+    {
+      "path": "docs/roadmaps/thesaurus/release-acceptance.md",
+      "expected_sha": "e6ce52a5e1e09d416ab60e7d383c58865a8c8e0e",
+      "actual_sha": "e6ce52a5e1e09d416ab60e7d383c58865a8c8e0e",
+      "matches": true
+    },
+    {
+      "path": "docs/validation/mail-store-20261118/incoming/README.md",
+      "expected_sha": "acd13a11ca2e67b449cd57701975d514bb21ff49",
+      "actual_sha": "acd13a11ca2e67b449cd57701975d514bb21ff49",
+      "matches": true
+    },
+    {
+      "path": "docs/validation/mail-store-20261118/incoming/checks/editor-analysis-receipt.json",
+      "expected_sha": "9555430ab4bcb92d0d005f94dfa0b81b236645be",
+      "actual_sha": "9555430ab4bcb92d0d005f94dfa0b81b236645be",
+      "matches": true
+    },
+    {
+      "path": "docs/validation/mail-store-20261118/incoming/checks/editor-analysis.stderr",
+      "expected_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "actual_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "matches": true
+    },
+    {
+      "path": "docs/validation/mail-store-20261118/incoming/checks/editor-analysis.stdout",
+      "expected_sha": "db1297f0a0092b39794c40966e3fbac0402aa964",
+      "actual_sha": "db1297f0a0092b39794c40966e3fbac0402aa964",
+      "matches": true
+    },
+    {
+      "path": "docs/validation/mail-store-20261118/incoming/checks/editor-tests-cases.json",
+      "expected_sha": "118caf4889d5c2259f05a560b31a0ac2b8389ac2",
+      "actual_sha": "118caf4889d5c2259f05a560b31a0ac2b8389ac2",
+      "matches": true
+    },
+    {
+      "path": "docs/validation/mail-store-20261118/incoming/checks/editor-tests-errors.json",
+      "expected_sha": "fe51488c7066f6687ef680d6bfaa4f7768ef205c",
+      "actual_sha": "fe51488c7066f6687ef680d6bfaa4f7768ef205c",
+      "matches": true
+    },
+    {
+      "path": "docs/validation/mail-store-20261118/incoming/checks/editor-tests-receipt.json",
+      "expected_sha": "b878ce172e85859b30cbbe33669033ce969d9659",
+      "actual_sha": "b878ce172e85859b30cbbe33669033ce969d9659",
+      "matches": true
+    },
+    {
+      "path": "docs/validation/mail-store-20261118/incoming/checks/editor-tests.stderr",
+      "expected_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "actual_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "matches": true
+    },
+    {
+      "path": "docs/validation/mail-store-20261118/incoming/checks/editor-tests.stdout",
+      "expected_sha": "69ebf972d2e3dfa1d67b3ea7f3f58610404bbdcf",
+      "actual_sha": "69ebf972d2e3dfa1d67b3ea7f3f58610404bbdcf",
+      "matches": true
+    },
+    {
+      "path": "docs/validation/mail-store-20261118/incoming/checks/receipt.json",
+      "expected_sha": "2b5220af661edae1a0e1ba1b169b661b27ba8451",
+      "actual_sha": "2b5220af661edae1a0e1ba1b169b661b27ba8451",
+      "matches": true
+    },
+    {
+      "path": "docs/validation/mail-store-20261118/incoming/checks/source-after.json",
+      "expected_sha": "65ceb8f06987a121657ef254564b603feaf706b0",
+      "actual_sha": "65ceb8f06987a121657ef254564b603feaf706b0",
+      "matches": true
+    },
+    {
+      "path": "docs/validation/mail-store-20261118/incoming/checks/source-before.json",
+      "expected_sha": "65ceb8f06987a121657ef254564b603feaf706b0",
+      "actual_sha": "65ceb8f06987a121657ef254564b603feaf706b0",
+      "matches": true
+    },
+    {
+      "path": "docs/validation/mail-store-20261118/incoming/checks/studio-analysis-receipt.json",
+      "expected_sha": "483019772670b754742ad729811f5378d7b5cb1b",
+      "actual_sha": "483019772670b754742ad729811f5378d7b5cb1b",
+      "matches": true
+    },
+    {
+      "path": "docs/validation/mail-store-20261118/incoming/checks/studio-analysis.stderr",
+      "expected_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "actual_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "matches": true
+    },
+    {
+      "path": "docs/validation/mail-store-20261118/incoming/checks/studio-analysis.stdout",
+      "expected_sha": "c0c67a76f9479d70de227edbb16fffcc2b34ebe0",
+      "actual_sha": "c0c67a76f9479d70de227edbb16fffcc2b34ebe0",
+      "matches": true
+    },
+    {
+      "path": "docs/validation/mail-store-20261118/incoming/checks/studio-tests-cases.json",
+      "expected_sha": "7df87b57d5548bef33127abbb9701b4bfef4070d",
+      "actual_sha": "7df87b57d5548bef33127abbb9701b4bfef4070d",
+      "matches": true
+    },
+    {
+      "path": "docs/validation/mail-store-20261118/incoming/checks/studio-tests-errors.json",
+      "expected_sha": "fe51488c7066f6687ef680d6bfaa4f7768ef205c",
+      "actual_sha": "fe51488c7066f6687ef680d6bfaa4f7768ef205c",
+      "matches": true
+    },
+    {
+      "path": "docs/validation/mail-store-20261118/incoming/checks/studio-tests-receipt.json",
+      "expected_sha": "435c25eae6902dc3bf38e88d854a4738ae727171",
+      "actual_sha": "435c25eae6902dc3bf38e88d854a4738ae727171",
+      "matches": true
+    },
+    {
+      "path": "docs/validation/mail-store-20261118/incoming/checks/studio-tests.stderr",
+      "expected_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "actual_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "matches": true
+    },
+    {
+      "path": "docs/validation/mail-store-20261118/incoming/checks/studio-tests.stdout",
+      "expected_sha": "cf3a0a5a6ee9e2e2c5d8c8466d170493b80a2c71",
+      "actual_sha": "cf3a0a5a6ee9e2e2c5d8c8466d170493b80a2c71",
+      "matches": true
+    },
+    {
+      "path": "docs/validation/mail-store-20261118/incoming/initial-audit.json",
+      "expected_sha": "6ccfbb2fa1586fdb084d4c55f9d4a2545ca3635a",
+      "actual_sha": "6ccfbb2fa1586fdb084d4c55f9d4a2545ca3635a",
+      "matches": true
+    },
+    {
+      "path": "docs/validation/mail-store-20261118/incoming/merge-tree.txt",
+      "expected_sha": "45feb91902d42b6dbf50bbaca7e81e67913c0a91",
+      "actual_sha": "45feb91902d42b6dbf50bbaca7e81e67913c0a91",
+      "matches": true
+    },
+    {
+      "path": "docs/validation/mail-store-20261118/runtime/README.md",
+      "expected_sha": "a8f648a80b8484786fec292328858b6485bc4274",
+      "actual_sha": "a8f648a80b8484786fec292328858b6485bc4274",
+      "matches": true
+    },
+    {
+      "path": "docs/validation/mail-store-20261118/runtime/chromium-smoke.json",
+      "expected_sha": "a00a57b62226e1a028964db3f43d66dff9d11eeb",
+      "actual_sha": "a00a57b62226e1a028964db3f43d66dff9d11eeb",
+      "matches": true
+    },
+    {
+      "path": "docs/validation/mail-store-20261118/runtime/dependency-diff.json",
+      "expected_sha": "4ca119cdc8aafd0a7a724058c06f5e323f379933",
+      "actual_sha": "4ca119cdc8aafd0a7a724058c06f5e323f379933",
+      "matches": true
+    },
+    {
+      "path": "docs/validation/mail-store-20261118/runtime/platform-validation.json",
+      "expected_sha": "69932e5cb00c5761c3fa87312e1e12e00f7e6c2a",
+      "actual_sha": "69932e5cb00c5761c3fa87312e1e12e00f7e6c2a",
+      "matches": true
+    },
+    {
+      "path": "docs/validation/mail-store-20261118/runtime/receipt.json",
+      "expected_sha": "a762d77f4130dd3c9694c7065cf25365931d6784",
+      "actual_sha": "a762d77f4130dd3c9694c7065cf25365931d6784",
+      "matches": true
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/README.md",
+      "expected_sha": "05bb4d2526b112757404fdcce22d40e37c04397e",
+      "actual_sha": "05bb4d2526b112757404fdcce22d40e37c04397e",
+      "matches": true
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/audit_final_validation.py",
+      "expected_sha": "fc0d84574991b6b592ed1f8c4b4935c9d2b7779f",
+      "actual_sha": "fc0d84574991b6b592ed1f8c4b4935c9d2b7779f",
+      "matches": true
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/browser/browser-report.json",
+      "expected_sha": "20cc78ab7b0acf90641d42335efd18fa33249ef1",
+      "actual_sha": "20cc78ab7b0acf90641d42335efd18fa33249ef1",
+      "matches": true
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/controls/harness/harness.stderr",
+      "expected_sha": "0dbecb019efe69096f7e6c193aea5550c2bd3857",
+      "actual_sha": "0dbecb019efe69096f7e6c193aea5550c2bd3857",
+      "matches": true
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/controls/harness/harness.stdout",
+      "expected_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "actual_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "matches": true
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/controls/harness/receipt.json",
+      "expected_sha": "2494c93d66846b3baa96677b6118680d5004d3e3",
+      "actual_sha": "2494c93d66846b3baa96677b6118680d5004d3e3",
+      "matches": true
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/controls/review-packet/receipt.json",
+      "expected_sha": "afe2cbbcf8d7d76756a878b049b38f736774a0fc",
+      "actual_sha": "afe2cbbcf8d7d76756a878b049b38f736774a0fc",
+      "matches": true
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/evidence-index.json",
+      "expected_sha": "5d1101d83f177120b590cde1ceb83b14510d7d03",
+      "actual_sha": "5d1101d83f177120b590cde1ceb83b14510d7d03",
+      "matches": true
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/evidence.tar.gz",
+      "expected_sha": "3b3a9cf76afc63130d31c357d6c52f2e717a4dc8",
+      "actual_sha": "3b3a9cf76afc63130d31c357d6c52f2e717a4dc8",
+      "matches": true
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/incoming/README.md",
+      "expected_sha": "720451d7117492c16acd58051011e1bc0a520302",
+      "actual_sha": "720451d7117492c16acd58051011e1bc0a520302",
+      "matches": true
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/incoming/audit_incoming_current.py",
+      "expected_sha": "25648c4103b8a0db8b090573d0ef44e048671413",
+      "actual_sha": "25648c4103b8a0db8b090573d0ef44e048671413",
+      "matches": true
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/incoming/incoming_audit_result.json",
+      "expected_sha": "c40b35d3af1d3f0345da43e8e2398f302368a26f",
+      "actual_sha": "c40b35d3af1d3f0345da43e8e2398f302368a26f",
+      "matches": true
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/incoming/incoming_audit_snapshot.json",
+      "expected_sha": "68e05b0054442cd196b53e63c75ea8dd04bc5610",
+      "actual_sha": "68e05b0054442cd196b53e63c75ea8dd04bc5610",
+      "matches": true
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/incoming/incoming_merged_ancestry.json",
+      "expected_sha": "92d0269c6dc86a39c0a9edf396f638b1d6291e14",
+      "actual_sha": "92d0269c6dc86a39c0a9edf396f638b1d6291e14",
+      "matches": true
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/incoming/incoming_upstream_snapshot.json",
+      "expected_sha": "c81257b5efde0dd29f9cfb66f7bf986284217dbb",
+      "actual_sha": "c81257b5efde0dd29f9cfb66f7bf986284217dbb",
+      "matches": true
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/integration/summary.json",
+      "expected_sha": "19205fe386265ca626580ebba24fc79443c1b1f1",
+      "actual_sha": "19205fe386265ca626580ebba24fc79443c1b1f1",
+      "matches": true
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/linguistic/de/notices/CC_BY_SA_4.0.txt",
+      "expected_sha": "2d58298e6eda10e7204abb52722efbc840db2390",
+      "actual_sha": "2d58298e6eda10e7204abb52722efbc840db2390",
+      "matches": true
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/linguistic/de/notices/DE_ATTRIBUTION.txt",
+      "expected_sha": "9027f315a1d3de224613c029f23859fac4dd719b",
+      "actual_sha": "9027f315a1d3de224613c029f23859fac4dd719b",
+      "matches": true
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/linguistic/de/notices/OPENTHESAURUS_COPYING.txt",
+      "expected_sha": "e9a5cbe37f5fa0726cc9283ecfdc099b764e1a46",
+      "actual_sha": "e9a5cbe37f5fa0726cc9283ecfdc099b764e1a46",
+      "matches": true
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/linguistic/de/notices/OPENTHESAURUS_DATABASE_README.txt",
+      "expected_sha": "f94e2a1a057171474321a6d55e081ee552dcf3e4",
+      "actual_sha": "f94e2a1a057171474321a6d55e081ee552dcf3e4",
+      "matches": true
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/linguistic/de/notices/UNICODE_INFLECTION_LICENSE",
+      "expected_sha": "f6fe7b9e1bcceae1ec0a98676181384f3b1d3d91",
+      "actual_sha": "f6fe7b9e1bcceae1ec0a98676181384f3b1d3d91",
+      "matches": true
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/linguistic/de/notices/UNICODE_INFLECTION_NOTICE",
+      "expected_sha": "c153af4006e223a00071957bdde4ad6c36685581",
+      "actual_sha": "c153af4006e223a00071957bdde4ad6c36685581",
+      "matches": true
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/linguistic/en/notices/CC_BY_4.0.txt",
+      "expected_sha": "da6ab6cc8f333d7e89a99812866df8f24374d47c",
+      "actual_sha": "da6ab6cc8f333d7e89a99812866df8f24374d47c",
+      "matches": true
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/linguistic/en/notices/EN_ATTRIBUTION.txt",
+      "expected_sha": "4f3bcfcee0be290911d9a4f40ea4fbd3a931ecb3",
+      "actual_sha": "4f3bcfcee0be290911d9a4f40ea4fbd3a931ecb3",
+      "matches": true
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/linguistic/en/notices/OEWN_LICENSE.md",
+      "expected_sha": "fe4d1dce8109caa7016fca97f48e49a9ced36ad4",
+      "actual_sha": "fe4d1dce8109caa7016fca97f48e49a9ced36ad4",
+      "matches": true
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/linguistic/en/notices/WNDB_License.txt",
+      "expected_sha": "cecbc6cf2dcb20ffbcba84319affc1ed0c6dca6f",
+      "actual_sha": "cecbc6cf2dcb20ffbcba84319affc1ed0c6dca6f",
+      "matches": true
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/linguistic/linguistic-review.json",
+      "expected_sha": "0254676e3b50c051d1b9ed6e365a16a230e93014",
+      "actual_sha": "0254676e3b50c051d1b9ed6e365a16a230e93014",
+      "matches": true
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/linguistic/linguistic-review.md",
+      "expected_sha": "c6c1ed30eb82ecdf49f4f0c1120a6932733d822f",
+      "actual_sha": "c6c1ed30eb82ecdf49f4f0c1120a6932733d822f",
+      "matches": true
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/native/browser-build-files.json.gz",
+      "expected_sha": "b898c3f8b66e1aec920cf8bc0ad83fe56d1e89de",
+      "actual_sha": "b898c3f8b66e1aec920cf8bc0ad83fe56d1e89de",
+      "matches": true
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/native/native-pack-report.json",
+      "expected_sha": "93396e186ad28d1ba53824d43ddfbb079bd53b43",
+      "actual_sha": "93396e186ad28d1ba53824d43ddfbb079bd53b43",
+      "matches": true
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/native/native-test-audit.json",
+      "expected_sha": "9a22d1fcfb95c5abfd64d71459be2c6ce0b3ef74",
+      "actual_sha": "9a22d1fcfb95c5abfd64d71459be2c6ce0b3ef74",
+      "matches": true
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/native/offline-installation.json",
+      "expected_sha": "44771cb97cbee9d66a039ef51821933074b6ecc5",
+      "actual_sha": "44771cb97cbee9d66a039ef51821933074b6ecc5",
+      "matches": true
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/native/receipt.json",
+      "expected_sha": "3de1634278abe3c6a70db5bfced319e0357bf1d0",
+      "actual_sha": "3de1634278abe3c6a70db5bfced319e0357bf1d0",
+      "matches": true
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/native/source-inputs.json.gz",
+      "expected_sha": "93fe67a5b73b9a8c40543eb5378cdbcc0ecd374c",
+      "actual_sha": "93fe67a5b73b9a8c40543eb5378cdbcc0ecd374c",
+      "matches": true
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/native/visuals/english-desktop.png",
+      "expected_sha": "dc324591d51de0a34cb0ed91d6ffdfc0963b0b2a",
+      "actual_sha": "dc324591d51de0a34cb0ed91d6ffdfc0963b0b2a",
+      "matches": true
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/native/visuals/german-desktop.png",
+      "expected_sha": "ccc3daecf72e2bf4f7475b15cea6d9d35dca730e",
+      "actual_sha": "ccc3daecf72e2bf4f7475b15cea6d9d35dca730e",
+      "matches": true
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/native/visuals/german-narrow-large-text.png",
+      "expected_sha": "e4b3a6ff26a761038c2bf55c6c24ac8e2c74acc8",
+      "actual_sha": "e4b3a6ff26a761038c2bf55c6c24ac8e2c74acc8",
+      "matches": true
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/pack-continuity.json",
+      "expected_sha": "80df8b1913578a4f4179201d2a63e9a275a8b284",
+      "actual_sha": "80df8b1913578a4f4179201d2a63e9a275a8b284",
+      "matches": true
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/peer-audit.json",
+      "expected_sha": "c79d993206bff9d726a3936c3884e9c10c7961d9",
+      "actual_sha": "c79d993206bff9d726a3936c3884e9c10c7961d9",
+      "matches": true
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/runtime/index.json",
+      "expected_sha": "9dd783917077e3347ce8c8597255e847681c4e85",
+      "actual_sha": "9dd783917077e3347ce8c8597255e847681c4e85",
+      "matches": true
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/runtime/readiness-audit.json",
+      "expected_sha": "4034f181e26e68f933c52720f7feb768c95d0951",
+      "actual_sha": "4034f181e26e68f933c52720f7feb768c95d0951",
+      "matches": true
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/runtime/runtime-probe.json",
+      "expected_sha": "e5494b4bc85bce88105ab6bc062a8bd69c90f4df",
+      "actual_sha": "e5494b4bc85bce88105ab6bc062a8bd69c90f4df",
+      "matches": true
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/runtime/runtime-ready.json",
+      "expected_sha": "fe4e65312400afe2d9d414b9b8fa3b8450859953",
+      "actual_sha": "fe4e65312400afe2d9d414b9b8fa3b8450859953",
+      "matches": true
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/runtime/setup.tar.gz",
+      "expected_sha": "9f8690cf15af4afdf35ca6536ec69e71331524ec",
+      "actual_sha": "9f8690cf15af4afdf35ca6536ec69e71331524ec",
+      "matches": true
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/substantive-cases.json.gz",
+      "expected_sha": "ef30db0ffe3412c8e6b57e0879bf18102e9733af",
+      "actual_sha": "ef30db0ffe3412c8e6b57e0879bf18102e9733af",
+      "matches": true
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/validation-summary.json",
+      "expected_sha": "981b8237a706296a93db15941130b90eb7a45980",
+      "actual_sha": "981b8237a706296a93db15941130b90eb7a45980",
+      "matches": true
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/continuation/local/README.md",
+      "expected_sha": "c7e8f193b279fd83ffd151f3f10888ea7117597d",
+      "actual_sha": "c7e8f193b279fd83ffd151f3f10888ea7117597d",
+      "matches": true
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/continuation/local/fixtures/build_binding.py",
+      "expected_sha": "51b7ce1d254da7b766d2ba952b78e5a0bee5bc6e",
+      "actual_sha": "51b7ce1d254da7b766d2ba952b78e5a0bee5bc6e",
+      "matches": true
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/continuation/local/fixtures/install_offline.py",
+      "expected_sha": "b221fe59103d248fa21bd2ab7c87d542648fddf7",
+      "actual_sha": "b221fe59103d248fa21bd2ab7c87d542648fddf7",
+      "matches": true
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/continuation/local/fixtures/lib/main.dart",
+      "expected_sha": "2e5e2105d4bbb37cdd95ca55bbcd6e6bea776dfa",
+      "actual_sha": "2e5e2105d4bbb37cdd95ca55bbcd6e6bea776dfa",
+      "matches": true
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/continuation/local/fixtures/run_browser.py",
+      "expected_sha": "b74c1542360347dd32acdd0f40773138a1de6192",
+      "actual_sha": "b74c1542360347dd32acdd0f40773138a1de6192",
+      "matches": true
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/continuation/local/fixtures/run_final_validation.py",
+      "expected_sha": "f564797a675c6c6d39c300092164b02ce6e5d651",
+      "actual_sha": "f564797a675c6c6d39c300092164b02ce6e5d651",
+      "matches": true
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/continuation/local/fixtures/test_browser_harness.py",
+      "expected_sha": "b4039c172516a77a25db9dfbbd7836fa9c7e65af",
+      "actual_sha": "b4039c172516a77a25db9dfbbd7836fa9c7e65af",
+      "matches": true
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/resume/README.md",
+      "expected_sha": "e45c42a21ef5c2298e8afed90214d121fd088633",
+      "actual_sha": "e45c42a21ef5c2298e8afed90214d121fd088633",
+      "matches": true
+    },
+    {
+      "path": "packages/quds_mail_core/CHANGELOG.md",
+      "expected_sha": "0e9a482138c7b2aa7f4bf45cabd098be47104de0",
+      "actual_sha": "0e9a482138c7b2aa7f4bf45cabd098be47104de0",
+      "matches": true
+    },
+    {
+      "path": "packages/quds_mail_core/lib/src/ports/repository.dart",
+      "expected_sha": "b47c4616ac74da1143a85c3239dfe6cf81cdbb13",
+      "actual_sha": "b47c4616ac74da1143a85c3239dfe6cf81cdbb13",
+      "matches": true
+    },
+    {
+      "path": "packages/quds_mail_core/lib/src/sync/coordinator.dart",
+      "expected_sha": "8fd17fee6fc05b0784ed9fd748c52e526972e94a",
+      "actual_sha": "8fd17fee6fc05b0784ed9fd748c52e526972e94a",
+      "matches": true
+    },
+    {
+      "path": "packages/quds_mail_core/test/sync_coordinator_test.dart",
+      "expected_sha": "621492c6e8d086a873f1ea2aa50422a2d8d21db0",
+      "actual_sha": "621492c6e8d086a873f1ea2aa50422a2d8d21db0",
+      "matches": true
+    },
+    {
+      "path": "packages/quds_mail_store/CHANGELOG.md",
+      "expected_sha": "785b7b7edc6cf4f67e0289c55388b82628282ade",
+      "actual_sha": "785b7b7edc6cf4f67e0289c55388b82628282ade",
+      "matches": true
+    },
+    {
+      "path": "packages/quds_mail_store/DEPENDENCIES.json",
+      "expected_sha": "5c135eea6cedff31623310fcb8ab32982f6879b4",
+      "actual_sha": "5c135eea6cedff31623310fcb8ab32982f6879b4",
+      "matches": true
+    },
+    {
+      "path": "packages/quds_mail_store/LICENSE",
+      "expected_sha": "d2c25674e883f1006ac85cf45912f851a2b5ef0e",
+      "actual_sha": "d2c25674e883f1006ac85cf45912f851a2b5ef0e",
+      "matches": true
+    },
+    {
+      "path": "packages/quds_mail_store/README.md",
+      "expected_sha": "f7976e8811e950292d0d8a7899160a51e9d24ffd",
+      "actual_sha": "f7976e8811e950292d0d8a7899160a51e9d24ffd",
+      "matches": true
+    },
+    {
+      "path": "packages/quds_mail_store/THIRD_PARTY_NOTICES.md",
+      "expected_sha": "733fc3981cd3ef88fd197e899fa980538ec5853d",
+      "actual_sha": "733fc3981cd3ef88fd197e899fa980538ec5853d",
+      "matches": true
+    },
+    {
+      "path": "packages/quds_mail_store/lib/quds_mail_store.dart",
+      "expected_sha": "7d900fd59f42e218b4b24b71339120c3d581e76a",
+      "actual_sha": "7d900fd59f42e218b4b24b71339120c3d581e76a",
+      "matches": true
+    },
+    {
+      "path": "packages/quds_mail_store/lib/quds_mail_store_native.dart",
+      "expected_sha": "a7f9c24dcf4adfe6111b58096120f03ace9aa17b",
+      "actual_sha": "a7f9c24dcf4adfe6111b58096120f03ace9aa17b",
+      "matches": true
+    },
+    {
+      "path": "packages/quds_mail_store/lib/quds_mail_store_web.dart",
+      "expected_sha": "9c84f65ab52620ac9dca50112a6c21be62a9d795",
+      "actual_sha": "9c84f65ab52620ac9dca50112a6c21be62a9d795",
+      "matches": true
+    },
+    {
+      "path": "packages/quds_mail_store/lib/src/browser_problem.dart",
+      "expected_sha": "f192b41c685851592c86d0ac1d30fc66deaa8550",
+      "actual_sha": "f192b41c685851592c86d0ac1d30fc66deaa8550",
+      "matches": true
+    },
+    {
+      "path": "packages/quds_mail_store/lib/src/browser_setup.dart",
+      "expected_sha": "2301833c4e0eea985562bb79e5425847d4a1e048",
+      "actual_sha": "2301833c4e0eea985562bb79e5425847d4a1e048",
+      "matches": true
+    },
+    {
+      "path": "packages/quds_mail_store/lib/src/codec.dart",
+      "expected_sha": "f98d318a77fd0047c347ae5ce96d205c70107d54",
+      "actual_sha": "f98d318a77fd0047c347ae5ce96d205c70107d54",
+      "matches": true
+    },
+    {
+      "path": "packages/quds_mail_store/lib/src/errors.dart",
+      "expected_sha": "f5e2745bcbf6d8b085930ec179a19b4a0b23a347",
+      "actual_sha": "f5e2745bcbf6d8b085930ec179a19b4a0b23a347",
+      "matches": true
+    },
+    {
+      "path": "packages/quds_mail_store/lib/src/models.dart",
+      "expected_sha": "cbc8a35aa2aeea43af4fbaf9814468ded8c203e9",
+      "actual_sha": "cbc8a35aa2aeea43af4fbaf9814468ded8c203e9",
+      "matches": true
+    },
+    {
+      "path": "packages/quds_mail_store/lib/src/owner_locked_executor.dart",
+      "expected_sha": "4ea4ab0830adb3caa058958076c456acaf26f43e",
+      "actual_sha": "4ea4ab0830adb3caa058958076c456acaf26f43e",
+      "matches": true
+    },
+    {
+      "path": "packages/quds_mail_store/lib/src/platform_configuration.dart",
+      "expected_sha": "670f9890720312dac75bed48ded93a2da76c1bc0",
+      "actual_sha": "670f9890720312dac75bed48ded93a2da76c1bc0",
+      "matches": true
+    },
+    {
+      "path": "packages/quds_mail_store/lib/src/repository.dart",
+      "expected_sha": "ca335b03fa708cd1f9363fb602b7ab453b93a584",
+      "actual_sha": "ca335b03fa708cd1f9363fb602b7ab453b93a584",
+      "matches": true
+    },
+    {
+      "path": "packages/quds_mail_store/lib/src/schema/database.dart",
+      "expected_sha": "6d58a906a60bef66048dded3adfa8a07ba859e9f",
+      "actual_sha": "6d58a906a60bef66048dded3adfa8a07ba859e9f",
+      "matches": true
+    },
+    {
+      "path": "packages/quds_mail_store/lib/src/search_journal.dart",
+      "expected_sha": "df0b0501bcf6d2af11326b3ca71f459d689f7a6d",
+      "actual_sha": "df0b0501bcf6d2af11326b3ca71f459d689f7a6d",
+      "matches": true
+    },
+    {
+      "path": "packages/quds_mail_store/pubspec.yaml",
+      "expected_sha": "4529099ff0aa052d780d77fd1b9f35b9ae80ea94",
+      "actual_sha": "4529099ff0aa052d780d77fd1b9f35b9ae80ea94",
+      "matches": true
+    },
+    {
+      "path": "packages/quds_mail_store/test/adversarial_store_test.dart",
+      "expected_sha": "02acbe90f575dcd413303095df226e68ba266cdb",
+      "actual_sha": "02acbe90f575dcd413303095df226e68ba266cdb",
+      "matches": true
+    },
+    {
+      "path": "packages/quds_mail_store/test/browser_problem_test.dart",
+      "expected_sha": "0e3d9f8611482157b93b1636050808d7b59ae95d",
+      "actual_sha": "0e3d9f8611482157b93b1636050808d7b59ae95d",
+      "matches": true
+    },
+    {
+      "path": "packages/quds_mail_store/test/codec_test.dart",
+      "expected_sha": "72bc8c7d12a4bd643ed5710a2378dab8b7c6688a",
+      "actual_sha": "72bc8c7d12a4bd643ed5710a2378dab8b7c6688a",
+      "matches": true
+    },
+    {
+      "path": "packages/quds_mail_store/test/crash_recovery_test.dart",
+      "expected_sha": "afd4997169f6d3329d7ce9cbb13925fcdcf3e68c",
+      "actual_sha": "afd4997169f6d3329d7ce9cbb13925fcdcf3e68c",
+      "matches": true
+    },
+    {
+      "path": "packages/quds_mail_store/test/migration_test.dart",
+      "expected_sha": "aef040ae1af918ec822962823f656cda741779a3",
+      "actual_sha": "aef040ae1af918ec822962823f656cda741779a3",
+      "matches": true
+    },
+    {
+      "path": "packages/quds_mail_store/test/native_platform_test.dart",
+      "expected_sha": "8dfd8cf86581e1894049767ac18ca74c7ac37844",
+      "actual_sha": "8dfd8cf86581e1894049767ac18ca74c7ac37844",
+      "matches": true
+    },
+    {
+      "path": "packages/quds_mail_store/test/platform_configuration_test.dart",
+      "expected_sha": "30fadd8f1569935d44efa9e539c3c34a10e1e5de",
+      "actual_sha": "30fadd8f1569935d44efa9e539c3c34a10e1e5de",
+      "matches": true
+    },
+    {
+      "path": "packages/quds_mail_store/test/repository_test.dart",
+      "expected_sha": "eb1f5ddc6eb07589fd6742b1f6253ae54ac3d6c5",
+      "actual_sha": "eb1f5ddc6eb07589fd6742b1f6253ae54ac3d6c5",
+      "matches": true
+    },
+    {
+      "path": "packages/quds_mail_store/tool/browser_compile_probe.dart",
+      "expected_sha": "3b629f2b40ec7ba2c248b9a42e9a02f41fe7acfd",
+      "actual_sha": "3b629f2b40ec7ba2c248b9a42e9a02f41fe7acfd",
+      "matches": true
+    },
+    {
+      "path": "packages/quds_mail_store/tool/mail_store_worker.dart",
+      "expected_sha": "4aa84891c0e5848c1438571f4605d89a0318380d",
+      "actual_sha": "4aa84891c0e5848c1438571f4605d89a0318380d",
+      "matches": true
+    },
+    {
+      "path": "packages/quds_mail_store/tool/native_crash_fixture.dart",
+      "expected_sha": "51d48fa746a82603b20120a2c0ccaf39de77c247",
+      "actual_sha": "51d48fa746a82603b20120a2c0ccaf39de77c247",
+      "matches": true
+    },
+    {
+      "path": "packages/quds_mail_store/tool/transaction_crash_fixture.dart",
+      "expected_sha": "9516719281f98b2f4dfb912c2722fa33f1f65cf9",
+      "actual_sha": "9516719281f98b2f4dfb912c2722fa33f1f65cf9",
+      "matches": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart",
+      "expected_sha": "2d3849dd91e956442c5dee3b29f2a846d1a57aea",
+      "actual_sha": "2d3849dd91e956442c5dee3b29f2a846d1a57aea",
+      "matches": true
+    },
+    {
+      "path": "pubspec.lock",
+      "expected_sha": "13f6b3ddf846de813c4d19893c05919b67c8cd12",
+      "actual_sha": "13f6b3ddf846de813c4d19893c05919b67c8cd12",
+      "matches": true
+    },
+    {
+      "path": "pubspec.yaml",
+      "expected_sha": "cb6f8b349ca6c00625f3e3c176eee352c12a6e5e",
+      "actual_sha": "cb6f8b349ca6c00625f3e3c176eee352c12a6e5e",
+      "matches": true
+    },
+    {
+      "path": "tools/mail/check_store.py",
+      "expected_sha": "e5780e6e5aea751131cd2b112f824f3dca616353",
+      "actual_sha": "e5780e6e5aea751131cd2b112f824f3dca616353",
+      "matches": true
+    },
+    {
+      "path": "tools/thesaurus/README.md",
+      "expected_sha": "713357cb9a2feb20030ecaecff4e309faf51905b",
+      "actual_sha": "713357cb9a2feb20030ecaecff4e309faf51905b",
+      "matches": true
+    },
+    {
+      "path": "tools/thesaurus/export_review_packet.py",
+      "expected_sha": "3453dc9626ef8d0b52d20bc802558a95deedf6f5",
+      "actual_sha": "3453dc9626ef8d0b52d20bc802558a95deedf6f5",
+      "matches": true
+    },
+    {
+      "path": "tools/thesaurus/test_export_review_packet.py",
+      "expected_sha": "38c088b8e7e96ae4631629e8ba7a26c61bb78687",
+      "actual_sha": "38c088b8e7e96ae4631629e8ba7a26c61bb78687",
+      "matches": true
+    }
+  ],
+  "baseline_ancestry": {
+    "baseline": "aad56eb498aa4839ad5bb11fd35d9f734d2ca397",
+    "status": "ahead",
+    "merge_base": "aad56eb498aa4839ad5bb11fd35d9f734d2ca397"
+  },
+  "runtime_qualification": "Not completed; shared executor disk exhaustion blocks process launch.",
+  "suite_resolution": {
+    "actual_blob": "5bba4d2b2037e2a3fc8ff35ffc36a057d1326747",
+    "matches_constructed_content": true,
+    "only_change_from_own_checkpoint": "Added mainAxisSize: MainAxisSize.min to the unique studio-ribbon-tabs-scroll Row.",
+    "verification_url": "https://raw.githubusercontent.com/CrispStrobe/quds_office_suite/a8029e95401ecef674fcbd920f78d2eb68ea89c0/packages/quds_office_editor/example/lib/suite_workspace.dart"
+  },
+  "ref_accounting": {
+    "captured_at_utc": "2026-11-18T20:43:35.918009+00:00",
+    "total": 389,
+    "ancestry": 361,
+    "historical_equivalent": 28,
+    "unaccounted": 0,
+    "method": "Transitive proof from the complete published baseline audit plus preserved baseline ancestry, exact additional parents, and explicit main/PR169 ancestry comparisons. Not a fresh local 389-ref rerun after executor failure.",
+    "main": {
+      "base": "690e6ac8a1f7d8f5c8d4bea69d989a6728f3b27e",
+      "merge_base": "690e6ac8a1f7d8f5c8d4bea69d989a6728f3b27e",
+      "status": "ahead"
+    },
+    "pr169": {
+      "base": "4600c0ebc9ac5e6acabd92935821d1c15315f2c1",
+      "merge_base": "4600c0ebc9ac5e6acabd92935821d1c15315f2c1",
+      "status": "ahead"
+    }
+  }
+}

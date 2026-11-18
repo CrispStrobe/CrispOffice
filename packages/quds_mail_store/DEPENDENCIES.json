@@ -1,0 +1,501 @@
+{
+  "schema": 1,
+  "captured_at_utc": "2026-11-18T20:30:52.044247+00:00",
+  "scope": "Complete direct/transitive pub dependency closure of quds_mail_store; includes sqlite3 native build-hook tooling, which is not all shipped application code. No source from these packages was copied or modified. SDK and host dependencies remain separate.",
+  "root_lock_sha256": "35d1ef372908f4ab278973355ec6a957cd3240bea115d615056c5b9e398df974",
+  "package_count": 29,
+  "hosted_package_count": 27,
+  "packages": {
+    "async": {
+      "version": "2.13.1",
+      "source": "hosted",
+      "source_reference": "pub:async@2.13.1",
+      "repository": "https://github.com/dart-lang/core/tree/main/pkgs/async",
+      "archive_url": "https://pub.dev/api/archives/async-2.13.1.tar.gz",
+      "archive_sha256": "e2eb0491ba5ddb6177742d2da23904574082139b07c1e33b8503b9f46f3e1a37",
+      "dependencies": [
+        "collection",
+        "meta"
+      ],
+      "license": "BSD-3-Clause",
+      "license_file": "LICENSE",
+      "license_sha256": "ff15faa32a2e638107b7789592b14426162a75ba620044ee2340a20ec6ce5e73",
+      "contains_build_hook": false
+    },
+    "code_assets": {
+      "version": "2.2.0",
+      "source": "hosted",
+      "source_reference": "pub:code_assets@2.2.0",
+      "repository": "https://github.com/dart-lang/native/tree/main/pkgs/code_assets",
+      "archive_url": "https://pub.dev/api/archives/code_assets-2.2.0.tar.gz",
+      "archive_sha256": "1ef22a0be3af9370bd9481ac76db114db92bfe75d5ca2b2d7bc911764478a4d9",
+      "dependencies": [
+        "collection",
+        "hooks",
+        "logging"
+      ],
+      "license": "BSD-3-Clause",
+      "license_file": "LICENSE",
+      "license_sha256": "21ae23b0b9ff67a2dc75ab085d1e8db8ac548c5faf370af17f28dd2ef3b52b7b",
+      "contains_build_hook": false
+    },
+    "collection": {
+      "version": "1.19.1",
+      "source": "hosted",
+      "source_reference": "pub:collection@1.19.1",
+      "repository": "https://github.com/dart-lang/core/tree/main/pkgs/collection",
+      "archive_url": "https://pub.dev/api/archives/collection-1.19.1.tar.gz",
+      "archive_sha256": "2f5709ae4d3d59dd8f7cd309b4e023046b57d8a6c82130785d2b0e5868084e76",
+      "dependencies": [],
+      "license": "BSD-3-Clause",
+      "license_file": "LICENSE",
+      "license_sha256": "ff15faa32a2e638107b7789592b14426162a75ba620044ee2340a20ec6ce5e73",
+      "contains_build_hook": false
+    },
+    "convert": {
+      "version": "3.1.2",
+      "source": "hosted",
+      "source_reference": "pub:convert@3.1.2",
+      "repository": "https://github.com/dart-lang/core/tree/main/pkgs/convert",
+      "archive_url": "https://pub.dev/api/archives/convert-3.1.2.tar.gz",
+      "archive_sha256": "b30acd5944035672bc15c6b7a8b47d773e41e2f17de064350988c5d02adb1c68",
+      "dependencies": [
+        "typed_data"
+      ],
+      "license": "BSD-3-Clause",
+      "license_file": "LICENSE",
+      "license_sha256": "ad6a71997da90924b2cfb1fb47ec46537f70faf469efe016168794ae45ed6888",
+      "contains_build_hook": false
+    },
+    "crypto": {
+      "version": "3.0.8",
+      "source": "hosted",
+      "source_reference": "pub:crypto@3.0.8",
+      "repository": "https://github.com/dart-lang/core/tree/main/pkgs/crypto",
+      "archive_url": "https://pub.dev/api/archives/crypto-3.0.8.tar.gz",
+      "archive_sha256": "e3626ae6270383c9e3a549f34c9e4cd26c09ae6a9adaab2bf4737a00340efdc4",
+      "dependencies": [],
+      "license": "BSD-3-Clause",
+      "license_file": "LICENSE",
+      "license_sha256": "ad6a71997da90924b2cfb1fb47ec46537f70faf469efe016168794ae45ed6888",
+      "contains_build_hook": false
+    },
+    "drift": {
+      "version": "2.35.4",
+      "source": "hosted",
+      "source_reference": "pub:drift@2.35.4",
+      "repository": "https://github.com/simolus3/drift",
+      "archive_url": "https://pub.dev/api/archives/drift-2.35.4.tar.gz",
+      "archive_sha256": "3eafa443c385724806a8648129583b4b140b7472f3feb6d1f321bdcf0fc853d4",
+      "dependencies": [
+        "async",
+        "collection",
+        "convert",
+        "meta",
+        "path",
+        "sqlite3",
+        "stack_trace",
+        "stream_channel",
+        "web"
+      ],
+      "license": "MIT",
+      "license_file": "LICENSE",
+      "license_sha256": "31f84e4edff98f0238a5bef1c2ce754e401fbab149782f0ff4dc9b68fd086f75",
+      "contains_build_hook": false
+    },
+    "ffi": {
+      "version": "2.2.0",
+      "source": "hosted",
+      "source_reference": "pub:ffi@2.2.0",
+      "repository": "https://github.com/dart-lang/native/tree/main/pkgs/ffi",
+      "archive_url": "https://pub.dev/api/archives/ffi-2.2.0.tar.gz",
+      "archive_sha256": "6d7fd89431262d8f3125e81b50d3847a091d846eafcd4fdb88dd06f36d705a45",
+      "dependencies": [],
+      "license": "BSD-3-Clause",
+      "license_file": "LICENSE",
+      "license_sha256": "0371d1da6a57fb791db29d29b95333429205f51f3cb2eb3a0c12d91838a38744",
+      "contains_build_hook": false
+    },
+    "file": {
+      "version": "7.0.1",
+      "source": "hosted",
+      "source_reference": "pub:file@7.0.1",
+      "repository": "https://github.com/dart-lang/tools/tree/main/pkgs/file",
+      "archive_url": "https://pub.dev/api/archives/file-7.0.1.tar.gz",
+      "archive_sha256": "a3b4f84adafef897088c160faf7dfffb7696046cb13ae90b508c2cbc95d3b8d4",
+      "dependencies": [
+        "meta",
+        "path"
+      ],
+      "license": "BSD-3-Clause",
+      "license_file": "LICENSE",
+      "license_sha256": "f6df86b1412172537273e8e80ee2fb8a66aa7307ce0b39ea5ddab47ca41b8c49",
+      "contains_build_hook": false
+    },
+    "glob": {
+      "version": "2.2.0",
+      "source": "hosted",
+      "source_reference": "pub:glob@2.2.0",
+      "repository": "https://github.com/dart-lang/tools/tree/main/pkgs/glob",
+      "archive_url": "https://pub.dev/api/archives/glob-2.2.0.tar.gz",
+      "archive_sha256": "218aeb56050c714f62a3182775320dfa04602b55074873e24e31bbd39bda96fb",
+      "dependencies": [
+        "async",
+        "collection",
+        "file",
+        "path",
+        "string_scanner"
+      ],
+      "license": "BSD-3-Clause",
+      "license_file": "LICENSE",
+      "license_sha256": "3c32b53167c7dae9190c38dab5dd9fe1789c53623ebc7d1babcb29914c5b3f16",
+      "contains_build_hook": false
+    },
+    "hooks": {
+      "version": "2.2.0",
+      "source": "hosted",
+      "source_reference": "pub:hooks@2.2.0",
+      "repository": "https://github.com/dart-lang/native/tree/main/pkgs/hooks",
+      "archive_url": "https://pub.dev/api/archives/hooks-2.2.0.tar.gz",
+      "archive_sha256": "eaac480a35ec0814146c2c48d96aaa829e0e44a7662c88ae84c9edf4bc35651f",
+      "dependencies": [
+        "collection",
+        "crypto",
+        "logging",
+        "pub_semver",
+        "record_use",
+        "yaml"
+      ],
+      "license": "BSD-3-Clause",
+      "license_file": "LICENSE",
+      "license_sha256": "21ae23b0b9ff67a2dc75ab085d1e8db8ac548c5faf370af17f28dd2ef3b52b7b",
+      "contains_build_hook": false
+    },
+    "logging": {
+      "version": "1.3.0",
+      "source": "hosted",
+      "source_reference": "pub:logging@1.3.0",
+      "repository": "https://github.com/dart-lang/core/tree/main/pkgs/logging",
+      "archive_url": "https://pub.dev/api/archives/logging-1.3.0.tar.gz",
+      "archive_sha256": "c8245ada5f1717ed44271ed1c26b8ce85ca3228fd2ffdb75468ab01979309d61",
+      "dependencies": [],
+      "license": "BSD-3-Clause",
+      "license_file": "LICENSE",
+      "license_sha256": "dfb09c74e29386cd3e2719f32d4995d59526179753931d31840757c77fbf2791",
+      "contains_build_hook": false
+    },
+    "meta": {
+      "version": "1.19.0",
+      "source": "hosted",
+      "source_reference": "pub:meta@1.19.0",
+      "repository": "https://github.com/dart-lang/sdk/tree/main/pkg/meta",
+      "archive_url": "https://pub.dev/api/archives/meta-1.19.0.tar.gz",
+      "archive_sha256": "307249ce4ff29d58a18e97f6345f539382eb9c9c29ecda628900f31de0443dd9",
+      "dependencies": [],
+      "license": "BSD-3-Clause",
+      "license_file": "LICENSE",
+      "license_sha256": "b71519245009a3b8f126196a5408ec031e216e8e0d985085958c6543f82a8a2a",
+      "contains_build_hook": false
+    },
+    "native_toolchain_c": {
+      "version": "0.19.6",
+      "source": "hosted",
+      "source_reference": "pub:native_toolchain_c@0.19.6",
+      "repository": "https://github.com/dart-lang/native/tree/main/pkgs/native_toolchain_c",
+      "archive_url": "https://pub.dev/api/archives/native_toolchain_c-0.19.6.tar.gz",
+      "archive_sha256": "120b6fc66acd8a5ddeaeb1e59b78836bb3ec9919bd9d9dfb1e2401985710c2c0",
+      "dependencies": [
+        "code_assets",
+        "file",
+        "glob",
+        "hooks",
+        "logging",
+        "meta",
+        "process",
+        "pub_semver"
+      ],
+      "license": "BSD-3-Clause",
+      "license_file": "LICENSE",
+      "license_sha256": "aa81abb1ac43e40d2f5a606385edd37e974a5858d4109f7f439dd43d964487a7",
+      "contains_build_hook": false
+    },
+    "path": {
+      "version": "1.9.1",
+      "source": "hosted",
+      "source_reference": "pub:path@1.9.1",
+      "repository": "https://github.com/dart-lang/core/tree/main/pkgs/path",
+      "archive_url": "https://pub.dev/api/archives/path-1.9.1.tar.gz",
+      "archive_sha256": "75cca69d1490965be98c73ceaea117e8a04dd21217b37b292c9ddbec0d955bc5",
+      "dependencies": [],
+      "license": "BSD-3-Clause",
+      "license_file": "LICENSE",
+      "license_sha256": "3c32b53167c7dae9190c38dab5dd9fe1789c53623ebc7d1babcb29914c5b3f16",
+      "contains_build_hook": false
+    },
+    "platform": {
+      "version": "3.2.0",
+      "source": "hosted",
+      "source_reference": "pub:platform@3.2.0",
+      "repository": "https://github.com/dart-lang/core/tree/main/pkgs/platform",
+      "archive_url": "https://pub.dev/api/archives/platform-3.2.0.tar.gz",
+      "archive_sha256": "a36d119c13416516a7b5913fbe8af8531e11633d784c550b2125f76c758524ec",
+      "dependencies": [
+        "meta"
+      ],
+      "license": "BSD-3-Clause",
+      "license_file": "LICENSE",
+      "license_sha256": "143839f62c9b7f88143ea9f688361c27050888acde7696b34e04414bd254fafc",
+      "contains_build_hook": false
+    },
+    "process": {
+      "version": "5.0.6",
+      "source": "hosted",
+      "source_reference": "pub:process@5.0.6",
+      "repository": "https://github.com/dart-lang/tools/tree/main/pkgs/process",
+      "archive_url": "https://pub.dev/api/archives/process-5.0.6.tar.gz",
+      "archive_sha256": "4242ba3508d37e01808bdf71ad1d5bb93a8d671bf2e7450e6b1b353fb0808891",
+      "dependencies": [
+        "file",
+        "path",
+        "platform"
+      ],
+      "license": "BSD-3-Clause",
+      "license_file": "LICENSE",
+      "license_sha256": "5f018bbc25a55406d7a4e1d3229135439e315210b0050ca56dbb367a4934e85d",
+      "contains_build_hook": false
+    },
+    "pub_semver": {
+      "version": "2.2.1",
+      "source": "hosted",
+      "source_reference": "pub:pub_semver@2.2.1",
+      "repository": "https://github.com/dart-lang/tools/tree/main/pkgs/pub_semver",
+      "archive_url": "https://pub.dev/api/archives/pub_semver-2.2.1.tar.gz",
+      "archive_sha256": "261236774e8b1d69cfc6b9eabbc96c40f25e7a2d6b171f3385d4f65d5734fb24",
+      "dependencies": [
+        "collection"
+      ],
+      "license": "BSD-3-Clause",
+      "license_file": "LICENSE",
+      "license_sha256": "3c32b53167c7dae9190c38dab5dd9fe1789c53623ebc7d1babcb29914c5b3f16",
+      "contains_build_hook": false
+    },
+    "quds_mail_core": {
+      "version": "0.1.0",
+      "source": "workspace",
+      "source_reference": "packages/quds_mail_core",
+      "repository": null,
+      "archive_url": null,
+      "archive_sha256": null,
+      "dependencies": [
+        "crypto"
+      ],
+      "license": "MIT",
+      "license_file": "LICENSE",
+      "license_sha256": "ddce111598e179ca6118a86ec7d1a62aaaab6fb007df49d7236b78d9085f3641",
+      "contains_build_hook": false
+    },
+    "quds_mail_store": {
+      "version": "0.1.0",
+      "source": "workspace",
+      "source_reference": "packages/quds_mail_store",
+      "repository": null,
+      "archive_url": null,
+      "archive_sha256": null,
+      "dependencies": [
+        "crypto",
+        "drift",
+        "path",
+        "quds_mail_core",
+        "sqlite3",
+        "web"
+      ],
+      "license": "MIT",
+      "license_file": "LICENSE",
+      "license_sha256": "ddce111598e179ca6118a86ec7d1a62aaaab6fb007df49d7236b78d9085f3641",
+      "contains_build_hook": false
+    },
+    "record_use": {
+      "version": "1.1.1",
+      "source": "hosted",
+      "source_reference": "pub:record_use@1.1.1",
+      "repository": "https://github.com/dart-lang/native/tree/main/pkgs/record_use",
+      "archive_url": "https://pub.dev/api/archives/record_use-1.1.1.tar.gz",
+      "archive_sha256": "1cb8564af8d43b464294411db9217f5ec04891c6f22ee2c32d73ae05e88a6bd2",
+      "dependencies": [
+        "collection",
+        "meta",
+        "pub_semver"
+      ],
+      "license": "BSD-3-Clause",
+      "license_file": "LICENSE",
+      "license_sha256": "1cda25a8de6880c5338de0b4a06ee89e8537c213eb1379c16a4c035bfd198b5c",
+      "contains_build_hook": false
+    },
+    "source_span": {
+      "version": "1.10.2",
+      "source": "hosted",
+      "source_reference": "pub:source_span@1.10.2",
+      "repository": "https://github.com/dart-lang/tools/tree/main/pkgs/source_span",
+      "archive_url": "https://pub.dev/api/archives/source_span-1.10.2.tar.gz",
+      "archive_sha256": "56a02f1f4cd1a2d96303c0144c93bd6d909eea6bee6bf5a0e0b685edbd4c47ab",
+      "dependencies": [
+        "collection",
+        "path",
+        "term_glyph"
+      ],
+      "license": "BSD-3-Clause",
+      "license_file": "LICENSE",
+      "license_sha256": "3c32b53167c7dae9190c38dab5dd9fe1789c53623ebc7d1babcb29914c5b3f16",
+      "contains_build_hook": false
+    },
+    "sqlite3": {
+      "version": "3.9.1",
+      "source": "hosted",
+      "source_reference": "pub:sqlite3@3.9.1",
+      "repository": "https://github.com/simolus3/sqlite3.dart/tree/main/sqlite3",
+      "archive_url": "https://pub.dev/api/archives/sqlite3-3.9.1.tar.gz",
+      "archive_sha256": "8765980411f9b6733534efe9d014fad0750fa649590598772c04692deb34886b",
+      "dependencies": [
+        "code_assets",
+        "collection",
+        "crypto",
+        "ffi",
+        "hooks",
+        "meta",
+        "native_toolchain_c",
+        "path",
+        "typed_data",
+        "web"
+      ],
+      "license": "MIT",
+      "license_file": "LICENSE",
+      "license_sha256": "67e5d73a3a0c6e41f33d688a672b1161bf7f16e04da9ae48a7a14f1ba7436a4d",
+      "contains_build_hook": true
+    },
+    "stack_trace": {
+      "version": "1.12.2",
+      "source": "hosted",
+      "source_reference": "pub:stack_trace@1.12.2",
+      "repository": "https://github.com/dart-lang/tools/tree/main/pkgs/stack_trace",
+      "archive_url": "https://pub.dev/api/archives/stack_trace-1.12.2.tar.gz",
+      "archive_sha256": "277654b3034d17ac6f9f1cb5595db011b1d5d41e8806866db28e0abaa101c490",
+      "dependencies": [
+        "path"
+      ],
+      "license": "BSD-3-Clause",
+      "license_file": "LICENSE",
+      "license_sha256": "ff0b91d4f3c32b25cb6ec84985e8da89b0ba2a2b2f7eef353cda5e5423a20390",
+      "contains_build_hook": false
+    },
+    "stream_channel": {
+      "version": "2.1.4",
+      "source": "hosted",
+      "source_reference": "pub:stream_channel@2.1.4",
+      "repository": "https://github.com/dart-lang/tools/tree/main/pkgs/stream_channel",
+      "archive_url": "https://pub.dev/api/archives/stream_channel-2.1.4.tar.gz",
+      "archive_sha256": "969e04c80b8bcdf826f8f16579c7b14d780458bd97f56d107d3950fdbeef059d",
+      "dependencies": [
+        "async"
+      ],
+      "license": "BSD-3-Clause",
+      "license_file": "LICENSE",
+      "license_sha256": "ff15faa32a2e638107b7789592b14426162a75ba620044ee2340a20ec6ce5e73",
+      "contains_build_hook": false
+    },
+    "string_scanner": {
+      "version": "1.4.1",
+      "source": "hosted",
+      "source_reference": "pub:string_scanner@1.4.1",
+      "repository": "https://github.com/dart-lang/tools/tree/main/pkgs/string_scanner",
+      "archive_url": "https://pub.dev/api/archives/string_scanner-1.4.1.tar.gz",
+      "archive_sha256": "921cd31725b72fe181906c6a94d987c78e3b98c2e205b397ea399d4054872b43",
+      "dependencies": [
+        "source_span"
+      ],
+      "license": "BSD-3-Clause",
+      "license_file": "LICENSE",
+      "license_sha256": "3c32b53167c7dae9190c38dab5dd9fe1789c53623ebc7d1babcb29914c5b3f16",
+      "contains_build_hook": false
+    },
+    "term_glyph": {
+      "version": "1.2.2",
+      "source": "hosted",
+      "source_reference": "pub:term_glyph@1.2.2",
+      "repository": "https://github.com/dart-lang/tools/tree/main/pkgs/term_glyph",
+      "archive_url": "https://pub.dev/api/archives/term_glyph-1.2.2.tar.gz",
+      "archive_sha256": "7f554798625ea768a7518313e58f83891c7f5024f88e46e7182a4558850a4b8e",
+      "dependencies": [],
+      "license": "BSD-3-Clause",
+      "license_file": "LICENSE",
+      "license_sha256": "ea97a7558a7bd7cee4e2355f7529e3cbebb0dcbb546ddb9a90f10c9eb6b08da5",
+      "contains_build_hook": false
+    },
+    "typed_data": {
+      "version": "1.4.0",
+      "source": "hosted",
+      "source_reference": "pub:typed_data@1.4.0",
+      "repository": "https://github.com/dart-lang/core/tree/main/pkgs/typed_data",
+      "archive_url": "https://pub.dev/api/archives/typed_data-1.4.0.tar.gz",
+      "archive_sha256": "f9049c039ebfeb4cf7a7104a675823cd72dba8297f264b6637062516699fa006",
+      "dependencies": [
+        "collection"
+      ],
+      "license": "BSD-3-Clause",
+      "license_file": "LICENSE",
+      "license_sha256": "ff15faa32a2e638107b7789592b14426162a75ba620044ee2340a20ec6ce5e73",
+      "contains_build_hook": false
+    },
+    "web": {
+      "version": "1.1.2",
+      "source": "hosted",
+      "source_reference": "pub:web@1.1.2",
+      "repository": "https://github.com/dart-lang/web",
+      "archive_url": "https://pub.dev/api/archives/web-1.1.2.tar.gz",
+      "archive_sha256": "e119e82ac4795c7925103b7cf3768191f33941b99e7ccffbd6c645201d9f606b",
+      "dependencies": [],
+      "license": "BSD-3-Clause",
+      "license_file": "LICENSE",
+      "license_sha256": "aa913ff50d7542eb8cc35b9f48a80928ac6819ba9057f85d424655e3e8dc271c",
+      "contains_build_hook": false
+    },
+    "yaml": {
+      "version": "3.1.4",
+      "source": "hosted",
+      "source_reference": "pub:yaml@3.1.4",
+      "repository": "https://github.com/dart-lang/tools/tree/main/pkgs/yaml",
+      "archive_url": "https://pub.dev/api/archives/yaml-3.1.4.tar.gz",
+      "archive_sha256": "f67cdd8e07d3c6329146aaef1ba043542b3134c12489f553ca9a7435d1068aea",
+      "dependencies": [
+        "collection",
+        "source_span",
+        "string_scanner"
+      ],
+      "license": "MIT",
+      "license_file": "LICENSE",
+      "license_sha256": "d47b93335401b052d79a2f5a3710e4cf7b5aed782faedf84d40fbdd6eb934ec7",
+      "contains_build_hook": false
+    }
+  },
+  "sqlite_native": {
+    "package": "sqlite3",
+    "package_version": "3.9.1",
+    "source": "upstream default SQLite, not SQLCipher or SQLite3MultipleCiphers",
+    "license": "Public domain (SQLite core); Dart binding MIT",
+    "copyright_reference": "https://sqlite.org/copyright.html",
+    "default_artifact_url": "https://github.com/simolus3/sqlite3.dart/releases/download/sqlite3-3.9.1/libsqlite3.x64.linux.so",
+    "expected_sha256": "0a65852703763619a7a34633b4959b3b86c4103804a4dfe4e8b27b5de1c0647b",
+    "observed_sha256": "0a65852703763619a7a34633b4959b3b86c4103804a4dfe4e8b27b5de1c0647b",
+    "observed_version": "3.54.1",
+    "observed_source_id": "2026-10-16 14:45:20 555e07ef33f69a0957d24d8e555b702464a131d6f1607f4c3c1e4551e8e6ca76",
+    "default_native_assets_hook_used": true,
+    "system_override_used": false,
+    "runtime_qualification": "Linux x64 only; FTS5 exercised."
+  },
+  "sqlite_wasm": {
+    "artifact_url": "https://github.com/simolus3/sqlite3.dart/releases/download/sqlite3-3.9.1/sqlite3.wasm",
+    "expected_sha256": "e7451780e78c56ff864fe9317a0fbcd6aeb2e8de3beba7f5efd963202f7ec3d9",
+    "pin_source": "sqlite3-3.9.1/lib/src/hook/asset_hashes.dart",
+    "downloaded_or_executed": false,
+    "host_requirement": "Host must verify this exact artifact hash and serve it with the compiled worker from the same origin. No CDN fallback or embedded asset is included."
+  }
+}

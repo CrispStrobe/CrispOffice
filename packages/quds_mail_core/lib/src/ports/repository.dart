@@ -9,9 +9,13 @@ abstract interface class MailSyncRepository {
 
   /// Commit records, memberships, tombstones and cursor atomically. Recheck the
   /// lease inside the transaction before commit, not just before opening it.
+  /// Compare [expectedCursor] inside the same transaction; null requires that
+  /// no cursor exists. A concurrently advanced cursor returns conflict rather
+  /// than allowing an older page to overwrite newer mailbox state.
   /// A reset must reconcile pending local edits instead of discarding them.
   Future<MailResult<MailUnit>> commitSyncPage(
     MailSyncPage page, {
+    required MailCursor? expectedCursor,
     required MailOperationLease lease,
   });
 }

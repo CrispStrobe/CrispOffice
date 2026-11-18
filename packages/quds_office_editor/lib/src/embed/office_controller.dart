@@ -916,6 +916,7 @@ class WordEditorController extends OfficeController {
   /// input API.
   late final OfficeInputBridge input;
   var _applyingIme = false;
+  Object? _imeValueTarget;
 
   /// fromMillisecondsSinceEpoch API.
   var _localEditAt = DateTime.fromMillisecondsSinceEpoch(0);
@@ -2062,9 +2063,42 @@ class WordEditorController extends OfficeController {
     if (!config.allowsMutation) {
       return;
     }
+    // Restoring focus after host chrome must reconnect the current IME
+    // draft. Rebuilding it would silently finish an active composition.
+    final preserveComposition = _canResumeImeComposition;
     input.attach(multiline: true);
-    _writeImeValue();
+    if (!preserveComposition) _writeImeValue();
   }
+
+  bool get _canResumeImeComposition {
+    final value = input.value;
+    if (!input.composing.isValid ||
+        input.composing.isCollapsed ||
+        input.composing != value.composing ||
+        value.composing.end > value.text.length ||
+        !value.selection.isValid ||
+        value.selection.end > value.text.length ||
+        _imeValueTarget != _imeEditingTarget) {
+      return false;
+    }
+    final text = selectedEquation == null
+        ? _activeParagraph.text
+        : equationEditingText();
+    return value.text == text;
+  }
+
+  Object get _imeEditingTarget => (
+    document: document,
+    paragraph: _activeParagraph,
+    caret: caret,
+    paragraphIndex: caret.paragraphIndex,
+    offset: caret.logicalIndex,
+    anchorParagraph: caret.selectionAnchorParagraph,
+    anchorOffset: caret.selectionAnchor,
+    equation: selectedEquation,
+    equationSlot: selectedEquation == null ? null : equationSlot,
+    equationOffset: selectedEquation == null ? null : equationCaret,
+  );
 
   @override
   /// detachInput API.
@@ -4557,6 +4591,7 @@ class WordEditorController extends OfficeController {
     }
     if (selectedEquation != null) {
       _onEquationIme(value);
+      _imeValueTarget = _imeEditingTarget;
       return;
     }
     final WmlParagraph para = _activeParagraph;
@@ -4589,6 +4624,7 @@ class WordEditorController extends OfficeController {
       caret.selectionAnchorParagraph = caret.paragraphIndex;
     }
     caret.resetBlink();
+    _imeValueTarget = _imeEditingTarget;
     notifyListeners();
   }
 
@@ -4700,6 +4736,7 @@ class WordEditorController extends OfficeController {
   }
 
   void _writeImeValue() {
+    _imeValueTarget = _imeEditingTarget;
     if (selectedEquation != null) {
       final String text = equationEditingText();
       _applyingIme = true;
@@ -7230,9 +7267,10 @@ class WordEditorController extends OfficeController {
   /// Reinspect after mutations or undo/redo: field handles are short-lived.
   List<WmlZoteroField> get zoteroFields => WordZotero.fields(document);
 
-  /// A fresh field handle at the body or Notes caret, or enclosing a selection
-  /// in one paragraph. A collapsed caret at a field's end belongs to the
-  /// following text. Other stories retain their explicit field-list actions.
+  /// A fresh field handle at the body or Notes caret, enclosing a selection
+  /// in one paragraph, or exactly matching a selected multi-paragraph
+  /// bibliography. A collapsed caret at a field's end belongs to the following
+  /// text. Other stories retain their explicit field-list actions.
   WmlZoteroField? get zoteroFieldAtCaret => findZoteroFieldAtCaret();
 
   /// Resolves the current editing caret using a fresh field inventory when the
@@ -7254,7 +7292,19 @@ class WordEditorController extends OfficeController {
     final bool collapsed;
     if (noteTarget != null) {
       final range = _noteSelectionRange(noteTarget);
-      if (range == null) return null;
+      if (range == null) {
+        return (fields ?? zoteroFields).where((field) {
+          if (field.kind != ZoteroFieldKind.bibliography ||
+              field.paragraphs.length < 2) {
+            return false;
+          }
+          final visible = _zoteroRevealRange(field);
+          return visible != null &&
+              identical(visible.note, noteTarget.note) &&
+              visible.start == noteTarget.selection.start &&
+              visible.end == noteTarget.selection.end;
+        }).firstOrNull;
+      }
       paragraph = range.paragraph;
       rangeStart = range.start;
       rangeEnd = range.end;
@@ -7262,10 +7312,22 @@ class WordEditorController extends OfficeController {
     } else {
       final paragraphs = document.paragraphs.toList();
       final range = caret.normalizedRange;
-      if (range.startPara != range.endPara ||
-          range.startPara < 0 ||
-          range.startPara >= paragraphs.length) {
+      if (range.startPara < 0 || range.endPara >= paragraphs.length) {
         return null;
+      }
+      if (range.startPara != range.endPara) {
+        final selected = paragraphs.sublist(range.startPara, range.endPara + 1);
+        return (fields ?? zoteroFields).where((field) {
+          if (field.kind != ZoteroFieldKind.bibliography ||
+              field.paragraphs.length < 2 ||
+              !listEquals(field.paragraphs, selected) ||
+              range.startIdx != field.start ||
+              range.endIdx != field.end) {
+            return false;
+          }
+          final visible = _zoteroRevealRange(field);
+          return visible != null && visible.note == null;
+        }).firstOrNull;
       }
       paragraph = paragraphs[range.startPara];
       rangeStart = range.startIdx;
@@ -7285,19 +7347,190 @@ class WordEditorController extends OfficeController {
     }).firstOrNull;
   }
 
+  /// Whether the field has a selectable range in the body or the Notes pane.
+  /// This is an availability hint and does not scan the Zotero inventory.
+  /// [revealZoteroField] reinspects ownership before moving the selection.
+  bool canRevealZoteroField(WmlZoteroField field) =>
+      _zoteroRevealRange(field) != null;
+
+  /// Selects a current citation or bibliography without changing document
+  /// content, dirty state or undo history. Read-only selecting mode is allowed.
+  /// Unsupported stories, stale handles and incomplete ranges return false.
+  bool revealZoteroField(WmlZoteroField field) {
+    if (!canRevealZoteroField(field)) return false;
+    final current = zoteroFields
+        .where(
+          (candidate) =>
+              identical(candidate.paragraph, field.paragraph) &&
+              listEquals(candidate.paragraphs, field.paragraphs) &&
+              identical(candidate.run, field.run) &&
+              candidate.kind == field.kind &&
+              candidate.start == field.start &&
+              candidate.end == field.end &&
+              candidate.instruction == field.instruction &&
+              candidate.cachedText == field.cachedText &&
+              candidate.wholeParagraph == field.wholeParagraph &&
+              candidate.locked == field.locked &&
+              candidate.nested == field.nested &&
+              candidate.opaqueMetadata == field.opaqueMetadata,
+        )
+        .firstOrNull;
+    if (current == null) return false;
+    final range = _zoteroRevealRange(current);
+    if (range == null) return false;
+    final note = range.note;
+    if (note != null) {
+      detachInput();
+      setNoteEditingTarget(
+        note,
+        TextSelection(baseOffset: range.start, extentOffset: range.end),
+      );
+    } else {
+      final paragraphs = document.paragraphs.toList();
+      final first = paragraphs.indexOf(current.paragraphs.first);
+      final last = paragraphs.indexOf(current.paragraphs.last);
+      if (first < 0 || last < first) return false;
+      clearNoteEditingTarget(notify: false);
+      _editingComment = false;
+      _editingHeaderFooter = false;
+      selectedVisual = null;
+      selectedFrame = null;
+      editingFrame = false;
+      selectedEquation = null;
+      selectedTable = null;
+      selectedTableBand = null;
+      documentCaret
+        ..paragraphIndex = last
+        ..logicalIndex = range.end
+        ..selectionAnchorParagraph = first
+        ..selectionAnchor = range.start
+        ..resetBlink();
+      _stickyCaretX = null;
+      _revealParagraph(first);
+      _syncImeSelection();
+      notifyListeners();
+    }
+    requestEditingFocus();
+    return true;
+  }
+
+  ({WmlNote? note, int start, int end})? _zoteroRevealRange(
+    WmlZoteroField field,
+  ) {
+    if (_disposed ||
+        !config.allowsSelection ||
+        !field.isValid ||
+        field.nested ||
+        field.opaqueMetadata ||
+        field.paragraphs.isEmpty ||
+        !identical(field.paragraphs.first, field.paragraph) ||
+        field.start < 0 ||
+        field.start > field.paragraph.text.length ||
+        field.end < 0 ||
+        field.end > field.paragraphs.last.text.length ||
+        (field.paragraphs.length == 1 && field.start >= field.end) ||
+        (field.paragraphs.length > 1 &&
+            field.kind != ZoteroFieldKind.bibliography) ||
+        (input.composing.isValid && !input.composing.isCollapsed)) {
+      return null;
+    }
+    final activeNote = noteEditingTarget;
+    if (activeNote != null &&
+        activeNote.composing.isValid &&
+        !activeNote.composing.isCollapsed) {
+      return null;
+    }
+    bool contiguous(List<WmlBlock> parent, int index) =>
+        index + field.paragraphs.length <= parent.length &&
+        field.paragraphs.indexed.every(
+          (entry) => identical(parent[index + entry.$1], entry.$2),
+        );
+    for (final section in document.sections) {
+      final slot = _zoteroBodyParagraphSlot(section.blocks, field.paragraph);
+      if (slot != null) {
+        return contiguous(slot.parent, slot.index)
+            ? (note: null, start: field.start, end: field.end)
+            : null;
+      }
+    }
+    for (final note in [...document.footnotes, ...document.endnotes]) {
+      final segments = _noteTextSegments(note).toList();
+      final first = segments.indexWhere(
+        (segment) => identical(segment.paragraph, field.paragraph),
+      );
+      if (first < 0) continue;
+      final last = first + field.paragraphs.length - 1;
+      if (last >= segments.length ||
+          !field.paragraphs.indexed.every(
+            (entry) =>
+                identical(segments[first + entry.$1].paragraph, entry.$2),
+          ) ||
+          field.start < segments[first].hidden ||
+          field.end < segments[last].hidden) {
+        return null;
+      }
+      final slot = WordTree.locateIn(note.blocks, field.paragraph);
+      if (slot == null || !contiguous(slot.parent, slot.index)) return null;
+      return (
+        note: note,
+        start: segments[first].start + field.start - segments[first].hidden,
+        end: segments[last].start + field.end - segments[last].hidden,
+      );
+    }
+    return null;
+  }
+
+  static ({List<WmlBlock> parent, int index})? _zoteroBodyParagraphSlot(
+    List<WmlBlock> blocks,
+    WmlParagraph paragraph,
+  ) {
+    for (var index = 0; index < blocks.length; index++) {
+      final block = blocks[index];
+      if (identical(block, paragraph)) return (parent: blocks, index: index);
+      final Iterable<List<WmlBlock>> children;
+      if (block is WmlContentControlBlock) {
+        children = [block.blocks];
+      } else if (block is WmlTable) {
+        children = [
+          for (final row in block.rows)
+            for (final cell in row.cells) cell.blocks,
+        ];
+      } else {
+        // Text frames and generated TOCs do not share the body input surface.
+        continue;
+      }
+      for (final child in children) {
+        final found = _zoteroBodyParagraphSlot(child, paragraph);
+        if (found != null) return found;
+      }
+    }
+    return null;
+  }
+
   /// Starts a detached Zotero desktop transaction tied to this exact editing
   /// target. The host drives its protocol and calls [WordZoteroTransaction.apply]
   /// only after completion and any formatting review.
   WordZoteroTransaction beginZoteroTransaction({
     required String documentId,
+    ZoteroCitingCommand? command,
     WmlZoteroField? selectedField,
     ZoteroCitation? seedCitation,
   }) {
     if (_disposed || !config.allowsMutation) {
       throw StateError('This document is not editable.');
     }
+    if (input.composing.isValid && !input.composing.isCollapsed) {
+      throw UnsupportedError(
+        'Finish the current text composition before using Zotero.',
+      );
+    }
     final noteTarget = noteEditingTarget;
     _assertNoteTargetReady(noteTarget);
+    if (command == ZoteroCitingCommand.addNote && noteTarget != null) {
+      throw UnsupportedError(
+        'Insert Zotero notes from the document body. Citations can still be added inside footnotes and endnotes.',
+      );
+    }
     commitNoteEdits();
     _assertZoteroTrackingMode();
     if (isEditingHeaderFooter ||
@@ -7314,21 +7547,22 @@ class WordEditorController extends OfficeController {
         : _noteSelectionRange(noteTarget);
     final resolvedField =
         selectedField ?? (noteTarget != null ? findZoteroFieldAtCaret() : null);
-    return WordZoteroTransaction._(
-      this,
-      WordZoteroCitingSession(
-        document: document,
-        documentId: documentId,
-        insertionParagraph: noteTarget != null
-            ? (noteTarget.selection.isCollapsed ? noteRange?.paragraph : null)
-            : (caret.isCollapsed ? _activeParagraph : null),
-        insertionOffset: noteTarget != null
-            ? (noteRange?.start ?? 0)
-            : caret.logicalIndex,
-        selectedField: resolvedField,
-        seedCitation: seedCitation,
-      ),
+    final session = WordZoteroCitingSession(
+      document: document,
+      documentId: documentId,
+      insertionParagraph: noteTarget != null
+          ? (noteTarget.selection.isCollapsed ? noteRange?.paragraph : null)
+          : (caret.isCollapsed ? _activeParagraph : null),
+      insertionOffset: noteTarget != null
+          ? (noteRange?.start ?? 0)
+          : caret.logicalIndex,
+      selectedField: resolvedField,
+      seedCitation: seedCitation,
     );
+    if (command == ZoteroCitingCommand.addNote) {
+      session.assertCanInsertNoteText();
+    }
+    return WordZoteroTransaction._(this, session);
   }
 
   void _applyZoteroTransaction(WordZoteroCitingSession session) {
@@ -8284,6 +8518,39 @@ class WordEditorController extends OfficeController {
 
   WordNoteEditingTarget? _noteEditingTarget;
   Object? _noteBodyTarget;
+
+  int _noteFocusRequest = 0;
+
+  /// Monotonic focus request for hosts displaying the retained Notes target.
+  /// The default Notes pane consumes this after its next layout.
+  int get noteFocusRequest => _noteFocusRequest;
+
+  /// Returns keyboard focus to the active body or Notes insertion point after
+  /// closing host chrome. The focused surface retains ownership of its IME.
+  void requestEditingFocus() {
+    if (_disposed ||
+        !config.allowsSelection ||
+        (input.composing.isValid && !input.composing.isCollapsed)) {
+      return;
+    }
+    final target = noteEditingTarget;
+    if (target != null) {
+      if ((target.composing.isValid && !target.composing.isCollapsed) ||
+          !_ownsNote(target.note) ||
+          !target.selection.isValid ||
+          target.selection.end > noteEditText(target.note).length) {
+        return;
+      }
+      if (!config.showNotesPane) {
+        syncConfig(config.copyWith(showNotesPane: true));
+      }
+      _noteFocusRequest++;
+      notifyListeners();
+    } else {
+      onRequestFocus?.call();
+      _syncImeSelection();
+    }
+  }
 
   Object get _bodyEditingPosition => (
     document: document,
@@ -14766,6 +15033,7 @@ final class WordZoteroTransaction {
     offset: controller.caret.logicalIndex,
     anchorParagraph: controller.caret.selectionAnchorParagraph,
     anchorOffset: controller.caret.selectionAnchor,
+    composing: controller.input.composing,
     note: controller.noteEditingTarget,
     headerFooter: controller.isEditingHeaderFooter,
     footer: controller.isEditingFooter,

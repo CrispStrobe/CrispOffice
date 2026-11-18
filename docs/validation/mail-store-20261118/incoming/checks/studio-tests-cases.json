@@ -1,0 +1,177 @@
+[
+  {
+    "name": "draft checks after the pause and corrects without posting",
+    "result": "success",
+    "skipped": false,
+    "url": "package:flutter_test/src/widget_tester.dart",
+    "line": 174
+  },
+  {
+    "name": "comment Shift+F10 opens in place and Escape restores focus",
+    "result": "success",
+    "skipped": false,
+    "url": "package:flutter_test/src/widget_tester.dart",
+    "line": 174
+  },
+  {
+    "name": "grammar and style marks stay distinct and suggestions navigate",
+    "result": "success",
+    "skipped": false,
+    "url": "package:flutter_test/src/widget_tester.dart",
+    "line": 174
+  },
+  {
+    "name": "comment Shift+F10 opens in place and Tab restores focus",
+    "result": "success",
+    "skipped": false,
+    "url": "package:flutter_test/src/widget_tester.dart",
+    "line": 174
+  },
+  {
+    "name": "typing invalidates underlines and captured correction handlers",
+    "result": "success",
+    "skipped": false,
+    "url": "package:flutter_test/src/widget_tester.dart",
+    "line": 174
+  },
+  {
+    "name": "Menu key keeps the explicitly selected overlapping comment finding",
+    "result": "success",
+    "skipped": false,
+    "url": "package:flutter_test/src/widget_tester.dart",
+    "line": 174
+  },
+  {
+    "name": "slow requests coalesce and never publish obsolete draft text",
+    "result": "success",
+    "skipped": false,
+    "url": "package:flutter_test/src/widget_tester.dart",
+    "line": 174
+  },
+  {
+    "name": "keyboard context uses the selected comment paragraph",
+    "result": "success",
+    "skipped": false,
+    "url": "package:flutter_test/src/widget_tester.dart",
+    "line": 174
+  },
+  {
+    "name": "compact PDF navigation updates tabs and controller selection (variant: TargetPlatform.linux)",
+    "result": "success",
+    "skipped": false,
+    "url": "package:flutter_test/src/widget_tester.dart",
+    "line": 174
+  },
+  {
+    "name": "composition pauses checks and resumes without a text change",
+    "result": "success",
+    "skipped": false,
+    "url": "package:flutter_test/src/widget_tester.dart",
+    "line": 174
+  },
+  {
+    "name": "Select mode offers keyboard Copy without enabling comment edits",
+    "result": "success",
+    "skipped": false,
+    "url": "package:flutter_test/src/widget_tester.dart",
+    "line": 174
+  },
+  {
+    "name": "disabled checking stays paused and never invokes manual providers",
+    "result": "success",
+    "skipped": false,
+    "url": "package:flutter_test/src/widget_tester.dart",
+    "line": 174
+  },
+  {
+    "name": "IME composition blocks keyboard comment menus without changing composition",
+    "result": "success",
+    "skipped": false,
+    "url": "package:flutter_test/src/widget_tester.dart",
+    "line": 174
+  },
+  {
+    "name": "language changes invalidate existing draft suggestions",
+    "result": "success",
+    "skipped": false,
+    "url": "package:flutter_test/src/widget_tester.dart",
+    "line": 174
+  },
+  {
+    "name": "covered modal blocks a captured keyboard comment correction",
+    "result": "success",
+    "skipped": false,
+    "url": "package:flutter_test/src/widget_tester.dart",
+    "line": 174
+  },
+  {
+    "name": "thread switches preserve draft text and reject old actions",
+    "result": "success",
+    "skipped": false,
+    "url": "package:flutter_test/src/widget_tester.dart",
+    "line": 174
+  },
+  {
+    "name": "stale keyboard comment menu cannot mutate a replaced document with reused ids",
+    "result": "success",
+    "skipped": false,
+    "url": "package:flutter_test/src/widget_tester.dart",
+    "line": 174
+  },
+  {
+    "name": "replacement documents cannot receive late draft results",
+    "result": "success",
+    "skipped": false,
+    "url": "package:flutter_test/src/widget_tester.dart",
+    "line": 174
+  },
+  {
+    "name": "comment keyboard context rejects a canvas from the prior thread before rebuild",
+    "result": "success",
+    "skipped": false,
+    "url": "package:flutter_test/src/widget_tester.dart",
+    "line": 174
+  },
+  {
+    "name": "covering dialogs block captured draft correction and posting",
+    "result": "success",
+    "skipped": false,
+    "url": "package:flutter_test/src/widget_tester.dart",
+    "line": 174
+  },
+  {
+    "name": "OfficeProofingStatus.unavailable is shown as incomplete rather than a clean reply",
+    "result": "success",
+    "skipped": false,
+    "url": "package:flutter_test/src/widget_tester.dart",
+    "line": 174
+  },
+  {
+    "name": "OfficeProofingStatus.unsupported is shown as incomplete rather than a clean reply",
+    "result": "success",
+    "skipped": false,
+    "url": "package:flutter_test/src/widget_tester.dart",
+    "line": 174
+  },
+  {
+    "name": "over-limit drafts explain the limit without provider work",
+    "result": "success",
+    "skipped": false,
+    "url": "package:flutter_test/src/widget_tester.dart",
+    "line": 174
+  },
+  {
+    "name": "corrected draft posts explicitly as one undoable reply",
+    "result": "success",
+    "skipped": false,
+    "url": "package:flutter_test/src/widget_tester.dart",
+    "line": 174
+  },
+  {
+    "name": "narrow Arabic reply suggestions remain usable with larger text",
+    "result": "success",
+    "skipped": false,
+    "url": "package:flutter_test/src/widget_tester.dart",
+    "line": 174
+  }
+]

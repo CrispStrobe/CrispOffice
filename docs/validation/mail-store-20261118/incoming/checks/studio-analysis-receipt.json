@@ -1,0 +1,20 @@
+{
+  "name": "studio-analysis",
+  "argv": [
+    "/workspace/scratch/28080c14894b/toolchain/flutter/bin/cache/dart-sdk/bin/dart",
+    "analyze",
+    "--fatal-infos",
+    "lib/studio_chrome.dart",
+    "lib/suite_workspace.dart",
+    "test/studio_comment_draft_proofing_test.dart",
+    "test/studio_compact_navigation_test.dart",
+    "test/studio_comment_keyboard_review_test.dart"
+  ],
+  "cwd": "packages/quds_office_editor/example",
+  "started_at_utc": "2026-11-18T20:26:43.876055+00:00",
+  "status": "PASS",
+  "exit_code": 0,
+  "finished_at_utc": "2026-11-18T20:27:12.869344+00:00",
+  "stdout": "studio-analysis.stdout",
+  "stderr": "studio-analysis.stderr"
+}

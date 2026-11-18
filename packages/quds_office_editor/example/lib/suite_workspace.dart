@@ -2120,9 +2120,18 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       mounted &&
       !_zoteroOpen &&
       _app == SuiteApp.word &&
-      _canMutate &&
-      _word.config.allowsMutation &&
+      !_word.isDisposed &&
       _wordRouteIsCurrent;
+
+  bool get _canRunZoteroCommand {
+    final body = _word.input.composing;
+    final note = _word.noteEditingTarget?.composing;
+    return _canOpenZotero &&
+        _canMutate &&
+        _word.config.allowsMutation &&
+        (!body.isValid || body.isCollapsed) &&
+        (note == null || !note.isValid || note.isCollapsed);
+  }
 
   void _addEditZoteroCitation() =>
       unawaited(_openZotero(command: ZoteroCitingCommand.addEditCitation));
@@ -2131,7 +2140,9 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       unawaited(_openZotero(command: ZoteroCitingCommand.refresh));
 
   Future<void> _openZotero({ZoteroCitingCommand? command}) async {
-    if (!_canOpenZotero || (command != null && !studioZoteroDesktopAvailable)) {
+    if (!_canOpenZotero ||
+        (command != null &&
+            (!_canRunZoteroCommand || !studioZoteroDesktopAvailable))) {
       return;
     }
     final transport =
@@ -2145,6 +2156,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         transport: transport.send,
         localTransport: transport.supportsLocal ? transport.send : null,
         initialCommand: command,
+        closeAfterCommand: command != null,
       );
     } finally {
       transport.dispose();
@@ -2161,7 +2173,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     final button = _cmd(
       icon,
       label,
-      _canOpenZotero ? () => _openZotero(command: command) : null,
+      _canRunZoteroCommand ? () => _openZotero(command: command) : null,
     );
     if (shortcut == null) return button;
     final modifier = defaultTargetPlatform == TargetPlatform.macOS
@@ -2194,6 +2206,11 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
               Icons.list_alt,
               _arabic ? 'قائمة المراجع' : 'Bibliography',
               ZoteroCitingCommand.addEditBibliography,
+            ),
+            _zoteroCommand(
+              Icons.note_add_outlined,
+              _arabic ? 'ملاحظة من Zotero' : 'Add Zotero note',
+              ZoteroCitingCommand.addNote,
             ),
             _zoteroCommand(
               Icons.refresh,
