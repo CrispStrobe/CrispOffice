@@ -65,6 +65,25 @@ typedef _CountDart = int Function(Pointer<Void>);
 typedef _AnalyzedNative = Int32 Function(Pointer<Void>);
 typedef _AnalyzedDart = int Function(Pointer<Void>);
 typedef _TokenNative = Int32 Function(Pointer<Void>, Size, Pointer<_TokenView>);
+typedef _AttachNerNative =
+    Int32 Function(
+      Pointer<Void>,
+      Pointer<Utf8>,
+      Pointer<Utf8>,
+      Pointer<Uint8>,
+      Size,
+    );
+typedef _AttachNerDart =
+    int Function(
+      Pointer<Void>,
+      Pointer<Utf8>,
+      Pointer<Utf8>,
+      Pointer<Uint8>,
+      int,
+    );
+typedef _EntityNative =
+    Int32 Function(Pointer<Void>, Size, Pointer<_EntityView>);
+typedef _EntityDart = int Function(Pointer<Void>, int, Pointer<_EntityView>);
 typedef _TokenDart = int Function(Pointer<Void>, int, Pointer<_TokenView>);
 
 final class _TextView extends Struct {
@@ -108,6 +127,30 @@ final class _TokenView extends Struct {
   external int flags;
 }
 
+/// Field-for-field layout of `crispembed_spacy_entity_view` (runtime PR #240).
+final class _EntityView extends Struct {
+  external _TextView label;
+  @Size()
+  external int tokenStart;
+  @Size()
+  external int tokenEnd;
+  @Size()
+  external int byteStart;
+  @Size()
+  external int byteEnd;
+  @Size()
+  external int scalarStart;
+  @Size()
+  external int scalarEnd;
+  @Size()
+  external int utf16Start;
+  @Size()
+  external int utf16End;
+}
+
+/// Context capability bit reported when NER is attached.
+const spacyEntitiesCapability = 16;
+
 /// Sendable configuration; call open only inside the owned worker isolate.
 ///
 /// The installed library must live in a directory named by its trusted SHA-256
@@ -127,7 +170,16 @@ final class SpacyNativeBackendFactory implements SpacyBackendFactory {
     required this.bundleDirectory,
     required this.libraryPath,
     required this.librarySha256,
+    this.nerPath,
+    this.nerSha256,
   }) {
+    if ((nerPath == null) != (nerSha256 == null) ||
+        (nerPath != null &&
+            (nerPath!.isEmpty ||
+                nerPath!.contains('\u0000') ||
+                !RegExp(r'^[0-9a-f]{64}$').hasMatch(nerSha256!)))) {
+      throw ArgumentError('Invalid optional NER configuration.');
+    }
     if (bundleDirectory.isEmpty ||
         libraryPath.isEmpty ||
         bundleDirectory.contains('\u0000') ||
@@ -139,6 +191,13 @@ final class SpacyNativeBackendFactory implements SpacyBackendFactory {
   final String bundleDirectory;
   final String libraryPath;
   final String librarySha256;
+
+  /// Optional separate NER model (`ner.gguf`) and its trusted SHA-256. The
+  /// library must export the NER ABI and the process must enable
+  /// `CRISPEMBED_SPACY_NER=1`; otherwise opening fails rather than silently
+  /// dropping entities.
+  final String? nerPath;
+  final String? nerSha256;
 
   @override
   Future<SpacyBackend> open(SpacyBundle bundle) async {
@@ -202,6 +261,33 @@ final class SpacyNativeBackendFactory implements SpacyBackendFactory {
           _diagnostic(error, 'The native spaCy model could not be admitted.'),
         );
       }
+      final ner = nerPath;
+      if (ner != null) {
+        final attach = bindings.attachNer;
+        if (attach == null || bindings.entity == null) {
+          throw const SpacyUnavailableException(
+            'This native spaCy library has no named-entity support.',
+          );
+        }
+        await _verifyFile(
+          File(ner),
+          nerSha256!,
+          maximumBytes: 64 * 1024 * 1024,
+        );
+        error.asTypedList(_errorCapacity).fillRange(0, _errorCapacity, 0);
+        if (attach(
+              context,
+              ner.toNativeUtf8(allocator: allocations),
+              nerSha256!.toNativeUtf8(allocator: allocations),
+              error,
+              _errorCapacity,
+            ) !=
+            0) {
+          throw SpacyUnavailableException(
+            _diagnostic(error, 'The optional NER model could not be attached.'),
+          );
+        }
+      }
       final identity = SpacyBackendIdentity(
         librarySha256: librarySha256,
         capabilityMask: bindings.contextCapabilities(context),
@@ -235,23 +321,26 @@ const _loadableAbis = {Abi.linuxX64, Abi.macosArm64};
 typedef _SetEnvNative = Int32 Function(Pointer<Utf8>, Pointer<Utf8>, Int32);
 typedef _SetEnvDart = int Function(Pointer<Utf8>, Pointer<Utf8>, int);
 
-/// Sets `CRISPEMBED_SPACY=1` for this process so the native library admits
-/// work. Hosts call this only after the user explicitly enabled local German
+/// Sets `CRISPEMBED_SPACY=1` (and `CRISPEMBED_SPACY_NER=1` when
+/// [namedEntities]) for this process so the native library admits work. Hosts call this only after the user explicitly enabled local German
 /// analysis, before starting a worker. Returns false where unsupported.
 ///
 /// `Platform.environment` is a startup snapshot and does not reflect this.
-bool enableSpacyNativeGateForProcess() {
+bool enableSpacyNativeGateForProcess({bool namedEntities = false}) {
   if (!_loadableAbis.contains(Abi.current())) return false;
   final setenv = DynamicLibrary.process()
       .lookupFunction<_SetEnvNative, _SetEnvDart>('setenv');
   final allocations = Arena();
   try {
-    return setenv(
-          'CRISPEMBED_SPACY'.toNativeUtf8(allocator: allocations),
+    bool set(String name) =>
+        setenv(
+          name.toNativeUtf8(allocator: allocations),
           '1'.toNativeUtf8(allocator: allocations),
           1,
         ) ==
         0;
+    return set('CRISPEMBED_SPACY') &&
+        (!namedEntities || set('CRISPEMBED_SPACY_NER'));
   } finally {
     allocations.releaseAll();
   }
@@ -379,6 +468,19 @@ final class _Bindings {
     token = library.lookupFunction<_TokenNative, _TokenDart>(
       'crispembed_spacy_document_token',
     );
+    if (library.providesSymbol('crispembed_spacy_attach_ner') &&
+        library.providesSymbol('crispembed_spacy_document_entity_count') &&
+        library.providesSymbol('crispembed_spacy_document_entity')) {
+      attachNer = library.lookupFunction<_AttachNerNative, _AttachNerDart>(
+        'crispembed_spacy_attach_ner',
+      );
+      entityCount = library.lookupFunction<_CountNative, _CountDart>(
+        'crispembed_spacy_document_entity_count',
+      );
+      entity = library.lookupFunction<_EntityNative, _EntityDart>(
+        'crispembed_spacy_document_entity',
+      );
+    }
     documentFree = library.lookupFunction<_FreeNative, _FreeDart>(
       'crispembed_spacy_document_free',
     );
@@ -388,6 +490,9 @@ final class _Bindings {
   late final _VersionDart textAbiVersion;
   late final _VersionDart legacyCapabilities;
   late final _CapabilitiesDart contextCapabilities;
+  _AttachNerDart? attachNer;
+  _CountDart? entityCount;
+  _EntityDart? entity;
   late final _CreateDart create;
   late final Pointer<NativeFunction<_FreeNative>> freePointer;
   late final _FreeDart free;
@@ -531,10 +636,51 @@ final class _NativeBackend implements SpacyBackend, Finalizable {
           ),
         );
       }
+      List<LinguisticEntity>? entities;
+      final readEntity = _bindings.entity;
+      final countEntities = _bindings.entityCount;
+      if (identity.capabilityMask & spacyEntitiesCapability != 0 &&
+          readEntity != null &&
+          countEntities != null) {
+        final entityCount = countEntities(document);
+        if (entityCount < 0 || entityCount > tokens.length) {
+          throw const FormatException(
+            'Native analysis returned excessive entities.',
+          );
+        }
+        final entityView = allocations<_EntityView>();
+        entities = [];
+        for (var i = 0; i < entityCount; i++) {
+          if (readEntity(document, i, entityView) != 0) {
+            throw const FormatException('Native entity view is unavailable.');
+          }
+          final item = entityView.ref;
+          if (item.tokenStart >= item.tokenEnd ||
+              item.tokenEnd > tokens.length ||
+              item.byteStart != tokens[item.tokenStart].byteStart ||
+              item.byteEnd != tokens[item.tokenEnd - 1].byteEnd ||
+              item.scalarStart != tokens[item.tokenStart].scalarStart ||
+              item.scalarEnd != tokens[item.tokenEnd - 1].scalarEnd ||
+              item.utf16End > request.text.length) {
+            throw const FormatException('Invalid native entity span.');
+          }
+          entities.add(
+            LinguisticEntity(
+              startToken: item.tokenStart,
+              endToken: item.tokenEnd,
+              start: item.utf16Start,
+              end: item.utf16End,
+              label: copy(item.label, maximum: 64),
+              text: request.text.substring(item.utf16Start, item.utf16End),
+            ),
+          );
+        }
+      }
       return LinguisticAnalysisResult.success(
         request: request,
         identity: identity,
         tokens: tokens,
+        entities: entities,
       );
     } on FormatException catch (error) {
       return failure(LinguisticAnalysisStatus.failed, error.message);
