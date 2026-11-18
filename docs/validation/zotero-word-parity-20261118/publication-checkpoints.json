@@ -1,7 +1,7 @@
 {
   "branch": "codex/zotero-word-parity-20261118",
   "pull_request": 173,
-  "through_commit": "8fa115e8358e305872fd14e757f9133fa9c1540d",
+  "through_commit": "f40c667adb8f7e721d498f16de4531f6d08c8f7d",
   "github_actions": "Never queried or awaited",
   "checkpoints": [
     {
@@ -43,6 +43,10 @@
     {
       "sha": "8fa115e8358e305872fd14e757f9133fa9c1540d",
       "purpose": "Current391-ref Mail/thesaurus/Notes integration; local tree and complete ref audit verified"
+    },
+    {
+      "sha": "f40c667adb8f7e721d498f16de4531f6d08c8f7d",
+      "purpose": "Native research lists, numbering undo snapshots, restored runtime and focusedIME evidence,98file qualification plan"
     }
   ]
 }

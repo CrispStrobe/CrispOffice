@@ -4,6 +4,52 @@ import 'package:quds_office_engine/quds_office_engine.dart';
 import 'package:test/test.dart';
 
 void main() {
+  for (final existingDefinition in [false, true]) {
+    test(
+      'new numbering precedes cleanup metadata, existing $existingDefinition',
+      () {
+        final document = WmlDocument.empty();
+        final package = document.package = OpcPackage.create(
+          OpcPackageKind.word,
+        );
+        final definition = existingDefinition
+            ? '<w:abstractNum w:abstractNumId="1"><w:lvl w:ilvl="0">'
+                  '<w:start w:val="1"/><w:numFmt w:val="bullet"/>'
+                  '<w:lvlText w:val="•"/></w:lvl></w:abstractNum>'
+                  '<w:num w:numId="1"><w:abstractNumId w:val="1"/></w:num>'
+            : '';
+        package.createPart(
+          '/word/numbering.xml',
+          OfficeContentTypes.wordNumbering,
+          utf8.encode(
+            '<w:numbering xmlns:w="${OfficeNamespaces.w}">$definition'
+            '<w:numIdMacAtCleanup w:val="99"/></w:numbering>',
+          ),
+        );
+        package
+            .relationshipsFor('/word/document.xml')
+            .add(type: RelationshipTypes.numbering, target: 'numbering.xml');
+        WordLists.numberingId(document, numbered: true, independent: true);
+        final root = XmlDocument.parse(
+          package.getPart('/word/numbering.xml')!.readText(),
+        ).root!;
+        expect(
+          root.childElements.map((element) => element.localName),
+          existingDefinition
+              ? [
+                  'abstractNum',
+                  'abstractNum',
+                  'num',
+                  'num',
+                  'numIdMacAtCleanup',
+                ]
+              : ['abstractNum', 'num', 'numIdMacAtCleanup'],
+        );
+        expect(root.firstChild('numIdMacAtCleanup')!.getAttribute('val'), '99');
+      },
+    );
+  }
+
   test('independent lists share definitions while isolating counters', () {
     final document = WmlDocument.empty();
     final shared = WordLists.numberingId(document, numbered: true);

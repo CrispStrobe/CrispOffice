@@ -32,7 +32,7 @@ The saved plan retains all original77 files and expands to98 distinct Dart test 
 
 The runner verifies starts/completions/terminal events, exact requested suite coverage, failures/skips/unfinished cases, source/runtime/dependency hashes and plan/runner identity. Python support cases are kept separate from Dart application totals. Final results have not yet been recorded at this checkpoint.
 
-The first incoming Notes run exposed two nullable-caret test compilation errors (corrected) and three runtime assertion failures under investigation. Independent review also exposed normal lists continuing an imported research list after DOCX reopening; an isolation regression and correction are being completed before freezing qualification. Development runs are not added into final totals.
+The first incoming Notes run exposed two nullable-caret test compilation errors and three incorrect fixture assumptions. The caret helper is corrected; separate provider spans now reach the intended history-rebinding boundary, and the IME fixture explicitly ends tracking after seeding its navigation revision. All33 Notes controller tests pass without weakening the intended assertions. Independent review found and corrected normal lists continuing imported research counters after DOCX reopening and numbering instances appearing after cleanup metadata. Both corrections have dedicated regressions and an independent post-fix probe in review/. Development runs are not added into final totals.
 
 ## Acceptance boundary
 

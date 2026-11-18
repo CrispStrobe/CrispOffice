@@ -119,7 +119,9 @@ abstract final class WordLists {
         '$levels</w:abstractNum>',
       ).root!;
       final int firstInstance = root.children.indexWhere(
-        (XmlNode node) => node is XmlElement && node.localName == 'num',
+        (XmlNode node) =>
+            node is XmlElement &&
+            (node.localName == 'num' || node.localName == 'numIdMacAtCleanup'),
       );
       if (firstInstance >= 0) {
         root.children.insert(firstInstance, definition..parent = root);
@@ -127,12 +129,19 @@ abstract final class WordLists {
         root.addChild(definition);
       }
     }
-    root.addChild(
-      XmlDocument.parse(
-        '<w:num xmlns:w="${OfficeNamespaces.w}" w:numId="$id">'
-        '<w:abstractNumId w:val="${sharedAbstractId ?? id}"/></w:num>',
-      ).root!,
+    final instance = XmlDocument.parse(
+      '<w:num xmlns:w="${OfficeNamespaces.w}" w:numId="$id">'
+      '<w:abstractNumId w:val="${sharedAbstractId ?? id}"/></w:num>',
+    ).root!;
+    final cleanupIndex = root.children.indexWhere(
+      (XmlNode node) =>
+          node is XmlElement && node.localName == 'numIdMacAtCleanup',
     );
+    if (cleanupIndex >= 0) {
+      root.children.insert(cleanupIndex, instance..parent = root);
+    } else {
+      root.addChild(instance);
+    }
     if (part == null) {
       package.createPart(
         uri,
