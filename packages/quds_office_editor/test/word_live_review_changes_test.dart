@@ -102,6 +102,9 @@ WmlDocument _fixture() {
 }
 
 Future<void> _drain(WidgetTester tester) async {
+  // Start newly scheduled expansion/menu animations before advancing their
+  // elapsed time. A single long first pump starts them at elapsed zero.
+  await tester.pump();
   await tester.pump(const Duration(milliseconds: 450));
   for (var index = 0; index < 8; index++) {
     await tester.pump(const Duration(milliseconds: 1));
@@ -337,6 +340,49 @@ void main() {
     expect(controller.isDirty, isFalse);
   });
 
+  testWidgets('text previews remain available when native boundaries forbid resolving a valid span', (
+    tester,
+  ) async {
+    final control = WmlContentControlData(
+      xml: '<w:sdt xmlns:w="${OfficeNamespaces.w}"><w:sdtPr/><w:sdtContent/></w:sdt>',
+      sourcePartUri: '/word/document.xml',
+      relationships: const <WmlOpaqueRelationship>[],
+    );
+    final paragraph = WmlParagraph(
+      inlines: <WmlInline>[
+        WmlRun(text: 'ab'),
+        WmlContentControlBoundary(control: control, start: true),
+        WmlRun(text: 'cd'),
+        WmlContentControlBoundary(control: control, start: false),
+      ],
+    );
+    final document = WmlDocument(
+      sections: <WmlSection>[WmlSection(blocks: <WmlBlock>[paragraph])],
+    );
+    WordRevisions.record(
+      document,
+      paragraph: paragraph,
+      paragraphIndex: 0,
+      kind: WmlRevisionKind.delete,
+      start: 1,
+      end: 3,
+      text: 'bc',
+      preserveSourceRange: true,
+    );
+    final controller = _controller(document: document);
+    await _mount(tester, controller);
+    await _reveal(tester, _key('live-review-accept'));
+    expect(_enabled(tester, 'live-review-accept'), isFalse);
+    await _choose(tester, 'live-review-preview-mode', 'Final text');
+    expect(_preview(tester), 'ad');
+    expect(_key('live-review-preview-unavailable'), findsNothing);
+    await _choose(tester, 'live-review-preview-mode', 'Original text');
+    expect(_preview(tester), 'abcd');
+    expect(paragraph.text, 'abcd');
+    expect(document.revisions, hasLength(1));
+    expect(controller.canUndo, isFalse);
+  });
+
   testWidgets('stale preview shows stored text with an explicit warning', (
     tester,
   ) async {
@@ -409,6 +455,73 @@ void main() {
     expect(_key('live-review-proofing-content'), findsOneWidget);
     expect(manual.requests, isNotEmpty);
     expect(find.byType(Dialog), findsNothing);
+  });
+
+  testWidgets('document language changes in the pane are undoable and keep manual checks explicit', (
+    tester,
+  ) async {
+    final ordinary = _Provider();
+    final manual = _Provider(providerId: 'manual-language-test');
+    final controller = _controller(
+      document: WmlDocument.empty(text: 'Feler'),
+      provider: ordinary,
+    );
+    controller.proofing.configureManual(
+      OfficeProofingService(providers: <OfficeProofingProvider>[manual]),
+    );
+    await _mount(tester, controller, tab: WordReviewPaneTab.proofing);
+    await _choose(tester, 'live-proofing-language', 'English (United States)');
+    expect(controller.document.proofingLanguage, 'en-US');
+    expect(ordinary.requests.last.language, 'en-US');
+    expect(manual.requests, isEmpty);
+    controller.undo();
+    await _drain(tester);
+    await _reveal(tester, _key('live-proofing-language'));
+    expect(
+      tester.widget<DropdownButton<String>>(_key('live-proofing-language')).value,
+      'de-DE',
+    );
+  });
+
+  testWidgets('read-only writing inspection disables document language changes', (
+    tester,
+  ) async {
+    final controller = _controller(
+      viewing: true,
+      document: WmlDocument.empty(text: 'Feler'),
+    );
+    await _mount(tester, controller, tab: WordReviewPaneTab.proofing);
+    expect(
+      tester.widget<DropdownButton<String>>(_key('live-proofing-language')).onChanged,
+      isNull,
+    );
+    expect(controller.canUndo, isFalse);
+  });
+
+  testWidgets('restoring ignored findings preserves personal words and avoids manual providers', (
+    tester,
+  ) async {
+    final manual = _Provider(providerId: 'manual-ignored-test');
+    final controller = _controller(document: WmlDocument.empty(text: 'Feler Feler'));
+    controller.proofing.configureManual(
+      OfficeProofingService(providers: <OfficeProofingProvider>[manual]),
+    );
+    await _mount(tester, controller, tab: WordReviewPaneTab.proofing);
+    await _tap(tester, _key('live-proofing-ignore-once'));
+    expect(controller.proofing.hasIgnoredOccurrences, isTrue);
+    await _tap(tester, _key('live-proofing-ignore-word'));
+    expect(controller.proofing.summary.issues, isEmpty);
+    controller.proofing.ignoreRule('test.other');
+    controller.proofing.vocabulary.addWord('Kept', language: 'de-DE');
+    await _drain(tester);
+    await _tap(tester, _key('live-proofing-review-ignored'));
+    expect(controller.proofing.summary.issues, hasLength(2));
+    expect(controller.proofing.hasIgnoredOccurrences, isFalse);
+    expect(controller.proofing.ignoredRuleIds, isEmpty);
+    expect(controller.proofing.vocabulary.ignoredWordsFor('de-DE'), isEmpty);
+    expect(controller.proofing.vocabulary.contains('Kept', language: 'de-DE'), isTrue);
+    expect(manual.requests, isEmpty);
+    expect(controller.canUndo, isFalse);
   });
 
   testWidgets('current findings can be corrected while a different paragraph checks', (

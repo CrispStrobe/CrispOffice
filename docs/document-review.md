@@ -17,7 +17,7 @@ The status bar at the bottom of the shared Word editor shows checking progress
 and pending-change counts. Either button opens the corresponding pane, even
 when the Review ribbon is not selected. **Review → Compare** still opens the
 full two-document comparison workspace. **More review options** in the pane
-retains the detailed proofing settings or advanced tracked-change workspace.
+retains detailed proofing settings and the advanced comparison workspace.
 
 ### Check writing while editing
 
@@ -37,14 +37,30 @@ retains the detailed proofing settings or advanced tracked-change workspace.
   in the pane. Filter by spelling, grammar, or writing style; navigate between
   findings; choose a replacement; ignore an occurrence, word, or rule; or add a
   spelling to personal words. Document corrections remain undoable.
-- Moving the caret, scrolling, and zooming preserve checked results. Text or
-  provider changes invalidate old findings immediately; late results cannot
-  correct a newer document. A stale suggestion menu closes when its source
-  becomes invalid.
+- Moving the caret, scrolling, and zooming preserve checked results. Editing a
+  paragraph removes its old findings immediately while verified findings in
+  unchanged paragraphs remain visible and actionable during the typing pause
+  and the next check. New findings appear progressively before the entire
+  document finishes. Coverage remains incomplete until every checkable
+  paragraph and the requested providers have completed.
+- Retained findings are rebound to the current document revision. Changes to
+  language, provider configuration, story membership, generated content, or
+  protection invalidate affected results. Late replies cannot correct a newer
+  document. An open suggestion menu stays usable during unrelated check
+  progress and closes when its own source becomes invalid.
 - **F7** and **Check document** explicitly include configured manual providers.
   Typing, opening the pane, and making a correction do not implicitly run manual
   grammar inference. Repeated requests for the same active explicit check share
-  its result. After editing, run Check document again for fresh manual coverage.
+  its result, including after partial results appear. F7 also works while a
+  review-pane control has focus. After editing, run Check document again for
+  fresh manual coverage.
+- **Document language** in the Writing pane changes the default language with
+  Undo support. Explicit run and paragraph languages remain authoritative;
+  each finding displays its actual language. Changing the language schedules
+  ordinary checks and does not start optional manual inference.
+- **Review ignored findings again** restores ignored occurrences, words, and
+  rules while preserving personal dictionary entries. It runs only the
+  ordinary configured providers; use Check document for manual coverage.
 
 The available languages and quality of suggestions depend on the configured
 providers. The standalone controller supplies the offline German checkers;
@@ -63,9 +79,22 @@ suggestion takes precedence; use its context-menu **Open changes pane** action
 to review the change. Read-only mode retains inspection and disables document
 mutations.
 
-Use **More review options** for author/type/text filters, filtered batch actions,
-and original/final paragraph previews described below. Embedded applications
-can still open that advanced workspace with `showWordReviewDialog`.
+Expand **Filter changes** in the pane to filter by author, insertion/deletion,
+or text. The collapsed section keeps the current decision near the top of the
+pane. The count states how many changes are shown and how many remain pending.
+**Accept N shown / Reject N shown** applies to exactly that displayed set and is
+one undo step. A stale or conflicted member prevents the entire batch.
+
+**Paragraph preview** switches between all markup, final text, and original
+text without resolving changes or changing the document. Valid protected text
+remains available for read-only previews. Detached or invalid ranges have an
+explicit diagnostic and cannot supply a misleading projected preview.
+
+Accepting or rejecting a change selects the next pending change, or the nearest
+previous one at the end. Filters keep navigation within the displayed set.
+Undo restores the earlier decision and selection; Redo repeats the decision.
+Embedded applications can still open the advanced workspace with
+`showWordReviewDialog`.
 
 ### Review tracked changes
 
@@ -83,7 +112,7 @@ can still open that advanced workspace with `showWordReviewDialog`.
    exact source span when the canvas supports that story.
 
 Body paragraphs, default headers/footers, and comments support exact canvas
-navigation. Notes and first/even headers remain reviewable in the dialog when
+navigation. Notes and first/even headers remain reviewable in the pane when
 their source paragraphs cannot be selected in the canvas. Navigation never
 redirects an unsupported story to a similarly numbered body paragraph.
 
@@ -295,6 +324,9 @@ from two arbitrary files is a separate capability and is not claimed here.
 
 See [the local validation record](validation/document-review-20261118/README.md)
 for the reconciled source history, runtime pins, test commands, and results.
-The [live-review continuation record](validation/document-review-live-20261118/README.md)
-records the subsequent in-editor work and local regression checks.
+The [live-review record](validation/document-review-live-20261118/README.md)
+records the first in-editor implementation. The
+[incremental review record](validation/document-review-continuation-20261118/README.md)
+records retained findings, progressive checks, expanded pane controls, and the
+subsequent local regression and interaction checks.
 GitHub Actions are not required for the local verification workflow.
