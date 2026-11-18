@@ -4,6 +4,11 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Keep native spelling shortlists useful by filtering blank, unchanged,
+  duplicate and malformed replacements before the eight-suggestion limit.
+  Preserve multiword and Unicode corrections, keep unknown words reviewable
+  without a replacement, and protect numeric/connector identifier fragments.
+
 - Coordinate system spell checks across documents using Flutter's shared native
   channel. Bound active and queued callers, settle disposal promptly, and keep
   unfinished OS calls from colliding with a replacement provider.

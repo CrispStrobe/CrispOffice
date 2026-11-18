@@ -11,6 +11,35 @@ web assets. Mobile system spelling has an adapter with protocol tests. The
 experimental German GECToR provider is available as a separately installed,
 verified, manual-only de-DE option; no model is downloaded or enabled by default.
 
+## Native spelling continuation — 18 November 2026
+
+PR #155 is merged together with the latest completed Zotero work. The
+[spelling continuation report](validation/native-spelling-quality-20261118/README.md)
+records the incoming branch reconciliation, incremental remote commits and
+local regression results.
+
+German spelling now counts distinct visible corrections after source casing
+is applied. For example, a two-item shortlist for `LERNNEN` offers `LERNEN`
+and `LERNTEN`; the dictionary's lowercase and titlecase forms no longer occupy
+two slots before collapsing into one displayed choice. Exact declared personal
+spellings, locale distinctions, source separators and the shared candidate
+budget remain in force.
+
+The optional system adapter filters unusable native suggestions before the
+eight-item display limit. It considers at most 64 candidates of at most 256
+UTF-16 units each, preserving native ordering, legitimate multiword corrections
+and Unicode spelling. Blank, unchanged, duplicate, malformed or control-bearing
+replacements are excluded. A misspelling without usable corrections stays
+reviewable through Ignore and Add to dictionary. Numeric and connector
+identifier fragments are protected, including combining-mark boundaries, while
+hyphen constituents and native CJK word segmentation remain available.
+
+The real Word review flow is covered through Flutter's default spelling service
+and controlled native-channel responses, including correction, undo, redo and
+personal vocabulary. These checks do not establish installed device dictionary
+quality. The finite German smoke panel also runs as native compiled code and
+JavaScript; it is a regression check, not a language-quality estimate.
+
 ## Reusing our integration without AOT/RML
 
 The [adapter reuse map](roadmaps/proofing-adapter-reuse.md) records the user's
