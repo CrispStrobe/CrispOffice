@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "qualified_source_commit": "40e92e5222a26db132f8be05126df285b4227a86",
+  "qualified_source_tree": "c654ff6b764a4400558398b4a0007b930d32454d",
+  "evidence_checkpoint": "The Git commit containing this file; only documentation and evidence change after the qualified source.",
+  "pull_request": "https://github.com/CrispStrobe/quds_office_suite/pull/166",
+  "branch": "codex/zotero-citation-workflow-20261118",
+  "cohorts": [
+    {
+      "name": "editor_zotero",
+      "summary": "editor/summary.json",
+      "executed_source_commit": "3668ed92829dfa012ec5b129943a86738ebb7992",
+      "source_inputs_match_qualified_source": true,
+      "suites": 26,
+      "passed": 348,
+      "failed": 0,
+      "skipped": 0,
+      "actual_process_exit": 0,
+      "source_input_count": 562,
+      "strict_targets": 8,
+      "finished_at_utc": "2026-11-18T16:09:14.698421+00:00"
+    },
+    {
+      "name": "incoming_editor_review",
+      "summary": "incoming/editor/summary.json",
+      "executed_source_commit": "40e92e5222a26db132f8be05126df285b4227a86",
+      "source_inputs_match_qualified_source": true,
+      "suites": 18,
+      "passed": 269,
+      "failed": 0,
+      "skipped": 0,
+      "actual_process_exit": 0,
+      "source_input_count": 550,
+      "strict_targets": 7,
+      "finished_at_utc": "2026-11-18T16:30:39.002901+00:00"
+    }
+  ],
+  "combined": {
+    "disjoint_suites": 44,
+    "passed": 617,
+    "failed": 0,
+    "skipped": 0,
+    "error_events": 0,
+    "parser_errors": 0,
+    "overflow_or_missed_tap_diagnostics": 0,
+    "distinct_strict_targets": 15,
+    "distinct_source_input_paths": 581
+  },
+  "new_zotero_regressions_included_once": 49,
+  "guards": {
+    "source": true,
+    "workspace": true,
+    "dependencies": true,
+    "runtime": true,
+    "unchanged_manifests": 11,
+    "exact_locked_packages": 110,
+    "source_inputs_match_final_commit": true,
+    "raw_event_recount": true,
+    "executed_runner_and_artifact_hashes": true
+  },
+  "runtime": {
+    "flutter": "3.47.8",
+    "dart": "3.13.7",
+    "verified_hosted_archives": 162
+  },
+  "incoming_reconciliation": {
+    "snapshot_closed_at_utc": "2026-11-18T16:03:14+00:00",
+    "snapshot_closed_at_europe_berlin": "2026-11-18T17:03:14+01:00",
+    "refs": 377,
+    "distinct_heads": 244,
+    "exact_ancestor_refs": 349,
+    "verified_equivalent_refs": 28,
+    "unaccounted": 0,
+    "report": "reconciliation-final.json",
+    "later_concurrent_activity_claimed": false
+  },
+  "independent_audit": "qualification-audit.json",
+  "artifact_index": "index.json",
+  "exclusions": [
+    "All failed full-cohort attempts",
+    "All focused development attempts",
+    "Historical engine, Studio and spelling results",
+    "Source-review-only activities"
+  ],
+  "acceptance_scope": "Real Flutter editor/controller qualification with controlled transport and clipboard channels. No new installed-device, live-account, full application-build or Word/LibreOffice interoperability acceptance.",
+  "remote_saving": {
+    "incremental": true,
+    "nonforced_expected_head_updates": true,
+    "skip_ci_commit_messages": true
+  },
+  "github_actions": {
+    "queried": false,
+    "awaited": false,
+    "dispatched": false,
+    "rerun": false
+  }
+}

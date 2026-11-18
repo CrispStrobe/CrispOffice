@@ -1,0 +1,5 @@
+Acquiring shared local validation lock
+Running format on 7 targets
+Running analyze on 7 targets
+Running 18 incoming review/proofing and affected consumer suites
+{"status": "passed", "exit_code": 0, "suites": 18, "passed": 269, "skipped": 0, "failed": 0, "guards": {"source_unchanged": true, "workspace_unchanged": true, "runtime_unchanged": true, "dependencies_unchanged": true, "source_matches_recorded_commit": true, "all_manifests_match": true, "selected_suites_present": true, "disjoint_from_zotero": true, "head_descends_source_commit": true, "all_selected_suites_executed": true, "every_started_test_finished_once": true, "final_event_success": true}}

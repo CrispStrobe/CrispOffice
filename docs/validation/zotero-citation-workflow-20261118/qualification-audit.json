@@ -1,0 +1,513 @@
+{
+  "schema_version": 1,
+  "recorded_at_utc": "2026-11-18T16:31:07.267011+00:00",
+  "qualified_source_commit": "40e92e5222a26db132f8be05126df285b4227a86",
+  "status": "passed",
+  "method": [
+    "Independently decompress and parse the two accepted machine-event streams; match unique test starts and finishes and count real non-skipped successful cases only.",
+    "Reject every error, failed/skipped lifecycle event, parse error, incomplete/duplicate case, overflow or missed-tap diagnostic; verify one successful final event and the direct subprocess exit receipt.",
+    "Recompute all recorded before-inventory digests, check equal after digests and empty changed-path lists, and compare recorded source inputs with original and final Git trees and actual current files.",
+    "Verify source input union, disjoint suite sets, exact strict-analysis/formatter targets, executed runner hashes, artifact hashes and current source/runtime/workspace identity.",
+    "Read fixed local evidence only; do not run tests, change source, fetch refs or query GitHub Actions."
+  ],
+  "cohorts": {
+    "editor_zotero": {
+      "path": "editor",
+      "accepted_by_independent_audit": true,
+      "original_run_source_commit": "3668ed92829dfa012ec5b129943a86738ebb7992",
+      "source_head_at_start": "3668ed92829dfa012ec5b129943a86738ebb7992",
+      "source_head_at_end": "3668ed92829dfa012ec5b129943a86738ebb7992",
+      "run_finished_at_utc": "2026-11-18T16:09:14.698421+00:00",
+      "summary_record_sha256": "0a11ac18c6e6bb7b3aad54daccb2ff21e90e1805a3564518c6a7d81991008ff2",
+      "raw_counts": {
+        "passed": 348,
+        "skipped": 0,
+        "failed": 0,
+        "suites": {
+          "packages/quds_office_editor/test/word_zotero_backoff_session_test.dart": {
+            "passed": 5,
+            "skipped": 0,
+            "failed": 0
+          },
+          "packages/quds_office_editor/test/word_zotero_bibliography_controller_test.dart": {
+            "passed": 13,
+            "skipped": 0,
+            "failed": 0
+          },
+          "packages/quds_office_editor/test/word_zotero_catalog_citing_test.dart": {
+            "passed": 11,
+            "skipped": 0,
+            "failed": 0
+          },
+          "packages/quds_office_editor/test/word_zotero_catalog_query_test.dart": {
+            "passed": 11,
+            "skipped": 0,
+            "failed": 0
+          },
+          "packages/quds_office_editor/test/word_zotero_citing_controller_test.dart": {
+            "passed": 21,
+            "skipped": 0,
+            "failed": 0
+          },
+          "packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart": {
+            "passed": 16,
+            "skipped": 0,
+            "failed": 0
+          },
+          "packages/quds_office_editor/test/word_zotero_collection_pagination_test.dart": {
+            "passed": 4,
+            "skipped": 0,
+            "failed": 0
+          },
+          "packages/quds_office_editor/test/word_zotero_composer_test.dart": {
+            "passed": 20,
+            "skipped": 0,
+            "failed": 0
+          },
+          "packages/quds_office_editor/test/word_zotero_connected_alias_test.dart": {
+            "passed": 11,
+            "skipped": 0,
+            "failed": 0
+          },
+          "packages/quds_office_editor/test/word_zotero_controller_test.dart": {
+            "passed": 17,
+            "skipped": 0,
+            "failed": 0
+          },
+          "packages/quds_office_editor/test/word_zotero_dialog_scaling_test.dart": {
+            "passed": 2,
+            "skipped": 0,
+            "failed": 0
+          },
+          "packages/quds_office_editor/test/word_zotero_dialog_test.dart": {
+            "passed": 48,
+            "skipped": 0,
+            "failed": 0
+          },
+          "packages/quds_office_editor/test/word_zotero_document_reuse_test.dart": {
+            "passed": 11,
+            "skipped": 0,
+            "failed": 0
+          },
+          "packages/quds_office_editor/test/word_zotero_document_source_picker_test.dart": {
+            "passed": 8,
+            "skipped": 0,
+            "failed": 0
+          },
+          "packages/quds_office_editor/test/word_zotero_document_sources_test.dart": {
+            "passed": 10,
+            "skipped": 0,
+            "failed": 0
+          },
+          "packages/quds_office_editor/test/word_zotero_format_test.dart": {
+            "passed": 31,
+            "skipped": 0,
+            "failed": 0
+          },
+          "packages/quds_office_editor/test/word_zotero_import_search_test.dart": {
+            "passed": 10,
+            "skipped": 0,
+            "failed": 0
+          },
+          "packages/quds_office_editor/test/word_zotero_library_details_test.dart": {
+            "passed": 22,
+            "skipped": 0,
+            "failed": 0
+          },
+          "packages/quds_office_editor/test/word_zotero_rich_controller_test.dart": {
+            "passed": 8,
+            "skipped": 0,
+            "failed": 0
+          },
+          "packages/quds_office_editor/test/word_zotero_saved_search_test.dart": {
+            "passed": 8,
+            "skipped": 0,
+            "failed": 0
+          },
+          "packages/quds_office_editor/test/word_zotero_snapshot_test.dart": {
+            "passed": 11,
+            "skipped": 0,
+            "failed": 0
+          },
+          "packages/quds_office_editor/test/word_zotero_source_identity_test.dart": {
+            "passed": 2,
+            "skipped": 0,
+            "failed": 0
+          },
+          "packages/quds_office_editor/test/word_zotero_source_resolver_test.dart": {
+            "passed": 7,
+            "skipped": 0,
+            "failed": 0
+          },
+          "packages/quds_office_editor/test/word_zotero_stored_details_dialog_test.dart": {
+            "passed": 11,
+            "skipped": 0,
+            "failed": 0
+          },
+          "packages/quds_office_editor/test/word_zotero_stored_details_test.dart": {
+            "passed": 10,
+            "skipped": 0,
+            "failed": 0
+          },
+          "packages/quds_office_editor/test/word_zotero_tag_filter_test.dart": {
+            "passed": 20,
+            "skipped": 0,
+            "failed": 0
+          }
+        },
+        "suite_count": 26,
+        "distinct_suite_paths": 26,
+        "excluded_lifecycle_cases": 26,
+        "excluded_flutter_process_notifications": 26,
+        "excluded_case_failures": [],
+        "start_events": 374,
+        "finish_events": 374,
+        "all_start_finish_pairs_once": true,
+        "malformed_event_lines": [],
+        "invalid_test_references": [],
+        "error_events": [],
+        "final_events": [
+          {
+            "success": true,
+            "type": "done",
+            "time": 92543
+          }
+        ],
+        "layout_or_tap_diagnostics": []
+      },
+      "raw_counts_match_summary": true,
+      "actual_process_exit_recorded": 0,
+      "process_exit_provenance": "Executed runner captures the direct Flutter subprocess wait() return value; code reviewed without rerunning tests.",
+      "test_command_suites_match_selected_and_raw": true,
+      "source_record_count": 562,
+      "source_mismatches_with_original_git_commit": [],
+      "source_mismatches_with_qualified_source_commit": [],
+      "source_mismatches_with_current_files": [],
+      "guard_recomputation": {
+        "dependencies": {
+          "recorded_before_digest_matches_recomputed": true,
+          "before_after_digest_equal": true,
+          "changed_paths": []
+        },
+        "runtime": {
+          "recorded_before_digest_matches_recomputed": true,
+          "before_after_digest_equal": true,
+          "changed_paths": []
+        },
+        "source": {
+          "recorded_before_digest_matches_recomputed": true,
+          "before_after_digest_equal": true,
+          "changed_paths": []
+        },
+        "workspace": {
+          "recorded_before_digest_matches_recomputed": true,
+          "before_after_digest_equal": true,
+          "changed_paths": []
+        }
+      },
+      "current_workspace_mismatches": [],
+      "current_runtime_mismatches": [],
+      "manifests_match_source_and_validation_workspace": {
+        "pubspec.yaml": true,
+        "packages/legacy_doc_parser/pubspec.yaml": true,
+        "packages/quds_office_engine/pubspec.yaml": true,
+        "packages/quds_proofing_harper/pubspec.yaml": true,
+        "packages/quds_proofing_gector/pubspec.yaml": true,
+        "packages/quds_proofing_spacy/pubspec.yaml": true,
+        "packages/quds_office_engine/example/pubspec.yaml": true,
+        "packages/quds_reports/pubspec.yaml": true,
+        "packages/quds_office_editor/pubspec.yaml": true,
+        "packages/quds_office_editor/example/pubspec.yaml": true,
+        "apps/quds_report_studio/pubspec.yaml": true
+      },
+      "executed_runner_sha256_matches": true,
+      "artifact_metadata_matches_current_files": {
+        "events.jsonl.gz": true,
+        "inputs.json.gz": true
+      },
+      "static_target_count": 8,
+      "static_targets": [
+        "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart",
+        "packages/quds_office_editor/lib/src/embed/word_zotero_sources.dart",
+        "packages/quds_office_editor/lib/src/embed/word_zotero_document_sources.dart",
+        "packages/quds_office_editor/lib/src/embed/word_zotero_composer.dart",
+        "packages/quds_office_editor/test/word_zotero_document_sources_test.dart",
+        "packages/quds_office_editor/test/word_zotero_document_source_picker_test.dart",
+        "packages/quds_office_editor/test/word_zotero_document_reuse_test.dart",
+        "packages/quds_office_editor/test/word_zotero_composer_test.dart"
+      ],
+      "static_checks": [
+        {
+          "name": "format",
+          "exit_code": 0,
+          "targets_match": true,
+          "strict_flags_or_nonmutating_format": true,
+          "stdout": "Formatted 8 files (0 changed) in 0.36 seconds.\n",
+          "stderr": ""
+        },
+        {
+          "name": "analyze",
+          "exit_code": 0,
+          "targets_match": true,
+          "strict_flags_or_nonmutating_format": true,
+          "stdout": "Analyzing word_zotero_dialog.dart, word_zotero_sources.dart, word_zotero_document_sources.dart, word_zotero_composer.dart, word_zotero_document_sources_test.dart, word_zotero_document_source_picker_test.dart, word_zotero_document_reuse_test.dart, word_zotero_composer_test.dart...\nNo issues found!\n",
+          "stderr": ""
+        }
+      ]
+    },
+    "incoming_editor_review": {
+      "path": "incoming/editor",
+      "accepted_by_independent_audit": true,
+      "original_run_source_commit": "40e92e5222a26db132f8be05126df285b4227a86",
+      "source_head_at_start": "40e92e5222a26db132f8be05126df285b4227a86",
+      "source_head_at_end": "40e92e5222a26db132f8be05126df285b4227a86",
+      "run_finished_at_utc": "2026-11-18T16:30:39.002901+00:00",
+      "summary_record_sha256": "da5437ccde53492e46566bd59fadd4416058701d35d288ff036e8b077bcda352",
+      "raw_counts": {
+        "passed": 269,
+        "skipped": 0,
+        "failed": 0,
+        "suites": {
+          "packages/quds_office_editor/test/word_live_proofing_session_test.dart": {
+            "passed": 9,
+            "skipped": 0,
+            "failed": 0
+          },
+          "packages/quds_office_editor/test/word_live_review_selection_test.dart": {
+            "passed": 9,
+            "skipped": 0,
+            "failed": 0
+          },
+          "packages/quds_office_editor/test/word_live_review_surface_test.dart": {
+            "passed": 14,
+            "skipped": 0,
+            "failed": 0
+          },
+          "packages/quds_office_editor/test/word_review_pane_test.dart": {
+            "passed": 11,
+            "skipped": 0,
+            "failed": 0
+          },
+          "packages/quds_office_editor/test/word_proofing_session_test.dart": {
+            "passed": 31,
+            "skipped": 0,
+            "failed": 0
+          },
+          "packages/quds_office_editor/test/word_manual_proofing_test.dart": {
+            "passed": 11,
+            "skipped": 0,
+            "failed": 0
+          },
+          "packages/quds_office_editor/test/word_proofing_dialog_test.dart": {
+            "passed": 23,
+            "skipped": 0,
+            "failed": 0
+          },
+          "packages/quds_office_editor/test/word_proofing_context_test.dart": {
+            "passed": 5,
+            "skipped": 0,
+            "failed": 0
+          },
+          "packages/quds_office_editor/test/word_proofing_geometry_test.dart": {
+            "passed": 10,
+            "skipped": 0,
+            "failed": 0
+          },
+          "packages/quds_office_editor/test/word_proofing_navigation_test.dart": {
+            "passed": 6,
+            "skipped": 0,
+            "failed": 0
+          },
+          "packages/quds_office_editor/test/word_review_dialog_test.dart": {
+            "passed": 13,
+            "skipped": 0,
+            "failed": 0
+          },
+          "packages/quds_office_editor/test/word_revision_story_test.dart": {
+            "passed": 14,
+            "skipped": 0,
+            "failed": 0
+          },
+          "packages/quds_office_editor/test/word_input_focus_test.dart": {
+            "passed": 5,
+            "skipped": 0,
+            "failed": 0
+          },
+          "packages/quds_office_editor/test/office_input_ownership_test.dart": {
+            "passed": 2,
+            "skipped": 0,
+            "failed": 0
+          },
+          "packages/quds_office_editor/test/editor_test.dart": {
+            "passed": 57,
+            "skipped": 0,
+            "failed": 0
+          },
+          "packages/quds_office_editor/test/word_incremental_proofing_test.dart": {
+            "passed": 15,
+            "skipped": 0,
+            "failed": 0
+          },
+          "packages/quds_office_editor/test/word_live_review_changes_test.dart": {
+            "passed": 13,
+            "skipped": 0,
+            "failed": 0
+          },
+          "packages/quds_office_editor/test/word_review_controller_test.dart": {
+            "passed": 21,
+            "skipped": 0,
+            "failed": 0
+          }
+        },
+        "suite_count": 18,
+        "distinct_suite_paths": 18,
+        "excluded_lifecycle_cases": 28,
+        "excluded_flutter_process_notifications": 18,
+        "excluded_case_failures": [],
+        "start_events": 297,
+        "finish_events": 297,
+        "all_start_finish_pairs_once": true,
+        "malformed_event_lines": [],
+        "invalid_test_references": [],
+        "error_events": [],
+        "final_events": [
+          {
+            "success": true,
+            "type": "done",
+            "time": 27756
+          }
+        ],
+        "layout_or_tap_diagnostics": []
+      },
+      "raw_counts_match_summary": true,
+      "actual_process_exit_recorded": 0,
+      "process_exit_provenance": "Executed runner captures the direct Flutter subprocess wait() return value; code reviewed without rerunning tests.",
+      "test_command_suites_match_selected_and_raw": true,
+      "source_record_count": 550,
+      "source_mismatches_with_original_git_commit": [],
+      "source_mismatches_with_qualified_source_commit": [],
+      "source_mismatches_with_current_files": [],
+      "guard_recomputation": {
+        "dependencies": {
+          "recorded_before_digest_matches_recomputed": true,
+          "before_after_digest_equal": true,
+          "changed_paths": []
+        },
+        "runtime": {
+          "recorded_before_digest_matches_recomputed": true,
+          "before_after_digest_equal": true,
+          "changed_paths": []
+        },
+        "source": {
+          "recorded_before_digest_matches_recomputed": true,
+          "before_after_digest_equal": true,
+          "changed_paths": []
+        },
+        "workspace": {
+          "recorded_before_digest_matches_recomputed": true,
+          "before_after_digest_equal": true,
+          "changed_paths": []
+        }
+      },
+      "current_workspace_mismatches": [],
+      "current_runtime_mismatches": [],
+      "manifests_match_source_and_validation_workspace": {
+        "pubspec.yaml": true,
+        "packages/legacy_doc_parser/pubspec.yaml": true,
+        "packages/quds_office_engine/pubspec.yaml": true,
+        "packages/quds_proofing_harper/pubspec.yaml": true,
+        "packages/quds_proofing_gector/pubspec.yaml": true,
+        "packages/quds_proofing_spacy/pubspec.yaml": true,
+        "packages/quds_office_engine/example/pubspec.yaml": true,
+        "packages/quds_reports/pubspec.yaml": true,
+        "packages/quds_office_editor/pubspec.yaml": true,
+        "packages/quds_office_editor/example/pubspec.yaml": true,
+        "apps/quds_report_studio/pubspec.yaml": true
+      },
+      "executed_runner_sha256_matches": true,
+      "artifact_metadata_matches_current_files": {
+        "events.jsonl.gz": true,
+        "inputs.json.gz": true
+      },
+      "static_target_count": 7,
+      "static_targets": [
+        "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+        "packages/quds_office_editor/lib/src/embed/word_review_pane.dart",
+        "packages/quds_office_editor/lib/src/proofing/word_proofing.dart",
+        "packages/quds_office_editor/test/word_incremental_proofing_test.dart",
+        "packages/quds_office_editor/test/word_live_review_changes_test.dart",
+        "packages/quds_office_editor/test/word_review_controller_test.dart",
+        "packages/quds_office_editor/test/word_live_review_selection_test.dart"
+      ],
+      "static_checks": [
+        {
+          "name": "format",
+          "exit_code": 0,
+          "targets_match": true,
+          "strict_flags_or_nonmutating_format": true,
+          "stdout": "Formatted 7 files (0 changed) in 0.59 seconds.\n",
+          "stderr": ""
+        },
+        {
+          "name": "analyze",
+          "exit_code": 0,
+          "targets_match": true,
+          "strict_flags_or_nonmutating_format": true,
+          "stdout": "Analyzing office_controller.dart, word_review_pane.dart, word_proofing.dart, word_incremental_proofing_test.dart, word_live_review_changes_test.dart, word_review_controller_test.dart, word_live_review_selection_test.dart...\nNo issues found!\n",
+          "stderr": ""
+        }
+      ]
+    }
+  },
+  "combined_disjoint_passed": 617,
+  "combined_suite_count": 44,
+  "duplicate_suite_paths": [],
+  "combined_distinct_strict_targets": 15,
+  "duplicate_static_targets": [],
+  "source_input_union_count": 581,
+  "overlapping_source_input_count": 531,
+  "overlapping_source_record_mismatches": [],
+  "union_mismatches_with_qualified_git_tree": [],
+  "cross_run_runtime_dependency_workspace_comparison": {
+    "dependencies": {
+      "shared_record_mismatches": [],
+      "zotero_only_record_paths": [],
+      "incoming_only_record_paths": []
+    },
+    "runtime": {
+      "shared_record_mismatches": [],
+      "zotero_only_record_paths": [],
+      "incoming_only_record_paths": [
+        "bin/cache/artifacts/material_fonts/MaterialIcons-Regular.otf"
+      ]
+    },
+    "workspace": {
+      "shared_record_mismatches": [],
+      "zotero_only_record_paths": [],
+      "incoming_only_record_paths": []
+    }
+  },
+  "excluded_attempts": [
+    {
+      "path": "incoming/attempt-1/summary.json",
+      "status": "failed",
+      "source": "3668ed92829dfa012ec5b129943a86738ebb7992",
+      "actual_process_exit": 1,
+      "counted_in_final_total": false,
+      "reason": "Retained failed or superseded attempt; no case from this stream contributes to final totals."
+    },
+    {
+      "path": "incoming/attempt-2/summary.json",
+      "status": "failed",
+      "source": "00ac2edf606359cea003b4ebb3a5f3aaac7b67cf",
+      "actual_process_exit": 1,
+      "counted_in_final_total": false,
+      "reason": "Retained failed or superseded attempt; no case from this stream contributes to final totals."
+    }
+  ],
+  "excluded_development_scope": "All focused development runs, earlier failed attempts, historical engine/Studio/spelling cohorts and independent source review are excluded from these totals.",
+  "tests_executed_by_auditor": 0,
+  "source_test_git_mutations_by_auditor": false,
+  "new_remote_frontier_queried": false,
+  "github_actions_queried_or_awaited": false
+}

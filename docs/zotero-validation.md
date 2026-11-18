@@ -1,5 +1,46 @@
 # Zotero validation
 
+## 18 November 2026 — reuse cited sources and edit citation source lists
+
+Qualified final source: **`40e92e5222a26db132f8be05126df285b4227a86`**, on
+`codex/zotero-citation-workflow-20261118`
+([PR #166](https://github.com/CrispStrobe/quds_office_suite/pull/166), stacked on
+#162, which includes #164 and #165). **Document → Cited references…** searches
+stored document sources offline, shows occurrence counts and details, and
+reuses sources with fresh citation-specific options. The citation composer can
+add, remove, reorder and inspect sources while preserving their individual
+locators and affixes. Custom text requires review after a changed source list.
+
+| Accepted current local cohort | Suites | Substantive passes |
+| --- | ---: | ---: |
+| Complete editor Zotero | 26 | 348 |
+| Incoming editor review and proofing | 18 | 269 |
+| **Disjoint total** | **44** | **617** |
+
+Both final runs exit zero with no failures, skips, error events, overflow or
+missed-tap diagnostics. The **49 new Zotero cases are included once**. All 15
+distinct strict-analysis and formatting targets pass. An independent raw-event
+audit verifies the suite counts, artifact hashes and source/runtime guards.
+The 562 Zotero and 550 incoming source records form a 581-path union matching
+the final saved source. Zotero inputs are unchanged from its complete run on
+`3668ed92`; later source changes repair only incoming test expectations and
+interaction helpers. Failed and focused development attempts are retained and
+excluded from these totals.
+
+The fixed incoming inventory closed at **17:03:14 Europe/Berlin** and accounts
+for **377 incoming refs / 244 distinct heads**, with zero unaccounted heads.
+New review and main histories are preserved by an ordinary merge. All work and
+raw evidence were saved incrementally with non-forced expected-head updates
+and `[skip ci]`. No GitHub Actions, workflow or CI-status endpoint was queried,
+awaited or rerun.
+
+The [complete report](validation/zotero-citation-workflow-20261118/README.md)
+contains usage, reconciliation, source binding, raw evidence and reproduction
+commands. This qualifies real Flutter editor/controller flows with controlled
+transport and clipboard channels. Historical engine/Studio results are not
+added; it makes no new installed-device, live-account, full-build or
+Word/LibreOffice interoperability acceptance claim.
+
 ## 18 November 2026 — stored-reference details throughout the workspace
 
 Qualified integration: **`02da86d9ba82f5d14dc04a3759c247064bcd6a25`**, on

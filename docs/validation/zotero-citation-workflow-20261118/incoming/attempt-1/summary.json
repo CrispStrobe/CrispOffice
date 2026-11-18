@@ -1,0 +1,373 @@
+{
+  "actual_process_exit": 1,
+  "artifacts": {
+    "events.jsonl.gz": {
+      "bytes": 18983,
+      "git_blob_sha1": "701c968ab2eb7cd4cd60c76f5790dd6657853efb",
+      "sha256": "c19269d51c8db4daf978595f04cdda145f0db30bcb0ba17dedeb9b113bf6c964"
+    },
+    "inputs.json.gz": {
+      "bytes": 49724,
+      "git_blob_sha1": "07f26c8839a6e6ac792c95d73730c442c3379617",
+      "sha256": "bd3313e5858e677a410fbc6bf638111ef20428ef2cd1876dc73e1c4c20f12a58"
+    }
+  },
+  "bound_source_commit": "3668ed92829dfa012ec5b129943a86738ebb7992",
+  "checks": [
+    {
+      "command": [
+        "/workspace/scratch/ba0874ba8ec5/zotero-toolchain/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+        "format",
+        "--output=none",
+        "--set-exit-if-changed",
+        "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+        "packages/quds_office_editor/lib/src/embed/word_review_pane.dart",
+        "packages/quds_office_editor/lib/src/proofing/word_proofing.dart",
+        "packages/quds_office_editor/test/word_incremental_proofing_test.dart",
+        "packages/quds_office_editor/test/word_live_review_changes_test.dart",
+        "packages/quds_office_editor/test/word_review_controller_test.dart"
+      ],
+      "cwd": "/workspace/scratch/ba0874ba8ec5/zotero-validation",
+      "elapsed_seconds": 0.4861556969999583,
+      "exit_code": 0,
+      "name": "format",
+      "stderr": "",
+      "stdout": "Formatted 6 files (0 changed) in 0.42 seconds.\n"
+    },
+    {
+      "command": [
+        "/workspace/scratch/ba0874ba8ec5/zotero-toolchain/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "--fatal-warnings",
+        "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+        "packages/quds_office_editor/lib/src/embed/word_review_pane.dart",
+        "packages/quds_office_editor/lib/src/proofing/word_proofing.dart",
+        "packages/quds_office_editor/test/word_incremental_proofing_test.dart",
+        "packages/quds_office_editor/test/word_live_review_changes_test.dart",
+        "packages/quds_office_editor/test/word_review_controller_test.dart"
+      ],
+      "cwd": "/workspace/scratch/ba0874ba8ec5/zotero-validation",
+      "elapsed_seconds": 16.48158366199982,
+      "exit_code": 0,
+      "name": "analyze",
+      "stderr": "",
+      "stdout": "Analyzing office_controller.dart, word_review_pane.dart, word_proofing.dart, word_incremental_proofing_test.dart, word_live_review_changes_test.dart, word_review_controller_test.dart...\nNo issues found!\n"
+    }
+  ],
+  "command": [
+    "/workspace/scratch/ba0874ba8ec5/zotero-toolchain/flutter-sdk/bin/flutter",
+    "test",
+    "--no-pub",
+    "--machine",
+    "--concurrency",
+    "4",
+    "test/word_live_proofing_session_test.dart",
+    "test/word_live_review_selection_test.dart",
+    "test/word_live_review_surface_test.dart",
+    "test/word_review_pane_test.dart",
+    "test/word_proofing_session_test.dart",
+    "test/word_manual_proofing_test.dart",
+    "test/word_proofing_dialog_test.dart",
+    "test/word_proofing_context_test.dart",
+    "test/word_proofing_geometry_test.dart",
+    "test/word_proofing_navigation_test.dart",
+    "test/word_review_dialog_test.dart",
+    "test/word_revision_story_test.dart",
+    "test/word_input_focus_test.dart",
+    "test/office_input_ownership_test.dart",
+    "test/editor_test.dart",
+    "test/word_incremental_proofing_test.dart",
+    "test/word_live_review_changes_test.dart",
+    "test/word_review_controller_test.dart"
+  ],
+  "cwd": "/workspace/scratch/ba0874ba8ec5/zotero-validation/packages/quds_office_editor",
+  "elapsed_seconds": 33.08868345100018,
+  "finished_at_utc": "2026-11-18T16:10:06.491672+00:00",
+  "guards": {
+    "all_manifests_match": true,
+    "all_selected_suites_executed": true,
+    "dependencies_unchanged": true,
+    "disjoint_from_zotero": true,
+    "every_started_test_finished_once": true,
+    "final_event_success": false,
+    "head_descends_source_commit": true,
+    "runtime_unchanged": true,
+    "selected_suites_present": true,
+    "source_matches_recorded_commit": true,
+    "source_unchanged": true,
+    "workspace_unchanged": true
+  },
+  "runner_sha256": "69727e171eb5e5eb782d0937b466304bead1d5b6bacb8352577af89793cc521f",
+  "scope": "18 incoming editor review/proofing and affected consumer suites only. All word_zotero tests, focused development runs, engine/Studio suites and inherited evidence are excluded. Passed counts exclude hidden/lifecycle/loading notifications and skipped cases; parameterized real cases remain included.",
+  "selected_suites": [
+    "packages/quds_office_editor/test/word_live_proofing_session_test.dart",
+    "packages/quds_office_editor/test/word_live_review_selection_test.dart",
+    "packages/quds_office_editor/test/word_live_review_surface_test.dart",
+    "packages/quds_office_editor/test/word_review_pane_test.dart",
+    "packages/quds_office_editor/test/word_proofing_session_test.dart",
+    "packages/quds_office_editor/test/word_manual_proofing_test.dart",
+    "packages/quds_office_editor/test/word_proofing_dialog_test.dart",
+    "packages/quds_office_editor/test/word_proofing_context_test.dart",
+    "packages/quds_office_editor/test/word_proofing_geometry_test.dart",
+    "packages/quds_office_editor/test/word_proofing_navigation_test.dart",
+    "packages/quds_office_editor/test/word_review_dialog_test.dart",
+    "packages/quds_office_editor/test/word_revision_story_test.dart",
+    "packages/quds_office_editor/test/word_input_focus_test.dart",
+    "packages/quds_office_editor/test/office_input_ownership_test.dart",
+    "packages/quds_office_editor/test/editor_test.dart",
+    "packages/quds_office_editor/test/word_incremental_proofing_test.dart",
+    "packages/quds_office_editor/test/word_live_review_changes_test.dart",
+    "packages/quds_office_editor/test/word_review_controller_test.dart"
+  ],
+  "source_head_at_end": "3668ed92829dfa012ec5b129943a86738ebb7992",
+  "source_head_at_start": "3668ed92829dfa012ec5b129943a86738ebb7992",
+  "started_at_utc": "2026-11-18T16:09:14.606512+00:00",
+  "status": "failed",
+  "stderr": "",
+  "strict_targets": [
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+    "packages/quds_office_editor/lib/src/embed/word_review_pane.dart",
+    "packages/quds_office_editor/lib/src/proofing/word_proofing.dart",
+    "packages/quds_office_editor/test/word_incremental_proofing_test.dart",
+    "packages/quds_office_editor/test/word_live_review_changes_test.dart",
+    "packages/quds_office_editor/test/word_review_controller_test.dart"
+  ],
+  "tests": {
+    "error_events": [
+      {
+        "error": "Expected: null\n  Actual: <Instance of 'WordProofingIssue'>\n",
+        "isFailure": true,
+        "stackTrace": "package:matcher                                     expect\npackage:flutter_test/src/widget_tester.dart 473:18  expect\ntest/word_live_review_selection_test.dart 195:7     main.<fn>\n",
+        "testID": 26,
+        "time": 5517,
+        "type": "error"
+      },
+      {
+        "error": "Test failed. See exception logs above.\nThe test description was: author type and text filters combine without editing the document",
+        "isFailure": false,
+        "stackTrace": "",
+        "testID": 290,
+        "time": 23035,
+        "type": "error"
+      },
+      {
+        "error": "Test failed. See exception logs above.\nThe test description was: filtered navigation and resolution continue with the next shown change",
+        "isFailure": false,
+        "stackTrace": "",
+        "testID": 320,
+        "time": 23730,
+        "type": "error"
+      },
+      {
+        "error": "Test failed. See exception logs above.\nThe test description was: accept shown affects exactly the filtered batch with one undo",
+        "isFailure": false,
+        "stackTrace": "",
+        "testID": 321,
+        "time": 24529,
+        "type": "error"
+      },
+      {
+        "error": "Test failed. See exception logs above.\nThe test description was: reject shown affects exactly the filtered batch with one undo",
+        "isFailure": false,
+        "stackTrace": "",
+        "testID": 322,
+        "time": 25454,
+        "type": "error"
+      },
+      {
+        "error": "Test failed. See exception logs above.\nThe test description was: one stale filtered change blocks the entire shown batch",
+        "isFailure": false,
+        "stackTrace": "",
+        "testID": 323,
+        "time": 26164,
+        "type": "error"
+      },
+      {
+        "error": "Test failed. See exception logs above.\nThe test description was: viewing mode keeps filters and previews but disables decisions",
+        "isFailure": false,
+        "stackTrace": "",
+        "testID": 327,
+        "time": 28627,
+        "type": "error"
+      }
+    ],
+    "every_started_test_finished_once": true,
+    "excluded_failures": [],
+    "excluded_pseudo_cases": 28,
+    "excluded_reasons": {
+      "hidden_lifecycle": 28
+    },
+    "failed": 7,
+    "final_events": [
+      {
+        "success": false,
+        "time": 31901,
+        "type": "done"
+      }
+    ],
+    "flutter_envelopes": 18,
+    "layout_or_tap_diagnostics": [
+      {
+        "message": "\nWarning: A call to tap() with finder \"Found 1 widget with key [<'live-review-author-filter'>]: [\n  DropdownButton<String?>-[<'live-review-author-filter'>](dependencies: [Directionality, InheritedCupertinoTheme, MediaQuery, _InheritedTheme, _LocalizationsScope-[GlobalKey#5eb7c], _ScrollableScope], state: _DropdownButtonState<String?>#64ea0),\n]\" derived an Offset (Offset(200.0, 234.7)) that would not hit test on the specified widget.\nMaybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.\nThe finder corresponds to this RenderBox: RenderSemanticsAnnotations#350d1 relayoutBoundary=up16\nThe hit test result at that offset is: HitTestResult(_RenderListTile#94cf7@Offset(188.0, 50.3), RenderPadding#28a22@Offset(188.0, 50.3), RenderPadding#2c560@Offset(188.0, 50.3), RenderSemanticsAnnotations#806cb@Offset(188.0, 50.3), RenderPointerListener#e89c7@Offset(188.0, 50.3), RenderSemanticsAnnotations#67782@Offset(188.0, 50.3), RenderMouseRegion#8a931@Offset(188.0, 50.3), RenderSemanticsAnnotations#d9b2e@Offset(188.0, 50.3), RenderSemanticsAnnotations#eff56@Offset(188.0, 50.3), RenderSemanticsAnnotations#6dfa4@Offset(188.0, 50.3), RenderFlex#1a6ff@Offset(188.0, 50.3), RenderPadding#08b05@Offset(188.0, 51.3), RenderDecoratedBox#fd6dd@Offset(188.0, 51.3), RenderRepaintBoundary#4f609@Offset(188.0, 51.3), RenderIndexedSemantics#2322d@Offset(188.0, 51.3), RenderSliverList@(mainAxis: 130.7303466796875, crossAxis: 188.0), RenderSliverPadding@(mainAxis: 130.7303466796875, crossAxis: 200.0), RenderViewport#8e980@Offset(200.0, 130.7), RenderIgnorePointer#e675c@Offset(200.0, 130.7), RenderSemanticsAnnotations#b8c32@Offset(200.0, 130.7), RenderPointerListener#93c56@Offset(200.0, 130.7), RenderSemanticsGestureHandler#2b664@Offset(200.0, 130.7), RenderPointerListener#4fd13@Offset(200.0, 130.7), _RenderScrollSemantics#fe8bf@Offset(200.0, 130.7), RenderClipRect#8d499@Offset(200.0, 130.7), RenderFlex#5c1e1@Offset(200.0, 234.7), RenderSemanticsAnnotations#88bf6@Offset(200.0, 234.7), _RenderInkFeatures#8d53d@Offset(200.0, 234.7), RenderPhysicalModel#91a55@Offset(200.0, 234.7), RenderCustomMultiChildLayoutBox#3a6ff@Offset(200.0, 234.7), _RenderInkFeatures#2491c@Offset(200.0, 234.7), RenderPhysicalModel#8057d@Offset(200.0, 234.7), RenderSemanticsAnnotations#68d0a@Offset(200.0, 234.7), RenderRepaintBoundary#95a40@Offset(200.0, 234.7), RenderIgnorePointer#d5ad4@Offset(200.0, 234.7), RenderAnimatedOpacity#6cd4a@Offset(200.0, 234.7), RenderAnimatedOpacity#f43df@Offset(200.0, 234.7), _RenderColoredBox#16e3a@Offset(200.0, 234.7), RenderAnimatedOpacity#ea3e3@Offset(200.0, 234.7), RenderIgnorePointer#c1bf6@Offset(200.0, 234.7), RenderAnimatedOpacity#21857@Offset(200.0, 234.7), RenderRepaintBoundary#f11c3@Offset(200.0, 234.7), RenderSemanticsAnnotations#769b4@Offset(200.0, 234.7), RenderOffstage#b709b@Offset(200.0, 234.7), RenderSemanticsAnnotations#f4dfd@Offset(200.0, 234.7), _RenderTheater#76e30@Offset(200.0, 234.7), RenderAbsorbPointer#c24a3@Offset(200.0, 234.7), RenderPointerListener#4343c@Offset(200.0, 234.7), RenderSemanticsAnnotations#c3359@Offset(200.0, 234.7), RenderCustomPaint#90783@Offset(200.0, 234.7), RenderSemanticsAnnotations#297cc@Offset(200.0, 234.7), RenderSemanticsAnnotations#af896@Offset(200.0, 234.7), RenderSemanticsAnnotations#b8809@Offset(200.0, 234.7), RenderTapRegionSurface#8c86c@Offset(200.0, 234.7), RenderSemanticsAnnotations#0b53d@Offset(200.0, 234.7), RenderSemanticsAnnotations#5695f@Offset(200.0, 234.7), HitTestEntry<HitTestTarget>#1f4e9(_ReusableRenderView#89473), HitTestEntry<HitTestTarget>#97325(<AutomatedTestWidgetsFlutterBinding>))\n#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165:25)\n#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)\n#2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)\n#3      _tap (file:///workspace/scratch/ba0874ba8ec5/zotero-validation/packages/quds_office_editor/test/word_live_review_changes_test.dart:177:16)\n<asynchronous suspension>\n#4      _choose (file:///workspace/scratch/ba0874ba8ec5/zotero-validation/packages/quds_office_editor/test/word_live_review_changes_test.dart:189:3)\n<asynchronous suspension>\n#5      main.<anonymous closure> (file:///workspace/scratch/ba0874ba8ec5/zotero-validation/packages/quds_office_editor/test/word_live_review_changes_test.dart:217:7)\n<asynchronous suspension>\n#6      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)\n<asynchronous suspension>\n#7      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1953:5)\n<asynchronous suspension>\n#8      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)\n<asynchronous suspension>\nTo silence this warning, pass \"warnIfMissed: false\" to \"tap()\".\nTo make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.\n",
+        "messageType": "print",
+        "testID": 290,
+        "time": 22226,
+        "type": "print"
+      },
+      {
+        "message": "\nWarning: A call to tap() with finder \"Found 1 widget with key [<'live-review-author-filter'>]: [\n  DropdownButton<String?>-[<'live-review-author-filter'>](dependencies: [Directionality, InheritedCupertinoTheme, MediaQuery, _InheritedTheme, _LocalizationsScope-[GlobalKey#cebc3], _ScrollableScope], state: _DropdownButtonState<String?>#32dbe),\n]\" derived an Offset (Offset(200.0, 234.7)) that would not hit test on the specified widget.\nMaybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.\nThe finder corresponds to this RenderBox: RenderSemanticsAnnotations#190e9 relayoutBoundary=up16\nThe hit test result at that offset is: HitTestResult(_RenderListTile#45828@Offset(188.0, 50.3), RenderPadding#71337@Offset(188.0, 50.3), RenderPadding#bb378@Offset(188.0, 50.3), RenderSemanticsAnnotations#19b5a@Offset(188.0, 50.3), RenderPointerListener#923b9@Offset(188.0, 50.3), RenderSemanticsAnnotations#a3e18@Offset(188.0, 50.3), RenderMouseRegion#58e37@Offset(188.0, 50.3), RenderSemanticsAnnotations#c772c@Offset(188.0, 50.3), RenderSemanticsAnnotations#80f72@Offset(188.0, 50.3), RenderSemanticsAnnotations#aa970@Offset(188.0, 50.3), RenderFlex#d782e@Offset(188.0, 50.3), RenderPadding#7103c@Offset(188.0, 51.3), RenderDecoratedBox#953ee@Offset(188.0, 51.3), RenderRepaintBoundary#3bb9f@Offset(188.0, 51.3), RenderIndexedSemantics#7f7db@Offset(188.0, 51.3), RenderSliverList@(mainAxis: 130.7303466796875, crossAxis: 188.0), RenderSliverPadding@(mainAxis: 130.7303466796875, crossAxis: 200.0), RenderViewport#cfe5f@Offset(200.0, 130.7), RenderIgnorePointer#d69de@Offset(200.0, 130.7), RenderSemanticsAnnotations#ef680@Offset(200.0, 130.7), RenderPointerListener#14525@Offset(200.0, 130.7), RenderSemanticsGestureHandler#17b72@Offset(200.0, 130.7), RenderPointerListener#46d78@Offset(200.0, 130.7), _RenderScrollSemantics#ead61@Offset(200.0, 130.7), RenderClipRect#92c48@Offset(200.0, 130.7), RenderFlex#5e4dd@Offset(200.0, 234.7), RenderSemanticsAnnotations#75b22@Offset(200.0, 234.7), _RenderInkFeatures#dcb85@Offset(200.0, 234.7), RenderPhysicalModel#6cd15@Offset(200.0, 234.7), RenderCustomMultiChildLayoutBox#c7f52@Offset(200.0, 234.7), _RenderInkFeatures#cd089@Offset(200.0, 234.7), RenderPhysicalModel#13dcd@Offset(200.0, 234.7), RenderSemanticsAnnotations#6bd50@Offset(200.0, 234.7), RenderRepaintBoundary#73b99@Offset(200.0, 234.7), RenderIgnorePointer#13b20@Offset(200.0, 234.7), RenderAnimatedOpacity#56014@Offset(200.0, 234.7), RenderAnimatedOpacity#4185c@Offset(200.0, 234.7), _RenderColoredBox#2ccc2@Offset(200.0, 234.7), RenderAnimatedOpacity#23040@Offset(200.0, 234.7), RenderIgnorePointer#8736c@Offset(200.0, 234.7), RenderAnimatedOpacity#42e51@Offset(200.0, 234.7), RenderRepaintBoundary#85eb5@Offset(200.0, 234.7), RenderSemanticsAnnotations#7b892@Offset(200.0, 234.7), RenderOffstage#b5175@Offset(200.0, 234.7), RenderSemanticsAnnotations#4af6a@Offset(200.0, 234.7), _RenderTheater#1d00f@Offset(200.0, 234.7), RenderAbsorbPointer#b3e49@Offset(200.0, 234.7), RenderPointerListener#377aa@Offset(200.0, 234.7), RenderSemanticsAnnotations#ac268@Offset(200.0, 234.7), RenderCustomPaint#bec32@Offset(200.0, 234.7), RenderSemanticsAnnotations#d85ff@Offset(200.0, 234.7), RenderSemanticsAnnotations#91466@Offset(200.0, 234.7), RenderSemanticsAnnotations#28de7@Offset(200.0, 234.7), RenderTapRegionSurface#583f0@Offset(200.0, 234.7), RenderSemanticsAnnotations#d1806@Offset(200.0, 234.7), RenderSemanticsAnnotations#73faf@Offset(200.0, 234.7), HitTestEntry<HitTestTarget>#47a74(_ReusableRenderView#89473), HitTestEntry<HitTestTarget>#85818(<AutomatedTestWidgetsFlutterBinding>))\n#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165:25)\n#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)\n#2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)\n#3      _tap (file:///workspace/scratch/ba0874ba8ec5/zotero-validation/packages/quds_office_editor/test/word_live_review_changes_test.dart:177:16)\n<asynchronous suspension>\n#4      _choose (file:///workspace/scratch/ba0874ba8ec5/zotero-validation/packages/quds_office_editor/test/word_live_review_changes_test.dart:189:3)\n<asynchronous suspension>\n#5      main.<anonymous closure> (file:///workspace/scratch/ba0874ba8ec5/zotero-validation/packages/quds_office_editor/test/word_live_review_changes_test.dart:263:7)\n<asynchronous suspension>\n#6      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)\n<asynchronous suspension>\n#7      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1953:5)\n<asynchronous suspension>\n#8      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)\n<asynchronous suspension>\nTo silence this warning, pass \"warnIfMissed: false\" to \"tap()\".\nTo make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.\n",
+        "messageType": "print",
+        "testID": 320,
+        "time": 23329,
+        "type": "print"
+      },
+      {
+        "message": "\nWarning: A call to tap() with finder \"Found 1 widget with key [<'live-review-author-filter'>]: [\n  DropdownButton<String?>-[<'live-review-author-filter'>](dependencies: [Directionality, InheritedCupertinoTheme, MediaQuery, _InheritedTheme, _LocalizationsScope-[GlobalKey#c9414], _ScrollableScope], state: _DropdownButtonState<String?>#d26b0),\n]\" derived an Offset (Offset(200.0, 234.7)) that would not hit test on the specified widget.\nMaybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.\nThe finder corresponds to this RenderBox: RenderSemanticsAnnotations#2e66d relayoutBoundary=up16\nThe hit test result at that offset is: HitTestResult(_RenderListTile#a5d13@Offset(188.0, 50.3), RenderPadding#26587@Offset(188.0, 50.3), RenderPadding#45c2e@Offset(188.0, 50.3), RenderSemanticsAnnotations#46914@Offset(188.0, 50.3), RenderPointerListener#6b06d@Offset(188.0, 50.3), RenderSemanticsAnnotations#51005@Offset(188.0, 50.3), RenderMouseRegion#deb27@Offset(188.0, 50.3), RenderSemanticsAnnotations#cd30c@Offset(188.0, 50.3), RenderSemanticsAnnotations#61469@Offset(188.0, 50.3), RenderSemanticsAnnotations#23269@Offset(188.0, 50.3), RenderFlex#f6cdb@Offset(188.0, 50.3), RenderPadding#28ea7@Offset(188.0, 51.3), RenderDecoratedBox#42f28@Offset(188.0, 51.3), RenderRepaintBoundary#cb4a5@Offset(188.0, 51.3), RenderIndexedSemantics#4db32@Offset(188.0, 51.3), RenderSliverList@(mainAxis: 130.7303466796875, crossAxis: 188.0), RenderSliverPadding@(mainAxis: 130.7303466796875, crossAxis: 200.0), RenderViewport#adc31@Offset(200.0, 130.7), RenderIgnorePointer#3eb15@Offset(200.0, 130.7), RenderSemanticsAnnotations#3f5e6@Offset(200.0, 130.7), RenderPointerListener#4bc37@Offset(200.0, 130.7), RenderSemanticsGestureHandler#8e3a4@Offset(200.0, 130.7), RenderPointerListener#0ed41@Offset(200.0, 130.7), _RenderScrollSemantics#090c9@Offset(200.0, 130.7), RenderClipRect#828e6@Offset(200.0, 130.7), RenderFlex#bc852@Offset(200.0, 234.7), RenderSemanticsAnnotations#51a06@Offset(200.0, 234.7), _RenderInkFeatures#fd2b1@Offset(200.0, 234.7), RenderPhysicalModel#d524c@Offset(200.0, 234.7), RenderCustomMultiChildLayoutBox#816d9@Offset(200.0, 234.7), _RenderInkFeatures#52c19@Offset(200.0, 234.7), RenderPhysicalModel#696d0@Offset(200.0, 234.7), RenderSemanticsAnnotations#68d96@Offset(200.0, 234.7), RenderRepaintBoundary#b8d70@Offset(200.0, 234.7), RenderIgnorePointer#bdfd1@Offset(200.0, 234.7), RenderAnimatedOpacity#ac33f@Offset(200.0, 234.7), RenderAnimatedOpacity#ea3aa@Offset(200.0, 234.7), _RenderColoredBox#20f1f@Offset(200.0, 234.7), RenderAnimatedOpacity#cc1d4@Offset(200.0, 234.7), RenderIgnorePointer#64be3@Offset(200.0, 234.7), RenderAnimatedOpacity#d6871@Offset(200.0, 234.7), RenderRepaintBoundary#553d8@Offset(200.0, 234.7), RenderSemanticsAnnotations#9f20f@Offset(200.0, 234.7), RenderOffstage#dc664@Offset(200.0, 234.7), RenderSemanticsAnnotations#21ab9@Offset(200.0, 234.7), _RenderTheater#5447e@Offset(200.0, 234.7), RenderAbsorbPointer#57554@Offset(200.0, 234.7), RenderPointerListener#1515d@Offset(200.0, 234.7), RenderSemanticsAnnotations#f0208@Offset(200.0, 234.7), RenderCustomPaint#9edba@Offset(200.0, 234.7), RenderSemanticsAnnotations#39aaf@Offset(200.0, 234.7), RenderSemanticsAnnotations#6b74b@Offset(200.0, 234.7), RenderSemanticsAnnotations#66e48@Offset(200.0, 234.7), RenderTapRegionSurface#b7be5@Offset(200.0, 234.7), RenderSemanticsAnnotations#1c2d4@Offset(200.0, 234.7), RenderSemanticsAnnotations#00b94@Offset(200.0, 234.7), HitTestEntry<HitTestTarget>#0a231(_ReusableRenderView#89473), HitTestEntry<HitTestTarget>#74888(<AutomatedTestWidgetsFlutterBinding>))\n#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165:25)\n#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)\n#2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)\n#3      _tap (file:///workspace/scratch/ba0874ba8ec5/zotero-validation/packages/quds_office_editor/test/word_live_review_changes_test.dart:177:16)\n<asynchronous suspension>\n#4      _choose (file:///workspace/scratch/ba0874ba8ec5/zotero-validation/packages/quds_office_editor/test/word_live_review_changes_test.dart:189:3)\n<asynchronous suspension>\n#5      main.<anonymous closure> (file:///workspace/scratch/ba0874ba8ec5/zotero-validation/packages/quds_office_editor/test/word_live_review_changes_test.dart:289:9)\n<asynchronous suspension>\n#6      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)\n<asynchronous suspension>\n#7      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1953:5)\n<asynchronous suspension>\n#8      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)\n<asynchronous suspension>\nTo silence this warning, pass \"warnIfMissed: false\" to \"tap()\".\nTo make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.\n",
+        "messageType": "print",
+        "testID": 321,
+        "time": 24023,
+        "type": "print"
+      },
+      {
+        "message": "\nWarning: A call to tap() with finder \"Found 1 widget with key [<'live-review-author-filter'>]: [\n  DropdownButton<String?>-[<'live-review-author-filter'>](dependencies: [Directionality, InheritedCupertinoTheme, MediaQuery, _InheritedTheme, _LocalizationsScope-[GlobalKey#d05c5], _ScrollableScope], state: _DropdownButtonState<String?>#fe328),\n]\" derived an Offset (Offset(200.0, 234.7)) that would not hit test on the specified widget.\nMaybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.\nThe finder corresponds to this RenderBox: RenderSemanticsAnnotations#a87ad relayoutBoundary=up16\nThe hit test result at that offset is: HitTestResult(_RenderListTile#54e0e@Offset(188.0, 50.3), RenderPadding#f92cd@Offset(188.0, 50.3), RenderPadding#e906d@Offset(188.0, 50.3), RenderSemanticsAnnotations#22978@Offset(188.0, 50.3), RenderPointerListener#7edaa@Offset(188.0, 50.3), RenderSemanticsAnnotations#3674d@Offset(188.0, 50.3), RenderMouseRegion#9af3e@Offset(188.0, 50.3), RenderSemanticsAnnotations#9ab4b@Offset(188.0, 50.3), RenderSemanticsAnnotations#e7a2d@Offset(188.0, 50.3), RenderSemanticsAnnotations#c68e1@Offset(188.0, 50.3), RenderFlex#7a0b8@Offset(188.0, 50.3), RenderPadding#3eb1e@Offset(188.0, 51.3), RenderDecoratedBox#21a5e@Offset(188.0, 51.3), RenderRepaintBoundary#1f310@Offset(188.0, 51.3), RenderIndexedSemantics#86a50@Offset(188.0, 51.3), RenderSliverList@(mainAxis: 130.7303466796875, crossAxis: 188.0), RenderSliverPadding@(mainAxis: 130.7303466796875, crossAxis: 200.0), RenderViewport#7c3b1@Offset(200.0, 130.7), RenderIgnorePointer#22eff@Offset(200.0, 130.7), RenderSemanticsAnnotations#dcf19@Offset(200.0, 130.7), RenderPointerListener#5f0a5@Offset(200.0, 130.7), RenderSemanticsGestureHandler#cf654@Offset(200.0, 130.7), RenderPointerListener#d1624@Offset(200.0, 130.7), _RenderScrollSemantics#00ac2@Offset(200.0, 130.7), RenderClipRect#79fa2@Offset(200.0, 130.7), RenderFlex#8a151@Offset(200.0, 234.7), RenderSemanticsAnnotations#e6332@Offset(200.0, 234.7), _RenderInkFeatures#624fa@Offset(200.0, 234.7), RenderPhysicalModel#c2655@Offset(200.0, 234.7), RenderCustomMultiChildLayoutBox#0d964@Offset(200.0, 234.7), _RenderInkFeatures#28054@Offset(200.0, 234.7), RenderPhysicalModel#df6b7@Offset(200.0, 234.7), RenderSemanticsAnnotations#7cc0b@Offset(200.0, 234.7), RenderRepaintBoundary#a1565@Offset(200.0, 234.7), RenderIgnorePointer#8340f@Offset(200.0, 234.7), RenderAnimatedOpacity#35a22@Offset(200.0, 234.7), RenderAnimatedOpacity#3d095@Offset(200.0, 234.7), _RenderColoredBox#22c45@Offset(200.0, 234.7), RenderAnimatedOpacity#e9592@Offset(200.0, 234.7), RenderIgnorePointer#95a44@Offset(200.0, 234.7), RenderAnimatedOpacity#ad8a8@Offset(200.0, 234.7), RenderRepaintBoundary#2113d@Offset(200.0, 234.7), RenderSemanticsAnnotations#5ed32@Offset(200.0, 234.7), RenderOffstage#b9700@Offset(200.0, 234.7), RenderSemanticsAnnotations#6b173@Offset(200.0, 234.7), _RenderTheater#e5f40@Offset(200.0, 234.7), RenderAbsorbPointer#a712d@Offset(200.0, 234.7), RenderPointerListener#7496e@Offset(200.0, 234.7), RenderSemanticsAnnotations#06367@Offset(200.0, 234.7), RenderCustomPaint#f72bc@Offset(200.0, 234.7), RenderSemanticsAnnotations#78581@Offset(200.0, 234.7), RenderSemanticsAnnotations#ec359@Offset(200.0, 234.7), RenderSemanticsAnnotations#2362d@Offset(200.0, 234.7), RenderTapRegionSurface#1472c@Offset(200.0, 234.7), RenderSemanticsAnnotations#43568@Offset(200.0, 234.7), RenderSemanticsAnnotations#24861@Offset(200.0, 234.7), HitTestEntry<HitTestTarget>#d4a62(_ReusableRenderView#89473), HitTestEntry<HitTestTarget>#e6655(<AutomatedTestWidgetsFlutterBinding>))\n#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165:25)\n#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)\n#2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)\n#3      _tap (file:///workspace/scratch/ba0874ba8ec5/zotero-validation/packages/quds_office_editor/test/word_live_review_changes_test.dart:177:16)\n<asynchronous suspension>\n#4      _choose (file:///workspace/scratch/ba0874ba8ec5/zotero-validation/packages/quds_office_editor/test/word_live_review_changes_test.dart:189:3)\n<asynchronous suspension>\n#5      main.<anonymous closure> (file:///workspace/scratch/ba0874ba8ec5/zotero-validation/packages/quds_office_editor/test/word_live_review_changes_test.dart:289:9)\n<asynchronous suspension>\n#6      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)\n<asynchronous suspension>\n#7      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1953:5)\n<asynchronous suspension>\n#8      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)\n<asynchronous suspension>\nTo silence this warning, pass \"warnIfMissed: false\" to \"tap()\".\nTo make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.\n",
+        "messageType": "print",
+        "testID": 322,
+        "time": 24937,
+        "type": "print"
+      },
+      {
+        "message": "\nWarning: A call to tap() with finder \"Found 1 widget with key [<'live-review-author-filter'>]: [\n  DropdownButton<String?>-[<'live-review-author-filter'>](dependencies: [Directionality, InheritedCupertinoTheme, MediaQuery, _InheritedTheme, _LocalizationsScope-[GlobalKey#76fdd], _ScrollableScope], state: _DropdownButtonState<String?>#3b540),\n]\" derived an Offset (Offset(200.0, 234.7)) that would not hit test on the specified widget.\nMaybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.\nThe finder corresponds to this RenderBox: RenderSemanticsAnnotations#fddc1 relayoutBoundary=up16\nThe hit test result at that offset is: HitTestResult(_RenderListTile#d91a2@Offset(188.0, 50.3), RenderPadding#edc8e@Offset(188.0, 50.3), RenderPadding#7e4aa@Offset(188.0, 50.3), RenderSemanticsAnnotations#fc90e@Offset(188.0, 50.3), RenderPointerListener#80c64@Offset(188.0, 50.3), RenderSemanticsAnnotations#cd913@Offset(188.0, 50.3), RenderMouseRegion#e323a@Offset(188.0, 50.3), RenderSemanticsAnnotations#e7d7f@Offset(188.0, 50.3), RenderSemanticsAnnotations#9c3e4@Offset(188.0, 50.3), RenderSemanticsAnnotations#c071b@Offset(188.0, 50.3), RenderFlex#21139@Offset(188.0, 50.3), RenderPadding#20365@Offset(188.0, 51.3), RenderDecoratedBox#fddb0@Offset(188.0, 51.3), RenderRepaintBoundary#72894@Offset(188.0, 51.3), RenderIndexedSemantics#b7ac2@Offset(188.0, 51.3), RenderSliverList@(mainAxis: 130.7303466796875, crossAxis: 188.0), RenderSliverPadding@(mainAxis: 130.7303466796875, crossAxis: 200.0), RenderViewport#42e51@Offset(200.0, 130.7), RenderIgnorePointer#9033a@Offset(200.0, 130.7), RenderSemanticsAnnotations#49a9e@Offset(200.0, 130.7), RenderPointerListener#0685a@Offset(200.0, 130.7), RenderSemanticsGestureHandler#3da44@Offset(200.0, 130.7), RenderPointerListener#0e1fa@Offset(200.0, 130.7), _RenderScrollSemantics#05a57@Offset(200.0, 130.7), RenderClipRect#65acc@Offset(200.0, 130.7), RenderFlex#9e09d@Offset(200.0, 234.7), RenderSemanticsAnnotations#b278e@Offset(200.0, 234.7), _RenderInkFeatures#ec796@Offset(200.0, 234.7), RenderPhysicalModel#ebba9@Offset(200.0, 234.7), RenderCustomMultiChildLayoutBox#77880@Offset(200.0, 234.7), _RenderInkFeatures#a4476@Offset(200.0, 234.7), RenderPhysicalModel#2a9a4@Offset(200.0, 234.7), RenderSemanticsAnnotations#f4ac1@Offset(200.0, 234.7), RenderRepaintBoundary#19a77@Offset(200.0, 234.7), RenderIgnorePointer#eae4b@Offset(200.0, 234.7), RenderAnimatedOpacity#fc058@Offset(200.0, 234.7), RenderAnimatedOpacity#6df18@Offset(200.0, 234.7), _RenderColoredBox#68fed@Offset(200.0, 234.7), RenderAnimatedOpacity#6b1a4@Offset(200.0, 234.7), RenderIgnorePointer#1ba28@Offset(200.0, 234.7), RenderAnimatedOpacity#ea188@Offset(200.0, 234.7), RenderRepaintBoundary#0a9d4@Offset(200.0, 234.7), RenderSemanticsAnnotations#d5755@Offset(200.0, 234.7), RenderOffstage#cfc73@Offset(200.0, 234.7), RenderSemanticsAnnotations#b97ee@Offset(200.0, 234.7), _RenderTheater#83082@Offset(200.0, 234.7), RenderAbsorbPointer#30ae4@Offset(200.0, 234.7), RenderPointerListener#12d64@Offset(200.0, 234.7), RenderSemanticsAnnotations#c8752@Offset(200.0, 234.7), RenderCustomPaint#6ad6c@Offset(200.0, 234.7), RenderSemanticsAnnotations#69b1c@Offset(200.0, 234.7), RenderSemanticsAnnotations#98dc5@Offset(200.0, 234.7), RenderSemanticsAnnotations#12092@Offset(200.0, 234.7), RenderTapRegionSurface#fcb44@Offset(200.0, 234.7), RenderSemanticsAnnotations#f92a8@Offset(200.0, 234.7), RenderSemanticsAnnotations#a539a@Offset(200.0, 234.7), HitTestEntry<HitTestTarget>#bd754(_ReusableRenderView#89473), HitTestEntry<HitTestTarget>#9b90b(<AutomatedTestWidgetsFlutterBinding>))\n#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165:25)\n#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)\n#2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)\n#3      _tap (file:///workspace/scratch/ba0874ba8ec5/zotero-validation/packages/quds_office_editor/test/word_live_review_changes_test.dart:177:16)\n<asynchronous suspension>\n#4      _choose (file:///workspace/scratch/ba0874ba8ec5/zotero-validation/packages/quds_office_editor/test/word_live_review_changes_test.dart:189:3)\n<asynchronous suspension>\n#5      main.<anonymous closure> (file:///workspace/scratch/ba0874ba8ec5/zotero-validation/packages/quds_office_editor/test/word_live_review_changes_test.dart:339:5)\n<asynchronous suspension>\n#6      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)\n<asynchronous suspension>\n#7      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1953:5)\n<asynchronous suspension>\n#8      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)\n<asynchronous suspension>\nTo silence this warning, pass \"warnIfMissed: false\" to \"tap()\".\nTo make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.\n",
+        "messageType": "print",
+        "testID": 323,
+        "time": 25716,
+        "type": "print"
+      },
+      {
+        "message": "\nWarning: A call to tap() with finder \"Found 1 widget with key [<'live-review-author-filter'>]: [\n  DropdownButton<String?>-[<'live-review-author-filter'>](dependencies: [Directionality, InheritedCupertinoTheme, MediaQuery, _InheritedTheme, _LocalizationsScope-[GlobalKey#88df5], _ScrollableScope], state: _DropdownButtonState<String?>#9cd25),\n]\" derived an Offset (Offset(200.0, 234.7)) that would not hit test on the specified widget.\nMaybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.\nThe finder corresponds to this RenderBox: RenderSemanticsAnnotations#090d0 relayoutBoundary=up16\nThe hit test result at that offset is: HitTestResult(_RenderListTile#828be@Offset(188.0, 50.3), RenderPadding#d620a@Offset(188.0, 50.3), RenderPadding#c5c27@Offset(188.0, 50.3), RenderSemanticsAnnotations#83bce@Offset(188.0, 50.3), RenderPointerListener#721c4@Offset(188.0, 50.3), RenderSemanticsAnnotations#7558e@Offset(188.0, 50.3), RenderMouseRegion#5c157@Offset(188.0, 50.3), RenderSemanticsAnnotations#94522@Offset(188.0, 50.3), RenderSemanticsAnnotations#78c99@Offset(188.0, 50.3), RenderSemanticsAnnotations#20f42@Offset(188.0, 50.3), RenderFlex#89840@Offset(188.0, 50.3), RenderPadding#9e505@Offset(188.0, 51.3), RenderDecoratedBox#7a966@Offset(188.0, 51.3), RenderRepaintBoundary#7e3a7@Offset(188.0, 51.3), RenderIndexedSemantics#0d8d4@Offset(188.0, 51.3), RenderSliverList@(mainAxis: 130.7303466796875, crossAxis: 188.0), RenderSliverPadding@(mainAxis: 130.7303466796875, crossAxis: 200.0), RenderViewport#38149@Offset(200.0, 130.7), RenderIgnorePointer#d74d9@Offset(200.0, 130.7), RenderSemanticsAnnotations#2875b@Offset(200.0, 130.7), RenderPointerListener#89d56@Offset(200.0, 130.7), RenderSemanticsGestureHandler#6f5e8@Offset(200.0, 130.7), RenderPointerListener#5fb64@Offset(200.0, 130.7), _RenderScrollSemantics#3352b@Offset(200.0, 130.7), RenderClipRect#35150@Offset(200.0, 130.7), RenderFlex#3b996@Offset(200.0, 234.7), RenderSemanticsAnnotations#eadfa@Offset(200.0, 234.7), _RenderInkFeatures#cb1c1@Offset(200.0, 234.7), RenderPhysicalModel#ffdc7@Offset(200.0, 234.7), RenderCustomMultiChildLayoutBox#8ffde@Offset(200.0, 234.7), _RenderInkFeatures#3802b@Offset(200.0, 234.7), RenderPhysicalModel#30fc4@Offset(200.0, 234.7), RenderSemanticsAnnotations#a76dd@Offset(200.0, 234.7), RenderRepaintBoundary#0b48a@Offset(200.0, 234.7), RenderIgnorePointer#c28ea@Offset(200.0, 234.7), RenderAnimatedOpacity#e1fcb@Offset(200.0, 234.7), RenderAnimatedOpacity#1064b@Offset(200.0, 234.7), _RenderColoredBox#fcba5@Offset(200.0, 234.7), RenderAnimatedOpacity#a95cd@Offset(200.0, 234.7), RenderIgnorePointer#1fd77@Offset(200.0, 234.7), RenderAnimatedOpacity#3ccb3@Offset(200.0, 234.7), RenderRepaintBoundary#bae10@Offset(200.0, 234.7), RenderSemanticsAnnotations#45380@Offset(200.0, 234.7), RenderOffstage#2ffdf@Offset(200.0, 234.7), RenderSemanticsAnnotations#49e0a@Offset(200.0, 234.7), _RenderTheater#28e6b@Offset(200.0, 234.7), RenderAbsorbPointer#b9105@Offset(200.0, 234.7), RenderPointerListener#08fba@Offset(200.0, 234.7), RenderSemanticsAnnotations#b480c@Offset(200.0, 234.7), RenderCustomPaint#9d0f1@Offset(200.0, 234.7), RenderSemanticsAnnotations#ba036@Offset(200.0, 234.7), RenderSemanticsAnnotations#62c87@Offset(200.0, 234.7), RenderSemanticsAnnotations#2d8ea@Offset(200.0, 234.7), RenderTapRegionSurface#73502@Offset(200.0, 234.7), RenderSemanticsAnnotations#3dcea@Offset(200.0, 234.7), RenderSemanticsAnnotations#86733@Offset(200.0, 234.7), HitTestEntry<HitTestTarget>#a0f59(_ReusableRenderView#89473), HitTestEntry<HitTestTarget>#245b8(<AutomatedTestWidgetsFlutterBinding>))\n#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165:25)\n#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)\n#2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)\n#3      _tap (file:///workspace/scratch/ba0874ba8ec5/zotero-validation/packages/quds_office_editor/test/word_live_review_changes_test.dart:177:16)\n<asynchronous suspension>\n#4      _choose (file:///workspace/scratch/ba0874ba8ec5/zotero-validation/packages/quds_office_editor/test/word_live_review_changes_test.dart:189:3)\n<asynchronous suspension>\n#5      main.<anonymous closure> (file:///workspace/scratch/ba0874ba8ec5/zotero-validation/packages/quds_office_editor/test/word_live_review_changes_test.dart:434:7)\n<asynchronous suspension>\n#6      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)\n<asynchronous suspension>\n#7      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1953:5)\n<asynchronous suspension>\n#8      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)\n<asynchronous suspension>\nTo silence this warning, pass \"warnIfMissed: false\" to \"tap()\".\nTo make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.\n",
+        "messageType": "print",
+        "testID": 327,
+        "time": 28019,
+        "type": "print"
+      }
+    ],
+    "parse_errors": [],
+    "passed": 262,
+    "skipped": 0,
+    "substantive_cases": 269,
+    "suite_count": 18,
+    "suites": [
+      {
+        "failed": 0,
+        "passed": 9,
+        "path": "/workspace/scratch/ba0874ba8ec5/zotero-validation/packages/quds_office_editor/test/word_live_proofing_session_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 1,
+        "passed": 8,
+        "path": "/workspace/scratch/ba0874ba8ec5/zotero-validation/packages/quds_office_editor/test/word_live_review_selection_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "passed": 14,
+        "path": "/workspace/scratch/ba0874ba8ec5/zotero-validation/packages/quds_office_editor/test/word_live_review_surface_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "passed": 11,
+        "path": "/workspace/scratch/ba0874ba8ec5/zotero-validation/packages/quds_office_editor/test/word_review_pane_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "passed": 31,
+        "path": "/workspace/scratch/ba0874ba8ec5/zotero-validation/packages/quds_office_editor/test/word_proofing_session_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "passed": 11,
+        "path": "/workspace/scratch/ba0874ba8ec5/zotero-validation/packages/quds_office_editor/test/word_manual_proofing_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "passed": 23,
+        "path": "/workspace/scratch/ba0874ba8ec5/zotero-validation/packages/quds_office_editor/test/word_proofing_dialog_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "passed": 5,
+        "path": "/workspace/scratch/ba0874ba8ec5/zotero-validation/packages/quds_office_editor/test/word_proofing_context_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "passed": 10,
+        "path": "/workspace/scratch/ba0874ba8ec5/zotero-validation/packages/quds_office_editor/test/word_proofing_geometry_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "passed": 6,
+        "path": "/workspace/scratch/ba0874ba8ec5/zotero-validation/packages/quds_office_editor/test/word_proofing_navigation_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "passed": 13,
+        "path": "/workspace/scratch/ba0874ba8ec5/zotero-validation/packages/quds_office_editor/test/word_review_dialog_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "passed": 14,
+        "path": "/workspace/scratch/ba0874ba8ec5/zotero-validation/packages/quds_office_editor/test/word_revision_story_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "passed": 5,
+        "path": "/workspace/scratch/ba0874ba8ec5/zotero-validation/packages/quds_office_editor/test/word_input_focus_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "passed": 2,
+        "path": "/workspace/scratch/ba0874ba8ec5/zotero-validation/packages/quds_office_editor/test/office_input_ownership_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "passed": 57,
+        "path": "/workspace/scratch/ba0874ba8ec5/zotero-validation/packages/quds_office_editor/test/editor_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "passed": 15,
+        "path": "/workspace/scratch/ba0874ba8ec5/zotero-validation/packages/quds_office_editor/test/word_incremental_proofing_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 6,
+        "passed": 7,
+        "path": "/workspace/scratch/ba0874ba8ec5/zotero-validation/packages/quds_office_editor/test/word_live_review_changes_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "passed": 21,
+        "path": "/workspace/scratch/ba0874ba8ec5/zotero-validation/packages/quds_office_editor/test/word_review_controller_test.dart",
+        "skipped": 0
+      }
+    ],
+    "test_done_events": 297,
+    "test_start_events": 297
+  },
+  "timed_out": false
+}
