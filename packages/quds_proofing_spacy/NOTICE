@@ -1,6 +1,7 @@
 This optional Dart adapter is original Quds code under the MIT license.
 It does not include native binaries, model weights, spaCy Python packages,
-Python execution, AOT libraries, dictionaries, or a grammar correction planner.
+Python execution, AOT libraries, or dictionaries. The separately exposed
+manual grammar planner is original Quds code and defaults off.
 
 The explicitly installed native runtime and model have their own notices.
 The model admission contract authenticates the original LICENSE and

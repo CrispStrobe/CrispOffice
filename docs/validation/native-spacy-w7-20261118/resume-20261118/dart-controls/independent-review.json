@@ -1,0 +1,28 @@
+{
+  "additional_actionable_findings": [],
+  "ci_queries": false,
+  "findings": [
+    {
+      "issue": "Loader environment overrides were admitted",
+      "resolution": "checkLoaderEnvironment rejects presence of LD_PRELOAD, LD_LIBRARY_PATH, LD_AUDIT and LD_ORIGIN_PATH, including empty values. The operational path invokes it before archive, dependency and native loading checks and records loader_overrides_absent only after success.",
+      "status": "closed"
+    },
+    {
+      "issue": "ldd executable was selected through PATH",
+      "resolution": "dependencyPreflight now invokes /usr/bin/ldd explicitly.",
+      "status": "closed"
+    }
+  ],
+  "model_free_control_structure": {
+    "clean_loader_environment": 1,
+    "count_consistent_with_source": true,
+    "declared_total": 12,
+    "loader_environment_rejections": 8,
+    "prior_controls": 3
+  },
+  "native_execution": false,
+  "path": "packages/quds_proofing_spacy/tool/consume_distribution.dart",
+  "review_scope": "Read-only independent source reinspection; tests were not rerun by this reviewer.",
+  "sha256": "2c950b6a5102fc97b59f5ee02355ce662d3d100b409949df330bdff5c25d4ab4",
+  "status": "review_findings_closed"
+}

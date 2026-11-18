@@ -1,0 +1,138 @@
+{
+  "all_non_driver_source_hashes_unchanged": true,
+  "command": [
+    "DART",
+    "--disable-dart-dev",
+    "--packages=PACKAGE_CONFIG",
+    "packages/quds_proofing_spacy/tool/consume_distribution.dart",
+    "--self-test"
+  ],
+  "driver_sha256": "cecbc3a4c52dc8880c9eae7add5a925b0c74660e9d1ba1aee7aaae0ffe02cdf6",
+  "elapsed_seconds": 0.8780036900000141,
+  "exit_code": 0,
+  "model_free_controls": 17,
+  "native_inference_executions": 0,
+  "native_library_loaded": false,
+  "original_first_worker_report_unchanged": true,
+  "quds_library_paths_verified": 14,
+  "schema": "quds.spacy.w7.dart_source_labels_controls.v1",
+  "self_test_log_sha256": "de3b0a716848d95827bee785691e7d59667bad861246a162d8e51be040f7ab65",
+  "source_commit_before_fix": "42995af2db589a2bc43a47f2a8ce62a17977edce",
+  "source_inventory_entries": 38,
+  "source_label_mapping": [
+    {
+      "corrected_label": "quds_proofing_spacy/lib/quds_proofing_spacy.dart",
+      "matches_current_inventory": true,
+      "matches_original_run": true,
+      "original_label": "quds_proofing_spacy/lib/uds_proofing_spacy.dart",
+      "repository_path": "packages/quds_proofing_spacy/lib/quds_proofing_spacy.dart",
+      "sha256": "d2ec35f73260fc3bee0d86726aecb9478665355258f0722e77055f09b5e8eb19"
+    },
+    {
+      "corrected_label": "quds_proofing_spacy/lib/quds_proofing_spacy_grammar.dart",
+      "matches_current_inventory": true,
+      "matches_original_run": true,
+      "original_label": "quds_proofing_spacy/lib/uds_proofing_spacy_grammar.dart",
+      "repository_path": "packages/quds_proofing_spacy/lib/quds_proofing_spacy_grammar.dart",
+      "sha256": "7fda24553f7af314f7e0d3af862c1460c73c0cd8726b4b86021da1044238fa9d"
+    },
+    {
+      "corrected_label": "quds_proofing_spacy/lib/quds_proofing_spacy_native.dart",
+      "matches_current_inventory": true,
+      "matches_original_run": true,
+      "original_label": "quds_proofing_spacy/lib/uds_proofing_spacy_native.dart",
+      "repository_path": "packages/quds_proofing_spacy/lib/quds_proofing_spacy_native.dart",
+      "sha256": "b4d68e940536d8272680f21057f1a7695eb78d8a02c338320b2376c6a159a002"
+    },
+    {
+      "corrected_label": "quds_proofing_spacy/lib/src/analysis.dart",
+      "matches_current_inventory": true,
+      "matches_original_run": true,
+      "original_label": "quds_proofing_spacy/lib/rc/analysis.dart",
+      "repository_path": "packages/quds_proofing_spacy/lib/src/analysis.dart",
+      "sha256": "65d0577b9ff41e498df5a8606b85a6058623a3bc5591e1efb05a74b5b97c0464"
+    },
+    {
+      "corrected_label": "quds_proofing_spacy/lib/src/backend.dart",
+      "matches_current_inventory": true,
+      "matches_original_run": true,
+      "original_label": "quds_proofing_spacy/lib/rc/backend.dart",
+      "repository_path": "packages/quds_proofing_spacy/lib/src/backend.dart",
+      "sha256": "4b3cf6561ec8811d8a85a48a7025efda7714ad0a088add42fc065a738993a732"
+    },
+    {
+      "corrected_label": "quds_proofing_spacy/lib/src/bundle.dart",
+      "matches_current_inventory": true,
+      "matches_original_run": true,
+      "original_label": "quds_proofing_spacy/lib/rc/bundle.dart",
+      "repository_path": "packages/quds_proofing_spacy/lib/src/bundle.dart",
+      "sha256": "970ec6672efada2bcbacd7223804b8cf8d504ec647aec0c289ee43e5c1f802cb"
+    },
+    {
+      "corrected_label": "quds_proofing_spacy/lib/src/grammar_planner.dart",
+      "matches_current_inventory": true,
+      "matches_original_run": true,
+      "original_label": "quds_proofing_spacy/lib/rc/grammar_planner.dart",
+      "repository_path": "packages/quds_proofing_spacy/lib/src/grammar_planner.dart",
+      "sha256": "898ff9f67a4acc20e825968f422c9fd1ae1def654ce63ef2942ba0e0cf317314"
+    },
+    {
+      "corrected_label": "quds_proofing_spacy/lib/src/grammar_provider.dart",
+      "matches_current_inventory": true,
+      "matches_original_run": true,
+      "original_label": "quds_proofing_spacy/lib/rc/grammar_provider.dart",
+      "repository_path": "packages/quds_proofing_spacy/lib/src/grammar_provider.dart",
+      "sha256": "892f2a06a7964834dd9c4752f7250ca25da72b5c6fb698b5f266bcb5542eddc3"
+    },
+    {
+      "corrected_label": "quds_proofing_spacy/lib/src/native_backend.dart",
+      "matches_current_inventory": true,
+      "matches_original_run": true,
+      "original_label": "quds_proofing_spacy/lib/rc/native_backend.dart",
+      "repository_path": "packages/quds_proofing_spacy/lib/src/native_backend.dart",
+      "sha256": "fe15180d48d19b0e79874615708106a88d6f948a026eaef61d26f39961ce9f1b"
+    },
+    {
+      "corrected_label": "quds_proofing_spacy/lib/src/native_backend_unsupported.dart",
+      "matches_current_inventory": true,
+      "matches_original_run": true,
+      "original_label": "quds_proofing_spacy/lib/rc/native_backend_unsupported.dart",
+      "repository_path": "packages/quds_proofing_spacy/lib/src/native_backend_unsupported.dart",
+      "sha256": "ff38d1a0fd5fa93c2157649fdd064dd73830047497359ed2d51d7a07ff2814ae"
+    },
+    {
+      "corrected_label": "quds_proofing_spacy/lib/src/source_text.dart",
+      "matches_current_inventory": true,
+      "matches_original_run": true,
+      "original_label": "quds_proofing_spacy/lib/rc/source_text.dart",
+      "repository_path": "packages/quds_proofing_spacy/lib/src/source_text.dart",
+      "sha256": "fd2f2fdda8e608d32bf3b4a05c10b8777a106495cf97cbfafd3b05dd5e559330"
+    },
+    {
+      "corrected_label": "quds_proofing_spacy/lib/src/transport.dart",
+      "matches_current_inventory": true,
+      "matches_original_run": true,
+      "original_label": "quds_proofing_spacy/lib/rc/transport.dart",
+      "repository_path": "packages/quds_proofing_spacy/lib/src/transport.dart",
+      "sha256": "78b38b82fcec385d0d2d96d5861f0e2b0333b8af58bc542dd6d5cc23677f6305"
+    },
+    {
+      "corrected_label": "quds_proofing_spacy/lib/src/worker_native.dart",
+      "matches_current_inventory": true,
+      "matches_original_run": true,
+      "original_label": "quds_proofing_spacy/lib/rc/worker_native.dart",
+      "repository_path": "packages/quds_proofing_spacy/lib/src/worker_native.dart",
+      "sha256": "4d63dcc14292025493cbab07b839a26fefb66c6e5d4a2558c4fd01e74d46da80"
+    },
+    {
+      "corrected_label": "quds_proofing_spacy/lib/src/worker_unsupported.dart",
+      "matches_current_inventory": true,
+      "matches_original_run": true,
+      "original_label": "quds_proofing_spacy/lib/rc/worker_unsupported.dart",
+      "repository_path": "packages/quds_proofing_spacy/lib/src/worker_unsupported.dart",
+      "sha256": "074c3ad98e4a873ec5d55535b3c1a404da4eb557068437a3b4eb9a622d1e3078"
+    }
+  ],
+  "source_path_controls": 5,
+  "status": "passed"
+}

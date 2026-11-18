@@ -15,15 +15,38 @@ qualification remain separate work. The portable entry point and conditional
 native entry point are safe to import from web; its native factory explicitly
 reports unavailable. The engine has no Flutter or native dependency.
 
+## Verified W7 package consumption
+
+The [W7 package and consumer evidence](../../docs/validation/native-spacy-w7-20261118/README.md)
+now includes the current installed-worker driver: 17 compiled model-free
+controls and eight operational cases with source-coordinate, repeat/copy,
+unsupported-locale, caller-cancellation, awaited disposal and reopen assertions.
+The corrected source labels authenticate 38 source/configuration entries; all
+342 sealed W6 sources remain unchanged. The first operational report and the
+corrected-source report are both retained.
+
+The paired Linux capsule reproduces the original 7,808,129-byte package SHA-256
+`4e3b627a614cd21851e6e354335e2e08adeb4cedd4d7778df0cc68c1ce2edf01`.
+Use its authenticated immutable installation for this accepted candidate.
+A new binary build or changed dependency closure requires separate qualification.
+The package is not yet hosted; [continuation instructions](../../docs/validation/native-spacy-w7-20261118/CONTINUE.md)
+separate completed local gates from publication/download and target-device work.
+This result does not establish Flutter UI behavior or native compute interruption.
+
 ## Explicit local installation
 
-Build/install the standalone target as documented in
-[CrispEmbed tools/spacy](https://github.com/CrispStrobe/CrispEmbed/blob/feat/native-spacy-20261117/tools/spacy/README.md).
-Use the frozen model converter to create the five-file bundle. Keep the native
-library and its dependencies/notices installed immutably, placing the library
-inside a directory named by its SHA-256. Supply that hash from a trusted build
-receipt. The bundle's original wheel/model/resource/manifest and notice hashes
-are fixed in `bundle.dart`; an adjacent manifest cannot change the trusted pins.
+For the qualified Linux candidate, use the [W7 immutable package and installation
+procedure](../../docs/validation/native-spacy-w7-20261118/CONTINUE.md). Its
+original native/header/notices and five-file model bundle are authenticated by
+external hashes, installed atomically, and verified as a complete immutable
+tree. The actual installed worker is qualified on this exact candidate and six
+external dependency builds. Portable rebuilds and other devices require separate
+qualification; do not substitute rebuilt bytes into the retained result.
+
+The native library lives inside a directory named by its SHA-256. The bundle's
+original wheel/model/resource/manifest and notice hashes remain fixed in
+`bundle.dart`; an adjacent manifest cannot change the trusted pins. Build and
+conversion details remain in [CrispEmbed tools/spacy](https://github.com/CrispStrobe/CrispEmbed/blob/feat/native-spacy-w7-20261118/tools/spacy/README.md).
 
 The host must set `CRISPEMBED_SPACY=1` before starting its process. This adapter
 does not change environment variables, download files, start subprocesses,
