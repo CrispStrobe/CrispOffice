@@ -1,4 +1,6 @@
-# Local runtime and recovery status — Notes review continuation
+# Local runtime and reproduction — Notes review continuation
+
+The resumed **77-suite local gate passed** on source `a7512e94da8208123aa2df5f5c2c0354d079ddc7`: **1,244 Dart/Flutter cases, no failures or skips**, plus strict analysis, formatting and whitespace checks. See the [final resumed record](../resumed/README.md) and [exact receipt](../resumed/verification.json). The earlier disk-exhaustion observations below are retained as history.
 
 ## Earlier disk-exhaustion attempt (historical)
 
@@ -118,8 +120,8 @@ It also requests strict analysis and formatting checks for the integrated
 changed Dart files. The first resumed combined run completed with 1,243 passing
 cases, one failing off-screen-tap fixture, and no skips. Analysis and formatting
 passed. The fixture and exact preserved-evidence whitespace handling were
-corrected before a new frozen-source run. See the resumed validation record
-for the accepted run and its exact source identity; the historical two-case
+corrected before the passing frozen-source run. See the [resumed validation record](../resumed/README.md)
+for its exact source identity and preserved raw evidence; the historical two-case
 smoke result above is not feature acceptance.
 
 Verify the recovered runner's syntax and reporter parsing before using it as
