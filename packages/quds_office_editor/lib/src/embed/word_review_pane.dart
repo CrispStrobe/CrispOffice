@@ -262,6 +262,10 @@ class _WordReviewPaneState extends State<WordReviewPane> {
                 _setTab(WordReviewPaneTab.proofing);
                 unawaited(_check(includeManualProviders: true));
               },
+              const SingleActivator(LogicalKeyboardKey.f7, shift: true): () {
+                if (!(ModalRoute.of(context)?.isCurrent ?? true)) return;
+                _c.requestThesaurus();
+              },
               const SingleActivator(LogicalKeyboardKey.f7, alt: true): () =>
                   _stepWritingFinding(1),
               const SingleActivator(
@@ -296,6 +300,15 @@ class _WordReviewPaneState extends State<WordReviewPane> {
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                           ),
+                        ),
+                        IconButton(
+                          key: const ValueKey<String>('live-review-thesaurus'),
+                          tooltip: _s(
+                            'Thesaurus (Shift+F7)',
+                            'قاموس المرادفات (Shift+F7)',
+                          ),
+                          onPressed: widget.controller.requestThesaurus,
+                          icon: const Icon(Icons.menu_book_outlined),
                         ),
                         if (widget.onMoreOptions != null)
                           IconButton(

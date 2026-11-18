@@ -23,6 +23,14 @@ import 'office_theme.dart';
 /// The persistent review workspace shown beside (or below) a Word document.
 enum WordReviewPaneTab { proofing, changes }
 
+/// Selection in a Notes pane, measured in [WordNotes.editableText] offsets.
+/// The automatic note marker and its hidden separator are not editable text.
+typedef WordNoteEditingTarget = ({
+  WmlNote note,
+  TextSelection selection,
+  TextRange composing,
+});
+
 /// An immutable view of the selected text, or the whole current paragraph.
 ///
 /// Keep this handle with a displayed control and supply it when applying an
@@ -88,6 +96,76 @@ typedef _WordTextProofingParagraph = ({
   List<Object?> styleContext,
   bool generated,
 });
+
+/// Why the explicit thesaurus action could not capture an editable source.
+enum WordThesaurusTargetStatus {
+  ready,
+  noText,
+  multipleParagraphs,
+  mixedLanguage,
+  protectedContent,
+  composing,
+  unsupportedTarget,
+  invalidRange,
+}
+
+final class WordThesaurusCapture {
+  const WordThesaurusCapture._(this.status, {this.target, this.message});
+
+  final WordThesaurusTargetStatus status;
+  final WordThesaurusTarget? target;
+  final String? message;
+  bool get isReady => target != null;
+}
+
+/// Immutable source selection. Only [WordEditorController] can capture one;
+/// it is independent of the spelling/grammar finding membership contract.
+final class WordThesaurusTarget {
+  WordThesaurusTarget._(
+    this._owner,
+    this._source,
+    this._caret,
+    this._selection,
+    this._trackRevisions,
+  );
+
+  final WordEditorController _owner;
+  final WordTextRangeTarget _source;
+  final CaretEngine _caret;
+  final ({
+    WmlParagraph? paragraph,
+    int offset,
+    int? anchor,
+    int? anchorParagraph,
+  })
+  _selection;
+  final bool _trackRevisions;
+  String get text => _source.text;
+  String get language => _source.language;
+  String get story => _source.story;
+  int get start => _source.start;
+  int get end => _source.end;
+}
+
+/// A returned provider result bound to one captured source and pack revision.
+/// A literal candidate from this exact result is required for replacement.
+final class WordThesaurusLookup {
+  WordThesaurusLookup._(
+    this.target,
+    this.result,
+    this.language,
+    this._service,
+    this._serviceRevision,
+    this._generation,
+  );
+
+  final WordThesaurusTarget target;
+  final OfficeThesaurusResult result;
+  final String language;
+  final OfficeThesaurusService _service;
+  final int _serviceRevision;
+  final int _generation;
+}
 
 /// Live find/replace cursor shared by every host.
 class OfficeFindSession {
@@ -529,6 +607,16 @@ class WordEditorController extends OfficeController {
   int? _explicitProofingGeneration;
   ({WmlParagraph? paragraph, int offset, int? anchor, int? anchorParagraph})?
   _proofingSelectionCaret;
+  WordThesaurusTarget? _thesaurusTarget;
+  WordThesaurusLookup? _thesaurusLookup;
+  int _thesaurusGeneration = 0;
+
+  /// Host chrome: Shift+F7. Capture the target before changing input focus.
+  VoidCallback? onThesaurusRequested;
+
+  void requestThesaurus() {
+    if (!isDisposed) onThesaurusRequested?.call();
+  }
 
   /// Review chrome is session state and never marks the document dirty.
   bool get reviewPaneVisible => _reviewPaneVisible;
@@ -611,6 +699,12 @@ class WordEditorController extends OfficeController {
 
   @override
   void notifyListeners() {
+    final target = _thesaurusTarget;
+    if (target != null && !_matchesThesaurusSelection(target)) {
+      _thesaurusGeneration++;
+      _thesaurusTarget = null;
+      _thesaurusLookup = null;
+    }
     _proofing?.observeDocument();
     super.notifyListeners();
   }
@@ -991,6 +1085,7 @@ class WordEditorController extends OfficeController {
     if (!config.allowsMutation && !config.allowsSelection) {
       return;
     }
+    clearNoteEditingTarget();
     endCommentEdit();
     final int sectionIndex =
         pageIndex >= 0 && pageIndex < documentLaidOut.pages.length
@@ -1054,6 +1149,7 @@ class WordEditorController extends OfficeController {
     if (selectedComment == null) {
       return;
     }
+    clearNoteEditingTarget();
     endHeaderFooterEdit();
     _editingComment = true;
     selectedVisual = null;
@@ -1137,6 +1233,8 @@ class WordEditorController extends OfficeController {
     document = opened;
     commands.clear();
     _noteEditStart.clear();
+    _noteEditingTarget = null;
+    _noteBodyTarget = null;
     _syncProtectionMode();
     _editingComment = false;
     documentCaret.paragraphIndex = 0;
@@ -1831,6 +1929,7 @@ class WordEditorController extends OfficeController {
 
   /// jumpToParagraph API.
   void jumpToParagraph(int index) {
+    clearNoteEditingTarget();
     _editingComment = false;
     selectedVisual = null;
     selectedEquation = null;
@@ -4366,6 +4465,7 @@ class WordEditorController extends OfficeController {
   @override
   /// afterHistoryChange API.
   void afterHistoryChange() {
+    final noteTarget = noteEditingTarget;
     final List<WmlParagraph> paragraphs = _paragraphs;
     caret.paragraphIndex = paragraphs.isEmpty
         ? 0
@@ -4376,6 +4476,12 @@ class WordEditorController extends OfficeController {
       _activeParagraph.text.length,
     );
     if (!_historyRestoredSelection) caret.collapseSelection();
+    if (noteTarget != null) {
+      // Ordinary Notes typing has its own history commands. Keep the visible
+      // note caret current when undo shortens that text, and when collapsing
+      // the unrelated body selection would otherwise discard the note target.
+      _restoreNoteEditingTarget(_clampNoteEditingTarget(noteTarget));
+    }
     _historyRestoredSelection = false;
     _markLocalEdit(previousText: _textBeforeLocalEdit);
     _syncImeSelection();
@@ -7095,12 +7201,12 @@ class WordEditorController extends OfficeController {
   /// Reinspect after mutations or undo/redo: field handles are short-lived.
   List<WmlZoteroField> get zoteroFields => WordZotero.fields(document);
 
-  /// A fresh field handle at the body caret or enclosing a selection in one
-  /// paragraph. A collapsed caret at a field's end belongs to the following
-  /// text. Other editor stories retain their explicit field-list actions.
+  /// A fresh field handle at the body or Notes caret, or enclosing a selection
+  /// in one paragraph. A collapsed caret at a field's end belongs to the
+  /// following text. Other stories retain their explicit field-list actions.
   WmlZoteroField? get zoteroFieldAtCaret => findZoteroFieldAtCaret();
 
-  /// Resolves the current body caret using a fresh field inventory when the
+  /// Resolves the current editing caret using a fresh field inventory when the
   /// caller already inspected this document during the same synchronous build.
   /// Omit [fields] to inspect the document here. Do not retain supplied handles
   /// across document changes or undo/redo.
@@ -7112,15 +7218,32 @@ class WordEditorController extends OfficeController {
         selectedFrame != null) {
       return null;
     }
-    final paragraphs = document.paragraphs.toList();
-    final range = caret.normalizedRange;
-    if (range.startPara != range.endPara ||
-        range.startPara < 0 ||
-        range.startPara >= paragraphs.length) {
-      return null;
+    final noteTarget = noteEditingTarget;
+    final WmlParagraph paragraph;
+    final int rangeStart;
+    final int rangeEnd;
+    final bool collapsed;
+    if (noteTarget != null) {
+      final range = _noteSelectionRange(noteTarget);
+      if (range == null) return null;
+      paragraph = range.paragraph;
+      rangeStart = range.start;
+      rangeEnd = range.end;
+      collapsed = noteTarget.selection.isCollapsed;
+    } else {
+      final paragraphs = document.paragraphs.toList();
+      final range = caret.normalizedRange;
+      if (range.startPara != range.endPara ||
+          range.startPara < 0 ||
+          range.startPara >= paragraphs.length) {
+        return null;
+      }
+      paragraph = paragraphs[range.startPara];
+      rangeStart = range.startIdx;
+      rangeEnd = range.endIdx;
+      collapsed = caret.isCollapsed;
     }
-    final paragraph = paragraphs[range.startPara];
-    if (range.startIdx < 0 || range.endIdx > paragraph.text.length) return null;
+    if (rangeStart < 0 || rangeEnd > paragraph.text.length) return null;
     return (fields ?? zoteroFields).where((field) {
       final index = field.paragraphs.indexOf(paragraph);
       if (index < 0) return false;
@@ -7128,8 +7251,8 @@ class WordEditorController extends OfficeController {
       final end = index == field.paragraphs.length - 1
           ? field.end
           : paragraph.text.length;
-      return range.startIdx >= start &&
-          (caret.isCollapsed ? range.startIdx < end : range.endIdx <= end);
+      return rangeStart >= start &&
+          (collapsed ? rangeStart < end : rangeEnd <= end);
     }).firstOrNull;
   }
 
@@ -7144,24 +7267,36 @@ class WordEditorController extends OfficeController {
     if (_disposed || !config.allowsMutation) {
       throw StateError('This document is not editable.');
     }
+    final noteTarget = noteEditingTarget;
+    _assertNoteTargetReady(noteTarget);
+    commitNoteEdits();
     _assertZoteroTrackingMode();
     if (isEditingHeaderFooter ||
         isEditingComment ||
         editingFrame ||
         selectedFrame != null) {
       throw UnsupportedError(
-        'Open Zotero from the document body to use its desktop citation tools.',
+        'Open Zotero from the document body or an anchored note to use its desktop citation tools.',
       );
     }
     if (selectedField != null) _assertZoteroFieldOwner(selectedField);
+    final noteRange = noteTarget == null
+        ? null
+        : _noteSelectionRange(noteTarget);
+    final resolvedField =
+        selectedField ?? (noteTarget != null ? findZoteroFieldAtCaret() : null);
     return WordZoteroTransaction._(
       this,
       WordZoteroCitingSession(
         document: document,
         documentId: documentId,
-        insertionParagraph: caret.isCollapsed ? _activeParagraph : null,
-        insertionOffset: caret.logicalIndex,
-        selectedField: selectedField,
+        insertionParagraph: noteTarget != null
+            ? (noteTarget.selection.isCollapsed ? noteRange?.paragraph : null)
+            : (caret.isCollapsed ? _activeParagraph : null),
+        insertionOffset: noteTarget != null
+            ? (noteRange?.start ?? 0)
+            : caret.logicalIndex,
+        selectedField: resolvedField,
         seedCitation: seedCitation,
       ),
     );
@@ -7188,6 +7323,7 @@ class WordEditorController extends OfficeController {
     final beforeParagraph = caret.paragraphIndex;
     final beforeAnchor = caret.selectionAnchor;
     final beforeAnchorParagraph = caret.selectionAnchorParagraph;
+    final beforeNoteTarget = noteEditingTarget;
     commands.commit(
       _CallbackCommand(
         executeFn: () {
@@ -7208,6 +7344,11 @@ class WordEditorController extends OfficeController {
                 paragraphs[caret.paragraphIndex].text.length,
               );
           caret.collapseSelection();
+          _restoreNoteEditingTarget(
+            destination == null
+                ? _clampNoteEditingTarget(beforeNoteTarget)
+                : _noteTargetAt(destination.paragraph, destination.offset),
+          );
         },
         undoFn: () {
           before.restore(document);
@@ -7215,6 +7356,7 @@ class WordEditorController extends OfficeController {
           caret.logicalIndex = beforeCaret;
           caret.selectionAnchor = beforeAnchor;
           caret.selectionAnchorParagraph = beforeAnchorParagraph;
+          _restoreNoteEditingTarget(beforeNoteTarget);
           // The generic history hook normally collapses a selection. This
           // command restores an exact selection snapshot instead.
           _historyRestoredSelection = true;
@@ -7229,7 +7371,9 @@ class WordEditorController extends OfficeController {
   /// Display text is supplied explicitly; this does not run a CSL processor.
   void insertZoteroCitation(ZoteroCitation citation) {
     if (_disposed || !config.allowsMutation) return;
-    if (!caret.isCollapsed) {
+    final noteTarget = noteEditingTarget;
+    _assertNoteTargetReady(noteTarget);
+    if (!(noteTarget?.selection.isCollapsed ?? caret.isCollapsed)) {
       throw UnsupportedError('Place the caret where the citation should go.');
     }
     if (zoteroFields.any(
@@ -7237,7 +7381,13 @@ class WordEditorController extends OfficeController {
     )) {
       throw ArgumentError('A citation with this identity already exists.');
     }
-    final paragraph = _activeParagraph;
+    final noteRange = noteTarget == null
+        ? null
+        : _noteSelectionRange(noteTarget);
+    if (noteTarget != null && noteRange == null) {
+      throw UnsupportedError('Place the caret in an editable note paragraph.');
+    }
+    final paragraph = noteRange?.paragraph ?? _activeParagraph;
     if (zoteroFields.any(
       (field) =>
           field.paragraphs.length > 1 && field.paragraphs.contains(paragraph),
@@ -7248,15 +7398,25 @@ class WordEditorController extends OfficeController {
     }
     final at = WmlRunEdit.normalizeRange(
       paragraph,
-      caret.logicalIndex,
-      caret.logicalIndex,
+      noteRange?.start ?? caret.logicalIndex,
+      noteRange?.start ?? caret.logicalIndex,
     ).start;
     final beforeLength = paragraph.text.length;
-    _commitZoteroChange(<WmlParagraph>[paragraph], () {
-      WordZotero.insertCitation(paragraph, citation, index: at);
-    });
-    caret.logicalIndex = at + paragraph.text.length - beforeLength;
-    caret.collapseSelection();
+    _commitZoteroChange(
+      <WmlParagraph>[paragraph],
+      () => WordZotero.insertCitation(paragraph, citation, index: at),
+      commitNoteDrafts: noteTarget != null,
+      noteTargetAfter: noteTarget == null
+          ? null
+          : () => _noteTargetAt(
+              paragraph,
+              at + paragraph.text.length - beforeLength,
+            ),
+    );
+    if (noteTarget == null) {
+      caret.logicalIndex = at + paragraph.text.length - beforeLength;
+      caret.collapseSelection();
+    }
     relayout();
     notifyListeners();
   }
@@ -7315,7 +7475,8 @@ class WordEditorController extends OfficeController {
   }) {
     if (_disposed || !config.allowsMutation) return;
     _assertZoteroTrackingMode();
-    if (!caret.isCollapsed ||
+    if (noteEditingTarget != null ||
+        !caret.isCollapsed ||
         isEditingHeaderFooter ||
         isEditingComment ||
         editingFrame ||
@@ -7586,8 +7747,11 @@ class WordEditorController extends OfficeController {
     List<WmlParagraph> paragraphs,
     VoidCallback mutate, {
     bool commitNoteDrafts = false,
+    WordNoteEditingTarget? Function()? noteTargetAfter,
   }) {
     _assertZoteroTrackingMode();
+    final beforeNoteTarget = noteEditingTarget;
+    _assertNoteTargetReady(beforeNoteTarget);
     final touched = Set<WmlParagraph>.identity()..addAll(paragraphs);
     if (document.revisions.any(
       (revision) =>
@@ -7632,8 +7796,12 @@ class WordEditorController extends OfficeController {
       ({List<WmlInline> inlines, WmlParagraphProps properties})
     >
     after;
+    WordNoteEditingTarget? afterNoteTarget;
     try {
       mutate();
+      afterNoteTarget = noteTargetAfter != null
+          ? noteTargetAfter()
+          : _clampNoteEditingTarget(beforeNoteTarget);
       after = {
         for (final paragraph in paragraphs)
           paragraph: (
@@ -7648,11 +7816,23 @@ class WordEditorController extends OfficeController {
     // staged successfully. A failed preflight must preserve pending history,
     // while undo of a successful bulk conversion must restore its field links
     // before undoing an older note edit.
-    if (commitNoteDrafts) commitNoteEdits();
+    if (commitNoteDrafts || beforeNoteTarget != null) commitNoteEdits();
     commands.commit(
       _CallbackCommand(
-        executeFn: () => restore(after),
-        undoFn: () => restore(before),
+        executeFn: () {
+          restore(after);
+          if (beforeNoteTarget != null) {
+            _restoreNoteEditingTarget(afterNoteTarget);
+            _historyRestoredSelection = true;
+          }
+        },
+        undoFn: () {
+          restore(before);
+          if (beforeNoteTarget != null) {
+            _restoreNoteEditingTarget(beforeNoteTarget);
+            _historyRestoredSelection = true;
+          }
+        },
       ),
     );
     relayout();
@@ -8073,6 +8253,162 @@ class WordEditorController extends OfficeController {
   /// The text a notes editor shows for [note]: one line per paragraph.
   String noteEditText(WmlNote note) => WordNotes.editableText(note);
 
+  WordNoteEditingTarget? _noteEditingTarget;
+  Object? _noteBodyTarget;
+
+  Object get _bodyEditingPosition => (
+    document: document,
+    caret: documentCaret,
+    paragraph: documentCaret.paragraphIndex,
+    offset: documentCaret.logicalIndex,
+    anchorParagraph: documentCaret.selectionAnchorParagraph,
+    anchorOffset: documentCaret.selectionAnchor,
+  );
+
+  /// The last active Notes selection, retained when focus moves to chrome or
+  /// a citation dialog. Moving the body caret invalidates this target as well
+  /// as calling [clearNoteEditingTarget] when the canvas receives input.
+  WordNoteEditingTarget? get noteEditingTarget =>
+      _noteBodyTarget == _bodyEditingPosition ? _noteEditingTarget : null;
+
+  bool _ownsNote(WmlNote note) =>
+      (note.endnote ? document.endnotes : document.footnotes).any(
+        (candidate) => identical(candidate, note),
+      );
+
+  /// Publishes the Notes pane's actual selection without moving the body caret
+  /// or changing document history. Hosts should update this on focus, selection
+  /// and composition changes, and retain it while a ribbon command is running.
+  void setNoteEditingTarget(
+    WmlNote note,
+    TextSelection selection, {
+    TextRange composing = TextRange.empty,
+  }) {
+    if (_disposed) return;
+    if (!_ownsNote(note)) {
+      throw StateError('This note no longer belongs to the document.');
+    }
+    final length = noteEditText(note).length;
+    if (!selection.isValid ||
+        selection.end > length ||
+        (composing.isValid && composing.end > length)) {
+      throw ArgumentError('The note selection is outside its editable text.');
+    }
+    final next = (note: note, selection: selection, composing: composing);
+    if (next == noteEditingTarget) return;
+    _editingComment = false;
+    _editingHeaderFooter = false;
+    selectedVisual = null;
+    selectedFrame = null;
+    editingFrame = false;
+    selectedEquation = null;
+    selectedTable = null;
+    selectedTableBand = null;
+    _restoreNoteEditingTarget(next);
+    notifyListeners();
+  }
+
+  /// Returns citation commands to the document canvas. Losing note focus to a
+  /// toolbar or modal is deliberately not a reason to clear its selection.
+  void clearNoteEditingTarget({bool notify = true}) {
+    if (_noteEditingTarget == null) return;
+    _noteEditingTarget = null;
+    _noteBodyTarget = null;
+    if (notify && !_disposed) notifyListeners();
+  }
+
+  void _restoreNoteEditingTarget(WordNoteEditingTarget? target) {
+    _noteEditingTarget = target;
+    _noteBodyTarget = target == null ? null : _bodyEditingPosition;
+  }
+
+  WordNoteEditingTarget? _clampNoteEditingTarget(
+    WordNoteEditingTarget? target,
+  ) {
+    if (target == null || !_ownsNote(target.note)) return null;
+    final length = noteEditText(target.note).length;
+    return (
+      note: target.note,
+      selection: target.selection.copyWith(
+        baseOffset: target.selection.baseOffset.clamp(0, length),
+        extentOffset: target.selection.extentOffset.clamp(0, length),
+      ),
+      composing: TextRange.empty,
+    );
+  }
+
+  /// Paragraph positions in exactly the text exposed by the Notes pane.
+  /// WordNotes may omit one leading reference-space from the first paragraph.
+  Iterable<({WmlParagraph paragraph, int start, int hidden})> _noteTextSegments(
+    WmlNote note,
+  ) sync* {
+    final paragraphs = WordNotes.editableParagraphs(note);
+    if (paragraphs.isEmpty) return;
+    final hidden =
+        paragraphs.map((p) => p.text).join('\n').length -
+        noteEditText(note).length;
+    var start = 0;
+    for (var index = 0; index < paragraphs.length; index++) {
+      final paragraph = paragraphs[index];
+      final prefix = index == 0 ? hidden : 0;
+      yield (paragraph: paragraph, start: start, hidden: prefix);
+      start += paragraph.text.length - prefix + 1;
+    }
+  }
+
+  ({WmlParagraph paragraph, int start, int end})? _noteSelectionRange(
+    WordNoteEditingTarget target,
+  ) {
+    if (!_ownsNote(target.note) ||
+        !target.selection.isValid ||
+        target.selection.end > noteEditText(target.note).length) {
+      return null;
+    }
+    for (final segment in _noteTextSegments(target.note)) {
+      final end =
+          segment.start + segment.paragraph.text.length - segment.hidden;
+      if (target.selection.start >= segment.start &&
+          target.selection.end <= end) {
+        return (
+          paragraph: segment.paragraph,
+          start: target.selection.start - segment.start + segment.hidden,
+          end: target.selection.end - segment.start + segment.hidden,
+        );
+      }
+    }
+    return null;
+  }
+
+  WordNoteEditingTarget? _noteTargetAt(WmlParagraph paragraph, int offset) {
+    for (final note in [...document.footnotes, ...document.endnotes]) {
+      for (final segment in _noteTextSegments(note)) {
+        if (!identical(segment.paragraph, paragraph)) continue;
+        final position =
+            segment.start +
+            offset.clamp(segment.hidden, paragraph.text.length) -
+            segment.hidden;
+        return (
+          note: note,
+          selection: TextSelection.collapsed(offset: position),
+          composing: TextRange.empty,
+        );
+      }
+    }
+    return null;
+  }
+
+  void _assertNoteTargetReady(WordNoteEditingTarget? target) {
+    if (target == null) return;
+    if (!_ownsNote(target.note) ||
+        !target.selection.isValid ||
+        target.selection.end > noteEditText(target.note).length) {
+      throw StateError('The note or its selection changed. Select it again.');
+    }
+    if (target.composing.isValid && !target.composing.isCollapsed) {
+      throw StateError('Finish composing the note text before citing.');
+    }
+  }
+
   final Map<WmlNote, _WordNoteEditSnapshot> _noteEditStart =
       <WmlNote, _WordNoteEditSnapshot>{};
 
@@ -8246,6 +8582,7 @@ class WordEditorController extends OfficeController {
 
   /// jumpToNote API.
   void jumpToNote(WmlNote note) {
+    clearNoteEditingTarget();
     final List<WmlParagraph> paras = document.paragraphs.toList();
     for (int i = 0; i < paras.length; i++) {
       final WmlParagraph paragraph = paras[i];
@@ -8960,6 +9297,256 @@ class WordEditorController extends OfficeController {
   bool canApplyProofingIssue(WordProofingIssue issue) =>
       canApplyProofingSuggestions && proofing.canCorrect(issue);
 
+  /// Captures the selected word/phrase, or the complete word at a caret. The
+  /// operation neither changes selection nor commits an active IME composition.
+  WordThesaurusCapture captureThesaurusTarget() {
+    _thesaurusGeneration++;
+    _thesaurusTarget = null;
+    _thesaurusLookup = null;
+    if (isDisposed ||
+        !config.allowsSelection ||
+        selectedVisual != null ||
+        selectedFrame != null ||
+        selectedEquation != null) {
+      return const WordThesaurusCapture._(
+        WordThesaurusTargetStatus.unsupportedTarget,
+        message: 'Select text in a supported Word paragraph.',
+      );
+    }
+    if (input.composing.isValid && !input.composing.isCollapsed) {
+      return const WordThesaurusCapture._(
+        WordThesaurusTargetStatus.composing,
+        message: 'Finish the current text composition before using Thesaurus.',
+      );
+    }
+    final currentCaret = caret;
+    final selection = _proofingCaretPosition;
+    final paragraph = selection.paragraph;
+    if (paragraph == null) {
+      return const WordThesaurusCapture._(
+        WordThesaurusTargetStatus.unsupportedTarget,
+        message: 'Select text in a supported Word paragraph.',
+      );
+    }
+    final range = currentCaret.normalizedRange;
+    if (range.startPara != range.endPara) {
+      return const WordThesaurusCapture._(
+        WordThesaurusTargetStatus.multipleParagraphs,
+        message: 'Select a word or phrase within one paragraph.',
+      );
+    }
+    final sourceText = paragraph.text;
+    var start = range.startIdx;
+    var end = range.endIdx;
+    if (start < 0 || end > sourceText.length) {
+      return const WordThesaurusCapture._(
+        WordThesaurusTargetStatus.invalidRange,
+        message: 'The text selection is no longer valid. Select it again.',
+      );
+    }
+    if (start == end) {
+      final word = _thesaurusWordAt(sourceText, start);
+      if (word == null) {
+        return const WordThesaurusCapture._(
+          WordThesaurusTargetStatus.noText,
+          message: 'Select a word or phrase, or place the caret inside a word.',
+        );
+      }
+      start = word.start;
+      end = word.end;
+    }
+    if (sourceText.substring(start, end).trim().isEmpty) {
+      return const WordThesaurusCapture._(
+        WordThesaurusTargetStatus.noText,
+        message: 'Select a word or phrase containing text.',
+      );
+    }
+    final capture = proofing.captureTextRange(paragraph, start, end);
+    final source = capture.target;
+    if (source == null) {
+      return switch (capture.status) {
+        WordTextRangeStatus.mixedLanguage => const WordThesaurusCapture._(
+          WordThesaurusTargetStatus.mixedLanguage,
+          message:
+              'The selection contains more than one language. Select a single-language word or phrase.',
+        ),
+        WordTextRangeStatus.protectedContent => const WordThesaurusCapture._(
+          WordThesaurusTargetStatus.protectedContent,
+          message:
+              'This range contains protected, generated, or pending tracked content. Select ordinary text.',
+        ),
+        WordTextRangeStatus.invalidRange => const WordThesaurusCapture._(
+          WordThesaurusTargetStatus.invalidRange,
+          message: 'Select complete characters within a single paragraph.',
+        ),
+        _ => const WordThesaurusCapture._(
+          WordThesaurusTargetStatus.unsupportedTarget,
+          message: 'This text is outside the supported Word editing surface.',
+        ),
+      };
+    }
+    final target = WordThesaurusTarget._(
+      this,
+      source,
+      currentCaret,
+      selection,
+      document.trackRevisions,
+    );
+    _thesaurusTarget = target;
+    return WordThesaurusCapture._(
+      WordThesaurusTargetStatus.ready,
+      target: target,
+    );
+  }
+
+  static final _thesaurusWordCharacter = RegExp(
+    r'[\p{L}\p{N}\p{M}]',
+    unicode: true,
+  );
+  static final _thesaurusWordJoiner = RegExp(r"^['’\-‐‑_\u00ad]+$");
+
+  static ({int start, int end})? _thesaurusWordAt(String text, int offset) {
+    final clusters = GraphemeClusters.segment(text);
+    if (clusters.isEmpty ||
+        offset < 0 ||
+        offset > text.length ||
+        (offset != 0 && !clusters.any((cluster) => cluster.end == offset))) {
+      return null;
+    }
+    final lexical = <bool>[
+      for (final cluster in clusters)
+        _thesaurusWordCharacter.hasMatch(cluster.text),
+    ];
+    final included = List<bool>.of(lexical);
+    for (var i = 1; i < clusters.length - 1; i++) {
+      if (_thesaurusWordJoiner.hasMatch(clusters[i].text) &&
+          lexical[i - 1] &&
+          lexical[i + 1]) {
+        included[i] = true;
+      }
+    }
+    var at = clusters.indexWhere((cluster) => cluster.end > offset);
+    if (at < 0) at = clusters.length - 1;
+    if (!included[at] &&
+        at > 0 &&
+        clusters[at].start == offset &&
+        included[at - 1]) {
+      at--;
+    }
+    if (!included[at]) return null;
+    var from = at;
+    var to = at;
+    while (from > 0 && included[from - 1]) {
+      from--;
+    }
+    while (to + 1 < included.length && included[to + 1]) {
+      to++;
+    }
+    return (start: clusters[from].start, end: clusters[to].end);
+  }
+
+  bool _matchesThesaurusSelection(WordThesaurusTarget target) =>
+      !isDisposed &&
+      config.allowsSelection &&
+      selectedVisual == null &&
+      selectedFrame == null &&
+      selectedEquation == null &&
+      identical(target._owner, this) &&
+      identical(caret, target._caret) &&
+      _proofingCaretPosition == target._selection &&
+      document.trackRevisions == target._trackRevisions &&
+      !(input.composing.isValid && !input.composing.isCollapsed);
+
+  bool isThesaurusTargetCurrent(WordThesaurusTarget target) {
+    if (!identical(_thesaurusTarget, target)) return false;
+    if (_matchesThesaurusSelection(target) &&
+        proofing.canEditTextRange(target._source)) {
+      return true;
+    }
+    _thesaurusGeneration++;
+    _thesaurusTarget = null;
+    _thesaurusLookup = null;
+    return false;
+  }
+
+  /// Looks up a captured source without changing its language or the document.
+  /// Repeating the lookup (including changing the override) retires old choices.
+  Future<WordThesaurusLookup> lookupThesaurus(
+    WordThesaurusTarget target,
+    OfficeThesaurusService service, {
+    String? languageOverride,
+  }) async {
+    final generation = ++_thesaurusGeneration;
+    _thesaurusLookup = null;
+    final revision = service.revision;
+    final language = normalizeProofingLanguage(
+      languageOverride ?? target.language,
+    );
+    final result = await service.lookup(
+      OfficeThesaurusQuery(text: target.text, language: language),
+    );
+    final lookup = WordThesaurusLookup._(
+      target,
+      result,
+      language,
+      service,
+      revision,
+      generation,
+    );
+    if (generation == _thesaurusGeneration &&
+        isThesaurusTargetCurrent(target) &&
+        service.revision == revision) {
+      _thesaurusLookup = lookup;
+    }
+    return lookup;
+  }
+
+  bool isThesaurusLookupCurrent(WordThesaurusLookup lookup) =>
+      identical(_thesaurusLookup, lookup) &&
+      lookup._generation == _thesaurusGeneration &&
+      lookup._service.revision == lookup._serviceRevision &&
+      isThesaurusTargetCurrent(lookup.target);
+
+  bool canApplyThesaurusTerm(
+    WordThesaurusLookup lookup,
+    OfficeThesaurusTerm term,
+  ) =>
+      canApplyProofingSuggestions &&
+      isThesaurusLookupCurrent(lookup) &&
+      lookup.result.status == OfficeThesaurusStatus.ready &&
+      lookup.result.packIdentity != null &&
+      lookup.result.containsTerm(term) &&
+      term.text != lookup.target.text &&
+      term.text.trim().isNotEmpty &&
+      !RegExp(r'[\x00-\x1f\x7f-\x9f\u2028\u2029]').hasMatch(term.text);
+
+  /// Applies one literal alternative using the same rich-text transaction and
+  /// history snapshots as proofing, after validating its own source/candidate.
+  bool applyThesaurusTerm(
+    WordThesaurusLookup lookup,
+    OfficeThesaurusTerm term,
+  ) {
+    if (!canApplyThesaurusTerm(lookup, term)) return false;
+    commitNoteEdits();
+    if (!canApplyThesaurusTerm(lookup, term)) return false;
+    final source = lookup.target._source;
+    final applied = _applyValidatedTextReplacement(
+      paragraph: source.paragraph,
+      start: source.start,
+      end: source.end,
+      replacement: term.text,
+      edits: [(start: source.start, end: source.end, replacement: term.text)],
+      preserveReplacementStyle: true,
+      preserveReplacementLinks: true,
+    );
+    if (applied) {
+      _thesaurusGeneration++;
+      _thesaurusLookup = null;
+      _thesaurusTarget = null;
+    }
+    return applied;
+  }
+
   // Complete phrase alternatives preserve their original word separators.
   // Apply only changed words so article formatting cannot replace the styles
   // of an unchanged noun or adjective. A malformed provider choice is refused.
@@ -9022,6 +9609,25 @@ class WordEditorController extends OfficeController {
         ? _proofingPhraseEdits(finding.originalText, replacement, start)
         : [(start: start, end: end, replacement: replacement)];
     if (edits == null) return false;
+    return _applyValidatedTextReplacement(
+      paragraph: paragraph,
+      start: start,
+      end: end,
+      replacement: replacement,
+      edits: edits,
+      preserveReplacementStyle: finding.ruleId == 'de.grammar.phrase-agreement',
+    );
+  }
+
+  bool _applyValidatedTextReplacement({
+    required WmlParagraph paragraph,
+    required int start,
+    required int end,
+    required String replacement,
+    required List<({int start, int end, String replacement})> edits,
+    required bool preserveReplacementStyle,
+    bool preserveReplacementLinks = false,
+  }) {
     final insertedLength = edits.fold<int>(
       0,
       (length, edit) => length + edit.replacement.length,
@@ -9094,14 +9700,14 @@ class WordEditorController extends OfficeController {
     // Validate the exact operation on a clone before opening a transaction.
     final preview = WmlClone.paragraph(paragraph);
     for (final edit in edits.reversed) {
-      WmlRunEdit.replaceRange(
+      _replaceValidatedRange(
         preview,
-        tracked ? edit.end : edit.start,
+        edit.start,
         edit.end,
         edit.replacement,
-        styleSource: tracked && finding.ruleId == 'de.grammar.phrase-agreement'
-            ? edit.start
-            : null,
+        tracked: tracked,
+        preserveStyle: preserveReplacementStyle,
+        preserveLink: preserveReplacementLinks,
       );
     }
     commands.commit(
@@ -9145,14 +9751,14 @@ class WordEditorController extends OfficeController {
                   end: end,
                   insertedLength: replacement.length,
                 );
-                WmlRunEdit.replaceRange(
+                _replaceValidatedRange(
                   paragraph,
-                  end,
+                  start,
                   end,
                   replacement,
-                  styleSource: finding.ruleId == 'de.grammar.phrase-agreement'
-                      ? start
-                      : null,
+                  tracked: true,
+                  preserveStyle: preserveReplacementStyle,
+                  preserveLink: preserveReplacementLinks,
                 );
                 if (replacement.isNotEmpty) {
                   WordRevisions.record(
@@ -9176,7 +9782,15 @@ class WordEditorController extends OfficeController {
                   end: end,
                   insertedLength: replacement.length,
                 );
-                WmlRunEdit.replaceRange(paragraph, start, end, replacement);
+                _replaceValidatedRange(
+                  paragraph,
+                  start,
+                  end,
+                  replacement,
+                  tracked: false,
+                  preserveStyle: preserveReplacementStyle,
+                  preserveLink: preserveReplacementLinks,
+                );
               }
             }
             after = _cloneInlines(paragraph);
@@ -9201,6 +9815,61 @@ class WordEditorController extends OfficeController {
     _syncImeSelection();
     notifyListeners();
     return true;
+  }
+
+  // A literal replacement inside one hyperlink keeps that link. A selection
+  // across differently linked/unlinked text does not acquire a misleading link.
+  // Work on exact inserted boundaries after coalescing ordinary text runs.
+  static void _replaceValidatedRange(
+    WmlParagraph paragraph,
+    int start,
+    int end,
+    String replacement, {
+    required bool tracked,
+    required bool preserveStyle,
+    required bool preserveLink,
+  }) {
+    WmlHyperlink? link;
+    var sawRun = false;
+    var uniform = true;
+    var offset = 0;
+    if (preserveLink) {
+      for (final run in paragraph.inlines.whereType<WmlRun>()) {
+        final runEnd = offset + run.text.length;
+        if (offset < end && runEnd > start) {
+          if (!sawRun) {
+            link = run.hyperlink;
+            sawRun = true;
+          } else if (link?.url != run.hyperlink?.url ||
+              link?.anchor != run.hyperlink?.anchor ||
+              link?.file != run.hyperlink?.file) {
+            uniform = false;
+          }
+        }
+        offset = runEnd;
+      }
+    }
+    final insertStart = tracked ? end : start;
+    WmlRunEdit.replaceRange(
+      paragraph,
+      insertStart,
+      end,
+      replacement,
+      styleSource: tracked && preserveStyle ? start : null,
+    );
+    if (!uniform || link == null || replacement.isEmpty) return;
+    final insertEnd = insertStart + replacement.length;
+    WmlRunEdit.splitAt(paragraph, insertEnd);
+    WmlRunEdit.splitAt(paragraph, insertStart);
+    offset = 0;
+    for (final run in paragraph.inlines.whereType<WmlRun>()) {
+      final runEnd = offset + run.text.length;
+      if (offset >= insertStart && runEnd <= insertEnd && runEnd > offset) {
+        run.hyperlink = link.copy();
+      }
+      offset = runEnd;
+    }
+    WmlRunEdit.coalesce(paragraph);
   }
 
   /// Selects findings in supported canvas stories. Notes and alternate page
@@ -14068,6 +14737,7 @@ final class WordZoteroTransaction {
     offset: controller.caret.logicalIndex,
     anchorParagraph: controller.caret.selectionAnchorParagraph,
     anchorOffset: controller.caret.selectionAnchor,
+    note: controller.noteEditingTarget,
     headerFooter: controller.isEditingHeaderFooter,
     footer: controller.isEditingFooter,
     section: controller.isEditingHeaderFooter

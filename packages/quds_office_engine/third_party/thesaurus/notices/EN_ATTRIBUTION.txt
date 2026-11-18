@@ -1,0 +1,24 @@
+Quds English thesaurus data pack
+
+Open English WordNet, regular 2025 lexical edition.
+Copyright (c) 2019-present, The Open English WordNet Team.
+Source: https://en-word.net/ and https://github.com/globalwordnet/english-wordnet
+OEWN development: Creative Commons Attribution 4.0 International.
+Underlying Princeton WordNet: the original WordNet license applies.
+Princeton WordNet: https://wordnet.princeton.edu/
+
+Quds changes, 18 November 2026: deterministic conversion of WN-LMF into
+indexed, compressed JSON meaning groups; original synset, lexical-entry and
+sense IDs retained; source Form records become lookup-only aliases; labels
+are resolved from explicit source usage/region relations. No external ranking
+corpus, proper-name expansion or generated synonyms is included.
+Original source spellings, definitions, examples and typed relations are kept.
+
+English inflected lookup uses 4,473 source Form records and independently
+encoded Princeton WordNet morphy suffix rules, requiring a compatible POS
+in the installed lexicon. This is finite, uncontextualized lookup, not
+grammatical reinflection or agreement checking.
+Morphy reference: https://wordnet.princeton.edu/documentation/morphy7wn
+
+The independent Quds implementation is MIT. Data retains the terms above.
+See OEWN_LICENSE.md, WNDB_License.txt and CC_BY_4.0.txt in this directory.

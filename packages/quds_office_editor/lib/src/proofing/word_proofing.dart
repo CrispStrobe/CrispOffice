@@ -17,6 +17,49 @@ final class WordProofingIssue {
   String get sourceText => _snapshot.text;
 }
 
+/// A source capability independent of a spelling or grammar finding. Only the
+/// capturing session can issue one, and its range remains in original UTF-16.
+final class WordTextRangeTarget {
+  WordTextRangeTarget._(
+    this._owner,
+    this._document,
+    this._revision,
+    this._snapshot,
+    this.start,
+    this.end,
+    this.language,
+    this._richTextKey,
+  );
+
+  final WordProofingSession _owner;
+  final WmlDocument _document;
+  final int _revision;
+  final _ParagraphSnapshot _snapshot;
+  final int start;
+  final int end;
+  final String language;
+  final String _richTextKey;
+  WmlParagraph get paragraph => _snapshot.paragraph;
+  String get story => _snapshot.story;
+  String get sourceText => _snapshot.text;
+  String get text => sourceText.substring(start, end);
+}
+
+enum WordTextRangeStatus {
+  ready,
+  invalidRange,
+  unsupportedTarget,
+  protectedContent,
+  mixedLanguage,
+}
+
+final class WordTextRangeCapture {
+  const WordTextRangeCapture._(this.status, [this.target]);
+
+  final WordTextRangeStatus status;
+  final WordTextRangeTarget? target;
+}
+
 /// Coverage and operational outcomes of one document-wide proofing pass.
 final class WordProofingSummary {
   WordProofingSummary({
@@ -429,44 +472,206 @@ final class WordProofingSession extends ChangeNotifier {
 
   bool canCorrect(WordProofingIssue issue) {
     if (!isCurrent(issue)) return false;
-    final snapshot = issue._snapshot;
-    final finding = issue.finding;
+    return _canEditSnapshotRange(
+      issue._snapshot,
+      issue.finding.start,
+      issue.finding.end,
+    );
+  }
+
+  /// Captures modeled text with the same story, field, control, revision and
+  /// language boundaries used by proofing, without manufacturing a finding.
+  WordTextRangeCapture captureTextRange(
+    WmlParagraph paragraph,
+    int start,
+    int end,
+  ) {
+    if (_disposed) {
+      return const WordTextRangeCapture._(
+        WordTextRangeStatus.unsupportedTarget,
+      );
+    }
+    final document = _document();
+    final snapshot = _capture(document).paragraphs
+        .where((entry) => identical(entry.paragraph, paragraph))
+        .firstOrNull;
+    if (snapshot == null) {
+      return const WordTextRangeCapture._(
+        WordTextRangeStatus.unsupportedTarget,
+      );
+    }
+    if (start < 0 ||
+        end <= start ||
+        end > snapshot.text.length ||
+        !_hasRangeBoundaries(snapshot, start, end)) {
+      return const WordTextRangeCapture._(WordTextRangeStatus.invalidRange);
+    }
+    if (!_canEditSnapshotRange(snapshot, start, end) ||
+        snapshot.insertionBarriers.any(
+          (offset) => start < offset && offset < end,
+        )) {
+      return const WordTextRangeCapture._(WordTextRangeStatus.protectedContent);
+    }
+    final languages = <String>{};
+    // A grapheme can span differently tagged formatting runs. It must remain
+    // whole, but that does not make its source language unambiguous.
+    var runStart = 0;
+    for (final run in paragraph.inlines.whereType<WmlRun>()) {
+      final runEnd = runStart + run.text.length;
+      if (runStart < end && runEnd > start) {
+        languages.add(
+          normalizeProofingLanguage(
+            run.properties.proofingLanguage ??
+                paragraph.properties.proofingLanguage ??
+                language,
+          ),
+        );
+      }
+      runStart = runEnd;
+    }
+    var covered = start;
+    for (final segment in snapshot.segments) {
+      if (segment.end <= start || segment.start >= end) continue;
+      if (segment.start > covered) {
+        return const WordTextRangeCapture._(
+          WordTextRangeStatus.protectedContent,
+        );
+      }
+      languages.add(segment.language);
+      if (segment.end > covered) covered = segment.end;
+    }
+    if (covered < end || languages.isEmpty) {
+      return const WordTextRangeCapture._(WordTextRangeStatus.protectedContent);
+    }
+    if (languages.length != 1) {
+      return const WordTextRangeCapture._(WordTextRangeStatus.mixedLanguage);
+    }
+    return WordTextRangeCapture._(
+      WordTextRangeStatus.ready,
+      WordTextRangeTarget._(
+        this,
+        document,
+        _revision(),
+        snapshot,
+        start,
+        end,
+        languages.single,
+        _richTextKey(paragraph),
+      ),
+    );
+  }
+
+  bool isTextRangeCurrent(WordTextRangeTarget target) {
+    if (_disposed ||
+        !identical(target._owner, this) ||
+        !identical(target._document, _document()) ||
+        target._revision != _revision() ||
+        target._snapshot.configuration != _configurationKey) {
+      return false;
+    }
+    final current = _capture(_document()).paragraphs
+        .where((entry) => identical(entry.paragraph, target.paragraph))
+        .firstOrNull;
+    return current != null &&
+        current.key == target._snapshot.key &&
+        _richTextKey(target.paragraph) == target._richTextKey;
+  }
+
+  // The source guard key already binds fields, controls, languages, tracked
+  // ranges and story membership. Also bind direct rich-text mutations that do
+  // not advance a controller's revision (for example, a host-edited hyperlink).
+  static String _richTextKey(WmlParagraph paragraph) => jsonEncode([
+    for (final inline in paragraph.inlines)
+      if (inline is WmlRun)
+        [
+          'run',
+          inline.text,
+          inline.hyperlink?.url,
+          inline.hyperlink?.file,
+          inline.hyperlink?.anchor,
+          inline.commentIds,
+          inline.fieldInstruction,
+          inline.fieldLocked,
+          inline.fieldDirty,
+          inline.noteRefId,
+          inline.noteRefEndnote,
+          inline.noteRefCustomMark,
+          inline.properties.styleId,
+          inline.properties.bold,
+          inline.properties.italic,
+          inline.properties.underline.name,
+          inline.properties.strike,
+          inline.properties.smallCaps,
+          inline.properties.color,
+          inline.properties.highlight,
+          inline.properties.fontSizeHalfPoints,
+          inline.properties.asciiFont,
+          inline.properties.csFont,
+          inline.properties.vertAlign.name,
+          inline.properties.proofingLanguage,
+          inline.properties.noProof,
+          inline.properties.sourcePropertiesXml,
+          inline.properties.importedValues,
+          inline.properties.explicitProperties.toList(),
+        ]
+      else if (inline is WmlBookmarkBoundary)
+        ['bookmark', inline.id, inline.name, inline.isStart, inline.sourceXml]
+      else if (inline is WmlFieldBoundary)
+        [
+          'field',
+          inline.kind.name,
+          inline.text,
+          inline.sourceXml,
+          inline.runPropertiesXml,
+        ]
+      else if (inline is WmlContentControlBoundary)
+        ['control', inline.start, inline.control.xml]
+      else
+        [inline.runtimeType.toString(), identityHashCode(inline)],
+  ]);
+
+  bool canEditTextRange(WordTextRangeTarget target) =>
+      isTextRangeCurrent(target) &&
+      _canEditSnapshotRange(target._snapshot, target.start, target.end);
+
+  static bool _hasRangeBoundaries(
+    _ParagraphSnapshot snapshot,
+    int start,
+    int end,
+  ) {
     final boundaries = <int>{
       0,
       for (final cluster in GraphemeClusters.segment(snapshot.text))
         cluster.end,
     };
-    if (!boundaries.contains(finding.start) ||
-        !boundaries.contains(finding.end)) {
+    return boundaries.contains(start) && boundaries.contains(end);
+  }
+
+  bool _canEditSnapshotRange(_ParagraphSnapshot snapshot, int start, int end) {
+    if (!_hasRangeBoundaries(snapshot, start, end)) {
       return false;
     }
     if (_document().trackRevisions &&
-        (snapshot.insertionBarriers.contains(finding.end) ||
+        (snapshot.insertionBarriers.contains(end) ||
             snapshot.guards.any(
-              (range) =>
-                  _touches(finding.end, finding.end, range.start, range.end),
+              (range) => _touches(end, end, range.start, range.end),
             ))) {
       return false;
     }
     if (snapshot.locked ||
         snapshot.guards.any(
-          (range) =>
-              _touches(finding.start, finding.end, range.start, range.end),
+          (range) => _touches(start, end, range.start, range.end),
         )) {
       return false;
     }
     try {
-      WordContentControls.assertCanEdit(
-        issue.paragraph,
-        finding.start,
-        finding.end,
-      );
+      WordContentControls.assertCanEdit(snapshot.paragraph, start, end);
       final normalized = WmlRunEdit.normalizeRange(
-        issue.paragraph,
-        finding.start,
-        finding.end,
+        snapshot.paragraph,
+        start,
+        end,
       );
-      return normalized.start == finding.start && normalized.end == finding.end;
+      return normalized.start == start && normalized.end == end;
     } on Object {
       return false;
     }

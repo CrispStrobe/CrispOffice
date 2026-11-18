@@ -79,6 +79,7 @@ Object _editTarget(WordEditorController controller) => (
   offset: controller.caret.logicalIndex,
   anchorParagraph: controller.caret.selectionAnchorParagraph,
   anchorOffset: controller.caret.selectionAnchor,
+  note: controller.noteEditingTarget,
   headerFooter: controller.isEditingHeaderFooter,
   footer: controller.isEditingFooter,
   section: controller.isEditingHeaderFooter

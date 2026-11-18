@@ -11,20 +11,26 @@ web assets. Mobile system spelling has an adapter with protocol tests. The
 experimental German GECToR provider is available as a separately installed,
 verified, manual-only de-DE option; no model is downloaded or enabled by default.
 
-## English/German thesaurus scope — 18 November 2026
+## English/German offline thesaurus — 18 November 2026
 
-The [separate thesaurus plan](roadmaps/thesaurus/README.md) scopes offline
-English/German alternatives grouped by meaning and explicit Word replacement.
-It reuses this fork's language inheritance, source snapshots, guarded
-rich-text correction/undo and qualified finite noun morphology. New thesaurus
-targets and candidates remain distinct from proofing findings.
+The [thesaurus implementation](roadmaps/thesaurus/README.md) adds full OEWN
+2025 English and OpenThesaurus German packs, meaning-grouped lookup and
+explicit Word replacement. Open it from Review, the review book action, the
+context menu or Shift+F7. F7 retains writing review. Lookup is offline and
+nonmutating; the language override affects lookup only.
 
-The planned English default is OEWN, with Princeton WordNet as the
-permissive alternative; German uses OpenThesaurus's offered CC BY-SA 4.0
-option. See the [planned data notices](roadmaps/thesaurus/licensing-and-notices.md).
-These are scoped future data choices, with no NC sources. This documentation
-change imports no corpus or model and makes no new implementation or
-validation claim.
+The feature reuses effective-language inheritance, source/grapheme guards,
+finite Unicode noun morphology and the existing rich-text undo transaction.
+Its captured target, service generation and returned literal candidate are
+validated separately from spelling/grammar findings. Protected/generated text,
+IME composition, mixed-language ranges and stale selections cannot be replaced.
+
+[Actual data notices](roadmaps/thesaurus/licensing-and-notices.md) distinguish
+MIT implementation code, OEWN CC BY 4.0/inherited WordNet data and the selected
+OpenThesaurus CC BY-SA 4.0 option. The
+[local continuation report](validation/thesaurus-20261118/continuation/README.md)
+records executed checks and the outstanding installed-desktop/actual-browser
+release gates. No contextual model or general reinflection is introduced.
 
 ## Native spelling continuation — 18 November 2026
 
@@ -426,7 +432,7 @@ The experimental German model remains disabled and was not rerun.
 The separate [18 November thesaurus scope](roadmaps/thesaurus/README.md)
 records the user's permissive-preferred, no-NC requirement and its specific
 CC BY 4.0/WordNet and CC BY-SA 4.0 data choices. Its
-[planned notices](roadmaps/thesaurus/licensing-and-notices.md) govern future
+[data notices](roadmaps/thesaurus/licensing-and-notices.md) govern the bundled
 thesaurus packs; the original P1–P8 exclusions and existing artifact allowlists
 below retain their recorded scope.
 

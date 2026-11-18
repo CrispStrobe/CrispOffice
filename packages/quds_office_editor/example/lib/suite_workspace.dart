@@ -49,7 +49,11 @@ enum _RibbonTab {
 }
 
 class SuiteWorkspace extends StatefulWidget {
-  const SuiteWorkspace({super.key});
+  const SuiteWorkspace({super.key, this.zoteroTransportFactory});
+
+  /// Creates a connection owned by one Zotero workspace. Hosts may supply
+  /// their own client configuration; the workspace disposes it when closed.
+  final StudioZoteroTransport Function()? zoteroTransportFactory;
 
   @override
   State<SuiteWorkspace> createState() => _SuiteWorkspaceState();
@@ -77,6 +81,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
 
   late final WordEditorController _word;
   final ZoteroSession _zoteroSession = ZoteroSession();
+  bool _zoteroOpen = false;
   late final SheetEditorController _sheet;
   late final SlideEditorController _slides;
   late final PdfEditorController _pdf;
@@ -334,6 +339,22 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         const SingleActivator(LogicalKeyboardKey.keyA, meta: true): _selectAll,
         const SingleActivator(LogicalKeyboardKey.keyC, control: true): _copy,
         const SingleActivator(LogicalKeyboardKey.keyC, meta: true): _copy,
+        if (studioZoteroDesktopAvailable) ...{
+          const SingleActivator(
+            LogicalKeyboardKey.keyC,
+            control: true,
+            alt: true,
+          ): _addEditZoteroCitation,
+          const SingleActivator(LogicalKeyboardKey.keyC, meta: true, alt: true):
+              _addEditZoteroCitation,
+          const SingleActivator(
+            LogicalKeyboardKey.keyR,
+            control: true,
+            alt: true,
+          ): _refreshZoteroCitations,
+          const SingleActivator(LogicalKeyboardKey.keyR, meta: true, alt: true):
+              _refreshZoteroCitations,
+        },
         const SingleActivator(LogicalKeyboardKey.keyX, control: true): _cut,
         const SingleActivator(LogicalKeyboardKey.keyX, meta: true): _cut,
         const SingleActivator(LogicalKeyboardKey.keyV, control: true): _paste,
@@ -369,6 +390,8 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
             _findPrevious,
         const SingleActivator(LogicalKeyboardKey.f1): _openPdfSampleGallery,
         const SingleActivator(LogicalKeyboardKey.f7): _showSpelling,
+        const SingleActivator(LogicalKeyboardKey.f7, shift: true):
+            _word.requestThesaurus,
         const SingleActivator(LogicalKeyboardKey.keyB, control: true):
             _toggleBold,
         const SingleActivator(LogicalKeyboardKey.keyB, meta: true): _toggleBold,
@@ -2017,8 +2040,27 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     ];
   }
 
+  bool get _canOpenZotero =>
+      mounted &&
+      !_zoteroOpen &&
+      _app == SuiteApp.word &&
+      _canMutate &&
+      _word.config.allowsMutation &&
+      _wordRouteIsCurrent;
+
+  void _addEditZoteroCitation() =>
+      unawaited(_openZotero(command: ZoteroCitingCommand.addEditCitation));
+
+  void _refreshZoteroCitations() =>
+      unawaited(_openZotero(command: ZoteroCitingCommand.refresh));
+
   Future<void> _openZotero({ZoteroCitingCommand? command}) async {
-    final transport = StudioZoteroTransport();
+    if (!_canOpenZotero || (command != null && !studioZoteroDesktopAvailable)) {
+      return;
+    }
+    final transport =
+        widget.zoteroTransportFactory?.call() ?? StudioZoteroTransport();
+    setState(() => _zoteroOpen = true);
     try {
       await showWordZoteroDialog(
         context,
@@ -2030,7 +2072,29 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       );
     } finally {
       transport.dispose();
+      if (mounted) setState(() => _zoteroOpen = false);
     }
+  }
+
+  Widget _zoteroCommand(
+    IconData icon,
+    String label,
+    ZoteroCitingCommand command, {
+    String? shortcut,
+  }) {
+    final button = _cmd(
+      icon,
+      label,
+      _canOpenZotero ? () => _openZotero(command: command) : null,
+    );
+    if (shortcut == null) return button;
+    final modifier = defaultTargetPlatform == TargetPlatform.macOS
+        ? 'Cmd+Alt'
+        : 'Ctrl+Alt';
+    return Tooltip(
+      message: '$label ($modifier+$shortcut)',
+      child: TooltipVisibility(visible: false, child: button),
+    );
   }
 
   List<StudioRibbonGroup> _wordInsert() {
@@ -2041,40 +2105,30 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
           _cmd(
             Icons.menu_book_outlined,
             'Zotero',
-            _canMutate ? _openZotero : null,
+            _canOpenZotero ? _openZotero : null,
           ),
           if (studioZoteroDesktopAvailable) ...[
-            _cmd(
+            _zoteroCommand(
               Icons.format_quote,
               _arabic ? 'إضافة/تحرير استشهاد' : 'Add/Edit citation',
-              _canMutate
-                  ? () => _openZotero(
-                      command: ZoteroCitingCommand.addEditCitation,
-                    )
-                  : null,
+              ZoteroCitingCommand.addEditCitation,
+              shortcut: 'C',
             ),
-            _cmd(
+            _zoteroCommand(
               Icons.list_alt,
               _arabic ? 'قائمة المراجع' : 'Bibliography',
-              _canMutate
-                  ? () => _openZotero(
-                      command: ZoteroCitingCommand.addEditBibliography,
-                    )
-                  : null,
+              ZoteroCitingCommand.addEditBibliography,
             ),
-            _cmd(
+            _zoteroCommand(
               Icons.refresh,
               _arabic ? 'تحديث الاستشهادات' : 'Refresh citations',
-              _canMutate
-                  ? () => _openZotero(command: ZoteroCitingCommand.refresh)
-                  : null,
+              ZoteroCitingCommand.refresh,
+              shortcut: 'R',
             ),
-            _cmd(
+            _zoteroCommand(
               Icons.format_paint_outlined,
               _arabic ? 'نمط الاستشهاد' : 'Citation style',
-              _canMutate
-                  ? () => _openZotero(command: ZoteroCitingCommand.setDocPrefs)
-                  : null,
+              ZoteroCitingCommand.setDocPrefs,
             ),
           ],
         ],
@@ -2782,6 +2836,11 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
             selected:
                 _word.reviewPaneVisible &&
                 _word.reviewPaneTab == WordReviewPaneTab.proofing,
+          ),
+          _cmd(
+            Icons.menu_book_outlined,
+            _arabic ? 'قاموس المرادفات' : 'Thesaurus',
+            _word.requestThesaurus,
           ),
           _cmd(
             Icons.edit_note,

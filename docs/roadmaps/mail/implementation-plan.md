@@ -1,0 +1,402 @@
+# Quds Mail — coding plan and ordered TODO
+
+**Scope authority:** [README.md](README.md). **Status:** every task below is planned, not implemented or tested by this documentation change.
+**Target:** one reusable Dart/Flutter Mail implementation, a full standalone Office app, and a CrispCloud integration that preserves its saved-message workflows.
+**License decision:** MIT for new independent Quds source; approved permissive dependencies plus MPL-2.0 are allowed. No GPL/AGPL/LGPL/NC imports into shared Quds or standalone source.
+
+## 1. Start here
+
+A fresh agent can start M00, M01 and M02 without reopening product decisions. Read the current repository instructions first; this plan does not authorize changing existing license headers, deleting unrelated work, publishing a package, submitting an app or using real user mail as fixtures.
+
+1. Work in CrispStrobe/quds_office_suite. Record current commit, working-tree changes and toolchain. The inspected planning baseline was 556c55c0ef312eda2cca11600021d293a81ab44b.
+2. Read .cursorrules, CONTRIBUTING.md, docs/MISSION.md and relevant existing editor APIs. Follow the root workspace, not published upstream package examples.
+3. Read this plan plus its three sibling specification files. No previous conversation is needed.
+4. Implement the smallest end-to-end task slice with focused tests, then mark only its demonstrated acceptance items complete.
+5. Keep original/shared code in Quds. CrispCloud changes are a later host integration with separate commits and evidence. Its AGPL implementation and tests are not source donors.
+6. Do not block portable reader/core development on OAuth production approval, Apple credentials or CrispCloud's unresolved distribution status. These are later feature/release gates.
+
+### Milestone order
+
+- **Reader milestone:** M00 -> M01/M02 -> M03 -> M04. Produces a safe, portable, account-free EML reader.
+- **Live mail milestone:** M02 -> M05 -> M06/M07 plus M04W; M07 requires M03 and M05. Produces the reusable mailbox workspace with recoverable native sync and sending.
+- **Both-product milestone:** M08 + M09 + M10, using completed reader/client capabilities. Includes a full Office shell, not just a mail demo.
+- **Productivity milestone:** M11 + M12.
+- **Distribution milestone:** M13 + M14 and applicable LIC/CC gates. Both app products are assessed independently.
+
+UI and storage work may proceed in parallel after the typed core contract is agreed. A task may have an interface dependency without requiring every later provider to exist. Unimplemented capabilities must report unavailable/unsupported explicitly; no successful empty results or TODO method bodies.
+
+## 2. New package layout
+
+~~~text
+third_party/enough_mail/                  reviewed MPL fork, upstream name preserved
+packages/quds_mail_core/
+  lib/quds_mail_core.dart
+  lib/src/model/
+  lib/src/ports/
+  lib/src/sync/
+  test/
+packages/quds_mail_mime/
+  lib/quds_mail_mime.dart
+  lib/src/codec/
+  lib/src/policy/
+  test/
+packages/quds_mail_store/
+  lib/quds_mail_store.dart
+  lib/src/schema/
+  lib/src/migrations/
+  lib/src/native/
+  lib/src/web/
+  test/
+packages/quds_mail_transport/
+  lib/quds_mail_transport.dart            conditional native/unsupported entry
+  lib/src/native/
+  lib/src/unsupported/
+  lib/src/providers/                     HTTP adapters as they land
+  test/
+packages/quds_mail_ui/
+  lib/quds_mail_ui.dart
+  lib/src/reader/
+  lib/src/workspace/
+  lib/src/compose/
+  lib/src/calendar/
+  lib/src/people/
+  test/
+packages/quds_mail_office/
+  lib/quds_mail_office.dart
+  lib/src/attachment_session/
+  lib/src/office_commands/
+  test/
+apps/quds_office/
+  lib/main.dart
+  lib/app/
+  lib/host/
+  lib/features/documents/
+  lib/features/mail/
+  test/
+  integration_test/
+~~~
+
+These paths and symbols are proposed. Do not create empty files/directories solely to match the tree. Add packages to the actual root workspace when each gets a working implementation. Keep publish_to: none initially and preserve existing package versions.
+
+## 3. Core API contract
+
+Define typed, immutable public models; no dynamic or untyped maps. Serialization accepts validated typed DTOs at the boundary. Public APIs do not expose enough_mail objects, platform File, CrispCloud database rows, Flutter BuildContext or credential strings.
+
+| Proposed type/port | Required semantics |
+| --- | --- |
+| MailAccountId / MailProfileId | Stable local IDs; profiles are scoped to a host application. |
+| MailCapabilities | Explicit mail/folder/label/search/move/draft/send/calendar/contact/shared-account capability flags; unsupported is distinct from empty. |
+| MailMessage / MailEnvelope | Header projection, addresses, subject, date with parse diagnostics, local ID and provider references. The transport envelope is separately represented. |
+| MailRemoteIdentity | Tagged provider identity; IMAP includes account, mailbox, UIDVALIDITY and UID; never use sequence numbers as persistent identity. |
+| MailBody / MailAttachment | Decoded/normalized presentation plus immutable raw/blob references, media type, part path, declared/observed size and safe display name. |
+| MailParseResult / MailDiagnostic | Complete, partial, rejected, unsupported or failed result; exact limit/unsupported-encoding reasons. |
+| MailReadBudget | Raw, decoded-total, body, attachment, count, nesting, header and rendering budgets; enforced cumulatively. |
+| MailCodec | Parse byte input to a bounded projection; build new canonical wire MIME from a draft; export-original returns retained octets. |
+| MailProvider | Discover capabilities, list mailboxes, fetch headers/body/attachments, pull incremental changes and apply a typed operation. No UI or global state. |
+| MailSubmissionProvider | Submit a prepared immutable wire message and explicit envelope; return accepted/rejected recipients and definite/uncertain outcome. |
+| MailRepository | Transactional domain access, cursor advancement, drafts, pending operations and change streams. Native/web stores implement the same contract. |
+| MailCredentialStore | Load/store/delete opaque credential records scoped to profile/account; secure implementation belongs to the host. |
+| MailAttachmentHost | Pick/import, preview read-only, edit a working copy, export/share and attach a saved snapshot through bounded byte handles. |
+| MailLifecycleHost / MailNotificationHost | Foreground/background opportunity and cancellation budget; optional notifications with explicit capability/permission state. |
+| MailExternalResourcePolicy | Explicit link/remote-content decisions; no message-triggered background fetch without policy authorization. |
+
+Use typed cancellation and progress throughout IO-heavy work. Disposal/account removal invalidates pending callbacks. Inject clock, IDs, provider and credential/store ports for deterministic recovery tests.
+
+### Persistence and identity
+
+Start with tables for profiles/accounts/identities, mailboxes, messages, memberships, body/blob records, attachments, drafts, outbox operations and provider cursors. Add contacts/events only when M12 is implemented.
+
+- Store secret references rather than token/password values in ordinary account rows.
+- Keep message content and mailbox/label membership separate.
+- Account-less saved EML can remain ephemeral; importing it into a profile is explicit.
+- Commit a sync page's records and its cursor together.
+- Advance opaque provider cursors only after durable processing.
+- Retain tombstones and local pending changes long enough for conflict reconciliation.
+- Keep raw message/blob integrity hashes separate from message identity.
+- Cache eviction must not delete unsent drafts, queued wire payloads or active editor snapshots.
+- Migrations preserve user data; test upgrade from every released schema.
+- Profile deletion removes that profile's credentials/cache/index/pending jobs. It must not delete provider mail.
+- Record whether cached content is encrypted. OS sandbox protection is not described as database encryption.
+
+### Outbox contract
+
+Use explicit states such as queued, submitting, submitted, retryableFailure, permanentFailure, uncertain and cancelled. Persist attempt identity before network submission. Transport errors after possible server acceptance become uncertain; do not automatically resend those messages.
+
+Prepare and freeze the draft revision, wire MIME hash and envelope before enqueueing. A later edit creates a new draft revision and cannot mutate the queued payload. Delay/undo-send operates before submission. A cancelled UI wait does not prove the provider did not accept a message.
+
+Keep envelope acceptance separate from message submission and final delivery. The MVP follows enough_mail's current all-or-abort transaction: if any RCPT command fails, abort before DATA rather than submit to a subset. A successful RCPT response does not mean that recipient received a message. Expose attempted recipient responses through a reviewed adapter/fork change; when unavailable, report unknown rather than inventing a complete result map. Partial-recipient submission remains disabled until separately implemented and qualified. Sent-folder reconciliation is provider-specific and is not proof that exactly-once delivery is possible.
+
+## 4. Implementation tasks
+
+### M00 — baseline and workspace entry
+
+**Depends on:** none.
+
+- [ ] Record current Quds commit and relevant source paths; preserve unrelated changes.
+- [ ] Inspect .fvmrc, root/package manifests and current commands; use Dart ^3.12.0 / Flutter >=3.44.0 or the repository's updated compatible pins.
+- [ ] Create a mail evidence directory containing a source/toolchain receipt, intended targets and initial dependency decisions.
+- [ ] Confirm no existing mail implementation has arrived since this planning snapshot before adding competing packages.
+
+**Done when:** the agent can run the current workspace commands and identify new versus existing paths. Existing Office tests are recorded only if actually run.
+
+### M01 — audited enough_mail fork and portable entry
+
+**Depends on:** M00. **Files:** third_party/enough_mail; provenance and license inventory.
+
+- [ ] Retrieve reviewed upstream fc69f17e24e9d03ce813bbf613c07a2ce94e5e9a, whose manifest is 3.0.0; record source checksum and relationship to any chosen release archive.
+- [ ] Keep MPL LICENSE and notices; document local patches and source-release location. Do not relabel upstream files MIT.
+- [ ] Resolve exact dependencies and check transitive licenses, generated code and bundled assets against LIC-01/LIC-02.
+- [ ] Add public lib/mime_core.dart with portable parser/model/codec exports. Do not export lib/mime.dart, lib/codecs.dart, native clients or File-based MessageBuilder through this entry.
+- [ ] Give quds_mail_mime a supported public import; do not import another package's lib/src.
+- [ ] Keep native APIs compiling. Split filesystem composition helpers into a native-only layer when shared composition is added.
+- [ ] Do not depend on enough_mail_flutter/html 2.x or force old wrappers through dependency_overrides.
+
+**Acceptance:** actual native and JavaScript compilation of a tiny public-entry parser; original RFC fixture parsed in both runtimes; old native entry still analyzes. Static import review alone is not completion.
+
+The inspected parser closure comprises these 19 local files; revalidate against the selected source:
+mime_message.dart; codecs/date_codec.dart; codecs/mail_codec.dart; exception.dart;
+imap/message_sequence.dart; mail_address.dart; mail_conventions.dart; media_type.dart;
+message_flags.dart; mime_data.dart; private/imap/parser_helper.dart;
+private/util/ascii_runes.dart; private/util/mail_address_parser.dart;
+codecs/base64_mail_codec.dart; codecs/quoted_printable_mail_codec.dart;
+imap/message_sequence.g.dart; mail_address.g.dart; private/util/byte_utils.dart;
+private/util/word.dart. Paths are relative to upstream lib/src. External imports observed
+in this closure are collection, json_annotation and enough_convert. This is a static
+inspection receipt, not a complete dependency or runtime certification.
+
+### M02 — portable domain and host contracts
+
+**Depends on:** M00. **Files:** quds_mail_core.
+
+- [ ] Implement the minimal typed models and ports from section 3, with explicit parse/provider error variants.
+- [ ] Define raw-message ownership, immutable attachment references, profile/account scoping and cancellation.
+- [ ] Define capability negotiation and native/web unsupported behavior.
+- [ ] Add provider-independent state-machine tests for account disposal, stale operations and recipient-level outcomes.
+- [ ] Keep mail, calendar and contact capabilities separate; do not imply IMAP implements all three.
+
+**Acceptance:** pure-Dart analysis and JS compilation; no Flutter/dart:ui/dart:io import in core; fixture provider demonstrates real state transitions without successful stub implementations.
+
+### M03 — bounded MIME codec and original-byte preservation
+
+**Depends on:** M01, M02. **Files:** quds_mail_mime.
+
+- [ ] Parse immutable bytes through the portable upstream surface and project into Quds DTOs.
+- [ ] Preserve original raw bytes/hash for source view and export; display decoding never overwrites originals.
+- [ ] Implement defaults: full input 32 MiB; preview input 20 MiB; cumulative decoded payload 32 MiB; body 8 MiB; attachment 16 MiB; 128 attachments; 512 parts; nesting 20; header block 256 KiB; logical header field 64 KiB.
+- [ ] Enforce budgets before unbounded allocation and during traversal/decode. Where the upstream whole-message parser cannot enforce a limit early, add a bounded pre-scan and/or a reviewed fork fix. An after-the-fact output-size check is insufficient.
+- [ ] Implement deterministic plain/HTML alternative selection, CID mapping, encoded headers/filenames, truncated/malformed diagnostics and supported charset tests.
+- [ ] Unsupported charset or syntax produces a diagnostic and source fallback, not silent replacement presented as exact text.
+- [ ] Add strict validation or reviewed decoder hooks for unknown charsets, malformed bytes and undecodable encoded words before lossy fallback. Replace uncontrolled upstream parser/codec print output with structured content-redacted diagnostics. Merely wrapping a permissive decoded string does not establish this contract.
+- [ ] Define bounded HTML/image work and limit handling, including cancellation on browser workers/native isolates where used.
+
+**Tests to add:** test/eml_bytes_test.dart, mime_limits_test.dart, mime_encodings_test.dart, mime_parts_test.dart, portable_import_test.dart; independently authored fixtures under test/fixtures.
+
+**Acceptance:** non-UTF-8/line-ending/signed-message original export has identical hash; malformed nesting/count/decode cases stop within limits; unknown header/body charsets, malformed UTF-8 and invalid encoded words produce explicit diagnostics without leaking source headers/body to console or logs; equivalent native/browser projection for supported fixtures; measured low-memory-target peak usage is retained. No streaming-parser claim.
+
+### M04 — shared account-free message reader
+
+**Depends on:** M02, M03. **Files:** quds_mail_ui reader plus fixture harness.
+
+- [ ] Implement MailMessageView and an explicit decoded-message selection/search/copy interface usable in full and compact host views.
+- [ ] Headers, plain text, supported static HTML, attachment list, CID resources and diagnostic states.
+- [ ] Sanitize before rendering; block script/forms/active URLs, remote images, CSS url/import/background/srcset/font and equivalent resource routes.
+- [ ] Link/remote-content actions go through host policy. Use no WebView by default.
+- [ ] Keep Raw Source/Hex and attachment-open callbacks available to host routing.
+- [ ] Render RTL/mixed-direction addresses safely; preserve accessible labels and keyboard traversal.
+- [ ] Provide an in-memory preview harness that needs no account, credentials, database or network.
+
+**Acceptance:** the injected resource/network port observes zero requests, and native/browser harnesses also monitor or deny outbound traffic at the runtime boundary after app bootstrap. Exercise ordinary remote images, CSS resources, srcset, protocol-relative/encoded URLs and redirects. Test explicit user-approved loading separately. Exact attachment bytes reach the read-only callback; no writable source path is fabricated; full/preview modes use their proper budgets. This enables CC-01 through CC-04, but migration waits for host parity tests.
+
+### M04W — reusable account-aware mailbox workspace
+
+**Depends on:** M04 and M05; connected acceptance also requires M06/M07. **Files:** quds_mail_ui/workspace.
+
+- [ ] Implement QudsMailWorkspace with account/folder or label navigation, paginated/virtualized message and conversation lists, stable selection and coordinated reader/composer sessions.
+- [ ] Drive lists, unread counts and local search from repository streams; keep loading, empty, offline, synchronizing, failed credentials and unsupported capabilities distinct.
+- [ ] Bind read/unread, flag, archive, move, delete and supported bulk actions to durable commands; expose failure/reconciliation status without discarding local state.
+- [ ] Provide responsive single-pane mobile and multi-pane desktop layouts, keyboard actions and accessible focus movement. Lists/navigation are host chrome, not replacement document editors.
+- [ ] Switch accounts/profiles without retaining the previous account's selection, attachment handles, credentials or callbacks. Restore draft sessions under their owning identity.
+- [ ] Accept host navigation/attachment/composer services by injection; do not instantiate CrispCloud or standalone global services.
+
+**Acceptance:** the same workspace package runs in both hosts; account switching, pagination, search, action recovery and compose/read coordination pass with deterministic provider fixtures and the qualified native adapter. Reader-only and composer-only demos do not satisfy this task.
+
+### M05 — local store, search and recovery journal
+
+**Depends on:** M02. **Files:** quds_mail_store.
+
+- [ ] Implement Drift/SQLite schema and transactional repository streams using independently resolved approved dependencies.
+- [ ] Native app-container store and separately configured browser store; explicit quota/storage-unavailable results.
+- [ ] Durable drafts and immutable outbox/blob references, atomic page+cursor commits, tombstones and migration versioning.
+- [ ] FTS indexing of supported decoded content and metadata; cap indexing work, avoid remote fetch as a side effect of local search.
+- [ ] Account deletion, cache eviction, logout and pending-operation policies.
+- [ ] Simulate crash/restart at transaction boundaries and preserve unsent work.
+
+**Acceptance:** reopen offline and recover drafts/queue; half-applied sync page cannot advance cursor; cache eviction does not lose outgoing attachments; account/profile isolation; browser quota failure is explicit. No secrets or body data in diagnostics.
+
+### M06 — native accounts, authentication and IMAP synchronization
+
+**Depends on:** M01, M02, M05. **Files:** quds_mail_transport native adapter and core sync.
+
+- [ ] Manual IMAP/SMTP account configuration first; bounded discovery only after validation. Never silently downgrade TLS or disable certificate validation.
+- [ ] Host-owned credentials; native system-browser OAuth/PKCE adapters with registered redirect handling. No embedded confidential secret.
+- [ ] Capability-driven folder discovery, header pagination, flags, move/delete/archive, body/attachment fetch-on-demand.
+- [ ] Stable IMAP IDs including UIDVALIDITY; reconnect/full-resync handling; no persisted sequence-number identities.
+- [ ] Use IDLE/CONDSTORE/QRESYNC only when the adapter/server genuinely support them; correct fallback remains mandatory.
+- [ ] Rate/backoff/cancellation and credential-revocation states; foreground/resume sync first.
+- [ ] Web entry reports unsupported generic socket transport without pulling dart:io into the build.
+
+**Acceptance:** controlled IMAP transcripts/local test server cover UIDVALIDITY reset, missing extensions, expunge/move, dropped connections, stale credentials and bounded fetch. Real interoperability uses explicit disposable test accounts and retains no private mail/credentials in fixtures.
+
+### M07 — composer, MIME generation and SMTP submission
+
+**Depends on:** M03, M04, M05; native send also M06.
+
+- [ ] Typed draft model, identity/To/Cc/Bcc, subject, attachments, reply/reply-all/forward and local autosave.
+- [ ] Implement a mail-body custom RenderBox editor with IME, selection, undo, bidi and accessibility, reusing approved Quds input/command primitives where appropriate.
+- [ ] Initial canonical body supports paragraphs, line breaks, emphasis, lists and links; add tables/inline images only with serializer/round-trip tests.
+- [ ] Generate multipart plain/HTML with deterministic boundaries and transfer encodings; preserve quoted original content as data.
+- [ ] Generate ASCII-safe wire MIME for the current text-oriented enough_mail SMTP API. Encode display names/subjects/filenames and payloads correctly. Handle non-ASCII mailbox local parts through negotiated SMTPUTF8 or explicit unsupported feedback.
+- [ ] Keep Bcc recipients in the SMTP envelope and out of transmitted headers, including folded/case-varied header cases.
+- [ ] Use the DATA submission path initially. Preserve the current all-or-abort RCPT policy and add typed recipient-attempt outcomes in the adapter/fork where the library exposes only an aggregate error. A failed RCPT followed by RSET must leave every recipient marked not submitted, never delivered. BDAT or partial-recipient delivery requires separate qualification before enabling it.
+- [ ] Freeze queued revision and wire payload; enforce the section 3 state machine, partial-recipient results, final response handling and Sent-folder reconciliation.
+- [ ] Do not send imported arbitrary raw MIME through a text path and call it byte-exact. Byte-stream SMTP is a separate extension.
+
+**Acceptance:** raw SMTP transcript proves envelope/header separation, DATA dot handling, MIME bytes and final-response semantics; mixed 250/550 RCPT replies cause RSET and no DATA; injected CR/LF is rejected; connection loss after potential acceptance yields uncertain, not automatic resend; reopen preserves draft and queue. Submitted means accepted by the submission server, not final delivery. Large-file behavior respects declared limits without claiming BDAT means streaming memory.
+
+### M08 — Office attachment and document-to-mail workflows
+
+**Depends on:** M04, M07. **Files:** quds_mail_office.
+
+- [ ] Preview DOCX/XLSX/PPTX/PDF and supported report documents through existing public Quds APIs.
+- [ ] Read-only received attachment -> separate editable working copy -> explicit exported file or new draft attachment.
+- [ ] Document command: attach current saved/snapshotted document, or export and attach a PDF.
+- [ ] Commit pending edits before snapshot, capture controller identity/revision, handle disposal/stale results, and distinguish attaching a copy from saving the original.
+- [ ] Preserve source format/type and current STANDARDS limits; do not silently flatten unsupported structures to claim edit support.
+
+**Acceptance:** test attachment hash/immutability, cancelled edits, concurrent document changes during async save, failed persistence, two open documents and reply with edited copy. Existing editor undo/save tests relevant to touched behavior pass.
+
+### M09 — full standalone Office host
+
+**Depends on:** M02/M04 for initial shell, M04W and M05–M08 for functional Office+Mail.
+
+- [ ] Create apps/quds_office; adapt approved MIT Studio shell code selectively and record provenance. No CrispCloud app/shell imports.
+- [ ] Provide document home, open/new/save/save-as/export, tabs/windows, recent documents and unsaved-close behavior.
+- [ ] Host Word, spreadsheet, slide, PDF and report surfaces; route Mail and later Calendar/People without resetting document sessions.
+- [ ] Wire scoped file access, vault, store, lifecycle and notification ports. Local documents/EML work without cloud signup.
+- [ ] Remove runtime dependence on sample galleries, development daemons or external executable helpers.
+- [ ] Add platform targets and build configuration without changing the existing Report Studio app or Office example's behavior.
+
+**Acceptance:** create/edit/save/reopen each supported document kind; receive/preview/edit/reply workflow; offline start with documents and cached mail; distinct app profile; document/Mail navigation preserves state. A mail-only sample does not close this task.
+
+### M10 — CrispCloud integration and regression preservation
+
+**Depends on:** M04 for the initial saved-EML reader; M08 for editable Office working copies; M04W and M05–M07 for the full client. The reader migration does not wait for composition or SMTP.
+
+- [ ] Execute CC-01 through CC-10 in [crispcloud-integration.md](crispcloud-integration.md).
+- [ ] Vendor/pin the same canonical packages and approved MPL fork; extend source/hash inventory.
+- [ ] Keep EML reader migration and live Mail workspace enablement independently gated.
+- [ ] Preserve MSG/MBOX routes, F3/preview behavior, raw F4 source editing, attachment bytes and read-only targets.
+- [ ] Implement host adapter without importing AGPL implementation into Quds; run the existing host regression tests in CrispCloud.
+- [ ] Record combined-host AGPL/distribution status honestly; do not use shared-package licensing as proof about the complete app.
+
+**Acceptance:** same shared reader/version exercised by both products, documented host parity, no document/viewer regressions, explicit account/profile isolation.
+
+### M11 — provider adapters beyond generic mail
+
+**Depends on:** M05–M07; common contracts remain provider-neutral.
+
+- [ ] Microsoft Graph cloud mail: delegated auth, folder delta state, stable/immutable ID strategy, send/draft operations and rate/consent states.
+- [ ] Gmail: labels/threads/history, cursor-expiry full recovery, send/drafts and explicit OAuth verification status.
+- [ ] JMAP mail where supported: session/capability discovery, state tokens, bounded fetch, changes and submission.
+- [ ] Do not build new Microsoft cloud support on EWS. On-premises Exchange remains separately scoped.
+- [ ] Native/web support is verified per endpoint/redirect/CORS combination; no generic web success claim.
+
+**Acceptance:** fixture/API-contract tests and disposable-account interoperability for each enabled adapter; feature matrix distinguishes implemented, unsupported and unqualified capabilities. Google production access is a release gate, not something tests can certify.
+
+### M12 — Calendar, People and mail-linked tasks
+
+**Depends on:** M02/M05/M11 where provider-specific data is required.
+
+- [ ] Separate calendar/contact provider interfaces and typed models; local data supports a usable initial UI.
+- [ ] Invitations and replies using iCalendar/iTIP semantics: event UID, sequence, recurrence ID, organizer/attendees, status, updates/cancellation and deduplication.
+- [ ] Preserve wall-clock time, timezone identity, all-day/floating-time semantics, recurrence rules/exceptions and provider version/ETag.
+- [ ] Day/week/month views, contacts/address completion and mail-to-task links; do not send a meeting response solely by opening an invitation.
+- [ ] Graph calendars/contacts; Google Calendar/People; CalDAV/CardDAV when configured.
+- [ ] Audit recurrence/timezone libraries. Current Dart rrule limitations require adaptation/conformance tests; no claim of complete recurrence from its license or package description.
+
+**Acceptance:** DST transition, moved/cancelled single occurrence, series update, all-day cross-zone display, stale invite, duplicate response, conflicting contact edits and unsupported provider capabilities. Personal OS Calendar/Contacts integration is optional and distinct from provider access.
+
+### M13 — Apple packaging and source distribution
+
+**Depends on:** relevant functional milestones; start dependency/entitlement review early.
+
+- [ ] Execute LIC-01 through LIC-12 in [licensing-and-app-store.md](licensing-and-app-store.md).
+- [ ] Qualify iOS/iPadOS and macOS standalone builds separately, and separately assess any CrispCloud build.
+- [ ] Inspect signed archives, entitlements, privacy manifests, source links, secure storage, OAuth redirects, file grants, encryption declaration and background behavior.
+- [ ] Include build-specific source/notices and open-source information within the product.
+- [ ] Optional default-mail entitlement is a later capability, not a blocker to ordinary mail development.
+
+**Acceptance:** retained evidence for the exact archive/commit. A simulator build, TestFlight availability or development run alone is not App Store acceptance. Do not submit a release as part of routine implementation.
+
+### M14 — compatibility, performance and handoff
+
+**Depends on:** the milestone being released, not necessarily all future enterprise features.
+
+- [ ] Test agreed mailbox-size/attachment-size profiles and record device, memory, latency and cancellation behavior.
+- [ ] Pin native/browser supported encoding and MIME corpus coverage; identify unsupported cases.
+- [ ] Retain both-host integration results and dependency/source inventories.
+- [ ] Update this checklist, README status and root roadmap with actual delivered behavior and limitations.
+- [ ] Record remaining provider, platform and distribution gates so another agent can resume without inferring success.
+
+**Acceptance:** each release claim maps to a test/source/build record; no placeholders, inherited unrelated test totals or unverified App Store claims.
+
+## 5. Suggested verification commands
+
+These commands are for the implementing agent after the named packages/tests exist.
+Use the repository's pinned Flutter/FVM invocation; do not assume dependencies are installed.
+Run commands from the indicated directory rather than hiding failures in a long shell chain.
+
+~~~bash
+# Repository root, after registering implemented workspace members:
+flutter --version
+dart --version
+flutter pub get
+
+# From packages/quds_mail_core:
+dart analyze --fatal-infos
+dart test
+
+# From packages/quds_mail_mime:
+dart analyze --fatal-infos
+dart test
+dart test --platform chrome
+mkdir -p build
+dart compile js test/compile/portable_import.dart -o build/portable_import.js
+
+# From each implemented Flutter package:
+flutter analyze --fatal-infos
+flutter test
+
+# From apps/quds_office:
+flutter test
+flutter build web
+flutter build macos --release
+flutter build ios --release --no-codesign
+~~~
+
+The Apple build commands require macOS/Xcode; final signed archive verification is separate.
+Create the portable-import harness in M03; it must use only the public portable entry.
+For real browser tests use an available supported browser and record the environment.
+Run focused existing Quds editor tests for behavior touched by M08/M09 and the explicit CrispCloud
+tests named in its integration document. Broaden testing to resolve a specific risk or satisfy a
+release gate; do not wait on unrelated hosted jobs.
+
+## 6. Source references for implementation decisions
+
+- [Scope and inspected source map](README.md#2-inspected-baseline-and-repository-map).
+- [Reviewed enough_mail source](https://github.com/Enough-Software/enough_mail/tree/fc69f17e24e9d03ce813bbf613c07a2ce94e5e9a), especially lib/src/mime_message.dart, lib/src/mime_data.dart, lib/src/smtp/smtp_client.dart and private SMTP commands.
+- [SMTP](https://www.rfc-editor.org/rfc/rfc5321.html), [message format](https://www.rfc-editor.org/rfc/rfc5322.html), [MIME](https://www.rfc-editor.org/rfc/rfc2045.html), [internationalized mail](https://www.rfc-editor.org/rfc/rfc6531.html).
+- [IMAP rev2](https://www.rfc-editor.org/rfc/rfc9051.html), [CONDSTORE/QRESYNC](https://www.rfc-editor.org/rfc/rfc7162.html), [JMAP mail](https://www.rfc-editor.org/rfc/rfc8621.html).
+- [iCalendar](https://www.rfc-editor.org/rfc/rfc5545.html), [iTIP](https://www.rfc-editor.org/rfc/rfc5546.html), [CalDAV](https://www.rfc-editor.org/rfc/rfc4791.html), [CardDAV](https://www.rfc-editor.org/rfc/rfc6352.html).
+- [Graph message delta](https://learn.microsoft.com/en-us/graph/delta-query-messages), [immutable IDs](https://learn.microsoft.com/en-us/graph/outlook-immutable-id), [Gmail sync](https://developers.google.com/workspace/gmail/api/guides/sync), [Google Calendar sync](https://developers.google.com/workspace/calendar/api/guides/sync), [People API](https://developers.google.com/people/v1/contacts).
+

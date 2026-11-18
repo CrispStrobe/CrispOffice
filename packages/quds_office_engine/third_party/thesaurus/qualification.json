@@ -1,0 +1,157 @@
+{
+  "status": "passed",
+  "python": "3.12.14",
+  "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+  "scope": "All packaged bytes/index memberships; bounded source-backed lexical checks. Not an independent human linguistic review.",
+  "packs": {
+    "en": {
+      "manifestSha256": "13ae58da2a20c0eb74ccf20acc3fade665e12e48daf783351f90b3073fd28e23",
+      "verifiedFiles": 518,
+      "meaningGroups": 107519,
+      "indexKeys": 131094,
+      "packBytes": 14434207,
+      "validationSeconds": 4.927,
+      "panel": {
+        "bank": {
+          "senseIds": [
+            "oewn-00170126-n",
+            "oewn-00714537-v",
+            "oewn-01237357-v",
+            "oewn-01590626-v",
+            "oewn-02043258-v",
+            "oewn-02315835-v",
+            "oewn-02348052-v",
+            "oewn-02348248-v",
+            "oewn-02348370-v",
+            "oewn-02790795-n",
+            "oewn-04146942-n",
+            "oewn-08437235-n",
+            "oewn-08479077-n",
+            "oewn-09236341-n",
+            "oewn-09236472-n",
+            "oewn-09236735-n",
+            "oewn-13377435-n",
+            "oewn-13389491-n"
+          ],
+          "minimumExpectedSenseIds": [
+            "oewn-08437235-n",
+            "oewn-09236472-n"
+          ]
+        },
+        "ice cream": {
+          "senseIds": [
+            "oewn-07630109-n"
+          ],
+          "minimumExpectedSenseIds": [
+            "oewn-07630109-n"
+          ]
+        },
+        "colour": {
+          "senseIds": [
+            "oewn-00281861-v",
+            "oewn-00284671-v",
+            "oewn-00395196-a",
+            "oewn-00838605-v",
+            "oewn-00838812-v",
+            "oewn-01700543-v",
+            "oewn-02542758-v",
+            "oewn-04682325-n",
+            "oewn-04685309-n",
+            "oewn-04963771-n",
+            "oewn-04995727-n",
+            "oewn-05200606-n",
+            "oewn-05853190-n",
+            "oewn-15009532-n"
+          ],
+          "minimumExpectedSenseIds": [
+            "oewn-00284671-v"
+          ]
+        },
+        "mice": {
+          "senseIds": [
+            "oewn-02332897-n",
+            "oewn-03799022-n",
+            "oewn-10355276-n",
+            "oewn-14312889-n"
+          ],
+          "minimumExpectedSenseIds": [
+            "oewn-02332897-n"
+          ]
+        }
+      },
+      "negativeControl": "qudszznonexistentlexicalprobe"
+    },
+    "de": {
+      "manifestSha256": "8788f9af67186b40f963f948aeceed01c012f3e9653ddab68947e16213cb0453",
+      "verifiedFiles": 519,
+      "meaningGroups": 50264,
+      "indexKeys": 225581,
+      "packBytes": 10144956,
+      "validationSeconds": 9.043,
+      "panel": {
+        "Bank": {
+          "senseIds": [
+            "ot-10147",
+            "ot-305"
+          ],
+          "minimumExpectedSenseIds": [
+            "ot-10147",
+            "ot-305"
+          ]
+        },
+        "Maße": {
+          "senseIds": [
+            "ot-1275",
+            "ot-39754"
+          ],
+          "minimumExpectedSenseIds": [
+            "ot-1275",
+            "ot-39754"
+          ]
+        },
+        "Masse": {
+          "senseIds": [
+            "ot-10151",
+            "ot-17012",
+            "ot-17013",
+            "ot-1824",
+            "ot-31711"
+          ],
+          "minimumExpectedSenseIds": [
+            "ot-17013",
+            "ot-1824"
+          ]
+        },
+        "sich freuen": {
+          "senseIds": [
+            "ot-38103",
+            "ot-49053",
+            "ot-52295"
+          ],
+          "minimumExpectedSenseIds": [
+            "ot-38103",
+            "ot-49053",
+            "ot-52295"
+          ]
+        },
+        "Jänner": {
+          "senseIds": [
+            "ot-12476"
+          ],
+          "minimumExpectedSenseIds": [
+            "ot-12476"
+          ]
+        },
+        "Oheim": {
+          "senseIds": [
+            "ot-13017"
+          ],
+          "minimumExpectedSenseIds": [
+            "ot-13017"
+          ]
+        }
+      },
+      "negativeControl": "qudszznonexistentlexicalprobe"
+    }
+  }
+}

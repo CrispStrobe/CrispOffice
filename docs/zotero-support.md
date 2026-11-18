@@ -17,15 +17,47 @@ key. Zotero's own windows may open behind the office application.
 In Quds Studio, **Insert → References** also offers **Add/Edit citation**,
 **Bibliography**, **Refresh citations**, and **Citation style** on native desktop
 platforms. These open the Document workspace and immediately start the selected
-Zotero command. **Add/Edit citation** edits the citation at the body caret, or
-one enclosing the selection within a paragraph; otherwise it uses the insertion
-point. Opening **Zotero** normally also selects Document when a citation or
+Zotero command. **Add/Edit citation** edits the citation at the active body or
+Notes-pane caret, or one enclosing the selection within a paragraph; otherwise
+it uses that insertion point. Opening **Zotero** normally also selects Document when a citation or
 bibliography is at the caret, with a direct **Edit current citation…** action
 for offline editing and an **Edit current reference in Zotero…** action when
 desktop transport is available. A caret immediately after a field belongs to
-the following text. For citations in notes, use the Document field list's
-**Edit in Zotero…** action; the separate Notes text editor does not dispatch
-these ribbon commands from its own caret.
+the following text. The Document field list's **Edit in Zotero…** action remains
+available for explicitly choosing a field anywhere in a supported story.
+
+In native Studio Word, **Ctrl+Alt+C** opens Add/Edit citation and **Ctrl+Alt+R**
+refreshes citations; on macOS use **Cmd+Alt+C** and **Cmd+Alt+R**. The ribbon
+tooltips show these Quds shortcuts. They work from the body and Notes text
+editor, require an editable Word document, and do not open another workspace
+over an existing dialog. These are Quds defaults, not Zotero's Word defaults.
+
+### Cite while writing a footnote or endnote
+
+Click in the **Notes** pane and place the caret where the citation belongs.
+Use **Add/Edit citation** or its shortcut to insert directly into that existing
+note. To edit an existing citation, place the caret inside it or select text
+wholly inside the citation. Paragraph breaks and the hidden space following an
+automatic note marker are mapped to the correct note positions. Opening the
+toolbar or citation workspace retains the note selection; returning to the
+document canvas returns commands to the body.
+
+Native insertion preserves the existing note, its body reference, explanatory
+text, and character formatting. Multiple citations can share the note, and
+Zotero receives their reading order and the owning note's physical note index.
+No nested note is created. Inline-style citations can also be placed inside an
+authored note; requesting the opposite note kind is refused. A bibliography
+still needs a body insertion point. The Notes text pane exposes its main-flow
+paragraphs, not note table cells or text frames; an embedding host can supply
+an anchored note table paragraph directly to the native engine.
+
+Offline **Insert basic citation** and imported CSL sources use the same note
+caret. Native and offline changes are undoable, with the note selection restored
+on undo and the resulting insertion caret restored on redo. Ordinary note-text
+undo keeps citation commands attached to the visible note editor. Finish an
+active input-method composition before starting a citation operation. Cancelling
+Zotero, changing the target, or deleting/replacing the note discards stale staged
+results instead of applying them at another location.
 
 | Control | Result |
 | --- | --- |
@@ -744,12 +776,23 @@ The engine exports `ZoteroClient`, `ZoteroLibrary`, `ZoteroItem`, `ZoteroSavedSe
 `updateZoteroBibliography`, `unlinkZoteroField`, and `unlinkZoteroFields`.
 The latter returns the converted field count and performs an atomic,
 document-wide conversion. `zoteroFieldAtCaret` returns a fresh field handle
-for the body caret or a selection confined to one paragraph. Hosts can pass
+for the active body/Notes caret or a selection confined to one paragraph. Hosts can pass
 `initialTab: WordZoteroTab.document` to `showWordZoteroDialog`, or an explicit
 `initialCommand: ZoteroCitingCommand.addEditCitation` (and the other native
 commands) to begin that command immediately with their local transport.
 Live field handles must be
 re-inspected after a mutation or history operation.
+
+`WordNotesPane` publishes focus, selection and composing ranges through
+`setNoteEditingTarget(note, selection, composing: range)`. Custom note editors
+must do the same using offsets in `WordNotes.editableText(note)`, and call
+`clearNoteEditingTarget()` when the user returns to the document canvas or the
+note editor is removed. Keep the note target while focus moves to a toolbar or
+modal. Merely changing raw body-caret coordinates is not a replacement for
+this lifecycle contract. `noteEditingTarget` is an immutable record containing
+the note identity, selection and composing range; the native and shared-dialog
+stale-operation guards include it. New documents clear it. Active composition,
+deleted notes and invalid selections cannot receive a native result.
 
 For native transactions, use `ZoteroCitingClient`, `ZoteroCitingCancellation`,
 `WordZoteroCitingSession` and `WordEditorController.beginZoteroTransaction`.

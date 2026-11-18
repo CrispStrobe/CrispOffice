@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:crypto/crypto.dart';
 
+import '../opc/zip/deflate_codec.dart';
 import '../proofing/german_morphology.dart';
 import '../proofing/german_spelling.dart' show normalizeGermanWord;
 import '../proofing/office_proofing.dart' show normalizeProofingLanguage;
@@ -94,10 +95,17 @@ final class OfficeThesaurusMatch {
 }
 
 final class OfficeThesaurusFile {
-  const OfficeThesaurusFile({required this.sha256, required this.size});
+  const OfficeThesaurusFile({
+    required this.sha256,
+    required this.size,
+    this.compressedSha256,
+    this.compressedSize,
+  });
 
   final String sha256;
   final int size;
+  final String? compressedSha256;
+  final int? compressedSize;
 }
 
 /// The manifest and its digest bind a result to the installed corpus bytes.
@@ -172,6 +180,11 @@ final class OfficeThesaurusResult {
 /// no Flutter, filesystem, network, native runtime, or model dependency.
 typedef OfficeThesaurusAssetLoader = Future<String?> Function(String path);
 
+/// Read one compressed asset. The service verifies its compressed digest before
+/// bounded inflation, then verifies the logical UTF-8 file digest and size.
+typedef OfficeThesaurusCompressedAssetLoader =
+    Future<List<int>?> Function(String path);
+
 /// Unicode whitespace from Python's str.split, used by the pack compiler.
 final RegExp _lookupWhitespace = RegExp(
   r'[\u0009-\u000d\u001c-\u0020\u0085\u00a0\u1680\u2000-\u200a\u2028\u2029\u202f\u205f\u3000]+',
@@ -198,8 +211,9 @@ String thesaurusShard(String key) {
 final class OfficeThesaurusService {
   OfficeThesaurusService({
     required this.loadAsset,
+    this.loadCompressedAsset,
     Map<String, String> manifestSha256 = const <String, String>{},
-    this.maxCachedShards = 32,
+    this.maxCachedShards = 64,
     this.maxCachedResults = 64,
   }) : manifestSha256 = Map<String, String>.unmodifiable(manifestSha256) {
     if (maxCachedShards < 1 || maxCachedResults < 1) {
@@ -213,6 +227,7 @@ final class OfficeThesaurusService {
   }
 
   final OfficeThesaurusAssetLoader loadAsset;
+  final OfficeThesaurusCompressedAssetLoader? loadCompressedAsset;
   final Map<String, String> manifestSha256;
   final int maxCachedShards;
   final int maxCachedResults;
@@ -260,6 +275,10 @@ final class OfficeThesaurusService {
       );
     }
     final key = normalizeThesaurusTerm(query.text);
+    final sourceForm = query.text
+        .replaceAll('\u00ad', '')
+        .replaceAll(_lookupWhitespace, ' ')
+        .trim();
     if (key.isEmpty || key.length > 512 || !_safeTerm(key)) {
       return OfficeThesaurusResult(
         query: query,
@@ -355,13 +374,13 @@ final class OfficeThesaurusService {
         }
         if (locale == 'de' && !key.contains(' ') && senses.isEmpty) {
           final morphology = GermanNounMorphology.shared;
-          await morphology.prepareWords(<String>[query.text]);
+          await morphology.prepareWords(<String>[sourceForm]);
           _checkEpoch(epoch);
-          if (!morphology.hasUnresolvedReading(query.text)) {
+          if (!morphology.hasUnresolvedReading(sourceForm)) {
             // Do not use the spelling allowlist to prune thesaurus entries.
             // Preserve all finite noun readings, including ambiguity.
             final lemmas = <String>{
-              for (final reading in morphology.lookup(query.text))
+              for (final reading in morphology.lookup(sourceForm))
                 reading.lemma,
             };
             for (final lemma in lemmas) {
@@ -388,7 +407,7 @@ final class OfficeThesaurusService {
         // only. It neither strips accents nor equates German sharp-s with ss.
         if (locale == 'de' && senses.isEmpty) {
           final composed = normalizeThesaurusTerm(
-            normalizeGermanWord(query.text),
+            normalizeGermanWord(sourceForm),
           );
           if (composed != key) {
             await _addSenses(
@@ -400,7 +419,7 @@ final class OfficeThesaurusService {
             if (senses.isNotEmpty) {
               matches.add(
                 OfficeThesaurusMatch(
-                  text: normalizeGermanWord(query.text),
+                  text: normalizeGermanWord(sourceForm),
                   reason: 'canonical-form',
                 ),
               );
@@ -410,7 +429,7 @@ final class OfficeThesaurusService {
       }
       _checkEpoch(epoch);
       final ordered = senses.values.toList();
-      final display = query.text.replaceAll('\u00ad', '').trim();
+      final display = sourceForm;
       ordered.sort((a, b) {
         final aExact = a.terms.any((term) => term.text == display);
         final bExact = b.terms.any((term) => term.text == display);
@@ -516,7 +535,27 @@ final class OfficeThesaurusService {
           size > _maximumFileBytes) {
         throw const FormatException('Invalid thesaurus file metadata');
       }
-      files[entry.key] = OfficeThesaurusFile(sha256: fileDigest, size: size);
+      final compression = file['compression'];
+      final compressedDigest = file['compressedSha256'];
+      final compressedSize = file['compressedSize'];
+      if (compression != null ||
+          compressedDigest != null ||
+          compressedSize != null) {
+        if (compression != 'deflate-raw' ||
+            compressedDigest is! String ||
+            !_digestPattern.hasMatch(compressedDigest) ||
+            compressedSize is! int ||
+            compressedSize < 1 ||
+            compressedSize > _maximumFileBytes) {
+          throw const FormatException('Invalid compressed thesaurus metadata');
+        }
+      }
+      files[entry.key] = OfficeThesaurusFile(
+        sha256: fileDigest,
+        size: size,
+        compressedSha256: compressedDigest as String?,
+        compressedSize: compressedSize as int?,
+      );
     }
     for (var i = 0; i < 256; i++) {
       final shard = i.toRadixString(16).padLeft(2, '0');
@@ -554,15 +593,31 @@ final class OfficeThesaurusService {
   ) async {
     final file = pack.files[path];
     if (file == null) throw const FormatException('Unlisted thesaurus asset');
-    final text = await loadAsset('${pack.locale}/$path');
-    _checkEpoch(epoch);
-    if (text == null) throw const FormatException('Missing thesaurus asset');
-    final bytes = utf8.encode(text);
+    late final List<int> bytes;
+    if (file.compressedSha256 != null) {
+      final loader = loadCompressedAsset;
+      if (loader == null) {
+        throw const FormatException('No compressed thesaurus asset loader');
+      }
+      final compressed = await loader('${pack.locale}/$path.deflate');
+      _checkEpoch(epoch);
+      if (compressed == null ||
+          compressed.length != file.compressedSize ||
+          sha256.convert(compressed).toString() != file.compressedSha256) {
+        throw const FormatException('Compressed thesaurus digest mismatch');
+      }
+      bytes = RawDeflate.inflate(compressed, maxOutputBytes: file.size);
+    } else {
+      final text = await loadAsset('${pack.locale}/$path');
+      _checkEpoch(epoch);
+      if (text == null) throw const FormatException('Missing thesaurus asset');
+      bytes = utf8.encode(text);
+    }
     if (bytes.length != file.size ||
         sha256.convert(bytes).toString() != file.sha256) {
       throw const FormatException('Thesaurus asset digest mismatch');
     }
-    return text;
+    return utf8.decode(bytes);
   }
 
   Future<Map<String, Object?>> _shard(
@@ -580,6 +635,7 @@ final class OfficeThesaurusService {
     final pending = _pendingShards[cacheKey];
     if (pending != null) return pending;
     final future = _readShard(pack, path, cacheKey, epoch);
+    // Share the future before awaiting it to deduplicate concurrent I/O.
     _pendingShards[cacheKey] = future;
     try {
       return await future;
@@ -617,7 +673,13 @@ final class OfficeThesaurusService {
       epoch,
     );
     final value = shard[key];
-    return value == null ? null : _object(value);
+    if (!shard.containsKey(key)) return null;
+    final entry = _object(value);
+    if (entry['senseIds'] is! List<Object?> ||
+        (entry.containsKey('aliases') && entry['aliases'] is! List<Object?>)) {
+      throw const FormatException('Malformed thesaurus index entry');
+    }
+    return entry;
   }
 
   List<OfficeThesaurusMatch> _aliases(Map<String, Object?>? entry) {

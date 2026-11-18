@@ -14,6 +14,8 @@ String configurationId() => jsonEncode([
   studioSpacyHost.status.configurationKey,
 ]);
 
-/// Developer environment variables keep their original precedence; otherwise
-/// the user-installed, re-verified package is used. Nothing downloads here.
-Future<SpacyTransport> openTransport() => studioSpacyHost.openTransport();
+/// Developer environment variables keep their original precedence for
+/// German; otherwise the user-installed, re-verified package or language
+/// bundle is used. Nothing downloads here.
+Future<SpacyTransport> openTransport(SpacyLanguage language) =>
+    studioSpacyHost.openLanguageTransport(language);
