@@ -1,0 +1,88 @@
+{
+  "status": "ready",
+  "recorded_at_utc": "2026-11-18T09:41:30.449308+00:00",
+  "sdk": "/workspace/scratch/a0430e87e61f/zotero-toolchain/flutter-sdk",
+  "workspace": "/workspace/scratch/a0430e87e61f/zotero-validation",
+  "source": "/workspace/scratch/a0430e87e61f/quds_office_suite",
+  "environment_script": "/workspace/scratch/a0430e87e61f/zotero-toolchain/env.sh",
+  "runtime": {
+    "frameworkVersion": "3.47.8",
+    "channel": "[user-branch]",
+    "repositoryUrl": "https://github.com/flutter/flutter.git",
+    "frameworkRevision": "737ba8f885dc774b53b442759999a312c9461e4e",
+    "frameworkCommitDate": "2026-10-22 21:37:31 -0700",
+    "engineRevision": "cf636b1dfb818dd6a3ff16e390e93b1a036969c8",
+    "engineCommitDate": "2026-10-23 02:13:38.000Z",
+    "engineContentHash": "dfd2e6cb7d319db05e3bf1503f3e2ac60f6288a2",
+    "engineBuildDate": "2026-10-23 05:34:48.330",
+    "dartSdkVersion": "3.13.7",
+    "devToolsVersion": "2.60.0",
+    "flutterVersion": "3.47.8",
+    "flutterRoot": "/workspace/scratch/a0430e87e61f/zotero-toolchain/flutter-sdk"
+  },
+  "dart_sha256": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb",
+  "flutter_tester_sha256": "800f4ca182df7dd2fb46a42dea5d76277b9dbc5e8cd2915e02bcbc978681b45f",
+  "framework_tracked_changes": [],
+  "flutter_tools_lock_sha256": "6a98afb61c0cc72f31631ab444932f072fd275aa04d56cde2bf6831ba02fc8f8",
+  "flutter_tools_recorded_lock_sha256": "6a98afb61c0cc72f31631ab444932f072fd275aa04d56cde2bf6831ba02fc8f8",
+  "workspace_lock_sha256": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130",
+  "workspace_recorded_lock_sha256": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130",
+  "workspace_package_count": 109,
+  "workspace_manifest_matches": {
+    "apps/quds_report_studio/pubspec.yaml": true,
+    "packages/legacy_doc_parser/pubspec.yaml": true,
+    "packages/quds_office_editor/example/pubspec.yaml": true,
+    "packages/quds_office_editor/pubspec.yaml": true,
+    "packages/quds_office_engine/example/pubspec.yaml": true,
+    "packages/quds_office_engine/pubspec.yaml": true,
+    "packages/quds_proofing_gector/pubspec.yaml": true,
+    "packages/quds_proofing_harper/pubspec.yaml": true,
+    "packages/quds_reports/pubspec.yaml": true,
+    "pubspec.yaml": true
+  },
+  "package_config_sha256": "3e79ebb5b320acdb12ce783bae8a8b35df638ca372905ab79a900b541b89b907",
+  "source_graph_link": "/workspace/scratch/a0430e87e61f/quds_office_suite/.dart_tool",
+  "source_graph_target": "/workspace/scratch/a0430e87e61f/zotero-validation/.dart_tool",
+  "pub_archive_count": 168,
+  "setup_smoke_tests": [
+    {
+      "command": "dart test test/zotero_catalog_query_test.dart --reporter expanded",
+      "cwd": "/workspace/scratch/a0430e87e61f/zotero-toolchain/harness/quds_office_engine",
+      "passed": 18,
+      "exit_code": 0,
+      "log": "engine-query-smoke.log"
+    },
+    {
+      "command": "flutter test --no-pub test/word_zotero_format_test.dart --reporter expanded",
+      "cwd": "/workspace/scratch/a0430e87e61f/zotero-validation/packages/quds_office_editor",
+      "passed": 31,
+      "exit_code": 0,
+      "log": "editor-format-smoke.log"
+    }
+  ],
+  "setup_notes": [
+    "All engine/framework binaries and hosted packages are genuine official downloads; no mock runtime packages were used.",
+    "Initial workspace resolver failed before sky_engine was downloaded; final exact-lock offline resolver passed after official precache.",
+    "Initial engine resolver lacked six versions from its distinct recorded lock; six exact official archives were added, final exact-lock offline resolver passed.",
+    "The engine-only wrapper strips workspace resolution from copies of current engine/parser manifests; sources are symlinked and tracked manifests are unchanged.",
+    "The main external workspace copies current manifests verbatim and exposes current sources by symlinks.",
+    "Initial symlink-only analysis could not resolve source package imports; an ignored source .dart_tool link now points at the generated exact workspace graph.",
+    "Strict analysis then found one real use_null_aware_elements lint in the new engine query code and reported it to parent; no claim of passed source analysis is made here.",
+    "Official precache called with disabled platform flags downloads defaults; use explicit --universal for future minimal caches.",
+    "Smoke executions overlap later product validation and must not be added to final counts."
+  ],
+  "logs_sha256": {
+    "editor-format-smoke.log": "8696e85142572b62d550e5a811d5d01a653acb6d55b3e62879aae1a85681986b",
+    "engine-pub-get-final.log": "d4cb7a3c68b4133b4f6e58c67ff5bfd13725d8021e930388cdc98da8a575919d",
+    "engine-pub-get.log": "ac619fa308fc24b7542bda6d64579172f6014b5225b922c0d2ff07b07b6abea8",
+    "engine-query-analysis-final.log": "66749cfed763b23b9448b04e499f89df15da219d6885181f8295b4fd76e84838",
+    "engine-query-analysis.log": "b3e11981bf0da825c660f046c56f9933282d948f1015c72d1f18658403e4e9b2",
+    "engine-query-smoke.log": "ca07bd570d1ef81430873979fd9b2aa8793d227115c36643b57eaad3cad4ef53",
+    "flutter-precache.log": "4ed0eabdb158d81e292118a106926344e83e2072e8f0b922f5fac9e26e270f1b",
+    "flutter-version.log": "e07bf88783275368db2cf741b5e51de4b7b7ad2d818193c11a1eccfa75194e35",
+    "pub-cache-receipt.json": "1ea54c83a181b69245da6a77897f7eb910973b39c703ad680712c1f1784284dc",
+    "pub-cache-restore-engine.log": "4568ab2af39e6c76c666c387e4b2c0dadb6bef4d8ec9996ce8660c16d1074d08",
+    "pub-cache-restore.log": "56b8393111239d35496acf65b717b09617349f0bc6a833c62d57fc69a7281ddd",
+    "workspace-pub-get-final.log": "3b472f7613c71b90ffb46219cc2bef8d7ecdb1e2fde5b42a95ffd7b086ba9039"
+  }
+}

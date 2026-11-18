@@ -1,6 +1,44 @@
-# Zotero validation — 17 November 2026
+# Zotero validation
 
-## Current delivery and qualified source
+## 18 November 2026 — catalog controls and connected source aliases
+
+Qualified product: **`1ccf329da190d47720962bd9d8c65c90acf562db`** on
+`codex/zotero-capabilities-20261118`, based on current main `c8eca37d`.
+
+The reference browser now exposes full-text search scope, reference-type filters,
+sorting and direction, with pagination bound to the last submitted query.
+Connected basic refresh and API bibliography preparation resolve explicit late
+and transitive URI aliases across the document while preserving citation
+identities, locators, affixes and unknown metadata.
+
+| Accepted local cohort | Substantive passes |
+| --- | ---: |
+| Engine Zotero — 20 suites | 408 |
+| Editor Zotero — 16 suites | 215 |
+| Studio transport — one suite | 18 |
+| **Disjoint total** | **641** |
+
+All tests pass with zero skips/errors. All eight changed Dart targets pass strict
+analysis and declared-language formatting; source/dependency/runtime/workspace
+guards pass. The 47 new regression cases are included once in those totals.
+Overlapping development runs and the preserved rejected first editor attempt
+are excluded.
+
+All 353 initial fork/upstream branch and PR refs were fetched and accounted for;
+the later native-spelling branch and PR #155 are separately recorded. Every
+historical Zotero branch was already included in the starting main. Source and
+evidence were checkpointed remotely with `[skip ci]` and verified readback.
+No GitHub Actions or status endpoint was queried, awaited or rerun.
+
+See the [complete report, exact commands, raw events, source bindings and review](validation/zotero-capabilities-20261118/README.md).
+This increment qualifies local client/UI/document/transport behavior with
+synthetic documents and controlled Zotero responses. Live account/desktop-picker
+acceptance, full application builds and new Word/LibreOffice acceptance remain
+outside this increment.
+
+## Historical delivery — 17 November 2026
+
+### Delivered and qualified source
 
 The delivered implementation is qualified at canonical Quds
 `732fc3d0bc7a1118f3eb86e6c762fe70182c4fd2` and actual CrispCloud host

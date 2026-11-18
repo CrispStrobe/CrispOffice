@@ -1,0 +1,208 @@
+{
+  "status": "passed",
+  "started_at_utc": "2026-11-18T09:57:28.086358+00:00",
+  "command": [
+    "/workspace/scratch/a0430e87e61f/zotero-toolchain/flutter-sdk/bin/flutter",
+    "test",
+    "--no-pub",
+    "--machine",
+    "--concurrency",
+    "4",
+    "test/word_zotero_backoff_session_test.dart",
+    "test/word_zotero_bibliography_controller_test.dart",
+    "test/word_zotero_catalog_citing_test.dart",
+    "test/word_zotero_catalog_query_test.dart",
+    "test/word_zotero_citing_controller_test.dart",
+    "test/word_zotero_citing_dialog_test.dart",
+    "test/word_zotero_collection_pagination_test.dart",
+    "test/word_zotero_connected_alias_test.dart",
+    "test/word_zotero_controller_test.dart",
+    "test/word_zotero_dialog_scaling_test.dart",
+    "test/word_zotero_dialog_test.dart",
+    "test/word_zotero_format_test.dart",
+    "test/word_zotero_rich_controller_test.dart",
+    "test/word_zotero_saved_search_test.dart",
+    "test/word_zotero_source_identity_test.dart",
+    "test/word_zotero_source_resolver_test.dart"
+  ],
+  "cwd": "/workspace/scratch/a0430e87e61f/zotero-validation/packages/quds_office_editor",
+  "package": "packages/quds_office_editor",
+  "package_name": "quds_office_editor",
+  "shared_lock": "/workspace/scratch/a0430e87e61f/zotero-toolchain/flutter-cli.lock",
+  "source_head_at_start": "1ccf329da190d47720962bd9d8c65c90acf562db",
+  "selected_test_files": [
+    "packages/quds_office_editor/test/word_zotero_backoff_session_test.dart",
+    "packages/quds_office_editor/test/word_zotero_bibliography_controller_test.dart",
+    "packages/quds_office_editor/test/word_zotero_catalog_citing_test.dart",
+    "packages/quds_office_editor/test/word_zotero_catalog_query_test.dart",
+    "packages/quds_office_editor/test/word_zotero_citing_controller_test.dart",
+    "packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart",
+    "packages/quds_office_editor/test/word_zotero_collection_pagination_test.dart",
+    "packages/quds_office_editor/test/word_zotero_connected_alias_test.dart",
+    "packages/quds_office_editor/test/word_zotero_controller_test.dart",
+    "packages/quds_office_editor/test/word_zotero_dialog_scaling_test.dart",
+    "packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "packages/quds_office_editor/test/word_zotero_format_test.dart",
+    "packages/quds_office_editor/test/word_zotero_rich_controller_test.dart",
+    "packages/quds_office_editor/test/word_zotero_saved_search_test.dart",
+    "packages/quds_office_editor/test/word_zotero_source_identity_test.dart",
+    "packages/quds_office_editor/test/word_zotero_source_resolver_test.dart"
+  ],
+  "reachable_packages": [
+    "archive",
+    "async",
+    "boolean_selector",
+    "characters",
+    "clock",
+    "collection",
+    "crypto",
+    "fake_async",
+    "ffi",
+    "flutter",
+    "flutter_lints",
+    "flutter_test",
+    "flutter_web_plugins",
+    "leak_tracker",
+    "leak_tracker_flutter_testing",
+    "leak_tracker_testing",
+    "legacy_doc_parser",
+    "lints",
+    "matcher",
+    "material_color_utilities",
+    "meta",
+    "path",
+    "plugin_platform_interface",
+    "posix",
+    "quds_office_editor",
+    "quds_office_engine",
+    "quds_reports",
+    "sky_engine",
+    "source_span",
+    "stack_trace",
+    "stream_channel",
+    "string_scanner",
+    "term_glyph",
+    "test_api",
+    "url_launcher",
+    "url_launcher_android",
+    "url_launcher_ios",
+    "url_launcher_linux",
+    "url_launcher_macos",
+    "url_launcher_platform_interface",
+    "url_launcher_web",
+    "url_launcher_windows",
+    "vector_math",
+    "vm_service",
+    "web"
+  ],
+  "canonical_source_packages": {
+    "legacy_doc_parser": "packages/legacy_doc_parser",
+    "quds_office_editor": "packages/quds_office_editor",
+    "quds_office_engine": "packages/quds_office_engine",
+    "quds_reports": "packages/quds_reports"
+  },
+  "runner_sha256": "b97cc79a6297b4601f98a48bc91594b4d1d4e85018df9d74953d4f9f3d2ad94b",
+  "finished_at_utc": "2026-11-18T09:58:13.197664+00:00",
+  "elapsed_seconds": 42.19462872200165,
+  "exit_code": 0,
+  "source_head_at_end": "1ccf329da190d47720962bd9d8c65c90acf562db",
+  "suite_count": 16,
+  "substantive_test_count": 215,
+  "substantive_results": {
+    "success": 215
+  },
+  "substantive_skips": 0,
+  "hidden_test_count": 16,
+  "hidden_results": {
+    "success": 16
+  },
+  "test_done_event_count": 231,
+  "error_events": [],
+  "json_parse_errors": [],
+  "machine_envelope_count": 16,
+  "final_events": [
+    {
+      "success": true,
+      "type": "done",
+      "time": 41242
+    }
+  ],
+  "guards": {
+    "source_unchanged": true,
+    "dependencies_unchanged": true,
+    "runtime_unchanged": true,
+    "workspace_inputs_unchanged": true,
+    "selected_tests_unchanged": true
+  },
+  "source_file_count": 534,
+  "dependency_file_count": 1966,
+  "runtime_file_count": 1170,
+  "workspace_file_count": 13,
+  "scope": "All current selected package test/*zotero*_test.dart suites. Earlier setup and focused smokes excluded. Genuine Flutter engine with synthetic documents/transport doubles; no live-account or external Word/LibreOffice acceptance claimed.",
+  "artifacts": {
+    "cases.json.gz": {
+      "bytes": 6228,
+      "sha256": "143bcd46c505b100671413f28133a3f09d284cf669d7e619f28ab4d4884624c2"
+    },
+    "dependencies-after.json.gz": {
+      "bytes": 102401,
+      "sha256": "01b6ab15bf6f27e286c44094142877a43a6d09897d64d6dd87d96e9d7a19a2ef"
+    },
+    "dependencies-before.json.gz": {
+      "bytes": 102401,
+      "sha256": "01b6ab15bf6f27e286c44094142877a43a6d09897d64d6dd87d96e9d7a19a2ef"
+    },
+    "events.jsonl.gz": {
+      "bytes": 11456,
+      "sha256": "4345a72d6f4cd8203d1bd894b7f8d0de3236fd5c2e96dc7f367d98e9223b6504"
+    },
+    "machine-envelopes.json.gz": {
+      "bytes": 194,
+      "sha256": "ee92644a147396857d7356f351a488ca6b548d3fc54c2f2aca11decd756e2c74"
+    },
+    "process-exit.json": {
+      "bytes": 1253,
+      "sha256": "7477f2d7cf8080b5cb481a1629487458d9f954b1c4e3fffb49a973bef5c887a6"
+    },
+    "run.json": {
+      "bytes": 3936,
+      "sha256": "6041497def5ade9785fd8b9dcf0295573a422cb3cabf8a87c1a5dc43549da83d"
+    },
+    "run_editor.py": {
+      "bytes": 11529,
+      "sha256": "b97cc79a6297b4601f98a48bc91594b4d1d4e85018df9d74953d4f9f3d2ad94b"
+    },
+    "runtime-after.json.gz": {
+      "bytes": 60370,
+      "sha256": "1e10c93fc3639dc3a2d9313a3912001d60d621f7c8962d5b87ad5618ead78351"
+    },
+    "runtime-before.json.gz": {
+      "bytes": 60370,
+      "sha256": "1e10c93fc3639dc3a2d9313a3912001d60d621f7c8962d5b87ad5618ead78351"
+    },
+    "source-after.json.gz": {
+      "bytes": 28768,
+      "sha256": "e575efb34be6cf36b95446a039be699a6ae4f5ff7f896a65424081afa2a121ca"
+    },
+    "source-before.json.gz": {
+      "bytes": 28768,
+      "sha256": "e575efb34be6cf36b95446a039be699a6ae4f5ff7f896a65424081afa2a121ca"
+    },
+    "stderr.log.gz": {
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    "workspace-after.json.gz": {
+      "bytes": 734,
+      "sha256": "2f2abd369912581e6707c4b1411360e3616277618b356c3451b135987f3d1171"
+    },
+    "workspace-before.json.gz": {
+      "bytes": 734,
+      "sha256": "2f2abd369912581e6707c4b1411360e3616277618b356c3451b135987f3d1171"
+    },
+    "workspace-inputs.json.gz": {
+      "bytes": 12792,
+      "sha256": "45961c6cf703cb7974cedfa3cd035483e0f628ec0ff4d8f5ed053574f6fde934"
+    }
+  }
+}

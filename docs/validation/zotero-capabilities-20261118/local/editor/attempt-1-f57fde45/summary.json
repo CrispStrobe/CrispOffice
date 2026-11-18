@@ -1,0 +1,200 @@
+{
+  "status": "rejected",
+  "started_at_utc": "2026-11-18T09:51:45.887460+00:00",
+  "command": [
+    "/workspace/scratch/a0430e87e61f/zotero-toolchain/flutter-sdk/bin/flutter",
+    "test",
+    "--no-pub",
+    "--machine",
+    "--concurrency",
+    "4",
+    "test/word_zotero_backoff_session_test.dart",
+    "test/word_zotero_bibliography_controller_test.dart",
+    "test/word_zotero_catalog_citing_test.dart",
+    "test/word_zotero_catalog_query_test.dart",
+    "test/word_zotero_citing_controller_test.dart",
+    "test/word_zotero_citing_dialog_test.dart",
+    "test/word_zotero_collection_pagination_test.dart",
+    "test/word_zotero_connected_alias_test.dart",
+    "test/word_zotero_controller_test.dart",
+    "test/word_zotero_dialog_scaling_test.dart",
+    "test/word_zotero_dialog_test.dart",
+    "test/word_zotero_format_test.dart",
+    "test/word_zotero_rich_controller_test.dart",
+    "test/word_zotero_saved_search_test.dart",
+    "test/word_zotero_source_identity_test.dart",
+    "test/word_zotero_source_resolver_test.dart"
+  ],
+  "cwd": "/workspace/scratch/a0430e87e61f/zotero-validation/packages/quds_office_editor",
+  "package": "packages/quds_office_editor",
+  "package_name": "quds_office_editor",
+  "shared_lock": "/workspace/scratch/a0430e87e61f/zotero-toolchain/flutter-cli.lock",
+  "source_head_at_start": "f57fde45f36bd4c2ad0ec586966e2166d50c1835",
+  "selected_test_files": [
+    "packages/quds_office_editor/test/word_zotero_backoff_session_test.dart",
+    "packages/quds_office_editor/test/word_zotero_bibliography_controller_test.dart",
+    "packages/quds_office_editor/test/word_zotero_catalog_citing_test.dart",
+    "packages/quds_office_editor/test/word_zotero_catalog_query_test.dart",
+    "packages/quds_office_editor/test/word_zotero_citing_controller_test.dart",
+    "packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart",
+    "packages/quds_office_editor/test/word_zotero_collection_pagination_test.dart",
+    "packages/quds_office_editor/test/word_zotero_connected_alias_test.dart",
+    "packages/quds_office_editor/test/word_zotero_controller_test.dart",
+    "packages/quds_office_editor/test/word_zotero_dialog_scaling_test.dart",
+    "packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "packages/quds_office_editor/test/word_zotero_format_test.dart",
+    "packages/quds_office_editor/test/word_zotero_rich_controller_test.dart",
+    "packages/quds_office_editor/test/word_zotero_saved_search_test.dart",
+    "packages/quds_office_editor/test/word_zotero_source_identity_test.dart",
+    "packages/quds_office_editor/test/word_zotero_source_resolver_test.dart"
+  ],
+  "reachable_packages": [
+    "archive",
+    "async",
+    "boolean_selector",
+    "characters",
+    "clock",
+    "collection",
+    "crypto",
+    "fake_async",
+    "ffi",
+    "flutter",
+    "flutter_lints",
+    "flutter_test",
+    "flutter_web_plugins",
+    "leak_tracker",
+    "leak_tracker_flutter_testing",
+    "leak_tracker_testing",
+    "legacy_doc_parser",
+    "lints",
+    "matcher",
+    "material_color_utilities",
+    "meta",
+    "path",
+    "plugin_platform_interface",
+    "posix",
+    "quds_office_editor",
+    "quds_office_engine",
+    "quds_reports",
+    "sky_engine",
+    "source_span",
+    "stack_trace",
+    "stream_channel",
+    "string_scanner",
+    "term_glyph",
+    "test_api",
+    "url_launcher",
+    "url_launcher_android",
+    "url_launcher_ios",
+    "url_launcher_linux",
+    "url_launcher_macos",
+    "url_launcher_platform_interface",
+    "url_launcher_web",
+    "url_launcher_windows",
+    "vector_math",
+    "vm_service",
+    "web"
+  ],
+  "canonical_source_packages": {
+    "legacy_doc_parser": "packages/legacy_doc_parser",
+    "quds_office_editor": "packages/quds_office_editor",
+    "quds_office_engine": "packages/quds_office_engine",
+    "quds_reports": "packages/quds_reports"
+  },
+  "runner_sha256": "44acfc80d1ec0aba223f9396037df001c644ccf7250db51043327d8189ab8c06",
+  "runner_process_exit_code": 1,
+  "flutter_child_exit_code": null,
+  "exit_scope_note": "The Python runner exited 1 after qualification due to a summarizer AttributeError on a valid Flutter machine array envelope. Child exit was not retained before that parser failure; no child exit is reconstructed. Raw final test event explicitly reports failure.",
+  "suite_count": 16,
+  "substantive_test_count": 215,
+  "substantive_results": {
+    "success": 214,
+    "error": 1
+  },
+  "substantive_skips": 0,
+  "hidden_test_count": 16,
+  "error_events": [
+    {
+      "testID": 265,
+      "error": "Test failed. See exception logs above.\nThe test description was: mock Web API connection, pagination and search keep the key outside the document",
+      "stackTrace": "",
+      "isFailure": false,
+      "type": "error",
+      "time": 40249
+    }
+  ],
+  "final_events": [
+    {
+      "success": false,
+      "type": "done",
+      "time": 41231
+    }
+  ],
+  "valid_array_envelope_count": 16,
+  "nonblank_json_parse_errors": [],
+  "guards": {
+    "source_unchanged": true,
+    "dependencies_unchanged": true,
+    "runtime_unchanged": true,
+    "workspace_unchanged": true
+  },
+  "replay_note": "Reparsed complete raw machine stream after preserving the exact original runner. Blank lines and valid array envelopes do not count as test events.",
+  "artifacts": {
+    "runtime-after.json.gz": {
+      "bytes": 60370,
+      "sha256": "1e10c93fc3639dc3a2d9313a3912001d60d621f7c8962d5b87ad5618ead78351"
+    },
+    "workspace-inputs.json.gz": {
+      "bytes": 12792,
+      "sha256": "45961c6cf703cb7974cedfa3cd035483e0f628ec0ff4d8f5ed053574f6fde934"
+    },
+    "source-before.json.gz": {
+      "bytes": 28766,
+      "sha256": "5b5a1723a74ad6eaf63e2992fd10a8363ee4b18e4167403a10bf9a904f6bf1b1"
+    },
+    "dependencies-before.json.gz": {
+      "bytes": 102401,
+      "sha256": "01b6ab15bf6f27e286c44094142877a43a6d09897d64d6dd87d96e9d7a19a2ef"
+    },
+    "run_editor.py": {
+      "bytes": 10970,
+      "sha256": "44acfc80d1ec0aba223f9396037df001c644ccf7250db51043327d8189ab8c06"
+    },
+    "cases.json.gz": {
+      "bytes": 7385,
+      "sha256": "005568c4f608212fe985dc8aab841223ba799f63e15d93dd9cc4aafe616a6c81"
+    },
+    "run.json": {
+      "bytes": 3936,
+      "sha256": "029da54b47dc8c477f7e8f4f5e273f340dd295bb5d6b786db8da9697ee5046d4"
+    },
+    "events.jsonl.gz": {
+      "bytes": 13089,
+      "sha256": "3c77ff10681adc9d5b295621745191df84d48dba85efa71ddc37ba37455a35f3"
+    },
+    "workspace-after.json.gz": {
+      "bytes": 734,
+      "sha256": "2f2abd369912581e6707c4b1411360e3616277618b356c3451b135987f3d1171"
+    },
+    "runtime-before.json.gz": {
+      "bytes": 60370,
+      "sha256": "1e10c93fc3639dc3a2d9313a3912001d60d621f7c8962d5b87ad5618ead78351"
+    },
+    "source-after.json.gz": {
+      "bytes": 28766,
+      "sha256": "5b5a1723a74ad6eaf63e2992fd10a8363ee4b18e4167403a10bf9a904f6bf1b1"
+    },
+    "dependencies-after.json.gz": {
+      "bytes": 102401,
+      "sha256": "01b6ab15bf6f27e286c44094142877a43a6d09897d64d6dd87d96e9d7a19a2ef"
+    },
+    "stderr.log.gz": {
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    "workspace-before.json.gz": {
+      "bytes": 734,
+      "sha256": "2f2abd369912581e6707c4b1411360e3616277618b356c3451b135987f3d1171"
+    }
+  }
+}
