@@ -97,6 +97,7 @@ class _ZoteroItemDetailsDialogState extends State<ZoteroItemDetailsDialog> {
     return AlertDialog(
       key: const ValueKey('zotero-item-details-dialog'),
       insetPadding: const EdgeInsets.all(16),
+      scrollable: true,
       title: const Text('Reference details'),
       content: SizedBox(
         width: 620,
@@ -211,6 +212,7 @@ class _ZoteroSelectedReferencesDialogState
   Widget build(BuildContext context) => AlertDialog(
     key: const ValueKey('zotero-selected-references-dialog'),
     insetPadding: const EdgeInsets.all(16),
+    scrollable: true,
     title: const Text('Selected references'),
     content: SizedBox(
       width: 620,

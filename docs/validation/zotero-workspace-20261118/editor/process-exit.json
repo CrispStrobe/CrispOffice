@@ -1,0 +1,33 @@
+{
+  "exit_code": 0,
+  "elapsed_seconds": 49.2382371470012,
+  "finished_at_utc": "2026-11-18T12:21:45.545357+00:00",
+  "command": [
+    "/workspace/scratch/1f524e1234f3/zotero-toolchain/flutter-sdk/bin/flutter",
+    "test",
+    "--no-pub",
+    "--machine",
+    "--concurrency",
+    "4",
+    "test/word_zotero_backoff_session_test.dart",
+    "test/word_zotero_bibliography_controller_test.dart",
+    "test/word_zotero_catalog_citing_test.dart",
+    "test/word_zotero_catalog_query_test.dart",
+    "test/word_zotero_citing_controller_test.dart",
+    "test/word_zotero_citing_dialog_test.dart",
+    "test/word_zotero_collection_pagination_test.dart",
+    "test/word_zotero_connected_alias_test.dart",
+    "test/word_zotero_controller_test.dart",
+    "test/word_zotero_dialog_scaling_test.dart",
+    "test/word_zotero_dialog_test.dart",
+    "test/word_zotero_format_test.dart",
+    "test/word_zotero_library_details_test.dart",
+    "test/word_zotero_rich_controller_test.dart",
+    "test/word_zotero_saved_search_test.dart",
+    "test/word_zotero_source_identity_test.dart",
+    "test/word_zotero_source_resolver_test.dart",
+    "test/word_zotero_tag_filter_test.dart"
+  ],
+  "cwd": "/workspace/scratch/1f524e1234f3/zotero-validation/packages/quds_office_editor",
+  "runner_sha256": "17d61107e964fc4f778ccea1d005595ade12f03c6cee97355d5fb0087b25211f"
+}

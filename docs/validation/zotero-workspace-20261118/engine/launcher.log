@@ -1,0 +1,2 @@
+RUN: 22 complete current-source engine Zotero suites
+{"status": "passed", "suite_count": 22, "substantive_test_count": 445, "substantive_results": {"success": 445}, "substantive_skips": 0, "exit_code": 0, "guards": {"source_unchanged": true, "dependencies_unchanged": true, "runtime_unchanged": true, "workspace_unchanged": true, "selection_unchanged": true, "every_started_test_finished_once": true, "all_22_suites_executed": true}}

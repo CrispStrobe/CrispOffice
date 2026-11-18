@@ -1,0 +1,44 @@
+[
+  {
+    "cohort": "engine-current",
+    "source_files_checked": 419,
+    "current_source_matches": true,
+    "mismatches": [],
+    "status": "passed",
+    "suite_count": 22,
+    "test_count": 445,
+    "results": {
+      "success": 445
+    },
+    "skips": 0,
+    "all_guards_true": true
+  },
+  {
+    "cohort": "editor-current",
+    "source_files_checked": 538,
+    "current_source_matches": true,
+    "mismatches": [],
+    "status": "passed",
+    "suite_count": 18,
+    "test_count": 257,
+    "results": {
+      "success": 257
+    },
+    "skips": 0,
+    "all_guards_true": true
+  },
+  {
+    "cohort": "studio-current",
+    "source_files_checked": 624,
+    "current_source_matches": true,
+    "mismatches": [],
+    "status": "passed",
+    "suite_count": 1,
+    "test_count": 18,
+    "results": {
+      "success": 18
+    },
+    "skips": 0,
+    "all_guards_true": true
+  }
+]

@@ -1,0 +1,33 @@
+00:00 +0: loading /workspace/scratch/1f524e1234f3/zotero-validation/packages/quds_office_editor/test/word_zotero_format_test.dart
+00:00 +0: CSL JSON import accepts single object, normal array and Zotero Web API v3 envelope
+00:00 +1: CSL JSON import creates distinct offline IDs for records with no ID or URI
+00:00 +2: CSL JSON import links explicit personal and group URIs without conflating identical keys
+00:00 +3: CSL JSON import a canonical URI in the CSL id is a linked source
+00:00 +4: CSL JSON import preserves unsynced identity separately from the desktop API route
+00:00 +5: CSL JSON import rejects local routing aliases and malformed desktop identities
+00:00 +6: CSL JSON import untrusted and noncanonical URLs remain offline sources
+00:00 +7: CSL JSON import accepts exactly 500 records and refuses 501 or an empty export
+00:00 +8: CSL JSON import the import size bound counts UTF-8 bytes, not characters
+00:00 +9: CSL JSON import refuses malformed JSON and incomplete or wrongly typed records
+00:00 +10: refreshable source addresses recognizes personal/group HTTP and HTTPS item identifiers
+00:00 +11: refreshable source addresses refuses credentials, query strings, fragments, ports and invalid keys
+00:00 +12: desktop source identity normalizes aliases without changing the original imported source
+00:00 +13: desktop source identity same request route and item key do not conflate desktop profiles
+00:00 +14: desktop source identity local and numeric identities have distinct scopes
+00:00 +15: desktop source identity the source-compatible remote constructor retains canonical identity
+00:00 +16: formatted references become inert text removes scripts, styles and resource tags while preserving reference text
+00:00 +17: formatted references become inert text decodes named and numeric entities and preserves multilingual text
+00:00 +18: formatted references become inert text decoded markup is returned as text and never recursively evaluated
+00:00 +19: formatted references become inert text invalid Unicode numeric references produce replacement characters
+00:00 +20: formatted references become inert text recognizes uppercase variants of supported HTML entities
+00:00 +21: formatted references become inert text oversized formatted responses are refused
+00:00 +22: basic citation fallback formats locators and affixes without claiming a CSL style
+00:00 +23: basic citation fallback suppress-author leaves the year and locator, with affixes retained
+00:00 +24: basic citation fallback author-only omits the year and multiple items remain separated
+00:00 +25: basic citation fallback corporate authors, missing authors and missing dates have readable fallbacks
+00:00 +26: basic bibliography fallback deduplicates repeated citations and sorts authors then titles
+00:00 +27: basic bibliography fallback linked sources dedupe by URI while distinct libraries remain distinct
+00:00 +28: basic bibliography fallback canonical URL aliases identify the same bibliography source
+00:00 +29: basic bibliography fallback local URI aliases dedupe while identical keys in other profiles do not
+00:00 +30: basic bibliography fallback keeps container/DOI data, strips title markup and skips missing snapshots
+00:00 +31: All tests passed!

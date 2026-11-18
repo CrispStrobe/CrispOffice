@@ -1,0 +1,32 @@
+{
+  "status": "passed",
+  "recorded_at_utc": "2026-11-18T12:22:32.816051+00:00",
+  "qualified_product_commit": "d36413a2cc8e1de9fd7493b5d1baf2900e63f04b",
+  "cohorts": [
+    {
+      "cohort": "engine-current",
+      "source_inventory_sha256": "56b0fc177f4aa79cae169331df53b7f47a46fa5facae4aa7c2852573c81e6c49",
+      "source_inputs": 419,
+      "all_match_commit": true,
+      "differences": []
+    },
+    {
+      "cohort": "editor-current",
+      "source_inventory_sha256": "86e692c4174783d9dc0aed04c71e1d8efcf18c9a684f84aedf56db2da8ea65a9",
+      "source_inputs": 538,
+      "all_match_commit": true,
+      "differences": []
+    },
+    {
+      "cohort": "studio-current",
+      "source_inventory_sha256": "451abfbec2110bde736d616bb02d2ac0567c12299885d93afbf36d36d3b81d26",
+      "source_inputs": 624,
+      "all_match_commit": true,
+      "differences": []
+    }
+  ],
+  "notes": [
+    "Source input sets overlap and are not additional test totals.",
+    "Byte/Git-blob match binds earlier runs to this saved commit without rerunning unchanged product."
+  ]
+}

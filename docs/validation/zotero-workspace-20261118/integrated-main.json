@@ -1,0 +1,11 @@
+{
+  "base": "2292548eb69de2dbb5240ab9da59256f362137c6",
+  "incoming_main": "1e07cb852766f8651815138785be74c64a09ddc0",
+  "base_tree": "b1525f286b38fc77d6e5a531555c3967cf3a174b",
+  "incoming_main_tree": "b1525f286b38fc77d6e5a531555c3967cf3a174b",
+  "trees_identical": true,
+  "source_changes_from_main": [],
+  "reconciliation": "Add current main as the second parent of the next Zotero checkpoint. Keep current Zotero source and tests unchanged by the ancestry merge.",
+  "checked_at_utc": "2026-11-18T12:19:12.826832+00:00",
+  "independent_concurrent_work": "Three new external work branches created after initial reconciliation are fetched and recorded separately; no new PR was open for them at the refresh cutoff. Their unfinished product changes are not part of this Zotero qualification."
+}
