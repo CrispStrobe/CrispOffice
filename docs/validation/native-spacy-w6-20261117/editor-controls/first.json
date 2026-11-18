@@ -1,0 +1,43 @@
+{
+  "acceptance_rerun": false,
+  "argv": [
+    "flutter",
+    "test",
+    "--no-pub",
+    "--concurrency=1",
+    "packages/quds_office_editor/example/test/studio_spacy_grammar_native_gate.dart",
+    "--reporter",
+    "expanded"
+  ],
+  "attempt": "first",
+  "bundle_manifest_after_sha256": "d599768375de3dc56abcca5cf1d49da0015857f9d3a10640aebb5317ef5d427e",
+  "bundle_manifest_before_sha256": "d599768375de3dc56abcca5cf1d49da0015857f9d3a10640aebb5317ef5d427e",
+  "ci_queried_or_waited": false,
+  "cwd": "repository root",
+  "elapsed_seconds": 11.75200366899844,
+  "environment": {
+    "TMPDIR": "task-owned writable temporary directory"
+  },
+  "exit_code": 0,
+  "gate_sha256": "543c2b49472a7bba44c92e045abcc3bb5973007749fae4974997facddadb4991",
+  "head_before": "8eb3c03aaaeb6c676f44195e89deaef1535d541e",
+  "implicit_pub": false,
+  "log": "first.log",
+  "log_sha256": "89d1982a9a6f6b5ea7cf7da67f057b7e72b1375a566d7bf9012723012bf14db5",
+  "native_library_after_sha256": "ea89842ebf22c08508aff1cfbf18d78a107118af320523009616ff62b6e42977",
+  "native_library_before_sha256": "ea89842ebf22c08508aff1cfbf18d78a107118af320523009616ff62b6e42977",
+  "passed_tests": 10,
+  "qualification_panel_read": false,
+  "runner_sha256": "d25d6d7c10f3cc0e101c7801c0a1ec2dcdc0266c7942257749f4e6192cdb325d",
+  "runtime_receipt_sha256": "aec65c3cc094bbef6fae713019b88f9e5f2d7cde54e15f04219a48d01ec19f29",
+  "runtime_unchanged": true,
+  "schema": "quds.spacy.w6.real_editor_gate.v1",
+  "scope": "Real installed native worker and actual manual editor proofing integration, using one authored development sentence. Delayed-reply cases are explicitly identified harness lifecycle controls; native output is never mocked.",
+  "source_count": 422,
+  "source_unchanged": true,
+  "sources_after": "first.sources-after.json",
+  "sources_after_sha256": "fcf9188aa258a93e1ef03064352a70af8824ab72af5adba2d4c97d92fefe1a2d",
+  "sources_before": "first.sources-before.json",
+  "sources_before_sha256": "fcf9188aa258a93e1ef03064352a70af8824ab72af5adba2d4c97d92fefe1a2d",
+  "status": "passed"
+}

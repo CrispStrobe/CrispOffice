@@ -1,0 +1,816 @@
+00:00 +0: loading <QUDS>/packages/quds_office_engine/test/proofing/german_writing_rules_test.dart
+00:00 +0: <QUDS>/packages/quds_office_engine/test/proofing/german_writing_rules_test.dart: ordinary German, valid repetitions and regional quotes stay clean
+00:00 +1: <QUDS>/packages/quds_office_engine/test/proofing/german_writing_rules_test.dart: spacing checks return precise reviewable replacements
+00:00 +2: <QUDS>/packages/quds_office_engine/test/proofing/german_writing_rules_test.dart: only conservative repeated conjunctions are flagged
+00:00 +3: <QUDS>/packages/quds_office_engine/test/proofing/german_writing_rules_test.dart: selected pronoun-verb disagreement is grammar, not a broad parser claim
+00:00 +4: <QUDS>/packages/quds_office_engine/test/proofing/german_writing_rules_test.dart: lowercase ich and du receive missing sein agreement corrections
+00:00 +5: <QUDS>/packages/quds_office_engine/test/proofing/german_writing_rules_test.dart: nominal Ich and Du remain outside the limited agreement rule
+00:00 +6: <QUDS>/packages/quds_office_engine/test/proofing/german_writing_rules_test.dart: comparison pronouns are not mistaken for the following subject
+00:00 +7: <QUDS>/packages/quds_office_engine/test/proofing/german_writing_rules_test.dart: agreement suggestions preserve all-capital verb casing
+00:00 +8: <QUDS>/packages/quds_office_engine/test/proofing/german_writing_rules_test.dart: finite auxiliary and modal agreement preserves exact source offsets
+00:00 +9: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Ich komme mit mich.
+00:00 +10: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Ich komme mit mich.
+00:00 +11: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Ich komme mit mich.
+00:00 +12: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Ich komme mit mich.
+00:00 +13: <QUDS>/packages/quds_office_engine/test/proofing/german_writing_rules_test.dart: common lexical verbs receive finite agreement corrections
+00:00 +14: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Das kommt von dich.
+00:00 +15: <QUDS>/packages/quds_office_engine/test/proofing/german_writing_rules_test.dart: lexical verb expansion preserves valid and ambiguous constructions
+00:00 +16: <QUDS>/packages/quds_office_engine/test/proofing/german_writing_rules_test.dart: lexical verb expansion preserves valid and ambiguous constructions
+00:00 +17: <QUDS>/packages/quds_office_engine/test/proofing/german_writing_rules_test.dart: lexical verb expansion preserves valid and ambiguous constructions
+00:00 +18: <QUDS>/packages/quds_office_engine/test/proofing/german_writing_rules_test.dart: lexical verb expansion preserves valid and ambiguous constructions
+00:00 +19: <QUDS>/packages/quds_office_engine/test/proofing/german_writing_rules_test.dart: lexical verb expansion preserves valid and ambiguous constructions
+00:00 +20: <QUDS>/packages/quds_office_engine/test/proofing/german_writing_rules_test.dart: lexical verb expansion preserves valid and ambiguous constructions
+00:00 +21: <QUDS>/packages/quds_office_engine/test/proofing/german_writing_rules_test.dart: lexical verb expansion preserves valid and ambiguous constructions
+00:00 +22: <QUDS>/packages/quds_office_engine/test/proofing/german_writing_rules_test.dart: lexical verb expansion preserves valid and ambiguous constructions
+00:00 +23: <QUDS>/packages/quds_office_engine/test/proofing/german_writing_rules_test.dart: lexical verb expansion preserves valid and ambiguous constructions
+00:00 +24: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Es geht durch ihnen.
+00:00 +25: <QUDS>/packages/quds_office_engine/test/proofing/german_writing_rules_test.dart: lexical verb corrections retain regional and uppercase behavior
+00:00 +26: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Ich rede mit den Mann.
+00:00 +27: <QUDS>/packages/quds_office_engine/test/proofing/german_writing_rules_test.dart: seit and seid are distinguished only in reviewed contexts
+00:00 +28: <QUDS>/packages/quds_office_engine/test/proofing/german_writing_rules_test.dart: seit and seid are distinguished only in reviewed contexts
+00:00 +29: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Er kommt mit einem Frau.
+00:00 +30: <QUDS>/packages/quds_office_engine/test/proofing/german_writing_rules_test.dart: seit-seid controls preserve auxiliaries, imperatives and dative ihr
+00:00 +31: <QUDS>/packages/quds_office_engine/test/proofing/german_writing_rules_test.dart: seit-seid controls preserve auxiliaries, imperatives and dative ihr
+00:00 +32: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Das steht bei das Haus.
+00:00 +33: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Das steht bei das Haus.
+00:00 +34: <QUDS>/packages/quds_office_engine/test/proofing/german_writing_rules_test.dart: soft-hyphen grammar projection retains exact original UTF-16 ranges
+00:00 +35: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Ich komme aus die Stadt.
+00:00 +36: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Ich komme aus die Stadt.
+00:00 +37: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Ich komme aus die Stadt.
+00:00 +38: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Ich komme aus die Stadt.
+00:00 +39: <QUDS>/packages/quds_office_engine/test/proofing/german_writing_rules_test.dart: grammar does not infer subjects or verbs from joined identifiers
+00:00 +40: <QUDS>/packages/quds_office_engine/test/proofing/german_writing_rules_test.dart: grammar does not infer subjects or verbs from joined identifiers
+00:00 +41: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Er kommt zu seine Schule.
+00:00 +42: <QUDS>/packages/quds_office_engine/test/proofing/german_writing_rules_test.dart: capitalized nominal verb objects do not become agreement corrections
+00:00 +43: <QUDS>/packages/quds_office_engine/test/proofing/german_writing_rules_test.dart: capitalized nominal verb objects do not become agreement corrections
+00:00 +44: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Sie kommt gegenüber das Büro.
+00:00 +45: <QUDS>/packages/quds_office_engine/test/proofing/german_writing_rules_test.dart: declined determiners and fused prepositions preserve nominal pronouns
+00:00 +46: <QUDS>/packages/quds_office_engine/test/proofing/german_writing_rules_test.dart: declined determiners and fused prepositions preserve nominal pronouns
+00:00 +47: <QUDS>/packages/quds_office_engine/test/proofing/german_writing_rules_test.dart: declined determiners and fused prepositions preserve nominal pronouns
+00:00 +48: <QUDS>/packages/quds_office_engine/test/proofing/german_writing_rules_test.dart: declined determiners and fused prepositions preserve nominal pronouns
+00:00 +49: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Er kommt ohne dem Buch.
+00:00 +50: <QUDS>/packages/quds_office_engine/test/proofing/german_writing_rules_test.dart: word-internal apostrophes do not close enclosing single quotes
+00:00 +51: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Das spricht gegen diesem Plan.
+00:00 +52: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Das spricht gegen diesem Plan.
+00:00 +53: <QUDS>/packages/quds_office_engine/test/proofing/german_writing_rules_test.dart: unsafe grammar and spacing matches leave ordinary corrections available
+00:00 +54: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Es geht um einer Frage.
+00:00 +55: <QUDS>/packages/quds_office_engine/test/proofing/german_writing_rules_test.dart: terminology substring rules do not replace partial graphemes
+00:00 +56: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Das kommt von euer Kind.
+00:00 +57: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Das kommt von euer Kind.
+00:00 +58: <QUDS>/packages/quds_office_engine/test/proofing/german_writing_rules_test.dart: URLs, inline code and rule opt-outs remain untouched
+00:00 +59: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Das ist für unserem Kind.
+00:00 +60: <QUDS>/packages/quds_office_engine/test/proofing/german_writing_rules_test.dart: matching multi-backtick spans protect grammar and punctuation
+00:00 +61: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Er kommt mit den Kinder.
+00:00 +62: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Er kommt mit den Kinder.
+00:00 +63: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Er kommt mit den Kinder.
+00:00 +64: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Er kommt mit den Kinder.
+00:00 +65: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Er kommt mit den Kinder.
+00:00 +66: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Er kommt mit den Kinder.
+00:00 +67: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Sie liest aus den Bücher.
+00:00 +68: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Das steht bei den Häuser.
+00:00 +69: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Wir reden von den Fehler.
+00:00 +70: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Sie kommt zu den Termine.
+00:00 +71: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Er wartet seit diesen Tage.
+00:00 +72: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Sie redet mit einem Student.
+00:00 +73: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Er kommt mit den Bänder.
+00:00 +74: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Ein gute Buch liegt hier.
+00:00 +75: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Eine gutes Frau kommt.
+00:00 +76: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Das guten Kind kommt.
+00:00 +77: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Der gutes Mann kommt.
+00:00 +78: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Die guter Frau kommt.
+00:00 +79: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Die gute Kinder kommen.
+00:00 +80: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Ich sehe einen gute Mann.
+00:00 +81: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Ich komme mit einem gutem Buch.
+00:00 +82: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Sie kommt mit einer gute Frau.
+00:00 +83: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Er kommt aus dem schöne Haus.
+00:00 +84: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Das ist für das neuen Büro.
+00:00 +85: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Ich komme ohne einen guter Plan.
+00:00 +86: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Unser gute Kind kommt.
+00:00 +87: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Euer gute Kind kommt.
+00:00 +88: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Diese guter Datei ist hier.
+00:00 +89: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Ich denke, das du kommst.
+00:00 +90: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Wir glauben, das er hier ist.
+00:00 +91: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Er weiß, das wir Zeit haben.
+00:00 +92: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Sie hofft, das ich das Buch lese.
+00:00 +93: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Ich glaube dass du kommst.
+00:00 +94: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Wir wissen dass sie heute kommen.
+00:00 +95: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Er meint, sie ist größer wie ich.
+00:00 +96: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Das ist besser wie vorher.
+00:00 +97: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Sie ist jünger wie er.
+00:00 +98: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Er ist so groß als ich.
+00:00 +99: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Sie ist genauso gut als er.
+00:00 +100: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Die Datei ist ebenso wichtig als der Bericht.
+00:00 +101: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Die Datei ist wichtiger wie der Bericht.
+00:00 +102: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Ich komme mit dir. Sie kommt mit ihm. Wir sprechen mit ihnen.
+00:00 +103: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Das ist für mich. Sie kommt ohne ihn. Wir sind gegen euch.
+00:00 +104: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Bei mir ist alles gut. Nach dir bin ich dran.
+00:00 +105: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Für ihr Kind ist das wichtig. Das ist für ihre Kinder.
+00:00 +106: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Sie spricht mit Ihr und Sie in einer Sprachübung.
+00:00 +107: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Das ist für das Ich. Wir sprechen vom Du.
+00:00 +108: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Seit ich hier bin, ist alles gut.
+00:00 +109: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Seit mich der Mann kennt, ist alles gut.
+00:00 +110: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Seit er die Frau kennt, ist alles gut.
+00:00 +111: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Ohne mir zu helfen geht er.
+00:00 +112: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Ohne ihm helfen zu können bleibt er.
+00:00 +113: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Sie kommt, ohne dem Kind zu helfen.
+00:00 +114: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Er kommt, ohne der Frau bekannt zu sein.
+00:00 +115: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Ohne ihm böse zu sein kommt sie.
+00:00 +116: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Ohne mir weh zu tun kommt sie.
+00:00 +117: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Ohne dem Kind weh zu tun kommt sie.
+00:00 +118: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Wir kommen, um ihm zu helfen.
+00:00 +119: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Sie kommt, um dem Kind zu helfen.
+00:00 +120: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Um ihm nahe zu sein kommt sie.
+00:00 +121: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Um mir einen Gefallen zu tun kommt sie.
+00:00 +122: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Er bittet um seiner Kinder willen.
+00:00 +123: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Sie bittet um ihrer kleinen Kinder willen.
+00:00 +124: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Das ist mit ein schönes Buch.
+00:00 +125: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Die Datei ist mit die wichtigste Datei.
+00:00 +126: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Er wollte mit den Mann begleiten.
+00:00 +127: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Sie wollte mit ihn begleiten.
+00:00 +128: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Wegen dem Kind kommt sie. Trotz dem Fehler bleibt sie.
+00:00 +129: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Wegen des Kindes kommt sie. Trotz des Fehlers bleibt sie.
+00:00 +130: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Außer ich kommt niemand. Alle außer mir kommen.
+00:00 +131: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Wir gehen in die Stadt. Wir sind in der Stadt.
+00:00 +132: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Wir gehen auf den Weg. Wir stehen auf dem Weg.
+00:00 +133: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Wir gehen an das Haus. Wir stehen an dem Haus.
+00:00 +134: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Er kommt bis nächsten Dienstag. Wir können bis zu zehn Leute aufnehmen.
+00:00 +135: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Er geht den Weg entlang. Entlang des Weges stehen Häuser.
+00:00 +136: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Das steht bei dem Mann. Sie kommt mit einem Mann.
+00:00 +137: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Das ist für das Kind. Er kommt ohne einen Mann.
+00:00 +138: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Das steht bei den Kindern, den Büchern und den Fehlern.
+00:00 +139: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Er kommt mit den Frauen. Sie kommt mit den Autos.
+00:00 +140: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Sie kommt mit den Büros. Wir reden von den Regeln.
+00:00 +141: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Das ist für den Ordner. Das ist für die Ordner.
+00:00 +142: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Er kommt mit einem Fehler. Er kommt mit den Fehlern.
+00:00 +143: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Von diesem Tage an bleibt sie.
+00:00 +144: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Nach dem Jahre 1990 kommt sie.
+00:00 +145: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Aus dem Texte liest sie.
+00:00 +146: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Mit dem Tage kommt sie.
+00:00 +147: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Das ist für dem Qudsbrand.
+00:00 +148: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Er kommt mit einem Mensch.
+00:00 +149: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Sie redet mit der Leiter.
+00:00 +150: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Ein gutes Buch liegt neben einem guten Buch.
+00:00 +151: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Eine gute Frau kommt mit einer guten Frau.
+00:00 +152: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Ein guter Mann kommt mit einem guten Mann.
+00:00 +153: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Das gute Kind kommt. Die guten Kinder kommen.
+00:00 +154: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Der gute Mann kommt. Die gute Frau kommt.
+00:01 +155: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Diese gute Datei kommt mit diesen guten Dateien.
+00:01 +156: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Er kommt mit einem neuen, guten Buch.
+00:01 +157: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Das ist ein besseres Buch. Wir lesen die besseren Bücher.
+00:01 +158: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Das ist ein größeres Haus. Wir kommen mit dem größeren Auto.
+00:01 +159: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Ein kleiner Mann kommt. Ein kleines Kind kommt.
+00:01 +160: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Das ist ein gut lesbares Buch.
+00:01 +161: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Die automatisch geänderte Datei ist hier.
+00:01 +162: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Der öffentlich geprüfte Bericht ist hier.
+00:01 +163: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Die endgültig geschlossene Tür ist hier.
+00:01 +164: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Eine leicht beschädigte Tür ist hier.
+00:01 +165: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Ein vollständig geänderter Text ist hier.
+00:01 +166: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Ein einfach schönes Haus ist hier.
+00:01 +167: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Ein leise geschlossenes Fenster hilft dem Kind.
+00:01 +168: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Mit dem leise geschlossenen Fenster ist es ruhig.
+00:01 +169: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Ein müde geprüfter Bericht liegt vor.
+00:01 +170: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Eine leiser geschlossene Tür hilft dem Kind.
+00:01 +171: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Ein besonders gutes Buch liegt hier.
+00:01 +172: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Die Kinder spielen schön. Der Mann ist freundlich.
+00:01 +173: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Ich denke, dass du kommst.
+00:01 +174: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Ich denke das. Du kommst.
+00:01 +175: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Ich sage das, was ich denke.
+00:01 +176: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Das Buch, das ich lese, ist gut.
+00:01 +177: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Ich sehe das Buch, das du liest.
+00:01 +178: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Ich hoffe, das reicht.
+00:01 +179: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Ich glaube das gerne.
+00:01 +180: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Ich denke, das ich.
+00:01 +181: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Ich denke, das ich Wort für Wort.
+00:01 +182: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Ich denke, das ich „komme“ sage.
+00:01 +183: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Er ist größer als ich. Sie ist genauso groß wie er.
+00:01 +184: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Er ist kleiner, wie ich gestern bemerkt habe.
+00:01 +185: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Die Lage war früher wie heute schwierig.
+00:01 +186: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Er war früher wie ein Bruder für mich.
+00:01 +187: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Sie sah später wie ihre Mutter aus.
+00:01 +188: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Ich komme später wie vereinbart.
+00:01 +189: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Er ist schneller wie auch zuverlässiger geworden.
+00:01 +190: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Sie ist schneller wie beispielsweise das Auto.
+00:01 +191: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Er arbeitet so schnell als möglich.
+00:01 +192: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Er ist so groß als ob er gewachsen wäre.
+00:01 +193: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Er ist so groß als wenn er gewachsen wäre.
+00:01 +194: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Er war so klein als er geboren wurde.
+00:01 +195: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Er war so klein als er kam.
+00:01 +196: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Die Datei ist ebenso wichtig wie der Bericht.
+00:01 +197: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Die Datei ist wichtiger als der Bericht.
+00:01 +198: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Der Bericht war so wichtig als er hier ankam.
+00:01 +199: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Der Bericht war so wichtig als ob er alles bewiesen hätte.
+00:01 +200: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Er ist so gut als Lehrer.
+00:01 +201: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Er ist so gut als Arzt.
+00:01 +202: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Sie ist so wichtig als Ärztin.
+00:01 +203: <QUDS>/packages/quds_office_engine/test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Der Besser ist ein Name. Besser wie früher ist ein Titel.
+00:01 +204: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: correct and recheck Die Kinder spielt im Garten.
+00:01 +205: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: correct and recheck Die Kinder spielt im Garten.
+00:01 +206: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: correct and recheck Die Kinder spielt im Garten.
+00:01 +207: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: correct and recheck Die Kinder spielt im Garten.
+00:01 +208: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: correct and recheck Die Kinder spielt im Garten.
+00:01 +209: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: correct and recheck Das Kind spielen im Garten.
+00:01 +210: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: correct and recheck Die Lehrer arbeitet heute.
+00:01 +211: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: correct and recheck Der Lehrer arbeiten heute.
+00:01 +212: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: correct and recheck Meine Freunde kommt morgen.
+00:01 +213: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: correct and recheck Das Buch liegen hier.
+00:01 +214: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: correct and recheck Die Bücher liegt hier.
+00:01 +215: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: correct and recheck Diese Mädchen ist müde.
+00:01 +216: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: correct and recheck Das Mädchen sind müde.
+00:01 +217: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: correct and recheck Die kleinen Kinder spielt im Garten.
+00:01 +218: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: correct and recheck Die Frau arbeiten heute.
+00:01 +219: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: correct and recheck Der Hund laufen nach Hause.
+00:01 +220: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: correct and recheck Die Hunde läuft nach Hause.
+00:01 +221: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: correct and recheck Die Gäste wartet draußen.
+00:01 +222: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: correct and recheck Meine Töchter wohnt hier.
+00:01 +223: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: preserve or abstain Die Kinder spielen im Garten.
+00:01 +224: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: preserve or abstain Das Kind spielt im Garten.
+00:01 +225: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: preserve or abstain Die Leiter steht im Schuppen.
+00:01 +226: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: preserve or abstain Die Leiter arbeiten im Büro.
+00:01 +227: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: preserve or abstain Die Mutter mit den Kindern kommt morgen.
+00:01 +228: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: preserve or abstain Die Kinder sieht meine Frau.
+00:01 +229: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: preserve or abstain Die Hunde liebt meine Schwester.
+00:01 +230: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: preserve or abstain Das Buch lesen meine Freunde.
+00:01 +231: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: preserve or abstain Die Kinder sieht er jeden Tag.
+00:01 +232: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: preserve or abstain Der Mann und die Frau arbeiten heute.
+00:01 +233: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: preserve or abstain Das Kind und der Hund spielen draußen.
+00:01 +234: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: preserve or abstain Die Kinder, die er kennt, spielen draußen.
+00:01 +235: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: preserve or abstain Die Frau, deren Kinder spielen, arbeitet heute.
+00:01 +236: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: preserve or abstain Die Eltern des Kindes haben Zeit.
+00:01 +237: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: preserve or abstain Der Lehrer der Kinder arbeitet heute.
+00:01 +238: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: preserve or abstain Die Kinder spielt heute Abend.
+00:01 +239: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: preserve or abstain Die Kinder spielt!
+00:01 +240: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: preserve or abstain Die Kinder spielt?
+00:01 +241: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: preserve or abstain Die Kinder spielen gelernt.
+00:01 +242: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: preserve or abstain Die Kinder habe er gesehen.
+00:01 +243: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: preserve or abstain Die Qudsbrand spielt hier.
+00:01 +244: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: preserve or abstain Die Angestellten arbeitet hier.
+00:01 +245: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: preserve or abstain Die Kinder Spielt hier.
+00:01 +246: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: preserve or abstain „Die Kinder spielt“ ist ein Beispiel.
+00:01 +247: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: preserve or abstain `Die Kinder spielt im Garten.`
+00:01 +248: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: preserve or abstain https://example.com/Die-Kinder-spielt
+00:01 +249: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: preserve or abstain Das Mädchen ist müde.
+00:01 +250: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: preserve or abstain Die Mädchen sind müde.
+00:01 +251: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: preserve or abstain Die große Liebe sind meine Kinder.
+00:01 +252: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: preserve or abstain Mein größter Schatz sind meine Kinder.
+00:01 +253: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: locale aliases and source soft hyphens retain ownership
+00:01 +254: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: long rejected predicate stays bounded without partial findings
+00:01 +255: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: preserve admitted predicate tail 0 and source ranges
+00:01 +256: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: preserve admitted predicate tail 1 and source ranges
+00:01 +257: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: preserve admitted predicate tail 2 and source ranges
+00:01 +258: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: preserve admitted predicate tail 3 and source ranges
+00:01 +259: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: preserve admitted predicate tail 4 and source ranges
+00:01 +260: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: preserve admitted predicate tail 5 and source ranges
+00:01 +261: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: preserve admitted predicate tail 6 and source ranges
+00:01 +262: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: preserve admitted predicate tail 7 and source ranges
+00:01 +263: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: retain rejected predicate tail 0
+00:01 +264: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: retain rejected predicate tail 1
+00:01 +265: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: retain rejected predicate tail 2
+00:01 +266: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: retain rejected predicate tail 3
+00:01 +267: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: retain rejected predicate tail 4
+00:01 +268: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: retain rejected predicate tail 5
+00:01 +269: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: retain rejected predicate tail 6
+00:01 +270: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: retain rejected predicate tail 7
+00:01 +271: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: long spaces completes for accepted and rejected tails
+00:02 +272: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: Swiss conjugation and phrase corrections preserve ss orthography
+00:02 +273: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: Swiss conjugation and phrase corrections preserve ss orthography
+00:02 +274: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: long mixed horizontal whitespace completes for accepted and rejected tails
+00:02 +275: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: long mixed horizontal whitespace completes for accepted and rejected tails
+00:02 +276: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: long mixed horizontal whitespace completes for accepted and rejected tails
+00:02 +277: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: long mixed horizontal whitespace completes for accepted and rejected tails
+00:02 +278: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: long mixed horizontal whitespace completes for accepted and rejected tails
+00:02 +279: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: long mixed horizontal whitespace completes for accepted and rejected tails
+00:02 +280: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: long mixed horizontal whitespace completes for accepted and rejected tails
+00:02 +281: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: long mixed horizontal whitespace completes for accepted and rejected tails
+00:02 +282: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: long mixed horizontal whitespace completes for accepted and rejected tails
+00:02 +283: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: long mixed horizontal whitespace completes for accepted and rejected tails
+00:02 +284: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: long mixed horizontal whitespace completes for accepted and rejected tails
+00:02 +285: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: long mixed horizontal whitespace completes for accepted and rejected tails
+00:02 +286: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: long mixed horizontal whitespace completes for accepted and rejected tails
+00:02 +287: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: long mixed horizontal whitespace completes for accepted and rejected tails
+00:02 +288: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: long mixed horizontal whitespace completes for accepted and rejected tails
+00:02 +289: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: long mixed horizontal whitespace completes for accepted and rejected tails
+00:02 +290: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: long mixed horizontal whitespace completes for accepted and rejected tails
+00:02 +291: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: long mixed horizontal whitespace completes for accepted and rejected tails
+00:02 +292: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: long mixed horizontal whitespace completes for accepted and rejected tails
+00:02 +293: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: long mixed horizontal whitespace completes for accepted and rejected tails
+00:02 +294: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: long mixed horizontal whitespace completes for accepted and rejected tails
+00:02 +295: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: long mixed horizontal whitespace completes for accepted and rejected tails
+00:02 +296: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: long mixed horizontal whitespace completes for accepted and rejected tails
+00:02 +297: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: long mixed horizontal whitespace completes for accepted and rejected tails
+00:02 +298: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: long mixed horizontal whitespace completes for accepted and rejected tails
+00:02 +299: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: long mixed horizontal whitespace completes for accepted and rejected tails
+00:02 +300: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: long mixed horizontal whitespace completes for accepted and rejected tails
+00:02 +301: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: long mixed horizontal whitespace completes for accepted and rejected tails
+00:02 +302: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: long mixed horizontal whitespace completes for accepted and rejected tails
+00:02 +303: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: long mixed horizontal whitespace completes for accepted and rejected tails
+00:02 +304: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: long mixed horizontal whitespace completes for accepted and rejected tails
+00:02 +305: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: long mixed horizontal whitespace completes for accepted and rejected tails
+00:02 +306: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: long mixed horizontal whitespace completes for accepted and rejected tails
+00:02 +307: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: long mixed horizontal whitespace completes for accepted and rejected tails
+00:02 +308: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: long mixed horizontal whitespace completes for accepted and rejected tails
+00:02 +309: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: long mixed horizontal whitespace completes for accepted and rejected tails
+00:02 +310: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: long mixed horizontal whitespace completes for accepted and rejected tails
+00:02 +311: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: long mixed horizontal whitespace completes for accepted and rejected tails
+00:02 +312: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: long mixed horizontal whitespace completes for accepted and rejected tails
+00:02 +313: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: long mixed horizontal whitespace completes for accepted and rejected tails
+00:02 +314: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: long mixed horizontal whitespace completes for accepted and rejected tails
+00:02 +315: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: long mixed horizontal whitespace completes for accepted and rejected tails
+00:02 +316: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: long mixed horizontal whitespace completes for accepted and rejected tails
+00:02 +317: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: long mixed horizontal whitespace completes for accepted and rejected tails
+00:02 +318: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: long mixed horizontal whitespace completes for accepted and rejected tails
+00:02 +319: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: long mixed horizontal whitespace completes for accepted and rejected tails
+00:02 +320: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: long mixed horizontal whitespace completes for accepted and rejected tails
+00:02 +321: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: long mixed horizontal whitespace completes for accepted and rejected tails
+00:02 +322: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: long mixed horizontal whitespace completes for accepted and rejected tails
+00:02 +323: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: long mixed horizontal whitespace completes for accepted and rejected tails
+00:02 +324: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: long mixed horizontal whitespace completes for accepted and rejected tails
+00:02 +325: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: long mixed horizontal whitespace completes for accepted and rejected tails
+00:02 +326: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: long mixed horizontal whitespace completes for accepted and rejected tails
+00:02 +327: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: long mixed horizontal whitespace completes for accepted and rejected tails
+00:02 +328: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: long mixed horizontal whitespace completes for accepted and rejected tails
+00:02 +329: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: long mixed horizontal whitespace completes for accepted and rejected tails
+00:02 +330: <QUDS>/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart: long mixed horizontal whitespace completes for accepted and rejected tails
+00:02 +331: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: expanded finite forms and clear inverted subjects Kann wir lesen?
+00:02 +332: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: expanded finite forms and clear inverted subjects Ich weiß, dass er gehst.
+00:02 +333: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: expanded finite forms and clear inverted subjects Wenn ich hilfst, komme ich.
+00:02 +334: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: expanded finite forms and clear inverted subjects Ich weiß, dass er gehen.
+00:02 +335: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Er ist hier. Man hat Zeit. Er kommt später.
+00:02 +336: loading <QUDS>/packages/quds_office_engine/test/proofing/german_morphology_grammar_test.dart
+00:02 +336: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Du weißt das. Ich weiß das. Wir wissen das.
+00:02 +337: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Du hilfst ihr. Ich helfe ihr. Wir helfen ihr.
+00:02 +338: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Du trägst das. Ich trage das. Wir tragen das.
+00:02 +339: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Er habe Zeit, sagte er.
+00:02 +340: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Er gehe nach Hause, sagte sie.
+00:02 +341: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Man nehme das Buch und lese es.
+00:02 +342: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Er komme heute, sagte sie.
+00:02 +343: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Er werde kommen, sagte sie.
+00:02 +344: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Er denke an uns, sagte sie.
+00:02 +345: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Er bringe das Buch, sagte sie.
+00:02 +346: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Er stehe dort und warte.
+00:02 +347: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Habe er Zeit, frage sie.
+00:02 +348: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Gehe er nach Hause, sagte sie.
+00:02 +349: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Man sei vorsichtig. Er sei vorsichtig.
+00:02 +350: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Habe du Geduld!
+00:02 +351: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Gehe du nach Hause!
+00:02 +352: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Lerne du zuerst!
+00:02 +353: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Warte du hier!
+00:02 +354: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Werde du glücklich!
+00:02 +355: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Sei du ruhig!
+00:02 +356: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Nimm du das Buch!
+00:02 +357: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Gib du das Buch!
+00:02 +358: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Bleib du hier!
+00:02 +359: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Gehen wir! Bleiben wir hier!
+00:02 +360: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Haben du und ich Zeit?
+00:02 +361: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Können er und ich kommen?
+00:02 +362: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Sind du, ich und Peter hier?
+00:02 +363: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Haben du oder ich gewonnen?
+00:02 +364: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Kommen du sowie ich heute?
+00:02 +365: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Ich sagte Du und meinte Ich.
+00:02 +366: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Wir haben du gesagt.
+00:02 +367: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Der Er ist ein Ausdruck. Das Man ist ein Begriff.
+00:02 +368: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Das Er haben wir gelesen. Das Man haben wir besprochen.
+00:02 +369: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Sein wahres Ich hat Grenzen. Ein gutes Du ist wichtig.
+00:02 +370: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Die Macht ich im Text benenne.
+00:02 +371: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Weil er Essen kocht, bleibt er.
+00:02 +372: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Weil er Lesen lernt, bleibt er.
+00:02 +373: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Weil er eine Frage hat, bleibt er.
+00:02 +374: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Weil du Frage und Antwort kennst, bleibst du.
+00:02 +375: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched WEIL DU FRAGE UND ANTWORT KENNST, BLEIBST DU.
+00:02 +376: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched WEIL DU GLAUBE HAST, BLEIBST DU.
+00:02 +377: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched WEIL DU SUCHE UND FRAGE KENNST, BLEIBST DU.
+00:02 +378: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched IHR MACHT Freude. Ihr macht Freude.
+00:02 +379: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Ihr schreiben wir. Ihr helfen wir. Ihr tragen wir das nach.
+00:02 +380: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Ihr hilft man. Ihr schreibt man.
+00:02 +381: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Wie er haben wir Zeit. Anders als man haben wir Zeit.
+00:02 +382: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Er und ich haben Zeit. Peter und er haben Zeit.
+00:02 +383: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Nicht nur sie, sondern auch er haben Zeit.
+00:02 +384: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Er hätte Zeit. Er könnte kommen. Man müsste gehen.
+00:02 +385: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Wie geht es dir? Was hat er gesagt? Warum haben wir Zeit?
+00:02 +386: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Kann ich gehen? Will er lesen? Muss man gehen?
+00:02 +387: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Muss er arbeiten? Kann ich helfen?
+00:02 +388: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Könnte ich gehen? Würde ich gehen? Möchte ich helfen?
+00:02 +389: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Sollte ich warten? Dürfte ich kommen? Wollte ich bleiben?
+00:02 +390: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Könnten wir gehen? Würden wir helfen? Möchte er arbeiten?
+00:02 +391: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Auf Man leben viele Menschen.
+00:02 +392: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Für Man haben wir eine Datei.
+00:02 +393: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Ich weiß, dass er gehen kann.
+00:02 +394: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Wenn ich helfen kann, komme ich.
+00:02 +395: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Du sagst, dass du kommen willst.
+00:02 +396: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Ich frage, ob er arbeiten wird.
+00:02 +397: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Wir kommen, weil ich arbeiten muss.
+00:02 +398: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Er sagt, dass wir helfen können.
+00:02 +399: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Ich bleibe, wenn ich lesen darf.
+00:02 +400: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Er weiß, dass er gehen wird.
+00:02 +401: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Sie sagt, dass ich kommen sollte.
+00:02 +402: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Sie sagt, dass du bleiben könntest.
+00:02 +403: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Sie sagt, dass er arbeiten möchte.
+00:02 +404: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Ich komme, weil ich helfen werde.
+00:02 +405: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Ich komme, weil ich arbeiten gehe.
+00:02 +406: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Sie sagt, dass er helfen würde.
+00:02 +407: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Sie sagt, dass ich gehen müsse.
+00:02 +408: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Sie sagt, dass er warten wolle.
+00:02 +409: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Sie sagt, dass er gehen dürfe.
+00:02 +410: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Sie sagt, dass ich bleiben solle.
+00:02 +411: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Er heißt Martin. Man heißt ihn willkommen.
+00:02 +412: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: inverted findings retain original ranges through soft hyphens
+00:02 +413: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart: inverted grammar cannot be inferred from protected or joined tokens
+00:02 +414: <QUDS>/packages/quds_office_engine/test/proofing/german_morphology_grammar_test.dart: correct and recheck: Sie arbeitet mit dem Student.
+00:02 +415: <QUDS>/packages/quds_office_engine/test/proofing/german_morphology_grammar_test.dart: correct and recheck: Das ist für den Kunde.
+00:02 +416: <QUDS>/packages/quds_office_engine/test/proofing/german_morphology_grammar_test.dart: correct and recheck: Wir sprechen mit dem Junge.
+00:02 +417: <QUDS>/packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart: finite nouns retain their case in de-DE
+00:02 +418: <QUDS>/packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart: finite nouns retain their case in de-DE
+00:03 +419: <QUDS>/packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart: finite nouns retain their case in de-DE
+00:03 +420: <QUDS>/packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart: finite nouns retain their case in de-DE
+00:03 +421: <QUDS>/packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart: finite nouns retain their case in de-DE
+00:03 +422: <QUDS>/packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart: finite nouns retain their case in de-DE
+00:03 +423: <QUDS>/packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart: finite nouns retain their case in de-DE
+00:03 +424: <QUDS>/packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart: finite nouns retain their case in de-DE
+00:03 +425: <QUDS>/packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart: finite nouns retain their case in de-DE
+00:03 +426: <QUDS>/packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart: finite nouns retain their case in de-DE
+00:03 +427: <QUDS>/packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart: finite nouns retain their case in de-DE
+00:03 +428: <QUDS>/packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart: finite nouns retain their case in de-DE
+00:03 +429: <QUDS>/packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart: finite nouns retain their case in de-DE
+00:03 +430: <QUDS>/packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart: finite nouns retain their case in de-DE
+00:03 +431: <QUDS>/packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart: finite nouns retain their case in de-DE
+00:03 +432: <QUDS>/packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart: finite nouns retain their case in de-DE
+00:03 +433: <QUDS>/packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart: finite nouns retain their case in de-DE
+00:03 +434: <QUDS>/packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart: finite nouns retain their case in de-DE
+00:03 +435: <QUDS>/packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart: finite nouns retain their case in de-DE
+00:03 +436: <QUDS>/packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart: finite nouns retain their case in de-DE
+00:03 +437: <QUDS>/packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart: finite nouns retain their case in de-DE
+00:03 +438: <QUDS>/packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart: finite nouns retain their case in de-DE
+00:03 +439: <QUDS>/packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart: finite nouns retain their case in de-DE
+00:03 +440: <QUDS>/packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart: finite nouns retain their case in de-DE
+00:03 +441: <QUDS>/packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart: finite nouns retain their case in de-DE
+00:03 +442: <QUDS>/packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart: finite nouns retain their case in de-DE
+00:03 +443: <QUDS>/packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart: finite nouns retain their case in de-DE
+00:03 +444: <QUDS>/packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart: finite nouns retain their case in de-DE
+00:03 +445: <QUDS>/packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart: finite nouns retain their case in de-DE
+00:03 +446: <QUDS>/packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart: finite nouns retain their case in de-DE
+00:03 +447: <QUDS>/packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart: finite nouns retain their case in de-DE
+00:03 +448: <QUDS>/packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart: finite nouns retain their case in de-DE
+00:03 +449: <QUDS>/packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart: finite nouns retain their case in de-DE
+00:03 +450: <QUDS>/packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart: finite nouns retain their case in de-DE
+00:03 +451: <QUDS>/packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart: finite nouns retain their case in de-DE
+00:03 +452: <QUDS>/packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart: finite nouns retain their case in de-DE
+00:03 +453: <QUDS>/packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart: finite nouns retain their case in de-DE
+00:03 +454: <QUDS>/packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart: finite nouns retain their case in de-DE
+00:03 +455: <QUDS>/packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart: finite nouns retain their case in de-DE
+00:03 +456: <QUDS>/packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart: finite nouns retain their case in de-DE
+00:03 +457: <QUDS>/packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart: finite nouns retain their case in de-DE
+00:03 +458: <QUDS>/packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart: finite nouns retain their case in de-DE
+00:03 +459: <QUDS>/packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart: finite nouns retain their case in de-DE
+00:03 +460: <QUDS>/packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart: finite nouns retain their case in de-DE
+00:03 +461: <QUDS>/packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart: finite nouns retain their case in de-DE
+00:03 +462: <QUDS>/packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart: finite nouns retain their case in de-DE
+00:03 +463: <QUDS>/packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart: finite nouns retain their case in de-DE
+00:03 +464: <QUDS>/packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart: finite nouns retain their case in de-DE
+00:03 +465: <QUDS>/packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart: finite nouns retain their case in de-DE
+00:03 +466: <QUDS>/packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart: finite nouns retain their case in de-DE
+00:03 +467: <QUDS>/packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart: finite nouns retain their case in de-DE
+00:03 +468: <QUDS>/packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart: finite nouns retain their case in de-DE
+00:03 +469: <QUDS>/packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart: finite nouns retain their case in de-DE
+00:03 +470: <QUDS>/packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart: finite nouns retain their case in de-DE
+00:03 +471: <QUDS>/packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart: finite nouns retain their case in de-DE
+00:03 +472: <QUDS>/packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart: finite nouns retain their case in de-DE
+00:03 +473: <QUDS>/packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart: finite nouns retain their case in de-DE
+00:03 +474: <QUDS>/packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart: finite nouns retain their case in de-DE
+00:03 +475: <QUDS>/packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart: finite nouns retain their case in de-DE
+00:03 +476: <QUDS>/packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart: finite nouns retain their case in de-DE
+00:03 +477: <QUDS>/packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart: finite nouns retain their case in de-DE
+00:03 +478: <QUDS>/packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart: finite nouns retain their case in de-DE
+00:03 +479: <QUDS>/packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart: finite nouns retain their case in de-DE
+00:03 +480: <QUDS>/packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart: finite nouns retain their case in de-DE
+00:03 +481: <QUDS>/packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart: finite nouns retain their case in de-DE
+00:03 +482: <QUDS>/packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart: finite nouns retain their case in de-DE
+00:03 +483: <QUDS>/packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart: finite nouns retain their case in de-DE
+00:03 +484: <QUDS>/packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart: finite nouns retain their case in de-DE
+00:03 +485: <QUDS>/packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart: finite nouns retain their case in de-DE
+00:03 +486: <QUDS>/packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart: finite nouns retain their case in de-DE
+00:03 +487: <QUDS>/packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart: finite nouns retain their case in de-DE
+00:03 +488: <QUDS>/packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart: finite nouns retain their case in de-DE
+00:03 +489: <QUDS>/packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart: finite nouns retain their case in de-DE
+00:04 +490: <QUDS>/packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart: finite nouns retain their case in de-AT
+00:04 +491: <QUDS>/packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart: finite nouns retain their case in de-CH
+00:04 +492: <QUDS>/packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart: ordinary lowercase verb forms keep their existing acceptance
+00:04 +493: <QUDS>/packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart: finite entries support all-caps and authored genitive forms
+00:04 +494: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:04 +495: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:04 +496: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +497: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +498: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +499: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +500: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +501: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +502: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +503: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +504: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +505: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +506: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +507: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +508: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +509: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +510: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +511: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +512: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +513: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +514: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +515: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +516: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +517: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +518: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +519: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +520: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +521: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +522: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +523: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +524: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +525: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +526: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +527: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +528: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +529: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +530: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +531: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +532: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +533: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +534: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +535: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +536: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +537: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +538: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +539: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +540: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +541: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +542: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +543: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +544: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +545: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +546: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +547: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +548: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +549: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +550: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +551: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +552: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +553: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +554: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +555: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +556: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +557: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +558: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +559: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +560: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +561: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +562: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +563: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +564: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +565: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +566: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +567: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +568: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +569: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +570: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +571: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +572: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +573: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +574: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +575: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +576: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +577: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +578: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +579: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +580: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +581: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +582: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest genannt.
+00:05 +583: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Das Wort gelest wird hier erklärt.
+00:05 +584: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat den Titel »gelest« erklärt.
+00:05 +585: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: „Er hat das Buch gelest“ steht im Text.
+00:05 +586: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Er hat das Wort gelest.
+00:05 +587: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: literal mention stays literal: Das Wort Wort ist hier ein Beispiel.
+00:05 +588: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: ordinary prose and quoted speech remain checked: Er hat das Buch gelest.
+00:05 +589: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: ordinary prose and quoted speech remain checked: Er sagte: „Er hat das Buch gelest.“
+00:05 +590: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: UTF-16 interval queries match independently selected literal: 👩🏽‍💻 Das Wort Wort bleibt.
+00:05 +591: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: UTF-16 interval queries match independently selected literal: „Das Wort abc und das Wort def und gelest“ steht im Text.
+00:05 +592: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: ordinary or mismatched quotations are not whole literal examples
+00:05 +593: <QUDS>/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart: an ordinary verb following Wort remains eligible for spelling
+00:06 +594: <QUDS>/packages/quds_office_engine/test/proofing/german_context_completion_test.dart: context: Ihr hat wenig Geld.
+00:06 +595: <QUDS>/packages/quds_office_engine/test/proofing/german_context_completion_test.dart: context: Ihr habt wenig Geld.
+00:06 +596: <QUDS>/packages/quds_office_engine/test/proofing/german_context_completion_test.dart: context: Ihr haben genug Arbeit.
+00:06 +597: <QUDS>/packages/quds_office_engine/test/proofing/german_context_completion_test.dart: context: Ihr habt genug Arbeit.
+00:06 +598: <QUDS>/packages/quds_office_engine/test/proofing/german_context_completion_test.dart: context: Ihr hast Hunger.
+00:06 +599: <QUDS>/packages/quds_office_engine/test/proofing/german_context_completion_test.dart: context: Ihr habt Hunger.
+00:06 +600: <QUDS>/packages/quds_office_engine/test/proofing/german_context_completion_test.dart: context: Ihr hat keine Angst.
+00:06 +601: <QUDS>/packages/quds_office_engine/test/proofing/german_context_completion_test.dart: context: Ihr habt keine Angst.
+00:06 +602: <QUDS>/packages/quds_office_engine/test/proofing/german_context_completion_test.dart: context: Das Auto, dass du kennst, ist alt.
+00:06 +603: <QUDS>/packages/quds_office_engine/test/proofing/german_context_completion_test.dart: context: Das Auto, das du kennst, ist alt.
+00:06 +604: <QUDS>/packages/quds_office_engine/test/proofing/german_context_completion_test.dart: context: Das Dokument, dass wir lesen, ist wichtig.
+00:06 +605: <QUDS>/packages/quds_office_engine/test/proofing/german_context_completion_test.dart: context: Das Dokument, das wir lesen, ist wichtig.
+00:06 +606: <QUDS>/packages/quds_office_engine/test/proofing/german_context_completion_test.dart: context: Das Foto, dass ich sehe, ist schön.
+00:06 +607: <QUDS>/packages/quds_office_engine/test/proofing/german_context_completion_test.dart: context: Das Foto, das ich sehe, ist schön.
+00:06 +608: <QUDS>/packages/quds_office_engine/test/proofing/german_context_completion_test.dart: context: Das Gerät, dass er kauft, ist teuer.
+00:06 +609: <QUDS>/packages/quds_office_engine/test/proofing/german_context_completion_test.dart: context: Das Gerät, das er kauft, ist teuer.
+00:06 +610: <QUDS>/packages/quds_office_engine/test/proofing/german_context_completion_test.dart: context: Ihr hat der Lehrer Angst gemacht.
+00:06 +611: <QUDS>/packages/quds_office_engine/test/proofing/german_context_completion_test.dart: context: Ihr hat viel Zeit geholfen.
+00:06 +612: <QUDS>/packages/quds_office_engine/test/proofing/german_context_completion_test.dart: context: Ihr hat Geld gefehlt.
+00:06 +613: <QUDS>/packages/quds_office_engine/test/proofing/german_context_completion_test.dart: context: Ihr gebt Geld aus.
+00:06 +614: <QUDS>/packages/quds_office_engine/test/proofing/german_context_completion_test.dart: context: Ihr habt viel Zeit.
+00:06 +615: <QUDS>/packages/quds_office_engine/test/proofing/german_context_completion_test.dart: context: Ihr seid müde.
+00:06 +616: <QUDS>/packages/quds_office_engine/test/proofing/german_context_completion_test.dart: context: Das Problem, dass ich lese, ist bekannt.
+00:06 +617: <QUDS>/packages/quds_office_engine/test/proofing/german_release_context_test.dart: context: Wir helfen die Freundin.
+00:06 +618: <QUDS>/packages/quds_office_engine/test/proofing/german_release_context_test.dart: context: Wir helfen die Freundin.
+00:06 +619: <QUDS>/packages/quds_office_engine/test/proofing/german_release_context_test.dart: context: Wir helfen die Freundin.
+00:06 +620: <QUDS>/packages/quds_office_engine/test/proofing/german_release_context_test.dart: context: Wir helfen die Freundin.
+00:06 +621: <QUDS>/packages/quds_office_engine/test/proofing/german_release_context_test.dart: context: Wir helfen die Freundin.
+00:06 +622: <QUDS>/packages/quds_office_engine/test/proofing/german_release_context_test.dart: context: Wir helfen die Freundin.
+00:06 +623: <QUDS>/packages/quds_office_engine/test/proofing/german_release_context_test.dart: context: Wir helfen die Freundin.
+00:06 +624: <QUDS>/packages/quds_office_engine/test/proofing/german_release_context_test.dart: context: Wir helfen die Freundin.
+00:06 +625: <QUDS>/packages/quds_office_engine/test/proofing/german_release_context_test.dart: context: Wir helfen die Freundin.
+00:06 +626: <QUDS>/packages/quds_office_engine/test/proofing/german_release_context_test.dart: context: Wir helfen der Freundin.
+00:06 +627: <QUDS>/packages/quds_office_engine/test/proofing/german_release_context_test.dart: context: Wir helfen die Freundinnen.
+00:06 +628: <QUDS>/packages/quds_office_engine/test/proofing/german_release_context_test.dart: context: Wir helfen den Freundinnen.
+00:06 +629: <QUDS>/packages/quds_office_engine/test/proofing/german_release_context_test.dart: context: Wir stehen bei jenes Gebäude.
+00:06 +630: <QUDS>/packages/quds_office_engine/test/proofing/german_release_context_test.dart: context: Wir stehen bei jenem Gebäude.
+00:06 +631: <QUDS>/packages/quds_office_engine/test/proofing/german_release_context_test.dart: context: Wir stehen bei dieses Gebäude.
+00:06 +632: <QUDS>/packages/quds_office_engine/test/proofing/german_release_context_test.dart: context: Wir stehen bei diesem Gebäude.
+00:06 +633: <QUDS>/packages/quds_office_engine/test/proofing/german_release_context_test.dart: context: Wir sprechen mit jenes Fenster.
+00:06 +634: <QUDS>/packages/quds_office_engine/test/proofing/german_release_context_test.dart: context: Wir sprechen mit jenem Fenster.
+00:06 +635: <QUDS>/packages/quds_office_engine/test/proofing/german_release_context_test.dart: context: Wir sprechen mit dem Straßenpolizist.
+00:06 +636: <QUDS>/packages/quds_office_engine/test/proofing/german_release_context_test.dart: context: Wir sprechen mit dem Straßenpolizisten.
+00:06 +637: <QUDS>/packages/quds_office_engine/test/proofing/german_release_context_test.dart: context: Wir sehen den Straßenpolizist.
+00:06 +638: <QUDS>/packages/quds_office_engine/test/proofing/german_release_context_test.dart: context: Wir sehen den Straßenpolizisten.
+00:06 +639: <QUDS>/packages/quds_office_engine/test/proofing/german_release_context_test.dart: context: Wir helfen dem Straßenpolizist.
+00:06 +640: <QUDS>/packages/quds_office_engine/test/proofing/german_release_context_test.dart: context: Wir helfen dem Straßenpolizisten.
+00:06 +641: <QUDS>/packages/quds_office_engine/test/proofing/german_release_context_test.dart: context: Wir sprechen mit dem Strassenpolizist.
+00:06 +642: <QUDS>/packages/quds_office_engine/test/proofing/german_release_context_test.dart: context: Wir sprechen mit dem Strassenpolizisten.
+00:06 +643: <QUDS>/packages/quds_office_engine/test/proofing/german_release_context_test.dart: context: Wir helfen der Freundin.
+00:06 +644: <QUDS>/packages/quds_office_engine/test/proofing/german_release_context_test.dart: context: Wir helfen den Freundinnen.
+00:06 +645: <QUDS>/packages/quds_office_engine/test/proofing/german_release_context_test.dart: context: Wir sprechen mit dem Mensch.
+00:06 +646: <QUDS>/packages/quds_office_engine/test/proofing/german_release_context_test.dart: context: Wir sprechen mit den Menschen.
+00:06 +647: <QUDS>/packages/quds_office_engine/test/proofing/german_release_context_test.dart: context: Wir stehen bei den Computern.
+00:06 +648: <QUDS>/packages/quds_office_engine/test/proofing/german_release_context_test.dart: context: Wir sprechen mit der Kunde.
+00:06 +649: <QUDS>/packages/quds_office_engine/test/proofing/german_release_context_test.dart: context: Wir stehen bei diesem Gebäude.
+00:06 +650: <QUDS>/packages/quds_office_engine/test/proofing/german_release_context_test.dart: context: Wir stehen bei diesen Gebäuden.
+00:06 +651: <QUDS>/packages/quds_office_engine/test/proofing/german_release_context_test.dart: context: Wir sprechen mit diesem Leiter.
+00:06 +652: <QUDS>/packages/quds_office_engine/test/proofing/german_release_context_test.dart: context: Wir sprechen mit dieser Leiter.
+00:06 +653: <QUDS>/packages/quds_office_engine/test/proofing/german_release_context_test.dart: context: Der Straßenpolizist hilft.
+00:06 +654: <QUDS>/packages/quds_office_engine/test/proofing/german_release_context_test.dart: context: Die Straßenpolizisten helfen.
+00:06 +655: <QUDS>/packages/quds_office_engine/test/proofing/german_release_context_test.dart: context: Wir sprechen mit dem Straßenpolizisten.
+00:06 +656: <QUDS>/packages/quds_office_engine/test/proofing/german_release_context_test.dart: context: Wir sehen den Straßenpolizisten.
+00:06 +657: <QUDS>/packages/quds_office_engine/test/proofing/german_release_context_test.dart: context: Das Wort Straßenpolizist ist richtig.
+00:06 +658: <QUDS>/packages/quds_office_engine/test/proofing/german_release_context_test.dart: context: Das ist dieses Gebäude.
+00:06 +659: <QUDS>/packages/quds_office_engine/test/proofing/german_release_context_test.dart: context: Wir sehen dieses Gebäude.
+00:06 +660: <QUDS>/packages/quds_office_engine/test/proofing/german_release_context_test.dart: context: Wir helfen der Frau.
+00:06 +661: <QUDS>/packages/quds_office_engine/test/proofing/german_release_context_test.dart: context: Sie antwortet den Lehrern.
+00:06 +662: <QUDS>/packages/quds_office_engine/test/proofing/german_release_context_test.dart: context: Das ist das Auto des Studenten.
+00:06 +663: <QUDS>/packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart: correct together and recheck: Sie hat ein roten Mantel.
+00:07 +664: <QUDS>/packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart: correct together and recheck: Ich sehe ein kleinen Hund.
+00:07 +665: <QUDS>/packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart: correct together and recheck: Du brauchst ein neuer Tisch.
+00:07 +666: <QUDS>/packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart: correct together and recheck: Er findet der alte Brief.
+00:07 +667: <QUDS>/packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart: correct together and recheck: Wir nehmen ein großer Stuhl.
+00:07 +668: <QUDS>/packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart: correct together and recheck: Ihr habt ein guter Plan.
+00:07 +669: <QUDS>/packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart: correct together and recheck: Man liest ein langer Bericht.
+00:07 +670: <QUDS>/packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart: correct together and recheck: Ich esse ein grüner Apfel.
+00:07 +671: <QUDS>/packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart: correct together and recheck: Du kennst ein freundlicher Mann.
+00:07 +672: <QUDS>/packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart: correct together and recheck: Er versteht dieser kurze Text.
+00:07 +673: <QUDS>/packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart: correct together and recheck: Wir kaufen ein neuer Mantel.
+00:07 +674: <QUDS>/packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart: correct together and recheck: Ich höre ein neuer Ton.
+00:07 +675: <QUDS>/packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart: correct together and recheck: Du suchst ein kleine Hund.
+00:07 +676: <QUDS>/packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart: correct together and recheck: Er trägt ein roter Mantel.
+00:07 +677: <QUDS>/packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart: correct together and recheck: Wir treffen ein alter Freund.
+00:07 +678: <QUDS>/packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart: correct together and recheck: Man vergisst ein wichtige Termin.
+00:07 +679: <QUDS>/packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart: correct together and recheck: Ich trinke ein grüner Tee.
+00:07 +680: <QUDS>/packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart: correct together and recheck: Sie sehen ein neuer Hund.
+00:07 +681: <QUDS>/packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart: correct together and recheck: Es braucht ein neuen Plan.
+00:07 +682: <QUDS>/packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart: correct together and recheck: Ich sehe ein kleine roter Hund.
+00:07 +683: <QUDS>/packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart: correct together and recheck: Ich sehe einen kleine Hund.
+00:07 +684: <QUDS>/packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart: correct together and recheck: Ich habe ein schöne Haus.
+00:07 +685: <QUDS>/packages/quds_office_engine/test/proofing/german_genitive_noun_test.dart: genitive correction and recheck: Das ist wegen des schlimmen Fehler.
+00:07 +686: <QUDS>/packages/quds_office_engine/test/proofing/german_genitive_noun_test.dart: genitive correction and recheck: Das ist wegen des schlimmen Fehler.
+00:07 +687: <QUDS>/packages/quds_office_engine/test/proofing/german_genitive_noun_test.dart: genitive correction and recheck: Das ist wegen des schlimmen Fehler.
+00:07 +688: <QUDS>/packages/quds_office_engine/test/proofing/german_genitive_noun_test.dart: genitive correction and recheck: Das ist wegen des schlimmen Fehler.
+00:07 +689: <QUDS>/packages/quds_office_engine/test/proofing/german_genitive_noun_test.dart: genitive correction and recheck: Das ist wegen des schlimmen Fehler.
+00:07 +690: <QUDS>/packages/quds_office_engine/test/proofing/german_genitive_noun_test.dart: genitive correction and recheck: Das ist wegen des schlimmen Fehler.
+00:07 +691: <QUDS>/packages/quds_office_engine/test/proofing/german_genitive_noun_test.dart: genitive correction and recheck: Das ist wegen des schlimmen Fehler.
+00:07 +692: <QUDS>/packages/quds_office_engine/test/proofing/german_genitive_noun_test.dart: genitive correction and recheck: Das ist wegen des schlimmen Fehler.
+00:07 +693: <QUDS>/packages/quds_office_engine/test/proofing/german_genitive_noun_test.dart: genitive correction and recheck: Das ist wegen des schlimmen Fehler.
+00:07 +694: <QUDS>/packages/quds_office_engine/test/proofing/german_genitive_noun_test.dart: genitive correction and recheck: Das ist wegen des schlimmen Fehler.
+00:07 +695: <QUDS>/packages/quds_office_engine/test/proofing/german_genitive_noun_test.dart: genitive correction and recheck: Das ist wegen des schlimmen Fehler.
+00:07 +696: <QUDS>/packages/quds_office_engine/test/proofing/german_genitive_noun_test.dart: genitive correction and recheck: Das ist wegen des schlimmen Fehler.
+00:07 +697: <QUDS>/packages/quds_office_engine/test/proofing/german_genitive_noun_test.dart: genitive correction and recheck: Das ist wegen des schlimmen Fehler.
+00:07 +698: <QUDS>/packages/quds_office_engine/test/proofing/german_genitive_noun_test.dart: genitive correction and recheck: Das ist wegen des schlimmen Fehler.
+00:07 +699: <QUDS>/packages/quds_office_engine/test/proofing/german_genitive_noun_test.dart: genitive correction and recheck: Das ist wegen des schlimmen Fehler.
+00:07 +700: <QUDS>/packages/quds_office_engine/test/proofing/german_genitive_noun_test.dart: genitive correction and recheck: Das ist wegen des schlimmen Fehler.
+00:07 +701: <QUDS>/packages/quds_office_engine/test/proofing/german_genitive_noun_test.dart: genitive correction and recheck: Das ist wegen des schlimmen Fehler.
+00:07 +702: <QUDS>/packages/quds_office_engine/test/proofing/german_genitive_noun_test.dart: genitive correction and recheck: Das ist wegen des schlimmen Fehler.
+00:07 +703: <QUDS>/packages/quds_office_engine/test/proofing/german_genitive_noun_test.dart: genitive correction and recheck: Das ist wegen des schlimmen Fehler.
+00:07 +704: <QUDS>/packages/quds_office_engine/test/proofing/german_genitive_noun_test.dart: genitive correction and recheck: Das ist wegen des schlimmen Fehler.
+00:07 +705: <QUDS>/packages/quds_office_engine/test/proofing/german_genitive_noun_test.dart: genitive correction and recheck: Das ist wegen des schlimmen Fehler.
+00:07 +706: <QUDS>/packages/quds_office_engine/test/proofing/german_genitive_noun_test.dart: genitive correction and recheck: Das ist wegen des schlimmen Fehler.
+00:07 +707: <QUDS>/packages/quds_office_engine/test/proofing/german_genitive_noun_test.dart: genitive correction and recheck: Das ist wegen des schlimmen Fehler.
+00:07 +708: <QUDS>/packages/quds_office_engine/test/proofing/german_genitive_noun_test.dart: genitive correction and recheck: Das ist wegen des schlimmen Fehler.
+00:07 +709: <QUDS>/packages/quds_office_engine/test/proofing/german_genitive_noun_test.dart: genitive correction and recheck: Das ist wegen des schlimmen Fehler.
+00:07 +710: <QUDS>/packages/quds_office_engine/test/proofing/german_genitive_noun_test.dart: genitive correction and recheck: Das ist wegen des schlimmen Fehler.
+00:07 +711: <QUDS>/packages/quds_office_engine/test/proofing/german_genitive_noun_test.dart: genitive correction and recheck: Das ist wegen des schlimmen Fehler.
+00:07 +712: <QUDS>/packages/quds_office_engine/test/proofing/german_genitive_noun_test.dart: genitive correction and recheck: Das ist wegen des schlimmen Fehler.
+00:07 +713: <QUDS>/packages/quds_office_engine/test/proofing/german_genitive_noun_test.dart: genitive correction and recheck: Das ist wegen des schlimmen Fehler.
+00:07 +714: <QUDS>/packages/quds_office_engine/test/proofing/german_genitive_noun_test.dart: genitive correction and recheck: Das ist wegen des schlimmen Fehler.
+00:07 +715: <QUDS>/packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart: preserve or abstain without nominative fallback: Ich sehe ein kleinen Qudsbrand.
+00:07 +716: <QUDS>/packages/quds_office_engine/test/proofing/german_genitive_noun_test.dart: genitive correction and recheck: Das ist das Auto des Student.
+00:07 +717: <QUDS>/packages/quds_office_engine/test/proofing/german_genitive_noun_test.dart: genitive correction and recheck: Das ist das Auto des Student.
+00:07 +718: <QUDS>/packages/quds_office_engine/test/proofing/german_genitive_noun_test.dart: genitive correction and recheck: Das ist das Auto des Student.
+00:07 +719: <QUDS>/packages/quds_office_engine/test/proofing/german_genitive_noun_test.dart: genitive correction and recheck: Das ist das Auto des Student.
+00:07 +720: <QUDS>/packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart: preserve or abstain without nominative fallback: Sie hat ein roter Mantel begeistert.
+00:07 +721: <QUDS>/packages/quds_office_engine/test/proofing/german_genitive_noun_test.dart: genitive correction and recheck: Die Frage eines Kunde bleibt.
+00:07 +722: <QUDS>/packages/quds_office_engine/test/proofing/german_genitive_noun_test.dart: genitive correction and recheck: Die Frage eines Kunde bleibt.
+00:07 +723: <QUDS>/packages/quds_office_engine/test/proofing/german_genitive_noun_test.dart: genitive correction and recheck: Die Frage eines Kunde bleibt.
+00:07 +724: <QUDS>/packages/quds_office_engine/test/proofing/german_genitive_noun_test.dart: genitive correction and recheck: Die Frage eines Kunde bleibt.
+00:07 +725: <QUDS>/packages/quds_office_engine/test/proofing/german_genitive_noun_test.dart: genitive correction and recheck: Die Frage eines Kunde bleibt.
+00:07 +726: <QUDS>/packages/quds_office_engine/test/proofing/german_genitive_noun_test.dart: genitive correction and recheck: Die Frage eines Kunde bleibt.
+00:07 +727: <QUDS>/packages/quds_office_engine/test/proofing/german_genitive_noun_test.dart: genitive correction and recheck: Die Frage eines Kunde bleibt.
+00:07 +728: <QUDS>/packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart: preserve or abstain without nominative fallback: Ich sehe ein kleinen Hund und eine Katze.
+00:07 +729: <QUDS>/packages/quds_office_engine/test/proofing/german_genitive_noun_test.dart: genitive correction and recheck: Die Antwort meines Lehrer fehlt.
+00:07 +730: <QUDS>/packages/quds_office_engine/test/proofing/german_genitive_noun_test.dart: genitive correction and recheck: Die Antwort meines Lehrer fehlt.
+00:07 +731: <QUDS>/packages/quds_office_engine/test/proofing/german_genitive_noun_test.dart: genitive correction and recheck: Die Antwort meines Lehrer fehlt.
+00:07 +732: <QUDS>/packages/quds_office_engine/test/proofing/german_genitive_noun_test.dart: genitive correction and recheck: Die Antwort meines Lehrer fehlt.
+00:07 +733: <QUDS>/packages/quds_office_engine/test/proofing/german_genitive_noun_test.dart: genitive correction and recheck: Die Antwort meines Lehrer fehlt.
+00:07 +734: <QUDS>/packages/quds_office_engine/test/proofing/german_genitive_noun_test.dart: genitive correction and recheck: Die Antwort meines Lehrer fehlt.
+00:07 +735: <QUDS>/packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart: preserve or abstain without nominative fallback: Wenn ich ein kleinen Hund sehe.
+00:07 +736: <QUDS>/packages/quds_office_engine/test/proofing/german_genitive_noun_test.dart: genitive correction and recheck: Die Antwort deines Kollege fehlt.
+00:07 +737: <QUDS>/packages/quds_office_engine/test/proofing/german_genitive_noun_test.dart: genitive correction and recheck: Die Antwort deines Kollege fehlt.
+00:07 +738: <QUDS>/packages/quds_office_engine/test/proofing/german_genitive_noun_test.dart: genitive correction and recheck: Die Antwort deines Kollege fehlt.
+00:07 +739: <QUDS>/packages/quds_office_engine/test/proofing/german_genitive_noun_test.dart: genitive correction and recheck: Die Antwort deines Kollege fehlt.
+00:07 +740: <QUDS>/packages/quds_office_engine/test/proofing/german_genitive_noun_test.dart: genitive correction and recheck: Die Antwort deines Kollege fehlt.
+00:07 +741: <QUDS>/packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart: preserve or abstain without nominative fallback: Er wird ein guter Mann.
+00:07 +742: <QUDS>/packages/quds_office_engine/test/proofing/german_genitive_noun_test.dart: genitive correction and recheck: Die Stimme seines Präsident fehlt.
+00:07 +743: <QUDS>/packages/quds_office_engine/test/proofing/german_genitive_noun_test.dart: genitive correction and recheck: Die Stimme seines Präsident fehlt.
+00:07 +744: <QUDS>/packages/quds_office_engine/test/proofing/german_genitive_noun_test.dart: genitive correction and recheck: Die Stimme seines Präsident fehlt.
+00:07 +745: <QUDS>/packages/quds_office_engine/test/proofing/german_genitive_noun_test.dart: genitive correction and recheck: Die Stimme seines Präsident fehlt.
+00:07 +746: <QUDS>/packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart: preserve or abstain without nominative fallback: `Ich` sehe ein kleinen Hund.
+00:07 +747: <QUDS>/packages/quds_office_engine/test/proofing/german_genitive_noun_test.dart: genitive correction and recheck: Das ist die Folge ihres Fehler.
+00:07 +748: <QUDS>/packages/quds_office_engine/test/proofing/german_genitive_noun_test.dart: genitive correction and recheck: Das ist die Folge ihres Fehler.
+00:07 +749: <QUDS>/packages/quds_office_engine/test/proofing/german_genitive_noun_test.dart: genitive correction and recheck: Das ist die Folge ihres Fehler.
+00:07 +750: <QUDS>/packages/quds_office_engine/test/proofing/german_genitive_noun_test.dart: genitive correction and recheck: Das ist die Folge ihres Fehler.
+00:07 +751: <QUDS>/packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart: preserve or abstain without nominative fallback: Ich sehe ein kleinen `Hund`.
+00:07 +752: <QUDS>/packages/quds_office_engine/test/proofing/german_genitive_noun_test.dart: genitive correction and recheck: Das ist die Aufgabe unseres Kollege.
+00:07 +753: <QUDS>/packages/quds_office_engine/test/proofing/german_genitive_noun_test.dart: genitive correction and recheck: Das ist die Aufgabe unseres Kollege.
+00:07 +754: <QUDS>/packages/quds_office_engine/test/proofing/german_genitive_noun_test.dart: genitive correction and recheck: Das ist die Aufgabe unseres Kollege.
+00:07 +755: <QUDS>/packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart: preserve or abstain without nominative fallback: Ich sehe ein kleinen Hund. https://example.org/
+00:07 +756: <QUDS>/packages/quds_office_engine/test/proofing/german_genitive_noun_test.dart: genitive correction and recheck: Der Erfolg eures Lehrer zählt.
+00:07 +757: <QUDS>/packages/quds_office_engine/test/proofing/german_genitive_noun_test.dart: genitive correction and recheck: Der Erfolg eures Lehrer zählt.
+00:07 +758: <QUDS>/packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart: the case rule has its own metadata and independent ignore control
+00:07 +759: <QUDS>/packages/quds_office_engine/test/proofing/german_genitive_noun_test.dart: genitive correction and recheck: Der Fehler keines Student zählt.
+00:07 +760: <QUDS>/packages/quds_office_engine/test/proofing/german_genitive_noun_test.dart: genitive correction and recheck: Der Fehler keines Student zählt.
+00:07 +761: <QUDS>/packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart: finite agreement is required before case inference
+00:07 +762: <QUDS>/packages/quds_office_engine/test/proofing/german_genitive_noun_test.dart: genitive correction and recheck: Die Bedeutung des Name bleibt.
+00:07 +763: <QUDS>/packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart: bounded gate never treats a clipped lookahead as clause completion
+00:07 +764: <QUDS>/packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart: bounded gate never treats a clipped lookahead as clause completion
+00:07 +765: <QUDS>/packages/quds_office_engine/test/proofing/german_genitive_noun_test.dart: genitive correction and recheck: Die Farbe des Bonbon bleibt.
+00:07 +766: <QUDS>/packages/quds_office_engine/test/proofing/german_genitive_noun_test.dart: genitive correction and recheck: Die Farbe des Bonbon bleibt.
+00:07 +767: <QUDS>/packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart: personal spelling vocabulary does not invent noun morphology
+00:07 +768: <QUDS>/packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart: personal spelling vocabulary does not invent noun morphology
+00:07 +769: <QUDS>/packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart: personal spelling vocabulary does not invent noun morphology
+00:07 +770: <QUDS>/packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart: personal spelling vocabulary does not invent noun morphology
+00:07 +771: <QUDS>/packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart: personal spelling vocabulary does not invent noun morphology
+00:07 +772: <QUDS>/packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart: personal spelling vocabulary does not invent noun morphology
+00:07 +773: <QUDS>/packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart: personal spelling vocabulary does not invent noun morphology
+00:07 +774: <QUDS>/packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart: personal spelling vocabulary does not invent noun morphology
+00:07 +775: <QUDS>/packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart: personal spelling vocabulary does not invent noun morphology
+00:07 +776: <QUDS>/packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart: personal spelling vocabulary does not invent noun morphology
+00:07 +777: <QUDS>/packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart: personal spelling vocabulary does not invent noun morphology
+00:07 +778: <QUDS>/packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart: personal spelling vocabulary does not invent noun morphology
+00:07 +779: <QUDS>/packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart: personal spelling vocabulary does not invent noun morphology
+00:07 +780: <QUDS>/packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart: personal spelling vocabulary does not invent noun morphology
+00:07 +781: <QUDS>/packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart: personal spelling vocabulary does not invent noun morphology
+00:07 +782: <QUDS>/packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart: personal spelling vocabulary does not invent noun morphology
+00:08 +783: <QUDS>/packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart: personal spelling vocabulary does not invent noun morphology
+00:08 +784: <QUDS>/packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart: personal spelling vocabulary does not invent noun morphology
+00:08 +785: <QUDS>/packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart: personal spelling vocabulary does not invent noun morphology
+00:08 +786: <QUDS>/packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart: personal spelling vocabulary does not invent noun morphology
+00:08 +787: <QUDS>/packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart: personal spelling vocabulary does not invent noun morphology
+00:08 +788: <QUDS>/packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart: personal spelling vocabulary does not invent noun morphology
+00:08 +789: <QUDS>/packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart: personal spelling vocabulary does not invent noun morphology
+00:08 +790: <QUDS>/packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart: personal spelling vocabulary does not invent noun morphology
+00:08 +791: <QUDS>/packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart: personal spelling vocabulary does not invent noun morphology
+00:08 +792: <QUDS>/packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart: personal spelling vocabulary does not invent noun morphology
+00:08 +793: <QUDS>/packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart: personal spelling vocabulary does not invent noun morphology
+00:08 +794: <QUDS>/packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart: personal spelling vocabulary does not invent noun morphology
+00:08 +795: <QUDS>/packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart: personal spelling vocabulary does not invent noun morphology
+00:08 +796: <QUDS>/packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart: personal spelling vocabulary does not invent noun morphology
+00:08 +797: <QUDS>/packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart: personal spelling vocabulary does not invent noun morphology
+00:08 +798: <QUDS>/packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart: personal spelling vocabulary does not invent noun morphology
+00:08 +799: <QUDS>/packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart: personal spelling vocabulary does not invent noun morphology
+00:08 +800: <QUDS>/packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart: personal spelling vocabulary does not invent noun morphology
+00:08 +801: <QUDS>/packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart: personal spelling vocabulary does not invent noun morphology
+00:08 +802: <QUDS>/packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart: personal spelling vocabulary does not invent noun morphology
+00:08 +803: <QUDS>/packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart: personal spelling vocabulary does not invent noun morphology
+00:08 +804: <QUDS>/packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart: personal spelling vocabulary does not invent noun morphology
+00:08 +805: <QUDS>/packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart: personal spelling vocabulary does not invent noun morphology
+00:08 +806: <QUDS>/packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart: personal spelling vocabulary does not invent noun morphology
+00:08 +807: <QUDS>/packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart: personal spelling vocabulary does not invent noun morphology
+00:08 +808: <QUDS>/packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart: personal spelling vocabulary does not invent noun morphology
+00:08 +809: <QUDS>/packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart: personal spelling vocabulary does not invent noun morphology
+00:08 +810: <QUDS>/packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart: personal spelling vocabulary does not invent noun morphology
+00:08 +811: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_facts_test.dart: reviewed adjective evidence must agree with every retained reading
+00:08 +812: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_facts_test.dart: grammar edits cannot split a grapheme or surrogate pair
+00:09 +813: All tests passed!

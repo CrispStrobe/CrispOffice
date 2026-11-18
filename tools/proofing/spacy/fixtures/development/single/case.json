@@ -1,0 +1,959 @@
+{
+  "annotations": {
+    "sentences": [
+      {
+        "end_byte": 5,
+        "end_codepoint": 5,
+        "end_token": 1,
+        "end_utf16": 5,
+        "start_byte": 0,
+        "start_codepoint": 0,
+        "start_token": 0,
+        "start_utf16": 0,
+        "text": "Hallo"
+      }
+    ],
+    "tokens": [
+      {
+        "dep": "ROOT",
+        "end_byte": 5,
+        "end_codepoint": 5,
+        "end_utf16": 5,
+        "head": 0,
+        "i": 0,
+        "is_sent_start": true,
+        "is_space": false,
+        "lemma": "Hallo",
+        "morph": "Case=Nom|Gender=Masc|Number=Sing",
+        "norm": "hallo",
+        "norm_id": "16918625444685908944",
+        "orth_id": "3417224389557524992",
+        "pos": "PROPN",
+        "prefix": "H",
+        "shape": "Xxxxx",
+        "start_byte": 0,
+        "start_codepoint": 0,
+        "start_utf16": 0,
+        "suffix": "llo",
+        "tag": "NE",
+        "text": "Hallo",
+        "whitespace": ""
+      }
+    ]
+  },
+  "attribute_ruler_matches": [],
+  "before_attribute_ruler": {
+    "sentences": [
+      {
+        "end_byte": 5,
+        "end_codepoint": 5,
+        "end_token": 1,
+        "end_utf16": 5,
+        "start_byte": 0,
+        "start_codepoint": 0,
+        "start_token": 0,
+        "start_utf16": 0,
+        "text": "Hallo"
+      }
+    ],
+    "tokens": [
+      {
+        "dep": "ROOT",
+        "end_byte": 5,
+        "end_codepoint": 5,
+        "end_utf16": 5,
+        "head": 0,
+        "i": 0,
+        "is_sent_start": true,
+        "is_space": false,
+        "lemma": "Hallo",
+        "morph": "Case=Nom|Gender=Masc|Number=Sing",
+        "norm": "hallo",
+        "norm_id": "16918625444685908944",
+        "orth_id": "3417224389557524992",
+        "pos": "PROPN",
+        "prefix": "H",
+        "shape": "Xxxxx",
+        "start_byte": 0,
+        "start_codepoint": 0,
+        "start_utf16": 0,
+        "suffix": "llo",
+        "tag": "NE",
+        "text": "Hallo",
+        "whitespace": ""
+      }
+    ]
+  },
+  "case": {
+    "family": "single-token",
+    "id": "single",
+    "locale": "de-DE",
+    "text": "Hallo"
+  },
+  "empty_input_policy": null,
+  "features": {
+    "buckets": [
+      [
+        [
+          186,
+          671,
+          4131,
+          2359
+        ],
+        [
+          713,
+          29,
+          155,
+          215
+        ],
+        [
+          1375,
+          2056,
+          544,
+          1942
+        ],
+        [
+          714,
+          447,
+          1963,
+          1109
+        ],
+        [
+          38,
+          25,
+          37,
+          40
+        ],
+        [
+          14,
+          41,
+          15,
+          38
+        ]
+      ]
+    ],
+    "columns": [
+      "NORM",
+      "PREFIX",
+      "SUFFIX",
+      "SHAPE",
+      "SPACY",
+      "IS_SPACE"
+    ],
+    "hash_seeds": [
+      8,
+      9,
+      10,
+      11,
+      12,
+      13
+    ],
+    "rows": [
+      5000,
+      1000,
+      2500,
+      2500,
+      50,
+      50
+    ],
+    "uint64_decimal": [
+      [
+        "16918625444685908944",
+        "9350754067018752509",
+        "7819752793552135697",
+        "16072095006890171862",
+        "0",
+        "0"
+      ]
+    ]
+  },
+  "input_sha256": "753692ec36adb4c794c973945eb2a99c1649703ea6f76bf259abb4fb838e013e",
+  "lemma_decisions": [
+    {
+      "applicable": true,
+      "applied": "Hallo",
+      "class": 1,
+      "fallback": false,
+      "lemma": "Hallo",
+      "tree": 1
+    }
+  ],
+  "ordinary_pipeline_annotations_exact": true,
+  "ordinary_tok2vec_bit_exact": true,
+  "parser_steps": [
+    {
+      "arcs_before": [],
+      "chosen_action": 0,
+      "chosen_name": "S",
+      "feature_token_ids": [
+        0,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1
+      ],
+      "queue_before": [
+        0
+      ],
+      "stack_before": [],
+      "step": 0,
+      "valid_actions": [
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "arcs_before": [],
+      "chosen_action": 1,
+      "chosen_name": "D",
+      "feature_token_ids": [
+        -1,
+        -1,
+        0,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1
+      ],
+      "queue_before": [],
+      "stack_before": [
+        0
+      ],
+      "step": 1,
+      "valid_actions": [
+        false,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ]
+    }
+  ],
+  "schema": "crispembed.spacy.reference.v1",
+  "traces": {
+    "lemmatizer.scores": {
+      "dtype": "float32-le",
+      "file": "traces.f32",
+      "offset_bytes": 146464,
+      "order": "C",
+      "sha256": "d2548cda05722b7aa6af34d5e8efb05b155bf6c50001abd2daa5ef003655185c",
+      "shape": [
+        1,
+        1311
+      ],
+      "size_bytes": 5244
+    },
+    "morphologizer.scores": {
+      "dtype": "float32-le",
+      "file": "traces.f32",
+      "offset_bytes": 132700,
+      "order": "C",
+      "sha256": "f08f7065bf29ed7e9316320de2f6c63b1ff1940f3679a695ab1df954db479e4f",
+      "shape": [
+        1,
+        671
+      ],
+      "size_bytes": 2684
+    },
+    "parser.lower_cache": {
+      "dtype": "float32-le",
+      "file": "traces.f32",
+      "offset_bytes": 135640,
+      "order": "C",
+      "sha256": "6114f537beb891075ed115b61d02cfa2b3a73366159c4290f7ad3365811dbf1d",
+      "shape": [
+        2,
+        8,
+        64,
+        2
+      ],
+      "size_bytes": 8192
+    },
+    "parser.reduce": {
+      "dtype": "float32-le",
+      "file": "traces.f32",
+      "offset_bytes": 135384,
+      "order": "C",
+      "sha256": "3f9869251ff9c1c3fa4687c79049e4ba431decffa04db9c96eda0a5d804f023e",
+      "shape": [
+        1,
+        64
+      ],
+      "size_bytes": 256
+    },
+    "parser.step.0.hidden": {
+      "dtype": "float32-le",
+      "file": "traces.f32",
+      "offset_bytes": 144344,
+      "order": "C",
+      "sha256": "dd899b345de2b7bd4fcea4d0ee2b4995758cdcd68b87683f4983e3defbbc732e",
+      "shape": [
+        1,
+        64
+      ],
+      "size_bytes": 256
+    },
+    "parser.step.0.scores": {
+      "dtype": "float32-le",
+      "file": "traces.f32",
+      "offset_bytes": 144600,
+      "order": "C",
+      "sha256": "56a8c47f1249e09751f5b6dfb6305c0c4ffed47d6cdc1316836bd4c162e67066",
+      "shape": [
+        1,
+        137
+      ],
+      "size_bytes": 548
+    },
+    "parser.step.0.sum": {
+      "dtype": "float32-le",
+      "file": "traces.f32",
+      "offset_bytes": 143832,
+      "order": "C",
+      "sha256": "f4086f00ea191db733b8563e74c62c44fbfc47b0121683e9f5f2b8148c934751",
+      "shape": [
+        1,
+        64,
+        2
+      ],
+      "size_bytes": 512
+    },
+    "parser.step.1.hidden": {
+      "dtype": "float32-le",
+      "file": "traces.f32",
+      "offset_bytes": 145660,
+      "order": "C",
+      "sha256": "51d6530dde7ca95edd3cf42297792b0f6caf5a9b6519733fee36d2f65f83ac17",
+      "shape": [
+        1,
+        64
+      ],
+      "size_bytes": 256
+    },
+    "parser.step.1.scores": {
+      "dtype": "float32-le",
+      "file": "traces.f32",
+      "offset_bytes": 145916,
+      "order": "C",
+      "sha256": "e689905fdf309f083bdc61deb41d6f7073f6ce51ffcbb639ae80feeaabe0c691",
+      "shape": [
+        1,
+        137
+      ],
+      "size_bytes": 548
+    },
+    "parser.step.1.sum": {
+      "dtype": "float32-le",
+      "file": "traces.f32",
+      "offset_bytes": 145148,
+      "order": "C",
+      "sha256": "232e588869768a9f73af1584bd68f05582846789d9d510baf69adb118e8b2b62",
+      "shape": [
+        1,
+        64,
+        2
+      ],
+      "size_bytes": 512
+    },
+    "tagger.scores": {
+      "dtype": "float32-le",
+      "file": "traces.f32",
+      "offset_bytes": 132480,
+      "order": "C",
+      "sha256": "7b90685eb1216df30f258a09f7c2be0ba72df8a16428cfe1b8bca476d81720d9",
+      "shape": [
+        1,
+        55
+      ],
+      "size_bytes": 220
+    },
+    "tok2vec.embed.affine": {
+      "dtype": "float32-le",
+      "file": "traces.f32",
+      "offset_bytes": 2304,
+      "order": "C",
+      "sha256": "dbc2d971d2ed4829c149ac0b710376056e3ba45a3a17b12d8dfc065d28f1d17c",
+      "shape": [
+        1,
+        96,
+        3
+      ],
+      "size_bytes": 1152
+    },
+    "tok2vec.embed.concat": {
+      "dtype": "float32-le",
+      "file": "traces.f32",
+      "offset_bytes": 0,
+      "order": "C",
+      "sha256": "30243a31ead35aa26147555b425b0ab5044056452eeca954cdccbbe2a9018216",
+      "shape": [
+        1,
+        576
+      ],
+      "size_bytes": 2304
+    },
+    "tok2vec.embed.maxout": {
+      "dtype": "float32-le",
+      "file": "traces.f32",
+      "offset_bytes": 3456,
+      "order": "C",
+      "sha256": "50bc95f64e35e2bfa22c4270c1d72b82482a9de47c68fff5a4e1d4cc58224b9f",
+      "shape": [
+        1,
+        96
+      ],
+      "size_bytes": 384
+    },
+    "tok2vec.embed.norm": {
+      "dtype": "float32-le",
+      "file": "traces.f32",
+      "offset_bytes": 3840,
+      "order": "C",
+      "sha256": "1f95cac6fea7dab2959c00ac7fb7e3a5d6a878f7a60f2387afc369a4a43051c8",
+      "shape": [
+        1,
+        96
+      ],
+      "size_bytes": 384
+    },
+    "tok2vec.encoder.input": {
+      "dtype": "float32-le",
+      "file": "traces.f32",
+      "offset_bytes": 4224,
+      "order": "C",
+      "sha256": "9a9efef51a6c8b93392a87557889760d3d1a2293f778933b0e84940a628981e9",
+      "shape": [
+        9,
+        96
+      ],
+      "size_bytes": 3456
+    },
+    "tok2vec.encoder.layer.0.affine": {
+      "dtype": "float32-le",
+      "file": "traces.f32",
+      "offset_bytes": 18048,
+      "order": "C",
+      "sha256": "6bd4912d4833612257b3bb018a851160441cef8ceb10a8cc79090b63f4abb675",
+      "shape": [
+        9,
+        96,
+        3
+      ],
+      "size_bytes": 10368
+    },
+    "tok2vec.encoder.layer.0.maxout": {
+      "dtype": "float32-le",
+      "file": "traces.f32",
+      "offset_bytes": 28416,
+      "order": "C",
+      "sha256": "ae832dd7cfe91d27d7c3eb01ddeef933971d1184808f86f52d6637b266ad247c",
+      "shape": [
+        9,
+        96
+      ],
+      "size_bytes": 3456
+    },
+    "tok2vec.encoder.layer.0.norm": {
+      "dtype": "float32-le",
+      "file": "traces.f32",
+      "offset_bytes": 31872,
+      "order": "C",
+      "sha256": "a4074976003c651e020ae00dfb0b39bf2ce8350ab9177f6515480f124d3b31c6",
+      "shape": [
+        9,
+        96
+      ],
+      "size_bytes": 3456
+    },
+    "tok2vec.encoder.layer.0.residual": {
+      "dtype": "float32-le",
+      "file": "traces.f32",
+      "offset_bytes": 35328,
+      "order": "C",
+      "sha256": "0297275ca146ecf09e6e5bc9229457f1427035aa484c2b21f1f937326af69e84",
+      "shape": [
+        9,
+        96
+      ],
+      "size_bytes": 3456
+    },
+    "tok2vec.encoder.layer.0.window": {
+      "dtype": "float32-le",
+      "file": "traces.f32",
+      "offset_bytes": 7680,
+      "order": "C",
+      "sha256": "76be094d20b3fa27b9f7580eecffb9173bf33f68be143b4f8e6bc1925b57f90e",
+      "shape": [
+        9,
+        288
+      ],
+      "size_bytes": 10368
+    },
+    "tok2vec.encoder.layer.1.affine": {
+      "dtype": "float32-le",
+      "file": "traces.f32",
+      "offset_bytes": 49152,
+      "order": "C",
+      "sha256": "73d34d21539aef2e6164a47a0e0ad2c87f54774e32cc5d728ff0cb5cfdf3e591",
+      "shape": [
+        9,
+        96,
+        3
+      ],
+      "size_bytes": 10368
+    },
+    "tok2vec.encoder.layer.1.maxout": {
+      "dtype": "float32-le",
+      "file": "traces.f32",
+      "offset_bytes": 59520,
+      "order": "C",
+      "sha256": "d84282d8649e58024546483420c3736b9d10dea71f19277bc0303af832ec9086",
+      "shape": [
+        9,
+        96
+      ],
+      "size_bytes": 3456
+    },
+    "tok2vec.encoder.layer.1.norm": {
+      "dtype": "float32-le",
+      "file": "traces.f32",
+      "offset_bytes": 62976,
+      "order": "C",
+      "sha256": "ad5acc0b5fb752952e76117ae61e577763f8bbabb2beb3ff1add07e12ce55f87",
+      "shape": [
+        9,
+        96
+      ],
+      "size_bytes": 3456
+    },
+    "tok2vec.encoder.layer.1.residual": {
+      "dtype": "float32-le",
+      "file": "traces.f32",
+      "offset_bytes": 66432,
+      "order": "C",
+      "sha256": "ed0ef3c2e88a1bb075be411f0aa7aa7a5c8141d64f03e6071a9e9b772c52dc60",
+      "shape": [
+        9,
+        96
+      ],
+      "size_bytes": 3456
+    },
+    "tok2vec.encoder.layer.1.window": {
+      "dtype": "float32-le",
+      "file": "traces.f32",
+      "offset_bytes": 38784,
+      "order": "C",
+      "sha256": "c52b1721e36e319692848c6fb0d739c9fea23de21edd0e3cb14f0730d5e2b6c7",
+      "shape": [
+        9,
+        288
+      ],
+      "size_bytes": 10368
+    },
+    "tok2vec.encoder.layer.2.affine": {
+      "dtype": "float32-le",
+      "file": "traces.f32",
+      "offset_bytes": 80256,
+      "order": "C",
+      "sha256": "e312bb3a89591fffebccfef531c159754eb9f7277a268e5e5dff901c086e8b5d",
+      "shape": [
+        9,
+        96,
+        3
+      ],
+      "size_bytes": 10368
+    },
+    "tok2vec.encoder.layer.2.maxout": {
+      "dtype": "float32-le",
+      "file": "traces.f32",
+      "offset_bytes": 90624,
+      "order": "C",
+      "sha256": "50a43ffcac2b3be5207ca0bbaa9b36cd5cfdf56e1d70e4751631603979e00f8d",
+      "shape": [
+        9,
+        96
+      ],
+      "size_bytes": 3456
+    },
+    "tok2vec.encoder.layer.2.norm": {
+      "dtype": "float32-le",
+      "file": "traces.f32",
+      "offset_bytes": 94080,
+      "order": "C",
+      "sha256": "e3f55c329eceacc1166f11d2539baf24fc440a14505d71bb3011c95fa56fd8c0",
+      "shape": [
+        9,
+        96
+      ],
+      "size_bytes": 3456
+    },
+    "tok2vec.encoder.layer.2.residual": {
+      "dtype": "float32-le",
+      "file": "traces.f32",
+      "offset_bytes": 97536,
+      "order": "C",
+      "sha256": "908e1735de0bcaed6f12174d103727ef2b9f4d83091cf43cf18f95e675508cb4",
+      "shape": [
+        9,
+        96
+      ],
+      "size_bytes": 3456
+    },
+    "tok2vec.encoder.layer.2.window": {
+      "dtype": "float32-le",
+      "file": "traces.f32",
+      "offset_bytes": 69888,
+      "order": "C",
+      "sha256": "d766464c9abbc32b25d6ee179174c473207da25bd5bd17e89b01bf22d0645683",
+      "shape": [
+        9,
+        288
+      ],
+      "size_bytes": 10368
+    },
+    "tok2vec.encoder.layer.3.affine": {
+      "dtype": "float32-le",
+      "file": "traces.f32",
+      "offset_bytes": 111360,
+      "order": "C",
+      "sha256": "1b6624c0caad34306db7830c16785738a0f6158aa430ed5e08dc5c4b07b80ac9",
+      "shape": [
+        9,
+        96,
+        3
+      ],
+      "size_bytes": 10368
+    },
+    "tok2vec.encoder.layer.3.maxout": {
+      "dtype": "float32-le",
+      "file": "traces.f32",
+      "offset_bytes": 121728,
+      "order": "C",
+      "sha256": "bc53db2542164cdc973de911ae43a16b4995da4f1d53bec64479ad3e9e9df2f7",
+      "shape": [
+        9,
+        96
+      ],
+      "size_bytes": 3456
+    },
+    "tok2vec.encoder.layer.3.norm": {
+      "dtype": "float32-le",
+      "file": "traces.f32",
+      "offset_bytes": 125184,
+      "order": "C",
+      "sha256": "18612036ac3159a92bf6ab6df314cf4d92da8a364072a4ed8386d06df635b717",
+      "shape": [
+        9,
+        96
+      ],
+      "size_bytes": 3456
+    },
+    "tok2vec.encoder.layer.3.residual": {
+      "dtype": "float32-le",
+      "file": "traces.f32",
+      "offset_bytes": 128640,
+      "order": "C",
+      "sha256": "a33ed1d3055c24a8393e52d0b2c9e2a5078741f0ca813ba532adaf2ec24f8047",
+      "shape": [
+        9,
+        96
+      ],
+      "size_bytes": 3456
+    },
+    "tok2vec.encoder.layer.3.window": {
+      "dtype": "float32-le",
+      "file": "traces.f32",
+      "offset_bytes": 100992,
+      "order": "C",
+      "sha256": "45dedd985f574901864b19582cac3b6ef3e1531f595bfb63d8d9d5bf46ec1219",
+      "shape": [
+        9,
+        288
+      ],
+      "size_bytes": 10368
+    },
+    "tok2vec.output": {
+      "dtype": "float32-le",
+      "file": "traces.f32",
+      "offset_bytes": 132096,
+      "order": "C",
+      "sha256": "177e079cbcce6b5945d40d285cd7f692a71b7caf7eae5b4b40eb67a86d9bef32",
+      "shape": [
+        1,
+        96
+      ],
+      "size_bytes": 384
+    }
+  }
+}

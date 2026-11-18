@@ -1,0 +1,18 @@
+{
+  "incoming_main": "1ffcf91a3443caf9a6e8b45a3e6cab3f041831ae",
+  "previous_main": "c60fce9c37ca960eb64dd06c7ffc55b2fdbb2ed7",
+  "saved_premerge_evidence": "3ff671531ae657763fa648a10979c68e710a56ea",
+  "changed_incoming_paths": 398,
+  "incoming_zotero_paths": [],
+  "preserved_pr_head_ancestry": {
+    "139": true,
+    "153": true,
+    "155": true,
+    "156": true
+  },
+  "conflicts_resolved_by_retaining_both_entries": [
+    "packages/quds_office_engine/CHANGELOG.md",
+    "packages/quds_office_editor/CHANGELOG.md"
+  ],
+  "followup": "Refresh exact workspace graph with native spaCy package, then rerun complete engine/editor/Studio Zotero cohorts; retain previous675 baseline separately."
+}

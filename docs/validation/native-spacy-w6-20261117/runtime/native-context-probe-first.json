@@ -1,0 +1,7 @@
+{
+  "status": "harness_error",
+  "error": "ctypes.ArgumentError: argument 1: TypeError: wrong type",
+  "cause": "Initial setup probe passed NativeAPI.open() tuple to context_capabilities instead of unpacking context and error. Process exited; corrected probe explicitly frees created context.",
+  "native_inference_executed": false,
+  "native_or_model_modified": false
+}

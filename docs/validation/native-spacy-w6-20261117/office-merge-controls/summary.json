@@ -1,0 +1,30 @@
+{
+  "attempts": [
+    {
+      "cause": "Flutter system temp directory /tmp is unavailable in the sandbox.",
+      "receipt": "receipt.json",
+      "retained_runner": "run_controls-first-attempt.py",
+      "sha256": "f1d89ae145c49720f189ee4c52cd55798f5afb09bfc9f8afc443a04689b39097",
+      "status": "setup_failure_before_tests"
+    },
+    {
+      "receipt": "task-temp-retry/receipt.json",
+      "retained_runner": "run_controls.py",
+      "setup_change": "TMPDIR explicitly points to a task-owned writable directory; no source change.",
+      "sha256": "984a31a2f1a2a7073507a99f6a7ee8846f96d70991f4743b425c8e08ed3304c9",
+      "status": "passed"
+    }
+  ],
+  "ci_queried_or_waited": false,
+  "engine_tests_passed": 214,
+  "lock_unchanged": true,
+  "pub_downloads_during_test": false,
+  "runtime_receipt": "../runtime/runtime-restoration.json",
+  "schema": "quds.spacy.w6.office_merge_controls_summary.v1",
+  "source_commit": "ec4aeefe1be6ce1868ee7eebf004c07b25d4108a",
+  "source_matches_merge_and_stays_unchanged": true,
+  "source_paths": 10,
+  "source_tree": "586035a32d59d3b255d3c30c20203e559e0b5522",
+  "status": "passed",
+  "studio_tests_passed": 2
+}

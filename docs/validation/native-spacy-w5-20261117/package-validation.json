@@ -1,0 +1,129 @@
+{
+  "base_remote_commit": "589759cca3f8283264232bf2aa813a605b42eea5",
+  "cancellation": {
+    "active_slot_retained_until_reply": true,
+    "caller_settles_immediately": true,
+    "isolate_kill_used": false,
+    "native_compute_interruptible_through_dart": false,
+    "shutdown_joins_context_free": true
+  },
+  "checks": [
+    {
+      "command": "dart --packages=.dart_tool/package_config.json <verified-test-package>/bin/test.dart packages/quds_proofing_spacy/test --reporter expanded",
+      "core_and_bundle": 15,
+      "exit_code": 0,
+      "id": "dart-package-unit-tests",
+      "log": "package-tests-final.log",
+      "tests": 29,
+      "worker_protocol": 14
+    },
+    {
+      "command": "flutter test --no-pub packages/quds_office_editor/test/word_manual_proofing_test.dart packages/quds_office_editor/test/word_proofing_session_test.dart packages/quds_office_editor/test/word_proofing_correction_test.dart --reporter expanded",
+      "exit_code": 0,
+      "id": "existing-proofing-regressions",
+      "log": "proofing-regression.log",
+      "tests": 75
+    },
+    {
+      "command": "dart analyze packages/quds_proofing_spacy",
+      "exit_code": 0,
+      "id": "package-analyzer",
+      "issues": 0,
+      "log": "package-analyze-final.log"
+    },
+    {
+      "authored_controls": 10,
+      "cases": 16,
+      "differences": 0,
+      "field_comparisons": 2571,
+      "id": "direct-actual-model",
+      "report": "dart-development-sealed.json",
+      "sentences": 22,
+      "source_unchanged": true,
+      "tokens": 113
+    },
+    {
+      "authored_controls": 10,
+      "cases": 16,
+      "differences": 0,
+      "field_comparisons": 2571,
+      "id": "worker-actual-model",
+      "report": "dart-worker-development.json",
+      "sentences": 22,
+      "source_unchanged": true,
+      "tokens": 113
+    },
+    {
+      "controls": 20,
+      "documents_freed": 30,
+      "id": "malformed-native-ffi",
+      "live_contexts": 0,
+      "live_documents": 0,
+      "report": "native-fault-probe.json",
+      "trained_inference": false
+    },
+    {
+      "command": "dart compile js -O1 -o <probe.js> packages/quds_proofing_spacy/tool/web_capability_probe.dart; execute with Node and global.self=global",
+      "exit_code": 0,
+      "id": "portable-web-import-and-unavailability",
+      "js_sha256": "fd65dec1a20fe033b382454724f4e61cc5f24204665c3daccf7198a4c4b5cb6b",
+      "logs": [
+        "web-capability-build.log",
+        "web-capability-run.log"
+      ],
+      "native_calls": 0
+    }
+  ],
+  "ci_queried_polled_waited_or_rerun": false,
+  "initial_observations": [
+    {
+      "id": "direct-dart-test-implicit-setup",
+      "result": "stalled, interrupted; explicit offline cached runner used; not counted as a completed test"
+    },
+    {
+      "id": "web-probe-constructor",
+      "log": "web-capability-build-first.log",
+      "result": "initial developer probe incorrectly used const with a non-const factory; corrected probe, runtime unchanged"
+    },
+    {
+      "id": "first-dart-whitespace-guard",
+      "report": "dart-development-first.json",
+      "result": "retained Dart-only validator failure, corrected against unchanged development source; native candidate unchanged",
+      "source_archive": "dart-development-first-source.tar.gz"
+    }
+  ],
+  "interpretation": "Direct and worker runs repeat the same 16 existing development documents; unique linguistic test count is not summed across executions.",
+  "native_heldout_acceptance_executions": 0,
+  "passed": true,
+  "recorded_at": "2026-11-17T21:33:42.397567+00:00",
+  "runtime": {
+    "dart": "3.13.7",
+    "flutter": "3.47.8",
+    "native_library_sha256": "ea89842ebf22c08508aff1cfbf18d78a107118af320523009616ff62b6e42977",
+    "native_source_changed": false
+  },
+  "schema": "quds.spacy.w5.package.validation.v1",
+  "scope": "Optional Linux x86-64/AVX2 Dart FFI and persistent worker, existing development panel and authored API/protocol controls; not new native acceptance, grammar quality or mobile qualification.",
+  "source_sha256": {
+    "packages/quds_proofing_spacy/lib/quds_proofing_spacy.dart": "d2ec35f73260fc3bee0d86726aecb9478665355258f0722e77055f09b5e8eb19",
+    "packages/quds_proofing_spacy/lib/quds_proofing_spacy_native.dart": "b4d68e940536d8272680f21057f1a7695eb78d8a02c338320b2376c6a159a002",
+    "packages/quds_proofing_spacy/lib/src/analysis.dart": "65d0577b9ff41e498df5a8606b85a6058623a3bc5591e1efb05a74b5b97c0464",
+    "packages/quds_proofing_spacy/lib/src/backend.dart": "4b3cf6561ec8811d8a85a48a7025efda7714ad0a088add42fc065a738993a732",
+    "packages/quds_proofing_spacy/lib/src/bundle.dart": "970ec6672efada2bcbacd7223804b8cf8d504ec647aec0c289ee43e5c1f802cb",
+    "packages/quds_proofing_spacy/lib/src/native_backend.dart": "fe15180d48d19b0e79874615708106a88d6f948a026eaef61d26f39961ce9f1b",
+    "packages/quds_proofing_spacy/lib/src/native_backend_unsupported.dart": "ff38d1a0fd5fa93c2157649fdd064dd73830047497359ed2d51d7a07ff2814ae",
+    "packages/quds_proofing_spacy/lib/src/source_text.dart": "fd2f2fdda8e608d32bf3b4a05c10b8777a106495cf97cbfafd3b05dd5e559330",
+    "packages/quds_proofing_spacy/lib/src/transport.dart": "78b38b82fcec385d0d2d96d5861f0e2b0333b8af58bc542dd6d5cc23677f6305",
+    "packages/quds_proofing_spacy/lib/src/worker_native.dart": "4d63dcc14292025493cbab07b839a26fefb66c6e5d4a2558c4fd01e74d46da80",
+    "packages/quds_proofing_spacy/lib/src/worker_unsupported.dart": "074c3ad98e4a873ec5d55535b3c1a404da4eb557068437a3b4eb9a622d1e3078",
+    "packages/quds_proofing_spacy/pubspec.yaml": "89f1587511568fa253be06db2d2a6ad7af3efeeccd472636bfd8bcaa863f5c52",
+    "packages/quds_proofing_spacy/test/analysis_test.dart": "8bb386066dac0091533152b0c9e03214f868014dd4ccba88f7822fa6ca57eefa",
+    "packages/quds_proofing_spacy/test/bundle_test.dart": "62521074823fc36013007fca61dd72c63bac6dd184f45f60b43d90dd3723d7f5",
+    "packages/quds_proofing_spacy/test/worker_test.dart": "a2731ca47b669548bbe5c19acec2fc24ba00a065d781bedd2eecbedbd52e51eb",
+    "packages/quds_proofing_spacy/tool/native_fault_fixture.c": "51caed1bfe6573c13a0e9fce8cafd47543336097b7d55ff80b3775d71cc77ac7",
+    "packages/quds_proofing_spacy/tool/native_fault_probe.dart": "4b3815c0cb30eaba6b7390363d539ab335c6a76e2d06937507653e45c948b086",
+    "packages/quds_proofing_spacy/tool/replay_development.dart": "6b20ae590df51fa30f73a37b50db9057b6f90bdfebea2b3f90d50bfedbf8c76a",
+    "packages/quds_proofing_spacy/tool/web_capability_probe.dart": "30e67cd52955cb925ac7b475ac31b2ec1e7f7c9f2cdf6241bf0cd64b2e881492",
+    "pubspec.yaml": "f0115daba20b901e543f242861092c69d0486a2135e0d11c862b0015d1e82f30"
+  }
+}

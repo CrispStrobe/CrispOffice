@@ -1,0 +1,122 @@
+{
+  "acceptance_outputs_used_for_tuning": false,
+  "candidate_commit": "51c2ac328ef40b00f18eb9b03130fb67c3f11313",
+  "cases_file_sha256": "26c7e9e1e18f7423f6844729099a49e071d714c5095f613e311e950c9c880063",
+  "ci_endpoints_queried": false,
+  "counts": {
+    "cases": 8,
+    "numeric_stages": 851,
+    "parser_steps": 201,
+    "tokens": 98
+  },
+  "exporter_sha256": "9b1f0e42a4c05137fcc539269a6066b3484cbb8e068ef0b19f8baec6be2c1128",
+  "file_count": 20,
+  "files": {
+    "LICENSE": {
+      "bytes": 1056,
+      "sha256": "3933c176979b68bc6d0bcc902c7d6c130f1d127f476f17ba5cdba8d99cfd0012"
+    },
+    "LICENSES_SOURCES": {
+      "bytes": 13470,
+      "sha256": "0c3ab78745569d848b7c83a486183bce42b9643561084d6d6f67eb0229c79869"
+    },
+    "holdout-ambiguity/case.json": {
+      "bytes": 127380,
+      "sha256": "9faef7d16e49f69d0002202d0440122e2ff7c7eb3ab2474bcff0e608e6eaca16"
+    },
+    "holdout-ambiguity/traces.f32": {
+      "bytes": 525136,
+      "sha256": "3e2b22ff243996babc17d9fe0d59deceaed33a7340f1f16ff981d9535ac07878"
+    },
+    "holdout-boundaries/case.json": {
+      "bytes": 95578,
+      "sha256": "a9aa596121905c3c625f0bfda0af6c0f64affe98d4c992a9b5343517ceceb233"
+    },
+    "holdout-boundaries/traces.f32": {
+      "bytes": 423292,
+      "sha256": "76973bad3a6168826afc883f1a175530d10eaeeb90d1037eeb70d7c6bb25cda3"
+    },
+    "holdout-negation/case.json": {
+      "bytes": 95980,
+      "sha256": "efdab7289007def1dd9980b2ca547efd82eadca8c4104c525f4b69e57f6c442c"
+    },
+    "holdout-negation/traces.f32": {
+      "bytes": 423292,
+      "sha256": "fb43652862b3832a7dda8c7c2b9407a52a93729c5a9a0deb9484add5839ed772"
+    },
+    "holdout-parenthesis/case.json": {
+      "bytes": 117318,
+      "sha256": "e020f9388c60f2dc8acd98c1951ce9081d56ec89adb3ca0a6b4df029e69ccbf9"
+    },
+    "holdout-parenthesis/traces.f32": {
+      "bytes": 491188,
+      "sha256": "b0e19e2d4f08405e376bfeafcad7dda4e9194ddcb32d0e555791bf46d319813d"
+    },
+    "holdout-quotes/case.json": {
+      "bytes": 154981,
+      "sha256": "551c8db4a54b27ede25385fa98e448a7aabcfc2cda9602e9941fa7f3796069e7"
+    },
+    "holdout-quotes/traces.f32": {
+      "bytes": 594348,
+      "sha256": "caf1e3ee1d1643e2071dc13b0ec8eb0f0927e947928a1ab09a15e427e542cc87"
+    },
+    "holdout-relative/case.json": {
+      "bytes": 161951,
+      "sha256": "6ae3a7ad3acff3b499ed15337fe50150242526ac3baef922108fd67c4134a807"
+    },
+    "holdout-relative/traces.f32": {
+      "bytes": 626980,
+      "sha256": "c6eb3ff40c80bc93cc89c7eb37d0f8b4ec19274bce4bc0d86e7a0263e405ee99"
+    },
+    "holdout-spaces/case.json": {
+      "bytes": 128416,
+      "sha256": "02c317fc78d83aa15513c80cb74e410f26664da00d29184017fbf7192369b6a7"
+    },
+    "holdout-spaces/traces.f32": {
+      "bytes": 525136,
+      "sha256": "7c8e256f506021f6726c8ed3cee93d49cc19804234dd616ba5ec528d6367b31b"
+    },
+    "holdout-unicode/case.json": {
+      "bytes": 190063,
+      "sha256": "2718ced57d6c325c935ec607194d938146b45feb38c0a4db6e8ca22dbeb2cb63"
+    },
+    "holdout-unicode/traces.f32": {
+      "bytes": 666192,
+      "sha256": "55d80156a41a5aa691eb74b031a05935dc1d1472efc2ad2aa6b29c357ffd1267"
+    },
+    "manifest.json": {
+      "bytes": 71516,
+      "sha256": "1b60f2e99ebacfe0a5795548482d6210f6a1e2c9b0543cf7d7192eebee2c8b25"
+    },
+    "requirements-reference.txt": {
+      "bytes": 106951,
+      "sha256": "e1bd56aef4aba0c45135fb2b51961c0d94c3be99a785be71a46c698cd22cc98a"
+    }
+  },
+  "incoming_source_reconciliation": {
+    "incoming_paths": 45,
+    "main_commit": "2c47165d01d01cc883135a434ac9f6591ce6e770",
+    "main_commits_added": 3,
+    "merge_conflicts": false,
+    "previous_head": "e87494ada0729878981dc0cc60fdb07bcd5116d4",
+    "spaCy_path_overlap": false
+  },
+  "native_acceptance_executed": false,
+  "oracle_source_commit": "dcf2ec9b4d6fba05fa5eec2634c6654266332cc9",
+  "original_development_fixture_changed": false,
+  "original_exporter_modified": false,
+  "protocol_checkpoint": "8fac62023e257ccf431e3daee25e6b2f15f182c8",
+  "protocol_checkpoint_tree": "85c6807304414899eb33a8d1c6b6904399add0ce",
+  "protocol_remote_ref_and_tree_verified_before_export": true,
+  "protocol_sha256": "78c17652ebce834d853209927bf24493eb1b362de99a0115a55b5202fcef2d92",
+  "recorded_at": "2026-11-17T20:39:21.488912+00:00",
+  "reference_manifest_sha256": "1b60f2e99ebacfe0a5795548482d6210f6a1e2c9b0543cf7d7192eebee2c8b25",
+  "reference_repo_path": "tools/proofing/spacy/fixtures/acceptance",
+  "reproduction": {
+    "export": "python tools/proofing/spacy/export_reference.py --wheel $VERIFIED_WHEEL --environment-lock $CRISPEMBED/tools/spacy/requirements-reference.txt --cases tools/proofing/spacy/fixtures/cases.json --split acceptance --output $NEW_REFERENCE_DIRECTORY",
+    "verify": "python tools/proofing/spacy/verify_reference.py --reference $NEW_REFERENCE_DIRECTORY --cases tools/proofing/spacy/fixtures/cases.json"
+  },
+  "schema": "quds.spacy.acceptance_reference_publication.v1",
+  "scope": "Original reference export and integrity; native candidate not loaded or run at this checkpoint.",
+  "total_bytes": 5540224
+}

@@ -1,0 +1,38 @@
+00:00 +0: loading <QUDS>/packages/quds_office_editor/test/word_german_grammar_integration_test.dart
+00:00 +0: default review prefers contextual participle over spelling distance
+00:01 +1: complete phrase choice preserves individual styles and one undo step (tracking: false)
+00:01 +2: complete phrase choice preserves individual styles and one undo step (tracking: true)
+00:01 +3: real German phrase-agreement correction and undo: Ich habe ein schönen Tag.
+00:01 +4: real German phrase-agreement correction and undo: Ich sehe der neue Kunde.
+00:01 +5: real German verb-object-case correction and undo: Sie hat ein roten Mantel.
+00:01 +6: real German verb-case correction and undo: Er hilft den Kind.
+00:01 +7: real German copula-agreement correction and undo: Das sind ein Problem.
+00:01 +8: real German word-order correction and undo: Gestern ich habe gekocht.
+00:01 +9: real German participle correction and undo: Er hat das Buch gelest.
+00:01 +10: real German verb-case correction and undo: Das ist der beste Lösung.
+00:01 +11: real German preposition-pronoun correction and undo: Ich spreche mit mich.
+00:01 +12: real German noun-verb correction and undo: Die Kinder spielt im Garten.
+00:01 +13: real German preposition-pronoun correction and undo: Das ist für ihm.
+00:01 +14: real German preposition-case correction and undo: Ich spreche mit den Mann.
+00:01 +15: real German dative-plural correction and undo: Wir spielen mit den Kinder.
+00:01 +16: real German adjective-ending correction and undo: Ich lese ein gute Buch.
+00:01 +17: real German adjective-ending correction and undo: Ich arbeite mit einem gutem Buch.
+00:01 +18: real German das-dass correction and undo: Ich denke, das du kommst.
+00:01 +19: real German subordinate-comma correction and undo: Ich glaube dass du kommst.
+00:01 +20: real German comparison correction and undo: Das Haus ist größer wie das Büro.
+00:01 +21: real German comparison correction and undo: Das Haus ist so groß als das Büro.
+00:01 +22: grammar spans equivalent German run tags and soft hyphens safely
+00:01 +23: new grammar findings retain stale-source correction guards
+00:01 +24: new preposition-pronoun rule has a reviewable restore label
+00:02 +25: new preposition-case rule has a reviewable restore label
+00:03 +26: new noun-verb rule has a reviewable restore label
+00:03 +27: new verb-case rule has a reviewable restore label
+00:03 +28: new copula-agreement rule has a reviewable restore label
+00:03 +29: new word-order rule has a reviewable restore label
+00:03 +30: new participle rule has a reviewable restore label
+00:04 +31: new dative-plural rule has a reviewable restore label
+00:04 +32: new adjective-ending rule has a reviewable restore label
+00:04 +33: new das-dass rule has a reviewable restore label
+00:04 +34: new subordinate-comma rule has a reviewable restore label
+00:04 +35: new comparison rule has a reviewable restore label
+00:04 +36: All tests passed!

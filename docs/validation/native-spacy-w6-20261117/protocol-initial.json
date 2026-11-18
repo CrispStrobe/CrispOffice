@@ -1,0 +1,85 @@
+{
+  "schema": "quds.spacy.grammar.protocol.v1",
+  "created_date": "2026-11-17",
+  "status": "frozen-before-first-candidate-execution",
+  "scope": "Bounded exploratory de-DE noun/finite-verb agreement; actual accepted CPU/F32 native annotations and pure Dart lexical guard; manual opt-in only if this gate and editor controls pass.",
+  "baseline": {
+    "repository": "CrispStrobe/quds_office_suite",
+    "main_commit": "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4",
+    "feature_initial_commit": "e7c67f29b34f1c1909e51aa25997fc774bb8ac80",
+    "provider": "GermanWritingRulesProvider with every current rule enabled except explicit per-case ignored IDs",
+    "ordinary_provider_sources_sha256": {
+      "packages/quds_office_engine/lib/src/proofing/german_context_grammar.dart": "a3c0ba12d84a68ff69612344d5eef194ab8589797825d22f6106291cb540b761",
+      "packages/quds_office_engine/lib/src/proofing/german_grammar.dart": "2dc05a989969644e71d5f2a52e1dc7d99685b3b9b2dc950d05f92d5e56ae40b9",
+      "packages/quds_office_engine/lib/src/proofing/german_literal_ranges.dart": "5585e4acf19165237e60eed7a20109d5ad74c03b9fbcd2b78b27cd00c8bb726a",
+      "packages/quds_office_engine/lib/src/proofing/german_morphology.dart": "b87a9873de8ad8b7ee9f3881971739c2a112098fa3491f43560302b055224183",
+      "packages/quds_office_engine/lib/src/proofing/german_spelling.dart": "9e51dd774237e6a22232ad88f905cc32314f75ee3ffeb263fee7cdbade93f82c",
+      "packages/quds_office_engine/lib/src/proofing/german_writing_rules.dart": "6bac6546836194f00a22a8afc4a763fdbaa7ef94e8e75a16efb36d6482684189",
+      "packages/quds_office_engine/lib/src/proofing/office_proofing.dart": "5a2711e5102948b88524aa6933c447791bf0839e83429c7e861d7a51cd23518e",
+      "packages/quds_office_engine/lib/src/proofing/proofing_text_ranges.dart": "4760ffde9a19bcaa6bb09f43e31a52d0e84bdbfb4b7940086938c098f0c47b17"
+    },
+    "note": "Later independent Office changes may be reconciled before candidate freeze; current deterministic behavior must remain byte-identical except an additive reviewed-facts API, and the final source closure will be sealed."
+  },
+  "native": {
+    "repository": "CrispStrobe/CrispEmbed",
+    "feature_initial_commit": "584dd9e50282aa9cee2c5250da7803898a86f9a4",
+    "source_commit": "51c2ac328ef40b00f18eb9b03130fb67c3f11313",
+    "library_sha256": "ea89842ebf22c08508aff1cfbf18d78a107118af320523009616ff62b6e42977",
+    "bundle_manifest_sha256": "d599768375de3dc56abcca5cf1d49da0015857f9d3a10640aebb5317ef5d427e",
+    "new_native_acceptance_executions": 0
+  },
+  "qualification_panel": {
+    "path": "qualification-panel.json",
+    "sha256": "52bede2f915db66489b45657d9b605f357d000b2024c8c734b57c10b3457a826",
+    "counts": {
+      "error": 30,
+      "valid": 42,
+      "guard": 10,
+      "unsupported": 4
+    },
+    "total": 86,
+    "unique_locale_text_pairs": 86,
+    "exact_input_overlap_with_historical_grammar_panels": 0,
+    "expectations_known_before_outputs": true,
+    "outputs_seen_before_publication": false,
+    "authorship": "coordinating assistant; separate implementation agent; no human annotation or population sampling claim"
+  },
+  "development": {
+    "policy": "Separate authored development inputs and historical grammar panels may be used for implementation and debugging. They never increase qualification denominator. Every initial failure is retained."
+  },
+  "scoring": {
+    "arms": [
+      "current deterministic",
+      "native planner alone",
+      "current deterministic plus native secondary via mergeOfficeProofingReports"
+    ],
+    "exact_correction": "For error cases, all reviewable replacement edits applied to original input must equal the frozen expected full string. No multiple-choice oracle picks; a finding must contain exactly one replacement.",
+    "valid_control": "Report any finding and any changed valid text separately for each arm; reject any added native finding on a valid control even if merge hides it.",
+    "guard_control": "Not asserted grammatical: require no native suggestion on protected, ignored, vocabulary, unsupported-structure or malformed-mark contexts; report baseline findings separately.",
+    "unsupported": "Report explicit unsupported separately from clean success; do not count as false positive success or correction coverage.",
+    "merge": "Deterministic findings keep precedence using existing merger; count raw model proposals and proposals suppressed by merge separately.",
+    "recheck": "Re-analyze corrected error outputs with the same native candidate and planner; record any remaining model finding; these repeated executions are not additional independent cases.",
+    "offsets": "Use nonzero UTF-16 request origin 23 in every panel case. Each finding must map exactly back to originalText and a source grapheme boundary.",
+    "operational": "Failures/timeouts/cancellations/missing assets/status mismatches are counted separately and cannot be represented as clean results."
+  },
+  "predeclared_gate": {
+    "minimum_additional_exact_error_cases_over_baseline": 4,
+    "maximum_baseline_exact_corrections_lost": 0,
+    "maximum_native_findings_on_valid_controls": 0,
+    "maximum_native_findings_on_guard_controls": 0,
+    "maximum_added_changed_valid_controls": 0,
+    "maximum_operational_failures": 0,
+    "maximum_model_findings_on_corrected_recheck": 0,
+    "all_declared_local_editor_safety_controls_required": true,
+    "meaning": "A finite incremental benefit on this authored panel only, not general German precision/recall or production release."
+  },
+  "execution_order": [
+    "Publish this protocol and panel before candidate output inspection.",
+    "Develop on separate data and retain initial failures.",
+    "Review and publish candidate, harness, and exact source/runtime hashes before reading qualification outputs.",
+    "Run qualification exactly once for this candidate; retain partial report on failure and never overwrite it.",
+    "If output-informed planner changes are needed, classify this panel as development and require a new independently frozen panel for a new qualification claim.",
+    "Publish outcome whether positive or negative; keep grammar default off and packaging separate."
+  ],
+  "ci_endpoints_queried_or_waited": false
+}

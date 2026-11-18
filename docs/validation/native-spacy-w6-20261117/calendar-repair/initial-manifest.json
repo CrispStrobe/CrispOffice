@@ -1,0 +1,9 @@
+{
+  "incoming_main": "23f3b4204fce45d38a103e3159bdc7f1e8d37c4e",
+  "source": "packages/quds_office_engine/lib/src/sheet/model/sml_conditional_format.dart",
+  "sha256": "50d8ae7ea085d54027d0689c86a642951c0b2dda297f5d65a752c0e6ba03c97e",
+  "source_from_main_refresh_receipt_matches": true,
+  "retained_probe": "../main-refresh-controls/calendar_boundary_probe.dart",
+  "original_receipt": "../main-refresh-controls/first.json",
+  "scope": "Incoming calendar-relative sheet functionality; grammar/proofing unchanged."
+}

@@ -1,0 +1,31 @@
+{
+  "command": [
+    "DART",
+    "--disable-dart-dev",
+    "--packages=PACKAGE_CONFIG",
+    "packages/quds_proofing_spacy/tool/consume_distribution.dart",
+    "--self-test"
+  ],
+  "dart_executable_sha256": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb",
+  "driver_sha256": "2c950b6a5102fc97b59f5ee02355ce662d3d100b409949df330bdff5c25d4ab4",
+  "elapsed_seconds": 0.855022039000005,
+  "exit_code": 0,
+  "native_inference_executions": 0,
+  "native_library_loaded": false,
+  "observed_controls": {
+    "loader_environment_clean_cases": 1,
+    "loader_environment_rejection_cases": 8,
+    "model_free_controls": 12,
+    "native_inference_executions": 0,
+    "native_library_loaded": false,
+    "status": "passed"
+  },
+  "output_path": "self-test-final.log",
+  "package_config_sha256": "4e7312c5867198a9bf0251a1c30edc520d80a24744737c83e868b74e75fedcc1",
+  "path_normalization": "WORKSPACE replaces task scratch root only",
+  "public_output_sha256": "25413b50d97e7d7bddeb321d15c7f5c7f6faef9f6d0d804afffff24f6193655b",
+  "raw_output_sha256": "25413b50d97e7d7bddeb321d15c7f5c7f6faef9f6d0d804afffff24f6193655b",
+  "schema": "quds.spacy.w7.dart_self_test.v1",
+  "sdk_archive_sha256": "eb99aed266efbcb615c6ae21c12f52cfe935b9f208bccc5fea7f64c21e867229",
+  "status": "passed"
+}

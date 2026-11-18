@@ -1,0 +1,33 @@
+{
+  "schema": "crispembed.spacy.fixture-inputs.v1",
+  "authorship": "New implementation fixtures authored before native implementation on 2026-11-17. These test model parity, not grammar correctness or population accuracy.",
+  "acceptance_policy": "Acceptance texts are frozen separately. Do not run acceptance during implementation tuning; once inspected for debugging, reclassify that result as development evidence.",
+  "development": [
+    {"id": "empty", "locale": "de-DE", "family": "empty", "text": ""},
+    {"id": "single", "locale": "de-DE", "family": "single-token", "text": "Hallo"},
+    {"id": "agreement", "locale": "de-DE", "family": "noun-verb-agreement", "text": "Die Kinder spielt im Garten."},
+    {"id": "ambiguity", "locale": "de-DE", "family": "competing-noun-readings", "text": "Die Leiter steht dort. Die Leiter stehen dort."},
+    {"id": "sentences", "locale": "de-DE", "family": "sentence-boundaries-abbreviations", "text": "Dr. Müller kommt z. B. morgen. Kommt er wirklich?"},
+    {"id": "punctuation", "locale": "de-DE", "family": "punctuation", "text": "... !? (—) „“"},
+    {"id": "whitespace", "locale": "de-DE", "family": "whitespace-crlf-nbsp", "text": "  Ein\tHaus.\r\nNoch\u00a0eins.\n"},
+    {"id": "unicode", "locale": "de-DE", "family": "nfc-nfd-supplementary-zwj", "text": "Café Café 😀 👩‍💻 𝄞 — schön!"},
+    {"id": "lexical", "locale": "de-DE", "family": "umlauts-sharp-s-soft-hyphen", "text": "Äpfel, Öfen, Grüße, STRAẞE und Silben­trennung."},
+    {"id": "addresses", "locale": "de-DE", "family": "url-email-number", "text": "Besuche https://beispiel.de/a?x=1 oder mail@beispiel.de; 1.234,56 €."},
+    {"id": "hyphens", "locale": "de-DE", "family": "apostrophes-dashes", "text": "Wie geht's Anna-Maria — wirklich gut?"},
+    {"id": "repeated", "locale": "de-DE", "family": "repeated-source-substrings", "text": "Das Haus sieht das Haus neben dem Haus."},
+    {"id": "syntax", "locale": "de-DE", "family": "fronted-object-coordination", "text": "Den Hund sehen Anna und Max, die hier wohnen."},
+    {"id": "scripts", "locale": "de-DE", "family": "mixed-scripts-unknown-word", "text": "東京, Αθήνα und Quuxding flirren."},
+    {"id": "nul", "locale": "de-DE", "family": "embedded-nul", "text": "vor\u0000nach bleibt."},
+    {"id": "long-token", "locale": "de-DE", "family": "long-token", "text": "Donaudampfschifffahrtsgesellschaftskapitänsanwärterweiterbildungsausschusssitzungsprotokoll"}
+  ],
+  "acceptance": [
+    {"id": "holdout-relative", "locale": "de-DE", "family": "relative-clause", "text": "Das Buch, das meine Schwester gestern gekauft hat, liegt auf dem Tisch."},
+    {"id": "holdout-ambiguity", "locale": "de-DE", "family": "competing-readings", "text": "Der See ist ruhig, während die See heute rau bleibt."},
+    {"id": "holdout-quotes", "locale": "de-DE", "family": "quoted-text", "text": "„Sind alle da?“, fragte Frau König. Niemand antwortete."},
+    {"id": "holdout-unicode", "locale": "de-DE", "family": "unicode-zwj", "text": "Özlem schreibt: Änderung Nr. 7 👨‍👩‍👧‍👦 ist fertig."},
+    {"id": "holdout-spaces", "locale": "de-DE", "family": "unusual-spaces", "text": "\tLinks\u2009und\u202frechts\r\nstehen zwei Bäume.  "},
+    {"id": "holdout-parenthesis", "locale": "de-DE", "family": "parentheses-unknown-word", "text": "Der Xylophonbauer (ein Quasselquux) arbeitet seit 8:30 Uhr."},
+    {"id": "holdout-negation", "locale": "de-DE", "family": "negation-fronted-object", "text": "Dieses Ergebnis haben weder Lea noch Ben erwartet."},
+    {"id": "holdout-boundaries", "locale": "de-DE", "family": "repetition-newline-nul", "text": "Hier steht hier.\nHier\u0000steht wieder hier."}
+  ]
+}

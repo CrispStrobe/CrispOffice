@@ -1,0 +1,136 @@
+{
+  "schema": "quds.spacy.w7.dart_consumer_checkpoint.v1",
+  "status": "source_only_uncompiled",
+  "driver": "packages/quds_proofing_spacy/tool/consume_distribution.dart",
+  "branch": "feat/native-spacy-w7-20261118",
+  "parent_commit": "93e59292b19e4edba94fb1230ed0317c0bda2ae7",
+  "protocol": "docs/validation/native-spacy-w7-20261118/operational-protocol.json",
+  "crisp_protocol_publication": "c0f9837c2af318a10f907531b41e3269757efe64",
+  "package_archive_sha256": "4e3b627a614cd21851e6e354335e2e08adeb4cedd4d7778df0cc68c1ce2edf01",
+  "distribution_manifest_sha256": "e043af51e247368931f23fa0d9b931453e174f105b021fe2053e8e3029fd3d8d",
+  "accepted_native_library_sha256": "ea89842ebf22c08508aff1cfbf18d78a107118af320523009616ff62b6e42977",
+  "compilation": "not executed; filesystem sandbox startup fails before commands can launch",
+  "driver_self_test": "not executed",
+  "installed_package_dart_consumer": "not executed",
+  "native_inference_executions_for_this_driver": 0,
+  "native_acceptance_rerun": false,
+  "grammar_qualification_rerun": false,
+  "application_or_default_changes": false,
+  "github_actions_queries_waits_reruns": 0,
+  "blocker": {
+    "kind": "ENOSPC during execution sandbox setup",
+    "observed_error": "bwrap: Can't create file WORKSPACE/.git: No space left on device",
+    "failed_operations": [
+      "writing the new consumer source locally",
+      "starting model-free compilation",
+      "starting a cleanup command",
+      "deleting a redundant task-owned JSON receipt"
+    ],
+    "no_existing_shell_session_available": true,
+    "remote_only_checkpoint": true,
+    "observed_error_path_redacted": true
+  },
+  "prior_observed_dart_restore": {
+    "status": "passed before later filesystem exhaustion",
+    "sdk_version": "3.13.7",
+    "platform": "linux_x64",
+    "sdk_archive_url": "https://storage.googleapis.com/dart-archive/channels/stable/release/3.13.7/sdk/dartsdk-linux-x64-release.zip",
+    "sdk_archive_bytes": 238850892,
+    "sdk_archive_sha256": "eb99aed266efbcb615c6ae21c12f52cfe935b9f208bccc5fea7f64c21e867229",
+    "authenticated_selected_sdk_members": 500,
+    "selected_sdk_logical_bytes": 137844590,
+    "dartdev_cli_included": false,
+    "flutter_included": false,
+    "web_build_tooling_included": false,
+    "setup_scope": "Direct VM and source compilation; complete ZIP authenticated in memory before selected extraction; identical members deduplicated",
+    "local_receipt": "runtime-dart/restore-receipt.json",
+    "local_receipt_sha256": "b9b03714fba619f8b2569601bdf253373b9766b033c73da54f055b814c1bf461",
+    "raw_receipt_in_this_commit": false,
+    "receipt_availability": "Previously written and hashed locally; could not reread or upload its complete raw contents after ENOSPC. This record retains only observed metadata.",
+    "executable": "runtime-dart/dart-sdk/bin/dart",
+    "external_package_config": "runtime-dart/package_config.json",
+    "command_pattern": "dart --disable-dart-dev --packages=ABSOLUTE_PACKAGE_CONFIG ABSOLUTE_SCRIPT",
+    "pinned_packages": [
+      {
+        "name": "crypto",
+        "version": "3.0.8",
+        "archive_sha256": "e3626ae6270383c9e3a549f34c9e4cd26c09ae6a9adaab2bf4737a00340efdc4"
+      },
+      {
+        "name": "ffi",
+        "version": "2.2.0",
+        "archive_sha256": "6d7fd89431262d8f3125e81b50d3847a091d846eafcd4fdb88dd06f36d705a45"
+      },
+      {
+        "name": "typed_data",
+        "version": "1.4.0",
+        "archive_sha256": "f9049c039ebfeb4cf7a7104a675823cd72dba8297f264b6637062516699fa006"
+      }
+    ],
+    "package_pin_source": "docs/validation/native-spacy-w5-20261117/workspace-pubspec.lock",
+    "observed_import_probe": {
+      "exit_code": 0,
+      "imported": "package:quds_proofing_spacy/quds_proofing_spacy_native.dart",
+      "sha256_abc": "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad",
+      "ffi_arena_byte": 7,
+      "request_text": "Probe.",
+      "native_library_loaded": false,
+      "native_inference_executions": 0,
+      "scope": "Existing package import, SDK execution, hashing and FFI Arena allocation only; not compilation or execution of the new driver"
+    }
+  },
+  "independent_package_source_review": {
+    "previously_observed_status": "passed; no actionable defects",
+    "reviewed_controls": 25,
+    "tests_rerun_by_reviewer": false,
+    "local_receipt": "runtime-dart/package-boundary-review.json",
+    "local_receipt_sha256": "6daeaaaf0f2bbcabbdfbf0693f019ce71ea11361f971b1b1fc39c99bc89e2af3",
+    "raw_receipt_in_this_commit": false
+  },
+  "proposed_driver_scope": [
+    "Authenticate external archive identity and fixed distribution manifest before use.",
+    "Validate all 20 installed payload pins and read-only paths, CPU baseline, and six dependency hashes.",
+    "Run the eight frozen operational texts through the actual owned Quds worker, with nonzero UTF-16 origins and independent source-coordinate checks.",
+    "Check stable repeat/copy ownership, unsupported de-AT, caller cancellation, awaited disposal and reopen without claiming compute interruption or UI observation.",
+    "Record source/configuration/runtime identity and observed failures; do not rerun consumed native or grammar qualification panels."
+  ],
+  "resume": [
+    "Recover filesystem capacity without deleting unrelated tasks or weakening access controls.",
+    "Fetch this exact remote checkpoint and materialize the saved source before editing.",
+    "Restore the authenticated direct VM and three pinned packages if their local copies are unavailable.",
+    "Run --self-test to compile and validate the new driver without native loading; repair and save any failures.",
+    "Publish the locally checked driver source before its first actual installed-package run.",
+    "Run the frozen operational package consumer with an external process timeout and a fresh report path; retain actual outcomes and source hashes.",
+    "Do not treat this source-only checkpoint as completed W7 consumer qualification."
+  ],
+  "initial_source_checkpoint_commit": "93e59292b19e4edba94fb1230ed0317c0bda2ae7",
+  "static_source_review": {
+    "status": "source_review_only; compilation and tests remain unexecuted",
+    "quds_api_commit": "20026ff49ac37391e2a1fd0947560a587f2f7332",
+    "quds_api_files": [
+      "packages/quds_proofing_spacy/lib/src/analysis.dart",
+      "packages/quds_proofing_spacy/lib/src/backend.dart",
+      "packages/quds_proofing_spacy/lib/src/bundle.dart",
+      "packages/quds_proofing_spacy/lib/src/native_backend.dart",
+      "packages/quds_proofing_spacy/lib/src/transport.dart"
+    ],
+    "protocol_commit": "93e59292b19e4edba94fb1230ed0317c0bda2ae7",
+    "distribution_source_commit": "c0f9837c2af318a10f907531b41e3269757efe64",
+    "distribution_source_path": "tools/spacy/distribution.py",
+    "verified_api_contracts": [
+      "SpacyBundle.germanF32 is a const constructor.",
+      "SpacyNativeBackendFactory takes bundleDirectory, libraryPath and librarySha256.",
+      "LinguisticAnalysisRequest fields and sameSnapshot include source text and every identity field used by this driver.",
+      "startSpacyWorker accepts bundle, backendFactory, startupTimeout and requestTimeout.",
+      "LinguisticAnalysisResult.toJson omits request identity; token.toJson omits sentenceEnd.",
+      "Repeat comparisons explicitly use token and sentence annotations with sentenceEnd included; request snapshots are checked independently."
+    ],
+    "verified_json_contracts": [
+      "Frozen protocol uses schema, cases[].id/text/utf8_sha256, cycle_text, cycle_utf8_sha256 and platform.required_cpu_flags.",
+      "Fixed distribution uses files mapping entries with sha256/size_bytes, native.library_sha256, bundle_manifest_sha256, entrypoints.library/bundle and system_dependencies.qualified_resolved_files[].soname/sha256/bytes."
+    ],
+    "typing": "Checked Map<String, Object?>, List<Object?>, string and integer readers replace unchecked JSON casts and chained indexing.",
+    "rules_source": ".cursorrules: 100% type safety; no dynamic or untyped maps",
+    "limitations": "Static inspection does not establish successful compilation or execution."
+  }
+}

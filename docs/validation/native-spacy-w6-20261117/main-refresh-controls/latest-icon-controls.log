@@ -1,0 +1,11 @@
+00:00 +0: loading QUDS_REPOSITORY/packages/quds_office_editor/test/sheet_conditional_rendering_test.dart
+00:00 +0: icon sets visibly paint without mutating values or rules
+00:00 +1: data bars visibly paint without changing cell values
+00:00 +2: grid paints priority and independent property cascade
+00:00 +3: font-only rule retains ordinary cell fill
+00:00 +4: unstyled stopping rule keeps ordinary fill and font
+00:00 +5: cross-sheet expression colors absent cells without creating them
+00:00 +6: grid refresh observes later referenced cell edits
+00:00 +7: merged frozen cells use their anchor conditional style
+00:00 +8: editor supplies workbook scope to the rendered sheet
+00:00 +9: All tests passed!

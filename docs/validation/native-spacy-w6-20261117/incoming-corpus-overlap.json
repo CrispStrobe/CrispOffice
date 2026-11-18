@@ -1,0 +1,22 @@
+{
+  "schema": "quds.spacy.w6.incoming-corpus-overlap.v1",
+  "recorded_at": "2026-11-17T22:40:33.340666+00:00",
+  "native_execution": false,
+  "qualification_outputs_seen": false,
+  "qualification_panel_sha256": "52bede2f915db66489b45657d9b605f357d000b2024c8c734b57c10b3457a826",
+  "corpora": [
+    {
+      "path": "tools/proofing/german_morphology_completion_cases_20261117.json",
+      "sha256": "43f9db8dd82306fc54de352a536330a913cbacff169c6da5cb26776e31bcee79",
+      "cases": 50,
+      "exact_locale_text_overlaps": []
+    },
+    {
+      "path": "tools/proofing/german_morphology_adjudication_20261117.json",
+      "sha256": "eb363c6456c71292f97ea929d28af6b2619ccea663888f3d9fc9968094c20bb9",
+      "cases": 4,
+      "exact_locale_text_overlaps": []
+    }
+  ],
+  "policy": "Keep the originally frozen panel and scoring unchanged; record overlap transparently."
+}

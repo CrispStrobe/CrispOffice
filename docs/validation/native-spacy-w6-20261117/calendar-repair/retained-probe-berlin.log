@@ -1,0 +1,94 @@
+{
+  "schema": "quds.sheet.calendar_boundary_probe.v1",
+  "timezone": "Europe/Berlin",
+  "clock_local": "2026-11-17T12:00:00.000",
+  "utc_offset_minutes": 60,
+  "cases": [
+    {
+      "period": "last7Days",
+      "cell_calendar_date": "2026-11-17",
+      "expected": true,
+      "actual": true,
+      "passed": true
+    },
+    {
+      "period": "last7Days",
+      "cell_calendar_date": "2026-11-11",
+      "expected": true,
+      "actual": true,
+      "passed": true
+    },
+    {
+      "period": "last7Days",
+      "cell_calendar_date": "2026-11-10",
+      "expected": false,
+      "actual": false,
+      "passed": true
+    },
+    {
+      "period": "thisWeek",
+      "cell_calendar_date": "2026-11-15",
+      "expected": true,
+      "actual": true,
+      "passed": true
+    },
+    {
+      "period": "thisWeek",
+      "cell_calendar_date": "2026-11-21",
+      "expected": true,
+      "actual": true,
+      "passed": true
+    },
+    {
+      "period": "thisWeek",
+      "cell_calendar_date": "2026-11-22",
+      "expected": false,
+      "actual": false,
+      "passed": true
+    },
+    {
+      "period": "lastWeek",
+      "cell_calendar_date": "2026-11-08",
+      "expected": true,
+      "actual": true,
+      "passed": true
+    },
+    {
+      "period": "lastWeek",
+      "cell_calendar_date": "2026-11-14",
+      "expected": true,
+      "actual": true,
+      "passed": true
+    },
+    {
+      "period": "lastWeek",
+      "cell_calendar_date": "2026-11-15",
+      "expected": false,
+      "actual": false,
+      "passed": true
+    },
+    {
+      "period": "nextWeek",
+      "cell_calendar_date": "2026-11-22",
+      "expected": true,
+      "actual": true,
+      "passed": true
+    },
+    {
+      "period": "nextWeek",
+      "cell_calendar_date": "2026-11-28",
+      "expected": true,
+      "actual": true,
+      "passed": true
+    },
+    {
+      "period": "nextWeek",
+      "cell_calendar_date": "2026-11-29",
+      "expected": false,
+      "actual": false,
+      "passed": true
+    }
+  ],
+  "passed": 12,
+  "failed": 0
+}

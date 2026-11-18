@@ -1,0 +1,16 @@
+{
+  "additional_actionable_findings": [],
+  "driver_sha256": "cecbc3a4c52dc8880c9eae7add5a925b0c74660e9d1ba1aee7aaae0ffe02cdf6",
+  "fix": "relativeSourcePath normalizes trailing separators, checks the directory boundary, and validates the relative path. Native invocation and analysis are unchanged.",
+  "non_driver_source_hashes_unchanged": 37,
+  "original_first_report_sha256": "81c425de85cf8d17893e118b8d352471e460edb94b448fb229026de7f8e92fa2",
+  "original_first_report_unchanged": true,
+  "quds_library_labels_correct_and_actual_hashes_verified": 14,
+  "retained_self_test_controls": 17,
+  "schema": "quds.spacy.w7.dart_source_label_review.v1",
+  "scope": "Independent read-only source and retained-evidence review; no test or native rerun.",
+  "self_test_log_digest_verified": true,
+  "source_inventory_entries": 38,
+  "source_path_regressions": 5,
+  "status": "passed"
+}

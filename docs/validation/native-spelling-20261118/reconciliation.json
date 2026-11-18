@@ -1,0 +1,1598 @@
+{
+  "schema": "quds.native_spelling.reconciliation.v1",
+  "repository": "CrispStrobe/quds_office_suite",
+  "captured_at_utc": "2026-11-18T09:34:03.336055+00:00",
+  "scope": "Fixed snapshot of all fetched origin branches and 154 pull-request heads before native spelling changes; symbolic origin/HEAD excluded. Later concurrent updates are outside this snapshot.",
+  "branch_count": 193,
+  "pull_request_head_count": 154,
+  "branch_disposition_counts": {
+    "ancestor_of_integration": 175,
+    "superseded_recovery": 4,
+    "patch_equivalent_on_main": 11,
+    "tree_equivalent_on_main": 3
+  },
+  "roots": {
+    "origin/main": "c8eca37d1639ac1d20efb83ba2e9da51981a3ad4",
+    "origin/feat/native-spacy-reference-20261117": "6df76a0dff0051312faa04317af41d479dd94162",
+    "origin/feat/native-spacy-w7-20261118": "2e013f26c7d4db54ecabe2c955117cbce5379408"
+  },
+  "integration": {
+    "sha": "98a2a15056e55699b8ba5651fc79b26f94e5efd3",
+    "parents": [
+      "6df76a0dff0051312faa04317af41d479dd94162",
+      "2e013f26c7d4db54ecabe2c955117cbce5379408"
+    ],
+    "main_included": "c8eca37d1639ac1d20efb83ba2e9da51981a3ad4",
+    "open_prs_included": [
+      139,
+      153
+    ],
+    "source_choice": "Latest main accepted Office implementation plus latest optional spaCy reference and W7 packaging sources."
+  },
+  "open_pull_requests": [
+    {
+      "number": 139,
+      "branch": "feat/native-spacy-reference-20261117",
+      "sha": "6df76a0dff0051312faa04317af41d479dd94162",
+      "draft": true
+    },
+    {
+      "number": 153,
+      "branch": "feat/native-spacy-w7-20261118",
+      "sha": "2e013f26c7d4db54ecabe2c955117cbce5379408",
+      "draft": true
+    }
+  ],
+  "patch_equivalence": [
+    {
+      "branch_commit": "128a187d69555db80890c2a1945a442b951f9c74",
+      "main_commit": "d790bca444eef0e160a75ce3d8cb555af541004f",
+      "pr": 134,
+      "branch_patch_id": "365a196589ae9dda0f4888651ff0aebf40278148",
+      "main_patch_id": "365a196589ae9dda0f4888651ff0aebf40278148",
+      "exact_patch": true
+    },
+    {
+      "branch_commit": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+      "main_commit": "4584d5f319aab198f1d705f48b4d6647e6cbabea",
+      "pr": 135,
+      "branch_patch_id": "036f25f883d231e1b624d65cb66b0e7606843eb2",
+      "main_patch_id": "036f25f883d231e1b624d65cb66b0e7606843eb2",
+      "exact_patch": true
+    },
+    {
+      "branch_commit": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+      "main_commit": "4eaca83b192897edad82658107dfeb5bcbed0920",
+      "pr": 136,
+      "branch_patch_id": "8b0973d7115fabf0495c57047211341603ecff36",
+      "main_patch_id": "8b0973d7115fabf0495c57047211341603ecff36",
+      "exact_patch": true
+    },
+    {
+      "branch_commit": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+      "main_commit": "d754bf15b07a24c8a86c8dce339ca749fecd9531",
+      "pr": 137,
+      "branch_patch_id": "1111ccc635a9a0017552023190e955fd8859f829",
+      "main_patch_id": "1111ccc635a9a0017552023190e955fd8859f829",
+      "exact_patch": true
+    },
+    {
+      "branch_commit": "b8ddaaeb581e010467de304c828764d353149102",
+      "main_commit": "d6010059644b34accd6f188e0e2a4863ab63e318",
+      "pr": 138,
+      "branch_patch_id": "4efae3746e9631ee00b1f2f9d83485254ec72f06",
+      "main_patch_id": "4efae3746e9631ee00b1f2f9d83485254ec72f06",
+      "exact_patch": true
+    },
+    {
+      "pr": 140,
+      "branch_commit": "c34945761e7991f5fe49037d79529acdd260b31c",
+      "main_commit": "2c47165d01d01cc883135a434ac9f6591ce6e770",
+      "branch_base": "e3a38789359adaa33b2da1345c952fa1c2d8aebb",
+      "branch_patch_id": "3af21ea00630f8743cf70df6167b863fca712bd1",
+      "main_patch_id": "3af21ea00630f8743cf70df6167b863fca712bd1",
+      "exact_patch": true
+    },
+    {
+      "branch_commit": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+      "main_commit": "b3f41eb4b4bca8ca13676b4114891ea6d9185043",
+      "pr": 141,
+      "branch_patch_id": "0900e0ef70a8be64c3c138bf2cee9b5388d56960",
+      "main_patch_id": "0900e0ef70a8be64c3c138bf2cee9b5388d56960",
+      "exact_patch": true
+    },
+    {
+      "branch_commit": "69d14f84cabd3931b7640c1654b401c89faba766",
+      "main_commit": "52c73ae4dbadf2ca00a5d619144350ccc353b31a",
+      "pr": 142,
+      "branch_patch_id": "918846f2cf42fa181a9d0b3e78ffebfe9098209b",
+      "main_patch_id": "918846f2cf42fa181a9d0b3e78ffebfe9098209b",
+      "exact_patch": true
+    },
+    {
+      "branch_commit": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
+      "main_commit": "c84d5e16024c502f6c451fd04b9807b1e65f20d3",
+      "pr": 145,
+      "branch_patch_id": "4075d26f68c43e299d6ceb36df52cc139a860b01",
+      "main_patch_id": "4075d26f68c43e299d6ceb36df52cc139a860b01",
+      "exact_patch": true
+    },
+    {
+      "branch_commit": "a7f144cc983f2df7c16d88f8644ad67a9254c3d0",
+      "main_commit": "0ff7d23929e4640af6c1d57f87c7ac71b73d2ed4",
+      "pr": 146,
+      "branch_patch_id": "eef11437a7723de0c7e64c8613f6f1d6340bbfd8",
+      "main_patch_id": "eef11437a7723de0c7e64c8613f6f1d6340bbfd8",
+      "exact_patch": true
+    },
+    {
+      "branch_commit": "7ef09f2408f467c65427700e65907531ecb26acb",
+      "main_commit": "34dc6b6806869570e9ec342e4d7ee0d6951c0ba6",
+      "pr": 151,
+      "branch_patch_id": "ee7385fb31592c0b10493c6f86bad5cd510449a5",
+      "main_patch_id": "ee7385fb31592c0b10493c6f86bad5cd510449a5",
+      "exact_patch": true
+    }
+  ],
+  "tree_equivalence": [
+    {
+      "branch_commit": "cee6e2632f891a3fe21c5c02d6bf508805973051",
+      "main_commit": "bb5556e8cc4cb73e2c668b5319a2844a20c6c50c",
+      "pr": 147,
+      "branch_tree": "a30201059a62b8034ac747367c1af8de054a2afb",
+      "main_tree": "a30201059a62b8034ac747367c1af8de054a2afb",
+      "exact_tree": true
+    },
+    {
+      "branch_commit": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+      "main_commit": "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4",
+      "pr": 149,
+      "branch_tree": "e3adc9e259c6120b4b1e3e03177391f880243e13",
+      "main_tree": "e3adc9e259c6120b4b1e3e03177391f880243e13",
+      "exact_tree": true
+    },
+    {
+      "branch_commit": "da9c956ec5d65c0e5a9f9ea84c2b0bca98e824a0",
+      "main_commit": "23f3b4204fce45d38a103e3159bdc7f1e8d37c4e",
+      "pr": 152,
+      "branch_tree": "b73ebcc6f72c49a2883c5749f6450d497c647324",
+      "main_tree": "b73ebcc6f72c49a2883c5749f6450d497c647324",
+      "exact_tree": true
+    }
+  ],
+  "preservation_rules": [
+    "Do not restore intentionally removed AOT/RML/nlp_base code, resources or transports; see docs/roadmaps/proofing-adapter-reuse.md. Historical refs remain available.",
+    "Keep native spaCy optional/default-disabled; integration does not grant distribution or production activation acceptance.",
+    "Retain main common-parent ODT frame implementation and accepted current Office fixes rather than older recovery variants.",
+    "Native acceptance and W6 grammar qualification are consumed; do not re-run them as a fresh quality panel."
+  ],
+  "new_zotero_branch": {
+    "name": "codex/zotero-capabilities-20261118",
+    "sha": "c8eca37d1639ac1d20efb83ba2e9da51981a3ad4",
+    "disposition": "ancestor_of_integration",
+    "note": "Already contained at this fixed snapshot; no attempt to chase future concurrent updates."
+  },
+  "methods": [
+    "GitHub search_prs state open plus get/compare repository refs; only #139 and #153 open at capture.",
+    "Fetched all origin heads and refs/pull/*/head; git for-each-ref and merge-base --is-ancestor for ancestry.",
+    "git patch-id --stable verifies 11 historical squash equivalents (PR 140 uses the combined branch delta).",
+    "Exact root tree IDs verify integration PR 147, 149 and 152.",
+    "Reviewed the residual Office writer and test diffs against main to identify superseded recovery variants."
+  ],
+  "limitations": [
+    "This is reconciliation evidence, not fresh runtime validation.",
+    "Stable patch IDs establish Git patch equivalence; they do not imply unchanged final files after later accepted edits.",
+    "Superseded recovery documentation remains referenced at its original captured remote SHA; it is not asserted to be ancestral to this integration."
+  ],
+  "github_actions_queried_or_awaited": false,
+  "branches": {
+    "codex/aot-daemon-free-20261117": {
+      "sha": "e37ccdb47c047f6a0250585cf5cb20efc17573b4",
+      "disposition": "ancestor_of_integration"
+    },
+    "codex/aot-proofing-analysis-20261117": {
+      "sha": "8b19ead89800f81ed9743ffbaf3279ac88fdd06d",
+      "disposition": "ancestor_of_integration"
+    },
+    "codex/gector-office-resume-20261117": {
+      "sha": "205e913ec1525b5e5157a6f6d7ff84c883217e48",
+      "disposition": "superseded_recovery",
+      "reason": "Superseded by accepted Office frame-parent implementation and updated tests on main; recovery evidence remains at the captured ref."
+    },
+    "codex/german-morphology-20261117": {
+      "sha": "867df7f257eac69adfe3355c051cdb2f773c53ac",
+      "disposition": "ancestor_of_integration"
+    },
+    "codex/native-spelling-20261118": {
+      "sha": "c8eca37d1639ac1d20efb83ba2e9da51981a3ad4",
+      "disposition": "ancestor_of_integration"
+    },
+    "codex/odf-annotation-visibility-20261117": {
+      "sha": "0b229004ee928fa1c1206957dbfc0419307cf254",
+      "disposition": "ancestor_of_integration"
+    },
+    "codex/odt-column-boundary-followup-20261117": {
+      "sha": "a1e026b496f91b54bbd3017aae54717bf25a5586",
+      "disposition": "ancestor_of_integration"
+    },
+    "codex/odt-field-continuation-20261117": {
+      "sha": "c34945761e7991f5fe49037d79529acdd260b31c",
+      "disposition": "patch_equivalent_on_main",
+      "pr": 140
+    },
+    "codex/office-consolidation-20261117": {
+      "sha": "1138cffdc4a1c909b2b149db80312037c21909d8",
+      "disposition": "ancestor_of_integration"
+    },
+    "codex/office-continuation-20261117": {
+      "sha": "93c832f53982a9f5956f19ae0cb9418f55fac8c0",
+      "disposition": "ancestor_of_integration"
+    },
+    "codex/office-continue-20261118": {
+      "sha": "e397671e815232847d7223314ba946d1d6740f44",
+      "disposition": "superseded_recovery",
+      "reason": "Superseded common-style frame variant; main uses automatic SectionFrame with common QudsTextFrame parent and corresponding tests. Its recovery evidence remains at the captured ref."
+    },
+    "codex/office-fidelity-20261117": {
+      "sha": "d1738017afd3696adbd2e895678b1fa7d26065ec",
+      "disposition": "ancestor_of_integration"
+    },
+    "codex/office-fidelity-improvements-20261117-e1978379": {
+      "sha": "814f165cb24a5b719dde65495f64d85f86563328",
+      "disposition": "ancestor_of_integration"
+    },
+    "codex/office-local-qualification-20261118": {
+      "sha": "295752ff93b24bafc510e60197b62faa647e2aa3",
+      "disposition": "ancestor_of_integration"
+    },
+    "codex/office-qualified-resume-20261117": {
+      "sha": "07926acb46f0d451491046066a35dd6c1227b5a1",
+      "disposition": "ancestor_of_integration"
+    },
+    "codex/office-reconciled-20261117": {
+      "sha": "83f8c380f9271b6bf34a300c3aedc19442cb61f1",
+      "disposition": "ancestor_of_integration"
+    },
+    "codex/office-resume-20261118": {
+      "sha": "8ad80eb29a3984d58d5564c6759e853c0a8ab4af",
+      "disposition": "superseded_recovery",
+      "reason": "Earlier Office recovery source is superseded by main; preserve later field, header, frame and bookmark fixes. Recovery evidence remains at the captured ref."
+    },
+    "codex/office-union-qualification-20261117": {
+      "sha": "16c7b0fb48c72527645678b76e25b5c5cb7b9c22",
+      "disposition": "ancestor_of_integration"
+    },
+    "codex/office-union-resume-20261118": {
+      "sha": "6d97fedccde17244a917ee7d3372adebe5494089",
+      "disposition": "superseded_recovery",
+      "reason": "PR 150 is closed unmerged; reconciled through PR 152. All paths modified by its unique non-merge source commits match at least one captured integration root; retain accepted main implementation."
+    },
+    "codex/proofing-20261116": {
+      "sha": "c0403890fc00f38c0ee6e1d533f6fef549c6fc03",
+      "disposition": "ancestor_of_integration"
+    },
+    "codex/proofing-20261116-resume": {
+      "sha": "738f0b6a3f1f46f83585579291d0847613d780c5",
+      "disposition": "ancestor_of_integration"
+    },
+    "codex/proofing-en-de-20261116": {
+      "sha": "7dfcfe9fcbf7e6d0d0abc14de7ed1ed901fa99c2",
+      "disposition": "ancestor_of_integration"
+    },
+    "codex/proofing-en-de-20261117": {
+      "sha": "5cff80ce4ba85e645f21a31efb4fa4d9043b7e79",
+      "disposition": "ancestor_of_integration"
+    },
+    "codex/proofing-en-hyphenation-20261116": {
+      "sha": "ffc672fec2df9919233b4ee5b0ba783ef1758f99",
+      "disposition": "ancestor_of_integration"
+    },
+    "codex/proofing-german-quality-20261116": {
+      "sha": "a916bbf09169f6906a89bd2ca3e3c42120ead466",
+      "disposition": "ancestor_of_integration"
+    },
+    "codex/proofing-harper-source-20261116": {
+      "sha": "65d5815e4866549fe7f03b145b626f2c4aaba8e0",
+      "disposition": "ancestor_of_integration"
+    },
+    "codex/terminal-integration-ods-20261116": {
+      "sha": "4fadcc68d52d51e72e8d782765a0dd5086b982c6",
+      "disposition": "ancestor_of_integration"
+    },
+    "codex/terminal-recovery-office-20261116": {
+      "sha": "be2c3a91b0dd5b4abb1b9a7baa8f5e10769bc87a",
+      "disposition": "ancestor_of_integration"
+    },
+    "codex/terminal-sharing-office-20261116": {
+      "sha": "4235e690602195cc504438a6b937972c71f1ad39",
+      "disposition": "ancestor_of_integration"
+    },
+    "codex/text-rendering-20261116": {
+      "sha": "57bc0f98eb94997b73f22cc267bd8d61dccaee59",
+      "disposition": "ancestor_of_integration"
+    },
+    "codex/text-rendering-20261116-continuation": {
+      "sha": "aff69c221f24d2bf9bcab7001f976ac085b4e841",
+      "disposition": "ancestor_of_integration"
+    },
+    "codex/zotero-capabilities-20261116": {
+      "sha": "2480f0988167068d9aeddf6573b9c2c6871a8481",
+      "disposition": "ancestor_of_integration"
+    },
+    "codex/zotero-capabilities-20261118": {
+      "sha": "c8eca37d1639ac1d20efb83ba2e9da51981a3ad4",
+      "disposition": "ancestor_of_integration"
+    },
+    "codex/zotero-optimization-20261116": {
+      "sha": "ca9e4f052d988d77f9ded3a6b13f840f76a26159",
+      "disposition": "ancestor_of_integration"
+    },
+    "codex/zotero-recovery-20261116": {
+      "sha": "1549a9c7884eb688732262398b5d9859a68103eb",
+      "disposition": "ancestor_of_integration"
+    },
+    "codex/zotero-support-20261115": {
+      "sha": "fc37658c907edf6687eccb9564d3046283b49a3a",
+      "disposition": "ancestor_of_integration"
+    },
+    "codex/zotero-support-20261116": {
+      "sha": "428679a33381f943a8ae63117d4207f01dd15462",
+      "disposition": "ancestor_of_integration"
+    },
+    "docs/aot-removal": {
+      "sha": "128a187d69555db80890c2a1945a442b951f9c74",
+      "disposition": "patch_equivalent_on_main",
+      "pr": 134
+    },
+    "docs/build30-validation-20261117": {
+      "sha": "16e2477ff93f7a1ec5c6ed78491f2716ce4d1658",
+      "disposition": "ancestor_of_integration"
+    },
+    "docs/conditional-top-bottom": {
+      "sha": "5fb8762e771fe68be8bc8025fe26e159d14eda8e",
+      "disposition": "ancestor_of_integration"
+    },
+    "docs/current-office-capabilities": {
+      "sha": "1675bbbb7c03090a87b6df783e3741e2cbc1768f",
+      "disposition": "ancestor_of_integration"
+    },
+    "docs/filter-operators": {
+      "sha": "379fa8663c81f32b4328415f56c776746ccc23bc",
+      "disposition": "ancestor_of_integration"
+    },
+    "docs/filters-closed": {
+      "sha": "4a122b3b71ddc539f8ffda5541b7e6ab0f1dce8f",
+      "disposition": "ancestor_of_integration"
+    },
+    "docs/metadata-closed": {
+      "sha": "a5febc3362d2fccdb979f012a5296af72e465797",
+      "disposition": "ancestor_of_integration"
+    },
+    "docs/metadata-complete": {
+      "sha": "b23ee557ea121774833c7a188a49189e4f80ce70",
+      "disposition": "ancestor_of_integration"
+    },
+    "docs/native-spacy-handoff-20261117": {
+      "sha": "f965fce6a54141b753a22f1e1b6c2fabba44e389",
+      "disposition": "ancestor_of_integration"
+    },
+    "docs/odp-presentation-writer": {
+      "sha": "8221b0081b02af33101ca7f58438e69e487d2bf6",
+      "disposition": "ancestor_of_integration"
+    },
+    "docs/odp-transitions": {
+      "sha": "434a26933501eb288a1b16ffd9f971a5fe3b3bc7",
+      "disposition": "ancestor_of_integration"
+    },
+    "docs/ods-color-scale": {
+      "sha": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+      "disposition": "patch_equivalent_on_main",
+      "pr": 136
+    },
+    "docs/ods-data-bar": {
+      "sha": "69d14f84cabd3931b7640c1654b401c89faba766",
+      "disposition": "patch_equivalent_on_main",
+      "pr": 142
+    },
+    "docs/ods-dynamic-validation": {
+      "sha": "b8ddaaeb581e010467de304c828764d353149102",
+      "disposition": "patch_equivalent_on_main",
+      "pr": 138
+    },
+    "docs/ods-filter-predicates": {
+      "sha": "bb9866d25bf98e5aa42c10ce4679835dbc8617f1",
+      "disposition": "ancestor_of_integration"
+    },
+    "docs/ods-header-footer": {
+      "sha": "846c15f0de92a17bb2720e295b9a40412ebcb6fb",
+      "disposition": "ancestor_of_integration"
+    },
+    "docs/ods-icon-sets": {
+      "sha": "a7f144cc983f2df7c16d88f8644ad67a9254c3d0",
+      "disposition": "patch_equivalent_on_main",
+      "pr": 146
+    },
+    "docs/ods-row-groups": {
+      "sha": "06828a5e63365495c86a4a0e1c68ecd113f891e5",
+      "disposition": "ancestor_of_integration"
+    },
+    "docs/ods-writer-images": {
+      "sha": "108b4087c15f5640dbc906ad243f3030b7592f3f",
+      "disposition": "ancestor_of_integration"
+    },
+    "docs/odt-frame-size": {
+      "sha": "6da74faa9160275df9c10a864c758033c92f114d",
+      "disposition": "ancestor_of_integration"
+    },
+    "docs/odt-image-registry": {
+      "sha": "f27e9b0e7ee9b1db8f6b7393abd752dab67d1ca5",
+      "disposition": "ancestor_of_integration"
+    },
+    "docs/odt-odp-rows": {
+      "sha": "a733c9f3367b9833f242100fcda0cff9e92767ff",
+      "disposition": "ancestor_of_integration"
+    },
+    "docs/page-setup-fix": {
+      "sha": "4497c737623c1339d2422487d53941c20472bac9",
+      "disposition": "ancestor_of_integration"
+    },
+    "docs/readme-remaining-gaps": {
+      "sha": "e6fdd16849aaf7ccbaf50f2593d7a92b6a82e630",
+      "disposition": "ancestor_of_integration"
+    },
+    "docs/remaining-gaps": {
+      "sha": "0a26be7f136ad3e57dbe894b0bc4cdb0602addd0",
+      "disposition": "ancestor_of_integration"
+    },
+    "docs/sheet-page-setup": {
+      "sha": "eb95211e4d82933ba5b1db23ea7b79938b77909f",
+      "disposition": "ancestor_of_integration"
+    },
+    "docs/validation-complete": {
+      "sha": "f5b67cc296b7d27e4f3a480dc46160f472d78694",
+      "disposition": "ancestor_of_integration"
+    },
+    "docs/validation-operators": {
+      "sha": "01f62eb1812ca54827cc14e074e03abd82f963d7",
+      "disposition": "ancestor_of_integration"
+    },
+    "feat/conditional-affix": {
+      "sha": "20681b8658392212c128f51b4c91f0b638942448",
+      "disposition": "ancestor_of_integration"
+    },
+    "feat/conditional-between": {
+      "sha": "b69bad50fb235118a5334b325683cd1524b3e3d1",
+      "disposition": "ancestor_of_integration"
+    },
+    "feat/conditional-dxf": {
+      "sha": "b0efe6c661009ffa463f2bf6d7945216ce1dae4c",
+      "disposition": "ancestor_of_integration"
+    },
+    "feat/conditional-dxf-styles": {
+      "sha": "31a26383639dc7f751cfb0ea543ec7454a537ff6",
+      "disposition": "ancestor_of_integration"
+    },
+    "feat/conditional-operators": {
+      "sha": "21de3c3963b0334068b87fb1c25c787660cb17cf",
+      "disposition": "ancestor_of_integration"
+    },
+    "feat/conditional-text": {
+      "sha": "752a94dfddf69522429f3025f9d25702499cb6da",
+      "disposition": "ancestor_of_integration"
+    },
+    "feat/conditional-top-bottom": {
+      "sha": "001367e89cb0034cf33467783d7258bb0800deb9",
+      "disposition": "ancestor_of_integration"
+    },
+    "feat/german-context-20261117": {
+      "sha": "97f6553c3fdca35be0270a66d6eaeb286c884fef",
+      "disposition": "ancestor_of_integration"
+    },
+    "feat/german-gector-proofing": {
+      "sha": "34c70ece1e9c14954398826f93c1bb6aa61007a8",
+      "disposition": "ancestor_of_integration"
+    },
+    "feat/german-morphology-completion-20261117": {
+      "sha": "482e08176dea6bd8f5fc80d1c0064d96b712db43",
+      "disposition": "ancestor_of_integration"
+    },
+    "feat/grammar-release-20261117": {
+      "sha": "96e65705ad69f969710d3ff6d2897bd4aa38fbf9",
+      "disposition": "ancestor_of_integration"
+    },
+    "feat/native-spacy-reference-20261117": {
+      "sha": "6df76a0dff0051312faa04317af41d479dd94162",
+      "disposition": "ancestor_of_integration"
+    },
+    "feat/native-spacy-w7-20261118": {
+      "sha": "2e013f26c7d4db54ecabe2c955117cbce5379408",
+      "disposition": "ancestor_of_integration"
+    },
+    "feat/odf-metadata": {
+      "sha": "b842ae4b4df892ec5f058f6207589953f3e9dae9",
+      "disposition": "ancestor_of_integration"
+    },
+    "feat/odf-story-fidelity": {
+      "sha": "0ecd1615b96d7b90156c1e913e105d467efe9a39",
+      "disposition": "ancestor_of_integration"
+    },
+    "feat/odp-chart-data": {
+      "sha": "a86a4ec6a231ed66cd868ea1ece3acc3aea2bb8f",
+      "disposition": "ancestor_of_integration"
+    },
+    "feat/odp-presentation-writer": {
+      "sha": "5088f3ab7e81f353593f16fcaa86d1467d4e1af9",
+      "disposition": "ancestor_of_integration"
+    },
+    "feat/odp-preset-shapes": {
+      "sha": "8fae38da39c3c45344e723abca92c9330f15a791",
+      "disposition": "ancestor_of_integration"
+    },
+    "feat/odp-shape-links": {
+      "sha": "3ec638bd7de5cb6648774abbf14da1c315f5e418",
+      "disposition": "ancestor_of_integration"
+    },
+    "feat/odp-transitions": {
+      "sha": "a920b13aef776e0fb8a2ce3cc32848c2e7c0166a",
+      "disposition": "ancestor_of_integration"
+    },
+    "feat/ods-color-scale": {
+      "sha": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+      "disposition": "patch_equivalent_on_main",
+      "pr": 135
+    },
+    "feat/ods-conditional": {
+      "sha": "e59751246a200e7477657d0e4835bf77b153422c",
+      "disposition": "ancestor_of_integration"
+    },
+    "feat/ods-custom-validation": {
+      "sha": "2e3074c8e1860f9503b059a87870911afc3eee7d",
+      "disposition": "ancestor_of_integration"
+    },
+    "feat/ods-data-bar": {
+      "sha": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+      "disposition": "patch_equivalent_on_main",
+      "pr": 141
+    },
+    "feat/ods-default-geometry": {
+      "sha": "912f26f21446ef9bdbf4f542535438dae0ded9a9",
+      "disposition": "ancestor_of_integration"
+    },
+    "feat/ods-default-style": {
+      "sha": "49b447324159595c59e64d8425b54a09f79ec736",
+      "disposition": "ancestor_of_integration"
+    },
+    "feat/ods-dynamic-validation-links": {
+      "sha": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+      "disposition": "patch_equivalent_on_main",
+      "pr": 137
+    },
+    "feat/ods-filter-conditions": {
+      "sha": "1deb61cf78add61f5d26bea36ff596d769d06a87",
+      "disposition": "ancestor_of_integration"
+    },
+    "feat/ods-filter-operators": {
+      "sha": "3bb505ce5fea00236238e37c450ace8b18e4e34e",
+      "disposition": "ancestor_of_integration"
+    },
+    "feat/ods-filter-predicates": {
+      "sha": "089e53fce443ca2169fc44f3700e1b23780d2c95",
+      "disposition": "ancestor_of_integration"
+    },
+    "feat/ods-header-footer": {
+      "sha": "331be9688e2de1feb52635490b534042dea10c27",
+      "disposition": "ancestor_of_integration"
+    },
+    "feat/ods-hyperlinks": {
+      "sha": "e5daa20587e10971e8cb97d82a5495584b5c1553",
+      "disposition": "ancestor_of_integration"
+    },
+    "feat/ods-icon-sets": {
+      "sha": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
+      "disposition": "patch_equivalent_on_main",
+      "pr": 145
+    },
+    "feat/ods-images": {
+      "sha": "7fe296e29e2e1b173580f6854507fc060cb4f080",
+      "disposition": "ancestor_of_integration"
+    },
+    "feat/ods-metadata": {
+      "sha": "d6d6866c0f4ddbbaa196e1a5eb7ff9e31007fdea",
+      "disposition": "ancestor_of_integration"
+    },
+    "feat/ods-named-expressions": {
+      "sha": "864e674795eb422855df2b26ccc375d3255e61a2",
+      "disposition": "ancestor_of_integration"
+    },
+    "feat/ods-outline": {
+      "sha": "988f423b9b95037d8f5273ee368b58ceedab0667",
+      "disposition": "ancestor_of_integration"
+    },
+    "feat/ods-row-groups": {
+      "sha": "27137499f8cc1a946bfcdd7446f43945ea81d2be",
+      "disposition": "ancestor_of_integration"
+    },
+    "feat/ods-tab-color": {
+      "sha": "0dd9dd9763c2eb6bdc4f6b6e30fb7726035e7d4b",
+      "disposition": "ancestor_of_integration"
+    },
+    "feat/ods-time-period-conditions": {
+      "sha": "7ef09f2408f467c65427700e65907531ecb26acb",
+      "disposition": "patch_equivalent_on_main",
+      "pr": 151
+    },
+    "feat/ods-validation-messages": {
+      "sha": "49ba086251ba61032f15b3e7b726fc921874fd12",
+      "disposition": "ancestor_of_integration"
+    },
+    "feat/ods-validation-operators": {
+      "sha": "8769019fb8be5483939edd4655dd88005e2515c4",
+      "disposition": "ancestor_of_integration"
+    },
+    "feat/ods-validations": {
+      "sha": "b85501b2810e537e21040d82528d8dbaa6fdcf15",
+      "disposition": "ancestor_of_integration"
+    },
+    "feat/ods-writer": {
+      "sha": "0ee0a8320875248adac9718cae2e67875b6b932c",
+      "disposition": "ancestor_of_integration"
+    },
+    "feat/ods-writer-conditional": {
+      "sha": "ec94795114d11c73bd8fc689fde364cc110b5cd3",
+      "disposition": "ancestor_of_integration"
+    },
+    "feat/ods-writer-images": {
+      "sha": "9ad9ba92133932b0a3824619168f07dd218c2b26",
+      "disposition": "ancestor_of_integration"
+    },
+    "feat/ods-writer-metadata": {
+      "sha": "82215309dc64ef8c473fec3c4892cf0c9884bc91",
+      "disposition": "ancestor_of_integration"
+    },
+    "feat/odt-columns": {
+      "sha": "2c7d58d2e83e542655db7e9bbcc04b6bade44902",
+      "disposition": "ancestor_of_integration"
+    },
+    "feat/odt-comments": {
+      "sha": "e15205c97f0fe0c7fcc5c3441e72cb0e9a3bdc01",
+      "disposition": "ancestor_of_integration"
+    },
+    "feat/odt-document-writer": {
+      "sha": "e8cb60efc2360be9bb72db7af8e4c675edf5b76f",
+      "disposition": "ancestor_of_integration"
+    },
+    "feat/odt-fields": {
+      "sha": "b005a46b32c8b3ec92d60bb99147f2aa3af51f06",
+      "disposition": "ancestor_of_integration"
+    },
+    "feat/odt-first-even-headers": {
+      "sha": "f87533cdbf9f98e5cfc11d21d8903f8501212ab8",
+      "disposition": "ancestor_of_integration"
+    },
+    "feat/odt-footnotes": {
+      "sha": "946942a1e30332892aaf19a068ca5a29470d682a",
+      "disposition": "ancestor_of_integration"
+    },
+    "feat/odt-links-bookmarks": {
+      "sha": "8471633ed09e2a49ba35ff162a2bac5eb04073c9",
+      "disposition": "ancestor_of_integration"
+    },
+    "feat/odt-lists": {
+      "sha": "f862fe550bc8b7d3afcdb74016ccfefd7477fd20",
+      "disposition": "ancestor_of_integration"
+    },
+    "feat/odt-nested-lists": {
+      "sha": "7686ec52876288e6799023fd686af79228236826",
+      "disposition": "ancestor_of_integration"
+    },
+    "feat/odt-ordered-lists": {
+      "sha": "8e94cf878cfbdeb13482f37f7848ef5a400425f3",
+      "disposition": "ancestor_of_integration"
+    },
+    "feat/odt-page-fields": {
+      "sha": "35ae6328a884975c23d2aa5001bf0df05a436f91",
+      "disposition": "ancestor_of_integration"
+    },
+    "feat/odt-paragraph-breaks": {
+      "sha": "54a3a8593bdb34dd7c1f737960aa732d401fc2da",
+      "disposition": "ancestor_of_integration"
+    },
+    "feat/odt-paragraph-shading": {
+      "sha": "12601a41b6785dcd1d617adba8e13297d9af4bc0",
+      "disposition": "ancestor_of_integration"
+    },
+    "feat/odt-sections2": {
+      "sha": "2a6f3a94ce1d4a5ba6cddc1687a075191448da3d",
+      "disposition": "ancestor_of_integration"
+    },
+    "feat/odt-tab-stops": {
+      "sha": "4391669c881cbcba372c742d2300c24cdc465a2f",
+      "disposition": "ancestor_of_integration"
+    },
+    "feat/odt-table-borders": {
+      "sha": "b54ef7d2955f44266a87d9067d0e4c332e868c54",
+      "disposition": "ancestor_of_integration"
+    },
+    "feat/odt-toc": {
+      "sha": "8b70fdb42fb2d974587c75437b3adb5018190159",
+      "disposition": "ancestor_of_integration"
+    },
+    "feat/office-proofing-followup-20261117": {
+      "sha": "e3a38789359adaa33b2da1345c952fa1c2d8aebb",
+      "disposition": "ancestor_of_integration"
+    },
+    "feat/sheet-hidden-sheets": {
+      "sha": "4c8036bbf16ac224c3fc102b5c44d8913a512b18",
+      "disposition": "ancestor_of_integration"
+    },
+    "feat/sheet-hidden-state": {
+      "sha": "46850ae47e0241733750decb22417a0150e4b0e4",
+      "disposition": "ancestor_of_integration"
+    },
+    "feat/sheet-page-setup": {
+      "sha": "5aa16674e64cc01b89aec017c85afd3899cd96d5",
+      "disposition": "ancestor_of_integration"
+    },
+    "fix/ods-global-validations-20261116": {
+      "sha": "e5e1e9af6beb0972a010d8208c1690a642809113",
+      "disposition": "ancestor_of_integration"
+    },
+    "fix/ods-writer-page-layout": {
+      "sha": "8a0107cbca4b00766a2a76d43a1db244c006e976",
+      "disposition": "ancestor_of_integration"
+    },
+    "fix/odt-inline-fields": {
+      "sha": "84076f8ec8e4604a631cbaad9b88b030e508f0bc",
+      "disposition": "ancestor_of_integration"
+    },
+    "fix/sdt-multi-section-control": {
+      "sha": "866c14f0b3a876e11732bc544dc25a05d8f10524",
+      "disposition": "ancestor_of_integration"
+    },
+    "fix/sdt-trailing-section-break": {
+      "sha": "8fc3d06be36da5c2176feb107c14245f61650d75",
+      "disposition": "ancestor_of_integration"
+    },
+    "fix/utf16-custom-xml": {
+      "sha": "09a05d7d60d2a2e1d2547487ad4545c50472834b",
+      "disposition": "ancestor_of_integration"
+    },
+    "fix/word-dialog-focus-rendering-20261116": {
+      "sha": "094d6bacb9cb253e4d04443e9f3c4171e7433c8a",
+      "disposition": "ancestor_of_integration"
+    },
+    "integrate/aot-then-remove-20261117": {
+      "sha": "bb5a97a8d7c5f9ffa261e64753f53a3c044b610f",
+      "disposition": "ancestor_of_integration"
+    },
+    "integrate/codex-office-continuation-20261117": {
+      "sha": "af2a61862d23572b108bd7ef7719c7f575348d83",
+      "disposition": "ancestor_of_integration"
+    },
+    "integrate/odt-column-boundary-144": {
+      "sha": "cee6e2632f891a3fe21c5c02d6bf508805973051",
+      "disposition": "tree_equivalent_on_main",
+      "pr": 147
+    },
+    "integrate/office-union-148": {
+      "sha": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+      "disposition": "tree_equivalent_on_main",
+      "pr": 149
+    },
+    "integrate/office-union-150": {
+      "sha": "da9c956ec5d65c0e5a9f9ea84c2b0bca98e824a0",
+      "disposition": "tree_equivalent_on_main",
+      "pr": 152
+    },
+    "main": {
+      "sha": "c8eca37d1639ac1d20efb83ba2e9da51981a3ad4",
+      "disposition": "ancestor_of_integration"
+    },
+    "vendor/conditional-dxf-styles": {
+      "sha": "76c7087c22da8ace85b9a71ca266a90f84faa3ae",
+      "disposition": "ancestor_of_integration"
+    },
+    "vendor/conditional-top-bottom": {
+      "sha": "ea9d16edd489b3a4ccff7a25cc5277b686c4e263",
+      "disposition": "ancestor_of_integration"
+    },
+    "vendor/odf-metadata": {
+      "sha": "3a5cacc12c23e577903dcb6d9eba085da6e205a9",
+      "disposition": "ancestor_of_integration"
+    },
+    "vendor/odp-chart-data": {
+      "sha": "66273aa2f743ed33f20944a6e1251c1a396af0eb",
+      "disposition": "ancestor_of_integration"
+    },
+    "vendor/odp-presentation-writer": {
+      "sha": "578846d395baa0c9dfd1f32a805125f331fda248",
+      "disposition": "ancestor_of_integration"
+    },
+    "vendor/odp-preset-shapes": {
+      "sha": "fbc8abbcdd4bf6df90be04fc953e4b490d20c599",
+      "disposition": "ancestor_of_integration"
+    },
+    "vendor/odp-shape-links": {
+      "sha": "0585fac1a56c3dc5c3d728962794299ddfe50bbb",
+      "disposition": "ancestor_of_integration"
+    },
+    "vendor/odp-transitions": {
+      "sha": "d061a578646493b71ad19f8fd8358f6cc509e8b8",
+      "disposition": "ancestor_of_integration"
+    },
+    "vendor/ods-custom-validation": {
+      "sha": "90acedb9835cb5bdef30606301e74482f5977448",
+      "disposition": "ancestor_of_integration"
+    },
+    "vendor/ods-filter-conditions": {
+      "sha": "928f85483ec1cb85e468ca9381585875137ba8d5",
+      "disposition": "ancestor_of_integration"
+    },
+    "vendor/ods-filter-conditions-correct": {
+      "sha": "817982d580e990a5ca21d74c35135db4817e54b5",
+      "disposition": "ancestor_of_integration"
+    },
+    "vendor/ods-filter-operators": {
+      "sha": "777bcb876a9c8cc170586d117fa41f8331ef84ad",
+      "disposition": "ancestor_of_integration"
+    },
+    "vendor/ods-filter-predicates": {
+      "sha": "a53a37b0b5c1b55aff20d581f80f1b2027bf3ddb",
+      "disposition": "ancestor_of_integration"
+    },
+    "vendor/ods-header-footer": {
+      "sha": "c6a7eff46bcfcb806ee7c43252636b06c088963c",
+      "disposition": "ancestor_of_integration"
+    },
+    "vendor/ods-hyperlinks": {
+      "sha": "95debbcce02c1e24d6e8159cd1f524bbf68afeba",
+      "disposition": "ancestor_of_integration"
+    },
+    "vendor/ods-hyperlinks-current": {
+      "sha": "be6aa3cf2fca1b775c2b1352881e2ca3f9134c13",
+      "disposition": "ancestor_of_integration"
+    },
+    "vendor/ods-metadata": {
+      "sha": "18dc693fbf4e39fc6c38e3d655d1e5b35eeef273",
+      "disposition": "ancestor_of_integration"
+    },
+    "vendor/ods-metadata-zotero": {
+      "sha": "4fbd1687d3c0ada22d460cf5cadb9586c4f62905",
+      "disposition": "ancestor_of_integration"
+    },
+    "vendor/ods-named-expressions": {
+      "sha": "388a1c76339507d493bab577424affd80732446c",
+      "disposition": "ancestor_of_integration"
+    },
+    "vendor/ods-outline": {
+      "sha": "33a0508a502f5809aa997928e8428bdec3e02503",
+      "disposition": "ancestor_of_integration"
+    },
+    "vendor/ods-row-groups": {
+      "sha": "891ccc21cf91fb9f49fa0af98143468fbbd3eac7",
+      "disposition": "ancestor_of_integration"
+    },
+    "vendor/ods-tab-color": {
+      "sha": "375390c3853ce26f43d6ac3f71c592acf3e094dc",
+      "disposition": "ancestor_of_integration"
+    },
+    "vendor/ods-validation": {
+      "sha": "c7bb6d6f51885e4082882252f502bbf2de81d552",
+      "disposition": "ancestor_of_integration"
+    },
+    "vendor/ods-validation-current": {
+      "sha": "4ffdf113803806ba5f8ade4a0846eee85dcfbe68",
+      "disposition": "ancestor_of_integration"
+    },
+    "vendor/ods-validation-messages": {
+      "sha": "14fde4b1bd2539f0c6168be4569ac1adcc5105cd",
+      "disposition": "ancestor_of_integration"
+    },
+    "vendor/ods-writer": {
+      "sha": "e14a55b50af4b6870ed1044284f74c36b5f194d9",
+      "disposition": "ancestor_of_integration"
+    },
+    "vendor/ods-writer-conditional": {
+      "sha": "abdbc8b576f5327786c8a0f19bf91bef1250de12",
+      "disposition": "ancestor_of_integration"
+    },
+    "vendor/ods-writer-images": {
+      "sha": "546368fe3aad7ccb65c72f897b6585513b0199f1",
+      "disposition": "ancestor_of_integration"
+    },
+    "vendor/ods-writer-metadata": {
+      "sha": "1808f38493d1cf2fddc1761d146432ceaaea70aa",
+      "disposition": "ancestor_of_integration"
+    },
+    "vendor/ods-writer-page-layout": {
+      "sha": "2aee95e6aa7021869a198cf19ebbb43a44d7910f",
+      "disposition": "ancestor_of_integration"
+    },
+    "vendor/odt-columns": {
+      "sha": "1f417ad7a61dfb69034704a67f85243eff89830a",
+      "disposition": "ancestor_of_integration"
+    },
+    "vendor/odt-comments": {
+      "sha": "04505306af39c47bd0fe96423d1515ee6ca5027e",
+      "disposition": "ancestor_of_integration"
+    },
+    "vendor/odt-document-writer": {
+      "sha": "5f019253d247073b715b7a7ae4a82763ceafd02f",
+      "disposition": "ancestor_of_integration"
+    },
+    "vendor/odt-fields": {
+      "sha": "ec5ecbff742580c0e7d1136507b953e8cc877e4c",
+      "disposition": "ancestor_of_integration"
+    },
+    "vendor/odt-footnotes": {
+      "sha": "f6c9be054b016192673ba82e608ae0ae987b5308",
+      "disposition": "ancestor_of_integration"
+    },
+    "vendor/odt-links-bookmarks": {
+      "sha": "109b49f5c8c0c50c5051a970e6cabbfd2d32af18",
+      "disposition": "ancestor_of_integration"
+    },
+    "vendor/odt-lists": {
+      "sha": "94532021b720e3035022a2fed08ec88f48340892",
+      "disposition": "ancestor_of_integration"
+    },
+    "vendor/odt-nested-lists": {
+      "sha": "406798f7e47332f92438828dcfc6a2184d4361bb",
+      "disposition": "ancestor_of_integration"
+    },
+    "vendor/odt-ordered-lists": {
+      "sha": "aa346a296e8b19bb937c345f7142c60720c3d6e4",
+      "disposition": "ancestor_of_integration"
+    },
+    "vendor/odt-ordered-lists2": {
+      "sha": "0eb60d0fc706a4da54df07ae86df029c1caac074",
+      "disposition": "ancestor_of_integration"
+    },
+    "vendor/odt-page-fields": {
+      "sha": "5dbe3f5b81d20f9c263b4f2d9ba9c01c9216b1e3",
+      "disposition": "ancestor_of_integration"
+    },
+    "vendor/odt-paragraph-breaks": {
+      "sha": "b990f9041cce78e3768c2ee0190413bf26962431",
+      "disposition": "ancestor_of_integration"
+    },
+    "vendor/odt-paragraph-shading": {
+      "sha": "22ce45e70591a6be561a5abee1807455e3df52be",
+      "disposition": "ancestor_of_integration"
+    },
+    "vendor/odt-sections": {
+      "sha": "a5cd1f30aa4764e990ed81b9ac8387efe3182f82",
+      "disposition": "ancestor_of_integration"
+    },
+    "vendor/odt-tab-stops": {
+      "sha": "156cc755df74dcbafec0ebd882945349c40a5005",
+      "disposition": "ancestor_of_integration"
+    },
+    "vendor/odt-table-borders": {
+      "sha": "17c6b2a808e39b1a74cb4afb2c3dc7f2c06de70c",
+      "disposition": "ancestor_of_integration"
+    },
+    "vendor/sheet-page-setup": {
+      "sha": "f938d7fc3cb9aa42ea8d30b1c2ab50ccca694699",
+      "disposition": "ancestor_of_integration"
+    }
+  },
+  "pull_request_heads": {
+    "1": {
+      "sha": "54f0f8de01416640560519aa9d732f668f603709",
+      "disposition": "ancestor_of_integration"
+    },
+    "2": {
+      "sha": "08b09485588d2b6270f594a07c983689c087587d",
+      "disposition": "ancestor_of_integration"
+    },
+    "3": {
+      "sha": "e550723b0f2a7cd849970f58820d260c36857502",
+      "disposition": "ancestor_of_integration"
+    },
+    "4": {
+      "sha": "09f5ec4b8eba290ff4d65678179854fb6ff6a468",
+      "disposition": "ancestor_of_integration"
+    },
+    "5": {
+      "sha": "da0979a5c6c4273ea68f360ce9a079bfa747384f",
+      "disposition": "ancestor_of_integration"
+    },
+    "6": {
+      "sha": "78ed85f5fd19d44f672dee11420fed261c974f4a",
+      "disposition": "ancestor_of_integration"
+    },
+    "7": {
+      "sha": "e82c997b6df8746fe86fb83b9f416a89bb3e3b80",
+      "disposition": "ancestor_of_integration"
+    },
+    "8": {
+      "sha": "a86a360bf9bd45c729e00b31dd9a97492e23f2e7",
+      "disposition": "ancestor_of_integration"
+    },
+    "9": {
+      "sha": "58de54567d45e38c05dd77064b7607c577374b9d",
+      "disposition": "ancestor_of_integration"
+    },
+    "10": {
+      "sha": "1b1bac125f426b05f868d482e9fbd657d4ffb73a",
+      "disposition": "ancestor_of_integration"
+    },
+    "11": {
+      "sha": "5c1ab430c6911bb11f71d29efa35027ead5ac1d5",
+      "disposition": "ancestor_of_integration"
+    },
+    "12": {
+      "sha": "579f2105cf7fca61536f7e3f9b59004929bdb6c5",
+      "disposition": "ancestor_of_integration"
+    },
+    "13": {
+      "sha": "73b354efdf0f2e7fbe0e87bc67f332a9dfb4903e",
+      "disposition": "ancestor_of_integration"
+    },
+    "14": {
+      "sha": "d4e2a0fcf1fe18e0e5158ac7d86b1f71bf3b70da",
+      "disposition": "ancestor_of_integration"
+    },
+    "15": {
+      "sha": "448eff5aac55054a34eccd4f8a1e79e754909a05",
+      "disposition": "ancestor_of_integration"
+    },
+    "16": {
+      "sha": "78a7b6f4e613c7d18d4bcc6434cda12b50ed184e",
+      "disposition": "ancestor_of_integration"
+    },
+    "17": {
+      "sha": "89c7f06c592edde0c67774e9c7e087d96f52184b",
+      "disposition": "ancestor_of_integration"
+    },
+    "18": {
+      "sha": "f31cf308013ceb4527e3f4de677785894bb1bfc0",
+      "disposition": "ancestor_of_integration"
+    },
+    "19": {
+      "sha": "e8227569a3b90fb21db598483690bd13fe74ddef",
+      "disposition": "ancestor_of_integration"
+    },
+    "20": {
+      "sha": "5278aafd512640608fe06b8f7d357c4cffe8520a",
+      "disposition": "ancestor_of_integration"
+    },
+    "21": {
+      "sha": "1f30a823b30678e3684c98fee6a2cd5c4945c4f2",
+      "disposition": "ancestor_of_integration"
+    },
+    "22": {
+      "sha": "4637ddce4154f4b50105c7322fedc1c75fd02193",
+      "disposition": "ancestor_of_integration"
+    },
+    "23": {
+      "sha": "e002b9584bead9761fac8c7cf818431966d1b1c3",
+      "disposition": "ancestor_of_integration"
+    },
+    "24": {
+      "sha": "9cc8c6e91ff9acf0f52a68aea7c0da69934a2661",
+      "disposition": "ancestor_of_integration"
+    },
+    "25": {
+      "sha": "b6d27c84a72d622f670a7e646e36ba4bd920cfc8",
+      "disposition": "ancestor_of_integration"
+    },
+    "26": {
+      "sha": "5b9ac71db1934252c4b8ae48ac03d4cd976e15ae",
+      "disposition": "ancestor_of_integration"
+    },
+    "27": {
+      "sha": "cde05b85bcd00c26d519d43283fcc6b55a1884e7",
+      "disposition": "ancestor_of_integration"
+    },
+    "28": {
+      "sha": "a8cd28d8af8ca966e8c4259862587ecc9aade2f4",
+      "disposition": "ancestor_of_integration"
+    },
+    "29": {
+      "sha": "7fe296e29e2e1b173580f6854507fc060cb4f080",
+      "disposition": "ancestor_of_integration"
+    },
+    "30": {
+      "sha": "49b447324159595c59e64d8425b54a09f79ec736",
+      "disposition": "ancestor_of_integration"
+    },
+    "31": {
+      "sha": "912f26f21446ef9bdbf4f542535438dae0ded9a9",
+      "disposition": "ancestor_of_integration"
+    },
+    "32": {
+      "sha": "46850ae47e0241733750decb22417a0150e4b0e4",
+      "disposition": "ancestor_of_integration"
+    },
+    "33": {
+      "sha": "4c8036bbf16ac224c3fc102b5c44d8913a512b18",
+      "disposition": "ancestor_of_integration"
+    },
+    "34": {
+      "sha": "09a05d7d60d2a2e1d2547487ad4545c50472834b",
+      "disposition": "ancestor_of_integration"
+    },
+    "35": {
+      "sha": "e59751246a200e7477657d0e4835bf77b153422c",
+      "disposition": "ancestor_of_integration"
+    },
+    "36": {
+      "sha": "21de3c3963b0334068b87fb1c25c787660cb17cf",
+      "disposition": "ancestor_of_integration"
+    },
+    "37": {
+      "sha": "b0efe6c661009ffa463f2bf6d7945216ce1dae4c",
+      "disposition": "ancestor_of_integration"
+    },
+    "38": {
+      "sha": "752a94dfddf69522429f3025f9d25702499cb6da",
+      "disposition": "ancestor_of_integration"
+    },
+    "39": {
+      "sha": "b85501b2810e537e21040d82528d8dbaa6fdcf15",
+      "disposition": "ancestor_of_integration"
+    },
+    "40": {
+      "sha": "8855b88a96b5c94349e3b5278c339228a1688c3e",
+      "disposition": "ancestor_of_integration"
+    },
+    "41": {
+      "sha": "b69bad50fb235118a5334b325683cd1524b3e3d1",
+      "disposition": "ancestor_of_integration"
+    },
+    "42": {
+      "sha": "8fc3d06be36da5c2176feb107c14245f61650d75",
+      "disposition": "ancestor_of_integration"
+    },
+    "43": {
+      "sha": "20681b8658392212c128f51b4c91f0b638942448",
+      "disposition": "ancestor_of_integration"
+    },
+    "44": {
+      "sha": "866c14f0b3a876e11732bc544dc25a05d8f10524",
+      "disposition": "ancestor_of_integration"
+    },
+    "45": {
+      "sha": "0a26be7f136ad3e57dbe894b0bc4cdb0602addd0",
+      "disposition": "ancestor_of_integration"
+    },
+    "46": {
+      "sha": "e6fdd16849aaf7ccbaf50f2593d7a92b6a82e630",
+      "disposition": "ancestor_of_integration"
+    },
+    "47": {
+      "sha": "fc37658c907edf6687eccb9564d3046283b49a3a",
+      "disposition": "ancestor_of_integration"
+    },
+    "48": {
+      "sha": "d6d6866c0f4ddbbaa196e1a5eb7ff9e31007fdea",
+      "disposition": "ancestor_of_integration"
+    },
+    "49": {
+      "sha": "a5febc3362d2fccdb979f012a5296af72e465797",
+      "disposition": "ancestor_of_integration"
+    },
+    "50": {
+      "sha": "428679a33381f943a8ae63117d4207f01dd15462",
+      "disposition": "ancestor_of_integration"
+    },
+    "51": {
+      "sha": "8769019fb8be5483939edd4655dd88005e2515c4",
+      "disposition": "ancestor_of_integration"
+    },
+    "52": {
+      "sha": "01f62eb1812ca54827cc14e074e03abd82f963d7",
+      "disposition": "ancestor_of_integration"
+    },
+    "53": {
+      "sha": "2e3074c8e1860f9503b059a87870911afc3eee7d",
+      "disposition": "ancestor_of_integration"
+    },
+    "54": {
+      "sha": "49ba086251ba61032f15b3e7b726fc921874fd12",
+      "disposition": "ancestor_of_integration"
+    },
+    "55": {
+      "sha": "f5b67cc296b7d27e4f3a480dc46160f472d78694",
+      "disposition": "ancestor_of_integration"
+    },
+    "56": {
+      "sha": "ca9e4f052d988d77f9ded3a6b13f840f76a26159",
+      "disposition": "ancestor_of_integration"
+    },
+    "57": {
+      "sha": "0dd9dd9763c2eb6bdc4f6b6e30fb7726035e7d4b",
+      "disposition": "ancestor_of_integration"
+    },
+    "58": {
+      "sha": "864e674795eb422855df2b26ccc375d3255e61a2",
+      "disposition": "ancestor_of_integration"
+    },
+    "59": {
+      "sha": "e5daa20587e10971e8cb97d82a5495584b5c1553",
+      "disposition": "ancestor_of_integration"
+    },
+    "60": {
+      "sha": "988f423b9b95037d8f5273ee368b58ceedab0667",
+      "disposition": "ancestor_of_integration"
+    },
+    "61": {
+      "sha": "b23ee557ea121774833c7a188a49189e4f80ce70",
+      "disposition": "ancestor_of_integration"
+    },
+    "62": {
+      "sha": "089e53fce443ca2169fc44f3700e1b23780d2c95",
+      "disposition": "ancestor_of_integration"
+    },
+    "63": {
+      "sha": "2480f0988167068d9aeddf6573b9c2c6871a8481",
+      "disposition": "ancestor_of_integration"
+    },
+    "64": {
+      "sha": "4a122b3b71ddc539f8ffda5541b7e6ab0f1dce8f",
+      "disposition": "ancestor_of_integration"
+    },
+    "65": {
+      "sha": "3bb505ce5fea00236238e37c450ace8b18e4e34e",
+      "disposition": "ancestor_of_integration"
+    },
+    "66": {
+      "sha": "379fa8663c81f32b4328415f56c776746ccc23bc",
+      "disposition": "ancestor_of_integration"
+    },
+    "67": {
+      "sha": "0ee0a8320875248adac9718cae2e67875b6b932c",
+      "disposition": "ancestor_of_integration"
+    },
+    "68": {
+      "sha": "82215309dc64ef8c473fec3c4892cf0c9884bc91",
+      "disposition": "ancestor_of_integration"
+    },
+    "69": {
+      "sha": "ec94795114d11c73bd8fc689fde364cc110b5cd3",
+      "disposition": "ancestor_of_integration"
+    },
+    "70": {
+      "sha": "9ad9ba92133932b0a3824619168f07dd218c2b26",
+      "disposition": "ancestor_of_integration"
+    },
+    "71": {
+      "sha": "108b4087c15f5640dbc906ad243f3030b7592f3f",
+      "disposition": "ancestor_of_integration"
+    },
+    "72": {
+      "sha": "57bc0f98eb94997b73f22cc267bd8d61dccaee59",
+      "disposition": "ancestor_of_integration"
+    },
+    "73": {
+      "sha": "8a0107cbca4b00766a2a76d43a1db244c006e976",
+      "disposition": "ancestor_of_integration"
+    },
+    "74": {
+      "sha": "1675bbbb7c03090a87b6df783e3741e2cbc1768f",
+      "disposition": "ancestor_of_integration"
+    },
+    "75": {
+      "sha": "f27e9b0e7ee9b1db8f6b7393abd752dab67d1ca5",
+      "disposition": "ancestor_of_integration"
+    },
+    "76": {
+      "sha": "1deb61cf78add61f5d26bea36ff596d769d06a87",
+      "disposition": "ancestor_of_integration"
+    },
+    "77": {
+      "sha": "bb9866d25bf98e5aa42c10ce4679835dbc8617f1",
+      "disposition": "ancestor_of_integration"
+    },
+    "78": {
+      "sha": "27137499f8cc1a946bfcdd7446f43945ea81d2be",
+      "disposition": "ancestor_of_integration"
+    },
+    "79": {
+      "sha": "06828a5e63365495c86a4a0e1c68ecd113f891e5",
+      "disposition": "ancestor_of_integration"
+    },
+    "80": {
+      "sha": "5aa16674e64cc01b89aec017c85afd3899cd96d5",
+      "disposition": "ancestor_of_integration"
+    },
+    "81": {
+      "sha": "eb95211e4d82933ba5b1db23ea7b79938b77909f",
+      "disposition": "ancestor_of_integration"
+    },
+    "82": {
+      "sha": "4497c737623c1339d2422487d53941c20472bac9",
+      "disposition": "ancestor_of_integration"
+    },
+    "83": {
+      "sha": "331be9688e2de1feb52635490b534042dea10c27",
+      "disposition": "ancestor_of_integration"
+    },
+    "84": {
+      "sha": "846c15f0de92a17bb2720e295b9a40412ebcb6fb",
+      "disposition": "ancestor_of_integration"
+    },
+    "85": {
+      "sha": "9f2dbd81c2289a2285521e1491a9c860c4b59646",
+      "disposition": "ancestor_of_integration"
+    },
+    "86": {
+      "sha": "001367e89cb0034cf33467783d7258bb0800deb9",
+      "disposition": "ancestor_of_integration"
+    },
+    "87": {
+      "sha": "7dfcfe9fcbf7e6d0d0abc14de7ed1ed901fa99c2",
+      "disposition": "ancestor_of_integration"
+    },
+    "88": {
+      "sha": "5fb8762e771fe68be8bc8025fe26e159d14eda8e",
+      "disposition": "ancestor_of_integration"
+    },
+    "89": {
+      "sha": "31a26383639dc7f751cfb0ea543ec7454a537ff6",
+      "disposition": "ancestor_of_integration"
+    },
+    "90": {
+      "sha": "6da74faa9160275df9c10a864c758033c92f114d",
+      "disposition": "ancestor_of_integration"
+    },
+    "91": {
+      "sha": "5cff80ce4ba85e645f21a31efb4fa4d9043b7e79",
+      "disposition": "ancestor_of_integration"
+    },
+    "92": {
+      "sha": "e8cb60efc2360be9bb72db7af8e4c675edf5b76f",
+      "disposition": "ancestor_of_integration"
+    },
+    "93": {
+      "sha": "5088f3ab7e81f353593f16fcaa86d1467d4e1af9",
+      "disposition": "ancestor_of_integration"
+    },
+    "94": {
+      "sha": "8221b0081b02af33101ca7f58438e69e487d2bf6",
+      "disposition": "ancestor_of_integration"
+    },
+    "95": {
+      "sha": "f862fe550bc8b7d3afcdb74016ccfefd7477fd20",
+      "disposition": "ancestor_of_integration"
+    },
+    "96": {
+      "sha": "a733c9f3367b9833f242100fcda0cff9e92767ff",
+      "disposition": "ancestor_of_integration"
+    },
+    "97": {
+      "sha": "8e94cf878cfbdeb13482f37f7848ef5a400425f3",
+      "disposition": "ancestor_of_integration"
+    },
+    "98": {
+      "sha": "a920b13aef776e0fb8a2ce3cc32848c2e7c0166a",
+      "disposition": "ancestor_of_integration"
+    },
+    "99": {
+      "sha": "434a26933501eb288a1b16ffd9f971a5fe3b3bc7",
+      "disposition": "ancestor_of_integration"
+    },
+    "100": {
+      "sha": "946942a1e30332892aaf19a068ca5a29470d682a",
+      "disposition": "ancestor_of_integration"
+    },
+    "101": {
+      "sha": "cf60a17bcd825dc9b4ecdf840d54e6a0271d3647",
+      "disposition": "ancestor_of_integration"
+    },
+    "102": {
+      "sha": "1549a9c7884eb688732262398b5d9859a68103eb",
+      "disposition": "ancestor_of_integration"
+    },
+    "103": {
+      "sha": "e15205c97f0fe0c7fcc5c3441e72cb0e9a3bdc01",
+      "disposition": "ancestor_of_integration"
+    },
+    "104": {
+      "sha": "2a6f3a94ce1d4a5ba6cddc1687a075191448da3d",
+      "disposition": "ancestor_of_integration"
+    },
+    "105": {
+      "sha": "6f1abf273bd10d7ebe5641661dd307c492f897c2",
+      "disposition": "ancestor_of_integration"
+    },
+    "106": {
+      "sha": "7686ec52876288e6799023fd686af79228236826",
+      "disposition": "ancestor_of_integration"
+    },
+    "107": {
+      "sha": "8471633ed09e2a49ba35ff162a2bac5eb04073c9",
+      "disposition": "ancestor_of_integration"
+    },
+    "108": {
+      "sha": "3ec638bd7de5cb6648774abbf14da1c315f5e418",
+      "disposition": "ancestor_of_integration"
+    },
+    "109": {
+      "sha": "b842ae4b4df892ec5f058f6207589953f3e9dae9",
+      "disposition": "ancestor_of_integration"
+    },
+    "110": {
+      "sha": "35ae6328a884975c23d2aa5001bf0df05a436f91",
+      "disposition": "ancestor_of_integration"
+    },
+    "111": {
+      "sha": "d1738017afd3696adbd2e895678b1fa7d26065ec",
+      "disposition": "ancestor_of_integration"
+    },
+    "112": {
+      "sha": "12601a41b6785dcd1d617adba8e13297d9af4bc0",
+      "disposition": "ancestor_of_integration"
+    },
+    "113": {
+      "sha": "93c832f53982a9f5956f19ae0cb9418f55fac8c0",
+      "disposition": "ancestor_of_integration"
+    },
+    "114": {
+      "sha": "867df7f257eac69adfe3355c051cdb2f773c53ac",
+      "disposition": "ancestor_of_integration"
+    },
+    "115": {
+      "sha": "b54ef7d2955f44266a87d9067d0e4c332e868c54",
+      "disposition": "ancestor_of_integration"
+    },
+    "116": {
+      "sha": "6a32a919325d71c121c63e3879cfd1b28d64312e",
+      "disposition": "ancestor_of_integration"
+    },
+    "117": {
+      "sha": "8b19ead89800f81ed9743ffbaf3279ac88fdd06d",
+      "disposition": "ancestor_of_integration"
+    },
+    "118": {
+      "sha": "4391669c881cbcba372c742d2300c24cdc465a2f",
+      "disposition": "ancestor_of_integration"
+    },
+    "119": {
+      "sha": "2c7d58d2e83e542655db7e9bbcc04b6bade44902",
+      "disposition": "ancestor_of_integration"
+    },
+    "120": {
+      "sha": "e37ccdb47c047f6a0250585cf5cb20efc17573b4",
+      "disposition": "ancestor_of_integration"
+    },
+    "121": {
+      "sha": "a86a4ec6a231ed66cd868ea1ece3acc3aea2bb8f",
+      "disposition": "ancestor_of_integration"
+    },
+    "122": {
+      "sha": "54a3a8593bdb34dd7c1f737960aa732d401fc2da",
+      "disposition": "ancestor_of_integration"
+    },
+    "123": {
+      "sha": "1138cffdc4a1c909b2b149db80312037c21909d8",
+      "disposition": "ancestor_of_integration"
+    },
+    "124": {
+      "sha": "b005a46b32c8b3ec92d60bb99147f2aa3af51f06",
+      "disposition": "ancestor_of_integration"
+    },
+    "125": {
+      "sha": "af2a61862d23572b108bd7ef7719c7f575348d83",
+      "disposition": "ancestor_of_integration"
+    },
+    "126": {
+      "sha": "8fae38da39c3c45344e723abca92c9330f15a791",
+      "disposition": "ancestor_of_integration"
+    },
+    "127": {
+      "sha": "8b70fdb42fb2d974587c75437b3adb5018190159",
+      "disposition": "ancestor_of_integration"
+    },
+    "128": {
+      "sha": "814f165cb24a5b719dde65495f64d85f86563328",
+      "disposition": "ancestor_of_integration"
+    },
+    "129": {
+      "sha": "bb5a97a8d7c5f9ffa261e64753f53a3c044b610f",
+      "disposition": "ancestor_of_integration"
+    },
+    "130": {
+      "sha": "84076f8ec8e4604a631cbaad9b88b030e508f0bc",
+      "disposition": "ancestor_of_integration"
+    },
+    "131": {
+      "sha": "f965fce6a54141b753a22f1e1b6c2fabba44e389",
+      "disposition": "ancestor_of_integration"
+    },
+    "132": {
+      "sha": "0ecd1615b96d7b90156c1e913e105d467efe9a39",
+      "disposition": "ancestor_of_integration"
+    },
+    "133": {
+      "sha": "f87533cdbf9f98e5cfc11d21d8903f8501212ab8",
+      "disposition": "ancestor_of_integration"
+    },
+    "134": {
+      "sha": "128a187d69555db80890c2a1945a442b951f9c74",
+      "disposition": "patch_equivalent_on_main"
+    },
+    "135": {
+      "sha": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+      "disposition": "patch_equivalent_on_main"
+    },
+    "136": {
+      "sha": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+      "disposition": "patch_equivalent_on_main"
+    },
+    "137": {
+      "sha": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+      "disposition": "patch_equivalent_on_main"
+    },
+    "138": {
+      "sha": "b8ddaaeb581e010467de304c828764d353149102",
+      "disposition": "patch_equivalent_on_main"
+    },
+    "139": {
+      "sha": "6df76a0dff0051312faa04317af41d479dd94162",
+      "disposition": "ancestor_of_integration"
+    },
+    "140": {
+      "sha": "c34945761e7991f5fe49037d79529acdd260b31c",
+      "disposition": "patch_equivalent_on_main"
+    },
+    "141": {
+      "sha": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+      "disposition": "patch_equivalent_on_main"
+    },
+    "142": {
+      "sha": "69d14f84cabd3931b7640c1654b401c89faba766",
+      "disposition": "patch_equivalent_on_main"
+    },
+    "143": {
+      "sha": "83f8c380f9271b6bf34a300c3aedc19442cb61f1",
+      "disposition": "ancestor_of_integration"
+    },
+    "144": {
+      "sha": "a1e026b496f91b54bbd3017aae54717bf25a5586",
+      "disposition": "ancestor_of_integration"
+    },
+    "145": {
+      "sha": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
+      "disposition": "patch_equivalent_on_main"
+    },
+    "146": {
+      "sha": "a7f144cc983f2df7c16d88f8644ad67a9254c3d0",
+      "disposition": "patch_equivalent_on_main"
+    },
+    "147": {
+      "sha": "cee6e2632f891a3fe21c5c02d6bf508805973051",
+      "disposition": "tree_equivalent_on_main"
+    },
+    "148": {
+      "sha": "e3831cdde529aa0c2368845cd72c1b9b65154665",
+      "disposition": "ancestor_of_integration"
+    },
+    "149": {
+      "sha": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+      "disposition": "tree_equivalent_on_main"
+    },
+    "150": {
+      "sha": "6d97fedccde17244a917ee7d3372adebe5494089",
+      "disposition": "superseded_by_pr_152"
+    },
+    "151": {
+      "sha": "7ef09f2408f467c65427700e65907531ecb26acb",
+      "disposition": "patch_equivalent_on_main"
+    },
+    "152": {
+      "sha": "da9c956ec5d65c0e5a9f9ea84c2b0bca98e824a0",
+      "disposition": "tree_equivalent_on_main"
+    },
+    "153": {
+      "sha": "2e013f26c7d4db54ecabe2c955117cbce5379408",
+      "disposition": "ancestor_of_integration"
+    },
+    "154": {
+      "sha": "295752ff93b24bafc510e60197b62faa647e2aa3",
+      "disposition": "ancestor_of_integration"
+    }
+  }
+}

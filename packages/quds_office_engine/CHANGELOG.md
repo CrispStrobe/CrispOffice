@@ -9,6 +9,13 @@ All notable changes to `quds_office_engine` are documented here.
   pagination. Preserve Unicode and reserved characters, escape initial hyphens,
   and reject names that Zotero cannot represent literally.
 
+- Recognize internal typographic apostrophes in German dictionary and personal
+  vocabulary lookups while preserving each source apostrophe, hyphen and UTF-16
+  range in corrections. Keep quotation punctuation and noun casing distinct.
+- Offer complete corrections for multiple misspelled parts of explicit German
+  hyphen compounds, sharing one bounded candidate budget and preserving known
+  constituents, whole-word suggestions, locale and authored separator styles.
+
 - Add typed Zotero catalog search scope, sort field and direction options, plus
   single item-type filtering, across library, collection and desktop saved-search
   requests. Existing query defaults are preserved; Zotero applies the options

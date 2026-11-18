@@ -1,0 +1,5 @@
+packages/quds_proofing_spacy/tool/web_capability_probe.dart:9:19:
+Error: Cannot invoke a non-'const' constructor where a const expression is expected.
+  const factory = SpacyNativeBackendFactory(
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^
+Error: Compilation failed.

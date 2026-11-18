@@ -190,6 +190,384 @@ void main() {
     },
   );
 
+  test('distinct providers serialize the shared Flutter channel', () async {
+    final messenger =
+        TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger;
+    final pending = <Completer<List<Map<String, Object>>>>[];
+    final calls = <String>[];
+    messenger.setMockMethodCallHandler(SystemChannels.spellCheck, (call) {
+      calls.add((call.arguments as List)[1] as String);
+      final completer = Completer<List<Map<String, Object>>>();
+      pending.add(completer);
+      return completer.future;
+    });
+    addTearDown(
+      () => messenger.setMockMethodCallHandler(SystemChannels.spellCheck, null),
+    );
+    final firstProvider = OfficePlatformSpellingProvider(
+      supportedLanguages: ['de-DE'],
+      isAvailable: () => true,
+    );
+    final secondProvider = OfficePlatformSpellingProvider(
+      supportedLanguages: ['de-DE'],
+      isAvailable: () => true,
+    );
+    addTearDown(firstProvider.dispose);
+    addTearDown(secondProvider.dispose);
+    final first = firstProvider.check(_request(text: 'First'));
+    final second = secondProvider.check(_request(text: 'Second'));
+    await Future<void>.delayed(Duration.zero);
+    final callsBeforeCompletion = calls.toList();
+    // Release both calls even on the old adapter, avoiding a hung mock channel.
+    pending.first.complete([]);
+    expect((await first).status, OfficeProofingStatus.success);
+    await Future<void>.delayed(Duration.zero);
+    if (pending.length > 1) pending.last.complete([]);
+    expect((await second).status, OfficeProofingStatus.success);
+    expect(callsBeforeCompletion, ['First']);
+    expect(calls, ['First', 'Second']);
+  });
+
+  test('a shared injected service serializes providers too', () async {
+    final pending = <Completer<List<SuggestionSpan>?>>[];
+    final service = _Service((_, _) {
+      final completer = Completer<List<SuggestionSpan>?>();
+      pending.add(completer);
+      return completer.future;
+    });
+    final providers = List.generate(
+      2,
+      (_) => OfficePlatformSpellingProvider(
+        supportedLanguages: ['de-DE'],
+        service: service,
+        isAvailable: () => true,
+      ),
+    );
+    for (final provider in providers) {
+      addTearDown(provider.dispose);
+    }
+    final first = providers.first.check(_request(text: 'First'));
+    final second = providers.last.check(_request(text: 'Second'));
+    await Future<void>.delayed(Duration.zero);
+    final started = service.calls.length;
+    pending.first.complete([]);
+    expect((await first).status, OfficeProofingStatus.success);
+    await Future<void>.delayed(Duration.zero);
+    pending.last.complete([]);
+    expect((await second).status, OfficeProofingStatus.success);
+    expect(started, 1);
+  });
+
+  test('independent injected services do not block each other', () async {
+    final pending = Completer<List<SuggestionSpan>?>();
+    final first = OfficePlatformSpellingProvider(
+      supportedLanguages: ['de-DE'],
+      service: _Service((_, _) => pending.future),
+      isAvailable: () => true,
+    );
+    final second = OfficePlatformSpellingProvider(
+      supportedLanguages: ['de-DE'],
+      service: _Service((_, _) async => []),
+      isAvailable: () => true,
+    );
+    addTearDown(first.dispose);
+    addTearDown(second.dispose);
+    final waiting = first.check(_request());
+    expect(
+      (await second.check(_request())).status,
+      OfficeProofingStatus.success,
+    );
+    pending.complete([]);
+    expect((await waiting).status, OfficeProofingStatus.success);
+  });
+
+  test(
+    'disposal settles callers without releasing the active channel',
+    () async {
+      final pending = Completer<List<SuggestionSpan>?>();
+      final service = _Service((_, text) async {
+        if (text == 'First') return pending.future;
+        return [];
+      });
+      final firstProvider = OfficePlatformSpellingProvider(
+        supportedLanguages: ['de-DE'],
+        service: service,
+        isAvailable: () => true,
+      );
+      final secondProvider = OfficePlatformSpellingProvider(
+        supportedLanguages: ['de-DE'],
+        service: service,
+        isAvailable: () => true,
+      );
+      addTearDown(firstProvider.dispose);
+      addTearDown(secondProvider.dispose);
+      final first = firstProvider.check(_request(text: 'First'));
+      final queued = firstProvider.check(_request(text: 'Queued'));
+      await Future<void>.delayed(Duration.zero);
+      await firstProvider.dispose();
+      final replacement = secondProvider.check(_request(text: 'Replacement'));
+      await Future<void>.delayed(Duration.zero);
+      final callsBeforeCompletion = service.calls
+          .map((call) => call.text)
+          .toList();
+      OfficeProofingResult? firstWhilePending;
+      OfficeProofingResult? queuedWhilePending;
+      first.then((result) => firstWhilePending = result);
+      queued.then((result) => queuedWhilePending = result);
+      await Future<void>.delayed(Duration.zero);
+      final settledBeforeCompletion = (
+        firstWhilePending?.status,
+        queuedWhilePending?.status,
+      );
+      pending.complete([]);
+      await first;
+      await queued;
+      expect((await replacement).status, OfficeProofingStatus.success);
+      expect(callsBeforeCompletion, ['First']);
+      expect(settledBeforeCompletion, (
+        OfficeProofingStatus.unavailable,
+        OfficeProofingStatus.unavailable,
+      ));
+      expect(service.calls.map((call) => call.text), ['First', 'Replacement']);
+    },
+  );
+
+  test(
+    'a stuck channel bounds later callers without starting native work',
+    () async {
+      final pending = Completer<List<SuggestionSpan>?>();
+      final service = _Service((_, text) async {
+        if (text == 'First') return pending.future;
+        return [];
+      });
+      OfficePlatformSpellingProvider provider() =>
+          OfficePlatformSpellingProvider(
+            supportedLanguages: ['de-DE'],
+            service: service,
+            isAvailable: () => true,
+            timeout: const Duration(milliseconds: 10),
+          );
+      final first = provider();
+      final second = provider();
+      addTearDown(first.dispose);
+      addTearDown(second.dispose);
+      expect(
+        (await first.check(_request(text: 'First'))).status,
+        OfficeProofingStatus.failed,
+      );
+      final result = await second.check(_request(text: 'Second'));
+      final callsBeforeCompletion = service.calls
+          .map((call) => call.text)
+          .toList();
+      pending.complete([]);
+      await Future<void>.delayed(Duration.zero);
+      expect(result.status, OfficeProofingStatus.failed);
+      expect(callsBeforeCompletion, ['First']);
+      final recovered = provider();
+      addTearDown(recovered.dispose);
+      expect(
+        (await recovered.check(_request(text: 'Recovered'))).status,
+        OfficeProofingStatus.success,
+      );
+      expect(service.calls.map((call) => call.text), ['First', 'Recovered']);
+    },
+  );
+
+  test(
+    'late native errors release the channel only after actual completion',
+    () async {
+      for (final retireByDisposal in [false, true]) {
+        final pending = Completer<List<SuggestionSpan>?>();
+        final service = _Service((_, text) async {
+          if (text == 'First') return pending.future;
+          return [];
+        });
+        final firstProvider = OfficePlatformSpellingProvider(
+          supportedLanguages: ['de-DE'],
+          service: service,
+          isAvailable: () => true,
+          timeout: retireByDisposal
+              ? const Duration(seconds: 2)
+              : const Duration(milliseconds: 10),
+        );
+        final secondProvider = OfficePlatformSpellingProvider(
+          supportedLanguages: ['de-DE'],
+          service: service,
+          isAvailable: () => true,
+          timeout: const Duration(seconds: 2),
+        );
+        addTearDown(firstProvider.dispose);
+        addTearDown(secondProvider.dispose);
+        final first = firstProvider.check(_request(text: 'First'));
+        await Future<void>.delayed(Duration.zero);
+        final second = secondProvider.check(_request(text: 'Second'));
+        if (retireByDisposal) await firstProvider.dispose();
+        final firstResult = await first;
+        final callsBeforeCompletion = service.calls
+            .map((call) => call.text)
+            .toList();
+        pending.completeError(StateError('Late native failure'));
+        expect((await second).status, OfficeProofingStatus.success);
+        expect(
+          firstResult.status,
+          retireByDisposal
+              ? OfficeProofingStatus.unavailable
+              : OfficeProofingStatus.failed,
+        );
+        expect(callsBeforeCompletion, ['First']);
+        expect(service.calls.map((call) => call.text), ['First', 'Second']);
+      }
+    },
+  );
+
+  test(
+    'a queued request has its own deadline including channel wait',
+    () async {
+      final pending = Completer<List<SuggestionSpan>?>();
+      final service = _Service((_, _) => pending.future);
+      final first = OfficePlatformSpellingProvider(
+        supportedLanguages: ['de-DE'],
+        service: service,
+        isAvailable: () => true,
+        timeout: const Duration(seconds: 2),
+      );
+      final second = OfficePlatformSpellingProvider(
+        supportedLanguages: ['de-DE'],
+        service: service,
+        isAvailable: () => true,
+        timeout: const Duration(milliseconds: 10),
+      );
+      addTearDown(first.dispose);
+      addTearDown(second.dispose);
+      final waiting = first.check(_request(text: 'First'));
+      await Future<void>.delayed(Duration.zero);
+      final result = await second.check(_request(text: 'Second'));
+      pending.complete([]);
+      expect((await waiting).status, OfficeProofingStatus.success);
+      expect(result.status, OfficeProofingStatus.failed);
+      expect(service.calls.map((call) => call.text), ['First']);
+    },
+  );
+
+  test(
+    'platform locales preserve scripts and numeric regions exactly',
+    () async {
+      final service = _Service((_, _) async => []);
+      final provider = OfficePlatformSpellingProvider(
+        supportedLanguages: ['zh_Hant_TW', 'es-419', 'sr-Latn'],
+        service: service,
+        isAvailable: () => true,
+      );
+      addTearDown(provider.dispose);
+      for (final language in ['zh-Hant-TW', 'es-419', 'sr-Latn']) {
+        expect(
+          (await provider.check(_request(language: language))).status,
+          OfficeProofingStatus.success,
+        );
+      }
+      expect(service.calls.map((call) => call.locale.toLanguageTag()), [
+        'zh-Hant-TW',
+        'es-419',
+        'sr-Latn',
+      ]);
+    },
+  );
+
+  test(
+    'unrepresentable variants never fall back to a different dictionary',
+    () async {
+      final service = _Service((_, _) async => []);
+      final provider = OfficePlatformSpellingProvider(
+        supportedLanguages: [
+          'de-1901',
+          'sl-rozaj',
+          'fr-CA-x-private',
+          'en--US',
+        ],
+        service: service,
+        isAvailable: () => true,
+      );
+      addTearDown(provider.dispose);
+      for (final language in [
+        'de-1901',
+        'sl-rozaj',
+        'fr-CA-x-private',
+        'en--US',
+      ]) {
+        expect(provider.supportsLanguage(language), isFalse);
+        expect(
+          (await provider.check(_request(language: language))).status,
+          OfficeProofingStatus.unsupported,
+        );
+      }
+      expect(service.calls, isEmpty);
+    },
+  );
+
+  test('platform findings leave URLs email and code alone', () async {
+    const text =
+        'Feler https://example.com/Feler userFeler@example.com `Feler` Feler';
+    final service = _Service(
+      (_, source) async => [
+        for (final match in RegExp('Feler').allMatches(source))
+          SuggestionSpan(TextRange(start: match.start, end: match.end), [
+            'Fehler',
+          ]),
+      ],
+    );
+    final provider = OfficePlatformSpellingProvider(
+      supportedLanguages: ['de-DE'],
+      service: service,
+      isAvailable: () => true,
+    );
+    addTearDown(provider.dispose);
+    final result = await provider.check(_request(text: text, startOffset: 30));
+    expect(result.status, OfficeProofingStatus.success);
+    expect(result.findings.map((finding) => finding.start), [
+      30,
+      30 + text.lastIndexOf('Feler'),
+    ]);
+    expect(result.findings.map((finding) => finding.originalText), [
+      'Feler',
+      'Feler',
+    ]);
+  });
+
+  test('malformed grapheme boundaries fail direct provider checks', () async {
+    for (final sample in [
+      (text: '😀 Feler', start: 1, end: 2),
+      (text: 'Fe\u0301ler', start: 0, end: 2),
+    ]) {
+      final provider = OfficePlatformSpellingProvider(
+        supportedLanguages: ['de-DE'],
+        service: _Service(
+          (_, _) async => [
+            SuggestionSpan(TextRange(start: sample.start, end: sample.end), [
+              'Fehler',
+            ]),
+          ],
+        ),
+        isAvailable: () => true,
+      );
+      addTearDown(provider.dispose);
+      final result = await provider.check(_request(text: sample.text));
+      expect(result.status, OfficeProofingStatus.failed);
+      expect(result.findings, isEmpty);
+    }
+  });
+
+  test('non-positive platform deadlines are rejected', () {
+    for (final timeout in [Duration.zero, const Duration(milliseconds: -1)]) {
+      expect(
+        () => OfficePlatformSpellingProvider(
+          supportedLanguages: ['de-DE'],
+          timeout: timeout,
+        ),
+        throwsArgumentError,
+      );
+    }
+  });
+
   test(
     'timeout retires a provider before another channel request starts',
     () async {
