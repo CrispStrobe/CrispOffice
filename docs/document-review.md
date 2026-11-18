@@ -97,7 +97,9 @@ explicitly selected finding, and adjacent tracked changes retain the selected
 change at their shared boundary. Source changes dismiss an obsolete menu.
 Review shortcuts and menu actions cannot operate through a covering modal
 dialog. Navigation and context-menu shortcuts do not interrupt an active IME
-composition.
+composition. The caret menu applies to the focused document canvas. Existing
+comment bodies use marked-text clicks to reach Writing; reply composers do not
+use the document caret menu.
 
 ### Keep comment replies inline in Studio
 
