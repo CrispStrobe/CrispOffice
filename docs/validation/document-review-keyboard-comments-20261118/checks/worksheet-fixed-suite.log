@@ -1,0 +1,10 @@
+00:00 +0: loading /workspace/scratch/18d3825b0123/quds_office_suite/packages/quds_office_editor/example/test/studio_sheet_navigation_test.dart
+00:00 +0: find pane retains a rejected first search and shows correction
+00:01 +1: result click changes its cursor only after draft acceptance
+00:01 +2: find pane Next handles rejected navigation
+00:02 +3: find pane Previous handles rejected navigation
+00:02 +4: find pane F3 handles rejected navigation
+00:02 +5: studio worksheet tab keeps a rejected draft available
+00:06 +6: studio New explicitly resets a same-index worksheet
+00:08 +7: studio Reload sample explicitly resets a same-index worksheet
+00:11 +8: All tests passed!

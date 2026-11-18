@@ -1,18 +1,18 @@
 {
   "schema_version": 2,
-  "created_at_utc": "2026-11-18T16:45:00.173891+00:00",
-  "status": "post-merge-validation-pending",
-  "previous_qualified_source_commit": "40e92e5222a26db132f8be05126df285b4227a86",
+  "created_at_utc": "2026-11-18T16:54:49.645144+00:00",
+  "status": "passed",
+  "qualified_source_commit": "8002b6748deec2be7b7527d2bab8810d8ec54d05",
   "scope": "All tracked files under this validation directory except index.json itself; caches and unrelated workspace files are excluded.",
-  "evidence_anchor": "The Git commit containing this index binds every listed blob.",
-  "file_count": 54,
-  "total_bytes": 1269889,
+  "evidence_anchor": "The Git commit containing this index binds the index and every listed blob.",
+  "file_count": 66,
+  "total_bytes": 1508677,
   "files": [
     {
       "path": "README.md",
-      "bytes": 11421,
-      "sha256": "f607664b706a73b62e8f79a5ed2ec826372284c20a9ab66c75f55afa583ee74c",
-      "git_blob_sha1": "78995512feb6019e4724ecdc04e40585f0268305"
+      "bytes": 11986,
+      "sha256": "d25dbf16a31dd162b2303f38a748e12073dbea662014db813384a2c6da2ab0f4",
+      "git_blob_sha1": "03ced2cc787a5bd0e06340a5b3907ab51c8aefa6"
     },
     {
       "path": "development/README.md",
@@ -231,6 +231,30 @@
       "git_blob_sha1": "eea6f864ad6e3968e13568f12c52a847e669f5ad"
     },
     {
+      "path": "post-merge/incoming-editor/events.jsonl.gz",
+      "bytes": 15132,
+      "sha256": "6c8296e42374a31043029581fe93e592926903394aa75f43d4d9a4a43d0e5fad",
+      "git_blob_sha1": "6e3ab90583512093ccde1c3a54945c667a440085"
+    },
+    {
+      "path": "post-merge/incoming-editor/inputs.json.gz",
+      "bytes": 49888,
+      "sha256": "2cdc70cdb7ee463952ce15537fd07ab2a09fb6941aa83ccf1133658f658d0404",
+      "git_blob_sha1": "bed51a3257c2e19a40ded6201b7756d052fc8c54"
+    },
+    {
+      "path": "post-merge/incoming-editor/summary.json",
+      "bytes": 12679,
+      "sha256": "4472bc5679d0a54644e619d21740f19568debd5b7e51f532630530499d928582",
+      "git_blob_sha1": "e5672a20467242d6d01ac3f7f3ec08f488f7b4fb"
+    },
+    {
+      "path": "post-merge/incoming-runner.log",
+      "bytes": 658,
+      "sha256": "080ea6b714dfa96dd6a0857ee318530e0e36498d69e943d73f0f1bd6f0a95f84",
+      "git_blob_sha1": "ef49a6f28d784ff0d8bacc0a9cbdd2d219da3f19"
+    },
+    {
       "path": "post-merge/merge-review.md",
       "bytes": 1843,
       "sha256": "5c537ea9a71b63c06e76963fe2e68ed6d13882f53dbaa3787e9653b59cdf0489",
@@ -243,6 +267,30 @@
       "git_blob_sha1": "7aff407f2948e2c1810827b737f251a8a2152214"
     },
     {
+      "path": "post-merge/qualification-audit.json",
+      "bytes": 23554,
+      "sha256": "7a6d88e7b470b5f42c25ef1bb02180d33f381d2054fced8b04de80bc659d6750",
+      "git_blob_sha1": "002744bdc5aa1c835f27fb508c46264d2aa5b044"
+    },
+    {
+      "path": "post-merge/qualification-audit.md",
+      "bytes": 3163,
+      "sha256": "262a3bb655264d8b42928d1d613b8c8d17ba6e5311352c82910bd435326fff38",
+      "git_blob_sha1": "1e7aaed8ef39ea4eaf7315e6edc62e955b54eaf0"
+    },
+    {
+      "path": "post-merge/reconciliation.json",
+      "bytes": 43889,
+      "sha256": "0cc37b874bf0ae7dd36bf725d28470a1097fd60feb9971377443b925d0cd574c",
+      "git_blob_sha1": "edd6dd318138d5516f5fc8a6c4f4361cecbe4286"
+    },
+    {
+      "path": "post-merge/reconciliation.md",
+      "bytes": 3759,
+      "sha256": "e3f977dd00514b2fafed5c38852f9a3de87190ee498c5225fbe206fcfbfe91dc",
+      "git_blob_sha1": "cf4b9f12aea62e105924814742fcab05ca9fac60"
+    },
+    {
       "path": "post-merge/run_incoming_editor.py",
       "bytes": 21018,
       "sha256": "34445592d84e76bce1aaae3ad2ecff22cebaaa6c56277450e424a22ac31e9336",
@@ -253,6 +301,30 @@
       "bytes": 9388,
       "sha256": "747808c9f8bb2b9fbae5a1e9c2e525e09c85930ef6d74f70c991a2728a55cabd",
       "git_blob_sha1": "10a9ed4ac43446a50e12263b9e409dd73fc921b6"
+    },
+    {
+      "path": "post-merge/zotero-editor/events.jsonl.gz",
+      "bytes": 18648,
+      "sha256": "a77a678552cc4eb31d1ffb3d334d608ea4330b2fe30db29d3221094947cb8297",
+      "git_blob_sha1": "a8d3f7b4e2853f88fa567efa10c6b79f7399e469"
+    },
+    {
+      "path": "post-merge/zotero-editor/inputs.json.gz",
+      "bytes": 50614,
+      "sha256": "a3c8ea888b956635ae3573103a90c79fd2f900729f839771ce2cc0df223a38ca",
+      "git_blob_sha1": "d2b69ba817f21fe0537089fdb6b3e7d15f425495"
+    },
+    {
+      "path": "post-merge/zotero-editor/summary.json",
+      "bytes": 14553,
+      "sha256": "98af1e9bd2150602dd933d665c595ec29d21b5be3c8a20924f1b565160f23f20",
+      "git_blob_sha1": "d28b4d18455201a1561e11604da8ade8306c14b4"
+    },
+    {
+      "path": "post-merge/zotero-runner.log",
+      "bytes": 565,
+      "sha256": "95c83b5b00519725833bcb7e7466073f3c2ca3156f0fcf0339e52b18c12d0218",
+      "git_blob_sha1": "b6a5274c740da1424871dd76501d5f5882032dc4"
     },
     {
       "path": "qualification-audit.json",
@@ -328,9 +400,9 @@
     },
     {
       "path": "status.json",
-      "bytes": 2815,
-      "sha256": "5e8d8f25c84283f38b4c12b063994d4210fc5cfcf924e441550f6e72b7b7bd5d",
-      "git_blob_sha1": "f9ccc0ddd7af2c6f27dda3a8e8578011730ec4d8"
+      "bytes": 3936,
+      "sha256": "ccc33d7b356a9e427f79fcb1282c07aa4e0176b4b9136470a3ac1086e617d1d6",
+      "git_blob_sha1": "a72bde0831b97652c5975e55461a26ec6733d739"
     }
   ]
 }

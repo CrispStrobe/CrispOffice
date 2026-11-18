@@ -1,0 +1,5 @@
+$ dart analyze --fatal-infos packages/quds_office_engine/lib/quds_office_engine.dart packages/quds_office_engine/lib/src/thesaurus/office_thesaurus.dart
+Analyzing quds_office_engine.dart, office_thesaurus.dart...
+No issues found!
+
+exit_code=0

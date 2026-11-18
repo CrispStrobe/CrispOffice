@@ -1,0 +1,141 @@
+{
+  "recorded_at_utc": "2026-11-18T17:10:40.145816+00:00",
+  "worktree": "/workspace/scratch/18d3825b0123/incoming-merge",
+  "base": "785f4694b6afb9904ed496b7b50ef05cc099c32b",
+  "operations": [
+    {
+      "label": "native spelling evidence",
+      "incoming_sha": "1cdedeebcae9c4fd1a50a7bfea6f487af5bb688c",
+      "previous_head": "785f4694b6afb9904ed496b7b50ef05cc099c32b",
+      "merge_bases": [
+        "04be224b4a7f469476416ee86dc780cb6a1c0990"
+      ],
+      "exit_code": 0,
+      "output": "Automatic merge went well; stopped before committing as requested\n",
+      "unmerged": [],
+      "changed_paths": [
+        "M\tdocs/validation/native-spelling-resume-20261118/README.md",
+        "M\tdocs/validation/native-spelling-resume-20261118/evidence-index.json",
+        "M\tdocs/validation/native-spelling-resume-20261118/evidence.tar.xz",
+        "M\tdocs/validation/native-spelling-resume-20261118/run_regressions.py",
+        "M\tdocs/validation/native-spelling-resume-20261118/status.json"
+      ],
+      "whitespace_check": {
+        "exit_code": 0,
+        "output": ""
+      },
+      "commit_exit_code": 0,
+      "commit_output": "[detached HEAD 2755829a] Merge latest native spelling evidence into document review [skip ci]\n",
+      "commit": "2755829a3f2daa0ee6e0eea9e73dc337a6734229",
+      "tree": "1e82e5c89a36542a549bae6a322f2c86d7fe6427"
+    },
+    {
+      "label": "Zotero qualification evidence",
+      "incoming_sha": "a40a26663f7a2c6b7fb8de91540fd04b9875ed9c",
+      "previous_head": "2755829a3f2daa0ee6e0eea9e73dc337a6734229",
+      "merge_bases": [
+        "8002b6748deec2be7b7527d2bab8810d8ec54d05"
+      ],
+      "exit_code": 0,
+      "output": "Automatic merge went well; stopped before committing as requested\n",
+      "unmerged": [],
+      "changed_paths": [
+        "M\tdocs/validation/zotero-citation-workflow-20261118/README.md",
+        "M\tdocs/validation/zotero-citation-workflow-20261118/index.json",
+        "A\tdocs/validation/zotero-citation-workflow-20261118/post-merge/incoming-editor/events.jsonl.gz",
+        "A\tdocs/validation/zotero-citation-workflow-20261118/post-merge/incoming-editor/inputs.json.gz",
+        "A\tdocs/validation/zotero-citation-workflow-20261118/post-merge/incoming-editor/summary.json",
+        "A\tdocs/validation/zotero-citation-workflow-20261118/post-merge/incoming-runner.log",
+        "A\tdocs/validation/zotero-citation-workflow-20261118/post-merge/qualification-audit.json",
+        "A\tdocs/validation/zotero-citation-workflow-20261118/post-merge/qualification-audit.md",
+        "A\tdocs/validation/zotero-citation-workflow-20261118/post-merge/reconciliation.json",
+        "A\tdocs/validation/zotero-citation-workflow-20261118/post-merge/reconciliation.md",
+        "A\tdocs/validation/zotero-citation-workflow-20261118/post-merge/zotero-editor/events.jsonl.gz",
+        "A\tdocs/validation/zotero-citation-workflow-20261118/post-merge/zotero-editor/inputs.json.gz",
+        "A\tdocs/validation/zotero-citation-workflow-20261118/post-merge/zotero-editor/summary.json",
+        "A\tdocs/validation/zotero-citation-workflow-20261118/post-merge/zotero-runner.log",
+        "M\tdocs/validation/zotero-citation-workflow-20261118/status.json",
+        "M\tdocs/zotero-validation.md"
+      ],
+      "whitespace_check": {
+        "exit_code": 0,
+        "output": ""
+      },
+      "commit_exit_code": 0,
+      "commit_output": "[detached HEAD 0c547144] Merge latest Zotero qualification evidence into document review [skip ci]\n",
+      "commit": "0c547144e1fd828d11f69956b9596a615c14f1db",
+      "tree": "af895e26867b18707388d7eaabc3614b44b6eb14"
+    },
+    {
+      "label": "offline thesaurus",
+      "incoming_sha": "decde7792890bf4724c91403fbb6528d8423b01e",
+      "previous_head": "0c547144e1fd828d11f69956b9596a615c14f1db",
+      "merge_bases": [
+        "ec28480130786cb923d0447ee92a1d3de19f35c0",
+        "82224f2369572b4f249c67ba70d950ef06d45856"
+      ],
+      "exit_code": 1,
+      "output": "Auto-merging packages/quds_office_editor/test/word_live_review_selection_test.dart\nCONFLICT (content): Merge conflict in packages/quds_office_editor/test/word_live_review_selection_test.dart\nAutomatic merge failed; fix conflicts and then commit the result.\n",
+      "unmerged": [
+        "packages/quds_office_editor/test/word_live_review_selection_test.dart"
+      ],
+      "changed_paths": [
+        "A\tdocs/validation/thesaurus-20261118/integration.json",
+        "U\tpackages/quds_office_editor/test/word_live_review_selection_test.dart",
+        "M\tpackages/quds_office_engine/lib/quds_office_engine.dart",
+        "A\tpackages/quds_office_engine/lib/src/thesaurus/office_thesaurus.dart"
+      ],
+      "resolution": {
+        "path": "packages/quds_office_editor/test/word_live_review_selection_test.dart",
+        "choice": "Retain current review test byte-for-byte; three newer exact caret assertions remain.",
+        "resolved_blob": "6ebbf4a5d2ef193604d415c841989535e8c871b9"
+      },
+      "post_resolution_changes": [
+        "A\tdocs/validation/thesaurus-20261118/integration.json",
+        "M\tpackages/quds_office_engine/lib/quds_office_engine.dart",
+        "A\tpackages/quds_office_engine/lib/src/thesaurus/office_thesaurus.dart"
+      ],
+      "whitespace_check": {
+        "exit_code": 0,
+        "output": ""
+      },
+      "commit": "9c84e8f4afa4d3fa016d6cd2904cfddfe85d2d0e",
+      "tree": "548e0115a4b3a6dd6524a5194c7dfe359c4eb996",
+      "commit_exit_code": 0,
+      "commit_output": "[detached HEAD 9c84e8f4] Merge offline thesaurus while preserving current review assertions [skip ci]\n"
+    }
+  ],
+  "github_actions": {
+    "queried": false,
+    "waited": false,
+    "dispatched": false
+  },
+  "remote_writes": false,
+  "current_head": "9c84e8f4afa4d3fa016d6cd2904cfddfe85d2d0e",
+  "status": "",
+  "source_delta_from_frozen": [
+    "M\tpackages/quds_office_engine/lib/quds_office_engine.dart",
+    "A\tpackages/quds_office_engine/lib/src/thesaurus/office_thesaurus.dart"
+  ],
+  "completed_at_utc": "2026-11-18T17:12:49.469163+00:00",
+  "lint_cleanup": {
+    "head": "e990fbbf3163e0fc2bed11662280f7d278520e22",
+    "tree": "1ed45f9a97ce73faa8fdea867226b843e6115293",
+    "parent": "9c84e8f4afa4d3fa016d6cd2904cfddfe85d2d0e",
+    "commit_output": "[detached HEAD e990fbbf] Align incoming thesaurus with strict analysis rules [skip ci]\n 2 files changed, 18 insertions(+), 11 deletions(-)",
+    "changes": [
+      "Sort thesaurus export with existing directives.",
+      "Use map literals, which retain the same insertion-ordered map behavior.",
+      "Add six missing control-flow blocks.",
+      "Explicitly mark the already-awaited removed Future as unawaited; replace unused dart:collection with dart:async."
+    ],
+    "tracked_status": "",
+    "files": [
+      "packages/quds_office_engine/lib/quds_office_engine.dart",
+      "packages/quds_office_engine/lib/src/thesaurus/office_thesaurus.dart"
+    ],
+    "committed_at_utc": "2026-11-18T17:15:03.812754+00:00"
+  },
+  "final_head": "e990fbbf3163e0fc2bed11662280f7d278520e22",
+  "final_tree": "1ed45f9a97ce73faa8fdea867226b843e6115293"
+}

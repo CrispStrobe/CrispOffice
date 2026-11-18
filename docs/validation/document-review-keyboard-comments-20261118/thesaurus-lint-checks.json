@@ -1,0 +1,55 @@
+{
+  "recorded_at_utc": "2026-11-18T17:15:20.644634+00:00",
+  "worktree": "/workspace/scratch/18d3825b0123/incoming-merge",
+  "tested_head": "e990fbbf3163e0fc2bed11662280f7d278520e22",
+  "tested_tree": "1ed45f9a97ce73faa8fdea867226b843e6115293",
+  "file_blobs": {
+    "packages/quds_office_engine/lib/quds_office_engine.dart": "fe29fcfbe12c83e4d8bab77193ce71a8d79e14dc",
+    "packages/quds_office_engine/lib/src/thesaurus/office_thesaurus.dart": "4d7ae366acf7dafd9ddcc142808669221fca81cd"
+  },
+  "checks": [
+    {
+      "name": "thesaurus-lint-analysis",
+      "command": [
+        "dart",
+        "analyze",
+        "--fatal-infos",
+        "packages/quds_office_engine/lib/quds_office_engine.dart",
+        "packages/quds_office_engine/lib/src/thesaurus/office_thesaurus.dart"
+      ],
+      "exit_code": 0,
+      "stdout": "Analyzing quds_office_engine.dart, office_thesaurus.dart...\nNo issues found!\n",
+      "stderr": ""
+    },
+    {
+      "name": "thesaurus-lint-format",
+      "command": [
+        "dart",
+        "format",
+        "--output=none",
+        "--set-exit-if-changed",
+        "packages/quds_office_engine/lib/quds_office_engine.dart",
+        "packages/quds_office_engine/lib/src/thesaurus/office_thesaurus.dart"
+      ],
+      "exit_code": 0,
+      "stdout": "Formatted 2 files (0 changed) in 0.02 seconds.\n",
+      "stderr": ""
+    },
+    {
+      "name": "thesaurus-lint-whitespace",
+      "command": [
+        "git",
+        "diff",
+        "--check",
+        "HEAD^",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "status": "",
+  "github_actions_queried": false,
+  "remote_observation_after_frontier": false
+}

@@ -6,17 +6,13 @@ Word/LibreOffice-style citation workflow on
 the active document-review branch in `40790cb2` while local validation was
 running. That branch is reviewed in #162 and already contains #164 and #165.
 
-## Delivery update — combined source validation pending
-
-The complete pre-merge qualification below is saved at `82224f23`, bound to
-source `40e92e52`. A targeted delivery check found that the document-review
-base had advanced to `ecbb1e0bd8129a5c8737496d1877863dd0eea3f2`, with additional
-review/proofing code and tests. This follow-up integrates that fixed head and
-resolves one selection-test conflict while retaining both sets of assertions.
-Fresh complete Zotero and expanded incoming-cohort qualification will be saved
-before the follow-up is marked ready. The original fixed incoming-ref audit
-and every earlier result remain available; this targeted base check does not
-claim a new repository-wide ref inventory.
+The completed follow-up integrates the fixed review head `ecbb1e0b`, retains
+both sides of one selection-test conflict, and saves fresh qualification on
+combined source **`8002b6748deec2be7b7527d2bab8810d8ec54d05`**. Relative to that
+review base, the follow-up changes two review regression tests and validation
+documentation/evidence. Incoming product files remain byte-identical to the
+captured base, and all Zotero source/test paths retain the implementation from
+PR #166.
 
 ## Implemented behavior
 
@@ -56,69 +52,75 @@ for the complete flow and its distinction from native document-wide CSL
 formatting. These additions complement the existing Zotero desktop picker,
 style, bibliography and refresh integration.
 
-## Completed pre-merge local validation
+## Completed local qualification
 
-Qualified pre-merge source: **`40e92e5222a26db132f8be05126df285b4227a86`**.
-The [independent evidence audit](qualification-audit.md) verifies the two
-completed local runs against this source and independently recounts their raw
-events. Their suite sets are disjoint.
+Both fresh runs executed on **`8002b6748deec2be7b7527d2bab8810d8ec54d05`**.
+The [independent audit](post-merge/qualification-audit.md) checks their raw event
+streams, actual process exits, complete start/end accounting, source identities,
+static targets and runtime/dependency/workspace guards.
 
-| Accepted cohort | Suites | Passed | Failed / skipped | Actual process exit |
+| Accepted final cohort | Suites | Passed | Failed / skipped | Actual process exit |
 | --- | ---: | ---: | ---: | ---: |
 | Complete editor Zotero | 26 | 348 | 0 / 0 | 0 |
-| Incoming editor review and proofing | 18 | 269 | 0 / 0 | 0 |
-| **Disjoint total** | **44** | **617** | **0 / 0** | |
+| Incoming editor review and proofing | 20 | 278 | 0 / 0 | 0 |
+| **Disjoint total** | **46** | **626** | **0 / 0** | |
 
 The **49 new Zotero cases** are included once in the 348. All 374 Zotero and
-297 incoming machine starts finish exactly once. The totals exclude 26 Zotero
-and 28 incoming loading/lifecycle cases, plus Flutter process notifications.
+310 incoming machine starts finish exactly once. The totals exclude 26 Zotero
+and 32 incoming loading/lifecycle cases, plus Flutter process notifications.
 Both final streams end successfully with zero error events, parse failures,
 overflow or missed-tap diagnostics. Strict analysis and nonmutating formatting
-pass all **15 distinct Dart targets**: eight Zotero and seven incoming.
+pass all **17 distinct Dart targets**: eight Zotero and nine incoming.
 
-The complete Zotero run executed on integration
-`3668ed92829dfa012ec5b129943a86738ebb7992`. All **562** of its recorded source
-inputs also match the final source. The incoming run executed on
-`40e92e5222a26db132f8be05126df285b4227a86` and records **550** source inputs.
-Their union contains **581 distinct paths**, all matching the final Git tree;
-shared records agree. Product code has not changed since the Zotero run.
-The later source changes only repair two incoming review test expectations and
-interaction helpers, which the final incoming cohort exercises.
+All **562 Zotero** and **552 incoming** recorded source inputs match the frozen
+merge. Their union contains **583 distinct paths**, with agreeing shared
+records. Source, dependency, runtime and workspace before/after guards pass;
+both runs start and finish at the exact frozen commit. Executed runner and
+artifact hashes match the receipts.
 
-Source, dependency, runtime and workspace before/after guards pass. Executed
-runner and artifact hashes match the receipts. The runtime is genuine Flutter
-3.47.8 / Dart 3.13.7, with 162 SHA-256-verified hosted archives, 11 unchanged
-manifests and the exact locked 110-package graph. The incoming inventory also
-records the SDK's MaterialIcons font; the shared executable, dependency and
-workspace identities agree between runs.
+The runtime is genuine Flutter 3.47.8 / Dart 3.13.7, with 162 SHA-256-verified
+hosted archives, 11 unchanged manifests and the exact locked 110-package graph.
+The incoming inventory also records the SDK's MaterialIcons font. Shared
+executable, dependency and workspace identities agree between runs.
 
-### Retained attempts and test repairs
+The expanded incoming selection retains the original 18 suites and adds
+`word_incremental_proofing_menu_test.dart` and
+`word_proofing_capture_cache_test.dart`. It also exercises the additional
+review cases incorporated from the base. No historical result is added to this
+fresh total.
 
-Two earlier full incoming runs failed and remain available in
-[attempt 1](incoming/attempt-1/summary.json) and
-[attempt 2](incoming/attempt-2/summary.json), with their exact runners, raw
-events and input fingerprints. Neither contributes to the passing total.
-The first recorded 262 passes and seven failures; the second recorded 261
-passes and eight failures. Both exited with code one.
+## Earlier results and retained repairs
 
-The incoming incremental proofing now rebinds a selected issue immediately when
-another paragraph changes. Its test now verifies the current revision, correct
-paragraph and stable caret, while retaining rejection of the stale issue.
-The filter test helper now opens a collapsed tile through its visible header,
-starts and advances the expansion animation, and requires hit-testable controls
-before each real tap. It reads expansion state but never forces the controller
-open. The filter suite retains every case and assertion; only the selection
-expectation changes as described above. No product code was changed to repair
-these tests. The final affected suites pass 9/9 and 13/13 respectively.
+The first complete qualification passed **617 tests across 44 suites**, bound
+to `40e92e52` and saved at `82224f23`. Its [independent audit](qualification-audit.md),
+[Zotero summary](editor/summary.json) and
+[incoming summary](incoming/editor/summary.json) remain unchanged. Because the
+captured review base subsequently changed editor product code, both full
+cohorts were rerun on the combined source. The earlier 617 is excluded from the
+626 above.
 
-Focused [helper development](incoming/development/README.md) preserves both the
-failed intermediate attempt and the successful 13-case attempt. Earlier
-[Zotero development](development/README.md), all focused runs, historical
-results and source review are excluded from the final acceptance totals.
+Two earlier full incoming attempts also remain available:
+[attempt 1](incoming/attempt-1/summary.json) recorded 262 passes and seven
+failures; [attempt 2](incoming/attempt-2/summary.json) recorded 261 passes and
+eight failures. Both exited one and contribute nothing to current acceptance.
+
+The selected-issue test now checks immediate rebinding at the current revision,
+unchanged finding text/span, the correct paragraph, stable caret and rejection
+of the stale issue. The filter helper opens the visible header, starts and
+advances its expansion animation, and requires real hit-testable controls.
+It reads public expansion state without forcing the controller open. The final
+merge retains both branches' assertions and all incoming cases; no product
+behavior was changed to repair tests.
+
+Focused [helper development](incoming/development/README.md) and earlier
+[Zotero development](development/README.md) preserve unsuccessful and successful
+attempts separately. All focused runs, historical engine/Studio/spelling results,
+static preflight and source-review-only work are excluded from current test
+counts.
 
 ## Incoming work and saved checkpoints
 
-The final fixed incoming snapshot closed on **18 November 2026 at 17:03:14
+The original fixed incoming snapshot closed on **18 November 2026 at 17:03:14
 Europe/Berlin (16:03:14 UTC)**. It accounts for **377 incoming refs / 244 distinct
 heads**: 204 fork branches, 165 fork PR heads, four upstream branches and four
 upstream PR heads. Our output branch and later PR #166 are excluded.
@@ -129,26 +131,29 @@ upstream PR heads. Our output branch and later PR #166 are excluded.
 | Verified historical equivalents | 28 |
 | Unaccounted | **0** |
 
-The initial base includes #164 and #165, native spelling and the prior live
-review implementation. The subsequent merge preserves the newly observed
-review head `58058b1b` and main `60be935c`. All ten incoming changed files are
-preserved: seven exact byte identities and three exact outputs of Dart's
-formatter. The [fixed final audit](reconciliation-final.md) explains the
-ancestry, historical equivalence proofs and manifest/lock checks. It makes no
-claim about later concurrent remote activity.
+The [original final audit](reconciliation-final.md) preserves the ancestry,
+historical-equivalence proofs and manifest/lock checks. A targeted delivery
+check then found PR #166 merged into document-review at **17:17 Europe/Berlin**.
+The [post-merge reconciliation](post-merge/reconciliation.md) records the fixed
+`ecbb1e0b` base, main `556c55c0`, both merge parents, exact incoming-product
+preservation and the combined test assertions. It locally rechecks the original
+377-ref inventory against the new merge. It makes no claim to inventory later
+concurrent remote activity.
 
 | Remote checkpoint | Purpose |
 | --- | --- |
 | `ee88b8f8` | Initial reconciliation, runtime recovery and cited-source selection |
 | `d0598533` | Complete Zotero implementation, 49 regressions and user guide |
-| `3668ed92` | Three-parent merge of new review/main work and formatting normalization |
-| `00ac2edf` | Complete Zotero evidence, independent source review and initial incoming test repairs |
-| `40e92e52` | Final incoming helper repair and preserved failed/focused evidence; qualified source |
+| `3668ed92` | Three-parent merge of incoming review/main and formatting normalization |
+| `00ac2edf` | Complete Zotero evidence, source review and initial incoming test repairs |
+| `40e92e52` | Incoming helper repair and preserved attempts; pre-merge qualified source |
+| `82224f23` | Audited historical 617-test evidence and complete artifact index |
+| `8002b674` | Fixed newer review base integrated; both test assertion sets retained; freshly qualified source |
 
-The final evidence checkpoint adds the passing incoming run, independent
-qualification audit, this report and the artifact index. It changes no product
-or test source. The commit containing this report identifies that evidence
-checkpoint; the tested source remains the explicit commit above.
+Final evidence checkpoints add the two fresh passing runs, the independent
+qualification audit, targeted reconciliation and this report. They change no
+product or test source after `8002b674`. The commit containing this report
+identifies the evidence checkpoint.
 
 Checkpoint updates are non-forced and require the expected remote branch head.
 Every checkpoint message carries `[skip ci]`. No GitHub Actions, workflow,
@@ -156,43 +161,49 @@ check or CI-status endpoint was queried, awaited, dispatched or rerun.
 
 ## Evidence and reproduction
 
-- [Zotero machine summary](editor/summary.json), [raw events](editor/events.jsonl.gz)
-  and [input fingerprints](editor/inputs.json.gz).
-- [Incoming machine summary](incoming/editor/summary.json),
-  [raw events](incoming/editor/events.jsonl.gz),
-  [input fingerprints](incoming/editor/inputs.json.gz) and
-  [runner output](incoming/runner.log).
-- [Independent qualification audit](qualification-audit.md), its
-  [machine-readable checks](qualification-audit.json),
+- Fresh Zotero [summary](post-merge/zotero-editor/summary.json),
+  [raw events](post-merge/zotero-editor/events.jsonl.gz),
+  [input fingerprints](post-merge/zotero-editor/inputs.json.gz) and
+  [runner output](post-merge/zotero-runner.log).
+- Fresh incoming [summary](post-merge/incoming-editor/summary.json),
+  [raw events](post-merge/incoming-editor/events.jsonl.gz),
+  [input fingerprints](post-merge/incoming-editor/inputs.json.gz) and
+  [runner output](post-merge/incoming-runner.log).
+- [Final independent audit](post-merge/qualification-audit.md), its
+  [machine-readable checks](post-merge/qualification-audit.json),
   [completed status](status.json) and [artifact index](index.json).
 - [Executed Zotero runner](editor/run_editor_zotero.py), selecting all
   `word_zotero*_test.dart` suites and requiring the four new suites.
-- [Incoming selection and controls](incoming/plan.md),
-  [incoming runner](incoming/run_incoming_editor.py),
-  [first-run diagnosis](incoming/first-run.md) and
-  [second-run diagnosis](incoming/second-run.md).
+- [Executed 20-suite incoming runner](post-merge/run_incoming_editor.py),
+  [selection and controls](post-merge/plan.md),
+  [merge review](post-merge/merge-review.md) and
+  [static preflight](post-merge/static-preflight.json).
 - [Runtime recovery](runtime/README.md) and verified setup bundle.
-- [Independent review](independent-review.md), including the resolved error
-  boundaries for oversized alias catalogs and oversized combined citations.
-- [Development attempts](development/README.md), preserved separately and
-  excluded from final qualification counts.
+- [Original independent source review](independent-review.md), including
+  recoverable oversized alias-catalog and combined-citation error boundaries.
+- [First failed-run diagnosis](incoming/first-run.md),
+  [second failed-run diagnosis](incoming/second-run.md) and historical raw
+  evidence retained alongside them.
 - [Initial reconciliation](reconciliation-initial.json),
-  [later incoming snapshot](reconciliation-prevalidation.json), and
-  [final integration binding](reconciliation-final.json).
+  [later incoming snapshot](reconciliation-prevalidation.json),
+  [original integration binding](reconciliation-final.json) and
+  [targeted post-merge binding](post-merge/reconciliation.json).
 
-After restoring the documented runtime, run the Zotero cohort from the task
-root with a fresh output directory:
+After restoring the documented runtime, run from the task root with fresh
+output directories:
 
 ```sh
 python quds_office_suite/docs/validation/zotero-citation-workflow-20261118/editor/run_editor_zotero.py \
   --output fresh-zotero-results
+python quds_office_suite/docs/validation/zotero-citation-workflow-20261118/post-merge/run_incoming_editor.py \
+  --source-commit 8002b6748deec2be7b7527d2bab8810d8ec54d05 \
+  --output fresh-incoming-results
 ```
 
-The incoming runner additionally requires
-`--source-commit 40e92e5222a26db132f8be05126df285b4227a86` for its frozen
-qualification source. Both runners preserve existing output directories,
-capture actual process exits and raw events, require complete suite/start/end
-accounting, and guard source, dependency, runtime and workspace inputs.
+Both runners preserve existing output directories, capture actual process exits
+and raw events, require complete suite/start/end accounting, and guard source,
+dependency, runtime and workspace inputs. The incoming runner requires a
+checkout whose product/test bytes still match the specified frozen source.
 
 This is real Flutter editor/controller qualification with controlled transport
 and clipboard channels. Engine and Studio product code are unchanged by this
