@@ -1,0 +1,77 @@
+00:00 +0: loading test/word_comparison_test.dart
+00:00 +0: test/word_comparison_test.dart: middle paragraph insertion does not rewrite following paragraphs
+00:00 +1: test/word_comparison_test.dart: whole paragraph removal and empty paragraphs remain visible
+00:00 +2: test/word_comparison_test.dart: word-level redline retains unchanged context and reconstructs both inputs
+00:00 +3: test/word_comparison_test.dart: repeated paragraphs align deterministically
+00:00 +4: test/word_comparison_test.dart: Unicode, Arabic, combining marks and joined emoji are indivisible
+00:00 +5: test/word_comparison_test.dart: normalization preserves source text and reports only requested differences
+00:00 +6: test/word_comparison_adversarial_test.dart: a previously captured missing target never binds a later paragraph
+00:00 +7: test/word_comparison_adversarial_test.dart: a previously captured missing target never binds a later paragraph
+00:00 +8: test/word_comparison_adversarial_test.dart: a previously captured missing target never binds a later paragraph
+00:00 +9: test/word_comparison_test.dart: projecting pending revisions never changes metadata or input identity
+00:00 +10: test/word_comparison_adversarial_test.dart: legacy body indices count TOC paragraphs without redirecting a change
+00:00 +11: test/word_comparison_adversarial_test.dart: legacy body indices count TOC paragraphs without redirecting a change
+00:00 +12: test/word_comparison_adversarial_test.dart: legacy body indices count TOC paragraphs without redirecting a change
+00:00 +13: test/word_comparison_adversarial_test.dart: legacy body indices count TOC paragraphs without redirecting a change
+00:00 +14: test/word_comparison_adversarial_test.dart: legacy body indices count TOC paragraphs without redirecting a change
+00:00 +15: test/word_comparison_test.dart: table, frame, header and note changes retain their story locations
+00:00 +16: test/word_comparison_adversarial_test.dart: adjacent zero-width native inline nodes keep independent identities
+00:00 +17: test/word_comparison_adversarial_test.dart: adjacent zero-width native inline nodes keep independent identities
+00:00 +18: test/word_comparison_adversarial_test.dart: adjacent zero-width native inline nodes keep independent identities
+00:00 +19: test/word_comparison_adversarial_test.dart: adjacent zero-width native inline nodes keep independent identities
+00:00 +20: test/word_comparison_adversarial_test.dart: adjacent zero-width native inline nodes keep independent identities
+00:00 +21: test/word_comparison_test.dart: large mostly identical inputs use anchors without quadratic work
+00:00 +22: test/word_comparison_test.dart: large mostly identical inputs use anchors without quadratic work
+00:00 +23: test/word_comparison_test.dart: large mostly identical inputs use anchors without quadratic work
+00:00 +24: test/word_comparison_test.dart: large mostly identical inputs use anchors without quadratic work
+00:00 +25: test/word_comparison_test.dart: large mostly identical inputs use anchors without quadratic work
+00:00 +26: test/word_comparison_test.dart: large mostly identical inputs use anchors without quadratic work
+00:00 +27: test/word_comparison_test.dart: large mostly identical inputs use anchors without quadratic work
+00:00 +28: test/word_comparison_test.dart: large mostly identical inputs use anchors without quadratic work
+00:00 +29: test/word_comparison_test.dart: large mostly identical inputs use anchors without quadratic work
+00:00 +30: test/word_comparison_test.dart: large mostly identical inputs use anchors without quadratic work
+00:00 +31: test/word_comparison_test.dart: large mostly identical inputs use anchors without quadratic work
+00:00 +32: test/word_comparison_test.dart: large mostly identical inputs use anchors without quadratic work
+00:00 +33: test/word_comparison_test.dart: large mostly identical inputs use anchors without quadratic work
+00:00 +34: test/word_comparison_test.dart: large mostly identical inputs use anchors without quadratic work
+00:00 +35: test/word_comparison_test.dart: large mostly identical inputs use anchors without quadratic work
+00:00 +36: test/word_comparison_test.dart: large mostly identical inputs use anchors without quadratic work
+00:00 +37: test/word_comparison_test.dart: large mostly identical inputs use anchors without quadratic work
+00:00 +38: test/word_comparison_test.dart: large mostly identical inputs use anchors without quadratic work
+00:00 +39: test/word_comparison_test.dart: large mostly identical inputs use anchors without quadratic work
+00:00 +40: test/word_comparison_test.dart: large mostly identical inputs use anchors without quadratic work
+00:00 +41: test/word_comparison_test.dart: large mostly identical inputs use anchors without quadratic work
+00:00 +42: test/office_features_test.dart: round-trips first headers notes styles and slide sections
+00:00 +43: test/office_features_test.dart: round-trips first headers notes styles and slide sections
+00:00 +44: test/office_features_test.dart: round-trips first headers notes styles and slide sections
+00:00 +45: test/office_features_test.dart: round-trips first headers notes styles and slide sections
+00:00 +46: test/office_features_test.dart: round-trips first headers notes styles and slide sections
+00:00 +47: test/office_features_test.dart: round-trips first headers notes styles and slide sections
+00:00 +48: test/office_features_test.dart: round-trips first headers notes styles and slide sections
+00:00 +49: test/word_comparison_test.dart: independently authored native XML produces a readable comparison
+00:00 +50: test/word_comparison_test.dart: independently authored native XML produces a readable comparison
+00:00 +51: test/word_comparison_test.dart: independently authored native XML produces a readable comparison
+00:00 +52: test/office_features_test.dart: merges mail compares documents and builds citations
+00:00 +53: test/word_comparison_test.dart: many independent edit sequences reconstruct both paragraph streams
+00:00 +54: test/word_comparison_test.dart: many independent edit sequences reconstruct both paragraph streams
+00:00 +55: test/word_comparison_test.dart: many independent edit sequences reconstruct both paragraph streams
+00:00 +56: test/word_comparison_test.dart: many independent edit sequences reconstruct both paragraph streams
+00:00 +57: test/office_features_test.dart: writes slide groups and speaker notes parts
+00:00 +58: test/office_features_test.dart: goal seek power query sparklines mail merge and citations xml
+00:01 +59: test/office_features_test.dart: evaluates hyperlink filename author title and merge fields
+00:01 +60: test/office_features_test.dart: resolves multilevel list labels and restart
+00:01 +61: test/word_revision_story_test.dart: record binds a body paragraph before index-changing structural edits
+00:01 +62: test/word_revision_story_test.dart: record binds a body paragraph before index-changing structural edits
+00:01 +63: test/word_revision_story_test.dart: detached targets and invalid recorded indices never redirect into body
+00:01 +64: test/word_revision_story_test.dart: legacy directly constructed revisions bind once and note tables resolve
+00:01 +65: test/word_revision_story_test.dart: direct preserves native revision ownership through three saves
+00:01 +66: test/word_revision_scaling_test.dart: many tracked changes import and save in linear-ish time
+00:01 +67: test/word_revision_scaling_test.dart: many tracked changes import and save in linear-ish time
+00:01 +68: test/word_revision_scaling_test.dart: many tracked changes import and save in linear-ish time
+00:01 +69: test/word_revision_scaling_test.dart: many tracked changes import and save in linear-ish time
+00:01 +70: test/word_revision_scaling_test.dart: many tracked changes import and save in linear-ish time
+00:01 +71: test/word_revision_scaling_test.dart: many tracked changes import and save in linear-ish time
+00:01 +72: test/word_revision_scaling_test.dart: many tracked changes import and save in linear-ish time
+00:01 +73: test/word_revision_scaling_test.dart: many tracked changes import and save in linear-ish time
+00:02 +74: test/word_revision_scaling_test.dart: overlap detection is unchanged
+00:02 +75: All tests passed!

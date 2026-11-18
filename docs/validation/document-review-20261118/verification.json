@@ -1,0 +1,252 @@
+{
+  "date": "2026-11-18",
+  "tested_commit": "5bcb20dec3169ce3e4c0162a94fe94dd53b7bc47",
+  "tested_tree": "a86161dae80b5462f57d4ad6e09c1cad09aacc12",
+  "remote_branch": "codex/document-review-20261118",
+  "runtime": {
+    "flutter": "3.47.8",
+    "dart": "3.13.7",
+    "platform": "linux_x64",
+    "framework_revision": "737ba8f885dc774b53b442759999a312c9461e4e"
+  },
+  "total_selected_tests": 358,
+  "test_runs": [
+    {
+      "name": "engine",
+      "passed": 115,
+      "skipped": 0,
+      "exit_code": 0,
+      "command": "dart test test/word_comparison_test.dart test/word_comparison_adversarial_test.dart test/office_features_test.dart test/word_revision_validation_test.dart test/word_revision_story_test.dart test/word_revision_scaling_test.dart test/zotero_item_details_test.dart test/proofing/german_spelling_continuation_test.dart --reporter expanded",
+      "working_directory": "packages/quds_office_engine",
+      "log": "integrated-engine-tests.txt",
+      "sha256": "da4bf96c0345d504ad3c072bdd0c92fffeb3e132824198520bbff278f019ab4b"
+    },
+    {
+      "name": "editor",
+      "passed": 118,
+      "skipped": 0,
+      "exit_code": 0,
+      "command": "flutter test --no-pub test/word_notes_editing_test.dart test/word_revision_rebase_test.dart test/word_revision_story_test.dart test/word_proofing_navigation_test.dart test/word_review_controller_test.dart test/word_review_dialog_test.dart test/platform_spelling_dialog_test.dart test/platform_spelling_projection_review_test.dart test/platform_spelling_projection_test.dart test/word_zotero_library_details_test.dart --reporter expanded",
+      "working_directory": "packages/quds_office_editor",
+      "log": "integrated-editor-tests.txt",
+      "sha256": "8a8570036b58d7e4300ebab8e4026e1e57140ba1d6afadfe0b32f990ea6783c6"
+    },
+    {
+      "name": "studio",
+      "passed": 39,
+      "skipped": 0,
+      "exit_code": 0,
+      "command": "flutter test --no-pub test/studio_document_comparison_test.dart test/widget_test.dart test/studio_linguistic_analysis_test.dart test/studio_spacy_setup_test.dart --reporter expanded",
+      "working_directory": "packages/quds_office_editor/example",
+      "log": "integrated-studio-tests.txt",
+      "sha256": "0e6ef51d4bca1a94bee30d742c37ac0659efec015f74f02ccac55a47e157b6df"
+    },
+    {
+      "name": "spacy",
+      "passed": 86,
+      "skipped": 0,
+      "exit_code": 0,
+      "command": "dart test --reporter expanded",
+      "working_directory": "packages/quds_proofing_spacy",
+      "log": "integrated-spacy-tests.txt",
+      "sha256": "42684a258d367af1b095bbd8edec3247674f4a31192512e3baff15d395190942"
+    }
+  ],
+  "analysis_runs": [
+    {
+      "name": "engine",
+      "exit_code": 0,
+      "issues": 0,
+      "log": "integrated-engine-analysis.txt",
+      "sha256": "212d0ea6886650c683ffc5f3573590cb390614ebcb51f3951a1c6f28b381f448"
+    },
+    {
+      "name": "editor",
+      "exit_code": 0,
+      "issues": 0,
+      "log": "integrated-editor-analysis.txt",
+      "sha256": "a94eb2d27f8999dd515b6930cdcb13a357c5d16074eabddd9a68b8016d793b05"
+    },
+    {
+      "name": "spacy",
+      "exit_code": 0,
+      "issues": 0,
+      "log": "integrated-spacy-analysis.txt",
+      "sha256": "0490c3c43e327f1515906718f912da071243ae82bc41ec9e9884f5c664b9b415"
+    }
+  ],
+  "changed_dart_source_and_test_manifest": [
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_files.dart",
+      "sha256": "a6c38c734696ab773a54658bb87b32a0485cb7b191de74e89c42fa76ead50555"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_linguistic_analysis.dart",
+      "sha256": "542746cc6a0f03a269bf8cd2ced59baf3bec4c40887d752a499c8ccc7d66244a"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_spacy_host.dart",
+      "sha256": "01621c2aded3548dfcead69265dcd4e5f42cc8c6f83903287078c3eace5f2463"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_spacy_host_native.dart",
+      "sha256": "a68743e5c433a201105648721ebb9f94c1562f444212f71583b3d23103c0ee4d"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_spacy_setup.dart",
+      "sha256": "c060ad7d860465ab809740869e9f56e6dbae34c8b072547759f53826ea2aff38"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/suite_workspace.dart",
+      "sha256": "65edbe82c0617e4fed52d4019cfaffd533ab32030bc82ebb4bb3c513b80fa4ab"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_document_comparison_test.dart",
+      "sha256": "82c8c4f7590642c2446353aa33b4f96158be91032dcd53c01b85c66f76876f39"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_linguistic_analysis_test.dart",
+      "sha256": "522f3e83e400cdc5976fd6c748e5fdc9a1b9846fef331b210662ac09ced6026e"
+    },
+    {
+      "path": "packages/quds_office_editor/lib/quds_office_editor.dart",
+      "sha256": "f0cfd310fadc4211db668f9e112d669b812a456c4cb1c8e915591940886530fc"
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+      "sha256": "10fc38267cbbae7b7589c295af3a3c05b11212713e45b735a5c0c697804f1893"
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/word_notes_pane.dart",
+      "sha256": "78b40ecc9ba3c1f556f23072f2900d59c4cba7579bb0d0fd32cdb5eeb0fec6d5"
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/word_review_dialog.dart",
+      "sha256": "63c476753feb3025beb42e5ac0f2633de7d3434685f474636ecb63c43c9aaa47"
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart",
+      "sha256": "17e411b9f9be1743335503c62acd8a6e035042e1daffdf4c90ea591bc6101d2d"
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/word_zotero_library.dart",
+      "sha256": "3bdbc522824e013e7cd4e55749ecd6e59d141f4666638a10be2eefceb774e8c7"
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/proofing/platform_spelling_provider.dart",
+      "sha256": "90c4f7c70437a827c217f323182c5f86702c63b24bbd45eef81aec4c7fb05c82"
+    },
+    {
+      "path": "packages/quds_office_editor/test/platform_spelling_dialog_test.dart",
+      "sha256": "22ecf242e9911173b945dd26c872a77215b686ed7f4686b4f40fc7a1c3fcd753"
+    },
+    {
+      "path": "packages/quds_office_editor/test/platform_spelling_projection_review_test.dart",
+      "sha256": "1364c9f430d38f7f3b52ccf206f29558cfd750bdc0c7d7990df610ce5aa0daab"
+    },
+    {
+      "path": "packages/quds_office_editor/test/platform_spelling_projection_test.dart",
+      "sha256": "003a71436e603fef75f4bd46f75cb3ca108300dd66a6f1d56bc0ba189999bf22"
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_review_controller_test.dart",
+      "sha256": "b7e5a899764646cb53e3c3cf26466f96860eba5e6f35cd42f6120cb2aba16f6b"
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_review_dialog_test.dart",
+      "sha256": "80d05b65e42a268a3173899c27001c38f3e7b582c155819790bae3cd4e0f6426"
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_zotero_library_details_test.dart",
+      "sha256": "787fe7867f3d35b9c5db0d60fe3ca46ef92e80b3203c61c5029d04a906b2c1e9"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/quds_office_engine.dart",
+      "sha256": "c2a3871fd36d38d3642805c2320eebac2c610c32b1ad24e032014e72a4129753"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/proofing/german_spelling.dart",
+      "sha256": "5962e7ed1842e00fd2188e0b64e0c58ead196f0e419723497138e199bc6eab3c"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/model/word_compare.dart",
+      "sha256": "72d031b9b595293d44a86a980d9de67bae3c8f368cf0b16b3221e5ea74002565"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/model/word_comparison.dart",
+      "sha256": "283ba60630832a7466f519de2bb5b11d7c8e0786843a96a8300baae05c65a89b"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/model/word_revision.dart",
+      "sha256": "445c4feeb63ebef6b0033fc66c56575d2df6e48ecda5206e48fea68b5c5b51d0"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/zotero/zotero_client.dart",
+      "sha256": "de76599335f53bceb979e99898c0bd6f44bfd7741531e8dbb2b90fb730a92395"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/zotero/zotero_models.dart",
+      "sha256": "6fd982a56c1c30316d24d44c36820dc71ebd0aee1e3ed96f638b1883b8a5611b"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_features_test.dart",
+      "sha256": "6d958c5d5d72c4ace4d97c8a09f6095c40b135bfdd9fcc726fa80ca8a37d0683"
+    },
+    {
+      "path": "packages/quds_office_engine/test/proofing/german_spelling_continuation_test.dart",
+      "sha256": "386a454354d01d1fc0ae1d950bd9d0a03857d45018c8d1685991e0904f34abb5"
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_comparison_adversarial_test.dart",
+      "sha256": "7d3045b87f21f5c5ef3b97210e33f025ea8465010e4453208579e04d4cf49665"
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_comparison_test.dart",
+      "sha256": "2a55b38b4fbec9374d009c1b7a7604e4b0b0561caa0a5bba56eee7e27edd536f"
+    },
+    {
+      "path": "packages/quds_office_engine/test/zotero_item_details_test.dart",
+      "sha256": "72cff57f090d9a23a63d07fd66cfa241e1e5b80e408dfac5ba650b49b9066388"
+    },
+    {
+      "path": "packages/quds_office_engine/tool/check_native_spelling.dart",
+      "sha256": "9927f249962ab66cecaebd9d12d74ec2d7f62e4b36dcdd867b3e56d69c0b242e"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/lib/src/backend.dart",
+      "sha256": "571d03e6009fe0c3b359960f7668bd35ea44fe56abe4955dd007bd06265dece5"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/lib/src/distribution.dart",
+      "sha256": "6c2670da23e27a1eb44783eb3fe22619e39571894e5c5eb87c1a46270493ddb5"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/lib/src/installer_io.dart",
+      "sha256": "89ef8c4d20030270f730fc212ca03587735a95aebd22a67a60a9fd8b5dd6b92d"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/lib/src/native_backend.dart",
+      "sha256": "737b82977cb58e63417bf8ab41e1fdde288037d782abf5842cd8fbd14a9d889f"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/lib/src/native_backend_unsupported.dart",
+      "sha256": "4efda0e80b30c33320ab3e1499f3ad80b1a6ac022b74d2e072c2cd63d4b6c358"
+    }
+  ],
+  "incoming_heads": {
+    "main": "1e07cb852766f8651815138785be74c64a09ddc0",
+    "zotero_workspace": "d36413a2cc8e1de9fd7493b5d1baf2900e63f04b",
+    "native_spelling_continuation": "d6a9ca51b16daa9d3d54e163bc723b76659d70ac",
+    "spacy_distribution": "8cd413c1e0454278abd703264bdda589a90f2d48"
+  },
+  "github_actions": {
+    "workflow_status_queried": false,
+    "waited": false,
+    "manual_dispatch": false
+  },
+  "boundaries": [
+    "Local selected regression suites, not a full platform application release build.",
+    "Live native spaCy/NER inference, operational FFI/installed-worker qualification and live Hub downloads were not exercised.",
+    "The comparison scope is modeled content with explicit report exclusions; no rendered-page or binary-package equality claim."
+  ]
+}
