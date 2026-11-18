@@ -38,7 +38,9 @@ source separately, preserving these original receipts.
 After that report, the integration owner authorized test-only repairs to the
 two affected files. The null-selection expectation was replaced with stronger
 current-revision/paragraph/caret and stale-application checks, and the change
-filter helper now expands and taps genuinely visible controls. No cases or
+filter helper was changed to require genuinely visible controls. The latter
+attempt still tried to reveal a collapsed child before its header and failed;
+see [the second run](second-run.md). No cases or
 existing post-check safety assertions were removed. The new runner checks seven
 targets; this attempt's original six-target runner is preserved below and its
 SHA-256 still matches `summary.json`.

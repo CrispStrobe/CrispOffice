@@ -176,25 +176,26 @@ Future<void> _tap(WidgetTester tester, Finder finder) async {
   await _reveal(tester, finder);
   expect(finder.hitTestable(), findsOneWidget, reason: '$finder');
   await tester.tap(finder);
+  // Start transitions before advancing their duration in the bounded drain.
+  await tester.pump();
   await _drain(tester);
   expect(tester.takeException(), isNull);
 }
 
 Future<void> _choose(WidgetTester tester, String key, String label) async {
   if (key == 'live-review-author-filter' || key == 'live-review-kind-filter') {
-    await _reveal(tester, _key(key));
-    // A collapsed maintainState tile keeps its children mounted. Scroll first
-    // to distinguish an off-screen control from one hidden by the closed tile.
-    if (_key(key).hitTestable().evaluate().isEmpty) {
-      await _tap(
-        tester,
-        find
-            .descendant(
-              of: _key('live-review-filters'),
-              matching: find.byType(ListTile),
-            )
-            .first,
-      );
+    final filters = _key('live-review-filters');
+    final header = find
+        .descendant(of: filters, matching: find.byType(ListTile))
+        .first;
+    await _reveal(tester, header);
+    // A collapsed maintainState tile keeps its children mounted. The public
+    // controller distinguishes that state from an expanded off-screen child.
+    final expansible = tester.widget<Expansible>(
+      find.descendant(of: filters, matching: find.byType(Expansible)),
+    );
+    if (!expansible.controller.isExpanded) {
+      await _tap(tester, header);
     }
   }
   await _tap(tester, _key(key));

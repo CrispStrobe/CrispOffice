@@ -54,13 +54,22 @@ reported for an explicit repair rather than silently changing inputs.
 The first full run is retained in [attempt-1](attempt-1/) with its exact executed
 six-target runner. It found seven failures, documented in
 [first-run.md](first-run.md). After the guarded run finished, the integration
-owner authorized two test-only repairs: the change-filter helper now opens the
-visible expansion header when its dropdown cannot be hit, and all helper taps
-require hit-testable controls; the selection consumer now checks immediate
+owner authorized two test-only repairs: the change-filter helper requires
+hit-testable controls; the selection consumer now checks immediate
 rebinding to the untouched paragraph/current revision, stable caret and rejection
 of the stale original issue. Existing cases and later safety assertions remain.
 Only these two tests were formatted. No product behavior was changed to make
-the tests pass. A fresh committed source binding is required before rerunning.
+the tests pass. The second full run, preserved in [attempt-2](attempt-2/),
+confirmed the selection assertions but found eight helper failures while trying
+to reveal a collapsed child before expanding its parent; see
+[second-run.md](second-run.md). The corrected helper first reveals the filter
+header, reads the public `Expansible.controller.isExpanded` state and taps that
+header only when collapsed, then reveals and taps the dropdown. It never
+changes expansion through the controller. A real tap now starts its transition
+with an initial frame before the existing bounded duration drain. The final
+focused development attempt passed all 13 cases; both development attempts are
+[preserved separately](development/README.md) and excluded from acceptance
+totals. A fresh committed source binding is required before the final full rerun.
 
 ## Source and execution bindings
 

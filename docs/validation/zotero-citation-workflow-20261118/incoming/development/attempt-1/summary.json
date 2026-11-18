@@ -1,0 +1,165 @@
+{
+  "actual_process_exit": 1,
+  "artifacts": {
+    "events.jsonl.gz": {
+      "bytes": 2410,
+      "git_blob_sha1": "e99d42dd37f2ce67bb363c99f30943c99096d423",
+      "sha256": "10e934d86a4a8f68a679910ec2a6d2b91320dda6b91901715acfa7e0444e6e6b"
+    },
+    "inputs.json.gz": {
+      "bytes": 48037,
+      "git_blob_sha1": "662e5d393a7567324ff190f13edb3e4114a07978",
+      "sha256": "3c96fa6aab97d2c8c3afc4bf009980737b013e61677720ea57d0b83c06962b16"
+    },
+    "source-diff.patch": {
+      "bytes": 1658,
+      "git_blob_sha1": "861bea8edbe618922cd2798f24ba808525af89dd",
+      "sha256": "dad31d915e6502aeca2c7eb0aacd413a8b6112965acef72012c04eccbf14a7e0"
+    }
+  },
+  "auditor_sha256": "42957197b5d737b4e35d72e12cc869f324828951cf025a4c1d1bec976ae51a63",
+  "authorized_source_overrides": [
+    "packages/quds_office_editor/test/word_live_review_changes_test.dart"
+  ],
+  "checks": [
+    {
+      "command": [
+        "/workspace/scratch/ba0874ba8ec5/zotero-toolchain/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+        "format",
+        "--output=none",
+        "--set-exit-if-changed",
+        "packages/quds_office_editor/test/word_live_review_changes_test.dart"
+      ],
+      "cwd": "/workspace/scratch/ba0874ba8ec5/zotero-validation",
+      "exit_code": 0,
+      "name": "format",
+      "stderr": "",
+      "stdout": "Formatted 1 file (0 changed) in 0.06 seconds.\n"
+    },
+    {
+      "command": [
+        "/workspace/scratch/ba0874ba8ec5/zotero-toolchain/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "--fatal-warnings",
+        "packages/quds_office_editor/test/word_live_review_changes_test.dart"
+      ],
+      "cwd": "/workspace/scratch/ba0874ba8ec5/zotero-validation",
+      "exit_code": 0,
+      "name": "analyze",
+      "stderr": "",
+      "stdout": "Analyzing word_live_review_changes_test.dart...\nNo issues found!\n"
+    }
+  ],
+  "command": [
+    "/workspace/scratch/ba0874ba8ec5/zotero-toolchain/flutter-sdk/bin/flutter",
+    "test",
+    "--no-pub",
+    "--machine",
+    "--concurrency",
+    "1",
+    "test/word_live_review_changes_test.dart"
+  ],
+  "cwd": "/workspace/scratch/ba0874ba8ec5/zotero-validation/packages/quds_office_editor",
+  "elapsed_seconds": 15.135461822999787,
+  "finished_at_utc": "2026-11-18T16:24:00.387483+00:00",
+  "guards": {
+    "dependencies_unchanged": true,
+    "every_started_test_finished_once": true,
+    "expected_suite_executed": true,
+    "final_event_success": false,
+    "only_authorized_test_differs_from_frozen_base": true,
+    "runtime_unchanged": true,
+    "source_unchanged": true,
+    "workspace_unchanged": true
+  },
+  "runner_sha256": "09d4af988b0d1d9f58f18c9d5d25e5de67319061495f6c2b9f221d27c7ae7571",
+  "scope": "One helper-development suite on explicitly uncommitted test bytes. This run is excluded from acceptance and all final passing totals.",
+  "source_base_commit": "00ac2edf606359cea003b4ebb3a5f3aaac7b67cf",
+  "started_at_utc": "2026-11-18T16:23:28.586288+00:00",
+  "status": "failed",
+  "stderr": "",
+  "tests": {
+    "error_events": [
+      {
+        "error": "Test failed. See exception logs above.\nThe test description was: author type and text filters combine without editing the document",
+        "isFailure": false,
+        "stackTrace": "",
+        "testID": 4,
+        "time": 6704,
+        "type": "error"
+      },
+      {
+        "error": "Test failed. See exception logs above.\nThe test description was: filtered navigation and resolution continue with the next shown change",
+        "isFailure": false,
+        "stackTrace": "",
+        "testID": 5,
+        "time": 7652,
+        "type": "error"
+      },
+      {
+        "error": "Test failed. See exception logs above.\nThe test description was: accept shown affects exactly the filtered batch with one undo",
+        "isFailure": false,
+        "stackTrace": "",
+        "testID": 6,
+        "time": 8674,
+        "type": "error"
+      },
+      {
+        "error": "Test failed. See exception logs above.\nThe test description was: reject shown affects exactly the filtered batch with one undo",
+        "isFailure": false,
+        "stackTrace": "",
+        "testID": 7,
+        "time": 9335,
+        "type": "error"
+      },
+      {
+        "error": "Test failed. See exception logs above.\nThe test description was: one stale filtered change blocks the entire shown batch",
+        "isFailure": false,
+        "stackTrace": "",
+        "testID": 8,
+        "time": 10033,
+        "type": "error"
+      },
+      {
+        "error": "Test failed. See exception logs above.\nThe test description was: viewing mode keeps filters and previews but disables decisions",
+        "isFailure": false,
+        "stackTrace": "",
+        "testID": 12,
+        "time": 12128,
+        "type": "error"
+      }
+    ],
+    "every_started_test_finished_once": true,
+    "excluded_failures": [],
+    "excluded_pseudo_cases": 3,
+    "excluded_reasons": {
+      "hidden_lifecycle": 3
+    },
+    "failed": 6,
+    "final_events": [
+      {
+        "success": false,
+        "time": 14289,
+        "type": "done"
+      }
+    ],
+    "flutter_envelopes": 1,
+    "layout_or_tap_diagnostics": [],
+    "parse_errors": [],
+    "passed": 7,
+    "skipped": 0,
+    "substantive_cases": 13,
+    "suite_count": 1,
+    "suites": [
+      {
+        "failed": 6,
+        "passed": 7,
+        "path": "/workspace/scratch/ba0874ba8ec5/zotero-validation/packages/quds_office_editor/test/word_live_review_changes_test.dart",
+        "skipped": 0
+      }
+    ],
+    "test_done_events": 16,
+    "test_start_events": 16
+  }
+}

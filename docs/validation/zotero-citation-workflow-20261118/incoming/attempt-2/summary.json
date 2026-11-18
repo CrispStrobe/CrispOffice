@@ -1,0 +1,341 @@
+{
+  "actual_process_exit": 1,
+  "artifacts": {
+    "events.jsonl.gz": {
+      "bytes": 15514,
+      "git_blob_sha1": "30df425d90a515a96e00ece649ecf7800e14e37e",
+      "sha256": "8f746df16283ef574dd2ca388d076882d6c8ffd525c5209d1a8b635aa407eac3"
+    },
+    "inputs.json.gz": {
+      "bytes": 49728,
+      "git_blob_sha1": "766ad51217eddd9b10035c995601d540aa833105",
+      "sha256": "fa096b934c48303802c3d3871acccaebf9173d267cfaca3747e56ee77d3f6bd2"
+    }
+  },
+  "bound_source_commit": "00ac2edf606359cea003b4ebb3a5f3aaac7b67cf",
+  "checks": [
+    {
+      "command": [
+        "/workspace/scratch/ba0874ba8ec5/zotero-toolchain/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+        "format",
+        "--output=none",
+        "--set-exit-if-changed",
+        "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+        "packages/quds_office_editor/lib/src/embed/word_review_pane.dart",
+        "packages/quds_office_editor/lib/src/proofing/word_proofing.dart",
+        "packages/quds_office_editor/test/word_incremental_proofing_test.dart",
+        "packages/quds_office_editor/test/word_live_review_changes_test.dart",
+        "packages/quds_office_editor/test/word_review_controller_test.dart",
+        "packages/quds_office_editor/test/word_live_review_selection_test.dart"
+      ],
+      "cwd": "/workspace/scratch/ba0874ba8ec5/zotero-validation",
+      "elapsed_seconds": 0.6550227420000283,
+      "exit_code": 0,
+      "name": "format",
+      "stderr": "",
+      "stdout": "Formatted 7 files (0 changed) in 0.59 seconds.\n"
+    },
+    {
+      "command": [
+        "/workspace/scratch/ba0874ba8ec5/zotero-toolchain/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "--fatal-warnings",
+        "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+        "packages/quds_office_editor/lib/src/embed/word_review_pane.dart",
+        "packages/quds_office_editor/lib/src/proofing/word_proofing.dart",
+        "packages/quds_office_editor/test/word_incremental_proofing_test.dart",
+        "packages/quds_office_editor/test/word_live_review_changes_test.dart",
+        "packages/quds_office_editor/test/word_review_controller_test.dart",
+        "packages/quds_office_editor/test/word_live_review_selection_test.dart"
+      ],
+      "cwd": "/workspace/scratch/ba0874ba8ec5/zotero-validation",
+      "elapsed_seconds": 16.317346016999863,
+      "exit_code": 0,
+      "name": "analyze",
+      "stderr": "",
+      "stdout": "Analyzing office_controller.dart, word_review_pane.dart, word_proofing.dart, word_incremental_proofing_test.dart, word_live_review_changes_test.dart, word_review_controller_test.dart, word_live_review_selection_test.dart...\nNo issues found!\n"
+    }
+  ],
+  "command": [
+    "/workspace/scratch/ba0874ba8ec5/zotero-toolchain/flutter-sdk/bin/flutter",
+    "test",
+    "--no-pub",
+    "--machine",
+    "--concurrency",
+    "4",
+    "test/word_live_proofing_session_test.dart",
+    "test/word_live_review_selection_test.dart",
+    "test/word_live_review_surface_test.dart",
+    "test/word_review_pane_test.dart",
+    "test/word_proofing_session_test.dart",
+    "test/word_manual_proofing_test.dart",
+    "test/word_proofing_dialog_test.dart",
+    "test/word_proofing_context_test.dart",
+    "test/word_proofing_geometry_test.dart",
+    "test/word_proofing_navigation_test.dart",
+    "test/word_review_dialog_test.dart",
+    "test/word_revision_story_test.dart",
+    "test/word_input_focus_test.dart",
+    "test/office_input_ownership_test.dart",
+    "test/editor_test.dart",
+    "test/word_incremental_proofing_test.dart",
+    "test/word_live_review_changes_test.dart",
+    "test/word_review_controller_test.dart"
+  ],
+  "cwd": "/workspace/scratch/ba0874ba8ec5/zotero-validation/packages/quds_office_editor",
+  "elapsed_seconds": 44.263789104000125,
+  "finished_at_utc": "2026-11-18T16:19:47.648881+00:00",
+  "guards": {
+    "all_manifests_match": true,
+    "all_selected_suites_executed": true,
+    "dependencies_unchanged": true,
+    "disjoint_from_zotero": true,
+    "every_started_test_finished_once": true,
+    "final_event_success": false,
+    "head_descends_source_commit": true,
+    "runtime_unchanged": true,
+    "selected_suites_present": true,
+    "source_matches_recorded_commit": true,
+    "source_unchanged": true,
+    "workspace_unchanged": true
+  },
+  "runner_sha256": "42957197b5d737b4e35d72e12cc869f324828951cf025a4c1d1bec976ae51a63",
+  "scope": "18 incoming editor review/proofing and affected consumer suites only. All word_zotero tests, focused development runs, engine/Studio suites and inherited evidence are excluded. Passed counts exclude hidden/lifecycle/loading notifications and skipped cases; parameterized real cases remain included.",
+  "selected_suites": [
+    "packages/quds_office_editor/test/word_live_proofing_session_test.dart",
+    "packages/quds_office_editor/test/word_live_review_selection_test.dart",
+    "packages/quds_office_editor/test/word_live_review_surface_test.dart",
+    "packages/quds_office_editor/test/word_review_pane_test.dart",
+    "packages/quds_office_editor/test/word_proofing_session_test.dart",
+    "packages/quds_office_editor/test/word_manual_proofing_test.dart",
+    "packages/quds_office_editor/test/word_proofing_dialog_test.dart",
+    "packages/quds_office_editor/test/word_proofing_context_test.dart",
+    "packages/quds_office_editor/test/word_proofing_geometry_test.dart",
+    "packages/quds_office_editor/test/word_proofing_navigation_test.dart",
+    "packages/quds_office_editor/test/word_review_dialog_test.dart",
+    "packages/quds_office_editor/test/word_revision_story_test.dart",
+    "packages/quds_office_editor/test/word_input_focus_test.dart",
+    "packages/quds_office_editor/test/office_input_ownership_test.dart",
+    "packages/quds_office_editor/test/editor_test.dart",
+    "packages/quds_office_editor/test/word_incremental_proofing_test.dart",
+    "packages/quds_office_editor/test/word_live_review_changes_test.dart",
+    "packages/quds_office_editor/test/word_review_controller_test.dart"
+  ],
+  "source_head_at_end": "00ac2edf606359cea003b4ebb3a5f3aaac7b67cf",
+  "source_head_at_start": "00ac2edf606359cea003b4ebb3a5f3aaac7b67cf",
+  "started_at_utc": "2026-11-18T16:18:43.168532+00:00",
+  "status": "failed",
+  "stderr": "",
+  "strict_targets": [
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+    "packages/quds_office_editor/lib/src/embed/word_review_pane.dart",
+    "packages/quds_office_editor/lib/src/proofing/word_proofing.dart",
+    "packages/quds_office_editor/test/word_incremental_proofing_test.dart",
+    "packages/quds_office_editor/test/word_live_review_changes_test.dart",
+    "packages/quds_office_editor/test/word_review_controller_test.dart",
+    "packages/quds_office_editor/test/word_live_review_selection_test.dart"
+  ],
+  "tests": {
+    "error_events": [
+      {
+        "error": "Test failed. See exception logs above.\nThe test description was: author type and text filters combine without editing the document",
+        "isFailure": false,
+        "stackTrace": "",
+        "testID": 241,
+        "time": 26293,
+        "type": "error"
+      },
+      {
+        "error": "Test failed. See exception logs above.\nThe test description was: filtered navigation and resolution continue with the next shown change",
+        "isFailure": false,
+        "stackTrace": "",
+        "testID": 314,
+        "time": 28426,
+        "type": "error"
+      },
+      {
+        "error": "Test failed. See exception logs above.\nThe test description was: accept shown affects exactly the filtered batch with one undo",
+        "isFailure": false,
+        "stackTrace": "",
+        "testID": 318,
+        "time": 30087,
+        "type": "error"
+      },
+      {
+        "error": "Test failed. See exception logs above.\nThe test description was: reject shown affects exactly the filtered batch with one undo",
+        "isFailure": false,
+        "stackTrace": "",
+        "testID": 322,
+        "time": 31747,
+        "type": "error"
+      },
+      {
+        "error": "Test failed. See exception logs above.\nThe test description was: one stale filtered change blocks the entire shown batch",
+        "isFailure": false,
+        "stackTrace": "",
+        "testID": 323,
+        "time": 33356,
+        "type": "error"
+      },
+      {
+        "error": "Test failed. See exception logs above.\nThe test description was: viewing mode keeps filters and previews but disables decisions",
+        "isFailure": false,
+        "stackTrace": "",
+        "testID": 327,
+        "time": 37787,
+        "type": "error"
+      },
+      {
+        "error": "Test failed. See exception logs above.\nThe test description was: narrow scaled English Changes pane supports filtering and review",
+        "isFailure": false,
+        "stackTrace": "",
+        "testID": 330,
+        "time": 41676,
+        "type": "error"
+      },
+      {
+        "error": "Test failed. See exception logs above.\nThe test description was: narrow scaled Arabic Changes pane supports filtering and review",
+        "isFailure": false,
+        "stackTrace": "",
+        "testID": 331,
+        "time": 43115,
+        "type": "error"
+      }
+    ],
+    "every_started_test_finished_once": true,
+    "excluded_failures": [],
+    "excluded_pseudo_cases": 28,
+    "excluded_reasons": {
+      "hidden_lifecycle": 28
+    },
+    "failed": 8,
+    "final_events": [
+      {
+        "success": false,
+        "time": 43172,
+        "type": "done"
+      }
+    ],
+    "flutter_envelopes": 18,
+    "layout_or_tap_diagnostics": [],
+    "parse_errors": [],
+    "passed": 261,
+    "skipped": 0,
+    "substantive_cases": 269,
+    "suite_count": 18,
+    "suites": [
+      {
+        "failed": 0,
+        "passed": 9,
+        "path": "/workspace/scratch/ba0874ba8ec5/zotero-validation/packages/quds_office_editor/test/word_live_proofing_session_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "passed": 9,
+        "path": "/workspace/scratch/ba0874ba8ec5/zotero-validation/packages/quds_office_editor/test/word_live_review_selection_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "passed": 14,
+        "path": "/workspace/scratch/ba0874ba8ec5/zotero-validation/packages/quds_office_editor/test/word_live_review_surface_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "passed": 11,
+        "path": "/workspace/scratch/ba0874ba8ec5/zotero-validation/packages/quds_office_editor/test/word_review_pane_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "passed": 31,
+        "path": "/workspace/scratch/ba0874ba8ec5/zotero-validation/packages/quds_office_editor/test/word_proofing_session_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "passed": 11,
+        "path": "/workspace/scratch/ba0874ba8ec5/zotero-validation/packages/quds_office_editor/test/word_manual_proofing_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "passed": 23,
+        "path": "/workspace/scratch/ba0874ba8ec5/zotero-validation/packages/quds_office_editor/test/word_proofing_dialog_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "passed": 5,
+        "path": "/workspace/scratch/ba0874ba8ec5/zotero-validation/packages/quds_office_editor/test/word_proofing_context_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "passed": 10,
+        "path": "/workspace/scratch/ba0874ba8ec5/zotero-validation/packages/quds_office_editor/test/word_proofing_geometry_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "passed": 6,
+        "path": "/workspace/scratch/ba0874ba8ec5/zotero-validation/packages/quds_office_editor/test/word_proofing_navigation_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "passed": 13,
+        "path": "/workspace/scratch/ba0874ba8ec5/zotero-validation/packages/quds_office_editor/test/word_review_dialog_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "passed": 14,
+        "path": "/workspace/scratch/ba0874ba8ec5/zotero-validation/packages/quds_office_editor/test/word_revision_story_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "passed": 5,
+        "path": "/workspace/scratch/ba0874ba8ec5/zotero-validation/packages/quds_office_editor/test/word_input_focus_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "passed": 2,
+        "path": "/workspace/scratch/ba0874ba8ec5/zotero-validation/packages/quds_office_editor/test/office_input_ownership_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "passed": 57,
+        "path": "/workspace/scratch/ba0874ba8ec5/zotero-validation/packages/quds_office_editor/test/editor_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "passed": 15,
+        "path": "/workspace/scratch/ba0874ba8ec5/zotero-validation/packages/quds_office_editor/test/word_incremental_proofing_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 8,
+        "passed": 5,
+        "path": "/workspace/scratch/ba0874ba8ec5/zotero-validation/packages/quds_office_editor/test/word_live_review_changes_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "passed": 21,
+        "path": "/workspace/scratch/ba0874ba8ec5/zotero-validation/packages/quds_office_editor/test/word_review_controller_test.dart",
+        "skipped": 0
+      }
+    ],
+    "test_done_events": 297,
+    "test_start_events": 297
+  },
+  "timed_out": false
+}
