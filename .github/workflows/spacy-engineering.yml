@@ -1,0 +1,28 @@
+name: Optional spaCy engineering
+on:
+  pull_request:
+    paths:
+      - 'packages/quds_proofing_spacy/**'
+      - '.github/workflows/spacy-engineering.yml'
+      - 'docs/validation/native-spacy-w6-20261117/**'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  pure-controls:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.47.8'
+          channel: stable
+          cache: true
+      - run: flutter pub get
+      - name: Analyze optional package
+        working-directory: packages/quds_proofing_spacy
+        run: dart analyze --fatal-infos
+      - name: Engineering controls only; no model or consumed qualification panel
+        working-directory: packages/quds_proofing_spacy
+        run: dart test
