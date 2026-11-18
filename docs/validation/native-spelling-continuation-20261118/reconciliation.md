@@ -30,6 +30,10 @@ commit objects were available for inspection.
 | Historical exact integration-tree equivalent on main | 6 |
 | Unresolved incoming work | 0 |
 
+The zero-unresolved result above is specific to the initial snapshot at
+**13:03:43 CET (12:03:43 UTC)**. It does not assert that later concurrent product
+changes are included; the final refresh below records those separately.
+
 The 22 patch-equivalent refs represent eleven distinct historical branch/PR
 pairs; all eleven stable Git patch IDs were recomputed and matched. The six
 tree-equivalent refs represent three distinct integration heads; all three
@@ -59,3 +63,38 @@ observation showed open PRs #159, #158, #157 and stacked draft #153; the live
 ref snapshot was captured after the #159 merge. These are distinct
 observations. No GitHub Actions, workflow, check or CI-status endpoint was
 queried or awaited.
+
+## Final refresh: concurrent work after initial integration
+
+A separate live cutoff at **13:16:57 CET (12:16:57 UTC)** observed **366 refs
+and 239 distinct heads**: 199 fork branches, 159 fork PR heads, four upstream
+branches and four upstream PR heads. Main remains
+`1e07cb852766f8651815138785be74c64a09ddc0`; this spelling branch is saved at
+`d6a9ca51b16daa9d3d54e163bc723b76659d70ac`. All observed commit objects were
+already fetched and available locally. Fetching those objects does not merge
+their product source into the qualified spelling tree.
+
+Three active continuation branches advanced after the initial integration:
+
+| Concurrent branch | Exact observed head | Latest commit time (CET) | New work and recorded validation |
+| --- | --- | --- | --- |
+| `codex/document-review-20261118` | `b0044f5a04ba71e58468a7a22297b56f926e4d39` | 13:15:18 | Document comparison engine, controller operations and review dialog/tests. The checkpoint explicitly states that dialog and comparison qualification continues. |
+| `codex/zotero-workspace-20261118` | `b292ee94f8792df19e3758a2a271d40230e638ca` | 13:14:13 | Reference inspection, metadata and staged-selection UI. Its retained receipt reports 445 engine cases across 22 suites; current complete editor/Studio qualification is not recorded in this head. |
+| `integrate/native-spacy-distribution-20261118` | `8cd413c1e0454278abd703264bdda589a90f2d48` | 13:05:40 | Opt-in NER ABI, installer and Studio display after the merged #159 head. The NER catalog entry remains absent until model publication; this commit adds no new qualification receipt. |
+
+**These three late product checkpoints are retained remotely and are not
+included in the qualified spelling continuation.** Their exact changes and
+every commit since integrated main, including timestamps and validation
+provenance, are recorded in [final-frontier.json](final-frontier.json). None
+changes the native spelling provider or German spelling implementation from
+the initial baseline. This task does not republish their reported test results
+as its own qualification or merge unfinished parallel work into its tested
+source set.
+
+The remaining refs are accounted for as 334 ancestors of integrated main, 22
+patch equivalents, six exact tree equivalents and this task's continuation
+head. No branch disappeared. The only open PR at the corresponding GitHub
+metadata observation was stacked draft #153, whose source is already
+contained. The newly created spelling PR, later evidence-only checkpoints and
+any future concurrent changes fall after this fixed cutoff and are recorded
+separately at delivery.

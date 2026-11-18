@@ -1,0 +1,163 @@
+{
+  "schema": "quds.native_spelling_continuation.verification.v1",
+  "integrated_main": "1e07cb852766f8651815138785be74c64a09ddc0",
+  "qualified_product": "d6a9ca51b16daa9d3d54e163bc723b76659d70ac",
+  "initial_remote_branch": "2292548eb69de2dbb5240ab9da59256f362137c6",
+  "checkpoints": [
+    {
+      "sha": "4b7a0798fc970e3df08a6ba464537d2537a3c4e4",
+      "purpose": "Native soft-hyphen projection, review regressions and initial reconciliation"
+    },
+    {
+      "sha": "d6a9ca51b16daa9d3d54e163bc723b76659d70ac",
+      "purpose": "Short accented German corrections, marked identifiers, review guards and portable panel"
+    }
+  ],
+  "initial_frontier": {
+    "captured_at": "2026-11-18T12:03:43.437107+00:00",
+    "refs": 365,
+    "distinct_heads": 235,
+    "unresolved": 0
+  },
+  "final_frontier": {
+    "captured_at": "2026-11-18T12:16:57.045057+00:00",
+    "refs": 366,
+    "distinct_heads": 239,
+    "concurrent_not_integrated": [
+      {
+        "ref": "refs/heads/codex/document-review-20261118",
+        "sha": "b0044f5a04ba71e58468a7a22297b56f926e4d39"
+      },
+      {
+        "ref": "refs/heads/codex/zotero-workspace-20261118",
+        "sha": "b292ee94f8792df19e3758a2a271d40230e638ca"
+      },
+      {
+        "ref": "refs/heads/integrate/native-spacy-distribution-20261118",
+        "sha": "8cd413c1e0454278abd703264bdda589a90f2d48"
+      }
+    ]
+  },
+  "final_tests": {
+    "engine": {
+      "files": 29,
+      "passed": 1095,
+      "failed": 0,
+      "skipped": 0
+    },
+    "editor": {
+      "files": 11,
+      "passed": 167,
+      "failed": 0,
+      "skipped": 0
+    },
+    "disjoint_total": 1262,
+    "new_tests_included_once": 33
+  },
+  "baseline_control": {
+    "total": 35,
+    "new_tests": 33,
+    "existing_controls": 2,
+    "passed": 8,
+    "behavioral_nonpasses": 27,
+    "skipped": 0,
+    "engine": {
+      "counts": {
+        "error": 3,
+        "success": 4,
+        "failure": 10
+      },
+      "skipped": 0,
+      "error_events": 13,
+      "done": [
+        {
+          "success": false,
+          "type": "done",
+          "time": 6451
+        }
+      ]
+    },
+    "editor": {
+      "counts": {
+        "failure": 10,
+        "error": 4,
+        "success": 4
+      },
+      "skipped": 0,
+      "error_events": 14,
+      "done": [
+        {
+          "success": false,
+          "type": "done",
+          "time": 19534
+        }
+      ]
+    },
+    "exact_final_test_bytes": true,
+    "isolated_baseline_git_source": true
+  },
+  "portable": {
+    "cases_per_target": 35,
+    "targets": [
+      "Dart VM",
+      "native executable",
+      "JavaScript/Node"
+    ],
+    "final_executions": 105,
+    "all_pass": true,
+    "byte_identical": true,
+    "output_bytes": 7576,
+    "output_sha256": "1612397211d8ea5751e5a0502bbddd32a7ad815d59b860adf1a32e88e006ee5b",
+    "source_dependency_inputs": 650,
+    "runtime_inputs": 504,
+    "compiler_dependencies": {
+      "compiler_dependency_count": 756,
+      "all_compiler_dependencies_bound_before_run": true,
+      "not_in_before_manifest": [],
+      "sdk_uri_mapping": "org-dartlang-sdk:///lib/... maps to the recorded Dart SDK root/lib/..."
+    }
+  },
+  "analysis": {
+    "engine": "dart analyze --fatal-infos on changed source/test/tool: passed",
+    "editor": "dart analyze --fatal-infos on full editor lib plus each of 11 selected tests: 12 passed",
+    "flutter_wrapper_preflight": "Retained failed preflight: selected SDK omitted flutter/dev; actual Dart analysis passed with unchanged SDK and package configuration.",
+    "formatted_dart_files": 7,
+    "format_changed": 0,
+    "whitespace_pass": true
+  },
+  "runtime": {
+    "flutter": "3.47.8",
+    "dart": "3.13.7",
+    "node": "24.22.3",
+    "sdk_archive_bytes": 1581444364,
+    "sdk_archive_sha256": "baf7dcc5a3dbba60fe863bf493a6cf203195621f7786eaa5a1bba02cd0d87dd2",
+    "verified_hosted_archives": 162,
+    "workspace_packages": 110,
+    "lock_sha256": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130"
+  },
+  "delivery": {
+    "tracked_inputs_bound_to_product": 535,
+    "ignored_configuration_inputs": 3,
+    "editor_input_counts": {
+      "workspace": 507,
+      "dependency": 5011,
+      "runtime": 9
+    }
+  },
+  "github_actions_workflow_checks_or_status_endpoints_used": false,
+  "limits": [
+    "Finite authored regression/smoke panels, not a population language-quality estimate.",
+    "Native mobile tests use controlled service/channel responses; no Android/iOS device dictionary or latency qualification.",
+    "Compiled JavaScript executes in Node, not a browser or full application build.",
+    "No new native spaCy/model acceptance, sealed panel rerun, dictionary data, runtime dependency or default activation.",
+    "Three concurrent post-integration branches remain separate as recorded in final-frontier.json.",
+    "Development attempts, baseline controls and repeated portable attempt are retained but excluded from final totals."
+  ],
+  "evidence": {
+    "schema": "quds.spelling_evidence_index.v1",
+    "archive": "evidence.tar.xz",
+    "archive_bytes": 632624,
+    "archive_sha256": "77cdcbc43deb65a73363a857044d7f2c686a331c6293e373d3e4ca62e3c145f1",
+    "member_count": 196
+  }
+}
