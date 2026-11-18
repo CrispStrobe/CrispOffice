@@ -192,8 +192,8 @@ group in Quds Studio and CrispCloud). The workspace has three tabs:
   public user/group library ID; desktop connections need no API key. Browse personal/group libraries, collections,
   desktop saved searches, and paged search results. Select up to 20 sources for a citation, then review
   its text and per-source locator, label, prefix, suffix and author options.
-- **Document:** inspect existing Zotero citations and bibliographies; edit safe
-  fields; generate or update a bibliography; refresh basic citations; copy the
+- **Document:** search and reuse already cited references; inspect existing
+  Zotero citations and bibliographies; edit safe fields; generate or update a bibliography; refresh basic citations; copy the
   embedded CSL JSON; or explicitly convert a field to ordinary text. Each
   document operation is undoable and advances the editor's save revision.
 - **Import CSL JSON:** paste a Zotero CSL JSON export for offline work. A single
@@ -236,7 +236,7 @@ The existing count and length limits apply; disabled tags make no request.
 Manual and automatic Zotero tags are both available, with exact duplicates
 shown once.
 
-Use **Review selected** in either **Library** or **Import CSL JSON** to see all
+Use **Review selected** in **Library**, **Document** or **Import CSL JSON** to see all
 selected sources, including references on another result page or hidden by a
 filter. Move a source up or down to arrange the order passed to the citation
 composer or Zotero's native picker, or remove one source without clearing the
@@ -261,6 +261,63 @@ separate references. Unknown CSL fields remain available through **Copy stored
 CSL JSON**. If selecting another imported reference would exceed the 20-source
 limit, the workspace explains the limit; use **Review selected** to remove a
 source even when it is hidden by the current search.
+
+### Cite a stored document reference again
+
+Choose **Document → Cited references…** to search the sources already cited in
+the document by title, creator, year or DOI. The list shows the number of
+citation occurrences and offers **Stored reference details**. It uses embedded
+metadata without connecting to a library or fetching updates, including in
+read-only documents and while Track changes is enabled.
+
+Select references across searches and choose **Use selected sources**. The
+selection joins sources chosen in Library or Import and shares their 20-source
+limit. **Cancel** discards the selection changes. Back in Document, use
+**Review selected** to arrange or remove sources, **Copy stored CSL JSON** to
+copy their stored metadata, or **Review and insert citation…** to create a new
+citation at the original caret. Native desktop hosts also offer **Insert with
+Zotero…** for selections with retained Zotero links. Insertion still requires
+an editable document with Track changes off.
+
+References appear in first-cited order. Repeated linked sources are grouped
+only through their declared, validated Zotero URI aliases; equal IDs or item
+keys in unrelated libraries remain separate. The first available stored
+snapshot supplies the details and all declared aliases remain attached.
+Offline records with the same ID and different stored metadata stay separate.
+A source without a stored snapshot is identified explicitly; its retained
+identity can still be inspected and selected.
+
+Reusing a source starts a new citation occurrence: the earlier page number,
+locator label, prefix, suffix and author-only/suppress-author options do not
+carry over. Original citations remain unchanged. Selection, inspection and
+copying add no document history; applying a citation is one undoable change.
+If the document or caret changes while the review is open, the staged result
+is rejected and the workspace explains how to reopen it.
+
+### Change the sources in a citation
+
+Choose an existing field's **Reference actions → Edit citation**, or review a
+new selection. Move sources up or down, remove them, inspect stored details,
+or choose **Add sources**. The local chooser searches references already cited
+in the document, references selected in Library, and loaded CSL imports.
+Select new Library sources or load another CSL export before opening the
+composer when the desired reference is not yet available.
+
+Source changes remain staged until **Update citation** or **Insert citation**.
+Cancelling the composer discards them. Reordering preserves each occurrence's
+locator, affixes and author options, even when two occurrences have the same
+source ID. Newly added sources start with fresh citation options. At least one
+source is required. Adding is limited to 20 sources; an imported citation that
+already exceeds that count keeps all its sources available for editing,
+reordering or removal.
+
+Basic author–year text updates with the current source list. In custom-text
+mode, changing membership or order requires editing the visible text or
+explicitly confirming that it matches the revised sources. A changed source
+sequence does not retain its old processor-specific formatted cache. For full
+CSL numbering, disambiguation and bibliography updates, use **Edit in Zotero…**
+and the native refresh tools. A connected single-source preview always uses
+the current source after edits; preview errors keep the citation draft.
 
 ### Search imported references and copy stored data
 
