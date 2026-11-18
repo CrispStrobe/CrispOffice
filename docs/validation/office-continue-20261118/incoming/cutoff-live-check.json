@@ -1,0 +1,17 @@
+{
+  "schema": "quds.incoming.cutoff_live_check.v1",
+  "frozen_inventory_sha256": "5e7e5745eded314bb43495c8233667e57d20872ec973d200993541c6c5e01725",
+  "raw_remote_sha256": "70fad8d80e28ec620cf4be8ca78b6efb205ed5ee2af1b858edd8c934db05858f",
+  "captured_fork_refs": 341,
+  "observed_fork_refs": 341,
+  "excluded_this_session_refs": [
+    {
+      "ref": "refs/remotes/origin/codex/office-continue-20261118",
+      "sha": "51f20ab0c4b71259ea79dd3f9b273791b6958d36"
+    }
+  ],
+  "same": true,
+  "differences": [],
+  "policy": "The fixed incoming capture is the qualification cutoff. Later movements are recorded separately, not silently included or claimed qualified.",
+  "ci_queried_or_waited": false
+}

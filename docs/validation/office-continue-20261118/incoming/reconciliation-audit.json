@@ -1,0 +1,4652 @@
+{
+  "ci_queried_or_waited": false,
+  "classification_counts": {
+    "ancestor": 321,
+    "exact_tree_equivalent_in_history": 26,
+    "reviewed_later_spreadsheet_successor": 2
+  },
+  "classifications": [
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/1",
+      "sha": "54f0f8de01416640560519aa9d732f668f603709",
+      "tree": "34c7c02e822c0ee41b8474eed624ec0e01b6ba60"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/10",
+      "sha": "1b1bac125f426b05f868d482e9fbd657d4ffb73a",
+      "tree": "902774ae80bd0556383a69d6cdf4269b62b04d2d"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/100",
+      "sha": "946942a1e30332892aaf19a068ca5a29470d682a",
+      "tree": "94ff25151977c673114e43d9ddee39c584766864"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/101",
+      "sha": "cf60a17bcd825dc9b4ecdf840d54e6a0271d3647",
+      "tree": "4a1a29d5029d25da9700b56a1fd244f3f5679547"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/102",
+      "sha": "1549a9c7884eb688732262398b5d9859a68103eb",
+      "tree": "e85bd7a08442a46781da029ae9e24db70bac1a41"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/103",
+      "sha": "e15205c97f0fe0c7fcc5c3441e72cb0e9a3bdc01",
+      "tree": "0c0b2e454ca1934363f2d9793bdb1f45a9b004fb"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/104",
+      "sha": "2a6f3a94ce1d4a5ba6cddc1687a075191448da3d",
+      "tree": "2909598a199b8a6a0bd839b0dcc5b5146d663553"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/105",
+      "sha": "6f1abf273bd10d7ebe5641661dd307c492f897c2",
+      "tree": "b593cb87234b9c06316000b6eafc1441f912a641"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/106",
+      "sha": "7686ec52876288e6799023fd686af79228236826",
+      "tree": "4e2ad1d6e99bb21881d12a1f05a2d84f7ae5b3cd"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/107",
+      "sha": "8471633ed09e2a49ba35ff162a2bac5eb04073c9",
+      "tree": "f860c5b0832234d053cd61705392b3d918c6e7ca"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/108",
+      "sha": "3ec638bd7de5cb6648774abbf14da1c315f5e418",
+      "tree": "0c93b9478e17353f921d3e987fd0c4b36d48e9cb"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/109",
+      "sha": "b842ae4b4df892ec5f058f6207589953f3e9dae9",
+      "tree": "d36d5415eeb4529099eb1fc6e92d4ae5247ceb2a"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/11",
+      "sha": "5c1ab430c6911bb11f71d29efa35027ead5ac1d5",
+      "tree": "f9ebe172477713316c14e4d20ba4011b4c86649b"
+    },
+    {
+      "ancestor_of": [
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/110",
+      "sha": "35ae6328a884975c23d2aa5001bf0df05a436f91",
+      "tree": "1f5fffc3445c9192d0d7096546f348af0ff2fa5f"
+    },
+    {
+      "ancestor_of": [
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/111",
+      "sha": "d1738017afd3696adbd2e895678b1fa7d26065ec",
+      "tree": "2c929f6d2b0e3c1a02a11c917db5dcb814fd701f"
+    },
+    {
+      "ancestor_of": [
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/112",
+      "sha": "12601a41b6785dcd1d617adba8e13297d9af4bc0",
+      "tree": "c5f87a7eddaadd1d3242750f6faaebd868bc488c"
+    },
+    {
+      "ancestor_of": [
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/113",
+      "sha": "93c832f53982a9f5956f19ae0cb9418f55fac8c0",
+      "tree": "6260ee6a8cb40ca729f51639ea5e429a9984e10b"
+    },
+    {
+      "ancestor_of": [
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/114",
+      "sha": "867df7f257eac69adfe3355c051cdb2f773c53ac",
+      "tree": "3a4e794ad3ce8b881b9602710134c8fbc4151d96"
+    },
+    {
+      "ancestor_of": [
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/115",
+      "sha": "b54ef7d2955f44266a87d9067d0e4c332e868c54",
+      "tree": "98c0543324b5e6f8e69f4c3af0b282e5c035034b"
+    },
+    {
+      "ancestor_of": [
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/116",
+      "sha": "6a32a919325d71c121c63e3879cfd1b28d64312e",
+      "tree": "a2f4cb57a6a99a0506546419cc904bf873b32bca"
+    },
+    {
+      "ancestor_of": [
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/117",
+      "sha": "8b19ead89800f81ed9743ffbaf3279ac88fdd06d",
+      "tree": "b0d528c07f05d8cd473de72970baabadc532b416"
+    },
+    {
+      "ancestor_of": [
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/118",
+      "sha": "4391669c881cbcba372c742d2300c24cdc465a2f",
+      "tree": "1680ecbaf1db6197b021083ef618da494837c630"
+    },
+    {
+      "ancestor_of": [
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/119",
+      "sha": "2c7d58d2e83e542655db7e9bbcc04b6bade44902",
+      "tree": "358c868cebce7145ea59f8658fb9818f1ddef90d"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/12",
+      "sha": "579f2105cf7fca61536f7e3f9b59004929bdb6c5",
+      "tree": "2bb4ad9245296a465d051b1df772adf691337861"
+    },
+    {
+      "ancestor_of": [
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/120",
+      "sha": "e37ccdb47c047f6a0250585cf5cb20efc17573b4",
+      "tree": "56155a2e9f9cb667cac8da7b1e361ac3e8d54775"
+    },
+    {
+      "ancestor_of": [
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/121",
+      "sha": "a86a4ec6a231ed66cd868ea1ece3acc3aea2bb8f",
+      "tree": "494b29d83b49c09b0d844ad75a4cd2fe3c59f688"
+    },
+    {
+      "ancestor_of": [
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/122",
+      "sha": "54a3a8593bdb34dd7c1f737960aa732d401fc2da",
+      "tree": "cea66d3ebeb526f28073ad0b37bc538c0aebf308"
+    },
+    {
+      "ancestor_of": [
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/123",
+      "sha": "1138cffdc4a1c909b2b149db80312037c21909d8",
+      "tree": "899ab0e7043e9945f2ef4bf9c155d811dd22688e"
+    },
+    {
+      "ancestor_of": [
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/124",
+      "sha": "b005a46b32c8b3ec92d60bb99147f2aa3af51f06",
+      "tree": "7f33cd538c9b36990cb316d11cdd54c10615cefb"
+    },
+    {
+      "ancestor_of": [
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/125",
+      "sha": "af2a61862d23572b108bd7ef7719c7f575348d83",
+      "tree": "5ad74da3d223c14a4b9d698d742a0dc8fc5bdb0d"
+    },
+    {
+      "ancestor_of": [
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/126",
+      "sha": "8fae38da39c3c45344e723abca92c9330f15a791",
+      "tree": "6c0b1504e24d00f8e3368dc6c9868fb8b5264fa3"
+    },
+    {
+      "ancestor_of": [
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/127",
+      "sha": "8b70fdb42fb2d974587c75437b3adb5018190159",
+      "tree": "f5dea0fa5071372e1e33acf8df6f014f09153d9c"
+    },
+    {
+      "ancestor_of": [
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/128",
+      "sha": "814f165cb24a5b719dde65495f64d85f86563328",
+      "tree": "6ab4468b35c1362ab0067557a7f28051fd19abf8"
+    },
+    {
+      "ancestor_of": [
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/129",
+      "sha": "bb5a97a8d7c5f9ffa261e64753f53a3c044b610f",
+      "tree": "14fe40034fb89985384d1bbc452aa4389779a8d7"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/13",
+      "sha": "73b354efdf0f2e7fbe0e87bc67f332a9dfb4903e",
+      "tree": "05eb58450f92a220e48653cbf4b73649ab62671b"
+    },
+    {
+      "ancestor_of": [
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/130",
+      "sha": "84076f8ec8e4604a631cbaad9b88b030e508f0bc",
+      "tree": "e26add5bb76fb43e5807afb7ef1c258fb367f4dc"
+    },
+    {
+      "ancestor_of": [
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/131",
+      "sha": "f965fce6a54141b753a22f1e1b6c2fabba44e389",
+      "tree": "9d26d8d1d3a13961f9a4c3f3ecf952adb88b1291"
+    },
+    {
+      "ancestor_of": [
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/132",
+      "sha": "0ecd1615b96d7b90156c1e913e105d467efe9a39",
+      "tree": "9901e3704f0b99e9dc0b4c62cde64310d921de5d"
+    },
+    {
+      "ancestor_of": [
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/133",
+      "sha": "f87533cdbf9f98e5cfc11d21d8903f8501212ab8",
+      "tree": "bfef1dd4604db70389708a103dc561cb16f18460"
+    },
+    {
+      "ancestor_of": [],
+      "category": "fork_pr",
+      "classification": "exact_tree_equivalent_in_history",
+      "equivalent_commit": "d790bca444eef0e160a75ce3d8cb555af541004f",
+      "ref": "refs/remotes/origin-pr/134",
+      "sha": "128a187d69555db80890c2a1945a442b951f9c74",
+      "tree": "cc9dd97799056d82ee604ca071c023cd4a7d63c1"
+    },
+    {
+      "ancestor_of": [],
+      "category": "fork_pr",
+      "classification": "exact_tree_equivalent_in_history",
+      "equivalent_commit": "4584d5f319aab198f1d705f48b4d6647e6cbabea",
+      "ref": "refs/remotes/origin-pr/135",
+      "sha": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+      "tree": "8eaa993960d6fb6b6b484326d825a550f969ea0a"
+    },
+    {
+      "ancestor_of": [],
+      "category": "fork_pr",
+      "classification": "exact_tree_equivalent_in_history",
+      "equivalent_commit": "4eaca83b192897edad82658107dfeb5bcbed0920",
+      "ref": "refs/remotes/origin-pr/136",
+      "sha": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+      "tree": "3d828f3e1779b08ae84dc526e0c7236882d69a26"
+    },
+    {
+      "ancestor_of": [],
+      "category": "fork_pr",
+      "classification": "exact_tree_equivalent_in_history",
+      "equivalent_commit": "d754bf15b07a24c8a86c8dce339ca749fecd9531",
+      "ref": "refs/remotes/origin-pr/137",
+      "sha": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+      "tree": "aea95c000855820c5ecf205d3833298539f01753"
+    },
+    {
+      "ancestor_of": [],
+      "category": "fork_pr",
+      "classification": "exact_tree_equivalent_in_history",
+      "equivalent_commit": "d6010059644b34accd6f188e0e2a4863ab63e318",
+      "ref": "refs/remotes/origin-pr/138",
+      "sha": "b8ddaaeb581e010467de304c828764d353149102",
+      "tree": "7654a8905c705a04136e37a5271eb95d8a9a4e21"
+    },
+    {
+      "ancestor_of": [
+        "native_spacy_w6"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/139",
+      "sha": "20026ff49ac37391e2a1fd0947560a587f2f7332",
+      "tree": "3aae9b8c5a435dad0429dc558769c2d7fc420662"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/14",
+      "sha": "d4e2a0fcf1fe18e0e5158ac7d86b1f71bf3b70da",
+      "tree": "b4e096deeae4643ec1b38db694b4249e09816856"
+    },
+    {
+      "ancestor_of": [],
+      "category": "fork_pr",
+      "classification": "reviewed_later_spreadsheet_successor",
+      "differing_paths": [
+        "docs/office-remaining-gaps.md",
+        "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_reader.dart",
+        "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart",
+        "packages/quds_office_engine/lib/src/sheet/model/sml_analysis.dart",
+        "packages/quds_office_engine/lib/src/sheet/model/sml_conditional_format.dart",
+        "packages/quds_office_engine/lib/src/sheet/serial/sheet_serial.dart",
+        "packages/quds_office_engine/test/ods_sheet_writer_test.dart",
+        "packages/quds_office_engine/test/sheet_save_cache_and_freeze_test.dart"
+      ],
+      "interpretation": "All Word implementation and evidence match an included successor; only later spreadsheet files and backlog differ.",
+      "ref": "refs/remotes/origin-pr/140",
+      "sha": "c34945761e7991f5fe49037d79529acdd260b31c",
+      "successor": "2c47165d01d01cc883135a434ac9f6591ce6e770",
+      "tree": "ab5ed01d0693ddbb3121ea9ca45721eb2a09f1a6"
+    },
+    {
+      "ancestor_of": [],
+      "category": "fork_pr",
+      "classification": "exact_tree_equivalent_in_history",
+      "equivalent_commit": "b3f41eb4b4bca8ca13676b4114891ea6d9185043",
+      "ref": "refs/remotes/origin-pr/141",
+      "sha": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+      "tree": "b3345f76c2e3cd8e1bad13b554f2d24555aea9ce"
+    },
+    {
+      "ancestor_of": [],
+      "category": "fork_pr",
+      "classification": "exact_tree_equivalent_in_history",
+      "equivalent_commit": "52c73ae4dbadf2ca00a5d619144350ccc353b31a",
+      "ref": "refs/remotes/origin-pr/142",
+      "sha": "69d14f84cabd3931b7640c1654b401c89faba766",
+      "tree": "fcceef2418d7463f2a566623f22f8f0862dd1d01"
+    },
+    {
+      "ancestor_of": [
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/143",
+      "sha": "83f8c380f9271b6bf34a300c3aedc19442cb61f1",
+      "tree": "128be43aaed7c49290d1c4f7c4e0af88988675bc"
+    },
+    {
+      "ancestor_of": [
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/144",
+      "sha": "a1e026b496f91b54bbd3017aae54717bf25a5586",
+      "tree": "5ed435c019dc2454d7f9ac863d0af41e8624dd2c"
+    },
+    {
+      "ancestor_of": [],
+      "category": "fork_pr",
+      "classification": "exact_tree_equivalent_in_history",
+      "equivalent_commit": "c84d5e16024c502f6c451fd04b9807b1e65f20d3",
+      "ref": "refs/remotes/origin-pr/145",
+      "sha": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
+      "tree": "097bb5511b2ddf2e00a398da7055b310693fe054"
+    },
+    {
+      "ancestor_of": [],
+      "category": "fork_pr",
+      "classification": "exact_tree_equivalent_in_history",
+      "equivalent_commit": "0ff7d23929e4640af6c1d57f87c7ac71b73d2ed4",
+      "ref": "refs/remotes/origin-pr/146",
+      "sha": "a7f144cc983f2df7c16d88f8644ad67a9254c3d0",
+      "tree": "955a0d933240e0cc62eceff0ee11fd89e0f0caa2"
+    },
+    {
+      "ancestor_of": [],
+      "category": "fork_pr",
+      "classification": "exact_tree_equivalent_in_history",
+      "equivalent_commit": "bb5556e8cc4cb73e2c668b5319a2844a20c6c50c",
+      "ref": "refs/remotes/origin-pr/147",
+      "sha": "cee6e2632f891a3fe21c5c02d6bf508805973051",
+      "tree": "a30201059a62b8034ac747367c1af8de054a2afb"
+    },
+    {
+      "ancestor_of": [
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/148",
+      "sha": "e3831cdde529aa0c2368845cd72c1b9b65154665",
+      "tree": "e35a6c77f6f141530f32aa07637a300cc623ce83"
+    },
+    {
+      "ancestor_of": [],
+      "category": "fork_pr",
+      "classification": "exact_tree_equivalent_in_history",
+      "equivalent_commit": "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4",
+      "ref": "refs/remotes/origin-pr/149",
+      "sha": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+      "tree": "e3adc9e259c6120b4b1e3e03177391f880243e13"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/15",
+      "sha": "448eff5aac55054a34eccd4f8a1e79e754909a05",
+      "tree": "1a85e750d3d24f301815bd8265c7658b6b2e6594"
+    },
+    {
+      "ancestor_of": [
+        "later_office_union"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/150",
+      "sha": "6d97fedccde17244a917ee7d3372adebe5494089",
+      "tree": "24fa9957c7571b73b8459b8d7394591ce167bc19"
+    },
+    {
+      "ancestor_of": [],
+      "category": "fork_pr",
+      "classification": "exact_tree_equivalent_in_history",
+      "equivalent_commit": "34dc6b6806869570e9ec342e4d7ee0d6951c0ba6",
+      "ref": "refs/remotes/origin-pr/151",
+      "sha": "7ef09f2408f467c65427700e65907531ecb26acb",
+      "tree": "072bded0da30965ac975f9a8a3c08c7a46829460"
+    },
+    {
+      "ancestor_of": [],
+      "category": "fork_pr",
+      "classification": "exact_tree_equivalent_in_history",
+      "equivalent_commit": "23f3b4204fce45d38a103e3159bdc7f1e8d37c4e",
+      "ref": "refs/remotes/origin-pr/152",
+      "sha": "da9c956ec5d65c0e5a9f9ea84c2b0bca98e824a0",
+      "tree": "b73ebcc6f72c49a2883c5749f6450d497c647324"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/16",
+      "sha": "78a7b6f4e613c7d18d4bcc6434cda12b50ed184e",
+      "tree": "baecacf3481bef2a3aaa78df4faa66b5dd681d1a"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/17",
+      "sha": "89c7f06c592edde0c67774e9c7e087d96f52184b",
+      "tree": "9f0ad060c750c3b7ba056deb5dd515a9487f8da3"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/18",
+      "sha": "f31cf308013ceb4527e3f4de677785894bb1bfc0",
+      "tree": "956eaffadf7826bb5384b976a09eabfadc7bde5a"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/19",
+      "sha": "e8227569a3b90fb21db598483690bd13fe74ddef",
+      "tree": "2b6a1379d6eba8b36fb7b1e29ca323217d296e21"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/2",
+      "sha": "08b09485588d2b6270f594a07c983689c087587d",
+      "tree": "ca9dd7b26e29bd9df59f729d73e309a2db85e56e"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/20",
+      "sha": "5278aafd512640608fe06b8f7d357c4cffe8520a",
+      "tree": "57dfb2d3df9dca94e975fde96fba5f5376905b91"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/21",
+      "sha": "1f30a823b30678e3684c98fee6a2cd5c4945c4f2",
+      "tree": "3d0c9420b677d1178fc3723d07d54cf939667029"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/22",
+      "sha": "4637ddce4154f4b50105c7322fedc1c75fd02193",
+      "tree": "473f1d712f7b054e8081c9de9aed64fe387781c4"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/23",
+      "sha": "e002b9584bead9761fac8c7cf818431966d1b1c3",
+      "tree": "923d89cf421b5ce0788c4964b77f04ffae076d7f"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/24",
+      "sha": "9cc8c6e91ff9acf0f52a68aea7c0da69934a2661",
+      "tree": "e2bde6fa07d8e1ac73a580b3711b25df6683766e"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/25",
+      "sha": "b6d27c84a72d622f670a7e646e36ba4bd920cfc8",
+      "tree": "d56ecc62ebc121a2db80b34c1d38c4a3e403b30a"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/26",
+      "sha": "5b9ac71db1934252c4b8ae48ac03d4cd976e15ae",
+      "tree": "55eddb5e42269cff5360f9db8da6f8e0366cd7f4"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/27",
+      "sha": "cde05b85bcd00c26d519d43283fcc6b55a1884e7",
+      "tree": "057775d666ae2fcfa1fc901588b71ac3f6fb4927"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/28",
+      "sha": "a8cd28d8af8ca966e8c4259862587ecc9aade2f4",
+      "tree": "19fa322fba0b5b8f6765b810e23840377c212c68"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/29",
+      "sha": "7fe296e29e2e1b173580f6854507fc060cb4f080",
+      "tree": "381a562fb1a23de5ff40fac2ef660775316b0377"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/3",
+      "sha": "e550723b0f2a7cd849970f58820d260c36857502",
+      "tree": "50d0f9ec79ddfd2e75957e9a58b74846fd790b39"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/30",
+      "sha": "49b447324159595c59e64d8425b54a09f79ec736",
+      "tree": "0087fe5e3a0575dca344191eaf447419ad41fe39"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/31",
+      "sha": "912f26f21446ef9bdbf4f542535438dae0ded9a9",
+      "tree": "e3d93711873c40ff4d9a1b9a662af305ab0009c2"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/32",
+      "sha": "46850ae47e0241733750decb22417a0150e4b0e4",
+      "tree": "12e60e035e47cc518eb84e7b93e60307ef70e232"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/33",
+      "sha": "4c8036bbf16ac224c3fc102b5c44d8913a512b18",
+      "tree": "a13b612fdd31c9bc54d5f8bb05c92867e92d541d"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/34",
+      "sha": "09a05d7d60d2a2e1d2547487ad4545c50472834b",
+      "tree": "90f37d731c8675d9ea8a1fb983430b5858e751d8"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/35",
+      "sha": "e59751246a200e7477657d0e4835bf77b153422c",
+      "tree": "47d4ae8a5d5924172d69091459b200a3a989296c"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/36",
+      "sha": "21de3c3963b0334068b87fb1c25c787660cb17cf",
+      "tree": "6740bfb3162cb8e90f1c7c406bfbd9baa3b6c27c"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/37",
+      "sha": "b0efe6c661009ffa463f2bf6d7945216ce1dae4c",
+      "tree": "9a26fc43ff926106c600f0d1ccecc7ed98d7fdc7"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/38",
+      "sha": "752a94dfddf69522429f3025f9d25702499cb6da",
+      "tree": "12d41ea32488adcc2da3d73eea7ffcd8ead9c0d5"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/39",
+      "sha": "b85501b2810e537e21040d82528d8dbaa6fdcf15",
+      "tree": "444a367d256d5631a82bc566d1a0a3d99a37c6f5"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/4",
+      "sha": "09f5ec4b8eba290ff4d65678179854fb6ff6a468",
+      "tree": "fba9bf26ea35dbe4d14c0a7faee17a9a490b0255"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/40",
+      "sha": "8855b88a96b5c94349e3b5278c339228a1688c3e",
+      "tree": "8eb627e7d5f626963bc2179049e7436e9e5111a3"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/41",
+      "sha": "b69bad50fb235118a5334b325683cd1524b3e3d1",
+      "tree": "1efc6bcb3f5321ed9a8841bd6c40e24ca4097b1d"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/42",
+      "sha": "8fc3d06be36da5c2176feb107c14245f61650d75",
+      "tree": "0d8ef0934a0e6d97e83fec522a7ff12f7084b590"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/43",
+      "sha": "20681b8658392212c128f51b4c91f0b638942448",
+      "tree": "921c5b374484c7169c56e824e4fc2217c8086e17"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/44",
+      "sha": "866c14f0b3a876e11732bc544dc25a05d8f10524",
+      "tree": "86cf81f36f4691ca0b8bbcd8ca6a738ace48852e"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/45",
+      "sha": "0a26be7f136ad3e57dbe894b0bc4cdb0602addd0",
+      "tree": "989695b4b987f949dd25db3c736ad14333e5bd73"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/46",
+      "sha": "e6fdd16849aaf7ccbaf50f2593d7a92b6a82e630",
+      "tree": "56cc9fb26ec42ce335f7cea0698a34435696fc92"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/47",
+      "sha": "fc37658c907edf6687eccb9564d3046283b49a3a",
+      "tree": "67934023d4877aa2ae0eade87d61346e4923df2d"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/48",
+      "sha": "d6d6866c0f4ddbbaa196e1a5eb7ff9e31007fdea",
+      "tree": "b0e59ad79558d2a2e2c881f63b9a228b9ce01ded"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/49",
+      "sha": "a5febc3362d2fccdb979f012a5296af72e465797",
+      "tree": "0aecfb03465f11d481b1213d75d90897f8bab2f6"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/5",
+      "sha": "da0979a5c6c4273ea68f360ce9a079bfa747384f",
+      "tree": "8a311f7ba5672ef5f8598193f4a607f13febbcdc"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/50",
+      "sha": "428679a33381f943a8ae63117d4207f01dd15462",
+      "tree": "c284db83156f1fcae84013cbe58494e3b340a08e"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/51",
+      "sha": "8769019fb8be5483939edd4655dd88005e2515c4",
+      "tree": "7ac8d51dd8b6f627fd4d06aa676fe6712db37a05"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/52",
+      "sha": "01f62eb1812ca54827cc14e074e03abd82f963d7",
+      "tree": "2325cfb59277605fc0cd809527f119d1172bf10e"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/53",
+      "sha": "2e3074c8e1860f9503b059a87870911afc3eee7d",
+      "tree": "0957a03aadc731ee4a109cfe95df303c1b36cff8"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/54",
+      "sha": "49ba086251ba61032f15b3e7b726fc921874fd12",
+      "tree": "d4e1ba7ede98162ba3523cd4cfd1275860ffc09a"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/55",
+      "sha": "f5b67cc296b7d27e4f3a480dc46160f472d78694",
+      "tree": "a930be6db42985c0c388ce6e736aca265a822b25"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/56",
+      "sha": "ca9e4f052d988d77f9ded3a6b13f840f76a26159",
+      "tree": "335beb5ad1a14c2ae31073ffbd4e824c057f995a"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/57",
+      "sha": "0dd9dd9763c2eb6bdc4f6b6e30fb7726035e7d4b",
+      "tree": "7a9dd3fe551e78ec8105e890b902f54a92621eef"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/58",
+      "sha": "864e674795eb422855df2b26ccc375d3255e61a2",
+      "tree": "d8910f974d17b84a40749d4455ba00b51b021efc"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/59",
+      "sha": "e5daa20587e10971e8cb97d82a5495584b5c1553",
+      "tree": "91a4926e888cf4107f480e802b38da53653b3cbf"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/6",
+      "sha": "78ed85f5fd19d44f672dee11420fed261c974f4a",
+      "tree": "7c9f1038eb534248353c392cd99b63a8d8796238"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/60",
+      "sha": "988f423b9b95037d8f5273ee368b58ceedab0667",
+      "tree": "496a4a3ba8e4125d82cd1c4e40ac7a8bae6ca8a3"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/61",
+      "sha": "b23ee557ea121774833c7a188a49189e4f80ce70",
+      "tree": "2a7326ccf552612bbb0930bfb254a25778172625"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/62",
+      "sha": "089e53fce443ca2169fc44f3700e1b23780d2c95",
+      "tree": "259cfb041bd534757db93c3faf5993eb376801e4"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/63",
+      "sha": "2480f0988167068d9aeddf6573b9c2c6871a8481",
+      "tree": "e015d526d2850c0d504ce93e3ad1386576445888"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/64",
+      "sha": "4a122b3b71ddc539f8ffda5541b7e6ab0f1dce8f",
+      "tree": "08e54aba5a5507ac9a72c662286475e28776c5fe"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/65",
+      "sha": "3bb505ce5fea00236238e37c450ace8b18e4e34e",
+      "tree": "d8b0a6668b9cf411424c4d359a99fdf7efb4326c"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/66",
+      "sha": "379fa8663c81f32b4328415f56c776746ccc23bc",
+      "tree": "e10a90811572ef880f4edea40ba8a5413bd0c51d"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/67",
+      "sha": "0ee0a8320875248adac9718cae2e67875b6b932c",
+      "tree": "a4044407fcbd316387591bfba1f6792c74b2fa79"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/68",
+      "sha": "82215309dc64ef8c473fec3c4892cf0c9884bc91",
+      "tree": "0e238f72cbff29f30eb842c7dafb809bb4be6342"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/69",
+      "sha": "ec94795114d11c73bd8fc689fde364cc110b5cd3",
+      "tree": "0af18a79c99c15749bd3fde16d00b71f5c843c34"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/7",
+      "sha": "e82c997b6df8746fe86fb83b9f416a89bb3e3b80",
+      "tree": "b23b64cf5625e877c0928eac21f9bca57779da97"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/70",
+      "sha": "9ad9ba92133932b0a3824619168f07dd218c2b26",
+      "tree": "73f6f45d25a2b2625f4a8db36b41000922fd8ff0"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/71",
+      "sha": "108b4087c15f5640dbc906ad243f3030b7592f3f",
+      "tree": "0148ed340fbbea40133513d233f6e1473534acd1"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/72",
+      "sha": "57bc0f98eb94997b73f22cc267bd8d61dccaee59",
+      "tree": "0e477840dfcca87bd18f133255c7fda66a2efb29"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/73",
+      "sha": "8a0107cbca4b00766a2a76d43a1db244c006e976",
+      "tree": "57f9f5c73fc8e62b71453757af5077bf6ca6faf8"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/74",
+      "sha": "1675bbbb7c03090a87b6df783e3741e2cbc1768f",
+      "tree": "4198ad1a72de1191627649e8e8e9f4cbcf3de91b"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/75",
+      "sha": "f27e9b0e7ee9b1db8f6b7393abd752dab67d1ca5",
+      "tree": "2c19a9ac31a1ae9fc09d9d4b3c0c3597ff2ec0ad"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/76",
+      "sha": "1deb61cf78add61f5d26bea36ff596d769d06a87",
+      "tree": "0865ac1261a947f0e155b94ccbbf456ea0927e2b"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/77",
+      "sha": "bb9866d25bf98e5aa42c10ce4679835dbc8617f1",
+      "tree": "e1d06cdac806e08de55a2dc2b25524a5675fd7e7"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/78",
+      "sha": "27137499f8cc1a946bfcdd7446f43945ea81d2be",
+      "tree": "2aff5805c917fe9e9f09d2db17cf5415f5b82ec1"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/79",
+      "sha": "06828a5e63365495c86a4a0e1c68ecd113f891e5",
+      "tree": "a62926d617f73b0996abf20e29dc0a9f90a7bc81"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/8",
+      "sha": "a86a360bf9bd45c729e00b31dd9a97492e23f2e7",
+      "tree": "d7a3554accf3397047429b0a1c6b0645f2eab224"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/80",
+      "sha": "5aa16674e64cc01b89aec017c85afd3899cd96d5",
+      "tree": "ec7ff95582480891b99b27e917263b4d9b2731b9"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/81",
+      "sha": "eb95211e4d82933ba5b1db23ea7b79938b77909f",
+      "tree": "f52716dda53a36543feaaa1e0ea058418353ee0c"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/82",
+      "sha": "4497c737623c1339d2422487d53941c20472bac9",
+      "tree": "b8179ebab83523c68fa1e7c272599153072be7a1"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/83",
+      "sha": "331be9688e2de1feb52635490b534042dea10c27",
+      "tree": "30f8f0208db17be2e5aac4f1ed4d39b609ef7b6e"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/84",
+      "sha": "846c15f0de92a17bb2720e295b9a40412ebcb6fb",
+      "tree": "6a0a7e1d7c25ae5eddbf4cb47b2ccf2cfa9a20cf"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/85",
+      "sha": "9f2dbd81c2289a2285521e1491a9c860c4b59646",
+      "tree": "b63017c9d648f5acde283293401f18fc31772e95"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/86",
+      "sha": "001367e89cb0034cf33467783d7258bb0800deb9",
+      "tree": "e825b75c82492dd8eba70a42fc35b3c437aa5a07"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/87",
+      "sha": "7dfcfe9fcbf7e6d0d0abc14de7ed1ed901fa99c2",
+      "tree": "5b5930bb3a6534c4be849fc57c86bf202c189edd"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/88",
+      "sha": "5fb8762e771fe68be8bc8025fe26e159d14eda8e",
+      "tree": "ec2accb182b81fe0e47f623127ff297ad6b709e5"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/89",
+      "sha": "31a26383639dc7f751cfb0ea543ec7454a537ff6",
+      "tree": "c8fb98b5cc4426c7de728693d89a76657424c4ed"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/9",
+      "sha": "58de54567d45e38c05dd77064b7607c577374b9d",
+      "tree": "01962d58598ee4e726eb2cc25b71cd91ad3f47d3"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/90",
+      "sha": "6da74faa9160275df9c10a864c758033c92f114d",
+      "tree": "f2eed4632061f8d07909c74aaa03c629f0dd94ad"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/91",
+      "sha": "5cff80ce4ba85e645f21a31efb4fa4d9043b7e79",
+      "tree": "b80a757f70609821cdcff70b9e265e7c249508df"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/92",
+      "sha": "e8cb60efc2360be9bb72db7af8e4c675edf5b76f",
+      "tree": "e22b0c537916f33fb7d2aa16510a2d6f84e0a2a4"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/93",
+      "sha": "5088f3ab7e81f353593f16fcaa86d1467d4e1af9",
+      "tree": "7efa86280e462f061451b718ee752e7184c81f4e"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/94",
+      "sha": "8221b0081b02af33101ca7f58438e69e487d2bf6",
+      "tree": "7e6b13247511beef21982d7a13f2abeb23f40bb2"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/95",
+      "sha": "f862fe550bc8b7d3afcdb74016ccfefd7477fd20",
+      "tree": "e6195fe83ce5b5282fbad913fc4a96c02e6f5d36"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/96",
+      "sha": "a733c9f3367b9833f242100fcda0cff9e92767ff",
+      "tree": "18052eb73eee300d2d936b876cd01eb703a7cac4"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/97",
+      "sha": "8e94cf878cfbdeb13482f37f7848ef5a400425f3",
+      "tree": "925077de6538dc20d131984e8888c633077611af"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/98",
+      "sha": "a920b13aef776e0fb8a2ce3cc32848c2e7c0166a",
+      "tree": "3fc5bd33d3dd6525e4edb67ab02f40ad4cf3e16f"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin-pr/99",
+      "sha": "434a26933501eb288a1b16ffd9f971a5fe3b3bc7",
+      "tree": "1fc2904b53b2e802f517161b090de38252722615"
+    },
+    {
+      "ancestor_of": [
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/codex/aot-daemon-free-20261117",
+      "sha": "e37ccdb47c047f6a0250585cf5cb20efc17573b4",
+      "tree": "56155a2e9f9cb667cac8da7b1e361ac3e8d54775"
+    },
+    {
+      "ancestor_of": [
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/codex/aot-proofing-analysis-20261117",
+      "sha": "8b19ead89800f81ed9743ffbaf3279ac88fdd06d",
+      "tree": "b0d528c07f05d8cd473de72970baabadc532b416"
+    },
+    {
+      "ancestor_of": [
+        "later_office_union",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/codex/gector-office-resume-20261117",
+      "sha": "205e913ec1525b5e5157a6f6d7ff84c883217e48",
+      "tree": "b98c2a80d8f0ca433562b00b0df7c9921517741b"
+    },
+    {
+      "ancestor_of": [
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/codex/german-morphology-20261117",
+      "sha": "867df7f257eac69adfe3355c051cdb2f773c53ac",
+      "tree": "3a4e794ad3ce8b881b9602710134c8fbc4151d96"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/codex/odf-annotation-visibility-20261117",
+      "sha": "0b229004ee928fa1c1206957dbfc0419307cf254",
+      "tree": "16d32c8a9eaa759dfad4ede9665dbbc13b9d9de6"
+    },
+    {
+      "ancestor_of": [
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/codex/odt-column-boundary-followup-20261117",
+      "sha": "a1e026b496f91b54bbd3017aae54717bf25a5586",
+      "tree": "5ed435c019dc2454d7f9ac863d0af41e8624dd2c"
+    },
+    {
+      "ancestor_of": [],
+      "category": "fork_branch",
+      "classification": "reviewed_later_spreadsheet_successor",
+      "differing_paths": [
+        "docs/office-remaining-gaps.md",
+        "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_reader.dart",
+        "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart",
+        "packages/quds_office_engine/lib/src/sheet/model/sml_analysis.dart",
+        "packages/quds_office_engine/lib/src/sheet/model/sml_conditional_format.dart",
+        "packages/quds_office_engine/lib/src/sheet/serial/sheet_serial.dart",
+        "packages/quds_office_engine/test/ods_sheet_writer_test.dart",
+        "packages/quds_office_engine/test/sheet_save_cache_and_freeze_test.dart"
+      ],
+      "interpretation": "All Word implementation and evidence match an included successor; only later spreadsheet files and backlog differ.",
+      "ref": "refs/remotes/origin/codex/odt-field-continuation-20261117",
+      "sha": "c34945761e7991f5fe49037d79529acdd260b31c",
+      "successor": "2c47165d01d01cc883135a434ac9f6591ce6e770",
+      "tree": "ab5ed01d0693ddbb3121ea9ca45721eb2a09f1a6"
+    },
+    {
+      "ancestor_of": [
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/codex/office-consolidation-20261117",
+      "sha": "1138cffdc4a1c909b2b149db80312037c21909d8",
+      "tree": "899ab0e7043e9945f2ef4bf9c155d811dd22688e"
+    },
+    {
+      "ancestor_of": [
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/codex/office-continuation-20261117",
+      "sha": "93c832f53982a9f5956f19ae0cb9418f55fac8c0",
+      "tree": "6260ee6a8cb40ca729f51639ea5e429a9984e10b"
+    },
+    {
+      "ancestor_of": [
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/codex/office-fidelity-20261117",
+      "sha": "d1738017afd3696adbd2e895678b1fa7d26065ec",
+      "tree": "2c929f6d2b0e3c1a02a11c917db5dcb814fd701f"
+    },
+    {
+      "ancestor_of": [
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/codex/office-fidelity-improvements-20261117-e1978379",
+      "sha": "814f165cb24a5b719dde65495f64d85f86563328",
+      "tree": "6ab4468b35c1362ab0067557a7f28051fd19abf8"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/codex/office-local-qualification-20261118",
+      "sha": "401d012657881a54727d58bc35e537faa45d5fbe",
+      "tree": "e34aa5c498e71d9ec48f943e757f561f44916d0d"
+    },
+    {
+      "ancestor_of": [
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/codex/office-qualified-resume-20261117",
+      "sha": "07926acb46f0d451491046066a35dd6c1227b5a1",
+      "tree": "e8972a05dfe7ed804f80f867c6c3372581be36d2"
+    },
+    {
+      "ancestor_of": [
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/codex/office-reconciled-20261117",
+      "sha": "83f8c380f9271b6bf34a300c3aedc19442cb61f1",
+      "tree": "128be43aaed7c49290d1c4f7c4e0af88988675bc"
+    },
+    {
+      "ancestor_of": [
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/codex/office-resume-20261118",
+      "sha": "8ad80eb29a3984d58d5564c6759e853c0a8ab4af",
+      "tree": "01c23ef47fef2e1e6127a9b489000dcda38eee49"
+    },
+    {
+      "ancestor_of": [
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/codex/office-union-qualification-20261117",
+      "sha": "16c7b0fb48c72527645678b76e25b5c5cb7b9c22",
+      "tree": "fbb837e7b3664919436ca7bf190c4a25c5649386"
+    },
+    {
+      "ancestor_of": [
+        "later_office_union"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/codex/office-union-resume-20261118",
+      "sha": "6d97fedccde17244a917ee7d3372adebe5494089",
+      "tree": "24fa9957c7571b73b8459b8d7394591ce167bc19"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/codex/proofing-20261116",
+      "sha": "c0403890fc00f38c0ee6e1d533f6fef549c6fc03",
+      "tree": "ac75be938bb648221b417093514675660979b9db"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/codex/proofing-20261116-resume",
+      "sha": "738f0b6a3f1f46f83585579291d0847613d780c5",
+      "tree": "59b9864634e7e8be794263feafb8f712395cfb8f"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/codex/proofing-en-de-20261116",
+      "sha": "7dfcfe9fcbf7e6d0d0abc14de7ed1ed901fa99c2",
+      "tree": "5b5930bb3a6534c4be849fc57c86bf202c189edd"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/codex/proofing-en-de-20261117",
+      "sha": "5cff80ce4ba85e645f21a31efb4fa4d9043b7e79",
+      "tree": "b80a757f70609821cdcff70b9e265e7c249508df"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/codex/proofing-en-hyphenation-20261116",
+      "sha": "ffc672fec2df9919233b4ee5b0ba783ef1758f99",
+      "tree": "1034bcc35f167afad8c410e813e4b3045a30eb82"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/codex/proofing-german-quality-20261116",
+      "sha": "a916bbf09169f6906a89bd2ca3e3c42120ead466",
+      "tree": "6bab5ed49dbe63d42682e5df4672545158faa292"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/codex/proofing-harper-source-20261116",
+      "sha": "65d5815e4866549fe7f03b145b626f2c4aaba8e0",
+      "tree": "0ab7e869cfc40892facabc612f5249fd90e56e70"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/codex/terminal-integration-ods-20261116",
+      "sha": "4fadcc68d52d51e72e8d782765a0dd5086b982c6",
+      "tree": "7574aa05506e693812d6c6e282846b344a470ca6"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/codex/terminal-recovery-office-20261116",
+      "sha": "be2c3a91b0dd5b4abb1b9a7baa8f5e10769bc87a",
+      "tree": "f0e47bfd8f0be406ba6aa69886e76371faa86b03"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/codex/terminal-sharing-office-20261116",
+      "sha": "4235e690602195cc504438a6b937972c71f1ad39",
+      "tree": "bb5f1912fe2ff2b5cfb3d9c7091a184ba54de0ae"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/codex/text-rendering-20261116",
+      "sha": "57bc0f98eb94997b73f22cc267bd8d61dccaee59",
+      "tree": "0e477840dfcca87bd18f133255c7fda66a2efb29"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/codex/text-rendering-20261116-continuation",
+      "sha": "aff69c221f24d2bf9bcab7001f976ac085b4e841",
+      "tree": "0ab2f48d6851507b0034ea3d6dee1cd97d4aae05"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/codex/zotero-capabilities-20261116",
+      "sha": "2480f0988167068d9aeddf6573b9c2c6871a8481",
+      "tree": "e015d526d2850c0d504ce93e3ad1386576445888"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/codex/zotero-optimization-20261116",
+      "sha": "ca9e4f052d988d77f9ded3a6b13f840f76a26159",
+      "tree": "335beb5ad1a14c2ae31073ffbd4e824c057f995a"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/codex/zotero-recovery-20261116",
+      "sha": "1549a9c7884eb688732262398b5d9859a68103eb",
+      "tree": "e85bd7a08442a46781da029ae9e24db70bac1a41"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/codex/zotero-support-20261115",
+      "sha": "fc37658c907edf6687eccb9564d3046283b49a3a",
+      "tree": "67934023d4877aa2ae0eade87d61346e4923df2d"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/codex/zotero-support-20261116",
+      "sha": "428679a33381f943a8ae63117d4207f01dd15462",
+      "tree": "c284db83156f1fcae84013cbe58494e3b340a08e"
+    },
+    {
+      "ancestor_of": [],
+      "category": "fork_branch",
+      "classification": "exact_tree_equivalent_in_history",
+      "equivalent_commit": "d790bca444eef0e160a75ce3d8cb555af541004f",
+      "ref": "refs/remotes/origin/docs/aot-removal",
+      "sha": "128a187d69555db80890c2a1945a442b951f9c74",
+      "tree": "cc9dd97799056d82ee604ca071c023cd4a7d63c1"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/docs/build30-validation-20261117",
+      "sha": "16e2477ff93f7a1ec5c6ed78491f2716ce4d1658",
+      "tree": "4e4bb70bddf196dc379840723622bee0fbe9fa8f"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/docs/conditional-top-bottom",
+      "sha": "5fb8762e771fe68be8bc8025fe26e159d14eda8e",
+      "tree": "ec2accb182b81fe0e47f623127ff297ad6b709e5"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/docs/current-office-capabilities",
+      "sha": "1675bbbb7c03090a87b6df783e3741e2cbc1768f",
+      "tree": "4198ad1a72de1191627649e8e8e9f4cbcf3de91b"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/docs/filter-operators",
+      "sha": "379fa8663c81f32b4328415f56c776746ccc23bc",
+      "tree": "e10a90811572ef880f4edea40ba8a5413bd0c51d"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/docs/filters-closed",
+      "sha": "4a122b3b71ddc539f8ffda5541b7e6ab0f1dce8f",
+      "tree": "08e54aba5a5507ac9a72c662286475e28776c5fe"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/docs/metadata-closed",
+      "sha": "a5febc3362d2fccdb979f012a5296af72e465797",
+      "tree": "0aecfb03465f11d481b1213d75d90897f8bab2f6"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/docs/metadata-complete",
+      "sha": "b23ee557ea121774833c7a188a49189e4f80ce70",
+      "tree": "2a7326ccf552612bbb0930bfb254a25778172625"
+    },
+    {
+      "ancestor_of": [
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/docs/native-spacy-handoff-20261117",
+      "sha": "f965fce6a54141b753a22f1e1b6c2fabba44e389",
+      "tree": "9d26d8d1d3a13961f9a4c3f3ecf952adb88b1291"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/docs/odp-presentation-writer",
+      "sha": "8221b0081b02af33101ca7f58438e69e487d2bf6",
+      "tree": "7e6b13247511beef21982d7a13f2abeb23f40bb2"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/docs/odp-transitions",
+      "sha": "434a26933501eb288a1b16ffd9f971a5fe3b3bc7",
+      "tree": "1fc2904b53b2e802f517161b090de38252722615"
+    },
+    {
+      "ancestor_of": [],
+      "category": "fork_branch",
+      "classification": "exact_tree_equivalent_in_history",
+      "equivalent_commit": "4eaca83b192897edad82658107dfeb5bcbed0920",
+      "ref": "refs/remotes/origin/docs/ods-color-scale",
+      "sha": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+      "tree": "3d828f3e1779b08ae84dc526e0c7236882d69a26"
+    },
+    {
+      "ancestor_of": [],
+      "category": "fork_branch",
+      "classification": "exact_tree_equivalent_in_history",
+      "equivalent_commit": "52c73ae4dbadf2ca00a5d619144350ccc353b31a",
+      "ref": "refs/remotes/origin/docs/ods-data-bar",
+      "sha": "69d14f84cabd3931b7640c1654b401c89faba766",
+      "tree": "fcceef2418d7463f2a566623f22f8f0862dd1d01"
+    },
+    {
+      "ancestor_of": [],
+      "category": "fork_branch",
+      "classification": "exact_tree_equivalent_in_history",
+      "equivalent_commit": "d6010059644b34accd6f188e0e2a4863ab63e318",
+      "ref": "refs/remotes/origin/docs/ods-dynamic-validation",
+      "sha": "b8ddaaeb581e010467de304c828764d353149102",
+      "tree": "7654a8905c705a04136e37a5271eb95d8a9a4e21"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/docs/ods-filter-predicates",
+      "sha": "bb9866d25bf98e5aa42c10ce4679835dbc8617f1",
+      "tree": "e1d06cdac806e08de55a2dc2b25524a5675fd7e7"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/docs/ods-header-footer",
+      "sha": "846c15f0de92a17bb2720e295b9a40412ebcb6fb",
+      "tree": "6a0a7e1d7c25ae5eddbf4cb47b2ccf2cfa9a20cf"
+    },
+    {
+      "ancestor_of": [],
+      "category": "fork_branch",
+      "classification": "exact_tree_equivalent_in_history",
+      "equivalent_commit": "0ff7d23929e4640af6c1d57f87c7ac71b73d2ed4",
+      "ref": "refs/remotes/origin/docs/ods-icon-sets",
+      "sha": "a7f144cc983f2df7c16d88f8644ad67a9254c3d0",
+      "tree": "955a0d933240e0cc62eceff0ee11fd89e0f0caa2"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/docs/ods-row-groups",
+      "sha": "06828a5e63365495c86a4a0e1c68ecd113f891e5",
+      "tree": "a62926d617f73b0996abf20e29dc0a9f90a7bc81"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/docs/ods-writer-images",
+      "sha": "108b4087c15f5640dbc906ad243f3030b7592f3f",
+      "tree": "0148ed340fbbea40133513d233f6e1473534acd1"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/docs/odt-frame-size",
+      "sha": "6da74faa9160275df9c10a864c758033c92f114d",
+      "tree": "f2eed4632061f8d07909c74aaa03c629f0dd94ad"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/docs/odt-image-registry",
+      "sha": "f27e9b0e7ee9b1db8f6b7393abd752dab67d1ca5",
+      "tree": "2c19a9ac31a1ae9fc09d9d4b3c0c3597ff2ec0ad"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/docs/odt-odp-rows",
+      "sha": "a733c9f3367b9833f242100fcda0cff9e92767ff",
+      "tree": "18052eb73eee300d2d936b876cd01eb703a7cac4"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/docs/page-setup-fix",
+      "sha": "4497c737623c1339d2422487d53941c20472bac9",
+      "tree": "b8179ebab83523c68fa1e7c272599153072be7a1"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/docs/readme-remaining-gaps",
+      "sha": "e6fdd16849aaf7ccbaf50f2593d7a92b6a82e630",
+      "tree": "56cc9fb26ec42ce335f7cea0698a34435696fc92"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/docs/remaining-gaps",
+      "sha": "0a26be7f136ad3e57dbe894b0bc4cdb0602addd0",
+      "tree": "989695b4b987f949dd25db3c736ad14333e5bd73"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/docs/sheet-page-setup",
+      "sha": "eb95211e4d82933ba5b1db23ea7b79938b77909f",
+      "tree": "f52716dda53a36543feaaa1e0ea058418353ee0c"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/docs/validation-complete",
+      "sha": "f5b67cc296b7d27e4f3a480dc46160f472d78694",
+      "tree": "a930be6db42985c0c388ce6e736aca265a822b25"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/docs/validation-operators",
+      "sha": "01f62eb1812ca54827cc14e074e03abd82f963d7",
+      "tree": "2325cfb59277605fc0cd809527f119d1172bf10e"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/feat/conditional-affix",
+      "sha": "20681b8658392212c128f51b4c91f0b638942448",
+      "tree": "921c5b374484c7169c56e824e4fc2217c8086e17"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/feat/conditional-between",
+      "sha": "b69bad50fb235118a5334b325683cd1524b3e3d1",
+      "tree": "1efc6bcb3f5321ed9a8841bd6c40e24ca4097b1d"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/feat/conditional-dxf",
+      "sha": "b0efe6c661009ffa463f2bf6d7945216ce1dae4c",
+      "tree": "9a26fc43ff926106c600f0d1ccecc7ed98d7fdc7"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/feat/conditional-dxf-styles",
+      "sha": "31a26383639dc7f751cfb0ea543ec7454a537ff6",
+      "tree": "c8fb98b5cc4426c7de728693d89a76657424c4ed"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/feat/conditional-operators",
+      "sha": "21de3c3963b0334068b87fb1c25c787660cb17cf",
+      "tree": "6740bfb3162cb8e90f1c7c406bfbd9baa3b6c27c"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/feat/conditional-text",
+      "sha": "752a94dfddf69522429f3025f9d25702499cb6da",
+      "tree": "12d41ea32488adcc2da3d73eea7ffcd8ead9c0d5"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/feat/conditional-top-bottom",
+      "sha": "001367e89cb0034cf33467783d7258bb0800deb9",
+      "tree": "e825b75c82492dd8eba70a42fc35b3c437aa5a07"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/feat/german-context-20261117",
+      "sha": "97f6553c3fdca35be0270a66d6eaeb286c884fef",
+      "tree": "bed056088557e4d6fa25b110c54add28ff52b208"
+    },
+    {
+      "ancestor_of": [
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/feat/german-gector-proofing",
+      "sha": "34c70ece1e9c14954398826f93c1bb6aa61007a8",
+      "tree": "f8edec2f271addaab2733234a4a0171094c78e6b"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/feat/german-morphology-completion-20261117",
+      "sha": "482e08176dea6bd8f5fc80d1c0064d96b712db43",
+      "tree": "222df4080247ae22623324bf2a02ab471a356555"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/feat/grammar-release-20261117",
+      "sha": "96e65705ad69f969710d3ff6d2897bd4aa38fbf9",
+      "tree": "2871eb0d2c7458b47fd9918ac52d500f292e2767"
+    },
+    {
+      "ancestor_of": [
+        "native_spacy_w6"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/feat/native-spacy-reference-20261117",
+      "sha": "20026ff49ac37391e2a1fd0947560a587f2f7332",
+      "tree": "3aae9b8c5a435dad0429dc558769c2d7fc420662"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/feat/odf-metadata",
+      "sha": "b842ae4b4df892ec5f058f6207589953f3e9dae9",
+      "tree": "d36d5415eeb4529099eb1fc6e92d4ae5247ceb2a"
+    },
+    {
+      "ancestor_of": [
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/feat/odf-story-fidelity",
+      "sha": "0ecd1615b96d7b90156c1e913e105d467efe9a39",
+      "tree": "9901e3704f0b99e9dc0b4c62cde64310d921de5d"
+    },
+    {
+      "ancestor_of": [
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/feat/odp-chart-data",
+      "sha": "a86a4ec6a231ed66cd868ea1ece3acc3aea2bb8f",
+      "tree": "494b29d83b49c09b0d844ad75a4cd2fe3c59f688"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/feat/odp-presentation-writer",
+      "sha": "5088f3ab7e81f353593f16fcaa86d1467d4e1af9",
+      "tree": "7efa86280e462f061451b718ee752e7184c81f4e"
+    },
+    {
+      "ancestor_of": [
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/feat/odp-preset-shapes",
+      "sha": "8fae38da39c3c45344e723abca92c9330f15a791",
+      "tree": "6c0b1504e24d00f8e3368dc6c9868fb8b5264fa3"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/feat/odp-shape-links",
+      "sha": "3ec638bd7de5cb6648774abbf14da1c315f5e418",
+      "tree": "0c93b9478e17353f921d3e987fd0c4b36d48e9cb"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/feat/odp-transitions",
+      "sha": "a920b13aef776e0fb8a2ce3cc32848c2e7c0166a",
+      "tree": "3fc5bd33d3dd6525e4edb67ab02f40ad4cf3e16f"
+    },
+    {
+      "ancestor_of": [],
+      "category": "fork_branch",
+      "classification": "exact_tree_equivalent_in_history",
+      "equivalent_commit": "4584d5f319aab198f1d705f48b4d6647e6cbabea",
+      "ref": "refs/remotes/origin/feat/ods-color-scale",
+      "sha": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+      "tree": "8eaa993960d6fb6b6b484326d825a550f969ea0a"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/feat/ods-conditional",
+      "sha": "e59751246a200e7477657d0e4835bf77b153422c",
+      "tree": "47d4ae8a5d5924172d69091459b200a3a989296c"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/feat/ods-custom-validation",
+      "sha": "2e3074c8e1860f9503b059a87870911afc3eee7d",
+      "tree": "0957a03aadc731ee4a109cfe95df303c1b36cff8"
+    },
+    {
+      "ancestor_of": [],
+      "category": "fork_branch",
+      "classification": "exact_tree_equivalent_in_history",
+      "equivalent_commit": "b3f41eb4b4bca8ca13676b4114891ea6d9185043",
+      "ref": "refs/remotes/origin/feat/ods-data-bar",
+      "sha": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+      "tree": "b3345f76c2e3cd8e1bad13b554f2d24555aea9ce"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/feat/ods-default-geometry",
+      "sha": "912f26f21446ef9bdbf4f542535438dae0ded9a9",
+      "tree": "e3d93711873c40ff4d9a1b9a662af305ab0009c2"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/feat/ods-default-style",
+      "sha": "49b447324159595c59e64d8425b54a09f79ec736",
+      "tree": "0087fe5e3a0575dca344191eaf447419ad41fe39"
+    },
+    {
+      "ancestor_of": [],
+      "category": "fork_branch",
+      "classification": "exact_tree_equivalent_in_history",
+      "equivalent_commit": "d754bf15b07a24c8a86c8dce339ca749fecd9531",
+      "ref": "refs/remotes/origin/feat/ods-dynamic-validation-links",
+      "sha": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+      "tree": "aea95c000855820c5ecf205d3833298539f01753"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/feat/ods-filter-conditions",
+      "sha": "1deb61cf78add61f5d26bea36ff596d769d06a87",
+      "tree": "0865ac1261a947f0e155b94ccbbf456ea0927e2b"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/feat/ods-filter-operators",
+      "sha": "3bb505ce5fea00236238e37c450ace8b18e4e34e",
+      "tree": "d8b0a6668b9cf411424c4d359a99fdf7efb4326c"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/feat/ods-filter-predicates",
+      "sha": "089e53fce443ca2169fc44f3700e1b23780d2c95",
+      "tree": "259cfb041bd534757db93c3faf5993eb376801e4"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/feat/ods-header-footer",
+      "sha": "331be9688e2de1feb52635490b534042dea10c27",
+      "tree": "30f8f0208db17be2e5aac4f1ed4d39b609ef7b6e"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/feat/ods-hyperlinks",
+      "sha": "e5daa20587e10971e8cb97d82a5495584b5c1553",
+      "tree": "91a4926e888cf4107f480e802b38da53653b3cbf"
+    },
+    {
+      "ancestor_of": [],
+      "category": "fork_branch",
+      "classification": "exact_tree_equivalent_in_history",
+      "equivalent_commit": "c84d5e16024c502f6c451fd04b9807b1e65f20d3",
+      "ref": "refs/remotes/origin/feat/ods-icon-sets",
+      "sha": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
+      "tree": "097bb5511b2ddf2e00a398da7055b310693fe054"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/feat/ods-images",
+      "sha": "7fe296e29e2e1b173580f6854507fc060cb4f080",
+      "tree": "381a562fb1a23de5ff40fac2ef660775316b0377"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/feat/ods-metadata",
+      "sha": "d6d6866c0f4ddbbaa196e1a5eb7ff9e31007fdea",
+      "tree": "b0e59ad79558d2a2e2c881f63b9a228b9ce01ded"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/feat/ods-named-expressions",
+      "sha": "864e674795eb422855df2b26ccc375d3255e61a2",
+      "tree": "d8910f974d17b84a40749d4455ba00b51b021efc"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/feat/ods-outline",
+      "sha": "988f423b9b95037d8f5273ee368b58ceedab0667",
+      "tree": "496a4a3ba8e4125d82cd1c4e40ac7a8bae6ca8a3"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/feat/ods-row-groups",
+      "sha": "27137499f8cc1a946bfcdd7446f43945ea81d2be",
+      "tree": "2aff5805c917fe9e9f09d2db17cf5415f5b82ec1"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/feat/ods-tab-color",
+      "sha": "0dd9dd9763c2eb6bdc4f6b6e30fb7726035e7d4b",
+      "tree": "7a9dd3fe551e78ec8105e890b902f54a92621eef"
+    },
+    {
+      "ancestor_of": [],
+      "category": "fork_branch",
+      "classification": "exact_tree_equivalent_in_history",
+      "equivalent_commit": "34dc6b6806869570e9ec342e4d7ee0d6951c0ba6",
+      "ref": "refs/remotes/origin/feat/ods-time-period-conditions",
+      "sha": "7ef09f2408f467c65427700e65907531ecb26acb",
+      "tree": "072bded0da30965ac975f9a8a3c08c7a46829460"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/feat/ods-validation-messages",
+      "sha": "49ba086251ba61032f15b3e7b726fc921874fd12",
+      "tree": "d4e1ba7ede98162ba3523cd4cfd1275860ffc09a"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/feat/ods-validation-operators",
+      "sha": "8769019fb8be5483939edd4655dd88005e2515c4",
+      "tree": "7ac8d51dd8b6f627fd4d06aa676fe6712db37a05"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/feat/ods-validations",
+      "sha": "b85501b2810e537e21040d82528d8dbaa6fdcf15",
+      "tree": "444a367d256d5631a82bc566d1a0a3d99a37c6f5"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/feat/ods-writer",
+      "sha": "0ee0a8320875248adac9718cae2e67875b6b932c",
+      "tree": "a4044407fcbd316387591bfba1f6792c74b2fa79"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/feat/ods-writer-conditional",
+      "sha": "ec94795114d11c73bd8fc689fde364cc110b5cd3",
+      "tree": "0af18a79c99c15749bd3fde16d00b71f5c843c34"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/feat/ods-writer-images",
+      "sha": "9ad9ba92133932b0a3824619168f07dd218c2b26",
+      "tree": "73f6f45d25a2b2625f4a8db36b41000922fd8ff0"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/feat/ods-writer-metadata",
+      "sha": "82215309dc64ef8c473fec3c4892cf0c9884bc91",
+      "tree": "0e238f72cbff29f30eb842c7dafb809bb4be6342"
+    },
+    {
+      "ancestor_of": [
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/feat/odt-columns",
+      "sha": "2c7d58d2e83e542655db7e9bbcc04b6bade44902",
+      "tree": "358c868cebce7145ea59f8658fb9818f1ddef90d"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/feat/odt-comments",
+      "sha": "e15205c97f0fe0c7fcc5c3441e72cb0e9a3bdc01",
+      "tree": "0c0b2e454ca1934363f2d9793bdb1f45a9b004fb"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/feat/odt-document-writer",
+      "sha": "e8cb60efc2360be9bb72db7af8e4c675edf5b76f",
+      "tree": "e22b0c537916f33fb7d2aa16510a2d6f84e0a2a4"
+    },
+    {
+      "ancestor_of": [
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/feat/odt-fields",
+      "sha": "b005a46b32c8b3ec92d60bb99147f2aa3af51f06",
+      "tree": "7f33cd538c9b36990cb316d11cdd54c10615cefb"
+    },
+    {
+      "ancestor_of": [
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/feat/odt-first-even-headers",
+      "sha": "f87533cdbf9f98e5cfc11d21d8903f8501212ab8",
+      "tree": "bfef1dd4604db70389708a103dc561cb16f18460"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/feat/odt-footnotes",
+      "sha": "946942a1e30332892aaf19a068ca5a29470d682a",
+      "tree": "94ff25151977c673114e43d9ddee39c584766864"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/feat/odt-links-bookmarks",
+      "sha": "8471633ed09e2a49ba35ff162a2bac5eb04073c9",
+      "tree": "f860c5b0832234d053cd61705392b3d918c6e7ca"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/feat/odt-lists",
+      "sha": "f862fe550bc8b7d3afcdb74016ccfefd7477fd20",
+      "tree": "e6195fe83ce5b5282fbad913fc4a96c02e6f5d36"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/feat/odt-nested-lists",
+      "sha": "7686ec52876288e6799023fd686af79228236826",
+      "tree": "4e2ad1d6e99bb21881d12a1f05a2d84f7ae5b3cd"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/feat/odt-ordered-lists",
+      "sha": "8e94cf878cfbdeb13482f37f7848ef5a400425f3",
+      "tree": "925077de6538dc20d131984e8888c633077611af"
+    },
+    {
+      "ancestor_of": [
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/feat/odt-page-fields",
+      "sha": "35ae6328a884975c23d2aa5001bf0df05a436f91",
+      "tree": "1f5fffc3445c9192d0d7096546f348af0ff2fa5f"
+    },
+    {
+      "ancestor_of": [
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/feat/odt-paragraph-breaks",
+      "sha": "54a3a8593bdb34dd7c1f737960aa732d401fc2da",
+      "tree": "cea66d3ebeb526f28073ad0b37bc538c0aebf308"
+    },
+    {
+      "ancestor_of": [
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/feat/odt-paragraph-shading",
+      "sha": "12601a41b6785dcd1d617adba8e13297d9af4bc0",
+      "tree": "c5f87a7eddaadd1d3242750f6faaebd868bc488c"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/feat/odt-sections2",
+      "sha": "2a6f3a94ce1d4a5ba6cddc1687a075191448da3d",
+      "tree": "2909598a199b8a6a0bd839b0dcc5b5146d663553"
+    },
+    {
+      "ancestor_of": [
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/feat/odt-tab-stops",
+      "sha": "4391669c881cbcba372c742d2300c24cdc465a2f",
+      "tree": "1680ecbaf1db6197b021083ef618da494837c630"
+    },
+    {
+      "ancestor_of": [
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/feat/odt-table-borders",
+      "sha": "b54ef7d2955f44266a87d9067d0e4c332e868c54",
+      "tree": "98c0543324b5e6f8e69f4c3af0b282e5c035034b"
+    },
+    {
+      "ancestor_of": [
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/feat/odt-toc",
+      "sha": "8b70fdb42fb2d974587c75437b3adb5018190159",
+      "tree": "f5dea0fa5071372e1e33acf8df6f014f09153d9c"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/feat/office-proofing-followup-20261117",
+      "sha": "e3a38789359adaa33b2da1345c952fa1c2d8aebb",
+      "tree": "fcfec18319b73a310997b36770d66af40f820191"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/feat/sheet-hidden-sheets",
+      "sha": "4c8036bbf16ac224c3fc102b5c44d8913a512b18",
+      "tree": "a13b612fdd31c9bc54d5f8bb05c92867e92d541d"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/feat/sheet-hidden-state",
+      "sha": "46850ae47e0241733750decb22417a0150e4b0e4",
+      "tree": "12e60e035e47cc518eb84e7b93e60307ef70e232"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/feat/sheet-page-setup",
+      "sha": "5aa16674e64cc01b89aec017c85afd3899cd96d5",
+      "tree": "ec7ff95582480891b99b27e917263b4d9b2731b9"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/fix/ods-global-validations-20261116",
+      "sha": "e5e1e9af6beb0972a010d8208c1690a642809113",
+      "tree": "d72eec848353e3631d54050ad03f54a496143188"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/fix/ods-writer-page-layout",
+      "sha": "8a0107cbca4b00766a2a76d43a1db244c006e976",
+      "tree": "57f9f5c73fc8e62b71453757af5077bf6ca6faf8"
+    },
+    {
+      "ancestor_of": [
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/fix/odt-inline-fields",
+      "sha": "84076f8ec8e4604a631cbaad9b88b030e508f0bc",
+      "tree": "e26add5bb76fb43e5807afb7ef1c258fb367f4dc"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/fix/sdt-multi-section-control",
+      "sha": "866c14f0b3a876e11732bc544dc25a05d8f10524",
+      "tree": "86cf81f36f4691ca0b8bbcd8ca6a738ace48852e"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/fix/sdt-trailing-section-break",
+      "sha": "8fc3d06be36da5c2176feb107c14245f61650d75",
+      "tree": "0d8ef0934a0e6d97e83fec522a7ff12f7084b590"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/fix/utf16-custom-xml",
+      "sha": "09a05d7d60d2a2e1d2547487ad4545c50472834b",
+      "tree": "90f37d731c8675d9ea8a1fb983430b5858e751d8"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/fix/word-dialog-focus-rendering-20261116",
+      "sha": "094d6bacb9cb253e4d04443e9f3c4171e7433c8a",
+      "tree": "86b89cb679275e3b1a3d18be27b7847f8e4d7e0d"
+    },
+    {
+      "ancestor_of": [
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/integrate/aot-then-remove-20261117",
+      "sha": "bb5a97a8d7c5f9ffa261e64753f53a3c044b610f",
+      "tree": "14fe40034fb89985384d1bbc452aa4389779a8d7"
+    },
+    {
+      "ancestor_of": [
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/integrate/codex-office-continuation-20261117",
+      "sha": "af2a61862d23572b108bd7ef7719c7f575348d83",
+      "tree": "5ad74da3d223c14a4b9d698d742a0dc8fc5bdb0d"
+    },
+    {
+      "ancestor_of": [],
+      "category": "fork_branch",
+      "classification": "exact_tree_equivalent_in_history",
+      "equivalent_commit": "bb5556e8cc4cb73e2c668b5319a2844a20c6c50c",
+      "ref": "refs/remotes/origin/integrate/odt-column-boundary-144",
+      "sha": "cee6e2632f891a3fe21c5c02d6bf508805973051",
+      "tree": "a30201059a62b8034ac747367c1af8de054a2afb"
+    },
+    {
+      "ancestor_of": [],
+      "category": "fork_branch",
+      "classification": "exact_tree_equivalent_in_history",
+      "equivalent_commit": "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4",
+      "ref": "refs/remotes/origin/integrate/office-union-148",
+      "sha": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+      "tree": "e3adc9e259c6120b4b1e3e03177391f880243e13"
+    },
+    {
+      "ancestor_of": [],
+      "category": "fork_branch",
+      "classification": "exact_tree_equivalent_in_history",
+      "equivalent_commit": "23f3b4204fce45d38a103e3159bdc7f1e8d37c4e",
+      "ref": "refs/remotes/origin/integrate/office-union-150",
+      "sha": "da9c956ec5d65c0e5a9f9ea84c2b0bca98e824a0",
+      "tree": "b73ebcc6f72c49a2883c5749f6450d497c647324"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/main",
+      "sha": "482e08176dea6bd8f5fc80d1c0064d96b712db43",
+      "tree": "222df4080247ae22623324bf2a02ab471a356555"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/vendor/conditional-dxf-styles",
+      "sha": "76c7087c22da8ace85b9a71ca266a90f84faa3ae",
+      "tree": "24f22dd4258575458a7bbd5e0c8441f45f624bf5"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/vendor/conditional-top-bottom",
+      "sha": "ea9d16edd489b3a4ccff7a25cc5277b686c4e263",
+      "tree": "5ab860dcfc694fa0e6355d05b4a067f347f75422"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/vendor/odf-metadata",
+      "sha": "3a5cacc12c23e577903dcb6d9eba085da6e205a9",
+      "tree": "b69b29c3046d0c0326b877507b49a9f86a199293"
+    },
+    {
+      "ancestor_of": [
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/vendor/odp-chart-data",
+      "sha": "66273aa2f743ed33f20944a6e1251c1a396af0eb",
+      "tree": "35bb7a204a80fb6e6e5a0573e6938f237e2b7eb9"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/vendor/odp-presentation-writer",
+      "sha": "578846d395baa0c9dfd1f32a805125f331fda248",
+      "tree": "f09279c212a84e19b2a9adf4664eb3b82da5a3b5"
+    },
+    {
+      "ancestor_of": [
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/vendor/odp-preset-shapes",
+      "sha": "fbc8abbcdd4bf6df90be04fc953e4b490d20c599",
+      "tree": "703d5e2533c17345208f4aea5698662c1d1b089c"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/vendor/odp-shape-links",
+      "sha": "0585fac1a56c3dc5c3d728962794299ddfe50bbb",
+      "tree": "608d5e9eecee011e47600f758d0e46d3cfb01713"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/vendor/odp-transitions",
+      "sha": "d061a578646493b71ad19f8fd8358f6cc509e8b8",
+      "tree": "3fc5bd33d3dd6525e4edb67ab02f40ad4cf3e16f"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/vendor/ods-custom-validation",
+      "sha": "90acedb9835cb5bdef30606301e74482f5977448",
+      "tree": "e85136a6635ec2891dc6c5d3fd115239ae4169fa"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/vendor/ods-filter-conditions",
+      "sha": "928f85483ec1cb85e468ca9381585875137ba8d5",
+      "tree": "12543395e4f423ac6327fdff709a89bfa9a01169"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/vendor/ods-filter-conditions-correct",
+      "sha": "817982d580e990a5ca21d74c35135db4817e54b5",
+      "tree": "1f2119192dd82eb633ce9445d64da8e41608b200"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/vendor/ods-filter-operators",
+      "sha": "777bcb876a9c8cc170586d117fa41f8331ef84ad",
+      "tree": "31424eca483b0c4d824d0e747a40fb5a80dfd59b"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/vendor/ods-filter-predicates",
+      "sha": "a53a37b0b5c1b55aff20d581f80f1b2027bf3ddb",
+      "tree": "4859ede5b27c50ef6ce29d930acb697ab0d0e23b"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/vendor/ods-header-footer",
+      "sha": "c6a7eff46bcfcb806ee7c43252636b06c088963c",
+      "tree": "c535f799067c3aa39967dcb237c112858682587d"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/vendor/ods-hyperlinks",
+      "sha": "95debbcce02c1e24d6e8159cd1f524bbf68afeba",
+      "tree": "e7eef908f33db35306b2392568225edf972d4101"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/vendor/ods-hyperlinks-current",
+      "sha": "be6aa3cf2fca1b775c2b1352881e2ca3f9134c13",
+      "tree": "91a4926e888cf4107f480e802b38da53653b3cbf"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/vendor/ods-metadata",
+      "sha": "18dc693fbf4e39fc6c38e3d655d1e5b35eeef273",
+      "tree": "4f5254a7affa6d995d242ca2113741d9a1840295"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/vendor/ods-metadata-zotero",
+      "sha": "4fbd1687d3c0ada22d460cf5cadb9586c4f62905",
+      "tree": "895589d7e739e9cb767ba29b06b6081ec4844b24"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/vendor/ods-named-expressions",
+      "sha": "388a1c76339507d493bab577424affd80732446c",
+      "tree": "11d5128ef69d54444b32f4b03950bef9cce88704"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/vendor/ods-outline",
+      "sha": "33a0508a502f5809aa997928e8428bdec3e02503",
+      "tree": "496a4a3ba8e4125d82cd1c4e40ac7a8bae6ca8a3"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/vendor/ods-row-groups",
+      "sha": "891ccc21cf91fb9f49fa0af98143468fbbd3eac7",
+      "tree": "9cfcbbbc904b9baa2ca5c51ddbb5cc421f9a3b59"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/vendor/ods-tab-color",
+      "sha": "375390c3853ce26f43d6ac3f71c592acf3e094dc",
+      "tree": "6851ef330f860001eb42180c55017871f4903d1e"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/vendor/ods-validation",
+      "sha": "c7bb6d6f51885e4082882252f502bbf2de81d552",
+      "tree": "a9c3545ddd663c762007135f1158a49c856c30a2"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/vendor/ods-validation-current",
+      "sha": "4ffdf113803806ba5f8ade4a0846eee85dcfbe68",
+      "tree": "7ac8d51dd8b6f627fd4d06aa676fe6712db37a05"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/vendor/ods-validation-messages",
+      "sha": "14fde4b1bd2539f0c6168be4569ac1adcc5105cd",
+      "tree": "3293160964ae09df8dd823f936652ab2f6344e2b"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/vendor/ods-writer",
+      "sha": "e14a55b50af4b6870ed1044284f74c36b5f194d9",
+      "tree": "e302f8dbce9eccd9fd961eca1f1710f1ddebbfc8"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/vendor/ods-writer-conditional",
+      "sha": "abdbc8b576f5327786c8a0f19bf91bef1250de12",
+      "tree": "cdfef83462863ee94f9ac35eee355174a0bd79b7"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/vendor/ods-writer-images",
+      "sha": "546368fe3aad7ccb65c72f897b6585513b0199f1",
+      "tree": "d23a4b43fdc5f9a1aba32ad93b5014a045c169e7"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/vendor/ods-writer-metadata",
+      "sha": "1808f38493d1cf2fddc1761d146432ceaaea70aa",
+      "tree": "1cecbb244c7da3ebf57618708f4d0fb71c5d1274"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/vendor/ods-writer-page-layout",
+      "sha": "2aee95e6aa7021869a198cf19ebbb43a44d7910f",
+      "tree": "57f9f5c73fc8e62b71453757af5077bf6ca6faf8"
+    },
+    {
+      "ancestor_of": [
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/vendor/odt-columns",
+      "sha": "1f417ad7a61dfb69034704a67f85243eff89830a",
+      "tree": "2a491ee5bdecb60598cd591176c7e3c667541073"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/vendor/odt-comments",
+      "sha": "04505306af39c47bd0fe96423d1515ee6ca5027e",
+      "tree": "66c528f14e18477f12e88c433f144165a38aae8a"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/vendor/odt-document-writer",
+      "sha": "5f019253d247073b715b7a7ae4a82763ceafd02f",
+      "tree": "244066e1ffc2bb7fe0153463658ca1964587a0d3"
+    },
+    {
+      "ancestor_of": [
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/vendor/odt-fields",
+      "sha": "ec5ecbff742580c0e7d1136507b953e8cc877e4c",
+      "tree": "147b6903c88d72fc8844513f6fe357fac6d608c0"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/vendor/odt-footnotes",
+      "sha": "f6c9be054b016192673ba82e608ae0ae987b5308",
+      "tree": "461418b43d4892f802355542eea72e0cc489ed9a"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/vendor/odt-links-bookmarks",
+      "sha": "109b49f5c8c0c50c5051a970e6cabbfd2d32af18",
+      "tree": "67f5d9df0a555c138d6836a90a76399b0299fd11"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/vendor/odt-lists",
+      "sha": "94532021b720e3035022a2fed08ec88f48340892",
+      "tree": "92a9411a00bea00bd2b7b24b3ef5fb04a99282f6"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/vendor/odt-nested-lists",
+      "sha": "406798f7e47332f92438828dcfc6a2184d4361bb",
+      "tree": "c3da3760f3c1dd9831087993652cd3146212c616"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/vendor/odt-ordered-lists",
+      "sha": "aa346a296e8b19bb937c345f7142c60720c3d6e4",
+      "tree": "bd2325c6871aa315fff0c3c0dbc48d35b4da7124"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/vendor/odt-ordered-lists2",
+      "sha": "0eb60d0fc706a4da54df07ae86df029c1caac074",
+      "tree": "925077de6538dc20d131984e8888c633077611af"
+    },
+    {
+      "ancestor_of": [
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/vendor/odt-page-fields",
+      "sha": "5dbe3f5b81d20f9c263b4f2d9ba9c01c9216b1e3",
+      "tree": "908cd5c040391237f0621dbf25de13e4bb29c276"
+    },
+    {
+      "ancestor_of": [
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/vendor/odt-paragraph-breaks",
+      "sha": "b990f9041cce78e3768c2ee0190413bf26962431",
+      "tree": "9cc6a8988166a61f0db2adc5f29d60cca2192eb7"
+    },
+    {
+      "ancestor_of": [
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/vendor/odt-paragraph-shading",
+      "sha": "22ce45e70591a6be561a5abee1807455e3df52be",
+      "tree": "8f3202bd36a8837b3fb3743cc115e27ceac247c5"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/vendor/odt-sections",
+      "sha": "a5cd1f30aa4764e990ed81b9ac8387efe3182f82",
+      "tree": "658bf7f61a207218e8d6b36d7eb6494fc984d41d"
+    },
+    {
+      "ancestor_of": [
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/vendor/odt-tab-stops",
+      "sha": "156cc755df74dcbafec0ebd882945349c40a5005",
+      "tree": "f7c669980c029ce85f1bcac70f7590b51926ffef"
+    },
+    {
+      "ancestor_of": [
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/vendor/odt-table-borders",
+      "sha": "17c6b2a808e39b1a74cb4afb2c3dc7f2c06de70c",
+      "tree": "4d07e1f6bfdf788ad59c7059748c623a234df187"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "fork_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/origin/vendor/sheet-page-setup",
+      "sha": "f938d7fc3cb9aa42ea8d30b1c2ab50ccca694699",
+      "tree": "1a1fb472163d7002bbd181a98ba810097239b821"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "upstream_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/upstream-pr/1",
+      "sha": "48c5156f459597ce3f8ec486b3c9a20fc5543807",
+      "tree": "30b84eff3a593dba15c6d803b6282a81f026bed0"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "upstream_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/upstream-pr/5",
+      "sha": "9930be8df44ffe117fb22778c514eea0ee73ce21",
+      "tree": "9caff26f6b91e2637e63a35b9623e7f0c61d6752"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "upstream_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/upstream-pr/6",
+      "sha": "aca2f66941832bd0b19b436baeab1656a1b7de98",
+      "tree": "d74a5c2f04e5ed32770ddd8e376380f4beea687c"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "upstream_pr",
+      "classification": "ancestor",
+      "ref": "refs/remotes/upstream-pr/7",
+      "sha": "f45099688e7a3f67a1302efdb442830d052f2240",
+      "tree": "807b3ec74140aed5c7e291a2647e19f49fb352bd"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "upstream_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/upstream/ci/flutter-workspace",
+      "sha": "aca2f66941832bd0b19b436baeab1656a1b7de98",
+      "tree": "d74a5c2f04e5ed32770ddd8e376380f4beea687c"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "upstream_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/upstream/cursor/class-certificates-2db8",
+      "sha": "f45099688e7a3f67a1302efdb442830d052f2240",
+      "tree": "807b3ec74140aed5c7e291a2647e19f49fb352bd"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "upstream_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/upstream/cursor/cloud-agent-1790580069020-0rk1h",
+      "sha": "9930be8df44ffe117fb22778c514eea0ee73ce21",
+      "tree": "9caff26f6b91e2637e63a35b9623e7f0c61d6752"
+    },
+    {
+      "ancestor_of": [
+        "concurrent_office_local",
+        "current_main",
+        "later_office_union",
+        "native_spacy_w6",
+        "saved_office"
+      ],
+      "category": "upstream_branch",
+      "classification": "ancestor",
+      "ref": "refs/remotes/upstream/main",
+      "sha": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+      "tree": "654e2e1b29777cd3358fe8a719336d1579fadfcb"
+    }
+  ],
+  "integrated_head": "9e591cc63b22a654abd7f919c51674164eac225b",
+  "integrated_head_aot_product_paths": [],
+  "integrated_head_contains_principal_heads": {
+    "concurrent_office_local": true,
+    "current_main": true,
+    "later_office_union": true,
+    "native_spacy_w6": true,
+    "saved_office": true
+  },
+  "integrated_tree": "469da03c35c4fade2095fd044a9391d5696f7ad3",
+  "inventory_sha256": "5e7e5745eded314bb43495c8233667e57d20872ec973d200993541c6c5e01725",
+  "passed": true,
+  "principal_heads": {
+    "concurrent_office_local": "401d012657881a54727d58bc35e537faa45d5fbe",
+    "current_main": "482e08176dea6bd8f5fc80d1c0064d96b712db43",
+    "later_office_union": "6d97fedccde17244a917ee7d3372adebe5494089",
+    "native_spacy_w6": "20026ff49ac37391e2a1fd0947560a587f2f7332",
+    "saved_office": "8ad80eb29a3984d58d5564c6759e853c0a8ab4af"
+  },
+  "reference_counts": {
+    "fork_branch": 189,
+    "fork_pr": 152,
+    "upstream_branch": 4,
+    "upstream_pr": 4
+  },
+  "reference_total": 349,
+  "removed_aot_product_paths_at_principal_heads": {
+    "concurrent_office_local": [],
+    "current_main": [],
+    "later_office_union": [],
+    "native_spacy_w6": [],
+    "saved_office": []
+  },
+  "schema": "quds.incoming.reconciliation_audit.v2",
+  "unique_captured_heads": 227
+}

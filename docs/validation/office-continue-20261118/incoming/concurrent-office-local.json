@@ -1,0 +1,29 @@
+{
+  "schema": "quds.incoming.concurrent_office_local.v1",
+  "branch": "codex/office-local-qualification-20261118",
+  "first_observed_sha": "482e08176dea6bd8f5fc80d1c0064d96b712db43",
+  "fetched_sha": "401d012657881a54727d58bc35e537faa45d5fbe",
+  "parent": "482e08176dea6bd8f5fc80d1c0064d96b712db43",
+  "tree": "e34aa5c498e71d9ec48f943e757f561f44916d0d",
+  "new_evidence_directory": "docs/validation/office-local-20261118",
+  "calendar_equivalence": [
+    {
+      "path": "packages/quds_office_engine/lib/src/sheet/model/sml_conditional_format.dart",
+      "concurrent_blob": "396f78b7b391258e29d5fe9b1ea6c0bd19262af2",
+      "spacy_blob": "396f78b7b391258e29d5fe9b1ea6c0bd19262af2",
+      "equal": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/sheet_time_period_calendar_test.dart",
+      "concurrent_blob": "50838d6fa04b9a69e8f5fdbabcd11517e1002a26",
+      "spacy_blob": "50838d6fa04b9a69e8f5fdbabcd11517e1002a26",
+      "equal": true
+    }
+  ],
+  "notes": [
+    "New branch appeared during remote review, advanced from main to 401d0126 before bounded fetch completed.",
+    "Calendar implementation and eight-test source equal the incoming W6 version. Preserve late source ancestry and evidence; do not adopt all older product trees.",
+    "Initial 348-ref audit and rejected 349-ref audit are retained separately; updated principal map accounts for the observed arrival."
+  ],
+  "ci_queried_or_waited": false
+}
