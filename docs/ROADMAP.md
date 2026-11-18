@@ -3,6 +3,35 @@
 Waves 1–4 are implemented in-tree. Later work should keep [STANDARDS.md](STANDARDS.md)
 and [MISSION.md](MISSION.md) honest as coverage changes.
 
+## Mail, Calendar, People and standalone Office — scoped 18 November 2026
+
+The [Quds Mail scope](roadmaps/mail/README.md) and
+[ordered implementation plan / TODO](roadmaps/mail/implementation-plan.md)
+define a shared Dart/Flutter Mail module with two consumers: the existing
+CrispCloud host and a new full standalone Office+Mail app at apps/quds_office.
+The standalone app includes the existing Word, spreadsheet, slide, PDF and
+report surfaces; it does not depend on CrispCloud.
+
+MPL-2.0 is explicitly allowed for this work alongside approved permissive
+licenses. The initial protocol foundation is a reviewed enough_mail 3.0.0
+fork, with a portable MIME entry point so the shared EML reader can compile
+on web. Existing public MIME exports currently pull in dart:io; browser
+portability remains an implementation/verification task. New independent
+Quds source stays MIT; modified MPL source retains its notices and license.
+
+The [CrispCloud migration contract](roadmaps/mail/crispcloud-integration.md)
+preserves saved EML/MSG/MBOX, raw-source and attachment workflows. CrispCloud's
+existing AGPL implementation is not a source donor to Quds. Its complete
+application distribution rights remain separate from the shared packages
+and the clean standalone app; see the
+[licensing and Apple release gates](roadmaps/mail/licensing-and-app-store.md).
+
+M00–M14 specify source paths, typed host contracts, MIME limits, offline
+storage, recoverable sync/send, Office attachment editing, both consumers,
+cloud providers, Calendar/People and per-product App Store evidence.
+All tasks are planned: this entry does not claim Mail code, a standalone
+Office release or App Store qualification has been delivered.
+
 ## English/German offline thesaurus — 18 November 2026
 
 The [thesaurus workstream](roadmaps/thesaurus/README.md) now includes full
