@@ -13,10 +13,26 @@ verified, manual-only de-DE option; no model is downloaded or enabled by default
 
 ## Native spelling continuation — 18 November 2026
 
-PR #155 is merged together with the latest completed Zotero work. The
-[spelling continuation report](validation/native-spelling-quality-20261118/README.md)
-records the incoming branch reconciliation, incremental remote commits and
-local regression results.
+PR #159 is merged, including the spelling shortlist changes from #157,
+Zotero tags from #158, native spaCy distribution and retained Office history.
+The [current continuation report](validation/native-spelling-continuation-20261118/README.md)
+records the full incoming reconciliation, incremental remote checkpoints and
+local validation. The [previous report](validation/native-spelling-quality-20261118/README.md)
+retains the original shortlist and native suggestion-filter evidence.
+
+Short German misspellings can now suggest accented forms already in the shipped
+dictionary, including `Cafè → Café`, `Joêl → Joël` and `rosè → rosé`. Three- and
+four-unit words use a one-edit indexed fallback within the existing search
+budget. Direct choices stay first; matching lexical case takes precedence
+within equally distant short fallback choices. Marked numeric/connector
+identifier edges are checked as complete graphemes in the German provider too.
+
+Native system input now omits discretionary soft hyphens without rewriting
+the document. Findings map back to the exact original UTF-16 source, including
+controls inside the word; corrections preserve controls outside it. Both source
+and projected grapheme boundaries, protected ranges and projected identifier
+edges are checked. Suggestions that only rearrange or remove discretionary
+hyphens are omitted. An empty projected input needs no native channel request.
 
 German spelling now counts distinct visible corrections after source casing
 is applied. For example, a two-item shortlist for `LERNNEN` offers `LERNEN`
@@ -544,8 +560,12 @@ dictionary and personal-name suggestions remain available alongside component
 repairs.
 Suggestions use bounded local edits and German accent/sharp-s variants, with
 defaults of at most five suggestions and 6,000 candidate checks. A shared
-length/anchor index supports an additional distance-two shortlist, including
-first-letter errors and adjacent transpositions. Searched lexical candidates
+length/anchor index supports an additional distance-two shortlist for words of
+five or more UTF-16 units, including first-letter errors and adjacent
+transpositions. Three- and four-unit words use only one edit in that fallback,
+allowing existing accented forms outside the direct-edit alphabet to appear.
+Direct choices retain precedence, and equally distant short fallback choices
+prefer the source's lexical case. Searched lexical candidates
 and compound components must be exact shipped dictionary forms or declared
 personal terms; an explicit compound can be reconstructed from those components. This improves
 suggestions without accepting additional inferred words. The shortlist is
@@ -939,11 +959,20 @@ new provider cannot bypass an unfinished call. This coordination covers Quds
 providers, not unrelated host widgets calling Flutter's channel directly.
 
 The framework's text-only cache is cleared when the next call actually starts.
-Findings must use complete grapheme boundaries in the original UTF-16 source;
-malformed ranges fail the request. URLs, email addresses and closed backtick
-spans use the same protected-range policy as the other local spelling providers.
-Suggestions remain bounded to eight. A null platform response is a failure;
-an empty successful response is distinct.
+Discretionary U+00AD is omitted only from checker input, with a UTF-16 map back
+to the unchanged source. Internal controls belong to the reported word; leading
+and trailing controls remain outside its correction. Real hyphens, whitespace,
+apostrophes and script joiners stay literal. Findings must use complete
+grapheme boundaries in both representations; malformed ranges fail the request.
+URLs, email addresses and closed backtick spans are protected in both source
+and projected text, and projected numeric/connector edges protect identifiers
+even when a discretionary hyphen separated their source characters.
+
+Suggestions remain bounded to eight, after inspection of at most 64 candidates
+of at most 256 UTF-16 units. A choice differing from the checked word only by
+soft-hyphen placement is not a spelling correction. An empty projected input
+completes without using the native lane, after availability and locale checks.
+A null platform response is a failure; an empty successful response is distinct.
 
 The local tests exercise the provider protocol, including two uses of the real
 Flutter service for locale isolation and failures, and multiple providers
