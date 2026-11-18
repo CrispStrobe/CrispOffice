@@ -104,12 +104,14 @@
   "counts_as_product_acceptance": false,
   "github_actions_queried_or_awaited": false,
   "sha256": {
-    "invalidate_timing_test.dart": "feb8c83127f3234454b85ebb3bdf1075a56429cdb86a58518100ac2e8129307e",
+    "invalidate_timing_test.dart": "9ecdff5b582a7cbb57fc07f6663fa9e5e373f6ca04c8329ad948c71982c29818",
     "before.jsonl": "aed3a6609b06e8b2631ad5a75fc7a6a518f40be2ebe71512992179b92e21fb46",
     "after.jsonl": "b390649cba24b513096e1a946405f7716848e77b0ce52e96e90d5c401a236a8e"
   },
   "median_reduction_percent": [
     68.63,
     47.89
-  ]
+  ],
+  "executed_fixture_sha256": "feb8c83127f3234454b85ebb3bdf1075a56429cdb86a58518100ac2e8129307e",
+  "fixture_publication_note": "Removed one surplus final blank line after execution; Dart tokens are unchanged. The executed fixture hash is retained separately."
 }

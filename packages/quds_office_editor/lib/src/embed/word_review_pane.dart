@@ -294,24 +294,29 @@ class _WordReviewPaneState extends State<WordReviewPane> {
                   ),
                 ),
                 const Divider(height: 8),
+                if (_notice != null)
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(12, 0, 12, 8),
+                    child: Semantics(
+                      liveRegion: true,
+                      child: Tooltip(
+                        message: _notice!,
+                        child: Text(
+                          _notice!,
+                          key: const ValueKey<String>('live-review-notice'),
+                          style: theme.textTheme.bodySmall,
+                          maxLines: 3,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ),
+                  ),
                 Expanded(
                   child: ListView(
                     key: ValueKey<String>('live-review-${_tab.name}-content'),
                     controller: _scroll,
                     padding: const EdgeInsets.fromLTRB(12, 4, 12, 16),
                     children: <Widget>[
-                      if (_notice != null)
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 8),
-                          child: Semantics(
-                            liveRegion: true,
-                            child: Text(
-                              _notice!,
-                              key: const ValueKey<String>('live-review-notice'),
-                              style: theme.textTheme.bodySmall,
-                            ),
-                          ),
-                        ),
                       if (_tab == WordReviewPaneTab.proofing)
                         ..._proofingContent()
                       else
