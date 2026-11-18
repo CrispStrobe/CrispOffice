@@ -22,4 +22,8 @@ No GitHub Actions, workflow, check, or status endpoint is queried or awaited. `s
 
 ## Fresh canonical result
 
-The complete 224-file canonical selection passed all 13 commands, including five strict analyses, 145 formatting targets, 117 Python controls, and six cohorts. It recorded 4,236 successful runner events, of which 4,234 qualify: two absent private-PDF fixture controls are explicitly excluded under the existing harness policy. There were no unexpected skips. All six input-integrity surfaces, frozen HEAD and restored analyzer configuration passed. Portable/example/timezone, document-consumer and native sweep gates remain pending. See `gates/canonical.json` and the complete archive.
+The complete 224-file canonical selection passed all 13 commands, including five strict analyses, 145 formatting targets, 117 Python controls, and six cohorts. It recorded 4,236 successful runner events, of which 4,234 qualify: two absent private-PDF fixture controls are explicitly excluded under the existing harness policy. There were no unexpected skips. All six input-integrity surfaces, frozen HEAD and restored analyzer configuration passed. Portable/example/timezone and all four document-consumer gates have also passed; their independent reviews and the native sweep remain in progress. See `gates/canonical.json` and the complete archive.
+
+## Supplemental and consumer checkpoints
+
+Portable: 17 Node suites. Editor example: two smoke tests. Calendar: eight tests under each of UTC, Europe/Berlin and America/Los_Angeles, with expected timezone offsets verified (24 overlapping executions). Document consumers: retained33, current7, boundary5 and frame5 all exited zero with stable source/runtime guards. Complete raw archives and indexes are saved separately for every gate. Native preparation and the serial 1/2/4/8-thread sweep are now running after the other compilation jobs have completed.

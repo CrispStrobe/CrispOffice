@@ -1,0 +1,781 @@
+{
+  "accepted": true,
+  "example_substantive_successes": 2,
+  "findings": [],
+  "finished_utc": "2026-11-18T06:01:44.505636+00:00",
+  "gates": {
+    "calendar-timezones": {
+      "additional_unique_tests_claimed": 0,
+      "archive": {
+        "archive": "/workspace/scratch/eddfdfc8cc56/flutter-qualification/runs/calendar-timezones-9d060658.tar.xz",
+        "bytes": 509372,
+        "index_sha256": "fddd3e2398b2b458aa5c19a32e0e103fb89af0084e87b34d39bda96017e606fa",
+        "members": [
+          {
+            "bytes": 1060,
+            "matches": true,
+            "path": "orchestration.json",
+            "sha256": "cefaf70849979ba845d04b55887bec067d59755426c8197f020ed15759996a4f"
+          },
+          {
+            "bytes": 0,
+            "matches": true,
+            "path": "outer.stderr",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "bytes": 218,
+            "matches": true,
+            "path": "outer.stdout",
+            "sha256": "2cecaec8cda3e109456ee29df0949d436ad98096f98abfe70da8bb9a3a08d6d5"
+          },
+          {
+            "bytes": 3606,
+            "matches": true,
+            "path": "result/America_Los_Angeles/receipt.json",
+            "sha256": "6d212be02740298c278303699d267feefc910428fa4e79b6550c71ac90cf267d"
+          },
+          {
+            "bytes": 20,
+            "matches": true,
+            "path": "result/America_Los_Angeles/stderr.gz",
+            "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+          },
+          {
+            "bytes": 765,
+            "matches": true,
+            "path": "result/America_Los_Angeles/stdout.gz",
+            "sha256": "c1aaa89fcac023f31de4a1c06ff503208a5eb2a0ebc92efef71928fb41002579"
+          },
+          {
+            "bytes": 0,
+            "matches": true,
+            "path": "result/America_Los_Angeles/timezone-probe.stderr",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "bytes": 237,
+            "matches": true,
+            "path": "result/America_Los_Angeles/timezone-probe.stdout",
+            "sha256": "1d8dd62d99e3b19896e5bf7d68352d86e75b5b0456202ce956fc117d5f25a10e"
+          },
+          {
+            "bytes": 3591,
+            "matches": true,
+            "path": "result/Europe_Berlin/receipt.json",
+            "sha256": "4e6f738c559237859e1d79873c888d5938a4af9f7a59205bd680fc82b8fb7698"
+          },
+          {
+            "bytes": 20,
+            "matches": true,
+            "path": "result/Europe_Berlin/stderr.gz",
+            "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+          },
+          {
+            "bytes": 765,
+            "matches": true,
+            "path": "result/Europe_Berlin/stdout.gz",
+            "sha256": "5904b1b8043c4151eb8d267f3e5dfcc20aa7241211bd27a6f971cd2f7e5ea4c4"
+          },
+          {
+            "bytes": 0,
+            "matches": true,
+            "path": "result/Europe_Berlin/timezone-probe.stderr",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "bytes": 233,
+            "matches": true,
+            "path": "result/Europe_Berlin/timezone-probe.stdout",
+            "sha256": "290b044856ee03805c2234fa65c37d856115f3c9d4dcfdbd00b658a5e8bbbcff"
+          },
+          {
+            "bytes": 3572,
+            "matches": true,
+            "path": "result/UTC/receipt.json",
+            "sha256": "af5ffc7085c585633c1519e10bcf9a7e292b8d0faf2abe7ae42b45e59d0dad43"
+          },
+          {
+            "bytes": 20,
+            "matches": true,
+            "path": "result/UTC/stderr.gz",
+            "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+          },
+          {
+            "bytes": 765,
+            "matches": true,
+            "path": "result/UTC/stdout.gz",
+            "sha256": "7cf9e9beb4451c5627320641a9ddda6ab8ccbbb5daee8be64714c66f910d45a3"
+          },
+          {
+            "bytes": 0,
+            "matches": true,
+            "path": "result/UTC/timezone-probe.stderr",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "bytes": 228,
+            "matches": true,
+            "path": "result/UTC/timezone-probe.stdout",
+            "sha256": "b6b342468470b340ea4579634f2aae5c9523a8105f0203bce25815228d2aa637"
+          },
+          {
+            "bytes": 501385,
+            "matches": true,
+            "path": "result/inputs-after.json.gz",
+            "sha256": "bf964b0c1d5c72ad8c05d8856a6fc45a99fd9a707a53e5e583e51f27aea878f7"
+          },
+          {
+            "bytes": 501385,
+            "matches": true,
+            "path": "result/inputs-before.json.gz",
+            "sha256": "bf964b0c1d5c72ad8c05d8856a6fc45a99fd9a707a53e5e583e51f27aea878f7"
+          },
+          {
+            "bytes": 12784,
+            "matches": true,
+            "path": "result/receipt.json",
+            "sha256": "5370fdf6a9921aec9d2acb09480c9d3e70bd2ca8706f702c4cddc675b162b603"
+          },
+          {
+            "bytes": 296,
+            "matches": true,
+            "path": "result/timezone_probe.dart",
+            "sha256": "b7471d53c9ca529aca55a64641be7a204521732f5d327b8bfc15119ed37302a9"
+          },
+          {
+            "bytes": 4210,
+            "matches": true,
+            "path": "run_supplemental_gates.py",
+            "sha256": "3c9b0360852d3e4f27189543996e7e4690c011c7b58578c1055462c1a40419ec"
+          }
+        ],
+        "sha256": "fa16b563cbb9b625a80640dce0ce4b92ca4535b0d647d6058c67472d44ebfff1"
+      },
+      "input_maps_identical": true,
+      "inputs_after_sha256": "bf964b0c1d5c72ad8c05d8856a6fc45a99fd9a707a53e5e583e51f27aea878f7",
+      "inputs_before_sha256": "bf964b0c1d5c72ad8c05d8856a6fc45a99fd9a707a53e5e583e51f27aea878f7",
+      "integrity_groups": [
+        "dependencies",
+        "harness",
+        "runtime",
+        "source",
+        "workspace"
+      ],
+      "orchestration_sha256": "cefaf70849979ba845d04b55887bec067d59755426c8197f020ed15759996a4f",
+      "outer_exit_code": 0,
+      "receipt_sha256": "5370fdf6a9921aec9d2acb09480c9d3e70bd2ca8706f702c4cddc675b162b603",
+      "runs": [
+        {
+          "events": {
+            "case_names": [
+              "last seven days include both civil endpoints near local midnight",
+              "week ranges include Sunday and exclude the following Sunday",
+              "civil day/week arithmetic crosses DST at 2026-3-30",
+              "civil day/week arithmetic crosses DST at 2026-10-26",
+              "civil day/week arithmetic crosses DST at 2026-3-9",
+              "civil day/week arithmetic crosses DST at 2026-11-2",
+              "January month periods retain the local year near midnight",
+              "December next-month period crosses the local calendar year"
+            ],
+            "completed_events": 9,
+            "done": {
+              "success": true,
+              "time": 1173,
+              "type": "done"
+            },
+            "hidden_events": 1,
+            "observed_suites": 1,
+            "selected_suites": 1,
+            "started_events": 9,
+            "substantive_success_count": 8,
+            "suite_paths": [
+              "/workspace/scratch/eddfdfc8cc56/quds_office_suite/packages/quds_office_engine/test/sheet_time_period_calendar_test.dart"
+            ]
+          },
+          "offsets_minutes": [
+            0,
+            0,
+            0
+          ],
+          "probe_sha256": "b6b342468470b340ea4579634f2aae5c9523a8105f0203bce25815228d2aa637",
+          "timezone": "UTC"
+        },
+        {
+          "events": {
+            "case_names": [
+              "last seven days include both civil endpoints near local midnight",
+              "week ranges include Sunday and exclude the following Sunday",
+              "civil day/week arithmetic crosses DST at 2026-3-30",
+              "civil day/week arithmetic crosses DST at 2026-10-26",
+              "civil day/week arithmetic crosses DST at 2026-3-9",
+              "civil day/week arithmetic crosses DST at 2026-11-2",
+              "January month periods retain the local year near midnight",
+              "December next-month period crosses the local calendar year"
+            ],
+            "completed_events": 9,
+            "done": {
+              "success": true,
+              "time": 1314,
+              "type": "done"
+            },
+            "hidden_events": 1,
+            "observed_suites": 1,
+            "selected_suites": 1,
+            "started_events": 9,
+            "substantive_success_count": 8,
+            "suite_paths": [
+              "/workspace/scratch/eddfdfc8cc56/quds_office_suite/packages/quds_office_engine/test/sheet_time_period_calendar_test.dart"
+            ]
+          },
+          "offsets_minutes": [
+            60,
+            120,
+            60
+          ],
+          "probe_sha256": "290b044856ee03805c2234fa65c37d856115f3c9d4dcfdbd00b658a5e8bbbcff",
+          "timezone": "Europe/Berlin"
+        },
+        {
+          "events": {
+            "case_names": [
+              "last seven days include both civil endpoints near local midnight",
+              "week ranges include Sunday and exclude the following Sunday",
+              "civil day/week arithmetic crosses DST at 2026-3-30",
+              "civil day/week arithmetic crosses DST at 2026-10-26",
+              "civil day/week arithmetic crosses DST at 2026-3-9",
+              "civil day/week arithmetic crosses DST at 2026-11-2",
+              "January month periods retain the local year near midnight",
+              "December next-month period crosses the local calendar year"
+            ],
+            "completed_events": 9,
+            "done": {
+              "success": true,
+              "time": 1399,
+              "type": "done"
+            },
+            "hidden_events": 1,
+            "observed_suites": 1,
+            "selected_suites": 1,
+            "started_events": 9,
+            "substantive_success_count": 8,
+            "suite_paths": [
+              "/workspace/scratch/eddfdfc8cc56/quds_office_suite/packages/quds_office_engine/test/sheet_time_period_calendar_test.dart"
+            ]
+          },
+          "offsets_minutes": [
+            -480,
+            -420,
+            -480
+          ],
+          "probe_sha256": "1d8dd62d99e3b19896e5bf7d68352d86e75b5b0456202ce956fc117d5f25a10e",
+          "timezone": "America/Los_Angeles"
+        }
+      ],
+      "test_executions": 24
+    },
+    "editor-example": {
+      "archive": {
+        "archive": "/workspace/scratch/eddfdfc8cc56/flutter-qualification/runs/editor-example-9d060658.tar.xz",
+        "bytes": 506268,
+        "index_sha256": "f6ae7fe49e540ecfc3ecc08f808b507cdc995c2279273e50d2cb355b025e8f5f",
+        "members": [
+          {
+            "bytes": 1051,
+            "matches": true,
+            "path": "orchestration.json",
+            "sha256": "1bc0783f45207b76b995cf1c0e6fb61ba3b5d6f4fb593860d7273962b3556856"
+          },
+          {
+            "bytes": 0,
+            "matches": true,
+            "path": "outer.stderr",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "bytes": 223,
+            "matches": true,
+            "path": "outer.stdout",
+            "sha256": "21079f449c770b3b6697712219f092f898c17705b6a55ad3b66852a60c805fcf"
+          },
+          {
+            "bytes": 501377,
+            "matches": true,
+            "path": "result/inputs-after.json.gz",
+            "sha256": "e53287e79321f60a5e40dba52203aae2665e1e04dc13a801757d457b5f84a437"
+          },
+          {
+            "bytes": 501377,
+            "matches": true,
+            "path": "result/inputs-before.json.gz",
+            "sha256": "e53287e79321f60a5e40dba52203aae2665e1e04dc13a801757d457b5f84a437"
+          },
+          {
+            "bytes": 2481,
+            "matches": true,
+            "path": "result/receipt.json",
+            "sha256": "dd5f4e68238b89b64536610149f6d24c7ad3b49cd73412f5b304930641aafa59"
+          },
+          {
+            "bytes": 20,
+            "matches": true,
+            "path": "result/stderr.gz",
+            "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+          },
+          {
+            "bytes": 592,
+            "matches": true,
+            "path": "result/stdout.gz",
+            "sha256": "bdc23025b498cef4718ef9782153dcf67833d750740c91be9f0148219f90e1a4"
+          },
+          {
+            "bytes": 4210,
+            "matches": true,
+            "path": "run_supplemental_gates.py",
+            "sha256": "3c9b0360852d3e4f27189543996e7e4690c011c7b58578c1055462c1a40419ec"
+          }
+        ],
+        "sha256": "3764ba4865d6df0dfc568139714add8b730fd00935f2644042f249413eb1f093"
+      },
+      "events": {
+        "case_names": [
+          "Review keeps spelling available without the retired AOT action",
+          "studio hosts Word, Excel, and PowerPoint workspaces"
+        ],
+        "completed_events": 3,
+        "done": {
+          "success": true,
+          "time": 22902,
+          "type": "done"
+        },
+        "hidden_events": 1,
+        "observed_suites": 1,
+        "selected_suites": 1,
+        "started_events": 3,
+        "substantive_success_count": 2,
+        "suite_paths": [
+          "/workspace/scratch/eddfdfc8cc56/quds_office_suite/packages/quds_office_editor/example/test/widget_test.dart"
+        ]
+      },
+      "input_maps_identical": true,
+      "inputs_after_sha256": "e53287e79321f60a5e40dba52203aae2665e1e04dc13a801757d457b5f84a437",
+      "inputs_before_sha256": "e53287e79321f60a5e40dba52203aae2665e1e04dc13a801757d457b5f84a437",
+      "integrity_groups": [
+        "dependencies",
+        "harness",
+        "runtime",
+        "source",
+        "workspace"
+      ],
+      "orchestration_sha256": "1bc0783f45207b76b995cf1c0e6fb61ba3b5d6f4fb593860d7273962b3556856",
+      "outer_exit_code": 0,
+      "receipt_sha256": "dd5f4e68238b89b64536610149f6d24c7ad3b49cd73412f5b304930641aafa59"
+    },
+    "portable": {
+      "archive": {
+        "archive": "/workspace/scratch/eddfdfc8cc56/flutter-qualification/runs/portable-9d060658.tar.xz",
+        "bytes": 522200,
+        "index_sha256": "d50b403deaf6e85b3be53c1c9720b2c1e2de67ce89c47242abc069b4c32c17da",
+        "members": [
+          {
+            "bytes": 1032,
+            "matches": true,
+            "path": "orchestration.json",
+            "sha256": "3800076044a372005ccc1c7497aa774d34e8cbc93fa9023e2231a2750ed4548e"
+          },
+          {
+            "bytes": 0,
+            "matches": true,
+            "path": "outer.stderr",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "bytes": 249,
+            "matches": true,
+            "path": "outer.stdout",
+            "sha256": "1fb8f4eaddfb307a9a7df564d9e55ac3add9e1861dace35cd779d67e94cbc54c"
+          },
+          {
+            "bytes": 501458,
+            "matches": true,
+            "path": "result/inputs-after.json.gz",
+            "sha256": "e13ea9aeda9f52cf3f82eaf5d027a26601ac77fa21c6a63b6ff85a586e335f78"
+          },
+          {
+            "bytes": 501458,
+            "matches": true,
+            "path": "result/inputs-before.json.gz",
+            "sha256": "e13ea9aeda9f52cf3f82eaf5d027a26601ac77fa21c6a63b6ff85a586e335f78"
+          },
+          {
+            "bytes": 46429,
+            "matches": true,
+            "path": "result/receipt.json",
+            "sha256": "461063c9a4e745b3c7ee95ce5a664d0e7fe91fc7f064c0484ddaa37df56b9d90"
+          },
+          {
+            "bytes": 20,
+            "matches": true,
+            "path": "result/stderr.gz",
+            "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+          },
+          {
+            "bytes": 11223,
+            "matches": true,
+            "path": "result/stdout.gz",
+            "sha256": "b03f5b034db0ab864786bc68858961e3f9940a54ab545aed787a1a66205863ee"
+          },
+          {
+            "bytes": 4210,
+            "matches": true,
+            "path": "run_supplemental_gates.py",
+            "sha256": "3c9b0360852d3e4f27189543996e7e4690c011c7b58578c1055462c1a40419ec"
+          }
+        ],
+        "sha256": "8eb94b3f4fcc65c85706fe8854a4e6fc3e0158dab5018008d6c403121884860a"
+      },
+      "events": {
+        "case_names": [
+          "PAGE field retains styled header: ",
+          "PAGE field retains styled header: 27",
+          "PAGE field retains styled header: 1  |  Al Tahreer Neighborhood Profile",
+          "PAGE field retains styled footer: ",
+          "PAGE field retains styled footer: 27",
+          "PAGE field retains styled footer: 1  |  Al Tahreer Neighborhood Profile",
+          "an empty PAGE paragraph without runs still emits one live field",
+          "an empty bookmarked PAGE paragraph keeps the field inside its range",
+          "split cached number and title retain the suffix run formatting",
+          "PAGE field preserves bookmark and comment ownership",
+          "an auxiliary PAGE anchor cannot consume a shared body comment",
+          "PAGE consumes first footnote spacing: ",
+          "PAGE consumes first footnote spacing: 9",
+          "PAGE consumes first endnote spacing: ",
+          "PAGE consumes first endnote spacing: 9",
+          "PAGE note respects intentionally absent reference spacing",
+          "explicit non-PAGE instruction retains cached result:  NUMPAGES ",
+          "explicit non-PAGE instruction retains cached result:  DATE ",
+          "explicit non-PAGE instruction retains cached result: UNKNOWN custom",
+          "unsupported PAGE instruction preserves cache with flag false:  PAGE \\* ROMAN ",
+          "unsupported PAGE instruction preserves cache with flag true:  PAGE \\* ROMAN ",
+          "unsupported PAGE instruction preserves cache with flag false:  PAGE \\# \"000\" ",
+          "unsupported PAGE instruction preserves cache with flag true:  PAGE \\# \"000\" ",
+          "unsupported PAGE instruction preserves cache with flag false:  PAGE \\* MERGEFORMAT extra ",
+          "unsupported PAGE instruction preserves cache with flag true:  PAGE \\* MERGEFORMAT extra ",
+          "unsupported PAGE instruction preserves cache with flag false:  PAGE custom ",
+          "unsupported PAGE instruction preserves cache with flag true:  PAGE custom ",
+          "unsupported PAGE switch retains styled linked header cache",
+          "unsupported PAGE switch retains styled linked footer cache",
+          "explicit PAGE instruction works without the compatibility flag:  PAGE ",
+          "explicit PAGE instruction works without the compatibility flag:  pAgE \\* mErGeFoRmAt ",
+          "explicit PAGE instruction works without the compatibility flag: \tPAGE\n",
+          "mixed native inline fields retain their cached content",
+          "leading PAGE list item retains its section boundary and sibling style",
+          "imported locked PAGE (true) retains its numeric cache",
+          "imported locked PAGE (1) retains its numeric cache",
+          "imported locked PAGE (on) retains its numeric cache",
+          "locked NUMPAGES retains its native boundary metadata on save",
+          "an invalid field-lock value retains the authored cache",
+          "foreign boundary metadata retains its cache and boundary packet",
+          "formatted instruction runs retain their cache and metadata",
+          "form-data fields remain cached during DOCX-to-ODT export",
+          "a missing separator cannot erase a numeric PAGE cache",
+          "duplicate separators retain all visible cached text",
+          "an instruction after its separator retains the cache",
+          "text before its separator is not discarded as a PAGE result",
+          "unsupported imported PAGE switch retains IV",
+          "unsupported imported PAGE switch retains 017",
+          "unsupported imported PAGE switch retains 17",
+          "an unterminated imported field keeps its cache and following text",
+          "nested imported fields keep both visible caches",
+          "complete supported instruction  PAGE  remains a live PAGE",
+          "complete supported instruction  PAGE \\* MERGEFORMAT  remains a live PAGE",
+          "fragmented complete PAGE instructions still use the paragraph model",
+          "ordinary complete DATE keeps the established paragraph field model",
+          "PAGE cache retains significant spaces through fallback",
+          "PAGE cache retains significant tab through fallback",
+          "PAGE cache retains significant line break through fallback",
+          "NUMPAGES cache retains significant spaces through fallback",
+          "NUMPAGES cache retains significant tab through fallback",
+          "NUMPAGES cache retains significant line break through fallback",
+          "PAGE preserves its cached text, style and hyperlink",
+          "NUMPAGES preserves its cached text, style and hyperlink",
+          "assembles instruction fragments before selecting a native field",
+          "adjacent fields keep one native field and one cache each",
+          "unsupported instruction DATE retains its visible cache",
+          "unsupported instruction TIME retains its visible cache",
+          "unsupported instruction TITLE retains its visible cache",
+          "unsupported instruction PAGE \\* ROMAN retains its visible cache",
+          "unsupported instruction REF target retains its visible cache",
+          "locked fields retain their cached display",
+          "field instruction run formatting retains the cache",
+          "malformed source metadata falls back without throwing",
+          "form state retains the cache without a partial native field",
+          "unterminated fields preserve the cache and following paragraphs",
+          "orphan instruction leaves following text visible",
+          "missing separator retains all cached content",
+          "nested fields preserve all cached runs without partial conversion",
+          "atomic note results retain their reference and note body",
+          "multiple styled result runs remain visible and separate",
+          "an unfinished header field cannot consume a footer cache",
+          "a cross-paragraph outer field prevents nested conversion only",
+          "native cached character data is escaped without adding child nodes",
+          "field cache fallback retains an authored inline column break",
+          "imported leading column break belongs only to its kept paragraph",
+          "imported middle column break retains exact runs, links and bookmark extent",
+          "authored whitespace before a column break remains before that break",
+          "middle column break stays within one imported list item",
+          "consecutive and trailing column breaks retain each authored boundary",
+          "section and page boundaries precede both authored column breaks",
+          "line and page breaks retain their existing position beside a column break",
+          "split paragraph retains single comment, note and field result ownership",
+          "paragraph PAGE field is generated once across a column continuation",
+          "leading TOC inherits section once: titled=true cached=true",
+          "leading TOC inherits section once: titled=true cached=false",
+          "leading TOC inherits section once: titled=false cached=true",
+          "leading TOC inherits section once: titled=false cached=false",
+          "TOC-only section has no trailing synthetic page anchor",
+          "title-only TOC carries its section activation",
+          "empty titleless TOC leaves the next visible section anchor intact",
+          "TOC inside a content control receives the pending section",
+          "leading TOC selects the correct parity master for WmlSectionBreakKind.oddPage",
+          "leading TOC selects the correct parity master for WmlSectionBreakKind.evenPage",
+          "continuous TOC does not append a blank paragraph or force a master",
+          "a first list item selects the section while its siblings do not",
+          "table-only sections activate the table without inserting a paragraph",
+          "nested controls and empty wrappers preserve a leading list activation",
+          "nested controls pass section activation to a leading table",
+          "ignored blocks do not consume the next visible section anchor",
+          "a first picture is anchored inside the section paragraph",
+          "a visual fallback stays in one paragraph carrying its section",
+          "a first frame anchors on the current page with physical page coordinates",
+          "floating frame ranges use a common graphic parent in styles.xml",
+          "a later frame retains its page-relative paragraph anchor",
+          "empty sections keep their own boundary and do not steal the next one",
+          "an empty document has a usable default master without changing the model",
+          "section headings retain resolved spacing, direction and indents directly",
+          "continuous equal page styles do not select a new master or add a break",
+          "continuous equal normal header and footer content can reuse a master",
+          "continuous changed geometry still selects the authored page style",
+          "continuous changed header keeps a distinct section master",
+          "authored paragraph page breaks survive a continuous section",
+          "WmlSectionBreakKind.oddPage selects a parity entry master that returns to normal pages",
+          "WmlSectionBreakKind.evenPage selects a parity entry master that returns to normal pages",
+          "a first section does not inject a page break from its boundary kind",
+          "explicit numbering removal remains an ordinary section paragraph",
+          "parity masters repeat visible headers but emit each comment only once",
+          "empty unchanged continuous sections add no paragraph or vertical gap",
+          "equal header image bytes do not turn a continuous section into a new page",
+          "repeated header comments do not force a continuous section break",
+          "different authored header comment references retain distinct masters",
+          "header and footer list stories restart independently and compare equally",
+          "non-text content before a field stays outside its result",
+          "a cross-reference inside a sentence stays inside the sentence",
+          "two hyperlinks in one paragraph stay two fields",
+          "form fields keep their ffData",
+          "nested fields keep their structure",
+          "a field wrapping the whole paragraph keeps the paragraph model",
+          "a field broken by an edit degrades to text, never to a corrupt package",
+          "rich simple citations retain one linked field and styled cache",
+          "ordinary one-run simple citations keep their atomic representation",
+          "locked rich simple citations refuse replacement and unlinking",
+          "nested simple citations retain both identities and refuse edits",
+          "a generic simple parent does not expose its nested Zotero cache",
+          "simple extension attributes stay opaque through saves: rich=false",
+          "simple extension attributes stay opaque through saves: rich=true",
+          "rich simple bibliographies keep their field metadata and styles",
+          "tracked rich simple cache retains real paragraph revision offsets",
+          "malformed rich simple metadata stays a preserved uneditable field",
+          "disjoint imported tracked ranges inside one rich citation remain exact",
+          "page locator does not discard numeric citation cache: isolate=false",
+          "an earlier PAGE field does not consume later numbers: isolate=false",
+          "page locator does not discard numeric citation cache: isolate=true",
+          "an earlier PAGE field does not consume later numbers: isolate=true",
+          "PAGE used as a field argument keeps its numeric result",
+          "whole-paragraph native PAGE remains a dynamic page field",
+          "a PAGE fragment inside citation JSON is not a PAGE command",
+          "tracked native PAGE cache keeps valid revision text and boundaries",
+          "applyHeading sets outline level and run look",
+          "TOC collects headings and page numbers across breaks",
+          "TOC and headings survive Word serialize round-trip",
+          "page-number sync keeps customized TOC paragraphs",
+          "hyperlinks and heading bookmarks round-trip",
+          "rebindHeadings repairs absorbed TOC paragraph indexes",
+          "TOC page numbers sit on the right margin, not the title",
+          "Docx builder heading writes outline level",
+          "cross-control revision validation cannot rebase another pending span",
+          "direct export rejects stale spans before package mutation",
+          "isolate export rejects stale spans before package mutation",
+          "batch validation is atomic when a later revision is invalid",
+          "invalid ranges cannot be clamped into unrelated text on resolution",
+          "engine batch resolution rebases later ranges in insertion order",
+          "recorded partial atomic spans expand with matching text immediately",
+          "an empty bookmarked PAGE field precedes its trailing column break",
+          "a first-section leading column break retains its empty source fragment",
+          "a runless bookmarked PAGE stays after a leading column break",
+          "a leading column break remains separate from a later nextPage section boundary with pageBreakBefore=false",
+          "a leading column break remains separate from a later nextPage section boundary with pageBreakBefore=true",
+          "a leading column break remains separate from a later continuous section boundary with pageBreakBefore=false",
+          "a leading column break remains separate from a later continuous section boundary with pageBreakBefore=true",
+          "a leading column break remains separate from a later oddPage section boundary with pageBreakBefore=false",
+          "a leading column break remains separate from a later oddPage section boundary with pageBreakBefore=true",
+          "a leading column break remains separate from a later evenPage section boundary with pageBreakBefore=false",
+          "a leading column break remains separate from a later evenPage section boundary with pageBreakBefore=true",
+          "an explicit paragraph page break keeps precedence over its leading column break",
+          "column break stays with its paragraph: enabledFirst=false",
+          "column break stays with its paragraph: enabledFirst=true",
+          "keep together stays with its paragraph: enabledFirst=false",
+          "keep together stays with its paragraph: enabledFirst=true",
+          "all break and keep combinations retain page-break precedence",
+          "section boundaries retain page breaks with column and keep flags",
+          "section column styles use the ODF child and preserve each owner",
+          "unrepresentable NaN gap omits only that attribute",
+          "unrepresentable positive infinity gap omits only that attribute",
+          "unrepresentable negative infinity gap omits only that attribute",
+          "unrepresentable exponent gap omits only that attribute",
+          "supported gaps retain precision while negative gaps stay unspecified",
+          "a malformed bookmark id still reserves its emitted name",
+          "column properties use the ODF columns child and retain body text",
+          "resolved single-column section -1 retains an ordinary body",
+          "resolved single-column section 0 retains an ordinary body",
+          "resolved single-column section 1 retains an ordinary body",
+          "empty multicolumn section keeps its page anchor inside its section",
+          "table-first section stays inside columns without an extra anchor",
+          "column styles distinguish count and normalized gap",
+          "zero and negative zero gaps share a valid zero-length style",
+          "invalid gap -1 is omitted without losing columns or text",
+          "invalid gap -0.001 is omitted without losing columns or text",
+          "invalid gap NaN is omitted without losing columns or text",
+          "invalid gap Infinity is omitted without losing columns or text",
+          "invalid gap -Infinity is omitted without losing columns or text",
+          "invalid gap 1e+21 is omitted without losing columns or text",
+          "imported DOCX overlapping ranges retain unnamed ends on ODT export",
+          "bookmark ranges remain owned by body and nested stories",
+          "an unmatched end never borrows a bookmark from another story",
+          "all variants follow the ODF master-page child sequence",
+          "variants with empty defaults follow the ODF master-page child sequence",
+          "first variants with empty defaults follow the ODF master-page child sequence",
+          "even variants with empty defaults follow the ODF master-page child sequence",
+          "firstHeader master reuse respects authored comment references",
+          "firstFooter master reuse respects authored comment references",
+          "evenHeader master reuse respects authored comment references",
+          "evenFooter master reuse respects authored comment references",
+          "leading and later text frames share one common graphic parent",
+          "documents without text frames do not add an unused graphic style"
+        ],
+        "completed_events": 242,
+        "done": {
+          "success": true,
+          "time": 85854,
+          "type": "done"
+        },
+        "hidden_events": 17,
+        "observed_suites": 17,
+        "selected_suites": 17,
+        "started_events": 242,
+        "substantive_success_count": 225,
+        "suite_paths": [
+          "/workspace/scratch/eddfdfc8cc56/quds_office_suite/packages/quds_office_engine/test/odt_page_field_fidelity_test.dart",
+          "/workspace/scratch/eddfdfc8cc56/quds_office_suite/packages/quds_office_engine/test/odt_imported_field_fidelity_test.dart",
+          "/workspace/scratch/eddfdfc8cc56/quds_office_suite/packages/quds_office_engine/test/odt_inline_field_fidelity_test.dart",
+          "/workspace/scratch/eddfdfc8cc56/quds_office_suite/packages/quds_office_engine/test/odt_inline_column_break_fidelity_test.dart",
+          "/workspace/scratch/eddfdfc8cc56/quds_office_suite/packages/quds_office_engine/test/odt_section_fidelity_test.dart",
+          "/workspace/scratch/eddfdfc8cc56/quds_office_suite/packages/quds_office_engine/test/word_field_span_test.dart",
+          "/workspace/scratch/eddfdfc8cc56/quds_office_suite/packages/quds_office_engine/test/word_zotero_simple_field_test.dart",
+          "/workspace/scratch/eddfdfc8cc56/quds_office_suite/packages/quds_office_engine/test/word_toc_test.dart",
+          "/workspace/scratch/eddfdfc8cc56/quds_office_suite/packages/quds_office_engine/test/word_revision_validation_test.dart",
+          "/workspace/scratch/eddfdfc8cc56/quds_office_suite/packages/quds_office_engine/test/odt_page_marker_column_break_test.dart",
+          "/workspace/scratch/eddfdfc8cc56/quds_office_suite/packages/quds_office_engine/test/odt_column_break_style_fidelity_test.dart",
+          "/workspace/scratch/eddfdfc8cc56/quds_office_suite/packages/quds_office_engine/test/odt_bookmark_name_ambiguity_test.dart",
+          "/workspace/scratch/eddfdfc8cc56/quds_office_suite/packages/quds_office_engine/test/odt_bookmark_range_fidelity_test.dart",
+          "/workspace/scratch/eddfdfc8cc56/quds_office_suite/packages/quds_office_engine/test/odt_section_columns_test.dart",
+          "/workspace/scratch/eddfdfc8cc56/quds_office_suite/packages/quds_office_engine/test/odt_header_variant_order_test.dart",
+          "/workspace/scratch/eddfdfc8cc56/quds_office_suite/packages/quds_office_engine/test/odt_header_variant_comment_fidelity_test.dart",
+          "/workspace/scratch/eddfdfc8cc56/quds_office_suite/packages/quds_office_engine/test/odt_frame_common_style_test.dart"
+        ]
+      },
+      "input_maps_identical": true,
+      "inputs_after_sha256": "e13ea9aeda9f52cf3f82eaf5d027a26601ac77fa21c6a63b6ff85a586e335f78",
+      "inputs_before_sha256": "e13ea9aeda9f52cf3f82eaf5d027a26601ac77fa21c6a63b6ff85a586e335f78",
+      "integrity_groups": [
+        "dependencies",
+        "harness",
+        "node",
+        "runtime",
+        "source",
+        "workspace"
+      ],
+      "orchestration_sha256": "3800076044a372005ccc1c7497aa774d34e8cbc93fa9023e2231a2750ed4548e",
+      "outer_exit_code": 0,
+      "receipt_sha256": "461063c9a4e745b3c7ee95ce5a664d0e7fe91fc7f064c0484ddaa37df56b9d90"
+    }
+  },
+  "github_actions_endpoints_queried": 0,
+  "independent_checks": 9301,
+  "live_input_files_rehashed": {
+    "dependencies": 5099,
+    "runtime": 13,
+    "source": 3514,
+    "workspace": 118
+  },
+  "no_tests_rerun": true,
+  "overall_office_qualification_accepted": false,
+  "portable_substantive_successes": 225,
+  "reviewer_script_sha256": "c11532cf1ffe82f4a15a468d54639449e65342826ae358b88adba2180be91a9a",
+  "schema": "quds.office.independent_supplemental_review.v1",
+  "scope": "Portable, editor example and civil-date timezone gates only; native/document-consumer gates remain separate.",
+  "source_commit": "9d060658ee6be8ec97d73f56b9aec10d346b7952",
+  "source_runtime_mutations": 0,
+  "started_utc": "2026-11-18T06:01:42.757910+00:00",
+  "supplemental_runtime_after": [
+    {
+      "bytes": 126951512,
+      "path": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "sha256": "acbe4b8d9153b841ed0697cbfc4f93e767386620edb745ab9358306c0a6f31aa",
+      "unchanged": true
+    },
+    {
+      "bytes": 17153416,
+      "path": "/workspace/scratch/eddfdfc8cc56/toolchains/flutter/bin/cache/artifacts/engine/linux-x64/frontend_server_aot.dart.snapshot",
+      "sha256": "0c484223020a7aad5874e1ef3bdcc43c9d0b36a1402f223d538ee2d4cc0b847a",
+      "unchanged": true
+    },
+    {
+      "bytes": 20827888,
+      "path": "/workspace/scratch/eddfdfc8cc56/toolchains/flutter/bin/cache/dart-sdk/bin/snapshots/dart2js_aot.dart.snapshot",
+      "sha256": "29314b1f8e994436c5639a59df0243692cd83625fc587619a9c99e9a3804b1d6",
+      "unchanged": true
+    },
+    {
+      "bytes": 14156264,
+      "path": "/workspace/scratch/eddfdfc8cc56/toolchains/flutter/bin/cache/dart-sdk/bin/snapshots/gen_kernel_aot.dart.snapshot",
+      "sha256": "d4b8f600d1195c5c505fa74951dd9b71971c8d63b3a144719d194f0852734140",
+      "unchanged": true
+    },
+    {
+      "bytes": 10711488,
+      "path": "/workspace/scratch/eddfdfc8cc56/toolchains/flutter/bin/cache/dart-sdk/lib/_internal/dart2js_platform.dill",
+      "sha256": "c6fc24d85e51c8768b35794d881f83d5b27e81c2185c32f0fdb259c0ca901ce2",
+      "unchanged": true
+    },
+    {
+      "bytes": 6793784,
+      "path": "/workspace/scratch/eddfdfc8cc56/toolchains/flutter/bin/cache/dart-sdk/lib/_internal/dart2js_server_platform.dill",
+      "sha256": "d82e9a13a65e8bdfcf7727c8c479e652fb0384519568e241826c78fa8e4822ad",
+      "unchanged": true
+    },
+    {
+      "bytes": 8663120,
+      "path": "/workspace/scratch/eddfdfc8cc56/toolchains/flutter/bin/cache/dart-sdk/lib/_internal/vm_platform_strong.dill",
+      "sha256": "883d97292177020d42bed41ffcc3755319bb499872239715dde5e0ae3a723f67",
+      "unchanged": true
+    },
+    {
+      "bytes": 27008128,
+      "path": "/workspace/scratch/eddfdfc8cc56/flutter-qualification/workspace/.dart_tool/pub/bin/test/test.dart-3.13.7.snapshot",
+      "sha256": "4810081b594f9d5ab349fdf9f9d665ae8b1569145b5ebfb379490421d99c8034",
+      "unchanged": true
+    }
+  ],
+  "timezone_executions": 24,
+  "timezone_executions_overlap_canonical": true
+}
