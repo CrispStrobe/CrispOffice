@@ -514,6 +514,14 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
     });
   }
 
+  Future<void> _showStoredReferenceDetails(ZoteroCitationItem item) async {
+    if (_busy) return;
+    await showDialog<void>(
+      context: context,
+      builder: (_) => ZoteroStoredReferenceDetailsDialog(item: item),
+    );
+  }
+
   Widget _reviewSelectionButton(String key) => TextButton.icon(
     key: ValueKey(key),
     onPressed: _busy || _selected.isEmpty ? null : _reviewSelection,
@@ -2636,31 +2644,51 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
                         itemBuilder: (context, index) {
                           final entry = visible[index];
                           final key = entry.selectionKey;
-                          return CheckboxListTile(
-                            key: ValueKey(key),
-                            dense: true,
-                            value: _selected.containsKey(key),
-                            title: Text(
-                              entry.title,
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                            subtitle: entry.subtitle.isEmpty
-                                ? null
-                                : Text(
-                                    entry.subtitle,
-                                    maxLines: 2,
+                          return Row(
+                            children: [
+                              Expanded(
+                                child: CheckboxListTile(
+                                  key: ValueKey(key),
+                                  dense: true,
+                                  value: _selected.containsKey(key),
+                                  title: Text(
+                                    entry.title,
+                                    maxLines: 1,
                                     overflow: TextOverflow.ellipsis,
                                   ),
-                            onChanged: _busy
-                                ? null
-                                : (value) => setState(() {
-                                    if (value == false) {
-                                      _selected.remove(key);
-                                    } else if (_selected.length < 20) {
-                                      _selected[key] = entry.item;
-                                    }
-                                  }),
+                                  subtitle: entry.subtitle.isEmpty
+                                      ? null
+                                      : Text(
+                                          entry.subtitle,
+                                          maxLines: 2,
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                  onChanged: _busy
+                                      ? null
+                                      : (value) => setState(() {
+                                          _error = null;
+                                          if (value == false) {
+                                            _selected.remove(key);
+                                          } else if (_selected.length < 20) {
+                                            _selected[key] = entry.item;
+                                          } else {
+                                            _error =
+                                                'Select at most 20 sources per citation.';
+                                          }
+                                        }),
+                                ),
+                              ),
+                              IconButton(
+                                key: ValueKey('zotero-import-details-$key'),
+                                tooltip: 'Stored reference details',
+                                onPressed: _busy
+                                    ? null
+                                    : () => _showStoredReferenceDetails(
+                                        entry.item,
+                                      ),
+                                icon: const Icon(Icons.info_outline),
+                              ),
+                            ],
                           );
                         },
                       ),

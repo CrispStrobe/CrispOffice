@@ -246,6 +246,22 @@ changes. Reordering and removal preserve each source's identity and embedded
 metadata and do not add document history. Inserting a citation remains a
 separate, undoable operation. The selection limit remains 20 sources.
 
+The information button beside an imported result, or within **Review selected**,
+opens **Stored reference details**. Inspect the complete title, creator roles,
+publication and date, publisher, identifiers, source links and abstract supplied
+with that reference. **Copy details** copies the same readable summary, and each
+field can also be selected. This view works offline and in a read-only document.
+It uses the stored metadata without fetching updates; imported records do not
+need a connected Zotero library. Links remain selectable text.
+
+Opening details within selection review keeps any staged reordering and removals.
+Closing details returns to that review; **Apply selection** or **Cancel** still
+decides whether to keep the staged selection. Duplicate imported IDs remain
+separate references. Unknown CSL fields remain available through **Copy stored
+CSL JSON**. If selecting another imported reference would exceed the 20-source
+limit, the workspace explains the limit; use **Review selected** to remove a
+source even when it is hidden by the current search.
+
 ### Search imported references and copy stored data
 
 After **Load references**, use **Search imported references** to filter the

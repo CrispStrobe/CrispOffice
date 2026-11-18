@@ -18,6 +18,12 @@ All notable changes to `quds_office_editor` are documented here.
   identical active explicit check. Export pane/status widgets and controller
   navigation APIs for embedders.
 
+- Inspect and copy stored reference details from CSL import results and staged
+  selection review, including full titles, creator roles, bibliographic fields
+  and source identities. Keep offline and mixed-library selections unchanged.
+- Explain the 20-source citation limit when another imported reference cannot
+  be selected, including when selected sources are hidden by a filter.
+
 - Search imported Zotero CSL references locally by title, creators, year and
   DOI, with creator/year labels, result counts and selections retained across
   filters. Preserve original import identities even when IDs or titles repeat.
