@@ -3,7 +3,7 @@
   "status": "source_only_uncompiled",
   "driver": "packages/quds_proofing_spacy/tool/consume_distribution.dart",
   "branch": "feat/native-spacy-w7-20261118",
-  "parent_commit": "06563d61e8f8450d1ff9f8ac4da65a5b92b95713",
+  "parent_commit": "93e59292b19e4edba94fb1230ed0317c0bda2ae7",
   "protocol": "docs/validation/native-spacy-w7-20261118/operational-protocol.json",
   "crisp_protocol_publication": "c0f9837c2af318a10f907531b41e3269757efe64",
   "package_archive_sha256": "4e3b627a614cd21851e6e354335e2e08adeb4cedd4d7778df0cc68c1ce2edf01",
@@ -19,7 +19,7 @@
   "github_actions_queries_waits_reruns": 0,
   "blocker": {
     "kind": "ENOSPC during execution sandbox setup",
-    "observed_error": "bwrap: Can't create file /workspace/scratch/8ec0de360d14/.git: No space left on device",
+    "observed_error": "bwrap: Can't create file WORKSPACE/.git: No space left on device",
     "failed_operations": [
       "writing the new consumer source locally",
       "starting model-free compilation",
@@ -27,7 +27,8 @@
       "deleting a redundant task-owned JSON receipt"
     ],
     "no_existing_shell_session_available": true,
-    "remote_only_checkpoint": true
+    "remote_only_checkpoint": true,
+    "observed_error_path_redacted": true
   },
   "prior_observed_dart_restore": {
     "status": "passed before later filesystem exhaustion",
@@ -101,5 +102,35 @@
     "Publish the locally checked driver source before its first actual installed-package run.",
     "Run the frozen operational package consumer with an external process timeout and a fresh report path; retain actual outcomes and source hashes.",
     "Do not treat this source-only checkpoint as completed W7 consumer qualification."
-  ]
+  ],
+  "initial_source_checkpoint_commit": "93e59292b19e4edba94fb1230ed0317c0bda2ae7",
+  "static_source_review": {
+    "status": "source_review_only; compilation and tests remain unexecuted",
+    "quds_api_commit": "20026ff49ac37391e2a1fd0947560a587f2f7332",
+    "quds_api_files": [
+      "packages/quds_proofing_spacy/lib/src/analysis.dart",
+      "packages/quds_proofing_spacy/lib/src/backend.dart",
+      "packages/quds_proofing_spacy/lib/src/bundle.dart",
+      "packages/quds_proofing_spacy/lib/src/native_backend.dart",
+      "packages/quds_proofing_spacy/lib/src/transport.dart"
+    ],
+    "protocol_commit": "93e59292b19e4edba94fb1230ed0317c0bda2ae7",
+    "distribution_source_commit": "c0f9837c2af318a10f907531b41e3269757efe64",
+    "distribution_source_path": "tools/spacy/distribution.py",
+    "verified_api_contracts": [
+      "SpacyBundle.germanF32 is a const constructor.",
+      "SpacyNativeBackendFactory takes bundleDirectory, libraryPath and librarySha256.",
+      "LinguisticAnalysisRequest fields and sameSnapshot include source text and every identity field used by this driver.",
+      "startSpacyWorker accepts bundle, backendFactory, startupTimeout and requestTimeout.",
+      "LinguisticAnalysisResult.toJson omits request identity; token.toJson omits sentenceEnd.",
+      "Repeat comparisons explicitly use token and sentence annotations with sentenceEnd included; request snapshots are checked independently."
+    ],
+    "verified_json_contracts": [
+      "Frozen protocol uses schema, cases[].id/text/utf8_sha256, cycle_text, cycle_utf8_sha256 and platform.required_cpu_flags.",
+      "Fixed distribution uses files mapping entries with sha256/size_bytes, native.library_sha256, bundle_manifest_sha256, entrypoints.library/bundle and system_dependencies.qualified_resolved_files[].soname/sha256/bytes."
+    ],
+    "typing": "Checked Map<String, Object?>, List<Object?>, string and integer readers replace unchecked JSON casts and chained indexing.",
+    "rules_source": ".cursorrules: 100% type safety; no dynamic or untyped maps",
+    "limitations": "Static inspection does not establish successful compilation or execution."
+  }
 }

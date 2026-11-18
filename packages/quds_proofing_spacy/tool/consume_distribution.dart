@@ -19,6 +19,26 @@ void require(bool condition, String message) {
   if (!condition) throw StateError(message);
 }
 
+Map<String, Object?> readMap(Object? value, String label) {
+  if (value is! Map<String, Object?>) throw FormatException('$label must be an object.');
+  return value;
+}
+
+List<Object?> readList(Object? value, String label) {
+  if (value is! List<Object?>) throw FormatException('$label must be a list.');
+  return value;
+}
+
+String readString(Object? value, String label) {
+  if (value is! String) throw FormatException('$label must be a string.');
+  return value;
+}
+
+int readInt(Object? value, String label) {
+  if (value is! int) throw FormatException('$label must be an integer.');
+  return value;
+}
+
 bool validHash(String value) => RegExp(r'^[0-9a-f]{64}$').hasMatch(value);
 String digest(List<int> bytes) => sha256.convert(bytes).toString();
 bool safeMember(String value) =>
@@ -58,7 +78,7 @@ Future<void> directAncestors(String path) async {
   }
 }
 
-Future<Map<String, dynamic>> installed(String rootPath, String archiveSha) async {
+Future<Map<String, Object?>> installed(String rootPath, String archiveSha) async {
   final root = Directory(rootPath).absolute;
   await directAncestors('${root.path}/distribution.json');
   require(root.uri.pathSegments.where((p) => p.isNotEmpty).last == archiveSha,
@@ -66,18 +86,19 @@ Future<Map<String, dynamic>> installed(String rootPath, String archiveSha) async
   require((await root.stat()).mode & 0x1ff == 0x16d, 'Installation is not 0555.');
   final bytes = await authenticate(File('${root.path}/distribution.json'),
       manifestSha, 65536, mode: 0x124);
-  final manifest = jsonDecode(utf8.decode(bytes)) as Map<String, dynamic>;
+  final manifest = readMap(jsonDecode(utf8.decode(bytes)), 'manifest');
   require(manifest['schema'] == 'crispembed.spacy.distribution.v1', 'Wrong manifest.');
-  final pins = manifest['files'] as Map<String, dynamic>;
+  final pins = readMap(manifest['files'], 'manifest.files');
   require(pins.length == 20, 'Incomplete installed payload.');
   final directories = <String>{};
   for (final entry in pins.entries) {
     require(safeMember(entry.key), 'Unsafe pinned member.');
     final parts = entry.key.split('/');
     for (var i = 1; i < parts.length; i++) directories.add(parts.take(i).join('/'));
-    final pin = entry.value as Map<String, dynamic>;
-    await authenticate(File('${root.path}/${entry.key}'), pin['sha256'] as String,
-        pin['size_bytes'] as int, exact: pin['size_bytes'] as int, mode: 0x124);
+    final pin = readMap(entry.value, 'payload pin');
+    final size = readInt(pin['size_bytes'], 'payload size');
+    await authenticate(File('${root.path}/${entry.key}'),
+        readString(pin['sha256'], 'payload hash'), size, exact: size, mode: 0x124);
   }
   final seenFiles = <String>{}, seenDirectories = <String>{};
   await for (final entity in root.list(recursive: true, followLinks: false)) {
@@ -96,15 +117,20 @@ Future<Map<String, dynamic>> installed(String rootPath, String archiveSha) async
   }
   require(seenFiles.length == 21 && seenDirectories.length == directories.length,
       'Installed tree is incomplete.');
-  require(manifest['native']['library_sha256'] == librarySha &&
+  final native = readMap(manifest['native'], 'manifest.native');
+  require(native['library_sha256'] == librarySha &&
       manifest['bundle_manifest_sha256'] == spacyBundleManifestSha256,
       'Native/model identity changed.');
   return manifest;
 }
 
-Future<Map<String, Object>> cpuPreflight(Map<String, dynamic> protocol) async {
+Future<Map<String, Object?>> cpuPreflight(Map<String, Object?> protocol) async {
   require(Platform.isLinux && Abi.current() == Abi.linuxX64, 'Linux x86-64 required.');
-  final required = (protocol['platform']['required_cpu_flags'] as List).cast<String>();
+  final platform = readMap(protocol['platform'], 'protocol.platform');
+  require(platform['system'] == 'Linux' && platform['machine'] == 'x86_64',
+      'Protocol target differs from the accepted platform.');
+  final required = readList(platform['required_cpu_flags'], 'CPU flags')
+      .map((value) => readString(value, 'CPU flag')).toList();
   require(required.toSet().containsAll(['avx', 'avx2', 'bmi2', 'f16c', 'fma', 'sse4_2']),
       'Protocol weakens the accepted CPU baseline.');
   final cpu = await File('/proc/cpuinfo').readAsString();
@@ -113,37 +139,39 @@ Future<Map<String, Object>> cpuPreflight(Map<String, dynamic> protocol) async {
     final flags = row.group(1)!.split(RegExp(r'\s+')).toSet();
     return required.every(flags.contains);
   }), 'CPU lacks the frozen native baseline.');
-  return {'abi': Abi.current().toString(), 'processor_flag_rows': rows.length,
+  return <String, Object?>{'abi': Abi.current().toString(), 'processor_flag_rows': rows.length,
     'required_flags': required, 'all_processor_rows_pass': true};
 }
 
-Future<List<Map<String, Object>>> dependencyPreflight(
-    String library, Map<String, dynamic> manifest) async {
+Future<List<Map<String, Object?>>> dependencyPreflight(
+    String library, Map<String, Object?> manifest) async {
   // Developer harness only: ldd reads the already-authenticated candidate.
   final result = await Process.run('ldd', [library]).timeout(timeout);
   require(result.exitCode == 0, 'ldd dependency resolution failed.');
   final resolved = <String, String>{};
-  for (final line in (result.stdout as String).split('\n')) {
+  for (final line in readString(result.stdout, 'ldd stdout').split('\n')) {
     final parts = line.trim().split(RegExp(r'\s+'));
     if (parts.length >= 3 && parts[1] == '=>') resolved[parts[0]] = parts[2];
     if (parts.first.startsWith('/')) resolved[parts.first.split('/').last] = parts.first;
   }
-  final rows = <Map<String, Object>>[];
-  for (final raw in manifest['system_dependencies']['qualified_resolved_files'] as List) {
-    final pin = raw as Map<String, dynamic>;
-    final name = pin['soname'] as String;
+  final rows = <Map<String, Object?>>[];
+  final system = readMap(manifest['system_dependencies'], 'system dependencies');
+  for (final raw in readList(system['qualified_resolved_files'], 'qualified files')) {
+    final pin = readMap(raw, 'dependency pin');
+    final name = readString(pin['soname'], 'dependency soname');
     require(resolved.containsKey(name), 'A qualified dependency was not resolved.');
     final path = await File(resolved[name]!).resolveSymbolicLinks();
-    await authenticate(File(path), pin['sha256'] as String,
-        pin['bytes'] as int, exact: pin['bytes'] as int);
-    rows.add({'soname': name, 'path': path, 'sha256': pin['sha256'], 'bytes': pin['bytes']});
+    final hash = readString(pin['sha256'], 'dependency hash');
+    final size = readInt(pin['bytes'], 'dependency size');
+    await authenticate(File(path), hash, size, exact: size);
+    rows.add(<String, Object?>{'soname': name, 'path': path, 'sha256': hash, 'bytes': size});
   }
   require(rows.length == 6, 'Qualified dependency closure is incomplete.');
   return rows;
 }
 
-Future<List<Map<String, Object>>> mappedDependencies(
-    List<Map<String, Object>> rows, String library) async {
+Future<List<Map<String, Object?>>> mappedDependencies(
+    List<Map<String, Object?>> rows, String library) async {
   final mapped = <String>{};
   for (final line in await File('/proc/self/maps').readAsLines()) {
     final match = RegExp(r'^\S+\s+\S+\s+\S+\s+\S+\s+\S+\s+(/.*)$').firstMatch(line);
@@ -151,7 +179,8 @@ Future<List<Map<String, Object>>> mappedDependencies(
   }
   require(mapped.contains(await File(library).resolveSymbolicLinks()), 'Native library not mapped.');
   for (final row in rows) {
-    final path = row['path'] as String, soname = row['soname'] as String;
+    final path = readString(row['path'], 'mapped path');
+    final soname = readString(row['soname'], 'mapped soname');
     require(mapped.contains(path), 'A preflight dependency is not mapped.');
     require(await fileHash(File(path)) == row['sha256'], 'Mapped dependency bytes changed.');
     require(!mapped.any((other) {
@@ -159,7 +188,7 @@ Future<List<Map<String, Object>>> mappedDependencies(
       return other != path && (name == soname || name.startsWith('$soname.'));
     }), 'A conflicting dependency image is also mapped.');
   }
-  return rows.map((row) => {...row, 'mapped': true}).toList();
+  return rows.map((row) => <String, Object?>{...row, 'mapped': true}).toList();
 }
 
 Future<Map<String, String>> sourceHashes() async {
@@ -206,12 +235,22 @@ Map<String, Object?> validateResult(LinguisticAnalysisResult result,
         'Independent original-source coordinate check failed.');
     final start = input.startOffset + token.start, end = input.startOffset + token.end;
     require(paragraph.substring(start, end) == token.text, 'Nonzero-origin mapping failed.');
-    ranges.add({'start': start, 'end': end});
+    ranges.add(<String, int>{'start': start, 'end': end});
   }
-  return {'id': input.blockId, 'utf8_sha256': digest(bytes),
+  return <String, Object?>{'id': input.blockId, 'utf8_sha256': digest(bytes),
     'utf16_origin': input.startOffset, 'absolute_token_ranges': ranges,
     'result': result.toJson(), 'coordinate_checks_passed': true};
 }
+
+// Request IDs are checked by sameSnapshot separately. Freeze annotations only;
+// result.toJson currently omits requests, and token.toJson omits sentenceEnd.
+String annotationSnapshot(LinguisticAnalysisResult result) =>
+    jsonEncode(<String, Object?>{
+      'tokens': result.tokens.map((token) => <String, Object?>{
+        ...token.toJson(), 'sentence_end': token.sentenceEnd,
+      }).toList(),
+      'sentences': result.sentences.map((sentence) => sentence.toJson()).toList(),
+    });
 
 Future<void> save(File target, Map<String, Object?> report) async {
   final temporary = File('${target.path}.pending-$pid');
@@ -234,7 +273,7 @@ void selfTest() {
   require(input.startOffset == 10 && input.text.length == 4 &&
       utf8.encode(input.text).length == 6 && input.text.runes.length == 3,
       'UTF-16/source control failed.');
-  print(jsonEncode({'status': 'passed', 'model_free_controls': 3,
+  print(jsonEncode(<String, Object?>{'status': 'passed', 'model_free_controls': 3,
     'native_library_loaded': false, 'native_inference_executions': 0}));
 }
 
@@ -251,6 +290,7 @@ Future<void> main(List<String> args) async {
   if (options.length != names.length) throw ArgumentError('All six named arguments are required.');
   final output = File(options['--report']!).absolute;
   await output.create(exclusive: true);
+  final caseReports = <Map<String, Object?>>[];
   final report = <String, Object?>{
     'schema': 'quds.spacy.w7.installed_worker_consumer.v1', 'status': 'running',
     'started_utc': DateTime.now().toUtc().toIso8601String(),
@@ -259,7 +299,7 @@ Future<void> main(List<String> args) async {
     'archive_sha256': options['--sha256'], 'manifest_sha256': manifestSha,
     'protocol_sha256': options['--protocol-sha256'],
     'native_acceptance_rerun': false, 'grammar_qualification_rerun': false,
-    'cases': <Object>[], 'github_actions_queries_waits_reruns': 0,
+    'cases': caseReports, 'github_actions_queries_waits_reruns': 0,
     'typing_or_ui_activation_observed': false,
     'ui_scope': 'CLI invokes analyze explicitly; no Flutter editor or typing observation is claimed.',
   };
@@ -270,23 +310,33 @@ Future<void> main(List<String> args) async {
     await authenticate(File(options['--archive']!), options['--sha256']!, 16 * 1024 * 1024);
     final manifest = await installed(options['--installed']!, options['--sha256']!);
     final protocolBytes = await authenticate(File(options['--protocol']!), options['--protocol-sha256']!, 65536);
-    final protocol = jsonDecode(utf8.decode(protocolBytes)) as Map<String, dynamic>;
+    final protocol = readMap(jsonDecode(utf8.decode(protocolBytes)), 'protocol');
     require(protocol['schema'] == 'crispembed.spacy.w7.consumer_protocol.v1', 'Wrong protocol.');
-    final cases = (protocol['cases'] as List).cast<Map<String, dynamic>>();
+    final cases = readList(protocol['cases'], 'protocol.cases')
+        .map((value) => readMap(value, 'operational case')).toList();
     require(cases.length == 8, 'Expected eight frozen operational inputs.');
-    for (final item in cases) require(digest(utf8.encode(item['text'] as String)) == item['utf8_sha256'], 'Protocol input hash mismatch.');
-    require(digest(utf8.encode(protocol['cycle_text'] as String)) ==
-        protocol['cycle_utf8_sha256'], 'Protocol cycle input hash mismatch.');
+    for (final item in cases) {
+      readString(item['id'], 'case id');
+      require(digest(utf8.encode(readString(item['text'], 'case text'))) ==
+          readString(item['utf8_sha256'], 'case hash'), 'Protocol input hash mismatch.');
+    }
+    final cycleText = readString(protocol['cycle_text'], 'cycle text');
+    require(digest(utf8.encode(cycleText)) ==
+        readString(protocol['cycle_utf8_sha256'], 'cycle hash'), 'Protocol cycle input hash mismatch.');
     report['cpu_preflight'] = await cpuPreflight(protocol);
     require(Platform.environment['CRISPEMBED_SPACY'] == '1', 'Explicit CRISPEMBED_SPACY=1 is required.');
     final root = Directory(options['--installed']!).absolute.path;
-    final library = '$root/${manifest['entrypoints']['library']}';
+    final entrypoints = readMap(manifest['entrypoints'], 'manifest.entrypoints');
+    final libraryMember = readString(entrypoints['library'], 'library entrypoint');
+    final bundleMember = readString(entrypoints['bundle'], 'bundle entrypoint');
+    require(safeMember(libraryMember) && safeMember(bundleMember), 'Unsafe entrypoint.');
+    final library = '$root/$libraryMember';
     final dependencies = await dependencyPreflight(library, manifest);
     report['dependency_preflight'] = dependencies;
     final before = await sourceHashes();
     report['sources_before'] = before;
     report['dart_executable_sha256'] = await fileHash(File(Platform.resolvedExecutable));
-    final factory = SpacyNativeBackendFactory(bundleDirectory: '$root/bundle',
+    final factory = SpacyNativeBackendFactory(bundleDirectory: '$root/$bundleMember',
         libraryPath: library, librarySha256: librarySha);
     Future<SpacyTransport> open() => startSpacyWorker(bundle: const SpacyBundle.germanF32(),
         backendFactory: factory, startupTimeout: timeout, requestTimeout: timeout);
@@ -296,28 +346,31 @@ Future<void> main(List<String> args) async {
     report['mapped_dependencies'] = await mappedDependencies(dependencies, library);
     final retained = <LinguisticAnalysisResult>[];
     for (final item in cases) {
-      final input = request(item['id'] as String, item['text'] as String);
+      final input = request(readString(item['id'], 'case id'), readString(item['text'], 'case text'));
       final watch = Stopwatch()..start();
       final result = await worker.analyze(input);
       retained.add(result);
-      (report['cases'] as List).add({...validateResult(result, input),
+      caseReports.add(<String, Object?>{...validateResult(result, input),
         'elapsed_microseconds': watch.elapsedMicroseconds});
       await save(output, report);
     }
-    final repeatInput = request('repeat-unicode', cases[1]['text'] as String);
+    final unicodeCase = cases[1];
+    require(unicodeCase['id'] == 'unicode_emoji', 'Frozen Unicode case moved.');
+    final unicodeText = readString(unicodeCase['text'], 'Unicode case text');
+    final repeatInput = request('repeat-unicode', unicodeText);
     final repeat = await worker.analyze(repeatInput);
     validateResult(repeat, repeatInput);
-    require(jsonEncode(repeat.toJson()) == jsonEncode(retained[1].toJson()), 'Repeated copied output changed.');
+    require(annotationSnapshot(repeat) == annotationSnapshot(retained[1]), 'Repeated copied output changed.');
     report['same_worker_repeat_exact'] = true;
-    final unsupported = await worker.analyze(request('unsupported', cases[1]['text'] as String, locale: 'de-AT'));
+    final unsupported = await worker.analyze(request('unsupported', unicodeText, locale: 'de-AT'));
     require(unsupported.status == LinguisticAnalysisStatus.unsupported, 'Unsupported locale was not explicit.');
     report['unsupported_de_AT'] = unsupported.status.name;
-    final cancelInput = request('cancel', protocol['cycle_text'] as String);
+    final cancelInput = request('cancel', cycleText);
     final pending = worker.analyze(cancelInput);
     worker.cancel(cancelInput.key);
     final cancelled = await pending;
     require(cancelled.status == LinguisticAnalysisStatus.cancelled, 'Caller cancellation failed.');
-    report['cancellation'] = {'status': cancelled.status.name,
+    report['cancellation'] = <String, Object?>{'status': cancelled.status.name,
       'scope': 'Synchronous caller cancellation after dispatch; physical compute start/interruption is not observed.'};
     final ownedBefore = retained.map((r) => jsonEncode(r.toJson())).toList();
     final shutdown = Stopwatch()..start();
@@ -337,7 +390,7 @@ Future<void> main(List<String> args) async {
     worker = await open();
     final reopened = await worker.analyze(repeatInput);
     validateResult(reopened, repeatInput);
-    require(jsonEncode(reopened.toJson()) == jsonEncode(retained[1].toJson()), 'Reopened worker output changed.');
+    require(annotationSnapshot(reopened) == annotationSnapshot(retained[1]), 'Reopened worker output changed.');
     report['reopened_worker_repeat_exact'] = true;
     await worker.dispose().timeout(timeout);
     worker = null;
@@ -364,6 +417,6 @@ Future<void> main(List<String> args) async {
     report['finished_utc'] = DateTime.now().toUtc().toIso8601String();
     await save(output, report);
   }
-  print(jsonEncode({'status': report['status'], 'report': output.path,
+  print(jsonEncode(<String, Object?>{'status': report['status'], 'report': output.path,
     'completed_operational_cases': report['completed_operational_cases']}));
 }
