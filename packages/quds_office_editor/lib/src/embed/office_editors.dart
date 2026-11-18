@@ -22,6 +22,7 @@ import 'word_proofing_dialog.dart';
 import 'word_review_dialog.dart';
 import 'word_review_pane.dart';
 import 'word_review_status.dart';
+import 'word_thesaurus_dialog.dart';
 import '../proofing/word_proofing.dart';
 
 /// Class OfficeUndoIntent.
@@ -87,6 +88,11 @@ class OfficeSpellCheckIntent extends Intent {
   const OfficeSpellCheckIntent();
 }
 
+/// Look up the selected word or phrase without changing the document.
+class OfficeThesaurusIntent extends Intent {
+  const OfficeThesaurusIntent();
+}
+
 /// Class OfficeFindNextIntent.
 class OfficeFindNextIntent extends Intent {
   /// OfficeFindNextIntent API.
@@ -132,6 +138,10 @@ bool officeHandleDocumentShortcut(OfficeController controller, KeyEvent event) {
         HardwareKeyboard.instance.isAltPressed &&
         !ctrl) {
       _stepWritingFinding(controller, shift ? -1 : 1);
+      return true;
+    }
+    if (shift && controller is WordEditorController) {
+      controller.requestThesaurus();
       return true;
     }
     controller.requestSpellCheck();
@@ -200,6 +210,7 @@ class QudsWordEditor extends StatefulWidget {
     this.onSelectionChanged,
     this.enableLiveProofing = true,
     this.showReviewStatus = true,
+    this.thesaurusService,
   });
 
   /// controller API.
@@ -246,6 +257,10 @@ class QudsWordEditor extends StatefulWidget {
   /// Shows live check status and entry points to the non-modal review pane.
   final bool showReviewStatus;
 
+  /// Uses the installed offline packs by default. Hosts may inject their own
+  /// verified pack loader without coupling the engine to Flutter assets.
+  final OfficeThesaurusService? thesaurusService;
+
   @override
   /// createState API.
   State<QudsWordEditor> createState() => _QudsWordEditorState();
@@ -260,6 +275,7 @@ class _QudsWordEditorState extends State<QudsWordEditor>
   OverlayEntry? _contextMenu;
   bool _contextKeyboard = false;
   bool _proofingOpen = false;
+  bool _thesaurusOpen = false;
   WordProofingIssue? _contextProofingIssue;
   int? _contextContentRevision;
   Timer? _inlineReviewTimer;
@@ -297,6 +313,7 @@ class _QudsWordEditorState extends State<QudsWordEditor>
     })..start();
     _c.addListener(_onCtrl);
     _c.onSpellCheckRequested ??= _openProofing;
+    _c.onThesaurusRequested ??= _openThesaurus;
     PaintingBinding.instance.systemFonts.addListener(_onSystemFonts);
     _c.onRequestFocus = () {
       if (mounted && (_inputRoute?.isCurrent ?? true)) {
@@ -346,11 +363,15 @@ class _QudsWordEditorState extends State<QudsWordEditor>
       if (oldWidget.controller.onSpellCheckRequested == _openProofing) {
         oldWidget.controller.onSpellCheckRequested = null;
       }
+      if (oldWidget.controller.onThesaurusRequested == _openThesaurus) {
+        oldWidget.controller.onThesaurusRequested = null;
+      }
       oldWidget.controller.onRequestFocus = null;
       _c.input.inputAllowed = _inputGuard;
       _c.detachInput();
       _c.addListener(_onCtrl);
       _c.onSpellCheckRequested ??= _openProofing;
+      _c.onThesaurusRequested ??= _openThesaurus;
       _c.onRequestFocus = () {
         if (mounted && (_inputRoute?.isCurrent ?? true)) {
           _focus.requestFocus();
@@ -382,6 +403,29 @@ class _QudsWordEditorState extends State<QudsWordEditor>
     _c.commitPendingEdits();
     _c.openReviewPane();
     await _checkProofing(includeManualProviders: true);
+  }
+
+  void _openThesaurus() => unawaited(_presentThesaurus());
+
+  Future<void> _presentThesaurus({WordThesaurusCapture? capture}) async {
+    if (!mounted || _thesaurusOpen || _proofingOpen) return;
+    _thesaurusOpen = true;
+    final controller = _c;
+    try {
+      await showWordThesaurusDialog(
+        context,
+        controller: controller,
+        service: widget.thesaurusService,
+        capture: capture,
+      );
+    } finally {
+      _thesaurusOpen = false;
+      if (mounted &&
+          identical(controller, _c) &&
+          (_inputRoute?.isCurrent ?? true)) {
+        _focus.requestFocus();
+      }
+    }
   }
 
   void _enableLiveProofing() {
@@ -450,6 +494,9 @@ class _QudsWordEditorState extends State<QudsWordEditor>
     _c.removeListener(_onCtrl);
     if (_c.onSpellCheckRequested == _openProofing) {
       _c.onSpellCheckRequested = null;
+    }
+    if (_c.onThesaurusRequested == _openThesaurus) {
+      _c.onThesaurusRequested = null;
     }
     PaintingBinding.instance.systemFonts.removeListener(_onSystemFonts);
     _c.onRequestFocus = null;
@@ -577,6 +624,8 @@ class _QudsWordEditorState extends State<QudsWordEditor>
     WmlRevision? preferredRevision,
   }) {
     _dismissContextMenu();
+    // Capture before the menu steals focus or detaches an active IME.
+    final thesaurusCapture = _c.captureThesaurusTarget();
     final issues = hit.paragraph != null && hit.proofingOffset != null
         ? _c.proofing.issuesAt(hit.paragraph!, hit.proofingOffset!)
         : const <WordProofingIssue>[];
@@ -650,6 +699,11 @@ class _QudsWordEditorState extends State<QudsWordEditor>
         shortcut: 'F7',
         separatorBefore: true,
       ),
+      const OfficeContextAction(
+        id: 'thesaurus',
+        label: 'Thesaurus…',
+        shortcut: 'Shift+F7',
+      ),
       if (!reviewOnly) ...OfficeContextMenu.word(hit: hit, controller: _c),
     ];
     _contextProofingIssue = issue;
@@ -669,6 +723,10 @@ class _QudsWordEditorState extends State<QudsWordEditor>
       },
       onSelect: (String id) {
         _contextMenu = null;
+        if (id == 'thesaurus') {
+          unawaited(_presentThesaurus(capture: thesaurusCapture));
+          return;
+        }
         if (id == 'proofing:review') {
           _c.openReviewPane();
           return;
@@ -1101,6 +1159,8 @@ class _QudsWordEditorState extends State<QudsWordEditor>
           const _WordContextIntent(),
       const SingleActivator(LogicalKeyboardKey.contextMenu):
           const _WordContextIntent(),
+      const SingleActivator(LogicalKeyboardKey.f7, shift: true):
+          const OfficeThesaurusIntent(),
       const SingleActivator(LogicalKeyboardKey.f3):
           const OfficeFindNextIntent(),
       const SingleActivator(LogicalKeyboardKey.f3, shift: true):
@@ -3235,6 +3295,13 @@ void _stepDocumentFind(OfficeController controller, {required bool forward}) {
 
 Map<Type, Action<Intent>> _documentActions(OfficeController controller) {
   return <Type, Action<Intent>>{
+    if (controller is WordEditorController)
+      OfficeThesaurusIntent: CallbackAction<OfficeThesaurusIntent>(
+        onInvoke: (_) {
+          controller.requestThesaurus();
+          return null;
+        },
+      ),
     OfficeFindIntent: CallbackAction<OfficeFindIntent>(
       onInvoke: (_) {
         controller.requestFind();

@@ -369,6 +369,8 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
             _findPrevious,
         const SingleActivator(LogicalKeyboardKey.f1): _openPdfSampleGallery,
         const SingleActivator(LogicalKeyboardKey.f7): _showSpelling,
+        const SingleActivator(LogicalKeyboardKey.f7, shift: true):
+            _word.requestThesaurus,
         const SingleActivator(LogicalKeyboardKey.keyB, control: true):
             _toggleBold,
         const SingleActivator(LogicalKeyboardKey.keyB, meta: true): _toggleBold,
@@ -2782,6 +2784,11 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
             selected:
                 _word.reviewPaneVisible &&
                 _word.reviewPaneTab == WordReviewPaneTab.proofing,
+          ),
+          _cmd(
+            Icons.menu_book_outlined,
+            _arabic ? 'قاموس المرادفات' : 'Thesaurus',
+            _word.requestThesaurus,
           ),
           _cmd(
             Icons.edit_note,
