@@ -140,6 +140,14 @@ On the right is the engine's, made in pure Dart.
 
 ## About this fork (CrispStrobe)
 
+The Word editor now has a [document review workspace](docs/document-review.md):
+reviewer attribution, filtered pending changes, undoable batch accept/reject,
+original/final paragraph previews, and read-only comparison of two Word
+documents. Studio accepts independently picked originals and revisions, shows
+inline or side-by-side differences, and exports a JSON report. The comparison
+covers modeled text, formatting and structure with explicit scope and work
+limits; it preserves both source documents.
+
 The fork includes [Zotero reference support](docs/zotero-support.md): online
 personal/group libraries, native desktop access without an API key, offline CSL
 JSON, linked DOCX citation fields, bibliographies and undoable reference editing.

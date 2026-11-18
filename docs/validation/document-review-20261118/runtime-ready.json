@@ -1,0 +1,53 @@
+{
+  "status": "ready",
+  "recorded_at_utc": "2026-11-18T12:10:40.128080+00:00",
+  "source": "/workspace/scratch/3b6b8cfdb224/quds_office_suite",
+  "sdk": "/workspace/scratch/3b6b8cfdb224/doc-review-toolchain/flutter",
+  "workspace": "/workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace",
+  "environment_script": "/workspace/scratch/3b6b8cfdb224/doc-review-toolchain/env.sh",
+  "runtime": {
+    "frameworkVersion": "3.47.8",
+    "channel": "[user-branch]",
+    "repositoryUrl": "https://github.com/flutter/flutter.git",
+    "frameworkRevision": "737ba8f885dc774b53b442759999a312c9461e4e",
+    "frameworkCommitDate": "2026-10-22 21:37:31 -0700",
+    "engineRevision": "cf636b1dfb818dd6a3ff16e390e93b1a036969c8",
+    "engineCommitDate": "2026-10-23 02:13:38.000Z",
+    "engineContentHash": "dfd2e6cb7d319db05e3bf1503f3e2ac60f6288a2",
+    "engineBuildDate": "2026-10-23 05:34:48.330",
+    "dartSdkVersion": "3.13.7",
+    "devToolsVersion": "2.60.0",
+    "flutterVersion": "3.47.8",
+    "flutterRoot": "/workspace/scratch/3b6b8cfdb224/doc-review-toolchain/flutter"
+  },
+  "dart_sha256": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb",
+  "flutter_tester_sha256": "800f4ca182df7dd2fb46a42dea5d76277b9dbc5e8cd2915e02bcbc978681b45f",
+  "workspace_lock_sha256": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130",
+  "workspace_package_count": 110,
+  "source_graph_link": "/workspace/scratch/3b6b8cfdb224/quds_office_suite/.dart_tool",
+  "source_graph_target": "/workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/.dart_tool",
+  "pub_archive_count": 162,
+  "setup_smoke_tests": [
+    {
+      "command": "dart test test/word_revision_story_test.dart --reporter expanded",
+      "cwd": "/workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_engine",
+      "passed": 11,
+      "exit_code": 0,
+      "log": "logs/engine-smoke.log"
+    },
+    {
+      "command": "dart \"$FLUTTER_ROOT/bin/cache/flutter_tools.snapshot\" test --no-pub test/word_revision_story_test.dart --reporter expanded",
+      "cwd": "/workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor",
+      "passed": 14,
+      "exit_code": 0,
+      "log": "logs/editor-smoke.log"
+    }
+  ],
+  "notes": [
+    "Current source exposed via symlinks; production manifests unchanged.",
+    "All hosted archives SHA-256 verified against committed locks.",
+    "Official Flutter source and engine binaries restored with exact previously recorded revision and executable hashes.",
+    "SDK is source checkout; use direct compiled flutter_tools.snapshot to avoid dependency-upgrading launcher.",
+    "Only local .git/info/exclude updated to ignore generated .dart_tool symlink."
+  ]
+}

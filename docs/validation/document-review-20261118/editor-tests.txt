@@ -1,0 +1,80 @@
+00:00 +0: loading /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/test/word_notes_editing_test.dart
+00:00 +0: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/test/word_notes_editing_test.dart: note edits keep formatting and undo as one step
+00:00 +1: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/test/word_notes_editing_test.dart: undo commits a pending note edit before undoing it
+00:00 +2: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/test/word_notes_editing_test.dart: deleting a note removes its mark and undo restores both
+00:00 +3: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/test/word_notes_editing_test.dart: the notes pane edits, adds and deletes notes
+00:00 +4: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/test/word_notes_editing_test.dart: the notes pane edits, adds and deletes notes
+00:00 +5: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/test/word_notes_editing_test.dart: the notes pane edits, adds and deletes notes
+00:01 +6: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/test/word_notes_editing_test.dart: the notes pane edits, adds and deletes notes
+00:01 +7: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/test/word_notes_editing_test.dart: the notes pane edits, adds and deletes notes
+00:01 +8: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/test/word_notes_editing_test.dart: the notes pane edits, adds and deletes notes
+00:01 +9: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/test/word_notes_editing_test.dart: the notes pane edits, adds and deletes notes
+00:01 +10: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/test/word_notes_editing_test.dart: the notes pane edits, adds and deletes notes
+00:01 +11: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/test/word_notes_editing_test.dart: the notes pane edits, adds and deletes notes
+00:01 +12: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/test/word_notes_editing_test.dart: the notes pane edits, adds and deletes notes
+00:01 +13: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/test/word_notes_editing_test.dart: the notes pane edits, adds and deletes notes
+00:01 +14: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/test/word_notes_editing_test.dart: the notes pane edits, adds and deletes notes
+00:01 +15: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/test/word_notes_editing_test.dart: the notes pane edits, adds and deletes notes
+00:01 +16: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/test/word_notes_editing_test.dart: the notes pane edits, adds and deletes notes
+00:01 +17: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/test/word_notes_editing_test.dart: the notes pane edits, adds and deletes notes
+00:01 +18: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/test/word_notes_editing_test.dart: the notes pane edits, adds and deletes notes
+00:01 +19: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/test/word_notes_editing_test.dart: the notes pane edits, adds and deletes notes
+00:01 +20: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/test/word_notes_editing_test.dart: the notes pane edits, adds and deletes notes
+00:01 +21: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/test/word_notes_editing_test.dart: the notes pane edits, adds and deletes notes
+00:01 +22: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/test/word_notes_editing_test.dart: the notes pane edits, adds and deletes notes
+00:01 +23: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/test/word_notes_editing_test.dart: the notes pane edits, adds and deletes notes
+00:01 +24: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/test/word_notes_editing_test.dart: the notes pane edits, adds and deletes notes
+00:01 +25: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/test/word_notes_editing_test.dart: the notes pane edits, adds and deletes notes
+00:01 +26: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/test/word_notes_editing_test.dart: the notes pane edits, adds and deletes notes
+00:01 +27: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/test/word_notes_editing_test.dart: the notes pane edits, adds and deletes notes
+00:01 +28: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/test/word_notes_editing_test.dart: the notes pane edits, adds and deletes notes
+00:01 +29: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/test/word_notes_editing_test.dart: the notes pane edits, adds and deletes notes
+00:01 +30: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/test/word_notes_editing_test.dart: the notes pane edits, adds and deletes notes
+00:01 +31: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/test/word_notes_editing_test.dart: the notes pane edits, adds and deletes notes
+00:01 +32: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/test/word_notes_editing_test.dart: the notes pane edits, adds and deletes notes
+00:01 +33: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/test/word_notes_editing_test.dart: the notes pane edits, adds and deletes notes
+00:01 +34: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/test/word_notes_editing_test.dart: the notes pane edits, adds and deletes notes
+00:01 +35: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/test/word_notes_editing_test.dart: the notes pane edits, adds and deletes notes
+00:01 +36: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/test/word_notes_editing_test.dart: the notes pane edits, adds and deletes notes
+00:01 +37: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/test/word_notes_editing_test.dart: the notes pane edits, adds and deletes notes
+00:01 +38: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/test/word_notes_editing_test.dart: the notes pane edits, adds and deletes notes
+00:01 +39: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/test/word_revision_story_test.dart: comment tracked link rejects in its own story after close and reopen
+00:01 +40: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/test/word_revision_story_test.dart: comment tracked link rejects in its own story after close and reopen
+00:01 +41: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/test/word_revision_rebase_test.dart: note history preserves rich marker order, links, tables and revision targets
+00:01 +42: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/test/word_revision_rebase_test.dart: note history preserves rich marker order, links, tables and revision targets
+00:01 +43: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/test/word_revision_story_test.dart: comment tracked range keeps paragraphs and body drawings until accepted
+00:01 +44: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/test/word_revision_rebase_test.dart: note prefix edits preserve pending revision identity through history
+00:01 +45: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/test/word_revision_story_test.dart: revision retains body target after an unrelated paragraph split
+00:01 +46: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/test/word_revision_story_test.dart: auxiliary revisions do not paint changes over body text
+00:02 +47: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/test/word_review_controller_test.dart: author configuration trims names and rejects empty attribution
+00:02 +48: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/test/word_review_controller_test.dart: typing and deletion keep their original authors through history
+00:02 +49: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/test/word_review_dialog_test.dart: tracking and reviewer controls affect future edits with undo
+00:02 +50: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/test/word_review_dialog_test.dart: tracking and reviewer controls affect future edits with undo
+00:02 +51: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/test/word_review_dialog_test.dart: tracking and reviewer controls affect future edits with undo
+00:02 +52: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/test/word_review_dialog_test.dart: tracking and reviewer controls affect future edits with undo
+00:02 +53: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/test/word_review_dialog_test.dart: tracking and reviewer controls affect future edits with undo
+00:02 +54: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/test/word_review_dialog_test.dart: tracking and reviewer controls affect future edits with undo
+00:02 +55: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/test/word_review_dialog_test.dart: tracking and reviewer controls affect future edits with undo
+00:02 +56: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/test/word_review_dialog_test.dart: tracking and reviewer controls affect future edits with undo
+00:02 +57: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/test/word_review_dialog_test.dart: tracking and reviewer controls affect future edits with undo
+00:02 +58: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/test/word_review_dialog_test.dart: tracking and reviewer controls affect future edits with undo
+00:02 +59: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/test/word_review_dialog_test.dart: tracking and reviewer controls affect future edits with undo
+00:02 +60: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/test/word_review_dialog_test.dart: tracking and reviewer controls affect future edits with undo
+00:02 +61: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/test/word_review_dialog_test.dart: tracking and reviewer controls affect future edits with undo
+00:02 +62: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/test/word_review_dialog_test.dart: tracking and reviewer controls affect future edits with undo
+00:02 +63: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/test/word_review_dialog_test.dart: tracking and reviewer controls affect future edits with undo
+00:02 +64: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/test/word_review_dialog_test.dart: tracking and reviewer controls affect future edits with undo
+00:02 +65: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/test/word_review_dialog_test.dart: tracking and reviewer controls affect future edits with undo
+00:04 +66: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/test/word_review_dialog_test.dart: author, kind and text filters intersect without changing sources
+00:05 +67: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/test/word_review_dialog_test.dart: accept shown is a filtered undoable batch
+00:05 +68: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/test/word_review_dialog_test.dart: reject shown is a filtered undoable batch
+00:06 +69: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/test/word_review_dialog_test.dart: final and original previews leave tracked changes untouched
+00:06 +70: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/test/word_review_dialog_test.dart: viewing mode exposes review but disables document mutations
+00:06 +71: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/test/word_review_dialog_test.dart: two picked documents compare, display redlines and export without edits
+00:07 +72: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/test/word_review_dialog_test.dart: export cancellation and errors preserve the report for retry
+00:08 +73: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/test/word_review_dialog_test.dart: current-document edits mark comparison stale and disable export
+00:08 +74: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/test/word_review_dialog_test.dart: picker cancellation and errors preserve selections and recover
+00:08 +75: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/test/word_review_dialog_test.dart: closing during a pending picker ignores its later completion
+00:08 +76: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/test/word_review_dialog_test.dart: narrow LTR dialog keeps both workflows usable
+00:09 +77: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/test/word_review_dialog_test.dart: narrow RTL dialog keeps both workflows usable
+00:09 +78: All tests passed!

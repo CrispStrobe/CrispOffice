@@ -1,0 +1,9 @@
+00:00 +0: loading /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/example/test/studio_document_comparison_test.dart
+00:00 +0: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/example/test/studio_document_comparison_test.dart: two real DOCX inputs retain tracking and compare final text safely
+00:00 +1: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/example/test/studio_document_comparison_test.dart: spreadsheet bytes cannot masquerade as an empty comparison document
+00:00 +2: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/example/test/studio_document_comparison_test.dart: missing main content is rejected before comparison
+00:00 +3: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/example/test/studio_document_comparison_test.dart: wrong XML root, foreign namespace and missing body are rejected
+00:00 +4: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/example/test/studio_document_comparison_test.dart: a valid empty Word document remains a legitimate comparison source
+00:01 +5: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/example/test/widget_test.dart: Review keeps spelling available without the retired AOT action
+00:04 +6: /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/workspace/packages/quds_office_editor/example/test/widget_test.dart: studio hosts Word, Excel, and PowerPoint workspaces
+00:06 +7: All tests passed!
