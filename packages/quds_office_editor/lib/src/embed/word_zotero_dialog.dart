@@ -1739,6 +1739,7 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
               ],
               Text(
                 _error ??
+                    _notice ??
                     'Finish or cancel the open dialog in Zotero. You will return to your document when Zotero finishes.',
                 key: const ValueKey('zotero-command-status'),
               ),

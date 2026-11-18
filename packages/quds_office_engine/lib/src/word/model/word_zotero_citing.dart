@@ -1021,10 +1021,13 @@ final class WordZoteroCitingSession {
           (run: run, bold: run.properties.bold, italic: run.properties.italic),
       ];
       WordStyles.apply(inserted, 'Heading$heading', document: document);
+      inserted.properties
+        ..headingLevel = heading
+        ..styleId = 'Heading$heading';
       for (final span in emphasis) {
         span.run.properties
-          ..bold = span.run.properties.bold || span.bold
-          ..italic = span.run.properties.italic || span.italic;
+          ..bold = span.bold
+          ..italic = span.italic;
       }
     }
     _noteTextCaretTailLength = paragraph.text.length - insertionOffset;
@@ -1033,7 +1036,15 @@ final class WordZoteroCitingSession {
       // Keep the complete research note as blocks when it contains headings.
       final originalProperties = paragraph.properties.copy();
       final tail = WmlRunEdit.splitParagraphInlines(paragraph, insertionOffset);
-      final emptyPrefix = paragraph.inlines.isEmpty;
+      final emptyPrefix =
+          paragraph.text.isEmpty &&
+          paragraph.inlines.every(
+            (inline) =>
+                inline is WmlRun &&
+                !inline.isAtomic &&
+                inline.hyperlink == null &&
+                inline.commentIds.isEmpty,
+          );
       if (emptyPrefix) slot.parent.removeAt(slot.index);
       final insertedAt = slot.index + (emptyPrefix ? 0 : 1);
       slot.parent.insertAll(insertedAt, paragraphs);

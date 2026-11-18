@@ -27,6 +27,16 @@ integrated all three. The starting head already contains main, the Mail
 reader foundation and its later fixes, the published English/French spaCy
 follow-up, and all four captured upstream heads.
 
+## Published baseline identity
+
+The local merge above was published through the GitHub connector as
+`aad56eb498aa4839ad5bb11fd35d9f734d2ca397`. Both commits have the exact Git tree
+`3e819144230aedf16278a57cfaf56658c2cc325f`. A separate complete rerun against
+the published commit is saved in `published-baseline-audit.json`; it again
+reports 358 ancestors, 28 verified historical equivalent refs, and zero
+unaccounted refs. The original audit is retained to preserve the local-to-remote
+publication trail.
+
 ## Historical equivalence
 
 Old rebased, squashed, or independently merged branch names are not merged

@@ -7230,9 +7230,10 @@ class WordEditorController extends OfficeController {
   /// Reinspect after mutations or undo/redo: field handles are short-lived.
   List<WmlZoteroField> get zoteroFields => WordZotero.fields(document);
 
-  /// A fresh field handle at the body or Notes caret, or enclosing a selection
-  /// in one paragraph. A collapsed caret at a field's end belongs to the
-  /// following text. Other stories retain their explicit field-list actions.
+  /// A fresh field handle at the body or Notes caret, enclosing a selection
+  /// in one paragraph, or exactly matching a selected multi-paragraph
+  /// bibliography. A collapsed caret at a field's end belongs to the following
+  /// text. Other stories retain their explicit field-list actions.
   WmlZoteroField? get zoteroFieldAtCaret => findZoteroFieldAtCaret();
 
   /// Resolves the current editing caret using a fresh field inventory when the
@@ -7254,7 +7255,19 @@ class WordEditorController extends OfficeController {
     final bool collapsed;
     if (noteTarget != null) {
       final range = _noteSelectionRange(noteTarget);
-      if (range == null) return null;
+      if (range == null) {
+        return (fields ?? zoteroFields).where((field) {
+          if (field.kind != ZoteroFieldKind.bibliography ||
+              field.paragraphs.length < 2) {
+            return false;
+          }
+          final visible = _zoteroRevealRange(field);
+          return visible != null &&
+              identical(visible.note, noteTarget.note) &&
+              visible.start == noteTarget.selection.start &&
+              visible.end == noteTarget.selection.end;
+        }).firstOrNull;
+      }
       paragraph = range.paragraph;
       rangeStart = range.start;
       rangeEnd = range.end;
@@ -7262,10 +7275,22 @@ class WordEditorController extends OfficeController {
     } else {
       final paragraphs = document.paragraphs.toList();
       final range = caret.normalizedRange;
-      if (range.startPara != range.endPara ||
-          range.startPara < 0 ||
-          range.startPara >= paragraphs.length) {
+      if (range.startPara < 0 || range.endPara >= paragraphs.length) {
         return null;
+      }
+      if (range.startPara != range.endPara) {
+        final selected = paragraphs.sublist(range.startPara, range.endPara + 1);
+        return (fields ?? zoteroFields).where((field) {
+          if (field.kind != ZoteroFieldKind.bibliography ||
+              field.paragraphs.length < 2 ||
+              !listEquals(field.paragraphs, selected) ||
+              range.startIdx != field.start ||
+              range.endIdx != field.end) {
+            return false;
+          }
+          final visible = _zoteroRevealRange(field);
+          return visible != null && visible.note == null;
+        }).firstOrNull;
       }
       paragraph = paragraphs[range.startPara];
       rangeStart = range.startIdx;

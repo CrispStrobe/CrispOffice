@@ -4,6 +4,15 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Add **Add Zotero note** to the native references tools and Studio ribbon,
+  with complete insertion/undo and DOCX persistence of active citation fields.
+- Return direct Zotero ribbon/keyboard commands to the body or Notes caret after
+  completion or cancellation. Keep failures reviewable and retain the ordinary
+  references workspace for browsing, including in Studio viewing mode.
+- Add **Go to reference** for citations and complete bibliographies in body,
+  table and Notes paragraphs. Read-only selection remains available without
+  changing document history; note navigation reveals and focuses the target.
+
 - Keep Shift+F7 available from both the document and the Review pane alongside
   Alt+F7 / Alt+Shift+F7 writing navigation. Keep language, changes and thesaurus
   actions within the narrow review status bar.

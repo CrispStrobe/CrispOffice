@@ -80,11 +80,14 @@ final class WordZoteroNoteText {
             }
             final outputTag = tag == 'a' ? 'span' : tag;
             canonical.write('<$outputTag');
-            final style = attributes['style'];
+            final authoredStyle = attributes['style'];
+            final style = _headings.contains(tag)
+                ? 'font-weight: bold;${authoredStyle ?? ''}'
+                : authoredStyle;
             if (style != null) {
               canonical.write(' style="${attributeEscape.convert(style)}"');
             }
-            canonical.write('>');
+            canonical.write(tag == 'br' ? '/>' : '>');
             int? linkIndex;
             if (tag == 'a') {
               if (activeLink) throw _malformed();
@@ -121,7 +124,9 @@ final class WordZoteroNoteText {
             if (_headings.contains(element.tag)) {
               canonical.write('\uE000/h\uE001');
             }
-            canonical.write('</${element.outputTag}>');
+            if (element.tag != 'br') {
+              canonical.write('</${element.outputTag}>');
+            }
             if (stack.isNotEmpty &&
                 (element.hasText ||
                     element.tag == 'p' ||

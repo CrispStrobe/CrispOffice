@@ -2119,7 +2119,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       mounted &&
       !_zoteroOpen &&
       _app == SuiteApp.word &&
-      _word.config.allowsSelection &&
+      !_word.isDisposed &&
       _wordRouteIsCurrent;
 
   bool get _canRunZoteroCommand =>
