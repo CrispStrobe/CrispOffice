@@ -1,5 +1,46 @@
 # Zotero validation
 
+## 18 November 2026 — Zotero citations from the Notes pane and keyboard
+
+Qualified application source: **`ff1518517dd9f67e214ff56fe7eef06349f5223a`**,
+on `codex/zotero-note-workflow-20261118`,
+[PR #170](https://github.com/CrispStrobe/quds_office_suite/pull/170).
+
+The Notes pane now supplies its caret, selection and composition state to
+native and offline citation commands. Citations can be inserted into existing
+authored footnotes/endnotes while preserving their explanatory text, formatting
+and body reference; existing citations can be edited at that caret. Undo/redo
+and ordinary note-text undo retain the correct target. Native Studio adds
+Ctrl+Alt+C for Add/Edit citation and Ctrl+Alt+R for Refresh, with Cmd in place of
+Ctrl on macOS and guards for read-only documents, unavailable transport and
+active dialogs.
+
+The final local gates pass **1,489 distinct tests**: **549 engine**,
+**737 editor**, **107 Studio**, and **96 incoming provider/compiler**
+cases. The **98 new Zotero regression cases are included once**.
+Strict analysis and formatting pass for all **42 changed product/test Dart
+files**. All before/after source and runtime bindings match the frozen source.
+The bundled thesaurus verifier separately checks **1,037 files**, outside the
+test-case total.
+
+Recent work was reconciled before implementation and refreshed once before
+final qualification. The bounded final snapshot contains **384 refs**
+(210 fork branches, 170 PR heads, four upstream): 356 are included by ancestry,
+and 28 historical refs at 14 heads are verified equivalent. The incoming
+review, thesaurus, Mail baseline and spaCy EN/FR heads are preserved, with zero
+captured refs unaccounted for. All source checkpoints were saved remotely with
+non-forced expected-head updates and `[skip ci]`. No GitHub Actions, workflow,
+check or commit-status endpoint was queried or awaited.
+
+The [complete report](validation/zotero-note-workflow-20261118/README.md)
+contains exact suite selections, raw results, source/runtime fingerprints,
+development failures and corrections, reconciliation receipts, and replay
+commands. This increment establishes local model/controller/widget and
+controlled-transport behavior, including DOCX serializer/deserializer reopen
+paths. New live Zotero/account, installed native application and actual
+Word/LibreOffice reopening acceptance remain separate. Historical live
+acceptance below retains its originally recorded source identity.
+
 ## 18 November 2026 — reuse cited sources and edit citation source lists
 
 Qualified combined source: **`8002b6748deec2be7b7527d2bab8810d8ec54d05`**, on

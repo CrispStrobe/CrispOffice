@@ -1,0 +1,26 @@
+00:00 +0: loading test/office_thesaurus_test.dart
+00:00 +0: UTF-8 shard vectors match the compiler on VM and JavaScript
+00:00 +1: unsupported language and missing pack are distinct
+00:00 +2: source meanings, labels and relations remain separate
+00:00 +3: normalization keeps original source query and phrase spellings
+00:00 +4: German sharp-s and umlauts are not folded
+00:00 +5: source aliases preserve ambiguity and compatible POS
+00:00 +6: German noun fallback normalizes lookup whitespace and soft hyphens
+00:00 +7: detachment fallback cannot import an incompatible POS
+00:00 +8: no entry remains separate from malformed index
+00:00 +9: null index record is a damaged pack
+00:00 +10: a missing referenced meaning is a damaged pack
+00:00 +11: source identity mismatch fails closed
+00:00 +12: control characters in literal replacement terms are rejected
+00:00 +13: pinned manifest rejects modification
+00:00 +14: logical digest detects damaged shard bytes
+00:00 +15: compressed shards verify both forms and load on demand
+00:00 +16: compressed digest detects damage before decompression
+00:00 +17: decompression cannot exceed declared logical size
+00:00 +18: compressed packs require an explicit byte loader
+00:00 +19: missing shard is a failed pack, not missing corpus or no entry
+00:00 +20: pack clear rejects an in-flight result without restoring old caches
+00:00 +21: cache limits remain bounded and repeated results retain candidate identity
+00:00 +22: pack notices are read through integrity checks
+00:00 +23: default cache retains high-polysemy meanings across equivalent queries
+00:00 +24: All tests passed!

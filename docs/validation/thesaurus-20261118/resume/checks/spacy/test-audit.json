@@ -1,0 +1,64 @@
+{
+  "passed": 67,
+  "failed": 0,
+  "skipped": 0,
+  "substantive_cases": 67,
+  "suite_count": 6,
+  "suites": [
+    {
+      "path": "test/language_catalog_test.dart",
+      "passed": 8,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "path": "test/bundle_test.dart",
+      "passed": 3,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "path": "test/analysis_test.dart",
+      "passed": 12,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "path": "test/worker_test.dart",
+      "passed": 14,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "path": "test/distribution_test.dart",
+      "passed": 14,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "path": "test/grammar_provider_test.dart",
+      "passed": 16,
+      "skipped": 0,
+      "failed": 0
+    }
+  ],
+  "excluded_pseudo_cases": 6,
+  "excluded_reasons": {
+    "hidden_lifecycle": 6
+  },
+  "excluded_failures": [],
+  "test_start_events": 73,
+  "test_done_events": 73,
+  "every_started_test_finished_once": true,
+  "final_events": [
+    {
+      "success": true,
+      "type": "done",
+      "time": 12677
+    }
+  ],
+  "error_events": [],
+  "parse_errors": [],
+  "layout_or_tap_diagnostics": [],
+  "flutter_envelopes": 0
+}

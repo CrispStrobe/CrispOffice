@@ -216,12 +216,16 @@ text boxes. Resolve those conditions first. This avoids processing an
 incomplete citation sequence. The session is bounded to 10,000 fields, 100,000
 body paragraphs, 20,000 commands and 8 MiB command payloads.
 
-The current source passed local protocol, engine, controller, dialog, Studio
-transport and typography/PDF qualification. Running Zotero 10.0.8 also verified
-saved-search execution and query scoping, plus four native refresh transactions
+The 16 November feature checkpoint passed local protocol, engine, controller,
+dialog, Studio transport and typography/PDF qualification. Running Zotero 10.0.8
+also verified saved-search execution and query scoping, plus four native refresh transactions
 across German Chicago and a synthetic small-capital/double-line style, including
-DOCX reopen. The [current feature overview](validation/zotero-fidelity-20261116/README.md)
+DOCX reopen. The [feature overview](validation/zotero-fidelity-20261116/README.md)
 links the exact source receipts, native protocol traces and before/after files.
+Those native traces qualify their recorded historical source. The later
+[Notes workflow qualification](validation/zotero-note-workflow-20261118/README.md)
+covers local model, controller, widget and controlled-transport behavior; it
+does not add live desktop or Word/LibreOffice reopening acceptance.
 The earlier native picker/style-selection acceptance remains separately
 recorded with its original source identity. Full compiled application builds and opening
 the exported file in Microsoft Word or LibreOffice remain separate acceptance

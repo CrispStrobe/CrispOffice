@@ -45,6 +45,11 @@ retains detailed proofing settings and the advanced comparison workspace.
   and the next check. New findings appear progressively before the entire
   document finishes. Coverage remains incomplete until every checkable
   paragraph and the requested providers have completed.
+- Each pass checks the paragraph at the active editing position first, including
+  existing comment, header/footer, and Notes text. Its findings are published
+  immediately, even in a long document whose earlier paragraphs are still being
+  checked. Finding navigation keeps document order. Moving the caret changes the
+  priority of the next pass without restarting the current check.
 - Retained findings are rebound to the current document revision. Changes to
   language, provider configuration, story membership, generated content, or
   protection invalidate affected results. Late replies cannot correct a newer
@@ -118,7 +123,7 @@ completely before any paragraph is changed.
 | **F7** | Open Writing and explicitly check the document, including configured manual providers. |
 | **Alt+F7** | Open Writing and select the next available finding, wrapping at the end. |
 | **Alt+Shift+F7** | Select the previous available finding, wrapping at the beginning. |
-| **Shift+F10** or the **Menu** key | Open the document context menu at the text caret, including current suggestions and tracked-change actions. |
+| **Shift+F10** or the **Menu** key | Open the document or active Studio comment context menu at its text caret, including current suggestions. Document menus also include tracked-change actions. |
 | **Up / Down**, **Home / End** | Move between enabled commands in a keyboard-opened menu. |
 | **Enter** or **numpad Enter** | Apply the highlighted command. |
 | **Escape** | Clear a context-menu search, or close the menu when its search is empty; close the review pane when reviewing from the pane. |
@@ -137,9 +142,11 @@ explicitly selected finding, and adjacent tracked changes retain the selected
 change at their shared boundary. Source changes dismiss an obsolete menu.
 Review shortcuts and menu actions cannot operate through a covering modal
 dialog. Navigation and context-menu shortcuts do not interrupt an active IME
-composition. The caret menu applies to the focused document canvas. Existing
-comment bodies offer pointer-opened suggestions as described below; reply
-composers do not use the document caret menu.
+composition. Studio's existing comment bodies support the same keyboard menu
+navigation and return focus to the comment after Escape or Tab. Opening a
+comment menu preserves its text selection and the explicitly selected finding
+when findings overlap. Reply composers offer their own focusable correction
+buttons below the text and retain the TextField's ordinary editing menu.
 
 ### Keep comment replies inline in Studio
 
@@ -156,6 +163,28 @@ It never posts a draft just because another Reply command was chosen.
 - Draft typing does not change the document or its undo history. Posting uses
   the normal undoable comment command. A stale action cannot post to a different
   thread or a replacement document, even if a comment ID is reused.
+- **Replies are checked before posting.** With Check as you type enabled, the
+  same ordinary configured providers check the draft after a 400 ms pause.
+  Spelling, grammar, and writing-style findings have red, blue, and amber
+  underlines. A compact status and correction buttons appear directly below
+  the composer. Click a marked word or use the previous/next buttons to choose
+  a finding; select a replacement to correct only that draft and return to
+  typing. Tab reaches the correction controls.
+- Draft checking uses the document language, personal words, ignored words,
+  and ignored rules. It never runs optional manual inference. Changing the
+  configuration invalidates old suggestions; a late result cannot replace
+  newer draft text. Unrelated document edits do not discard a valid draft check.
+  Check as you type also pauses reply checks. IME composition defers checking
+  and corrections until composition ends, including when the committed text
+  itself has not changed.
+- Waiting, checking, paused, and incomplete checks have distinct status.
+  **Check reply** retries an incomplete check with the ordinary providers.
+  An unavailable check, or a reply language unsupported by every configured
+  provider, is never reported as clean.
+  Replies longer than 16,384 UTF-16 units report the live-check limit and can
+  be checked as document comments after posting. Requests are bounded across
+  thread switches: one draft check runs at a time, with only the latest pending
+  draft queued.
 - Drafts for removed threads and replaced documents are discarded. These are
   session drafts; they are not saved into the document before posting.
 - The active existing comment body uses the document's live proofing findings.
@@ -169,6 +198,11 @@ It never posts a draft just because another Reply command was chosen.
   words**. Corrections use the
   document's normal Undo/Redo history. Choosing **Open writing pane** does not
   implicitly start manual grammar inference.
+- **Shift+F10 / Menu** opens those commands at the active existing comment's
+  caret. Up/Down, Home/End, and Enter operate the menu; Escape or Tab returns
+  to comment editing. Select mode also supports keyboard Copy without enabling
+  edits. A stale canvas from a previously selected thread cannot supply the
+  keyboard menu's target.
 - Comment menus are tied to the exact document, comment, thread, source, and
   caret. Switching documents/comments, replacing a thread, changing the source,
   hiding Comments, or leaving Word dismisses obsolete actions. Unrelated
@@ -181,7 +215,9 @@ It never posts a draft just because another Reply command was chosen.
   one of its replies. **Select** mode keeps comment selection and Copy
   available while disabling document/thread edits. **View** mode keeps
   comments visible without selection or mutation.
-- Unposted reply text joins document proofing after it is posted.
+- Detached draft findings stay separate from document finding counts and
+  document Undo history. Posting adds the reply to ordinary document proofing;
+  posting remains one undoable comment command.
 
 The shared `QudsWordEditor` retains its Writing and Changes panes. The Comments
 pane described here is supplied by Studio's host interface.
@@ -429,6 +465,20 @@ leave enabling background checks to their own controls. `WordReviewPane` and
 `WordReviewStatusBar` are also exported as standalone host widgets. A standalone
 `WordEditorController` does not start a background timer until enabled by a host.
 
+Hosts rendering their own comment canvas can supply
+`QudsWordEditor.onCommentContextMenuRequested` to implement Shift+F10 / Menu
+for the active comment. Resolve the caret from that comment's actual canvas,
+validate the comment/document/source identity, and restore focus on dismissal.
+Studio provides this integration.
+
+`WordProofingSession.checkDraft(text)` checks detached text with the session's
+ordinary providers and returns a `WordDraftProofingResult`, or null for an
+obsolete or superseded request. Use `draftConfigurationKey` to detect relevant
+configuration changes and `isDraftResultCurrent(result, text: currentText)`
+before showing or applying results. Hosts remain responsible for debounce,
+composition, current route, and exact draft/thread ownership. The API never
+updates the document summary, document check generation, or paragraph cache.
+
 `selectProofingIssue` / `stepProofingIssue` navigate current findings while
 keeping unsupported canvas stories reviewable in the pane. An explicit
 selection survives a recheck of unchanged source text and is not replaced by a
@@ -465,4 +515,7 @@ The [text and comment proofing record](validation/document-review-inflight-20261
 records text-level language/checking controls, inherited-language round trips,
 inline comment suggestions, the incoming Zotero integration, and local
 regression/visual verification.
+The [draft and keyboard continuation record](validation/document-review-drafts-20261118/README.md)
+records live reply proofing, active-text check priority, keyboard comment menus,
+responsive review controls, and local verification of their integrated source.
 GitHub Actions are not required for the local verification workflow.

@@ -1,0 +1,166 @@
+{
+  "reviewed_at_utc": "2026-11-18T19:12:08.755561+00:00",
+  "source_commit": "ff1518517dd9f67e214ff56fe7eef06349f5223a",
+  "source_tree": "9a2014756626b256509df78d5ca0efedcd3c967a",
+  "head_observed": "ff1518517dd9f67e214ff56fe7eef06349f5223a",
+  "tracked_status": "",
+  "input_hashes": {
+    "reconciliation-audit-20261118.json": "a3cbef2b6607339e4d5c7afcdbe00538e501e97402959c9056586198902ca329",
+    "final-incoming/final-reconciliation.json": "8f684dd6bea3c055e1a6d269e500b2f7c23650e389a602d117b60dde79e554b3",
+    "final-dart-targets.json": "235aa2ff4929cb55fcc789f5cf07134b3f2e602fa309fe95c0f6585581c58e40"
+  },
+  "captured_frontier_utc": "2026-11-18T18:58:08.458378+00:00",
+  "counts_verified": {
+    "fork_branches": 210,
+    "pull_request_heads": 170,
+    "upstream_branches": 4,
+    "total_refs": 384
+  },
+  "unique_heads": 250,
+  "classification_verified": {
+    "included": 356,
+    "equivalent_refs": 28,
+    "equivalent_heads": 14
+  },
+  "initial_reconciled_head_retained": false,
+  "new_refs": [
+    {
+      "ref": "origin/codex/mail-reader-20261118",
+      "sha": "0e07d24714e6261123fcb835c36a592d6827982d",
+      "disposition": "new_incoming_head"
+    },
+    {
+      "ref": "origin/codex/zotero-note-workflow-20261118",
+      "sha": "a4915a555f70919fc7c6cfae3eb31764195593b7",
+      "disposition": "ancestor_of_saved_checkpoint"
+    },
+    {
+      "ref": "origin/integrate/spacy-en-fr-20261118",
+      "sha": "9a90262da555705758fa233f7d4e339ff453a0dc",
+      "disposition": "new_incoming_head"
+    },
+    {
+      "ref": "pr/170",
+      "sha": "a4915a555f70919fc7c6cfae3eb31764195593b7",
+      "disposition": "ancestor_of_saved_checkpoint"
+    }
+  ],
+  "advanced_refs": [
+    {
+      "ref": "origin/codex/document-review-20261118",
+      "before": "eedf2aee03964329a2e4c7ee3c771d43b5df4991",
+      "after": "b5d4df516db210a6f8ea566b290988dab5652630",
+      "fast_forward": true
+    },
+    {
+      "ref": "origin/codex/offline-thesaurus-20261118",
+      "before": "315beeb3b2967787e27a3d510d758abfb04c6de6",
+      "after": "eb1ff4dddbf65384bc61e2e7a0973360f76729ce",
+      "fast_forward": true
+    },
+    {
+      "ref": "pr/162",
+      "before": "eedf2aee03964329a2e4c7ee3c771d43b5df4991",
+      "after": "b5d4df516db210a6f8ea566b290988dab5652630",
+      "fast_forward": true
+    },
+    {
+      "ref": "pr/169",
+      "before": "315beeb3b2967787e27a3d510d758abfb04c6de6",
+      "after": "eb1ff4dddbf65384bc61e2e7a0973360f76729ce",
+      "fast_forward": true
+    }
+  ],
+  "removed_refs": [],
+  "intended_heads": {
+    "document_review": {
+      "sha": "b5d4df516db210a6f8ea566b290988dab5652630",
+      "included": true
+    },
+    "thesaurus": {
+      "sha": "eb1ff4dddbf65384bc61e2e7a0973360f76729ce",
+      "included": true
+    },
+    "mail_reader_baseline": {
+      "sha": "0e07d24714e6261123fcb835c36a592d6827982d",
+      "included": true
+    },
+    "spacy_en_fr": {
+      "sha": "9a90262da555705758fa233f7d4e339ff453a0dc",
+      "included": true
+    },
+    "initial_review": {
+      "sha": "eedf2aee03964329a2e4c7ee3c771d43b5df4991",
+      "included": true
+    },
+    "previous_user_zotero": {
+      "sha": "6c993f7406037ba462c6aea32e7e6afeebd28c03",
+      "included": true
+    },
+    "main": {
+      "sha": "4fbc8741f314af67592517595c760ba3036dedba",
+      "included": true
+    },
+    "upstream_main": {
+      "sha": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+      "included": true
+    }
+  },
+  "analysis_review": {
+    "comparison_base": "eedf2aee03964329a2e4c7ee3c771d43b5df4991",
+    "product_dart_count": 42,
+    "target_count": 42,
+    "missing": [],
+    "extra": [],
+    "excluded_nonproduct_dart": [
+      "docs/validation/thesaurus-20261118/continuation/local/fixtures/lib/main.dart",
+      "docs/validation/thesaurus-20261118/continuation/local/fixtures/native_pack_test.dart",
+      "docs/validation/thesaurus-20261118/continuation/local/fixtures/native_visual_test.dart",
+      "tools/thesaurus/benchmark.dart"
+    ],
+    "initial_review_files_outside_new_targets": {
+      "packages/quds_office_editor/example/test/studio_comment_review_test.dart": true,
+      "packages/quds_office_editor/lib/src/editor_word/render_word_canvas.dart": true,
+      "packages/quds_office_editor/test/word_proofing_geometry_test.dart": true,
+      "packages/quds_office_editor/test/word_text_proofing_controls_test.dart": true,
+      "packages/quds_office_editor/test/word_text_proofing_pane_test.dart": true,
+      "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart": true,
+      "packages/quds_office_engine/lib/src/word/serial/word_style_cascade.dart": true,
+      "packages/quds_office_engine/test/word_proofing_inheritance_test.dart": true
+    },
+    "prior_review_evidence": "docs/validation/document-review-inflight-20261118/README.md and accepted/verification.json bind 633 regressions and strict analysis to eedf2aee; these totals are historical, not new-run counts."
+  },
+  "issues": [],
+  "limitations": [
+    "No live Zotero desktop/account session or Word/LibreOffice reopening was performed by this review.",
+    "Native OS key routing and installed application packaging are not established by widget tests.",
+    "42-target analysis is scoped to product/test Dart changes since initial review base eedf2aee; three preserved evidence fixtures and tools/thesaurus/benchmark.dart are outside that claim.",
+    "Current gate logs must finish successfully and before/after source binding must match before publishing final accepted counts.",
+    "Incoming provider tests exercise controlled transports and data integrity, not live downloaded spaCy model inference."
+  ],
+  "new_frontier_fetched": false,
+  "tests_run_by_reviewer": false,
+  "github_actions_used": false,
+  "initial_publication_mapping": {
+    "local_checkpoint": "19b44e8d9141b9b40909fe6327ac0ed5dc50adf0",
+    "published_checkpoint": "fcb8a4b06b256b762074456eb3c9e412d0193722",
+    "local_tree": "fd948cc6af4a5aea1156de247b1f6c33c6278127",
+    "published_tree": "fd948cc6af4a5aea1156de247b1f6c33c6278127",
+    "identical_trees": true,
+    "published_checkpoint_included": true,
+    "published_parents": {
+      "eedf2aee03964329a2e4c7ee3c771d43b5df4991": true,
+      "315beeb3b2967787e27a3d510d758abfb04c6de6": true,
+      "4fbc8741f314af67592517595c760ba3036dedba": true
+    },
+    "patch_equivalence_base": "eedf2aee03964329a2e4c7ee3c771d43b5df4991",
+    "patch_equivalence_base_included": true,
+    "historical_landed_equivalents": {
+      "2c47165d01d01cc883135a434ac9f6591ce6e770": true,
+      "bb5556e8cc4cb73e2c668b5319a2844a20c6c50c": true,
+      "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4": true,
+      "23f3b4204fce45d38a103e3159bdc7f1e8d37c4e": true
+    }
+  },
+  "completed_review_at_utc": "2026-11-18T19:12:58.537784+00:00"
+}

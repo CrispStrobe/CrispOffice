@@ -1,0 +1,61 @@
+{
+  "cohort": "engine",
+  "started_at_utc": "2026-11-18T19:06:09.171749+00:00",
+  "source_sha": "b9e8c159cea315aa0a044c4b0a6fc2cd35d11055",
+  "runs": [
+    {
+      "name": "tests",
+      "command": [
+        "/workspace/scratch/a686c23de6c7/zotero-toolchain/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+        "--disable-dart-dev",
+        "--packages=/workspace/scratch/a686c23de6c7/zotero-validation/.dart_tool/package_config.json",
+        "/workspace/scratch/a686c23de6c7/zotero-toolchain/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+        "--concurrency=1",
+        "--reporter",
+        "json",
+        "test/office_thesaurus_test.dart",
+        "test/word_proofing_inheritance_test.dart",
+        "test/word_zotero_note_insertion_test.dart",
+        "test/word_zotero_caret_test.dart",
+        "test/word_zotero_citing_test.dart",
+        "test/word_zotero_preference_flow_test.dart",
+        "test/word_zotero_style_preferences_review_test.dart",
+        "test/word_zotero_scaling_test.dart"
+      ],
+      "cwd": "/workspace/scratch/a686c23de6c7/zotero-validation/packages/quds_office_engine",
+      "exit_code": 0,
+      "seconds": 34.799767411001085,
+      "error": null,
+      "stdout": "logs/tests.stdout",
+      "stderr": "logs/tests.stderr",
+      "stdout_sha256": "f4549a0549a2d6030ec04eab2f539bd4295bd4fd297e5246aa0dd435d6773a5f",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "status": "passed",
+  "github_actions_used": false,
+  "browser_executed": false,
+  "model_downloads_requested": false,
+  "source_files": 3308,
+  "input_digest": "efd9ec376bbbf396e9deb528f8cd3f71a7852faccf2575ce148b68fa8bf6f11d",
+  "test_audit": {
+    "passed": 171,
+    "failed": 0,
+    "skipped": 0,
+    "suite_count": 8
+  },
+  "acceptance_guards": {
+    "exit_success": true,
+    "all_selected_suites_executed": true,
+    "nonempty_cases": true,
+    "no_failed_or_skipped_cases": true,
+    "every_started_test_finished_once": true,
+    "final_event_success": true,
+    "clean_event_stream": true
+  },
+  "output_digest": "efd9ec376bbbf396e9deb528f8cd3f71a7852faccf2575ce148b68fa8bf6f11d",
+  "source_unchanged": true,
+  "changed_inputs": [],
+  "source_sha_after": "b9e8c159cea315aa0a044c4b0a6fc2cd35d11055",
+  "finished_at_utc": "2026-11-18T19:06:45.036010+00:00"
+}

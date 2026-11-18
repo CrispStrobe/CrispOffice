@@ -1,0 +1,150 @@
+{
+  "audit_at_utc": "2026-11-18T19:21:34.179347+00:00",
+  "read_only_review": true,
+  "ran_new_tests": false,
+  "fetched_new_refs": false,
+  "queried_actions": false,
+  "qualification_source_commit": "ff1518517dd9f67e214ff56fe7eef06349f5223a",
+  "main_gates": {
+    "engine": {
+      "passed": 549,
+      "failed": 0,
+      "skipped": 0,
+      "error_events": 0,
+      "unfinished": 0,
+      "unknown_done_ids": 0,
+      "duplicate_start_ids": 0,
+      "duplicate_done_ids": 0,
+      "duplicate_suite_ids": 0,
+      "distinct_visible_cases": 549,
+      "counted_test_files": 29,
+      "suite_paths_equal_plan": true,
+      "suite_paths_equal_command": true,
+      "single_success_final_event": true,
+      "exit_code": 0
+    },
+    "editor": {
+      "passed": 737,
+      "failed": 0,
+      "skipped": 0,
+      "error_events": 0,
+      "unfinished": 0,
+      "unknown_done_ids": 0,
+      "duplicate_start_ids": 0,
+      "duplicate_done_ids": 0,
+      "duplicate_suite_ids": 0,
+      "distinct_visible_cases": 737,
+      "counted_test_files": 52,
+      "suite_paths_equal_plan": true,
+      "suite_paths_equal_command": true,
+      "single_success_final_event": true,
+      "exit_code": 0
+    },
+    "studio": {
+      "passed": 107,
+      "failed": 0,
+      "skipped": 0,
+      "error_events": 0,
+      "unfinished": 0,
+      "unknown_done_ids": 0,
+      "duplicate_start_ids": 0,
+      "duplicate_done_ids": 0,
+      "duplicate_suite_ids": 0,
+      "distinct_visible_cases": 107,
+      "counted_test_files": 7,
+      "suite_paths_equal_plan": true,
+      "suite_paths_equal_command": true,
+      "single_success_final_event": true,
+      "exit_code": 0
+    }
+  },
+  "provider_gates": {
+    "spacy-providers": {
+      "passed": 67,
+      "test_files": [
+        "packages/quds_proofing_spacy/test/analysis_test.dart",
+        "packages/quds_proofing_spacy/test/bundle_test.dart",
+        "packages/quds_proofing_spacy/test/distribution_test.dart",
+        "packages/quds_proofing_spacy/test/grammar_provider_test.dart",
+        "packages/quds_proofing_spacy/test/language_catalog_test.dart",
+        "packages/quds_proofing_spacy/test/worker_test.dart"
+      ],
+      "counted_test_files": 6,
+      "log_sha256_matches": true,
+      "exit_code": 0,
+      "terminal_success": true,
+      "failure_or_skip_reported": false
+    },
+    "thesaurus-provider": {
+      "passed": 24,
+      "test_files": [
+        "packages/quds_office_engine/test/office_thesaurus_test.dart"
+      ],
+      "counted_test_files": 1,
+      "log_sha256_matches": true,
+      "exit_code": 0,
+      "terminal_success": true,
+      "failure_or_skip_reported": false
+    },
+    "thesaurus-compiler": {
+      "passed": 5,
+      "test_files": [
+        "tools/thesaurus/test_build_packs.py"
+      ],
+      "counted_test_files": 1,
+      "log_sha256_matches": true,
+      "exit_code": 0,
+      "terminal_success": true,
+      "failure_or_skip_reported": false
+    }
+  },
+  "totals": {
+    "main": 1393,
+    "providers_compiler": 96,
+    "all_passed": 1489,
+    "all_test_files": 96,
+    "main_distinct_case_identities": 1393
+  },
+  "all_test_file_sets_disjoint": true,
+  "test_file_overlaps": {},
+  "new_regression_counts": {
+    "word_zotero_note_insertion_test.dart": 41,
+    "word_zotero_note_target_test.dart": 33,
+    "word_zotero_notes_pane_test.dart": 13,
+    "studio_zotero_shortcuts_test.dart": 11
+  },
+  "new_regressions_total_already_included": 98,
+  "source_binding": {
+    "frozen_commit": "ff1518517dd9f67e214ff56fe7eef06349f5223a",
+    "frozen_tree": "9a2014756626b256509df78d5ca0efedcd3c967a",
+    "main_file_count": 1432,
+    "provider_file_count": 1613,
+    "manifest_intersection": 573,
+    "manifest_union": 2472,
+    "main_snapshot_before_equals_after": true,
+    "provider_snapshot_before_equals_after": true,
+    "provider_runtime_before_equals_after": true,
+    "overlap_hash_conflicts": [],
+    "all_union_source_hashes_match_frozen_git_blobs": true,
+    "verified_git_blob_bytes": 50120984,
+    "blob_mismatches": [],
+    "workspace_lock_matches_main_snapshot": true,
+    "main_binding_matches_qualification": true,
+    "provider_binding_matches_frozen_commit": true
+  },
+  "pack_integrity": {
+    "files_by_language": {
+      "en": 518,
+      "de": 519
+    },
+    "total": 1037,
+    "counted_as_test_cases": false
+  },
+  "evidence_limits": [
+    "Provider Dart gates use the expanded concurrent reporter: terminal passing counts and disjoint file sets are verified, but repeated progress labels do not enumerate every individual case name. Main JSON gates do support full per-case uniqueness verification.",
+    "Source manifests overlap; 1432 and 1613 are independent coverage counts and are not summed in the report.",
+    "This audit verifies archived local evidence, not live Zotero/account interoperability, an installed application build, external language-model inference or Word/LibreOffice reopening."
+  ],
+  "issues": [],
+  "status": "passed"
+}

@@ -41,7 +41,7 @@ final class RuntimeNetworkGuard {
     }
 
     _fetch = denyFetch.toJS;
-    void denyXhr(JSAny? method, JSAny? url, JSAny? async) {
+    void denyXhr(JSAny? method, JSAny? url, JSAny? asyncValue) {
       attempts++;
       throw StateError('Outbound XHR disabled by reader qualification.');
     }

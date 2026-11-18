@@ -586,7 +586,9 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       child: Directionality(
         textDirection: TextDirection.ltr,
         child: SizedBox(
-          height: 36 + _extraChromeTextHeight(13),
+          height: (studioChromeLineHeight(context, 13) + 12)
+              .clamp(36.0, double.infinity)
+              .toDouble(),
           width: double.infinity,
           child: Stack(
             fit: StackFit.expand,
@@ -598,11 +600,12 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
               Row(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
-                  Flexible(
-                    flex: 5,
+                  Expanded(
                     child: SingleChildScrollView(
+                      key: const ValueKey('studio-title-actions-scroll'),
                       scrollDirection: Axis.horizontal,
                       child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: <Widget>[
                           const Padding(
                             padding: EdgeInsets.only(left: 10, right: 4),
@@ -627,60 +630,61 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                             ),
                           ),
                           _titleQuickAccess(),
-                          FittedBox(
-                            fit: BoxFit.scaleDown,
-                            alignment: Alignment.centerLeft,
-                            child: Row(
-                              children: <Widget>[
-                                StudioAppSwitcher(
-                                  label: 'Word',
-                                  icon: Icons.description_outlined,
-                                  selected: _app == SuiteApp.word,
-                                  onTap: () => _switchApp(SuiteApp.word),
+                          Row(
+                            children: <Widget>[
+                              StudioAppSwitcher(
+                                label: 'Word',
+                                icon: Icons.description_outlined,
+                                selected: _app == SuiteApp.word,
+                                onTap: () => _switchApp(SuiteApp.word),
+                              ),
+                              StudioAppSwitcher(
+                                label: 'Excel',
+                                icon: Icons.grid_on_outlined,
+                                selected: _app == SuiteApp.excel,
+                                onTap: () => _switchApp(SuiteApp.excel),
+                              ),
+                              StudioAppSwitcher(
+                                label: 'PowerPoint',
+                                icon: Icons.slideshow_outlined,
+                                selected: _app == SuiteApp.powerpoint,
+                                onTap: () => _switchApp(SuiteApp.powerpoint),
+                              ),
+                              StudioAppSwitcher(
+                                label: 'PDF',
+                                icon: Icons.picture_as_pdf_outlined,
+                                selected: _app == SuiteApp.pdf,
+                                onTap: () => _switchApp(SuiteApp.pdf),
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            width: 280,
+                            child: StudioDragRegion(
+                              onDoubleTap: StudioWindow.toggleMaximize,
+                              child: Align(
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 10,
+                                  ),
+                                  child: Text(
+                                    _documentLabel,
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      color: Colors.white.withValues(
+                                        alpha: 0.94,
+                                      ),
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
                                 ),
-                                StudioAppSwitcher(
-                                  label: 'Excel',
-                                  icon: Icons.grid_on_outlined,
-                                  selected: _app == SuiteApp.excel,
-                                  onTap: () => _switchApp(SuiteApp.excel),
-                                ),
-                                StudioAppSwitcher(
-                                  label: 'PowerPoint',
-                                  icon: Icons.slideshow_outlined,
-                                  selected: _app == SuiteApp.powerpoint,
-                                  onTap: () => _switchApp(SuiteApp.powerpoint),
-                                ),
-                                StudioAppSwitcher(
-                                  label: 'PDF',
-                                  icon: Icons.picture_as_pdf_outlined,
-                                  selected: _app == SuiteApp.pdf,
-                                  onTap: () => _switchApp(SuiteApp.pdf),
-                                ),
-                              ],
+                              ),
                             ),
                           ),
                         ],
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    flex: 2,
-                    child: IgnorePointer(
-                      child: Align(
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 10),
-                          child: Text(
-                            _documentLabel,
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: Colors.white.withValues(alpha: 0.94),
-                              fontSize: 12,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ),
                       ),
                     ),
                   ),
@@ -1050,6 +1054,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                 ),
               Expanded(
                 child: SingleChildScrollView(
+                  key: const ValueKey<String>('studio-ribbon-tabs-scroll'),
                   scrollDirection: Axis.horizontal,
                   child: Row(
                     children: <Widget>[
@@ -1146,7 +1151,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
           ),
         ),
         child: SizedBox(
-          height: 72 + 2 * _extraChromeTextHeight(12),
+          height: StudioRibbonStrip.preferredHeight(context),
           child: StudioRibbonStrip(groups: _ribbonGroups()),
         ),
       ),

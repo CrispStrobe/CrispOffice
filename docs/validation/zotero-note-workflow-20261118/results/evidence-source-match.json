@@ -1,0 +1,16 @@
+{
+  "tested_source": "ff1518517dd9f67e214ff56fe7eef06349f5223a",
+  "checked_at_evidence_preparation": true,
+  "main_file_matches": 1432,
+  "provider_file_matches": 1613,
+  "overlapping_sets_not_summed": true,
+  "main_mismatches": [],
+  "provider_mismatches": [],
+  "lock_sha256": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130",
+  "package_config_sha256": "02f1c3aa7717dca9295b6a186f1faf22c78434917d3cfa6dc816d5a486e3853e",
+  "tracked_changes": [
+    "docs/zotero-support.md",
+    "docs/zotero-validation.md"
+  ],
+  "application_source_unchanged": true
+}

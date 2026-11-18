@@ -1,0 +1,67 @@
+{
+  "classification": "Successful development preflight after fixes; excluded from acceptance",
+  "accepted": false,
+  "source_directory": "review-drafts-preflight-fixes2",
+  "archive": "preflight-fixes-corrected.tar.gz",
+  "archive_bytes": 2329,
+  "archive_sha256": "272d178e9391d540adaad77e18a68be0859bd4c5b08e389aa2eb78507c5dc04c",
+  "uncompressed_tar_bytes": 20480,
+  "uncompressed_tar_sha256": "e8094f5a2a0f2d218a6af520fd31a6b1ccff78738efaf1f39569703763b3cdee",
+  "file_count": 5,
+  "original_file_bytes": 11318,
+  "original_verification": "preflight-fixes-corrected-verification.json",
+  "original_verification_sha256": "97ef497c491cfbccd6db4691ca5e3fdfd39e8061f0fba007bff386f4092be57e",
+  "original_success": true,
+  "observed_targeted_test_passed": 2,
+  "observed_targeted_test_failed": 0,
+  "source_binding": "Development preflight before publication of the next candidate; not a replacement for its frozen-source gate.",
+  "explanation": "Prepared runtime environment was supplied. Offline lock enforcement, formatting, strict analysis of 39 files, and the two viewing/protected keyboard inspection regression cases all passed. Lock, package configuration and runtime receipt hashes remained unchanged. All results remain excluded from final acceptance.",
+  "environment_inputs_unchanged": true,
+  "environment_inputs": {
+    "workspace_lock": "43261dbd4acce9c423c8f19f5c86841a9f05aff3b3b968c94a7b48f94c9f8239",
+    "package_configuration": "43c7e9c5100096d3874a57a2c8ff8cb7d16820e5894ecf63c63af9c73eaf42f0",
+    "runtime_receipt": "832ca49151c4b20d1a32732d3461d93329085a4cab9ecf121ff6d672c4deab18"
+  },
+  "files": [
+    {
+      "path": "review-drafts-preflight-fixes2/analysis.log",
+      "bytes": 933,
+      "sha256": "3ad20ed2430aed258876b42d703236e0180333309842bf86eb8b60e8867d9167"
+    },
+    {
+      "path": "review-drafts-preflight-fixes2/format.log",
+      "bytes": 48,
+      "sha256": "f15559950d2c5302fe3ba497c0cffd359595af75a9296126683d89686327117b"
+    },
+    {
+      "path": "review-drafts-preflight-fixes2/offline-lock.log",
+      "bytes": 68,
+      "sha256": "d4cb7a3c68b4133b4f6e58c67ff5bfd13725d8021e930388cdc98da8a575919d"
+    },
+    {
+      "path": "review-drafts-preflight-fixes2/protected-keyboard.log",
+      "bytes": 2624,
+      "sha256": "a97391c887abd4d2e790b69dea9e335d2a33cbb2d2d14bd274e0cdb324679be1"
+    },
+    {
+      "path": "review-drafts-preflight-fixes2/verification.json",
+      "bytes": 7645,
+      "sha256": "97ef497c491cfbccd6db4691ca5e3fdfd39e8061f0fba007bff386f4092be57e"
+    }
+  ],
+  "credential_scan": {
+    "matches": 0,
+    "redactions": 0,
+    "patterns": [
+      "private_key",
+      "github_token",
+      "openai_key",
+      "slack_token",
+      "aws_access_key",
+      "jwt",
+      "authenticated_url",
+      "authorization_value",
+      "credential_assignment"
+    ]
+  }
+}

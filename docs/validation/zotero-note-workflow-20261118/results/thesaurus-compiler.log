@@ -1,0 +1,10 @@
+test_german_words_are_not_folded (__main__.CompilerTests.test_german_words_are_not_folded) ... ok
+test_literal_terms_reject_document_controls (__main__.CompilerTests.test_literal_terms_reject_document_controls) ... ok
+test_sql_escapes_are_data_and_never_executable (__main__.CompilerTests.test_sql_escapes_are_data_and_never_executable) ... ok
+test_sql_rejects_malformed_or_unknown_values (__main__.CompilerTests.test_sql_rejects_malformed_or_unknown_values) ... ok
+test_utf8_shards_have_stable_cross_runtime_vectors (__main__.CompilerTests.test_utf8_shards_have_stable_cross_runtime_vectors) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.001s
+
+OK

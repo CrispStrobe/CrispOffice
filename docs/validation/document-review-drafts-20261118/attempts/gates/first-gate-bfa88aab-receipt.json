@@ -1,0 +1,153 @@
+{
+  "classification": "Rejected development gate/preflight; excluded from acceptance",
+  "accepted": false,
+  "source_directory": "review-drafts-first-gate-bfa88aab",
+  "archive": "first-gate-bfa88aab.tar.gz",
+  "archive_bytes": 688295,
+  "archive_sha256": "305b0984c56147668a1a7cf633e59b0c236ef6906e4ca2dce6f6d215b6703a80",
+  "uncompressed_tar_bytes": 3481600,
+  "uncompressed_tar_sha256": "4b53474280deff39e7d35a5f7ee75e612bf6914c69f6e5f320da1a39131e3162",
+  "file_count": 20,
+  "original_file_bytes": 3456056,
+  "original_verification": "first-gate-bfa88aab-verification.json",
+  "original_verification_sha256": "4b4cde9719801e97759ac2a6a7f734ff633663fc9dc7aaeeb110cc63c3e9c7c2",
+  "source_commit": "bfa88aab88a74028285619dfa07f3a81868fe59b",
+  "source_tree": "3418afd634efcaaa14c4712103f69ae5e817bffd",
+  "original_success": false,
+  "observed_passed": 879,
+  "observed_failed": 2,
+  "observed_skipped": 0,
+  "explanation": "Rejected integrated gate on bfa88aab: 879 tests passed, two body keyboard inspection tests failed in viewing/protected modes. The shared selection guard ran before the body/comment branch and incorrectly blocked inspection. Strict analysis also reported seven infos (two review, five incoming Mail); formatting found one discrepancy. Whitespace diagnostics primarily concern pristine vendored enough_mail plus the Mail UI pubspec end-of-file. These results led to follow-up fixes and are excluded from acceptance.",
+  "files": [
+    {
+      "path": "review-drafts-first-gate-bfa88aab/checks/analysis.log",
+      "bytes": 2648,
+      "sha256": "8d64c3775707e07555ae4539b720a43f88ab38a04cdfbe89b7b02276b974921f"
+    },
+    {
+      "path": "review-drafts-first-gate-bfa88aab/checks/editor-cases.json",
+      "bytes": 207260,
+      "sha256": "48af7244a9e539f34b8b9133d23da7ea851c1c912daa50a5b46ed24d3747b2fd"
+    },
+    {
+      "path": "review-drafts-first-gate-bfa88aab/checks/editor-errors.json",
+      "bytes": 533,
+      "sha256": "0776dcf9400120a0f62e240c784aa186c5156b3fba104e88f9f0d528b95206e3"
+    },
+    {
+      "path": "review-drafts-first-gate-bfa88aab/checks/editor.jsonl",
+      "bytes": 384883,
+      "sha256": "7f09611b4db992359a1ed04a2f6bcbff1d69e9f8801e1fbabf9bddd3f334209b"
+    },
+    {
+      "path": "review-drafts-first-gate-bfa88aab/checks/editor.jsonl.gz",
+      "bytes": 34801,
+      "sha256": "0f8fca756c7b43a50d6fcf02d1ff4a8dc481ba169dbda8e6a6076359b39337c3"
+    },
+    {
+      "path": "review-drafts-first-gate-bfa88aab/checks/engine-cases.json",
+      "bytes": 21009,
+      "sha256": "e2db3ec9f429403f2d9f258a186106bd7d66642ba97a175d07452e2abe012370"
+    },
+    {
+      "path": "review-drafts-first-gate-bfa88aab/checks/engine-errors.json",
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    {
+      "path": "review-drafts-first-gate-bfa88aab/checks/engine.jsonl",
+      "bytes": 45730,
+      "sha256": "f342a2f5ccfb2c7e42409fb43228334b86659a75c7010843c94de91628b0c9da"
+    },
+    {
+      "path": "review-drafts-first-gate-bfa88aab/checks/engine.jsonl.gz",
+      "bytes": 4529,
+      "sha256": "763320a28b5758a7ec6cd86573aa2a5d6dd7a57be3dc9708c6c9e85e0de39774"
+    },
+    {
+      "path": "review-drafts-first-gate-bfa88aab/checks/format.log",
+      "bytes": 122,
+      "sha256": "1b6e411b8993932b475523ba2c7422351eb273e7405246d4483e5641adbf0594"
+    },
+    {
+      "path": "review-drafts-first-gate-bfa88aab/checks/studio-cases.json",
+      "bytes": 28745,
+      "sha256": "feef773b329ff9724b408cbd5e447f1d0d1b776801cd1fe6ca70e6143d69d016"
+    },
+    {
+      "path": "review-drafts-first-gate-bfa88aab/checks/studio-errors.json",
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    {
+      "path": "review-drafts-first-gate-bfa88aab/checks/studio.jsonl",
+      "bytes": 56532,
+      "sha256": "b4152bfc325b12f960e9f851663d61ab545fdd3939cb43b8c415fdd78eb72c50"
+    },
+    {
+      "path": "review-drafts-first-gate-bfa88aab/checks/studio.jsonl.gz",
+      "bytes": 5282,
+      "sha256": "74826b4cd56331394f94adf0dd4d2d6d0fb0a48d94126fd236feb92862feea42"
+    },
+    {
+      "path": "review-drafts-first-gate-bfa88aab/checks/whitespace.log",
+      "bytes": 1182215,
+      "sha256": "adacd1b9cc420b220f0375a81d7d95c04b66aa006b80c6cde7a5ea32a4fd8f82"
+    },
+    {
+      "path": "review-drafts-first-gate-bfa88aab/environment-after.json",
+      "bytes": 1083,
+      "sha256": "9142ba0759484a200127fa12b337a31d12ed455de784e8e80cfbd74c7e4ab720"
+    },
+    {
+      "path": "review-drafts-first-gate-bfa88aab/environment-before.json",
+      "bytes": 1083,
+      "sha256": "9142ba0759484a200127fa12b337a31d12ed455de784e8e80cfbd74c7e4ab720"
+    },
+    {
+      "path": "review-drafts-first-gate-bfa88aab/source-after.json",
+      "bytes": 726436,
+      "sha256": "48cb60704cc1fc4b7b8d1029fe4f3a7c73cb1390225bde1db646f94bb702e273"
+    },
+    {
+      "path": "review-drafts-first-gate-bfa88aab/source-before.json",
+      "bytes": 726436,
+      "sha256": "48cb60704cc1fc4b7b8d1029fe4f3a7c73cb1390225bde1db646f94bb702e273"
+    },
+    {
+      "path": "review-drafts-first-gate-bfa88aab/verification.json",
+      "bytes": 26723,
+      "sha256": "4b4cde9719801e97759ac2a6a7f734ff633663fc9dc7aaeeb110cc63c3e9c7c2"
+    }
+  ],
+  "credential_scan": {
+    "matches": 0,
+    "redactions": 0,
+    "patterns": [
+      "private_key",
+      "github_token",
+      "openai_key",
+      "slack_token",
+      "aws_access_key",
+      "jwt",
+      "authenticated_url",
+      "authorization_value",
+      "credential_assignment"
+    ]
+  },
+  "source_unchanged_during_checks": true,
+  "environment_unchanged_during_checks": true,
+  "failed_tests": [
+    "viewing keeps keyboard findings inspectable without correction",
+    "document protection keeps keyboard findings inspectable without correction"
+  ],
+  "other_gate_failures": {
+    "analysis_infos": 7,
+    "analysis_info_origin": {
+      "review": 2,
+      "incoming_mail": 5
+    },
+    "formatting_discrepancies": 1,
+    "whitespace_scope": "Pristine vendored enough_mail content and Mail UI pubspec end-of-file."
+  }
+}

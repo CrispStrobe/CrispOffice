@@ -1,0 +1,115 @@
+{
+  "hash_algorithm": "SHA-256",
+  "manifest_excludes_itself": true,
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 4583,
+      "sha256": "97d8de5569850ee5819b3048a9956991238a2536c64afc5363fe7f51a382f951"
+    },
+    {
+      "path": "index.json",
+      "bytes": 5189,
+      "sha256": "924a5af2196a3cd39b979dee633827441ae0397d0e909b78c1898e7995f469b9"
+    },
+    {
+      "path": "logs/comment-keyboard-analysis.log.gz",
+      "bytes": 90,
+      "sha256": "b05ab6bcc2c94c5d7adb11591d400d0447e62ee77d5bd9bfb4ec32c57104734d",
+      "compression": "gzip",
+      "uncompressed_bytes": 75,
+      "uncompressed_sha256": "3273ba9baffcaa736e985f8a18470e9b5e96ee5319fc6b88118f72c699aca7b7",
+      "source_path": "comment-keyboard-analysis.log"
+    },
+    {
+      "path": "logs/comment-keyboard-development.log.gz",
+      "bytes": 918,
+      "sha256": "86e3bc9566d16ef5240c832eac6fe48a2ff70a0da8ae74f18991fe49c7faf06d",
+      "compression": "gzip",
+      "uncompressed_bytes": 2819,
+      "uncompressed_sha256": "dc2a3881eb853b56d167a8a68744c9d62d3cd43c5c026c2060de531fabc76522",
+      "source_path": "comment-keyboard-development.log"
+    },
+    {
+      "path": "logs/draft-backend-development.log.gz",
+      "bytes": 523,
+      "sha256": "80dcb7f85ada171d308b2c150b4daf8b85b6bac140d1e1d1d85b46b085a0a2d9",
+      "compression": "gzip",
+      "uncompressed_bytes": 1331,
+      "uncompressed_sha256": "924da6a894363856f10f340bd0eae7dfd5ce6de7057dd7d5e9853baa4ac58a56",
+      "source_path": "draft-backend-development.log"
+    },
+    {
+      "path": "logs/draft-keyboard-review-attempt2.log.gz",
+      "bytes": 3993,
+      "sha256": "be0faa0da0b236fbe7c01ccce1f23d716cf951e3ded0f9b50ffef8fdd6d4e833",
+      "compression": "gzip",
+      "uncompressed_bytes": 26489,
+      "uncompressed_sha256": "5189f7c869996a9d487108b96e73da0bfe938d3b2bcd12adf7324797b5a3f590",
+      "source_path": "draft-keyboard-review-attempt2.log"
+    },
+    {
+      "path": "logs/draft-proofing-attempt1.log.gz",
+      "bytes": 296,
+      "sha256": "9374a89ae6c6074846ba6ed38b7cdf38071964a3ac473df778de6dd6e84776e8",
+      "compression": "gzip",
+      "uncompressed_bytes": 434,
+      "uncompressed_sha256": "db77bf00f239a71342b15679dd596902e764868c39b6a8bb737f4d4d986c88b7",
+      "source_path": "draft-proofing-attempt1.log"
+    },
+    {
+      "path": "logs/draft-proofing-narrow-final.log.gz",
+      "bytes": 199,
+      "sha256": "fe534b0d7580f7e515241d77340ff21b132bb2b776d01bbdfd963f3eaa7a9de7",
+      "compression": "gzip",
+      "uncompressed_bytes": 250,
+      "uncompressed_sha256": "bb94bc18fa0c5be0554157b3c2005d5f1d244a6f6e9d0f86adda73cf803114a4",
+      "source_path": "draft-proofing-narrow-final.log"
+    },
+    {
+      "path": "logs/draft-proofing-retry2.log.gz",
+      "bytes": 1643,
+      "sha256": "47e1b67acc0c1f348c42f2bff4bca040f898f683858ff0262cbce2e58cd6e90f",
+      "compression": "gzip",
+      "uncompressed_bytes": 9704,
+      "uncompressed_sha256": "ca56bebd6ff400cdcde5da8cee9530b3dcceb38a6cc36fa53a3c5765e76ddf91",
+      "source_path": "draft-proofing-retry2.log"
+    },
+    {
+      "path": "logs/review-backend-analysis-development.log.gz",
+      "bytes": 105,
+      "sha256": "d971f10129d4bddaa3629ef8c8137807a2699ace5f2639d53523ff823195e043",
+      "compression": "gzip",
+      "uncompressed_bytes": 142,
+      "uncompressed_sha256": "2b015b88616ab1ac37ba0549cf431c89f6323cb8cb450b7f1c129be7356abd08",
+      "source_path": "review-backend-analysis-development.log"
+    },
+    {
+      "path": "logs/review-backend-development-accepted.log.gz",
+      "bytes": 852,
+      "sha256": "8f7b3bd6427fdb3b31100b1129a116c07f330f4ad9522dfb1442f42374eff6b6",
+      "compression": "gzip",
+      "uncompressed_bytes": 5099,
+      "uncompressed_sha256": "5b61e67c26c9b642b6b4f120177d6fc0ff4ad89aa733c8794962a2a49260624e",
+      "source_path": "review-backend-development-accepted.log"
+    },
+    {
+      "path": "logs/review-backend-development.log.gz",
+      "bytes": 1878,
+      "sha256": "5984bdda0781a940ec5f3f80ea0ea0a398c1ad8735f67ca69eabe84afc97a5c0",
+      "compression": "gzip",
+      "uncompressed_bytes": 11583,
+      "uncompressed_sha256": "6e2477b668d417523d24092e1bd445a5541bb74ecea8d4d7f74022bc3aebdaf5",
+      "source_path": "review-backend-development.log"
+    },
+    {
+      "path": "logs/review-priority-development.log.gz",
+      "bytes": 502,
+      "sha256": "ad862863b56b22d7dbc4bbc5ba92b50bbff6633e236b93257017121204581176",
+      "compression": "gzip",
+      "uncompressed_bytes": 1232,
+      "uncompressed_sha256": "4b46af99e443aeccb87f26f741cd4d667f22b0644eaa2104c3ac161cbe364bf4",
+      "source_path": "review-priority-development.log"
+    }
+  ]
+}

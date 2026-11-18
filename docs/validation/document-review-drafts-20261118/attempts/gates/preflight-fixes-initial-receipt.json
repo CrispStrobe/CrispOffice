@@ -1,0 +1,50 @@
+{
+  "classification": "Rejected development gate/preflight; excluded from acceptance",
+  "accepted": false,
+  "source_directory": "review-drafts-preflight-fixes",
+  "archive": "preflight-fixes-initial.tar.gz",
+  "archive_bytes": 816,
+  "archive_sha256": "808693332cd252fdd74ffbd84d473de381f611f3a7de789265ab6da1ce2f2ed6",
+  "uncompressed_tar_bytes": 10240,
+  "uncompressed_tar_sha256": "b00251ce9e3565f411f6f57ce3485fbdc1294cf69160c718e4939963d965decf",
+  "file_count": 2,
+  "original_file_bytes": 1417,
+  "original_verification": "preflight-fixes-initial-verification.json",
+  "original_verification_sha256": "0ac4a154b7829df3a4cd887bf07a7f05c35fa14c454099a3d74a838085bdf705",
+  "source_commit": null,
+  "source_tree": null,
+  "original_success": false,
+  "observed_passed": null,
+  "observed_failed": null,
+  "observed_skipped": null,
+  "explanation": "Rejected initial offline preflight after source fixes: runtime cache environment was omitted, so pub could not find cached flutter_lints and exited 69. The workspace lock, package configuration and runtime receipt hashes remained unchanged. This is a command-environment setup failure, not an accepted dependency resolution.",
+  "files": [
+    {
+      "path": "review-drafts-preflight-fixes/offline-lock.log",
+      "bytes": 199,
+      "sha256": "676cb9d98bbd52a78349baaf7bf282b5b11bb4503d4d2ad67e98ba1a355819e0"
+    },
+    {
+      "path": "review-drafts-preflight-fixes/verification.json",
+      "bytes": 1218,
+      "sha256": "0ac4a154b7829df3a4cd887bf07a7f05c35fa14c454099a3d74a838085bdf705"
+    }
+  ],
+  "credential_scan": {
+    "matches": 0,
+    "redactions": 0,
+    "patterns": [
+      "private_key",
+      "github_token",
+      "openai_key",
+      "slack_token",
+      "aws_access_key",
+      "jwt",
+      "authenticated_url",
+      "authorization_value",
+      "credential_assignment"
+    ]
+  },
+  "environment_inputs_unchanged": true,
+  "exit_code": 69
+}

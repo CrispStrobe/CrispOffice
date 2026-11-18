@@ -1,0 +1,49 @@
+{
+  "inspected_by": "primary agent",
+  "source_commit": "66919cf857fe2439a3512a821817f35981760a75",
+  "method": "Viewed each complete PNG separately after the first renderer finished; final three-case rerender on the accepted candidate produced byte-identical PNGs, verified by SHA-256.",
+  "screenshots": [
+    {
+      "file": "comment-draft-desktop.png",
+      "width": 1440,
+      "height": 1000,
+      "result": "passed",
+      "observations": "Draft spelling/style underlines, two-suggestion status, correction chip and navigation are legible beside the editable document. No error banner or overflow marker."
+    },
+    {
+      "file": "comment-draft-arabic-narrow.png",
+      "width": 780,
+      "height": 1000,
+      "result": "passed",
+      "observations": "RTL reply composer and correction controls remain visible below the narrow document area. Text, send action, suggestion count and navigation fit without overflow. This image is distinct from the 650px/1.4-text-scale behavioral regression."
+    },
+    {
+      "file": "comment-keyboard-menu-desktop.png",
+      "width": 1440,
+      "height": 1000,
+      "result": "passed",
+      "observations": "Caret-positioned existing-comment menu is within the viewport with the suggested replacement highlighted and editing/thread actions visible."
+    }
+  ],
+  "scope": "Static widget renders reviewed for layout; interaction assertions are in the separately recorded visual fixture cases. Native OS windowing and physical shortcut dispatch were not exercised.",
+  "source_tree": "33faed80ab06c0d5aa3e8b9faa73ceff27892246",
+  "original_inspected_render_source": "bfa88aab88a74028285619dfa07f3a81868fe59b",
+  "final_rerender_images_identical_to_inspected": true,
+  "images": [
+    {
+      "file": "screenshots/comment-draft-arabic-narrow.png",
+      "bytes": 79086,
+      "sha256": "2834bc12ed1b662375c5a5c04205885290852ade28a7117a63db614f6f586106"
+    },
+    {
+      "file": "screenshots/comment-draft-desktop.png",
+      "bytes": 140669,
+      "sha256": "18c129f7754d5b17b5ab362c870e9d76bcb3feba8810e1446f06613a4104c0ef"
+    },
+    {
+      "file": "screenshots/comment-keyboard-menu-desktop.png",
+      "bytes": 140517,
+      "sha256": "40739ccc52da8e720c9d36dbc31a8b4484cdf897e12af87239630bbb345b7b74"
+    }
+  ]
+}
