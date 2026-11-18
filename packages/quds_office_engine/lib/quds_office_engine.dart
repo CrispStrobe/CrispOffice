@@ -96,6 +96,7 @@ export 'src/slide/model/pml_presentation.dart';
 export 'src/slide/serial/odp_presentation_writer.dart';
 export 'src/slide/serial/slide_serial.dart';
 export 'src/slide/shapes/drawingml.dart';
+export 'src/thesaurus/office_thesaurus.dart';
 export 'src/visual/drawing_line_style.dart';
 export 'src/visual/drawingml_visual_io.dart';
 export 'src/visual/office_visual.dart';

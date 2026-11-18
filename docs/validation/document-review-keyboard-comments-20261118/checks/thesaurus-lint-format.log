@@ -1,0 +1,4 @@
+$ dart format --output=none --set-exit-if-changed packages/quds_office_engine/lib/quds_office_engine.dart packages/quds_office_engine/lib/src/thesaurus/office_thesaurus.dart
+Formatted 2 files (0 changed) in 0.02 seconds.
+
+exit_code=0

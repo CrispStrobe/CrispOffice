@@ -170,6 +170,7 @@ class _WordReviewPaneState extends State<WordReviewPane> {
   }
 
   void _stepWritingFinding(int delta) {
+    if (!(ModalRoute.of(context)?.isCurrent ?? true)) return;
     if (_c.input.composing.isValid && !_c.input.composing.isCollapsed) return;
     _setTab(WordReviewPaneTab.proofing);
     final issues = _c.proofing.summary.issues.where(_matchesFilter).toList();
@@ -242,6 +243,7 @@ class _WordReviewPaneState extends State<WordReviewPane> {
           child: CallbackShortcuts(
             bindings: <ShortcutActivator, VoidCallback>{
               const SingleActivator(LogicalKeyboardKey.f7): () {
+                if (!(ModalRoute.of(context)?.isCurrent ?? true)) return;
                 _setTab(WordReviewPaneTab.proofing);
                 unawaited(_check(includeManualProviders: true));
               },
@@ -254,8 +256,11 @@ class _WordReviewPaneState extends State<WordReviewPane> {
               ): () =>
                   _stepWritingFinding(-1),
               if (widget.onClose != null)
-                const SingleActivator(LogicalKeyboardKey.escape):
-                    widget.onClose!,
+                const SingleActivator(LogicalKeyboardKey.escape): () {
+                  if (ModalRoute.of(context)?.isCurrent ?? true) {
+                    widget.onClose!();
+                  }
+                },
             },
             child: Focus(
               focusNode: _keyboardFocus,

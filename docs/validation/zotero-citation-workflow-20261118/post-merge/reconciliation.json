@@ -1,0 +1,852 @@
+{
+  "schema_version": 1,
+  "recorded_at_utc": "2026-11-18T16:48:00.957055+00:00",
+  "repository": "CrispStrobe/quds_office_suite",
+  "scope": "Targeted post-merge integration of the supplied immutable review base only. The parent performed the targeted PR metadata check and fetched the document-review branch to obtain ecbb1e0b. The auditor used those local objects and made no additional remote request. No repository-wide branch/PR frontier was refreshed.",
+  "new_remote_queries_or_fetches_by_auditor": false,
+  "pull_request_166": {
+    "url": "https://github.com/CrispStrobe/quds_office_suite/pull/166",
+    "state_reported": "merged",
+    "head_at_merge": "3668ed92829dfa012ec5b129943a86738ebb7992",
+    "merge_commit": "40790cb2c8c0ebe8c4a6472f3378fa581abf0b00",
+    "merged_at_reported": "2026-11-18 16:17 UTC (minute precision)",
+    "metadata_provenance": "Parent agent targeted PR metadata check and document-review fetch supplied for this task; local commit objects and ancestry independently verified by this auditor without additional remote requests.",
+    "merge_commit_parents": [
+      "3a36ae46ea99ceaa1c212ae5cfe08bc501bb0229",
+      "556c55c0ef312eda2cca11600021d293a81ab44b",
+      "3668ed92829dfa012ec5b129943a86738ebb7992"
+    ],
+    "why_later_checkpoints_needed": "The merged head was 3668ed92. Later 40e92e52 source/test repairs and 82224f23 evidence are outside the targeted base and are preserved through the other parent of this combined integration.",
+    "merged_at_display": "2026-11-18 17:17 Europe/Berlin (16:17 UTC; minute precision)"
+  },
+  "targeted_base": "ecbb1e0bd8129a5c8737496d1877863dd0eea3f2",
+  "new_main_head_in_targeted_base": "556c55c0ef312eda2cca11600021d293a81ab44b",
+  "previous_saved_head": "82224f2369572b4f249c67ba70d950ef06d45856",
+  "common_ancestor": "3668ed92829dfa012ec5b129943a86738ebb7992",
+  "combined_source_commit": "8002b6748deec2be7b7527d2bab8810d8ec54d05",
+  "combined_source_tree": "7e47f2c26dc20b572895b5dfc02814f89696c1a2",
+  "combined_parents": [
+    "82224f2369572b4f249c67ba70d950ef06d45856",
+    "ecbb1e0bd8129a5c8737496d1877863dd0eea3f2"
+  ],
+  "expected_parents": [
+    "82224f2369572b4f249c67ba70d950ef06d45856",
+    "ecbb1e0bd8129a5c8737496d1877863dd0eea3f2"
+  ],
+  "parents_match": true,
+  "ancestry": {
+    "initial_base": {
+      "sha": "f6c0e167d9c1c7c0f7fc93073f2becacc7a44d48",
+      "ancestor_of_combined": true,
+      "ancestor_of_targeted_base": true
+    },
+    "initial_zotero_continuation": {
+      "sha": "fb1fd4dc3edda824c3e043c035dbfad1f0fe0869",
+      "ancestor_of_combined": true,
+      "ancestor_of_targeted_base": true
+    },
+    "prior_zotero_offline": {
+      "sha": "8d74db5da2992e60c7f17b58cd354b874a1ce33a",
+      "ancestor_of_combined": true,
+      "ancestor_of_targeted_base": true
+    },
+    "earlier_native_spelling": {
+      "sha": "04be224b4a7f469476416ee86dc780cb6a1c0990",
+      "ancestor_of_combined": true,
+      "ancestor_of_targeted_base": true
+    },
+    "earlier_integration": {
+      "sha": "3668ed92829dfa012ec5b129943a86738ebb7992",
+      "ancestor_of_combined": true,
+      "ancestor_of_targeted_base": true
+    },
+    "historically_qualified_source": {
+      "sha": "40e92e5222a26db132f8be05126df285b4227a86",
+      "ancestor_of_combined": true,
+      "ancestor_of_targeted_base": false
+    },
+    "saved_historical_evidence": {
+      "sha": "82224f2369572b4f249c67ba70d950ef06d45856",
+      "ancestor_of_combined": true,
+      "ancestor_of_targeted_base": false
+    },
+    "targeted_current_review_base": {
+      "sha": "ecbb1e0bd8129a5c8737496d1877863dd0eea3f2",
+      "ancestor_of_combined": true,
+      "ancestor_of_targeted_base": true
+    },
+    "pr166_integration_commit": {
+      "sha": "40790cb2c8c0ebe8c4a6472f3378fa581abf0b00",
+      "ancestor_of_combined": true,
+      "ancestor_of_targeted_base": true
+    },
+    "new_main_documentation": {
+      "sha": "556c55c0ef312eda2cca11600021d293a81ab44b",
+      "ancestor_of_combined": true,
+      "ancestor_of_targeted_base": true
+    }
+  },
+  "new_base_commits_after_common_ancestor": [
+    "ecbb1e0bd8129a5c8737496d1877863dd0eea3f2 Preserve final passing local review validation and runtime provenance [skip ci]",
+    "3925c63fca2f824a95566c1258caf5db1086e530 Keep review feedback visible while pane content scrolls [skip ci]",
+    "2cc6bee1daaedf1f9a6d8922c8cb57c0db1394b6 Preserve desktop review previews from the validated visual fixtures [skip ci]",
+    "afa14d6e0091af0b27d34ef986afc1890f8a1c44 Freeze integrated review source and preserve local performance and visual fixtures [skip ci]",
+    "40790cb2c8c0ebe8c4a6472f3378fa581abf0b00 Merge latest main and Zotero citation workflow into live document review [skip ci]",
+    "3a36ae46ea99ceaa1c212ae5cfe08bc501bb0229 Reuse unchanged paragraph snapshots during live checking [skip ci]",
+    "556c55c0ef312eda2cca11600021d293a81ab44b docs: record Grundwortschatz pipeline reuse review",
+    "f97e8e848150526aa7a8227364904f120bd5ad1d Complete in-pane writing controls and preserve inline review through progress [skip ci]"
+  ],
+  "new_base_changes": {
+    "product_paths": [
+      "packages/quds_office_editor/lib/src/embed/word_review_pane.dart",
+      "packages/quds_office_editor/lib/src/proofing/word_proofing.dart"
+    ],
+    "test_paths": [
+      "packages/quds_office_editor/test/word_incremental_proofing_menu_test.dart",
+      "packages/quds_office_editor/test/word_live_review_changes_test.dart",
+      "packages/quds_office_editor/test/word_live_review_selection_test.dart",
+      "packages/quds_office_editor/test/word_proofing_capture_cache_test.dart"
+    ],
+    "all_changed_paths": [
+      "docs/ROADMAP.md",
+      "docs/document-review.md",
+      "docs/roadmaps/thesaurus/README.md",
+      "docs/roadmaps/thesaurus/hf-pipeline-review.md",
+      "docs/roadmaps/thesaurus/licensing-and-notices.md",
+      "docs/validation/document-review-continuation-20261118/artifact-index.json",
+      "docs/validation/document-review-continuation-20261118/attempts/afa14-full-gate.index.json",
+      "docs/validation/document-review-continuation-20261118/attempts/afa14-full-gate.tar.gz",
+      "docs/validation/document-review-continuation-20261118/attempts/earlier-checkpoints.index.json",
+      "docs/validation/document-review-continuation-20261118/attempts/earlier-checkpoints.tar.gz",
+      "docs/validation/document-review-continuation-20261118/checks/analysis.log",
+      "docs/validation/document-review-continuation-20261118/checks/editor-cases.json",
+      "docs/validation/document-review-continuation-20261118/checks/editor.jsonl.gz",
+      "docs/validation/document-review-continuation-20261118/checks/format.log",
+      "docs/validation/document-review-continuation-20261118/checks/source-after.json",
+      "docs/validation/document-review-continuation-20261118/checks/source-before.json",
+      "docs/validation/document-review-continuation-20261118/checks/studio-cases.json",
+      "docs/validation/document-review-continuation-20261118/checks/studio.jsonl.gz",
+      "docs/validation/document-review-continuation-20261118/checks/verification.json",
+      "docs/validation/document-review-continuation-20261118/checks/whitespace.log",
+      "docs/validation/document-review-continuation-20261118/late-integration.json",
+      "docs/validation/document-review-continuation-20261118/performance/after.jsonl",
+      "docs/validation/document-review-continuation-20261118/performance/before.jsonl",
+      "docs/validation/document-review-continuation-20261118/performance/invalidate_timing_test.dart",
+      "docs/validation/document-review-continuation-20261118/performance/summary.json",
+      "docs/validation/document-review-continuation-20261118/render_previews.dart",
+      "docs/validation/document-review-continuation-20261118/run_checks.py",
+      "docs/validation/document-review-continuation-20261118/runtime.json",
+      "docs/validation/document-review-continuation-20261118/runtime/bootstrap_runtime.py",
+      "docs/validation/document-review-continuation-20261118/runtime/flutter-tools-pub-get.log",
+      "docs/validation/document-review-continuation-20261118/runtime/flutter-version.log",
+      "docs/validation/document-review-continuation-20261118/runtime/pub-cache-receipt.json.gz",
+      "docs/validation/document-review-continuation-20261118/runtime/sdk-archive-members.json.gz",
+      "docs/validation/document-review-continuation-20261118/runtime/workspace-pub-get.log",
+      "docs/validation/document-review-continuation-20261118/screenshots/changes-final-desktop.png",
+      "docs/validation/document-review-continuation-20261118/screenshots/changes-original-desktop.png",
+      "docs/validation/document-review-continuation-20261118/screenshots/writing-in-flight-desktop.png",
+      "packages/quds_office_editor/CHANGELOG.md",
+      "packages/quds_office_editor/lib/src/embed/word_review_pane.dart",
+      "packages/quds_office_editor/lib/src/proofing/word_proofing.dart",
+      "packages/quds_office_editor/test/word_incremental_proofing_menu_test.dart",
+      "packages/quds_office_editor/test/word_live_review_changes_test.dart",
+      "packages/quds_office_editor/test/word_live_review_selection_test.dart",
+      "packages/quds_office_editor/test/word_proofing_capture_cache_test.dart"
+    ]
+  },
+  "incoming_file_preservation": [
+    {
+      "path": "docs/ROADMAP.md",
+      "incoming_sha256": "de19eca05683de6240ca450eee7f685e7aafa11dc518746fda97cc4d3fdabb8a",
+      "combined_sha256": "de19eca05683de6240ca450eee7f685e7aafa11dc518746fda97cc4d3fdabb8a",
+      "exact_bytes_preserved": true,
+      "classification": "unchanged-incoming-bytes"
+    },
+    {
+      "path": "docs/document-review.md",
+      "incoming_sha256": "bec60267ecf5b01b34cf0583c1d561ead83c711d7a7bf90550eaa4284ffdb5ab",
+      "combined_sha256": "bec60267ecf5b01b34cf0583c1d561ead83c711d7a7bf90550eaa4284ffdb5ab",
+      "exact_bytes_preserved": true,
+      "classification": "unchanged-incoming-bytes"
+    },
+    {
+      "path": "docs/roadmaps/thesaurus/README.md",
+      "incoming_sha256": "41d1b26403bf12cecd59a2bfe881b051a0b861aece81569b80453080f338f63f",
+      "combined_sha256": "41d1b26403bf12cecd59a2bfe881b051a0b861aece81569b80453080f338f63f",
+      "exact_bytes_preserved": true,
+      "classification": "unchanged-incoming-bytes"
+    },
+    {
+      "path": "docs/roadmaps/thesaurus/hf-pipeline-review.md",
+      "incoming_sha256": "31bb9d1ff1c5123d8d86750d7e65c58f3a80b5ffb5cbc4ec60e8cf287d17c02a",
+      "combined_sha256": "31bb9d1ff1c5123d8d86750d7e65c58f3a80b5ffb5cbc4ec60e8cf287d17c02a",
+      "exact_bytes_preserved": true,
+      "classification": "unchanged-incoming-bytes"
+    },
+    {
+      "path": "docs/roadmaps/thesaurus/licensing-and-notices.md",
+      "incoming_sha256": "ec4cff660576545e2f787fecb68bd83565850d0ac6b7a555e44447451ef4c9fe",
+      "combined_sha256": "ec4cff660576545e2f787fecb68bd83565850d0ac6b7a555e44447451ef4c9fe",
+      "exact_bytes_preserved": true,
+      "classification": "unchanged-incoming-bytes"
+    },
+    {
+      "path": "docs/validation/document-review-continuation-20261118/artifact-index.json",
+      "incoming_sha256": "dea465a586846a4065ef5dabee650ef96f76cb21a77c8bfcdad07346f83e4dec",
+      "combined_sha256": "dea465a586846a4065ef5dabee650ef96f76cb21a77c8bfcdad07346f83e4dec",
+      "exact_bytes_preserved": true,
+      "classification": "unchanged-incoming-bytes"
+    },
+    {
+      "path": "docs/validation/document-review-continuation-20261118/attempts/afa14-full-gate.index.json",
+      "incoming_sha256": "d99d7c2605a3305a869ca0570518a89c1bef0b08786482a29e74903222c18a20",
+      "combined_sha256": "d99d7c2605a3305a869ca0570518a89c1bef0b08786482a29e74903222c18a20",
+      "exact_bytes_preserved": true,
+      "classification": "unchanged-incoming-bytes"
+    },
+    {
+      "path": "docs/validation/document-review-continuation-20261118/attempts/afa14-full-gate.tar.gz",
+      "incoming_sha256": "09b5769135ddb59f859c13e710f2879f6812ce993a55cff560cc6303a95cd5b5",
+      "combined_sha256": "09b5769135ddb59f859c13e710f2879f6812ce993a55cff560cc6303a95cd5b5",
+      "exact_bytes_preserved": true,
+      "classification": "unchanged-incoming-bytes"
+    },
+    {
+      "path": "docs/validation/document-review-continuation-20261118/attempts/earlier-checkpoints.index.json",
+      "incoming_sha256": "261bf6019de3795da31add60f9940d8b86d048deaafe96bec19faf8bcb291948",
+      "combined_sha256": "261bf6019de3795da31add60f9940d8b86d048deaafe96bec19faf8bcb291948",
+      "exact_bytes_preserved": true,
+      "classification": "unchanged-incoming-bytes"
+    },
+    {
+      "path": "docs/validation/document-review-continuation-20261118/attempts/earlier-checkpoints.tar.gz",
+      "incoming_sha256": "476be0c8e9b0618c56008e733396959d8eee30f70cc03861bc546a39167e2051",
+      "combined_sha256": "476be0c8e9b0618c56008e733396959d8eee30f70cc03861bc546a39167e2051",
+      "exact_bytes_preserved": true,
+      "classification": "unchanged-incoming-bytes"
+    },
+    {
+      "path": "docs/validation/document-review-continuation-20261118/checks/analysis.log",
+      "incoming_sha256": "aa2e12907e3b737622f075c1cb668101d73d9ff4b6dc4a00d0382926dbd8adc2",
+      "combined_sha256": "aa2e12907e3b737622f075c1cb668101d73d9ff4b6dc4a00d0382926dbd8adc2",
+      "exact_bytes_preserved": true,
+      "classification": "unchanged-incoming-bytes"
+    },
+    {
+      "path": "docs/validation/document-review-continuation-20261118/checks/editor-cases.json",
+      "incoming_sha256": "992f7a854baf4da6de87fdb170e5c51c3db2e8f1b3fd485724e4cc3faf3b2929",
+      "combined_sha256": "992f7a854baf4da6de87fdb170e5c51c3db2e8f1b3fd485724e4cc3faf3b2929",
+      "exact_bytes_preserved": true,
+      "classification": "unchanged-incoming-bytes"
+    },
+    {
+      "path": "docs/validation/document-review-continuation-20261118/checks/editor.jsonl.gz",
+      "incoming_sha256": "23af9c1c00302fdf5dac8c7474e95d0e2b7587b89971e40faed0c5fd13dda50d",
+      "combined_sha256": "23af9c1c00302fdf5dac8c7474e95d0e2b7587b89971e40faed0c5fd13dda50d",
+      "exact_bytes_preserved": true,
+      "classification": "unchanged-incoming-bytes"
+    },
+    {
+      "path": "docs/validation/document-review-continuation-20261118/checks/format.log",
+      "incoming_sha256": "b2df55f9f313799b833a8a9e106ddb5448d82f1b71901b45b8fcbcea6dcc4fa1",
+      "combined_sha256": "b2df55f9f313799b833a8a9e106ddb5448d82f1b71901b45b8fcbcea6dcc4fa1",
+      "exact_bytes_preserved": true,
+      "classification": "unchanged-incoming-bytes"
+    },
+    {
+      "path": "docs/validation/document-review-continuation-20261118/checks/source-after.json",
+      "incoming_sha256": "0f13ff2d5d64ee49ddfe8fd9f7f78ea09c560af0527cc2476e16b46e60a8cc28",
+      "combined_sha256": "0f13ff2d5d64ee49ddfe8fd9f7f78ea09c560af0527cc2476e16b46e60a8cc28",
+      "exact_bytes_preserved": true,
+      "classification": "unchanged-incoming-bytes"
+    },
+    {
+      "path": "docs/validation/document-review-continuation-20261118/checks/source-before.json",
+      "incoming_sha256": "0f13ff2d5d64ee49ddfe8fd9f7f78ea09c560af0527cc2476e16b46e60a8cc28",
+      "combined_sha256": "0f13ff2d5d64ee49ddfe8fd9f7f78ea09c560af0527cc2476e16b46e60a8cc28",
+      "exact_bytes_preserved": true,
+      "classification": "unchanged-incoming-bytes"
+    },
+    {
+      "path": "docs/validation/document-review-continuation-20261118/checks/studio-cases.json",
+      "incoming_sha256": "a00eb6ec1c697a6f6176b5a1f9ce3f4e938fb0fb7211dca568b396e5676159ee",
+      "combined_sha256": "a00eb6ec1c697a6f6176b5a1f9ce3f4e938fb0fb7211dca568b396e5676159ee",
+      "exact_bytes_preserved": true,
+      "classification": "unchanged-incoming-bytes"
+    },
+    {
+      "path": "docs/validation/document-review-continuation-20261118/checks/studio.jsonl.gz",
+      "incoming_sha256": "0b15687d829cad3869b1e5f13d04b49cc3ce21272c96bf13060c3cab19968b9c",
+      "combined_sha256": "0b15687d829cad3869b1e5f13d04b49cc3ce21272c96bf13060c3cab19968b9c",
+      "exact_bytes_preserved": true,
+      "classification": "unchanged-incoming-bytes"
+    },
+    {
+      "path": "docs/validation/document-review-continuation-20261118/checks/verification.json",
+      "incoming_sha256": "8f12d347541d454c755d00b5d9110a14ef6c923b82c382982e346f5064050a37",
+      "combined_sha256": "8f12d347541d454c755d00b5d9110a14ef6c923b82c382982e346f5064050a37",
+      "exact_bytes_preserved": true,
+      "classification": "unchanged-incoming-bytes"
+    },
+    {
+      "path": "docs/validation/document-review-continuation-20261118/checks/whitespace.log",
+      "incoming_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "combined_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "exact_bytes_preserved": true,
+      "classification": "unchanged-incoming-bytes"
+    },
+    {
+      "path": "docs/validation/document-review-continuation-20261118/late-integration.json",
+      "incoming_sha256": "559905229f8b93208aafd7b050d3dfd38322ec1fc7cbbf463ef352d42cc11773",
+      "combined_sha256": "559905229f8b93208aafd7b050d3dfd38322ec1fc7cbbf463ef352d42cc11773",
+      "exact_bytes_preserved": true,
+      "classification": "unchanged-incoming-bytes"
+    },
+    {
+      "path": "docs/validation/document-review-continuation-20261118/performance/after.jsonl",
+      "incoming_sha256": "b390649cba24b513096e1a946405f7716848e77b0ce52e96e90d5c401a236a8e",
+      "combined_sha256": "b390649cba24b513096e1a946405f7716848e77b0ce52e96e90d5c401a236a8e",
+      "exact_bytes_preserved": true,
+      "classification": "unchanged-incoming-bytes"
+    },
+    {
+      "path": "docs/validation/document-review-continuation-20261118/performance/before.jsonl",
+      "incoming_sha256": "aed3a6609b06e8b2631ad5a75fc7a6a518f40be2ebe71512992179b92e21fb46",
+      "combined_sha256": "aed3a6609b06e8b2631ad5a75fc7a6a518f40be2ebe71512992179b92e21fb46",
+      "exact_bytes_preserved": true,
+      "classification": "unchanged-incoming-bytes"
+    },
+    {
+      "path": "docs/validation/document-review-continuation-20261118/performance/invalidate_timing_test.dart",
+      "incoming_sha256": "9ecdff5b582a7cbb57fc07f6663fa9e5e373f6ca04c8329ad948c71982c29818",
+      "combined_sha256": "9ecdff5b582a7cbb57fc07f6663fa9e5e373f6ca04c8329ad948c71982c29818",
+      "exact_bytes_preserved": true,
+      "classification": "unchanged-incoming-bytes"
+    },
+    {
+      "path": "docs/validation/document-review-continuation-20261118/performance/summary.json",
+      "incoming_sha256": "b73c528291bd3ad5ee01845af75e9176ca1a92d1b2ba50b3d47e16de450323fc",
+      "combined_sha256": "b73c528291bd3ad5ee01845af75e9176ca1a92d1b2ba50b3d47e16de450323fc",
+      "exact_bytes_preserved": true,
+      "classification": "unchanged-incoming-bytes"
+    },
+    {
+      "path": "docs/validation/document-review-continuation-20261118/render_previews.dart",
+      "incoming_sha256": "b82b2248b9f0288b9e851cd7b7e8921b640b01757c84032ef33d04012c4a1bca",
+      "combined_sha256": "b82b2248b9f0288b9e851cd7b7e8921b640b01757c84032ef33d04012c4a1bca",
+      "exact_bytes_preserved": true,
+      "classification": "unchanged-incoming-bytes"
+    },
+    {
+      "path": "docs/validation/document-review-continuation-20261118/run_checks.py",
+      "incoming_sha256": "bd069358c49da7f3e5c9a206b3fa5016857005fed9213de1866e39522b2ef94a",
+      "combined_sha256": "bd069358c49da7f3e5c9a206b3fa5016857005fed9213de1866e39522b2ef94a",
+      "exact_bytes_preserved": true,
+      "classification": "unchanged-incoming-bytes"
+    },
+    {
+      "path": "docs/validation/document-review-continuation-20261118/runtime.json",
+      "incoming_sha256": "62de57c2a35530ba1662ec2d94c32a553a25a4246ab7ffd5d2f19d77136c7533",
+      "combined_sha256": "62de57c2a35530ba1662ec2d94c32a553a25a4246ab7ffd5d2f19d77136c7533",
+      "exact_bytes_preserved": true,
+      "classification": "unchanged-incoming-bytes"
+    },
+    {
+      "path": "docs/validation/document-review-continuation-20261118/runtime/bootstrap_runtime.py",
+      "incoming_sha256": "29c0f72960f9f087558da9760faec8aad7d9122e280b223e90430b9c38e5f9b5",
+      "combined_sha256": "29c0f72960f9f087558da9760faec8aad7d9122e280b223e90430b9c38e5f9b5",
+      "exact_bytes_preserved": true,
+      "classification": "unchanged-incoming-bytes"
+    },
+    {
+      "path": "docs/validation/document-review-continuation-20261118/runtime/flutter-tools-pub-get.log",
+      "incoming_sha256": "9f349fca172146e2595a50ccbe19f4d21b8845690372a19239884f3b932864c3",
+      "combined_sha256": "9f349fca172146e2595a50ccbe19f4d21b8845690372a19239884f3b932864c3",
+      "exact_bytes_preserved": true,
+      "classification": "unchanged-incoming-bytes"
+    },
+    {
+      "path": "docs/validation/document-review-continuation-20261118/runtime/flutter-version.log",
+      "incoming_sha256": "db73cdec9d0d6a35d06cb12479ccfb14b8f50e78c60c4d154708f4e73fa95418",
+      "combined_sha256": "db73cdec9d0d6a35d06cb12479ccfb14b8f50e78c60c4d154708f4e73fa95418",
+      "exact_bytes_preserved": true,
+      "classification": "unchanged-incoming-bytes"
+    },
+    {
+      "path": "docs/validation/document-review-continuation-20261118/runtime/pub-cache-receipt.json.gz",
+      "incoming_sha256": "3748951de970e0556cb275d66cac389eb9de79eeee835e8d810eb47416b81f57",
+      "combined_sha256": "3748951de970e0556cb275d66cac389eb9de79eeee835e8d810eb47416b81f57",
+      "exact_bytes_preserved": true,
+      "classification": "unchanged-incoming-bytes"
+    },
+    {
+      "path": "docs/validation/document-review-continuation-20261118/runtime/sdk-archive-members.json.gz",
+      "incoming_sha256": "1953312e89d1065243236a15f92cdb5eb612f0f671dc2af428e57b7fa4f821ac",
+      "combined_sha256": "1953312e89d1065243236a15f92cdb5eb612f0f671dc2af428e57b7fa4f821ac",
+      "exact_bytes_preserved": true,
+      "classification": "unchanged-incoming-bytes"
+    },
+    {
+      "path": "docs/validation/document-review-continuation-20261118/runtime/workspace-pub-get.log",
+      "incoming_sha256": "d4cb7a3c68b4133b4f6e58c67ff5bfd13725d8021e930388cdc98da8a575919d",
+      "combined_sha256": "d4cb7a3c68b4133b4f6e58c67ff5bfd13725d8021e930388cdc98da8a575919d",
+      "exact_bytes_preserved": true,
+      "classification": "unchanged-incoming-bytes"
+    },
+    {
+      "path": "docs/validation/document-review-continuation-20261118/screenshots/changes-final-desktop.png",
+      "incoming_sha256": "67118506137ddbf1302c5c6a9d7360ef83c16f7f46762fd6b58043fd8bceb74f",
+      "combined_sha256": "67118506137ddbf1302c5c6a9d7360ef83c16f7f46762fd6b58043fd8bceb74f",
+      "exact_bytes_preserved": true,
+      "classification": "unchanged-incoming-bytes"
+    },
+    {
+      "path": "docs/validation/document-review-continuation-20261118/screenshots/changes-original-desktop.png",
+      "incoming_sha256": "76c9a505bd3cc6b72e2c375d50bac13c2abdae198cf00ee12193eb2f1bde80c5",
+      "combined_sha256": "76c9a505bd3cc6b72e2c375d50bac13c2abdae198cf00ee12193eb2f1bde80c5",
+      "exact_bytes_preserved": true,
+      "classification": "unchanged-incoming-bytes"
+    },
+    {
+      "path": "docs/validation/document-review-continuation-20261118/screenshots/writing-in-flight-desktop.png",
+      "incoming_sha256": "eaff26490f8a714ca30768d6d2695b13e3063f1fb78173d71213b94afcc3f917",
+      "combined_sha256": "eaff26490f8a714ca30768d6d2695b13e3063f1fb78173d71213b94afcc3f917",
+      "exact_bytes_preserved": true,
+      "classification": "unchanged-incoming-bytes"
+    },
+    {
+      "path": "packages/quds_office_editor/CHANGELOG.md",
+      "incoming_sha256": "3640a91e410c8f97c2314c5026106dcdc6fd70324b6029a04e36ba1d44fbf7b7",
+      "combined_sha256": "3640a91e410c8f97c2314c5026106dcdc6fd70324b6029a04e36ba1d44fbf7b7",
+      "exact_bytes_preserved": true,
+      "classification": "unchanged-incoming-bytes"
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/word_review_pane.dart",
+      "incoming_sha256": "f31f0a80121f913e34f203f0df0fa2f7678ca77f7ea152e33251c4b1be81bbae",
+      "combined_sha256": "f31f0a80121f913e34f203f0df0fa2f7678ca77f7ea152e33251c4b1be81bbae",
+      "exact_bytes_preserved": true,
+      "classification": "unchanged-incoming-bytes"
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/proofing/word_proofing.dart",
+      "incoming_sha256": "3f70a533f302db59c06623645c06777eafeacf43a8cd153cb5711bda0fcaa68b",
+      "combined_sha256": "3f70a533f302db59c06623645c06777eafeacf43a8cd153cb5711bda0fcaa68b",
+      "exact_bytes_preserved": true,
+      "classification": "unchanged-incoming-bytes"
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_incremental_proofing_menu_test.dart",
+      "incoming_sha256": "a1a075f3a02c5fd47571ab8b3cace45284ac3c55115ab7c80d017ecc2d0ee0fa",
+      "combined_sha256": "a1a075f3a02c5fd47571ab8b3cace45284ac3c55115ab7c80d017ecc2d0ee0fa",
+      "exact_bytes_preserved": true,
+      "classification": "unchanged-incoming-bytes"
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_live_review_changes_test.dart",
+      "incoming_sha256": "b3d88e2f057c0eca524a40e103715b4800f498431a8b80282ee4a1ce2894d905",
+      "combined_sha256": "08fcb7ad855dc9312227231c879b3f7b7a5996abdc3789217d1f8e9cfdd3dea4",
+      "exact_bytes_preserved": false,
+      "classification": "combined-test-assertions-and-visible-interaction-helper"
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_live_review_selection_test.dart",
+      "incoming_sha256": "40a63a290dfa4a330f3cacb2245609a30bc18daccae580d64e500ccaf4e8878f",
+      "combined_sha256": "314bc4637d4e4c2adafb154165538c4fc861fddae9c427326c24b5babe06151f",
+      "exact_bytes_preserved": false,
+      "classification": "combined-test-assertions-and-visible-interaction-helper"
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_proofing_capture_cache_test.dart",
+      "incoming_sha256": "46303c8b63734b68a2c3f75dcb18325e8d859c2baae8622d350119b206c68374",
+      "combined_sha256": "46303c8b63734b68a2c3f75dcb18325e8d859c2baae8622d350119b206c68374",
+      "exact_bytes_preserved": true,
+      "classification": "unchanged-incoming-bytes"
+    }
+  ],
+  "product_matches_targeted_base_exactly": true,
+  "product_differences_from_targeted_base": [],
+  "zotero_source_and_test_preservation": {
+    "checked_path_count": 64,
+    "compared_to": "82224f2369572b4f249c67ba70d950ef06d45856",
+    "differing_paths": []
+  },
+  "historical_evidence_preservation": {
+    "compared_to": "82224f2369572b4f249c67ba70d950ef06d45856",
+    "files": [
+      {
+        "path": "docs/validation/zotero-citation-workflow-20261118/README.md",
+        "prior_blob": "f92eba25636ba0bd0900120c6897462213133dc1",
+        "combined_blob": "78995512feb6019e4724ecdc04e40585f0268305",
+        "identical": false
+      },
+      {
+        "path": "docs/validation/zotero-citation-workflow-20261118/development/README.md",
+        "prior_blob": "6ae89b9cecc6607031d42fb9a5f7d40dfa766ff4",
+        "combined_blob": "6ae89b9cecc6607031d42fb9a5f7d40dfa766ff4",
+        "identical": true
+      },
+      {
+        "path": "docs/validation/zotero-citation-workflow-20261118/development/development-evidence.tar.gz",
+        "prior_blob": "10d026368f08d3362c36de37c251a1d4df178c32",
+        "combined_blob": "10d026368f08d3362c36de37c251a1d4df178c32",
+        "identical": true
+      },
+      {
+        "path": "docs/validation/zotero-citation-workflow-20261118/development/member-index.json",
+        "prior_blob": "f950fbf75edef7ca4a3e198b020e3fb1fcdc7434",
+        "combined_blob": "f950fbf75edef7ca4a3e198b020e3fb1fcdc7434",
+        "identical": true
+      },
+      {
+        "path": "docs/validation/zotero-citation-workflow-20261118/editor/events.jsonl.gz",
+        "prior_blob": "0ec842bbb7dedf04ed0c09fe1069aad8b83178c6",
+        "combined_blob": "0ec842bbb7dedf04ed0c09fe1069aad8b83178c6",
+        "identical": true
+      },
+      {
+        "path": "docs/validation/zotero-citation-workflow-20261118/editor/inputs.json.gz",
+        "prior_blob": "9ffc1971394e99b37b791100d732bc456ae00b9b",
+        "combined_blob": "9ffc1971394e99b37b791100d732bc456ae00b9b",
+        "identical": true
+      },
+      {
+        "path": "docs/validation/zotero-citation-workflow-20261118/editor/run_editor_zotero.py",
+        "prior_blob": "c5f62d39b406d31ca72833d0c1529a1129377970",
+        "combined_blob": "c5f62d39b406d31ca72833d0c1529a1129377970",
+        "identical": true
+      },
+      {
+        "path": "docs/validation/zotero-citation-workflow-20261118/editor/summary.json",
+        "prior_blob": "b912a9a358f45bdc4a843ae049b87f829d0a8291",
+        "combined_blob": "b912a9a358f45bdc4a843ae049b87f829d0a8291",
+        "identical": true
+      },
+      {
+        "path": "docs/validation/zotero-citation-workflow-20261118/incoming/attempt-1/events.jsonl.gz",
+        "prior_blob": "701c968ab2eb7cd4cd60c76f5790dd6657853efb",
+        "combined_blob": "701c968ab2eb7cd4cd60c76f5790dd6657853efb",
+        "identical": true
+      },
+      {
+        "path": "docs/validation/zotero-citation-workflow-20261118/incoming/attempt-1/inputs.json.gz",
+        "prior_blob": "07f26c8839a6e6ac792c95d73730c442c3379617",
+        "combined_blob": "07f26c8839a6e6ac792c95d73730c442c3379617",
+        "identical": true
+      },
+      {
+        "path": "docs/validation/zotero-citation-workflow-20261118/incoming/attempt-1/run_incoming_editor.py",
+        "prior_blob": "a229489e0ce8b77d73caafe90beac1e1493870e1",
+        "combined_blob": "a229489e0ce8b77d73caafe90beac1e1493870e1",
+        "identical": true
+      },
+      {
+        "path": "docs/validation/zotero-citation-workflow-20261118/incoming/attempt-1/runner.log",
+        "prior_blob": "07b10f028dd21e386bd9b2b88575442ec605a1a5",
+        "combined_blob": "07b10f028dd21e386bd9b2b88575442ec605a1a5",
+        "identical": true
+      },
+      {
+        "path": "docs/validation/zotero-citation-workflow-20261118/incoming/attempt-1/summary.json",
+        "prior_blob": "b7babf16118228c3553da4a35737532e18f252b9",
+        "combined_blob": "b7babf16118228c3553da4a35737532e18f252b9",
+        "identical": true
+      },
+      {
+        "path": "docs/validation/zotero-citation-workflow-20261118/incoming/attempt-2/events.jsonl.gz",
+        "prior_blob": "30df425d90a515a96e00ece649ecf7800e14e37e",
+        "combined_blob": "30df425d90a515a96e00ece649ecf7800e14e37e",
+        "identical": true
+      },
+      {
+        "path": "docs/validation/zotero-citation-workflow-20261118/incoming/attempt-2/inputs.json.gz",
+        "prior_blob": "766ad51217eddd9b10035c995601d540aa833105",
+        "combined_blob": "766ad51217eddd9b10035c995601d540aa833105",
+        "identical": true
+      },
+      {
+        "path": "docs/validation/zotero-citation-workflow-20261118/incoming/attempt-2/run_incoming_editor.py",
+        "prior_blob": "e0f019a08a50a813401ec8e01a7e44afa1cfa068",
+        "combined_blob": "e0f019a08a50a813401ec8e01a7e44afa1cfa068",
+        "identical": true
+      },
+      {
+        "path": "docs/validation/zotero-citation-workflow-20261118/incoming/attempt-2/runner.log",
+        "prior_blob": "4ef0c6fa1c8a738eb24b9caca7da62c9046a6bf2",
+        "combined_blob": "4ef0c6fa1c8a738eb24b9caca7da62c9046a6bf2",
+        "identical": true
+      },
+      {
+        "path": "docs/validation/zotero-citation-workflow-20261118/incoming/attempt-2/summary.json",
+        "prior_blob": "4cceb8237504cfeba6ca6c3a053c2f8ba558a30f",
+        "combined_blob": "4cceb8237504cfeba6ca6c3a053c2f8ba558a30f",
+        "identical": true
+      },
+      {
+        "path": "docs/validation/zotero-citation-workflow-20261118/incoming/development/README.md",
+        "prior_blob": "c8befad10ef5debd202a2314b0a5fbad201ef877",
+        "combined_blob": "c8befad10ef5debd202a2314b0a5fbad201ef877",
+        "identical": true
+      },
+      {
+        "path": "docs/validation/zotero-citation-workflow-20261118/incoming/development/attempt-1/events.jsonl.gz",
+        "prior_blob": "e99d42dd37f2ce67bb363c99f30943c99096d423",
+        "combined_blob": "e99d42dd37f2ce67bb363c99f30943c99096d423",
+        "identical": true
+      },
+      {
+        "path": "docs/validation/zotero-citation-workflow-20261118/incoming/development/attempt-1/inputs.json.gz",
+        "prior_blob": "662e5d393a7567324ff190f13edb3e4114a07978",
+        "combined_blob": "662e5d393a7567324ff190f13edb3e4114a07978",
+        "identical": true
+      },
+      {
+        "path": "docs/validation/zotero-citation-workflow-20261118/incoming/development/attempt-1/source-diff.patch.gz",
+        "prior_blob": "abe4be96788a8b61e95fefd533bbb14b8a42a745",
+        "combined_blob": "abe4be96788a8b61e95fefd533bbb14b8a42a745",
+        "identical": true
+      },
+      {
+        "path": "docs/validation/zotero-citation-workflow-20261118/incoming/development/attempt-1/summary.json",
+        "prior_blob": "46a42d1da4f872aa8b9d4c5b38a4c623be2bb1f7",
+        "combined_blob": "46a42d1da4f872aa8b9d4c5b38a4c623be2bb1f7",
+        "identical": true
+      },
+      {
+        "path": "docs/validation/zotero-citation-workflow-20261118/incoming/development/attempt-2/events.jsonl.gz",
+        "prior_blob": "e2218eb9ec85ae34e276e0fc480efd0fa1626137",
+        "combined_blob": "e2218eb9ec85ae34e276e0fc480efd0fa1626137",
+        "identical": true
+      },
+      {
+        "path": "docs/validation/zotero-citation-workflow-20261118/incoming/development/attempt-2/inputs.json.gz",
+        "prior_blob": "64eb3872ee517172cf61e298bccec7ee8d2bcfd2",
+        "combined_blob": "64eb3872ee517172cf61e298bccec7ee8d2bcfd2",
+        "identical": true
+      },
+      {
+        "path": "docs/validation/zotero-citation-workflow-20261118/incoming/development/attempt-2/source-diff.patch.gz",
+        "prior_blob": "989676b41b2387412f16df6d6f8c4898491258c0",
+        "combined_blob": "989676b41b2387412f16df6d6f8c4898491258c0",
+        "identical": true
+      },
+      {
+        "path": "docs/validation/zotero-citation-workflow-20261118/incoming/development/attempt-2/summary.json",
+        "prior_blob": "64fb7ab00128a2787ad4da79fe5432e08748b1e1",
+        "combined_blob": "64fb7ab00128a2787ad4da79fe5432e08748b1e1",
+        "identical": true
+      },
+      {
+        "path": "docs/validation/zotero-citation-workflow-20261118/incoming/development/run_changes_helper.py",
+        "prior_blob": "29d4e135ea13d40fa58602b184ba1d470946b2c5",
+        "combined_blob": "29d4e135ea13d40fa58602b184ba1d470946b2c5",
+        "identical": true
+      },
+      {
+        "path": "docs/validation/zotero-citation-workflow-20261118/incoming/editor/events.jsonl.gz",
+        "prior_blob": "40785029d143ef328fd13facb85a1c216b738078",
+        "combined_blob": "40785029d143ef328fd13facb85a1c216b738078",
+        "identical": true
+      },
+      {
+        "path": "docs/validation/zotero-citation-workflow-20261118/incoming/editor/inputs.json.gz",
+        "prior_blob": "bd68d8ffb770dfe77370a1c232a6c28331dde916",
+        "combined_blob": "bd68d8ffb770dfe77370a1c232a6c28331dde916",
+        "identical": true
+      },
+      {
+        "path": "docs/validation/zotero-citation-workflow-20261118/incoming/editor/summary.json",
+        "prior_blob": "a454ad98f01a260020b8c5c67dff6fc91b07a670",
+        "combined_blob": "a454ad98f01a260020b8c5c67dff6fc91b07a670",
+        "identical": true
+      },
+      {
+        "path": "docs/validation/zotero-citation-workflow-20261118/incoming/first-run.md",
+        "prior_blob": "0c88195ee2059ff6ed2c57bfbe8b866a1b807a73",
+        "combined_blob": "0c88195ee2059ff6ed2c57bfbe8b866a1b807a73",
+        "identical": true
+      },
+      {
+        "path": "docs/validation/zotero-citation-workflow-20261118/incoming/plan.md",
+        "prior_blob": "44b2fc974115b10f707b199c1da8b74e763c6b1d",
+        "combined_blob": "44b2fc974115b10f707b199c1da8b74e763c6b1d",
+        "identical": true
+      },
+      {
+        "path": "docs/validation/zotero-citation-workflow-20261118/incoming/run_incoming_editor.py",
+        "prior_blob": "e0f019a08a50a813401ec8e01a7e44afa1cfa068",
+        "combined_blob": "e0f019a08a50a813401ec8e01a7e44afa1cfa068",
+        "identical": true
+      },
+      {
+        "path": "docs/validation/zotero-citation-workflow-20261118/incoming/runner.log",
+        "prior_blob": "44cfeaf01e7e28b35b07d49a9d2c1bde4f9c46f7",
+        "combined_blob": "44cfeaf01e7e28b35b07d49a9d2c1bde4f9c46f7",
+        "identical": true
+      },
+      {
+        "path": "docs/validation/zotero-citation-workflow-20261118/incoming/second-run.md",
+        "prior_blob": "808e50e92309c0db373ebefa413f97def942d052",
+        "combined_blob": "808e50e92309c0db373ebefa413f97def942d052",
+        "identical": true
+      },
+      {
+        "path": "docs/validation/zotero-citation-workflow-20261118/independent-review.md",
+        "prior_blob": "eea6f864ad6e3968e13568f12c52a847e669f5ad",
+        "combined_blob": "eea6f864ad6e3968e13568f12c52a847e669f5ad",
+        "identical": true
+      },
+      {
+        "path": "docs/validation/zotero-citation-workflow-20261118/index.json",
+        "prior_blob": "36cd4874265943bef973901d91bc9f8de55f6484",
+        "combined_blob": "9f5149a86299482f0f1509bc31cd1bfeddb9a56b",
+        "identical": false
+      },
+      {
+        "path": "docs/validation/zotero-citation-workflow-20261118/qualification-audit.json",
+        "prior_blob": "212ecfb84e5b64ea8e57fcc903e8f91c0755b3a3",
+        "combined_blob": "212ecfb84e5b64ea8e57fcc903e8f91c0755b3a3",
+        "identical": true
+      },
+      {
+        "path": "docs/validation/zotero-citation-workflow-20261118/qualification-audit.md",
+        "prior_blob": "6a4f41af56f05831c8616691ce6132c30a796108",
+        "combined_blob": "6a4f41af56f05831c8616691ce6132c30a796108",
+        "identical": true
+      },
+      {
+        "path": "docs/validation/zotero-citation-workflow-20261118/reconciliation-final.json",
+        "prior_blob": "a2fbd6547be14556b1849e8ffa5297424a5cdb75",
+        "combined_blob": "a2fbd6547be14556b1849e8ffa5297424a5cdb75",
+        "identical": true
+      },
+      {
+        "path": "docs/validation/zotero-citation-workflow-20261118/reconciliation-final.md",
+        "prior_blob": "602bc00cdfc8fba9bbf5b9dc54852eed992ace1b",
+        "combined_blob": "602bc00cdfc8fba9bbf5b9dc54852eed992ace1b",
+        "identical": true
+      },
+      {
+        "path": "docs/validation/zotero-citation-workflow-20261118/reconciliation-initial.json",
+        "prior_blob": "36cf6b4fa8cbb165bc5b5d9fa208658d55b06580",
+        "combined_blob": "36cf6b4fa8cbb165bc5b5d9fa208658d55b06580",
+        "identical": true
+      },
+      {
+        "path": "docs/validation/zotero-citation-workflow-20261118/reconciliation-initial.md",
+        "prior_blob": "6ccf6bbe5ec823d932413cf08b3a9ac3e5784cde",
+        "combined_blob": "6ccf6bbe5ec823d932413cf08b3a9ac3e5784cde",
+        "identical": true
+      },
+      {
+        "path": "docs/validation/zotero-citation-workflow-20261118/reconciliation-prevalidation.json",
+        "prior_blob": "128c5b7468ef7a0ce488bf89dd7896ac731512a4",
+        "combined_blob": "128c5b7468ef7a0ce488bf89dd7896ac731512a4",
+        "identical": true
+      },
+      {
+        "path": "docs/validation/zotero-citation-workflow-20261118/reconciliation-prevalidation.md",
+        "prior_blob": "eae459990c1a60c33c41d8128923292c2ea7e05f",
+        "combined_blob": "eae459990c1a60c33c41d8128923292c2ea7e05f",
+        "identical": true
+      },
+      {
+        "path": "docs/validation/zotero-citation-workflow-20261118/runtime/README.md",
+        "prior_blob": "91f8cc5795293fa862af10ea9ffe2dbaff48e44d",
+        "combined_blob": "91f8cc5795293fa862af10ea9ffe2dbaff48e44d",
+        "identical": true
+      },
+      {
+        "path": "docs/validation/zotero-citation-workflow-20261118/runtime/index.json",
+        "prior_blob": "a09af0dd97bb04fb5966a850a91cd83b48074a3f",
+        "combined_blob": "a09af0dd97bb04fb5966a850a91cd83b48074a3f",
+        "identical": true
+      },
+      {
+        "path": "docs/validation/zotero-citation-workflow-20261118/runtime/runtime-ready.json",
+        "prior_blob": "3e081251de54ac9395c31c2c4892a76b2e791a0e",
+        "combined_blob": "3e081251de54ac9395c31c2c4892a76b2e791a0e",
+        "identical": true
+      },
+      {
+        "path": "docs/validation/zotero-citation-workflow-20261118/runtime/setup.tar.gz",
+        "prior_blob": "cfc6ec2172f14835b55f8adda00fbbdf9ad4dd52",
+        "combined_blob": "cfc6ec2172f14835b55f8adda00fbbdf9ad4dd52",
+        "identical": true
+      },
+      {
+        "path": "docs/validation/zotero-citation-workflow-20261118/status.json",
+        "prior_blob": "aa5216cf471fe1ff9f7d3e3e3dd635a25edd47a8",
+        "combined_blob": "f9ccc0ddd7af2c6f27dda3a8e8578011730ec4d8",
+        "identical": false
+      }
+    ],
+    "all_exact_bytes_preserved": false,
+    "presentation_files_revised_for_delivery": [
+      "docs/validation/zotero-citation-workflow-20261118/README.md",
+      "docs/validation/zotero-citation-workflow-20261118/index.json",
+      "docs/validation/zotero-citation-workflow-20261118/status.json"
+    ],
+    "revision_explanation": "README, status and artifact index at the combined source explicitly mark the previous 617-test acceptance as historical and the combined validation as pending. Their earlier versions remain in 82224f23. All 48 other original files, including raw streams, inputs, runners, both original qualification-audit files and the original 377-ref audit, remain byte-identical.",
+    "payload_file_count": 48,
+    "all_evidence_payloads_preserved": true,
+    "only_expected_presentation_files_differ": true
+  },
+  "test_conflict_resolution": {
+    "path": "packages/quds_office_editor/test/word_live_review_selection_test.dart",
+    "only_recorded_merge_conflict": true,
+    "explanation": "Both parents immediately rebind the unaffected selected finding. The merged test retains incoming text/start/end, current revision and explicit caret checks, plus the Zotero continuation non-null, stale-application rejection and captured complete-caret assertions. No product behavior was changed to resolve this test conflict.",
+    "retained_assertions": {
+      "non_null_retained_finding": true,
+      "original_text_retained": true,
+      "start_retained": true,
+      "end_retained": true,
+      "current_revision_retained": true,
+      "current_finding_admitted": true,
+      "old_finding_stale": true,
+      "stale_application_rejected": true,
+      "complete_caret_tuple_retained": true,
+      "explicit_caret_assertions_retained": true
+    },
+    "additional_auto_merged_test": {
+      "path": "packages/quds_office_editor/test/word_live_review_changes_test.dart",
+      "explanation": "Keep the incoming expanded review cases and the previously qualified visible-header/checked-tap helper.",
+      "retained_helper_checks": {
+        "hit_testable_targets_required": true,
+        "collapsed_expansion_detected": true,
+        "visible_header_tapped": true,
+        "menu_item_uses_checked_tap": true
+      }
+    },
+    "remaining_unmerged_index_entries": []
+  },
+  "original_fixed_inventory_recheck": {
+    "source": "../reconciliation-final.json",
+    "cutoff_utc": "2026-11-18T16:03:14.514244+00:00",
+    "original_incoming_refs": 377,
+    "original_distinct_heads": 244,
+    "classifications_against_combined": {
+      "ancestor": 349,
+      "unchanged-verified-legacy-equivalent": 28
+    },
+    "unaccounted": [],
+    "legacy_evidence_reuse": "Only exact captured legacy heads from the preserved prior audit; the initial base remains ancestral. No original audit file is replaced."
+  },
+  "validation_scope": {
+    "prior_617_test_evidence_source": "40e92e5222a26db132f8be05126df285b4227a86",
+    "prior_acceptance_retained_historically": true,
+    "prior_test_counts_added_to_new_total": false,
+    "fresh_required_cohorts": {
+      "zotero_editor": 26,
+      "incoming_editor_review": 20
+    },
+    "fresh_results_awaited_separately": true
+  },
+  "github_actions": {
+    "queried": false,
+    "awaited": false,
+    "dispatched": false
+  },
+  "source_tests_git_modified_by_auditor": false,
+  "reconciliation_complete": true
+}
