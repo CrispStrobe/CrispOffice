@@ -2,13 +2,16 @@ import 'dart:convert';
 
 import '../../zotero/zotero_formatted_text.dart';
 import '../properties/wml_properties.dart';
+import 'wml_clone.dart';
 import 'wml_document.dart';
 import 'wml_run_edit.dart';
 import 'word_content_controls.dart';
 import 'word_notes.dart';
+import 'word_styles.dart';
 import 'word_tree.dart';
 import 'word_zotero.dart';
 import 'word_zotero_data.dart';
+import 'word_zotero_note.dart';
 
 /// A staged implementation of Zotero's HTTP document/field interface.
 ///
@@ -201,6 +204,10 @@ final class WordZoteroCitingSession {
   late String _nativeData;
   _CitingField? _selected;
   _CitingField? _stagedInsertion;
+  WordZoteroNoteText? _noteText;
+  bool _notePlaceholdersConverted = false;
+  int? _noteTextCaretTailLength;
+  final _noteTextFields = <_CitingField, WordZoteroNotePlaceholder>{};
   bool _complete = false;
   bool _applied = false;
   _BibliographyStyle? _bibliographyStyle;
@@ -212,6 +219,7 @@ final class WordZoteroCitingSession {
   ({WmlParagraph paragraph, int offset})? get caretAfter => _caretAfter;
 
   bool get isComplete => _complete;
+  bool get hasInsertedNoteText => _noteText != null;
   String get documentData => _nativeData;
   bool get hasAcceptedSeedCitation => _fields.any(
     (field) =>
@@ -223,11 +231,13 @@ final class WordZoteroCitingSession {
   bool get hasChanges =>
       _nativeData != _originalData ||
       _bibliographyStyle != null ||
+      _noteText != null ||
       _fields.any((f) => f.changed);
   int get changedFieldCount => _fields.where((f) => f.changed).length;
-  List<String> get previewTexts => List.unmodifiable(
-    _ordered().where((f) => !f.deleted && f.changed).map((f) => f.text),
-  );
+  List<String> get previewTexts => List.unmodifiable(<String>[
+    if (_noteText != null) _noteText!.plainText,
+    ..._ordered().where((f) => !f.deleted && f.changed).map((f) => f.text),
+  ]);
 
   /// All original paragraphs whose model state might be changed by [apply].
   /// The editor also snapshots the owning block lists and note buckets.
@@ -283,7 +293,7 @@ final class WordZoteroCitingSession {
         'outputFormat': 'html',
         'supportedNotes': <String>['footnotes', 'endnotes'],
         'supportsImportExport': false,
-        'supportsTextInsertion': false,
+        'supportsTextInsertion': canInsertNoteText,
         'supportsCitationMerging': false,
         'processorName': 'Quds Office',
       };
@@ -342,6 +352,14 @@ final class WordZoteroCitingSession {
         _arity(args, 3);
         _httpType(args[1]);
         return _json(_insert(_noteType(args[2])));
+      case 'Document.insertText':
+        _arity(args, 2);
+        _stageNoteText(_string(args[1]));
+        return null;
+      case 'Document.convertPlaceholdersToFields':
+        _arity(args, 4);
+        _httpType(args[3]);
+        return _convertNotePlaceholders(args[1], _noteType(args[2]));
       case 'Document.convert':
         _arity(args, 4);
         _httpType(args[2]);
@@ -376,6 +394,12 @@ final class WordZoteroCitingSession {
         return null;
       case 'Document.complete':
         _arity(args, 1);
+        if (_noteText?.placeholders.isNotEmpty == true &&
+            !_notePlaceholdersConverted) {
+          throw const FormatException(
+            'Zotero did not convert every note citation placeholder.',
+          );
+        }
         for (final field in _fields) {
           if (field.seeded && !field.codeWasSet && !field.textWasSet) {
             field.deleted = true;
@@ -411,6 +435,14 @@ final class WordZoteroCitingSession {
         final field = _field(args[1]);
         final code = _string(args[2]);
         if (code != 'TEMP') _validateCode(code);
+        if (code != 'TEMP' &&
+            _noteTextFields.containsKey(field) &&
+            WordZotero.kindOfInstruction(_toNative(code)) !=
+                ZoteroFieldKind.citation) {
+          throw const FormatException(
+            'A note placeholder must become a citation.',
+          );
+        }
         if (code != 'TEMP' &&
             field.original == null &&
             field.note != null &&
@@ -598,7 +630,21 @@ final class WordZoteroCitingSession {
     assertUnchanged();
     prepareReview();
     // Descending source positions keep the original handles/offsets valid.
+    // A note is one insertion event, even when it contains many citations.
+    var insertedNoteText = false;
+    final noteBodyIndex = _noteText == null
+        ? -1
+        : _body.indexOf(insertionParagraph!);
     for (final field in _ordered().reversed) {
+      if (_noteTextFields.containsKey(field)) continue;
+      if (_noteText != null &&
+          !insertedNoteText &&
+          (field.bodyIndex < noteBodyIndex ||
+              (field.bodyIndex == noteBodyIndex &&
+                  field.anchorOffset < insertionOffset))) {
+        _applyNoteText();
+        insertedNoteText = true;
+      }
       if (!field.changed) continue;
       final original = field.original;
       if (original == null) {
@@ -652,6 +698,7 @@ final class WordZoteroCitingSession {
         _replace(field);
       }
     }
+    if (_noteText != null && !insertedNoteText) _applyNoteText();
     if (_bibliographyStyle != null) {
       var applied = false;
       var incomplete = false;
@@ -696,7 +743,7 @@ final class WordZoteroCitingSession {
               field.original == null && !field.deleted && !field.unlinked,
         )
         .firstOrNull;
-    if (inserted != null) {
+    if (_noteText == null && inserted != null) {
       if (_insertedNote != null) {
         var offset = 0;
         for (final inline in inserted.anchor.inlines) {
@@ -723,6 +770,13 @@ final class WordZoteroCitingSession {
           );
         }
       }
+    }
+    if (_noteText != null && _caretAfter != null) {
+      final caretParagraph = _caretAfter!.paragraph;
+      _caretAfter = (
+        paragraph: caretParagraph,
+        offset: caretParagraph.text.length - _noteTextCaretTailLength!,
+      );
     }
     _applied = true;
   }
@@ -800,10 +854,224 @@ final class WordZoteroCitingSession {
     );
     if (field.original == null) _insertedParagraph = paragraph;
     if (field.unlinked) {
+      final source = _noteTextFields.containsKey(field) && field.noteType == 0
+          ? WmlDocument(
+              sections: [
+                WmlSection(blocks: [paragraph]),
+              ],
+            )
+          : document;
       final current = WordZotero.fields(
-        document,
+        source,
       ).firstWhere((f) => identical(f.paragraph, paragraph) && f.start == at);
       WordZotero.unlink(current);
+    }
+  }
+
+  /// Whether this session can insert a Zotero research note at its body caret.
+  /// Existing footnotes/endnotes and structural/protected destinations do not
+  /// advertise text insertion. This check does not modify document state.
+  bool get canInsertNoteText {
+    try {
+      assertCanInsertNoteText();
+      return true;
+    } on UnsupportedError {
+      return false;
+    } on ArgumentError {
+      return false;
+    } on StateError {
+      return false;
+    }
+  }
+
+  void assertCanInsertNoteText() {
+    final paragraph = insertionParagraph;
+    if (paragraph == null ||
+        !_bodyParagraphs.contains(paragraph) ||
+        _insertionNote != null ||
+        WordTree.locate(document, paragraph) == null) {
+      throw UnsupportedError(
+        'Insert a Zotero note at a document body caret, outside an existing footnote or endnote.',
+      );
+    }
+    final range = WmlRunEdit.normalizeRange(
+      paragraph,
+      insertionOffset,
+      insertionOffset,
+    );
+    if (range.start != insertionOffset ||
+        range.end != insertionOffset ||
+        _fields.any(
+          (field) =>
+              field.original != null &&
+              (field.original!.paragraphs.length > 1
+                  ? field.original!.paragraphs.contains(paragraph)
+                  : identical(field.original!.paragraph, paragraph) &&
+                        insertionOffset >= field.original!.start &&
+                        insertionOffset < field.original!.end),
+        )) {
+      throw UnsupportedError(
+        'Move the caret outside the existing field before inserting a Zotero note.',
+      );
+    }
+    WordContentControls.assertCanEdit(
+      paragraph,
+      insertionOffset,
+      insertionOffset,
+    );
+    WordContentControls.assertCanSplit(paragraph, insertionOffset);
+  }
+
+  void _stageNoteText(String html) {
+    assertCanInsertNoteText();
+    if (_noteText != null || _stagedInsertion?.deleted == false) {
+      throw UnsupportedError(
+        'A Zotero transaction can insert only one research note.',
+      );
+    }
+    final parsed = WordZoteroNoteText.fromHtml(
+      html,
+      baseProperties: WmlRunEdit.propsAt(insertionParagraph!, insertionOffset),
+    );
+    if (_fields.length + parsed.placeholders.length > 10000 ||
+        _body.length + parsed.paragraphs.length > 100000) {
+      throw UnsupportedError(
+        'This Zotero note exceeds the document transaction bounds.',
+      );
+    }
+    _noteText = parsed;
+    _selected = null;
+  }
+
+  List<Map<String, Object>> _convertNotePlaceholders(
+    Object? value,
+    int noteType,
+  ) {
+    final text = _noteText;
+    if (text == null || _notePlaceholdersConverted || value is! List<Object?>) {
+      throw const FormatException(
+        'Unexpected Zotero note placeholder conversion.',
+      );
+    }
+    final ids = <String>[];
+    for (final id in value) {
+      if (id is! String || !text.placeholders.containsKey(id)) {
+        throw const FormatException(
+          'Zotero addressed an unknown note citation placeholder.',
+        );
+      }
+      ids.add(id);
+    }
+    if (ids.toSet().length != ids.length ||
+        ids.length != text.placeholders.length) {
+      throw const FormatException(
+        'Zotero must convert each note citation placeholder exactly once.',
+      );
+    }
+    final converted = <_CitingField>[];
+    for (final id in ids) {
+      final placeholder = text.placeholders[id]!;
+      final paragraph = text.paragraphs[placeholder.paragraphIndex];
+      final field = _CitingField.inserted(
+        id: 'f${_fields.length}',
+        bodyIndex: _body.indexOf(insertionParagraph!),
+        anchor: insertionParagraph!,
+        anchorOffset: insertionOffset,
+        insertionParagraph: paragraph,
+        insertionOffset: placeholder.start,
+        noteOrder: placeholder.paragraphIndex,
+        noteType: noteType,
+      )..text = paragraph.text.substring(placeholder.start, placeholder.end);
+      _noteTextFields[field] = placeholder;
+      _addField(field);
+      converted.add(field);
+    }
+    _notePlaceholdersConverted = true;
+    final indexes = _noteIndexes();
+    // Zotero supplies reverse reading order and pairs these returned fields
+    // with the citation metadata in that same request order.
+    return [for (final field in converted) _json(field, noteIndexes: indexes)];
+  }
+
+  void _applyNoteText() {
+    final text = _noteText!;
+    final paragraph = insertionParagraph!;
+    final slot = WordTree.locate(document, paragraph);
+    if (slot == null) {
+      throw StateError('The Zotero note insertion point changed.');
+    }
+    final paragraphs = [for (final p in text.paragraphs) WmlClone.paragraph(p)];
+    final entries = _noteTextFields.entries.toList()
+      ..sort((a, b) {
+        final p = b.value.paragraphIndex.compareTo(a.value.paragraphIndex);
+        return p != 0 ? p : b.value.start.compareTo(a.value.start);
+      });
+    for (final entry in entries) {
+      final target = paragraphs[entry.value.paragraphIndex];
+      WmlRunEdit.replaceRange(target, entry.value.start, entry.value.end, '');
+      if (!entry.key.deleted) {
+        _insertResult(entry.key, target, entry.value.start);
+      }
+    }
+    for (final inserted in paragraphs) {
+      final heading = inserted.properties.headingLevel;
+      if (heading == null) continue;
+      final emphasis = [
+        for (final run in inserted.inlines.whereType<WmlRun>())
+          (run: run, bold: run.properties.bold, italic: run.properties.italic),
+      ];
+      WordStyles.apply(inserted, 'Heading$heading', document: document);
+      for (final span in emphasis) {
+        span.run.properties
+          ..bold = span.run.properties.bold || span.bold
+          ..italic = span.run.properties.italic || span.italic;
+      }
+    }
+    _noteTextCaretTailLength = paragraph.text.length - insertionOffset;
+    if (paragraphs.any((p) => p.properties.headingLevel != null)) {
+      // Heading paragraphs must not change the style of surrounding prose.
+      // Keep the complete research note as blocks when it contains headings.
+      final originalProperties = paragraph.properties.copy();
+      final tail = WmlRunEdit.splitParagraphInlines(paragraph, insertionOffset);
+      final emptyPrefix = paragraph.inlines.isEmpty;
+      if (emptyPrefix) slot.parent.removeAt(slot.index);
+      final insertedAt = slot.index + (emptyPrefix ? 0 : 1);
+      slot.parent.insertAll(insertedAt, paragraphs);
+      final last = paragraphs.last;
+      _caretAfter = (paragraph: last, offset: last.text.length);
+      _noteTextCaretTailLength = 0;
+      if (tail.isNotEmpty) {
+        slot.parent.insert(
+          insertedAt + paragraphs.length,
+          WmlParagraph(inlines: tail, properties: originalProperties),
+        );
+      }
+      return;
+    }
+    // Keep both surrounding fragments and their source markup. The first
+    // and last inserted paragraphs share the existing surrounding paragraph.
+    if (paragraphs.length == 1) {
+      final insertedLength = paragraphs.single.text.length;
+      WmlRunEdit.insertInlines(
+        paragraph,
+        insertionOffset,
+        paragraphs.single.inlines,
+      );
+      _caretAfter = (
+        paragraph: paragraph,
+        offset: insertionOffset + insertedLength,
+      );
+    } else {
+      final tail = WmlRunEdit.splitParagraphInlines(paragraph, insertionOffset);
+      paragraph.inlines.addAll(paragraphs.first.inlines);
+      for (final inserted in paragraphs.skip(1)) {
+        inserted.properties = paragraph.properties.copy();
+      }
+      final last = paragraphs.last;
+      final end = last.text.length;
+      last.inlines.addAll(tail);
+      slot.parent.insertAll(slot.index + 1, paragraphs.skip(1));
+      _caretAfter = (paragraph: last, offset: end);
     }
   }
 
@@ -812,7 +1080,9 @@ final class WordZoteroCitingSession {
       (_bodyParagraphs.contains(insertionParagraph) || _insertionNote != null);
 
   _CitingField _insert(int noteType) {
-    if (!_canInsert || _stagedInsertion?.deleted == false) {
+    if (!_canInsert ||
+        _stagedInsertion?.deleted == false ||
+        _noteText != null) {
       throw UnsupportedError(
         'This Zotero operation needs one insertion point in the document body or an anchored note.',
       );
@@ -969,6 +1239,10 @@ final class WordZoteroCitingSession {
     ..sort((a, b) {
       var value = a.bodyIndex.compareTo(b.bodyIndex);
       if (value == 0) value = a.anchorOffset.compareTo(b.anchorOffset);
+      if (value == 0 &&
+          _noteTextFields.containsKey(a) != _noteTextFields.containsKey(b)) {
+        value = _noteTextFields.containsKey(a) ? -1 : 1;
+      }
       if (value == 0) value = a.noteOrder.compareTo(b.noteOrder);
       if (value == 0) value = a.noteOffset.compareTo(b.noteOffset);
       if (value == 0) {
@@ -1032,7 +1306,18 @@ final class WordZoteroCitingSession {
           final offset = a.offset.compareTo(b.offset);
           if (offset != 0) return offset;
           // Insertions at an existing note marker go immediately before it.
-          return a.priority.compareTo(b.priority);
+          final priority = a.priority.compareTo(b.priority);
+          if (priority != 0) return priority;
+          final aPlaceholder = _noteTextFields[a.identity];
+          final bPlaceholder = _noteTextFields[b.identity];
+          if (aPlaceholder != null && bPlaceholder != null) {
+            final paragraph = aPlaceholder.paragraphIndex.compareTo(
+              bPlaceholder.paragraphIndex,
+            );
+            if (paragraph != 0) return paragraph;
+            return aPlaceholder.start.compareTo(bPlaceholder.start);
+          }
+          return 0;
         });
     final indexes = Map<Object, int>.identity();
     final counts = <int, int>{};

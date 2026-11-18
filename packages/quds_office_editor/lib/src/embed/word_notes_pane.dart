@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:quds_office_engine/quds_office_engine.dart';
 
@@ -28,7 +30,10 @@ class _WordNotesPaneState extends State<WordNotesPane> {
   final Map<WmlNote, TextEditingController> _noteEdits =
       <WmlNote, TextEditingController>{};
   final Map<WmlNote, FocusNode> _noteFocus = <WmlNote, FocusNode>{};
+  final Map<WmlNote, GlobalKey> _noteLocations = <WmlNote, GlobalKey>{};
   bool _syncing = false;
+  bool _focusScheduled = false;
+  int _handledFocusRequest = 0;
 
   WordEditorController get _c => widget.controller;
 
@@ -45,12 +50,45 @@ class _WordNotesPaneState extends State<WordNotesPane> {
       oldWidget.controller.removeListener(_controllerChanged);
       oldWidget.controller.clearNoteEditingTarget(notify: false);
       _disposeEdits();
+      _handledFocusRequest = 0;
       _c.addListener(_controllerChanged);
     }
   }
 
   void _controllerChanged() {
     if (mounted && !_syncing) setState(() {});
+  }
+
+  void _scheduleEditingFocus() {
+    if (_focusScheduled ||
+        _handledFocusRequest == _c.noteFocusRequest ||
+        _c.noteEditingTarget == null) {
+      return;
+    }
+    _focusScheduled = true;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _focusScheduled = false;
+      if (!mounted ||
+          _c.isDisposed ||
+          !_c.config.allowsSelection ||
+          !(ModalRoute.of(context)?.isCurrent ?? true)) {
+        return;
+      }
+      final target = _c.noteEditingTarget;
+      if (target == null ||
+          _handledFocusRequest == _c.noteFocusRequest ||
+          !_noteEdits.containsKey(target.note)) {
+        return;
+      }
+      _handledFocusRequest = _c.noteFocusRequest;
+      // Jump to the note first. EditableText then reveals the selected caret
+      // when focus arrives, including offsets near the end of a long note.
+      final location = _noteLocations[target.note]?.currentContext;
+      if (location != null) {
+        unawaited(Scrollable.ensureVisible(location, alignment: 0.2));
+      }
+      _focusFor(target.note).requestFocus();
+    });
   }
 
   @override
@@ -73,6 +111,7 @@ class _WordNotesPaneState extends State<WordNotesPane> {
     }
     _noteEdits.clear();
     _noteFocus.clear();
+    _noteLocations.clear();
     _syncing = false;
   }
 
@@ -147,6 +186,7 @@ class _WordNotesPaneState extends State<WordNotesPane> {
         in _noteEdits.keys.where((WmlNote n) => !notes.contains(n)).toList()) {
       _noteEdits.remove(gone)?.dispose();
       _noteFocus.remove(gone)?.dispose();
+      _noteLocations.remove(gone);
     }
     _syncing = false;
   }
@@ -158,6 +198,7 @@ class _WordNotesPaneState extends State<WordNotesPane> {
     final List<WmlNote> notes = numbering.notes;
     _dropStale(notes);
     final bool editable = _c.config.allowsMutation;
+    _scheduleEditingFocus();
     return ColoredBox(
       color: theme.chromeFill,
       child: Padding(
@@ -225,6 +266,7 @@ class _WordNotesPaneState extends State<WordNotesPane> {
                     key: ValueKey<WmlNote>(note),
                     padding: const EdgeInsets.only(bottom: 8),
                     child: Column(
+                      key: _noteLocations.putIfAbsent(note, GlobalKey.new),
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: <Widget>[
                         Row(
@@ -264,7 +306,9 @@ class _WordNotesPaneState extends State<WordNotesPane> {
                           minLines: 1,
                           maxLines: null,
                           keyboardType: TextInputType.multiline,
-                          enabled: editable,
+                          enabled: _c.config.allowsSelection,
+                          readOnly: !editable,
+                          enableInteractiveSelection: _c.config.allowsSelection,
                           style: TextStyle(
                             color: theme.chromeText,
                             fontSize: 11,
@@ -273,10 +317,12 @@ class _WordNotesPaneState extends State<WordNotesPane> {
                             isDense: true,
                             border: InputBorder.none,
                           ),
-                          onChanged: (String value) {
-                            _c.setNoteText(note, value);
-                            _publishSelection(note);
-                          },
+                          onChanged: editable
+                              ? (String value) {
+                                  _c.setNoteText(note, value);
+                                  _publishSelection(note);
+                                }
+                              : null,
                           onTapOutside: (_) => _focusFor(note).unfocus(),
                         ),
                       ],
