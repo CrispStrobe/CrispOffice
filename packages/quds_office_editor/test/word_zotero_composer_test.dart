@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quds_office_editor/src/embed/word_zotero_composer.dart';
 import 'package:quds_office_engine/quds_office_engine.dart';
@@ -147,6 +148,117 @@ Future<void> _add(WidgetTester tester, List<int> indexes) async {
 }
 
 void main() {
+  testWidgets(
+    'connected chooser supports keyboard search and selection beyond visible results',
+    (tester) async {
+      final calls = <(String, int)>[];
+      final remote = List.generate(
+        25,
+        (index) => _source('Remote source $index', id: 'remote-$index'),
+      );
+      final result = await _open(
+        tester,
+        items: [_source('Current')],
+        searchZotero: (query, start) async {
+          calls.add((query, start));
+          return ZoteroPage<ZoteroCitationItem>(
+            items: remote,
+            start: start,
+            limit: 25,
+          );
+        },
+      );
+      await _tap(tester, _key('zotero-composer-search-zotero'));
+      final query = tester.widget<TextField>(
+        _key('zotero-connected-source-query'),
+      );
+      expect(query.focusNode!.hasFocus, isTrue);
+      await _enter(tester, 'zotero-connected-source-query', 'Remote');
+      expect(calls, isEmpty);
+      await tester.testTextInput.receiveAction(TextInputAction.search);
+      await tester.pumpAndSettle();
+      expect(calls, [('Remote', 0)]);
+      expect(query.focusNode!.hasFocus, isTrue);
+
+      await tester.sendKeyEvent(LogicalKeyboardKey.arrowDown);
+      await tester.pumpAndSettle();
+      expect(
+        tester
+            .widget<CheckboxListTile>(_key('zotero-connected-source-0'))
+            .focusNode!
+            .hasFocus,
+        isTrue,
+      );
+      await tester.sendKeyEvent(LogicalKeyboardKey.arrowUp);
+      await tester.pumpAndSettle();
+      expect(query.focusNode!.hasFocus, isTrue);
+      await tester.sendKeyEvent(LogicalKeyboardKey.arrowDown);
+      await tester.pumpAndSettle();
+      await tester.sendKeyEvent(LogicalKeyboardKey.space);
+      await tester.pumpAndSettle();
+      expect(
+        tester
+            .widget<CheckboxListTile>(_key('zotero-connected-source-0'))
+            .value,
+        isTrue,
+      );
+
+      for (var index = 1; index < remote.length; index++) {
+        await tester.sendKeyEvent(LogicalKeyboardKey.arrowDown);
+        await tester.pumpAndSettle();
+        expect(
+          tester
+              .widget<CheckboxListTile>(_key('zotero-connected-source-$index'))
+              .focusNode!
+              .hasFocus,
+          isTrue,
+          reason: 'Arrow navigation reaches result $index across lazy rows',
+        );
+      }
+      await tester.sendKeyEvent(LogicalKeyboardKey.enter);
+      await tester.pumpAndSettle();
+      expect(
+        tester
+            .widget<CheckboxListTile>(_key('zotero-connected-source-24'))
+            .value,
+        isTrue,
+      );
+      await tester.sendKeyEvent(LogicalKeyboardKey.arrowDown);
+      await tester.pumpAndSettle();
+      expect(
+        tester
+            .widget<CheckboxListTile>(_key('zotero-connected-source-24'))
+            .focusNode!
+            .hasFocus,
+        isTrue,
+        reason: 'Down at the last result keeps focus inside the result list',
+      );
+      for (var index = remote.length - 2; index >= 0; index--) {
+        await tester.sendKeyEvent(LogicalKeyboardKey.arrowUp);
+        await tester.pumpAndSettle();
+        expect(
+          tester
+              .widget<CheckboxListTile>(_key('zotero-connected-source-$index'))
+              .focusNode!
+              .hasFocus,
+          isTrue,
+          reason: 'Up reaches result $index after its lazy row is rebuilt',
+        );
+      }
+      await tester.sendKeyEvent(LogicalKeyboardKey.arrowUp);
+      await tester.pumpAndSettle();
+      expect(query.focusNode!.hasFocus, isTrue);
+      expect(calls, [('Remote', 0)]);
+      await _tap(tester, _key('zotero-connected-source-add'));
+      await _tap(tester, _key('zotero-composer-apply'));
+      expect(result.citation!.items.map((item) => item.itemData!['title']), [
+        'Current',
+        'Remote source 0',
+        'Remote source 24',
+      ]);
+    },
+  );
+
   testWidgets(
     'connected Zotero search is explicit, paged and staged with fresh options',
     (tester) async {
@@ -374,7 +486,16 @@ void main() {
       await _tap(tester, _key('zotero-composer-search-zotero'));
       await _enter(tester, 'zotero-connected-source-query', 'Arabic');
       await _tap(tester, _key('zotero-connected-source-search'));
-      await _tap(tester, _key('zotero-connected-source-0'));
+      await tester.sendKeyEvent(LogicalKeyboardKey.arrowDown);
+      await tester.pumpAndSettle();
+      await tester.sendKeyEvent(LogicalKeyboardKey.space);
+      await tester.pumpAndSettle();
+      expect(
+        tester
+            .widget<CheckboxListTile>(_key('zotero-connected-source-0'))
+            .value,
+        isTrue,
+      );
       await _tap(tester, _key('zotero-connected-source-review'));
       await tester.ensureVisible(_key('zotero-selected-reference-list'));
       await tester.scrollUntilVisible(

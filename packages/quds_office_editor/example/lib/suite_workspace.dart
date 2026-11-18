@@ -2012,6 +2012,22 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     ];
   }
 
+  Future<void> _openZotero({ZoteroCitingCommand? command}) async {
+    final transport = StudioZoteroTransport();
+    try {
+      await showWordZoteroDialog(
+        context,
+        controller: _word,
+        session: _zoteroSession,
+        transport: transport.send,
+        localTransport: transport.supportsLocal ? transport.send : null,
+        initialCommand: command,
+      );
+    } finally {
+      transport.dispose();
+    }
+  }
+
   List<StudioRibbonGroup> _wordInsert() {
     return <StudioRibbonGroup>[
       StudioRibbonGroup(
@@ -2020,25 +2036,42 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
           _cmd(
             Icons.menu_book_outlined,
             'Zotero',
-            _canMutate
-                ? () async {
-                    final transport = StudioZoteroTransport();
-                    try {
-                      await showWordZoteroDialog(
-                        context,
-                        controller: _word,
-                        session: _zoteroSession,
-                        transport: transport.send,
-                        localTransport: transport.supportsLocal
-                            ? transport.send
-                            : null,
-                      );
-                    } finally {
-                      transport.dispose();
-                    }
-                  }
-                : null,
+            _canMutate ? _openZotero : null,
           ),
+          if (studioZoteroDesktopAvailable) ...[
+            _cmd(
+              Icons.format_quote,
+              _arabic ? 'إضافة/تحرير استشهاد' : 'Add/Edit citation',
+              _canMutate
+                  ? () => _openZotero(
+                      command: ZoteroCitingCommand.addEditCitation,
+                    )
+                  : null,
+            ),
+            _cmd(
+              Icons.list_alt,
+              _arabic ? 'قائمة المراجع' : 'Bibliography',
+              _canMutate
+                  ? () => _openZotero(
+                      command: ZoteroCitingCommand.addEditBibliography,
+                    )
+                  : null,
+            ),
+            _cmd(
+              Icons.refresh,
+              _arabic ? 'تحديث الاستشهادات' : 'Refresh citations',
+              _canMutate
+                  ? () => _openZotero(command: ZoteroCitingCommand.refresh)
+                  : null,
+            ),
+            _cmd(
+              Icons.format_paint_outlined,
+              _arabic ? 'نمط الاستشهاد' : 'Citation style',
+              _canMutate
+                  ? () => _openZotero(command: ZoteroCitingCommand.setDocPrefs)
+                  : null,
+            ),
+          ],
         ],
       ),
       StudioRibbonGroup(
