@@ -1,0 +1,110 @@
+{
+  "archive": "native-sweep-9d060658.tar.xz",
+  "bytes": 689748,
+  "sha256": "61c750faabdc8b0badb45bab2f42b297aafee1ab6b7adbc08aba80bb7e60102e",
+  "classification": "Passed native sweep on frozen 9d060658ee6be8ec97d73f56b9aec10d346b7952; generated provider executable omitted, exact build receipt retained.",
+  "member_count": 20,
+  "all_members_read_back_and_verified": true,
+  "members": [
+    {
+      "path": "guard.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "guard.stdout.log",
+      "bytes": 2000,
+      "sha256": "706198cd23134d3a92836357e71fdc2250d933aa8acb853d4710454f41910fbb"
+    },
+    {
+      "path": "guard/child.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "guard/child.stdout.log",
+      "bytes": 323,
+      "sha256": "e5e910446548e594eb00ce8dca3d0b1da806bfa0e921087150ecb9e3b5b9bf13"
+    },
+    {
+      "path": "guard/inputs-after.json.gz",
+      "bytes": 626060,
+      "sha256": "83b18ff24f7a6e000ea2ba83e49be2797dfcdb28a9b56324922a56d65043d6a8"
+    },
+    {
+      "path": "guard/inputs-before.json.gz",
+      "bytes": 626061,
+      "sha256": "35a579425795d0de84df5650298a073056c5b12f02cc34a58842477e6a8d094d"
+    },
+    {
+      "path": "guard/receipt.json",
+      "bytes": 2000,
+      "sha256": "706198cd23134d3a92836357e71fdc2250d933aa8acb853d4710454f41910fbb"
+    },
+    {
+      "path": "native_prepare_child.py",
+      "bytes": 1701,
+      "sha256": "4804aaae09352ac52eda997873a744b15c8fa0c8a1472b635c5aa724b5f837fb"
+    },
+    {
+      "path": "orchestration.json",
+      "bytes": 3144,
+      "sha256": "578999e826909c24f79d0c4c50593f036f3d13d298f22745403006e80cb5d2cd"
+    },
+    {
+      "path": "result/serial-receipt.json",
+      "bytes": 411075,
+      "sha256": "9d84939b2221fda6bcabefad0d96d3b2cc4dbfc5a4d5d37f48f7076eed43da7a"
+    },
+    {
+      "path": "result/threads-1.json",
+      "bytes": 662914,
+      "sha256": "36570eee3ac075b024fc06605552c8382add027894b442f538a1ebfce370bee3"
+    },
+    {
+      "path": "result/threads-1.log",
+      "bytes": 1115,
+      "sha256": "e37c51fac31ac4edae6c6c3b089183a44bd44095b61066432f74653bd95bfd0e"
+    },
+    {
+      "path": "result/threads-2-frozen-comparison.json",
+      "bytes": 12305,
+      "sha256": "078480c783ed0a7d27c3a0bafd5ed12c2cba86e80460adfab2dec687f0db8027"
+    },
+    {
+      "path": "result/threads-2.json",
+      "bytes": 662875,
+      "sha256": "789bfcf051a9897fa209a7a38314f6f45f7338e68dee3a05546ab6fc974ad4cb"
+    },
+    {
+      "path": "result/threads-2.log",
+      "bytes": 1109,
+      "sha256": "4126b171e22f8991d0e4bb2ce90927e381cd2112713bb73f40dcd7b10a4f397d"
+    },
+    {
+      "path": "result/threads-4.json",
+      "bytes": 662505,
+      "sha256": "95e845bb460d9fc676166d707d3390b7f7f9b33ed8b08f17bec5833b59b05029"
+    },
+    {
+      "path": "result/threads-4.log",
+      "bytes": 1108,
+      "sha256": "7b84ce0408d14af4484ff5a640ece40b793008e3e82b09acc76f7290645f1620"
+    },
+    {
+      "path": "result/threads-8.json",
+      "bytes": 662230,
+      "sha256": "3ded71f2155941df26f1b9dd9923da98f6c23e103b965410b3a10527c417c7a0"
+    },
+    {
+      "path": "result/threads-8.log",
+      "bytes": 1078,
+      "sha256": "6aec18551f89b8d316ef6b45a5182a48ba90ea663e7a2ec7c04be54c87115ce6"
+    },
+    {
+      "path": "run_guarded_native.py",
+      "bytes": 4278,
+      "sha256": "d81d5fd371c05065b390974a8b22bf808c8ff750dd60c939519e863bd389ce96"
+    }
+  ]
+}

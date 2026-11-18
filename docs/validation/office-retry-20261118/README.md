@@ -1,3 +1,5 @@
+> **Historical checkpoint.** The completed, independently accepted local qualification is recorded in [office-completion-20261118](../office-completion-20261118/README.md). This file preserves its original point-in-time status; failed attempts remain rejected.
+
 # Office local qualification retry — 18 November 2026
 
 This continuation restores execution after the previous workspace failed. The prior failed attempt remains rejected and preserved. Fresh qualification is not yet complete.

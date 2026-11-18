@@ -1,3 +1,5 @@
+> **Historical checkpoint.** The completed, independently accepted local qualification is recorded in [office-completion-20261118](../office-completion-20261118/README.md). This file preserves its original point-in-time status; failed attempts remain rejected.
+
 # Recovery handoff — 18 November 2026
 
 ## Durable source and status

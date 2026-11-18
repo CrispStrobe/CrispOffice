@@ -1,3 +1,5 @@
+> **Historical checkpoint.** The completed, independently accepted local qualification is recorded in [office-completion-20261118](../office-completion-20261118/README.md). This file preserves its original point-in-time status; failed attempts remain rejected.
+
 # Quds Office local qualification — 18 November 2026
 
 ## Saved state
