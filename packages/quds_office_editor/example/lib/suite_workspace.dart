@@ -140,7 +140,9 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   var _pdfSideTab = 0; // 0 thumbs, 1 outline
   final ValueNotifier<int> _navigationRevision = ValueNotifier<int>(0);
   final ScrollController _pdfThumbScroll = ScrollController();
+  final ScrollController _compactPdfThumbScroll = ScrollController();
   int _pdfThumbSyncedPage = -1;
+  int _compactPdfThumbSyncedPage = -1;
   final Set<String> _pdfOutlineExpanded = <String>{};
   var _findReplace = false;
   var _printPreview = false;
@@ -308,6 +310,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     _pdfFindDebounce?.cancel();
     _pdfFind.dispose();
     _pdfThumbScroll.dispose();
+    _compactPdfThumbScroll.dispose();
     _navigationRevision.dispose();
     _slideNotesEdit.dispose();
     _commentContextKeyboard = false;
@@ -1117,7 +1120,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         textDirection: _arabic ? TextDirection.rtl : TextDirection.ltr,
         child: SizedBox(
           height: MediaQuery.sizeOf(context).height * 0.65,
-          child: _sidePane(dark),
+          child: _sidePane(dark, compact: true),
         ),
       ),
     ),
@@ -8977,7 +8980,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     );
   }
 
-  Widget _sidePane(bool dark) {
+  Widget _sidePane(bool dark, {bool compact = false}) {
     final Color bg = dark ? const Color(0xFF242424) : const Color(0xFFF3F3F3);
     return Material(
       color: bg,
@@ -8987,7 +8990,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
           SuiteApp.word => _wordNav(),
           SuiteApp.excel => _sheetNav(),
           SuiteApp.powerpoint => _slideNav(),
-          SuiteApp.pdf => _pdfNav(),
+          SuiteApp.pdf => _pdfNav(compact: compact),
         },
       ),
     );
@@ -9119,7 +9122,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     );
   }
 
-  Widget _pdfNav() {
+  Widget _pdfNav({bool compact = false}) {
     final PdfOutlineNode? outline = _pdf.file?.outline;
     final bool hasOutline = outline != null && outline.children.isNotEmpty;
     final int tab = hasOutline ? _pdfSideTab.clamp(0, 1) : 0;
@@ -9134,7 +9137,9 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
         Expanded(
-          child: tab == 0 ? _pdfThumbsPane() : _pdfOutlinePane(outline!),
+          child: tab == 0
+              ? _pdfThumbsPane(compact: compact)
+              : _pdfOutlinePane(outline!),
         ),
         if (hasOutline) _pdfSideTabBar(tab),
       ],
@@ -9206,22 +9211,29 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     );
   }
 
-  Widget _pdfThumbsPane() {
+  Widget _pdfThumbsPane({bool compact = false}) {
     final List<PdfDisplayList> lists = _pdf.lists;
     final int current = _pdf.pageIndex;
-    if (current != _pdfThumbSyncedPage) {
-      _pdfThumbSyncedPage = current;
+    final ScrollController scrollController = compact
+        ? _compactPdfThumbScroll
+        : _pdfThumbScroll;
+    final int syncedPage = compact
+        ? _compactPdfThumbSyncedPage
+        : _pdfThumbSyncedPage;
+    if (current != syncedPage) {
+      if (compact) {
+        _compactPdfThumbSyncedPage = current;
+      } else {
+        _pdfThumbSyncedPage = current;
+      }
       WidgetsBinding.instance.addPostFrameCallback((_) {
-        if (!mounted || !_pdfThumbScroll.hasClients || lists.isEmpty) {
+        if (!mounted || !scrollController.hasClients || lists.isEmpty) {
           return;
         }
         // ListView.builder may not have built the selected child yet, so
         // estimate offset from page aspect instead of ensureVisible alone.
         const double pad = 12;
-        final double contentW = math.max(
-          80,
-          _pdfThumbScroll.position.viewportDimension > 0 ? 268 - pad * 2 : 244,
-        );
+        const double contentW = 268 - pad * 2;
         var y = 4.0;
         for (int i = 0; i < current && i < lists.length; i++) {
           final PdfDisplayList list = lists[i];
@@ -9230,9 +9242,14 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
           final double thumbH = contentW * pageH / pageW;
           y += thumbH + 6 + 16 + 12; // thumb + gap + label + padding
         }
-        final double max = _pdfThumbScroll.position.maxScrollExtent;
-        final double target = (y - 24).clamp(0.0, max);
-        _pdfThumbScroll.animateTo(
+        // Resizing may show both panes. Their separate controllers keep each
+        // normal desktop scrollbar attached to exactly one viewport.
+        final position = scrollController.position;
+        if (!position.hasContentDimensions) {
+          return;
+        }
+        final double target = (y - 24).clamp(0.0, position.maxScrollExtent);
+        position.animateTo(
           target,
           duration: const Duration(milliseconds: 220),
           curve: Curves.easeOutCubic,
@@ -9248,7 +9265,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         ),
         Expanded(
           child: ListView.builder(
-            controller: _pdfThumbScroll,
+            controller: scrollController,
             padding: const EdgeInsets.fromLTRB(12, 4, 12, 16),
             itemCount: lists.length,
             itemBuilder: (BuildContext context, int index) {
