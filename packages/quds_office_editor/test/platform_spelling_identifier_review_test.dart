@@ -47,7 +47,7 @@ void main() {
   test('whole identifiers retain markers inside prepended graphemes', () async {
     for (final marker in ['4', '_', '𝟘', '\u203f']) {
       for (final prefix in ['\u0600', '\u{110bd}', '\u0600\u0600']) {
-        final word = 'Fe$prefix${marker}\u0301ler';
+        final word = 'Fe$prefix$marker\u0301ler';
         final result = await _check(
           word,
           (text) => [

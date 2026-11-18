@@ -49,6 +49,8 @@ them into the editor. Studio's picker accepts Word `.docx`, `.docm`, `.dotx`, an
 `.dotm` packages. A wrong-format or malformed package is rejected instead of
 being treated as an empty document. The host API accepts already imported
 `WmlDocument` objects, so other host import paths can participate as well.
+Studio rejects truncated XML, incorrect document/body namespaces, and duplicate
+document or body elements before importing either comparison source.
 
 The default **Final text** comparison omits pending deletions from each input.
 The revision-text options are:

@@ -1,18 +1,70 @@
 # Document review: local validation and integration
 
-The integrated code at `5bcb20dec3169ce3e4c0162a94fe94dd53b7bc47`
+## Resumed completion
+
+The continuation recovered the saved branch and draft PR #162, then reconciled
+the remote inventory of **201 fork branches, 163 PR heads, and four upstream
+branches**. The original audit's 194 unchanged branch tips retain their earlier
+ancestry/equivalence evidence. All changed or new tips are included in checkpoint
+`366e9b343047b254dd9b78263b5fb02c52a40ae5` (tree
+`d25edc0bad66e22074aa23f84f3ace5839222ec5`). Its parents preserve the earlier review
+checkpoint, main `517f6d10` including PR #163, and the independent macbook golden
+reference repair `ca42a7fa`. See [the resumed audit](resume-incoming-audit.json).
+
+An independent readiness review found one additional input-validation defect:
+the shared XML reader permits fragments and unclosed elements at EOF, so the
+old comparison preflight could accept truncated content or a foreign-namespace
+body as an empty Word document. Checkpoint
+`41c15e2309ae4100126381adb702b27410a52069` (tree
+`cc036c7190f868fb0bc4414f6efa0055df4904f5`) requires one complete Word root and
+exactly one direct body in its namespace before import. Regression controls cover
+17 malformed variants and three valid nonempty namespace forms, alongside the
+existing real-file and valid-empty-document tests. Shared XML parser behavior
+and production dependency manifests are unchanged.
+
+[Resumed verification](resume-verification.json) records the targeted local
+checks, exact source hashes, commands, and logs for these additions:
+
+| Resumed check | Result |
+| --- | ---: |
+| spaCy distribution, installer controls and optional entity validation | 14 passed |
+| Review dialog, narrow layouts, filtering, undo, stale reports and export | 13 passed |
+| Studio comparison decoder and spaCy setup | 17 passed |
+| Strict analysis of five changed/relevant files | No issues |
+| Golden path selection from repository and package directories | Identical correct results |
+
+All **44 selected tests passed, with zero skipped**. All 560 recorded Dart
+source, manifest and selected test files remained unchanged and match the tested
+commit. Runtime executable hashes and the workspace lock also match the pinned
+Flutter 3.47.8 / Dart 3.13.7 setup. Golden images were not regenerated.
+
+The final remote check found main had joined the same two incoming histories in
+`f383c826205e321eda3ed3bdbcd584e9a2d4da14`. A Git merge-tree calculation with
+the tested commit produced the identical tree `cc036c71`; no additional source or
+test changes were introduced. The final evidence checkpoint preserves that main
+commit as a parent as well.
+
+The earlier 358 checks and subsequent 47 field regressions below remain historical evidence
+for their recorded source revisions; they are not represented as new full-suite
+runs. Every resumed checkpoint was saved without force-pushing, with its remote
+tree verified against the local Git tree. GitHub Actions were not queried or
+awaited.
+
+## Earlier verification
+
+The initial integrated code at `5bcb20dec3169ce3e4c0162a94fe94dd53b7bc47`
 (tree `a86161dae80b5462f57d4ad6e09c1cad09aacc12`) passed **358 selected
 tests** locally, with no selected tests skipped. Strict analysis of the changed
 engine/editor and incoming spaCy sources reported no issues.
 
 [verification.json](verification.json) binds that tested commit, commands, logs,
-runtime, and 39 changed Dart source/test hashes. All 39 still match after the
-last main reconciliation at `15eb4bf1ca0fdc65375038de9031c00edd78e961`
+runtime, and 39 changed Dart source/test hashes. All 39 matched after the
+earlier main reconciliation at `15eb4bf1ca0fdc65375038de9031c00edd78e961`
 (tree `5516a02d0d22b415d003361eb8728bf2bcc33755`). The sole additional production
-library change is the incoming footer PAGE-field builder repair. **47 additional
+library change at that point was the incoming footer PAGE-field builder repair. **47 additional
 engine regressions passed**, with strict analysis reporting no issues. See
 [latest-main-verification.json](latest-main-verification.json) for the separate
-source binding and logs. This final evidence update changes documentation only.
+source binding and logs. The corresponding evidence update changed documentation only.
 
 ## Incoming history
 
@@ -57,6 +109,9 @@ Progress was saved on `codex/document-review-20261118` throughout the work:
 | `5bcb20de` | Three latest incoming branches and final comparison hardening |
 | `9b7b2634` | Baseline validation logs, source bindings and final screenshots |
 | `15eb4bf1` | Latest main reconciliation, footer PAGE repair and Mac references |
+| `9ecf4c42` | Supplemental field regressions and the prior final validation record |
+| `366e9b34` | Resumed reconciliation of main, PR #163 and the Mac golden helper |
+| `41c15e23` | Complete Word XML preflight and malformed-input regression controls |
 
 Direct Git push credentials were unavailable, so authenticated GitHub Git-data
 operations created the commits and updated the branch with an expected-head

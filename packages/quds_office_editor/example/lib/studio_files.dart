@@ -114,18 +114,93 @@ abstract final class StudioFiles {
     if (mainPart == null) {
       throw const FormatException('The Word document content is missing.');
     }
-    final root = XmlDocument.parse(mainPart.readText()).root;
-    if (root?.localName != 'document' ||
-        !<String>{
-          OfficeNamespaces.w,
-          'http://purl.oclc.org/ooxml/wordprocessingml/main',
-        }.contains(root?.namespaceUri) ||
-        !root!.childElements.any((element) => element.localName == 'body')) {
+    _validateComparisonXml(mainPart.readText());
+    return WordDeserializer().read(package);
+  }
+
+  /// The shared XML reader can read fragments and permits open elements at
+  /// EOF. A comparison source must instead have one complete document/body;
+  /// otherwise damaged input could import as empty and appear unchanged.
+  static void _validateComparisonXml(String source) {
+    final reader = XmlPullReader(source);
+    String? wordNamespace;
+    var depth = 0;
+    var roots = 0;
+    var bodies = 0;
+    var declarationSeen = false;
+    try {
+      while (reader.next()) {
+        switch (reader.eventType) {
+          case XmlEventType.startElement:
+            if (depth == 0) {
+              roots++;
+              if (roots != 1 ||
+                  reader.localName != 'document' ||
+                  !<String>{
+                    OfficeNamespaces.w,
+                    'http://purl.oclc.org/ooxml/wordprocessingml/main',
+                  }.contains(reader.namespaceUri)) {
+                throw const FormatException(
+                  'The package must contain one Word document root.',
+                );
+              }
+              wordNamespace = reader.namespaceUri;
+            } else if (depth == 1 && reader.localName == 'body') {
+              if (reader.namespaceUri != wordNamespace || ++bodies != 1) {
+                throw const FormatException(
+                  'The Word document must contain one body in its namespace.',
+                );
+              }
+            }
+            if (reader.prefix.isNotEmpty && reader.namespaceUri.isEmpty) {
+              throw const FormatException(
+                'The Word document uses an undeclared XML namespace.',
+              );
+            }
+            depth++;
+          case XmlEventType.endElement:
+            depth--;
+          case XmlEventType.characters:
+            // Decode even unmodeled text so invalid entities are not hidden
+            // by the importer's preserved-content fallback.
+            final text = reader.text;
+            if (depth == 0 && text.isNotEmpty && !reader.isWhitespace) {
+              throw const FormatException(
+                'The Word document contains text outside its root.',
+              );
+            }
+          case XmlEventType.cdata:
+            if (depth == 0) {
+              throw const FormatException(
+                'The Word document contains content outside its root.',
+              );
+            }
+          case XmlEventType.xmlDeclaration:
+            if (declarationSeen || roots != 0) {
+              throw const FormatException(
+                'The Word document has a misplaced XML declaration.',
+              );
+            }
+            declarationSeen = true;
+          case XmlEventType.dtd:
+            throw const FormatException(
+              'Word comparison does not support XML document type declarations.',
+            );
+          case XmlEventType.none:
+          case XmlEventType.processingInstruction:
+          case XmlEventType.comment:
+          case XmlEventType.endDocument:
+            break;
+        }
+      }
+    } on XmlParseException catch (error) {
+      throw FormatException('The Word document XML is malformed: $error');
+    }
+    if (depth != 0 || roots != 1 || bodies != 1) {
       throw const FormatException(
-        'The package does not contain a Word document.',
+        'The Word document must contain one complete document and body.',
       );
     }
-    return WordDeserializer().read(package);
   }
 
   /// Loads picked file bytes on a worker isolate when the picker only returned a path.
