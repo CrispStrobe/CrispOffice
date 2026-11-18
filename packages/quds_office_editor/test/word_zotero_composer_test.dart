@@ -220,6 +220,32 @@ void main() {
   );
 
   testWidgets(
+    'connected search remains usable in narrow doubled-text RTL layout',
+    (tester) async {
+      final result = await _open(
+        tester,
+        items: [_source('Original')],
+        size: const Size(320, 480),
+        scale: 2,
+        direction: TextDirection.rtl,
+        searchZotero: (query, start) async => ZoteroPage<ZoteroCitationItem>(
+          items: [_source('Arabic and German source', uris: [_firstUri])],
+          start: start,
+          limit: 25,
+        ),
+      );
+      await _tap(tester, _key('zotero-composer-search-zotero'));
+      await _enter(tester, 'zotero-connected-source-query', 'Arabic');
+      await _tap(tester, _key('zotero-connected-source-search'));
+      await _tap(tester, _key('zotero-connected-source-0'));
+      await _tap(tester, _key('zotero-connected-source-add'));
+      await _tap(tester, _key('zotero-composer-apply'));
+      expect(result.citation!.items, hasLength(2));
+      expect(tester.takeException(), isNull);
+    },
+  );
+
+  testWidgets(
     'editing a custom locator requires text review and clears stale RTF',
     (tester) async {
       final first = _source('Citation with a page', options: {

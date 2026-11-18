@@ -781,6 +781,7 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
     ];
     final searchClient = _client;
     final searchLibrary = _session.library;
+    final offlineSearchIds = <String, String>{};
     final result = await _showReview<ZoteroCitation>(
       (_) => ZoteroCitationComposer(
         items: items,
@@ -813,9 +814,11 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
                   } else {
                     // Unsynced local sources cannot be identified by their
                     // API route; retain a fresh standalone CSL snapshot.
-                    final nonce = Random.secure().nextInt(1 << 30);
-                    final time = DateTime.now().microsecondsSinceEpoch;
-                    final id = 'quds-offline-$time-$nonce';
+                    final id = offlineSearchIds.putIfAbsent(item.key, () {
+                      final nonce = Random.secure().nextInt(1 << 30);
+                      final time = DateTime.now().microsecondsSinceEpoch;
+                      return 'quds-offline-$time-$nonce';
+                    });
                     sources.add(
                       ZoteroCitationItem.fromJson({
                         'id': id,
