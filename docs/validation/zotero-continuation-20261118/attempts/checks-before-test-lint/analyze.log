@@ -1,0 +1,5 @@
+Analyzing word_zotero_dialog.dart, word_zotero_import.dart, word_zotero_snapshot.dart, word_zotero_import_search_test.dart, word_zotero_snapshot_test.dart, word_review_dialog.dart, office_golden.dart, quds_office_engine.dart, word_comparison_adversarial_test.dart...
+
+   info - packages/quds_office_editor/test/word_zotero_snapshot_test.dart:170:13 - Use the null-aware marker '?' rather than a null check via an 'if'. Try using '?'. - use_null_aware_elements
+
+1 issue found.
