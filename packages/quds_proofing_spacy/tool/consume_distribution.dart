@@ -199,6 +199,19 @@ Future<List<Map<String, Object?>>> mappedDependencies(
   return rows.map((row) => <String, Object?>{...row, 'mapped': true}).toList();
 }
 
+String relativeSourcePath(String rootPath, String filePath) {
+  var normalizedRoot = rootPath;
+  while (normalizedRoot.endsWith(Platform.pathSeparator)) {
+    normalizedRoot = normalizedRoot.substring(
+        0, normalizedRoot.length - Platform.pathSeparator.length);
+  }
+  final prefix = '$normalizedRoot${Platform.pathSeparator}';
+  require(filePath.startsWith(prefix), 'Source file is outside its recorded root.');
+  final relative = filePath.substring(prefix.length);
+  require(safeMember(relative), 'Unsafe source inventory path.');
+  return relative;
+}
+
 Future<Map<String, String>> sourceHashes() async {
   final sources = <String, String>{};
   Future<void> collect(Directory root, String label) async {
@@ -206,7 +219,7 @@ Future<Map<String, String>> sourceHashes() async {
         .where((e) => e is File && e.path.endsWith('.dart')).cast<File>().toList();
     files.sort((a, b) => a.path.compareTo(b.path));
     for (final file in files) {
-      sources['$label/${file.path.substring(root.path.length + 1)}'] = await fileHash(file);
+      sources['$label/${relativeSourcePath(root.path, file.path)}'] = await fileHash(file);
     }
   }
   await collect(Directory.fromUri(Platform.script.resolve('../lib/')), 'quds_proofing_spacy/lib');
@@ -271,7 +284,7 @@ Future<void> save(File target, Map<String, Object?> report) async {
   }
 }
 
-void selfTest() {
+Future<void> selfTest() async {
   require(digest(utf8.encode('abc')) ==
       'ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad', 'Hash control failed.');
   require(safeMember('bundle/model.gguf') &&
@@ -292,14 +305,29 @@ void selfTest() {
       rejectedLoaderOverrides++;
     }
   }
-  print(jsonEncode(<String, Object?>{'status': 'passed', 'model_free_controls': 12,
+  var sourcePathControls = 0;
+  for (final root in ['/package/lib', '/package/lib/']) {
+    for (final relative in ['src/analysis.dart', 'quds_proofing_spacy.dart']) {
+      require(relativeSourcePath(root, '/package/lib/$relative') == relative,
+          'Source label loses characters at a directory boundary.');
+      sourcePathControls++;
+    }
+  }
+  var outsideRootRejected = false;
+  try { relativeSourcePath('/package/lib/', '/package/library/file.dart'); }
+  on StateError { outsideRootRejected = true; }
+  require(outsideRootRejected, 'Sibling source directory was admitted.');
+  sourcePathControls++;
+  print(jsonEncode(<String, Object?>{'status': 'passed', 'model_free_controls': 17,
     'loader_environment_clean_cases': 1,
     'loader_environment_rejection_cases': rejectedLoaderOverrides,
+    'source_path_controls': sourcePathControls,
+    'source_hashes': await sourceHashes(),
     'native_library_loaded': false, 'native_inference_executions': 0}));
 }
 
 Future<void> main(List<String> args) async {
-  if (args.length == 1 && args.single == '--self-test') { selfTest(); return; }
+  if (args.length == 1 && args.single == '--self-test') { await selfTest(); return; }
   const names = {'--archive', '--sha256', '--installed', '--protocol', '--protocol-sha256', '--report'};
   final options = <String, String>{};
   for (var i = 0; i < args.length; i += 2) {
