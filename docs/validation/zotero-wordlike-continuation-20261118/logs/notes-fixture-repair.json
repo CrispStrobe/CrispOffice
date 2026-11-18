@@ -1,0 +1,36 @@
+{
+  "baseline_binding": "notes-baseline-binding.json",
+  "baseline_result": {
+    "exit_code": 1,
+    "passed": 8,
+    "failed": 3,
+    "cause": "Three preexisting widget fixtures leave a 400 ms WordProofingSession timer pending after the test body returns."
+  },
+  "fix": "Unmount the editor and dispose the externally owned controller within each widget test, before Flutter verifies pending timers; retain guarded teardown for assertion-failure cleanup. No source or behavior assertions changed.",
+  "files": [
+    "packages/quds_office_editor/test/word_notes_editing_test.dart",
+    "packages/quds_office_editor/test/word_note_numbering_test.dart"
+  ],
+  "current_test_sha256": {
+    "packages/quds_office_editor/test/word_notes_editing_test.dart": "670ce68abe30868abb147108f58842a76f2ef0aae4af3ef42fc3d67d5b711cb4",
+    "packages/quds_office_editor/test/word_note_numbering_test.dart": "205c0a0700f49f05d2d57b1a03660fbeda7f4d3b2c8be242d5e6871779a8d998"
+  },
+  "focused_result": {
+    "command": "flutter test --no-pub test/word_notes_editing_test.dart test/word_note_numbering_test.dart --reporter expanded",
+    "exit_code": 0,
+    "passed": 11,
+    "failed": 0,
+    "log": "notes-current-tests.log"
+  },
+  "analysis": {
+    "log": "notes-current-analysis.log",
+    "result": "Analyzing word_notes_editing_test.dart, word_note_numbering_test.dart...\nNo issues found!"
+  },
+  "logs_sha256": {
+    "notes-baseline-tests.log": "aa06665c9de9e8acb0faa22af76f25568a3de727ca5969074a046f717916da03",
+    "notes-current-tests.log": "008df56ae610a2cf647440c0e5ab121f3d9d33530e608d8eed274799e4bfea49",
+    "notes-current-analysis.log": "550b02fe68ac3cbf2ca4faf3af12bbceb42c0cef2e0e5a951edc80b9d2645f1a",
+    "notes-fixture-repair.patch": "c8e6c2f5a337132fa57a1b2245b999209d5b0012e89883298db1a81e011a1fc5"
+  },
+  "scope": "Focused lifecycle repair evidence. Root owns the final frozen integrated source gate."
+}

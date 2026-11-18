@@ -369,6 +369,8 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
             _findPrevious,
         const SingleActivator(LogicalKeyboardKey.f1): _openPdfSampleGallery,
         const SingleActivator(LogicalKeyboardKey.f7): _showSpelling,
+        const SingleActivator(LogicalKeyboardKey.f7, shift: true):
+            _word.requestThesaurus,
         const SingleActivator(LogicalKeyboardKey.keyB, control: true):
             _toggleBold,
         const SingleActivator(LogicalKeyboardKey.keyB, meta: true): _toggleBold,
@@ -2782,6 +2784,11 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
             selected:
                 _word.reviewPaneVisible &&
                 _word.reviewPaneTab == WordReviewPaneTab.proofing,
+          ),
+          _cmd(
+            Icons.menu_book_outlined,
+            _arabic ? 'قاموس المرادفات' : 'Thesaurus',
+            _word.requestThesaurus,
           ),
           _cmd(
             Icons.edit_note,
@@ -6023,10 +6030,21 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   }) {
     _dismissCommentContext();
     if (!_wordRouteIsCurrent ||
+        !_word.config.allowsSelection ||
         (_word.input.composing.isValid && !_word.input.composing.isCollapsed)) {
       return;
     }
     final document = _word.document;
+    if (!identical(comment, _word.selectedComment) ||
+        !identical(WordComment.byId(document, comment.id), comment)) {
+      return;
+    }
+    // A secondary click does not run the canvas's primary-click selection
+    // handler. Route ordinary editing commands to this comment as well as
+    // routing proofing commands by their explicit finding.
+    if (!_word.isEditingComment) {
+      _word.beginCommentEdit(comment.id);
+    }
     final root = WordComment.byId(
       document,
       WordComment.threadRootId(document, comment.id),
@@ -6063,6 +6081,12 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         _word.commentCaret.selectionAnchorParagraph == caret.anchorParagraph &&
         _word.commentCaret.selectionAnchor == caret.anchor &&
         (issue == null || _word.proofing.isCurrent(issue));
+    bool canMutateCurrent() =>
+        current() &&
+        _wordRouteIsCurrent &&
+        _canMutate &&
+        _word.config.allowsMutation &&
+        !(_word.input.composing.isValid && !_word.input.composing.isCollapsed);
     if (!current()) return;
     final actions = <OfficeContextAction>[
       if (issue != null) ...[
@@ -6161,9 +6185,9 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         } else if (_canMutate && _word.config.allowsMutation) {
           switch (id) {
             case 'cut':
-              _word.cutToClipboard();
+              _word.cutToClipboard(isCurrent: canMutateCurrent);
             case 'paste':
-              _word.pasteFromClipboard();
+              _word.pasteFromClipboard(isCurrent: canMutateCurrent);
             case 'replyComment':
               _replyWordComment(comment.id);
             case 'resolveComment':
@@ -6272,6 +6296,12 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   }
 
   Widget _wordCommentsPane(bool dark, {bool expanded = false}) {
+    // Match the Word surface's current mode before its child rebuilds.
+    _word.syncConfig(
+      _printPreview
+          ? _config.copyWith(mode: OfficeInteractionMode.viewing)
+          : _config,
+    );
     _syncCommentReplyDrafts();
     final Color bg = dark ? const Color(0xFF242424) : const Color(0xFFF3F3F3);
     final List<WmlComment> roots = WordComment.roots(_word.document);
@@ -6465,7 +6495,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                   ),
                 ),
                 const SizedBox(height: 6),
-                if (selected && _canMutate)
+                if (selected && !_opening && _word.config.allowsSelection)
                   _commentBodySurface(comment)
                 else
                   Text.rich(
@@ -6562,7 +6592,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
             viewport: _commentViewport,
             hasFocus:
                 _word.isEditingComment && _word.selectedCommentId == comment.id,
-            config: _config.copyWith(showRulers: false),
+            config: _word.config.copyWith(showRulers: false),
             selectedCommentId: comment.id,
             proofingFindings: _word.proofing.findingsByParagraph,
             onReviewTap: _showCommentReview,

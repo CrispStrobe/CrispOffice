@@ -1,0 +1,17 @@
+{
+  "manifest_matches": {
+    "pubspec.yaml": true,
+    "packages/legacy_doc_parser/pubspec.yaml": true,
+    "packages/quds_office_engine/pubspec.yaml": true,
+    "packages/quds_proofing_harper/pubspec.yaml": true,
+    "packages/quds_proofing_gector/pubspec.yaml": true,
+    "packages/quds_proofing_spacy/pubspec.yaml": true,
+    "packages/quds_office_engine/example/pubspec.yaml": true,
+    "packages/quds_reports/pubspec.yaml": true,
+    "packages/quds_office_editor/pubspec.yaml": true,
+    "packages/quds_office_editor/example/pubspec.yaml": true,
+    "apps/quds_report_studio/pubspec.yaml": true
+  },
+  "workspace_lock_sha256": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130",
+  "package_count": 110
+}

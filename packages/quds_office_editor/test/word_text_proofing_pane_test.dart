@@ -427,6 +427,23 @@ void main() {
     },
   );
 
+  testWidgets(
+    'language status reveals expanded settings again after scrolling',
+    (tester) async {
+      final h = _Harness(size: const Size(900, 760));
+      await h.mount(tester);
+      await h.openOptions(tester);
+      final list = tester.widget<ListView>(
+        _key('live-review-proofing-content'),
+      );
+      list.controller!.jumpTo(list.controller!.position.maxScrollExtent);
+      await _flush(tester);
+      expect(_key('live-proofing-text-language').hitTestable(), findsNothing);
+      await h.openOptions(tester);
+      expect(h.controller.canUndo, isFalse);
+    },
+  );
+
   for (final arabic in [false, true]) {
     testWidgets(
       'narrow ${arabic ? 'RTL' : 'English'} text options remain usable with large text',

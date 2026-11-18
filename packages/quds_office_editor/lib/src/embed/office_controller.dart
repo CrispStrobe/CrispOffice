@@ -85,8 +85,79 @@ final class _WordTextProofingRange {
 typedef _WordTextProofingParagraph = ({
   WmlParagraph paragraph,
   List<WmlContentControlData> controls,
+  List<Object?> styleContext,
   bool generated,
 });
+
+/// Why the explicit thesaurus action could not capture an editable source.
+enum WordThesaurusTargetStatus {
+  ready,
+  noText,
+  multipleParagraphs,
+  mixedLanguage,
+  protectedContent,
+  composing,
+  unsupportedTarget,
+  invalidRange,
+}
+
+final class WordThesaurusCapture {
+  const WordThesaurusCapture._(this.status, {this.target, this.message});
+
+  final WordThesaurusTargetStatus status;
+  final WordThesaurusTarget? target;
+  final String? message;
+  bool get isReady => target != null;
+}
+
+/// Immutable source selection. Only [WordEditorController] can capture one;
+/// it is independent of the spelling/grammar finding membership contract.
+final class WordThesaurusTarget {
+  WordThesaurusTarget._(
+    this._owner,
+    this._source,
+    this._caret,
+    this._selection,
+    this._trackRevisions,
+  );
+
+  final WordEditorController _owner;
+  final WordTextRangeTarget _source;
+  final CaretEngine _caret;
+  final ({
+    WmlParagraph? paragraph,
+    int offset,
+    int? anchor,
+    int? anchorParagraph,
+  })
+  _selection;
+  final bool _trackRevisions;
+  String get text => _source.text;
+  String get language => _source.language;
+  String get story => _source.story;
+  int get start => _source.start;
+  int get end => _source.end;
+}
+
+/// A returned provider result bound to one captured source and pack revision.
+/// A literal candidate from this exact result is required for replacement.
+final class WordThesaurusLookup {
+  WordThesaurusLookup._(
+    this.target,
+    this.result,
+    this.language,
+    this._service,
+    this._serviceRevision,
+    this._generation,
+  );
+
+  final WordThesaurusTarget target;
+  final OfficeThesaurusResult result;
+  final String language;
+  final OfficeThesaurusService _service;
+  final int _serviceRevision;
+  final int _generation;
+}
 
 /// Live find/replace cursor shared by every host.
 class OfficeFindSession {
@@ -528,6 +599,16 @@ class WordEditorController extends OfficeController {
   int? _explicitProofingGeneration;
   ({WmlParagraph? paragraph, int offset, int? anchor, int? anchorParagraph})?
   _proofingSelectionCaret;
+  WordThesaurusTarget? _thesaurusTarget;
+  WordThesaurusLookup? _thesaurusLookup;
+  int _thesaurusGeneration = 0;
+
+  /// Host chrome: Shift+F7. Capture the target before changing input focus.
+  VoidCallback? onThesaurusRequested;
+
+  void requestThesaurus() {
+    if (!isDisposed) onThesaurusRequested?.call();
+  }
 
   /// Review chrome is session state and never marks the document dirty.
   bool get reviewPaneVisible => _reviewPaneVisible;
@@ -610,6 +691,12 @@ class WordEditorController extends OfficeController {
 
   @override
   void notifyListeners() {
+    final target = _thesaurusTarget;
+    if (target != null && !_matchesThesaurusSelection(target)) {
+      _thesaurusGeneration++;
+      _thesaurusTarget = null;
+      _thesaurusLookup = null;
+    }
     _proofing?.observeDocument();
     super.notifyListeners();
   }
@@ -917,13 +1004,15 @@ class WordEditorController extends OfficeController {
 
   List<WmlParagraph> _ensureCommentParagraphs(WmlComment comment) {
     if (comment.paragraphs.isEmpty) {
-      comment.paragraphs.add(
-        WmlParagraph(
-          inlines: <WmlInline>[
-            WmlRun(properties: WmlRunProps(fontSizeHalfPoints: 20)),
-          ],
-        ),
+      final placeholder = WmlParagraph(
+        inlines: <WmlInline>[
+          WmlRun(properties: WmlRunProps(fontSizeHalfPoints: 20)),
+        ],
       );
+      // Viewing an empty comment needs a layout/caret target, without adding
+      // a paragraph to the stored document merely to select or copy its text.
+      if (!config.allowsMutation) return <WmlParagraph>[placeholder];
+      comment.paragraphs.add(placeholder);
     }
     return comment.paragraphs;
   }
@@ -1044,6 +1133,9 @@ class WordEditorController extends OfficeController {
 
   /// beginCommentEdit API.
   void beginCommentEdit(int id) {
+    if (!config.allowsMutation && !config.allowsSelection) {
+      return;
+    }
     selectedCommentId = id;
     if (selectedComment == null) {
       return;
@@ -1051,7 +1143,11 @@ class WordEditorController extends OfficeController {
     endHeaderFooterEdit();
     _editingComment = true;
     selectedVisual = null;
+    selectedFrame = null;
+    editingFrame = false;
     selectedEquation = null;
+    selectedTable = null;
+    selectedTableBand = null;
     final List<WmlParagraph> paras = _ensureCommentParagraphs(selectedComment!);
     commentCaret.paragraphIndex = commentCaret.paragraphIndex.clamp(
       0,
@@ -2860,11 +2956,16 @@ class WordEditorController extends OfficeController {
 
   @override
   /// cutToClipboard API.
-  Future<void> cutToClipboard() async {
-    if (!canCut) {
+  /// [isCurrent] can bind a contextual action to its original edit target while
+  /// the system clipboard write is pending.
+  Future<void> cutToClipboard({bool Function()? isCurrent}) async {
+    if (!canCut || !(isCurrent?.call() ?? true)) {
       return;
     }
     await copyToClipboard();
+    if (!(isCurrent?.call() ?? true)) {
+      return;
+    }
     if (selectedVisual != null) {
       deleteSelectedVisual();
       return;
@@ -2878,15 +2979,18 @@ class WordEditorController extends OfficeController {
 
   @override
   /// pasteFromClipboard API.
+  /// [isCurrent] can bind a contextual action to its original edit target while
+  /// the system clipboard read is pending.
   Future<void> pasteFromClipboard({
     OfficePasteMode mode = OfficePasteMode.keepSource,
+    bool Function()? isCurrent,
   }) async {
-    if (!canPaste) {
+    if (!canPaste || !(isCurrent?.call() ?? true)) {
       return;
     }
     final OfficeClipboardPayload payload = await OfficeClipboard.instance
         .read();
-    if (payload.isEmpty) {
+    if (!(isCurrent?.call() ?? true) || payload.isEmpty) {
       return;
     }
     if (payload.visual != null && selectedVisual == null && caret.isCollapsed) {
@@ -8466,7 +8570,11 @@ class WordEditorController extends OfficeController {
             paragraph: paragraph,
             start: from,
             end: to,
-            source: _textProofingSource(paragraph, entry.controls),
+            source: _textProofingSource(
+              paragraph,
+              entry.controls,
+              entry.styleContext,
+            ),
           ),
         );
       }
@@ -8528,6 +8636,7 @@ class WordEditorController extends OfficeController {
             : null,
         footer: _editingFooter,
         documentLanguage: document.proofingLanguage,
+        styles: _textProofingStylesToken,
         tracking: document.trackRevisions,
         restricted: document.restrictEditing,
         restriction: document.restrictMode,
@@ -8546,7 +8655,12 @@ class WordEditorController extends OfficeController {
       Iterable<WmlParagraph> paragraphs,
     ) sync* {
       for (final paragraph in paragraphs) {
-        yield (paragraph: paragraph, controls: const [], generated: false);
+        yield (
+          paragraph: paragraph,
+          controls: const [],
+          styleContext: const [],
+          generated: false,
+        );
       }
     }
 
@@ -8567,22 +8681,51 @@ class WordEditorController extends OfficeController {
     Iterable<_WordTextProofingParagraph> visit(
       Iterable<WmlBlock> blocks,
       List<WmlContentControlData> controls,
+      List<Object?> styleContext,
     ) sync* {
       for (final block in blocks) {
         if (block is WmlParagraph) {
-          yield (paragraph: block, controls: controls, generated: false);
+          yield (
+            paragraph: block,
+            controls: controls,
+            styleContext: styleContext,
+            generated: false,
+          );
         } else if (block is WmlContentControlBlock) {
-          yield* visit(block.blocks, [...controls, block.control]);
+          yield* visit(block.blocks, [
+            ...controls,
+            block.control,
+          ], styleContext);
+        } else if (block is WmlTable) {
+          for (final row in block.rows.indexed) {
+            for (final cell in row.$2.cells.indexed) {
+              yield* visit(cell.$2.blocks, controls, [
+                ...styleContext,
+                [
+                  block.properties.styleId,
+                  block.properties.sourcePropertiesXml,
+                  block.properties.importedValues,
+                  row.$1,
+                  cell.$1,
+                ],
+              ]);
+            }
+          }
         } else if (block is WmlToc) {
           for (final paragraph in [
             block.titleParagraph,
             ...block.itemParagraphs,
           ]) {
-            yield (paragraph: paragraph, controls: controls, generated: true);
+            yield (
+              paragraph: paragraph,
+              controls: controls,
+              styleContext: styleContext,
+              generated: true,
+            );
           }
         } else {
           for (final children in WordTree.childLists(block)) {
-            yield* visit(children, controls);
+            yield* visit(children, controls, styleContext);
           }
         }
       }
@@ -8591,7 +8734,28 @@ class WordEditorController extends OfficeController {
     yield* visit(
       document.sections.expand((section) => section.blocks),
       const [],
+      const [],
     );
+  }
+
+  // PackagePart replaces its payload on writes. Retaining its read-only view
+  // identity detects style edits without copying/decoding an entire styles XML
+  // on every caret or progress notification.
+  Object? get _textProofingStylesToken {
+    final package = document.package;
+    if (package == null) return null;
+    final office = package.packageRelationships.firstByType(
+      RelationshipTypes.officeDocument,
+    );
+    final uri = office == null
+        ? '/word/document.xml'
+        : package.packageRelationships.resolve(office);
+    final relationships = package.relationshipsFor(uri);
+    final style = relationships.firstByType(RelationshipTypes.styles);
+    final part = package.getPart(
+      style == null ? '/word/styles.xml' : relationships.resolve(style),
+    );
+    return (package, part, part?.bytesView);
   }
 
   static bool _textProofingControlLocked(WmlContentControlData control) {
@@ -8618,7 +8782,12 @@ class WordEditorController extends OfficeController {
   static String _textProofingSource(
     WmlParagraph paragraph,
     List<WmlContentControlData> controls,
+    List<Object?> styleContext,
   ) => jsonEncode([
+    styleContext,
+    paragraph.properties.styleId,
+    paragraph.properties.sourcePropertiesXml,
+    paragraph.properties.importedValues,
     paragraph.properties.proofingLanguage,
     paragraph.properties.fieldInstruction,
     paragraph.properties.pageNumberField,
@@ -8659,7 +8828,8 @@ class WordEditorController extends OfficeController {
   ]);
 
   /// Changes the language of exactly [target]. Null removes run overrides so
-  /// the text inherits its paragraph/document language. Returns false if the
+  /// the text inherits its character/paragraph styles and paragraph/document
+  /// defaults. Returns false if the
   /// displayed target became stale or cannot be changed safely.
   bool setTextProofingLanguage(
     String? language, {
@@ -8669,10 +8839,23 @@ class WordEditorController extends OfficeController {
         ? null
         : normalizeProofingLanguage(language);
     if (normalized != null && normalized.isEmpty) return false;
+    if (normalized == null) {
+      final reader = WordDeserializer();
+      return _setTextProofingOption(
+        target,
+        prepare: (source, preview, start, end) => reader
+            .clearRunProofingLanguage(document, source, preview, start, end),
+      );
+    }
     return _setTextProofingOption(
       target,
-      needsChange: (properties) => properties.proofingLanguage != normalized,
-      update: (properties) => properties.proofingLanguage = normalized,
+      prepare: (source, preview, start, end) => _prepareTextProofingRuns(
+        preview,
+        start,
+        end,
+        needsChange: (properties) => properties.proofingLanguage != normalized,
+        update: (properties) => properties.proofingLanguage = normalized,
+      ),
     );
   }
 
@@ -8683,20 +8866,80 @@ class WordEditorController extends OfficeController {
     required WordTextProofingTarget target,
   }) => _setTextProofingOption(
     target,
-    needsChange: (properties) => (properties.noProof != true) != enabled,
-    update: (properties) => properties.noProof = !enabled,
+    prepare: (source, preview, start, end) => _prepareTextProofingRuns(
+      preview,
+      start,
+      end,
+      needsChange: (properties) => (properties.noProof != true) != enabled,
+      update: (properties) => properties.noProof = !enabled,
+    ),
   );
+
+  static bool _prepareTextProofingRuns(
+    WmlParagraph preview,
+    int start,
+    int end, {
+    required bool Function(WmlRunProps) needsChange,
+    required void Function(WmlRunProps) update,
+  }) {
+    var offset = 0;
+    var changed = false;
+    for (final run in preview.inlines.whereType<WmlRun>()) {
+      final runEnd = offset + run.text.length;
+      if (offset < end && runEnd > start && needsChange(run.properties)) {
+        changed = true;
+      }
+      offset = runEnd;
+    }
+    if (!changed) return false;
+    WmlRunEdit.applyRange(preview, start, end, (properties) {
+      if (needsChange(properties)) update(properties);
+    });
+    return true;
+  }
 
   bool _setTextProofingOption(
     WordTextProofingTarget target, {
-    required bool Function(WmlRunProps) needsChange,
-    required void Function(WmlRunProps) update,
+    required bool Function(WmlParagraph, WmlParagraph, int, int) prepare,
   }) {
     if (!target.canEdit) return false;
     final current = textProofingTarget;
     if (current == null || !current.canEdit || !target._matches(current)) {
       return false;
     }
+    final owners = <WmlParagraph, int>{
+      for (final range in current._ranges) range.paragraph: 0,
+    };
+    void countOwners(Iterable<WmlParagraph> paragraphs) {
+      for (final paragraph in paragraphs) {
+        if (owners.containsKey(paragraph)) {
+          owners[paragraph] = owners[paragraph]! + 1;
+        }
+      }
+    }
+
+    // Full ownership validation is needed only for an explicit mutation. An
+    // aliased paragraph could otherwise also change a protected/hidden story.
+    for (final section in document.sections) {
+      countOwners(WordTree.paragraphs(section.blocks));
+      for (final story in [
+        section.header,
+        section.footer,
+        section.firstHeader,
+        section.firstFooter,
+        section.evenHeader,
+        section.evenFooter,
+      ]) {
+        countOwners(story);
+      }
+    }
+    for (final note in [...document.footnotes, ...document.endnotes]) {
+      countOwners(note.allParagraphs);
+    }
+    for (final comment in document.comments) {
+      countOwners(comment.paragraphs);
+    }
+    if (owners.values.any((count) => count != 1)) return false;
     final changes =
         <
           ({
@@ -8708,22 +8951,10 @@ class WordEditorController extends OfficeController {
     try {
       // Complete every preflight and detached edit before changing any source.
       for (final range in current._ranges) {
-        var offset = 0;
-        var changed = false;
-        for (final run in range.paragraph.inlines.whereType<WmlRun>()) {
-          final end = offset + run.text.length;
-          if (offset < range.end &&
-              end > range.start &&
-              needsChange(run.properties)) {
-            changed = true;
-          }
-          offset = end;
-        }
-        if (!changed) continue;
         final preview = WmlClone.paragraph(range.paragraph);
-        WmlRunEdit.applyRange(preview, range.start, range.end, (properties) {
-          if (needsChange(properties)) update(properties);
-        });
+        if (!prepare(range.paragraph, preview, range.start, range.end)) {
+          continue;
+        }
         if (preview.text != range.paragraph.text) return false;
         changes.add((
           paragraph: range.paragraph,
@@ -8815,6 +9046,256 @@ class WordEditorController extends OfficeController {
   bool canApplyProofingIssue(WordProofingIssue issue) =>
       canApplyProofingSuggestions && proofing.canCorrect(issue);
 
+  /// Captures the selected word/phrase, or the complete word at a caret. The
+  /// operation neither changes selection nor commits an active IME composition.
+  WordThesaurusCapture captureThesaurusTarget() {
+    _thesaurusGeneration++;
+    _thesaurusTarget = null;
+    _thesaurusLookup = null;
+    if (isDisposed ||
+        !config.allowsSelection ||
+        selectedVisual != null ||
+        selectedFrame != null ||
+        selectedEquation != null) {
+      return const WordThesaurusCapture._(
+        WordThesaurusTargetStatus.unsupportedTarget,
+        message: 'Select text in a supported Word paragraph.',
+      );
+    }
+    if (input.composing.isValid && !input.composing.isCollapsed) {
+      return const WordThesaurusCapture._(
+        WordThesaurusTargetStatus.composing,
+        message: 'Finish the current text composition before using Thesaurus.',
+      );
+    }
+    final currentCaret = caret;
+    final selection = _proofingCaretPosition;
+    final paragraph = selection.paragraph;
+    if (paragraph == null) {
+      return const WordThesaurusCapture._(
+        WordThesaurusTargetStatus.unsupportedTarget,
+        message: 'Select text in a supported Word paragraph.',
+      );
+    }
+    final range = currentCaret.normalizedRange;
+    if (range.startPara != range.endPara) {
+      return const WordThesaurusCapture._(
+        WordThesaurusTargetStatus.multipleParagraphs,
+        message: 'Select a word or phrase within one paragraph.',
+      );
+    }
+    final sourceText = paragraph.text;
+    var start = range.startIdx;
+    var end = range.endIdx;
+    if (start < 0 || end > sourceText.length) {
+      return const WordThesaurusCapture._(
+        WordThesaurusTargetStatus.invalidRange,
+        message: 'The text selection is no longer valid. Select it again.',
+      );
+    }
+    if (start == end) {
+      final word = _thesaurusWordAt(sourceText, start);
+      if (word == null) {
+        return const WordThesaurusCapture._(
+          WordThesaurusTargetStatus.noText,
+          message: 'Select a word or phrase, or place the caret inside a word.',
+        );
+      }
+      start = word.start;
+      end = word.end;
+    }
+    if (sourceText.substring(start, end).trim().isEmpty) {
+      return const WordThesaurusCapture._(
+        WordThesaurusTargetStatus.noText,
+        message: 'Select a word or phrase containing text.',
+      );
+    }
+    final capture = proofing.captureTextRange(paragraph, start, end);
+    final source = capture.target;
+    if (source == null) {
+      return switch (capture.status) {
+        WordTextRangeStatus.mixedLanguage => const WordThesaurusCapture._(
+          WordThesaurusTargetStatus.mixedLanguage,
+          message:
+              'The selection contains more than one language. Select a single-language word or phrase.',
+        ),
+        WordTextRangeStatus.protectedContent => const WordThesaurusCapture._(
+          WordThesaurusTargetStatus.protectedContent,
+          message:
+              'This range contains protected, generated, or pending tracked content. Select ordinary text.',
+        ),
+        WordTextRangeStatus.invalidRange => const WordThesaurusCapture._(
+          WordThesaurusTargetStatus.invalidRange,
+          message: 'Select complete characters within a single paragraph.',
+        ),
+        _ => const WordThesaurusCapture._(
+          WordThesaurusTargetStatus.unsupportedTarget,
+          message: 'This text is outside the supported Word editing surface.',
+        ),
+      };
+    }
+    final target = WordThesaurusTarget._(
+      this,
+      source,
+      currentCaret,
+      selection,
+      document.trackRevisions,
+    );
+    _thesaurusTarget = target;
+    return WordThesaurusCapture._(
+      WordThesaurusTargetStatus.ready,
+      target: target,
+    );
+  }
+
+  static final _thesaurusWordCharacter = RegExp(
+    r'[\p{L}\p{N}\p{M}]',
+    unicode: true,
+  );
+  static final _thesaurusWordJoiner = RegExp(r"^['’\-‐‑_\u00ad]+$");
+
+  static ({int start, int end})? _thesaurusWordAt(String text, int offset) {
+    final clusters = GraphemeClusters.segment(text);
+    if (clusters.isEmpty ||
+        offset < 0 ||
+        offset > text.length ||
+        (offset != 0 && !clusters.any((cluster) => cluster.end == offset))) {
+      return null;
+    }
+    final lexical = <bool>[
+      for (final cluster in clusters)
+        _thesaurusWordCharacter.hasMatch(cluster.text),
+    ];
+    final included = List<bool>.of(lexical);
+    for (var i = 1; i < clusters.length - 1; i++) {
+      if (_thesaurusWordJoiner.hasMatch(clusters[i].text) &&
+          lexical[i - 1] &&
+          lexical[i + 1]) {
+        included[i] = true;
+      }
+    }
+    var at = clusters.indexWhere((cluster) => cluster.end > offset);
+    if (at < 0) at = clusters.length - 1;
+    if (!included[at] &&
+        at > 0 &&
+        clusters[at].start == offset &&
+        included[at - 1]) {
+      at--;
+    }
+    if (!included[at]) return null;
+    var from = at;
+    var to = at;
+    while (from > 0 && included[from - 1]) {
+      from--;
+    }
+    while (to + 1 < included.length && included[to + 1]) {
+      to++;
+    }
+    return (start: clusters[from].start, end: clusters[to].end);
+  }
+
+  bool _matchesThesaurusSelection(WordThesaurusTarget target) =>
+      !isDisposed &&
+      config.allowsSelection &&
+      selectedVisual == null &&
+      selectedFrame == null &&
+      selectedEquation == null &&
+      identical(target._owner, this) &&
+      identical(caret, target._caret) &&
+      _proofingCaretPosition == target._selection &&
+      document.trackRevisions == target._trackRevisions &&
+      !(input.composing.isValid && !input.composing.isCollapsed);
+
+  bool isThesaurusTargetCurrent(WordThesaurusTarget target) {
+    if (!identical(_thesaurusTarget, target)) return false;
+    if (_matchesThesaurusSelection(target) &&
+        proofing.canEditTextRange(target._source)) {
+      return true;
+    }
+    _thesaurusGeneration++;
+    _thesaurusTarget = null;
+    _thesaurusLookup = null;
+    return false;
+  }
+
+  /// Looks up a captured source without changing its language or the document.
+  /// Repeating the lookup (including changing the override) retires old choices.
+  Future<WordThesaurusLookup> lookupThesaurus(
+    WordThesaurusTarget target,
+    OfficeThesaurusService service, {
+    String? languageOverride,
+  }) async {
+    final generation = ++_thesaurusGeneration;
+    _thesaurusLookup = null;
+    final revision = service.revision;
+    final language = normalizeProofingLanguage(
+      languageOverride ?? target.language,
+    );
+    final result = await service.lookup(
+      OfficeThesaurusQuery(text: target.text, language: language),
+    );
+    final lookup = WordThesaurusLookup._(
+      target,
+      result,
+      language,
+      service,
+      revision,
+      generation,
+    );
+    if (generation == _thesaurusGeneration &&
+        isThesaurusTargetCurrent(target) &&
+        service.revision == revision) {
+      _thesaurusLookup = lookup;
+    }
+    return lookup;
+  }
+
+  bool isThesaurusLookupCurrent(WordThesaurusLookup lookup) =>
+      identical(_thesaurusLookup, lookup) &&
+      lookup._generation == _thesaurusGeneration &&
+      lookup._service.revision == lookup._serviceRevision &&
+      isThesaurusTargetCurrent(lookup.target);
+
+  bool canApplyThesaurusTerm(
+    WordThesaurusLookup lookup,
+    OfficeThesaurusTerm term,
+  ) =>
+      canApplyProofingSuggestions &&
+      isThesaurusLookupCurrent(lookup) &&
+      lookup.result.status == OfficeThesaurusStatus.ready &&
+      lookup.result.packIdentity != null &&
+      lookup.result.containsTerm(term) &&
+      term.text != lookup.target.text &&
+      term.text.trim().isNotEmpty &&
+      !RegExp(r'[\x00-\x1f\x7f-\x9f\u2028\u2029]').hasMatch(term.text);
+
+  /// Applies one literal alternative using the same rich-text transaction and
+  /// history snapshots as proofing, after validating its own source/candidate.
+  bool applyThesaurusTerm(
+    WordThesaurusLookup lookup,
+    OfficeThesaurusTerm term,
+  ) {
+    if (!canApplyThesaurusTerm(lookup, term)) return false;
+    commitNoteEdits();
+    if (!canApplyThesaurusTerm(lookup, term)) return false;
+    final source = lookup.target._source;
+    final applied = _applyValidatedTextReplacement(
+      paragraph: source.paragraph,
+      start: source.start,
+      end: source.end,
+      replacement: term.text,
+      edits: [(start: source.start, end: source.end, replacement: term.text)],
+      preserveReplacementStyle: true,
+      preserveReplacementLinks: true,
+    );
+    if (applied) {
+      _thesaurusGeneration++;
+      _thesaurusLookup = null;
+      _thesaurusTarget = null;
+    }
+    return applied;
+  }
+
   // Complete phrase alternatives preserve their original word separators.
   // Apply only changed words so article formatting cannot replace the styles
   // of an unchanged noun or adjective. A malformed provider choice is refused.
@@ -8877,6 +9358,25 @@ class WordEditorController extends OfficeController {
         ? _proofingPhraseEdits(finding.originalText, replacement, start)
         : [(start: start, end: end, replacement: replacement)];
     if (edits == null) return false;
+    return _applyValidatedTextReplacement(
+      paragraph: paragraph,
+      start: start,
+      end: end,
+      replacement: replacement,
+      edits: edits,
+      preserveReplacementStyle: finding.ruleId == 'de.grammar.phrase-agreement',
+    );
+  }
+
+  bool _applyValidatedTextReplacement({
+    required WmlParagraph paragraph,
+    required int start,
+    required int end,
+    required String replacement,
+    required List<({int start, int end, String replacement})> edits,
+    required bool preserveReplacementStyle,
+    bool preserveReplacementLinks = false,
+  }) {
     final insertedLength = edits.fold<int>(
       0,
       (length, edit) => length + edit.replacement.length,
@@ -8949,14 +9449,14 @@ class WordEditorController extends OfficeController {
     // Validate the exact operation on a clone before opening a transaction.
     final preview = WmlClone.paragraph(paragraph);
     for (final edit in edits.reversed) {
-      WmlRunEdit.replaceRange(
+      _replaceValidatedRange(
         preview,
-        tracked ? edit.end : edit.start,
+        edit.start,
         edit.end,
         edit.replacement,
-        styleSource: tracked && finding.ruleId == 'de.grammar.phrase-agreement'
-            ? edit.start
-            : null,
+        tracked: tracked,
+        preserveStyle: preserveReplacementStyle,
+        preserveLink: preserveReplacementLinks,
       );
     }
     commands.commit(
@@ -9000,14 +9500,14 @@ class WordEditorController extends OfficeController {
                   end: end,
                   insertedLength: replacement.length,
                 );
-                WmlRunEdit.replaceRange(
+                _replaceValidatedRange(
                   paragraph,
-                  end,
+                  start,
                   end,
                   replacement,
-                  styleSource: finding.ruleId == 'de.grammar.phrase-agreement'
-                      ? start
-                      : null,
+                  tracked: true,
+                  preserveStyle: preserveReplacementStyle,
+                  preserveLink: preserveReplacementLinks,
                 );
                 if (replacement.isNotEmpty) {
                   WordRevisions.record(
@@ -9031,7 +9531,15 @@ class WordEditorController extends OfficeController {
                   end: end,
                   insertedLength: replacement.length,
                 );
-                WmlRunEdit.replaceRange(paragraph, start, end, replacement);
+                _replaceValidatedRange(
+                  paragraph,
+                  start,
+                  end,
+                  replacement,
+                  tracked: false,
+                  preserveStyle: preserveReplacementStyle,
+                  preserveLink: preserveReplacementLinks,
+                );
               }
             }
             after = _cloneInlines(paragraph);
@@ -9056,6 +9564,61 @@ class WordEditorController extends OfficeController {
     _syncImeSelection();
     notifyListeners();
     return true;
+  }
+
+  // A literal replacement inside one hyperlink keeps that link. A selection
+  // across differently linked/unlinked text does not acquire a misleading link.
+  // Work on exact inserted boundaries after coalescing ordinary text runs.
+  static void _replaceValidatedRange(
+    WmlParagraph paragraph,
+    int start,
+    int end,
+    String replacement, {
+    required bool tracked,
+    required bool preserveStyle,
+    required bool preserveLink,
+  }) {
+    WmlHyperlink? link;
+    var sawRun = false;
+    var uniform = true;
+    var offset = 0;
+    if (preserveLink) {
+      for (final run in paragraph.inlines.whereType<WmlRun>()) {
+        final runEnd = offset + run.text.length;
+        if (offset < end && runEnd > start) {
+          if (!sawRun) {
+            link = run.hyperlink;
+            sawRun = true;
+          } else if (link?.url != run.hyperlink?.url ||
+              link?.anchor != run.hyperlink?.anchor ||
+              link?.file != run.hyperlink?.file) {
+            uniform = false;
+          }
+        }
+        offset = runEnd;
+      }
+    }
+    final insertStart = tracked ? end : start;
+    WmlRunEdit.replaceRange(
+      paragraph,
+      insertStart,
+      end,
+      replacement,
+      styleSource: tracked && preserveStyle ? start : null,
+    );
+    if (!uniform || link == null || replacement.isEmpty) return;
+    final insertEnd = insertStart + replacement.length;
+    WmlRunEdit.splitAt(paragraph, insertEnd);
+    WmlRunEdit.splitAt(paragraph, insertStart);
+    offset = 0;
+    for (final run in paragraph.inlines.whereType<WmlRun>()) {
+      final runEnd = offset + run.text.length;
+      if (offset >= insertStart && runEnd <= insertEnd && runEnd > offset) {
+        run.hyperlink = link.copy();
+      }
+      offset = runEnd;
+    }
+    WmlRunEdit.coalesce(paragraph);
   }
 
   /// Selects findings in supported canvas stories. Notes and alternate page

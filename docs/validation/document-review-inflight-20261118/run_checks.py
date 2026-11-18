@@ -23,11 +23,24 @@ import time
 
 
 BASE = "97c7ddae9514c6afa9286cd25f7339e92988cee9"
+VISUAL_FIXTURES = ["render_comments.dart", "render_text_options.dart"]
+ENGINE_TESTS = [
+    "word_zotero_caret_test.dart",
+    "word_proofing_inheritance_test.dart",
+    "word_comment_proofing_styles_test.dart",
+    "word_style_introduction_test.dart",
+]
 EDITOR_TESTS = [
     "word_text_proofing_controls_test.dart",
     "word_text_proofing_pane_test.dart",
     "word_zotero_composer_test.dart",
     "word_zotero_dialog_test.dart",
+    "word_zotero_citing_dialog_test.dart",
+    "word_zotero_document_actions_test.dart",
+    "word_zotero_field_at_caret_test.dart",
+    "word_zotero_unlink_all_test.dart",
+    "word_note_numbering_test.dart",
+    "word_notes_editing_test.dart",
     "word_keyboard_review_test.dart",
     "word_keyboard_context_geometry_test.dart",
     "word_keyboard_review_identity_test.dart",
@@ -118,6 +131,8 @@ def main() -> int:
         raise RuntimeError("Tracked worktree and index must be clean before the gate")
     tracked = set(git("ls-files", "-z").split("\0")) - {""}
     tests = [
+        "packages/quds_office_engine/test/" + name for name in ENGINE_TESTS
+    ] + [
         "packages/quds_office_editor/test/" + name for name in EDITOR_TESTS
     ] + [
         "packages/quds_office_editor/example/test/" + name for name in STUDIO_TESTS
@@ -149,6 +164,14 @@ def main() -> int:
     selected.update(changed)
     # Bind the exact gate definition alongside the code and test inputs.
     selected.add(str(Path(__file__).resolve().relative_to(repo)))
+    # Visuals are rendered separately, but their exact fixture definitions
+    # belong to the same source checkpoint and final binding manifest.
+    for fixture_name in VISUAL_FIXTURES:
+        fixture = Path(__file__).resolve().parent / fixture_name
+        name = str(fixture.relative_to(repo))
+        if name not in tracked or not fixture.is_file():
+            raise RuntimeError("Visual fixture must exist in the frozen tree: " + name)
+        selected.add(name)
     for name in git("ls-files", "--others", "--exclude-standard", "-z").split("\0"):
         if name.startswith(("packages/", "apps/")):
             raise RuntimeError("Untracked product input could affect the gate: " + name)
@@ -225,6 +248,7 @@ def main() -> int:
         "source_before_manifest": "source-before.json", "source_after_manifest": "source-after.json",
         "environment_before_manifest": "environment-before.json",
         "environment_after_manifest": "environment-after.json",
+        "engine_suites": ENGINE_TESTS, "visual_fixture_definitions": VISUAL_FIXTURES,
         "editor_suites": EDITOR_TESTS, "studio_suites": STUDIO_TESTS,
         "analyzed_files": changed, "workspace_lock_sha256": sha256(repo / "pubspec.lock"),
         "runtime_receipt_sha256": sha256(receipt_path), "runtime": receipt["runtime"],
@@ -323,6 +347,9 @@ def main() -> int:
 
     save()
     try:
+        run("engine", [str(dart), "test", "--reporter", "json", *[
+            "test/" + name for name in ENGINE_TESTS
+        ]], repo / "packages/quds_office_engine", ENGINE_TESTS)
         run("editor", [str(flutter), "test", "--no-pub", "--reporter", "json", *[
             "test/" + name for name in EDITOR_TESTS
         ]], repo / "packages/quds_office_editor", EDITOR_TESTS)
@@ -357,7 +384,7 @@ def main() -> int:
             finished_at_utc=datetime.now(timezone.utc).isoformat(),
         )
         record["success"] = (
-            not record.get("runner_error") and len(record["runs"]) == 5
+            not record.get("runner_error") and len(record["runs"]) == 6
             and before == after and environment_before == environment_after
             and record["source_head_unchanged"] and record["source_index_unchanged"]
             and record["tracked_worktree_clean_after"]

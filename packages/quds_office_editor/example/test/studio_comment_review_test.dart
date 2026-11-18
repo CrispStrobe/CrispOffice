@@ -399,6 +399,7 @@ void main() {
     );
     expect(canvas.proofingFindings[paragraph], hasLength(1));
     controller.beginCommentEdit(1);
+    await _pump(tester);
     final render = tester.renderObject<RenderWordCanvas>(
       find.byKey(const ValueKey('studio-comment-canvas-1')),
     );
@@ -416,26 +417,48 @@ void main() {
         Offset(glyph.x + glyph.advance * .35, line.y + line.height * .5),
       ),
     );
-    final gesture = await tester.startGesture(
-      point,
-      kind: PointerDeviceKind.mouse,
-      buttons: kPrimaryMouseButton,
+    canvas.onReviewTap!(
+      OfficeContextHit(
+        kind: OfficeContextKind.comment,
+        globalPosition: point,
+        commentId: 1,
+        paragraph: paragraph,
+        proofingOffset: 1,
+      ),
     );
-    await gesture.up();
     await tester.pump(const Duration(milliseconds: 20));
     canvas.onChanged!();
     await tester.pump(kDoubleTapTimeout);
     await _pump(tester);
     expect(controller.reviewPaneVisible, isFalse);
     expect(controller.proofing.summary.issues, hasLength(1));
-    canvas.onReviewTap!(
-      OfficeContextHit(
-        kind: OfficeContextKind.comment,
-        globalPosition: Offset.zero,
-        commentId: 1,
-        paragraph: paragraph,
-        proofingOffset: 1,
+    final local = render.globalToLocal(point);
+    expect(render.compact, isTrue);
+    expect(
+      controller.commentLaidOut!.pages.first.headerBand.contains(
+        local.dx,
+        local.dy,
       ),
+      isTrue,
+    );
+    expect(line.sourceParagraph, same(paragraph));
+    expect(render.proofingFindings[paragraph], hasLength(1));
+    final forward = render.onReviewTap!;
+    var pointed = false;
+    render.onReviewTap = (hit) {
+      pointed = true;
+      forward(hit);
+    };
+    final repeated = await tester.startGesture(
+      point,
+      kind: PointerDeviceKind.mouse,
+      buttons: kPrimaryMouseButton,
+    );
+    await repeated.up();
+    expect(
+      pointed,
+      isTrue,
+      reason: 'The rendered marked word must report its source.',
     );
     await tester.pump(kDoubleTapTimeout);
     await _pump(tester);
@@ -496,6 +519,507 @@ void main() {
     expect(controller.selectedProofingIssue!.story, 'Comment 1');
     expect(find.byKey(const Key('office-context-menu')), findsNothing);
     expect(find.byType(Dialog), findsNothing);
+    await _close(tester);
+  });
+
+  testWidgets(
+    'comment context Cut owns the comment rather than a body selection',
+    (tester) async {
+      final controller = await _studio(tester);
+      final clipboard = OfficeClipboard.instance;
+      final useSystem = clipboard.useSystem;
+      clipboard.useSystem = false;
+      addTearDown(() {
+        clipboard.useSystem = useSystem;
+        clipboard.clear();
+      });
+      controller.documentCaret
+        ..paragraphIndex = 0
+        ..logicalIndex = 5
+        ..selectionAnchorParagraph = 0
+        ..selectionAnchor = 0;
+      controller.commentCaret
+        ..paragraphIndex = 0
+        ..logicalIndex = 6
+        ..selectionAnchorParagraph = 0
+        ..selectionAnchor = 0;
+      expect(controller.isEditingComment, isFalse);
+      final originalBody = controller.document.paragraphs.single.text;
+      _commentCanvas(tester, 1).onContextMenu!(
+        _commentHit(tester, controller, 1),
+      );
+      await _pump(tester);
+      expect(controller.isEditingComment, isTrue);
+      expect(controller.selectedCommentId, 1);
+      expect(controller.commentCaret.logicalIndex, 6);
+      expect(controller.commentCaret.selectionAnchor, 0);
+      expect(_menuAction(tester, 'Cut').onTap, isNotNull);
+      await tester.tap(
+        find.descendant(
+          of: find.byKey(const Key('office-context-menu')),
+          matching: find.text('Cut'),
+        ),
+      );
+      await _pump(tester);
+      expect(clipboard.local?.plain, 'Commet');
+      expect(controller.document.comments.first.text, ' one.');
+      expect(controller.document.paragraphs.single.text, originalBody);
+      controller.undo();
+      expect(controller.document.comments.first.text, 'Commet one.');
+      expect(controller.document.paragraphs.single.text, originalBody);
+      await _close(tester);
+    },
+  );
+
+  for (final object in ['table', 'frame']) {
+    for (final action in ['Cut', 'Paste']) {
+      testWidgets(
+        'comment context $action leaves a previously selected body $object intact',
+        (tester) async {
+          final controller = await _studio(tester);
+          final clipboard = OfficeClipboard.instance;
+          final useSystem = clipboard.useSystem;
+          clipboard
+            ..clear()
+            ..useSystem = false;
+          if (action == 'Paste') {
+            clipboard.writeLocal(OfficeClipboardPayload.fromPlain('Pasted'));
+          }
+          addTearDown(() {
+            clipboard
+              ..useSystem = useSystem
+              ..clear();
+          });
+          final bodyParagraph = WmlParagraph(
+            inlines: [WmlRun(text: 'Keep the body object.')],
+          );
+          final WmlBlock bodyObject = object == 'table'
+              ? WmlTable(
+                  grid: [100],
+                  rows: [
+                    WmlTableRow(
+                      cells: [
+                        WmlTableCell(blocks: [bodyParagraph]),
+                      ],
+                    ),
+                  ],
+                )
+              : WmlFrame(blocks: [bodyParagraph]);
+          final body = controller.document.sections.single.blocks;
+          body.add(bodyObject);
+          controller.refresh();
+          if (bodyObject is WmlTable) {
+            controller.selectTable(bodyObject);
+          } else {
+            controller.selectFrame(
+              bodyObject as WmlFrame,
+              editing: action == 'Paste',
+            );
+          }
+          final originalBody = controller.document.paragraphs
+              .map((paragraph) => paragraph.text)
+              .toList();
+          final bodyCaret = (
+            controller.documentCaret.paragraphIndex,
+            controller.documentCaret.logicalIndex,
+            controller.documentCaret.selectionAnchorParagraph,
+            controller.documentCaret.selectionAnchor,
+          );
+          controller.commentCaret
+            ..paragraphIndex = 0
+            ..logicalIndex = 6
+            ..selectionAnchorParagraph = 0
+            ..selectionAnchor = 0;
+          await _pump(tester);
+          _commentCanvas(tester, 1).onContextMenu!(
+            _commentHit(tester, controller, 1),
+          );
+          await _pump(tester);
+          expect(controller.isEditingComment, isTrue);
+          expect(controller.selectedTable, isNull);
+          expect(controller.selectedFrame, isNull);
+          expect(controller.editingFrame, isFalse);
+          await tester.tap(
+            find.descendant(
+              of: find.byKey(const Key('office-context-menu')),
+              matching: find.text(action),
+            ),
+          );
+          await _pump(tester);
+          expect(
+            controller.document.comments.first.text,
+            action == 'Cut' ? ' one.' : 'Pasted one.',
+          );
+          if (action == 'Cut') expect(clipboard.local?.plain, 'Commet');
+          expect(body, contains(same(bodyObject)));
+          expect(
+            controller.document.paragraphs.map((paragraph) => paragraph.text),
+            originalBody,
+          );
+          expect((
+            controller.documentCaret.paragraphIndex,
+            controller.documentCaret.logicalIndex,
+            controller.documentCaret.selectionAnchorParagraph,
+            controller.documentCaret.selectionAnchor,
+          ), bodyCaret);
+          controller.undo();
+          expect(controller.document.comments.first.text, 'Commet one.');
+          expect(body, contains(same(bodyObject)));
+          expect(bodyParagraph.text, 'Keep the body object.');
+          await _close(tester);
+        },
+      );
+    }
+  }
+
+  testWidgets('Select mode exposes real pointer comment selection and Copy', (
+    tester,
+  ) async {
+    tester.view.devicePixelRatio = 1;
+    tester.view.physicalSize = const Size(1440, 1000);
+    addTearDown(tester.view.resetPhysicalSize);
+    addTearDown(tester.view.resetDevicePixelRatio);
+    final controller = await _studio(tester);
+    final clipboard = OfficeClipboard.instance;
+    final useSystem = clipboard.useSystem;
+    clipboard
+      ..clear()
+      ..useSystem = false;
+    addTearDown(() {
+      clipboard
+        ..useSystem = useSystem
+        ..clear();
+    });
+    await tester.tap(find.text('File').first);
+    await _pump(tester);
+    await _tapCommand(tester, 'Select');
+    final finder = find.byKey(const ValueKey('studio-comment-canvas-1'));
+    expect(finder, findsOneWidget);
+    final canvas = tester.widget<WordCanvas>(finder);
+    expect(canvas.config.allowsSelection, isTrue);
+    expect(canvas.config.allowsMutation, isFalse);
+    expect(canvas.config.showsCaret, isFalse);
+    expect(_field(1), findsNothing);
+    controller.documentCaret
+      ..paragraphIndex = 0
+      ..logicalIndex = 5
+      ..selectionAnchorParagraph = 0
+      ..selectionAnchor = 0;
+    final revision = controller.contentRevision;
+    final render = tester.renderObject<RenderWordCanvas>(finder);
+    final line = controller.commentLaidOut!.pages
+        .expand((page) => page.lines)
+        .firstWhere(
+          (line) => line.paragraphIndex == 0 && line.glyphs.isNotEmpty,
+        );
+    Offset pointAt(int index) {
+      final glyph = line.glyphs.firstWhere(
+        (glyph) =>
+            glyph.glyph.logicalIndex <= index && index < glyph.logicalEnd,
+      );
+      return render.localToGlobal(
+        render.windowForPagePoint(
+          line.pageIndex,
+          Offset(glyph.x + glyph.advance * .15, line.y + line.height * .5),
+        ),
+      );
+    }
+
+    final drag = await tester.startGesture(
+      pointAt(0),
+      kind: PointerDeviceKind.mouse,
+    );
+    await drag.moveTo(pointAt(6));
+    await tester.pump();
+    await drag.moveTo(pointAt(6) + const Offset(.1, 0));
+    await drag.up();
+    await _pump(tester);
+    expect(controller.isEditingComment, isTrue);
+    expect(controller.commentCaret.normalizedRange, (
+      startPara: 0,
+      startIdx: 0,
+      endPara: 0,
+      endIdx: 6,
+    ));
+    final contextClick = await tester.startGesture(
+      pointAt(1),
+      kind: PointerDeviceKind.mouse,
+      buttons: kSecondaryMouseButton,
+    );
+    await contextClick.up();
+    await _pump(tester);
+    expect(find.byKey(const Key('office-context-menu')), findsOneWidget);
+    expect(_menuAction(tester, 'Cut').onTap, isNull);
+    expect(_menuAction(tester, 'Paste').onTap, isNull);
+    expect(_menuAction(tester, 'Resolve').onTap, isNull);
+    expect(_menuAction(tester, 'Delete comment').onTap, isNull);
+    expect(_menuAction(tester, 'Copy').onTap, isNotNull);
+    await tester.tap(
+      find.descendant(
+        of: find.byKey(const Key('office-context-menu')),
+        matching: find.text('Copy'),
+      ),
+    );
+    await _pump(tester);
+    expect(clipboard.local?.plain, 'Commet');
+    expect(controller.input.isAttached, isFalse);
+    await tester.sendKeyEvent(LogicalKeyboardKey.delete);
+    await _pump(tester);
+    expect(controller.documentCaret.logicalIndex, 5);
+    expect(controller.documentCaret.selectionAnchor, 0);
+    expect(controller.document.comments.first.text, 'Commet one.');
+    expect(controller.document.paragraphs.single.text, 'Alpha beta gamma.');
+    expect(controller.contentRevision, revision);
+    expect(controller.canUndo, isFalse);
+    await _tapCommand(tester, 'View');
+    expect(finder, findsNothing);
+    final card = find.byKey(const ValueKey('studio-comment-1'));
+    expect(card, findsOneWidget);
+    final viewClick = await tester.startGesture(
+      tester.getCenter(card),
+      kind: PointerDeviceKind.mouse,
+      buttons: kSecondaryMouseButton,
+    );
+    await viewClick.up();
+    await _pump(tester);
+    expect(find.byKey(const Key('office-context-menu')), findsNothing);
+    expect(controller.contentRevision, revision);
+    await _tapCommand(tester, 'Select');
+    expect(finder, findsOneWidget);
+    expect(tester.widget<WordCanvas>(finder).config.allowsMutation, isFalse);
+    await _close(tester);
+  });
+
+  testWidgets(
+    'read-only comment Copy and Select all own the comment selection',
+    (tester) async {
+      final controller = await _studio(tester);
+      final canvas = _commentCanvas(tester, 1);
+      final hit = _commentHit(tester, controller, 1);
+      final clipboard = OfficeClipboard.instance;
+      final useSystem = clipboard.useSystem;
+      clipboard
+        ..clear()
+        ..useSystem = false;
+      addTearDown(() {
+        clipboard
+          ..useSystem = useSystem
+          ..clear();
+      });
+      await tester.tap(find.text('File').first);
+      await _pump(tester);
+      await _tapCommand(tester, 'Select');
+      expect(controller.config.allowsMutation, isFalse);
+      expect(controller.config.allowsSelection, isTrue);
+      controller.documentCaret
+        ..paragraphIndex = 0
+        ..logicalIndex = 5
+        ..selectionAnchorParagraph = 0
+        ..selectionAnchor = 0;
+      controller.commentCaret
+        ..paragraphIndex = 0
+        ..logicalIndex = 6
+        ..selectionAnchorParagraph = 0
+        ..selectionAnchor = 0;
+      final revision = controller.contentRevision;
+      canvas.onContextMenu!(hit);
+      await _pump(tester);
+      expect(controller.isEditingComment, isTrue);
+      expect(_menuAction(tester, 'Cut').onTap, isNull);
+      expect(_menuAction(tester, 'Paste').onTap, isNull);
+      _menuAction(tester, 'Copy').onTap!();
+      await _pump(tester);
+      expect(clipboard.local?.plain, 'Commet');
+      canvas.onContextMenu!(hit);
+      await _pump(tester);
+      _menuAction(tester, 'Select all').onTap!();
+      await _pump(tester);
+      expect(controller.commentCaret.normalizedRange, (
+        startPara: 0,
+        startIdx: 0,
+        endPara: 0,
+        endIdx: 11,
+      ));
+      expect(controller.documentCaret.logicalIndex, 5);
+      expect(controller.documentCaret.selectionAnchor, 0);
+      expect(controller.document.comments.first.text, 'Commet one.');
+      expect(controller.document.paragraphs.single.text, 'Alpha beta gamma.');
+      expect(controller.contentRevision, revision);
+      expect(controller.canUndo, isFalse);
+      await _tapCommand(tester, 'View');
+      expect(controller.config.allowsSelection, isFalse);
+      canvas.onContextMenu!(hit);
+      await _pump(tester);
+      expect(find.byKey(const Key('office-context-menu')), findsNothing);
+      await _close(tester);
+    },
+  );
+
+  testWidgets('read-only empty comments never materialize stored paragraphs', (
+    tester,
+  ) async {
+    final controller = await _studio(tester);
+    final canvas = _commentCanvas(tester, 1);
+    final hit = _commentHit(tester, controller, 1);
+    await tester.tap(find.text('File').first);
+    await _pump(tester);
+    await _tapCommand(tester, 'Select');
+    final comment = controller.document.comments.first;
+    comment.paragraphs.clear();
+    controller.selectComment(1);
+    final revision = controller.contentRevision;
+    expect(comment.paragraphs, isEmpty);
+    canvas.onContextMenu!(hit);
+    await _pump(tester);
+    expect(controller.isEditingComment, isTrue);
+    expect(_menuAction(tester, 'Copy').onTap, isNull);
+    _menuAction(tester, 'Select all').onTap!();
+    await _pump(tester);
+    expect(comment.paragraphs, isEmpty);
+    expect(controller.document.paragraphs.single.text, 'Alpha beta gamma.');
+    expect(controller.contentRevision, revision);
+    expect(controller.canUndo, isFalse);
+    await _close(tester);
+  });
+
+  for (final action in ['Cut', 'Paste']) {
+    for (final change in ['none', 'source', 'caret', 'document']) {
+      testWidgets(
+        'delayed comment $action validates its context after $change change',
+        (tester) async {
+          final controller = await _studio(tester);
+          final clipboard = OfficeClipboard.instance;
+          final useSystem = clipboard.useSystem;
+          clipboard
+            ..clear()
+            ..useSystem = true;
+          final pending = Completer<Object?>();
+          final calls = <MethodCall>[];
+          final method = action == 'Cut'
+              ? 'Clipboard.setData'
+              : 'Clipboard.getData';
+          final messenger = tester.binding.defaultBinaryMessenger;
+          messenger.setMockMethodCallHandler(SystemChannels.platform, (call) {
+            if (call.method != method) return Future.value();
+            calls.add(call);
+            return pending.future;
+          });
+          addTearDown(() {
+            if (!pending.isCompleted) pending.complete();
+            messenger.setMockMethodCallHandler(SystemChannels.platform, null);
+            clipboard
+              ..useSystem = useSystem
+              ..clear();
+          });
+          controller.beginCommentEdit(1);
+          controller.commentCaret
+            ..paragraphIndex = 0
+            ..logicalIndex = 6
+            ..selectionAnchorParagraph = 0
+            ..selectionAnchor = 0;
+          await _pump(tester);
+          _commentCanvas(tester, 1).onContextMenu!(
+            _commentHit(tester, controller, 1),
+          );
+          await _pump(tester);
+          expect(_menuAction(tester, action).onTap, isNotNull);
+          final originalDocument = controller.document;
+          final originalComment = controller.document.comments.first;
+          await tester.tap(
+            find.descendant(
+              of: find.byKey(const Key('office-context-menu')),
+              matching: find.text(action),
+            ),
+          );
+          await _pump(tester);
+          expect(calls, hasLength(1));
+          expect(originalComment.text, 'Commet one.');
+          if (action == 'Cut') {
+            expect(
+              (calls.single.arguments as Map<Object?, Object?>)['text'],
+              'Commet',
+            );
+          }
+          switch (change) {
+            case 'source':
+              controller.updateComment(1, text: 'Updated note.');
+            case 'caret':
+              controller.commentCaret
+                ..logicalIndex = 2
+                ..collapseSelection();
+              controller.refresh();
+            case 'document':
+              controller.document = _document();
+              controller.refresh();
+              controller.beginCommentEdit(1);
+              controller.commentCaret
+                ..logicalIndex = 6
+                ..selectionAnchorParagraph = 0
+                ..selectionAnchor = 0;
+          }
+          final revision = controller.contentRevision;
+          final expectedComment = controller.document.comments.first.text;
+          final expectedOriginal = originalComment.text;
+          pending.complete(action == 'Paste' ? {'text': 'Pasted'} : null);
+          await _pump(tester);
+          if (change == 'none') {
+            expect(
+              originalComment.text,
+              action == 'Cut' ? ' one.' : 'Pasted one.',
+            );
+            expect(controller.canUndo, isTrue);
+            controller.undo();
+            expect(originalComment.text, 'Commet one.');
+          } else {
+            expect(controller.contentRevision, revision);
+            expect(controller.document.comments.first.text, expectedComment);
+            expect(originalComment.text, expectedOriginal);
+          }
+          expect(
+            controller.document.paragraphs.single.text,
+            'Alpha beta gamma.',
+          );
+          expect(originalDocument.paragraphs.single.text, 'Alpha beta gamma.');
+          await _close(tester);
+        },
+      );
+    }
+  }
+
+  testWidgets('invalid clipboard guards stop before system clipboard access', (
+    tester,
+  ) async {
+    final controller = await _studio(tester);
+    final clipboard = OfficeClipboard.instance;
+    final useSystem = clipboard.useSystem;
+    clipboard
+      ..clear()
+      ..useSystem = true;
+    final calls = <MethodCall>[];
+    final messenger = tester.binding.defaultBinaryMessenger;
+    messenger.setMockMethodCallHandler(SystemChannels.platform, (call) async {
+      calls.add(call);
+      return null;
+    });
+    addTearDown(() {
+      messenger.setMockMethodCallHandler(SystemChannels.platform, null);
+      clipboard
+        ..useSystem = useSystem
+        ..clear();
+    });
+    controller.beginCommentEdit(1);
+    controller.commentCaret
+      ..logicalIndex = 6
+      ..selectionAnchorParagraph = 0
+      ..selectionAnchor = 0;
+    expect(controller.canCut, isTrue);
+    expect(controller.canPaste, isTrue);
+    await controller.cutToClipboard(isCurrent: () => false);
+    await controller.pasteFromClipboard(isCurrent: () => false);
+    expect(calls, isEmpty);
+    expect(clipboard.local, isNull);
+    expect(controller.document.comments.first.text, 'Commet one.');
+    expect(controller.canUndo, isFalse);
     await _close(tester);
   });
 
@@ -742,29 +1266,29 @@ void main() {
         await _close(tester);
       },
     );
-
-    testWidgets('comment menu mutations respect a later viewing-mode change', (
-      tester,
-    ) async {
-      final controller = await _studio(tester);
-      await _checkComments(tester, controller);
-      await _openCommentMenu(tester, controller);
-      final apply = _menuAction(tester, 'Comment').onTap!;
-      final resolve = _menuAction(tester, 'Resolve').onTap!;
-      final delete = _menuAction(tester, 'Delete comment').onTap!;
-      await tester.tap(find.text('File').first);
-      await _pump(tester);
-      await _tapCommand(tester, 'View');
-      expect(controller.config.allowsMutation, isFalse);
-      apply();
-      resolve();
-      delete();
-      await _pump(tester);
-      expect(controller.document.comments, hasLength(2));
-      expect(controller.document.comments.first.text, 'Commet one.');
-      expect(controller.document.comments.first.resolved, isFalse);
-      expect(controller.canUndo, isFalse);
-      await _close(tester);
-    });
   }
+
+  testWidgets('comment menu mutations respect a later viewing-mode change', (
+    tester,
+  ) async {
+    final controller = await _studio(tester);
+    await _checkComments(tester, controller);
+    await _openCommentMenu(tester, controller);
+    final apply = _menuAction(tester, 'Comment').onTap!;
+    final resolve = _menuAction(tester, 'Resolve').onTap!;
+    final delete = _menuAction(tester, 'Delete comment').onTap!;
+    await tester.tap(find.text('File').first);
+    await _pump(tester);
+    await _tapCommand(tester, 'View');
+    expect(controller.config.allowsMutation, isFalse);
+    apply();
+    resolve();
+    delete();
+    await _pump(tester);
+    expect(controller.document.comments, hasLength(2));
+    expect(controller.document.comments.first.text, 'Commet one.');
+    expect(controller.document.comments.first.resolved, isFalse);
+    expect(controller.canUndo, isFalse);
+    await _close(tester);
+  });
 }

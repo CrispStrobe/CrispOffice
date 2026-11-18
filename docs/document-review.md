@@ -71,6 +71,46 @@ Studio also configures its English provider. Optional/native providers retain
 their existing installation and availability requirements. The live UI does
 not install models, send text to a new service, or apply corrections on its own.
 
+### Set language and checking for the text you are editing
+
+The **language / globe button** in the editor status bar opens **Language and
+checking** at the top of Writing. It reveals the controls even if the pane was
+already open and scrolled elsewhere. Narrow windows use the globe icon; its
+tooltip identifies the current text scope and language.
+
+- With a text selection, the controls apply to **Selected text**, including a
+  selection across paragraphs. With a collapsed caret, they apply to the
+  **Current paragraph**. The scope label follows the caret without changing
+  the selection or taking an undo step.
+- Choose the language of that text without changing the document default.
+  A multilingual selection shows **Mixed languages**. The separate **Document
+  language** control continues to set the document default.
+- **Use inherited language** removes direct language overrides and uses the
+  text's applicable style, paragraph, and document defaults. Imported style
+  inheritance remains consistent between live checking and DOCX save/reload.
+- Turn off **Check this text** for a quotation, identifier, or code sample that
+  should be excluded from spelling, grammar, and writing suggestions. Other
+  text remains checkable. A mixed checking selection has an indeterminate
+  checkbox; clicking it enables checking throughout the selection.
+- Each actual language/checking change is one **Undo** step. **Redo** restores
+  it. Repeating an already stored setting does not create empty history.
+  Findings for changed text are invalidated immediately and ordinary checks
+  update after the typing pause. Optional manual providers still require
+  **Check document / F7**.
+- These settings belong to document text and survive DOCX save/reload. They
+  do not change personal dictionary entries or ignored-word preferences.
+  Excluded text continues to be reported as excluded coverage.
+
+Body text, editable table/frame text, default headers/footers, and active
+existing comment text use their exact selected story. Generated fields, note
+marks, protected/native content, unsupported selections, and an active IME
+composition disable unsafe changes. If the text, selection, document, or
+inherited style context changes while a control is open, the old action is
+refused; choose the text again. A multi-paragraph operation is validated
+completely before any paragraph is changed.
+
+![Language and checking beside an editable multilingual document](validation/document-review-inflight-20261118/screenshots/text-proofing-mixed-desktop.png)
+
 ### Review with the keyboard
 
 | Shortcut | Action |
@@ -98,8 +138,8 @@ change at their shared boundary. Source changes dismiss an obsolete menu.
 Review shortcuts and menu actions cannot operate through a covering modal
 dialog. Navigation and context-menu shortcuts do not interrupt an active IME
 composition. The caret menu applies to the focused document canvas. Existing
-comment bodies use marked-text clicks to reach Writing; reply composers do not
-use the document caret menu.
+comment bodies offer pointer-opened suggestions as described below; reply
+composers do not use the document caret menu.
 
 ### Keep comment replies inline in Studio
 
@@ -119,10 +159,29 @@ It never posts a draft just because another Reply command was chosen.
 - Drafts for removed threads and replaced documents are discarded. These are
   session drafts; they are not saved into the document before posting.
 - The active existing comment body uses the document's live proofing findings.
-  Click an underlined passage to select its current finding in the Writing pane,
-  where corrections remain undoable. Double-click selection and dragging keep
-  their normal behavior. Unposted reply text joins document proofing after it
-  is posted.
+  Click an underlined passage for a compact suggestion menu without opening
+  a dialog or leaving the comment. If Writing is already open, it follows the
+  finding instead. Double-click selection and dragging keep their normal
+  behavior, and the compact menu preserves comment typing focus.
+- Right-click marked comment text for corrections, **Ignore once**, and
+  **Open writing pane** alongside the ordinary editing and thread actions.
+  Spelling findings also offer **Ignore this word** and **Add to personal
+  words**. Corrections use the
+  document's normal Undo/Redo history. Choosing **Open writing pane** does not
+  implicitly start manual grammar inference.
+- Comment menus are tied to the exact document, comment, thread, source, and
+  caret. Switching documents/comments, replacing a thread, changing the source,
+  hiding Comments, or leaving Word dismisses obsolete actions. Unrelated
+  checking progress preserves a still-current menu. Covered modal dialogs and
+  IME composition cannot redirect correction or thread actions.
+- Cut and Paste recheck that same context after the system clipboard responds.
+  A delayed clipboard operation cannot edit a different thread, a changed
+  selection, or a replacement document.
+- A resolved thread offers **Reopen** even when the context menu belongs to
+  one of its replies. **Select** mode keeps comment selection and Copy
+  available while disabling document/thread edits. **View** mode keeps
+  comments visible without selection or mutation.
+- Unposted reply text joins document proofing after it is posted.
 
 The shared `QudsWordEditor` retains its Writing and Changes panes. The Comments
 pane described here is supplied by Studio's host interface.
@@ -342,6 +401,7 @@ Controller review APIs:
 wordController.openReviewPane(); // Writing findings.
 wordController.openReviewPane(tab: WordReviewPaneTab.changes);
 wordController.closeReviewPane();
+wordController.showTextProofingOptions(); // Reveal language/checking in Writing.
 wordController.proofing.enabled = false; // Remember an explicit off preference.
 await wordController.checkDocumentProofing(); // Includes manual providers.
 
@@ -350,6 +410,17 @@ wordController.setTrackRevisions(true);
 wordController.acceptRevisions(selectedPendingChanges); // One undo step.
 wordController.rejectRevisions(selectedPendingChanges); // One undo step.
 final shownInCanvas = wordController.revealRevision(change);
+
+// Capture a target when showing a control. A stale target is refused.
+final target = wordController.textProofingTarget;
+if (target != null && target.canEdit) {
+  wordController.setTextProofingLanguage('en-US', target: target);
+}
+// Capture a fresh target for a subsequent action after a document change.
+final currentTarget = wordController.textProofingTarget;
+if (currentTarget != null && currentTarget.canEdit) {
+  wordController.setTextProofingEnabled(false, target: currentTarget);
+}
 ```
 
 `QudsWordEditor` defaults to `enableLiveProofing: true` and
@@ -390,4 +461,8 @@ records retained findings, progressive checks, expanded pane controls, and the
 subsequent local regression and interaction checks. The
 [keyboard and comment review record](validation/document-review-keyboard-comments-20261118/README.md)
 records the subsequent keyboard menus, inline replies, and local verification.
+The [text and comment proofing record](validation/document-review-inflight-20261118/README.md)
+records text-level language/checking controls, inherited-language round trips,
+inline comment suggestions, the incoming Zotero integration, and local
+regression/visual verification.
 GitHub Actions are not required for the local verification workflow.

@@ -2194,6 +2194,9 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
   }
 
   bool? _chromeHit(LaidOutPage page, Offset local) {
+    // A compact story surface has no page chrome. Its first lines can still
+    // overlap the layout's default header band.
+    if (compact) return null;
     if (page.footerBand.contains(local.dx, local.dy)) {
       return true;
     }
@@ -2694,9 +2697,9 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
     if (_visualAt(page, local) != null || _equationAt(page, local) != null) {
       return;
     }
-    final line = page.headerBand.contains(local.dx, local.dy)
+    final line = !compact && page.headerBand.contains(local.dx, local.dy)
         ? _nearestChromeLine(page.header, local)
-        : page.footerBand.contains(local.dx, local.dy)
+        : !compact && page.footerBand.contains(local.dx, local.dy)
         ? _nearestChromeLine(page.footer, local)
         : _proofingLineAt(page, local);
     if (line == null ||
@@ -2787,9 +2790,9 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
     }
     final LaidOutLine? textLine =
         visual == null && equation == null && handle == null
-        ? laidPage.headerBand.contains(local.dx, local.dy)
+        ? !compact && laidPage.headerBand.contains(local.dx, local.dy)
               ? _nearestChromeLine(laidPage.header, local)
-              : laidPage.footerBand.contains(local.dx, local.dy)
+              : !compact && laidPage.footerBand.contains(local.dx, local.dy)
               ? _nearestChromeLine(laidPage.footer, local)
               : _proofingLineAt(laidPage, local)
         : null;
