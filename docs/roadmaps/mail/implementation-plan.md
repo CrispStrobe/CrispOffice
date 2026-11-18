@@ -241,9 +241,13 @@ inspection receipt, not a complete dependency or runtime certification.
 
 **Implementation/evidence:** [quds_mail_store](../../../packages/quds_mail_store/README.md)
 and [local store qualification](../../validation/mail-store-20261118/README.md).
-The native implementation and recovery are qualified on Linux x64. Browser
-entry/worker compilation and Node error-policy tests do not close actual browser
-storage, Web Locks, reload or quota acceptance. Chromium again failed before
+Native persistence and recovery have passing focused Linux x64 tests. The first
+combined local run passed its test cohorts but failed the full gate on two test
+lint infos and one formatting mismatch; the stricter runner and lint repairs
+still require execution after workspace disk exhaustion. See the qualification
+report for the BLOCKED state and exact continuation steps. Browser entry/worker
+compilation and Node error-policy tests do not close actual browser storage,
+Web Locks, reload or quota acceptance. Chromium again failed before
 startup under this executor's socket restriction. Database contents are not
 encrypted; native/container protection and credential-vault separation are
 distinct from encryption. M06/M07 and M04W remain the next functional work.

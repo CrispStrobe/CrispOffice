@@ -1,0 +1,33 @@
+{
+  "status": "BLOCKED",
+  "implementation": "M05 durable storage and recovery implemented",
+  "source_exercised": "8a6105a7ec217b48105d171703c8d0294c7d2dc6",
+  "latest_recovery_code": "7848eca0eec8e291cd88ed6e353151508b77784e",
+  "final_edits_executed": false,
+  "aggregate_mail_gate": "FAIL: two test lints and one format mismatch; repair rerun blocked by ENOSPC",
+  "latest_office_gate": "FAIL: individual failure causes require local log recovery",
+  "browser_runtime": "NOT RUN",
+  "records": {
+    "report": "README.md",
+    "mail": "checks/receipt.json",
+    "runtime": "runtime/receipt.json",
+    "initial_office": "incoming/checks/receipt.json",
+    "frontier": "incoming/final-frontier.json",
+    "late_office": "incoming/late-checks/recovery-summary.json",
+    "review": "review/README.md"
+  },
+  "preserved_source_checkpoints": [
+    "cbc5836acfc38b30f145118f467e4cc9fb6a6459",
+    "a39f786d5707af308b1f9899c3461a72e62b4b68",
+    "32fd8ca9a3841f1cd116dd60ea62cc5140df661a",
+    "8a6105a7ec217b48105d171703c8d0294c7d2dc6",
+    "7848eca0eec8e291cd88ed6e353151508b77784e"
+  ],
+  "full_local_receipts_preserved_remotely": false,
+  "local_final_tree_equality_verified": false,
+  "github_actions": {
+    "queried": false,
+    "awaited": false,
+    "rerun": false
+  }
+}
