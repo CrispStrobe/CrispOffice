@@ -68,6 +68,7 @@ export 'src/proofing/german_spelling.dart';
 export 'src/proofing/german_writing_rules.dart';
 export 'src/proofing/office_proofing.dart';
 export 'src/proofing/proofing_text_ranges.dart';
+export 'src/thesaurus/office_thesaurus.dart';
 export 'src/sheet/formula/dep_graph.dart';
 export 'src/sheet/formula/formula_ast.dart';
 export 'src/sheet/formula/formula_eval.dart';
