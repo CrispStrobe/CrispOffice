@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:quds_office_editor/quds_office_editor.dart';
 import 'package:quds_proofing_harper/quds_proofing_harper.dart';
+import 'package:quds_proofing_spacy/quds_proofing_spacy_grammar.dart';
 
 import 'sample_library.dart';
 import 'studio_chrome.dart';
@@ -18,6 +19,8 @@ import 'studio_pdf_gallery_dialog.dart';
 import 'studio_pdf_office.dart';
 import 'studio_pdf_tools.dart';
 import 'studio_pdf_surface.dart';
+import 'studio_spacy_host.dart';
+import 'studio_spacy_setup.dart';
 import 'studio_window.dart';
 import 'studio_zotero.dart';
 
@@ -149,6 +152,8 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     _bindHostActions(_word);
     _bindHostActions(_sheet);
     _bindHostActions(_slides);
+    studioSpacyHost.addListener(_syncSpacyGrammar);
+    unawaited(studioSpacyHost.restoreGrammarOptIn().catchError((Object _) {}));
     _slides.onPlayMedia = (PmlShape shape) {
       _toast(
         _arabic ? 'تشغيل ${shape.mediaName}' : 'Playing ${shape.mediaName}',
@@ -262,6 +267,8 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
 
   @override
   void dispose() {
+    studioSpacyHost.removeListener(_syncSpacyGrammar);
+    _spacyGrammarEpoch++;
     _word
       ..removeListener(_rebuild)
       ..dispose();
@@ -2727,6 +2734,11 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
             _arabic ? 'تحليل الألمانية' : 'German analysis',
             _showLinguisticAnalysis,
           ),
+          _cmd(
+            Icons.download_for_offline_outlined,
+            _arabic ? 'إعداد التحليل' : 'Analysis setup',
+            _showSpacySetup,
+          ),
         ],
       ),
       StudioRibbonGroup(
@@ -4889,6 +4901,58 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       return;
     }
     _toast(_arabic ? 'التدقيق للمستندات' : 'Spelling is available in Word');
+  }
+
+  Future<void> _showSpacySetup() async {
+    await showStudioSpacySetup(context);
+    if (mounted) _wordFocus.requestFocus();
+  }
+
+  int _spacyGrammarEpoch = 0;
+  String? _spacyGrammarKey;
+
+  /// Registers the optional spaCy grammar provider on the Word session's
+  /// manual service exactly while the user has it enabled for a verified,
+  /// grammar-qualified build. It never joins the typing-time service.
+  Future<void> _syncSpacyGrammar() async {
+    final status = studioSpacyHost.status;
+    final key = status.grammarEnabled && status.grammarOffered
+        ? status.configurationKey
+        : null;
+    if (key == _spacyGrammarKey) return;
+    _spacyGrammarKey = key;
+    final epoch = ++_spacyGrammarEpoch;
+    if (key == null) {
+      _word.proofing.configureManual(null);
+      return;
+    }
+    try {
+      final transport = await studioSpacyHost.openTransport();
+      if (!mounted || epoch != _spacyGrammarEpoch) {
+        await transport.dispose();
+        return;
+      }
+      _word.proofing.configureManual(
+        OfficeProofingService(
+          providers: [
+            SpacyGrammarProvider.withTransport(
+              transport: transport,
+              enabled: true,
+              vocabulary: _word.proofing.vocabulary,
+            ),
+          ],
+          timeout: const Duration(seconds: 30),
+        ),
+      );
+    } on Object catch (error) {
+      if (!mounted || epoch != _spacyGrammarEpoch) return;
+      _spacyGrammarKey = null;
+      _toast(
+        _arabic
+            ? 'تعذر تشغيل التدقيق النحوي الألماني.'
+            : 'German grammar check unavailable: $error',
+      );
+    }
   }
 
   Future<void> _showLinguisticAnalysis() async {

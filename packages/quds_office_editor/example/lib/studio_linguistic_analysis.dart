@@ -7,6 +7,7 @@ import 'package:quds_office_editor/quds_office_editor.dart';
 import 'package:quds_proofing_spacy/quds_proofing_spacy.dart';
 
 import 'studio_spacy_config.dart';
+import 'studio_spacy_setup.dart';
 
 /// One body paragraph, including a paragraph inside a body table. Other stories
 /// and multi-paragraph selections are not silently remapped or concatenated.
@@ -470,6 +471,16 @@ class _StudioLinguisticAnalysisDialogState
     LinguisticAnalysisStatus.success => '',
   };
 
+  /// Explicit acquisition/opt-in flow. Any configuration change releases the
+  /// current worker so the next analysis opens the newly verified setup.
+  Future<void> _openSetup() async {
+    final before = _configurationId;
+    await showStudioSpacySetup(context);
+    if (!mounted || before == _configurationId) return;
+    setState(() => _cancel('The analysis setup changed. Analyze again.'));
+    _releaseTransport();
+  }
+
   void _reveal(LinguisticToken token) {
     final snapshot = _snapshot;
     if (snapshot == null ||
@@ -569,6 +580,12 @@ class _StudioLinguisticAnalysisDialogState
         ),
       ),
       actions: [
+        if (widget.transportFactory == null)
+          TextButton(
+            key: const Key('analysis-setup'),
+            onPressed: _busy ? null : _openSetup,
+            child: const Text('Setup…'),
+          ),
         if (_busy)
           TextButton(
             onPressed: () => setState(() => _cancel('Analysis cancelled.')),
