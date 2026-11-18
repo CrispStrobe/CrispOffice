@@ -712,8 +712,17 @@ void main() {
           .whereType<WmlRun>()
           .single
           .properties;
-      expect(props.proofingLanguage, 'de-DE');
+      // Removing the run override retains live document-language inheritance;
+      // the importer must not stamp the current default onto the run.
+      expect(props.proofingLanguage, isNull);
+      expect(loaded.proofingLanguage, 'de-DE');
       expect(props.noProof, isFalse);
+      final reopened = _controller(document: loaded);
+      expect(reopened.textProofingTarget!.language, 'de-DE');
+      expect(reopened.textProofingTarget!.checkingEnabled, isTrue);
+      reopened.setProofingLanguage('fr-FR');
+      expect(reopened.textProofingTarget!.language, 'fr-FR');
+      expect(props.proofingLanguage, isNull);
     },
   );
 }

@@ -404,16 +404,23 @@ void main() {
     );
     final line = controller.commentLaidOut!.pages
         .expand((page) => page.lines)
-        .firstWhere((line) => line.paragraphIndex == 0 && line.glyphs.isNotEmpty);
+        .firstWhere(
+          (line) => line.paragraphIndex == 0 && line.glyphs.isNotEmpty,
+        );
     final glyph = line.glyphs.firstWhere(
       (glyph) => glyph.glyph.logicalIndex <= 1 && 1 < glyph.logicalEnd,
     );
-    final point = render.localToGlobal(render.windowForPagePoint(
-      line.pageIndex,
-      Offset(glyph.x + glyph.advance * .35, line.y + line.height * .5),
-    ));
-    final gesture = await tester.startGesture(point,
-      kind: PointerDeviceKind.mouse, buttons: kPrimaryMouseButton);
+    final point = render.localToGlobal(
+      render.windowForPagePoint(
+        line.pageIndex,
+        Offset(glyph.x + glyph.advance * .35, line.y + line.height * .5),
+      ),
+    );
+    final gesture = await tester.startGesture(
+      point,
+      kind: PointerDeviceKind.mouse,
+      buttons: kPrimaryMouseButton,
+    );
     await gesture.up();
     await tester.pump(const Duration(milliseconds: 20));
     canvas.onChanged!();
@@ -655,7 +662,7 @@ void main() {
     await _checkComments(tester, controller);
     controller.beginCommentEdit(1);
     await _pump(tester);
-      controller.input.composing = const TextRange(start: 0, end: 3);
+    controller.input.composing = const TextRange(start: 0, end: 3);
     _commentCanvas(tester, 1).onContextMenu!(
       _commentHit(tester, controller, 1),
     );
@@ -736,28 +743,28 @@ void main() {
       },
     );
 
-  testWidgets('comment menu mutations respect a later viewing-mode change', (
-    tester,
-  ) async {
-    final controller = await _studio(tester);
-    await _checkComments(tester, controller);
-    await _openCommentMenu(tester, controller);
-    final apply = _menuAction(tester, 'Comment').onTap!;
-    final resolve = _menuAction(tester, 'Resolve').onTap!;
-    final delete = _menuAction(tester, 'Delete comment').onTap!;
-    await tester.tap(find.text('File').first);
-    await _pump(tester);
-    await _tapCommand(tester, 'View');
-    expect(controller.config.allowsMutation, isFalse);
-    apply();
-    resolve();
-    delete();
-    await _pump(tester);
-    expect(controller.document.comments, hasLength(2));
-    expect(controller.document.comments.first.text, 'Commet one.');
-    expect(controller.document.comments.first.resolved, isFalse);
-    expect(controller.canUndo, isFalse);
-    await _close(tester);
-  });
+    testWidgets('comment menu mutations respect a later viewing-mode change', (
+      tester,
+    ) async {
+      final controller = await _studio(tester);
+      await _checkComments(tester, controller);
+      await _openCommentMenu(tester, controller);
+      final apply = _menuAction(tester, 'Comment').onTap!;
+      final resolve = _menuAction(tester, 'Resolve').onTap!;
+      final delete = _menuAction(tester, 'Delete comment').onTap!;
+      await tester.tap(find.text('File').first);
+      await _pump(tester);
+      await _tapCommand(tester, 'View');
+      expect(controller.config.allowsMutation, isFalse);
+      apply();
+      resolve();
+      delete();
+      await _pump(tester);
+      expect(controller.document.comments, hasLength(2));
+      expect(controller.document.comments.first.text, 'Commet one.');
+      expect(controller.document.comments.first.resolved, isFalse);
+      expect(controller.canUndo, isFalse);
+      await _close(tester);
+    });
   }
 }
