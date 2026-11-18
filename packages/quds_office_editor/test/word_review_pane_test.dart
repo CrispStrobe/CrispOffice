@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quds_office_editor/quds_office_editor.dart';
-import 'package:quds_office_editor/src/embed/word_review_pane.dart';
 
 class _PaneProvider extends OfficeProofingProvider {
   _PaneProvider({

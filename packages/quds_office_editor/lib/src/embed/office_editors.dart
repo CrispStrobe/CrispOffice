@@ -3,6 +3,7 @@ import 'dart:math' as math;
 import 'dart:ui' as ui;
 
 import 'package:flutter/scheduler.dart';
+import 'package:flutter/gestures.dart' show kDoubleTapTimeout;
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:quds_office_engine/quds_office_engine.dart';
@@ -234,6 +235,7 @@ class _QudsWordEditorState extends State<QudsWordEditor>
   bool _proofingOpen = false;
   WordProofingIssue? _contextProofingIssue;
   int? _contextContentRevision;
+  Timer? _inlineReviewTimer;
   ModalRoute<dynamic>? _inputRoute;
   bool? _inputRouteWasCurrent;
   final _directionKeys = OfficeDirectionKeyChord();
@@ -332,6 +334,9 @@ class _QudsWordEditorState extends State<QudsWordEditor>
     if (widget.config != null && !identical(widget.config, _c.config)) {
       _c.syncConfig(widget.config!);
     }
+    if (!oldWidget.enableLiveProofing && widget.enableLiveProofing) {
+      _enableLiveProofing();
+    }
     // Replacing a controller need not change the FocusNode, so no focus event
     // is guaranteed to attach the new controller or apply its mode.
     _onFocus();
@@ -355,7 +360,7 @@ class _QudsWordEditorState extends State<QudsWordEditor>
     if (!widget.enableLiveProofing) return;
     final controller = _c;
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (mounted && identical(controller, _c)) {
+      if (mounted && widget.enableLiveProofing && identical(controller, _c)) {
         controller.proofing.enableBackgroundByDefault();
       }
     });
@@ -364,9 +369,11 @@ class _QudsWordEditorState extends State<QudsWordEditor>
   Future<void> _checkProofing({required bool includeManualProviders}) async {
     final controller = _c;
     try {
-      await controller.proofing.checkNow(
-        includeManualProviders: includeManualProviders,
-      );
+      if (includeManualProviders) {
+        await controller.checkDocumentProofing();
+      } else {
+        await controller.proofing.checkNow(includeManualProviders: false);
+      }
     } on Object {
       // Provider failures are normally summarized by the session. Keep the
       // editable surface alive if a host provider fails outside that contract.
@@ -390,6 +397,7 @@ class _QudsWordEditorState extends State<QudsWordEditor>
 
   void _onCtrl() {
     if (mounted) {
+      _inlineReviewTimer?.cancel();
       if (_contextMenu != null &&
           (_contextContentRevision != _c.contentRevision ||
               (_contextProofingIssue != null &&
@@ -423,6 +431,7 @@ class _QudsWordEditorState extends State<QudsWordEditor>
   }
 
   void _dismissContextMenu() {
+    _inlineReviewTimer?.cancel();
     OfficeContextMenu.dismiss(_contextMenu);
     _contextMenu = null;
     _contextProofingIssue = null;
@@ -430,6 +439,14 @@ class _QudsWordEditorState extends State<QudsWordEditor>
   }
 
   void _showInlineReview(OfficeContextHit hit) {
+    _inlineReviewTimer?.cancel();
+    final controller = _c;
+    _inlineReviewTimer = Timer(kDoubleTapTimeout, () {
+      if (mounted && identical(controller, _c)) _presentInlineReview(hit);
+    });
+  }
+
+  void _presentInlineReview(OfficeContextHit hit) {
     final paragraph = hit.paragraph;
     final offset = hit.proofingOffset;
     if (paragraph == null || offset == null) return;
@@ -540,6 +557,7 @@ class _QudsWordEditorState extends State<QudsWordEditor>
       context: context,
       globalPosition: hit.globalPosition,
       actions: actions,
+      enableFiltering: !reviewOnly,
       onSelect: (String id) {
         _contextMenu = null;
         if (id == 'proofing:review') {
@@ -676,7 +694,15 @@ class _QudsWordEditorState extends State<QudsWordEditor>
     if (event is! KeyDownEvent && event is! KeyRepeatEvent) {
       return KeyEventResult.ignored;
     }
+    if (event.logicalKey == LogicalKeyboardKey.escape && _contextMenu != null) {
+      _dismissContextMenu();
+      return KeyEventResult.handled;
+    }
     if (officeHandleDocumentShortcut(_c, event)) {
+      return KeyEventResult.handled;
+    }
+    if (event.logicalKey == LogicalKeyboardKey.escape && _c.reviewPaneVisible) {
+      _c.closeReviewPane();
       return KeyEventResult.handled;
     }
     final bool shift = HardwareKeyboard.instance.isShiftPressed;

@@ -1,13 +1,68 @@
 # Document review and comparison
 
-The Word editor provides a review workspace for pending tracked changes and a
-separate, read-only comparison of two documents. The comparison never rewrites
-either document or generates revision spans in the active file.
+The Word editor checks writing while you edit, offers corrections from marked
+text, and keeps a review pane open beside the document. The pane covers writing
+findings and pending tracked changes. A separate, read-only workspace compares
+two documents without rewriting either input or generating revision spans in
+the active file.
 
 ## Use the workspace
 
-In Office Studio, open **Review → Review changes** or **Review → Compare**. The shared editor's Notes pane also has a **Review changes** button.
-Embedded applications can open the same dialog with `showWordReviewDialog`.
+In Office Studio, open **Review → Spelling** or press **F7** for the Writing pane.
+Open **Review → Review changes** for the Changes pane. Both keep the document
+editable. The pane sits beside the canvas in wide editors and below it in narrow
+editors. **Escape** or its close button returns to the document.
+
+The status bar at the bottom of the shared Word editor shows checking progress
+and pending-change counts. Either button opens the corresponding pane, even
+when the Review ribbon is not selected. **Review → Compare** still opens the
+full two-document comparison workspace. **More review options** in the pane
+retains the detailed proofing settings or advanced tracked-change workspace.
+
+### Check writing while editing
+
+- **Check as you type** is enabled when the shared editor first attaches, unless
+  the host or user has already set an explicit preference. Switching documents
+  or reattaching an editor does not override an explicit off preference.
+- The ordinary configured providers run after a 400 ms pause. The status
+  distinguishes waiting, checking, paused checking, incomplete coverage, and
+  completed results. An unavailable checker is never reported as a clean check.
+- Spelling findings have red underlines, grammar findings blue underlines, and
+  writing-style findings amber underlines. Click a marked passage for its
+  suggestions, or right-click it for suggestions and the ordinary editing menu.
+  Primary-click suggestions preserve document typing focus. They wait for the
+  double-click interval so word selection, paragraph selection, and dragging
+  retain their normal behavior.
+- With the Writing pane open, selecting a marked passage follows that finding
+  in the pane. Filter by spelling, grammar, or writing style; navigate between
+  findings; choose a replacement; ignore an occurrence, word, or rule; or add a
+  spelling to personal words. Document corrections remain undoable.
+- Moving the caret, scrolling, and zooming preserve checked results. Text or
+  provider changes invalidate old findings immediately; late results cannot
+  correct a newer document. A stale suggestion menu closes when its source
+  becomes invalid.
+- **F7** and **Check document** explicitly include configured manual providers.
+  Typing, opening the pane, and making a correction do not implicitly run manual
+  grammar inference. Repeated requests for the same active explicit check share
+  its result. After editing, run Check document again for fresh manual coverage.
+
+The available languages and quality of suggestions depend on the configured
+providers. The standalone controller supplies the offline German checkers;
+Studio also configures its English provider. Optional/native providers retain
+their existing installation and availability requirements. The live UI does
+not install models, send text to a new service, or apply corrections on its own.
+
+### Resolve changes while editing
+
+The Changes pane offers reviewer attribution, **Track text changes**, change
+navigation, exact source text and location, and individual **Accept / Reject**
+controls with **Undo / Redo**. Clicking a marked tracked change opens it in this
+pane. Its context menu also offers accept/reject when the source is valid and
+editable. Read-only mode retains inspection and disables document mutations.
+
+Use **More review options** for author/type/text filters, filtered batch actions,
+and original/final paragraph previews described below. Embedded applications
+can still open that advanced workspace with `showWordReviewDialog`.
 
 ### Review tracked changes
 
@@ -192,12 +247,32 @@ has been closed.
 Controller review APIs:
 
 ```dart
+// Persistent review alongside the QudsWordEditor canvas.
+wordController.openReviewPane(); // Writing findings.
+wordController.openReviewPane(tab: WordReviewPaneTab.changes);
+wordController.closeReviewPane();
+wordController.proofing.enabled = false; // Remember an explicit off preference.
+await wordController.checkDocumentProofing(); // Includes manual providers.
+
 wordController.revisionAuthor = 'Reviewer name';
 wordController.setTrackRevisions(true);
 wordController.acceptRevisions(selectedPendingChanges); // One undo step.
 wordController.rejectRevisions(selectedPendingChanges); // One undo step.
 final shownInCanvas = wordController.revealRevision(change);
 ```
+
+`QudsWordEditor` defaults to `enableLiveProofing: true` and
+`showReviewStatus: true`. Hosts with their own chrome may hide the status bar or
+leave enabling background checks to their own controls. `WordReviewPane` and
+`WordReviewStatusBar` are also exported as standalone host widgets. A standalone
+`WordEditorController` does not start a background timer until enabled by a host.
+
+`selectProofingIssue` / `stepProofingIssue` navigate current findings while
+keeping unsupported canvas stories reviewable in the pane. An explicit
+selection survives a recheck of unchanged source text and is not replaced by a
+neighboring finding at the selection endpoint. `refreshView()` is for host
+selection/scroll/zoom notifications; `refresh()` still invalidates proofing
+after direct model edits that bypass controller commands.
 
 ### Migration from the old comparison helper
 
@@ -217,4 +292,6 @@ from two arbitrary files is a separate capability and is not claimed here.
 
 See [the local validation record](validation/document-review-20261118/README.md)
 for the reconciled source history, runtime pins, test commands, and results.
+The [live-review continuation record](validation/document-review-live-20261118/README.md)
+records the subsequent in-editor work and local regression checks.
 GitHub Actions are not required for the local verification workflow.

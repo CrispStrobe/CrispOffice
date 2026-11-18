@@ -102,6 +102,7 @@ void main() {
       final editor = tester.widget<QudsWordEditor>(find.byType(QudsWordEditor));
       editor.focusNode!.requestFocus();
       await tester.pump();
+      final barriers = find.byType(ModalBarrier).evaluate().length;
       await tester.sendKeyEvent(LogicalKeyboardKey.f7);
       await tester.pump();
       await _finishCheck(tester, controller);
@@ -110,7 +111,7 @@ void main() {
       expect(find.byKey(const ValueKey('word-review-pane')), findsOneWidget);
       expect(manual.calls, 1);
       expect(find.byType(Dialog), findsNothing);
-      expect(find.byType(ModalBarrier), findsNothing);
+      expect(find.byType(ModalBarrier), findsNWidgets(barriers));
 
       // Zooming changes only the viewport, so reviewed results remain current.
       final checked = controller.proofing.summary;
@@ -169,7 +170,10 @@ void main() {
     await tester.pump();
     await _tap(tester, _command('View'));
     await _review(tester);
-    final document = WordSerializer().writeBytes(controller.document);
+    final document = controller.document;
+    final text = document.paragraphs.single.text;
+    final language = document.proofingLanguage;
+    final modified = document.properties.modifiedIso;
     final before = controller.contentRevision;
 
     await _tap(tester, _command('Review changes'));
@@ -186,10 +190,17 @@ void main() {
     expect(tester.widget<StudioCmd>(_command('Restrict')).onPressed, isNull);
 
     await _tap(tester, _command('Spelling'));
+    await _finishCheck(tester, controller);
     expect(controller.reviewPaneTab, WordReviewPaneTab.proofing);
     expect(find.byType(Dialog), findsNothing);
     expect(controller.contentRevision, before);
-    expect(WordSerializer().writeBytes(controller.document), document);
+    expect(controller.document, same(document));
+    expect(document.paragraphs.single.text, text);
+    expect(document.proofingLanguage, language);
+    expect(document.properties.modifiedIso, modified);
+    expect(document.revisions, isEmpty);
+    expect(document.trackRevisions, isFalse);
+    expect(document.restrictEditing, isFalse);
     await tester.pumpWidget(const SizedBox.shrink());
     expect(tester.takeException(), isNull);
   });

@@ -455,6 +455,8 @@ class WordEditorController extends OfficeController {
   bool _reviewPaneVisible = false;
   WordReviewPaneTab _reviewPaneTab = WordReviewPaneTab.proofing;
   WordProofingIssue? _selectedProofingIssue;
+  Future<WordProofingSummary>? _explicitProofingCheck;
+  WordProofingSummary? _explicitProofingSnapshot;
   ({WmlParagraph? paragraph, int offset, int? anchor, int? anchorParagraph})?
   _proofingSelectionCaret;
 
@@ -7895,7 +7897,23 @@ class WordEditorController extends OfficeController {
 
   /// Checks all modeled document stories, preserving provider availability and
   /// coverage. Findings never become document edits without an explicit choice.
-  Future<WordProofingSummary> checkDocumentProofing() => proofing.checkNow();
+  Future<WordProofingSummary> checkDocumentProofing() {
+    final current = _explicitProofingCheck;
+    if (current != null &&
+        identical(_explicitProofingSnapshot, proofing.summary)) {
+      return current;
+    }
+    late final Future<WordProofingSummary> check;
+    check = proofing.checkNow().whenComplete(() {
+      if (identical(_explicitProofingCheck, check)) {
+        _explicitProofingCheck = null;
+        _explicitProofingSnapshot = null;
+      }
+    });
+    _explicitProofingCheck = check;
+    _explicitProofingSnapshot = proofing.summary;
+    return check;
+  }
 
   /// Current review selection, rebound after a check of unchanged text. A
   /// finding under the caret takes precedence, so the pane follows navigation
@@ -7923,9 +7941,7 @@ class WordEditorController extends OfficeController {
     if (explicit != null && _proofingSelectionCaret == _proofingCaretPosition) {
       return explicit;
     }
-    return matching(atCaret) ??
-        atCaret.firstOrNull ??
-        explicit;
+    return matching(atCaret) ?? atCaret.firstOrNull ?? explicit;
   }
 
   ({WmlParagraph? paragraph, int offset, int? anchor, int? anchorParagraph})
@@ -7934,7 +7950,9 @@ class WordEditorController extends OfficeController {
     final current = caret;
     final index = current.paragraphIndex;
     return (
-      paragraph: index >= 0 && index < paragraphs.length ? paragraphs[index] : null,
+      paragraph: index >= 0 && index < paragraphs.length
+          ? paragraphs[index]
+          : null,
       offset: current.logicalIndex,
       anchor: current.selectionAnchor,
       anchorParagraph: current.selectionAnchorParagraph,

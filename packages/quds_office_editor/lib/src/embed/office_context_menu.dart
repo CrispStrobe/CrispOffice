@@ -176,6 +176,7 @@ abstract final class OfficeContextMenu {
     required List<OfficeContextAction> actions,
     required ValueChanged<String> onSelect,
     String? filterHint,
+    bool enableFiltering = true,
   }) {
     if (actions.isEmpty) {
       return null;
@@ -210,6 +211,7 @@ abstract final class OfficeContextMenu {
           theme: theme,
           direction: direction,
           filterHint: filterHint,
+          enableFiltering: enableFiltering,
           onDismiss: close,
           onSelect: (String id) {
             close();
@@ -823,6 +825,7 @@ class _OfficeContextOverlay extends StatefulWidget {
     required this.onDismiss,
     required this.onSelect,
     this.filterHint,
+    this.enableFiltering = true,
   });
 
   /// globalPosition API.
@@ -840,6 +843,10 @@ class _OfficeContextOverlay extends StatefulWidget {
   /// Shown while the query is empty. Typing filters when this is set or the
   /// menu has more than eight commands.
   final String? filterHint;
+
+  /// Inline writing suggestions leave typing and the IME with the document.
+  /// Regular context menus retain their searchable keyboard interaction.
+  final bool enableFiltering;
 
   /// onDismiss API.
   final VoidCallback onDismiss;
@@ -890,6 +897,7 @@ class _OfficeContextOverlayState extends State<_OfficeContextOverlay> {
   }
 
   bool get _filtering {
+    if (!widget.enableFiltering) return false;
     if (widget.filterHint != null) {
       return true;
     }

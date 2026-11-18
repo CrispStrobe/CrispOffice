@@ -4,6 +4,20 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Add live writing checks by default in the shared Word editor, preserving an
+  explicit off preference. Show debounce, active, paused and incomplete check
+  status alongside a count of pending tracked changes.
+- Keep Writing and Changes review panes open while editing, with responsive
+  placement, finding/category navigation, suggestions, dictionary/ignore actions,
+  reviewer attribution and undoable tracked-change decisions. Preserve advanced
+  dialogs for detailed settings, batch review and two-document comparison.
+- Offer suggestions directly from marked text and tracked-change actions from
+  its context menu. Preserve input focus, double-click/drag selection and checked
+  results during caret/viewport movement; reject stale source actions.
+- Keep manual providers behind explicit F7/Check document requests and reuse an
+  identical active explicit check. Export pane/status widgets and controller
+  navigation APIs for embedders.
+
 - Search imported Zotero CSL references locally by title, creators, year and
   DOI, with creator/year labels, result counts and selections retained across
   filters. Preserve original import identities even when IDs or titles repeat.
