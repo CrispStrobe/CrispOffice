@@ -6,42 +6,49 @@ and compact comment suggestions to the existing live review workflow, while
 reconciling newer Zotero work. See the [usage and embedding guide](../../document-review.md)
 for the user-facing behavior and controller APIs.
 
-**Status: the final frozen gate and its publication are pending.** Development
-checks and existing screenshots below do not constitute final acceptance of the
-integrated source. This is a local validation record; GitHub Actions results are
-not part of its acceptance criteria.
+**Accepted: 633 regression cases passed, with zero failures or skips, against
+the published integrated source below.** Strict analysis, formatting, whitespace,
+and source/runtime binding also passed. Three separate visual fixture cases
+produced seven inspected screenshots from the same source. This acceptance is
+based on local execution; GitHub Actions were neither queried nor awaited.
 
 ## Final source and acceptance
 
 | Field | Final value |
 | --- | --- |
-| Tested source commit | **PENDING_SOURCE_COMMIT** |
-| Tested source tree | **PENDING_SOURCE_TREE** |
+| Tested source commit | `eedf2aee03964329a2e4c7ee3c771d43b5df4991` |
+| Tested source tree | `975389ed58d1851cf72c56b5e1cf594531762ad7` |
 | Comparison base | `97c7ddae9514c6afa9286cd25f7339e92988cee9` |
-| Final saved checkpoint | **PENDING_PUBLICATION_COMMIT** |
-| Tracked source/fixture/configuration inputs | **PENDING_SOURCE_FILE_COUNT** |
-| Source changes during the gate | **Pending** |
-| Runtime/dependency changes during the gate | **Pending** |
-| Final source binding after evidence assembly | **Pending** |
+| Saved checkpoints and publication | [Publication receipt](publication.json) |
+| Tracked source/fixture/configuration inputs | **3,548** |
+| Source changes during the gate | **None**; HEAD/index unchanged, tracked worktree clean before and after |
+| Bound runtime and dependency inputs during the gate | **Unchanged**; identical before/after manifests |
+| Source binding after evidence assembly | [Final source binding](final-source-binding.json) |
 
-Populate the source fields and counts from the final `verification.json`, then
-verify the saved checkpoint against its source manifest. A later commit containing
-only documentation/evidence does not substitute for this source comparison.
+The [accepted gate receipt](accepted/verification.json) records the exact source,
+commands, per-suite counts, and before/after manifests. The
+[evidence file index](accepted/files.json) supplies the retained artifact hashes.
+The source binding and publication receipts distinguish the tested source from
+later documentation/evidence commits.
 
 | Gate | Requested coverage | Result |
 | --- | --- | --- |
-| Engine | 4 suites | **PENDING_ENGINE_RESULT** |
-| Editor | 34 suites | **PENDING_EDITOR_RESULT** |
-| Studio | 5 suites | **PENDING_STUDIO_RESULT** |
-| Total regression cases | Counts exclude hidden loader events and visual fixtures | **PENDING_TOTAL_RESULT** |
-| Strict Dart analysis | All changed tracked product Dart files since the comparison base | **Pending** |
-| Formatting and whitespace | Same changed Dart files; complete Git diff whitespace check | **Pending** |
-| Source/runtime/dependency binding | Before and after every complete gate execution | **Pending** |
-| Visual fixtures | 2 text-option cases and 1 Studio comment case, counted separately | **PENDING_VISUAL_RESULT** |
+| Engine | 4 suites | **30 passed; 0 failed; 0 skipped** |
+| Editor | 34 suites | **544 passed; 0 failed; 0 skipped** |
+| Studio | 5 suites, including 38 comment review cases | **59 passed; 0 failed; 0 skipped** |
+| Total regression cases | Counts exclude hidden reporter events and visual fixtures | **633 passed; 0 failed; 0 skipped** |
+| Strict Dart analysis | All 25 changed tracked product Dart files since the comparison base | **Passed; no issues** |
+| Formatting and whitespace | Same 25 Dart files; complete Git diff whitespace check | **Passed** |
+| Source/runtime/dependency binding | Before and after the complete gate execution | **Passed; zero mismatches** |
+| Visual fixtures | 2 text-option cases and 1 Studio comment case, counted separately | **3 passed; 7 inspected captures** |
 
-The report must record failures and skips as well as passes. A requested suite
-with no visible cases, an unfinished test, a reporter error, a failed command,
-or a changed bound input prevents a passing gate.
+All 43 requested suites produced visible cases. There were no missing or empty
+suites, unfinished reporter events, reporter errors, failed commands, or changed
+bound inputs. The gate ran on 18 November 2026. Source
+manifests before and after both hash to
+`39fff2337cce65c7c03d13f9d45411ec18e0fc61182e5e5cdae5c9232f3518a0`;
+runtime/dependency manifests both hash to
+`03ce9ccc6176ae4fcf550044355e4a3f7b40a97a3af9689b43da8d5f85afcda6`.
 
 ## Behavior covered
 
@@ -61,7 +68,7 @@ or a changed bound input prevents a passing gate.
 - **Inherited language fidelity:** removing a direct language override restores
   the applicable table, paragraph, and character style language for immediate
   proofing and DOCX save/reload. Document and paragraph defaults remain live.
-  East Asian/bidi language metadata, pending unrelated formatting, unknown run
+  East Asian/bidi language metadata, unsaved unrelated formatting, unknown run
   XML, and explicit checking settings are preserved. Preparation leaves the
   original document/package unchanged.
 - **Live checking:** affected findings invalidate immediately; ordinary
@@ -79,6 +86,11 @@ or a changed bound input prevents a passing gate.
   delivery over marked comment text, including the first line where compact
   content overlaps a layout header band. Compact stories do not dispatch this
   text into nonexistent page-header chrome.
+- **Comment selection ownership:** Select mode supports read-only comment
+  selection and Copy, including actual drag/right-click input and transitions
+  through View. View disables selection while keeping comments visible. Comment
+  operations clear stale body/table/frame selection ownership, reject obsolete
+  handlers, and avoid materializing empty stored paragraphs in read-only modes.
 - **Retained and incoming behavior:** the gate retains the prior keyboard,
   finding, tracked-change, comparison, input/IME, Studio and worksheet suites.
   It also includes every changed/new regression suite from the later Zotero
@@ -94,11 +106,11 @@ and `apps/` inputs, root configuration, and the runner, including imported test
 helpers, fixtures, assets, and fonts. Untracked product inputs are rejected.
 
 ```sh
-python docs/validation/document-review-inflight-20261118/run_checks.py \
-  --head PENDING_SOURCE_COMMIT \
+python3 docs/validation/document-review-inflight-20261118/run_checks.py \
+  --head eedf2aee03964329a2e4c7ee3c771d43b5df4991 \
   --base 97c7ddae9514c6afa9286cd25f7339e92988cee9 \
-  --runtime /absolute/path/to/restored-runtime \
-  --output /absolute/path/to/a-new-empty-output-directory
+  --runtime ../toolchains \
+  --output ../review-validation-reproduction
 ```
 
 The output directory must be outside the frozen checkout. Preserve previous
@@ -108,9 +120,12 @@ strict analysis, formatting, and whitespace. The exact commands, source commit,
 per-suite case counts, errors, runtime identity, and hashes are emitted into
 `verification.json` and its companion manifests/logs.
 
-Before declaring acceptance, publish the unmodified accepted output, its
-archive/file index, and the final source-binding receipt here. Preserve any
-failed frozen attempts separately. **Those final artifacts are pending.**
+Run this from a clean checkout of the tested source commit, with the restored
+runtime beside it. The accepted receipt and hashed output are retained under
+[accepted/](accepted/verification.json); the source manifest binds the product
+inputs even when an evidence-only publication commit has a later HEAD. Earlier
+development attempts are preserved separately below and are excluded from the
+accepted totals.
 
 ### Runtime and dependencies
 
@@ -150,10 +165,11 @@ proofing providers. Their definitions are included in the source binding.
 | [Comment in Writing](screenshots/comments-writing-desktop.png) | 1760 × 1000 | Open writing pane selects the comment finding. |
 | [Narrow Arabic comment suggestions](screenshots/comments-inline-suggestions-arabic-narrow.png) | 900 × 1000 | The compact suggestion menu stays anchored to visible marked comment text in RTL. |
 
-The seven captures were visually inspected after the comment pointer fixture
-was corrected. Their development execution logs are preserved below; **final
-fixture receipts and binding to the accepted integrated source remain pending**.
-Visual fixture cases are excluded from the behavior regression total. Widget layout
+The [accepted visual receipt](accepted/visuals/verification.json) records three
+passing fixture cases and seven captures from the exact tested source. All seven
+were visually inspected: six regenerated PNGs were byte-identical to previously
+inspected captures, and the changed capture was inspected again. Visual fixture
+cases are excluded from the 633-case behavior regression total. Widget layout
 coverage also exercises 390-pixel windows with 1.6× text scaling; that does not
 constitute native phone or operating-system accessibility qualification.
 
@@ -168,15 +184,29 @@ equivalence evidence.
 
 The initial local three-way merge brought in Zotero head
 `b2597485b923003f01c1bd69e02d0c62a6943514` / PR #168 without conflicts.
-The later [bounded remote inventory](final-frontier.json), compared against
-`a77d67d04dfe4e1d61bc3dae5c96d5d9d3a4f1f4`, found the same reference counts and
-identified a newer Zotero head:
-`86b9c03c272baec7277d2f8fb548711a73fe9aee`.
+The later [bounded remote inventory](final-frontier.json) and
+[final Zotero observation](late-merge-observation.json) closed the observed
+frontier at `6c993f7406037ba462c6aea32e7e6afeebd28c03`, a descendant of the
+intermediate `86b9c03c272baec7277d2f8fb548711a73fe9aee` head.
 
-**Later integration and post-merge classification: PENDING_INCOMING_RESULT.**
-The bounded inventory currently records that head as needing integration;
-update this section from the actual merge and final ancestry/equivalence
-receipts. A branch name alone is not evidence that its later head was included.
+The [recorded local merge](late-merge.json) was published as
+`68d8c83afad66569e5654023eecbcdc3185cbf20`, preserving its exact tree and parents
+`ebd9fce473ee96f4d11785d2edef12c19797b619` and
+`6c993f7406037ba462c6aea32e7e6afeebd28c03`. Two test-file conflicts were resolved
+deliberately: the Studio comment suite retained the current review fixtures and
+pointer coverage instead of incoming formatting of an older fixture; the text
+proofing controller suite retained its current regressions and incorporated
+stronger incoming assertions for inherited language after save/reload and
+changes to the document default. Production controller/workspace changes
+merged automatically. The final accepted source contains this merge and the
+subsequent reviewed comment-selection fix.
+
+**All 379 observed references are accounted for: 351 are in merged ancestry
+and 28 have verified historical equivalence; zero remain outstanding.** These
+represent 247 unique heads: 233 ancestral and 14 equivalent. This is closure
+of the recorded bounded observation, not a claim about remote heads created
+after it. Earlier reconciliation records retain their original execution-time
+status; acceptance of the integrated source is established by this gate.
 
 ## Development findings and fixes
 
@@ -206,13 +236,14 @@ The focused engine development run completed with **21 passed, zero failed and
 zero skipped**: 13 new inheritance cases, four existing comment-style cases, and
 four style-introduction cases. Strict analysis of the changed engine files and
 new engine suite was clean. These development results are **not added to** the
-final gate total and do not qualify later incoming source without that gate.
+final gate total; the later integrated source passed the separate canonical
+gate recorded above.
 
 The Studio development run named `comment-review-final-studio.log` completed
 with **31 passed** before the subsequent comment selection-ownership and
 read-only Copy guard changes. It does not validate those later changes. The
 additional focused development attempts, including their failures, are retained
-for review; the integrated final gate remains pending. The added ownership
+for review. The added ownership
 fixture initially chose View rather than Select: Studio Select permits
 read-only selection and Copy, while View disables selection but keeps comments
 visible. The behavioral assertions were retained, the fixture mode was
@@ -224,12 +255,12 @@ could see the previous controller mode during a rebuild. The pane now uses
 the build-safe configuration sync before rendering the effective selection
 mode. The actual drag/right-click/Copy and Select → View → Select case passed,
 with editing and IME input disabled. Its initial failure and passing rerun are
-preserved. The final Studio suite contains 38 cases; the integrated gate is
-still pending.
+preserved. All 38 cases in the final Studio comment suite passed in the
+integrated gate.
 
 The [development attempt index](attempts/development/index.json) maps each
 original source basename to an unchanged compressed log and records both raw
-and archive SHA-256 hashes. It preserves text-control attempts 1–3, pane
+and archive SHA-256 hashes for **33 retained logs**. It preserves text-control attempts 1–3, pane
 attempts 1–2, engine inheritance attempts, text/comment visual runs, and comment
 menu, clipboard, actual-pointer, geometry, ownership, and analysis attempts.
 File names containing `final` are the original development names. These logs
@@ -257,6 +288,7 @@ add live proofing of unposted drafts. Comment suggestion menus are Studio host
 UI; the shared editor retains its own Writing/Changes panes and document caret
 menu. Screenshot sizes document the exercised layouts, not every device size.
 
-Remote checkpoint publication, exact parent heads, staged-tree equality, and
-post-publication verification must be taken from the final publication receipt.
-**Publication verification for the final accepted source is pending.**
+The [publication receipt](publication.json) records remote checkpoints and their
+parent/tree identities. The [final source binding](final-source-binding.json)
+ties the evidence publication to the 3,548 tested inputs, while the accepted
+gate records the source and environment used for local execution.

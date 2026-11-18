@@ -1,0 +1,242 @@
+[
+  {
+    "id": 9,
+    "name": "native add/edit finds the existing footnote citation at its caret",
+    "suite_id": 0,
+    "suite": "test/word_zotero_caret_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 10,
+    "name": "footnote caret boundaries do not permit new insertion in a note",
+    "suite_id": 0,
+    "suite": "test/word_zotero_caret_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 11,
+    "name": "footnote caret offsets outside the paragraph are rejected",
+    "suite_id": 0,
+    "suite": "test/word_zotero_caret_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 12,
+    "name": "native add/edit finds the existing endnote citation at its caret",
+    "suite_id": 0,
+    "suite": "test/word_zotero_caret_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 13,
+    "name": "endnote caret boundaries do not permit new insertion in a note",
+    "suite_id": 0,
+    "suite": "test/word_zotero_caret_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 14,
+    "name": "endnote caret offsets outside the paragraph are rejected",
+    "suite_id": 0,
+    "suite": "test/word_zotero_caret_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 15,
+    "name": "same numeric footnote and endnote IDs select by paragraph identity",
+    "suite_id": 0,
+    "suite": "test/word_zotero_caret_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 16,
+    "name": "a detached lookalike paragraph cannot select an anchored citation",
+    "suite_id": 0,
+    "suite": "test/word_zotero_caret_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 17,
+    "name": "unanchored note citations remain unsupported",
+    "suite_id": 0,
+    "suite": "test/word_zotero_caret_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 19,
+    "name": "clearing a direct override restores paragraph style live and after save",
+    "suite_id": 2,
+    "suite": "test/word_proofing_inheritance_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 20,
+    "name": "clearing a direct override restores character style live and after save",
+    "suite_id": 2,
+    "suite": "test/word_proofing_inheritance_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 21,
+    "name": "partial reset preserves other runs, pending formatting, unknown XML and explicit noProof",
+    "suite_id": 2,
+    "suite": "test/word_proofing_inheritance_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 22,
+    "name": "already inherited text is a no-op but equal direct overrides are removed",
+    "suite_id": 2,
+    "suite": "test/word_proofing_inheritance_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 23,
+    "name": "a pending unsaved override is removed without changing inherited formatting",
+    "suite_id": 2,
+    "suite": "test/word_proofing_inheritance_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 24,
+    "name": "document and explicit paragraph defaults remain live after reset",
+    "suite_id": 2,
+    "suite": "test/word_proofing_inheritance_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 25,
+    "name": "newly authored language resets after an earlier save without sparse import metadata",
+    "suite_id": 2,
+    "suite": "test/word_proofing_inheritance_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 28,
+    "name": "table condition en-US is restored with source tblLook",
+    "suite_id": 2,
+    "suite": "test/word_proofing_inheritance_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 29,
+    "name": "table condition de-CH is restored with source tblLook",
+    "suite_id": 2,
+    "suite": "test/word_proofing_inheritance_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 30,
+    "name": "table condition de-AT is restored with source tblLook",
+    "suite_id": 2,
+    "suite": "test/word_proofing_inheritance_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 31,
+    "name": "comment inheritance uses its exact story without touching body text",
+    "suite_id": 2,
+    "suite": "test/word_proofing_inheritance_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 32,
+    "name": "shallow detached previews cannot mutate live source properties",
+    "suite_id": 2,
+    "suite": "test/word_proofing_inheritance_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 33,
+    "name": "live, detached-source and invalid-range requests leave source unchanged",
+    "suite_id": 2,
+    "suite": "test/word_proofing_inheritance_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 27,
+    "name": "comments inherit document, paragraph and character proofing settings on import",
+    "suite_id": 4,
+    "suite": "test/word_comment_proofing_styles_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 34,
+    "name": "inherited and explicit comment proofing values survive three DOCX saves",
+    "suite_id": 4,
+    "suite": "test/word_comment_proofing_styles_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 35,
+    "name": "document language changes remain live for comments without overrides",
+    "suite_id": 4,
+    "suite": "test/word_comment_proofing_styles_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 36,
+    "name": "style refresh updates comments while retaining explicit run settings",
+    "suite_id": 4,
+    "suite": "test/word_comment_proofing_styles_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 38,
+    "name": "new TOC link appearance survives its first export",
+    "suite_id": 6,
+    "suite": "test/word_style_introduction_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 39,
+    "name": "unrelated style catalog false retains native paragraph defaults",
+    "suite_id": 6,
+    "suite": "test/word_style_introduction_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 40,
+    "name": "unrelated style catalog true retains native paragraph defaults",
+    "suite_id": 6,
+    "suite": "test/word_style_introduction_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 41,
+    "name": "declared defaults still cascade and explicit zero overrides them",
+    "suite_id": 6,
+    "suite": "test/word_style_introduction_test.dart",
+    "result": "success",
+    "skipped": false
+  }
+]

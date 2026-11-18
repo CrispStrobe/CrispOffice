@@ -1,0 +1,163 @@
+{
+  "started_at_utc": "2026-11-18T18:44:55.162926+00:00",
+  "source_commit": "eedf2aee03964329a2e4c7ee3c771d43b5df4991",
+  "source_tree": "975389ed58d1851cf72c56b5e1cf594531762ad7",
+  "source_file_count": 3548,
+  "source_manifest_sha256": "39fff2337cce65c7c03d13f9d45411ec18e0fc61182e5e5cdae5c9232f3518a0",
+  "source_mismatches_before": [],
+  "tracked_worktree_clean_before": true,
+  "fixture_definitions": [
+    "render_comments.dart",
+    "render_text_options.dart"
+  ],
+  "fixture_definition_sha256": {
+    "render_comments.dart": "1e18039366722537103f1e2cfdd27771bb1a7c50c1ac41558b25622080fb800e",
+    "render_text_options.dart": "12862f483868682ca93600d7074eca495147b7df136e6b00d28e1b12e0c4c516"
+  },
+  "regression_gate_success": true,
+  "finished_at_utc": "2026-11-18T18:46:26.731912+00:00",
+  "runs": [
+    {
+      "name": "text-options",
+      "cwd": "packages/quds_office_editor",
+      "command": [
+        "/workspace/scratch/887f66647834/toolchains/bin/flutter",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "json",
+        "../../docs/validation/document-review-inflight-20261118/render_text_options.dart"
+      ],
+      "exit_code": 0,
+      "passed": 2,
+      "failed": 0,
+      "skipped": 0,
+      "cases": [
+        {
+          "name": "capture mixed text languages and an explicit checking exclusion",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "capture language controls below a narrow RTL document",
+          "result": "success",
+          "skipped": false
+        }
+      ],
+      "reporter_success": true,
+      "reporter_errors": [],
+      "log": "checks/text-options.jsonl",
+      "log_sha256": "5d338d477a813302a4558093b9c649c9764fd8eaf5010954247c81d8e9e557f5",
+      "compressed_log": "checks/text-options.jsonl.gz",
+      "compressed_log_sha256": "e1189aa633e61f957a456fa34e197f84b2bd6e2f1c93711eff0f4c9ac905319c"
+    },
+    {
+      "name": "comments",
+      "cwd": "packages/quds_office_editor/example",
+      "command": [
+        "/workspace/scratch/887f66647834/toolchains/bin/flutter",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "json",
+        "../../../docs/validation/document-review-inflight-20261118/render_comments.dart"
+      ],
+      "exit_code": 0,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "cases": [
+        {
+          "name": "render inline and context-menu comment corrections",
+          "result": "success",
+          "skipped": false
+        }
+      ],
+      "reporter_success": true,
+      "reporter_errors": [],
+      "log": "checks/comments.jsonl",
+      "log_sha256": "78a358639a8c00f76bae7c46bc045b747fd6c445b055c87d10e6ffe60fbc4b22",
+      "compressed_log": "checks/comments.jsonl.gz",
+      "compressed_log_sha256": "86d7a26a62f9f63896cf29520dc9a70abbc99bafb059ebd5db32d1fad7cf195e"
+    }
+  ],
+  "passed": 3,
+  "failed": 0,
+  "skipped": 0,
+  "screenshots": [
+    {
+      "name": "comments-context-suggestions-desktop.png",
+      "sha256": "65ab06ddcb39ffea0dd822955db3f4759a82e786f3890a6af1fefb145b693966",
+      "bytes": 143053,
+      "width": 1760,
+      "height": 1000,
+      "identical_to_previously_inspected_capture": false,
+      "inspected": true
+    },
+    {
+      "name": "comments-inline-suggestions-arabic-narrow.png",
+      "sha256": "50d7b4b12f2a0a1798fdd53e6b205823169b345be709928ca3cf90b882616fb6",
+      "bytes": 115597,
+      "width": 900,
+      "height": 1000,
+      "identical_to_previously_inspected_capture": true,
+      "inspected": true
+    },
+    {
+      "name": "comments-inline-suggestions-desktop.png",
+      "sha256": "f5fcb5ef0d4c06e4067be8d1926b9136325456879d9c8b731499b90574cd054b",
+      "bytes": 134387,
+      "width": 1760,
+      "height": 1000,
+      "identical_to_previously_inspected_capture": true,
+      "inspected": true
+    },
+    {
+      "name": "comments-writing-desktop.png",
+      "sha256": "14a6c7a5d3fda1b9bdb7e35968d5defc190e75769da3780d73d16659d8cdcde1",
+      "bytes": 189000,
+      "width": 1760,
+      "height": 1000,
+      "identical_to_previously_inspected_capture": true,
+      "inspected": true
+    },
+    {
+      "name": "text-proofing-arabic-narrow.png",
+      "sha256": "8136891a079f4f047467b8687a6c71cc45331a0ccd18821478fb2568ab835777",
+      "bytes": 57501,
+      "width": 650,
+      "height": 1000,
+      "identical_to_previously_inspected_capture": true,
+      "inspected": true
+    },
+    {
+      "name": "text-proofing-excluded-desktop.png",
+      "sha256": "5542d903ce60172611aac618325bba5a7cf8029fcfda91767bccd56e1a3ad047",
+      "bytes": 127463,
+      "width": 1280,
+      "height": 960,
+      "identical_to_previously_inspected_capture": true,
+      "inspected": true
+    },
+    {
+      "name": "text-proofing-mixed-desktop.png",
+      "sha256": "921b9d1727b6e9ec4055cfb5a15553b59949eac5e25ba2d2711e2a95ced55de6",
+      "bytes": 120554,
+      "width": 1280,
+      "height": 960,
+      "identical_to_previously_inspected_capture": true,
+      "inspected": true
+    }
+  ],
+  "source_mismatches_after": [],
+  "environment_mismatches_after": [],
+  "source_head_unchanged": true,
+  "source_index_unchanged": true,
+  "tracked_worktree_clean_after": true,
+  "environment_manifest_sha256": "03ce9ccc6176ae4fcf550044355e4a3f7b40a97a3af9689b43da8d5f85afcda6",
+  "success": true,
+  "image_inspection": "All seven final capture bytes were inspected by root: six are byte-identical to prior inspected captures and the changed context-menu capture was inspected again.",
+  "github_actions_queried_or_awaited": false,
+  "all_screenshots_inspected": true,
+  "screenshot_directory": "../../screenshots"
+}
