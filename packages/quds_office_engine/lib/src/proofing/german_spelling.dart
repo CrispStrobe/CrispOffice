@@ -19,7 +19,12 @@ Set<int> _sourceGraphemeBoundaries(String text) {
   return boundaries;
 }
 
-/// Canonicalizes common decomposed Latin letters without changing source text.
+final RegExp _internalApostrophe = RegExp(
+  r'(?<=[\p{L}\p{M}])\u2019(?=\p{L})',
+  unicode: true,
+);
+
+/// Canonicalizes common decomposed Latin letters and lexical separators.
 /// This comparison helper is deliberately separate from source-offset handling.
 String normalizeGermanWord(String word) {
   const Map<String, String> composed = <String, String>{
@@ -75,12 +80,15 @@ String normalizeGermanWord(String word) {
   return result
       .replaceAll('\u00ad', '')
       .replaceAll('\u2010', '-')
-      .replaceAll('\u2011', '-');
+      .replaceAll('\u2011', '-')
+      // U+2019 also closes quotations. Only an internal lexical apostrophe
+      // shares the dictionary/personal-word spelling of the ASCII separator.
+      .replaceAll(_internalApostrophe, "'");
 }
 
 /// Host-owned personal and session-ignored words. Nothing is persisted or shared
 /// by the engine. A host can save [toJson] under [ownerId] in its own storage.
-/// Membership is case-sensitive after canonical accent composition.
+/// Membership is case-sensitive after canonical accent/separator comparison.
 class OfficeProofingVocabulary {
   OfficeProofingVocabulary({this.ownerId = 'local', this.onChanged});
 
@@ -416,7 +424,7 @@ class GermanSpellingProvider extends OfficeProofingProvider {
               ? 'Die Schweizer Schreibweise verwendet ss statt ß.'
               : 'Dieses Wort ist nicht im deutschen Wörterverzeichnis enthalten.',
           category: OfficeProofingCategory.spelling,
-          replacements: _withSourceHyphens(original, replacements),
+          replacements: _withSourceSeparators(original, replacements),
         ),
       );
     }
@@ -690,12 +698,10 @@ class GermanSpellingProvider extends OfficeProofingProvider {
         !_participleSpace.hasMatch(prefix.substring(words.last.end))) {
       return null;
     }
-    final String subject = normalizeGermanWord(
-      words[0].group(0)!,
-    ).toLowerCase();
-    final String auxiliary = normalizeGermanWord(
-      words[1].group(0)!,
-    ).toLowerCase();
+    final String subject = normalizeGermanWord(words[0].group(0)!)
+        .toLowerCase();
+    final String auxiliary = normalizeGermanWord(words[1].group(0)!)
+        .toLowerCase();
     final String? preferred =
         (_habenParticipleAuxiliaries[subject]?.contains(auxiliary) ?? false)
         ? habenPreferred
@@ -964,26 +970,43 @@ class GermanSpellingProvider extends OfficeProofingProvider {
     );
   }
 
-  static List<String> _withSourceHyphens(
+  static List<String> _withSourceSeparators(
     String source,
     List<String> replacements,
   ) {
-    final List<String> separators = RegExp(
-      r'[-\u2010\u2011]',
-    ).allMatches(source).map((RegExpMatch match) => match.group(0)!).toList();
-    if (separators.every((String separator) => separator == '-')) {
+    final List<String> hyphens = RegExp(r'[-\u2010\u2011]')
+        .allMatches(source)
+        .map((RegExpMatch match) => match.group(0)!)
+        .toList();
+    final List<String> apostrophes = RegExp(r"['\u2019]")
+        .allMatches(source)
+        .map((RegExpMatch match) => match.group(0)!)
+        .toList();
+    if (hyphens.every((String separator) => separator == '-') &&
+        apostrophes.every((String separator) => separator == "'")) {
       return replacements;
     }
     return List<String>.unmodifiable(
       replacements.map((String replacement) {
-        if ('-'.allMatches(replacement).length != separators.length) {
-          return replacement;
+        // Restore each separator kind independently, only when the proposed
+        // correction retains its count. A correction that removes/adds one
+        // must not invent a source-to-replacement positional correspondence.
+        String styled = replacement;
+        if ('-'.allMatches(styled).length == hyphens.length) {
+          int index = 0;
+          styled = styled.replaceAllMapped(
+            RegExp('-'),
+            (Match _) => hyphens[index++],
+          );
         }
-        int index = 0;
-        return replacement.replaceAllMapped(
-          RegExp('-'),
-          (Match _) => separators[index++],
-        );
+        if ("'".allMatches(styled).length == apostrophes.length) {
+          int index = 0;
+          styled = styled.replaceAllMapped(
+            RegExp("'"),
+            (Match _) => apostrophes[index++],
+          );
+        }
+        return styled;
       }),
     );
   }
