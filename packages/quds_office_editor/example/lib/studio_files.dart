@@ -74,6 +74,26 @@ abstract final class StudioFiles {
     );
   }
 
+  /// Chooses a comparison source without loading it into the active editor.
+  static Future<WordComparisonDocument?> pickComparisonDocument() async {
+    final result = await FilePicker.platform.pickFiles(
+      type: FileType.custom,
+      allowedExtensions: const <String>['docx', 'docm', 'dotx', 'dotm'],
+      withData: kIsWeb,
+    );
+    if (result == null || result.files.isEmpty) return null;
+    final file = result.files.single;
+    final bytes = await ensureBytes(PickedOfficeFile(
+      bytes: file.bytes ?? Uint8List(0),
+      name: file.name,
+      kind: OpcPackageKind.word,
+      path: file.path,
+    ));
+    if (bytes.isEmpty) throw StateError('The selected document is empty.');
+    final opened = await OfficeIsolateOpen.word(bytes);
+    return WordComparisonDocument(document: opened.document, name: file.name);
+  }
+
   /// Loads picked file bytes on a worker isolate when the picker only returned a path.
   static Future<Uint8List> ensureBytes(PickedOfficeFile picked) async {
     if (picked.bytes.isNotEmpty) {

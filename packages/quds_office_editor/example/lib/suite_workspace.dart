@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
 import 'dart:math' as math;
 
@@ -2727,6 +2728,21 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   List<StudioRibbonGroup> _wordReview() {
     return <StudioRibbonGroup>[
       StudioRibbonGroup(
+        title: _arabic ? 'مراجعة المستند' : 'Document review',
+        children: <Widget>[
+          _cmd(
+            Icons.rate_review_outlined,
+            _arabic ? 'مراجعة التغييرات' : 'Review changes',
+            () => _showDocumentReview(WordReviewTab.changes),
+          ),
+          _cmd(
+            Icons.compare_arrows,
+            _arabic ? 'مقارنة مستندين' : 'Compare documents',
+            _studioCompareDocument,
+          ),
+        ],
+      ),
+      StudioRibbonGroup(
         title: _arabic ? 'تحليل لغوي' : 'Language analysis',
         children: <Widget>[
           _cmd(
@@ -2901,7 +2917,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
           _cmd(
             Icons.compare_arrows,
             _arabic ? 'مقارنة' : 'Compare',
-            _canMutate ? _studioCompareDocument : null,
+            _studioCompareDocument,
           ),
           _cmd(
             Icons.print,
@@ -5362,9 +5378,22 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   }
 
   void _studioCompareDocument() {
-    _word.compareWith(
-      WmlDocument.empty(text: _arabic ? 'نسخة للمقارنة' : 'Comparison copy'),
-    );
+    _showDocumentReview(WordReviewTab.compare);
+  }
+
+  void _showDocumentReview(WordReviewTab tab) {
+    unawaited(showWordReviewDialog(
+      context,
+      controller: _word,
+      documentName: _wordName,
+      pickDocument: StudioFiles.pickComparisonDocument,
+      onExportReport: (name, json) => StudioFiles.save(
+        fileName: name,
+        bytes: Uint8List.fromList(utf8.encode(json)),
+      ),
+      initialTab: tab,
+      arabic: _arabic,
+    ));
   }
 
   void _studioSheetValidation() {
