@@ -174,6 +174,7 @@ Future<void> _reveal(WidgetTester tester, Finder finder) async {
 
 Future<void> _tap(WidgetTester tester, Finder finder) async {
   await _reveal(tester, finder);
+  expect(finder.hitTestable(), findsOneWidget, reason: '$finder');
   await tester.tap(finder);
   await _drain(tester);
   expect(tester.takeException(), isNull);
@@ -181,15 +182,23 @@ Future<void> _tap(WidgetTester tester, Finder finder) async {
 
 Future<void> _choose(WidgetTester tester, String key, String label) async {
   if (key == 'live-review-author-filter' || key == 'live-review-kind-filter') {
-    await _reveal(tester, _key('live-review-filters'));
-    if (_key(key).evaluate().isEmpty) {
-      await _tap(tester, _key('live-review-filters'));
+    await _reveal(tester, _key(key));
+    // A collapsed maintainState tile keeps its children mounted. Scroll first
+    // to distinguish an off-screen control from one hidden by the closed tile.
+    if (_key(key).hitTestable().evaluate().isEmpty) {
+      await _tap(
+        tester,
+        find
+            .descendant(
+              of: _key('live-review-filters'),
+              matching: find.byType(ListTile),
+            )
+            .first,
+      );
     }
   }
   await _tap(tester, _key(key));
-  await tester.tap(find.text(label).last);
-  await _drain(tester);
-  expect(tester.takeException(), isNull);
+  await _tap(tester, find.text(label).last);
 }
 
 String _text(WidgetTester tester, String key) {

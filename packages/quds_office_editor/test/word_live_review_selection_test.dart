@@ -187,13 +187,32 @@ void main() {
       );
       controller.selectProofingIssue(selected);
       final oldRevision = controller.contentRevision;
+      final selectedCaret = (
+        paragraph: controller.caret.paragraphIndex,
+        offset: controller.caret.logicalIndex,
+        anchor: controller.caret.selectionAnchor,
+        anchorParagraph: controller.caret.selectionAnchorParagraph,
+      );
 
       expect(controller.applyProofingSuggestion(other, 'Fehler'), isTrue);
       expect(controller.contentRevision, greaterThan(oldRevision));
       expect(selectedParagraph.text, 'Feler selected');
       expect(otherParagraph.text, 'Fehler elsewhere');
-      expect(controller.selectedProofingIssue, isNull);
+      final retained = controller.selectedProofingIssue;
+      expect(retained, isNotNull);
+      expect(retained, isNot(same(selected)));
+      expect(retained!.paragraph, same(selectedParagraph));
+      expect(retained.finding.revision, controller.contentRevision);
+      expect(controller.proofing.isCurrent(retained), isTrue);
       expect(controller.proofing.isCurrent(selected), isFalse);
+      expect(controller.applyProofingSuggestion(selected, 'Fehler'), isFalse);
+      expect(selectedParagraph.text, 'Feler selected');
+      expect((
+        paragraph: controller.caret.paragraphIndex,
+        offset: controller.caret.logicalIndex,
+        anchor: controller.caret.selectionAnchor,
+        anchorParagraph: controller.caret.selectionAnchorParagraph,
+      ), selectedCaret);
 
       final checked = await controller.checkDocumentProofing();
       final rebound = checked.issues.single;
