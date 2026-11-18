@@ -49,6 +49,7 @@ final class WordProofingSummary {
       !checking &&
       !scheduled &&
       !manualProvidersSkipped &&
+      checkedParagraphCount == paragraphCount &&
       skippedContentCount == 0 &&
       reports.isNotEmpty &&
       reports.every((report) => report.complete);
@@ -139,6 +140,10 @@ final class WordProofingSession extends ChangeNotifier {
 
   WordProofingSummary get summary => _summary;
   bool get checking => _summary.checking;
+
+  /// Changes when a check starts or its input is invalidated, never for progress.
+  /// Hosts can use this token to share requests for the same active check.
+  int get checkGeneration => _generation;
   bool get enabled => _enabled;
   bool get hasManualProviders => _manualService?.providers.isNotEmpty ?? false;
   String get language =>
@@ -272,8 +277,15 @@ final class WordProofingSession extends ChangeNotifier {
     _generation++;
     _timer?.cancel();
     _timer = null;
-    _summary = WordProofingSummary(scheduled: _enabled);
-    _findings = HashMap.identity();
+    final document = _document();
+    final captured = _capture(document);
+    _publishCached(
+      captured,
+      documentId: _documentIds[document] ??= 'document-${++_nextId}',
+      revision: _revision(),
+      useManual: false,
+      scheduled: _enabled,
+    );
     if (_enabled) {
       _timer = Timer(
         debounce,
@@ -452,8 +464,8 @@ final class WordProofingSession extends ChangeNotifier {
   }
 
   /// Explicit checks include manually configured providers. Background callers
-  /// omit them and report that coverage separately; cached results never cross
-  /// these two scopes. F7 and the review dialog call the inclusive default.
+  /// omit them and report that coverage separately. Verified ordinary findings
+  /// remain available while other paragraphs or manual providers are checked.
   Future<WordProofingSummary> checkNow({
     bool includeManualProviders = true,
   }) async {
@@ -475,48 +487,43 @@ final class WordProofingSession extends ChangeNotifier {
     _observedConfiguration = configuration;
     final documentId = _documentIds[document] ??= 'document-${++_nextId}';
     final captured = _capture(document);
-    final manualSkipped =
-        !includeManualProviders && _manualProvidersApplyTo(captured);
-    _summary = WordProofingSummary(
-      paragraphCount: captured.paragraphs.length,
+    _publishCached(
+      captured,
+      documentId: documentId,
+      revision: revision,
+      useManual: useManual,
       checking: true,
-      manualProvidersSkipped: manualSkipped,
     );
-    _findings = HashMap.identity();
     notifyListeners();
-    final reports = <OfficeProofingReport>[];
-    final issues = <WordProofingIssue>[];
-    var checked = 0;
     bool current() =>
         !_disposed &&
         generation == _generation &&
         identical(document, _document()) &&
         revision == _revision() &&
         configuration == _configurationKey;
+
+    // At most twenty progress publications keep long documents responsive
+    // without repeatedly rebuilding every paragraph for each short result.
+    final progressStride = (captured.paragraphs.length + 19) ~/ 20;
+    var processed = 0;
     for (final snapshot in captured.paragraphs) {
-      // Yield between paragraphs even when a cached/provider Future completes
-      // synchronously. Web typing and painting get an event-loop turn.
+      // Yield even when a cached/provider Future completes synchronously.
       await Future<void>.delayed(Duration.zero);
       if (!current()) return _summary;
-      final cached = _cache[snapshot.paragraph];
+      final cached = _cachedReports(snapshot, useManual: useManual);
+      final reusable =
+          cached != null && cached.every((report) => report.complete);
       final paragraphReports = <OfficeProofingReport>[];
       for (var index = 0; index < snapshot.segments.length; index++) {
-        final segment = snapshot.segments[index];
-        final request = OfficeProofingRequest(
+        final request = _request(
+          snapshot,
+          snapshot.segments[index],
           documentId: documentId,
-          blockId: _ids[snapshot.paragraph] ??= 'paragraph-${++_nextId}',
           revision: revision,
-          text: segment.text,
-          startOffset: segment.start,
-          language: segment.language,
-          ignoredRuleIds: _ignoredRules,
         );
         final OfficeProofingReport report;
-        if (cached?.key == snapshot.key &&
-            cached!.includesManual == useManual &&
-            cached.reports.length == snapshot.segments.length &&
-            cached.reports.every((report) => report.complete)) {
-          report = _retarget(cached.reports[index], request);
+        if (reusable) {
+          report = _retarget(cached[index], request);
         } else {
           final ordinary = await _service.check(request);
           if (!current()) return _summary;
@@ -529,6 +536,141 @@ final class WordProofingSession extends ChangeNotifier {
         }
         if (!current()) return _summary;
         paragraphReports.add(report);
+      }
+      _cache[snapshot.paragraph] = _CachedParagraph(
+        snapshot.key,
+        paragraphReports,
+        useManual,
+      );
+      processed++;
+      if (processed < captured.paragraphs.length &&
+          processed % progressStride == 0) {
+        // Direct host edits can bypass the revision counter. Validate the
+        // complete story/field/guard snapshot before exposing partial results.
+        if (captured.key != _capture(document).key) {
+          refresh();
+          return _summary;
+        }
+        _publishCached(
+          captured,
+          documentId: documentId,
+          revision: revision,
+          useManual: useManual,
+          checking: true,
+        );
+        notifyListeners();
+      }
+    }
+    if (!current()) return _summary;
+    if (captured.key != _capture(document).key) {
+      refresh();
+      return _summary;
+    }
+    _publishCached(
+      captured,
+      documentId: documentId,
+      revision: revision,
+      useManual: useManual,
+      finished: true,
+    );
+    notifyListeners();
+    return _summary;
+  }
+
+  OfficeProofingRequest _request(
+    _ParagraphSnapshot snapshot,
+    _Segment segment, {
+    required String documentId,
+    required int revision,
+  }) => OfficeProofingRequest(
+    documentId: documentId,
+    blockId: _ids[snapshot.paragraph] ??= 'paragraph-${++_nextId}',
+    revision: revision,
+    text: segment.text,
+    startOffset: segment.start,
+    language: segment.language,
+    ignoredRuleIds: _ignoredRules,
+  );
+
+  List<OfficeProofingReport>? _cachedReports(
+    _ParagraphSnapshot snapshot, {
+    required bool useManual,
+    bool allowOrdinaryPreview = false,
+  }) {
+    final cached = _cache[snapshot.paragraph];
+    if (cached == null ||
+        cached.key != snapshot.key ||
+        cached.reports.length != snapshot.segments.length) {
+      return null;
+    }
+    if (cached.includesManual == useManual ||
+        (useManual && allowOrdinaryPreview)) {
+      return cached.reports;
+    }
+    if (useManual) return null;
+    // A full check contains the ordinary results unchanged. Keep those marks
+    // during typing, but never carry manual findings or coverage into a
+    // background pass, and never start the manual service here.
+    final manualIds = {
+      for (final provider
+          in _manualService?.providers ?? const <OfficeProofingProvider>[])
+        provider.id,
+    };
+    return [
+      for (final report in cached.reports)
+        OfficeProofingReport(
+          request: report.request,
+          results: [
+            for (final result in report.results)
+              if (!manualIds.contains(result.providerId)) result,
+          ],
+        ),
+    ];
+  }
+
+  void _publishCached(
+    _DocumentSnapshot captured, {
+    required String documentId,
+    required int revision,
+    required bool useManual,
+    bool checking = false,
+    bool scheduled = false,
+    bool finished = false,
+  }) {
+    final attached = HashSet<WmlParagraph>.identity()
+      ..addAll(captured.paragraphs.map((snapshot) => snapshot.paragraph));
+    _cache.removeWhere((paragraph, _) => !attached.contains(paragraph));
+    final previous = HashMap<WmlParagraph, List<WordProofingIssue>>.identity();
+    for (final issue in _summary.issues) {
+      previous.putIfAbsent(issue.paragraph, () => []).add(issue);
+    }
+    final reports = <OfficeProofingReport>[];
+    final issues = <WordProofingIssue>[];
+    var checked = 0;
+    for (final snapshot in captured.paragraphs) {
+      final cached = _cachedReports(
+        snapshot,
+        useManual: useManual,
+        allowOrdinaryPreview: true,
+      );
+      if (cached == null) continue;
+      if ((!useManual || _cache[snapshot.paragraph]!.includesManual) &&
+          cached.isNotEmpty &&
+          cached.every((report) => report.complete)) {
+        checked++;
+      }
+      for (var index = 0; index < snapshot.segments.length; index++) {
+        final segment = snapshot.segments[index];
+        final report = _retarget(
+          cached[index],
+          _request(
+            snapshot,
+            segment,
+            documentId: documentId,
+            revision: revision,
+          ),
+        );
+        reports.add(report);
         for (final finding in report.findings) {
           if (_ignoredOnce.contains(_issueKey(finding, snapshot))) continue;
           if (finding.category == OfficeProofingCategory.spelling &&
@@ -538,51 +680,60 @@ final class WordProofingSession extends ChangeNotifier {
               )) {
             continue;
           }
-          issues.add(WordProofingIssue._(finding, snapshot, segment.language));
+          // Keep a current finding's identity when only progress changes, so
+          // an open suggestion menu remains usable while other text is checked.
+          final existing = previous[snapshot.paragraph]
+              ?.where(
+                (issue) =>
+                    issue._snapshot.key == snapshot.key &&
+                    issue.language == segment.language &&
+                    _sameFinding(issue.finding, finding),
+              )
+              .firstOrNull;
+          issues.add(
+            existing ??
+                WordProofingIssue._(finding, snapshot, segment.language),
+          );
         }
       }
-      if (paragraphReports.isNotEmpty &&
-          paragraphReports.every((report) => report.complete)) {
-        checked++;
-      }
-      reports.addAll(paragraphReports);
-      _cache[snapshot.paragraph] = _CachedParagraph(
-        snapshot.key,
-        paragraphReports,
-        useManual,
-      );
     }
-    if (!current()) return _summary;
-    final after = _capture(document);
-    if (captured.key != after.key) {
-      refresh();
-      return _summary;
-    }
-    final attached = captured.paragraphs
-        .map((snapshot) => snapshot.paragraph)
-        .toSet();
-    _cache.removeWhere((paragraph, _) => !attached.contains(paragraph));
     final findings =
         HashMap<WmlParagraph, List<OfficeProofingFinding>>.identity();
     for (final issue in issues) {
       findings.putIfAbsent(issue.paragraph, () => []).add(issue.finding);
     }
-    _findings = {
-      for (final entry in findings.entries)
-        entry.key: List.unmodifiable(entry.value),
-    };
+    _findings = HashMap<WmlParagraph, List<OfficeProofingFinding>>.identity();
+    for (final entry in findings.entries) {
+      _findings[entry.key] = List.unmodifiable(entry.value);
+    }
     _summary = WordProofingSummary(
       paragraphCount: captured.paragraphs.length,
       checkedParagraphCount: checked,
       skippedContentCount: captured.skipped,
-      hasResults: true,
+      hasResults: finished || reports.isNotEmpty,
       reports: reports,
       issues: issues,
-      manualProvidersSkipped: manualSkipped,
+      checking: checking,
+      scheduled: scheduled,
+      manualProvidersSkipped: !useManual && _manualProvidersApplyTo(captured),
     );
-    notifyListeners();
-    return _summary;
   }
+
+  static bool _sameFinding(
+    OfficeProofingFinding left,
+    OfficeProofingFinding right,
+  ) =>
+      left.documentId == right.documentId &&
+      left.blockId == right.blockId &&
+      left.revision == right.revision &&
+      left.providerId == right.providerId &&
+      left.ruleId == right.ruleId &&
+      left.start == right.start &&
+      left.end == right.end &&
+      left.originalText == right.originalText &&
+      left.message == right.message &&
+      left.category == right.category &&
+      listEquals(left.replacements, right.replacements);
 
   bool _manualProvidersApplyTo(_DocumentSnapshot captured) {
     final manual = _manualService;

@@ -11,6 +11,21 @@ web assets. Mobile system spelling has an adapter with protocol tests. The
 experimental German GECToR provider is available as a separately installed,
 verified, manual-only de-DE option; no model is downloaded or enabled by default.
 
+## English/German thesaurus scope — 18 November 2026
+
+The [separate thesaurus plan](roadmaps/thesaurus/README.md) scopes offline
+English/German alternatives grouped by meaning and explicit Word replacement.
+It reuses this fork's language inheritance, source snapshots, guarded
+rich-text correction/undo and qualified finite noun morphology. New thesaurus
+targets and candidates remain distinct from proofing findings.
+
+The planned English default is OEWN, with Princeton WordNet as the
+permissive alternative; German uses OpenThesaurus's offered CC BY-SA 4.0
+option. See the [planned data notices](roadmaps/thesaurus/licensing-and-notices.md).
+These are scoped future data choices, with no NC sources. This documentation
+change imports no corpus or model and makes no new implementation or
+validation claim.
+
 ## Native spelling continuation — 18 November 2026
 
 PR #159 is merged, including the spelling shortlist changes from #157,
@@ -407,6 +422,13 @@ packaging/license tests; no new real-library/Wasm execution is claimed.
 The experimental German model remains disabled and was not rerun.
 
 ## Scope and license policy
+
+The separate [18 November thesaurus scope](roadmaps/thesaurus/README.md)
+records the user's permissive-preferred, no-NC requirement and its specific
+CC BY 4.0/WordNet and CC BY-SA 4.0 data choices. Its
+[planned notices](roadmaps/thesaurus/licensing-and-notices.md) govern future
+thesaurus packs; the original P1–P8 exclusions and existing artifact allowlists
+below retain their recorded scope.
 
 The rules below record the existing proofing feature plan and its packaging
 qualifications. For the new native linguistic backend, the later user
