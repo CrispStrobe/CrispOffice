@@ -1760,7 +1760,7 @@
   ],
   "github_actions_or_status_endpoints_used": false,
   "limitations": [
-    "Fixed fork-ref snapshot; no claim of an exhaustive live upstream refresh in this audit.",
+    "Fixed fork-ref snapshot plus a bounded live upstream-head audit; no claim to include future concurrent commits.",
     "GitHub PR base fields can lag the live Git branch tip. Git commit ancestry is used for integration decisions.",
     "This is reconciliation evidence, not new runtime qualification."
   ],
@@ -3896,5 +3896,80 @@
     "pr153": true,
     "pr154": true
   },
-  "aot_package_present": false
+  "aot_package_present": false,
+  "upstream": {
+    "repository": "MohammedAsaadAsaad/quds_office_suite",
+    "observed_at_utc": "2026-11-18T10:41:05.526948+00:00",
+    "method": "git ls-remote https://github.com/MohammedAsaadAsaad/quds_office_suite.git 'refs/heads/*' 'refs/pull/*/head'",
+    "branch_count": 4,
+    "pull_request_head_count": 4,
+    "distinct_heads": 5,
+    "all_commit_objects_available": true,
+    "all_heads_ancestor_of_baseline": true,
+    "matches_previous_inventory_at": "115a040c19c3df4ba78c4e573d4fa99433efd965:docs/validation/zotero-tags-20261118/incoming.json",
+    "refs": [
+      {
+        "ref": "refs/heads/ci/flutter-workspace",
+        "sha": "aca2f66941832bd0b19b436baeab1656a1b7de98",
+        "kind": "branch",
+        "disposition": "ancestor_of_baseline",
+        "matches_previous_inventory": true
+      },
+      {
+        "ref": "refs/heads/cursor/class-certificates-2db8",
+        "sha": "f45099688e7a3f67a1302efdb442830d052f2240",
+        "kind": "branch",
+        "disposition": "ancestor_of_baseline",
+        "matches_previous_inventory": true
+      },
+      {
+        "ref": "refs/heads/cursor/cloud-agent-1790580069020-0rk1h",
+        "sha": "9930be8df44ffe117fb22778c514eea0ee73ce21",
+        "kind": "branch",
+        "disposition": "ancestor_of_baseline",
+        "matches_previous_inventory": true
+      },
+      {
+        "ref": "refs/heads/main",
+        "sha": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+        "kind": "branch",
+        "disposition": "ancestor_of_baseline",
+        "matches_previous_inventory": true
+      },
+      {
+        "ref": "refs/pull/1/head",
+        "sha": "48c5156f459597ce3f8ec486b3c9a20fc5543807",
+        "kind": "pull_request",
+        "disposition": "ancestor_of_baseline",
+        "matches_previous_inventory": true
+      },
+      {
+        "ref": "refs/pull/5/head",
+        "sha": "9930be8df44ffe117fb22778c514eea0ee73ce21",
+        "kind": "pull_request",
+        "disposition": "ancestor_of_baseline",
+        "matches_previous_inventory": true
+      },
+      {
+        "ref": "refs/pull/6/head",
+        "sha": "aca2f66941832bd0b19b436baeab1656a1b7de98",
+        "kind": "pull_request",
+        "disposition": "ancestor_of_baseline",
+        "matches_previous_inventory": true
+      },
+      {
+        "ref": "refs/pull/7/head",
+        "sha": "f45099688e7a3f67a1302efdb442830d052f2240",
+        "kind": "pull_request",
+        "disposition": "ancestor_of_baseline",
+        "matches_previous_inventory": true
+      }
+    ]
+  },
+  "combined_counts": {
+    "branch_heads": 199,
+    "pull_request_heads": 160,
+    "refs": 359,
+    "distinct_heads": 233
+  }
 }

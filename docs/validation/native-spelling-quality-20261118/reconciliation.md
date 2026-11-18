@@ -31,6 +31,18 @@ editor `CHANGELOG.md` additions. Both sets of entries were retained in
 baseline above. All six source heads recorded under `baseline_contains` in
 the inventory are verified ancestors of that baseline.
 
+## Upstream verification
+
+A bounded live `git ls-remote` check of
+`MohammedAsaadAsaad/quds_office_suite` returned **four branch heads and four
+PR heads**. All eight commit objects were already available, and every head
+is an ancestor of the implementation baseline. Their SHAs also match the
+previous upstream inventory preserved with the Zotero tags checkpoint.
+Upstream main remains `15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba`.
+No additional upstream product merge is needed. Exact upstream refs and
+combined counts are recorded separately in `refs.json` so fork and upstream
+branch counts are not conflated.
+
 ## Historical branches
 
 The earlier [native spelling reconciliation](../native-spelling-20261118/reconciliation.md)
