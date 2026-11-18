@@ -1,0 +1,370 @@
+{
+  "archive": "runtime-recovery.tar.xz",
+  "bytes": 222156,
+  "sha256": "2afcb3bdcff2a88032521f9c660b9eb75a857b07e974254d2b69cecb5809f9b9",
+  "classification": "Exact pinned consumer/native runtime recovery on 2026-11-18; not product qualification. Native binaries/models match trusted pins. All 27 Python versions restored; duplicate build venv and reproducible bytecode removed only after verification. Large ONNX/F32 inputs released after final model hash check for disk budget.",
+  "member_count": 72,
+  "all_members_read_back_and_verified": true,
+  "members": [
+    {
+      "path": "compiled-cache-release.json",
+      "bytes": 26316,
+      "sha256": "c85de9dc45400216466a6d99706b82b48fef5ae16c6921ac3497e86699ac962c"
+    },
+    {
+      "path": "consumer/env.sh",
+      "bytes": 724,
+      "sha256": "81877e8f606cd667d568c1836c749827dc0ca5c7f0c122548d56c186904f9a4e"
+    },
+    {
+      "path": "consumer/font-prerequisites.json",
+      "bytes": 2413,
+      "sha256": "60b95dffe5e435c759069cca9e2f4f6122ed9d2453ff9107fd0cd897a4ba55dc"
+    },
+    {
+      "path": "consumer/logs/java-version.stderr",
+      "bytes": 181,
+      "sha256": "0fc83381287ccbc8623d257bce2b0d03997ba0e85ff4492d38b409aea37a8aa9"
+    },
+    {
+      "path": "consumer/logs/java-version.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "consumer/logs/pdfinfo-version.stderr",
+      "bytes": 143,
+      "sha256": "56221b4464aa8299b97e80d0fc7efcdb23d7a4146aa304611ec9e5c9c7984001"
+    },
+    {
+      "path": "consumer/logs/pdfinfo-version.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "consumer/logs/pdftoppm-version.stderr",
+      "bytes": 144,
+      "sha256": "9b3b47703da9f8e397c209c07869aa7d92c2c25a63b48f42425934902df3c286"
+    },
+    {
+      "path": "consumer/logs/pdftoppm-version.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "consumer/logs/pdftotext-version.stderr",
+      "bytes": 145,
+      "sha256": "0f2ff359cb556fedcd7be481e9a06c6f25d46789094b702bd84ab4cf09ce49b0"
+    },
+    {
+      "path": "consumer/logs/pdftotext-version.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "consumer/logs/soffice-version.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "consumer/logs/soffice-version.stdout",
+      "bytes": 73,
+      "sha256": "6d49d29516f9fb3b3f02bf33238f0beae9980c1743128ce831deddcfb69bce89"
+    },
+    {
+      "path": "consumer/recovery.json",
+      "bytes": 1276217,
+      "sha256": "ee81d57901d1c71cb7b979e3435e8b881701995dae41a629be03d127d6c3172c"
+    },
+    {
+      "path": "consumer/scripts/restore_runtime.py",
+      "bytes": 6478,
+      "sha256": "98d93e6281920cf5aa71f4446e31338d1785a6f4230b0c1e32b7efc1044256fa"
+    },
+    {
+      "path": "consumer/scripts/verify_runtime.py",
+      "bytes": 3027,
+      "sha256": "11e7442bb47aaf634236109c1bc849ddebf552ea837954c9da39397a9e3940c3"
+    },
+    {
+      "path": "consumer/smoke/historical-extraction.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "consumer/smoke/historical-extraction.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "consumer/smoke/historical-render.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "consumer/smoke/historical-render.stdout",
+      "bytes": 266,
+      "sha256": "ce3fc83576b5cfc3c41a175887bf567cb3aa7c25c80e33620b4e138a49175f49"
+    },
+    {
+      "path": "consumer/smoke/invalid-field-attribute.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "consumer/smoke/invalid-field-attribute.stdout",
+      "bytes": 266,
+      "sha256": "789533f65f60e32f13c6c6fdbaee388b012c3038e1fc064472972e925f33e5e5"
+    },
+    {
+      "path": "consumer/smoke/invalid-field-child-span.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "consumer/smoke/invalid-field-child-span.stdout",
+      "bytes": 220,
+      "sha256": "0c231bcb964662e99b69be38361e855210da1b632bb53bdbda77015a91db3933"
+    },
+    {
+      "path": "consumer/smoke/linked-styled-page-count.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "consumer/smoke/linked-styled-page-count.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "consumer/smoke/receipt.json",
+      "bytes": 4665,
+      "sha256": "c48bf4b3dc44730b88e295a9eb055160fc418ca27060c9b0cda1dead5913a6c6"
+    },
+    {
+      "path": "consumer/smoke/toc-fields.bbox.xhtml",
+      "bytes": 3784,
+      "sha256": "96c5fc1370ebb63470b848dacd11636d2a9bb12716696abdc29d24172ee88609"
+    },
+    {
+      "path": "consumer/smoke/toc-fields.pdf",
+      "bytes": 22000,
+      "sha256": "70cff70d860ce7ac9d1e013c44ad24e0f6009f5a6a2048fa01650771fc713004"
+    },
+    {
+      "path": "consumer/smoke/unchanged-styled-page-count.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "consumer/smoke/unchanged-styled-page-count.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "duplicate-build-tools-release.json",
+      "bytes": 446,
+      "sha256": "d7358e312008458137dbfd777843d32cd106d6bb81744026be1f64ca06d44dea"
+    },
+    {
+      "path": "finish_native_runtime.py",
+      "bytes": 3611,
+      "sha256": "19a08be0cf23b8f5c8bf96b62a70e24452c65462d4f1693ce1cd0db7ec94e81d"
+    },
+    {
+      "path": "native-binary-recovery/build/CMakeCache.txt",
+      "bytes": 31243,
+      "sha256": "84fc8e5378983ec0db3d2745618aef4a492a8b9b7c9faf6eaa01664185c0c458"
+    },
+    {
+      "path": "native-binary-recovery/build/compile_commands.json",
+      "bytes": 42383,
+      "sha256": "f1f543457fbb10dd29ade5da349dffa3cd4ee47a2e42f0cf9f29da488b48ccaf"
+    },
+    {
+      "path": "native-binary-recovery/recovery.json",
+      "bytes": 39839,
+      "sha256": "344e5d3410620d9c402d1208f281124fdf34649463980a35e49c6d3f555ae907"
+    },
+    {
+      "path": "native-binary-recovery/tool-install.json",
+      "bytes": 14891,
+      "sha256": "f4dbe3281d52a91c15f77ef72301d7a9d9fac1f76894cd83f1b9589a976bafa7"
+    },
+    {
+      "path": "native-binary/logs/01-compiler.log",
+      "bytes": 231,
+      "sha256": "78fc11ae2c3ff7c235eb18ed90989d18f6cc864fb27027f839368cd0888deebc"
+    },
+    {
+      "path": "native-binary/logs/02-cxx.log",
+      "bytes": 232,
+      "sha256": "00f7e3c3e6a0308d7b60cc02429720ef6000d84c0add523f7dc030058d19961b"
+    },
+    {
+      "path": "native-binary/logs/03-venv.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "native-binary/logs/04-tool-install.log",
+      "bytes": 681,
+      "sha256": "735baa0a59ca54954afd4b37ad95640eabc0ce070d46c3b737c93db5d3e373d5"
+    },
+    {
+      "path": "native-binary/logs/05-CrispEmbed-init.log",
+      "bytes": 711,
+      "sha256": "893e7051332b5160ac0bc1ba6fbf4f49c1f437e1646c0a6c31649c86e3d4777b"
+    },
+    {
+      "path": "native-binary/logs/06-CrispEmbed-remote.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "native-binary/logs/07-CrispEmbed-abbrev.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "native-binary/logs/08-sparse-source.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "native-binary/logs/09-CrispEmbed-fetch.log",
+      "bytes": 123,
+      "sha256": "35a51495c2473636671965a79d223e284286643e1d16ee16dba035e1695799cf"
+    },
+    {
+      "path": "native-binary/logs/10-CrispEmbed-checkout.log",
+      "bytes": 102,
+      "sha256": "66a6568895c1a1e5a3b2617e11240f0973777d50d7581feaa549efeb284e6186"
+    },
+    {
+      "path": "native-binary/logs/11-CrispEmbed-head.log",
+      "bytes": 41,
+      "sha256": "52af8327eb47eecf3d8bc2493623a3aa19992cc119b41486df59c023bb1c064e"
+    },
+    {
+      "path": "native-binary/logs/12-CrispEmbed-ggml-init.log",
+      "bytes": 716,
+      "sha256": "cf327775ed58441e0c378f1495934678984349c41d1aa3d631e3e707b7c38366"
+    },
+    {
+      "path": "native-binary/logs/13-CrispEmbed-ggml-remote.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "native-binary/logs/14-CrispEmbed-ggml-abbrev.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "native-binary/logs/15-CrispEmbed-ggml-fetch.log",
+      "bytes": 117,
+      "sha256": "9803a8ea2765f838e947ecaabcfa1619e591f7adb3e2e7555866748c40970ac0"
+    },
+    {
+      "path": "native-binary/logs/16-CrispEmbed-ggml-checkout.log",
+      "bytes": 107,
+      "sha256": "9830338d860fae5b1563496e673cad511101f1c850a0dd303c9463dae5960c44"
+    },
+    {
+      "path": "native-binary/logs/17-CrispEmbed-ggml-head.log",
+      "bytes": 41,
+      "sha256": "e601323d793ee4e885b083f65101988246e42a4e9dd3aa1aec32f0124f3b45cc"
+    },
+    {
+      "path": "native-binary/logs/18-configure.log",
+      "bytes": 1278,
+      "sha256": "f685319e979ee117525fc8d4563e7c15e5d0affe956b22c4b8fcbe153ef4997c"
+    },
+    {
+      "path": "native-binary/logs/19-build.log",
+      "bytes": 3231,
+      "sha256": "8ade2e7b575ecabd659227215279e132a94d0c18aa2d899c7997bceba88bc6b1"
+    },
+    {
+      "path": "native-binary/logs/20-native-contract.log",
+      "bytes": 254,
+      "sha256": "a93a24b2386a90627fd50f6dac0717a5eb5d614f85802bc13fce1aa0140aeaad"
+    },
+    {
+      "path": "native-binary/logs/21-install.log",
+      "bytes": 555,
+      "sha256": "210a10ad1417c41df2e79f6000ec56e3f139e4233dee2e2ce228820c5b68ac1f"
+    },
+    {
+      "path": "native-binary/recover_native_exact.py",
+      "bytes": 9027,
+      "sha256": "48e3ad87a8285e4a449b831ed637e54d90e3255c476587b87880949fe0f65d18"
+    },
+    {
+      "path": "native-model-and-python/convert-f32.log",
+      "bytes": 256,
+      "sha256": "e725c77c171ed5c212c10f7a61641e46638d194366b3467e34410c769ccfbc97"
+    },
+    {
+      "path": "native-model-and-python/download-python-ready.json",
+      "bytes": 129,
+      "sha256": "91f0d784308a036fafb1c71d2a054e3a3e24e52f0bd698278e5e400112a9bb34"
+    },
+    {
+      "path": "native-model-and-python/finish-commands.json",
+      "bytes": 2593,
+      "sha256": "c45aa0d0e14b3ca275c6b00472c8f960b6913809fa0a192f0f120d54f81b64ad"
+    },
+    {
+      "path": "native-model-and-python/gector-de-f32.gguf.manifest.json",
+      "bytes": 132371,
+      "sha256": "9c01e05a10ba6f57b30e29476ddf83823dc2170ab478e8435cb1ea7b06c36cf4"
+    },
+    {
+      "path": "native-model-and-python/model-download-verification.json",
+      "bytes": 3662,
+      "sha256": "d27bc7c1bf3e4b6e0734c4d1b1dbf86c1cd171211d82452bd544fdc735ad9c7d"
+    },
+    {
+      "path": "native-model-and-python/native-env.sh",
+      "bytes": 794,
+      "sha256": "c31531e885cee7e977b6a60610d09aace48475a0f90370b87a6615425915535d"
+    },
+    {
+      "path": "native-model-and-python/pack-build.log",
+      "bytes": 1903,
+      "sha256": "0dfdd4f906c1607fda61f362e9fabe01b0e9b6e785178a7e4196eab6f7898916"
+    },
+    {
+      "path": "native-model-and-python/python-freeze.txt",
+      "bytes": 459,
+      "sha256": "e224cc3c1a40e66221e2e9b805db802e8b5a28186aa4a6cb0d74e1ce97489c32"
+    },
+    {
+      "path": "native-model-and-python/python-install.log",
+      "bytes": 11030,
+      "sha256": "0ddab9255d77c3566f14b22c830d7db110f0ade73ac716069dc173d3f2c97aff"
+    },
+    {
+      "path": "native-model-and-python/quantize.log",
+      "bytes": 18119,
+      "sha256": "8016fad768716cfca5f2f98486a963a4c05fa56c996be05d42322937ee21bee2"
+    },
+    {
+      "path": "native-model-and-python/ready.json",
+      "bytes": 2423,
+      "sha256": "f9eba8a12fe4c1221bfae32e727cd41623d99880a805228d824c8b47b88d072e"
+    },
+    {
+      "path": "native-model-and-python/reference-f32.json",
+      "bytes": 256295,
+      "sha256": "9d33a0be66e68284277bd3d9e0e0fe404936cf804e2e715a8999b7ece14155d8"
+    },
+    {
+      "path": "restore_model_runtime.py",
+      "bytes": 2579,
+      "sha256": "261ed26e8769592c99e4d9a67acce3430e70f9da82cae1f007f85b177006e287"
+    }
+  ]
+}
