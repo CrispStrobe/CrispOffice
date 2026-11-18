@@ -1,0 +1,681 @@
+{
+  "repository": "CrispStrobe/quds_office_suite",
+  "branch": "codex/document-review-20261118",
+  "continuation_base": "97c7ddae9514c6afa9286cd25f7339e92988cee9",
+  "frozen_source": "eedf2aee03964329a2e4c7ee3c771d43b5df4991",
+  "publication_method": "Git Database API; staged tree equality checked before commit and branch moved with expected prior head, force=false.",
+  "github_actions_queried_or_awaited": false,
+  "checkpoints": [
+    {
+      "sha": "a6058fc538ede9448354a84a46a857c63891a3d4",
+      "parents": [
+        "97c7ddae9514c6afa9286cd25f7339e92988cee9",
+        "b2597485b923003f01c1bd69e02d0c62a6943514"
+      ],
+      "tree": "56af5e9f5eb26d1b9417a6c2d2eb49b7b7ed9e23"
+    },
+    {
+      "sha": "a77d67d04dfe4e1d61bc3dae5c96d5d9d3a4f1f4",
+      "parent": "a6058fc538ede9448354a84a46a857c63891a3d4",
+      "tree": "7be71c1115d698c78dc20e0f8ff157e0a5b5d1ec",
+      "files": [
+        {
+          "path": "docs/validation/document-review-inflight-20261118/run_checks.py",
+          "sha": "420a5c755b19a81bebbb049289ae2be51d778223"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/runtime/archive-members.json.gz",
+          "sha": "484859a5cf7090e4b8f197662dafff71a9c3e5f4"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/runtime/bootstrap.txt",
+          "sha": "42113b39337612c259e876324c9489fe4c050fda"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/runtime/bootstrap_runtime.py.gz",
+          "sha": "43f531bbdb59f935d734718c707300109b2290a7"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/runtime/flutter-tools-pub-get.txt",
+          "sha": "6bd0010fa6ec36d27f0dd4a1e3926fb86e43a67e"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/runtime/flutter-version.txt",
+          "sha": "fd514fe875d88ea65085e05566da8d94bb6fd49a"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/runtime/provenance.json",
+          "sha": "3f71086ed41e8b54738b02eb93de3b6fb3e04145"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/runtime/pub-cache-receipt.json.gz",
+          "sha": "bce22f0a8c3d2282157fab47ab3f71863b95357d"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/runtime/runtime.json",
+          "sha": "538a405ae7c6a93b8a21182697a7124cdb2063b3"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/runtime/workspace-pub-get.txt",
+          "sha": "350f1e21695963db04c33c55f4fd8b2d26060d47"
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/suite_workspace.dart",
+          "sha": "9d00397eb3d0d611c715363a0f866a8ad3540646"
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+          "sha": "a9a52df48f3caa5db7d0663b6d84513203bd0268"
+        },
+        {
+          "path": "packages/quds_office_editor/lib/src/embed/office_context_menu.dart",
+          "sha": "b7abdf0124197286b3b9ec0383c7b6a8b129c452"
+        },
+        {
+          "path": "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+          "sha": "d26ec0948fdd3c3120aab8b99e97b5900adb2861"
+        },
+        {
+          "path": "packages/quds_office_editor/lib/src/embed/word_review_pane.dart",
+          "sha": "ae48ecffe85f2692846a52553642ddc4c1621199"
+        },
+        {
+          "path": "packages/quds_office_editor/lib/src/embed/word_review_status.dart",
+          "sha": "79734e236072715727d379f1638ad0f346fadd6d"
+        },
+        {
+          "path": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+          "sha": "8771b52917e4e36735d51c9be264f55cefbac3fa"
+        },
+        {
+          "path": "packages/quds_office_editor/test/word_text_proofing_pane_test.dart",
+          "sha": "82600d9f4b3388faca122f8e9e3be78324eaeb60"
+        }
+      ]
+    },
+    {
+      "sha": "8dfca0468e4baf42580447cb07c424ab374092b3",
+      "parent": "a77d67d04dfe4e1d61bc3dae5c96d5d9d3a4f1f4",
+      "tree": "06c6eef81a07b70815b2182a15ff8a565965d548",
+      "files": [
+        {
+          "path": "docs/document-review.md",
+          "sha": "49a5e0225d42407d5165aff36257a3ad7423c4cf"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/render_text_options.dart",
+          "sha": "45adbbd8210a988333bc68887a5497fa1c18e4c4"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/run_checks.py",
+          "sha": "503500aa37f2dec1081d9dcbcf0a7122dbefeb17"
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/suite_workspace.dart",
+          "sha": "656cce7065abfe5666af5790d7717673b20ad7bb"
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+          "sha": "32baf38358a75dbfba439533eb69272f32c5e820"
+        },
+        {
+          "path": "packages/quds_office_editor/lib/src/editor_word/render_word_canvas.dart",
+          "sha": "ef397843dad5c5eb1463cb503e7266b861886598"
+        },
+        {
+          "path": "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+          "sha": "691d3361370cafabf7ec723eea1099050eb48621"
+        },
+        {
+          "path": "packages/quds_office_editor/test/word_proofing_geometry_test.dart",
+          "sha": "59999818f508e7aceedd498b942797e97e065a68"
+        },
+        {
+          "path": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+          "sha": "3fa3912154d58d3a1088245db9feabb88f507ebf"
+        },
+        {
+          "path": "packages/quds_office_editor/test/word_text_proofing_pane_test.dart",
+          "sha": "78a1dc968ce3a5e0e7d590cc2c63f6feead6e0ce"
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+          "sha": "36a43464890d7308d589d5aab58572fe2b4e6575"
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/word/serial/word_style_cascade.dart",
+          "sha": "0fc3fc52d5a29e2083dbc4bbd69c3dcda30bff54"
+        },
+        {
+          "path": "packages/quds_office_engine/test/word_proofing_inheritance_test.dart",
+          "sha": "69104cddd6572e9950aae39d021b5a1ff34f79af"
+        }
+      ]
+    },
+    {
+      "sha": "ebd9fce473ee96f4d11785d2edef12c19797b619",
+      "parent": "8dfca0468e4baf42580447cb07c424ab374092b3",
+      "tree": "8085cf5461d662b3dadfd1cb80a293925e2fdc8f",
+      "files": [
+        {
+          "path": "docs/document-review.md",
+          "sha": "54d8d109d7a43f6ba9a95dc54e8db091d84c8170"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/README.md",
+          "sha": "9b8bf53c71b5bb2778185447b2aafcd0ad371578"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/attempts/development/comment-review-analysis.log.gz",
+          "sha": "a0d405ea0c436d7eb85e7384f392640fd6fb8550"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/attempts/development/comment-review-clipboard-delayed.log.gz",
+          "sha": "eb8eb1cd139cae1c7339bc82f350d504c2bb5bee"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/attempts/development/comment-review-clipboard-first.log.gz",
+          "sha": "f7f38116f995be1d2814f87ebcc2e5310001e1cd"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/attempts/development/comment-review-final-editor-analysis.log.gz",
+          "sha": "c9382c50ea811a36ab95179db3298337caec9ed0"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/attempts/development/comment-review-final-studio-analysis.log.gz",
+          "sha": "a0d405ea0c436d7eb85e7384f392640fd6fb8550"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/attempts/development/comment-review-final-studio.log.gz",
+          "sha": "e588f3a150f7b5b86be6d0eac9c774fb90d92f8d"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/attempts/development/comment-review-first.log.gz",
+          "sha": "6f64ae2f16099cd80857168856d9920a2e32fced"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/attempts/development/comment-review-geometry.log.gz",
+          "sha": "6d1d076ca6fa07922117b206f0c803e196f18d3e"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/attempts/development/comment-review-ownership-analysis.log.gz",
+          "sha": "c17c0df9b25ecfa2ad5ab141905550f9647715b1"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/attempts/development/comment-review-ownership-first.log.gz",
+          "sha": "63d992cf1374c8cc31fc5ed5a2831688f897ecad"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/attempts/development/comment-review-ownership-readonly.log.gz",
+          "sha": "95f731b84cf00ef8d01e49adb9dbc12289c2bb8c"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/attempts/development/comment-review-pointer-attempt.log.gz",
+          "sha": "1a084adbba425dd87522f72f9c17aa553ad20e6d"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/attempts/development/comment-review-pointer-clipboard-attempt.log.gz",
+          "sha": "80d69b7a331e3cfab452121116db8c9a6ceab581"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/attempts/development/comment-review-pointer-debug.log.gz",
+          "sha": "b24f41fd80dc49cf9e0cb75267bf429e48c9aa7a"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/attempts/development/comment-review-pointer-fixed-first.log.gz",
+          "sha": "5e9761938d4f98aba2f8527f839b225f2b556162"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/attempts/development/comment-review-pointer-fixed.log.gz",
+          "sha": "a49de9964bfc676fc7486eeb1d6d46468c6b7e71"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/attempts/development/comment-review-pointer.log.gz",
+          "sha": "d7f8df958b7154c8b269162152471bc370f57d85"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/attempts/development/comment-review-second.log.gz",
+          "sha": "f5b4d619a14a020726ce9599642ad4591abcd2d5"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/attempts/development/comment-review-visual-final.log.gz",
+          "sha": "4f977d246855ecc2d1a389d9e6ce279910c9d639"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/attempts/development/comment-review-visual.log.gz",
+          "sha": "f9b1098077dfeb20334d7ff74441d81eb7974136"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/attempts/development/engine-inheritance-tests-complete.jsonl.gz",
+          "sha": "c3500f8e07f9a8b84df1cafa3a2b0cbac9b7d410"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/attempts/development/engine-inheritance-tests-fixed.jsonl.gz",
+          "sha": "3f997f5f6003b91f0a29254ed591a005875ee7ae"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/attempts/development/engine-inheritance-tests.jsonl.gz",
+          "sha": "bcf27bf9df6b9410c458cf7781c1ec599f92fd87"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/attempts/development/index.json",
+          "sha": "1a4179389db1f3cbcc43c35109687ce242eefde2"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/attempts/development/text-controls-attempt1.jsonl.gz",
+          "sha": "160656079ff8471322712373edfda81f4c1eafc1"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/attempts/development/text-controls-attempt2.jsonl.gz",
+          "sha": "9da9de3732b384b146604ea333d550f820414645"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/attempts/development/text-controls-attempt3.jsonl.gz",
+          "sha": "7c69f553d4e3c1ef4245202d17ecc121dad10936"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/attempts/development/text-pane-attempt1.jsonl.gz",
+          "sha": "c3da4f0a90708e87c15d67a99e89d7d48cc3b26e"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/attempts/development/text-pane-attempt2.jsonl.gz",
+          "sha": "6c0cfdac302adaf9a8ae44f76e8b65078125e7e2"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/attempts/development/text-visual-attempt1.jsonl.gz",
+          "sha": "8e992a318b64683a5878abaaacff4c1ec5c81f58"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/attempts/development/text-visual-final.jsonl.gz",
+          "sha": "e85343a140188e923007ddd89f16630cc14a5f5d"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/final-frontier.json",
+          "sha": "5786a4ff3be354ca5db743f95524fd4b5989fcb8"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/render_comments.dart",
+          "sha": "db15171775bcc21894a24eaff592d572e2961562"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/screenshots/comments-context-suggestions-desktop.png",
+          "sha": "bea185a946b3abc12859bc5aa5fd0e8d4a974b98"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/screenshots/comments-inline-suggestions-arabic-narrow.png",
+          "sha": "961b2cb502393776562c886a36686d2a4d8e866d"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/screenshots/comments-inline-suggestions-desktop.png",
+          "sha": "42056ffbea33e98600c0f9bc880c3cb480a5e7b4"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/screenshots/comments-writing-desktop.png",
+          "sha": "b62ce4421af20c1825f23ebb8bd5791829a427b1"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/screenshots/text-proofing-arabic-narrow.png",
+          "sha": "3021d86ceac61777d091071c24f01e02ed0ba639"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/screenshots/text-proofing-excluded-desktop.png",
+          "sha": "fda7111052027f35c015abd8bce879e16bfeb4eb"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/screenshots/text-proofing-mixed-desktop.png",
+          "sha": "6d78918d141b1edecf5e538e3e080d1e3bac4835"
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/suite_workspace.dart",
+          "sha": "bd9b3780e79f3a24de83ae9c83e0b865fb7856a7"
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+          "sha": "bdd8dd3f80b73b22999618118606150beda1cc31"
+        },
+        {
+          "path": "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+          "sha": "6746e13b54223eca6ba2b740b749720c108ad154"
+        }
+      ]
+    },
+    {
+      "sha": "68d8c83afad66569e5654023eecbcdc3185cbf20",
+      "parents": [
+        "ebd9fce473ee96f4d11785d2edef12c19797b619",
+        "6c993f7406037ba462c6aea32e7e6afeebd28c03"
+      ],
+      "tree": "bd2a17146a67f0d6908c266770541501eb1409ee",
+      "files": [
+        {
+          "path": "docs/validation/document-review-inflight-20261118/final-frontier.json",
+          "sha": "4c2a3c0fd72056bc6e3808efdf80c2c27e23d98a"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/late-merge-observation.json",
+          "sha": "8ec4b2a6d837889eda1be47f5fe69ebabf190c85"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/late-merge.json",
+          "sha": "3f58d7858cc9ce0af790795dda2f3ebbeb2d93c5"
+        },
+        {
+          "path": "docs/validation/zotero-wordlike-continuation-20261118/README.md",
+          "sha": "87c87064bef1cbb252ffa5dced11eb9b63bb904e"
+        },
+        {
+          "path": "docs/validation/zotero-wordlike-continuation-20261118/checkpoints.json",
+          "sha": "06e00826a7592669479556d6f194bfd7cf2f3dab"
+        },
+        {
+          "path": "docs/validation/zotero-wordlike-continuation-20261118/earlier-source-binding.json",
+          "sha": "4a914f4c031ba55c9f73b6dec006e01a5ddb975a"
+        },
+        {
+          "path": "docs/validation/zotero-wordlike-continuation-20261118/incoming.json",
+          "sha": "677a0fa710a39488917f255e5f8c384f7c3251d2"
+        },
+        {
+          "path": "docs/validation/zotero-wordlike-continuation-20261118/late-integration.json",
+          "sha": "91c53d095c7598c03402e87c25aaba31c2cab79e"
+        },
+        {
+          "path": "docs/validation/zotero-wordlike-continuation-20261118/logs/README.md",
+          "sha": "fdab044dc5b40b051257ddf68e922da9570e5315"
+        },
+        {
+          "path": "docs/validation/zotero-wordlike-continuation-20261118/logs/accepted-analysis.log",
+          "sha": "8853158a8aafa12f3ff3a6e97a7b9eae7d30ceb0"
+        },
+        {
+          "path": "docs/validation/zotero-wordlike-continuation-20261118/logs/accepted-editor.log.gz",
+          "sha": "2ef43c6623e822952a8af717f2e8061651f131f0"
+        },
+        {
+          "path": "docs/validation/zotero-wordlike-continuation-20261118/logs/accepted-format.log",
+          "sha": "5ebc4c306306d49eb91bee886f3d5584d8728648"
+        },
+        {
+          "path": "docs/validation/zotero-wordlike-continuation-20261118/logs/accepted-studio-launcher-failure.log",
+          "sha": "3eebcbd1cbb9e6ee928e2023a8a8d59c4d30716a"
+        },
+        {
+          "path": "docs/validation/zotero-wordlike-continuation-20261118/logs/accepted-studio.log",
+          "sha": "295a9ee1d3beca4bdfa83ff51f1a4b02a4367fa5"
+        },
+        {
+          "path": "docs/validation/zotero-wordlike-continuation-20261118/logs/composer-analyze.log",
+          "sha": "79045150e32439b7a5ba2aac768abfa50ba6b8b6"
+        },
+        {
+          "path": "docs/validation/zotero-wordlike-continuation-20261118/logs/composer-keyboard-tests.log",
+          "sha": "41f4fcd5aa625fd0a8f2a438ebafe4b7f8097ce9"
+        },
+        {
+          "path": "docs/validation/zotero-wordlike-continuation-20261118/logs/composer-review-tests.log",
+          "sha": "e21fe5acba747cecf692cb5eb4e0570e57a6c8b8"
+        },
+        {
+          "path": "docs/validation/zotero-wordlike-continuation-20261118/logs/compressed-log-index.json",
+          "sha": "0a03cf8aa8dfb70be28be50da1dfe3927eb504f6"
+        },
+        {
+          "path": "docs/validation/zotero-wordlike-continuation-20261118/logs/dialog-connected-search-full-file.log",
+          "sha": "8b77dc8dbe8c3413ff80b2d7447c2645fd08ea10"
+        },
+        {
+          "path": "docs/validation/zotero-wordlike-continuation-20261118/logs/dialog-connected-search-isolated.log",
+          "sha": "a185adf319f5c621c1d2a4e67787645feac7fbc9"
+        },
+        {
+          "path": "docs/validation/zotero-wordlike-continuation-20261118/logs/field-scan-regression.log",
+          "sha": "46d1f512f2b01f6aed60f9f0746713fb1071c523"
+        },
+        {
+          "path": "docs/validation/zotero-wordlike-continuation-20261118/logs/final-analysis.log",
+          "sha": "c6a37535993426582795a02b0c30c4b04cdd224a"
+        },
+        {
+          "path": "docs/validation/zotero-wordlike-continuation-20261118/logs/final-editor.log.gz",
+          "sha": "90d076959fa684b0ef97ed80c9673742bdd01788"
+        },
+        {
+          "path": "docs/validation/zotero-wordlike-continuation-20261118/logs/final-engine-launcher-failure.log",
+          "sha": "3eebcbd1cbb9e6ee928e2023a8a8d59c4d30716a"
+        },
+        {
+          "path": "docs/validation/zotero-wordlike-continuation-20261118/logs/final-engine.log",
+          "sha": "c807b1d41f9565347c40289c34bb452ede2852d7"
+        },
+        {
+          "path": "docs/validation/zotero-wordlike-continuation-20261118/logs/final-format.log",
+          "sha": "d95b8d83686c79188caa8de42fa41a64e8d31637"
+        },
+        {
+          "path": "docs/validation/zotero-wordlike-continuation-20261118/logs/final-studio.log",
+          "sha": "1b579dedac3188f7bd245d37521fc5fbeb0139f5"
+        },
+        {
+          "path": "docs/validation/zotero-wordlike-continuation-20261118/logs/flutter-precache.log",
+          "sha": "d17959b5237ef60a5883a9c442c2b797d2761f56"
+        },
+        {
+          "path": "docs/validation/zotero-wordlike-continuation-20261118/logs/flutter-version.log",
+          "sha": "4e9985815f7c921a1205c3e6ffb2d3b6efa317a8"
+        },
+        {
+          "path": "docs/validation/zotero-wordlike-continuation-20261118/logs/notes-baseline-binding.json",
+          "sha": "62ffbb1daa93816286b175fbb69f2ac0431a2a74"
+        },
+        {
+          "path": "docs/validation/zotero-wordlike-continuation-20261118/logs/notes-baseline-pub-get.log",
+          "sha": "350f1e21695963db04c33c55f4fd8b2d26060d47"
+        },
+        {
+          "path": "docs/validation/zotero-wordlike-continuation-20261118/logs/notes-baseline-tests.log.gz",
+          "sha": "e456ad158805b1af03355e896c069115a1da5431"
+        },
+        {
+          "path": "docs/validation/zotero-wordlike-continuation-20261118/logs/notes-current-analysis.log",
+          "sha": "1ee3b15f7cd30f4e40d78337af990e75437e13aa"
+        },
+        {
+          "path": "docs/validation/zotero-wordlike-continuation-20261118/logs/notes-current-tests.log",
+          "sha": "6d92eeb5b38ff3d403f33f57c4cdd95521ee652a"
+        },
+        {
+          "path": "docs/validation/zotero-wordlike-continuation-20261118/logs/notes-fixture-repair.json",
+          "sha": "66443dc0ffa775d11499d48fd63495a3012fa124"
+        },
+        {
+          "path": "docs/validation/zotero-wordlike-continuation-20261118/logs/notes-fixture-repair.patch.gz",
+          "sha": "540f57b45f11cf57853b520e2d7593e55ddc0586"
+        },
+        {
+          "path": "docs/validation/zotero-wordlike-continuation-20261118/logs/proofing-inheritance-case.log",
+          "sha": "cb33b7de498b04b84e929e1e18181cd2ddc11221"
+        },
+        {
+          "path": "docs/validation/zotero-wordlike-continuation-20261118/logs/proofing-inheritance-file.log",
+          "sha": "afc15e6843cfd90b7a59056d7b39af1c3b0cdd2e"
+        },
+        {
+          "path": "docs/validation/zotero-wordlike-continuation-20261118/logs/release-analysis.log",
+          "sha": "8853158a8aafa12f3ff3a6e97a7b9eae7d30ceb0"
+        },
+        {
+          "path": "docs/validation/zotero-wordlike-continuation-20261118/logs/release-editor.log",
+          "sha": "7fc43ec052c50460fc5f919b5854bc4fc4b3d87a"
+        },
+        {
+          "path": "docs/validation/zotero-wordlike-continuation-20261118/logs/release-format.log",
+          "sha": "ec00bc3e3b1bd4a012bf9a6266233b6e7d5d250b"
+        },
+        {
+          "path": "docs/validation/zotero-wordlike-continuation-20261118/logs/release-studio.log",
+          "sha": "4c382c29a29c5bda46bb6d0c3a9555130fdbe39d"
+        },
+        {
+          "path": "docs/validation/zotero-wordlike-continuation-20261118/logs/root-analysis.log",
+          "sha": "de5f7f620a54cbfe72d7c7b5780af20b2144410f"
+        },
+        {
+          "path": "docs/validation/zotero-wordlike-continuation-20261118/logs/root-document-actions-attempt2.log.gz",
+          "sha": "45b617939fb683da4520f88fa9351c43dcf4133f"
+        },
+        {
+          "path": "docs/validation/zotero-wordlike-continuation-20261118/logs/root-document-actions-attempt3.log",
+          "sha": "ecae5a27e5d2d6dfec46754999f2cb9b8a8c4731"
+        },
+        {
+          "path": "docs/validation/zotero-wordlike-continuation-20261118/logs/root-document-actions.log.gz",
+          "sha": "7197eacc14bb78afca9397e75c124478503c7675"
+        },
+        {
+          "path": "docs/validation/zotero-wordlike-continuation-20261118/logs/root-native-direct-actions.log",
+          "sha": "b3f41189e46428cae818ed4ffaad5140d6b0d895"
+        },
+        {
+          "path": "docs/validation/zotero-wordlike-continuation-20261118/logs/workspace-pub-get.log",
+          "sha": "17919f43c68fdc3534d5befac232657db07c3790"
+        },
+        {
+          "path": "docs/validation/zotero-wordlike-continuation-20261118/manifest.json",
+          "sha": "bb7e0c92afce6d679ccb88ba3e9bf9049b92d3f7"
+        },
+        {
+          "path": "docs/validation/zotero-wordlike-continuation-20261118/merged-source-binding.json",
+          "sha": "4003c781f71b60b37ca21600ddfee65d1a679643"
+        },
+        {
+          "path": "docs/validation/zotero-wordlike-continuation-20261118/results.json",
+          "sha": "d24e66619911f21c7891b731f966d94b492663fd"
+        },
+        {
+          "path": "docs/validation/zotero-wordlike-continuation-20261118/run_local.py",
+          "sha": "46c4ce29695db23349c48f794b916ea54845bc31"
+        },
+        {
+          "path": "docs/validation/zotero-wordlike-continuation-20261118/runtime.json",
+          "sha": "5d6a2fed15444b3f82b0d2dbdb1d41a56087965e"
+        },
+        {
+          "path": "docs/validation/zotero-wordlike-continuation-20261118/source-binding.json",
+          "sha": "199d4cb3f7b11c6ffbcd6a0060b934132821193c"
+        },
+        {
+          "path": "docs/validation/zotero-wordlike-continuation-20261118/workspace-pubspec.lock.txt",
+          "sha": "bafa332db4f09903cbd975e0f9b48fe12df35b6d"
+        },
+        {
+          "path": "docs/zotero-support.md",
+          "sha": "e953b494d1a1a45fc0dd63372fd9bfb1f49f21f4"
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/suite_workspace.dart",
+          "sha": "02cc0104485f1d695c34f0fa88d13cfc10076918"
+        },
+        {
+          "path": "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+          "sha": "caed0a7f9a9f0e5076e6bf4c62b59813d5502aa6"
+        },
+        {
+          "path": "packages/quds_office_editor/lib/src/embed/word_zotero_composer.dart",
+          "sha": "05b7045010cac4b431676503685262cb33bf230b"
+        },
+        {
+          "path": "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart",
+          "sha": "02034a7f828f360b443b05ac1c849070501e92a7"
+        },
+        {
+          "path": "packages/quds_office_editor/test/word_note_numbering_test.dart",
+          "sha": "4371e685ffe998672691bfc61f58d8af75168945"
+        },
+        {
+          "path": "packages/quds_office_editor/test/word_notes_editing_test.dart",
+          "sha": "3b63f7e4af71347fb86e02ddd9e311ced163ccf2"
+        },
+        {
+          "path": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+          "sha": "bce291652880cad7612cc2ddf53ca438937b0699"
+        },
+        {
+          "path": "packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart",
+          "sha": "fa40b58b1f68dcc81359aaec99447dcf64ac74f9"
+        },
+        {
+          "path": "packages/quds_office_editor/test/word_zotero_composer_test.dart",
+          "sha": "495f4a8a7bb83c9ad13f7200f47aa4cfd985c7c5"
+        },
+        {
+          "path": "packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+          "sha": "64d006e176c201326ed059eb048de20c90aab2c7"
+        },
+        {
+          "path": "packages/quds_office_editor/test/word_zotero_document_actions_test.dart",
+          "sha": "0bf9628b17c40e93fd22e7602232f9ae46fb41c0"
+        },
+        {
+          "path": "packages/quds_office_editor/test/word_zotero_field_at_caret_test.dart",
+          "sha": "c32b2b3504ff3f04fd804d8f26d2e9d183a9acf9"
+        },
+        {
+          "path": "packages/quds_office_editor/test/word_zotero_unlink_all_test.dart",
+          "sha": "f9fa5ef0b6471cc8e7364366fe17d2e30b6f4ca6"
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart",
+          "sha": "73ca8507e406cbaed96da03eecc3c7b819040cec"
+        },
+        {
+          "path": "packages/quds_office_engine/test/word_zotero_caret_test.dart",
+          "sha": "30fa1c80066c9b5b3ae83835c636d5665dd22568"
+        }
+      ]
+    },
+    {
+      "sha": "eedf2aee03964329a2e4c7ee3c771d43b5df4991",
+      "parent": "68d8c83afad66569e5654023eecbcdc3185cbf20",
+      "tree": "975389ed58d1851cf72c56b5e1cf594531762ad7",
+      "files": [
+        {
+          "path": "docs/validation/document-review-inflight-20261118/README.md",
+          "sha": "aa8341664dd9ef06dbcf26dc30f6ee022d10223e"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/attempts/development/comment-review-select-pointer-fixed-analysis.log.gz",
+          "sha": "a0d405ea0c436d7eb85e7384f392640fd6fb8550"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/attempts/development/comment-review-select-pointer-fixed.log.gz",
+          "sha": "786cf9d8b1997361ceaa3690ff4693927d842272"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/attempts/development/comment-review-select-pointer.log.gz",
+          "sha": "7ccf059efec4e84db8a6841b57d9a5ce2e4c7887"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/attempts/development/index.json",
+          "sha": "bbfa56a7afc8fabbf3e491f45c49db2ab801aceb"
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/suite_workspace.dart",
+          "sha": "4f503b70ddcd5b503e0e503c21bf95e29f64af97"
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+          "sha": "e19577525c6edabd0c5631cbcfea5e9c00ca67ea"
+        }
+      ]
+    }
+  ],
+  "recorded_at_utc": "2026-11-18T18:48:39.230Z",
+  "last_recorded_checkpoint": "eedf2aee03964329a2e4c7ee3c771d43b5df4991",
+  "accepted_gate": {
+    "path": "accepted/verification.json",
+    "sha256": "69e1eeb0f1397b7939511015fa27ad5464d73ec4d7157160ae79b04c067dffc6",
+    "passed": 633,
+    "failed": 0,
+    "skipped": 0
+  }
+}
