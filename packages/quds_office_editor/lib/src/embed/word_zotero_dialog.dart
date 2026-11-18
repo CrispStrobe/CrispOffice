@@ -92,9 +92,12 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
   late final TextEditingController _style;
   late final TextEditingController _locale;
   final _search = TextEditingController();
+  final _tag = TextEditingController();
   final _libraryId = TextEditingController();
   final _import = TextEditingController();
   String _submittedSearch = '';
+  List<String> _tags = const [];
+  String? _tagError;
   var _searchMode = ZoteroSearchMode.titleCreatorYear;
   var _itemSort = ZoteroItemSort.dateModified;
   var _sortDirection = ZoteroSortDirection.descending;
@@ -165,6 +168,7 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
       _style,
       _locale,
       _search,
+      _tag,
       _libraryId,
       _import,
     ]) {
@@ -404,6 +408,7 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
             sort: _itemSort,
             direction: _sortDirection,
             itemType: _itemType,
+            tags: _tags,
           )
         : await client.items(
             library,
@@ -414,10 +419,51 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
             sort: _itemSort,
             direction: _sortDirection,
             itemType: _itemType,
+            tags: _tags,
           );
     if (_catalogIsCurrent(client, library, generation)) {
       setState(() => _page = page);
     }
+  }
+
+  Future<void> _addTag() async {
+    if (_busy || (_savedSearchMode && _savedSearchKey == null)) return;
+    try {
+      final tag = normalizeZoteroTags([_tag.text]).single;
+      if (_tags.contains(tag)) {
+        setState(() {
+          _tag.clear();
+          _tagError = null;
+        });
+        return;
+      }
+      final tags = normalizeZoteroTags([..._tags, tag]);
+      setState(() {
+        _tags = tags;
+        _tag.clear();
+        _tagError = null;
+      });
+    } on FormatException catch (error) {
+      setState(() => _tagError = error.message);
+      return;
+    }
+    // Tag actions filter the current search. Draft text in either input is
+    // never silently submitted by paging, removing a tag or clearing filters.
+    await _run(() => _loadItems(useSubmittedQuery: true));
+  }
+
+  Future<void> _removeTag(String tag) async {
+    if (_busy) return;
+    setState(
+      () => _tags = List.unmodifiable(_tags.where((item) => item != tag)),
+    );
+    await _run(() => _loadItems(useSubmittedQuery: true));
+  }
+
+  Future<void> _clearTags() async {
+    if (_busy || _tags.isEmpty) return;
+    setState(() => _tags = const []);
+    await _run(() => _loadItems(useSubmittedQuery: true));
   }
 
   bool _catalogIsCurrent(
@@ -1319,7 +1365,10 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
     if (_session.library == null || !_searchOptionsExpanded) return base;
     // Expanded options wrap at narrow widths. Preserve a usable results list
     // while keeping the default catalog and its paging controls compact.
-    return base + (size.width < 380 ? 520 : (narrow ? 340 : 180));
+    return base +
+        (size.width < 380 ? 520 : (narrow ? 340 : 180)) +
+        140 +
+        (_tags.isEmpty ? 0 : 220);
   }
 
   Widget _banner(String text, {bool error = false}) => Container(
@@ -1336,6 +1385,7 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
     return Padding(
       padding: const EdgeInsets.only(top: 12),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Wrap(
             spacing: 12,
@@ -1483,6 +1533,86 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
               ),
             ],
           ),
+          const SizedBox(height: 12),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                child: TextField(
+                  key: const ValueKey('zotero-tag-input'),
+                  controller: _tag,
+                  enabled: enabled,
+                  decoration: InputDecoration(
+                    labelText: 'Filter by tag',
+                    hintText: 'Enter an exact tag name',
+                    isDense: true,
+                    errorText: _tagError,
+                    errorMaxLines: 4,
+                  ),
+                  onChanged: (_) {
+                    if (_tagError != null) setState(() => _tagError = null);
+                  },
+                  onSubmitted: (_) => _addTag(),
+                ),
+              ),
+              IconButton(
+                key: const ValueKey('zotero-add-tag'),
+                tooltip: 'Add tag',
+                onPressed: enabled ? _addTag : null,
+                icon: const Icon(Icons.add),
+              ),
+            ],
+          ),
+          const Padding(
+            padding: EdgeInsets.only(top: 6, bottom: 8),
+            child: Text(
+              'Match every added tag. Press Enter or + to add one. Tag names are case-sensitive.',
+              style: TextStyle(fontSize: 12),
+            ),
+          ),
+          if (_tags.isNotEmpty) ...[
+            ConstrainedBox(
+              constraints: const BoxConstraints(maxHeight: 160),
+              child: SingleChildScrollView(
+                child: LayoutBuilder(
+                  builder: (context, constraints) => Wrap(
+                    spacing: 8,
+                    runSpacing: 4,
+                    children: [
+                      for (final tag in _tags)
+                        InputChip(
+                          key: ValueKey('zotero-tag-$tag'),
+                          label: ConstrainedBox(
+                            constraints: BoxConstraints(
+                              maxWidth: min(
+                                240,
+                                max(32, constraints.maxWidth - 80),
+                              ),
+                            ),
+                            child: Text(
+                              tag,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                          tooltip: tag,
+                          deleteButtonTooltipMessage: 'Remove tag $tag',
+                          onDeleted: enabled ? () => _removeTag(tag) : null,
+                        ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            Align(
+              alignment: AlignmentDirectional.centerStart,
+              child: TextButton(
+                key: const ValueKey('zotero-clear-tags'),
+                onPressed: enabled ? _clearTags : null,
+                child: const Text('Clear tags'),
+              ),
+            ),
+          ],
           const Padding(
             padding: EdgeInsets.symmetric(vertical: 8),
             child: Text(
@@ -1878,7 +2008,11 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
                 onPressed: () => setState(
                   () => _searchOptionsExpanded = !_searchOptionsExpanded,
                 ),
-                icon: const Icon(Icons.tune),
+                icon: Badge(
+                  isLabelVisible: _tags.isNotEmpty,
+                  label: Text('${_tags.length}'),
+                  child: const Icon(Icons.tune),
+                ),
               ),
             ],
           ),
