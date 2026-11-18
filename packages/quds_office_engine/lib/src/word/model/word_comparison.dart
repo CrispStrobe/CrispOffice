@@ -47,7 +47,9 @@ class WordComparisonOptions {
   /// Maximum paragraphs per input, including auxiliary stories.
   final int maxParagraphs;
 
-  /// Maximum total UTF-16 text and preserved-XML units per input.
+  /// Maximum UTF-16 units in text, preserved XML and comparison metadata per
+  /// input. Metadata is counted too, so heavily formatted documents may reach
+  /// this limit before plain text reaches this length.
   final int maxTextLength;
 
   /// Shared maximum dynamic-programming cells across paragraph/inline diffs.
@@ -168,6 +170,24 @@ class WordComparisonResult {
   final List<String> warnings;
   final WordComparisonOptions options;
 
+  /// Stable report scope: equality of compared content is not proof of whole
+  /// package equivalence or identical rendering in another office application.
+  Map<String, List<String>> get scope => const <String, List<String>>{
+    'compared': <String>[
+      'Modeled text in body, tables, frames, TOC title/results, headers, footers, notes and comments.',
+      'Optional direct paragraph/run formatting, modeled styles and section/table/frame layout.',
+      'Modeled links, field instructions, bookmarks, comment metadata and content controls.',
+      'Preserved content XML digests/relationships and selected visual geometry/labels.',
+    ],
+    'limits': <String>[
+      'Not exhaustive: numbering definitions, document/package settings and metadata, protection, themes and unmodeled native properties.',
+      'No rendered-page comparison, image pixel/chart/diagram internals or embedded-object payload comparison.',
+      'Formatting within rewritten paragraphs is summarized by the styles used; exact formatting alignment is available for unchanged or normalized-equal text.',
+      'Revision projection applies to text. It does not resolve pending changes or compare revision attribution/history.',
+      'Sections, tables, notes and comments use ordered locations; moved content is not classified as a native move revision.',
+    ],
+  };
+
   /// True when difficult regions used a complete, less precise replacement
   /// instead of spending unbounded time searching for a minimal edit script.
   final bool usedCoarseDiff;
@@ -185,6 +205,7 @@ class WordComparisonResult {
 
   Map<String, Object?> toJson() => <String, Object?>{
     'schemaVersion': 1,
+    'scope': scope,
     'options': options.toJson(),
     'usedCoarseDiff': usedCoarseDiff,
     'summary': <String, int>{
@@ -237,6 +258,11 @@ class _Comparison {
   }
 
   WordComparisonResult compare(WmlDocument original, WmlDocument revised) {
+    warnings.add(
+      'This report compares modeled content. Numbering definitions, '
+      'document/package settings and metadata, protection, themes, binary payloads '
+      'and rendered layout are not exhaustively compared.',
+    );
     for (final entry in <String, int>{
       'maxParagraphs': options.maxParagraphs,
       'maxTextLength': options.maxTextLength,
@@ -330,6 +356,9 @@ class _Comparison {
         formatting.addAll(_differentProperties(a.properties, b.properties));
         if (before == after && a.runFormatting != b.runFormatting) {
           formatting.add('Direct character formatting changed.');
+        } else if (sameText &&
+            a.normalizedRunFormatting != b.normalizedRunFormatting) {
+          formatting.add('Direct character formatting changed.');
         } else if (before != after && a.runStyleSet != b.runStyleSet) {
           formatting.add(
             'The direct character styles used in this paragraph changed.',
@@ -360,12 +389,13 @@ class _Comparison {
         : WordComparisonKind.unchanged;
     final spans = <WordComparisonSpan>[];
     if (a == null) {
-      if (after.isNotEmpty)
+      if (after.isNotEmpty) {
         spans.add(
           WordComparisonSpan(kind: WordComparisonSpanKind.insert, text: after),
         );
+      }
     } else if (b == null) {
-      if (before.isNotEmpty)
+      if (before.isNotEmpty) {
         spans.add(
           WordComparisonSpan(
             kind: WordComparisonSpanKind.delete,
@@ -373,6 +403,7 @@ class _Comparison {
             originalText: before,
           ),
         );
+      }
     } else if (sameText) {
       if (before.isNotEmpty || after.isNotEmpty) {
         spans.add(
@@ -415,22 +446,30 @@ class _Comparison {
       budget,
     );
     final result = <WordComparisonSpan>[];
+    WordComparisonSpanKind? bufferedKind;
+    var bufferedText = StringBuffer();
+    var bufferedOriginal = StringBuffer();
+    void flush() {
+      if (bufferedKind == null) return;
+      result.add(
+        WordComparisonSpan(
+          kind: bufferedKind!,
+          text: bufferedText.toString(),
+          originalText: bufferedOriginal.toString(),
+        ),
+      );
+      bufferedText = StringBuffer();
+      bufferedOriginal = StringBuffer();
+    }
+
     void append(WordComparisonSpanKind kind, String text, String old) {
       if (text.isEmpty && old.isEmpty) return;
-      if (result.isNotEmpty && result.last.kind == kind) {
-        final previous = result.removeLast();
-        result.add(
-          WordComparisonSpan(
-            kind: kind,
-            text: previous.text + text,
-            originalText: previous.originalText + old,
-          ),
-        );
-      } else {
-        result.add(
-          WordComparisonSpan(kind: kind, text: text, originalText: old),
-        );
+      if (bufferedKind != kind) {
+        flush();
+        bufferedKind = kind;
       }
+      bufferedText.write(text);
+      bufferedOriginal.write(old);
     }
 
     var ai = 0;
@@ -446,6 +485,7 @@ class _Comparison {
       ai = pair.a + 1;
       bi = pair.b + 1;
     }
+    flush();
     return result;
   }
 }
@@ -524,8 +564,9 @@ List<_Match> _matchSequences(
         final candidates = <_Match>[];
         for (var i = a0; i < a1; i++) {
           final j = bc[a[i]];
-          if (ac[a[i]] == i && j != null && j >= 0)
+          if (ac[a[i]] == i && j != null && j >= 0) {
             candidates.add(_Match(i, j));
+          }
         }
         final anchors = _increasing(candidates);
         if (anchors.isEmpty) {
@@ -619,14 +660,22 @@ List<String> _differentProperties(
 ];
 
 class _ParagraphRecord {
-  _ParagraphRecord(this.paragraph, this.location, this.context, this.rawText);
+  _ParagraphRecord(
+    this.paragraph,
+    this.location,
+    this.context,
+    this.rawText,
+    this.bookmarkStory,
+  );
   final WmlParagraph paragraph;
   final WordComparisonLocation location;
   final String context;
   final String rawText;
+  final String bookmarkStory;
   String text = '';
   Map<String, Object?> properties = <String, Object?>{};
   String runFormatting = '';
+  String normalizedRunFormatting = '';
   String runStyleSet = '';
   String semantics = '';
 }
@@ -669,8 +718,9 @@ class _Collector {
 
   void _charge(int count) {
     textUnits += count;
-    if (textUnits > options.maxTextLength)
+    if (textUnits > options.maxTextLength) {
       _limit('maxTextLength (${options.maxTextLength})');
+    }
   }
 
   _Collected collect(WmlDocument document) {
@@ -851,7 +901,9 @@ class _Collector {
       if (revision.accepted != null) continue;
       final target =
           revision.targetParagraph ??
-          (revision.paragraphIndex >= 0 && revision.paragraphIndex < body.length
+          (!revision.hasCapturedTarget &&
+                  revision.paragraphIndex >= 0 &&
+                  revision.paragraphIndex < body.length
               ? body[revision.paragraphIndex]
               : null);
       if (target == null || !attached.contains(target)) {
@@ -867,10 +919,30 @@ class _Collector {
       }
       revisions.putIfAbsent(target, () => <WmlRevision>[]).add(revision);
     }
+    final bookmarkIds = <String, Map<String, int>>{};
+    for (final record in records) {
+      final storyIds = bookmarkIds.putIfAbsent(
+        record.bookmarkStory,
+        () => <String, int>{},
+      );
+      for (final boundary
+          in record.paragraph.inlines.whereType<WmlBookmarkBoundary>()) {
+        storyIds.putIfAbsent(boundary.id, () => storyIds.length);
+      }
+    }
+    final commentIds = <int, int>{
+      for (var i = 0; i < document.comments.length; i++)
+        document.comments[i].id: i,
+    };
     for (final record in records) {
       final pending = revisions[record.paragraph] ?? const <WmlRevision>[];
       final removed = _removedRanges(record.rawText, pending);
-      _snapshot(record, removed);
+      _snapshot(
+        record,
+        removed,
+        bookmarkIds[record.bookmarkStory]!,
+        commentIds,
+      );
     }
     return output;
   }
@@ -901,9 +973,18 @@ class _Collector {
     );
   }
 
-  void _opaque(WmlOpaqueBlock block, String key, String label, {int? section}) {
+  void _opaque(
+    WmlOpaqueBlock block,
+    String key,
+    String label, {
+    int? section,
+    int? textOffset,
+    int? afterParagraph,
+  }) {
     _charge(block.xml.length);
     _structure(key, label, <String, Object?>{
+      'Text offset': ?textOffset,
+      'After paragraph': ?afterParagraph,
       'Preserved XML digest': sha256.convert(utf8.encode(block.xml)).toString(),
       'Relationships': <Object?>[
         for (final r in block.relationships)
@@ -923,9 +1004,18 @@ class _Collector {
     );
   }
 
-  void _visual(OfficeVisual visual, String key, String label, {int? section}) {
+  void _visual(
+    OfficeVisual visual,
+    String key,
+    String label, {
+    int? section,
+    int? textOffset,
+    int? afterParagraph,
+  }) {
     final picture = visual.picture;
     _structure(key, label, <String, Object?>{
+      'Text offset': ?textOffset,
+      'After paragraph': ?afterParagraph,
       'Kind': visual.kind.name,
       'Title': visual.title,
       'Width': visual.width,
@@ -960,15 +1050,18 @@ class _Collector {
     int? section,
     bool isBody = false,
     int depth = 0,
+    String? bookmarkStory,
   }) {
     if (depth > 128) _limit('the nesting-depth limit (128)');
     var paragraph = 0;
     var table = 0;
     var frame = 0;
     var control = 0;
+    var contents = 0;
     var other = 0;
     for (final block in blocks) {
       _node();
+      final blockOffset = output.stories[story]?.length ?? 0;
       if (block is WmlParagraph) {
         final list = output.stories.putIfAbsent(
           story,
@@ -983,8 +1076,9 @@ class _Collector {
           path: '$story/$context/paragraph:$paragraph',
           sectionIndex: section,
         );
-        if (records.length >= options.maxParagraphs)
+        if (records.length >= options.maxParagraphs) {
           _limit('maxParagraphs (${options.maxParagraphs})');
+        }
         final buffer = StringBuffer();
         for (final inline in block.inlines) {
           _node();
@@ -998,13 +1092,15 @@ class _Collector {
           location,
           context,
           buffer.toString(),
+          bookmarkStory ?? (isBody ? 'body' : story),
         );
         list.add(record);
         records.add(record);
         if (isBody) body.add(block);
         if (options.includeFormatting &&
-            block.properties.sourcePropertiesXml != null)
+            block.properties.sourcePropertiesXml != null) {
           _nativePropertiesWarning();
+        }
       } else if (block is WmlTable) {
         table++;
         final path = '${context.isEmpty ? '' : '$context · '}Table $table';
@@ -1038,6 +1134,7 @@ class _Collector {
               section: section,
               isBody: isBody,
               depth: depth + 1,
+              bookmarkStory: bookmarkStory,
             );
           }
           rows.add(<String, Object?>{
@@ -1051,6 +1148,7 @@ class _Collector {
           });
         }
         _structure('$story/$path', '$label · $path', <String, Object?>{
+          'After paragraph': blockOffset,
           'Grid columns': block.grid.length,
           if (options.includeFormatting) 'Grid widths': block.grid,
           'Rows': rows,
@@ -1069,6 +1167,7 @@ class _Collector {
         frame++;
         final path = '${context.isEmpty ? '' : '$context · '}Frame $frame';
         _structure('$story/$path', '$label · $path', <String, Object?>{
+          'After paragraph': blockOffset,
           'Text box': block.hasTextBox,
           if (options.includeFormatting) ...<String, Object?>{
             'X': block.x,
@@ -1095,12 +1194,49 @@ class _Collector {
           section: section,
           isBody: isBody,
           depth: depth + 1,
+          bookmarkStory: '$story/$path',
+        );
+      } else if (block is WmlToc) {
+        contents++;
+        final path =
+            '${context.isEmpty ? '' : '$context · '}Contents $contents';
+        final cachedEntries = <Object?>[];
+        for (final entry in block.entries) {
+          _node();
+          cachedEntries.add(<Object?>[
+            entry.text,
+            entry.level,
+            entry.pageNumber,
+          ]);
+        }
+        _structure('$story/$path', '$label · $path', <String, Object?>{
+          'After paragraph': blockOffset,
+          'Minimum level': block.minLevel,
+          'Maximum level': block.maxLevel,
+          'Page numbers': block.showPageNumbers,
+          'Omit numbers from': block.omitPageNumbersFromLevel,
+          'Omit numbers through': block.omitPageNumbersThroughLevel,
+          'Caption label': block.captionLabel,
+          'Cached entries': cachedEntries,
+        }, section: section);
+        // This order must match WordTree.paragraphs: legacy tracked-change
+        // indices count a TOC's title and live cached result paragraphs.
+        _blocks(
+          <WmlParagraph>[block.titleParagraph, ...block.itemParagraphs],
+          story,
+          label,
+          path,
+          section: section,
+          isBody: isBody,
+          depth: depth + 1,
+          bookmarkStory: bookmarkStory,
         );
       } else if (block is WmlContentControlBlock) {
         control++;
         final path = '${context.isEmpty ? '' : '$context · '}Control $control';
         _charge(block.control.xml.length);
         _structure('$story/$path', '$label · $path', <String, Object?>{
+          'After paragraph': blockOffset,
           'Alias': block.control.alias,
           'Tag': block.control.tag,
           'Control XML digest': sha256
@@ -1115,6 +1251,7 @@ class _Collector {
           section: section,
           isBody: isBody,
           depth: depth + 1,
+          bookmarkStory: bookmarkStory,
         );
       } else {
         other++;
@@ -1125,6 +1262,7 @@ class _Collector {
             path,
             '$label · Preserved content $other',
             section: section,
+            afterParagraph: blockOffset,
           );
         } else if (block is WmlVisual) {
           _visual(
@@ -1132,14 +1270,14 @@ class _Collector {
             path,
             '$label · Visual $other',
             section: section,
+            afterParagraph: blockOffset,
           );
         } else {
           _structure(path, '$label · Object $other', <String, Object?>{
+            'After paragraph': blockOffset,
             'Type': block.runtimeType.toString(),
           }, section: section);
-          warnings.add(
-            'Equation content and generated table-of-contents internals are outside this text report.',
-          );
+          warnings.add('Equation internals are outside this text report.');
         }
       }
     }
@@ -1170,12 +1308,14 @@ class _Collector {
       }
       end = revision.end;
     }
-    if (invalid)
+    if (invalid) {
       warnings.add(
         'Markup view contains unresolved tracked changes; their original/final text cannot be projected safely.',
       );
-    if (options.revisionView == WordComparisonRevisionView.markup)
+    }
+    if (options.revisionView == WordComparisonRevisionView.markup) {
       return const <(int, int)>[];
+    }
     final removedKind =
         options.revisionView == WordComparisonRevisionView.finalText
         ? WmlRevisionKind.delete
@@ -1187,9 +1327,15 @@ class _Collector {
     ];
   }
 
-  void _snapshot(_ParagraphRecord record, List<(int, int)> removed) {
+  void _snapshot(
+    _ParagraphRecord record,
+    List<(int, int)> removed,
+    Map<String, int> bookmarkIds,
+    Map<int, int> commentIds,
+  ) {
     final paragraph = record.paragraph;
     record.properties = _paragraphProperties(paragraph.properties);
+    _charge(jsonEncode(record.properties).length);
     final text = StringBuffer();
     final formatting = <_FormatSegment>[];
     final styleSet = <String>{};
@@ -1201,54 +1347,104 @@ class _Collector {
     }
     var offset = 0;
     var projectedOffset = 0;
+    var removedIndex = 0;
+    var opaqueIndex = 0;
+    var visualIndex = 0;
+    Map<String, Object?>? previousLink;
     for (final inline in paragraph.inlines) {
+      if (inline is! WmlRun) previousLink = null;
       if (inline is WmlRun) {
         final runEnd = offset + inline.text.length;
         var cursor = offset;
         final runText = StringBuffer();
-        for (final range in removed) {
-          if (range.$2 <= cursor) continue;
-          if (range.$1 >= runEnd) break;
-          if (range.$1 > cursor)
-            runText.write(record.rawText.substring(cursor, range.$1));
-          cursor = range.$2 < runEnd ? range.$2 : runEnd;
+        while (removedIndex < removed.length &&
+            removed[removedIndex].$2 <= offset) {
+          removedIndex++;
         }
-        if (cursor < runEnd)
+        var scan = removedIndex;
+        while (scan < removed.length) {
+          final range = removed[scan];
+          if (range.$1 >= runEnd) break;
+          if (range.$1 > cursor) {
+            runText.write(record.rawText.substring(cursor, range.$1));
+          }
+          cursor = range.$2 < runEnd ? range.$2 : runEnd;
+          if (range.$2 >= runEnd) break;
+          scan++;
+        }
+        if (cursor < runEnd) {
           runText.write(record.rawText.substring(cursor, runEnd));
+        }
         final retained = runText.toString();
         text.write(retained);
         if (retained.isNotEmpty) {
           final props = jsonEncode(_runProperties(inline.properties));
+          _charge(props.length);
           styleSet.add(props);
           if (formatting.isNotEmpty && formatting.last.properties == props) {
             formatting.last.length += retained.length;
           } else {
             formatting.add(_FormatSegment(retained.length, props));
           }
+        }
+        if (retained.isNotEmpty || inline.text.isEmpty) {
           if (inline.hyperlink != null ||
               inline.fieldInstruction != null ||
-              inline.noteRefId != null) {
-            semantic.add(<String, Object?>{
+              inline.noteRefId != null ||
+              inline.commentIds.isNotEmpty) {
+            final anchorIds =
+                inline.commentIds
+                    .map((id) => commentIds[id]?.toString() ?? 'unresolved:$id')
+                    .toList()
+                  ..sort();
+            final item = <String, Object?>{
               'offset': projectedOffset,
               'length': retained.length,
               'link': inline.hyperlink?.displayTarget,
               'field': inline.fieldInstruction,
+              if (inline.fieldInstruction != null) ...<String, Object?>{
+                'fieldLocked': inline.fieldLocked,
+                'fieldDirty': inline.fieldDirty,
+              },
               'note': inline.noteRefId,
               'endnote': inline.noteRefEndnote,
-            });
+              'commentAnchors': jsonEncode(anchorIds),
+            };
+            final mergeableLink =
+                (inline.hyperlink != null || inline.commentIds.isNotEmpty) &&
+                inline.fieldInstruction == null &&
+                inline.noteRefId == null;
+            if (mergeableLink &&
+                previousLink != null &&
+                previousLink['link'] == item['link'] &&
+                previousLink['commentAnchors'] == item['commentAnchors'] &&
+                (previousLink['offset']! as int) +
+                        (previousLink['length']! as int) ==
+                    projectedOffset) {
+              previousLink['length'] =
+                  (previousLink['length']! as int) + retained.length;
+            } else {
+              semantic.add(item);
+              previousLink = mergeableLink ? item : null;
+            }
+          } else if (retained.isNotEmpty) {
+            previousLink = null;
           }
           if (inline.inlineVisual != null) {
+            visualIndex++;
             _visual(
               inline.inlineVisual!.visual,
-              '${record.location.path}/inline:$projectedOffset',
+              '${record.location.path}/inline:$visualIndex',
               '${record.location.label} · Inline visual',
               section: record.location.sectionIndex,
+              textOffset: projectedOffset,
             );
           }
         }
         if (options.includeFormatting &&
-            inline.properties.sourcePropertiesXml != null)
+            inline.properties.sourcePropertiesXml != null) {
           _nativePropertiesWarning();
+        }
         projectedOffset += retained.length;
         offset = runEnd;
       } else if (inline is WmlBreak) {
@@ -1266,6 +1462,7 @@ class _Collector {
         semantic.add(<String, Object?>{
           'offset': projectedOffset,
           'bookmark': inline.name,
+          'bookmarkPair': bookmarkIds[inline.id],
           'start': inline.isStart,
         });
       } else if (inline is WmlContentControlBoundary) {
@@ -1276,11 +1473,13 @@ class _Collector {
           'start': inline.start,
         });
       } else if (inline is WmlOpaqueInline) {
+        opaqueIndex++;
         _opaque(
           inline.content,
-          '${record.location.path}/opaque:$projectedOffset',
+          '${record.location.path}/opaque:$opaqueIndex',
           '${record.location.label} · Preserved inline content',
           section: record.location.sectionIndex,
+          textOffset: projectedOffset,
         );
       } else if (inline is WmlObject) {
         semantic.add(<String, Object?>{
@@ -1303,6 +1502,11 @@ class _Collector {
       for (final segment in formatting)
         <Object?>[segment.length, segment.properties],
     ]);
+    record.normalizedRunFormatting = _normalizedFormatting(
+      record.text,
+      formatting,
+      options,
+    );
     record.runStyleSet = jsonEncode(styleSet.toList()..sort());
     record.semantics = jsonEncode(semantic);
     _charge(record.semantics.length);
@@ -1324,6 +1528,53 @@ class _FormatSegment {
   _FormatSegment(this.length, this.properties);
   int length;
   final String properties;
+}
+
+String _normalizedFormatting(
+  String text,
+  List<_FormatSegment> segments,
+  WordComparisonOptions options,
+) {
+  if (!options.ignoreCase && !options.ignoreWhitespace) {
+    return jsonEncode(<Object?>[
+      for (final segment in segments)
+        <Object?>[segment.length, segment.properties],
+    ]);
+  }
+  final normalized = <_FormatSegment>[];
+  void append(int length, String properties) {
+    if (length == 0) return;
+    if (normalized.isNotEmpty && normalized.last.properties == properties) {
+      normalized.last.length += length;
+    } else {
+      normalized.add(_FormatSegment(length, properties));
+    }
+  }
+
+  var offset = 0;
+  var pendingSpace = false;
+  for (final segment in segments) {
+    final part = text.substring(offset, offset + segment.length);
+    offset += segment.length;
+    for (final grapheme in part.characters) {
+      if (options.ignoreWhitespace && grapheme.trim().isEmpty) {
+        pendingSpace = true;
+        continue;
+      }
+      if (pendingSpace && normalized.isNotEmpty) {
+        append(1, 'normalized whitespace');
+      }
+      pendingSpace = false;
+      append(
+        options.ignoreCase ? grapheme.toLowerCase().length : grapheme.length,
+        segment.properties,
+      );
+    }
+  }
+  return jsonEncode(<Object?>[
+    for (final segment in normalized)
+      <Object?>[segment.length, segment.properties],
+  ]);
 }
 
 Map<String, Object?> _paragraphProperties(WmlParagraphProps p) =>

@@ -15,7 +15,7 @@ WmlParagraph _p(String text, {bool bold = false}) => WmlParagraph(
 );
 
 WmlDocument _doc(List<String> lines) => WmlDocument(
-  sections: <WmlSection>[WmlSection(blocks: lines.map(_p).toList())],
+  sections: <WmlSection>[WmlSection(blocks: lines.map<WmlBlock>(_p).toList())],
 );
 
 String _original(WordComparisonEntry entry) => entry.spans
@@ -343,6 +343,31 @@ void main() {
   });
 
   test(
+    'captured-null target cannot be rebound after later paragraph insertion',
+    () {
+      final document = _doc(<String>[]);
+      final revision = WmlRevision(
+        id: 8,
+        kind: WmlRevisionKind.delete,
+        paragraphIndex: 0,
+        start: 0,
+        end: 4,
+        text: 'body',
+      );
+      document.revisions.add(revision);
+      expect(WordRevisions.resolveParagraph(document, revision), isNull);
+      expect(revision.hasCapturedTarget, isTrue);
+      document.sections.single.blocks.add(_p('body'));
+      expect(
+        () => WordCompare.diff(document, _doc(<String>[''])),
+        throwsStateError,
+      );
+      expect(revision.targetParagraph, isNull);
+      expect(document.paragraphs.single.text, 'body');
+    },
+  );
+
+  test(
     'table, frame, header and note changes retain their story locations',
     () {
       WmlDocument rich(String value) {
@@ -429,6 +454,18 @@ void main() {
       expect(result.changes.single.details.join(' '), contains('links'));
     },
   );
+
+  test('splitting a hyperlink across equal runs is not a document change', () {
+    const link = WmlHyperlink(url: 'https://example.com/');
+    final before = _doc(<String>['A link']);
+    final after = _doc(<String>['A link']);
+    (before.paragraphs.single.inlines.single as WmlRun).hyperlink = link;
+    after.paragraphs.single.inlines = <WmlInline>[
+      WmlRun(text: 'A ', hyperlink: link),
+      WmlRun(text: 'link', hyperlink: link),
+    ];
+    expect(WordCompare.diff(before, after).hasChanges, isFalse);
+  });
 
   test('coarse fallback is bounded, disclosed and does not truncate text', () {
     const before = 'one two three four five';

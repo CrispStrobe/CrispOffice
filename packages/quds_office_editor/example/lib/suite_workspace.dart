@@ -2728,21 +2728,6 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   List<StudioRibbonGroup> _wordReview() {
     return <StudioRibbonGroup>[
       StudioRibbonGroup(
-        title: _arabic ? 'مراجعة المستند' : 'Document review',
-        children: <Widget>[
-          _cmd(
-            Icons.rate_review_outlined,
-            _arabic ? 'مراجعة التغييرات' : 'Review changes',
-            () => _showDocumentReview(WordReviewTab.changes),
-          ),
-          _cmd(
-            Icons.compare_arrows,
-            _arabic ? 'مقارنة مستندين' : 'Compare documents',
-            _studioCompareDocument,
-          ),
-        ],
-      ),
-      StudioRibbonGroup(
         title: _arabic ? 'تحليل لغوي' : 'Language analysis',
         children: <Widget>[
           _cmd(
@@ -2860,22 +2845,29 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
             _showProperties,
           ),
           _cmd(
+            Icons.rate_review_outlined,
+            _arabic ? 'مراجعة التغييرات' : 'Review changes',
+            () => _showDocumentReview(WordReviewTab.changes),
+          ),
+          _cmd(
             Icons.track_changes,
             _arabic ? 'تعقب' : 'Track',
-            () => _word.setTrackRevisions(!_word.document.trackRevisions),
+            _canMutate
+                ? () => _word.setTrackRevisions(!_word.document.trackRevisions)
+                : null,
             selected: _word.document.trackRevisions,
           ),
           _cmd(
             Icons.done_all,
             _arabic ? 'قبول' : 'Accept',
-            _word.selectedRevision == null
+            !_canMutate || _word.selectedRevision == null
                 ? null
                 : () => _word.acceptRevision(_word.selectedRevision!),
           ),
           _cmd(
             Icons.remove_done,
             _arabic ? 'رفض' : 'Reject',
-            _word.selectedRevision == null
+            !_canMutate || _word.selectedRevision == null
                 ? null
                 : () => _word.rejectRevision(_word.selectedRevision!),
           ),
@@ -2896,12 +2888,16 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
           _cmd(
             Icons.done_outline,
             _arabic ? 'قبول الكل' : 'Accept all',
-            _word.document.revisions.isEmpty ? null : _word.acceptAllRevisions,
+            !_canMutate || _word.document.revisions.isEmpty
+                ? null
+                : _word.acceptAllRevisions,
           ),
           _cmd(
             Icons.remove_circle_outline,
             _arabic ? 'رفض الكل' : 'Reject all',
-            _word.document.revisions.isEmpty ? null : _word.rejectAllRevisions,
+            !_canMutate || _word.document.revisions.isEmpty
+                ? null
+                : _word.rejectAllRevisions,
           ),
           _cmd(
             Icons.sync,
@@ -5382,18 +5378,20 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   }
 
   void _showDocumentReview(WordReviewTab tab) {
-    unawaited(showWordReviewDialog(
-      context,
-      controller: _word,
-      documentName: _wordName,
-      pickDocument: StudioFiles.pickComparisonDocument,
-      onExportReport: (name, json) => StudioFiles.save(
-        fileName: name,
-        bytes: Uint8List.fromList(utf8.encode(json)),
+    unawaited(
+      showWordReviewDialog(
+        context,
+        controller: _word,
+        documentName: _wordName,
+        pickDocument: StudioFiles.pickComparisonDocument,
+        onExportReport: (name, json) => StudioFiles.save(
+          fileName: name,
+          bytes: Uint8List.fromList(utf8.encode(json)),
+        ),
+        initialTab: tab,
+        arabic: _arabic,
       ),
-      initialTab: tab,
-      arabic: _arabic,
-    ));
+    );
   }
 
   void _studioSheetValidation() {

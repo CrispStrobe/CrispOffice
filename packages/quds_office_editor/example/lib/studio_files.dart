@@ -83,15 +83,49 @@ abstract final class StudioFiles {
     );
     if (result == null || result.files.isEmpty) return null;
     final file = result.files.single;
-    final bytes = await ensureBytes(PickedOfficeFile(
-      bytes: file.bytes ?? Uint8List(0),
-      name: file.name,
-      kind: OpcPackageKind.word,
-      path: file.path,
-    ));
+    final bytes = await ensureBytes(
+      PickedOfficeFile(
+        bytes: file.bytes ?? Uint8List(0),
+        name: file.name,
+        kind: OpcPackageKind.word,
+        path: file.path,
+      ),
+    );
     if (bytes.isEmpty) throw StateError('The selected document is empty.');
-    final opened = await OfficeIsolateOpen.word(bytes);
-    return WordComparisonDocument(document: opened.document, name: file.name);
+    final document = await compute(decodeComparisonDocument, bytes);
+    return WordComparisonDocument(document: document, name: file.name);
+  }
+
+  /// Strict read-only input validation: a spreadsheet or damaged package must
+  /// never become an empty Word document and report a misleading comparison.
+  static WmlDocument decodeComparisonDocument(Uint8List bytes) {
+    final package = OpcPackage.openBytes(bytes);
+    if (package.kind != OpcPackageKind.word) {
+      throw const FormatException(
+        'Choose a Word DOCX, DOCM, DOTX or DOTM document.',
+      );
+    }
+    final relationship = package.packageRelationships.firstByType(
+      RelationshipTypes.officeDocument,
+    )!;
+    final mainPart = package.getPart(
+      package.packageRelationships.resolve(relationship),
+    );
+    if (mainPart == null) {
+      throw const FormatException('The Word document content is missing.');
+    }
+    final root = XmlDocument.parse(mainPart.readText()).root;
+    if (root?.localName != 'document' ||
+        !<String>{
+          OfficeNamespaces.w,
+          'http://purl.oclc.org/ooxml/wordprocessingml/main',
+        }.contains(root?.namespaceUri) ||
+        !root!.childElements.any((element) => element.localName == 'body')) {
+      throw const FormatException(
+        'The package does not contain a Word document.',
+      );
+    }
+    return WordDeserializer().read(package);
   }
 
   /// Loads picked file bytes on a worker isolate when the picker only returned a path.
@@ -217,10 +251,7 @@ abstract final class StudioFiles {
       return OfficeFontSet(primary: latin, fallbacks: <SfntFont>[arabicFace]);
     }
     if (needsArabic && !needsLatin && arabicFace != null) {
-      return OfficeFontSet(
-        primary: arabicFace,
-        fallbacks: <SfntFont>[?latin],
-      );
+      return OfficeFontSet(primary: arabicFace, fallbacks: <SfntFont>[?latin]);
     }
     final SfntFont? covered = exportFontCovering(texts);
     return OfficeFontSet(
