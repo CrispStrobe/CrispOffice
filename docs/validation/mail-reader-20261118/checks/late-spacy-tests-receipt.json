@@ -1,0 +1,247 @@
+{
+  "kind": "tests",
+  "started_at_utc": "2026-11-18T19:30:13.666968+00:00",
+  "finished_at_utc": "2026-11-18T19:30:42.665095+00:00",
+  "head_at_start": "c473a25f27bbbce083ef8a5aa40eaa74e70d3146",
+  "command_argv": [
+    "/workspace/scratch/ab53c04e2d5e/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+    "--packages=/workspace/scratch/ab53c04e2d5e/quds_office_suite/.dart_tool/package_config.json",
+    "/workspace/scratch/ab53c04e2d5e/toolchains/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+    "packages/quds_proofing_spacy/test/language_catalog_test.dart",
+    "packages/quds_proofing_spacy/test/analysis_test.dart",
+    "packages/quds_proofing_spacy/test/bundle_test.dart",
+    "packages/quds_proofing_spacy/test/distribution_test.dart",
+    "packages/quds_proofing_spacy/test/worker_test.dart",
+    "--concurrency=2",
+    "--reporter",
+    "expanded"
+  ],
+  "working_directory": "/workspace/scratch/ab53c04e2d5e/quds_office_suite",
+  "environment": {
+    "TMPDIR": "/workspace/scratch/ab53c04e2d5e/toolchains/tmp",
+    "PUB_CACHE": "/workspace/scratch/ab53c04e2d5e/toolchains/pub-cache",
+    "DASH__SUPPRESS_ANALYTICS": "true",
+    "FLUTTER_SUPPRESS_ANALYTICS": "true",
+    "CI": "true"
+  },
+  "elapsed_seconds": 28.993,
+  "exit_code": 0,
+  "source_hashes_before": [
+    {
+      "path": ".dart_tool/package_config.json",
+      "sha256": "c3c3abd1dc09648e2461f0b9fdb543b7b88350af021fafc6ef5cc2c6ce737059"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/lib/quds_proofing_spacy.dart",
+      "sha256": "6cd5ae5c4f83addb2c709e191b1e0e09730d5cde90624479beeed832d6647140"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/lib/quds_proofing_spacy_grammar.dart",
+      "sha256": "7fda24553f7af314f7e0d3af862c1460c73c0cd8726b4b86021da1044238fa9d"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/lib/quds_proofing_spacy_install.dart",
+      "sha256": "66baacd526455e29e287d2aad4753b2b3f0be6e3270a84e4ea3a7a1baba75c94"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/lib/quds_proofing_spacy_native.dart",
+      "sha256": "b4d68e940536d8272680f21057f1a7695eb78d8a02c338320b2376c6a159a002"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/lib/src/analysis.dart",
+      "sha256": "f8cfa8f3ac4ec6c479da55c1e1c5ea1da01ed2a77b9de32de370f562bd414c29"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/lib/src/backend.dart",
+      "sha256": "191154cac31453e58298f02c5794cf4b5ad956201232bdff81f9c5c0cf969803"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/lib/src/bundle.dart",
+      "sha256": "9c4101b325ebb54cf606dc440dd4ee5e1407a628468bd05893f5808085b71b13"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/lib/src/distribution.dart",
+      "sha256": "c28fd861a88f4d832dda25481caaaf7dcc1e4e954461cbcf355d768be78afbe1"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/lib/src/grammar_planner.dart",
+      "sha256": "898ff9f67a4acc20e825968f422c9fd1ae1def654ce63ef2942ba0e0cf317314"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/lib/src/grammar_provider.dart",
+      "sha256": "892f2a06a7964834dd9c4752f7250ca25da72b5c6fb698b5f266bcb5542eddc3"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/lib/src/installer_io.dart",
+      "sha256": "68e1cf3df9e85d00679b2ed4465d30f694fe2a44ab7096d213f4400a9f32ea6f"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/lib/src/native_backend.dart",
+      "sha256": "df11274c4ea84fbe3588fdb68f366e94e7abdc0e7a9804ded60216e8ccbcad27"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/lib/src/native_backend_unsupported.dart",
+      "sha256": "4efda0e80b30c33320ab3e1499f3ad80b1a6ac022b74d2e072c2cd63d4b6c358"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/lib/src/source_text.dart",
+      "sha256": "fd2f2fdda8e608d32bf3b4a05c10b8777a106495cf97cbfafd3b05dd5e559330"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/lib/src/transport.dart",
+      "sha256": "78b38b82fcec385d0d2d96d5861f0e2b0333b8af58bc542dd6d5cc23677f6305"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/lib/src/worker_native.dart",
+      "sha256": "5ad6e5a4ba38c20fb847049eb08ec75a7edf617ad6fc11eabb51e4318e323652"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/lib/src/worker_unsupported.dart",
+      "sha256": "074c3ad98e4a873ec5d55535b3c1a404da4eb557068437a3b4eb9a622d1e3078"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/pubspec.yaml",
+      "sha256": "eaa01aa5b7410e785ed9171b1cfd5073cb619663a900403119e3bb02f93d57f5"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/test/analysis_test.dart",
+      "sha256": "8bb386066dac0091533152b0c9e03214f868014dd4ccba88f7822fa6ca57eefa"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/test/bundle_test.dart",
+      "sha256": "62521074823fc36013007fca61dd72c63bac6dd184f45f60b43d90dd3723d7f5"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/test/distribution_test.dart",
+      "sha256": "cad5834ddf21a92a11e2421e4733d4602089e3efe73bd3131cb2068e3bac98a7"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/test/language_catalog_test.dart",
+      "sha256": "7f4136ad9e8982d32e81fba7d077300e0861bb41ff0eed54891332cc80f89ef1"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/test/worker_test.dart",
+      "sha256": "a2731ca47b669548bbe5c19acec2fc24ba00a065d781bedd2eecbedbd52e51eb"
+    },
+    {
+      "path": "pubspec.lock",
+      "sha256": "5214b05715c94294bfed7205b2820f78a8d802a18398802da32e485d7f0356b2"
+    },
+    {
+      "path": "pubspec.yaml",
+      "sha256": "ab3377266554624973b9655410ef2d569665ea7428e23c1958634a6518a125f9"
+    }
+  ],
+  "source_hashes_after": [
+    {
+      "path": ".dart_tool/package_config.json",
+      "sha256": "c3c3abd1dc09648e2461f0b9fdb543b7b88350af021fafc6ef5cc2c6ce737059"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/lib/quds_proofing_spacy.dart",
+      "sha256": "6cd5ae5c4f83addb2c709e191b1e0e09730d5cde90624479beeed832d6647140"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/lib/quds_proofing_spacy_grammar.dart",
+      "sha256": "7fda24553f7af314f7e0d3af862c1460c73c0cd8726b4b86021da1044238fa9d"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/lib/quds_proofing_spacy_install.dart",
+      "sha256": "66baacd526455e29e287d2aad4753b2b3f0be6e3270a84e4ea3a7a1baba75c94"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/lib/quds_proofing_spacy_native.dart",
+      "sha256": "b4d68e940536d8272680f21057f1a7695eb78d8a02c338320b2376c6a159a002"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/lib/src/analysis.dart",
+      "sha256": "f8cfa8f3ac4ec6c479da55c1e1c5ea1da01ed2a77b9de32de370f562bd414c29"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/lib/src/backend.dart",
+      "sha256": "191154cac31453e58298f02c5794cf4b5ad956201232bdff81f9c5c0cf969803"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/lib/src/bundle.dart",
+      "sha256": "9c4101b325ebb54cf606dc440dd4ee5e1407a628468bd05893f5808085b71b13"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/lib/src/distribution.dart",
+      "sha256": "c28fd861a88f4d832dda25481caaaf7dcc1e4e954461cbcf355d768be78afbe1"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/lib/src/grammar_planner.dart",
+      "sha256": "898ff9f67a4acc20e825968f422c9fd1ae1def654ce63ef2942ba0e0cf317314"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/lib/src/grammar_provider.dart",
+      "sha256": "892f2a06a7964834dd9c4752f7250ca25da72b5c6fb698b5f266bcb5542eddc3"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/lib/src/installer_io.dart",
+      "sha256": "68e1cf3df9e85d00679b2ed4465d30f694fe2a44ab7096d213f4400a9f32ea6f"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/lib/src/native_backend.dart",
+      "sha256": "df11274c4ea84fbe3588fdb68f366e94e7abdc0e7a9804ded60216e8ccbcad27"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/lib/src/native_backend_unsupported.dart",
+      "sha256": "4efda0e80b30c33320ab3e1499f3ad80b1a6ac022b74d2e072c2cd63d4b6c358"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/lib/src/source_text.dart",
+      "sha256": "fd2f2fdda8e608d32bf3b4a05c10b8777a106495cf97cbfafd3b05dd5e559330"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/lib/src/transport.dart",
+      "sha256": "78b38b82fcec385d0d2d96d5861f0e2b0333b8af58bc542dd6d5cc23677f6305"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/lib/src/worker_native.dart",
+      "sha256": "5ad6e5a4ba38c20fb847049eb08ec75a7edf617ad6fc11eabb51e4318e323652"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/lib/src/worker_unsupported.dart",
+      "sha256": "074c3ad98e4a873ec5d55535b3c1a404da4eb557068437a3b4eb9a622d1e3078"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/pubspec.yaml",
+      "sha256": "eaa01aa5b7410e785ed9171b1cfd5073cb619663a900403119e3bb02f93d57f5"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/test/analysis_test.dart",
+      "sha256": "8bb386066dac0091533152b0c9e03214f868014dd4ccba88f7822fa6ca57eefa"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/test/bundle_test.dart",
+      "sha256": "62521074823fc36013007fca61dd72c63bac6dd184f45f60b43d90dd3723d7f5"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/test/distribution_test.dart",
+      "sha256": "cad5834ddf21a92a11e2421e4733d4602089e3efe73bd3131cb2068e3bac98a7"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/test/language_catalog_test.dart",
+      "sha256": "7f4136ad9e8982d32e81fba7d077300e0861bb41ff0eed54891332cc80f89ef1"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/test/worker_test.dart",
+      "sha256": "a2731ca47b669548bbe5c19acec2fc24ba00a065d781bedd2eecbedbd52e51eb"
+    },
+    {
+      "path": "pubspec.lock",
+      "sha256": "5214b05715c94294bfed7205b2820f78a8d802a18398802da32e485d7f0356b2"
+    },
+    {
+      "path": "pubspec.yaml",
+      "sha256": "ab3377266554624973b9655410ef2d569665ea7428e23c1958634a6518a125f9"
+    }
+  ],
+  "source_inputs_unchanged": true,
+  "output": "docs/validation/mail-reader-20261118/checks/late-spacy-tests.txt",
+  "output_sha256": "2fbd7b1405f82a1ea77ddb7d032629697b00d049e82493496bfb33dd129ae24e",
+  "download_scope": "Synthetic loopback fixtures only in installer failure tests. No model or native-library downloads were invoked.",
+  "native_inference_tested": false,
+  "github_actions_used": false
+}

@@ -1,0 +1,71 @@
+{
+  "scope": "Static review of source areas touched by the incoming branch merge while local Flutter startup is being diagnosed.",
+  "checks": [
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+      "command": [
+        "/workspace/scratch/ab53c04e2d5e/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "packages/quds_office_editor/lib/src/embed/office_controller.dart"
+      ],
+      "exit_code": 0,
+      "seconds": 8.553
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/office_editors.dart",
+      "command": [
+        "/workspace/scratch/ab53c04e2d5e/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "packages/quds_office_editor/lib/src/embed/office_editors.dart"
+      ],
+      "exit_code": 0,
+      "seconds": 16.537
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/word_review_pane.dart",
+      "command": [
+        "/workspace/scratch/ab53c04e2d5e/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "packages/quds_office_editor/lib/src/embed/word_review_pane.dart"
+      ],
+      "exit_code": 0,
+      "seconds": 14.728
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/word_review_status.dart",
+      "command": [
+        "/workspace/scratch/ab53c04e2d5e/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "packages/quds_office_editor/lib/src/embed/word_review_status.dart"
+      ],
+      "exit_code": 0,
+      "seconds": 13.428
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/proofing/word_proofing.dart",
+      "command": [
+        "/workspace/scratch/ab53c04e2d5e/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "packages/quds_office_editor/lib/src/proofing/word_proofing.dart"
+      ],
+      "exit_code": 0,
+      "seconds": 6.04
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/suite_workspace.dart",
+      "command": [
+        "/workspace/scratch/ab53c04e2d5e/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "packages/quds_office_editor/example/lib/suite_workspace.dart"
+      ],
+      "exit_code": 0,
+      "seconds": 18.3
+    }
+  ]
+}

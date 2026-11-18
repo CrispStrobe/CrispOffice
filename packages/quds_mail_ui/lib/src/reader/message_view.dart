@@ -332,7 +332,8 @@ class _MailMessageViewState extends State<MailMessageView> {
                               crossAxisAlignment: WrapCrossAlignment.center,
                               children: [
                                 Text(
-                                  '${controller.searchMatches.length}${controller.searchHasMore ? '+' : ''} matches',
+                                  '${controller.searchMatches.length}${controller.searchHasMore ? '+' : ''} '
+                                  '${controller.searchMatches.length == 1 && !controller.searchHasMore ? 'match' : 'matches'}',
                                 ),
                                 IconButton(
                                   tooltip: 'Previous match (Shift+F3)',
@@ -366,7 +367,7 @@ class _MailMessageViewState extends State<MailMessageView> {
                                     diagnostic.severity ==
                                     MailDiagnosticSeverity.error,
                                 child: Text(
-                                  '${diagnostic.code.name}: ${diagnostic.message}',
+                                  diagnostic.message,
                                   style: TextStyle(
                                     color:
                                         diagnostic.severity ==

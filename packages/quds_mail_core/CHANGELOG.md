@@ -1,5 +1,7 @@
 ## 0.1.0
 
+- Require cursor comparison inside sync transactions so concurrent stale pages
+  cannot overwrite a newer committed mailbox state.
 - Introduce independently implemented MIT portable Mail domain models and ports.
 - Preserve exact immutable message/attachment bytes and typed parsing budgets.
 - Add profile/account scoping, cooperative cancellation and stale callback guards.

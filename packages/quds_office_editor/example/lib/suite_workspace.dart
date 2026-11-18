@@ -138,8 +138,11 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   var _slideshowFullscreen = false;
   var _findOpen = false;
   var _pdfSideTab = 0; // 0 thumbs, 1 outline
+  final ValueNotifier<int> _navigationRevision = ValueNotifier<int>(0);
   final ScrollController _pdfThumbScroll = ScrollController();
+  final ScrollController _compactPdfThumbScroll = ScrollController();
   int _pdfThumbSyncedPage = -1;
+  int _compactPdfThumbSyncedPage = -1;
   final Set<String> _pdfOutlineExpanded = <String>{};
   var _findReplace = false;
   var _printPreview = false;
@@ -307,6 +310,8 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     _pdfFindDebounce?.cancel();
     _pdfFind.dispose();
     _pdfThumbScroll.dispose();
+    _compactPdfThumbScroll.dispose();
+    _navigationRevision.dispose();
     _slideNotesEdit.dispose();
     _commentContextKeyboard = false;
     _wordFocus.dispose();
@@ -1035,62 +1040,102 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     return Material(
       color: dark ? const Color(0xFF2A2A2A) : Colors.white,
       child: SizedBox(
-        height: 36,
-        child: Row(
-          children: <Widget>[
-            Expanded(
-              child: SingleChildScrollView(
-                key: const ValueKey<String>('studio-ribbon-tabs-scroll'),
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const SizedBox(width: 4),
-                    for (final _RibbonTab tab in _tabsForApp)
-                      StudioTabChip(
-                        label: _tabLabel(tab),
-                        selected: _tab == tab,
-                        accent: _accent,
-                        onTap: () => setState(() => _tab = tab),
-                      ),
-                  ],
+        height: 36 + _extraChromeTextHeight(13),
+        child: LayoutBuilder(
+          builder: (context, constraints) => Row(
+            children: <Widget>[
+              if (constraints.maxWidth < 700)
+                StudioIconCmd(
+                  icon: Icons.menu,
+                  tooltip: _arabic ? 'التنقل' : 'Navigation',
+                  accent: _accent,
+                  foreground: _officeTheme.chromeText,
+                  onPressed: () => _openCompactNavigation(dark),
+                ),
+              Expanded(
+                child: SingleChildScrollView(
+                  key: const ValueKey<String>('studio-ribbon-tabs-scroll'),
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: <Widget>[
+                      const SizedBox(width: 4),
+                      for (final _RibbonTab tab in _tabsForApp)
+                        StudioTabChip(
+                          label: _tabLabel(tab),
+                          selected: _tab == tab,
+                          accent: _accent,
+                          onTap: () => setState(() => _tab = tab),
+                        ),
+                    ],
+                  ),
                 ),
               ),
-            ),
-            StudioIconCmd(
-              icon: Icons.undo,
-              tooltip: _arabic ? 'تراجع' : 'Undo',
-              accent: _accent,
-              foreground: _officeTheme.chromeText,
-              onPressed:
-                  _canMutate &&
-                      (_app == SuiteApp.pdf ? _pdf.canUndo : _active.canUndo)
-                  ? (_app == SuiteApp.pdf ? _pdf.undo : _active.undo)
-                  : null,
-            ),
-            StudioIconCmd(
-              icon: Icons.redo,
-              tooltip: _arabic ? 'إعادة' : 'Redo',
-              accent: _accent,
-              foreground: _officeTheme.chromeText,
-              onPressed:
-                  _canMutate &&
-                      (_app == SuiteApp.pdf ? _pdf.canRedo : _active.canRedo)
-                  ? (_app == SuiteApp.pdf ? _pdf.redo : _active.redo)
-                  : null,
-            ),
-            StudioIconCmd(
-              icon: Icons.translate,
-              tooltip: _arabic ? 'English' : 'العربية',
-              accent: _accent,
-              foreground: _officeTheme.chromeText,
-              onPressed: _toggleArabic,
-            ),
-            const SizedBox(width: 8),
-          ],
+              StudioIconCmd(
+                icon: Icons.undo,
+                tooltip: _arabic ? 'تراجع' : 'Undo',
+                accent: _accent,
+                foreground: _officeTheme.chromeText,
+                onPressed:
+                    _canMutate &&
+                        (_app == SuiteApp.pdf ? _pdf.canUndo : _active.canUndo)
+                    ? (_app == SuiteApp.pdf ? _pdf.undo : _active.undo)
+                    : null,
+              ),
+              StudioIconCmd(
+                icon: Icons.redo,
+                tooltip: _arabic ? 'إعادة' : 'Redo',
+                accent: _accent,
+                foreground: _officeTheme.chromeText,
+                onPressed:
+                    _canMutate &&
+                        (_app == SuiteApp.pdf ? _pdf.canRedo : _active.canRedo)
+                    ? (_app == SuiteApp.pdf ? _pdf.redo : _active.redo)
+                    : null,
+              ),
+              StudioIconCmd(
+                icon: Icons.translate,
+                tooltip: _arabic ? 'English' : 'العربية',
+                accent: _accent,
+                foreground: _officeTheme.chromeText,
+                onPressed: _toggleArabic,
+              ),
+              const SizedBox(width: 8),
+            ],
+          ),
         ),
       ),
     );
+  }
+
+  double _extraChromeTextHeight(double fontSize) =>
+      math.max(0, MediaQuery.textScalerOf(context).scale(fontSize) - fontSize) *
+      1.6;
+
+  Future<void> _openCompactNavigation(bool dark) => showModalBottomSheet<void>(
+    context: context,
+    isScrollControlled: true,
+    useSafeArea: true,
+    showDragHandle: true,
+    builder: (context) => AnimatedBuilder(
+      animation: Listenable.merge([
+        _app == SuiteApp.pdf ? _pdf : _active,
+        _navigationRevision,
+      ]),
+      builder: (context, _) => Directionality(
+        textDirection: _arabic ? TextDirection.rtl : TextDirection.ltr,
+        child: SizedBox(
+          height: MediaQuery.sizeOf(context).height * 0.65,
+          child: _sidePane(dark, compact: true),
+        ),
+      ),
+    ),
+  );
+
+  void _updateNavigationState(VoidCallback update) {
+    setState(update);
+    // The compact sheet is a separate route. Its local tabs and expansion
+    // state must rebuild alongside the inline desktop navigation pane.
+    _navigationRevision.value++;
   }
 
   Widget _ribbon(bool dark) {
@@ -7502,7 +7547,8 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
               constraints.maxWidth < 1040;
           final stage = Row(
             children: <Widget>[
-              if (!(_app == SuiteApp.powerpoint && _slides.isPresenting))
+              if (constraints.maxWidth >= 700 &&
+                  !(_app == SuiteApp.powerpoint && _slides.isPresenting))
                 _sidePane(dark),
               Expanded(child: _stage(dark)),
               if (_app == SuiteApp.word && _showComments && !commentsBelow)
@@ -8939,7 +8985,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     );
   }
 
-  Widget _sidePane(bool dark) {
+  Widget _sidePane(bool dark, {bool compact = false}) {
     final Color bg = dark ? const Color(0xFF242424) : const Color(0xFFF3F3F3);
     return Material(
       color: bg,
@@ -8949,7 +8995,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
           SuiteApp.word => _wordNav(),
           SuiteApp.excel => _sheetNav(),
           SuiteApp.powerpoint => _slideNav(),
-          SuiteApp.pdf => _pdfNav(),
+          SuiteApp.pdf => _pdfNav(compact: compact),
         },
       ),
     );
@@ -9081,14 +9127,14 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     );
   }
 
-  Widget _pdfNav() {
+  Widget _pdfNav({bool compact = false}) {
     final PdfOutlineNode? outline = _pdf.file?.outline;
     final bool hasOutline = outline != null && outline.children.isNotEmpty;
     final int tab = hasOutline ? _pdfSideTab.clamp(0, 1) : 0;
     if (!hasOutline && _pdfSideTab != 0) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         if (mounted) {
-          setState(() => _pdfSideTab = 0);
+          _updateNavigationState(() => _pdfSideTab = 0);
         }
       });
     }
@@ -9096,7 +9142,9 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
         Expanded(
-          child: tab == 0 ? _pdfThumbsPane() : _pdfOutlinePane(outline!),
+          child: tab == 0
+              ? _pdfThumbsPane(compact: compact)
+              : _pdfOutlinePane(outline!),
         ),
         if (hasOutline) _pdfSideTabBar(tab),
       ],
@@ -9114,7 +9162,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         message: tip,
         child: InkWell(
           borderRadius: BorderRadius.circular(8),
-          onTap: () => setState(() => _pdfSideTab = index),
+          onTap: () => _updateNavigationState(() => _pdfSideTab = index),
           child: AnimatedContainer(
             duration: const Duration(milliseconds: 120),
             width: 40,
@@ -9168,22 +9216,29 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     );
   }
 
-  Widget _pdfThumbsPane() {
+  Widget _pdfThumbsPane({bool compact = false}) {
     final List<PdfDisplayList> lists = _pdf.lists;
     final int current = _pdf.pageIndex;
-    if (current != _pdfThumbSyncedPage) {
-      _pdfThumbSyncedPage = current;
+    final ScrollController scrollController = compact
+        ? _compactPdfThumbScroll
+        : _pdfThumbScroll;
+    final int syncedPage = compact
+        ? _compactPdfThumbSyncedPage
+        : _pdfThumbSyncedPage;
+    if (current != syncedPage) {
+      if (compact) {
+        _compactPdfThumbSyncedPage = current;
+      } else {
+        _pdfThumbSyncedPage = current;
+      }
       WidgetsBinding.instance.addPostFrameCallback((_) {
-        if (!mounted || !_pdfThumbScroll.hasClients || lists.isEmpty) {
+        if (!mounted || !scrollController.hasClients || lists.isEmpty) {
           return;
         }
         // ListView.builder may not have built the selected child yet, so
         // estimate offset from page aspect instead of ensureVisible alone.
         const double pad = 12;
-        final double contentW = math.max(
-          80,
-          _pdfThumbScroll.position.viewportDimension > 0 ? 268 - pad * 2 : 244,
-        );
+        const double contentW = 268 - pad * 2;
         var y = 4.0;
         for (int i = 0; i < current && i < lists.length; i++) {
           final PdfDisplayList list = lists[i];
@@ -9192,9 +9247,14 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
           final double thumbH = contentW * pageH / pageW;
           y += thumbH + 6 + 16 + 12; // thumb + gap + label + padding
         }
-        final double max = _pdfThumbScroll.position.maxScrollExtent;
-        final double target = (y - 24).clamp(0.0, max);
-        _pdfThumbScroll.animateTo(
+        // Resizing may show both panes. Their separate controllers keep each
+        // normal desktop scrollbar attached to exactly one viewport.
+        final position = scrollController.position;
+        if (!position.hasContentDimensions) {
+          return;
+        }
+        final double target = (y - 24).clamp(0.0, position.maxScrollExtent);
+        position.animateTo(
           target,
           duration: const Duration(milliseconds: 220),
           curve: Curves.easeOutCubic,
@@ -9210,7 +9270,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         ),
         Expanded(
           child: ListView.builder(
-            controller: _pdfThumbScroll,
+            controller: scrollController,
             padding: const EdgeInsets.fromLTRB(12, 4, 12, 16),
             itemCount: lists.length,
             itemBuilder: (BuildContext context, int index) {
@@ -9296,7 +9356,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         page != null && page == _pdf.pageIndex && node.pageIndex == page;
 
     void toggleExpand() {
-      setState(() {
+      _updateNavigationState(() {
         final String key = 'c$path';
         if (_pdfOutlineExpanded.contains(key)) {
           _pdfOutlineExpanded.remove(key);
@@ -9640,7 +9700,9 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     return Material(
       color: _accent,
       child: SizedBox(
-        height: _savePhase == _SavePhase.saving || _opening ? 34 : 26,
+        height:
+            (_savePhase == _SavePhase.saving || _opening ? 34 : 26) +
+            _extraChromeTextHeight(11),
         child: Column(
           children: <Widget>[
             Expanded(
@@ -9690,11 +9752,18 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                       ),
                     ),
                     const SizedBox(width: 16),
-                    Text(
-                      _app == SuiteApp.pdf
-                          ? (_arabic ? 'مستند PDF' : 'PDF document')
-                          : _active.semanticsLabel,
-                      style: const TextStyle(color: Colors.white, fontSize: 11),
+                    Flexible(
+                      child: Text(
+                        _app == SuiteApp.pdf
+                            ? (_arabic ? 'مستند PDF' : 'PDF document')
+                            : _active.semanticsLabel,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 11,
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
                     ),
                   ],
                 ),
@@ -10031,11 +10100,18 @@ class _CommentReplyComposerState extends State<_CommentReplyComposer> {
     final finding = findings.isEmpty
         ? null
         : findings[_findingIndex.clamp(0, findings.length - 1)];
-    final problems = result?.report.results
-        .where((provider) => provider.status != OfficeProofingStatus.success)
-        .map((provider) => provider.message ?? provider.status.name)
-        .toSet()
-        .join(' ');
+    final overLimit = _text.text.length > WordProofingSession.maxDraftLength;
+    final problems = overLimit
+        ? (widget.arabic
+              ? 'يتجاوز هذا الرد حد التدقيق المباشر (${WordProofingSession.maxDraftLength}). يمكن تدقيقه بعد النشر.'
+              : 'This reply exceeds the live checking limit (${WordProofingSession.maxDraftLength}). Check it after posting.')
+        : result?.report.results
+              .where(
+                (provider) => provider.status != OfficeProofingStatus.success,
+              )
+              .map((provider) => provider.message ?? provider.status.name)
+              .toSet()
+              .join(' ');
     return Padding(
       padding: const EdgeInsets.only(top: 4),
       child: Column(

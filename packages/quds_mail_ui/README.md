@@ -70,6 +70,8 @@ flutter test --no-pub --platform chrome
 flutter build web --release --no-pub --no-web-resources-cdn
 ```
 
+The example's custom Flutter bootstrap uses same-origin CanvasKit and font-fallback paths. The build flag bundles CanvasKit and the default Roboto fallback. It does not bundle every Unicode font: embedding hosts must bundle/cache their required fonts and qualify the completed application without outbound requests. The reader accepts the host's text theme; it does not download a font named by message HTML. Browser build success is not evidence that arbitrary multilingual content works fully offline.
+
 Run status and exact toolchain evidence belong to the Mail validation report in `docs/validation/mail-reader-20261118/`; test source alone does not establish a passing run. This package does not claim CrispCloud route parity, installed-app acceptance, low-memory-device performance, remote-image fetching, sending, mailbox sync, or App Store qualification.
 
 Independent Quds code is MIT. This UI package depends on Flutter, `characters`, and `quds_mail_core`; the separate MIME codec retains its own reviewed MPL dependency boundary.

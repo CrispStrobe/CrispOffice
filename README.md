@@ -495,7 +495,7 @@ Full walkthrough: [`packages/quds_office_editor/README.md`](packages/quds_office
 
 ---
 
-## Planned Mail and standalone Office
+## Mail reader and standalone Office roadmap
 
 The [Mail scope](docs/roadmaps/mail/README.md) and
 [coding plan / TODO](docs/roadmaps/mail/implementation-plan.md) specify a
@@ -506,8 +506,16 @@ new independent Quds code remains MIT.
 
 The plan preserves CrispCloud's existing EML/MSG/MBOX workflows without
 importing its AGPL implementation into Quds. Standalone and CrispCloud
-distribution/App Store gates are tracked separately. This is planned work;
-the existing applications below remain the currently documented apps.
+distribution/App Store gates are tracked separately.
+
+The first implementation now provides [typed Mail core](packages/quds_mail_core),
+[bounded EML parsing](packages/quds_mail_mime), and an
+[account-free Flutter reader](packages/quds_mail_ui) with a real MIME preview
+harness. Original message and attachment bytes remain immutable. The reviewed
+MPL fork exposes a portable public MIME entry without socket/filesystem imports.
+See the [implementation status and local checks](docs/roadmaps/mail/status.md).
+The connected mailbox, standalone Office host and CrispCloud migration remain
+subsequent tasks; this reader increment does not qualify an application release.
 
 ---
 

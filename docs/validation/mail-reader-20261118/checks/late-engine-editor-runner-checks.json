@@ -1,0 +1,67 @@
+{
+  "status": "PASS",
+  "recorded_utc": "2026-11-18T19:41:36.378169+00:00",
+  "kind": "runner syntax/CLI and synthetic failure-control-flow validation; not Mail qualification",
+  "runner_source_sha256": "243426de3c9260ebe36ff28e29d7c5a82c077c81d6b16f2597a00b17b3cd1826",
+  "validation_script_sha256": "cf2eb1bf2593a4fa940653c6a2c2e27d76ebfa2c6c32b3a2ab7fd03cabb809cf",
+  "checks": [
+    {
+      "name": "python-syntax",
+      "status": "PASS"
+    },
+    {
+      "name": "cli-help",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "name": "required-source-hashes",
+      "status": "PASS",
+      "included_paths": [
+        "third_party/enough_mail/DEPENDENCIES.json",
+        "third_party/enough_mail/LICENSE",
+        "third_party/enough_mail/PORTABLE_CLOSURE.json",
+        "third_party/enough_mail/QUDS_PATCHES.md",
+        "third_party/enough_mail/UPSTREAM.json",
+        "third_party/enough_mail/analysis_options.yaml",
+        "third_party/enough_mail/pubspec.yaml",
+        "tools/mail/check_reader.py"
+      ]
+    },
+    {
+      "name": "missing-sdk",
+      "status": "PASS",
+      "observed_runner_exit_code": 1,
+      "observed_receipt_status": "FAIL",
+      "atomic_checkpoint_count": 2,
+      "subprocess_calls": 0
+    },
+    {
+      "name": "spawn-oserror",
+      "status": "PASS",
+      "observed_runner_exit_code": 1,
+      "observed_receipt_status": "FAIL",
+      "atomic_checkpoint_count": 5,
+      "subprocess_calls": 1
+    },
+    {
+      "name": "keyboard-interrupt",
+      "status": "PASS",
+      "observed_runner_exit_code": 130,
+      "observed_receipt_status": "INTERRUPTED",
+      "atomic_checkpoint_count": 5,
+      "subprocess_calls": 1
+    },
+    {
+      "name": "failed-compile-stale-js",
+      "status": "PASS",
+      "observed_runner_exit_code": 1,
+      "observed_receipt_status": "FAIL",
+      "atomic_checkpoint_count": 25,
+      "subprocess_calls": 10
+    }
+  ],
+  "raw_log": "late-engine-editor-runner-checks.txt",
+  "raw_log_sha256": "872d31a25529b66c21cdabb963ae515848a4d49dfa479ba3b17dcc104cee5872",
+  "validation_script_file": "late-engine-editor-runner-control-validation.py"
+}

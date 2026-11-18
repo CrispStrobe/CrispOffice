@@ -13,6 +13,7 @@ environment:
 workspace:
   - packages/quds_mail_core
   - packages/quds_mail_mime
+  - packages/quds_mail_store
   - packages/quds_mail_ui
   - packages/quds_mail_ui/example
   - packages/legacy_doc_parser

@@ -88,7 +88,7 @@ void main() {
       );
       await tester.pumpAndSettle();
       expect(controller.searchMatches, hasLength(1));
-      expect(find.text('1 matches'), findsOneWidget);
+      expect(find.text('1 match'), findsOneWidget);
       await tester.tap(find.byTooltip('Next match (F3)'));
       await tester.pumpAndSettle();
       expect(controller.selectedText, 'original.bin');
@@ -309,7 +309,10 @@ void main() {
     expect(find.text('Message display unavailable'), findsOneWidget);
     expect(find.byType(MailSelectionSurface), findsNothing);
     expect(find.byKey(const ValueKey('mail-source')), findsOneWidget);
-    expect(find.textContaining('renderLimit:'), findsOneWidget);
+    expect(
+      find.text('Decoded text exceeds the rendering limit.'),
+      findsOneWidget,
+    );
     await tester.pumpWidget(const SizedBox());
     controller.dispose();
   });
