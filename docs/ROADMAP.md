@@ -14,9 +14,9 @@ report surfaces; it does not depend on CrispCloud.
 
 MPL-2.0 is explicitly allowed for this work alongside approved permissive
 licenses. The initial protocol foundation is a reviewed enough_mail 3.0.0
-fork, with a portable MIME entry point so the shared EML reader can compile
-on web. Existing public MIME exports currently pull in dart:io; browser
-portability remains an implementation/verification task. New independent
+fork, with a new public `mime_core.dart` entry point so the shared EML reader
+compiles to JavaScript without socket/filesystem imports. Actual browser
+runtime qualification remains open. New independent
 Quds source stays MIT; modified MPL source retains its notices and license.
 
 The [CrispCloud migration contract](roadmaps/mail/crispcloud-integration.md)
@@ -29,8 +29,12 @@ and the clean standalone app; see the
 M00–M14 specify source paths, typed host contracts, MIME limits, offline
 storage, recoverable sync/send, Office attachment editing, both consumers,
 cloud providers, Calendar/People and per-product App Store evidence.
-All tasks are planned: this entry does not claim Mail code, a standalone
-Office release or App Store qualification has been delivered.
+The initial core, bounded MIME codec and account-free reader are implemented.
+Native/JavaScript and focused Flutter results are recorded in the
+[Mail implementation status](roadmaps/mail/status.md). The mailbox workspace,
+durable store, live providers, standalone host, CrispCloud migration and product
+release gates remain subsequent work. No standalone Office release or App Store
+qualification is claimed.
 
 ## English/German offline thesaurus — 18 November 2026
 

@@ -18,8 +18,9 @@ build/
 *.swp
 *~
 
-# Locks (libraries publish without them; workspace lock stays local)
+# Libraries keep package-local locks out; the application workspace is pinned.
 pubspec.lock
+!/pubspec.lock
 
 # Engine gallery output
 packages/quds_office_engine/example/out/

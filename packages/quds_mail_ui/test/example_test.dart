@@ -1,9 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quds_mail_core/quds_mail_core.dart';
 import 'package:quds_mail_mime/quds_mail_mime.dart';
-import 'package:quds_mail_ui/quds_mail_ui.dart';
-
 import 'package:quds_mail_reader_example/main.dart' show exampleMessage;
+import 'package:quds_mail_ui/quds_mail_ui.dart';
 
 void main() {
   test(

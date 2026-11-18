@@ -1,0 +1,141 @@
+00:00 +0: loading /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_thesaurus_controller_test.dart
+00:00 +0: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_thesaurus_controller_test.dart: lookup at the caret changes neither selection nor document history
+00:00 +1: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_thesaurus_controller_test.dart: literal bank replacement and history (tracked false)
+00:00 +2: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_thesaurus_controller_test.dart: literal bank replacement and history (tracked true)
+00:00 +3: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_thesaurus_controller_test.dart: literal financial institution replacement and history (tracked false)
+00:00 +4: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_thesaurus_controller_test.dart: literal financial institution replacement and history (tracked true)
+00:00 +5: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_thesaurus_controller_test.dart: literal 😀 café עברית replacement and history (tracked false)
+00:00 +6: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_thesaurus_controller_test.dart: literal 😀 café עברית replacement and history (tracked true)
+00:00 +7: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_thesaurus_controller_test.dart: literal fast­ replacement and history (tracked false)
+00:00 +8: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_thesaurus_controller_test.dart: literal fast­ replacement and history (tracked true)
+00:00 +9: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_thesaurus_controller_test.dart: literal ba­nk replacement and history (tracked false)
+00:00 +10: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_thesaurus_controller_test.dart: literal ba­nk replacement and history (tracked true)
+00:00 +11: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_thesaurus_controller_test.dart: formatting, links, bookmarks and comments survive one undo unit (tracked false)
+00:00 +12: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_thesaurus_controller_test.dart: formatting, links, bookmarks and comments survive one undo unit (tracked true)
+00:00 +13: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_thesaurus_controller_test.dart: mixed linked and unlinked source does not invent a link
+00:00 +14: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_thesaurus_controller_test.dart: run then paragraph then document language is authoritative
+00:00 +15: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_thesaurus_controller_test.dart: mixed source language is explicit (split grapheme false)
+00:00 +16: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_thesaurus_controller_test.dart: mixed source language is explicit (split grapheme true)
+00:00 +17: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_thesaurus_controller_test.dart: selection after lookup rejects without editing history
+00:00 +18: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_thesaurus_controller_test.dart: source text after lookup rejects without editing history
+00:00 +19: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_thesaurus_controller_test.dart: document identity after lookup rejects without editing history
+00:00 +20: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_thesaurus_controller_test.dart: document language after lookup rejects without editing history
+00:00 +21: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_thesaurus_controller_test.dart: run language after lookup rejects without editing history
+00:00 +22: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_thesaurus_controller_test.dart: generated source after lookup rejects without editing history
+00:00 +23: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_thesaurus_controller_test.dart: formatting after lookup rejects without editing history
+00:00 +24: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_thesaurus_controller_test.dart: hyperlink after lookup rejects without editing history
+00:00 +25: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_thesaurus_controller_test.dart: tracking mode after lookup rejects without editing history
+00:00 +26: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_thesaurus_controller_test.dart: IME after lookup rejects without editing history
+00:00 +27: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_thesaurus_controller_test.dart: host viewing mode after lookup rejects without editing history
+00:00 +28: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_thesaurus_controller_test.dart: selected picture after lookup rejects without editing history
+00:00 +29: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_thesaurus_controller_test.dart: selected frame after lookup rejects without editing history
+00:00 +30: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_thesaurus_controller_test.dart: selected equation after lookup rejects without editing history
+00:00 +31: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_thesaurus_controller_test.dart: document protection after lookup rejects without editing history
+00:00 +32: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_thesaurus_controller_test.dart: candidate identity, controller owner and pack revision cannot be substituted
+00:00 +33: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_thesaurus_controller_test.dart: observed selection changes and text edit then undo cannot revive old choices
+00:00 +34: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_thesaurus_controller_test.dart: word-at-caret preserves full Unicode and internal punctuation ranges
+00:00 +35: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_thesaurus_controller_test.dart: new language override retires old choices without changing source tags
+00:00 +36: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_thesaurus_controller_test.dart: late old request cannot replace newer lookup or revived source
+00:00 +37: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_thesaurus_controller_test.dart: source changes while pack loads keep returned result noneditable
+00:00 +38: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_thesaurus_controller_test.dart: field gives a clear noneditable capture
+00:00 +39: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_thesaurus_controller_test.dart: page number gives a clear noneditable capture
+00:00 +40: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_thesaurus_controller_test.dart: no proof gives a clear noneditable capture
+00:00 +41: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_thesaurus_controller_test.dart: locked block gives a clear noneditable capture
+00:00 +42: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_thesaurus_controller_test.dart: bound block gives a clear noneditable capture
+00:00 +43: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_thesaurus_controller_test.dart: pending revision gives a clear noneditable capture
+00:00 +44: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_thesaurus_controller_test.dart: empty field in range gives a clear noneditable capture
+00:00 +45: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_thesaurus_controller_test.dart: partial surrogate and combining mark selections never become targets
+00:01 +46: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_thesaurus_controller_test.dart: active IME is neither committed nor cleared by capture
+00:01 +47: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_thesaurus_controller_test.dart: selection spanning paragraphs is explicit and leaves source untouched
+00:01 +48: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_thesaurus_controller_test.dart: read-only selection can look up but cannot apply
+00:01 +49: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_thesaurus_controller_test.dart: active header has independent source and history
+00:01 +50: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_thesaurus_controller_test.dart: active comment has independent source and history
+00:01 +51: loading /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_thesaurus_dialog_test.dart
+00:02 +51: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_thesaurus_dialog_test.dart: lookup is nonmutating, preserves meanings and requires explicit Replace
+00:04 +52: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_thesaurus_dialog_test.dart: closing lookup adds no undo entry
+00:05 +53: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_thesaurus_dialog_test.dart: a changed selection disables Replace and explains how to refresh
+00:05 +54: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_thesaurus_dialog_test.dart: an invalidated pack refuses a previously selected candidate
+00:06 +55: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_thesaurus_dialog_test.dart: language override uses another pack without changing document language
+00:06 +56: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_thesaurus_dialog_test.dart: shows distinct noEntry outcome
+00:06 +57: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_thesaurus_dialog_test.dart: shows distinct unsupportedLanguage outcome
+00:07 +58: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_thesaurus_dialog_test.dart: shows distinct missingPack outcome
+00:07 +59: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_thesaurus_dialog_test.dart: shows distinct failedPack outcome
+00:07 +60: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_thesaurus_dialog_test.dart: empty caret target explains how to select text
+00:07 +61: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_thesaurus_dialog_test.dart: explicit retry reloads a repaired pack after a failed manifest
+00:07 +62: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_thesaurus_dialog_test.dart: late lookup completion after closing is ignored safely
+00:07 +63: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_thesaurus_dialog_test.dart: source view displays verified notices
+00:08 +64: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_thesaurus_dialog_test.dart: source view reports a damaged notice without an uncaught error
+00:08 +65: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_thesaurus_dialog_test.dart: narrow screen and large text keep alternatives and actions usable
+00:08 +66: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_thesaurus_dialog_test.dart: Shift F7 opens thesaurus while F7 keeps the writing review action
+00:10 +67: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_thesaurus_dialog_test.dart: review status action opens the selected text
+00:11 +68: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_thesaurus_dialog_test.dart: context menu retains the captured selection through focus transfer
+00:12 +69: loading /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_controls_test.dart
+00:14 +69: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_controls_test.dart: inspection and options chrome never create text or history
+00:15 +70: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_controls_test.dart: collapsed caret changes the whole paragraph and preserves rich runs
+00:15 +71: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_controls_test.dart: multiline reversed selection formats complete emoji and combining clusters only
+00:15 +72: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_controls_test.dart: effective mixed states, inherited languages and no-op history are distinct
+00:15 +73: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_controls_test.dart: live changes recheck language, suppress findings and reject late results without manual inference
+00:15 +74: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_controls_test.dart: a captured target refuses stale caret without history
+00:15 +75: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_controls_test.dart: a captured target refuses stale text without history
+00:15 +76: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_controls_test.dart: a captured target refuses stale language without history
+00:15 +77: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_controls_test.dart: a captured target refuses stale run language without history
+00:15 +78: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_controls_test.dart: a captured target refuses stale suppression without history
+00:15 +79: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_controls_test.dart: a captured target refuses stale run replacement without history
+00:15 +80: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_controls_test.dart: a captured target refuses stale document without history
+00:15 +81: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_controls_test.dart: a captured target refuses stale paragraph order without history
+00:15 +82: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_controls_test.dart: a field in a multiline target refuses the entire change
+00:15 +83: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_controls_test.dart: a note in a multiline target refuses the entire change
+00:15 +84: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_controls_test.dart: a complex field in a multiline target refuses the entire change
+00:15 +85: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_controls_test.dart: a generated paragraph in a multiline target refuses the entire change
+00:16 +86: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_controls_test.dart: a complex field opened in a prior paragraph remains protected
+00:16 +87: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_controls_test.dart: protected block controls refuse both proofing operations
+00:16 +88: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_controls_test.dart: protected inline controls refuse both proofing operations
+00:16 +89: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_controls_test.dart: protected wrapper controls refuse both proofing operations
+00:16 +90: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_controls_test.dart: protected binding controls refuse both proofing operations
+00:16 +91: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_controls_test.dart: unlocked control boundaries survive selected formatting and Undo
+00:16 +92: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_controls_test.dart: formatting leaves tracked insertion/deletion ranges and authors intact
+00:16 +93: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_controls_test.dart: comment target follows exact ownership and history preserves other story selections
+00:16 +94: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_controls_test.dart: header target follows exact ownership and history preserves other story selections
+00:16 +95: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_controls_test.dart: viewing mode, late protection and IME never mutate displayed targets
+00:16 +96: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_controls_test.dart: language inheritance and explicit checking permission survive DOCX save
+00:16 +97: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_controls_test.dart: resetting imported language preserves style inheritance live, through history and after save
+00:16 +98: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_controls_test.dart: a style part replacement makes an already displayed language target stale
+00:16 +99: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_controls_test.dart: aliased paragraph ownership cannot modify another story indirectly
+00:16 +100: loading /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_pane_test.dart
+00:17 +100: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_pane_test.dart: (setUpAll)
+00:17 +100: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_pane_test.dart: language status opens paragraph options without a dialog or document edit
+00:20 +101: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_pane_test.dart: selection language updates live checking and preserves the selection with Undo
+00:23 +102: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_pane_test.dart: text checking toggle excludes only the selected text and can restore it
+00:24 +103: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_pane_test.dart: mixed text settings display and enable the full selected range
+00:24 +104: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_pane_test.dart: inherited language follows paragraph defaults and supports Undo
+00:25 +105: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_pane_test.dart: unchanged inherited language does not promise an Undo entry
+00:26 +106: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_pane_test.dart: old dropdown action refuses a different selection
+00:26 +107: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_pane_test.dart: text options cannot mutate through a covering modal
+00:27 +108: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_pane_test.dart: viewing mode keeps inspection and disables text changes
+00:28 +109: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_pane_test.dart: pane follows caret context and keeps its open section across hiding
+00:28 +110: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_pane_test.dart: language status reveals expanded settings again after scrolling
+00:29 +111: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_pane_test.dart: narrow English text options remain usable with large text
+00:29 +112: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_pane_test.dart: narrow RTL text options remain usable with large text
+00:29 +113: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_pane_test.dart: (tearDownAll)
+00:29 +113: loading /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_review_pane_test.dart
+00:31 +113: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_review_pane_test.dart: (setUpAll)
+00:31 +113: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_review_pane_test.dart: editing stays available while live findings update in the pane
+00:34 +114: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_review_pane_test.dart: opening and correcting do not implicitly run manual providers
+00:35 +115: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_review_pane_test.dart: unavailable provider status is not presented as a clean document
+00:35 +116: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_review_pane_test.dart: a suggestion captured before an edit cannot change newer text
+00:36 +117: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_review_pane_test.dart: category filtering navigates only matching findings
+00:37 +118: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_review_pane_test.dart: tracked changes resolve in place and undo restores them
+00:38 +119: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_review_pane_test.dart: reviewer field affects future attribution and leaves document alone
+00:39 +120: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_review_pane_test.dart: viewing mode allows inspection while disabling document mutations
+00:39 +121: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_review_pane_test.dart: stale checks stay pending until a current provider result arrives
+00:40 +122: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_review_pane_test.dart: narrow English pane remains scrollable
+00:40 +123: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_review_pane_test.dart: narrow Arabic pane remains scrollable
+00:41 +124: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_review_pane_test.dart: (tearDownAll)
+00:41 +124: loading /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_keyboard_review_identity_test.dart
+00:42 +124: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_keyboard_review_identity_test.dart: (setUpAll)
+00:42 +124: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_keyboard_review_identity_test.dart: keyboard correction preserves an explicitly selected overlapping finding
+00:45 +125: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_keyboard_review_identity_test.dart: keyboard change decisions preserve the selected adjacent revision
+00:45 +126: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_keyboard_review_identity_test.dart: covered pane shortcuts cannot navigate, check or close review
+00:49 +127: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_keyboard_review_identity_test.dart: an open keyboard menu cannot act after its origin route is covered
+00:49 +128: /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/test/word_keyboard_review_identity_test.dart: (tearDownAll)
+00:49 +128: All tests passed!

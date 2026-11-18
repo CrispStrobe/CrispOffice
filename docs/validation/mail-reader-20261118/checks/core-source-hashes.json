@@ -1,0 +1,42 @@
+{
+  "baseline_commit": "0e07d24714e6261123fcb835c36a592d6827982d",
+  "note": "The core package was new and uncommitted at execution; these exact content hashes identify tested sources. No imported production user mail was used.",
+  "files": {
+    "packages/quds_mail_core/CHANGELOG.md": "5924885245f459695885ee60d72903a74f231c8c94e5d895961ef85fd7d31913",
+    "packages/quds_mail_core/LICENSE": "ddce111598e179ca6118a86ec7d1a62aaaab6fb007df49d7236b78d9085f3641",
+    "packages/quds_mail_core/README.md": "fb38ffc73044c168a7cdef7d721a90ba8e963594b3c2dfc6d3815ef7f55cc11a",
+    "packages/quds_mail_core/lib/quds_mail_core.dart": "a267689f20c72cb704a67bd3a765bd1b2c005f64d3f3e2e61261f5ab87f8201c",
+    "packages/quds_mail_core/lib/src/model/bytes.dart": "288ae314d41494a908abfa1cfa43d1b54fcfd74be40a39fe298f0c1ad8567b40",
+    "packages/quds_mail_core/lib/src/model/capabilities.dart": "840c77977499b652ae72dd76135ab11fd562f16d5e62cb8822533938404cdaee",
+    "packages/quds_mail_core/lib/src/model/identity.dart": "cba5be89dfcc5616d52077cfefb3f3715005db39e05dfc818aa24942a6481908",
+    "packages/quds_mail_core/lib/src/model/message.dart": "7e4453eadc764591a38769e9290ea7b031f6d3f148e2879c0fbee96c6005f222",
+    "packages/quds_mail_core/lib/src/model/parse.dart": "5743f25c4ec78d0720e0d645ad1e33ab9fa2c982cb81cdad4f84853fa6045beb",
+    "packages/quds_mail_core/lib/src/model/result.dart": "07c88caadaed7e290f2c8bb8eef3bce1bad84653bef9cb32a1128d603dd9435c",
+    "packages/quds_mail_core/lib/src/ports/codec.dart": "09c862fe046c8de38fcf0d5b349fdf609641f3ff73cf6edbd3b0d405efdcbadd",
+    "packages/quds_mail_core/lib/src/ports/hosts.dart": "106b86d9dceb23a36adf3b38906607fc87cd1e2a800c9bf0780b33b8e3597744",
+    "packages/quds_mail_core/lib/src/ports/provider.dart": "d10e381672de699c25ba8bd955b554ea06ec2f9d45cbafcbc00fd78e31cddbc4",
+    "packages/quds_mail_core/lib/src/ports/repository.dart": "dfc0d3d771d9d733844f32dd7a29f9e14fc6e233018b9dd87912d11fad253108",
+    "packages/quds_mail_core/lib/src/sync/cancellation.dart": "53cf1637c652760ae141168243179ac27468516495e3dade9d3dff25b4c0052b",
+    "packages/quds_mail_core/lib/src/sync/coordinator.dart": "4c2b5d6c62edc54d55c3be8403a3446c3953c985cd8648b8929c6c1e598dec20",
+    "packages/quds_mail_core/lib/src/sync/outbox.dart": "d4afa54e8f50623942cbd4bc1776377471fc05aaf6778d0478b95976961ab695",
+    "packages/quds_mail_core/pubspec.yaml": "9ecb33312a62c29481def03efd177e8da0186b9627fe2d804d38c9d5db05fb21",
+    "packages/quds_mail_core/test/cancellation_test.dart": "e7c750b3b5c37ac97b5a8221979df7eb45348bd5f53061073e02c4c46212c594",
+    "packages/quds_mail_core/test/compile/portable_import.dart": "e02d97935d936dc7552121fc45d4f0c2e1415471071a2d85bb6f01b93d6ae59d",
+    "packages/quds_mail_core/test/models_test.dart": "110e00f8f04f685f78c975f2e4dec7ffe1c41270c5e7a67359524f54940e8f4d",
+    "packages/quds_mail_core/test/outbox_test.dart": "40708733f223bbd5630f63ab9ebd77faddf9b3922aad77fdfbbcf233e17d48bb",
+    "packages/quds_mail_core/test/sync_coordinator_test.dart": "7c5c420d308f55b5d560497f8db9e39b563266c9de9ab8b7820469fb0f4d9e63",
+    "pubspec.lock": "5214b05715c94294bfed7205b2820f78a8d802a18398802da32e485d7f0356b2"
+  },
+  "runtime": {
+    "flutter": "3.47.8",
+    "dart": "3.13.7"
+  },
+  "checks": {
+    "workspace_analyze_fatal_infos": "PASS",
+    "native_unit_tests": 28,
+    "node_js_unit_tests": 28,
+    "public_entry_native_executable": "PASS",
+    "public_entry_js_node": "PASS",
+    "office_thesaurus_integration_tests": 24
+  }
+}
