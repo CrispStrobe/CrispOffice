@@ -1,0 +1,514 @@
+{
+  "schema": "quds.gector.historical-quality-source-equivalence.v1",
+  "created_utc": "2026-11-17T22:08:16.249957+00:00",
+  "passed": true,
+  "historical_execution_source": "8c98daf5ff7b72f8f73017c5747eb4fe4dde25de",
+  "current_reconciled_source": "c08fdc703acd986850ce6d1c079a0576fd438046",
+  "historical_build_sha256": "7206bf0c88fe9b27b3d4f14fd4f6c9f6c26f818d685bf9748dbc5b8b55056fa3",
+  "independent_recomparison_sha256": "2ae895e2fe45f8385f4e954a11aba1052ce04fd9dfcbc329b07f182e760c0f05",
+  "recomparison_passed": true,
+  "case_comparisons": 377,
+  "lanes": 4,
+  "tracked_bound_inputs": 68,
+  "identical_tracked_inputs": 67,
+  "sources": {
+    "packages/quds_office_engine/lib/src/opc/zip/crc32.dart": {
+      "historical_sha256": "d207f2653d8b00bbf412a6bc8b2e76a01f64ecfbb67aa06defa9ac7b0326c47f",
+      "current_sha256": "d207f2653d8b00bbf412a6bc8b2e76a01f64ecfbb67aa06defa9ac7b0326c47f",
+      "equal": true,
+      "bytes": 738
+    },
+    "packages/quds_office_engine/lib/src/opc/zip/deflate_codec.dart": {
+      "historical_sha256": "9fa29fdfaf787ab69a4b205ec58584c146be05484c25047a51d41328f64c7989",
+      "current_sha256": "9fa29fdfaf787ab69a4b205ec58584c146be05484c25047a51d41328f64c7989",
+      "equal": true,
+      "bytes": 15257
+    },
+    "packages/quds_office_engine/lib/src/opc/zip/zip_reader.dart": {
+      "historical_sha256": "271637e64400f6c0bb04a5aa76d3bfd26e940040256cc1c3d0588385a8f7f00f",
+      "current_sha256": "271637e64400f6c0bb04a5aa76d3bfd26e940040256cc1c3d0588385a8f7f00f",
+      "equal": true,
+      "bytes": 15369
+    },
+    "packages/quds_office_engine/lib/src/opc/zip/zip_writer.dart": {
+      "historical_sha256": "cde0651a022ba618b496e4093dea989acb27960d13abfe6fc354e34b3bfc7803",
+      "current_sha256": "cde0651a022ba618b496e4093dea989acb27960d13abfe6fc354e34b3bfc7803",
+      "equal": true,
+      "bytes": 6306
+    },
+    "packages/quds_office_engine/lib/src/proofing/data/german_common_00.dart": {
+      "historical_sha256": "a9297b80fb74caf783b6b9497c5155324d21e8706954c96c99db640c08da9fc4",
+      "current_sha256": "a9297b80fb74caf783b6b9497c5155324d21e8706954c96c99db640c08da9fc4",
+      "equal": true,
+      "bytes": 1116
+    },
+    "packages/quds_office_engine/lib/src/proofing/data/german_lexicon_data.dart": {
+      "historical_sha256": "beb4e809b577fc950e39ffb759b9435834d1f2763e7d00911816da21b8b5d3a1",
+      "current_sha256": "beb4e809b577fc950e39ffb759b9435834d1f2763e7d00911816da21b8b5d3a1",
+      "equal": true,
+      "bytes": 1301
+    },
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_data.dart": {
+      "historical_sha256": "3e8944139d410a20d5c8b3f03326e0ed3085abfeb81cf4c8e5426983b70dc842",
+      "current_sha256": "3e8944139d410a20d5c8b3f03326e0ed3085abfeb81cf4c8e5426983b70dc842",
+      "equal": true,
+      "bytes": 11140
+    },
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_00.dart": {
+      "historical_sha256": "6a8de28c9223446d5210a9fa88196a5e71fae90e1f67a6e5489368ee095e9384",
+      "current_sha256": "6a8de28c9223446d5210a9fa88196a5e71fae90e1f67a6e5489368ee095e9384",
+      "equal": true,
+      "bytes": 307347
+    },
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_01.dart": {
+      "historical_sha256": "a983cf3b6475103208c1b6104f4f8b5c81c15dd9c247680f04587f30262d3e83",
+      "current_sha256": "a983cf3b6475103208c1b6104f4f8b5c81c15dd9c247680f04587f30262d3e83",
+      "equal": true,
+      "bytes": 301712
+    },
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_02.dart": {
+      "historical_sha256": "455b00a4799d77cecf7c28b815b34cdc4c8bc44d50f640ec3f2ae031afa5c397",
+      "current_sha256": "455b00a4799d77cecf7c28b815b34cdc4c8bc44d50f640ec3f2ae031afa5c397",
+      "equal": true,
+      "bytes": 296202
+    },
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_03.dart": {
+      "historical_sha256": "73180e17bdf9f1d71a574239c23e5c735120c351a5c13a757aecd77bbaab4a39",
+      "current_sha256": "73180e17bdf9f1d71a574239c23e5c735120c351a5c13a757aecd77bbaab4a39",
+      "equal": true,
+      "bytes": 300564
+    },
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_04.dart": {
+      "historical_sha256": "9f7529d41913f4a8f73e4cdf5ef5878217d778a0460e9aaa60e3e1051a8156a5",
+      "current_sha256": "9f7529d41913f4a8f73e4cdf5ef5878217d778a0460e9aaa60e3e1051a8156a5",
+      "equal": true,
+      "bytes": 309315
+    },
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_05.dart": {
+      "historical_sha256": "0b800946c3a4a5c5aa1078f86f0162b04c8dc4f865f577bd38044d142ea4c5bd",
+      "current_sha256": "0b800946c3a4a5c5aa1078f86f0162b04c8dc4f865f577bd38044d142ea4c5bd",
+      "equal": true,
+      "bytes": 304027
+    },
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_06.dart": {
+      "historical_sha256": "38800cc1293c6fdf50d8ca418dcc8fc87877bfebc5c8dba17bcbd190f09adb36",
+      "current_sha256": "38800cc1293c6fdf50d8ca418dcc8fc87877bfebc5c8dba17bcbd190f09adb36",
+      "equal": true,
+      "bytes": 305793
+    },
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_07.dart": {
+      "historical_sha256": "ebf858e4c3ee31a24814046668e22d6642f3530cc20b56f423e40d227c250845",
+      "current_sha256": "ebf858e4c3ee31a24814046668e22d6642f3530cc20b56f423e40d227c250845",
+      "equal": true,
+      "bytes": 303868
+    },
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_08.dart": {
+      "historical_sha256": "e513de7134c4819d48861d2afd0080fce030ce158b6170bd6cb6a1830c434768",
+      "current_sha256": "e513de7134c4819d48861d2afd0080fce030ce158b6170bd6cb6a1830c434768",
+      "equal": true,
+      "bytes": 300201
+    },
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_09.dart": {
+      "historical_sha256": "80adb15e779c30930c6f0d46b518475e4f5df4bed7bf1f808d11c28ec2742d93",
+      "current_sha256": "80adb15e779c30930c6f0d46b518475e4f5df4bed7bf1f808d11c28ec2742d93",
+      "equal": true,
+      "bytes": 302895
+    },
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_10.dart": {
+      "historical_sha256": "fc7a72862769578cea01626c617b9b8e7091e8eb93fe8e679be57bbbf18a8591",
+      "current_sha256": "fc7a72862769578cea01626c617b9b8e7091e8eb93fe8e679be57bbbf18a8591",
+      "equal": true,
+      "bytes": 299782
+    },
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_11.dart": {
+      "historical_sha256": "329647a0c8aa6a0996372c20b4896f1bda4232d478efc22c6e1035b74cf27e68",
+      "current_sha256": "329647a0c8aa6a0996372c20b4896f1bda4232d478efc22c6e1035b74cf27e68",
+      "equal": true,
+      "bytes": 301947
+    },
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_12.dart": {
+      "historical_sha256": "75ad0e0178676ff259a95335cc0d16ecc187fae118a99824b66c04d0dce6defc",
+      "current_sha256": "75ad0e0178676ff259a95335cc0d16ecc187fae118a99824b66c04d0dce6defc",
+      "equal": true,
+      "bytes": 302811
+    },
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_13.dart": {
+      "historical_sha256": "2c75c1ff283124a71cde2374f686aa5f9d248a7ada6cb80254048b38b5a8c995",
+      "current_sha256": "2c75c1ff283124a71cde2374f686aa5f9d248a7ada6cb80254048b38b5a8c995",
+      "equal": true,
+      "bytes": 305990
+    },
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_14.dart": {
+      "historical_sha256": "3d56b7a6aaa261b21ec92824b489151a9ac0d6bdce6c4c66a54b350190a9f648",
+      "current_sha256": "3d56b7a6aaa261b21ec92824b489151a9ac0d6bdce6c4c66a54b350190a9f648",
+      "equal": true,
+      "bytes": 303136
+    },
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_15.dart": {
+      "historical_sha256": "50964f9fcdb68adc5b10a1e59edf7efa567ab4b44dcc26ccebcd145058c51c1a",
+      "current_sha256": "50964f9fcdb68adc5b10a1e59edf7efa567ab4b44dcc26ccebcd145058c51c1a",
+      "equal": true,
+      "bytes": 306098
+    },
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_00.dart": {
+      "historical_sha256": "dfc3548af79c27f6d306ae91fc8711e6f5013295d4deaab6442f9fda964f54a4",
+      "current_sha256": "dfc3548af79c27f6d306ae91fc8711e6f5013295d4deaab6442f9fda964f54a4",
+      "equal": true,
+      "bytes": 163837
+    },
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_01.dart": {
+      "historical_sha256": "75216e458beeeade0c3b647fda64064f3a2468887f716d8ee00947b1e1a319f1",
+      "current_sha256": "75216e458beeeade0c3b647fda64064f3a2468887f716d8ee00947b1e1a319f1",
+      "equal": true,
+      "bytes": 165122
+    },
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_02.dart": {
+      "historical_sha256": "554eba69a5558a3e234eb1c07db1bca1125d17403a3cadcb2951c39270f856d3",
+      "current_sha256": "554eba69a5558a3e234eb1c07db1bca1125d17403a3cadcb2951c39270f856d3",
+      "equal": true,
+      "bytes": 165901
+    },
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_03.dart": {
+      "historical_sha256": "9425e9817ded89627b93cc3f86661ad55986efac02efa012d13e75c5eb82471b",
+      "current_sha256": "9425e9817ded89627b93cc3f86661ad55986efac02efa012d13e75c5eb82471b",
+      "equal": true,
+      "bytes": 166111
+    },
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_04.dart": {
+      "historical_sha256": "69ff9e7f58e113756efa35204ba4951d9737c8024117dacbe183fab0797882bf",
+      "current_sha256": "69ff9e7f58e113756efa35204ba4951d9737c8024117dacbe183fab0797882bf",
+      "equal": true,
+      "bytes": 165344
+    },
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_05.dart": {
+      "historical_sha256": "5f8b2d1fc67396074c015f1441faf618f0de995b9f1d017770dd52b9e673019f",
+      "current_sha256": "5f8b2d1fc67396074c015f1441faf618f0de995b9f1d017770dd52b9e673019f",
+      "equal": true,
+      "bytes": 163612
+    },
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_06.dart": {
+      "historical_sha256": "e07eb4f404778a644d069c9766abc95b2a0c5d8687d217cb0bcd7fbb859d8f2e",
+      "current_sha256": "e07eb4f404778a644d069c9766abc95b2a0c5d8687d217cb0bcd7fbb859d8f2e",
+      "equal": true,
+      "bytes": 135863
+    },
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_07.dart": {
+      "historical_sha256": "bd80b1c0429bc75631a9df417257d22648bb9897cf8a8a3fd1fcced8992973e7",
+      "current_sha256": "bd80b1c0429bc75631a9df417257d22648bb9897cf8a8a3fd1fcced8992973e7",
+      "equal": true,
+      "bytes": 110772
+    },
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_08.dart": {
+      "historical_sha256": "8309c190e75c545129b33fc99d01e157bdca58a7174f02c723456c5924dbf332",
+      "current_sha256": "8309c190e75c545129b33fc99d01e157bdca58a7174f02c723456c5924dbf332",
+      "equal": true,
+      "bytes": 111087
+    },
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_09.dart": {
+      "historical_sha256": "53fe9be61e8f377a0cf5f0d7c867a3a80538c22b92c1ee9a2090f9dbdb9ef59f",
+      "current_sha256": "53fe9be61e8f377a0cf5f0d7c867a3a80538c22b92c1ee9a2090f9dbdb9ef59f",
+      "equal": true,
+      "bytes": 114516
+    },
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_10.dart": {
+      "historical_sha256": "e4da39622bdfd6a03d18d51913e7af1feb6f1ef03f411aae33ec32d1af271cbc",
+      "current_sha256": "e4da39622bdfd6a03d18d51913e7af1feb6f1ef03f411aae33ec32d1af271cbc",
+      "equal": true,
+      "bytes": 114867
+    },
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_11.dart": {
+      "historical_sha256": "feb85cdb0915a3e5fb55fa689964f7231414d8b9a1935b0cfc64ae3ce3d491a1",
+      "current_sha256": "feb85cdb0915a3e5fb55fa689964f7231414d8b9a1935b0cfc64ae3ce3d491a1",
+      "equal": true,
+      "bytes": 111510
+    },
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_12.dart": {
+      "historical_sha256": "12092f7a9c07be0fdd664a95cb9e0316be9f8a456c6382aef36965775add1642",
+      "current_sha256": "12092f7a9c07be0fdd664a95cb9e0316be9f8a456c6382aef36965775add1642",
+      "equal": true,
+      "bytes": 108499
+    },
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_13.dart": {
+      "historical_sha256": "6cff772cc350ac0e892be55837ec3b1d19543e410fe13ddf22047588eb6d4364",
+      "current_sha256": "6cff772cc350ac0e892be55837ec3b1d19543e410fe13ddf22047588eb6d4364",
+      "equal": true,
+      "bytes": 63903
+    },
+    "packages/quds_office_engine/lib/src/proofing/data/german_swiss_00.dart": {
+      "historical_sha256": "03628d2ecdcec9c94781cebf32d1288b7cd6c8eb4710ebe7946263867b108683",
+      "current_sha256": "03628d2ecdcec9c94781cebf32d1288b7cd6c8eb4710ebe7946263867b108683",
+      "equal": true,
+      "bytes": 42584
+    },
+    "packages/quds_office_engine/lib/src/proofing/german_context_grammar.dart": {
+      "historical_sha256": "a3c0ba12d84a68ff69612344d5eef194ab8589797825d22f6106291cb540b761",
+      "current_sha256": "a3c0ba12d84a68ff69612344d5eef194ab8589797825d22f6106291cb540b761",
+      "equal": true,
+      "bytes": 12047
+    },
+    "packages/quds_office_engine/lib/src/proofing/german_grammar.dart": {
+      "historical_sha256": "2dc05a989969644e71d5f2a52e1dc7d99685b3b9b2dc950d05f92d5e56ae40b9",
+      "current_sha256": "2dc05a989969644e71d5f2a52e1dc7d99685b3b9b2dc950d05f92d5e56ae40b9",
+      "equal": true,
+      "bytes": 58514
+    },
+    "packages/quds_office_engine/lib/src/proofing/german_literal_ranges.dart": {
+      "historical_sha256": "5585e4acf19165237e60eed7a20109d5ad74c03b9fbcd2b78b27cd00c8bb726a",
+      "current_sha256": "5585e4acf19165237e60eed7a20109d5ad74c03b9fbcd2b78b27cd00c8bb726a",
+      "equal": true,
+      "bytes": 3331
+    },
+    "packages/quds_office_engine/lib/src/proofing/german_morphology.dart": {
+      "historical_sha256": "b87a9873de8ad8b7ee9f3881971739c2a112098fa3491f43560302b055224183",
+      "current_sha256": "b87a9873de8ad8b7ee9f3881971739c2a112098fa3491f43560302b055224183",
+      "equal": true,
+      "bytes": 11115
+    },
+    "packages/quds_office_engine/lib/src/proofing/german_spelling.dart": {
+      "historical_sha256": "9e51dd774237e6a22232ad88f905cc32314f75ee3ffeb263fee7cdbade93f82c",
+      "current_sha256": "9e51dd774237e6a22232ad88f905cc32314f75ee3ffeb263fee7cdbade93f82c",
+      "equal": true,
+      "bytes": 41597
+    },
+    "packages/quds_office_engine/lib/src/proofing/german_writing_rules.dart": {
+      "historical_sha256": "6bac6546836194f00a22a8afc4a763fdbaa7ef94e8e75a16efb36d6482684189",
+      "current_sha256": "6bac6546836194f00a22a8afc4a763fdbaa7ef94e8e75a16efb36d6482684189",
+      "equal": true,
+      "bytes": 39326
+    },
+    "packages/quds_office_engine/lib/src/proofing/office_proofing.dart": {
+      "historical_sha256": "5a2711e5102948b88524aa6933c447791bf0839e83429c7e861d7a51cd23518e",
+      "current_sha256": "5a2711e5102948b88524aa6933c447791bf0839e83429c7e861d7a51cd23518e",
+      "equal": true,
+      "bytes": 17649
+    },
+    "packages/quds_office_engine/lib/src/proofing/proofing_text_ranges.dart": {
+      "historical_sha256": "4760ffde9a19bcaa6bb09f43e31a52d0e84bdbfb4b7940086938c098f0c47b17",
+      "current_sha256": "4760ffde9a19bcaa6bb09f43e31a52d0e84bdbfb4b7940086938c098f0c47b17",
+      "equal": true,
+      "bytes": 3906
+    },
+    "packages/quds_office_engine/pubspec.yaml": {
+      "historical_sha256": "049a5c838d0d1b8c482f984c27b66c5235411d93b5d06ff1c254dca4c6274408",
+      "current_sha256": "049a5c838d0d1b8c482f984c27b66c5235411d93b5d06ff1c254dca4c6274408",
+      "equal": true,
+      "bytes": 2496
+    },
+    "packages/quds_proofing_gector/lib/quds_proofing_gector.dart": {
+      "historical_sha256": "e64d6eb8db223f6bb64bbb4d2e55a1e246eb7847f123e3306982e7344b1b27f9",
+      "current_sha256": "e64d6eb8db223f6bb64bbb4d2e55a1e246eb7847f123e3306982e7344b1b27f9",
+      "equal": true,
+      "bytes": 451
+    },
+    "packages/quds_proofing_gector/lib/quds_proofing_gector_native.dart": {
+      "historical_sha256": "449f0543d9d6d3e42778b4dc9aba8fcf3e7a5ce880fbe55aec7c92697c55a81d",
+      "current_sha256": "449f0543d9d6d3e42778b4dc9aba8fcf3e7a5ce880fbe55aec7c92697c55a81d",
+      "equal": true,
+      "bytes": 222
+    },
+    "packages/quds_proofing_gector/lib/src/backend.dart": {
+      "historical_sha256": "7494c3037495d3aa0b4b0f53062b9fa816af2d6c0f2334667d333045c86e29d6",
+      "current_sha256": "7494c3037495d3aa0b4b0f53062b9fa816af2d6c0f2334667d333045c86e29d6",
+      "equal": true,
+      "bytes": 5769
+    },
+    "packages/quds_proofing_gector/lib/src/bundle.dart": {
+      "historical_sha256": "0e2c94f1058e59b454a63e49c1b1e3c1c83af6fdff4c6d6d38c21cb813137fcb",
+      "current_sha256": "0e2c94f1058e59b454a63e49c1b1e3c1c83af6fdff4c6d6d38c21cb813137fcb",
+      "equal": true,
+      "bytes": 9405
+    },
+    "packages/quds_proofing_gector/lib/src/decoder.dart": {
+      "historical_sha256": "224c7be711870cadc5fff97404f2b334b868f8fb11dba0e28657e5450e37c1c2",
+      "current_sha256": "224c7be711870cadc5fff97404f2b334b868f8fb11dba0e28657e5450e37c1c2",
+      "equal": true,
+      "bytes": 17081
+    },
+    "packages/quds_proofing_gector/lib/src/guards.dart": {
+      "historical_sha256": "d912769127e2069662622a7ef9be741dbe207c0066c0ab9c7db59426f9104e8b",
+      "current_sha256": "d912769127e2069662622a7ef9be741dbe207c0066c0ab9c7db59426f9104e8b",
+      "equal": true,
+      "bytes": 17750
+    },
+    "packages/quds_proofing_gector/lib/src/lexicon.dart": {
+      "historical_sha256": "614272c159ab283c1fef83b5a76ea28a21a6f8901741115ed08a57b43355ff60",
+      "current_sha256": "614272c159ab283c1fef83b5a76ea28a21a6f8901741115ed08a57b43355ff60",
+      "equal": true,
+      "bytes": 884
+    },
+    "packages/quds_proofing_gector/lib/src/native_backend.dart": {
+      "historical_sha256": "d629caf4acf43745761cdcb133f57826edffa73e15e6220247abdfea3aab5a34",
+      "current_sha256": "d629caf4acf43745761cdcb133f57826edffa73e15e6220247abdfea3aab5a34",
+      "equal": true,
+      "bytes": 10207
+    },
+    "packages/quds_proofing_gector/lib/src/provider.dart": {
+      "historical_sha256": "ab1a03d563ced8323522c9bfa6c2577e04e0d23a5b980bf576ecf7ddbb0edbe4",
+      "current_sha256": "ab1a03d563ced8323522c9bfa6c2577e04e0d23a5b980bf576ecf7ddbb0edbe4",
+      "equal": true,
+      "bytes": 7526
+    },
+    "packages/quds_proofing_gector/lib/src/segmentation.dart": {
+      "historical_sha256": "d49374de21128ebf729b6409b177f198716ade167eca08883662d7484709e8c8",
+      "current_sha256": "d49374de21128ebf729b6409b177f198716ade167eca08883662d7484709e8c8",
+      "equal": true,
+      "bytes": 12988
+    },
+    "packages/quds_proofing_gector/lib/src/source_text.dart": {
+      "historical_sha256": "f56767a78475b1f6e696aa022af5b5a121bd3f963271a946bfc6b617b207da42",
+      "current_sha256": "f56767a78475b1f6e696aa022af5b5a121bd3f963271a946bfc6b617b207da42",
+      "equal": true,
+      "bytes": 10358
+    },
+    "packages/quds_proofing_gector/lib/src/tokenizer.dart": {
+      "historical_sha256": "cc4685f1dc6610203d5abc8f2d425849ca0bf58e879be8ed3c9ef455cfaa035d",
+      "current_sha256": "cc4685f1dc6610203d5abc8f2d425849ca0bf58e879be8ed3c9ef455cfaa035d",
+      "equal": true,
+      "bytes": 6878
+    },
+    "packages/quds_proofing_gector/lib/src/transport.dart": {
+      "historical_sha256": "f708264af615715b3e6e5bd1098ec027166ad20313a60ea9139bebc02bc84ba6",
+      "current_sha256": "f708264af615715b3e6e5bd1098ec027166ad20313a60ea9139bebc02bc84ba6",
+      "equal": true,
+      "bytes": 1534
+    },
+    "packages/quds_proofing_gector/lib/src/unicode_case.dart": {
+      "historical_sha256": "c74b978155404e7a9370b1b4fdc548bcd352edd6cd5ce6aaf91355e8007db464",
+      "current_sha256": "c74b978155404e7a9370b1b4fdc548bcd352edd6cd5ce6aaf91355e8007db464",
+      "equal": true,
+      "bytes": 3237
+    },
+    "packages/quds_proofing_gector/lib/src/worker_native.dart": {
+      "historical_sha256": "76e18e15c78fd884a2c43d621fdc388797e2f77c989d73899eb1dd965a3d8231",
+      "current_sha256": "76e18e15c78fd884a2c43d621fdc388797e2f77c989d73899eb1dd965a3d8231",
+      "equal": true,
+      "bytes": 12981
+    },
+    "packages/quds_proofing_gector/lib/src/worker_unsupported.dart": {
+      "historical_sha256": "57dc1adcecf92a39307fb661d1c39e854275796058b1b5b06f5e837da5b46319",
+      "current_sha256": "57dc1adcecf92a39307fb661d1c39e854275796058b1b5b06f5e837da5b46319",
+      "equal": true,
+      "bytes": 679
+    },
+    "packages/quds_proofing_gector/pubspec.yaml": {
+      "historical_sha256": "26074a4688212904b95e3cb24fa934ffb94a1881c41d8d98074e38d586ea63b1",
+      "current_sha256": "26074a4688212904b95e3cb24fa934ffb94a1881c41d8d98074e38d586ea63b1",
+      "equal": true,
+      "bytes": 377
+    },
+    "pubspec.yaml": {
+      "historical_sha256": "c7b68a447435871322327239d2886ff194423c65d97a39916b37cb18ca20f9a1",
+      "current_sha256": "f0115daba20b901e543f242861092c69d0486a2135e0d11c862b0015d1e82f30",
+      "equal": false,
+      "bytes": 768
+    },
+    "tools/proofing/german_model/artifacts.json": {
+      "historical_sha256": "ffbdbaf01be47fe7b09b4e893460b1b0acbfb16e6b22a67571bd14884f617bb0",
+      "current_sha256": "ffbdbaf01be47fe7b09b4e893460b1b0acbfb16e6b22a67571bd14884f617bb0",
+      "equal": true,
+      "bytes": 3428
+    },
+    "tools/proofing/german_model/incremental_quality.dart": {
+      "historical_sha256": "5843e82b170d00e5e50a243c88bbbce458eb664181701f7480eb4c310a9e7f4d",
+      "current_sha256": "5843e82b170d00e5e50a243c88bbbce458eb664181701f7480eb4c310a9e7f4d",
+      "equal": true,
+      "bytes": 16270
+    },
+    "tools/proofing/german_model/run_incremental_quality.dart": {
+      "historical_sha256": "41bccf961c9c6eeca453e0736a873e8444d46203f708f62e64476a1b62259625",
+      "current_sha256": "41bccf961c9c6eeca453e0736a873e8444d46203f708f62e64476a1b62259625",
+      "equal": true,
+      "bytes": 12118
+    }
+  },
+  "complete_directory_trees": {
+    "packages/quds_office_engine/lib/src/proofing": {
+      "historical_tree": "8e56e3a830edf1fd08c430670547d6f7995619d9",
+      "current_tree": "8e56e3a830edf1fd08c430670547d6f7995619d9",
+      "equal": true
+    },
+    "packages/quds_office_engine/lib/src/opc/zip": {
+      "historical_tree": "166e434df2656d463420ea49942a72bdd04e8d82",
+      "current_tree": "166e434df2656d463420ea49942a72bdd04e8d82",
+      "equal": true
+    },
+    "packages/quds_proofing_gector/lib": {
+      "historical_tree": "949fc75efd09580fcfa51eb74aa16f2ad5eea3df",
+      "current_tree": "949fc75efd09580fcfa51eb74aa16f2ad5eea3df",
+      "equal": true
+    }
+  },
+  "corpus": [
+    {
+      "name": "original-30",
+      "source_path": "tools/proofing/german_model/cases.json",
+      "source_sha256": "ec3309ebf99a3b1be9bb065fc91cd2afce2e362ebaa81f2d64d39a231c6defb9",
+      "run_sha256": "ec3309ebf99a3b1be9bb065fc91cd2afce2e362ebaa81f2d64d39a231c6defb9",
+      "cases": 30,
+      "adapter": "none; exact source bytes",
+      "equal": true
+    },
+    {
+      "name": "development-76",
+      "source_path": "tools/proofing/german_model/prospective_cases_20261117.json",
+      "source_sha256": "2fcdfd6aba46c854960588dc09cc2fd74af1fba08ffe86c4dc8d3a86a5eb4d42",
+      "run_sha256": "2fcdfd6aba46c854960588dc09cc2fd74af1fba08ffe86c4dc8d3a86a5eb4d42",
+      "cases": 76,
+      "adapter": "none; exact source bytes",
+      "equal": true
+    },
+    {
+      "name": "syntax-56",
+      "source_path": "tools/proofing/german_model/syntax_cases_20261117.json",
+      "source_sha256": "6f67e56d9278ea96ef424d837741d23a87a5485206ddc1cc91b83d32af49a811",
+      "run_sha256": "7cfb69b8e7a3d261e21d7b3616f6e71942ffd5b41ef96ce5a1f5e38dd38e24f6",
+      "cases": 56,
+      "adapter": "Rename metadata key area to category; all values, case order and other keys unchanged.",
+      "equal": true
+    },
+    {
+      "name": "context-83",
+      "source_path": "tools/proofing/german_model/context_cases_20261117.json",
+      "source_sha256": "2522bc58c300a9233cf69c7004136ea66a7d3bb546cd8485a3fa5e972be0bbe3",
+      "run_sha256": "2522bc58c300a9233cf69c7004136ea66a7d3bb546cd8485a3fa5e972be0bbe3",
+      "cases": 83,
+      "adapter": "none; exact source bytes",
+      "equal": true
+    },
+    {
+      "name": "completion-28",
+      "source_path": "tools/proofing/german_model/context_completion_cases_20261117.json",
+      "source_sha256": "274f861d9944206781de3acbb8fbc0d2a762515d1e9e554820803f6f0f0f6ad5",
+      "run_sha256": "274f861d9944206781de3acbb8fbc0d2a762515d1e9e554820803f6f0f0f6ad5",
+      "cases": 28,
+      "adapter": "none; exact source bytes",
+      "equal": true
+    },
+    {
+      "name": "holdout-104",
+      "source_path": "tools/proofing/german_model/context_holdout_20261117.json",
+      "source_sha256": "cbbd3a5ea368d0b7e66484161c35245dc96a4f488d3185fc7dbd24a3a77e9d2a",
+      "run_sha256": "cbbd3a5ea368d0b7e66484161c35245dc96a4f488d3185fc7dbd24a3a77e9d2a",
+      "cases": 104,
+      "adapter": "none; exact source bytes",
+      "equal": true
+    }
+  ],
+  "declared_manifest_changes": [
+    {
+      "path": "pubspec.yaml",
+      "added_workspace_package": "packages/quds_proofing_spacy"
+    }
+  ],
+  "external_orchestration_inputs": {
+    ".dart_tool/package_config.json": "79ca1db687a5ead4c8c0eb396e4f4061d63feea9fc75ff873054ff8bf6b88708",
+    "pubspec.lock": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130"
+  },
+  "new_inference_executed": false,
+  "scope": "Retain the historical 377-row/four-lane execution attribution. Its executable source directories, bound tracked inputs apart from the declared additive workspace entry, and six corpus sources are identical. External workspace graph is not claimed identical. The added native-spaCy provider is outside these GECToR lanes and needs its own current-source qualification.",
+  "limits": [
+    "Reused synthetic panels do not measure representative German accuracy.",
+    "Historical report durations are not current performance measurements.",
+    "No new default, runtime release, model promotion, or native-spaCy acceptance follows from this equality audit."
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "kind": "external-frozen-source-run-guard",
+  "source_commit": "9d060658ee6be8ec97d73f56b9aec10d346b7952",
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "/workspace/scratch/21605f06e47d/qualification-source/docs/validation/german-gector/2026-11-17-followup/native-threads/run_native_thread_sweep.py",
+    "--source-root",
+    "/workspace/scratch/21605f06e47d/flutter-qualification/workspace",
+    "--dart",
+    "/workspace/scratch/21605f06e47d/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+    "--aot",
+    "/workspace/scratch/21605f06e47d/native-consumers/native-prepare-9d060658/result/provider.aot",
+    "--build-receipt",
+    "/workspace/scratch/21605f06e47d/native-consumers/native-prepare-9d060658/result/provider-build.json",
+    "--pack",
+    "/workspace/scratch/21605f06e47d/native-consumers/native-qualification-runtime/native-development-pack",
+    "--reference",
+    "/workspace/scratch/21605f06e47d/native-consumers/native-qualification-runtime/reference-f32.json",
+    "--output-dir",
+    "/workspace/scratch/21605f06e47d/native-consumers/native-sweep-9d060658/result"
+  ],
+  "started_utc": "2026-11-18T06:15:02.393320+00:00",
+  "passed": false,
+  "child_exit_code": null,
+  "source_checkout_clean_before": true,
+  "source_checkout_clean_after": false
+}

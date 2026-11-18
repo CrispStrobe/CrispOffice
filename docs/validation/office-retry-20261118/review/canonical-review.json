@@ -1,0 +1,516 @@
+{
+  "canonical_qualification_accepted": true,
+  "cohorts": {
+    "editor-integration": {
+      "done_events": [
+        {
+          "success": true,
+          "time": 37572,
+          "type": "done"
+        }
+      ],
+      "error_events": 0,
+      "excluded_private_cases": [],
+      "hidden_loader_events": 61,
+      "observed_suites": 37,
+      "raw_outcomes": {
+        "success": 415
+      },
+      "raw_success_count": 415,
+      "selected_suite_identities_sha256": "c891f10f36b7a55120723e4cb577d63dee76eace366f556ef04606bd4ec20908",
+      "selected_suites": 37,
+      "substantive_success_count": 415,
+      "test_done_events": 476,
+      "test_start_events": 476
+    },
+    "editor-zotero": {
+      "done_events": [
+        {
+          "success": true,
+          "time": 50662,
+          "type": "done"
+        }
+      ],
+      "error_events": 0,
+      "excluded_private_cases": [],
+      "hidden_loader_events": 13,
+      "observed_suites": 13,
+      "raw_outcomes": {
+        "success": 186
+      },
+      "raw_success_count": 186,
+      "selected_suite_identities_sha256": "cf1c9032c1e205ed370f087d35e19458ed8567b3fbfe8174646ef86721559c99",
+      "selected_suites": 13,
+      "substantive_success_count": 186,
+      "test_done_events": 199,
+      "test_start_events": 199
+    },
+    "engine-integration": {
+      "done_events": [
+        {
+          "success": true,
+          "time": 45733,
+          "type": "done"
+        }
+      ],
+      "error_events": 0,
+      "excluded_private_cases": [
+        {
+          "matched_case_name": "TrueType subsets without cmap get ToUnicode cmap for the host",
+          "test_id": 1273
+        },
+        {
+          "matched_case_name": "JPEG with DCT SMask attaches softMaskJpeg for the host",
+          "test_id": 1277
+        }
+      ],
+      "hidden_loader_events": 138,
+      "observed_suites": 138,
+      "raw_outcomes": {
+        "success": 2965
+      },
+      "raw_success_count": 2965,
+      "selected_suite_identities_sha256": "6701ab6ee571e1ed9bd341c950b8fd1550fc574f21442dea6da41d51732793d3",
+      "selected_suites": 138,
+      "substantive_success_count": 2963,
+      "test_done_events": 3103,
+      "test_start_events": 3103
+    },
+    "engine-zotero": {
+      "done_events": [
+        {
+          "success": true,
+          "time": 10144,
+          "type": "done"
+        }
+      ],
+      "error_events": 0,
+      "excluded_private_cases": [],
+      "hidden_loader_events": 19,
+      "observed_suites": 19,
+      "raw_outcomes": {
+        "success": 390
+      },
+      "raw_success_count": 390,
+      "selected_suite_identities_sha256": "da2b7754554a924a150680ffab4a76af4579f25121962564a00bfc8c6f458601",
+      "selected_suites": 19,
+      "substantive_success_count": 390,
+      "test_done_events": 409,
+      "test_start_events": 409
+    },
+    "gector-contract": {
+      "done_events": [
+        {
+          "success": true,
+          "time": 12144,
+          "type": "done"
+        }
+      ],
+      "error_events": 0,
+      "excluded_private_cases": [],
+      "hidden_loader_events": 38,
+      "observed_suites": 14,
+      "raw_outcomes": {
+        "success": 251
+      },
+      "raw_success_count": 251,
+      "selected_suite_identities_sha256": "6fed22a294f91a1a7bb03cf426ae0468c1d0ddb3a7188542d039f1b244bc8e24",
+      "selected_suites": 14,
+      "substantive_success_count": 251,
+      "test_done_events": 289,
+      "test_start_events": 289
+    },
+    "harper-contract": {
+      "done_events": [
+        {
+          "success": true,
+          "time": 6037,
+          "type": "done"
+        }
+      ],
+      "error_events": 0,
+      "excluded_private_cases": [],
+      "hidden_loader_events": 3,
+      "observed_suites": 3,
+      "raw_outcomes": {
+        "success": 29
+      },
+      "raw_success_count": 29,
+      "selected_suite_identities_sha256": "68cf9a6c10b30b4c4811a57a006026e06036e21f27971f496b26dc0641901668",
+      "selected_suites": 3,
+      "substantive_success_count": 29,
+      "test_done_events": 32,
+      "test_start_events": 32
+    }
+  },
+  "command_count": 13,
+  "command_reviews": [
+    {
+      "exit_code": 0,
+      "name": "engine-strict-analysis",
+      "stderr_bytes": 0,
+      "stdout_bytes": 4507,
+      "timed_out": false
+    },
+    {
+      "exit_code": 0,
+      "name": "editor-strict-analysis",
+      "stderr_bytes": 0,
+      "stdout_bytes": 799,
+      "timed_out": false
+    },
+    {
+      "exit_code": 0,
+      "name": "harper-strict-analysis",
+      "stderr_bytes": 0,
+      "stdout_bytes": 302,
+      "timed_out": false
+    },
+    {
+      "exit_code": 0,
+      "name": "gector-strict-analysis",
+      "stderr_bytes": 0,
+      "stdout_bytes": 696,
+      "timed_out": false
+    },
+    {
+      "exit_code": 0,
+      "name": "proofing-tools-strict-analysis",
+      "stderr_bytes": 0,
+      "stdout_bytes": 199,
+      "timed_out": false
+    },
+    {
+      "exit_code": 0,
+      "name": "format",
+      "stderr_bytes": 0,
+      "stdout_bytes": 49,
+      "timed_out": false
+    },
+    {
+      "exit_code": 0,
+      "name": "python-controls",
+      "python_substantive_success_count": 117,
+      "stderr_bytes": 19937,
+      "stdout_bytes": 90,
+      "timed_out": false
+    },
+    {
+      "event_review": {
+        "done_events": [
+          {
+            "success": true,
+            "time": 10144,
+            "type": "done"
+          }
+        ],
+        "error_events": 0,
+        "excluded_private_cases": [],
+        "hidden_loader_events": 19,
+        "observed_suites": 19,
+        "raw_outcomes": {
+          "success": 390
+        },
+        "raw_success_count": 390,
+        "selected_suite_identities_sha256": "da2b7754554a924a150680ffab4a76af4579f25121962564a00bfc8c6f458601",
+        "selected_suites": 19,
+        "substantive_success_count": 390,
+        "test_done_events": 409,
+        "test_start_events": 409
+      },
+      "exit_code": 0,
+      "name": "engine-zotero",
+      "stderr_bytes": 0,
+      "stdout_bytes": 191293,
+      "timed_out": false
+    },
+    {
+      "event_review": {
+        "done_events": [
+          {
+            "success": true,
+            "time": 50662,
+            "type": "done"
+          }
+        ],
+        "error_events": 0,
+        "excluded_private_cases": [],
+        "hidden_loader_events": 13,
+        "observed_suites": 13,
+        "raw_outcomes": {
+          "success": 186
+        },
+        "raw_success_count": 186,
+        "selected_suite_identities_sha256": "cf1c9032c1e205ed370f087d35e19458ed8567b3fbfe8174646ef86721559c99",
+        "selected_suites": 13,
+        "substantive_success_count": 186,
+        "test_done_events": 199,
+        "test_start_events": 199
+      },
+      "exit_code": 0,
+      "name": "editor-zotero",
+      "stderr_bytes": 0,
+      "stdout_bytes": 107882,
+      "timed_out": false
+    },
+    {
+      "event_review": {
+        "done_events": [
+          {
+            "success": true,
+            "time": 45733,
+            "type": "done"
+          }
+        ],
+        "error_events": 0,
+        "excluded_private_cases": [
+          {
+            "matched_case_name": "TrueType subsets without cmap get ToUnicode cmap for the host",
+            "test_id": 1273
+          },
+          {
+            "matched_case_name": "JPEG with DCT SMask attaches softMaskJpeg for the host",
+            "test_id": 1277
+          }
+        ],
+        "hidden_loader_events": 138,
+        "observed_suites": 138,
+        "raw_outcomes": {
+          "success": 2965
+        },
+        "raw_success_count": 2965,
+        "selected_suite_identities_sha256": "6701ab6ee571e1ed9bd341c950b8fd1550fc574f21442dea6da41d51732793d3",
+        "selected_suites": 138,
+        "substantive_success_count": 2963,
+        "test_done_events": 3103,
+        "test_start_events": 3103
+      },
+      "exit_code": 0,
+      "name": "engine-integration",
+      "stderr_bytes": 0,
+      "stdout_bytes": 1494695,
+      "timed_out": false
+    },
+    {
+      "event_review": {
+        "done_events": [
+          {
+            "success": true,
+            "time": 37572,
+            "type": "done"
+          }
+        ],
+        "error_events": 0,
+        "excluded_private_cases": [],
+        "hidden_loader_events": 61,
+        "observed_suites": 37,
+        "raw_outcomes": {
+          "success": 415
+        },
+        "raw_success_count": 415,
+        "selected_suite_identities_sha256": "c891f10f36b7a55120723e4cb577d63dee76eace366f556ef04606bd4ec20908",
+        "selected_suites": 37,
+        "substantive_success_count": 415,
+        "test_done_events": 476,
+        "test_start_events": 476
+      },
+      "exit_code": 0,
+      "name": "editor-integration",
+      "stderr_bytes": 0,
+      "stdout_bytes": 236089,
+      "timed_out": false
+    },
+    {
+      "event_review": {
+        "done_events": [
+          {
+            "success": true,
+            "time": 6037,
+            "type": "done"
+          }
+        ],
+        "error_events": 0,
+        "excluded_private_cases": [],
+        "hidden_loader_events": 3,
+        "observed_suites": 3,
+        "raw_outcomes": {
+          "success": 29
+        },
+        "raw_success_count": 29,
+        "selected_suite_identities_sha256": "68cf9a6c10b30b4c4811a57a006026e06036e21f27971f496b26dc0641901668",
+        "selected_suites": 3,
+        "substantive_success_count": 29,
+        "test_done_events": 32,
+        "test_start_events": 32
+      },
+      "exit_code": 0,
+      "name": "harper-contract",
+      "stderr_bytes": 0,
+      "stdout_bytes": 15047,
+      "timed_out": false
+    },
+    {
+      "event_review": {
+        "done_events": [
+          {
+            "success": true,
+            "time": 12144,
+            "type": "done"
+          }
+        ],
+        "error_events": 0,
+        "excluded_private_cases": [],
+        "hidden_loader_events": 38,
+        "observed_suites": 14,
+        "raw_outcomes": {
+          "success": 251
+        },
+        "raw_success_count": 251,
+        "selected_suite_identities_sha256": "6fed22a294f91a1a7bb03cf426ae0468c1d0ddb3a7188542d039f1b244bc8e24",
+        "selected_suites": 14,
+        "substantive_success_count": 251,
+        "test_done_events": 289,
+        "test_start_events": 289
+      },
+      "exit_code": 0,
+      "name": "gector-contract",
+      "stderr_bytes": 0,
+      "stdout_bytes": 130087,
+      "timed_out": false
+    }
+  ],
+  "evidence_integrity_accepted": true,
+  "findings": [],
+  "finished_utc": "2026-11-18T05:55:41.724838+00:00",
+  "gate_failures": [],
+  "github_actions_endpoints_queried": 0,
+  "independent_checks": 5747,
+  "input_integrity": {
+    "dependencies": {
+      "after_sha256": "615c8c96a817517a35c5e55c12c84d65fb2e96b6e78bcc03ce5772a7a090f837",
+      "before_sha256": "615c8c96a817517a35c5e55c12c84d65fb2e96b6e78bcc03ce5772a7a090f837",
+      "byte_identical": true,
+      "unchanged": true
+    },
+    "harness": {
+      "after_sha256": "6c46f0fedfe2c95248d017891898a49fc9699144d0fbe46089c36667ed074de7",
+      "before_sha256": "6c46f0fedfe2c95248d017891898a49fc9699144d0fbe46089c36667ed074de7",
+      "byte_identical": true,
+      "unchanged": true
+    },
+    "runtime": {
+      "after_sha256": "f863e7cd1e857f2d143cad47d255e13df26a4e785e5af833603c8c3bad7edabc",
+      "before_sha256": "f863e7cd1e857f2d143cad47d255e13df26a4e785e5af833603c8c3bad7edabc",
+      "byte_identical": true,
+      "unchanged": true
+    },
+    "source": {
+      "after_sha256": "12ef37fe99574747b08c412e1f78e09724e3f4721d54a45ac43c90aea85fa4b0",
+      "before_sha256": "12ef37fe99574747b08c412e1f78e09724e3f4721d54a45ac43c90aea85fa4b0",
+      "byte_identical": true,
+      "unchanged": true
+    },
+    "system": {
+      "after_sha256": "cd0044282c6f479fcab82737f6b60281e2a87bd04f3433f8ce5381c83e79cc1a",
+      "before_sha256": "cd0044282c6f479fcab82737f6b60281e2a87bd04f3433f8ce5381c83e79cc1a",
+      "byte_identical": true,
+      "unchanged": true
+    },
+    "workspace": {
+      "after_sha256": "4b6463a91d1dcc4f9ce6db043064c4cacf4955427703c157f9bc87b11e1b47a3",
+      "before_sha256": "4b6463a91d1dcc4f9ce6db043064c4cacf4955427703c157f9bc87b11e1b47a3",
+      "byte_identical": true,
+      "unchanged": true
+    }
+  },
+  "live_map_files_rehashed": {
+    "dependencies": 5099,
+    "harness": 12,
+    "runtime": 13,
+    "system": 8,
+    "workspace": 118
+  },
+  "no_tests_rerun": true,
+  "original_receipt_sha256": "92c372a1188f7f6537ae9170dc97185da30f539e82aa7b664c8af5ccdc0ce1c7",
+  "overall_office_qualification_accepted": false,
+  "plan_sha256": "90c0544c9f7e0663ead5695e5a980a74e2f3db99f79e1ca317a4968bee26180e",
+  "python_controls": 117,
+  "raw_runner_success_total": 4236,
+  "reviewer_script_sha256": "a6b8b57dc1125f2709e2915fbda3178d1a4489b618f9202da109d1fe1058fecc",
+  "run_directory": "/workspace/scratch/eddfdfc8cc56/flutter-qualification/runs/canonical-9d060658",
+  "schema": "quds.office.independent_canonical_review.v1",
+  "scope": "Canonical gate only; portable/example/calendar/document-consumer/native sweep remain separate gates.",
+  "source_commit": "9d060658ee6be8ec97d73f56b9aec10d346b7952",
+  "source_files_rehashed": 3514,
+  "source_runtime_mutations": 0,
+  "source_tree": "62c0dced2a33de6519b6e9e2c97e42e2edae1857",
+  "started_utc": "2026-11-18T05:55:40.189498+00:00",
+  "substantive_success_total": 4234,
+  "supplemental_runtime_after": [
+    {
+      "baseline": "supplemental-runtime-baseline.json",
+      "bytes": 126951512,
+      "expected_sha256": "acbe4b8d9153b841ed0697cbfc4f93e767386620edb745ab9358306c0a6f31aa",
+      "matches": true,
+      "path": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "sha256": "acbe4b8d9153b841ed0697cbfc4f93e767386620edb745ab9358306c0a6f31aa"
+    },
+    {
+      "baseline": "supplemental-runtime-baseline.json",
+      "bytes": 17153416,
+      "expected_sha256": "0c484223020a7aad5874e1ef3bdcc43c9d0b36a1402f223d538ee2d4cc0b847a",
+      "matches": true,
+      "path": "/workspace/scratch/eddfdfc8cc56/toolchains/flutter/bin/cache/artifacts/engine/linux-x64/frontend_server_aot.dart.snapshot",
+      "sha256": "0c484223020a7aad5874e1ef3bdcc43c9d0b36a1402f223d538ee2d4cc0b847a"
+    },
+    {
+      "baseline": "supplemental-runtime-baseline.json",
+      "bytes": 20827888,
+      "expected_sha256": "29314b1f8e994436c5639a59df0243692cd83625fc587619a9c99e9a3804b1d6",
+      "matches": true,
+      "path": "/workspace/scratch/eddfdfc8cc56/toolchains/flutter/bin/cache/dart-sdk/bin/snapshots/dart2js_aot.dart.snapshot",
+      "sha256": "29314b1f8e994436c5639a59df0243692cd83625fc587619a9c99e9a3804b1d6"
+    },
+    {
+      "baseline": "supplemental-runtime-baseline.json",
+      "bytes": 14156264,
+      "expected_sha256": "d4b8f600d1195c5c505fa74951dd9b71971c8d63b3a144719d194f0852734140",
+      "matches": true,
+      "path": "/workspace/scratch/eddfdfc8cc56/toolchains/flutter/bin/cache/dart-sdk/bin/snapshots/gen_kernel_aot.dart.snapshot",
+      "sha256": "d4b8f600d1195c5c505fa74951dd9b71971c8d63b3a144719d194f0852734140"
+    },
+    {
+      "baseline": "supplemental-runtime-baseline.json",
+      "bytes": 10711488,
+      "expected_sha256": "c6fc24d85e51c8768b35794d881f83d5b27e81c2185c32f0fdb259c0ca901ce2",
+      "matches": true,
+      "path": "/workspace/scratch/eddfdfc8cc56/toolchains/flutter/bin/cache/dart-sdk/lib/_internal/dart2js_platform.dill",
+      "sha256": "c6fc24d85e51c8768b35794d881f83d5b27e81c2185c32f0fdb259c0ca901ce2"
+    },
+    {
+      "baseline": "supplemental-runtime-baseline.json",
+      "bytes": 6793784,
+      "expected_sha256": "d82e9a13a65e8bdfcf7727c8c479e652fb0384519568e241826c78fa8e4822ad",
+      "matches": true,
+      "path": "/workspace/scratch/eddfdfc8cc56/toolchains/flutter/bin/cache/dart-sdk/lib/_internal/dart2js_server_platform.dill",
+      "sha256": "d82e9a13a65e8bdfcf7727c8c479e652fb0384519568e241826c78fa8e4822ad"
+    },
+    {
+      "baseline": "supplemental-runtime-baseline.json",
+      "bytes": 8663120,
+      "expected_sha256": "883d97292177020d42bed41ffcc3755319bb499872239715dde5e0ae3a723f67",
+      "matches": true,
+      "path": "/workspace/scratch/eddfdfc8cc56/toolchains/flutter/bin/cache/dart-sdk/lib/_internal/vm_platform_strong.dill",
+      "sha256": "883d97292177020d42bed41ffcc3755319bb499872239715dde5e0ae3a723f67"
+    },
+    {
+      "baseline": "test-cli-bootstrap-baseline.json",
+      "bytes": 27008128,
+      "expected_sha256": "4810081b594f9d5ab349fdf9f9d665ae8b1569145b5ebfb379490421d99c8034",
+      "matches": true,
+      "path": "/workspace/scratch/eddfdfc8cc56/flutter-qualification/workspace/.dart_tool/pub/bin/test/test.dart-3.13.7.snapshot",
+      "sha256": "4810081b594f9d5ab349fdf9f9d665ae8b1569145b5ebfb379490421d99c8034"
+    }
+  ],
+  "unique_selected_test_files": 224
+}

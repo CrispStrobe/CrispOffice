@@ -1,0 +1,140 @@
+{
+  "archive": "consumer-runtime-readiness.tar.xz",
+  "bytes": 234608,
+  "sha256": "9af43704f93cd2f1530c6b72af8295bf15f5ec30ebaccf68061dace32f644b13",
+  "classification": "Current consumer restoration and readiness only; 710 archived members and 4450 runtime files verified, 4 Jing controls, no product gate executed",
+  "member_count": 26,
+  "all_members_read_back_and_verified": true,
+  "members": [
+    {
+      "path": "audit_readiness.py",
+      "bytes": 6252,
+      "sha256": "650cd9542df16db10286596b16092184bd0fb815668250692258e4047e6ad2da"
+    },
+    {
+      "path": "env.sh",
+      "bytes": 724,
+      "sha256": "80f9675726d8172f7abba9c1024012a8f535fa188e421d0f1d0cf4f2dda8a99f"
+    },
+    {
+      "path": "frame-origin.json",
+      "bytes": 522,
+      "sha256": "9e9b4833a1eb35144ebd8ada963bb2639254f04fcdca8d0cab63bd4a964c6cab"
+    },
+    {
+      "path": "readiness-audit/invalid-field-attribute.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "readiness-audit/invalid-field-attribute.stdout",
+      "bytes": 266,
+      "sha256": "d8a2a665e08dcdb322c06ebeddcfbd09aebd0985e582ad322a552bbdca50027b"
+    },
+    {
+      "path": "readiness-audit/invalid-field-child-span.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "readiness-audit/invalid-field-child-span.stdout",
+      "bytes": 220,
+      "sha256": "1bae5f93bad76b6fb054a86ca7e2efb427ad4b6813429cdf8308702e2aa1660b"
+    },
+    {
+      "path": "readiness-audit/linked-styled-page-count.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "readiness-audit/linked-styled-page-count.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "readiness-audit/receipt.json",
+      "bytes": 6386,
+      "sha256": "195acb36d564b19b30aa95c7e1606c8c62590491cb0a35e143b56784f54642fd"
+    },
+    {
+      "path": "readiness-audit/restored-member-comparison.json",
+      "bytes": 187656,
+      "sha256": "2a0a96f86716d69b93c1a40f2e89f70d0238e89fba05ff1fc85c23bc22e8dc03"
+    },
+    {
+      "path": "readiness-audit/retained-runtime-comparison.json",
+      "bytes": 1510319,
+      "sha256": "a7940e97435a93f28c2f5f1fca694e3fee8186e3fd6ec09ed4c4f9074c922fbc"
+    },
+    {
+      "path": "readiness-audit/unchanged-styled-page-count.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "readiness-audit/unchanged-styled-page-count.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "recovery.json",
+      "bytes": 1276217,
+      "sha256": "efd0ff239f9a2f8d9d0642fb65455f3be12bef46ec64d0a6af55d8afe6b22888"
+    },
+    {
+      "path": "restored-wrapper.py",
+      "bytes": 4220,
+      "sha256": "05b7514d9463296e9559d434a8b47ec5193b950663ef802b92ce99c2029c4828"
+    },
+    {
+      "path": "runtime-logs/java-version.stderr",
+      "bytes": 181,
+      "sha256": "0fc83381287ccbc8623d257bce2b0d03997ba0e85ff4492d38b409aea37a8aa9"
+    },
+    {
+      "path": "runtime-logs/java-version.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "runtime-logs/pdfinfo-version.stderr",
+      "bytes": 143,
+      "sha256": "56221b4464aa8299b97e80d0fc7efcdb23d7a4146aa304611ec9e5c9c7984001"
+    },
+    {
+      "path": "runtime-logs/pdfinfo-version.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "runtime-logs/pdftoppm-version.stderr",
+      "bytes": 144,
+      "sha256": "9b3b47703da9f8e397c209c07869aa7d92c2c25a63b48f42425934902df3c286"
+    },
+    {
+      "path": "runtime-logs/pdftoppm-version.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "runtime-logs/pdftotext-version.stderr",
+      "bytes": 145,
+      "sha256": "0f2ff359cb556fedcd7be481e9a06c6f25d46789094b702bd84ab4cf09ce49b0"
+    },
+    {
+      "path": "runtime-logs/pdftotext-version.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "runtime-logs/soffice-version.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "runtime-logs/soffice-version.stdout",
+      "bytes": 73,
+      "sha256": "6d49d29516f9fb3b3f02bf33238f0beae9980c1743128ce831deddcfb69bce89"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "changed_utc": "2026-11-18T05:58:30.514410+00:00",
+  "path": "/workspace/scratch/eddfdfc8cc56/native-consumers/run_guarded_native.py",
+  "scope": "External wrapper path adaptation only; no runner/source/selection/oracle changes",
+  "before_sha256": "5e5f5420d0ef0f456a2fa0539531e9b466768da9cf44a97a4a6d29252a9f8094",
+  "after_sha256": "1300e2415723cd0168916c5991523cb2f24358aa29cd7bb51b6b3b92513c55db",
+  "original_helper_sha256": "5e5f5420d0ef0f456a2fa0539531e9b466768da9cf44a97a4a6d29252a9f8094",
+  "exact_diff": "--- restored/run_guarded_native.py\n+++ actual-flutter/run_guarded_native.py\n@@ -17,7 +17,7 @@\n ROOT=Path(__file__).resolve().parent\n REPO=ROOT.parent/'quds_office_suite'\n WORK=args.workspace.resolve()\n-DART=ROOT.parent/'toolchains/flutter-sdk/bin/cache/dart-sdk/bin/dart'\n+DART=ROOT.parent/'toolchains/flutter/bin/cache/dart-sdk/bin/dart'\n REF=ROOT/'consumer-runtime/retained-reference'\n NATIVE=ROOT/'native-qualification-runtime'\n PACK=NATIVE/'native-development-pack'\n",
+  "source_commit": "9d060658ee6be8ec97d73f56b9aec10d346b7952",
+  "qualification_gates_started": false
+}

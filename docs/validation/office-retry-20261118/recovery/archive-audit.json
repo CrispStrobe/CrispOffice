@@ -1,0 +1,23 @@
+{
+  "checked_utc": "2026-11-18T05:42:55.123060+00:00",
+  "archives": [
+    {
+      "archive": "/workspace/scratch/eddfdfc8cc56/quds_office_suite/docs/validation/office-local-20261118/evidence/runtime-recovery.tar.xz",
+      "sha256": "2afcb3bdcff2a88032521f9c660b9eb75a857b07e974254d2b69cecb5809f9b9",
+      "member_count": 72,
+      "all_member_hashes_verified": true
+    },
+    {
+      "archive": "/workspace/scratch/eddfdfc8cc56/quds_office_suite/docs/validation/office-local-20261118/evidence/qualification-helpers.tar.xz",
+      "sha256": "1bcaeeb785d918b155fa47d220c1930198e63668efcaef1e4404e7c8442817d5",
+      "member_count": 10,
+      "all_member_hashes_verified": true
+    },
+    {
+      "archive": "/workspace/scratch/eddfdfc8cc56/quds_office_suite/docs/validation/office-local-20261118/evidence/canonical-attempt-9a7c80be.tar.xz",
+      "sha256": "14a2e5d6d0ae73501eb6e240d67896a3936482188a3344c1eee44c877e161e42",
+      "member_count": 42,
+      "all_member_hashes_verified": true
+    }
+  ]
+}

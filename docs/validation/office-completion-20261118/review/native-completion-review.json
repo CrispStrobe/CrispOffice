@@ -1,0 +1,1005 @@
+{
+  "schema_version": 1,
+  "kind": "independent-native-sweep-completion-review",
+  "observed_utc": "2026-11-18T06:19:57.244320+00:00",
+  "source_commit": "9d060658ee6be8ec97d73f56b9aec10d346b7952",
+  "partial": false,
+  "accepted": true,
+  "findings": [],
+  "native_inference_or_compilation_executed": false,
+  "github_actions_workflow_check_status_calls": 0,
+  "limits": [
+    "All timed outputs are not retained: per-input output stability across all timed repetitions remains a producer claim. First results, warmups and all timed decoder observations/pass records are audited.",
+    "The frozen 30-case synthetic panel and structural probes do not establish broad German precision/recall, intended-device performance, model deployment or release qualification.",
+    "Engineering latency/RSS/model-size flags are reconstructed and reported separately from semantic acceptance.",
+    "Generated provider.aot is omitted from archives; this audit rehashes the live executable against the retained source/dependency/SDK-bound build receipt.",
+    "Nonoverlap proves ordering of retained arm intervals and preparation; unobserved third-party host workloads are outside this receipt."
+  ],
+  "harness_sha256": "ffe5c3df5354ed2a2ca05f81fb1aed48c1c78aeadcf6ca3eb841945e6bcf25ae",
+  "comparator_sha256": "cd337c5521f9b8ce35c6b4b5e114f2068f17d5cb7b78415d81d71a8a76780802",
+  "arms": [
+    {
+      "thread_count": 1,
+      "cohort_counts": {
+        "cases": 30,
+        "controls": 8,
+        "long_complete_check_probes": 3,
+        "segmented_long_complete_check_probes": 2,
+        "varied_segmented_long_complete_check_probes": 2,
+        "segmentation_controls": 6
+      },
+      "statuses": {
+        "cases": {
+          "success": 28,
+          "unsupported": 2
+        },
+        "controls": {
+          "unsupported": 2,
+          "success": 5,
+          "failed": 1
+        },
+        "long_complete_check_probes": {
+          "success": 3
+        },
+        "segmented_long_complete_check_probes": {
+          "success": 2
+        },
+        "varied_segmented_long_complete_check_probes": {
+          "success": 2
+        },
+        "segmentation_controls": {
+          "success": 2,
+          "failed": 4
+        }
+      },
+      "short_samples": 87,
+      "retained_output_records_validated": 88,
+      "actual_decoder_records_reconstructed": 147,
+      "complete_source_decoder_records": 142,
+      "additional_control_decoder_records": 5,
+      "supported_error_cases": 18,
+      "exact_error_fixes": 6,
+      "supported_clean_controls": 10,
+      "clean_controls_unchanged": 10,
+      "short_timing": {
+        "samples_ms": [
+          156.511,
+          90.075,
+          63.0,
+          33.916,
+          39.993,
+          33.482,
+          57.75,
+          56.928,
+          58.214,
+          42.785,
+          43.848,
+          47.944,
+          51.557,
+          50.307,
+          55.294,
+          35.511,
+          26.204,
+          26.798,
+          30.983,
+          28.792,
+          31.877,
+          32.233,
+          30.692,
+          30.987,
+          25.409,
+          24.907,
+          26.024,
+          29.977,
+          28.417,
+          30.482,
+          72.331,
+          65.761,
+          66.836,
+          259.777,
+          104.815,
+          101.029,
+          49.593,
+          43.982,
+          47.407,
+          29.331,
+          29.561,
+          28.515,
+          32.16,
+          32.9,
+          32.484,
+          28.217,
+          28.267,
+          28.086,
+          26.581,
+          24.467,
+          25.105,
+          29.854,
+          27.964,
+          29.071,
+          29.55,
+          37.135,
+          28.356,
+          24.404,
+          25.328,
+          24.297,
+          43.292,
+          43.096,
+          42.838,
+          28.63,
+          35.013,
+          28.357,
+          28.633,
+          29.245,
+          28.248,
+          47.461,
+          45.807,
+          47.059,
+          40.435,
+          42.062,
+          35.853,
+          30.937,
+          35.901,
+          31.882,
+          39.965,
+          38.997,
+          38.891,
+          42.335,
+          42.192,
+          42.368,
+          232.314,
+          236.645,
+          229.749
+        ],
+        "median_ms": 35.013,
+        "p95_ms": 156.511,
+        "maximum_ms": 259.777
+      },
+      "peak_rss_bytes": 289300480,
+      "setup_ms": 2932.643,
+      "engineering_budgets": {
+        "p95_at_most_500_ms": true,
+        "peak_rss_at_most_768_mib": true,
+        "gguf_at_most_160_mib": true
+      },
+      "semantics_accepted_independently_of_budget_flags": true,
+      "report_sha256": "36570eee3ac075b024fc06605552c8382add027894b442f538a1ebfce370bee3",
+      "log_sha256": "e37c51fac31ac4edae6c6c3b089183a44bd44095b61066432f74653bd95bfd0e",
+      "elapsed_seconds": 88.82251281700019
+    },
+    {
+      "thread_count": 2,
+      "cohort_counts": {
+        "cases": 30,
+        "controls": 8,
+        "long_complete_check_probes": 3,
+        "segmented_long_complete_check_probes": 2,
+        "varied_segmented_long_complete_check_probes": 2,
+        "segmentation_controls": 6
+      },
+      "statuses": {
+        "cases": {
+          "success": 28,
+          "unsupported": 2
+        },
+        "controls": {
+          "unsupported": 2,
+          "success": 5,
+          "failed": 1
+        },
+        "long_complete_check_probes": {
+          "success": 3
+        },
+        "segmented_long_complete_check_probes": {
+          "success": 2
+        },
+        "varied_segmented_long_complete_check_probes": {
+          "success": 2
+        },
+        "segmentation_controls": {
+          "success": 2,
+          "failed": 4
+        }
+      },
+      "short_samples": 87,
+      "retained_output_records_validated": 88,
+      "actual_decoder_records_reconstructed": 147,
+      "complete_source_decoder_records": 142,
+      "additional_control_decoder_records": 5,
+      "supported_error_cases": 18,
+      "exact_error_fixes": 6,
+      "supported_clean_controls": 10,
+      "clean_controls_unchanged": 10,
+      "short_timing": {
+        "samples_ms": [
+          36.02,
+          37.938,
+          42.972,
+          50.758,
+          24.414,
+          16.689,
+          37.156,
+          39.614,
+          33.284,
+          31.455,
+          31.487,
+          26.504,
+          39.489,
+          30.377,
+          36.485,
+          17.693,
+          15.732,
+          15.217,
+          16.396,
+          16.598,
+          18.019,
+          16.694,
+          16.03,
+          17.834,
+          15.441,
+          15.389,
+          17.428,
+          16.303,
+          26.056,
+          18.405,
+          51.128,
+          54.987,
+          41.3,
+          103.261,
+          66.157,
+          53.858,
+          39.384,
+          31.65,
+          25.774,
+          16.49,
+          17.973,
+          20.834,
+          20.678,
+          17.8,
+          18.267,
+          17.979,
+          17.135,
+          18.328,
+          21.411,
+          21.222,
+          22.289,
+          26.279,
+          20.481,
+          18.879,
+          17.401,
+          17.818,
+          19.045,
+          27.164,
+          20.459,
+          19.118,
+          34.056,
+          30.412,
+          34.548,
+          21.391,
+          16.911,
+          21.389,
+          21.148,
+          19.094,
+          21.021,
+          32.776,
+          42.454,
+          34.762,
+          28.66,
+          21.738,
+          21.184,
+          19.597,
+          20.042,
+          23.234,
+          36.655,
+          22.415,
+          24.272,
+          25.725,
+          25.684,
+          25.351,
+          125.792,
+          130.094,
+          152.781
+        ],
+        "median_ms": 22.289,
+        "p95_ms": 66.157,
+        "maximum_ms": 152.781
+      },
+      "peak_rss_bytes": 287318016,
+      "setup_ms": 2991.78,
+      "engineering_budgets": {
+        "p95_at_most_500_ms": true,
+        "peak_rss_at_most_768_mib": true,
+        "gguf_at_most_160_mib": true
+      },
+      "semantics_accepted_independently_of_budget_flags": true,
+      "report_sha256": "789bfcf051a9897fa209a7a38314f6f45f7338e68dee3a05546ab6fc974ad4cb",
+      "log_sha256": "4126b171e22f8991d0e4bb2ce90927e381cd2112713bb73f40dcd7b10a4f397d",
+      "elapsed_seconds": 54.47784538799988
+    },
+    {
+      "thread_count": 4,
+      "cohort_counts": {
+        "cases": 30,
+        "controls": 8,
+        "long_complete_check_probes": 3,
+        "segmented_long_complete_check_probes": 2,
+        "varied_segmented_long_complete_check_probes": 2,
+        "segmentation_controls": 6
+      },
+      "statuses": {
+        "cases": {
+          "success": 28,
+          "unsupported": 2
+        },
+        "controls": {
+          "unsupported": 2,
+          "success": 5,
+          "failed": 1
+        },
+        "long_complete_check_probes": {
+          "success": 3
+        },
+        "segmented_long_complete_check_probes": {
+          "success": 2
+        },
+        "varied_segmented_long_complete_check_probes": {
+          "success": 2
+        },
+        "segmentation_controls": {
+          "success": 2,
+          "failed": 4
+        }
+      },
+      "short_samples": 87,
+      "retained_output_records_validated": 88,
+      "actual_decoder_records_reconstructed": 147,
+      "complete_source_decoder_records": 142,
+      "additional_control_decoder_records": 5,
+      "supported_error_cases": 18,
+      "exact_error_fixes": 6,
+      "supported_clean_controls": 10,
+      "clean_controls_unchanged": 10,
+      "short_timing": {
+        "samples_ms": [
+          27.369,
+          24.623,
+          40.648,
+          12.374,
+          12.501,
+          12.228,
+          28.31,
+          26.909,
+          25.108,
+          19.71,
+          19.047,
+          19.343,
+          22.642,
+          23.583,
+          26.418,
+          10.476,
+          14.575,
+          13.152,
+          17.729,
+          14.322,
+          14.223,
+          17.502,
+          14.964,
+          11.919,
+          14.087,
+          11.879,
+          15.443,
+          14.647,
+          17.02,
+          14.373,
+          29.472,
+          30.507,
+          28.648,
+          41.793,
+          45.196,
+          58.481,
+          38.405,
+          20.173,
+          45.533,
+          14.06,
+          12.683,
+          13.823,
+          19.827,
+          14.804,
+          17.444,
+          23.905,
+          13.983,
+          15.475,
+          24.395,
+          34.041,
+          52.068,
+          15.689,
+          16.757,
+          16.174,
+          12.535,
+          17.411,
+          47.213,
+          13.628,
+          13.836,
+          12.485,
+          22.695,
+          18.582,
+          19.593,
+          16.922,
+          15.008,
+          15.702,
+          14.19,
+          12.661,
+          13.832,
+          19.651,
+          23.548,
+          19.372,
+          13.994,
+          17.687,
+          17.088,
+          16.804,
+          15.149,
+          16.815,
+          15.572,
+          15.733,
+          17.74,
+          17.179,
+          34.4,
+          16.042,
+          114.668,
+          78.058,
+          82.193
+        ],
+        "median_ms": 17.179,
+        "p95_ms": 52.068,
+        "maximum_ms": 114.668
+      },
+      "peak_rss_bytes": 288354304,
+      "setup_ms": 3031.657,
+      "engineering_budgets": {
+        "p95_at_most_500_ms": true,
+        "peak_rss_at_most_768_mib": true,
+        "gguf_at_most_160_mib": true
+      },
+      "semantics_accepted_independently_of_budget_flags": true,
+      "report_sha256": "95e845bb460d9fc676166d707d3390b7f7f9b33ed8b08f17bec5833b59b05029",
+      "log_sha256": "7b84ce0408d14af4484ff5a640ece40b793008e3e82b09acc76f7290645f1620",
+      "elapsed_seconds": 36.916825722999874
+    },
+    {
+      "thread_count": 8,
+      "cohort_counts": {
+        "cases": 30,
+        "controls": 8,
+        "long_complete_check_probes": 3,
+        "segmented_long_complete_check_probes": 2,
+        "varied_segmented_long_complete_check_probes": 2,
+        "segmentation_controls": 6
+      },
+      "statuses": {
+        "cases": {
+          "success": 28,
+          "unsupported": 2
+        },
+        "controls": {
+          "unsupported": 2,
+          "success": 5,
+          "failed": 1
+        },
+        "long_complete_check_probes": {
+          "success": 3
+        },
+        "segmented_long_complete_check_probes": {
+          "success": 2
+        },
+        "varied_segmented_long_complete_check_probes": {
+          "success": 2
+        },
+        "segmentation_controls": {
+          "success": 2,
+          "failed": 4
+        }
+      },
+      "short_samples": 87,
+      "retained_output_records_validated": 88,
+      "actual_decoder_records_reconstructed": 147,
+      "complete_source_decoder_records": 142,
+      "additional_control_decoder_records": 5,
+      "supported_error_cases": 18,
+      "exact_error_fixes": 6,
+      "supported_clean_controls": 10,
+      "clean_controls_unchanged": 10,
+      "short_timing": {
+        "samples_ms": [
+          36.293,
+          41.935,
+          18.094,
+          10.489,
+          12.086,
+          10.702,
+          23.735,
+          22.113,
+          18.847,
+          15.987,
+          17.294,
+          19.051,
+          16.219,
+          17.351,
+          18.022,
+          7.819,
+          9.124,
+          9.454,
+          9.57,
+          10.655,
+          9.6,
+          71.076,
+          26.369,
+          15.877,
+          11.026,
+          9.866,
+          9.869,
+          9.723,
+          11.189,
+          13.459,
+          20.74,
+          22.427,
+          33.146,
+          36.807,
+          28.246,
+          32.044,
+          13.326,
+          13.016,
+          11.706,
+          9.762,
+          11.35,
+          10.646,
+          12.176,
+          11.121,
+          9.494,
+          8.65,
+          7.705,
+          13.746,
+          9.064,
+          8.775,
+          8.779,
+          8.095,
+          9.431,
+          8.781,
+          10.163,
+          10.929,
+          12.657,
+          7.93,
+          8.941,
+          8.395,
+          13.688,
+          14.562,
+          13.27,
+          8.951,
+          10.239,
+          11.215,
+          9.787,
+          10.428,
+          9.1,
+          14.409,
+          14.195,
+          15.813,
+          16.656,
+          20.252,
+          16.803,
+          10.113,
+          11.85,
+          14.135,
+          13.557,
+          13.844,
+          14.183,
+          12.758,
+          12.74,
+          12.348,
+          57.126,
+          74.891,
+          61.516
+        ],
+        "median_ms": 12.657,
+        "p95_ms": 41.935,
+        "maximum_ms": 74.891
+      },
+      "peak_rss_bytes": 381825024,
+      "setup_ms": 2755.975,
+      "engineering_budgets": {
+        "p95_at_most_500_ms": true,
+        "peak_rss_at_most_768_mib": true,
+        "gguf_at_most_160_mib": true
+      },
+      "semantics_accepted_independently_of_budget_flags": true,
+      "report_sha256": "3ded71f2155941df26f1b9dd9923da98f6c23e103b965410b3a10527c417c7a0",
+      "log_sha256": "6aec18551f89b8d316ef6b45a5182a48ba90ea663e7a2ec7c04be54c87115ce6",
+      "elapsed_seconds": 27.53251671599992
+    }
+  ],
+  "build": {
+    "source_files": 63,
+    "dependencies": 109,
+    "sdk_inputs": 10,
+    "all_rehashed_live": true,
+    "aot": {
+      "file": "provider.aot",
+      "bytes": 3576208,
+      "sha256": "1d126aa17ce00f83c567f98e662bc154ff7969464d725f0a1bf5d412ef530b07"
+    }
+  },
+  "historical_two_thread_comparison": {
+    "schema_version": 1,
+    "kind": "quds-gector-guarded-provider-comparison",
+    "scope": "Nonregression on the frozen 30-case synthetic panel: 18 de-DE error cases, 10 de-DE clean controls, and 2 explicitly unsupported de-CH controls. The eight integration controls and three structural length probes are checked separately. This is not broad precision/recall, target-device qualification, or a release decision. Repeated outcome stability is reported by the producer; only its first result and warmup are retained.",
+    "frozen_baseline_sha256": "9fda0f778fe36c72af8141d7dd5f0c012b43882bb40046adc89b7bf76b9fd8bc",
+    "baseline_sha256": "9fda0f778fe36c72af8141d7dd5f0c012b43882bb40046adc89b7bf76b9fd8bc",
+    "candidate_sha256": "789bfcf051a9897fa209a7a38314f6f45f7338e68dee3a05546ab6fc974ad4cb",
+    "cases_sha256": "ec3309ebf99a3b1be9bb065fc91cd2afce2e362ebaa81f2d64d39a231c6defb9",
+    "evidence_valid": true,
+    "operational_passed": true,
+    "guarded_nonregression_passed": true,
+    "passed": true,
+    "evidence_errors": [],
+    "baseline": {
+      "supported_error_cases": 18,
+      "exact_fixes": 5,
+      "supported_clean_controls": 10,
+      "unchanged_clean_controls": 10,
+      "operational_passed": true,
+      "product_mode": true,
+      "setup_ms": 3384.501,
+      "peak_process_rss_bytes": 309854208,
+      "short_timing": {
+        "median_ms": 21.91,
+        "p95_ms": 62.017,
+        "maximum_ms": 165.94
+      },
+      "engineering_budgets": {
+        "p95_at_most_500_ms": true,
+        "peak_rss_at_most_768_mib": true,
+        "gguf_at_most_160_mib": true,
+        "note": "GGUF size excludes sidecars; target hardware remains unqualified."
+      }
+    },
+    "candidate": {
+      "supported_error_cases": 18,
+      "exact_fixes": 6,
+      "supported_clean_controls": 10,
+      "unchanged_clean_controls": 10,
+      "operational_passed": true,
+      "product_mode": true,
+      "setup_ms": 2991.78,
+      "peak_process_rss_bytes": 287318016,
+      "short_timing": {
+        "median_ms": 22.289,
+        "p95_ms": 66.157,
+        "maximum_ms": 152.781
+      },
+      "engineering_budgets": {
+        "p95_at_most_500_ms": true,
+        "peak_rss_at_most_768_mib": true,
+        "gguf_at_most_160_mib": true,
+        "note": "GGUF size excludes sidecars; target hardware remains unqualified."
+      }
+    },
+    "gates": {
+      "status_policy_preserved": true,
+      "previous_exact_fixes_preserved": true,
+      "supported_clean_text_unchanged": true,
+      "no_new_unexpected_error_edits": true,
+      "integration_controls_preserved": true,
+      "structural_controls_preserved": true
+    },
+    "added_exact_fixes": [
+      "verb-wir"
+    ],
+    "lost_exact_fixes": [],
+    "supported_clean_changes": [],
+    "new_unexpected_error_edits": [],
+    "status_changes": [],
+    "finding_changes": [
+      {
+        "section": "cases",
+        "id": "verb-wir",
+        "baseline": [],
+        "candidate": [
+          {
+            "start": 11,
+            "end": 14,
+            "original": "ist",
+            "replacement": "sind",
+            "rule_id": "gector.de.grammar"
+          }
+        ]
+      }
+    ],
+    "outcome_changes": [
+      {
+        "section": "cases",
+        "id": "verb-wir",
+        "baseline": {
+          "status": "success",
+          "corrected": "Wir ist zufrieden.",
+          "findings": []
+        },
+        "candidate": {
+          "status": "success",
+          "corrected": "Wir sind zufrieden.",
+          "findings": [
+            {
+              "start": 11,
+              "end": 14,
+              "original": "ist",
+              "replacement": "sind",
+              "rule_id": "gector.de.grammar"
+            }
+          ]
+        }
+      }
+    ],
+    "source_changes": [
+      {
+        "path": "packages/quds_office_engine/lib/src/proofing/data/german_common_00.dart",
+        "baseline": "43976662c5b2b1d42ea5a1a6a8e5538f1d52496de3dc768a883d638cdf5fdd5f",
+        "candidate": "a9297b80fb74caf783b6b9497c5155324d21e8706954c96c99db640c08da9fc4"
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_data.dart",
+        "baseline": "2def2223516731f632e5ab4a37f94377142d0644a5df5f50964fefaa92b2d193",
+        "candidate": "3e8944139d410a20d5c8b3f03326e0ed3085abfeb81cf4c8e5426983b70dc842"
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_00.dart",
+        "baseline": "cd79dee10538a3fa7ec47246e35dd45a3535720202c7e146e66f844523fd51bc",
+        "candidate": "6a8de28c9223446d5210a9fa88196a5e71fae90e1f67a6e5489368ee095e9384"
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_01.dart",
+        "baseline": "39c3bf9d907cdccdbfb0cc64c06ad76f2c0272790b4747626325d43f7497e7f4",
+        "candidate": "a983cf3b6475103208c1b6104f4f8b5c81c15dd9c247680f04587f30262d3e83"
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_02.dart",
+        "baseline": "5af756aff60cbc4a77425f1a1e5d48d712231b9892aa1d646af46b4e6c034a59",
+        "candidate": "455b00a4799d77cecf7c28b815b34cdc4c8bc44d50f640ec3f2ae031afa5c397"
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_03.dart",
+        "baseline": "ec59197668f522895e525879f1acf1cd9d52c27740dda4d17293e95b28208bcf",
+        "candidate": "73180e17bdf9f1d71a574239c23e5c735120c351a5c13a757aecd77bbaab4a39"
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_04.dart",
+        "baseline": "6cace804210b0f52008da94ededb29692cc5a39041976aa4e999d17dfedfe2f4",
+        "candidate": "9f7529d41913f4a8f73e4cdf5ef5878217d778a0460e9aaa60e3e1051a8156a5"
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_05.dart",
+        "baseline": "cd70267d1d9580aa6b9a46e56b006ac961e614f0c6103d8850aa9b091b0b8627",
+        "candidate": "0b800946c3a4a5c5aa1078f86f0162b04c8dc4f865f577bd38044d142ea4c5bd"
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_06.dart",
+        "baseline": "afc12eeb4b6772d262451802f12758c955607ed6239adca1ef63c0e335f62e9f",
+        "candidate": "38800cc1293c6fdf50d8ca418dcc8fc87877bfebc5c8dba17bcbd190f09adb36"
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_07.dart",
+        "baseline": "773e74ed12d9891f1fc1b83c0cd4dcd33675c745edccee35e3fa42ea2004a839",
+        "candidate": "ebf858e4c3ee31a24814046668e22d6642f3530cc20b56f423e40d227c250845"
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_08.dart",
+        "baseline": "bc34d24db3703a5f4bc7fdb73e5f91f269316db17ad0f375e656cf838d0713d2",
+        "candidate": "e513de7134c4819d48861d2afd0080fce030ce158b6170bd6cb6a1830c434768"
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_09.dart",
+        "baseline": "4ee5929fca1b20454093614cf3fc9f733c6a246dbb24e7d2865f56aa7829762e",
+        "candidate": "80adb15e779c30930c6f0d46b518475e4f5df4bed7bf1f808d11c28ec2742d93"
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_10.dart",
+        "baseline": "5800bdb1c6f699fb2d7080e4d3c5327734724ba0212465aba019c3c37eba9b50",
+        "candidate": "fc7a72862769578cea01626c617b9b8e7091e8eb93fe8e679be57bbbf18a8591"
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_11.dart",
+        "baseline": "06f35af0a008762feea1b0529867f5f60a4b11c4fa6365734b534a4672d6d829",
+        "candidate": "329647a0c8aa6a0996372c20b4896f1bda4232d478efc22c6e1035b74cf27e68"
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_12.dart",
+        "baseline": "104de822d57601b57eb0626ed49b33f5ad71c5923459121de94a447c17a7e991",
+        "candidate": "75ad0e0178676ff259a95335cc0d16ecc187fae118a99824b66c04d0dce6defc"
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_13.dart",
+        "baseline": "8e6dc9e9e3c174af9719f3ec8f1814972dec97f9a6e41d481b54ff29650d0c72",
+        "candidate": "2c75c1ff283124a71cde2374f686aa5f9d248a7ada6cb80254048b38b5a8c995"
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_14.dart",
+        "baseline": "fbfc005247f5dd9bcb50347e2f32707e6b46233e6465ceff85cb3962dd8d9cde",
+        "candidate": "3d56b7a6aaa261b21ec92824b489151a9ac0d6bdce6c4c66a54b350190a9f648"
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_15.dart",
+        "baseline": "356f006c4a82ecfc09387ff2f1fe921fbd13abe55773eb640dfcb91a426374d9",
+        "candidate": "50964f9fcdb68adc5b10a1e59edf7efa567ab4b44dcc26ccebcd145058c51c1a"
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/proofing/data/german_swiss_00.dart",
+        "baseline": "5719e81653cd5aea685be2359f92b64cb94e9dbbe4f999556394fe43867243a6",
+        "candidate": "03628d2ecdcec9c94781cebf32d1288b7cd6c8eb4710ebe7946263867b108683"
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/proofing/german_spelling.dart",
+        "baseline": "4d258454b159e8be85a3375710003a300333d73eb0250579ba6873307a894082",
+        "candidate": "9e51dd774237e6a22232ad88f905cc32314f75ee3ffeb263fee7cdbade93f82c"
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/proofing/office_proofing.dart",
+        "baseline": "64c38adeebc59e1b0a0145433db08ce5a12206bdfb849c573f925f016178890d",
+        "candidate": "5a2711e5102948b88524aa6933c447791bf0839e83429c7e861d7a51cd23518e"
+      },
+      {
+        "path": "packages/quds_proofing_gector/lib/quds_proofing_gector.dart",
+        "baseline": "1bea719acbd541ea07bb546030e7cb2f8c1c30a00e41a9363ad60907127fe77f",
+        "candidate": "e64d6eb8db223f6bb64bbb4d2e55a1e246eb7847f123e3306982e7344b1b27f9"
+      },
+      {
+        "path": "packages/quds_proofing_gector/lib/src/backend.dart",
+        "baseline": "b8dac86a9e4ab1a9c824ccd346f1896a5a2f4ea9d79aaa1bbd9e51eb2641dad3",
+        "candidate": "7494c3037495d3aa0b4b0f53062b9fa816af2d6c0f2334667d333045c86e29d6"
+      },
+      {
+        "path": "packages/quds_proofing_gector/lib/src/decoder.dart",
+        "baseline": "9a2053cb8ba37ff6a003d2c8100bc1b46d6cf09410ce25d7c3eef8f535e10c91",
+        "candidate": "224c7be711870cadc5fff97404f2b334b868f8fb11dba0e28657e5450e37c1c2"
+      },
+      {
+        "path": "packages/quds_proofing_gector/lib/src/guards.dart",
+        "baseline": "79244938eb6ad4195167be4dff2df66257c9b31fe2ca8819ab2fe52837846191",
+        "candidate": "d912769127e2069662622a7ef9be741dbe207c0066c0ab9c7db59426f9104e8b"
+      },
+      {
+        "path": "packages/quds_proofing_gector/lib/src/native_backend.dart",
+        "baseline": "9d25812acd0efb0e8d583392092d4ef803d5b164a7b832e6aa2adb9b9f95d6c7",
+        "candidate": "d629caf4acf43745761cdcb133f57826edffa73e15e6220247abdfea3aab5a34"
+      },
+      {
+        "path": "packages/quds_proofing_gector/lib/src/provider.dart",
+        "baseline": "67cf9c2b7ec95f16cfa56bdac3caffc07267298bec830ac083d0817b0f5f0f56",
+        "candidate": "ab1a03d563ced8323522c9bfa6c2577e04e0d23a5b980bf576ecf7ddbb0edbe4"
+      },
+      {
+        "path": "packages/quds_proofing_gector/lib/src/segmentation.dart",
+        "baseline": null,
+        "candidate": "d49374de21128ebf729b6409b177f198716ade167eca08883662d7484709e8c8"
+      },
+      {
+        "path": "packages/quds_proofing_gector/lib/src/worker_native.dart",
+        "baseline": "4f1deea357d637929e5d972199cfdff6a0c29b980dad920fc328cf285143c1ef",
+        "candidate": "76e18e15c78fd884a2c43d621fdc388797e2f77c989d73899eb1dd965a3d8231"
+      },
+      {
+        "path": "packages/quds_proofing_gector/pubspec.yaml",
+        "baseline": "1d6733795533cab7421471cc437cf1d50f4c0921eeac3091fb528e7564958ba9",
+        "candidate": "26074a4688212904b95e3cb24fa934ffb94a1881c41d8d98074e38d586ea63b1"
+      },
+      {
+        "path": "pubspec.lock",
+        "baseline": "bc29947532fcbd4f1e3e9cd059620b8d9a52073150a968895af7b7794556978b",
+        "candidate": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130"
+      },
+      {
+        "path": "tools/proofing/german_model/run_gector_dart.dart",
+        "baseline": "b9dd9f6f98d3fa57a9614b730bb106f084677fe580ad38a2817038e691dc6598",
+        "candidate": "3300f8b2524f6628493b0870f8911df28c8e4c9a84f177de1f0f94cf29166d2b"
+      }
+    ],
+    "performance_note": "Engineering budget flags are reported separately and do not prove target-device performance."
+  },
+  "cross_arm_comparison": {
+    "1": {
+      "comparable": true,
+      "passed": true,
+      "identities_match_threads_2": true,
+      "runtime_matches_threads_2_except_thread_count": true,
+      "cohorts_match_threads_2_except_timing": {
+        "cases": true,
+        "controls": true,
+        "long_complete_check_probes": true,
+        "segmented_long_complete_check_probes": true,
+        "varied_segmented_long_complete_check_probes": true,
+        "segmentation_controls": true
+      }
+    },
+    "2": {
+      "comparable": true,
+      "passed": true,
+      "identities_match_threads_2": true,
+      "runtime_matches_threads_2_except_thread_count": true,
+      "cohorts_match_threads_2_except_timing": {
+        "cases": true,
+        "controls": true,
+        "long_complete_check_probes": true,
+        "segmented_long_complete_check_probes": true,
+        "varied_segmented_long_complete_check_probes": true,
+        "segmentation_controls": true
+      }
+    },
+    "4": {
+      "comparable": true,
+      "passed": true,
+      "identities_match_threads_2": true,
+      "runtime_matches_threads_2_except_thread_count": true,
+      "cohorts_match_threads_2_except_timing": {
+        "cases": true,
+        "controls": true,
+        "long_complete_check_probes": true,
+        "segmented_long_complete_check_probes": true,
+        "varied_segmented_long_complete_check_probes": true,
+        "segmentation_controls": true
+      }
+    },
+    "8": {
+      "comparable": true,
+      "passed": true,
+      "identities_match_threads_2": true,
+      "runtime_matches_threads_2_except_thread_count": true,
+      "cohorts_match_threads_2_except_timing": {
+        "cases": true,
+        "controls": true,
+        "long_complete_check_probes": true,
+        "segmented_long_complete_check_probes": true,
+        "varied_segmented_long_complete_check_probes": true,
+        "segmentation_controls": true
+      }
+    }
+  },
+  "guarded_preparation": {
+    "passed": true,
+    "source_commit": "9d060658ee6be8ec97d73f56b9aec10d346b7952",
+    "source_files": 2010,
+    "runtime_files": 10096,
+    "runtime_rehashed_live": false,
+    "source_and_runtime_maps_identical": true,
+    "outer_exit_code": 0,
+    "child_exit_code": 0,
+    "duration_seconds": 7.44642563799971
+  },
+  "guarded_sweep": {
+    "passed": true,
+    "source_commit": "9d060658ee6be8ec97d73f56b9aec10d346b7952",
+    "source_files": 2010,
+    "runtime_files": 10098,
+    "runtime_rehashed_live": true,
+    "source_and_runtime_maps_identical": true,
+    "outer_exit_code": 0,
+    "child_exit_code": 0,
+    "duration_seconds": 209.32181604200014
+  },
+  "archives": [
+    {
+      "path": "/workspace/scratch/21605f06e47d/native-consumers/native-prepare-9d060658.tar.xz",
+      "bytes": 640408,
+      "sha256": "ecccb2c63a18b16ac9d6b4d719c86b5c4403a42e5375c4e2ca21e1ad50303171",
+      "member_count": 17,
+      "all_members_read_back_and_match_live": true,
+      "index_sha256": "7ee96acea6873a7f3b1e66cbec645be1a341cdc1fb0aace980a1cc9cbc986229"
+    },
+    {
+      "path": "/workspace/scratch/21605f06e47d/native-consumers/native-sweep-9d060658.tar.xz",
+      "bytes": 689748,
+      "sha256": "61c750faabdc8b0badb45bab2f42b297aafee1ab6b7adbc08aba80bb7e60102e",
+      "member_count": 20,
+      "all_members_read_back_and_match_live": true,
+      "index_sha256": "a067959512b6e863b2312716586ef92fa44348de436d6dbe93710e4907a1df34"
+    }
+  ],
+  "completed_arms_reviewed": 4,
+  "review_passed": true,
+  "checks_performed": 157981,
+  "review_script_sha256": "9d7072f9d14539873dfc758274a65cb514898a4dd4d27c160843ef4c091d9493"
+}

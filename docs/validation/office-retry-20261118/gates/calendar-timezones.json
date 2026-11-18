@@ -1,0 +1,48 @@
+{
+  "source_commit": "9d060658ee6be8ec97d73f56b9aec10d346b7952",
+  "passed": true,
+  "input_integrity": {
+    "dependencies_unchanged": true,
+    "harness_unchanged": true,
+    "runtime_unchanged": true,
+    "source_unchanged": true,
+    "workspace_unchanged": true
+  },
+  "head_unchanged": true,
+  "outer_exit_code": 0,
+  "duration_seconds": 35.21049039199988,
+  "test_executions": 24,
+  "overlaps_canonical": true,
+  "zones": [
+    {
+      "timezone": "UTC",
+      "offsets_minutes": [
+        0,
+        0,
+        0
+      ],
+      "passed": true,
+      "test_successes": 8
+    },
+    {
+      "timezone": "Europe/Berlin",
+      "offsets_minutes": [
+        60,
+        120,
+        60
+      ],
+      "passed": true,
+      "test_successes": 8
+    },
+    {
+      "timezone": "America/Los_Angeles",
+      "offsets_minutes": [
+        -480,
+        -420,
+        -480
+      ],
+      "passed": true,
+      "test_successes": 8
+    }
+  ]
+}

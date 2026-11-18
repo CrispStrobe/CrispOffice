@@ -1,0 +1,60 @@
+{
+  "archive": "frame-development.tar.xz",
+  "bytes": 2196,
+  "sha256": "0033bcadbc2ebd960d00ee52162d78fe9eaedc2dac20a8fc9a3abbcc589e351e",
+  "classification": "Rejected development compile attempts and corrected2 frame regression passes before final qualification",
+  "member_count": 10,
+  "all_members_read_back_and_verified": true,
+  "members": [
+    {
+      "path": "development/corrected/format.log",
+      "bytes": 433,
+      "sha256": "3b310f76013094ec6cf123bd939b8a2b9d7528672953dcae63d70a920b553c0e"
+    },
+    {
+      "path": "development/corrected/receipt.json",
+      "bytes": 2469,
+      "sha256": "c19dbd45ef9596db4055d2fc5e2df8407a1e6ca0216cf759ba67557f6f1a4810"
+    },
+    {
+      "path": "development/corrected/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "development/corrected/stdout.jsonl",
+      "bytes": 1790,
+      "sha256": "e8dbbf91b8cd5169cec933cf38e226f63fb8d3647133731c2b5437185c86525c"
+    },
+    {
+      "path": "development/direct/receipt.json",
+      "bytes": 2057,
+      "sha256": "6ece05386df6b6b4e71ab77d533d85402c8f27e1ecebec78308b3019380ad897"
+    },
+    {
+      "path": "development/direct/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "development/direct/stdout.jsonl",
+      "bytes": 2262,
+      "sha256": "5b64348b2f2498a7efcbbbbdf326b5a74164801f6ab616487e7d4761d76739ea"
+    },
+    {
+      "path": "development/receipt.json",
+      "bytes": 1804,
+      "sha256": "8e271892aa394257ec350081229ded61ec423cb7cdfd4b31a4f8f6cf642708d3"
+    },
+    {
+      "path": "development/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "development/stdout.jsonl",
+      "bytes": 2265,
+      "sha256": "8315bc0cee24af41183f0f1d79fd62cd9261c80147b87299ea0b0a51c9888ac1"
+    }
+  ]
+}

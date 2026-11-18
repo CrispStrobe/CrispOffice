@@ -1,0 +1,414 @@
+{
+  "accepted": true,
+  "checker_sources": [
+    {
+      "path": "check_current_consumers.py",
+      "sha256": "dda132eb26baf40d13782ef980c942ea50837e0425ab7c70f21bd1c33e5bfc61"
+    },
+    {
+      "path": "native-order-reference/build_reference.py",
+      "sha256": "454809b712e5c10518346b5cf8dc6aa29d1deb463e67ba8b43044bca4723c1ef"
+    },
+    {
+      "path": "package_consumer_evidence.py",
+      "sha256": "de8246b23f61fb46240a42427aa8077be0f74bbf8fe0d8274f18e5cb3fc703c8"
+    },
+    {
+      "path": "runner-source/verify_consumers.py",
+      "sha256": "ebae3759eb662b17f1a766ec68058d8c6eecf9b661c93910053dc76aa748805d"
+    },
+    {
+      "path": "schemas/OpenDocument-v1.3-manifest-schema.rng",
+      "sha256": "8aee71f03484be112af972d622cc9031280c007b0a454ae8815e8e333c9bdd17"
+    },
+    {
+      "path": "schemas/OpenDocument-v1.3-schema.rng",
+      "sha256": "40bad03efdbb02825230d357da0aa6ac679934c5bf56c6281752c0c24d58e4e6"
+    },
+    {
+      "path": "tools/jing-20241231.jar",
+      "sha256": "ea5e9026244d977e607d8b52212d6871498ece51939f9c49d0e7a77aad91133a"
+    },
+    {
+      "path": "verify_current_consumers.py",
+      "sha256": "d8950263d14243cb46aa2d67d37d6c4b03136735a78c691b0b3066cc22b58bf1"
+    },
+    {
+      "path": "verify_schema_oracle.py",
+      "sha256": "69cc39f7c98eeb1b6ebb0730691ab7a8bdf3bcd01a8133fba941bf2856972ae4"
+    },
+    {
+      "path": "wave3-runner/check_current_fixtures.py",
+      "sha256": "7eaf1c839872ba70e431321357117e22118efee3996ea3065439b97233f51ebc"
+    },
+    {
+      "path": "wave3-runner/check_inline_breaks.py",
+      "sha256": "5ff43f176baa32caf8960f928c7807d5b4cbaeabc9fde2be66506425b20d4b88"
+    },
+    {
+      "path": "wave3-runner/check_recovery_fixtures.py",
+      "sha256": "27bd7ef3dcca7f6c44f7cbe6a778a527924700e83199df56cc9ae0d6ce087a49"
+    },
+    {
+      "path": "wave3-runner/check_second_wave.py",
+      "sha256": "df8cffe09f7266239641b9f98dbd288807580eb62f3ff2fd91bd0650fbd799f9"
+    },
+    {
+      "path": "wave3-runner/verify_consumers.py",
+      "sha256": "d4b208ccbd0ab76e780c7438ae7eb77e2e463c32596c293c480bdceb6947d12d"
+    },
+    {
+      "path": "frame-harness/run_consumers.py",
+      "sha256": "a04f7a0c37e297182c603a93dc665680c4b8dd0c74776a392170cd0345c1696a"
+    },
+    {
+      "path": "frame-harness/verify_frame_repair.py",
+      "sha256": "bdb695d2fc47ca1bb9bcb7ae65249c19507cc508b6f1830b13fce2ca0725821a"
+    },
+    {
+      "path": "helpers/native_prepare_child.py",
+      "sha256": "4804aaae09352ac52eda997873a744b15c8fa0c8a1472b635c5aa724b5f837fb"
+    },
+    {
+      "path": "helpers/run_guarded_consumer.py",
+      "sha256": "05b7514d9463296e9559d434a8b47ec5193b950663ef802b92ce99c2029c4828"
+    },
+    {
+      "path": "helpers/run_guarded_native.py",
+      "sha256": "5e5f5420d0ef0f456a2fa0539531e9b466768da9cf44a97a4a6d29252a9f8094"
+    },
+    {
+      "path": "docs/validation/office-reconciled-20261117/resume/consumer-new/verify_boundary_consumers.py",
+      "sha256": "bb842e4a0a03b921ed59f8a2c48a781b3975b3b569f054d449fc4c8624cce84d"
+    }
+  ],
+  "checks": 257,
+  "compiler_or_document_converter_executed": false,
+  "completed_utc": "2026-11-18T06:13:33.292162+00:00",
+  "evidence_commit": "c9d86b3e543f8ffa7c8114d31c57922f134188ef",
+  "findings": [],
+  "fixtures": [
+    {
+      "fixture": "section-list",
+      "gate": "retained33",
+      "passed": true,
+      "reconstructed_measurements_equal": true
+    },
+    {
+      "fixture": "section-control-list",
+      "gate": "retained33",
+      "passed": true,
+      "reconstructed_measurements_equal": true
+    },
+    {
+      "fixture": "section-table",
+      "gate": "retained33",
+      "passed": true,
+      "reconstructed_measurements_equal": true
+    },
+    {
+      "fixture": "section-control-table",
+      "gate": "retained33",
+      "passed": true,
+      "reconstructed_measurements_equal": true
+    },
+    {
+      "fixture": "section-visual",
+      "gate": "retained33",
+      "passed": true,
+      "reconstructed_measurements_equal": true
+    },
+    {
+      "fixture": "section-frame",
+      "gate": "retained33",
+      "passed": true,
+      "reconstructed_measurements_equal": true
+    },
+    {
+      "fixture": "section-empty",
+      "gate": "retained33",
+      "passed": true,
+      "reconstructed_measurements_equal": true
+    },
+    {
+      "fixture": "section-continuous",
+      "gate": "retained33",
+      "passed": true,
+      "reconstructed_measurements_equal": true
+    },
+    {
+      "fixture": "section-continuous-empty",
+      "gate": "retained33",
+      "passed": true,
+      "reconstructed_measurements_equal": true
+    },
+    {
+      "fixture": "section-continuous-image-header",
+      "gate": "retained33",
+      "passed": true,
+      "reconstructed_measurements_equal": true
+    },
+    {
+      "fixture": "section-continuous-comment-header",
+      "gate": "retained33",
+      "passed": true,
+      "reconstructed_measurements_equal": true
+    },
+    {
+      "fixture": "section-continuous-new-size",
+      "gate": "retained33",
+      "passed": true,
+      "reconstructed_measurements_equal": true
+    },
+    {
+      "fixture": "section-heading-layout",
+      "gate": "retained33",
+      "passed": true,
+      "reconstructed_measurements_equal": true
+    },
+    {
+      "fixture": "paragraph-rtl-indent",
+      "gate": "retained33",
+      "passed": true,
+      "reconstructed_measurements_equal": true
+    },
+    {
+      "fixture": "section-oddPage-after-1",
+      "gate": "retained33",
+      "passed": true,
+      "reconstructed_measurements_equal": true
+    },
+    {
+      "fixture": "section-oddPage-after-2",
+      "gate": "retained33",
+      "passed": true,
+      "reconstructed_measurements_equal": true
+    },
+    {
+      "fixture": "section-evenPage-after-1",
+      "gate": "retained33",
+      "passed": true,
+      "reconstructed_measurements_equal": true
+    },
+    {
+      "fixture": "section-evenPage-after-2",
+      "gate": "retained33",
+      "passed": true,
+      "reconstructed_measurements_equal": true
+    },
+    {
+      "fixture": "list-skipped-levels",
+      "gate": "retained33",
+      "passed": true,
+      "reconstructed_measurements_equal": true
+    },
+    {
+      "fixture": "list-nonzero-start",
+      "gate": "retained33",
+      "passed": true,
+      "reconstructed_measurements_equal": true
+    },
+    {
+      "fixture": "list-mixed-markers",
+      "gate": "retained33",
+      "passed": true,
+      "reconstructed_measurements_equal": true
+    },
+    {
+      "fixture": "list-restart-continuation",
+      "gate": "retained33",
+      "passed": true,
+      "reconstructed_measurements_equal": true
+    },
+    {
+      "fixture": "list-literal-labels",
+      "gate": "retained33",
+      "passed": true,
+      "reconstructed_measurements_equal": true
+    },
+    {
+      "fixture": "list-native-start-override",
+      "gate": "retained33",
+      "passed": true,
+      "reconstructed_measurements_equal": true
+    },
+    {
+      "fixture": "paragraph-distinct-shading-borders",
+      "gate": "retained33",
+      "passed": true,
+      "reconstructed_measurements_equal": true
+    },
+    {
+      "fixture": "page-field-styled-footer",
+      "gate": "retained33",
+      "passed": true,
+      "reconstructed_measurements_equal": true
+    },
+    {
+      "fixture": "custom-tabs-independent-positions",
+      "gate": "retained33",
+      "passed": true,
+      "reconstructed_measurements_equal": true
+    },
+    {
+      "fixture": "table-minimum-row-grows",
+      "gate": "retained33",
+      "passed": true,
+      "reconstructed_measurements_equal": true
+    },
+    {
+      "fixture": "table-invalid-properties-preserve-content",
+      "gate": "retained33",
+      "passed": true,
+      "reconstructed_measurements_equal": true
+    },
+    {
+      "fixture": "section-columns-explicit-break",
+      "gate": "retained33",
+      "passed": true,
+      "reconstructed_measurements_equal": true
+    },
+    {
+      "fixture": "paragraph-keep-isolation-reverse",
+      "gate": "retained33",
+      "passed": true,
+      "reconstructed_measurements_equal": true
+    },
+    {
+      "fixture": "docx-leading-inline-column-break",
+      "gate": "retained33",
+      "passed": true,
+      "reconstructed_measurements_equal": true
+    },
+    {
+      "fixture": "docx-midparagraph-inline-column-break",
+      "gate": "retained33",
+      "passed": true,
+      "reconstructed_measurements_equal": true
+    },
+    {
+      "fixture": "empty-page-before-column",
+      "gate": "current7",
+      "passed": true,
+      "reconstructed_measurements_equal": true
+    },
+    {
+      "fixture": "empty-numpages-before-column",
+      "gate": "current7",
+      "passed": true,
+      "reconstructed_measurements_equal": true
+    },
+    {
+      "fixture": "runless-bookmarked-page-before-column",
+      "gate": "current7",
+      "passed": true,
+      "reconstructed_measurements_equal": true
+    },
+    {
+      "fixture": "styled-linked-single-field-caches",
+      "gate": "current7",
+      "passed": true,
+      "reconstructed_measurements_equal": true
+    },
+    {
+      "fixture": "split-cache-readable-fallback",
+      "gate": "current7",
+      "passed": true,
+      "reconstructed_measurements_equal": true
+    },
+    {
+      "fixture": "toc-section-after-live-fields",
+      "gate": "current7",
+      "passed": true,
+      "reconstructed_measurements_equal": true
+    },
+    {
+      "fixture": "plain-first-leading-column",
+      "gate": "current7",
+      "passed": true,
+      "reconstructed_measurements_equal": true
+    },
+    {
+      "fixture": "later-next-page",
+      "gate": "boundary5",
+      "passed": true,
+      "reconstructed_measurements_equal": true
+    },
+    {
+      "fixture": "later-continuous",
+      "gate": "boundary5",
+      "passed": true,
+      "reconstructed_measurements_equal": true
+    },
+    {
+      "fixture": "later-odd-page",
+      "gate": "boundary5",
+      "passed": true,
+      "reconstructed_measurements_equal": true
+    },
+    {
+      "fixture": "later-even-page",
+      "gate": "boundary5",
+      "passed": true,
+      "reconstructed_measurements_equal": true
+    },
+    {
+      "fixture": "paragraph-page-then-column",
+      "gate": "boundary5",
+      "passed": true,
+      "reconstructed_measurements_equal": true
+    },
+    {
+      "fixture": "native-fields",
+      "gate": "frame5",
+      "passed": true,
+      "reconstructed_measurements_equal": true
+    },
+    {
+      "fixture": "malformed-fields",
+      "gate": "frame5",
+      "passed": true,
+      "reconstructed_measurements_equal": true
+    },
+    {
+      "fixture": "header-variants",
+      "gate": "frame5",
+      "passed": true,
+      "reconstructed_measurements_equal": true
+    },
+    {
+      "fixture": "bookmark-ranges",
+      "gate": "frame5",
+      "passed": true,
+      "reconstructed_measurements_equal": true
+    },
+    {
+      "fixture": "empty-field-column",
+      "gate": "frame5",
+      "passed": true,
+      "reconstructed_measurements_equal": true
+    }
+  ],
+  "github_actions_endpoints_queried": 0,
+  "known_lxml_false_negatives": {
+    "current7": 3,
+    "frame5": 1
+  },
+  "limitations": [
+    "Native library/model qualification remains separate.",
+    "Boundary5 contains four strict layouts and one bounded page-precedence control.",
+    "Fixture coverage is focused and overlapping; no arbitrary-document fidelity or Microsoft Word render claim."
+  ],
+  "saved_archive_audit_sha256": "1a6ce7725091ccb45c6e6abd73f68e0558642e76ef65cfe9006a4d8b99d9ef48",
+  "schema": "quds.office.saved_document_contract_replay.v1",
+  "schema_parts": {
+    "boundary5": 40,
+    "current7": 28,
+    "frame5": 20,
+    "retained33": 132
+  },
+  "scope": "Independent replay of unchanged retained assertions against verified archived PDF/XML/DOCX/raster outputs; official schema acceptance rechecked. This closes the saved consumer evidence review, not a new product run.",
+  "script_sha256": "2df6d370081a37de7d0898630230becfc3e0e701d3aa21ec7833b675ebaa250d",
+  "source_commit": "9d060658ee6be8ec97d73f56b9aec10d346b7952",
+  "started_utc": "2026-11-18T06:13:19.886834+00:00"
+}

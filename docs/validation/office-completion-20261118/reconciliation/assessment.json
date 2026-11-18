@@ -1,0 +1,104 @@
+{
+  "schema": "quds.office.final_frontier_assessment.v1",
+  "recorded_at": "2026-11-18T06:21:20.575520+00:00",
+  "snapshot_at": "2026-11-18T06:20:36.936Z",
+  "main_unchanged": true,
+  "branch_count": 191,
+  "pull_request_head_count": 154,
+  "new_branches": [],
+  "removed_branches": [],
+  "changed_branches_since_initial_task_snapshot": [
+    {
+      "branch": "codex/office-local-qualification-20261118",
+      "before": "c9d86b3e543f8ffa7c8114d31c57922f134188ef",
+      "after": "7104a7363174420c4fc9c1812466cf6db3a824fd"
+    },
+    {
+      "branch": "feat/native-spacy-w7-20261118",
+      "before": "a6143772f048644187080ee6a1a44c070802af15",
+      "after": "2df0e930510148084ee37646472dac380b9673d5"
+    }
+  ],
+  "open_pull_requests": [
+    {
+      "number": 154,
+      "head_sha": "7104a7363174420c4fc9c1812466cf6db3a824fd",
+      "draft": true
+    },
+    {
+      "number": 153,
+      "head_sha": "2df0e930510148084ee37646472dac380b9673d5",
+      "draft": true
+    },
+    {
+      "number": 139,
+      "head_sha": "20026ff49ac37391e2a1fd0947560a587f2f7332",
+      "draft": true
+    }
+  ],
+  "latest_pull_request_number": 154,
+  "office": {
+    "expected_own_head": "7104a7363174420c4fc9c1812466cf6db3a824fd",
+    "commits": [
+      "eb628b66d82b809495d1391bbe36f2073fe2e772 Reconcile Office completion frontier and preserve native recovery plan [skip ci]",
+      "536ea0af12b1053b7466d95606edff52cc6ee615 Verify recovered runtimes and close independent Office consumer audit [skip ci]",
+      "17d9d0f03f5bd32d8e0fc9b3993806f863254f58 Preserve verified native build and completed one-thread qualification arm [skip ci]",
+      "7104a7363174420c4fc9c1812466cf6db3a824fd Preserve three native arms and independent historical comparison [skip ci]"
+    ],
+    "non_docs_changed_since_initial": [],
+    "non_docs_changed_since_qualified_source": [],
+    "reviews": {
+      "reviews": []
+    },
+    "review_threads": {
+      "review_threads": []
+    }
+  },
+  "w7": {
+    "head": "2df0e930510148084ee37646472dac380b9673d5",
+    "ahead_since_initial": 3,
+    "changed_paths": [
+      "README.md",
+      "docs/validation/native-spacy-w7-20261118/CONTINUE.md",
+      "docs/validation/native-spacy-w7-20261118/README.md",
+      "docs/validation/native-spacy-w7-20261118/checkpoint-status.json",
+      "docs/validation/native-spacy-w7-20261118/completion-20261118/audit_retained_dart.py",
+      "docs/validation/native-spacy-w7-20261118/completion-20261118/dart-audit.json",
+      "docs/validation/native-spacy-w7-20261118/completion-20261118/source-refresh-full.json.gz",
+      "docs/validation/native-spacy-w7-20261118/completion-20261118/source-refresh.json",
+      "docs/validation/native-spacy-w7-20261118/resume-20261118/completion.json",
+      "docs/validation/native-spacy-w7-20261118/resume-20261118/dart-consumer/corrected-source-review.json",
+      "docs/validation/native-spacy-w7-20261118/resume-20261118/final-main-reconciliation.json",
+      "docs/validation/native-spacy-w7-20261118/resume-20261118/source-refresh-audit.json",
+      "packages/quds_proofing_spacy/README.md"
+    ],
+    "documentation_and_evidence_only": true,
+    "outside_documentation_paths": [],
+    "decision": "Record and fetch this separately owned W7 completion arrival; do not import it into frozen Office qualification."
+  },
+  "recommendation": "Continue final Office qualification publication on the existing source; no new Office implementation arrival or explicit PR review blocker was found.",
+  "no_actions_workflow_check_status_endpoint_queried": true,
+  "remote_or_local_ref_mutations": 0,
+  "input_sha256": "c00b7a7d2d6abaf5e6b14756688a1089b8fa432d980d0979b4fbff35420c5db4",
+  "scope_limit": "Point-in-time frontier; concurrent later arrivals require a further explicit comparison, not a claim of continuing coverage.",
+  "pull_request_delta": {
+    "initial_count": 154,
+    "current_count": 154,
+    "new_pull_request_heads": [],
+    "removed_pull_request_heads": [],
+    "changed": [
+      {
+        "number": 153,
+        "before": "a6143772f048644187080ee6a1a44c070802af15",
+        "after": "2df0e930510148084ee37646472dac380b9673d5"
+      },
+      {
+        "number": 154,
+        "before": "c9d86b3e543f8ffa7c8114d31c57922f134188ef",
+        "after": "7104a7363174420c4fc9c1812466cf6db3a824fd"
+      }
+    ]
+  },
+  "initial_fetched_refs_sha256": "f5c056948824377186408b707c8a56b54419c6bbeafa770bfcc839037c67818e",
+  "metadata_vs_all_154_git_heads_mismatches": []
+}

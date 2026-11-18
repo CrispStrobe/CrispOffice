@@ -1,0 +1,6 @@
+{
+  "original_sha256": "4c4727b124eea955c18c76a94b8540cc1c057058da04bb40d3c5441c295e9e5d",
+  "adapted_sha256": "d7070868bbb218e5cff70555c992d337c30c9ee42ce325bbbcad5a01a029f337",
+  "scope": "workspace paths only",
+  "diff": "--- continuation/flutter-restoration/setup/restore_compact_flutter.py\n+++ continuation/restore_compact_flutter.py\n@@ -15,8 +15,8 @@\n import urllib.request\n import yaml\n \n-ROOT = Path('/workspace/scratch/eddfdfc8cc56')\n-REPO = ROOT / 'quds_office_suite'\n+ROOT = Path('/workspace/scratch/21605f06e47d')\n+REPO = ROOT / 'qualification-source'\n OUT = ROOT / 'flutter-qualification/runtime-restoration'\n RUNTIME = ROOT / 'toolchains'\n CACHE = RUNTIME / 'pub-cache'\n"
+}

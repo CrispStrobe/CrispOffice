@@ -1,0 +1,43 @@
+{
+  "schema": "quds.office.incoming_branch_delta_review.v1",
+  "prior_observation": "2026-11-18T05:43:08.745279+00:00",
+  "prior_count": 191,
+  "current_count": 191,
+  "new_branches": [],
+  "removed_branches": [],
+  "changed": [
+    {
+      "branch": "codex/office-local-qualification-20261118",
+      "before": "9d060658ee6be8ec97d73f56b9aec10d346b7952",
+      "after": "c9d86b3e543f8ffa7c8114d31c57922f134188ef",
+      "non_docs_changed": [],
+      "commits": [
+        "c9d86b3e543f8ffa7c8114d31c57922f134188ef Preserve portable timezone consumer and native preparation gates [skip ci]",
+        "7b449f1b2fde63d7c9c5f138a84f09358b6a7c20 Qualify all 224 Office files with independent integrity audit [skip ci]",
+        "c2b5905d39f46150301ba83b32d1dd792d605bd2 Preserve verified runtimes and successful Office retry cohorts [skip ci]",
+        "85098d52ac025994d140192ed3808fba3ed349fc Restore Office retry workspace and reconcile all live refs [skip ci]"
+      ]
+    },
+    {
+      "branch": "feat/native-spacy-w7-20261118",
+      "before": "995a8cd500787f2fe3ae5f268201efa73a15dea6",
+      "after": "a6143772f048644187080ee6a1a44c070802af15",
+      "non_docs_changed": [
+        "packages/quds_proofing_spacy/tool/consume_distribution.dart"
+      ],
+      "commits": [
+        "a6143772f048644187080ee6a1a44c070802af15 test(spacy): verify installed Dart worker on corrected receipt source [skip ci]",
+        "71e87486489200f7e259594d2967bba8c0682143 fix(spacy): preserve complete source labels in Dart consumer receipts [skip ci]",
+        "ac9d7816fc33c25fa42a0bdab3fbab47d196708a test(spacy): preserve first installed Dart worker result [skip ci]",
+        "99fd56590f8b4203409148af1a954538451e6890 fix(spacy): checkpoint checked Dart distribution consumer [skip ci]",
+        "5413645da5647d00c762a6877e9100f0be31c713 docs(spacy): checkpoint refreshed W7 sources and sealed boundary [skip ci]",
+        "225eeb921856b8728caf7254c91badf541d3e683 docs(spacy): record unavailable workspace probe without inferring file loss [skip ci]"
+      ]
+    }
+  ],
+  "office_source": "9a7c80be00258def2dcae3bb288c28558c83aa72",
+  "office_head": "c9d86b3e543f8ffa7c8114d31c57922f134188ef",
+  "main": "482e08176dea6bd8f5fc80d1c0064d96b712db43",
+  "office_non_docs_delta_since_qualified_source": [],
+  "no_remote_mutation": true
+}

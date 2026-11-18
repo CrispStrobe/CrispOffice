@@ -1,0 +1,60 @@
+{
+  "archive": "qualification-helpers.tar.xz",
+  "bytes": 14328,
+  "sha256": "1bcaeeb785d918b155fa47d220c1930198e63668efcaef1e4404e7c8442817d5",
+  "classification": "Prepared bounded external orchestration helpers, unchanged frame consumer harness and25-package runtime after documented disk pruning; no current-source gate has run yet.",
+  "member_count": 10,
+  "all_members_read_back_and_verified": true,
+  "members": [
+    {
+      "path": "frame-harness/make_fixtures.dart",
+      "bytes": 8359,
+      "sha256": "6d095fe54fb44895b2f489dbf56f5c78bf8c5b00390e8bcd350052981570a495"
+    },
+    {
+      "path": "frame-harness/origin.json",
+      "bytes": 522,
+      "sha256": "9e9b4833a1eb35144ebd8ada963bb2639254f04fcdca8d0cab63bd4a964c6cab"
+    },
+    {
+      "path": "frame-harness/run_consumers.py",
+      "bytes": 22347,
+      "sha256": "a04f7a0c37e297182c603a93dc665680c4b8dd0c74776a392170cd0345c1696a"
+    },
+    {
+      "path": "frame-harness/verify_frame_repair.py",
+      "bytes": 10986,
+      "sha256": "bdb695d2fc47ca1bb9bcb7ae65249c19507cc508b6f1830b13fce2ca0725821a"
+    },
+    {
+      "path": "helpers/native_prepare_child.py",
+      "bytes": 1701,
+      "sha256": "4804aaae09352ac52eda997873a744b15c8fa0c8a1472b635c5aa724b5f837fb"
+    },
+    {
+      "path": "helpers/run_guarded_consumer.py",
+      "bytes": 4220,
+      "sha256": "05b7514d9463296e9559d434a8b47ec5193b950663ef802b92ce99c2029c4828"
+    },
+    {
+      "path": "helpers/run_guarded_native.py",
+      "bytes": 4279,
+      "sha256": "5e5f5420d0ef0f456a2fa0539531e9b466768da9cf44a97a4a6d29252a9f8094"
+    },
+    {
+      "path": "runtime/build-tools-uninstall.log",
+      "bytes": 215,
+      "sha256": "f2a7942a73b1802e94076ac15b504eeccfeeea8b148fdeddc3a670230d6184c6"
+    },
+    {
+      "path": "runtime/qualification-python-freeze.txt",
+      "bytes": 432,
+      "sha256": "ea4edca9edd08a86458abd66f8e624698726e637daaf0580a364ae911f063e5d"
+    },
+    {
+      "path": "runtime/qualification-runtime-pruning.json",
+      "bytes": 711,
+      "sha256": "63af1436221700fd83cddeb20d4ee4ac3af94af2c88636947b3babf45c9c4e92"
+    }
+  ]
+}

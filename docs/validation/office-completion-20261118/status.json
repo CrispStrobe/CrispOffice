@@ -1,0 +1,186 @@
+{
+  "schema_version": 2,
+  "updated_utc": "2026-11-18T06:22:57.352383+00:00",
+  "state": "local-qualification-accepted",
+  "branch": "codex/office-local-qualification-20261118",
+  "implementation_commit": "9a7c80be00258def2dcae3bb288c28558c83aa72",
+  "execution_checkout": "9d060658ee6be8ec97d73f56b9aec10d346b7952",
+  "execution_tree": "62c0dced2a33de6519b6e9e2c97e42e2edae1857",
+  "documentation_only_through_reviewed_remote_head": "7104a7363174420c4fc9c1812466cf6db3a824fd",
+  "main": "482e08176dea6bd8f5fc80d1c0064d96b712db43",
+  "remote_branches": 191,
+  "fetched_pr_heads": 154,
+  "separately_owned_w7_head": "2df0e930510148084ee37646472dac380b9673d5",
+  "new_office_source_to_integrate": false,
+  "non_documentation_source_delta": [],
+  "qualification_accepted": true,
+  "release_accepted": false,
+  "scope": "Frozen Office source local canonical, portable, example, timezone, document-consumer and native semantic qualification. Native performance is exploratory local-host measurement.",
+  "gates": {
+    "strict_analysis": {
+      "passed": true,
+      "commands": 5
+    },
+    "formatting": {
+      "passed": true,
+      "files": 145,
+      "changes": 0
+    },
+    "python_controls": {
+      "passed": true,
+      "controls": 117
+    },
+    "canonical": {
+      "passed": true,
+      "selected_files": 224,
+      "raw_successes": 4236,
+      "substantive_successes": 4234,
+      "unexpected_skips": 0
+    },
+    "portable": {
+      "passed": true,
+      "node_suites": 17,
+      "successes": 225
+    },
+    "editor_example": {
+      "passed": true,
+      "smoke_tests": 2
+    },
+    "calendar_timezones": {
+      "passed": true,
+      "tests_per_zone": 8,
+      "executions": 24,
+      "zones": [
+        "UTC",
+        "Europe/Berlin",
+        "America/Los_Angeles"
+      ],
+      "overlaps_canonical": true
+    },
+    "document_consumers": {
+      "passed": true,
+      "retained": 33,
+      "current": 7,
+      "boundary": 5,
+      "focused_frame": 5,
+      "fixtures": 50,
+      "schema_parts": 220,
+      "independent_measurement_replay": "accepted"
+    },
+    "native_prepare": {
+      "passed": true,
+      "audit_controls": 23,
+      "aot_build_passed": true
+    },
+    "native_sweep": {
+      "passed": true,
+      "thread_order": [
+        1,
+        2,
+        4,
+        8
+      ],
+      "outer_exit_code": 0,
+      "source_runtime_guard": true,
+      "serial_nonoverlap": true,
+      "cross_arm_semantics_match": true,
+      "historical_two_thread_comparison": true,
+      "complete_source_decoder_records_audited": 568,
+      "additional_decoder_controls_audited": 20,
+      "arms": [
+        {
+          "threads": 1,
+          "exit_code": 0,
+          "median_ms": 35.013,
+          "p95_ms": 156.511,
+          "peak_rss_mib": 275.8984375,
+          "engineering_budgets": {
+            "p95_at_most_500_ms": true,
+            "peak_rss_at_most_768_mib": true,
+            "gguf_at_most_160_mib": true,
+            "note": "GGUF size excludes sidecars; target hardware remains unqualified."
+          }
+        },
+        {
+          "threads": 2,
+          "exit_code": 0,
+          "median_ms": 22.289,
+          "p95_ms": 66.157,
+          "peak_rss_mib": 274.0078125,
+          "engineering_budgets": {
+            "p95_at_most_500_ms": true,
+            "peak_rss_at_most_768_mib": true,
+            "gguf_at_most_160_mib": true,
+            "note": "GGUF size excludes sidecars; target hardware remains unqualified."
+          }
+        },
+        {
+          "threads": 4,
+          "exit_code": 0,
+          "median_ms": 17.179,
+          "p95_ms": 52.068,
+          "peak_rss_mib": 274.99609375,
+          "engineering_budgets": {
+            "p95_at_most_500_ms": true,
+            "peak_rss_at_most_768_mib": true,
+            "gguf_at_most_160_mib": true,
+            "note": "GGUF size excludes sidecars; target hardware remains unqualified."
+          }
+        },
+        {
+          "threads": 8,
+          "exit_code": 0,
+          "median_ms": 12.657,
+          "p95_ms": 41.935,
+          "peak_rss_mib": 364.13671875,
+          "engineering_budgets": {
+            "p95_at_most_500_ms": true,
+            "peak_rss_at_most_768_mib": true,
+            "gguf_at_most_160_mib": true,
+            "note": "GGUF size excludes sidecars; target hardware remains unqualified."
+          }
+        }
+      ]
+    }
+  },
+  "independent_audits": {
+    "saved_evidence": {
+      "accepted": true,
+      "checks": 8381,
+      "findings": 0,
+      "archives": 14,
+      "members": 1145
+    },
+    "consumer_replay": {
+      "accepted": true,
+      "checks": 257,
+      "findings": 0
+    },
+    "restored_runtime": {
+      "accepted": true,
+      "findings": 0,
+      "retained_sdk_files": 3277,
+      "pub_archives": 162,
+      "consumed_dependency_files": 5099
+    },
+    "native": {
+      "accepted": true,
+      "checks": 157981,
+      "findings": 0
+    }
+  },
+  "limits": [
+    "Two missing-private-PDF early-return events are excluded from substantive canonical coverage.",
+    "The 24 timezone executions overlap canonical tests; document fixture cohorts also overlap feature coverage.",
+    "Boundary fixtures comprise four strict layouts and one bounded control.",
+    "ODF acceptance uses official schemas with Jing where retained lxml diagnostics give documented false negatives.",
+    "Document consumer rendering is LibreOffice, with no Microsoft Word rendering claim.",
+    "The frozen native panel preserves 6/18 exact supported error fixes and 10/10 supported clean controls, with two corpus cases explicitly unsupported.",
+    "Timed final output stability across every repetition remains a producer claim; retained first/warmup results and all timed decoder observations were independently audited.",
+    "Local-host performance and bounded synthetic nonregression do not establish intended-device performance, broad German quality, deployment or release acceptance."
+  ],
+  "prior_failed_attempt": "rejected-and-preserved",
+  "remaining_required_gates": [],
+  "actions_workflow_check_status_endpoint_calls": 0,
+  "publication": "incremental non-forced expected-head GitHub updates with skip-ci messages; exact remote archive/member readback receipts retained"
+}

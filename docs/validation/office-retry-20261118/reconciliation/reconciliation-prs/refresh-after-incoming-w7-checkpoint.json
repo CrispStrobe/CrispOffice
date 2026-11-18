@@ -1,0 +1,184 @@
+{
+  "observed_at": "2026-11-18T05:42:13.454Z",
+  "pr153_refresh": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Action completed."
+      }
+    ],
+    "structuredContent": {
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/153",
+      "number": 153,
+      "state": "open",
+      "merged": false,
+      "mergeable": true,
+      "draft": true,
+      "body": "## Why\n\nThe completed W6 manual grammar qualification needs verified installation and target-runtime evidence before distribution. This continuation is stacked on PR #139 so W6's immutable result remains identifiable.\n\n## Saved starting point\n\n- Merge current main `482e0817` and its 72 morphology evidence files without changing any of the 342 sealed source blobs.\n- Preserve all fetched branch/PR heads and the exact native/model/dependency restoration receipts.\n- Freeze the bounded Linux operational protocol before native consumer execution.\n- Correct the package NOTICE's stale statement that no grammar planner exists.\n\nThe paired CrispEmbed branch implements the immutable 20-payload package and atomic installer; its 25 adversarial control groups and actual build/install pass. [Saved W7 checkpoint](https://github.com/CrispStrobe/quds_office_suite/tree/06563d61e8f8450d1ff9f8ac4da65a5b92b95713/docs/validation/native-spacy-w7-20261118).\n\nActual installed Dart-worker consumption is in progress and is not yet claimed as passed. No production backend or default changes. Other platforms, hosted artifact publication and production activation remain separate. The consumed native acceptance and W6 panel are unchanged and will not be rerun.\n\nAll checkpoints use `[skip ci]`; no Actions/check/status query, wait, rerun or dispatch is needed.",
+      "title": "Continue W7 spaCy packaging from the completed grammar qualification",
+      "base": "feat/native-spacy-reference-20261117",
+      "base_sha": "20026ff49ac37391e2a1fd0947560a587f2f7332",
+      "head": "feat/native-spacy-w7-20261118",
+      "head_sha": "995a8cd500787f2fe3ae5f268201efa73a15dea6",
+      "head_repo_id": 1446096841,
+      "head_repo_full_name": "CrispStrobe/quds_office_suite",
+      "merge_commit_sha": "4eba3f648c336f419c0e05c7f965a729473843d9",
+      "user": {
+        "login": "CrispStrobe",
+        "name": "CrispStrobe",
+        "email": null,
+        "avatar_url": "https://avatars.githubusercontent.com/u/154636388?v=4",
+        "id": 154636388
+      },
+      "requested_reviewers": null,
+      "requested_team_reviewers": null,
+      "diff": null,
+      "comments": null,
+      "created_at": "2026-11-18T05:25:37Z",
+      "updated_at": "2026-11-18T05:41:38Z",
+      "closed_at": null,
+      "merged_at": null,
+      "commits": 6,
+      "changed_files": 87,
+      "additions": 2242,
+      "deletions": 1,
+      "display_url": "https://github.com/CrispStrobe/quds_office_suite/pull/153",
+      "display_title": "Continue W7 spaCy packaging from the completed grammar qualification"
+    },
+    "isError": false
+  },
+  "pr154Refresh": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Action completed."
+      }
+    ],
+    "structuredContent": {
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/154",
+      "number": 154,
+      "state": "open",
+      "merged": false,
+      "mergeable": true,
+      "draft": true,
+      "body": "## Why\n\nContinue the interrupted Office qualification from the latest main while preserving all saved work. Calendar-relative spreadsheet conditions used local midnight boundaries against UTC serial dates, producing timezone/DST endpoint errors.\n\n## Changes\n\n- Start from main `482e0817`, retaining merged #151/#152 and the later German grammar, formatting and icon-spacing work.\n- Adopt the reviewed civil-date repair and eight regression tests from `2bfac9b2`.\n- Add braces to an inherited rendering-test statement so strict analysis passes; its condition and assertions are unchanged.\n- Recover historical evidence omitted from the squash, preserving its original source attribution.\n- Publish exact runtime recovery, independent reviews, complete failed-run evidence, bounded helpers and a reproducible recovery handoff.\n\nThe incoming review covered 190 branch heads / 152 PR heads, then 191 branches / 152 PR records. Separate native spaCy and alternate Office continuations remain explicitly identified.\n\n## Local validation\n\nCorrected frozen source: `9a7c80be00258def2dcae3bb288c28558c83aa72`.\n\n- Five strict analysis commands passed.\n- Formatting passed for 145 files.\n- All 117 Python controls passed.\n- Engine Zotero emitted 390 successful test events across 19 suites, then exited **255** with **errno 28 / no space left on device** during compiler disposal.\n- The workspace byte-integrity check also rejected a Flutter-root symlink/actual-path normalization. A fresh run must stabilize that configuration before snapshots; the original failure is retained.\n\n**Final qualification is not accepted. This PR remains a draft.** The execution workspace became unavailable after repeated disk exhaustion. Remaining canonical cohorts, 17 Node suites, two example tests, the three-timezone calendar matrix, document consumers and serial native thread sweep are pending.\n\nThe complete 638,988-byte attempt archive and helper archive were fetched back from this branch and independently SHA-256 checked. Publication succeeded without relying on local disk access.\n\n## Handoff\n\n- [Current status and evidence](https://github.com/CrispStrobe/quds_office_suite/blob/codex/office-local-qualification-20261118/docs/validation/office-local-20261118/README.md)\n- [Exact recovery instructions](https://github.com/CrispStrobe/quds_office_suite/blob/codex/office-local-qualification-20261118/docs/validation/office-local-20261118/recovery-handoff.md)\n- [Machine-readable verification](https://github.com/CrispStrobe/quds_office_suite/blob/codex/office-local-qualification-20261118/docs/validation/office-local-20261118/verification.json)\n- [Remote byte readback](https://github.com/CrispStrobe/quds_office_suite/blob/codex/office-local-qualification-20261118/docs/validation/office-local-20261118/review/remote-readback.json)\n\nNo GitHub Actions, workflow, check or status endpoint was queried, awaited or rerun. Checkpoints use `[skip ci]` and non-forced expected-head branch updates. No merge or release acceptance is requested.\n",
+      "title": "Fix civil-date boundaries and preserve reconciled Office qualification",
+      "base": "main",
+      "base_sha": "482e08176dea6bd8f5fc80d1c0064d96b712db43",
+      "head": "codex/office-local-qualification-20261118",
+      "head_sha": "9d060658ee6be8ec97d73f56b9aec10d346b7952",
+      "head_repo_id": 1446096841,
+      "head_repo_full_name": "CrispStrobe/quds_office_suite",
+      "merge_commit_sha": "054fa63804f645abbd0e63dade68d1ff7f29d6e2",
+      "user": {
+        "login": "CrispStrobe",
+        "name": "CrispStrobe",
+        "email": null,
+        "avatar_url": "https://avatars.githubusercontent.com/u/154636388?v=4",
+        "id": 154636388
+      },
+      "requested_reviewers": null,
+      "requested_team_reviewers": null,
+      "diff": null,
+      "comments": null,
+      "created_at": "2026-11-18T05:37:16Z",
+      "updated_at": "2026-11-18T05:38:50Z",
+      "closed_at": null,
+      "merged_at": null,
+      "commits": 7,
+      "changed_files": 68,
+      "additions": 27961,
+      "deletions": 9,
+      "display_url": "https://github.com/CrispStrobe/quds_office_suite/pull/154",
+      "display_title": "Fix civil-date boundaries and preserve reconciled Office qualification"
+    },
+    "isError": false
+  },
+  "w7ContinueLatest": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Action completed."
+      }
+    ],
+    "structuredContent": {
+      "content": "# Continue W7 from the saved remote checkpoints\n\nStatus on 18 November 2026: packaging controls and the real package build/install passed. Both new consumers are saved source; their current execution is pending. The workspace filled, and even a cleanup command could not start because sandbox setup returned ENOSPC. This is an execution blocker, not a completed W7 qualification.\n\n## Authoritative source\n\nBoth repositories use `feat/native-spacy-w7-20261118`. Fetch the branch before continuing. The source checkpoints below precede this documentation-only handoff:\n\n| Repository | Source checkpoint | Review |\n| --- | --- | --- |\n| CrispStrobe/CrispEmbed | `d1d9985e143206e8f8e930cf23b947fd71f9c451` | Draft [PR #237](https://github.com/CrispStrobe/CrispEmbed/pull/237) |\n| CrispStrobe/quds_office_suite | `2e57784093fd2d1f44fe27edb31077d4163693f2` | Draft [PR #153](https://github.com/CrispStrobe/quds_office_suite/pull/153), stacked on the W6 branch / PR #139 |\n\nThe local worktrees may still contain earlier staged and untracked versions. Use fresh isolated checkouts, or preserve and compare those local differences before updating. Do not overwrite an older local tree just because the remote branch is newer.\n\nAll available fork branches and PR heads were fetched and inventoried first. CrispEmbed main `04e84458` is included; Quds main `482e0817` is merged at `13747281` with 72 evidence files and no production changes. All 342 sealed Quds source blobs match the candidate. Consult [source-refresh.json](source-refresh.json) and the full compressed inventory before reconciling additional changes.\n\n## Restore inputs without changing the accepted candidate\n\nThe original native archive is already in CrispEmbed at `93560df6e4e8a592535216ca94b883f5934a915c:docs/validation/native-spacy-20261117/acceptance-candidate-linux-x86_64.tar.gz`. Its 825,745 bytes must hash to `b0cd3ae4d47af442d32a6d2382143c36f8b019470cff7c509f97e4682b67489b`. Do not rebuild the library as a substitute.\n\nRetain the generated five-file bundle if available. Otherwise reproduce it with the tracked converter and full hash lock using CPython 3.12.14 and the pinned official `de_core_news_sm` 3.8.0 wheel. See CrispEmbed `tools/spacy/README.md` and [runtime-restoration.json](runtime-restoration.json) for all input/output identities, notices and six exact dependency pins. Model weights remain outside ordinary Git.\n\nThe real package is 7,808,129 bytes, SHA-256 `4e3b627a614cd21851e6e354335e2e08adeb4cedd4d7778df0cc68c1ce2edf01`; its distribution manifest is `e043af51e247368931f23fa0d9b931453e174f105b021fe2053e8e3029fd3d8d`. The generated capsule has not been published as a hosted distribution. Restore it locally from the pinned inputs if needed.\n\nThe library has no RPATH/RUNPATH. PCRE2 and the five other runtime dependencies are external. Its GLIBC 2.38 / GLIBCXX 3.4.29 / CXXABI 1.3.9 symbol floors do not qualify a different system build. If a fresh workspace has different dependency bytes, retain the rejected preflight and explicitly qualify that environment; do not weaken the frozen pins.\n\n## Resume local checks in order\n\n1. Recover sufficient workspace capacity. Remove only identified, reproducible task-owned temporary files after checking they are no longer needed. Do not delete unrelated tasks or weaken access controls. Fetch the saved source and retain any differences from older local files.\n2. Run the 21 current Python consumer controls. The earlier 18 passing controls belong to different local source hashes. The saved reconstructed/corrected source has not run:\n\n```sh\npython3 -B tests/test_spacy_distribution_consumer.py\npython3 -B tools/spacy/distribution_consumer.py --print-protocol > new-protocol.json\ncmp new-protocol.json docs/validation/native-spacy-w7-20261118/operational-protocol.json\n```\n\n3. Preserve the actual test outcomes and exact source identities remotely before native execution. Record failures and fixes; do not relabel an earlier pass as a pass of changed source.\n4. Repeat the real-input package build into a new filename and compare its complete bytes/hash with the first archive. The passing 25 package tests establish fixture determinism; this second full-input comparison is still pending. Reverify the installed immutable tree.\n5. Run the first Python operational consumer with the external archive/protocol pins and a new report filename. Set `SPACY_W7_ARCHIVE` and `SPACY_W7_INSTALLED` to authenticated local paths:\n\n```sh\npython3 -B tools/spacy/distribution_consumer.py \\\n  --archive \"$SPACY_W7_ARCHIVE\" \\\n  --sha256 4e3b627a614cd21851e6e354335e2e08adeb4cedd4d7778df0cc68c1ce2edf01 \\\n  --installed \"$SPACY_W7_INSTALLED\" \\\n  --protocol docs/validation/native-spacy-w7-20261118/operational-protocol.json \\\n  --protocol-sha256 60f85df220bb05ff467c6036ce465c841cff3480103720d5139af0644cfd3934 \\\n  --report new-python-consumer.json\n```\n\nThe protocol is already frozen: eight panel case types and nine distinct texts including the cycle, three enabled children and one disabled child, 60 seconds per child, 25 measured ownership cycles after one warmup, at most 32 MiB sampled post-warmup RSS growth, and no final descriptor growth. Expected completed counts are 24 panel executions, 78 cycle/warmup executions and 102 context/document pairs. Retain every first-run outcome and original child report. These are bounded operational checks; they do not extend linguistic quality claims.\n\n6. Restore the authenticated Dart 3.13.7 direct VM and three pinned packages if needed. Their exact archive hashes and the prior successful existing-package import probe are in Quds `dart-consumer-checkpoint.json`. That probe did not compile the new driver. Set `SPACY_DART`, `SPACY_PACKAGE_CONFIG` and `SPACY_QUDS` to the restored executable, external package config and Quds checkout, then compile/run the new driver's model-free self-test:\n\n```sh\n\"$SPACY_DART\" --disable-dart-dev --packages=\"$SPACY_PACKAGE_CONFIG\" \\\n  \"$SPACY_QUDS/packages/quds_proofing_spacy/tool/consume_distribution.dart\" --self-test\n```\n\nAfter fixing, checking and remotely saving any source changes, run the same Dart script with the six `--archive`, `--sha256`, `--installed`, `--protocol`, `--protocol-sha256` and `--report` arguments shown for Python, plus an explicit `CRISPEMBED_SPACY=1` environment and an external process timeout. Use a new report filename. Retain source hashes and actual outcomes. This exercises the real owned Quds worker; it is not a Flutter UI observation or a claim that caller cancellation interrupts native compute.\n\n7. Save successful or failed operational results incrementally on both remote branches using non-forced updates and verified readback. Keep both PRs draft until their declared local gates are complete. Do not wait for, query, rerun or dispatch GitHub Actions.\n\n## Preservation limits and remaining work\n\nThe source, package build/install receipts, 25-test output, native/model restoration evidence, source inventory and frozen operational protocol are saved remotely. The corrected Python source and Dart draft were saved through the connector after local commands failed. Some earlier raw consumer-preflight and Dart-restoration/review logs could not be reread after ENOSPC; their checkpoint metadata/hashes do not substitute for the unavailable raw files.\n\nThe native acceptance and W6 grammar qualification are already consumed and retained; do not rerun or tune on them. W6's paired completion is preserved at CrispEmbed `93560df6` and Quds `20026ff4`. The manual provider remains disabled by default, with no automatic Studio registration. Other platforms/devices, portable dependency bundles, immutable hosted publication/download readback and production activation remain separate work.\n\nSee [checkpoint-status.json](checkpoint-status.json) for the precise completed/pending boundary.\n",
+      "encoding": "utf-8",
+      "sha": "ce5a9c64bcaf42a90440a53d68eecfa82cd77824",
+      "display_url": "https://github.com/CrispStrobe/quds_office_suite/blob/995a8cd500787f2fe3ae5f268201efa73a15dea6/docs/validation/native-spacy-w7-20261118/CONTINUE.md",
+      "display_title": "CONTINUE.md"
+    },
+    "isError": false
+  },
+  "w7StatusLatest": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Action completed."
+      }
+    ],
+    "structuredContent": {
+      "content": "{\n  \"schema\": \"crispembed.quds.spacy.w7.continuation_status.v1\",\n  \"recorded_date\": \"2026-11-18\",\n  \"status\": \"package_controls_passed_consumer_execution_blocked_by_workspace_enospc\",\n  \"branch\": \"feat/native-spacy-w7-20261118\",\n  \"source_checkpoints\": {\n    \"CrispEmbed\": {\n      \"commit\": \"d1d9985e143206e8f8e930cf23b947fd71f9c451\",\n      \"tree\": \"090d24f92d8e9c6a1696433dbd52e7059d416dc9\",\n      \"package_implementation_commit\": \"c0f9837c2af318a10f907531b41e3269757efe64\",\n      \"base_main\": \"04e8445823d82591120203e953365582d7ba33be\"\n    },\n    \"quds_office_suite\": {\n      \"commit\": \"2e57784093fd2d1f44fe27edb31077d4163693f2\",\n      \"tree\": \"296e1dec41848d098af72898a7c1ee46052e83b0\",\n      \"current_main_merge\": \"13747281fb25b5c55c549255595c75a7ca0854ef\",\n      \"base_main\": \"482e08176dea6bd8f5fc80d1c0064d96b712db43\"\n    }\n  },\n  \"preceding_w6\": {\n    \"paired_completion_commit\": \"93560df6e4e8a592535216ca94b883f5934a915c\",\n    \"quds_completion_commit\": \"20026ff49ac37391e2a1fd0947560a587f2f7332\",\n    \"sealed_source_blobs_unchanged\": 342,\n    \"native_acceptance_and_grammar_qualification\": \"consumed; preserved without rerunning\"\n  },\n  \"completed\": {\n    \"branches_and_pr_heads_fetched_and_inventoried\": true,\n    \"relevant_current_main_integrated\": true,\n    \"package_model_free_controls\": {\n      \"passed\": 25,\n      \"failed\": 0,\n      \"source_sha256\": \"327f68ea67e0179caf017477054aafab322b84b9e7c6f998da8eee5aa95402d5\",\n      \"receipt\": \"distribution-controls.txt\"\n    },\n    \"real_input_package_build\": {\n      \"passed\": true,\n      \"sha256\": \"4e3b627a614cd21851e6e354335e2e08adeb4cedd4d7778df0cc68c1ce2edf01\",\n      \"bytes\": 7808129,\n      \"payload_files\": 20,\n      \"receipt\": \"distribution-build.json\"\n    },\n    \"real_input_atomic_install_and_full_tree_verification\": {\n      \"passed\": true,\n      \"receipt\": \"distribution-install.json\",\n      \"native_library_loaded\": false\n    },\n    \"runtime_restoration\": {\n      \"passed\": true,\n      \"native_files\": 15,\n      \"model_files\": 5,\n      \"qualified_system_dependencies\": 6,\n      \"context_create_free\": 1,\n      \"inference_executions\": 0,\n      \"receipt\": \"runtime-restoration.json\"\n    },\n    \"python_consumer_static_review\": \"two findings corrected; independent remote rereview accepted source\",\n    \"dart_consumer_static_review\": \"actual Quds API and JSON schemas checked; checked typed readers and explicit annotation comparison saved\"\n  },\n  \"pending\": {\n    \"current_python_consumer_21_controls\": \"not executed\",\n    \"current_python_consumer_first_operational_run\": \"not executed\",\n    \"current_dart_consumer_compilation_and_self_test\": \"not executed\",\n    \"current_dart_installed_worker_run\": \"not executed\",\n    \"second_full_real_input_package_build_byte_comparison\": \"not executed; fixture determinism is covered by passing package tests\",\n    \"hosted_distribution_upload_and_consumer_download_readback\": \"not performed\",\n    \"other_platforms_and_devices\": \"unqualified\",\n    \"production_activation\": \"separate decision\"\n  },\n  \"protocol\": {\n    \"path\": \"operational-protocol.json\",\n    \"sha256\": \"60f85df220bb05ff467c6036ce465c841cff3480103720d5139af0644cfd3934\",\n    \"first_remote_freeze\": \"c0f9837c2af318a10f907531b41e3269757efe64\",\n    \"case_types\": 8,\n    \"distinct_texts_including_cycle\": 9,\n    \"enabled_processes\": 3,\n    \"disabled_processes\": 1,\n    \"context_document_pairs_if_completed\": 102,\n    \"changed\": false\n  },\n  \"preservation\": {\n    \"source_and_available_package_restoration_evidence\": \"saved on the remote branches\",\n    \"latest_consumer_files\": \"source-only recovery checkpoints; local checkouts may lag these remote commits\",\n    \"python_reconstruction\": \"Reconstructed from authored tool-call text after local commands failed; no claim of identity with the earlier local source. Earlier 18-pass evidence applies only to the earlier hashes.\",\n    \"unavailable_raw_receipts\": \"Full original Python preflight/control and Dart SDK restoration/review logs could not all be reread after ENOSPC. Consumer checkpoints retain observed metadata and available hashes, not replacement raw evidence.\",\n    \"generated_package_and_model_weights\": \"Not uploaded to ordinary Git; retain or reconstruct from pinned remote native archive, official model wheel and tracked converter/hash lock.\",\n    \"native_archive\": {\n      \"repository\": \"CrispStrobe/CrispEmbed\",\n      \"commit\": \"93560df6e4e8a592535216ca94b883f5934a915c\",\n      \"path\": \"docs/validation/native-spacy-20261117/acceptance-candidate-linux-x86_64.tar.gz\",\n      \"sha256\": \"b0cd3ae4d47af442d32a6d2382143c36f8b019470cff7c509f97e4682b67489b\"\n    }\n  },\n  \"blocker\": {\n    \"kind\": \"shared filesystem exhaustion during execution sandbox setup\",\n    \"observed_error\": \"bwrap: Can't create file WORKSPACE/.git: No space left on device\",\n    \"path_redacted\": true,\n    \"local_commands_and_edits_unavailable\": true,\n    \"prior_task_owned_cleanup\": \"Approximately 440 MB reclaimed from the temporary converter environment, redundant fetched Git blobs and downloaded model wheel before later exhaustion.\",\n    \"cleanup_escalation\": \"Narrow task-owned cleanup outside the sandbox was rejected before execution because sandbox approvals are disabled.\",\n    \"no_unrelated_files_deleted\": true,\n    \"required_recovery\": \"Restore workspace capacity or use a fresh writable workspace; preserve uncommitted local differences before replacing old checkouts.\"\n  },\n  \"github_actions_queries_waits_reruns_dispatches\": 0,\n  \"app_defaults_native_source_model_and_consumed_panels_changed\": false,\n  \"resume_document\": \"CONTINUE.md\",\n  \"pull_requests\": {\n    \"CrispEmbed\": \"https://github.com/CrispStrobe/CrispEmbed/pull/237\",\n    \"quds_office_suite\": \"https://github.com/CrispStrobe/quds_office_suite/pull/153\"\n  }\n}\n",
+      "encoding": "utf-8",
+      "sha": "018e03e04044bec9a732202cdc82c8742d226dff",
+      "display_url": "https://github.com/CrispStrobe/quds_office_suite/blob/995a8cd500787f2fe3ae5f268201efa73a15dea6/docs/validation/native-spacy-w7-20261118/checkpoint-status.json",
+      "display_title": "checkpoint-status.json"
+    },
+    "isError": false
+  },
+  "w7Advance": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Action completed."
+      }
+    ],
+    "structuredContent": {
+      "repository_full_name": "CrispStrobe/quds_office_suite",
+      "base": "2e57784093fd2d1f44fe27edb31077d4163693f2",
+      "head": "995a8cd500787f2fe3ae5f268201efa73a15dea6",
+      "status": "ahead",
+      "ahead_by": 1,
+      "behind_by": 0,
+      "total_commits": 1,
+      "too_large": null,
+      "base_commit": {
+        "sha": "2e57784093fd2d1f44fe27edb31077d4163693f2",
+        "url": "https://api.github.com/repos/CrispStrobe/quds_office_suite/commits/2e57784093fd2d1f44fe27edb31077d4163693f2",
+        "html_url": "https://github.com/CrispStrobe/quds_office_suite/commit/2e57784093fd2d1f44fe27edb31077d4163693f2"
+      },
+      "merge_base_commit": {
+        "sha": "2e57784093fd2d1f44fe27edb31077d4163693f2",
+        "url": "https://api.github.com/repos/CrispStrobe/quds_office_suite/commits/2e57784093fd2d1f44fe27edb31077d4163693f2",
+        "html_url": "https://github.com/CrispStrobe/quds_office_suite/commit/2e57784093fd2d1f44fe27edb31077d4163693f2"
+      },
+      "files": [
+        {
+          "filename": "docs/validation/native-spacy-w7-20261118/CONTINUE.md",
+          "status": "added",
+          "additions": 72,
+          "deletions": 0,
+          "changes": 72,
+          "previous_filename": null
+        },
+        {
+          "filename": "docs/validation/native-spacy-w7-20261118/README.md",
+          "status": "modified",
+          "additions": 17,
+          "deletions": 2,
+          "changes": 19,
+          "previous_filename": null
+        },
+        {
+          "filename": "docs/validation/native-spacy-w7-20261118/checkpoint-status.json",
+          "status": "added",
+          "additions": 110,
+          "deletions": 0,
+          "changes": 110,
+          "previous_filename": null
+        }
+      ]
+    },
+    "isError": false
+  }
+}

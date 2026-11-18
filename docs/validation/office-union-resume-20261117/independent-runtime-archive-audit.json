@@ -1,0 +1,23 @@
+{
+  "created_utc": "2026-11-17T22:06:29.806226+00:00",
+  "reviewer": "remote_review",
+  "results": [
+    {
+      "archive": "consumer-runtime-recovery.tar.xz",
+      "sha256": "067d7e48e952973476d2d9ada47e9f1280732ea49cbe2cce15e0c6b874f41d66",
+      "members": 30,
+      "bytes": 158964,
+      "every_member_read_and_verified": true
+    },
+    {
+      "archive": "native-runtime-recovery.tar.xz",
+      "sha256": "8b636b8a026c80b5a1a095face543f5fe0f3e63cdf7a906633898e43d0c3a65c",
+      "members": 43,
+      "bytes": 42748,
+      "every_member_read_and_verified": true
+    }
+  ],
+  "all_archives_verified": true,
+  "qualification_accepted": false,
+  "scope": "Independent complete byte readback of runtime recovery receipts only; no current source test or inference claim."
+}

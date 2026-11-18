@@ -1,0 +1,152 @@
+{
+  "schema_version": 1,
+  "kind": "independent-remote-source-and-ref-review",
+  "reviewed_at_utc": "2026-11-18T05:19:19Z",
+  "reviewer": "remote_review independent agent",
+  "repository": "CrispStrobe/quds_office_suite",
+  "access": {
+    "method": "GitHub connector reads only",
+    "local_commands_executed": false,
+    "local_files_written": false,
+    "remote_mutations_performed": false,
+    "github_actions_checks_or_status_endpoints_used": false
+  },
+  "snapshot": {
+    "live_branch_heads": 191,
+    "pull_request_records": 152,
+    "pull_request_inventory_method": "All-state REST collection, two pages of up to 100 records",
+    "highest_pull_request_number": 152,
+    "main": "482e08176dea6bd8f5fc80d1c0064d96b712db43",
+    "continuation_branch": "codex/office-local-qualification-20261118",
+    "continuation_head": "9a7c80be00258def2dcae3bb288c28558c83aa72",
+    "main_and_continuation_unchanged_during_review": true,
+    "open_pull_requests": [
+      {
+        "number": 139,
+        "state": "open",
+        "draft": true,
+        "title": "Add optional native German analysis and qualified manual agreement corrections",
+        "head_branch": "feat/native-spacy-reference-20261117",
+        "head_sha": "20026ff49ac37391e2a1fd0947560a587f2f7332",
+        "ownership": "Separate native spaCy continuation"
+      }
+    ]
+  },
+  "reviewed_checkpoint": {
+    "sha": "9a7c80be00258def2dcae3bb288c28558c83aa72",
+    "parent": "01939b68a4c9675eceb092e5c55258ee0841c581",
+    "message": "Fix inherited rendering-test lint and preserve pinned recovery receipts [skip ci]",
+    "comparison_base": "482e08176dea6bd8f5fc80d1c0064d96b712db43",
+    "comparison_status": "ahead",
+    "ahead_by": 3,
+    "behind_by": 0,
+    "changed_files": 50,
+    "documentation_and_evidence_files": 46,
+    "non_documentation_paths": [
+      "packages/quds_office_editor/test/sheet_conditional_rendering_test.dart",
+      "packages/quds_office_engine/CHANGELOG.md",
+      "packages/quds_office_engine/lib/src/sheet/model/sml_conditional_format.dart",
+      "packages/quds_office_engine/test/sheet_time_period_calendar_test.dart"
+    ],
+    "unexpected_product_changes": [],
+    "production_library_paths_changed": [
+      "packages/quds_office_engine/lib/src/sheet/model/sml_conditional_format.dart"
+    ]
+  },
+  "source_review": {
+    "calendar_resolver": {
+      "path": "packages/quds_office_engine/lib/src/sheet/model/sml_conditional_format.dart",
+      "blob_sha": "396f78b7b391258e29d5fe9b1ea6c0bd19262af2",
+      "matches_previously_reviewed_2bfac9b2_blob": true,
+      "change": "Construct today and month offsets with DateTime.utc using the injected clock's existing year, month and day.",
+      "reasoning": "Cell serial dates already use UTC civil dates. UTC civil boundaries remove timezone-offset endpoint errors and DST duration arithmetic errors while preserving the clock's intended calendar date."
+    },
+    "calendar_regression": {
+      "path": "packages/quds_office_engine/test/sheet_time_period_calendar_test.dart",
+      "blob_sha": "50838d6fa04b9a69e8f5fdbabcd11517e1002a26",
+      "matches_previously_reviewed_2bfac9b2_blob": true,
+      "test_count": 8,
+      "required_timezones": [
+        "UTC",
+        "Europe/Berlin",
+        "America/Los_Angeles"
+      ],
+      "coverage": [
+        "Seven-day inclusive and exclusive endpoints near local midnight",
+        "Sunday week boundaries",
+        "Berlin spring and fall DST dates",
+        "Los Angeles spring and fall DST dates",
+        "January previous-month and year rollover",
+        "December next-month and year rollover"
+      ]
+    },
+    "rendering_test_lint": {
+      "path": "packages/quds_office_editor/test/sheet_conditional_rendering_test.dart",
+      "blob_sha": "17ba57f50378a3fc550e9c9f1c9b16f54cba9ce7",
+      "change": "Add an opening and closing brace around the existing changedPixels++ statement.",
+      "condition_changed": false,
+      "assertions_changed": false,
+      "test_logic_changed": false,
+      "static_assessment": "Correct repair for curly_braces_in_flow_control_structures under fatal-infos."
+    },
+    "changelog": {
+      "path": "packages/quds_office_engine/CHANGELOG.md",
+      "blob_sha": "b58feb756506e32016c7bd4340cb9df4aaff4181",
+      "change": "Document civil-date conditional formatting across timezone, DST and year boundaries."
+    },
+    "blocking_static_findings": []
+  },
+  "preflight_attribution": {
+    "rejected_source": "401d012657881a54727d58bc35e537faa45d5fbe",
+    "published_receipt": "docs/validation/office-local-20261118/preflight-lint.json",
+    "receipt_blob_sha": "6c7768c268aaeaff8511c797c67b9f9222d6ae48",
+    "reported_failure": "Inherited unbraced multiline if in the editor rendering test fails strict analysis under fatal-infos.",
+    "receipt_reports_engine_analysis_passed": true,
+    "receipt_reports_tests_started": false,
+    "raw_preflight_archive_reconstructed_in_this_review": false,
+    "fresh_corrected_source_qualification_observed": false
+  },
+  "concurrent_work": [
+    {
+      "branch": "codex/office-continue-20261118",
+      "previous_observed_head": "8ad80eb29a3984d58d5564c6759e853c0a8ab4af",
+      "current_head": "a52332b2488b1c07f65894903b4296c15bb3ebd4",
+      "published_frozen_source": "9e591cc63b22a654abd7f919c51674164eac225b",
+      "published_frozen_tree": "469da03c35c4fade2095fd044a9391d5696f7ad3",
+      "integration_commit": "51f20ab0c4b71259ea79dd3f9b273791b6958d36",
+      "included_heads": [
+        "8ad80eb29a3984d58d5564c6759e853c0a8ab4af",
+        "482e08176dea6bd8f5fc80d1c0064d96b712db43",
+        "6d97fedccde17244a917ee7d3372adebe5494089",
+        "20026ff49ac37391e2a1fd0947560a587f2f7332"
+      ],
+      "also_merges_our_original_checkpoint": "401d012657881a54727d58bc35e537faa45d5fbe",
+      "scope": "Combines current Office/German work with guarded default-off spaCy W6, and retains the alternate direct-common SectionFrame implementation.",
+      "historical_or_fresh_qualification": "Its published README says qualification is prepared or pending; no final acceptance is claimed.",
+      "decision": "Record and preserve this concurrent head in the handoff. Do not silently replace the reviewed main-based product tree or treat the two frame implementations as identical."
+    },
+    {
+      "branch": "feat/native-spacy-w7-20261118",
+      "current_head": "13747281fb25b5c55c549255595c75a7ca0854ef",
+      "comparison_base": "20026ff49ac37391e2a1fd0947560a587f2f7332",
+      "ahead_by": 2,
+      "behind_by": 0,
+      "product_delta_relative_to_comparison_base": false,
+      "observed_delta": "Documentation and build-31/German-completion evidence already present on main.",
+      "decision": "Record the new branch as a separate spaCy continuation. No additional product change was observed beyond the already captured spaCy head at this snapshot."
+    }
+  ],
+  "acceptance": {
+    "static_source_review_passed": true,
+    "unexpected_product_changes_found": false,
+    "product_qualification_accepted": false,
+    "release_accepted": false,
+    "required_next_step": "Restore an executable workspace, freeze the corrected published source, and rerun the required local gates with complete source-bound receipts and independent archive readback."
+  },
+  "limitations": [
+    "This review verifies remote source, metadata and published receipt contents; it does not replace execution of the corrected source.",
+    "The full runtime and failed-preflight archives were not downloaded or independently reconstructed during this connector-only review.",
+    "The concurrent Office and spaCy branches remain separately identified; their historical evidence is not counted as fresh qualification of 9a7c80be."
+  ]
+}
+

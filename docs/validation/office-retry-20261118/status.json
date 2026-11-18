@@ -1,0 +1,150 @@
+{
+  "schema_version": 1,
+  "updated_utc": "2026-11-18T06:01:49.061473+00:00",
+  "state": "native-qualification-in-progress",
+  "branch": "codex/office-local-qualification-20261118",
+  "execution_checkout": "9d060658ee6be8ec97d73f56b9aec10d346b7952",
+  "implementation_commit": "9a7c80be00258def2dcae3bb288c28558c83aa72",
+  "non_documentation_diff_between_execution_and_implementation": [],
+  "main": "482e08176dea6bd8f5fc80d1c0064d96b712db43",
+  "remote_branches": 191,
+  "fetched_pr_heads": 154,
+  "new_w7_docs_head": "995a8cd500787f2fe3ae5f268201efa73a15dea6",
+  "new_office_source_to_integrate": false,
+  "prior_failed_attempt_acceptance": "rejected-preserved",
+  "prior_archive_member_audit": "complete-42-of-42",
+  "consumer_runtime_files_verified": 3504,
+  "fresh_qualification": "canonical-and-supplemental-and-consumers-passed",
+  "actions_workflow_check_status_endpoint_calls": 0,
+  "release_accepted": false,
+  "runtime_restoration": "passed",
+  "independent_flutter_recovery_audit": "passed-zero-findings",
+  "package_config_prewarmpostwarm_identical": true,
+  "canonical": {
+    "selected_files": 224,
+    "raw_successes": 4236,
+    "substantive_successes": 4234,
+    "all_input_integrity_surfaces_unchanged": true,
+    "process_exit": 0,
+    "independent_audit": "passed-5747-checks-zero-findings"
+  },
+  "completed_gates": {
+    "portable": {
+      "source_commit": "9d060658ee6be8ec97d73f56b9aec10d346b7952",
+      "passed": true,
+      "input_integrity": {
+        "dependencies_unchanged": true,
+        "harness_unchanged": true,
+        "node_unchanged": true,
+        "runtime_unchanged": true,
+        "source_unchanged": true,
+        "workspace_unchanged": true
+      },
+      "head_unchanged": true,
+      "outer_exit_code": 0,
+      "duration_seconds": 98.31053306800004,
+      "selected_files": 17,
+      "outcomes": {
+        "success": 225
+      },
+      "raw_successes": 225,
+      "substantive_successes": 225
+    },
+    "editor-example": {
+      "source_commit": "9d060658ee6be8ec97d73f56b9aec10d346b7952",
+      "passed": true,
+      "input_integrity": {
+        "dependencies_unchanged": true,
+        "harness_unchanged": true,
+        "runtime_unchanged": true,
+        "source_unchanged": true,
+        "workspace_unchanged": true
+      },
+      "head_unchanged": true,
+      "outer_exit_code": 0,
+      "duration_seconds": 25.647783496000102,
+      "selected_files": 1,
+      "outcomes": {
+        "success": 2
+      },
+      "raw_successes": 2,
+      "substantive_successes": 2
+    },
+    "calendar-timezones": {
+      "source_commit": "9d060658ee6be8ec97d73f56b9aec10d346b7952",
+      "passed": true,
+      "input_integrity": {
+        "dependencies_unchanged": true,
+        "harness_unchanged": true,
+        "runtime_unchanged": true,
+        "source_unchanged": true,
+        "workspace_unchanged": true
+      },
+      "head_unchanged": true,
+      "outer_exit_code": 0,
+      "duration_seconds": 35.21049039199988,
+      "test_executions": 24,
+      "overlaps_canonical": true,
+      "zones": [
+        {
+          "timezone": "UTC",
+          "offsets_minutes": [
+            0,
+            0,
+            0
+          ],
+          "passed": true,
+          "test_successes": 8
+        },
+        {
+          "timezone": "Europe/Berlin",
+          "offsets_minutes": [
+            60,
+            120,
+            60
+          ],
+          "passed": true,
+          "test_successes": 8
+        },
+        {
+          "timezone": "America/Los_Angeles",
+          "offsets_minutes": [
+            -480,
+            -420,
+            -480
+          ],
+          "passed": true,
+          "test_successes": 8
+        }
+      ]
+    },
+    "retained33": {
+      "passed": true,
+      "exit_code": 0,
+      "source_runtime_guard_passed": true,
+      "independent_review": "pending"
+    },
+    "current7": {
+      "passed": true,
+      "exit_code": 0,
+      "source_runtime_guard_passed": true,
+      "independent_review": "pending"
+    },
+    "boundary5": {
+      "passed": true,
+      "exit_code": 0,
+      "source_runtime_guard_passed": true,
+      "independent_review": "pending"
+    },
+    "frame5": {
+      "passed": true,
+      "exit_code": 0,
+      "source_runtime_guard_passed": true,
+      "independent_review": "pending"
+    }
+  },
+  "native": {
+    "prepare": "passed-23-controls-and-aot-build",
+    "sweep": "running-serial-1-2-4-8"
+  }
+}

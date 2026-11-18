@@ -1,0 +1,136 @@
+{
+  "observed_utc": "2026-11-18T06:18:09.308344+00:00",
+  "commit": "17d9d0f03f5bd32d8e0fc9b3993806f863254f58",
+  "parent": "536ea0af12b1053b7466d95606edff52cc6ee615",
+  "tree": "e9d9b7d2210573fd162c00dbc366703a6e21e4d2",
+  "all_files_verified": true,
+  "files": [
+    {
+      "path": "docs/validation/office-completion-20261118/evidence/native-arms-through-1/checkpoint.json",
+      "bytes": 382,
+      "git_blob": "72283cf6eab3de4b1420981a07a69fdcc9bb39fc",
+      "sha256": "a9e469119156ff116c9e609c8df81712c1e8e3b732f8bd597dcb425e23e33827",
+      "verified": true
+    },
+    {
+      "path": "docs/validation/office-completion-20261118/evidence/native-arms-through-1/guard/inputs-before.json.gz",
+      "bytes": 626061,
+      "git_blob": "0aa1ab07d9532679a1456f0f9d2a87683f22a188",
+      "sha256": "35a579425795d0de84df5650298a073056c5b12f02cc34a58842477e6a8d094d",
+      "verified": true
+    },
+    {
+      "path": "docs/validation/office-completion-20261118/evidence/native-arms-through-1/guard/receipt.json",
+      "bytes": 1329,
+      "git_blob": "76b39690ce63c10437267f581d7c601347c7af8f",
+      "sha256": "bb0f14add6bf8e0f1ccaf5969b4b1da4c86a8a8afd168bbbb43bc2386178c518",
+      "verified": true
+    },
+    {
+      "path": "docs/validation/office-completion-20261118/evidence/native-arms-through-1/orchestration.json",
+      "bytes": 3073,
+      "git_blob": "2e00221ec4c325140e528e3d1cbf4602c04e05f1",
+      "sha256": "95d9260f6cb039b79cb008ecfa6516efee8e8916997a631fa908a603e93590f5",
+      "verified": true
+    },
+    {
+      "path": "docs/validation/office-completion-20261118/evidence/native-arms-through-1/result/serial-receipt.json",
+      "bytes": 128569,
+      "git_blob": "2a383ebab777aeb0714a8d7df76208dde66e4fc2",
+      "sha256": "a4c0249b8600a9129916f44bcc26fcc19bc34a401a50e33abb46d9fffb42f838",
+      "verified": true
+    },
+    {
+      "path": "docs/validation/office-completion-20261118/evidence/native-arms-through-1/result/threads-1.json",
+      "bytes": 662914,
+      "git_blob": "d7f6b53a6d53529559fcdf1a24cb91e092df9fd3",
+      "sha256": "36570eee3ac075b024fc06605552c8382add027894b442f538a1ebfce370bee3",
+      "verified": true
+    },
+    {
+      "path": "docs/validation/office-completion-20261118/evidence/native-arms-through-1/result/threads-1.log",
+      "bytes": 1115,
+      "git_blob": "5313519f23b4c1697d56878cf6f2d372c29da13e",
+      "sha256": "e37c51fac31ac4edae6c6c3b089183a44bd44095b61066432f74653bd95bfd0e",
+      "verified": true
+    },
+    {
+      "path": "docs/validation/office-completion-20261118/evidence/native-arms-through-1/run_guarded_native.py",
+      "bytes": 4278,
+      "git_blob": "01023a6407088561730f8658f1977f0b0818c6ad",
+      "sha256": "d81d5fd371c05065b390974a8b22bf808c8ff750dd60c939519e863bd389ce96",
+      "verified": true
+    },
+    {
+      "path": "docs/validation/office-completion-20261118/evidence/native-arms-through-1/snapshot_native.py",
+      "bytes": 2601,
+      "git_blob": "57f43c47f7614b1ad1b5dd2275a853e97d0bbcb6",
+      "sha256": "09af40a9233b322b673bb70c99b43d27b234d83388fd25e575edf1003043baeb",
+      "verified": true
+    },
+    {
+      "path": "docs/validation/office-completion-20261118/evidence/native-arms-through-1.tar.index.json",
+      "bytes": 1740,
+      "git_blob": "8ff1d9bda3d54026ee58eaa77e5a0bfd26b4fb98",
+      "sha256": "714dc39c9f2880382e94c271f311c7f4a77d2908e12441735b7075ec5c3df15f",
+      "verified": true
+    },
+    {
+      "path": "docs/validation/office-completion-20261118/evidence/native-arms-through-1.tar.xz",
+      "bytes": 660148,
+      "git_blob": "7f2a1cd3c50c7aa7324c6efc402a78b00e7748e4",
+      "sha256": "ccdaf547031fa818c98250783dd444f294c964d69d445cf77950c1ace4b79fd9",
+      "verified": true
+    },
+    {
+      "path": "docs/validation/office-completion-20261118/evidence/native-prepare-9d060658.tar.index.json",
+      "bytes": 3077,
+      "git_blob": "987aa68bb36908117e606e970b92f30519f2900b",
+      "sha256": "7ee96acea6873a7f3b1e66cbec645be1a341cdc1fb0aace980a1cc9cbc986229",
+      "verified": true
+    },
+    {
+      "path": "docs/validation/office-completion-20261118/evidence/native-prepare-9d060658.tar.xz",
+      "bytes": 640408,
+      "git_blob": "9007e1bba1dc4444847629640f0228cf039adca8",
+      "sha256": "ecccb2c63a18b16ac9d6b4d719c86b5c4403a42e5375c4e2ca21e1ad50303171",
+      "verified": true
+    },
+    {
+      "path": "docs/validation/office-completion-20261118/review/checkpoint-02-remote-readback.json",
+      "bytes": 4481,
+      "git_blob": "87353fb3ca1e983506d78cf383382bf36b68753d",
+      "sha256": "c1e9a18dfcff721edb750093e28479fb1c6d55f7e90a0532b357f2f264bd9669",
+      "verified": true
+    },
+    {
+      "path": "docs/validation/office-completion-20261118/setup/verify_checkpoint_readback.py",
+      "bytes": 3245,
+      "git_blob": "d379964ef51057a63ab356192498c5178b13e45f",
+      "sha256": "6725d2a7dc34909633b51e8b9ddee6137ddf5916eb426e4567ceb20ac5ba1697",
+      "verified": true
+    },
+    {
+      "path": "docs/validation/office-completion-20261118/status.json",
+      "bytes": 1866,
+      "git_blob": "ebd4a4bc583ac9d2ee8a1b9ae14d1558f6768f04",
+      "sha256": "4d042c48ddce2c3d262c67eaa4305867e16f9f9a605d2a0d376fc0dfed83b46e",
+      "verified": true
+    }
+  ],
+  "archives": [
+    {
+      "path": "docs/validation/office-completion-20261118/evidence/native-arms-through-1.tar.xz",
+      "bytes": 660148,
+      "sha256": "ccdaf547031fa818c98250783dd444f294c964d69d445cf77950c1ace4b79fd9",
+      "members_verified": 9
+    },
+    {
+      "path": "docs/validation/office-completion-20261118/evidence/native-prepare-9d060658.tar.xz",
+      "bytes": 640408,
+      "sha256": "ecccb2c63a18b16ac9d6b4d719c86b5c4403a42e5375c4e2ca21e1ad50303171",
+      "members_verified": 17
+    }
+  ],
+  "scope": "Exact fetched Git objects; complete byte and member readback of newly added archive indexes."
+}

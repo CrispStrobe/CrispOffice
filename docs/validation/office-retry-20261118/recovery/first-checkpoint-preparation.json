@@ -1,0 +1,126 @@
+{
+  "prepared_utc": "2026-11-18T05:48:20.482604+00:00",
+  "parent": "9d060658ee6be8ec97d73f56b9aec10d346b7952",
+  "tree": "62748adfc1fe9e9a2a5bb445365ee48d1aed02bf",
+  "branch": "codex/office-local-qualification-20261118",
+  "frozen_checkout": "9d060658ee6be8ec97d73f56b9aec10d346b7952",
+  "message": "Restore Office retry workspace and reconcile all live refs [skip ci]",
+  "force": false,
+  "files": [
+    {
+      "path": "docs/validation/office-retry-20261118/README.md",
+      "bytes": 1812,
+      "sha256": "260b4574c55c764165f94daa43526759d197e07c22779f943d4588b15b2ff100",
+      "git_blob": "1883f03e241f96f50495040ec197062b5303b567"
+    },
+    {
+      "path": "docs/validation/office-retry-20261118/reconciliation/fetched-refs.txt",
+      "bytes": 27179,
+      "sha256": "50c22ca26e3c27c5eb58a1bd7906062f7ec4a42e4562259a211f4aafebbe319f",
+      "git_blob": "f9aaa3fccf092de5ac066df186748f3033426512"
+    },
+    {
+      "path": "docs/validation/office-retry-20261118/reconciliation/reconciliation-branches/README.md",
+      "bytes": 3539,
+      "sha256": "b28218ef73cb9aa4b513013163d38a950497246a51f1d4aaf93df892e87f644b",
+      "git_blob": "39c91d508dd404526b329d7aa6129e1f5efa8813"
+    },
+    {
+      "path": "docs/validation/office-retry-20261118/reconciliation/reconciliation-branches/branch-heads.json",
+      "bytes": 58091,
+      "sha256": "4e94cef0f11e8df1fc2d20ffd768c4b506e472dff378af5eeccbff826761fa6c",
+      "git_blob": "cfc053b05733e4d60821dfe559886e8ca96a66d1"
+    },
+    {
+      "path": "docs/validation/office-retry-20261118/reconciliation/reconciliation-branches/branch-inventory.json",
+      "bytes": 15304,
+      "sha256": "ced7fd5c7fbead5ea10e43ec3282173bcb67b741c6b1ff52077c4375eefb30f7",
+      "git_blob": "8300b8e51299ed8fa45fe93cb8dc1422e4dca22a"
+    },
+    {
+      "path": "docs/validation/office-retry-20261118/reconciliation/reconciliation-branches/branch-names.txt",
+      "bytes": 5098,
+      "sha256": "a6be9a9ab5ee863b74c2848fd1951c26617caf8e28bfc1c57de44a4e26980346",
+      "git_blob": "dc1472bb44a8b4b9c7e68a63ade5661bee9a44c9"
+    },
+    {
+      "path": "docs/validation/office-retry-20261118/reconciliation/reconciliation-branches/codex-office-continue-20261118-latest.txt",
+      "bytes": 1561,
+      "sha256": "79ed679249d1cc3f16aaaeae2ac90b9be6d2697230d52ccb2b01257d575bdb6b",
+      "git_blob": "6354c8186614cf8478860f9df8de3d154c6b3a7a"
+    },
+    {
+      "path": "docs/validation/office-retry-20261118/reconciliation/reconciliation-branches/feat-native-spacy-w7-20261118-latest.txt",
+      "bytes": 630,
+      "sha256": "a40e68e10427276e7556b50fc48d983dcaf67d730a2a32e72301501b038f7dbb",
+      "git_blob": "b7c839a68e691fc5e8cebc0a09f15a32795dc4d3"
+    },
+    {
+      "path": "docs/validation/office-retry-20261118/reconciliation/reconciliation-branches/key-branch-comparisons.json",
+      "bytes": 331030,
+      "sha256": "56db48a56782ad0f9ee9e9636b30a5b6bd2d555419e29cc15c33b068cf599a68",
+      "git_blob": "a841764a6137d3c7eaa0f5c7ffff5551f7e5323e"
+    },
+    {
+      "path": "docs/validation/office-retry-20261118/reconciliation/reconciliation-branches/key-head-summary.json",
+      "bytes": 35932,
+      "sha256": "d0d1bee6007743c1ebf52d94be586491da0e594b778f2070e4663ff332098dbb",
+      "git_blob": "d1f334f456662ad60c1d692597da9e2b0d168ed3"
+    },
+    {
+      "path": "docs/validation/office-retry-20261118/reconciliation/reconciliation-branches/local-remote-refs.txt",
+      "bytes": 29255,
+      "sha256": "066b92c07f0d5963c62afd15c702c0557b72b37a9aadb8767be6a7033cb67951",
+      "git_blob": "39163daf7f0babda8d4456db1ac2ef871de40c39"
+    },
+    {
+      "path": "docs/validation/office-retry-20261118/reconciliation/reconciliation-prs/pr-reconciliation.json",
+      "bytes": 24401,
+      "sha256": "7ffcc8c3eebf7a571863647dd3bc185d4ded302084690838617282661e841d00",
+      "git_blob": "35cb7938a2ff372e91b5c9c67e0aceefc7227e8e"
+    },
+    {
+      "path": "docs/validation/office-retry-20261118/reconciliation/reconciliation-prs/raw-pr-and-main-snapshot.json",
+      "bytes": 198959,
+      "sha256": "e7fbcf52c1e1b19f96c9220bf733e0c6088ba04e0905b3ae0c29ca3f82bb9920",
+      "git_blob": "974f33d3c5179c87da4867024ab359c633a04070"
+    },
+    {
+      "path": "docs/validation/office-retry-20261118/reconciliation/reconciliation-prs/refresh-after-incoming-w7-checkpoint.json",
+      "bytes": 24665,
+      "sha256": "f7ebd2c62380835cd5393291bc9e9ab596ed629b9a9acc158120bf224b25b5b2",
+      "git_blob": "690d77712895a3563455dc924ca92d69a3a6eb6c"
+    },
+    {
+      "path": "docs/validation/office-retry-20261118/reconciliation/reconciliation-prs/scope-and-source-comparisons.json",
+      "bytes": 41735,
+      "sha256": "9a6595f21809bccf2d270401ac243503a2bb5fcad0b2287330eba6f48a76b24b",
+      "git_blob": "1f2ae80a7992760de956f91614b6db2446ff888c"
+    },
+    {
+      "path": "docs/validation/office-retry-20261118/recovery/archive-audit.json",
+      "bytes": 1006,
+      "sha256": "17f279c75e064b6f904b4abbfb34df93a3adb1472af4d1169268c8a2f3ed0313",
+      "git_blob": "c9f799d7e1114455950d3c548ae687e53b8389dd"
+    },
+    {
+      "path": "docs/validation/office-retry-20261118/recovery/consumer-runtime.json",
+      "bytes": 1276217,
+      "sha256": "efd0ff239f9a2f8d9d0642fb65455f3be12bef46ec64d0a6af55d8afe6b22888",
+      "git_blob": "7bacffaaf2ddce2cd58077150c9502d683b6f634"
+    },
+    {
+      "path": "docs/validation/office-retry-20261118/setup/publish_checkpoint.py",
+      "bytes": 4169,
+      "sha256": "37cb5795000a79349539b189ba2dad03f93d4f05081d347e8209b08f64e1ca68",
+      "git_blob": "bc662dd6318b641de00682606efb6ab99450a42d"
+    },
+    {
+      "path": "docs/validation/office-retry-20261118/status.json",
+      "bytes": 883,
+      "sha256": "05616c54750c111f7ff128a2423090fdfa55be4b393d4d50973d86a8da1461e5",
+      "git_blob": "3e8b0be89ded9eb46c12aca20ab399bb8f1ae8b1"
+    }
+  ],
+  "publication": "pending authenticated GitHub Git Data calls"
+}

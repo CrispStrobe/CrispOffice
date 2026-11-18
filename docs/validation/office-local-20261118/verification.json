@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "source_commit": "9a7c80be00258def2dcae3bb288c28558c83aa72",
+  "source_tree": "695ec1a326965894eff7c37583e3b9c4fcf4492d",
+  "main_cutoff": "482e08176dea6bd8f5fc80d1c0064d96b712db43",
+  "qualification_accepted": false,
+  "release_accepted": false,
+  "status": "blocked_execution_workspace_after_disk_exhaustion",
+  "github_actions_queried_or_awaited": false,
+  "canonical_plan": {
+    "unique_files": 224,
+    "cohorts": {
+      "engine-zotero": 19,
+      "editor-zotero": 13,
+      "engine-integration": 138,
+      "editor-integration": 37,
+      "harper-contract": 3,
+      "gector-contract": 14
+    }
+  },
+  "completed_preflight": {
+    "strict_analysis_commands": 5,
+    "formatted_files": 145,
+    "python_controls": 117,
+    "passed": true
+  },
+  "engine_zotero": {
+    "observed_success_events": 390,
+    "selected_suites": 19,
+    "exit_code": 255,
+    "accepted": false,
+    "failure": "No space left on device (errno 28) during test compiler disposal/cache-directory creation."
+  },
+  "integrity": {
+    "source_unchanged": true,
+    "dependencies_unchanged": true,
+    "runtime_unchanged": true,
+    "system_unchanged": true,
+    "harness_unchanged": true,
+    "workspace_unchanged": false,
+    "workspace_delta": "package_config.json byte hash changed; runner author observed equivalent flutterRoot symlink/actual-path normalization. Requires stabilization and a fresh run, not a waiver.",
+    "post_attempt_package_config_sha256": "abcc19f74f1237fac97ccc920e4df402d49fd974ada14ca75f6a187fc7d6eb0b",
+    "post_attempt_package_config_raw_bytes_saved": false
+  },
+  "pending": [
+    "Fresh canonical run after disk and package-config stabilization",
+    "17 Node suites",
+    "Two editor-example smoke tests",
+    "Eight calendar tests in UTC, Europe/Berlin and America/Los_Angeles",
+    "Retained 33+7 document consumers / 160 XML parts",
+    "Five boundary consumers / 15 PDFs / 10 DOCX reopens",
+    "Five focused frame/header/field consumers",
+    "Serial native 1/2/4/8-thread sweep",
+    "Complete independent final evidence and remote readback audit"
+  ],
+  "full_attempt_archive": {
+    "path": "evidence/canonical-attempt-9a7c80be.tar.xz",
+    "bytes": 638988,
+    "sha256": "14a2e5d6d0ae73501eb6e240d67896a3936482188a3344c1eee44c877e161e42",
+    "git_blob": "6b5b465c80824812033f793ce685195e5328f132",
+    "checkpoint_complete": true,
+    "run_status": "failed",
+    "qualification_accepted": false
+  },
+  "limits": [
+    "Historical results retain original source attribution",
+    "Two private-PDF early returns excluded from substantive counts",
+    "LibreOffice DOCX consumers, no live Microsoft Word claim",
+    "Current native and consumer gates not run"
+  ]
+}

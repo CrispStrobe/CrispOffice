@@ -1,0 +1,157 @@
+{
+  "observed_utc": "2026-11-18T06:25:28.134691+00:00",
+  "commit": "27aceb8a50414346a522a2ae659d6649f6864994",
+  "parent": "7104a7363174420c4fc9c1812466cf6db3a824fd",
+  "tree": "fbebd08423a80f7b32eae2a5725429e32cc03a33",
+  "all_files_verified": true,
+  "files": [
+    {
+      "path": "docs/validation/office-completion-20261118/README.md",
+      "bytes": 7368,
+      "git_blob": "aff35991dc5a53b2e2f6490915b6d7b1d7b13dfd",
+      "sha256": "38d4375023aa59d9968f1ecc2bbc653c5d1b27abdc265f5483a43ff80e9ebfab",
+      "verified": true
+    },
+    {
+      "path": "docs/validation/office-completion-20261118/evidence/native-independent-review.tar.index.json",
+      "bytes": 2294,
+      "git_blob": "1c75d354d96f11ca82a7f67c425b828bbb6b62b8",
+      "sha256": "e5808a3423f4b8ca5f559b3d6e1d0c2b1ec3faf1e86b919c6d735026d45c53f3",
+      "verified": true
+    },
+    {
+      "path": "docs/validation/office-completion-20261118/evidence/native-independent-review.tar.xz",
+      "bytes": 16768,
+      "git_blob": "5bb226fd34ce657a68beae8ade8907fb7d7e22eb",
+      "sha256": "f9d3cbd7cb2b6633bd57e29ee3a1ea9617c1a1cc5994c3df55e7032c01f6e2ed",
+      "verified": true
+    },
+    {
+      "path": "docs/validation/office-completion-20261118/evidence/native-sweep-9d060658.tar.index.json",
+      "bytes": 3544,
+      "git_blob": "2b8f0dc238bc7723180e77a35d4c774c56cb6653",
+      "sha256": "a067959512b6e863b2312716586ef92fa44348de436d6dbe93710e4907a1df34",
+      "verified": true
+    },
+    {
+      "path": "docs/validation/office-completion-20261118/evidence/native-sweep-9d060658.tar.xz",
+      "bytes": 689748,
+      "git_blob": "f6a5cf6cdab9261c2224cb75d7c28c0b34ac2a60",
+      "sha256": "61c750faabdc8b0badb45bab2f42b297aafee1ab6b7adbc08aba80bb7e60102e",
+      "verified": true
+    },
+    {
+      "path": "docs/validation/office-completion-20261118/reconciliation/assessment.json",
+      "bytes": 4465,
+      "git_blob": "6cc3b038721b6eb8f5940437bede2cc7631e98ca",
+      "sha256": "fb2c0c7222da486281f8b6aae67e98d2a1e3f6be173eb596fa8acb48c23f3d41",
+      "verified": true
+    },
+    {
+      "path": "docs/validation/office-completion-20261118/reconciliation/initial-fetched-refs.txt",
+      "bytes": 26409,
+      "git_blob": "b90bcc45effed76a1558a0bfd40f8931dae08a5f",
+      "sha256": "f5c056948824377186408b707c8a56b54419c6bbeafa770bfcc839037c67818e",
+      "verified": true
+    },
+    {
+      "path": "docs/validation/office-completion-20261118/reconciliation/ls-remote.txt",
+      "bytes": 24162,
+      "git_blob": "fb1667b28a8fc4673385863ac17fc749e1e48e8a",
+      "sha256": "7e4f151d517f4aaf7305910e09de965866946bbbe3730a295f6f67ff0373523b",
+      "verified": true
+    },
+    {
+      "path": "docs/validation/office-completion-20261118/reconciliation/remote-frontier.json",
+      "bytes": 117524,
+      "git_blob": "8848f042ce587601aaf4d07959694e8ec3dd8ec9",
+      "sha256": "c00b7a7d2d6abaf5e6b14756688a1089b8fa432d980d0979b4fbff35420c5db4",
+      "verified": true
+    },
+    {
+      "path": "docs/validation/office-completion-20261118/review/checkpoint-04-remote-readback.json",
+      "bytes": 3329,
+      "git_blob": "fa8bad7b1db46ec71c37e331660955e4b03ce315",
+      "sha256": "b8522ac7b382d5e6f258451f71eeb0a185accefece2932ed889d1e7556b229f2",
+      "verified": true
+    },
+    {
+      "path": "docs/validation/office-completion-20261118/review/final-source-equivalence.json",
+      "bytes": 11817,
+      "git_blob": "124c621bd312dd4d11d3be39f7509f717d95f41e",
+      "sha256": "6a5a6766ce081607b0f3019f3c3d0c9358f6aa6869ef88dbe54718257d8628b5",
+      "verified": true
+    },
+    {
+      "path": "docs/validation/office-completion-20261118/review/native-completion-review.json",
+      "bytes": 31837,
+      "git_blob": "012e4c6c6c70c7512f20abc2fce4affb86cb7a98",
+      "sha256": "1bdff32d41e7e91f1cbef30382c7da02d1361fceaa661e41352eb57fef14b9c5",
+      "verified": true
+    },
+    {
+      "path": "docs/validation/office-completion-20261118/review/native-partial-threads1-2-4-review.json",
+      "bytes": 30567,
+      "git_blob": "a3d13598530ccaae18da77dd9b6d810c05abad26",
+      "sha256": "d54042ad411df4070660fd4667fc16bdb71e39ed98853024fc6baf429e69ad83",
+      "verified": true
+    },
+    {
+      "path": "docs/validation/office-completion-20261118/review/preparation-runtime-linkage.json",
+      "bytes": 925,
+      "git_blob": "4c817acbf36386685c7fbc3dd079417112d9be4d",
+      "sha256": "18502177323d4b7e6ba1fe18ce46bc843b747137d15e47e8d7acac214dd869c8",
+      "verified": true
+    },
+    {
+      "path": "docs/validation/office-completion-20261118/setup/build_final_report.py",
+      "bytes": 16160,
+      "git_blob": "e3683d01a784c379be21b5c7aa046f1a497ec93e",
+      "sha256": "264965bb18e2057d688968d1181358387d44ee9d05eed6c8e014d08d8dc9eefe",
+      "verified": true
+    },
+    {
+      "path": "docs/validation/office-completion-20261118/status.json",
+      "bytes": 6214,
+      "git_blob": "27c1ec5316b588f19c4a72da87fedb1f12035236",
+      "sha256": "5b82dc2cde570482a5c88cfa001bd3c194a5276152d696e9e50be2ba8e3439f2",
+      "verified": true
+    },
+    {
+      "path": "docs/validation/office-local-20261118/README.md",
+      "bytes": 5012,
+      "git_blob": "92ae7c21864202fb116ce551ed37f0454a3e90e0",
+      "sha256": "0fb5784f6b6c50110fd6dfd12a86ca464e424fc98c75162c118b0587bf85c94f",
+      "verified": true
+    },
+    {
+      "path": "docs/validation/office-local-20261118/recovery-handoff.md",
+      "bytes": 10933,
+      "git_blob": "50a2f5307b38dea351f4ae17a7dccf9605fc0ccb",
+      "sha256": "8f76505eeaa5d2eae47ea9af4002c5680c8967335da024df82d1740e88178fc0",
+      "verified": true
+    },
+    {
+      "path": "docs/validation/office-retry-20261118/README.md",
+      "bytes": 3429,
+      "git_blob": "52a3b6f45b7132080c95613f539ce897ff5b7a09",
+      "sha256": "0041c5dfbacfc0d2315d3c358b3a2308ca62d5460dd9b952f195f94a4ff5ee5b",
+      "verified": true
+    }
+  ],
+  "archives": [
+    {
+      "path": "docs/validation/office-completion-20261118/evidence/native-independent-review.tar.xz",
+      "bytes": 16768,
+      "sha256": "f9d3cbd7cb2b6633bd57e29ee3a1ea9617c1a1cc5994c3df55e7032c01f6e2ed",
+      "members_verified": 10
+    },
+    {
+      "path": "docs/validation/office-completion-20261118/evidence/native-sweep-9d060658.tar.xz",
+      "bytes": 689748,
+      "sha256": "61c750faabdc8b0badb45bab2f42b297aafee1ab6b7adbc08aba80bb7e60102e",
+      "members_verified": 20
+    }
+  ],
+  "scope": "Exact fetched Git objects; complete byte and member readback of newly added archive indexes."
+}

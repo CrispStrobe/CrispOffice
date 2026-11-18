@@ -1,0 +1,75 @@
+{
+  "archive": "native-arms-through-4.tar.xz",
+  "bytes": 678168,
+  "sha256": "f5ff84a1871a0938ee8e1187a5a20feaf08bbd5c753a3e1c1bde8c37cd411006",
+  "classification": "Partial native sweep; completed arms only; final qualification not yet accepted",
+  "member_count": 13,
+  "all_members_read_back_and_verified": true,
+  "members": [
+    {
+      "path": "checkpoint.json",
+      "bytes": 396,
+      "sha256": "b5e701897902d89e6515f8de99e6078567fc31ce90abd9a0e792820416147d33"
+    },
+    {
+      "path": "guard/inputs-before.json.gz",
+      "bytes": 626061,
+      "sha256": "35a579425795d0de84df5650298a073056c5b12f02cc34a58842477e6a8d094d"
+    },
+    {
+      "path": "guard/receipt.json",
+      "bytes": 1329,
+      "sha256": "bb0f14add6bf8e0f1ccaf5969b4b1da4c86a8a8afd168bbbb43bc2386178c518"
+    },
+    {
+      "path": "orchestration.json",
+      "bytes": 3073,
+      "sha256": "95d9260f6cb039b79cb008ecfa6516efee8e8916997a631fa908a603e93590f5"
+    },
+    {
+      "path": "result/serial-receipt.json",
+      "bytes": 316307,
+      "sha256": "1dae3566300b04a6ad9a7fc032c53a1abd24f8fc6e3fa43037aeba4344e17ae8"
+    },
+    {
+      "path": "result/threads-1.json",
+      "bytes": 662914,
+      "sha256": "36570eee3ac075b024fc06605552c8382add027894b442f538a1ebfce370bee3"
+    },
+    {
+      "path": "result/threads-1.log",
+      "bytes": 1115,
+      "sha256": "e37c51fac31ac4edae6c6c3b089183a44bd44095b61066432f74653bd95bfd0e"
+    },
+    {
+      "path": "result/threads-2.json",
+      "bytes": 662875,
+      "sha256": "789bfcf051a9897fa209a7a38314f6f45f7338e68dee3a05546ab6fc974ad4cb"
+    },
+    {
+      "path": "result/threads-2.log",
+      "bytes": 1109,
+      "sha256": "4126b171e22f8991d0e4bb2ce90927e381cd2112713bb73f40dcd7b10a4f397d"
+    },
+    {
+      "path": "result/threads-4.json",
+      "bytes": 662505,
+      "sha256": "95e845bb460d9fc676166d707d3390b7f7f9b33ed8b08f17bec5833b59b05029"
+    },
+    {
+      "path": "result/threads-4.log",
+      "bytes": 1108,
+      "sha256": "7b84ce0408d14af4484ff5a640ece40b793008e3e82b09acc76f7290645f1620"
+    },
+    {
+      "path": "run_guarded_native.py",
+      "bytes": 4278,
+      "sha256": "d81d5fd371c05065b390974a8b22bf808c8ff750dd60c939519e863bd389ce96"
+    },
+    {
+      "path": "snapshot_native.py",
+      "bytes": 2645,
+      "sha256": "351d9923cd0ff4793c2c2627e0f9397c4e80e6836de027d898fada8541c4a4f6"
+    }
+  ]
+}

@@ -1,0 +1,125 @@
+{
+  "archive": "calendar-timezones-9d060658.tar.xz",
+  "bytes": 509372,
+  "sha256": "fa16b563cbb9b625a80640dce0ce4b92ca4535b0d647d6058c67472d44ebfff1",
+  "classification": "Passed calendar-timezones gate on frozen 9d060658ee6be8ec97d73f56b9aec10d346b7952",
+  "member_count": 23,
+  "all_members_read_back_and_verified": true,
+  "members": [
+    {
+      "path": "orchestration.json",
+      "bytes": 1060,
+      "sha256": "cefaf70849979ba845d04b55887bec067d59755426c8197f020ed15759996a4f"
+    },
+    {
+      "path": "outer.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "outer.stdout",
+      "bytes": 218,
+      "sha256": "2cecaec8cda3e109456ee29df0949d436ad98096f98abfe70da8bb9a3a08d6d5"
+    },
+    {
+      "path": "result/America_Los_Angeles/receipt.json",
+      "bytes": 3606,
+      "sha256": "6d212be02740298c278303699d267feefc910428fa4e79b6550c71ac90cf267d"
+    },
+    {
+      "path": "result/America_Los_Angeles/stderr.gz",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "path": "result/America_Los_Angeles/stdout.gz",
+      "bytes": 765,
+      "sha256": "c1aaa89fcac023f31de4a1c06ff503208a5eb2a0ebc92efef71928fb41002579"
+    },
+    {
+      "path": "result/America_Los_Angeles/timezone-probe.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "result/America_Los_Angeles/timezone-probe.stdout",
+      "bytes": 237,
+      "sha256": "1d8dd62d99e3b19896e5bf7d68352d86e75b5b0456202ce956fc117d5f25a10e"
+    },
+    {
+      "path": "result/Europe_Berlin/receipt.json",
+      "bytes": 3591,
+      "sha256": "4e6f738c559237859e1d79873c888d5938a4af9f7a59205bd680fc82b8fb7698"
+    },
+    {
+      "path": "result/Europe_Berlin/stderr.gz",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "path": "result/Europe_Berlin/stdout.gz",
+      "bytes": 765,
+      "sha256": "5904b1b8043c4151eb8d267f3e5dfcc20aa7241211bd27a6f971cd2f7e5ea4c4"
+    },
+    {
+      "path": "result/Europe_Berlin/timezone-probe.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "result/Europe_Berlin/timezone-probe.stdout",
+      "bytes": 233,
+      "sha256": "290b044856ee03805c2234fa65c37d856115f3c9d4dcfdbd00b658a5e8bbbcff"
+    },
+    {
+      "path": "result/UTC/receipt.json",
+      "bytes": 3572,
+      "sha256": "af5ffc7085c585633c1519e10bcf9a7e292b8d0faf2abe7ae42b45e59d0dad43"
+    },
+    {
+      "path": "result/UTC/stderr.gz",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "path": "result/UTC/stdout.gz",
+      "bytes": 765,
+      "sha256": "7cf9e9beb4451c5627320641a9ddda6ab8ccbbb5daee8be64714c66f910d45a3"
+    },
+    {
+      "path": "result/UTC/timezone-probe.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "result/UTC/timezone-probe.stdout",
+      "bytes": 228,
+      "sha256": "b6b342468470b340ea4579634f2aae5c9523a8105f0203bce25815228d2aa637"
+    },
+    {
+      "path": "result/inputs-after.json.gz",
+      "bytes": 501385,
+      "sha256": "bf964b0c1d5c72ad8c05d8856a6fc45a99fd9a707a53e5e583e51f27aea878f7"
+    },
+    {
+      "path": "result/inputs-before.json.gz",
+      "bytes": 501385,
+      "sha256": "bf964b0c1d5c72ad8c05d8856a6fc45a99fd9a707a53e5e583e51f27aea878f7"
+    },
+    {
+      "path": "result/receipt.json",
+      "bytes": 12784,
+      "sha256": "5370fdf6a9921aec9d2acb09480c9d3e70bd2ca8706f702c4cddc675b162b603"
+    },
+    {
+      "path": "result/timezone_probe.dart",
+      "bytes": 296,
+      "sha256": "b7471d53c9ca529aca55a64641be7a204521732f5d327b8bfc15119ed37302a9"
+    },
+    {
+      "path": "run_supplemental_gates.py",
+      "bytes": 4210,
+      "sha256": "3c9b0360852d3e4f27189543996e7e4690c011c7b58578c1055462c1a40419ec"
+    }
+  ]
+}

@@ -1,0 +1,586 @@
+{
+  "schema": "quds.office.pr_reconciliation.v1",
+  "observed_at": "2026-11-18T05:42:33.530Z",
+  "repository": "CrispStrobe/quds_office_suite",
+  "main_sha": "482e08176dea6bd8f5fc80d1c0064d96b712db43",
+  "latest_pr_number": 154,
+  "recent_pr_count": 40,
+  "open_prs": [
+    {
+      "number": 154,
+      "title": "Fix civil-date boundaries and preserve reconciled Office qualification",
+      "base": "main",
+      "head": "codex/office-local-qualification-20261118",
+      "head_sha": "9d060658ee6be8ec97d73f56b9aec10d346b7952",
+      "draft": true,
+      "state": "open",
+      "merged": false,
+      "updated_at": "2026-11-18T05:38:50Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/154"
+    },
+    {
+      "number": 153,
+      "title": "Continue W7 spaCy packaging from the completed grammar qualification",
+      "base": "feat/native-spacy-reference-20261117",
+      "head": "feat/native-spacy-w7-20261118",
+      "head_sha": "995a8cd500787f2fe3ae5f268201efa73a15dea6",
+      "draft": true,
+      "state": "open",
+      "merged": false,
+      "updated_at": "2026-11-18T05:41:38Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/153"
+    },
+    {
+      "number": 139,
+      "title": "Add optional native German analysis and qualified manual agreement corrections",
+      "base": "main",
+      "head": "feat/native-spacy-reference-20261117",
+      "head_sha": "20026ff49ac37391e2a1fd0947560a587f2f7332",
+      "draft": true,
+      "state": "open",
+      "merged": false,
+      "updated_at": "2026-11-18T05:16:02Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/139"
+    }
+  ],
+  "recent_prs": [
+    {
+      "number": 154,
+      "title": "Fix civil-date boundaries and preserve reconciled Office qualification",
+      "state": "open",
+      "merged": false,
+      "head_sha": "9d060658ee6be8ec97d73f56b9aec10d346b7952",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/154"
+    },
+    {
+      "number": 153,
+      "title": "Continue W7 spaCy packaging from the completed grammar qualification",
+      "state": "open",
+      "merged": false,
+      "head_sha": "995a8cd500787f2fe3ae5f268201efa73a15dea6",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/153"
+    },
+    {
+      "number": 152,
+      "title": "Reconcile Office union qualification and frame bookmarks",
+      "state": "closed",
+      "merged": true,
+      "head_sha": "da9c956ec5d65c0e5a9f9ea84c2b0bca98e824a0",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/152"
+    },
+    {
+      "number": 151,
+      "title": "Support calendar-relative conditional periods",
+      "state": "closed",
+      "merged": true,
+      "head_sha": "7ef09f2408f467c65427700e65907531ecb26acb",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/151"
+    },
+    {
+      "number": 150,
+      "title": "Complete local Office union qualification and preserve recovery evidence",
+      "state": "closed",
+      "merged": false,
+      "head_sha": "6d97fedccde17244a917ee7d3372adebe5494089",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/150"
+    },
+    {
+      "number": 149,
+      "title": "Reconcile Office union and finish ODT boundary qualification",
+      "state": "closed",
+      "merged": true,
+      "head_sha": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/149"
+    },
+    {
+      "number": 148,
+      "title": "Reconcile recent Office work and finish local qualification",
+      "state": "closed",
+      "merged": false,
+      "head_sha": "e3831cdde529aa0c2368845cd72c1b9b65154665",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/148"
+    },
+    {
+      "number": 147,
+      "title": "Reconcile ODT field, bookmark and column-break fidelity",
+      "state": "closed",
+      "merged": true,
+      "head_sha": "cee6e2632f891a3fe21c5c02d6bf508805973051",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/147"
+    },
+    {
+      "number": 146,
+      "title": "Record icon sets",
+      "state": "closed",
+      "merged": true,
+      "head_sha": "a7f144cc983f2df7c16d88f8644ad67a9254c3d0",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/146"
+    },
+    {
+      "number": 145,
+      "title": "Support icon-set conditional formats",
+      "state": "closed",
+      "merged": true,
+      "head_sha": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/145"
+    },
+    {
+      "number": 144,
+      "title": "Reconcile Office fidelity and preserve later-section column breaks",
+      "state": "closed",
+      "merged": false,
+      "head_sha": "a1e026b496f91b54bbd3017aae54717bf25a5586",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/144"
+    },
+    {
+      "number": 143,
+      "title": "Fix ODT field and bookmark boundaries; reconcile German proofing controls",
+      "state": "closed",
+      "merged": false,
+      "head_sha": "83f8c380f9271b6bf34a300c3aedc19442cb61f1",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/143"
+    },
+    {
+      "number": 142,
+      "title": "Record data bars",
+      "state": "closed",
+      "merged": true,
+      "head_sha": "69d14f84cabd3931b7640c1654b401c89faba766",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/142"
+    },
+    {
+      "number": 141,
+      "title": "Support data-bar conditional formats",
+      "state": "closed",
+      "merged": true,
+      "head_sha": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/141"
+    },
+    {
+      "number": 140,
+      "title": "Preserve cached page fields through DOCX import and ODT export",
+      "state": "closed",
+      "merged": true,
+      "head_sha": "c34945761e7991f5fe49037d79529acdd260b31c",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/140"
+    },
+    {
+      "number": 139,
+      "title": "Add optional native German analysis and qualified manual agreement corrections",
+      "state": "open",
+      "merged": false,
+      "head_sha": "20026ff49ac37391e2a1fd0947560a587f2f7332",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/139"
+    },
+    {
+      "number": 138,
+      "title": "Record dynamic ODS validation links",
+      "state": "closed",
+      "merged": true,
+      "head_sha": "b8ddaaeb581e010467de304c828764d353149102",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/138"
+    },
+    {
+      "number": 137,
+      "title": "Preserve range-backed ODS list validations",
+      "state": "closed",
+      "merged": true,
+      "head_sha": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/137"
+    },
+    {
+      "number": 136,
+      "title": "Record color scales",
+      "state": "closed",
+      "merged": true,
+      "head_sha": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/136"
+    },
+    {
+      "number": 135,
+      "title": "Support color-scale conditional formats",
+      "state": "closed",
+      "merged": true,
+      "head_sha": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/135"
+    },
+    {
+      "number": 134,
+      "title": "Record AOT removal",
+      "state": "closed",
+      "merged": true,
+      "head_sha": "128a187d69555db80890c2a1945a442b951f9c74",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/134"
+    },
+    {
+      "number": 133,
+      "title": "Write ODT first and even header/footer variants",
+      "state": "closed",
+      "merged": true,
+      "head_sha": "f87533cdbf9f98e5cfc11d21d8903f8501212ab8",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/133"
+    },
+    {
+      "number": 132,
+      "title": "Preserve ODF stories, header media and bookmark ranges",
+      "state": "closed",
+      "merged": true,
+      "head_sha": "0ecd1615b96d7b90156c1e913e105d467efe9a39",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/132"
+    },
+    {
+      "number": 131,
+      "title": "Document native spaCy/CrispEmbed implementation handoff",
+      "state": "closed",
+      "merged": true,
+      "head_sha": "f965fce6a54141b753a22f1e1b6c2fabba44e389",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/131"
+    },
+    {
+      "number": 130,
+      "title": "Preserve inline ODT PAGE and NUMPAGES fields",
+      "state": "closed",
+      "merged": true,
+      "head_sha": "84076f8ec8e4604a631cbaad9b88b030e508f0bc",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/130"
+    },
+    {
+      "number": 129,
+      "title": "Merge remaining proofing branches and remove AOT/RML",
+      "state": "closed",
+      "merged": true,
+      "head_sha": "bb5a97a8d7c5f9ffa261e64753f53a3c044b610f",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/129"
+    },
+    {
+      "number": 128,
+      "title": "Fix visible ODF extraction and ODT story fidelity",
+      "state": "closed",
+      "merged": false,
+      "head_sha": "814f165cb24a5b719dde65495f64d85f86563328",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/128"
+    },
+    {
+      "number": 127,
+      "title": "Write cached ODT table-of-contents entries",
+      "state": "closed",
+      "merged": true,
+      "head_sha": "8b70fdb42fb2d974587c75437b3adb5018190159",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/127"
+    },
+    {
+      "number": 126,
+      "title": "Export ODP ellipse and rounded-rectangle shapes",
+      "state": "closed",
+      "merged": true,
+      "head_sha": "8fae38da39c3c45344e723abca92c9330f15a791",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/126"
+    },
+    {
+      "number": 125,
+      "title": "Merge Office continuation without AOT",
+      "state": "closed",
+      "merged": true,
+      "head_sha": "af2a61862d23572b108bd7ef7719c7f575348d83",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/125"
+    },
+    {
+      "number": 124,
+      "title": "Write ODT field results",
+      "state": "closed",
+      "merged": true,
+      "head_sha": "b005a46b32c8b3ec92d60bb99147f2aa3af51f06",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/124"
+    },
+    {
+      "number": 123,
+      "title": "Consolidate Office and proofing continuations with local qualification [skip ci]",
+      "state": "closed",
+      "merged": false,
+      "head_sha": "1138cffdc4a1c909b2b149db80312037c21909d8",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/123"
+    },
+    {
+      "number": 122,
+      "title": "Write ODT column breaks and keep-together",
+      "state": "closed",
+      "merged": true,
+      "head_sha": "54a3a8593bdb34dd7c1f737960aa732d401fc2da",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/122"
+    },
+    {
+      "number": 121,
+      "title": "Preserve ODP chart data as tables",
+      "state": "closed",
+      "merged": true,
+      "head_sha": "a86a4ec6a231ed66cd868ea1ece3acc3aea2bb8f",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/121"
+    },
+    {
+      "number": 120,
+      "title": "Run AOT locally without SynanDaemon and improve analysis workflow [skip ci]",
+      "state": "closed",
+      "merged": false,
+      "head_sha": "e37ccdb47c047f6a0250585cf5cb20efc17573b4",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/120"
+    },
+    {
+      "number": 119,
+      "title": "Write multi-column ODT sections",
+      "state": "closed",
+      "merged": true,
+      "head_sha": "2c7d58d2e83e542655db7e9bbcc04b6bade44902",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/119"
+    },
+    {
+      "number": 118,
+      "title": "Write ODT paragraph tab stops",
+      "state": "closed",
+      "merged": true,
+      "head_sha": "4391669c881cbcba372c742d2300c24cdc465a2f",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/118"
+    },
+    {
+      "number": 117,
+      "title": "Add optional AOT grammar checking and linguistic analysis [skip ci]",
+      "state": "closed",
+      "merged": false,
+      "head_sha": "8b19ead89800f81ed9743ffbaf3279ac88fdd06d",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/117"
+    },
+    {
+      "number": 116,
+      "title": "Qualify Office continuation and repair paragraph decoration caching [skip ci]",
+      "state": "closed",
+      "merged": false,
+      "head_sha": "6a32a919325d71c121c63e3879cfd1b28d64312e",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/116"
+    },
+    {
+      "number": 115,
+      "title": "Write ODT table borders and row heights",
+      "state": "closed",
+      "merged": true,
+      "head_sha": "b54ef7d2955f44266a87d9067d0e4c332e868c54",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/115"
+    }
+  ],
+  "recent_main_commits": [
+    {
+      "sha": "482e08176dea6bd8f5fc80d1c0064d96b712db43",
+      "title": "Record reviewed German coverage and build 31 delivery evidence [skip ci]",
+      "created_at": "2026-11-17T22:59:46Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/commit/482e08176dea6bd8f5fc80d1c0064d96b712db43"
+    },
+    {
+      "sha": "6245a6956a76a38f925e1eb18851c0086730112d",
+      "title": "Keep per-word formatting and tracked history for complete grammar choices [skip ci]",
+      "created_at": "2026-11-17T22:25:46Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/commit/6245a6956a76a38f925e1eb18851c0086730112d"
+    },
+    {
+      "sha": "b24b0469c268a007af5e75e44c873f08b21d9a8b",
+      "title": "Capture formatting loss when applying complete grammar phrases [skip ci]",
+      "created_at": "2026-11-17T22:19:59Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/commit/b24b0469c268a007af5e75e44c873f08b21d9a8b"
+    },
+    {
+      "sha": "57d37c5978ce95c333068df23219f6b3065fe95f",
+      "title": "Retain the reconciled Office fidelity work before grammar release [skip ci]",
+      "created_at": "2026-11-17T22:18:21Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/commit/57d37c5978ce95c333068df23219f6b3065fe95f"
+    },
+    {
+      "sha": "23f3b4204fce45d38a103e3159bdc7f1e8d37c4e",
+      "title": "Reconcile Office union qualification and frame bookmarks (#152)",
+      "created_at": "2026-11-17T22:10:10Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/commit/23f3b4204fce45d38a103e3159bdc7f1e8d37c4e"
+    },
+    {
+      "sha": "6f40365ae7708172c58e9aee38bc363d99327355",
+      "title": "Retain the latest calendar-conditional work alongside German completion [skip ci]",
+      "created_at": "2026-11-17T22:07:13Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/commit/6f40365ae7708172c58e9aee38bc363d99327355"
+    },
+    {
+      "sha": "34dc6b6806869570e9ec342e4d7ee0d6951c0ba6",
+      "title": "feat(sheet): support calendar-relative conditional periods (#151)",
+      "created_at": "2026-11-17T22:05:16Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/commit/34dc6b6806869570e9ec342e4d7ee0d6951c0ba6"
+    },
+    {
+      "sha": "34a78e54174609dc87f2a866ec32e2d4e6e6d379",
+      "title": "Reserve an icon slot so spreadsheet numbers cannot cover the marker [skip ci]",
+      "created_at": "2026-11-17T22:02:40Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/commit/34a78e54174609dc87f2a866ec32e2d4e6e6d379"
+    },
+    {
+      "sha": "d76855e63eac0a2be38d873efee3048f26c4a7f4",
+      "title": "Exercise choosing full German phrase alternatives through real Word review [skip ci]",
+      "created_at": "2026-11-17T21:59:14Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/commit/d76855e63eac0a2be38d873efee3048f26c4a7f4"
+    },
+    {
+      "sha": "39158b3729d7c9122221d67de5b3fc683c2f97ec",
+      "title": "Preserve the existing host icon painter during canonical source sync [skip ci]",
+      "created_at": "2026-11-17T21:55:35Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/commit/39158b3729d7c9122221d67de5b3fc683c2f97ec"
+    },
+    {
+      "sha": "1b64ddf4ee6a9178a91f523d8c0fc94f11e42db4",
+      "title": "Qualify complete choices alongside the incoming object-case safety suite [skip ci]",
+      "created_at": "2026-11-17T21:50:10Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/commit/1b64ddf4ee6a9178a91f523d8c0fc94f11e42db4"
+    },
+    {
+      "sha": "24b930f827be1fb174b8f8a8f61fdaae360c193f",
+      "title": "Exercise shared grammar ambiguity vetoes after source reconciliation [skip ci]",
+      "created_at": "2026-11-17T21:46:14Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/commit/24b930f827be1fb174b8f8a8f61fdaae360c193f"
+    },
+    {
+      "sha": "905f1a1534cbcc6e0045590757b400cf0eb27e7d",
+      "title": "Reconcile current Office and grammar safety work with phrase completion [skip ci]",
+      "created_at": "2026-11-17T21:45:29Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/commit/905f1a1534cbcc6e0045590757b400cf0eb27e7d"
+    },
+    {
+      "sha": "98fe873da0fbe6592db0c7754c5b8fa7ee069173",
+      "title": "Complete bounded German phrase repairs without erasing valid readings [skip ci]",
+      "created_at": "2026-11-17T21:41:08Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/commit/98fe873da0fbe6592db0c7754c5b8fa7ee069173"
+    },
+    {
+      "sha": "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4",
+      "title": "Reconcile Office union and finish ODT boundary qualification (#149)",
+      "created_at": "2026-11-17T21:32:16Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/commit/4b2b4e78839d2997a583b7ab1346e2fa537a8ac4"
+    },
+    {
+      "sha": "a5083646d1098cd4cc0b06de049bba21add7ffc6",
+      "title": "Freeze broader German phrase completion regressions [skip ci]",
+      "created_at": "2026-11-17T21:31:13Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/commit/a5083646d1098cd4cc0b06de049bba21add7ffc6"
+    },
+    {
+      "sha": "bb5556e8cc4cb73e2c668b5319a2844a20c6c50c",
+      "title": "Reconcile ODT field, bookmark and column-break fidelity (#147)",
+      "created_at": "2026-11-17T21:29:44Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/commit/bb5556e8cc4cb73e2c668b5319a2844a20c6c50c"
+    },
+    {
+      "sha": "0ff7d23929e4640af6c1d57f87c7ac71b73d2ed4",
+      "title": "docs: record icon sets (#146)",
+      "created_at": "2026-11-17T21:25:16Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/commit/0ff7d23929e4640af6c1d57f87c7ac71b73d2ed4"
+    },
+    {
+      "sha": "c84d5e16024c502f6c451fd04b9807b1e65f20d3",
+      "title": "feat(sheet): support icon-set conditional formats (#145)",
+      "created_at": "2026-11-17T21:23:28Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/commit/c84d5e16024c502f6c451fd04b9807b1e65f20d3"
+    },
+    {
+      "sha": "16e2477ff93f7a1ec5c6ed78491f2716ce4d1658",
+      "title": "Record deterministic grammar and Office release qualification [skip ci]",
+      "created_at": "2026-11-17T20:52:57Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/commit/16e2477ff93f7a1ec5c6ed78491f2716ce4d1658"
+    },
+    {
+      "sha": "96e65705ad69f969710d3ff6d2897bd4aa38fbf9",
+      "title": "Retain first-party data-bar rendering in canonical Office source [skip ci]",
+      "created_at": "2026-11-17T20:33:07Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/commit/96e65705ad69f969710d3ff6d2897bd4aa38fbf9"
+    },
+    {
+      "sha": "f545335892ae86b12d2d7d3e4557b8e720c85235",
+      "title": "Capture missing data-bar painting independently of serialized rule state [skip ci]",
+      "created_at": "2026-11-17T20:32:10Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/commit/f545335892ae86b12d2d7d3e4557b8e720c85235"
+    },
+    {
+      "sha": "5cce94a10844926e9ddb0d2e3f6df1f1cd7e0717",
+      "title": "Merge remote-tracking branch 'origin/main' into feat/grammar-release-20261117",
+      "created_at": "2026-11-17T20:20:12Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/commit/5cce94a10844926e9ddb0d2e3f6df1f1cd7e0717"
+    },
+    {
+      "sha": "2c47165d01d01cc883135a434ac9f6591ce6e770",
+      "title": "Preserve cached page fields through DOCX import and ODT export (#140)",
+      "created_at": "2026-11-17T20:14:55Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/commit/2c47165d01d01cc883135a434ac9f6591ce6e770"
+    },
+    {
+      "sha": "52c73ae4dbadf2ca00a5d619144350ccc353b31a",
+      "title": "docs: record data bars (#142)",
+      "created_at": "2026-11-17T20:14:25Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/commit/52c73ae4dbadf2ca00a5d619144350ccc353b31a"
+    },
+    {
+      "sha": "b3f41eb4b4bca8ca13676b4114891ea6d9185043",
+      "title": "Support data-bar conditional formats (#141)",
+      "created_at": "2026-11-17T20:13:19Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/commit/b3f41eb4b4bca8ca13676b4114891ea6d9185043"
+    },
+    {
+      "sha": "1ec0a81bc43dc444872fbffffa36a8affce307a5",
+      "title": "Merge remote-tracking branch 'origin/main' into feat/grammar-release-20261117",
+      "created_at": "2026-11-17T20:03:06Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/commit/1ec0a81bc43dc444872fbffffa36a8affce307a5"
+    },
+    {
+      "sha": "d6010059644b34accd6f188e0e2a4863ab63e318",
+      "title": "docs: record dynamic ODS validation links (#138)",
+      "created_at": "2026-11-17T20:02:17Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/commit/d6010059644b34accd6f188e0e2a4863ab63e318"
+    },
+    {
+      "sha": "d754bf15b07a24c8a86c8dce339ca749fecd9531",
+      "title": "feat(sheet): preserve range-backed ODS list validations (#137)",
+      "created_at": "2026-11-17T20:01:17Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/commit/d754bf15b07a24c8a86c8dce339ca749fecd9531"
+    },
+    {
+      "sha": "cc716c4691a30d470158cf8ee37066dd980364e5",
+      "title": "Preserve Calc cell whitespace across import, preview, search and ODS export [skip ci]",
+      "created_at": "2026-11-17T20:00:23Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/commit/cc716c4691a30d470158cf8ee37066dd980364e5"
+    }
+  ],
+  "office": {
+    "source_sha": "9a7c80be00258def2dcae3bb288c28558c83aa72",
+    "saved_branch_sha": "9d060658ee6be8ec97d73f56b9aec10d346b7952",
+    "current_main_ancestor": true,
+    "ahead_of_main": 7,
+    "behind_main": 0,
+    "after_source_docs_only": true,
+    "source_to_evidence_commits": 4,
+    "non_documentation_paths_since_main": [
+      "packages/quds_office_editor/test/sheet_conditional_rendering_test.dart",
+      "packages/quds_office_engine/CHANGELOG.md",
+      "packages/quds_office_engine/lib/src/sheet/model/sml_conditional_format.dart",
+      "packages/quds_office_engine/test/sheet_time_period_calendar_test.dart"
+    ],
+    "recommended_action": "Continue #154 from its saved head; no additional main/PR Office source needs reconciliation at this snapshot."
+  },
+  "separate_spacy": {
+    "pr139_head": "20026ff49ac37391e2a1fd0947560a587f2f7332",
+    "pr153_initial_observed_head": "2e57784093fd2d1f44fe27edb31077d4163693f2",
+    "pr153_refreshed_head": "995a8cd500787f2fe3ae5f268201efa73a15dea6",
+    "added_since_initial_observed_head": [
+      "docs/validation/native-spacy-w7-20261118/CONTINUE.md",
+      "docs/validation/native-spacy-w7-20261118/README.md",
+      "docs/validation/native-spacy-w7-20261118/checkpoint-status.json"
+    ],
+    "new_checkpoint_docs_only": true,
+    "qualification": "package controls/build/install passed; current consumers pending execution due to prior workspace ENOSPC",
+    "constraints": [
+      "Separate stacked W7 / native spaCy work; do not import wholesale into Office qualification.",
+      "Native acceptance and W6 language panel are already consumed; do not rerun or tune on them.",
+      "Manual provider remains disabled by default; no automatic Studio registration."
+    ],
+    "recommended_action": "Fetch and record 995a8cd5 for preservation; keep outside Office source."
+  },
+  "github_actions_workflow_check_status_endpoints_queried": 0,
+  "remote_mutations": 0
+}

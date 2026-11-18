@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "closed_utc": "2026-11-18T06:25:49.537348+00:00",
+  "local_qualification_accepted": true,
+  "release_accepted": false,
+  "branch": "codex/office-local-qualification-20261118",
+  "implementation_commit": "9a7c80be00258def2dcae3bb288c28558c83aa72",
+  "execution_commit": "9d060658ee6be8ec97d73f56b9aec10d346b7952",
+  "accepted_evidence_commit": "27aceb8a50414346a522a2ae659d6649f6864994",
+  "accepted_evidence_tree": "fbebd08423a80f7b32eae2a5725429e32cc03a33",
+  "all_new_remote_files_verified": true,
+  "new_final_archive_members_verified": 30,
+  "publication_readback_sha256": "e0dcca4ead6cf1545954f4a9a9824f8c2008a74e6f20cbb436d9fa186d8bccf6",
+  "report_consistency_review_sha256": "0f7127f1526bf1cf3b198d2d91f01397f38e32431bec429db8fd068efcd443e7",
+  "readme_sha256": "38d4375023aa59d9968f1ecc2bbc653c5d1b27abdc265f5483a43ff80e9ebfab",
+  "status_sha256": "5b82dc2cde570482a5c88cfa001bd3c194a5276152d696e9e50be2ba8e3439f2",
+  "non_documentation_delta_from_execution": [],
+  "incremental_checkpoints": [
+    "eb628b66d82b809495d1391bbe36f2073fe2e772",
+    "536ea0af12b1053b7466d95606edff52cc6ee615",
+    "17d9d0f03f5bd32d8e0fc9b3993806f863254f58",
+    "7104a7363174420c4fc9c1812466cf6db3a824fd",
+    "27aceb8a50414346a522a2ae659d6649f6864994"
+  ],
+  "actions_workflow_check_status_endpoint_calls": 0,
+  "remaining_required_local_gates": [],
+  "pull_request": 154,
+  "pr_next_transition": "update description and mark ready for review after this closure is saved"
+}

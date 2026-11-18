@@ -1,0 +1,102 @@
+{
+  "schema": "quds.office.remote-checkpoint-readback.v1",
+  "commit": "c2b5905d39f46150301ba83b32d1dd792d605bd2",
+  "completed_utc": "2026-11-18T05:55:06.646270+00:00",
+  "retrieval": "GitHub plugin fetch_file at immutable commit; archive base64",
+  "local_producer_blobs_used": false,
+  "archives": [
+    {
+      "archive": "canonical-checkpoint-01.tar.xz",
+      "remote_url": "https://github.com/CrispStrobe/quds_office_suite/blob/c2b5905d39f46150301ba83b32d1dd792d605bd2/docs/validation/office-retry-20261118/evidence/canonical-checkpoint-01.tar.xz",
+      "index_url": "https://github.com/CrispStrobe/quds_office_suite/blob/c2b5905d39f46150301ba83b32d1dd792d605bd2/docs/validation/office-retry-20261118/evidence/canonical-checkpoint-01.tar.index.json",
+      "bytes": 632028,
+      "sha256": "3239bb9193f536e279af08391b3d95fbea38c51f884e7b44e5e853c78be0b365",
+      "archive_git_blob_sha": "fb47f0fcb81be59e8c33fd62d677efda946bd096",
+      "index_sha256": "135535cd23836711ca40e4bdca12500f2276ca85ec4793b454e44843e9685afb",
+      "index_git_blob_sha": "cd3489cf1f40d9f0c6dfa90f0442cbda2ca4c8fc",
+      "member_count": 33,
+      "all_members_verified": true,
+      "size_matches": true,
+      "archive_hash_matches": true,
+      "git_blob_hashes_match": true,
+      "classification": "Canonical checkpoint; whole-run acceptance=False; final integrity available=False",
+      "passed": true,
+      "checkpoint_state": {
+        "sealed_utc": "2026-11-18T05:52:25.944784+00:00",
+        "source_commit": "9d060658ee6be8ec97d73f56b9aec10d346b7952",
+        "whole_run_status": "running",
+        "completed_command_names": [
+          "engine-strict-analysis",
+          "editor-strict-analysis",
+          "harper-strict-analysis",
+          "gector-strict-analysis",
+          "proofing-tools-strict-analysis",
+          "format",
+          "python-controls",
+          "engine-zotero",
+          "editor-zotero"
+        ],
+        "running_commands_omitted": [
+          "engine-integration"
+        ],
+        "final_input_integrity_available": false,
+        "whole_run_accepted": false
+      }
+    },
+    {
+      "archive": "flutter-restoration.tar.xz",
+      "remote_url": "https://github.com/CrispStrobe/quds_office_suite/blob/c2b5905d39f46150301ba83b32d1dd792d605bd2/docs/validation/office-retry-20261118/evidence/flutter-restoration.tar.xz",
+      "index_url": "https://github.com/CrispStrobe/quds_office_suite/blob/c2b5905d39f46150301ba83b32d1dd792d605bd2/docs/validation/office-retry-20261118/evidence/flutter-restoration.tar.index.json",
+      "bytes": 805712,
+      "sha256": "059e0447e37f86f735cdd80d5965caef46a762a873e2f3a04831d231a40381ba",
+      "archive_git_blob_sha": "7eafa4b7607c2c8ab9ab81c5eb16de47596b8dba",
+      "index_sha256": "416dda91c831eac9e1c76748c2634b2e51058f52f7ecffd759560be7ca07de17",
+      "index_git_blob_sha": "9bde6b8bb64af6d6415ceaa929cd4035dc83c090",
+      "member_count": 32,
+      "all_members_verified": true,
+      "size_matches": true,
+      "archive_hash_matches": true,
+      "git_blob_hashes_match": true,
+      "classification": "Passed exact Flutter recovery, stable actual-root prewarm, and independent consumed-input audit before fresh gates",
+      "passed": true
+    },
+    {
+      "archive": "native-runtime-recovery-20261118-resume.tar.xz",
+      "remote_url": "https://github.com/CrispStrobe/quds_office_suite/blob/c2b5905d39f46150301ba83b32d1dd792d605bd2/docs/validation/office-retry-20261118/evidence/native-runtime-recovery-20261118-resume.tar.xz",
+      "index_url": "https://github.com/CrispStrobe/quds_office_suite/blob/c2b5905d39f46150301ba83b32d1dd792d605bd2/docs/validation/office-retry-20261118/evidence/native-runtime-recovery-20261118-resume.tar.index.json",
+      "bytes": 63256,
+      "sha256": "3c7012849580730d88ff219f4d660a0338c3a939961c5dbdd7d7c8cbfc757595",
+      "archive_git_blob_sha": "bdb2555da24aad275e215746622c00848ae9108f",
+      "index_sha256": "4224829699e377a1d59c0c7946c4f0018d292dd2ffad471ac8c6b8680e0993b4",
+      "index_git_blob_sha": "8314f211046c0d3a246e28069a452f3444b4cb32",
+      "member_count": 45,
+      "all_members_verified": true,
+      "size_matches": true,
+      "archive_hash_matches": true,
+      "git_blob_hashes_match": true,
+      "classification": "Exact pinned native/Python runtime recovery for resumed Office qualification; both binaries/model/pack and25 Python package versions match preserved pins. All archive members read back. This is runtime readiness, not product qualification.",
+      "passed": true
+    },
+    {
+      "archive": "consumer-runtime-readiness.tar.xz",
+      "remote_url": "https://github.com/CrispStrobe/quds_office_suite/blob/c2b5905d39f46150301ba83b32d1dd792d605bd2/docs/validation/office-retry-20261118/evidence/consumer-runtime-readiness.tar.xz",
+      "index_url": "https://github.com/CrispStrobe/quds_office_suite/blob/c2b5905d39f46150301ba83b32d1dd792d605bd2/docs/validation/office-retry-20261118/evidence/consumer-runtime-readiness.tar.index.json",
+      "bytes": 234608,
+      "sha256": "9af43704f93cd2f1530c6b72af8295bf15f5ec30ebaccf68061dace32f644b13",
+      "archive_git_blob_sha": "b84e8034776ca1161e1d3b03c455dd32e13e1fa8",
+      "index_sha256": "9d33edf5ddbc931685cde2564996dc6b4fa186c404a297a3a2d62b17b2f17fdc",
+      "index_git_blob_sha": "f81e4697c018473548eb4113269c45c92f764b7d",
+      "member_count": 26,
+      "all_members_verified": true,
+      "size_matches": true,
+      "archive_hash_matches": true,
+      "git_blob_hashes_match": true,
+      "classification": "Current consumer restoration and readiness only; 710 archived members and 4450 runtime files verified, 4 Jing controls, no product gate executed",
+      "passed": true
+    }
+  ],
+  "github_actions_used": false,
+  "passed": true,
+  "total_members_verified": 136,
+  "total_archive_bytes": 1735604
+}

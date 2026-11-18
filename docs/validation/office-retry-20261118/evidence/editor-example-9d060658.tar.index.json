@@ -1,0 +1,55 @@
+{
+  "archive": "editor-example-9d060658.tar.xz",
+  "bytes": 506268,
+  "sha256": "3764ba4865d6df0dfc568139714add8b730fd00935f2644042f249413eb1f093",
+  "classification": "Passed editor-example gate on frozen 9d060658ee6be8ec97d73f56b9aec10d346b7952",
+  "member_count": 9,
+  "all_members_read_back_and_verified": true,
+  "members": [
+    {
+      "path": "orchestration.json",
+      "bytes": 1051,
+      "sha256": "1bc0783f45207b76b995cf1c0e6fb61ba3b5d6f4fb593860d7273962b3556856"
+    },
+    {
+      "path": "outer.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "outer.stdout",
+      "bytes": 223,
+      "sha256": "21079f449c770b3b6697712219f092f898c17705b6a55ad3b66852a60c805fcf"
+    },
+    {
+      "path": "result/inputs-after.json.gz",
+      "bytes": 501377,
+      "sha256": "e53287e79321f60a5e40dba52203aae2665e1e04dc13a801757d457b5f84a437"
+    },
+    {
+      "path": "result/inputs-before.json.gz",
+      "bytes": 501377,
+      "sha256": "e53287e79321f60a5e40dba52203aae2665e1e04dc13a801757d457b5f84a437"
+    },
+    {
+      "path": "result/receipt.json",
+      "bytes": 2481,
+      "sha256": "dd5f4e68238b89b64536610149f6d24c7ad3b49cd73412f5b304930641aafa59"
+    },
+    {
+      "path": "result/stderr.gz",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "path": "result/stdout.gz",
+      "bytes": 592,
+      "sha256": "bdc23025b498cef4718ef9782153dcf67833d750740c91be9f0148219f90e1a4"
+    },
+    {
+      "path": "run_supplemental_gates.py",
+      "bytes": 4210,
+      "sha256": "3c9b0360852d3e4f27189543996e7e4690c011c7b58578c1055462c1a40419ec"
+    }
+  ]
+}
