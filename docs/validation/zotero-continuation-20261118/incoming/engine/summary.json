@@ -2,14 +2,14 @@
   "actual_process_exit_code": 0,
   "artifacts": {
     "cases.json": {
-      "bytes": 7820,
-      "git_blob_sha1": "0b49ef00a8fb4c60d61aab94a652d54b0f2c12a5",
-      "sha256": "e9a91b1df8b64b4820fe5cad1aa968b3bd27c447ac888b3ad6f186632a25fd99"
+      "bytes": 7821,
+      "git_blob_sha1": "136fa6523dacac8223311f52ce15a98659fd6241",
+      "sha256": "8d0b957b1f579d021a6954e5d1979a77a593dad450f096f1ca4f1be5d612a530"
     },
     "events.jsonl": {
-      "bytes": 18479,
-      "git_blob_sha1": "11219af0326fa3a46ad29c334a7039605c82159b",
-      "sha256": "2b20b0c23bd9667976a988b86e4e07fac6b3bdf280e088e32309172e660799fc"
+      "bytes": 18465,
+      "git_blob_sha1": "5826f347774dff36de86c0ed0082fda20ca625c1",
+      "sha256": "4c72963d33304ed9227417bec3f478a743a427e772434ff9d6b9852573164e48"
     },
     "excluded-events.json": {
       "bytes": 365,
@@ -18,8 +18,8 @@
     },
     "run.json": {
       "bytes": 1192,
-      "git_blob_sha1": "6a54da09540e3fd6bd13cf617a2e7b33b975c1b5",
-      "sha256": "6e3a2cdd77c2cd767abbcb3f0f6e08db5b40f337fe9e6210bbf5884fef67221e"
+      "git_blob_sha1": "4b1314099874de03ddaf4a12ac0ba7752390cbb1",
+      "sha256": "841ca662af14e1d79c7cff41c2c40b7c736ff45bb1878ef70f2b0aee08c1a279"
     },
     "run_incoming_engine.py": {
       "bytes": 6098,
@@ -38,13 +38,13 @@
     },
     "source-after.json": {
       "bytes": 95363,
-      "git_blob_sha1": "3a547d4ac5531939a93846625962b7eacc1d20b9",
-      "sha256": "21f12fff8781fc6895e2306a6ac9b9c4dc0e7ec5ad6b055ba5582506d9c4643d"
+      "git_blob_sha1": "387e4fc326becb88f1c5f0f36420ac8e5c1cd60a",
+      "sha256": "d6ada12af47c40e1006d301f1aa723c3eae3468927cd5afd46d40e727249e63e"
     },
     "source-before.json": {
       "bytes": 95363,
-      "git_blob_sha1": "3a547d4ac5531939a93846625962b7eacc1d20b9",
-      "sha256": "21f12fff8781fc6895e2306a6ac9b9c4dc0e7ec5ad6b055ba5582506d9c4643d"
+      "git_blob_sha1": "387e4fc326becb88f1c5f0f36420ac8e5c1cd60a",
+      "sha256": "d6ada12af47c40e1006d301f1aa723c3eae3468927cd5afd46d40e727249e63e"
     },
     "stderr.log": {
       "bytes": 0,
@@ -66,23 +66,23 @@
   "completion_events": [
     {
       "success": true,
-      "time": 2352,
+      "time": 2673,
       "type": "done"
     }
   ],
   "cwd": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_engine",
   "dart_version": "Dart SDK version: 3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\"",
-  "elapsed_seconds": 12.6825708389988,
+  "elapsed_seconds": 14.922736355998495,
   "error_events": [],
-  "finished_at_utc": "2026-11-18T12:54:16.293629+00:00",
+  "finished_at_utc": "2026-11-18T13:12:25.861867+00:00",
   "guards": {
     "both_selected_suites_executed": true,
     "every_started_event_finished_once": true,
     "runtime_graph_locks_unchanged": true,
     "source_unchanged": true
   },
-  "head_at_end": "604fa00427f88d18ffa96df71128c38e38502afb",
-  "head_at_start": "604fa00427f88d18ffa96df71128c38e38502afb",
+  "head_at_end": "b2bcfc23e692476d16d9a7a534ea95a93ae94cd3",
+  "head_at_start": "b2bcfc23e692476d16d9a7a534ea95a93ae94cd3",
   "parse_errors": [],
   "runner_sha256": "25790006f7dfa4476c0b23b980d322f3d23114ee76eec5dd73e2d2178d8e2380",
   "scope": "Existing incoming document-comparison tests; independent of Zotero cohort; no CI or golden rendering.",
@@ -92,7 +92,7 @@
   ],
   "skipped": 0,
   "source_file_count": 391,
-  "started_at_utc": "2026-11-18T12:54:03.550265+00:00",
+  "started_at_utc": "2026-11-18T13:12:10.857074+00:00",
   "status": "passed",
   "substantive_results": {
     "success": 39

@@ -1,0 +1,14 @@
+{
+  "source_file_count": 472,
+  "head_at_start": "b2bcfc23e692476d16d9a7a534ea95a93ae94cd3",
+  "head_at_end": "b2bcfc23e692476d16d9a7a534ea95a93ae94cd3",
+  "by_suite": {
+    "word_review_controller_test.dart": 18,
+    "word_review_dialog_test.dart": 13
+  },
+  "print_event_count": 0,
+  "stderr_bytes": 0,
+  "matched_diagnostics": [],
+  "events_sha256": "a7c040eaf62b201fadec5afdbb72b339bbecaff80c9a247a65c1a406894a6f94",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

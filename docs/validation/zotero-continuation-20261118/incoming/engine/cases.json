@@ -21,77 +21,91 @@
     "suite": "test/word_comparison_test.dart"
   },
   {
-    "id": 8,
+    "id": 10,
     "name": "repeated paragraphs align deterministically",
     "result": "success",
     "skipped": false,
     "suite": "test/word_comparison_test.dart"
   },
   {
-    "id": 9,
+    "id": 11,
     "name": "Unicode, Arabic, combining marks and joined emoji are indivisible",
     "result": "success",
     "skipped": false,
     "suite": "test/word_comparison_test.dart"
   },
   {
-    "id": 10,
+    "id": 12,
     "name": "normalization preserves source text and reports only requested differences",
     "result": "success",
     "skipped": false,
     "suite": "test/word_comparison_test.dart"
   },
   {
-    "id": 11,
+    "id": 9,
+    "name": "a previously captured missing target never binds a later paragraph",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/word_comparison_adversarial_test.dart"
+  },
+  {
+    "id": 13,
     "name": "direct run formatting is detected but equivalent run splitting is not",
     "result": "success",
     "skipped": false,
     "suite": "test/word_comparison_test.dart"
   },
   {
-    "id": 12,
+    "id": 15,
     "name": "paragraph and section formatting changes have readable details",
     "result": "success",
     "skipped": false,
     "suite": "test/word_comparison_test.dart"
   },
   {
-    "id": 13,
+    "id": 16,
     "name": "projecting pending revisions never changes metadata or input identity",
     "result": "success",
     "skipped": false,
     "suite": "test/word_comparison_test.dart"
   },
   {
-    "id": 14,
+    "id": 17,
     "name": "tracked deletion projection excludes deleted character formatting",
     "result": "success",
     "skipped": false,
     "suite": "test/word_comparison_test.dart"
   },
   {
-    "id": 15,
+    "id": 14,
+    "name": "legacy body indices count TOC paragraphs without redirecting a change",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/word_comparison_adversarial_test.dart"
+  },
+  {
+    "id": 18,
     "name": "invalid or overlapping revision ranges cannot silently project wrong text",
     "result": "success",
     "skipped": false,
     "suite": "test/word_comparison_test.dart"
   },
   {
-    "id": 16,
+    "id": 20,
     "name": "detached target is not redirected by a stale legacy index",
     "result": "success",
     "skipped": false,
     "suite": "test/word_comparison_test.dart"
   },
   {
-    "id": 17,
+    "id": 21,
     "name": "captured-null target cannot be rebound after later paragraph insertion",
     "result": "success",
     "skipped": false,
     "suite": "test/word_comparison_test.dart"
   },
   {
-    "id": 18,
+    "id": 22,
     "name": "table, frame, header and note changes retain their story locations",
     "result": "success",
     "skipped": false,
@@ -99,62 +113,48 @@
   },
   {
     "id": 19,
-    "name": "empty table topology changes are not mistaken for equal documents",
-    "result": "success",
-    "skipped": false,
-    "suite": "test/word_comparison_test.dart"
-  },
-  {
-    "id": 20,
-    "name": "same display text with a different hyperlink is a structural change",
-    "result": "success",
-    "skipped": false,
-    "suite": "test/word_comparison_test.dart"
-  },
-  {
-    "id": 21,
-    "name": "splitting a hyperlink across equal runs is not a document change",
-    "result": "success",
-    "skipped": false,
-    "suite": "test/word_comparison_test.dart"
-  },
-  {
-    "id": 22,
-    "name": "coarse fallback is bounded, disclosed and does not truncate text",
-    "result": "success",
-    "skipped": false,
-    "suite": "test/word_comparison_test.dart"
-  },
-  {
-    "id": 25,
-    "name": "a previously captured missing target never binds a later paragraph",
-    "result": "success",
-    "skipped": false,
-    "suite": "test/word_comparison_adversarial_test.dart"
-  },
-  {
-    "id": 26,
-    "name": "legacy body indices count TOC paragraphs without redirecting a change",
-    "result": "success",
-    "skipped": false,
-    "suite": "test/word_comparison_adversarial_test.dart"
-  },
-  {
-    "id": 27,
     "name": "adjacent zero-width native inline nodes keep independent identities",
     "result": "success",
     "skipped": false,
     "suite": "test/word_comparison_adversarial_test.dart"
   },
   {
-    "id": 28,
+    "id": 23,
+    "name": "empty table topology changes are not mistaken for equal documents",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/word_comparison_test.dart"
+  },
+  {
+    "id": 25,
+    "name": "same display text with a different hyperlink is a structural change",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/word_comparison_test.dart"
+  },
+  {
+    "id": 26,
+    "name": "splitting a hyperlink across equal runs is not a document change",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/word_comparison_test.dart"
+  },
+  {
+    "id": 24,
     "name": "case normalization still detects moved direct character formatting",
     "result": "success",
     "skipped": false,
     "suite": "test/word_comparison_adversarial_test.dart"
   },
   {
-    "id": 29,
+    "id": 27,
+    "name": "coarse fallback is bounded, disclosed and does not truncate text",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/word_comparison_test.dart"
+  },
+  {
+    "id": 28,
     "name": "ignored whitespace length does not invent a formatting change",
     "result": "success",
     "skipped": false,
@@ -231,7 +231,7 @@
     "suite": "test/word_comparison_adversarial_test.dart"
   },
   {
-    "id": 23,
+    "id": 29,
     "name": "large mostly identical inputs use anchors without quadratic work",
     "result": "success",
     "skipped": false,

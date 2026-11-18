@@ -116,7 +116,7 @@
     "packages/quds_office_engine/test/zotero_tag_filter_test.dart"
   ],
   "source_binding": "Before/after SHA-256 and Git blob inventories; commits may advance while unchanged source is tested.",
-  "source_head_at_start": "805414d7c58725274eca3371e26d16c78ad9de91",
-  "started_at_utc": "2026-11-18T12:51:26.584862+00:00",
+  "source_head_at_start": "b2bcfc23e692476d16d9a7a534ea95a93ae94cd3",
+  "started_at_utc": "2026-11-18T13:15:37.001302+00:00",
   "status": "running"
 }

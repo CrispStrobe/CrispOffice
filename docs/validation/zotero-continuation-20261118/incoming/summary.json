@@ -1,0 +1,53 @@
+{
+  "status": "passed",
+  "recorded_at_utc": "2026-11-18T13:14:18.957035+00:00",
+  "qualified_source_commit": "b2bcfc23e692476d16d9a7a534ea95a93ae94cd3",
+  "substantive_test_count": 78,
+  "suite_count": 5,
+  "skipped": 0,
+  "cohorts": {
+    "engine": {
+      "path": "engine/summary.json",
+      "sha256": "ae279fdefed00107f70fee3659e4f85ea138010a72179b3ba928461dd8f04e35",
+      "suite_count": 2,
+      "substantive_test_count": 39,
+      "actual_process_exit_code": 0,
+      "source_file_count": 391,
+      "guards": {
+        "both_selected_suites_executed": true,
+        "every_started_event_finished_once": true,
+        "runtime_graph_locks_unchanged": true,
+        "source_unchanged": true
+      }
+    },
+    "editor": {
+      "path": "editor/summary.json",
+      "sha256": "bd469b6d8025ed9e4ca5cc536c14de952ed9000ddb37a2b4236545188ccf1e7f",
+      "suite_count": 2,
+      "substantive_test_count": 31,
+      "actual_process_exit_code": 0,
+      "source_file_count": 472,
+      "guards": {
+        "both_selected_suites_executed": true,
+        "every_started_event_finished_once": true,
+        "runtime_graph_locks_unchanged": true,
+        "source_unchanged": true
+      }
+    },
+    "studio": {
+      "path": "studio/summary.json",
+      "sha256": "a57b333c088fac17ce40ae564ec4f8fb302abda01a14045b3462d70e12e8a977",
+      "suite_count": 1,
+      "substantive_test_count": 8,
+      "actual_process_exit_code": 0,
+      "source_file_count": 505,
+      "guards": {
+        "every_started_event_finished_once": true,
+        "runtime_graph_locks_unchanged": true,
+        "selected_suite_executed": true,
+        "source_unchanged": true
+      }
+    }
+  },
+  "scope": "Incoming document-comparison/review and changed Studio parser tests only; disjoint from Zotero cohort. Prior overlapping incoming70 retained under attempts/incoming-before-frontier and excluded. Seven golden path checks are not tests."
+}

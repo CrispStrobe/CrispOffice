@@ -12,7 +12,7 @@
   ],
   "cwd": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_engine",
   "dart_version": "Dart SDK version: 3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\"",
-  "head_at_start": "604fa00427f88d18ffa96df71128c38e38502afb",
+  "head_at_start": "b2bcfc23e692476d16d9a7a534ea95a93ae94cd3",
   "runner_sha256": "25790006f7dfa4476c0b23b980d322f3d23114ee76eec5dd73e2d2178d8e2380",
   "scope": "Existing incoming document-comparison tests; independent of Zotero cohort; no CI or golden rendering.",
   "selected_test_files": [
@@ -20,5 +20,5 @@
     "packages/quds_office_engine/test/word_comparison_adversarial_test.dart"
   ],
   "source_file_count": 391,
-  "started_at_utc": "2026-11-18T12:54:03.550265+00:00"
+  "started_at_utc": "2026-11-18T13:12:10.857074+00:00"
 }

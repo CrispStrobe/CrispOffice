@@ -1,9 +1,9 @@
 {
   "artifacts": {
     "cases.json.gz": {
-      "bytes": 11396,
-      "git_blob_sha1": "5d2c7e969d48d00fa0863b29d77d65403335a64e",
-      "sha256": "fb00fc6af822b63c9185e66a7f31ecdece1ec3efa77931b24829df3c31fc1e12"
+      "bytes": 11422,
+      "git_blob_sha1": "ce442006865ed82012306d48312cb04e5645ea71",
+      "sha256": "d87a6fe5f1c9f26110cdc6f99800c1c4ae565103392c8f74dacf85f02b9812f0"
     },
     "dependencies-after.json.gz": {
       "bytes": 134644,
@@ -16,19 +16,19 @@
       "sha256": "1f35efa0bbcab3f8a1f55029918eaccc12927bcecbceecd85299a98b8981dad6"
     },
     "events.jsonl.gz": {
-      "bytes": 20313,
-      "git_blob_sha1": "80e24e9161cbf15af4378f238e0044fdd1a8cf54",
-      "sha256": "f38c69479ae320caf5b4d690c130dd1a7d999835b7acb5e934938aa1e23430c7"
+      "bytes": 20392,
+      "git_blob_sha1": "4f957e5bf5729643b5f28a63eb2227d0283002fc",
+      "sha256": "fd9c37b55f3ecd052470a4177c660777c0a8fc422ee3ec3a2d541a4face98f7f"
     },
     "excluded-events.json.gz": {
-      "bytes": 510,
-      "git_blob_sha1": "fe71c1f105379ec668959533c75f79d75fa4e6b9",
-      "sha256": "97b356a0525abff97bbd58a5ec234e5340722adb4daaadfc4d4f058ba15ee397"
+      "bytes": 517,
+      "git_blob_sha1": "8d274b3959ec916212aa078fec1502c143f2750c",
+      "sha256": "23bea94c92cfb4c5ae60cec269b98e04b32cad02be44b834609a504af79918d7"
     },
     "run.json": {
       "bytes": 4617,
-      "git_blob_sha1": "a6705b77685929f4e856aacf587034512c0f2459",
-      "sha256": "9408b0dec2310b7fcab93fecaaef9d590795db59ebc0dd22d3d7c3bc619beb82"
+      "git_blob_sha1": "be4b9006e2c1d259c302adf5a9acf77f559bd6be",
+      "sha256": "f9a634a047a063e61bd3fd599dac5974ed121f474a61adbd00d08b290fdc22c5"
     },
     "runtime-after.json.gz": {
       "bytes": 80972,
@@ -41,14 +41,14 @@
       "sha256": "08658d67b3033f0a616c1d8499a8e57c432797d0684811422f5cba06afdbee5b"
     },
     "source-after.json.gz": {
-      "bytes": 33574,
-      "git_blob_sha1": "8f3d9dfa7501e398bbae67e2dbdcb02152c7dea6",
-      "sha256": "c909d1f1e1204ed70d7cb01901552158dcfcdceb51ea764fda2f2f4e7bf3f205"
+      "bytes": 33575,
+      "git_blob_sha1": "47c604709f588c442d6651e9639a568a7691124f",
+      "sha256": "29bfeb9d67dbcf6245a9b699cdd7ea995ecc62ad97966ce66a27dec7769d2934"
     },
     "source-before.json.gz": {
-      "bytes": 33574,
-      "git_blob_sha1": "8f3d9dfa7501e398bbae67e2dbdcb02152c7dea6",
-      "sha256": "c909d1f1e1204ed70d7cb01901552158dcfcdceb51ea764fda2f2f4e7bf3f205"
+      "bytes": 33575,
+      "git_blob_sha1": "47c604709f588c442d6651e9639a568a7691124f",
+      "sha256": "29bfeb9d67dbcf6245a9b699cdd7ea995ecc62ad97966ce66a27dec7769d2934"
     },
     "stderr.log.gz": {
       "bytes": 20,
@@ -105,16 +105,16 @@
   "completion_events": [
     {
       "success": true,
-      "time": 10018,
+      "time": 7455,
       "type": "done"
     }
   ],
   "cwd": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_engine",
-  "elapsed_seconds": 20.044968704001803,
+  "elapsed_seconds": 19.864480605003337,
   "error_events": [],
   "excluded_event_count": 22,
   "exit_code": 0,
-  "finished_at_utc": "2026-11-18T12:51:49.345872+00:00",
+  "finished_at_utc": "2026-11-18T13:15:58.935717+00:00",
   "guards": {
     "all_22_suites_executed": true,
     "dependencies_unchanged": true,
@@ -217,9 +217,9 @@
     "packages/quds_office_engine/test/zotero_tag_filter_test.dart"
   ],
   "source_binding": "Before/after SHA-256 and Git blob inventories; commits may advance while unchanged source is tested.",
-  "source_head_at_end": "6d19f988bf0175f1ff2a74114cce9b692a946357",
-  "source_head_at_start": "805414d7c58725274eca3371e26d16c78ad9de91",
-  "started_at_utc": "2026-11-18T12:51:26.584862+00:00",
+  "source_head_at_end": "b2bcfc23e692476d16d9a7a534ea95a93ae94cd3",
+  "source_head_at_start": "b2bcfc23e692476d16d9a7a534ea95a93ae94cd3",
+  "started_at_utc": "2026-11-18T13:15:37.001302+00:00",
   "status": "passed",
   "substantive_results": {
     "success": 445

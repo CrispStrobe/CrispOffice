@@ -1255,9 +1255,9 @@
     "sha256": "b87a9873de8ad8b7ee9f3881971739c2a112098fa3491f43560302b055224183"
   },
   "packages/quds_office_engine/lib/src/proofing/german_spelling.dart": {
-    "bytes": 47537,
-    "git_blob_sha1": "27e98b91e4a155e89c072a76b0ca6d6f16c3a9ac",
-    "sha256": "5962e7ed1842e00fd2188e0b64e0c58ead196f0e419723497138e199bc6eab3c"
+    "bytes": 49506,
+    "git_blob_sha1": "ecc7412beff90e20107e3e88e797ca52488189fa",
+    "sha256": "f178d019d17b8f05137affae177f3b3dc78b329aabec6366423324f264fa9ca4"
   },
   "packages/quds_office_engine/lib/src/proofing/german_writing_rules.dart": {
     "bytes": 39385,
