@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import '../../packages/quds_office_engine/lib/quds_office_engine.dart';
+import 'package:quds_office_engine/quds_office_engine.dart';
 
 /// Small source-bound smoke panel for the shipped dictionary, including native
 /// AOT and JavaScript builds. It needs no model, network, daemon or Flutter UI.
