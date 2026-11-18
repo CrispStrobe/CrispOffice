@@ -632,6 +632,27 @@ final class SqliteMailRepository implements MailRepository {
     String kind,
     String id,
   ) async {
+    // Check metadata before SQLite transfers/copies any potentially large BLOB.
+    final sizes = await _rows(
+      'SELECT b.hash,b.size,length(b.data) AS actual FROM blobs b '
+      'JOIN blob_refs r ON r.account=b.account AND r.hash=b.hash '
+      'WHERE r.account=? AND r.owner_kind=? AND r.owner_id=?',
+      [account.value, kind, id],
+    );
+    var total = 0;
+    if (sizes.length > 129) _fail(MailProblemCode.quotaExceeded);
+    for (final row in sizes) {
+      final size = row.read<int>('actual');
+      if (size != row.read<int>('size') ||
+          !RegExp(r'^[0-9a-f]{64}$').hasMatch(row.read<String>('hash'))) {
+        _fail(MailProblemCode.storageFailure);
+      }
+      total += size;
+      if (size > limits.maxBlobBytes ||
+          total > limits.maxTransactionBlobBytes) {
+        _fail(MailProblemCode.quotaExceeded);
+      }
+    }
     final blobs = <String, MailBytes>{};
     for (final row in await _rows(
       'SELECT b.hash,b.data,b.size FROM blobs b JOIN blob_refs r ON r.account=b.account AND r.hash=b.hash '

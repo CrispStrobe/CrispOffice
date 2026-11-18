@@ -1,0 +1,14 @@
+{
+  "added": {
+    "code_assets": "2.2.0",
+    "drift": "2.35.4",
+    "hooks": "2.2.0",
+    "native_toolchain_c": "0.19.6",
+    "platform": "3.2.0",
+    "process": "5.0.6",
+    "record_use": "1.1.1",
+    "sqlite3": "3.9.1"
+  },
+  "removed": {},
+  "changed": {}
+}

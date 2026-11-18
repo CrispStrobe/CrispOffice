@@ -1,0 +1,121 @@
+{
+  "started_at_utc": "2026-11-18T20:26:42.913548+00:00",
+  "git_head_at_start": "cbc5836acfc38b30f145118f467e4cc9fb6a6459",
+  "scope": "Six focused incoming Office suites, targeted analysis; imported historic results are excluded.",
+  "ci": {
+    "queried": false,
+    "awaited": false,
+    "rerun": false
+  },
+  "status": "PASS",
+  "commands": [
+    {
+      "name": "studio-analysis",
+      "argv": [
+        "/workspace/scratch/28080c14894b/toolchain/flutter/bin/cache/dart-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "lib/studio_chrome.dart",
+        "lib/suite_workspace.dart",
+        "test/studio_comment_draft_proofing_test.dart",
+        "test/studio_compact_navigation_test.dart",
+        "test/studio_comment_keyboard_review_test.dart"
+      ],
+      "cwd": "packages/quds_office_editor/example",
+      "started_at_utc": "2026-11-18T20:26:43.876055+00:00",
+      "status": "PASS",
+      "exit_code": 0,
+      "finished_at_utc": "2026-11-18T20:27:12.869344+00:00",
+      "stdout": "studio-analysis.stdout",
+      "stderr": "studio-analysis.stderr"
+    },
+    {
+      "name": "studio-tests",
+      "argv": [
+        "/workspace/scratch/28080c14894b/toolchain/flutter/bin/cache/dart-sdk/bin/dart",
+        "/workspace/scratch/28080c14894b/toolchain/flutter/bin/cache/flutter_tools.snapshot",
+        "--no-version-check",
+        "--suppress-analytics",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "json",
+        "test/studio_comment_draft_proofing_test.dart",
+        "test/studio_compact_navigation_test.dart",
+        "test/studio_comment_keyboard_review_test.dart"
+      ],
+      "cwd": "packages/quds_office_editor/example",
+      "started_at_utc": "2026-11-18T20:27:12.871982+00:00",
+      "status": "PASS",
+      "exit_code": 0,
+      "finished_at_utc": "2026-11-18T20:29:23.539669+00:00",
+      "stdout": "studio-tests.stdout",
+      "stderr": "studio-tests.stderr",
+      "passed": 25,
+      "failed": 0,
+      "skipped": 0,
+      "error_event_count": 0,
+      "runner_done": {
+        "success": true,
+        "type": "done",
+        "time": 96621
+      }
+    },
+    {
+      "name": "editor-analysis",
+      "argv": [
+        "/workspace/scratch/28080c14894b/toolchain/flutter/bin/cache/dart-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "lib/src/embed/office_editors.dart",
+        "test/word_keyboard_review_test.dart",
+        "test/word_keyboard_context_geometry_test.dart",
+        "test/word_keyboard_review_identity_test.dart"
+      ],
+      "cwd": "packages/quds_office_editor",
+      "started_at_utc": "2026-11-18T20:29:23.550511+00:00",
+      "status": "PASS",
+      "exit_code": 0,
+      "finished_at_utc": "2026-11-18T20:29:44.128087+00:00",
+      "stdout": "editor-analysis.stdout",
+      "stderr": "editor-analysis.stderr"
+    },
+    {
+      "name": "editor-tests",
+      "argv": [
+        "/workspace/scratch/28080c14894b/toolchain/flutter/bin/cache/dart-sdk/bin/dart",
+        "/workspace/scratch/28080c14894b/toolchain/flutter/bin/cache/flutter_tools.snapshot",
+        "--no-version-check",
+        "--suppress-analytics",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "json",
+        "test/word_keyboard_review_test.dart",
+        "test/word_keyboard_context_geometry_test.dart",
+        "test/word_keyboard_review_identity_test.dart"
+      ],
+      "cwd": "packages/quds_office_editor",
+      "started_at_utc": "2026-11-18T20:29:44.130007+00:00",
+      "status": "PASS",
+      "exit_code": 0,
+      "finished_at_utc": "2026-11-18T20:30:19.469002+00:00",
+      "stdout": "editor-tests.stdout",
+      "stderr": "editor-tests.stderr",
+      "passed": 31,
+      "failed": 0,
+      "skipped": 0,
+      "error_event_count": 0,
+      "runner_done": {
+        "success": true,
+        "type": "done",
+        "time": 31057
+      }
+    }
+  ],
+  "finished_at_utc": "2026-11-18T20:30:19.541468+00:00",
+  "git_head_at_finish": "cbc5836acfc38b30f145118f467e4cc9fb6a6459",
+  "source_file_count": 481,
+  "source_mismatches": [],
+  "distinct_tests_passed": 56
+}

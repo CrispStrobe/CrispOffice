@@ -8,6 +8,7 @@ import 'package:drift/wasm.dart';
 import 'package:quds_mail_core/quds_mail_core.dart';
 import 'package:web/web.dart' as web;
 
+import 'src/browser_problem.dart';
 import 'src/browser_setup.dart';
 import 'src/errors.dart';
 import 'src/models.dart';
@@ -92,11 +93,7 @@ Future<MailResult<SqliteMailRepository>> openBrowserMailStore({
     } catch (_) {
       // Return a content-free opening failure, not a raw browser exception.
     }
-    return MailFailure(
-      error is MailStoreStorageException
-          ? mailStoreProblem(error)
-          : const MailProblem(MailProblemCode.unavailable),
-    );
+    return MailFailure(mailBrowserStoreProblem(error));
   }
 }
 

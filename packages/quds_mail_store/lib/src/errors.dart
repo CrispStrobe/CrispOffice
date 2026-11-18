@@ -1,3 +1,8 @@
+import 'package:drift/drift.dart' show DriftWrappedException;
+// The worker protocol is versioned; this public error type is tested against
+// exact-pinned Drift 2.35.4 and the matching host/worker build.
+// ignore: experimental_member_use
+import 'package:drift/remote.dart' show DriftRemoteException;
 import 'package:quds_mail_core/quds_mail_core.dart';
 import 'package:sqlite3/common.dart';
 
@@ -12,6 +17,17 @@ final class MailStoreStorageException implements Exception {
 
 /// Never stringify a database exception: it may contain SQL and message bytes.
 MailProblem mailStoreProblem(Object error) {
+  // Native workers preserve typed causes inside protocol wrappers. Keep the
+  // traversal bounded and never parse exception messages or stack traces.
+  for (var depth = 0; depth < 8; depth++) {
+    if (error is DriftRemoteException) {
+      error = error.remoteCause;
+    } else if (error is DriftWrappedException && error.cause != null) {
+      error = error.cause!;
+    } else {
+      break;
+    }
+  }
   if (error is MailStoreStorageException) return MailProblem(error.code);
   if (error is MailCancelled) {
     return MailProblem(
