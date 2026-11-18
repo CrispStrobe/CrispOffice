@@ -42,6 +42,62 @@ final class OfficePlatformSpellingProvider extends OfficeProofingProvider {
   static final _language = RegExp(r'^[a-z]{2,8}$');
   static final _script = RegExp(r'^[a-z]{4}$');
   static final _region = RegExp(r'^(?:[A-Z]{2}|[0-9]{3})$');
+  static final _identifierBefore = RegExp(r'[\p{N}\p{Pc}]$', unicode: true);
+  static final _identifierAfter = RegExp(r'^[\p{N}\p{Pc}]', unicode: true);
+
+  static bool _isIdentifierFragment(String text, int start, int end) =>
+      start > 0 &&
+          _identifierBefore.hasMatch(
+            text.substring(start >= 2 ? start - 2 : 0, start),
+          ) ||
+      end < text.length &&
+          _identifierAfter.hasMatch(
+            text.substring(end, end + 2 <= text.length ? end + 2 : text.length),
+          );
+
+  /// Preserve backend order while keeping the review list useful and bounded.
+  /// A spelling suggestion must not become an empty Delete action or insert
+  /// malformed text/control characters. Internal spaces and script joiners are
+  /// legitimate in spelling corrections and are kept verbatim.
+  static List<String> _suggestionsFor(
+    String original,
+    List<String> suggestions,
+  ) {
+    final accepted = <String>{};
+    for (final suggestion in suggestions.take(64)) {
+      if (suggestion.isEmpty ||
+          suggestion.length > 256 ||
+          suggestion == original ||
+          suggestion.trim().isEmpty ||
+          accepted.contains(suggestion) ||
+          !_isPlainText(suggestion)) {
+        continue;
+      }
+      accepted.add(suggestion);
+      if (accepted.length == 8) break;
+    }
+    return accepted.toList(growable: false);
+  }
+
+  static bool _isPlainText(String value) {
+    for (var at = 0; at < value.length; at++) {
+      final unit = value.codeUnitAt(at);
+      if (unit <= 0x1f ||
+          unit >= 0x7f && unit <= 0x9f ||
+          unit == 0x2028 ||
+          unit == 0x2029) {
+        return false;
+      }
+      if (unit >= 0xd800 && unit <= 0xdbff) {
+        if (++at == value.length) return false;
+        final low = value.codeUnitAt(at);
+        if (low < 0xdc00 || low > 0xdfff) return false;
+      } else if (unit >= 0xdc00 && unit <= 0xdfff) {
+        return false;
+      }
+    }
+    return true;
+  }
 
   /// Flutter Locale can represent language, script and region, not variants or
   /// arbitrary extensions. Never silently discard an unrepresentable part and
@@ -152,7 +208,22 @@ final class OfficePlatformSpellingProvider extends OfficeProofingProvider {
               !boundaries.contains(span.range.end)) {
             throw const FormatException('Invalid platform spelling range.');
           }
-          if (protected.overlaps(span.range.start, span.range.end)) continue;
+          // An OS dictionary may report only the letter portion of foo42 or
+          // snake_case. Do not turn that into a partial identifier edit. Letter
+          // adjacency is deliberately allowed: CJK dictionaries can return a
+          // valid word from a continuous passage, and hyphen parts are words.
+          if (protected.overlaps(span.range.start, span.range.end) ||
+              _isIdentifierFragment(
+                request.text,
+                span.range.start,
+                span.range.end,
+              )) {
+            continue;
+          }
+          final original = request.text.substring(
+            span.range.start,
+            span.range.end,
+          );
           findings.add(
             OfficeProofingFinding.forRequest(
               request,
@@ -162,7 +233,7 @@ final class OfficePlatformSpellingProvider extends OfficeProofingProvider {
               ruleId: 'platform.spelling',
               message: 'The system dictionary does not recognize this word.',
               category: OfficeProofingCategory.spelling,
-              replacements: span.suggestions.take(8).toList(),
+              replacements: _suggestionsFor(original, span.suggestions),
             ),
           );
         }
