@@ -5990,6 +5990,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   }) {
     _dismissCommentContext();
     if (!_wordRouteIsCurrent ||
+        !_word.config.allowsSelection ||
         (_word.input.composing.isValid && !_word.input.composing.isCollapsed)) {
       return;
     }
@@ -6001,7 +6002,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     // A secondary click does not run the canvas's primary-click selection
     // handler. Route ordinary editing commands to this comment as well as
     // routing proofing commands by their explicit finding.
-    if (!_word.isEditingComment && _canMutate && _word.config.allowsMutation) {
+    if (!_word.isEditingComment) {
       _word.beginCommentEdit(comment.id);
     }
     final root = WordComment.byId(

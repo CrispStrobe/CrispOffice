@@ -918,13 +918,15 @@ class WordEditorController extends OfficeController {
 
   List<WmlParagraph> _ensureCommentParagraphs(WmlComment comment) {
     if (comment.paragraphs.isEmpty) {
-      comment.paragraphs.add(
-        WmlParagraph(
-          inlines: <WmlInline>[
-            WmlRun(properties: WmlRunProps(fontSizeHalfPoints: 20)),
-          ],
-        ),
+      final placeholder = WmlParagraph(
+        inlines: <WmlInline>[
+          WmlRun(properties: WmlRunProps(fontSizeHalfPoints: 20)),
+        ],
       );
+      // Viewing an empty comment needs a layout/caret target, without adding
+      // a paragraph to the stored document merely to select or copy its text.
+      if (!config.allowsMutation) return <WmlParagraph>[placeholder];
+      comment.paragraphs.add(placeholder);
     }
     return comment.paragraphs;
   }
@@ -1045,6 +1047,9 @@ class WordEditorController extends OfficeController {
 
   /// beginCommentEdit API.
   void beginCommentEdit(int id) {
+    if (!config.allowsMutation && !config.allowsSelection) {
+      return;
+    }
     selectedCommentId = id;
     if (selectedComment == null) {
       return;
@@ -1052,7 +1057,11 @@ class WordEditorController extends OfficeController {
     endHeaderFooterEdit();
     _editingComment = true;
     selectedVisual = null;
+    selectedFrame = null;
+    editingFrame = false;
     selectedEquation = null;
+    selectedTable = null;
+    selectedTableBand = null;
     final List<WmlParagraph> paras = _ensureCommentParagraphs(selectedComment!);
     commentCaret.paragraphIndex = commentCaret.paragraphIndex.clamp(
       0,

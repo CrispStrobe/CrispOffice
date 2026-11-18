@@ -93,9 +93,10 @@ tooltip identifies the current text scope and language.
   text remains checkable. A mixed checking selection has an indeterminate
   checkbox; clicking it enables checking throughout the selection.
 - Each actual language/checking change is one **Undo** step. **Redo** restores
-  it. Repeating an already stored setting does not create empty history. Findings for changed
-  text are invalidated immediately and ordinary checks update after the typing
-  pause. Optional manual providers still require **Check document / F7**.
+  it. Repeating an already stored setting does not create empty history.
+  Findings for changed text are invalidated immediately and ordinary checks
+  update after the typing pause. Optional manual providers still require
+  **Check document / F7**.
 - These settings belong to document text and survive DOCX save/reload. They
   do not change personal dictionary entries or ignored-word preferences.
   Excluded text continues to be reported as excluded coverage.
@@ -173,9 +174,13 @@ It never posts a draft just because another Reply command was chosen.
   hiding Comments, or leaving Word dismisses obsolete actions. Unrelated
   checking progress preserves a still-current menu. Covered modal dialogs and
   IME composition cannot redirect correction or thread actions.
+- Cut and Paste recheck that same context after the system clipboard responds.
+  A delayed clipboard operation cannot edit a different thread, a changed
+  selection, or a replacement document.
 - A resolved thread offers **Reopen** even when the context menu belongs to
-  one of its replies. Viewing mode retains inspection and copy while disabling
-  document/thread edits.
+  one of its replies. **Select** mode keeps comment selection and Copy
+  available while disabling document/thread edits. **View** mode keeps
+  comments visible without selection or mutation.
 - Unposted reply text joins document proofing after it is posted.
 
 The shared `QudsWordEditor` retains its Writing and Changes panes. The Comments
