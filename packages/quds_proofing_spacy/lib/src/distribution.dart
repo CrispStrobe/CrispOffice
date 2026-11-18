@@ -474,11 +474,47 @@ const spacyLinuxArm64RuntimePackage = SpacyPlatformPackage(
   ),
 );
 
+const spacyMacosArm64RuntimeLibrarySha256 =
+    'f3300152c8b063960ff9c21785241bb8b99ffc8f1b2150e362b46d78b0272647';
+
+const spacyMacosArm64RuntimePackage = SpacyPlatformPackage(
+  platform: SpacyPlatform.macosArm64,
+  revision: 'cf833ae59e6e92773af90c4cbae67a2ba68dec03',
+  archivePath:
+      'packages/macos-arm64/$_v2Source/'
+      'spacy-de_core_news_sm-3.8.0-macos-arm64-f32.tar.gz',
+  archiveSha256:
+      '200a09b1f582e67abf813355424c0ae9066d47a076c2bf641daed0ff605c7d8c',
+  archiveBytes: 7930303,
+  manifestSha256:
+      'd3daca5dd08d0c881a307feae80cc3507a3b653ff28a4c8122dfbb62220893d2',
+  manifestBytes: 11154,
+  libraryEntrypoint:
+      'native/$spacyMacosArm64RuntimeLibrarySha256/libcrispembed-spacy.dylib',
+  librarySha256: spacyMacosArm64RuntimeLibrarySha256,
+  libraryBytes: 2284856,
+  profile: 'de_core_news_sm-3.8.0-f32-macos-arm64',
+  systemRequirements: [
+    'Apple silicon, macOS 13 or newer (system libc++ only; PCRE2 static)',
+    'Unsigned library: a hardened/sandboxed app must allow it or ship it '
+        'inside its own signed bundle',
+  ],
+  opensVersion2Bundles: true,
+  qualification: SpacyBuildQualification(
+    librarySha256: spacyMacosArm64RuntimeLibrarySha256,
+    analysis: _v2Analysis,
+    limitations: [..._v2Limitations, 'Not signed or notarized.'],
+  ),
+);
+
 /// Packages whose library opens the English and French bundles, one per
-/// platform. Only platforms with a published v2 capsule are listed.
+/// platform. Only platforms with a published v2 capsule are listed; the
+/// Windows v2 capsule failed its text-API controls (CrispEmbed run
+/// 44369523105) and is not published.
 const spacyRuntimePackages = <SpacyPlatformPackage>[
   spacyLinuxX64RuntimePackage,
   spacyLinuxArm64RuntimePackage,
+  spacyMacosArm64RuntimePackage,
 ];
 
 /// The v2-capable package for [platform], or null when none is published.

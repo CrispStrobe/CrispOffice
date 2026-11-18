@@ -163,6 +163,51 @@ Future<void> main(List<String> arguments) async {
         await transport.dispose();
       }
     }
+    if (runtimeMode) {
+      // German through the unchanged German package of this platform (its
+      // own library; set_enabled or the legacy setenv fallback) and through
+      // the v2 runtime capsule's German bundle.
+      final platform = SpacyPlatform.values.firstWhere(
+        (p) => p.id == platformId,
+      );
+      final german = <Object?>[];
+      for (final package in [
+        ?spacyPlatformStatus(platform).package,
+        spacyRuntimePackage(platform)!,
+      ]) {
+        final installation = await installer.install(package);
+        final transport = await startSpacyWorker(
+          bundle: const SpacyBundle.germanF32(),
+          backendFactory: installation.backendFactory(),
+        );
+        try {
+          final result = await transport.analyze(
+            LinguisticAnalysisRequest(
+              text: 'Angela Merkel besuchte gestern die Siemens AG in München.',
+              documentId: 'smoke',
+              blockId: 'de-${package.librarySha256.substring(0, 8)}',
+              revision: 1,
+              locale: 'de-DE',
+              startOffset: 0,
+              generation: 0,
+              configurationId: 'language-smoke',
+            ),
+          );
+          german.add({
+            'library_sha256': package.librarySha256,
+            'opens_v2_bundles': package.opensVersion2Bundles,
+            'grammar_qualified_build': package.qualification.grammarQualified,
+            'status': result.status.name,
+            'tokens': result.tokens.length,
+            'lemmas': [for (final token in result.tokens) token.lemma],
+          });
+          if (!result.isSuccess) throw StateError('German smoke failed');
+        } finally {
+          await transport.dispose();
+        }
+      }
+      report['german'] = german;
+    }
     report['languages'] = languages;
     report['passed'] = true;
   } on Object catch (error) {
