@@ -1,0 +1,330 @@
+{
+  "timestamp_utc": "2026-11-18T12:26:47.529015+00:00",
+  "base_main": "1e07cb852766f8651815138785be74c64a09ddc0",
+  "feature_sha": "213398ee57398411bcae8d53e2845e4dab5311d7",
+  "branches": [
+    {
+      "branch": "origin/codex/zotero-workspace-20261118",
+      "sha": "d36413a2cc8e1de9fd7493b5d1baf2900e63f04b",
+      "contained_in_main": false,
+      "contained_in_feature": false,
+      "ahead_of_main": 5,
+      "new_vs_feature": [
+        "d36413a2 Reconcile merged main and finish Zotero layout regressions [skip ci]",
+        "b292ee94 Save Zotero workflow regressions and verified engine qualification [skip ci]",
+        "919122e7 Add Zotero reference inspection and staged selection review [skip ci]",
+        "045c307d Expose Zotero reference metadata and exact display tags [skip ci]"
+      ],
+      "commits": [
+        {
+          "sha": "d36413a2cc8e1de9fd7493b5d1baf2900e63f04b",
+          "date": "2026-11-18",
+          "title": "Reconcile merged main and finish Zotero layout regressions [skip ci]"
+        },
+        {
+          "sha": "b292ee94f8792df19e3758a2a271d40230e638ca",
+          "date": "2026-11-18",
+          "title": "Save Zotero workflow regressions and verified engine qualification [skip ci]"
+        },
+        {
+          "sha": "919122e7bca53fb1c42c6aac5eaf548dd338d158",
+          "date": "2026-11-18",
+          "title": "Add Zotero reference inspection and staged selection review [skip ci]"
+        },
+        {
+          "sha": "045c307d0ea53b9d777cbf7fa3daa8f74b587117",
+          "date": "2026-11-18",
+          "title": "Expose Zotero reference metadata and exact display tags [skip ci]"
+        },
+        {
+          "sha": "146cdead007dd47bc8e7da8f9f249703fd29ca2e",
+          "date": "2026-11-18",
+          "title": "Preserve incoming Quds branches and PR reconciliation [skip ci]"
+        }
+      ],
+      "files": [
+        "docs/validation/zotero-workspace-20261118/RECONCILIATION.md",
+        "docs/validation/zotero-workspace-20261118/checks/analyze.log",
+        "docs/validation/zotero-workspace-20261118/checks/format.log",
+        "docs/validation/zotero-workspace-20261118/checks/run_checks.py",
+        "docs/validation/zotero-workspace-20261118/checks/summary.json",
+        "docs/validation/zotero-workspace-20261118/checks/whitespace.log",
+        "docs/validation/zotero-workspace-20261118/engine-binding.json",
+        "docs/validation/zotero-workspace-20261118/engine/README.md",
+        "docs/validation/zotero-workspace-20261118/engine/cases.json.gz",
+        "docs/validation/zotero-workspace-20261118/engine/dependencies-after.json.gz",
+        "docs/validation/zotero-workspace-20261118/engine/dependencies-before.json.gz",
+        "docs/validation/zotero-workspace-20261118/engine/events.jsonl.gz",
+        "docs/validation/zotero-workspace-20261118/engine/excluded-events.json.gz",
+        "docs/validation/zotero-workspace-20261118/engine/index.json",
+        "docs/validation/zotero-workspace-20261118/engine/launcher.log",
+        "docs/validation/zotero-workspace-20261118/engine/run.json",
+        "docs/validation/zotero-workspace-20261118/engine/run_engine.py",
+        "docs/validation/zotero-workspace-20261118/engine/runtime-after.json.gz",
+        "docs/validation/zotero-workspace-20261118/engine/runtime-before.json.gz",
+        "docs/validation/zotero-workspace-20261118/engine/setup/env.sh",
+        "docs/validation/zotero-workspace-20261118/engine/setup/flutter-recovery.json",
+        "docs/validation/zotero-workspace-20261118/engine/setup/logs/dart-version.log",
+        "docs/validation/zotero-workspace-20261118/engine/setup/logs/flutter-tools-pub-get.log",
+        "docs/validation/zotero-workspace-20261118/engine/setup/logs/flutter-version.json",
+        "docs/validation/zotero-workspace-20261118/engine/setup/logs/flutter-version.stderr",
+        "docs/validation/zotero-workspace-20261118/engine/setup/logs/pub-prefetch-tools.log",
+        "docs/validation/zotero-workspace-20261118/engine/setup/logs/pub-prefetch.log",
+        "docs/validation/zotero-workspace-20261118/engine/setup/logs/restore_flutter.log",
+        "docs/validation/zotero-workspace-20261118/engine/setup/logs/setup-editor-format-smoke-accepted.log",
+        "docs/validation/zotero-workspace-20261118/engine/setup/logs/setup-editor-format-smoke-verbose.log",
+        "docs/validation/zotero-workspace-20261118/engine/setup/logs/setup-editor-format-smoke.log",
+        "docs/validation/zotero-workspace-20261118/engine/setup/logs/workspace-pub-get.log",
+        "docs/validation/zotero-workspace-20261118/engine/setup/prepare_workspace.py",
+        "docs/validation/zotero-workspace-20261118/engine/setup/restore_flutter.py",
+        "docs/validation/zotero-workspace-20261118/engine/setup/runtime-ready.json",
+        "docs/validation/zotero-workspace-20261118/engine/setup/scripts/prefetch_pub.py",
+        "docs/validation/zotero-workspace-20261118/engine/setup/setup/prefetch-162.json",
+        "docs/validation/zotero-workspace-20261118/engine/setup/setup/workspace-prepared.json",
+        "docs/validation/zotero-workspace-20261118/engine/source-after.json.gz",
+        "docs/validation/zotero-workspace-20261118/engine/source-before.json.gz",
+        "docs/validation/zotero-workspace-20261118/engine/stderr.log.gz",
+        "docs/validation/zotero-workspace-20261118/engine/summary.json",
+        "docs/validation/zotero-workspace-20261118/engine/workspace-after.json.gz",
+        "docs/validation/zotero-workspace-20261118/engine/workspace-before.json.gz",
+        "docs/validation/zotero-workspace-20261118/engine/workspace-inputs.json.gz",
+        "docs/validation/zotero-workspace-20261118/integrated-main.json",
+        "docs/validation/zotero-workspace-20261118/reconciliation-initial.json",
+        "docs/zotero-support.md",
+        "packages/quds_office_editor/CHANGELOG.md",
+        "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart",
+        "packages/quds_office_editor/lib/src/embed/word_zotero_library.dart",
+        "packages/quds_office_editor/test/word_zotero_library_details_test.dart",
+        "packages/quds_office_engine/CHANGELOG.md",
+        "packages/quds_office_engine/lib/src/zotero/zotero_client.dart",
+        "packages/quds_office_engine/lib/src/zotero/zotero_models.dart",
+        "packages/quds_office_engine/test/zotero_item_details_test.dart"
+      ],
+      "files_changed_by_feature_too": [
+        "docs/validation/zotero-workspace-20261118/RECONCILIATION.md",
+        "docs/validation/zotero-workspace-20261118/reconciliation-initial.json"
+      ],
+      "contains_other_tips": [],
+      "contains_current_main": true,
+      "merge_base_with_feature": "146cdead007dd47bc8e7da8f9f249703fd29ca2e",
+      "new_delta_files": [
+        "docs/validation/zotero-workspace-20261118/checks/analyze.log",
+        "docs/validation/zotero-workspace-20261118/checks/format.log",
+        "docs/validation/zotero-workspace-20261118/checks/run_checks.py",
+        "docs/validation/zotero-workspace-20261118/checks/summary.json",
+        "docs/validation/zotero-workspace-20261118/checks/whitespace.log",
+        "docs/validation/zotero-workspace-20261118/engine-binding.json",
+        "docs/validation/zotero-workspace-20261118/engine/README.md",
+        "docs/validation/zotero-workspace-20261118/engine/cases.json.gz",
+        "docs/validation/zotero-workspace-20261118/engine/dependencies-after.json.gz",
+        "docs/validation/zotero-workspace-20261118/engine/dependencies-before.json.gz",
+        "docs/validation/zotero-workspace-20261118/engine/events.jsonl.gz",
+        "docs/validation/zotero-workspace-20261118/engine/excluded-events.json.gz",
+        "docs/validation/zotero-workspace-20261118/engine/index.json",
+        "docs/validation/zotero-workspace-20261118/engine/launcher.log",
+        "docs/validation/zotero-workspace-20261118/engine/run.json",
+        "docs/validation/zotero-workspace-20261118/engine/run_engine.py",
+        "docs/validation/zotero-workspace-20261118/engine/runtime-after.json.gz",
+        "docs/validation/zotero-workspace-20261118/engine/runtime-before.json.gz",
+        "docs/validation/zotero-workspace-20261118/engine/setup/env.sh",
+        "docs/validation/zotero-workspace-20261118/engine/setup/flutter-recovery.json",
+        "docs/validation/zotero-workspace-20261118/engine/setup/logs/dart-version.log",
+        "docs/validation/zotero-workspace-20261118/engine/setup/logs/flutter-tools-pub-get.log",
+        "docs/validation/zotero-workspace-20261118/engine/setup/logs/flutter-version.json",
+        "docs/validation/zotero-workspace-20261118/engine/setup/logs/flutter-version.stderr",
+        "docs/validation/zotero-workspace-20261118/engine/setup/logs/pub-prefetch-tools.log",
+        "docs/validation/zotero-workspace-20261118/engine/setup/logs/pub-prefetch.log",
+        "docs/validation/zotero-workspace-20261118/engine/setup/logs/restore_flutter.log",
+        "docs/validation/zotero-workspace-20261118/engine/setup/logs/setup-editor-format-smoke-accepted.log",
+        "docs/validation/zotero-workspace-20261118/engine/setup/logs/setup-editor-format-smoke-verbose.log",
+        "docs/validation/zotero-workspace-20261118/engine/setup/logs/setup-editor-format-smoke.log",
+        "docs/validation/zotero-workspace-20261118/engine/setup/logs/workspace-pub-get.log",
+        "docs/validation/zotero-workspace-20261118/engine/setup/prepare_workspace.py",
+        "docs/validation/zotero-workspace-20261118/engine/setup/restore_flutter.py",
+        "docs/validation/zotero-workspace-20261118/engine/setup/runtime-ready.json",
+        "docs/validation/zotero-workspace-20261118/engine/setup/scripts/prefetch_pub.py",
+        "docs/validation/zotero-workspace-20261118/engine/setup/setup/prefetch-162.json",
+        "docs/validation/zotero-workspace-20261118/engine/setup/setup/workspace-prepared.json",
+        "docs/validation/zotero-workspace-20261118/engine/source-after.json.gz",
+        "docs/validation/zotero-workspace-20261118/engine/source-before.json.gz",
+        "docs/validation/zotero-workspace-20261118/engine/stderr.log.gz",
+        "docs/validation/zotero-workspace-20261118/engine/summary.json",
+        "docs/validation/zotero-workspace-20261118/engine/workspace-after.json.gz",
+        "docs/validation/zotero-workspace-20261118/engine/workspace-before.json.gz",
+        "docs/validation/zotero-workspace-20261118/engine/workspace-inputs.json.gz",
+        "docs/validation/zotero-workspace-20261118/integrated-main.json",
+        "docs/zotero-support.md",
+        "packages/quds_office_editor/CHANGELOG.md",
+        "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart",
+        "packages/quds_office_editor/lib/src/embed/word_zotero_library.dart",
+        "packages/quds_office_editor/test/word_zotero_library_details_test.dart",
+        "packages/quds_office_engine/CHANGELOG.md",
+        "packages/quds_office_engine/lib/src/zotero/zotero_client.dart",
+        "packages/quds_office_engine/lib/src/zotero/zotero_models.dart",
+        "packages/quds_office_engine/test/zotero_item_details_test.dart"
+      ],
+      "new_delta_overlaps_feature_files": []
+    },
+    {
+      "branch": "origin/codex/native-spelling-continuation-20261118",
+      "sha": "d6a9ca51b16daa9d3d54e163bc723b76659d70ac",
+      "contained_in_main": false,
+      "contained_in_feature": false,
+      "ahead_of_main": 2,
+      "new_vs_feature": [
+        "d6a9ca51 Improve short accented German suggestions and marked identifier guards [skip ci]",
+        "4b7a0798 Preserve native spelling across discretionary hyphens and save integration audit [skip ci]"
+      ],
+      "commits": [
+        {
+          "sha": "d6a9ca51b16daa9d3d54e163bc723b76659d70ac",
+          "date": "2026-11-18",
+          "title": "Improve short accented German suggestions and marked identifier guards [skip ci]"
+        },
+        {
+          "sha": "4b7a0798fc970e3df08a6ba464537d2537a3c4e4",
+          "date": "2026-11-18",
+          "title": "Preserve native spelling across discretionary hyphens and save integration audit [skip ci]"
+        }
+      ],
+      "files": [
+        "docs/PROOFING.md",
+        "docs/validation/native-spelling-continuation-20261118/README.md",
+        "docs/validation/native-spelling-continuation-20261118/reconciliation.md",
+        "docs/validation/native-spelling-continuation-20261118/refs.json",
+        "packages/quds_office_editor/CHANGELOG.md",
+        "packages/quds_office_editor/lib/src/proofing/platform_spelling_provider.dart",
+        "packages/quds_office_editor/test/platform_spelling_dialog_test.dart",
+        "packages/quds_office_editor/test/platform_spelling_projection_review_test.dart",
+        "packages/quds_office_editor/test/platform_spelling_projection_test.dart",
+        "packages/quds_office_engine/CHANGELOG.md",
+        "packages/quds_office_engine/lib/src/proofing/german_spelling.dart",
+        "packages/quds_office_engine/test/proofing/german_spelling_continuation_test.dart",
+        "packages/quds_office_engine/tool/check_native_spelling.dart"
+      ],
+      "files_changed_by_feature_too": [],
+      "contains_other_tips": [],
+      "contains_current_main": true,
+      "merge_base_with_feature": "1e07cb852766f8651815138785be74c64a09ddc0",
+      "new_delta_files": [
+        "docs/PROOFING.md",
+        "docs/validation/native-spelling-continuation-20261118/README.md",
+        "docs/validation/native-spelling-continuation-20261118/reconciliation.md",
+        "docs/validation/native-spelling-continuation-20261118/refs.json",
+        "packages/quds_office_editor/CHANGELOG.md",
+        "packages/quds_office_editor/lib/src/proofing/platform_spelling_provider.dart",
+        "packages/quds_office_editor/test/platform_spelling_dialog_test.dart",
+        "packages/quds_office_editor/test/platform_spelling_projection_review_test.dart",
+        "packages/quds_office_editor/test/platform_spelling_projection_test.dart",
+        "packages/quds_office_engine/CHANGELOG.md",
+        "packages/quds_office_engine/lib/src/proofing/german_spelling.dart",
+        "packages/quds_office_engine/test/proofing/german_spelling_continuation_test.dart",
+        "packages/quds_office_engine/tool/check_native_spelling.dart"
+      ],
+      "new_delta_overlaps_feature_files": []
+    },
+    {
+      "branch": "origin/integrate/native-spacy-distribution-20261118",
+      "sha": "8cd413c1e0454278abd703264bdda589a90f2d48",
+      "contained_in_main": false,
+      "contained_in_feature": false,
+      "ahead_of_main": 1,
+      "new_vs_feature": [
+        "8cd413c1 Support the opt-in NER runtime: entity ABI, optional ner.gguf install and Studio display [skip ci]"
+      ],
+      "commits": [
+        {
+          "sha": "8cd413c1e0454278abd703264bdda589a90f2d48",
+          "date": "2026-11-18",
+          "title": "Support the opt-in NER runtime: entity ABI, optional ner.gguf install and Studio display [skip ci]"
+        }
+      ],
+      "files": [
+        "packages/quds_office_editor/example/lib/studio_linguistic_analysis.dart",
+        "packages/quds_office_editor/example/lib/studio_spacy_host.dart",
+        "packages/quds_office_editor/example/lib/studio_spacy_host_native.dart",
+        "packages/quds_office_editor/example/lib/studio_spacy_setup.dart",
+        "packages/quds_office_editor/example/test/studio_linguistic_analysis_test.dart",
+        "packages/quds_proofing_spacy/lib/src/backend.dart",
+        "packages/quds_proofing_spacy/lib/src/distribution.dart",
+        "packages/quds_proofing_spacy/lib/src/installer_io.dart",
+        "packages/quds_proofing_spacy/lib/src/native_backend.dart",
+        "packages/quds_proofing_spacy/lib/src/native_backend_unsupported.dart"
+      ],
+      "files_changed_by_feature_too": [],
+      "contains_other_tips": [],
+      "contains_current_main": false,
+      "merge_base_with_feature": "2292548eb69de2dbb5240ab9da59256f362137c6",
+      "new_delta_files": [
+        "packages/quds_office_editor/example/lib/studio_linguistic_analysis.dart",
+        "packages/quds_office_editor/example/lib/studio_spacy_host.dart",
+        "packages/quds_office_editor/example/lib/studio_spacy_host_native.dart",
+        "packages/quds_office_editor/example/lib/studio_spacy_setup.dart",
+        "packages/quds_office_editor/example/test/studio_linguistic_analysis_test.dart",
+        "packages/quds_proofing_spacy/lib/src/backend.dart",
+        "packages/quds_proofing_spacy/lib/src/distribution.dart",
+        "packages/quds_proofing_spacy/lib/src/installer_io.dart",
+        "packages/quds_proofing_spacy/lib/src/native_backend.dart",
+        "packages/quds_proofing_spacy/lib/src/native_backend_unsupported.dart"
+      ],
+      "new_delta_overlaps_feature_files": []
+    }
+  ],
+  "dry_three_way_merge_checks": [
+    {
+      "left": "feature",
+      "right": "origin/codex/zotero-workspace-20261118",
+      "conflicts": [],
+      "exit": 0
+    },
+    {
+      "left": "feature",
+      "right": "origin/codex/native-spelling-continuation-20261118",
+      "conflicts": [],
+      "exit": 0
+    },
+    {
+      "left": "feature",
+      "right": "origin/integrate/native-spacy-distribution-20261118",
+      "conflicts": [],
+      "exit": 0
+    },
+    {
+      "left": "origin/codex/zotero-workspace-20261118",
+      "right": "origin/codex/native-spelling-continuation-20261118",
+      "conflicts": [
+        "packages/quds_office_editor/CHANGELOG.md",
+        "packages/quds_office_engine/CHANGELOG.md"
+      ],
+      "exit": 0
+    },
+    {
+      "left": "origin/codex/zotero-workspace-20261118",
+      "right": "origin/integrate/native-spacy-distribution-20261118",
+      "conflicts": [],
+      "exit": 0
+    },
+    {
+      "left": "origin/codex/native-spelling-continuation-20261118",
+      "right": "origin/integrate/native-spacy-distribution-20261118",
+      "conflicts": [],
+      "exit": 0
+    }
+  ],
+  "pull_request_snapshot": {
+    "new_prs_for_three_tips": [],
+    "last_pr_number": 159,
+    "still_open_draft_pr_153_head": "2e013f26c7d4db54ecabe2c955117cbce5379408",
+    "pr_159_merged_old_head": "2292548eb69de2dbb5240ab9da59256f362137c6",
+    "note": "Latest 12 PRs sorted by updated fetched via GitHub REST connector; no newer PR covers the incoming branch heads."
+  },
+  "recommendation": {
+    "order": [
+      "origin/codex/zotero-workspace-20261118",
+      "origin/codex/native-spelling-continuation-20261118",
+      "origin/integrate/native-spacy-distribution-20261118"
+    ],
+    "reason": "Three independent incoming histories; no one tip contains another. Zotero extends the already imported 146cdead checkpoint. Either spelling/Zotero order needs preserving both unreleased changelog additions; spaCy is independent. No source file changed by these tips overlaps the feature branch."
+  },
+  "no_ci": "No Actions/status queries or waits. git merge-tree used read-only three-input mode; no worktree/index/ref mutations."
+}

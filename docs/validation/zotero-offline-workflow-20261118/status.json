@@ -1,0 +1,35 @@
+{
+  "status": "passed",
+  "product_commit": "02da86d9ba82f5d14dc04a3759c247064bcd6a25",
+  "implementation_commit": "3ad7c8b6e14ae09985bb58c9c7ce8a25277e056a",
+  "repository": "CrispStrobe/quds_office_suite",
+  "branch": "codex/zotero-offline-workflow-20261118",
+  "pr": 165,
+  "stacked_on_pr": 164,
+  "tests": {
+    "cohort": "full-editor-zotero",
+    "suites": 22,
+    "passed": 299,
+    "failed": 0,
+    "skipped": 0,
+    "errors": 0,
+    "new_cases_included": 21,
+    "focused_runs_added": false
+  },
+  "actual_process_exit": 0,
+  "strict_targets": 5,
+  "source_inputs": 554,
+  "all_guards_pass": true,
+  "incoming": {
+    "refs": 375,
+    "distinct_heads": 241,
+    "unaccounted": 0,
+    "cutoff_closed_at_utc": "2026-11-18T14:50:48.826Z"
+  },
+  "ci_queried_or_awaited": false,
+  "historical_cohorts_added_to_total": false,
+  "report": "README.md",
+  "summary": "editor/summary.json",
+  "raw_events": "editor/events.jsonl.gz",
+  "input_fingerprints": "editor/inputs.json.gz"
+}

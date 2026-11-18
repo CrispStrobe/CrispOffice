@@ -1,0 +1,30 @@
+{
+  "description": "Read-only audit of shipped standard and Swiss dictionary canonical Latin decomposition coverage; no runtime behavior claimed.",
+  "source_head": "65c32896d36699b1e5ad62294cfa70bf51b8fb32",
+  "source_sha256": "5962e7ed1842e00fd2188e0b64e0c58ead196f0e419723497138e199bc6eab3c",
+  "unicode_version_for_audit": "15.0.0",
+  "dictionary_forms_in_standard_and_swiss_shards": 453378,
+  "decomposable_dictionary_characters": 20,
+  "missing_decomposition_characters": [
+    {
+      "character": "ë",
+      "decomposition": "ë",
+      "occurrences": 4,
+      "words": [
+        "Brontë",
+        "Citroën",
+        "Danaë",
+        "Joël"
+      ]
+    },
+    {
+      "character": "Š",
+      "decomposition": "Š",
+      "occurrences": 2,
+      "words": [
+        "Škoda",
+        "Škodas"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,866 @@
+{
+  "caseCount": 48,
+  "cases": [
+    {
+      "accepted": true,
+      "finalFindingAtEnd": false,
+      "findings": [],
+      "id": "ordinary-clean",
+      "language": "de-DE",
+      "maximumSuggestions": 5,
+      "status": "success",
+      "text": "Das Haus ist sch\u00f6n."
+    },
+    {
+      "accepted": true,
+      "finalFindingAtEnd": false,
+      "findings": [],
+      "id": "ascii-apostrophe-clean",
+      "language": "de-DE",
+      "maximumSuggestions": 5,
+      "status": "success",
+      "text": "Er darf's."
+    },
+    {
+      "accepted": true,
+      "finalFindingAtEnd": false,
+      "findings": [],
+      "id": "curly-apostrophe-clean",
+      "language": "de-DE",
+      "maximumSuggestions": 5,
+      "status": "success",
+      "text": "Er darf\u2019s."
+    },
+    {
+      "accepted": true,
+      "finalFindingAtEnd": false,
+      "findings": [],
+      "id": "austrian-apostrophe-clean",
+      "language": "de-AT",
+      "maximumSuggestions": 5,
+      "status": "success",
+      "text": "Er darf\u2019s."
+    },
+    {
+      "accepted": true,
+      "finalFindingAtEnd": false,
+      "findings": [],
+      "id": "swiss-apostrophe-clean",
+      "language": "de-CH",
+      "maximumSuggestions": 5,
+      "status": "success",
+      "text": "Er darf\u2019s."
+    },
+    {
+      "accepted": true,
+      "finalFindingAtEnd": false,
+      "findings": [],
+      "id": "uppercase-apostrophe-clean",
+      "language": "de-DE",
+      "maximumSuggestions": 5,
+      "status": "success",
+      "text": "ER DARF\u2019S."
+    },
+    {
+      "accepted": true,
+      "finalFindingAtEnd": false,
+      "findings": [
+        {
+          "end": 26,
+          "replacements": [
+            "darf's",
+            "Dramas",
+            "Drangs",
+            "Trafos",
+            "draus"
+          ],
+          "source": "draf's",
+          "start": 20
+        }
+      ],
+      "id": "ascii-apostrophe-typo",
+      "language": "de-DE",
+      "maximumSuggestions": 5,
+      "status": "success",
+      "text": "Er draf's."
+    },
+    {
+      "accepted": true,
+      "finalFindingAtEnd": false,
+      "findings": [
+        {
+          "end": 26,
+          "replacements": [
+            "darf\u2019s",
+            "Dramas",
+            "Drangs",
+            "Trafos",
+            "draus"
+          ],
+          "source": "draf\u2019s",
+          "start": 20
+        }
+      ],
+      "id": "curly-apostrophe-typo",
+      "language": "de-DE",
+      "maximumSuggestions": 5,
+      "status": "success",
+      "text": "Er draf\u2019s."
+    },
+    {
+      "accepted": true,
+      "finalFindingAtEnd": false,
+      "findings": [
+        {
+          "end": 33,
+          "replacements": [
+            "darf's",
+            "Dramas",
+            "Drangs",
+            "Trafos",
+            "draus"
+          ],
+          "source": "draf's",
+          "start": 27
+        },
+        {
+          "end": 40,
+          "replacements": [
+            "darf\u2019s",
+            "Dramas",
+            "Drangs",
+            "Trafos",
+            "draus"
+          ],
+          "source": "draf\u2019s",
+          "start": 34
+        }
+      ],
+      "id": "source-coordinates-and-cache",
+      "language": "de-DE",
+      "maximumSuggestions": 5,
+      "status": "success",
+      "text": "\ud83d\ude42 Gru\u0308\u00dfe draf's draf\u2019s"
+    },
+    {
+      "accepted": true,
+      "finalFindingAtEnd": false,
+      "findings": [],
+      "id": "personal-apostrophe-clean",
+      "language": "de-DE",
+      "maximumSuggestions": 5,
+      "status": "success",
+      "text": "O\u2019Connor"
+    },
+    {
+      "accepted": true,
+      "finalFindingAtEnd": false,
+      "findings": [
+        {
+          "end": 30,
+          "replacements": [
+            "O\u2019Connor\u2011Haus",
+            "O\u2019Connor\u2011Hubs",
+            "O\u2019Connor\u2011Hufs",
+            "O\u2019Connor\u2011Huts"
+          ],
+          "source": "O\u2019Connor\u2011Huas",
+          "start": 17
+        }
+      ],
+      "id": "personal-separators",
+      "language": "de-DE",
+      "maximumSuggestions": 5,
+      "status": "success",
+      "text": "O\u2019Connor\u2011Huas"
+    },
+    {
+      "accepted": true,
+      "finalFindingAtEnd": false,
+      "findings": [
+        {
+          "end": 30,
+          "replacements": [
+            "Haus-T\u00fcr",
+            "Hubs-T\u00fcr",
+            "Haus-d\u00fcrr",
+            "Hufs-T\u00fcr",
+            "Hubs-d\u00fcrr"
+          ],
+          "source": "Huas-T\u00fcrr",
+          "start": 21
+        }
+      ],
+      "id": "two-constituent-repair",
+      "language": "de-DE",
+      "maximumSuggestions": 5,
+      "status": "success",
+      "text": "Ein Huas-T\u00fcrr."
+    },
+    {
+      "accepted": true,
+      "finalFindingAtEnd": false,
+      "findings": [
+        {
+          "end": 30,
+          "replacements": [
+            "Haus\u2011T\u00fcr",
+            "Hubs\u2011T\u00fcr",
+            "Haus\u2011d\u00fcrr",
+            "Hufs\u2011T\u00fcr",
+            "Hubs\u2011d\u00fcrr"
+          ],
+          "source": "Huas\u2011T\u00fcrr",
+          "start": 21
+        }
+      ],
+      "id": "nonbreaking-hyphen-repair",
+      "language": "de-DE",
+      "maximumSuggestions": 5,
+      "status": "success",
+      "text": "Ein Huas\u2011T\u00fcrr."
+    },
+    {
+      "accepted": true,
+      "finalFindingAtEnd": false,
+      "findings": [
+        {
+          "end": 36,
+          "replacements": [
+            "Qudsmarke-Haus-T\u00fcr",
+            "Qudsmarke-Hubs-T\u00fcr",
+            "Qudsmarke-Haus-d\u00fcrr",
+            "Qudsmarke-Hufs-T\u00fcr",
+            "Qudsmarke-Hubs-d\u00fcrr"
+          ],
+          "source": "Qudsmarke-Huas-T\u00fcrr",
+          "start": 17
+        }
+      ],
+      "id": "known-personal-constituent",
+      "language": "de-DE",
+      "maximumSuggestions": 5,
+      "status": "success",
+      "text": "Qudsmarke-Huas-T\u00fcrr"
+    },
+    {
+      "accepted": true,
+      "finalFindingAtEnd": false,
+      "findings": [],
+      "id": "protected-text-clean",
+      "language": "de-DE",
+      "maximumSuggestions": 5,
+      "status": "success",
+      "text": "`draf\u2019s Huas-T\u00fcrr` https://example.com/Feler userFeler@example.com"
+    },
+    {
+      "accepted": true,
+      "finalFindingAtEnd": false,
+      "findings": [
+        {
+          "end": 22,
+          "replacements": [
+            "Haus",
+            "Ahaus",
+            "Camus",
+            "Haars",
+            "Hades"
+          ],
+          "source": "Ha\u2019us",
+          "start": 17
+        }
+      ],
+      "id": "arbitrary-apostrophe-still-unknown",
+      "language": "de-DE",
+      "maximumSuggestions": 5,
+      "status": "success",
+      "text": "Ha\u2019us"
+    },
+    {
+      "accepted": true,
+      "finalFindingAtEnd": false,
+      "findings": [],
+      "id": "known-compound-clean",
+      "language": "de-DE",
+      "maximumSuggestions": 5,
+      "status": "success",
+      "text": "Eine Haus-T\u00fcr."
+    },
+    {
+      "accepted": true,
+      "finalFindingAtEnd": false,
+      "findings": [],
+      "id": "swiss-clean",
+      "language": "de-CH",
+      "maximumSuggestions": 5,
+      "status": "success",
+      "text": "Ein Gruss."
+    },
+    {
+      "accepted": true,
+      "finalFindingAtEnd": false,
+      "findings": [
+        {
+          "end": 25,
+          "replacements": [
+            "Gruss",
+            "grub"
+          ],
+          "source": "Gru\u00df",
+          "start": 21
+        }
+      ],
+      "id": "swiss-sharp-s-correction",
+      "language": "de-CH",
+      "maximumSuggestions": 5,
+      "status": "success",
+      "text": "Ein Gru\u00df."
+    },
+    {
+      "accepted": true,
+      "finalFindingAtEnd": false,
+      "findings": [
+        {
+          "end": 26,
+          "replacements": [
+            "Feder",
+            "Feger",
+            "Fehler",
+            "Feier",
+            "feiler"
+          ],
+          "source": "Feler",
+          "start": 21
+        }
+      ],
+      "id": "ordinary-typo",
+      "language": "de-DE",
+      "maximumSuggestions": 5,
+      "status": "success",
+      "text": "Ein Feler."
+    },
+    {
+      "accepted": true,
+      "finalFindingAtEnd": false,
+      "findings": [
+        {
+          "end": 24,
+          "replacements": [
+            "Makeup",
+            "Hake-um",
+            "Sake-um",
+            "Mike-um",
+            "Macke-um"
+          ],
+          "source": "Make-up",
+          "start": 17
+        }
+      ],
+      "id": "whole-word-suggestion-retained",
+      "language": "de-DE",
+      "maximumSuggestions": 5,
+      "status": "success",
+      "text": "Make-up"
+    },
+    {
+      "accepted": true,
+      "finalFindingAtEnd": false,
+      "findings": [
+        {
+          "end": 24,
+          "replacements": [
+            "LERNEN",
+            "LERNTEN"
+          ],
+          "source": "LERNNEN",
+          "start": 17
+        }
+      ],
+      "id": "uppercase-distinct-shortlist",
+      "language": "de-DE",
+      "maximumSuggestions": 2,
+      "status": "success",
+      "text": "LERNNEN"
+    },
+    {
+      "accepted": true,
+      "finalFindingAtEnd": false,
+      "findings": [
+        {
+          "end": 24,
+          "replacements": [
+            "Lernen",
+            "Lernten"
+          ],
+          "source": "Lernnen",
+          "start": 17
+        }
+      ],
+      "id": "sentence-initial-distinct-shortlist",
+      "language": "de-DE",
+      "maximumSuggestions": 2,
+      "status": "success",
+      "text": "Lernnen"
+    },
+    {
+      "accepted": true,
+      "finalFindingAtEnd": false,
+      "findings": [
+        {
+          "end": 24,
+          "replacements": [
+            "LERNEN",
+            "LERNTEN",
+            "LERCHEN",
+            "LERNENS",
+            "LEHNTEN"
+          ],
+          "source": "LERNNEN",
+          "start": 17
+        }
+      ],
+      "id": "uppercase-full-shortlist",
+      "language": "de-DE",
+      "maximumSuggestions": 5,
+      "status": "success",
+      "text": "LERNNEN"
+    },
+    {
+      "accepted": true,
+      "finalFindingAtEnd": false,
+      "findings": [
+        {
+          "end": 24,
+          "replacements": [
+            "Lernen",
+            "Lernten",
+            "Lerchen",
+            "Lernens",
+            "Lehnten"
+          ],
+          "source": "Lernnen",
+          "start": 17
+        }
+      ],
+      "id": "sentence-initial-full-shortlist",
+      "language": "de-DE",
+      "maximumSuggestions": 5,
+      "status": "success",
+      "text": "Lernnen"
+    },
+    {
+      "accepted": true,
+      "finalFindingAtEnd": false,
+      "findings": [],
+      "id": "marked-numeric-prefixes",
+      "language": "de-DE",
+      "maximumSuggestions": 5,
+      "status": "success",
+      "text": "1\u0301Huas \ud835\udfd8\u0308Huas"
+    },
+    {
+      "accepted": true,
+      "finalFindingAtEnd": false,
+      "findings": [],
+      "id": "marked-connector-prefixes",
+      "language": "de-DE",
+      "maximumSuggestions": 5,
+      "status": "success",
+      "text": "_\u0301Huas \u203f\u0308Huas"
+    },
+    {
+      "accepted": true,
+      "finalFindingAtEnd": false,
+      "findings": [
+        {
+          "end": 24,
+          "replacements": [
+            "Haus",
+            "Hubs",
+            "Hufs",
+            "Huts"
+          ],
+          "source": "Huas",
+          "start": 20
+        }
+      ],
+      "id": "prose-next-to-marked-identifiers",
+      "language": "de-DE",
+      "maximumSuggestions": 5,
+      "status": "success",
+      "text": "_\u0301 Huas"
+    },
+    {
+      "accepted": true,
+      "finalFindingAtEnd": false,
+      "findings": [
+        {
+          "end": 21,
+          "replacements": [
+            "Cafe",
+            "Caf\u00e9"
+          ],
+          "source": "Caf\u00e8",
+          "start": 17
+        }
+      ],
+      "id": "short-accent-noun",
+      "language": "de-DE",
+      "maximumSuggestions": 5,
+      "status": "success",
+      "text": "Caf\u00e8"
+    },
+    {
+      "accepted": true,
+      "finalFindingAtEnd": false,
+      "findings": [
+        {
+          "end": 21,
+          "replacements": [
+            "Jo\u00ebl"
+          ],
+          "source": "Jo\u00eal",
+          "start": 17
+        }
+      ],
+      "id": "short-accent-name",
+      "language": "de-DE",
+      "maximumSuggestions": 5,
+      "status": "success",
+      "text": "Jo\u00eal"
+    },
+    {
+      "accepted": true,
+      "finalFindingAtEnd": false,
+      "findings": [
+        {
+          "end": 26,
+          "replacements": [
+            "ros\u00e9",
+            "Rosa",
+            "Rose",
+            "Rosi",
+            "Ross"
+          ],
+          "source": "ros\u00e8",
+          "start": 22
+        }
+      ],
+      "id": "short-accent-adjective",
+      "language": "de-DE",
+      "maximumSuggestions": 5,
+      "status": "success",
+      "text": "hier ros\u00e8"
+    },
+    {
+      "accepted": true,
+      "finalFindingAtEnd": false,
+      "findings": [
+        {
+          "end": 21,
+          "replacements": [
+            "CAFE",
+            "CAF\u00c9"
+          ],
+          "source": "CAF\u00c8",
+          "start": 17
+        }
+      ],
+      "id": "short-accent-uppercase",
+      "language": "de-DE",
+      "maximumSuggestions": 5,
+      "status": "success",
+      "text": "CAF\u00c8"
+    },
+    {
+      "accepted": true,
+      "finalFindingAtEnd": false,
+      "findings": [
+        {
+          "end": 25,
+          "replacements": [
+            "Cafe",
+            "Caf\u00e9"
+          ],
+          "source": "Cafe\u0300",
+          "start": 20
+        }
+      ],
+      "id": "short-accent-decomposed",
+      "language": "de-DE",
+      "maximumSuggestions": 5,
+      "status": "success",
+      "text": "\ud83d\ude42 Cafe\u0300"
+    },
+    {
+      "accepted": true,
+      "finalFindingAtEnd": false,
+      "findings": [
+        {
+          "end": 26,
+          "replacements": [
+            "Jo\u00ebl\u2011Haus",
+            "Jo\u00ebl\u2011Hubs",
+            "Jo\u00ebl\u2011Hufs",
+            "Jo\u00ebl\u2011Huts"
+          ],
+          "source": "Jo\u00eal\u2011Huas",
+          "start": 17
+        }
+      ],
+      "id": "short-accent-compound",
+      "language": "de-DE",
+      "maximumSuggestions": 5,
+      "status": "success",
+      "text": "Jo\u00eal\u2011Huas"
+    },
+    {
+      "accepted": true,
+      "finalFindingAtEnd": false,
+      "findings": [
+        {
+          "end": 21,
+          "replacements": [
+            "Cafe",
+            "Caf\u00e9"
+          ],
+          "source": "Caf\u00e8",
+          "start": 17
+        }
+      ],
+      "id": "short-accent-swiss",
+      "language": "de-CH",
+      "maximumSuggestions": 5,
+      "status": "success",
+      "text": "Caf\u00e8"
+    },
+    {
+      "accepted": true,
+      "finalFindingAtEnd": false,
+      "findings": [],
+      "id": "decomposed-shipped-names",
+      "language": "de-DE",
+      "maximumSuggestions": 5,
+      "status": "success",
+      "text": "Joe\u0308l Citroe\u0308n Bronte\u0308 Danae\u0308 S\u030ckoda S\u030ckodas"
+    },
+    {
+      "accepted": true,
+      "finalFindingAtEnd": false,
+      "findings": [],
+      "id": "decomposed-austrian-names",
+      "language": "de-AT",
+      "maximumSuggestions": 5,
+      "status": "success",
+      "text": "Joe\u0308l S\u030ckoda"
+    },
+    {
+      "accepted": true,
+      "finalFindingAtEnd": false,
+      "findings": [],
+      "id": "decomposed-swiss-names",
+      "language": "de-CH",
+      "maximumSuggestions": 5,
+      "status": "success",
+      "text": "Joe\u0308l S\u030ckoda"
+    },
+    {
+      "accepted": true,
+      "finalFindingAtEnd": false,
+      "findings": [],
+      "id": "decomposed-uppercase-names",
+      "language": "de-DE",
+      "maximumSuggestions": 5,
+      "status": "success",
+      "text": "JOE\u0308L CITROE\u0308N S\u030cKODA"
+    },
+    {
+      "accepted": true,
+      "finalFindingAtEnd": false,
+      "findings": [],
+      "id": "soft-hyphen-accent-composition",
+      "language": "de-DE",
+      "maximumSuggestions": 5,
+      "status": "success",
+      "text": "Ha\u00ad\u0308user Gru\u00ad\u0308\u00dfe Joe\u00ad\u0308l"
+    },
+    {
+      "accepted": true,
+      "finalFindingAtEnd": false,
+      "findings": [
+        {
+          "end": 26,
+          "replacements": [
+            "Jo\u00ebl",
+            "Jolle",
+            "Joule",
+            "Johlt",
+            "Moll"
+          ],
+          "source": "Joe\u0308ll",
+          "start": 20
+        },
+        {
+          "end": 34,
+          "replacements": [
+            "\u0160koda",
+            "\u0160kodas",
+            "Skodas",
+            "Skoda"
+          ],
+          "source": "S\u030ckodaa",
+          "start": 27
+        }
+      ],
+      "id": "decomposed-name-repair",
+      "language": "de-DE",
+      "maximumSuggestions": 5,
+      "status": "success",
+      "text": "\ud83d\ude42 Joe\u0308ll S\u030ckodaa"
+    },
+    {
+      "accepted": true,
+      "finalFindingAtEnd": false,
+      "findings": [
+        {
+          "end": 30,
+          "replacements": [
+            "Jo\u00ebl\u2011Haus",
+            "Jo\u00ebl\u2011Hubs",
+            "Jo\u00ebl\u2011Hufs",
+            "Jo\u00ebl\u2011Huts"
+          ],
+          "source": "Joe\u0308l\u2011Huas",
+          "start": 20
+        }
+      ],
+      "id": "decomposed-compound-repair",
+      "language": "de-DE",
+      "maximumSuggestions": 5,
+      "status": "success",
+      "text": "\ud83d\ude42 Joe\u0308l\u2011Huas"
+    },
+    {
+      "accepted": true,
+      "finalFindingAtEnd": false,
+      "findings": [],
+      "id": "personal-canonical-alias",
+      "language": "de-DE",
+      "maximumSuggestions": 5,
+      "status": "success",
+      "text": "QudsJoe\u0308l QudsS\u030c"
+    },
+    {
+      "accepted": true,
+      "finalFindingAtEnd": true,
+      "findings": [
+        {
+          "end": 45,
+          "replacements": [
+            "Haus",
+            "Hubs",
+            "Hufs",
+            "Huts"
+          ],
+          "source": "Huas",
+          "start": 41
+        }
+      ],
+      "id": "soft-hyphen-identifier-prefixes",
+      "language": "de-DE",
+      "maximumSuggestions": 5,
+      "status": "success",
+      "text": "42\u00adHuas _\u00adHuas \ud835\udfd8\u00ad\u0301Huas Huas"
+    },
+    {
+      "accepted": true,
+      "finalFindingAtEnd": true,
+      "findings": [
+        {
+          "end": 83,
+          "replacements": [
+            "Haus",
+            "Hubs",
+            "Hufs",
+            "Huts"
+          ],
+          "source": "Huas",
+          "start": 79
+        }
+      ],
+      "id": "soft-hyphen-protected-text",
+      "language": "de-DE",
+      "maximumSuggestions": 5,
+      "status": "success",
+      "text": "ht\u00adtps://example.invalid/Huas Huas@exam\u00adple.invalid `\u00ad`Huas`` Huas"
+    },
+    {
+      "accepted": true,
+      "finalFindingAtEnd": true,
+      "findings": [
+        {
+          "end": 30,
+          "replacements": [
+            "Haus",
+            "Hubs",
+            "Hufs",
+            "Huts"
+          ],
+          "source": "Huas",
+          "start": 26
+        }
+      ],
+      "id": "source-protected-code",
+      "language": "de-DE",
+      "maximumSuggestions": 5,
+      "status": "success",
+      "text": "`Huas`\u00ad` Huas"
+    },
+    {
+      "accepted": true,
+      "finalFindingAtEnd": true,
+      "findings": [
+        {
+          "end": 39,
+          "replacements": [
+            "Haus",
+            "Hubs",
+            "Hufs",
+            "Huts"
+          ],
+          "source": "Huas",
+          "start": 35
+        }
+      ],
+      "id": "prepended-identifier-edges",
+      "language": "de-DE",
+      "maximumSuggestions": 5,
+      "status": "success",
+      "text": "\u06004\u0301\u00adHuas Huas\ud804\udcbd\ud835\udfd8 Huas"
+    },
+    {
+      "accepted": true,
+      "finalFindingAtEnd": true,
+      "findings": [
+        {
+          "end": 28,
+          "replacements": [
+            "Haus",
+            "Hubs",
+            "Hufs",
+            "Huts"
+          ],
+          "source": "Huas",
+          "start": 24
+        }
+      ],
+      "id": "projected-joiner-boundary",
+      "language": "de-DE",
+      "maximumSuggestions": 5,
+      "status": "success",
+      "text": "Huas\u00ad\u200d Huas"
+    }
+  ],
+  "failed": 0,
+  "schemaVersion": 1
+}

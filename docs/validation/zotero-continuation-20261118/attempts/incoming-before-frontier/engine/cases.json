@@ -1,0 +1,275 @@
+[
+  {
+    "id": 5,
+    "name": "middle paragraph insertion does not rewrite following paragraphs",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/word_comparison_test.dart"
+  },
+  {
+    "id": 6,
+    "name": "whole paragraph removal and empty paragraphs remain visible",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/word_comparison_test.dart"
+  },
+  {
+    "id": 7,
+    "name": "word-level redline retains unchanged context and reconstructs both inputs",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/word_comparison_test.dart"
+  },
+  {
+    "id": 8,
+    "name": "repeated paragraphs align deterministically",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/word_comparison_test.dart"
+  },
+  {
+    "id": 9,
+    "name": "Unicode, Arabic, combining marks and joined emoji are indivisible",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/word_comparison_test.dart"
+  },
+  {
+    "id": 10,
+    "name": "normalization preserves source text and reports only requested differences",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/word_comparison_test.dart"
+  },
+  {
+    "id": 11,
+    "name": "direct run formatting is detected but equivalent run splitting is not",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/word_comparison_test.dart"
+  },
+  {
+    "id": 12,
+    "name": "paragraph and section formatting changes have readable details",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/word_comparison_test.dart"
+  },
+  {
+    "id": 13,
+    "name": "projecting pending revisions never changes metadata or input identity",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/word_comparison_test.dart"
+  },
+  {
+    "id": 14,
+    "name": "tracked deletion projection excludes deleted character formatting",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/word_comparison_test.dart"
+  },
+  {
+    "id": 15,
+    "name": "invalid or overlapping revision ranges cannot silently project wrong text",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/word_comparison_test.dart"
+  },
+  {
+    "id": 16,
+    "name": "detached target is not redirected by a stale legacy index",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/word_comparison_test.dart"
+  },
+  {
+    "id": 17,
+    "name": "captured-null target cannot be rebound after later paragraph insertion",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/word_comparison_test.dart"
+  },
+  {
+    "id": 18,
+    "name": "table, frame, header and note changes retain their story locations",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/word_comparison_test.dart"
+  },
+  {
+    "id": 19,
+    "name": "empty table topology changes are not mistaken for equal documents",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/word_comparison_test.dart"
+  },
+  {
+    "id": 20,
+    "name": "same display text with a different hyperlink is a structural change",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/word_comparison_test.dart"
+  },
+  {
+    "id": 21,
+    "name": "splitting a hyperlink across equal runs is not a document change",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/word_comparison_test.dart"
+  },
+  {
+    "id": 22,
+    "name": "coarse fallback is bounded, disclosed and does not truncate text",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/word_comparison_test.dart"
+  },
+  {
+    "id": 25,
+    "name": "a previously captured missing target never binds a later paragraph",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/word_comparison_adversarial_test.dart"
+  },
+  {
+    "id": 26,
+    "name": "legacy body indices count TOC paragraphs without redirecting a change",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/word_comparison_adversarial_test.dart"
+  },
+  {
+    "id": 27,
+    "name": "adjacent zero-width native inline nodes keep independent identities",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/word_comparison_adversarial_test.dart"
+  },
+  {
+    "id": 28,
+    "name": "case normalization still detects moved direct character formatting",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/word_comparison_adversarial_test.dart"
+  },
+  {
+    "id": 29,
+    "name": "ignored whitespace length does not invent a formatting change",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/word_comparison_adversarial_test.dart"
+  },
+  {
+    "id": 30,
+    "name": "empty cached fields still compare their instructions",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/word_comparison_adversarial_test.dart"
+  },
+  {
+    "id": 31,
+    "name": "field locking is a semantic change with an unchanged displayed cache",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/word_comparison_adversarial_test.dart"
+  },
+  {
+    "id": 32,
+    "name": "changed bookmark endpoint pairing is visible even with identical text",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/word_comparison_adversarial_test.dart"
+  },
+  {
+    "id": 33,
+    "name": "bounded dense inline reports reconstruct original and revised Unicode",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/word_comparison_adversarial_test.dart"
+  },
+  {
+    "id": 34,
+    "name": "cyclic block trees fail the explicit depth bound",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/word_comparison_adversarial_test.dart"
+  },
+  {
+    "id": 35,
+    "name": "moving an unchanged comment to another text range is reported",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/word_comparison_adversarial_test.dart"
+  },
+  {
+    "id": 36,
+    "name": "equivalent comment anchors ignore run splitting and native IDs",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/word_comparison_adversarial_test.dart"
+  },
+  {
+    "id": 37,
+    "name": "visual block movement between paragraphs is reported",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/word_comparison_adversarial_test.dart"
+  },
+  {
+    "id": 38,
+    "name": "opaque block movement between paragraphs is reported",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/word_comparison_adversarial_test.dart"
+  },
+  {
+    "id": 39,
+    "name": "body and frame bookmark ID renumbering uses independent story scopes",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/word_comparison_adversarial_test.dart"
+  },
+  {
+    "id": 23,
+    "name": "large mostly identical inputs use anchors without quadratic work",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/word_comparison_test.dart"
+  },
+  {
+    "id": 40,
+    "name": "explicit input limits fail rather than return a partial equal result",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/word_comparison_test.dart"
+  },
+  {
+    "id": 41,
+    "name": "JSON report is deterministic, immutable and contains no model references",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/word_comparison_test.dart"
+  },
+  {
+    "id": 42,
+    "name": "legacy unsafe mutation API fails before touching either input",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/word_comparison_test.dart"
+  },
+  {
+    "id": 43,
+    "name": "independently authored native XML produces a readable comparison",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/word_comparison_test.dart"
+  },
+  {
+    "id": 44,
+    "name": "many independent edit sequences reconstruct both paragraph streams",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/word_comparison_test.dart"
+  }
+]

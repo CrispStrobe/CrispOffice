@@ -1,0 +1,19 @@
+{
+  "cohort": "panel",
+  "command": [
+    "/workspace/scratch/11b2f453fe98/zotero-toolchain/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+    "--packages=/workspace/scratch/11b2f453fe98/zotero-validation/.dart_tool/package_config.json",
+    "tool/check_native_spelling.dart"
+  ],
+  "cwd": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_engine",
+  "dart_version": "Dart SDK version: 3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\"",
+  "flutter_lock_path": null,
+  "head_at_start": "b2bcfc23e692476d16d9a7a534ea95a93ae94cd3",
+  "runner_sha256": "a010493802093f1c76fa401a14f2567257f98bfe71591ca784b890c89565d381",
+  "scope": "Current merged incoming spelling dependency. Controlled providers and local Dart VM; no installed-OS spelling, desktop-device, AOT or JavaScript acceptance.",
+  "selected_files": [
+    "packages/quds_office_engine/tool/check_native_spelling.dart"
+  ],
+  "source_file_count": 390,
+  "started_at_utc": "2026-11-18T13:16:17.596107+00:00"
+}

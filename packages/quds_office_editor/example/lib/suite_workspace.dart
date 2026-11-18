@@ -4,6 +4,7 @@ import 'dart:io';
 import 'dart:math' as math;
 
 import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:quds_office_editor/quds_office_editor.dart';
@@ -79,13 +80,17 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   late final SheetEditorController _sheet;
   late final SlideEditorController _slides;
   late final PdfEditorController _pdf;
-  final TextEditingController _commentReply = TextEditingController();
+  WmlDocument? _commentDraftDocument;
+  final Map<int, _CommentReplyDraft> _commentReplyDrafts =
+      <int, _CommentReplyDraft>{};
+  Timer? _commentReviewTimer;
   final TextEditingController _pdfFind = TextEditingController();
   Timer? _pdfFindDebounce;
   final TextEditingController _slideNotesEdit = TextEditingController();
   int _notesSlideIndex = -1;
   final VirtualViewport _commentViewport = VirtualViewport();
   OverlayEntry? _commentContextMenu;
+  bool Function()? _commentContextIsCurrent;
   OverlayEntry? _slideSorterMenu;
   var _savePhase = _SavePhase.idle;
   var _saveHeavy = false;
@@ -170,6 +175,12 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   }
 
   void _rebuild() {
+    _commentReviewTimer?.cancel();
+    if (_commentContextMenu != null &&
+        !(_commentContextIsCurrent?.call() ?? false)) {
+      _dismissCommentContext();
+    }
+    _syncCommentReplyDrafts();
     if (!mounted || _rebuildScheduled) {
       return;
     }
@@ -282,7 +293,8 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     _pdf
       ..removeListener(_rebuild)
       ..dispose();
-    _commentReply.dispose();
+    _commentReviewTimer?.cancel();
+    _commentReplyDrafts.clear();
     _pdfFindDebounce?.cancel();
     _pdfFind.dispose();
     _pdfThumbScroll.dispose();
@@ -292,8 +304,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     _slideFocus.dispose();
     _saveTicker?.cancel();
     _openTicker?.cancel();
-    OfficeContextMenu.dismiss(_commentContextMenu);
-    _commentContextMenu = null;
+    _dismissCommentContext();
     OfficeContextMenu.dismiss(_slideSorterMenu);
     _slideSorterMenu = null;
     if (_slideshowFullscreen) {
@@ -801,6 +812,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   }
 
   void _switchApp(SuiteApp app) {
+    _dismissCommentContext();
     setState(() {
       _app = app;
       _tab = app == SuiteApp.pdf ? _RibbonTab.view : _RibbonTab.home;
@@ -2005,6 +2017,22 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     ];
   }
 
+  Future<void> _openZotero({ZoteroCitingCommand? command}) async {
+    final transport = StudioZoteroTransport();
+    try {
+      await showWordZoteroDialog(
+        context,
+        controller: _word,
+        session: _zoteroSession,
+        transport: transport.send,
+        localTransport: transport.supportsLocal ? transport.send : null,
+        initialCommand: command,
+      );
+    } finally {
+      transport.dispose();
+    }
+  }
+
   List<StudioRibbonGroup> _wordInsert() {
     return <StudioRibbonGroup>[
       StudioRibbonGroup(
@@ -2013,25 +2041,42 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
           _cmd(
             Icons.menu_book_outlined,
             'Zotero',
-            _canMutate
-                ? () async {
-                    final transport = StudioZoteroTransport();
-                    try {
-                      await showWordZoteroDialog(
-                        context,
-                        controller: _word,
-                        session: _zoteroSession,
-                        transport: transport.send,
-                        localTransport: transport.supportsLocal
-                            ? transport.send
-                            : null,
-                      );
-                    } finally {
-                      transport.dispose();
-                    }
-                  }
-                : null,
+            _canMutate ? _openZotero : null,
           ),
+          if (studioZoteroDesktopAvailable) ...[
+            _cmd(
+              Icons.format_quote,
+              _arabic ? 'إضافة/تحرير استشهاد' : 'Add/Edit citation',
+              _canMutate
+                  ? () => _openZotero(
+                      command: ZoteroCitingCommand.addEditCitation,
+                    )
+                  : null,
+            ),
+            _cmd(
+              Icons.list_alt,
+              _arabic ? 'قائمة المراجع' : 'Bibliography',
+              _canMutate
+                  ? () => _openZotero(
+                      command: ZoteroCitingCommand.addEditBibliography,
+                    )
+                  : null,
+            ),
+            _cmd(
+              Icons.refresh,
+              _arabic ? 'تحديث الاستشهادات' : 'Refresh citations',
+              _canMutate
+                  ? () => _openZotero(command: ZoteroCitingCommand.refresh)
+                  : null,
+            ),
+            _cmd(
+              Icons.format_paint_outlined,
+              _arabic ? 'نمط الاستشهاد' : 'Citation style',
+              _canMutate
+                  ? () => _openZotero(command: ZoteroCitingCommand.setDocPrefs)
+                  : null,
+            ),
+          ],
         ],
       ),
       StudioRibbonGroup(
@@ -2728,126 +2773,34 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   List<StudioRibbonGroup> _wordReview() {
     return <StudioRibbonGroup>[
       StudioRibbonGroup(
-        title: _arabic ? 'تحليل لغوي' : 'Language analysis',
+        title: _arabic ? 'التدقيق' : 'Proofing',
         children: <Widget>[
           _cmd(
-            Icons.manage_search,
-            _arabic ? 'تحليل الألمانية' : 'German analysis',
-            _showLinguisticAnalysis,
+            Icons.spellcheck,
+            _arabic ? 'تدقيق' : 'Spelling',
+            _showSpelling,
+            selected:
+                _word.reviewPaneVisible &&
+                _word.reviewPaneTab == WordReviewPaneTab.proofing,
           ),
           _cmd(
-            Icons.download_for_offline_outlined,
-            _arabic ? 'إعداد التحليل' : 'Analysis setup',
-            _showSpacySetup,
+            Icons.edit_note,
+            _arabic ? 'تدقيق أثناء الكتابة' : 'Check as you type',
+            () => _word.proofing.enabled = !_word.proofing.enabled,
+            selected: _word.proofing.enabled,
           ),
         ],
       ),
       StudioRibbonGroup(
-        title: _arabic ? 'تحديد' : 'Select',
+        title: _arabic ? 'تغييرات' : 'Changes',
         children: <Widget>[
-          _cmd(Icons.select_all, _arabic ? 'الكل' : 'All', _selectAllDocument),
-          _cmd(
-            Icons.text_fields,
-            _arabic ? 'كلمة' : 'Word',
-            _word.selectWordAtCaret,
-          ),
-          _cmd(
-            Icons.notes,
-            _arabic ? 'فقرة' : 'Paragraph',
-            _word.selectParagraphAtCaret,
-          ),
-        ],
-      ),
-      StudioRibbonGroup(
-        title: _arabic ? 'تحرير' : 'Edit',
-        children: <Widget>[
-          _cmd(
-            Icons.undo,
-            _arabic ? 'تراجع' : 'Undo',
-            _canMutate && _word.canUndo ? _word.undo : null,
-          ),
-          _cmd(
-            Icons.redo,
-            _arabic ? 'إعادة' : 'Redo',
-            _canMutate && _word.canRedo ? _word.redo : null,
-          ),
-        ],
-      ),
-      StudioRibbonGroup(
-        title: _arabic ? 'تعليقات' : 'Comments',
-        children: <Widget>[
-          _cmd(
-            Icons.view_sidebar_outlined,
-            _arabic ? 'اللوحة' : 'Pane',
-            () => setState(() => _showComments = !_showComments),
-            selected: _showComments,
-          ),
-          _cmd(
-            Icons.add_comment_outlined,
-            _arabic ? 'جديد' : 'New',
-            _canMutate ? _newWordComment : null,
-          ),
-          _cmd(
-            Icons.reply,
-            _arabic ? 'رد' : 'Reply',
-            _canMutate && _word.selectedComment != null
-                ? () => _replyWordComment(_word.selectedCommentId!)
-                : null,
-          ),
-          _cmd(
-            _selectedThreadResolved ? Icons.replay : Icons.task_alt,
-            _selectedThreadResolved
-                ? (_arabic ? 'إعادة فتح' : 'Reopen')
-                : (_arabic ? 'حل' : 'Resolve'),
-            _canMutate && _word.selectedComment != null
-                ? () => _word.setCommentResolved(
-                    _word.selectedCommentId!,
-                    !_selectedThreadResolved,
-                  )
-                : null,
-          ),
-          _cmd(
-            Icons.delete_outline,
-            _arabic ? 'حذف' : 'Delete',
-            _canMutate && _word.selectedCommentId != null
-                ? () => _word.deleteComment(_word.selectedCommentId!)
-                : null,
-          ),
-          _cmd(
-            Icons.keyboard_arrow_up,
-            _arabic ? 'السابق' : 'Previous',
-            WordComment.roots(_word.document).isNotEmpty
-                ? () => _word.stepComment(-1)
-                : null,
-          ),
-          _cmd(
-            Icons.keyboard_arrow_down,
-            _arabic ? 'التالي' : 'Next',
-            WordComment.roots(_word.document).isNotEmpty
-                ? () => _word.stepComment(1)
-                : null,
-          ),
-        ],
-      ),
-      StudioRibbonGroup(
-        title: _arabic ? 'تحرير المستند' : 'Proofing',
-        children: <Widget>[
-          _cmd(Icons.search, _arabic ? 'بحث' : 'Find', _openFind),
-          _cmd(
-            Icons.find_replace,
-            _arabic ? 'استبدال' : 'Replace',
-            _canMutate ? _openReplace : null,
-          ),
-          _cmd(Icons.spellcheck, _arabic ? 'تدقيق' : 'Spelling', _showSpelling),
-          _cmd(
-            Icons.info_outline,
-            _arabic ? 'خصائص' : 'Properties',
-            _showProperties,
-          ),
           _cmd(
             Icons.rate_review_outlined,
             _arabic ? 'مراجعة التغييرات' : 'Review changes',
-            () => _showDocumentReview(WordReviewTab.changes),
+            () => _word.openReviewPane(tab: WordReviewPaneTab.changes),
+            selected:
+                _word.reviewPaneVisible &&
+                _word.reviewPaneTab == WordReviewPaneTab.changes,
           ),
           _cmd(
             Icons.track_changes,
@@ -2907,7 +2860,10 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
           _cmd(
             Icons.lock_outline,
             _arabic ? 'تقييد' : 'Restrict',
-            () => _word.setRestrictEditing(!_word.document.restrictEditing),
+            _canMutate
+                ? () =>
+                      _word.setRestrictEditing(!_word.document.restrictEditing)
+                : null,
             selected: _word.document.restrictEditing,
           ),
           _cmd(
@@ -2925,6 +2881,124 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
             Icons.preview,
             _arabic ? 'سجل دمج' : 'Merge record',
             _canMutate ? _studioMergePreview : null,
+          ),
+        ],
+      ),
+      StudioRibbonGroup(
+        title: _arabic ? 'تحليل لغوي' : 'Language analysis',
+        children: <Widget>[
+          _cmd(
+            Icons.manage_search,
+            _arabic ? 'تحليل الألمانية' : 'German analysis',
+            _showLinguisticAnalysis,
+          ),
+          _cmd(
+            Icons.download_for_offline_outlined,
+            _arabic ? 'إعداد التحليل' : 'Analysis setup',
+            _showSpacySetup,
+          ),
+        ],
+      ),
+      StudioRibbonGroup(
+        title: _arabic ? 'تحديد' : 'Select',
+        children: <Widget>[
+          _cmd(Icons.select_all, _arabic ? 'الكل' : 'All', _selectAllDocument),
+          _cmd(
+            Icons.text_fields,
+            _arabic ? 'كلمة' : 'Word',
+            _word.selectWordAtCaret,
+          ),
+          _cmd(
+            Icons.notes,
+            _arabic ? 'فقرة' : 'Paragraph',
+            _word.selectParagraphAtCaret,
+          ),
+        ],
+      ),
+      StudioRibbonGroup(
+        title: _arabic ? 'تحرير' : 'Edit',
+        children: <Widget>[
+          _cmd(
+            Icons.undo,
+            _arabic ? 'تراجع' : 'Undo',
+            _canMutate && _word.canUndo ? _word.undo : null,
+          ),
+          _cmd(
+            Icons.redo,
+            _arabic ? 'إعادة' : 'Redo',
+            _canMutate && _word.canRedo ? _word.redo : null,
+          ),
+        ],
+      ),
+      StudioRibbonGroup(
+        title: _arabic ? 'تعليقات' : 'Comments',
+        children: <Widget>[
+          _cmd(
+            Icons.view_sidebar_outlined,
+            _arabic ? 'اللوحة' : 'Pane',
+            () => _setShowComments(!_showComments),
+            selected: _showComments,
+          ),
+          _cmd(
+            Icons.add_comment_outlined,
+            _arabic ? 'جديد' : 'New',
+            _canMutate ? _newWordComment : null,
+          ),
+          _cmd(
+            Icons.reply,
+            _arabic ? 'رد' : 'Reply',
+            _canMutate && _word.selectedComment != null
+                ? () => _replyWordComment(_word.selectedCommentId!)
+                : null,
+          ),
+          _cmd(
+            _selectedThreadResolved ? Icons.replay : Icons.task_alt,
+            _selectedThreadResolved
+                ? (_arabic ? 'إعادة فتح' : 'Reopen')
+                : (_arabic ? 'حل' : 'Resolve'),
+            _canMutate && _word.selectedComment != null
+                ? () => _word.setCommentResolved(
+                    _word.selectedCommentId!,
+                    !_selectedThreadResolved,
+                  )
+                : null,
+          ),
+          _cmd(
+            Icons.delete_outline,
+            _arabic ? 'حذف' : 'Delete',
+            _canMutate && _word.selectedCommentId != null
+                ? () => _word.deleteComment(_word.selectedCommentId!)
+                : null,
+          ),
+          _cmd(
+            Icons.keyboard_arrow_up,
+            _arabic ? 'السابق' : 'Previous',
+            WordComment.roots(_word.document).isNotEmpty
+                ? () => _word.stepComment(-1)
+                : null,
+          ),
+          _cmd(
+            Icons.keyboard_arrow_down,
+            _arabic ? 'التالي' : 'Next',
+            WordComment.roots(_word.document).isNotEmpty
+                ? () => _word.stepComment(1)
+                : null,
+          ),
+        ],
+      ),
+      StudioRibbonGroup(
+        title: _arabic ? 'تحرير المستند' : 'Document',
+        children: <Widget>[
+          _cmd(Icons.search, _arabic ? 'بحث' : 'Find', _openFind),
+          _cmd(
+            Icons.find_replace,
+            _arabic ? 'استبدال' : 'Replace',
+            _canMutate ? _openReplace : null,
+          ),
+          _cmd(
+            Icons.info_outline,
+            _arabic ? 'خصائص' : 'Properties',
+            _showProperties,
           ),
         ],
       ),
@@ -4355,8 +4429,13 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       setState(() {});
       return;
     }
-    _active.viewport.setScale(value);
-    _active.refresh();
+    final controller = _active;
+    controller.viewport.setScale(value);
+    if (controller is WordEditorController) {
+      controller.refreshView();
+    } else {
+      controller.refresh();
+    }
   }
 
   void _shortcutZoomIn() {
@@ -4812,6 +4891,9 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
           ],
         ),
       );
+      // Set the Studio session's initial preference once. Rebuilding the editor
+      // or returning from another app must preserve a later user opt-out.
+      controller.proofing.enabled = true;
     }
     controller.onFindRequested = () {
       if (!mounted) {
@@ -4900,19 +4982,40 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   }
 
   void _workspaceEscape() {
+    if (_commentContextMenu != null) {
+      _dismissCommentContext();
+      return;
+    }
     if (_findOpen) {
       _closeFind();
+      return;
+    }
+    if (_app == SuiteApp.word && _word.reviewPaneVisible) {
+      _word.closeReviewPane();
+      _wordFocus.requestFocus();
       return;
     }
     _slideShowEscape();
   }
 
-  void _showSpelling() {
-    if (_active is WordEditorController) {
-      unawaited(showWordProofingDialog(context, controller: _word));
+  Future<void> _showSpelling() async {
+    if (_app != SuiteApp.word) {
+      _toast(_arabic ? 'التدقيق للمستندات' : 'Spelling is available in Word');
       return;
     }
-    _toast(_arabic ? 'التدقيق للمستندات' : 'Spelling is available in Word');
+    if (_word.config.allowsMutation) _word.commitPendingEdits();
+    _word.openReviewPane();
+    try {
+      // An explicit F7/ribbon check may use opted-in manual grammar providers;
+      // ordinary editing remains on the lightweight background service.
+      await _word.checkDocumentProofing();
+    } catch (_) {
+      _toast(
+        _arabic
+            ? 'تعذر إكمال تدقيق المستند. حاول مجددًا.'
+            : 'The document check could not finish. Try again.',
+      );
+    }
   }
 
   Future<void> _showSpacySetup() async {
@@ -5804,56 +5907,305 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     _word.insertComment(author: 'Quds Office', initials: 'QO');
   }
 
-  Future<void> _replyWordComment(int parentId) async {
-    if (!_canMutate) {
-      return;
-    }
-    setState(() => _showComments = true);
-    _word.selectComment(parentId);
-    if (_commentReply.text.trim().isNotEmpty) {
-      _sendCommentReply(parentId);
-      return;
-    }
-    final TextEditingController reply = TextEditingController();
-    final bool? ok = await showDialog<bool>(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text(_arabic ? 'رد على التعليق' : 'Reply to comment'),
-          content: TextField(
-            controller: reply,
-            minLines: 2,
-            maxLines: 5,
-            autofocus: true,
-            decoration: InputDecoration(labelText: _arabic ? 'الرد' : 'Reply'),
-          ),
-          actions: <Widget>[
-            TextButton(
-              onPressed: () => Navigator.pop(context, false),
-              child: Text(_arabic ? 'إلغاء' : 'Cancel'),
-            ),
-            FilledButton(
-              onPressed: () => Navigator.pop(context, true),
-              child: Text(_arabic ? 'إرسال' : 'Reply'),
-            ),
-          ],
-        );
-      },
-    );
-    final String text = reply.text.trim();
-    reply.dispose();
-    if (ok == true && text.isNotEmpty) {
-      _word.replyToComment(parentId, text: text);
-    }
+  void _setShowComments(bool show) {
+    if (!show) _dismissCommentContext();
+    setState(() => _showComments = show);
   }
 
-  void _sendCommentReply(int parentId) {
-    final String text = _commentReply.text.trim();
-    if (text.isEmpty || !_canMutate) {
+  void _dismissCommentContext() {
+    _commentReviewTimer?.cancel();
+    OfficeContextMenu.dismiss(_commentContextMenu);
+    _commentContextMenu = null;
+    _commentContextIsCurrent = null;
+  }
+
+  void _syncCommentReplyDrafts() {
+    final document = _word.document;
+    if (!identical(_commentDraftDocument, document)) {
+      _commentReplyDrafts.clear();
+      _commentDraftDocument = document;
+    }
+    _commentReplyDrafts.removeWhere(
+      (id, draft) =>
+          !identical(WordComment.byId(document, id), draft.root) ||
+          draft.root.parentId != null,
+    );
+  }
+
+  _CommentReplyDraft _commentReplyDraft(WmlComment root) {
+    _syncCommentReplyDrafts();
+    return _commentReplyDrafts.putIfAbsent(
+      root.id,
+      () => _CommentReplyDraft(root),
+    );
+  }
+
+  void _replyWordComment(int parentId) {
+    if (!_canMutate || !_word.config.allowsMutation) return;
+    final document = _word.document;
+    final root = WordComment.byId(
+      document,
+      WordComment.threadRootId(document, parentId),
+    );
+    if (root == null || root.parentId != null) return;
+    final draft = _commentReplyDraft(root);
+    setState(() => _showComments = true);
+    _word.endCommentEdit();
+    _word.selectComment(root.id);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted ||
+          !_showComments ||
+          !_canMutate ||
+          !identical(document, _word.document) ||
+          !identical(WordComment.byId(document, root.id), root) ||
+          _word.selectedCommentId != root.id) {
+        return;
+      }
+      draft.key.currentState?.focusReply();
+    });
+  }
+
+  bool _postCommentReply(_CommentReplyDraft draft) {
+    _syncCommentReplyDrafts();
+    final text = draft.text.trim();
+    final root = draft.root;
+    final selected = _word.selectedCommentId;
+    if (text.isEmpty ||
+        !_canMutate ||
+        !_word.config.allowsMutation ||
+        !identical(_commentReplyDrafts[root.id], draft) ||
+        !identical(WordComment.byId(_word.document, root.id), root) ||
+        selected == null ||
+        WordComment.threadRootId(_word.document, selected) != root.id) {
+      return false;
+    }
+    final before = _word.document.comments.length;
+    _word.replyToComment(root.id, text: text);
+    if (_word.document.comments.length != before + 1) return false;
+    draft.text = '';
+    return true;
+  }
+
+  void _showCommentReview(OfficeContextHit hit) {
+    _commentReviewTimer?.cancel();
+    final document = _word.document;
+    final comment = _word.selectedComment;
+    _commentReviewTimer = Timer(kDoubleTapTimeout, () {
+      if (!mounted ||
+          comment == null ||
+          !_wordRouteIsCurrent ||
+          (_word.input.composing.isValid &&
+              !_word.input.composing.isCollapsed) ||
+          !identical(document, _word.document) ||
+          !identical(comment, _word.selectedComment)) {
+        return;
+      }
+      final paragraph = hit.paragraph;
+      final offset = hit.proofingOffset;
+      if (paragraph == null || offset == null) return;
+      final issue = _word.proofing.issuesAt(paragraph, offset).firstOrNull;
+      if (issue == null) return;
+      _word.selectProofingIssue(issue, reveal: false);
+      if (_word.reviewPaneVisible) {
+        _word.setReviewPaneTab(WordReviewPaneTab.proofing);
+      } else {
+        _showCommentContext(comment, hit, reviewOnly: true);
+      }
+    });
+  }
+
+  bool get _wordRouteIsCurrent => ModalRoute.of(context)?.isCurrent ?? true;
+
+  void _showCommentContext(
+    WmlComment comment,
+    OfficeContextHit hit, {
+    bool reviewOnly = false,
+  }) {
+    _dismissCommentContext();
+    if (!_wordRouteIsCurrent ||
+        !_word.config.allowsSelection ||
+        (_word.input.composing.isValid && !_word.input.composing.isCollapsed)) {
       return;
     }
-    _word.replyToComment(parentId, text: text);
-    _commentReply.clear();
+    final document = _word.document;
+    if (!identical(comment, _word.selectedComment) ||
+        !identical(WordComment.byId(document, comment.id), comment)) {
+      return;
+    }
+    // A secondary click does not run the canvas's primary-click selection
+    // handler. Route ordinary editing commands to this comment as well as
+    // routing proofing commands by their explicit finding.
+    if (!_word.isEditingComment) {
+      _word.beginCommentEdit(comment.id);
+    }
+    final root = WordComment.byId(
+      document,
+      WordComment.threadRootId(document, comment.id),
+    );
+    final revision = _word.contentRevision;
+    final paragraph = hit.paragraph;
+    final offset = hit.proofingOffset;
+    final issue =
+        paragraph != null &&
+            offset != null &&
+            comment.paragraphs.contains(paragraph)
+        ? _word.proofing.issuesAt(paragraph, offset).firstOrNull
+        : null;
+    final editing = _word.isEditingComment;
+    final caret = (
+      paragraph: _word.commentCaret.paragraphIndex,
+      index: _word.commentCaret.logicalIndex,
+      anchorParagraph: _word.commentCaret.selectionAnchorParagraph,
+      anchor: _word.commentCaret.selectionAnchor,
+    );
+    bool current() =>
+        mounted &&
+        _app == SuiteApp.word &&
+        _showComments &&
+        identical(document, _word.document) &&
+        identical(comment, _word.selectedComment) &&
+        identical(WordComment.byId(document, comment.id), comment) &&
+        root != null &&
+        identical(WordComment.byId(document, root.id), root) &&
+        _word.contentRevision == revision &&
+        _word.isEditingComment == editing &&
+        _word.commentCaret.paragraphIndex == caret.paragraph &&
+        _word.commentCaret.logicalIndex == caret.index &&
+        _word.commentCaret.selectionAnchorParagraph == caret.anchorParagraph &&
+        _word.commentCaret.selectionAnchor == caret.anchor &&
+        (issue == null || _word.proofing.isCurrent(issue));
+    bool canMutateCurrent() =>
+        current() &&
+        _wordRouteIsCurrent &&
+        _canMutate &&
+        _word.config.allowsMutation &&
+        !(_word.input.composing.isValid && !_word.input.composing.isCollapsed);
+    if (!current()) return;
+    final actions = <OfficeContextAction>[
+      if (issue != null) ...[
+        OfficeContextAction.caption(issue.finding.message),
+        for (var i = 0; i < issue.finding.replacements.length && i < 8; i++)
+          OfficeContextAction(
+            id: 'proofing:replace:$i',
+            label: issue.finding.replacements[i].isEmpty
+                ? (_arabic ? 'حذف' : 'Delete')
+                : issue.finding.replacements[i],
+            enabled: _canMutate && _word.canApplyProofingIssue(issue),
+          ),
+        OfficeContextAction(
+          id: 'proofing:ignore',
+          label: _arabic ? 'تجاهل مرة واحدة' : 'Ignore once',
+        ),
+        if (issue.finding.category == OfficeProofingCategory.spelling) ...[
+          OfficeContextAction(
+            id: 'proofing:ignoreWord',
+            label: _arabic ? 'تجاهل هذه الكلمة' : 'Ignore this word',
+          ),
+          OfficeContextAction(
+            id: 'proofing:add',
+            label: _arabic
+                ? 'إضافة إلى الكلمات الشخصية'
+                : 'Add to personal words',
+          ),
+        ],
+      ],
+      OfficeContextAction(
+        id: 'proofing:review',
+        label: _arabic ? 'فتح لوحة الكتابة' : 'Open writing pane',
+        shortcut: 'F7',
+        separatorBefore: issue != null,
+      ),
+      if (!reviewOnly)
+        ...OfficeContextMenu.word(
+          hit: OfficeContextHit(
+            kind: OfficeContextKind.comment,
+            globalPosition: hit.globalPosition,
+            commentId: comment.id,
+            paragraph: paragraph,
+            proofingOffset: offset,
+          ),
+          controller: _word,
+        ),
+    ];
+    _commentContextIsCurrent = current;
+    _commentContextMenu = OfficeContextMenu.show(
+      context: context,
+      globalPosition: hit.globalPosition,
+      actions: actions,
+      enableFiltering: !reviewOnly,
+      onDismiss: () {
+        _commentContextMenu = null;
+        _commentContextIsCurrent = null;
+      },
+      onSelect: (id) {
+        if (!current() || !_wordRouteIsCurrent) return;
+        if (id == 'proofing:review') {
+          if (issue != null) _word.selectProofingIssue(issue, reveal: false);
+          _word.openReviewPane();
+          return;
+        }
+        if (_word.input.composing.isValid &&
+            !_word.input.composing.isCollapsed) {
+          return;
+        }
+        if (issue != null && id.startsWith('proofing:')) {
+          if (id == 'proofing:ignore') {
+            _word.proofing.ignoreOnce(issue);
+          } else if (id == 'proofing:ignoreWord') {
+            _word.proofing.ignoreWord(issue);
+          } else if (id == 'proofing:add') {
+            _word.proofing.addWord(issue);
+          } else if (id.startsWith('proofing:replace:') && _canMutate) {
+            final index = int.tryParse(id.split(':').last);
+            if (index != null &&
+                index >= 0 &&
+                index < issue.finding.replacements.length) {
+              _word.applyProofingSuggestion(
+                issue,
+                issue.finding.replacements[index],
+              );
+            }
+          }
+          if (!_word.proofing.enabled) {
+            unawaited(_checkCommentProofing());
+          }
+          return;
+        }
+        if (id == 'copy') {
+          _word.copyToClipboard();
+        } else if (id == 'selectAll') {
+          _word.selectAll();
+        } else if (_canMutate && _word.config.allowsMutation) {
+          switch (id) {
+            case 'cut':
+              _word.cutToClipboard(isCurrent: canMutateCurrent);
+            case 'paste':
+              _word.pasteFromClipboard(isCurrent: canMutateCurrent);
+            case 'replyComment':
+              _replyWordComment(comment.id);
+            case 'resolveComment':
+              _word.setCommentResolved(comment.id, true);
+            case 'reopenComment':
+              _word.setCommentResolved(comment.id, false);
+            case 'deleteComment':
+              _word.deleteComment(comment.id);
+          }
+        }
+      },
+    );
+  }
+
+  Future<void> _checkCommentProofing() async {
+    try {
+      await _word.proofing.checkNow(includeManualProviders: false);
+    } on Object {
+      if (!mounted) return;
+      _toast(
+        _arabic
+            ? 'تعذر إكمال تدقيق المستند. حاول مجددًا.'
+            : 'The document check could not finish. Try again.',
+      );
+    }
   }
 
   Future<void> _insertCommentPicture() async {
@@ -5936,13 +6288,21 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     return spans;
   }
 
-  Widget _wordCommentsPane(bool dark) {
+  Widget _wordCommentsPane(bool dark, {bool expanded = false}) {
+    // Match the Word surface's current mode before its child rebuilds.
+    _word.syncConfig(
+      _printPreview
+          ? _config.copyWith(mode: OfficeInteractionMode.viewing)
+          : _config,
+    );
+    _syncCommentReplyDrafts();
     final Color bg = dark ? const Color(0xFF242424) : const Color(0xFFF3F3F3);
     final List<WmlComment> roots = WordComment.roots(_word.document);
     return Material(
       color: bg,
       child: SizedBox(
-        width: 320,
+        key: const ValueKey<String>('studio-comments-pane'),
+        width: expanded ? null : 320,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
@@ -5970,7 +6330,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                   IconButton(
                     tooltip: _arabic ? 'إخفاء' : 'Hide',
                     visualDensity: VisualDensity.compact,
-                    onPressed: () => setState(() => _showComments = false),
+                    onPressed: () => _setShowComments(false),
                     icon: const Icon(Icons.close, size: 16),
                   ),
                 ],
@@ -6010,7 +6370,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                             ) ==
                             root.id &&
                         _canMutate)
-                      _commentReplyBox(root.id, dark),
+                      _commentReplyBox(root, dark),
                     const SizedBox(height: 8),
                   ],
                 ],
@@ -6022,34 +6382,16 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     );
   }
 
-  Widget _commentReplyBox(int rootId, bool dark) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(4, 0, 4, 8),
-      child: Row(
-        children: <Widget>[
-          Expanded(
-            child: TextField(
-              controller: _commentReply,
-              minLines: 1,
-              maxLines: 3,
-              style: TextStyle(fontSize: 12, color: _officeTheme.chromeText),
-              decoration: InputDecoration(
-                isDense: true,
-                hintText: _arabic ? 'كتابة رد…' : 'Write a reply…',
-                filled: true,
-                fillColor: dark ? const Color(0xFF1E1E1E) : Colors.white,
-                border: const OutlineInputBorder(),
-              ),
-              onSubmitted: (_) => _sendCommentReply(rootId),
-            ),
-          ),
-          IconButton(
-            tooltip: _arabic ? 'إرسال' : 'Send',
-            onPressed: () => _sendCommentReply(rootId),
-            icon: Icon(Icons.send, size: 16, color: _accent),
-          ),
-        ],
-      ),
+  Widget _commentReplyBox(WmlComment root, bool dark) {
+    final draft = _commentReplyDraft(root);
+    return _CommentReplyComposer(
+      key: draft.key,
+      draft: draft,
+      arabic: _arabic,
+      dark: dark,
+      textColor: _officeTheme.chromeText,
+      accent: _accent,
+      onPost: () => _postCommentReply(draft),
     );
   }
 
@@ -6061,6 +6403,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     final bool selected = _word.selectedCommentId == comment.id;
     final bool dimmed = root.resolved;
     return Opacity(
+      key: ValueKey<String>('studio-comment-${comment.id}'),
       opacity: dimmed ? 0.55 : 1,
       child: Padding(
         padding: const EdgeInsets.only(bottom: 6),
@@ -6145,7 +6488,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                   ),
                 ),
                 const SizedBox(height: 6),
-                if (selected && _canMutate)
+                if (selected && !_opening && _word.config.allowsSelection)
                   _commentBodySurface(comment)
                 else
                   Text.rich(
@@ -6172,6 +6515,17 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                     child: Wrap(
                       spacing: 0,
                       children: <Widget>[
+                        IconButton(
+                          key: ValueKey<String>(
+                            'studio-comment-reply-action-${comment.id}',
+                          ),
+                          tooltip: _arabic ? 'رد' : 'Reply',
+                          visualDensity: VisualDensity.compact,
+                          onPressed: _canMutate
+                              ? () => _replyWordComment(root.id)
+                              : null,
+                          icon: const Icon(Icons.reply, size: 16),
+                        ),
                         IconButton(
                           tooltip: root.resolved
                               ? (_arabic ? 'إعادة فتح' : 'Reopen')
@@ -6223,6 +6577,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         return SizedBox(
           height: _word.commentSurfaceHeight,
           child: WordCanvas(
+            key: ValueKey<String>('studio-comment-canvas-${comment.id}'),
             compact: true,
             document: _word.commentDocument,
             laidOut: laid,
@@ -6230,48 +6585,19 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
             viewport: _commentViewport,
             hasFocus:
                 _word.isEditingComment && _word.selectedCommentId == comment.id,
-            config: _config.copyWith(showRulers: false),
+            config: _word.config.copyWith(showRulers: false),
             selectedCommentId: comment.id,
-            onContextMenu: (OfficeContextHit hit) {
-              OfficeContextMenu.dismiss(_commentContextMenu);
-              _commentContextMenu = OfficeContextMenu.show(
-                context: context,
-                globalPosition: hit.globalPosition,
-                actions: OfficeContextMenu.word(
-                  hit: OfficeContextHit(
-                    kind: OfficeContextKind.comment,
-                    globalPosition: hit.globalPosition,
-                    commentId: comment.id,
-                  ),
-                  controller: _word,
-                ),
-                onSelect: (String id) {
-                  _commentContextMenu = null;
-                  switch (id) {
-                    case 'cut':
-                      _word.cutToClipboard();
-                    case 'copy':
-                      _word.copyToClipboard();
-                    case 'paste':
-                      _word.pasteFromClipboard();
-                    case 'selectAll':
-                      _word.selectAll();
-                    case 'replyComment':
-                      _word.insertComment(parentId: comment.id);
-                    case 'resolveComment':
-                      _word.setCommentResolved(comment.id, true);
-                    case 'reopenComment':
-                      _word.setCommentResolved(comment.id, false);
-                    case 'deleteComment':
-                      _word.deleteComment(comment.id);
-                  }
-                },
-              );
-            },
+            proofingFindings: _word.proofing.findingsByParagraph,
+            onReviewTap: _showCommentReview,
+            onContextMenu: (hit) => _showCommentContext(comment, hit),
             onChanged: () {
               if (!_word.isEditingComment ||
                   _word.selectedCommentId != comment.id) {
                 _word.beginCommentEdit(comment.id);
+              } else {
+                // Selection, dragging, and repeated clicks must cancel a
+                // pending review tap without invalidating checked text.
+                _word.refreshView();
               }
             },
           ),
@@ -6992,26 +7318,46 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       _word.viewport.origin.dx,
       _word.documentLaidOut.pageStackTop(page, scale),
     );
-    _word.refresh();
+    _word.refreshView();
   }
 
   Widget _body(bool dark) {
     return ColoredBox(
       color: dark ? const Color(0xFF121212) : const Color(0xFFD0D0D0),
-      child: Row(
-        children: <Widget>[
-          if (!(_app == SuiteApp.powerpoint && _slides.isPresenting))
-            _sidePane(dark),
-          Expanded(child: _stage(dark)),
-          if (_app == SuiteApp.word && _showComments) _wordCommentsPane(dark),
-          if (_selectedOfficeVisual != null &&
-              !(_app == SuiteApp.powerpoint && _slides.isPresenting))
-            _visualPane(dark),
-          if (_app == SuiteApp.powerpoint &&
-              _showAnimPane &&
-              !_slides.isPresenting)
-            _animationPane(dark),
-        ],
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          final commentsBelow =
+              _app == SuiteApp.word &&
+              _showComments &&
+              constraints.maxWidth < 1040;
+          final stage = Row(
+            children: <Widget>[
+              if (!(_app == SuiteApp.powerpoint && _slides.isPresenting))
+                _sidePane(dark),
+              Expanded(child: _stage(dark)),
+              if (_app == SuiteApp.word && _showComments && !commentsBelow)
+                _wordCommentsPane(dark),
+              if (_selectedOfficeVisual != null &&
+                  !(_app == SuiteApp.powerpoint && _slides.isPresenting))
+                _visualPane(dark),
+              if (_app == SuiteApp.powerpoint &&
+                  _showAnimPane &&
+                  !_slides.isPresenting)
+                _animationPane(dark),
+            ],
+          );
+          if (!commentsBelow) return stage;
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              Expanded(child: stage),
+              SizedBox(
+                height: math.min(340, constraints.maxHeight * 0.45),
+                child: _wordCommentsPane(dark, expanded: true),
+              ),
+            ],
+          );
+        },
       ),
     );
   }
@@ -9200,4 +9546,139 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   }
 
   int get _wordCount => _word.documentStats.words;
+}
+
+/// Draft identity includes the thread object, because IDs can be reused after
+/// a deletion or when another document is opened.
+class _CommentReplyDraft {
+  _CommentReplyDraft(this.root);
+
+  final WmlComment root;
+  final GlobalKey<_CommentReplyComposerState> key =
+      GlobalKey<_CommentReplyComposerState>();
+  String text = '';
+}
+
+class _CommentReplyComposer extends StatefulWidget {
+  const _CommentReplyComposer({
+    super.key,
+    required this.draft,
+    required this.arabic,
+    required this.dark,
+    required this.textColor,
+    required this.accent,
+    required this.onPost,
+  });
+
+  final _CommentReplyDraft draft;
+  final bool arabic;
+  final bool dark;
+  final Color textColor;
+  final Color accent;
+  final bool Function() onPost;
+
+  @override
+  State<_CommentReplyComposer> createState() => _CommentReplyComposerState();
+}
+
+class _CommentReplyComposerState extends State<_CommentReplyComposer> {
+  late final TextEditingController _text;
+  final FocusNode _focus = FocusNode(debugLabel: 'studio-comment-reply');
+
+  @override
+  void initState() {
+    super.initState();
+    _text = TextEditingController(text: widget.draft.text);
+  }
+
+  void focusReply() {
+    Scrollable.ensureVisible(
+      context,
+      alignment: 1,
+      alignmentPolicy: ScrollPositionAlignmentPolicy.keepVisibleAtEnd,
+    );
+    _focus.requestFocus();
+  }
+
+  void _post() {
+    if (_text.value.composing.isValid && !_text.value.composing.isCollapsed) {
+      return;
+    }
+    widget.draft.text = _text.text;
+    if (widget.onPost()) {
+      _text.clear();
+      setState(() {});
+    }
+  }
+
+  @override
+  void dispose() {
+    _text.dispose();
+    _focus.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) => CallbackShortcuts(
+    bindings: <ShortcutActivator, VoidCallback>{
+      const SingleActivator(LogicalKeyboardKey.enter, control: true): _post,
+      const SingleActivator(LogicalKeyboardKey.enter, meta: true): _post,
+    },
+    child: Padding(
+      padding: const EdgeInsets.fromLTRB(4, 4, 4, 8),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
+          Text(
+            widget.arabic
+                ? 'رد على ${widget.draft.root.author}'
+                : 'Reply to ${widget.draft.root.author}',
+            style: TextStyle(fontSize: 11, color: widget.textColor),
+          ),
+          const SizedBox(height: 4),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: <Widget>[
+              Expanded(
+                child: TextField(
+                  key: ValueKey<String>(
+                    'studio-comment-reply-${widget.draft.root.id}',
+                  ),
+                  controller: _text,
+                  focusNode: _focus,
+                  minLines: 1,
+                  maxLines: 4,
+                  textInputAction: TextInputAction.newline,
+                  style: TextStyle(fontSize: 12, color: widget.textColor),
+                  decoration: InputDecoration(
+                    isDense: true,
+                    hintText: widget.arabic ? 'كتابة رد…' : 'Write a reply…',
+                    filled: true,
+                    fillColor: widget.dark
+                        ? const Color(0xFF1E1E1E)
+                        : Colors.white,
+                    border: const OutlineInputBorder(),
+                  ),
+                  onChanged: (value) {
+                    widget.draft.text = value;
+                    setState(() {});
+                  },
+                ),
+              ),
+              IconButton(
+                key: ValueKey<String>(
+                  'studio-comment-post-${widget.draft.root.id}',
+                ),
+                tooltip: widget.arabic
+                    ? 'نشر الرد (Ctrl+Enter)'
+                    : 'Post reply (Ctrl+Enter)',
+                onPressed: _text.text.trim().isEmpty ? null : _post,
+                icon: Icon(Icons.send, size: 16, color: widget.accent),
+              ),
+            ],
+          ),
+        ],
+      ),
+    ),
+  );
 }

@@ -1,0 +1,77 @@
+{
+  "purpose": "Historical attempts retained for audit. These are not the passing final validation record.",
+  "archive": "afa14-full-gate.tar.gz",
+  "archive_sha256": "09b5769135ddb59f859c13e710f2879f6812ce993a55cff560cc6303a95cd5b5",
+  "files": [
+    {
+      "path": "final-checks/checks/analysis.log",
+      "bytes": 591,
+      "sha256": "aa2e12907e3b737622f075c1cb668101d73d9ff4b6dc4a00d0382926dbd8adc2"
+    },
+    {
+      "path": "final-checks/checks/editor-cases.json",
+      "bytes": 99128,
+      "sha256": "48af510a20675c29b6971df0715fc22ee3505f4b956a8203606df17faa65a7e1"
+    },
+    {
+      "path": "final-checks/checks/editor-errors.json",
+      "bytes": 259,
+      "sha256": "146e6db21cb4e6926d84c18b0784381522f9e1ff5b047f28c12e87d3721f9546"
+    },
+    {
+      "path": "final-checks/checks/editor.jsonl",
+      "bytes": 196866,
+      "sha256": "6d9b4f344d624a55aa5975cdfe45c8c2d27068065bfb12a3965a186dde28af2f"
+    },
+    {
+      "path": "final-checks/checks/editor.jsonl.gz",
+      "bytes": 19428,
+      "sha256": "7e5b0902618b4effc5e62bb466e5d821063a35a1951a4d7a58893f2795193c9c"
+    },
+    {
+      "path": "final-checks/checks/format.log",
+      "bytes": 48,
+      "sha256": "19a14c0d315a11fa655e439c6fa5d2843e812cf58a4c64462f2933144ac8247a"
+    },
+    {
+      "path": "final-checks/checks/studio-cases.json",
+      "bytes": 3769,
+      "sha256": "a00eb6ec1c697a6f6176b5a1f9ce3f4e938fb0fb7211dca568b396e5676159ee"
+    },
+    {
+      "path": "final-checks/checks/studio-errors.json",
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    {
+      "path": "final-checks/checks/studio.jsonl",
+      "bytes": 8676,
+      "sha256": "239ebdbcc5f158f84e7d20db71dd5059898b1dd7b782d5c777fb59a30590c8b2"
+    },
+    {
+      "path": "final-checks/checks/studio.jsonl.gz",
+      "bytes": 1340,
+      "sha256": "cff68199560dd5b72263eb176e7ddc5cf5e4127ebcad8cba9c6c8186333930da"
+    },
+    {
+      "path": "final-checks/checks/whitespace.log",
+      "bytes": 121,
+      "sha256": "9de7c3ed11f5871ac5fc6cfb365ca3831e6862aa38f339ed3ff7e47a6ba343b4"
+    },
+    {
+      "path": "final-checks/source-after.json",
+      "bytes": 84172,
+      "sha256": "7bc89e42729da748eec36137577ff96a40d1411e404572f3eac28b1e5dea0450"
+    },
+    {
+      "path": "final-checks/source-before.json",
+      "bytes": 84172,
+      "sha256": "7bc89e42729da748eec36137577ff96a40d1411e404572f3eac28b1e5dea0450"
+    },
+    {
+      "path": "final-checks/verification.json",
+      "bytes": 14584,
+      "sha256": "4d8f8332aaee6dafbc3b5a8ee2db8783d1fbe172edfa21560694347b43469e01"
+    }
+  ]
+}

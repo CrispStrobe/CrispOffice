@@ -1,0 +1,209 @@
+{
+  "recorded_at_utc": "2026-11-18T12:47:38.707708+00:00",
+  "repository": "CrispStrobe/quds_office_suite",
+  "observation_scope": "Remote branch/PR/upstream snapshot read during the resumed session; the integration result below was subsequently reported saved remotely by the parent agent and verified against local commit objects. No fresh remote inventory was queried after that checkpoint.",
+  "counts": {
+    "fork_branches_observed": 201,
+    "original_audit_fork_branches": 198,
+    "unchanged_branch_tips_from_original_audit": 194,
+    "changed_or_new_branch_tips": 7,
+    "original_audit_pull_heads": 159,
+    "new_pr_heads_since_original_audit": 4,
+    "pull_heads_covered_by_original_audit_plus_new_prs": 163,
+    "recent_pr_records_inspected": 30,
+    "unchanged_upstream_branches": 4
+  },
+  "original_audit": {
+    "path": "docs/validation/document-review-20261118/incoming-audit.json",
+    "base_sha": "1e07cb852766f8651815138785be74c64a09ddc0",
+    "timestamp_utc": "2026-11-18T12:07:09.370808+00:00",
+    "method": "Read-only ancestry, git cherry patch equivalence, exact tree identity and targeted blob identity. No GitHub Actions or statuses queried or awaited.",
+    "reuse": "The earlier audit retains ancestry, patch-equivalence, identical-tree and targeted-blob evidence for unchanged legacy refs; no old work was remerged merely because its history was not ancestral."
+  },
+  "heads_at_observation": {
+    "review_branch": "9ecf4c420f6b4251744308530f0934f8cd5f3b37",
+    "main": "517f6d10f0ec2509b1381b3cf23807645bba4f92",
+    "shared_main_ancestor": "5588726c705700ab8ab08c34472e0f88d059cf29",
+    "macbook_followup": "ca42a7fa3947d0b59b9b2d3e14e807116327d714"
+  },
+  "corrected_ancestry": {
+    "macbook_followup_parents": [
+      "5588726c705700ab8ab08c34472e0f88d059cf29"
+    ],
+    "macbook_followup_contains_latest_main": false,
+    "main_vs_review": {
+      "merge_base": "5588726c705700ab8ab08c34472e0f88d059cf29",
+      "commits_in_main_not_review": 5,
+      "commits_in_review_not_main": 4
+    },
+    "note": "The macbook branch is a sibling of latest main, not a descendant of it. Both histories must be integrated."
+  },
+  "changed_or_new_refs": [
+    {
+      "branch": "codex/document-review-20261118",
+      "observed_sha": "9ecf4c420f6b4251744308530f0934f8cd5f3b37",
+      "original_audit_sha": null,
+      "contained_in_main_at_observation": false,
+      "contained_in_review_at_observation": true,
+      "contained_in_integration": true
+    },
+    {
+      "branch": "codex/native-spelling-continuation-20261118",
+      "observed_sha": "8cbdb9d9a05ff7f0e795efe0ee7848b196f424a3",
+      "original_audit_sha": "1e07cb852766f8651815138785be74c64a09ddc0",
+      "contained_in_main_at_observation": true,
+      "contained_in_review_at_observation": true,
+      "contained_in_integration": true
+    },
+    {
+      "branch": "codex/zotero-workspace-20261118",
+      "observed_sha": "acfa3c2bf543debd2fff518304ab514ab677418b",
+      "original_audit_sha": "146cdead007dd47bc8e7da8f9f249703fd29ca2e",
+      "contained_in_main_at_observation": true,
+      "contained_in_review_at_observation": true,
+      "contained_in_integration": true
+    },
+    {
+      "branch": "integrate/macbook-current-20261118",
+      "observed_sha": "ca42a7fa3947d0b59b9b2d3e14e807116327d714",
+      "original_audit_sha": null,
+      "contained_in_main_at_observation": false,
+      "contained_in_review_at_observation": false,
+      "contained_in_integration": true
+    },
+    {
+      "branch": "integrate/native-spacy-distribution-20261118",
+      "observed_sha": "8f93545eb46c1f1f4c653c7beaf23d28c3307940",
+      "original_audit_sha": "2292548eb69de2dbb5240ab9da59256f362137c6",
+      "contained_in_main_at_observation": true,
+      "contained_in_review_at_observation": false,
+      "contained_in_integration": true
+    },
+    {
+      "branch": "integrate/spacy-ner-macos-followup-20261118",
+      "observed_sha": "ce4d3d19a21eae96a473291ffb9f47ac3be6a74c",
+      "original_audit_sha": null,
+      "contained_in_main_at_observation": true,
+      "contained_in_review_at_observation": false,
+      "contained_in_integration": true
+    },
+    {
+      "branch": "main",
+      "observed_sha": "517f6d10f0ec2509b1381b3cf23807645bba4f92",
+      "original_audit_sha": "1e07cb852766f8651815138785be74c64a09ddc0",
+      "contained_in_main_at_observation": true,
+      "contained_in_review_at_observation": false,
+      "contained_in_integration": true
+    }
+  ],
+  "upstream": {
+    "repository": "MohammedAsaadAsaad/quds_office_suite",
+    "all_four_unchanged": true,
+    "branches": [
+      {
+        "branch": "ci/flutter-workspace",
+        "sha": "aca2f66941832bd0b19b436baeab1656a1b7de98"
+      },
+      {
+        "branch": "cursor/class-certificates-2db8",
+        "sha": "f45099688e7a3f67a1302efdb442830d052f2240"
+      },
+      {
+        "branch": "cursor/cloud-agent-1790580069020-0rk1h",
+        "sha": "9930be8df44ffe117fb22778c514eea0ee73ce21"
+      },
+      {
+        "branch": "main",
+        "sha": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba"
+      }
+    ]
+  },
+  "recent_prs": [
+    {
+      "number": 160,
+      "state": "closed",
+      "merged": true,
+      "head": "8cbdb9d9a05ff7f0e795efe0ee7848b196f424a3",
+      "included_before_resume": true
+    },
+    {
+      "number": 161,
+      "state": "closed",
+      "merged": true,
+      "head": "acfa3c2bf543debd2fff518304ab514ab677418b",
+      "included_before_resume": true
+    },
+    {
+      "number": 162,
+      "state": "open",
+      "draft": true,
+      "observed_head": "9ecf4c420f6b4251744308530f0934f8cd5f3b37",
+      "branch": "codex/document-review-20261118",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/162"
+    },
+    {
+      "number": 163,
+      "state": "closed",
+      "merged": true,
+      "head": "ce4d3d19a21eae96a473291ffb9f47ac3be6a74c",
+      "merge_commit": "517f6d10f0ec2509b1381b3cf23807645bba4f92",
+      "included_by_resumed_integration": true
+    }
+  ],
+  "gaps_at_observation": [
+    {
+      "ref": "origin/main",
+      "sha": "517f6d10f0ec2509b1381b3cf23807645bba4f92",
+      "changed_files": 7,
+      "scope": "spaCy macOS capsule distribution and optional NER install follow-up, Studio setup expectation and validation evidence"
+    },
+    {
+      "ref": "origin/integrate/macbook-current-20261118",
+      "sha": "ca42a7fa3947d0b59b9b2d3e14e807116327d714",
+      "changed_files": 1,
+      "path": "packages/quds_office_editor/test/support/office_golden.dart",
+      "scope": "Golden reference selection independent of the invoking working directory",
+      "git_cherry_result": "+ (not patch-equivalent to a commit already in main)"
+    }
+  ],
+  "integration_checkpoint": {
+    "sha": "366e9b343047b254dd9b78263b5fb02c52a40ae5",
+    "tree": "d25edc0bad66e22074aa23f84f3ace5839222ec5",
+    "parents": [
+      "9ecf4c420f6b4251744308530f0934f8cd5f3b37",
+      "517f6d10f0ec2509b1381b3cf23807645bba4f92",
+      "ca42a7fa3947d0b59b9b2d3e14e807116327d714"
+    ],
+    "local_commit_verified": true,
+    "remote_saved_as_reported_by_parent": true,
+    "all_changed_or_new_observed_branch_tips_contained": true,
+    "remaining_known_integration_gaps": [],
+    "remote_fetch_tree_verified_by_parent": true
+  },
+  "methods": [
+    "GitHub REST branch inventory in three pages (100, 100, 1)",
+    "Latest 30 PRs sorted by updated; new PRs 160-163 compared with previous head inventory",
+    "GitHub compare_commits for exact main/review divergence",
+    "Local git ancestry, commit-parent and changed-path checks",
+    "git cherry to detect the unapplied macbook patch",
+    "GitHub upstream branch inventory compared to the four saved upstream SHAs"
+  ],
+  "github_actions": {
+    "queried": false,
+    "waited": false,
+    "dispatched": false
+  },
+  "remote_mutations_by_audit_agent": false,
+  "final_main_reconciliation": {
+    "main": "f383c826205e321eda3ed3bdbcd584e9a2d4da14",
+    "parents": [
+      "ca42a7fa3947d0b59b9b2d3e14e807116327d714",
+      "517f6d10f0ec2509b1381b3cf23807645bba4f92"
+    ],
+    "method": "git merge-tree --write-tree 41c15e2309ae4100126381adb702b27410a52069 f383c826205e321eda3ed3bdbcd584e9a2d4da14",
+    "merged_tree": "cc036c7190f868fb0bc4414f6efa0055df4904f5",
+    "matches_tested_tree": true,
+    "production_or_test_changes": false,
+    "note": "Main now joins the same two incoming histories already preserved in 366e9b34. Final evidence checkpoint also includes main as a parent without altering the tested source."
+  }
+}

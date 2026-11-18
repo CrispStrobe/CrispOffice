@@ -1,0 +1,115 @@
+{
+  "status": "passed",
+  "recorded_at_utc": "2026-11-18T13:12:38.916585+00:00",
+  "head": "b2bcfc23e692476d16d9a7a534ea95a93ae94cd3",
+  "command": [
+    "/workspace/scratch/11b2f453fe98/zotero-toolchain/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+    "/workspace/scratch/11b2f453fe98/zotero-toolchain/golden_route_probe.dart"
+  ],
+  "actual_process_exit_code": 0,
+  "platform": "linux",
+  "helper_before": {
+    "path": "packages/quds_office_editor/test/support/office_golden.dart",
+    "bytes": 630,
+    "sha256": "a379efdd2ea6658fea371ae361e5321ca431cf121067b74dfd65be6fba3a2bf7",
+    "git_blob_sha1": "526b8deb61348ae83709d634936f3e5decbc6255",
+    "head_blob_sha1": "526b8deb61348ae83709d634936f3e5decbc6255",
+    "matches_checked_in_head": true
+  },
+  "helper_after": {
+    "path": "packages/quds_office_editor/test/support/office_golden.dart",
+    "bytes": 630,
+    "sha256": "a379efdd2ea6658fea371ae361e5321ca431cf121067b74dfd65be6fba3a2bf7",
+    "git_blob_sha1": "526b8deb61348ae83709d634936f3e5decbc6255",
+    "head_blob_sha1": "526b8deb61348ae83709d634936f3e5decbc6255",
+    "matches_checked_in_head": true
+  },
+  "images": [
+    {
+      "name": "office_fidelity_word.png",
+      "helper_result": "goldens/linux/office_fidelity_word.png",
+      "png_width": 800,
+      "png_height": 1120,
+      "path": "packages/quds_office_editor/test/goldens/linux/office_fidelity_word.png",
+      "bytes": 35733,
+      "sha256": "c34f2629de5a3397efe7ef5593b543ec254e48812e403b2a5c07d527fa8abb54",
+      "git_blob_sha1": "0e501562c587af2a6522ddd8af1b6c79d5a028ae",
+      "head_blob_sha1": "0e501562c587af2a6522ddd8af1b6c79d5a028ae",
+      "matches_checked_in_head": true
+    },
+    {
+      "name": "structure_create_1.png",
+      "helper_result": "goldens/linux/structure_create_1.png",
+      "png_width": 800,
+      "png_height": 1120,
+      "path": "packages/quds_office_editor/test/goldens/linux/structure_create_1.png",
+      "bytes": 36287,
+      "sha256": "18b691623f20119d59a0c02f7ee15dd97f6d4299d8b08804dcf1137b581107e8",
+      "git_blob_sha1": "a2deae792fa9b3b98c90a32db92973be1095f687",
+      "head_blob_sha1": "a2deae792fa9b3b98c90a32db92973be1095f687",
+      "matches_checked_in_head": true
+    },
+    {
+      "name": "structure_edit_1.png",
+      "helper_result": "goldens/linux/structure_edit_1.png",
+      "png_width": 800,
+      "png_height": 1120,
+      "path": "packages/quds_office_editor/test/goldens/linux/structure_edit_1.png",
+      "bytes": 15998,
+      "sha256": "d693a6e9da001204bbcdc2cf5f7399cdf39291aba1d8bd14c7d8b1edbd8c5585",
+      "git_blob_sha1": "3b8c16d2bcee33b961ddc9ca8ceba0887d543114",
+      "head_blob_sha1": "3b8c16d2bcee33b961ddc9ca8ceba0887d543114",
+      "matches_checked_in_head": true
+    },
+    {
+      "name": "structure_edit_2.png",
+      "helper_result": "goldens/linux/structure_edit_2.png",
+      "png_width": 800,
+      "png_height": 1120,
+      "path": "packages/quds_office_editor/test/goldens/linux/structure_edit_2.png",
+      "bytes": 30179,
+      "sha256": "285b03e73f865a98e289e180fc573cee2f51d141a08ae0bed7d6248d86e2acef",
+      "git_blob_sha1": "9d0c7b8c8f7dfb6bf0ab4b04f559e8a2c37fac2a",
+      "head_blob_sha1": "9d0c7b8c8f7dfb6bf0ab4b04f559e8a2c37fac2a",
+      "matches_checked_in_head": true
+    },
+    {
+      "name": "structure_remove_1.png",
+      "helper_result": "goldens/linux/structure_remove_1.png",
+      "png_width": 800,
+      "png_height": 1120,
+      "path": "packages/quds_office_editor/test/goldens/linux/structure_remove_1.png",
+      "bytes": 26481,
+      "sha256": "4ccb257cb36e7a97ff895406958ea4fd81326c1e73953307136e5059fad3943b",
+      "git_blob_sha1": "c0ec88bf10709e98e17d5079facffc8552220a0d",
+      "head_blob_sha1": "c0ec88bf10709e98e17d5079facffc8552220a0d",
+      "matches_checked_in_head": true
+    },
+    {
+      "name": "word_selection_macOS.png",
+      "helper_result": "goldens/linux/word_selection_macOS.png",
+      "png_width": 820,
+      "png_height": 560,
+      "path": "packages/quds_office_editor/test/goldens/linux/word_selection_macOS.png",
+      "bytes": 35752,
+      "sha256": "543a0f9f663158a7027f3f4c2cc3095e539535c7ba6a66ce1ddceb4656fc34c3",
+      "git_blob_sha1": "fad3b5808c64f894bb694cda1a40f3fcc6208f33",
+      "head_blob_sha1": "fad3b5808c64f894bb694cda1a40f3fcc6208f33",
+      "matches_checked_in_head": true
+    },
+    {
+      "name": "word_selection_windows.png",
+      "helper_result": "goldens/linux/word_selection_windows.png",
+      "png_width": 820,
+      "png_height": 560,
+      "path": "packages/quds_office_editor/test/goldens/linux/word_selection_windows.png",
+      "bytes": 34910,
+      "sha256": "db199f9171960e169ce59764948a891210166c03da3c3d2529923ab78bc99643",
+      "git_blob_sha1": "225b1e29eedae43dc212c128b99fbb26574bc052",
+      "head_blob_sha1": "225b1e29eedae43dc212c128b99fbb26574bc052",
+      "matches_checked_in_head": true
+    }
+  ],
+  "probe_source": "import \"dart:convert\";\nimport \"dart:io\";\nimport \"file:///workspace/scratch/11b2f453fe98/quds_office_suite/packages/quds_office_editor/test/support/office_golden.dart\";\nvoid main(){print(jsonEncode({\"platform\":Platform.operatingSystem,\"routes\":{for(final name in const [\"office_fidelity_word.png\", \"structure_create_1.png\", \"structure_edit_1.png\", \"structure_edit_2.png\", \"structure_remove_1.png\", \"word_selection_macOS.png\", \"word_selection_windows.png\"]) name:officeGolden(name)}}));}\n",
+  "scope": "Executed the existing officeGolden helper for its seven Linux-specific names and verified tracked PNG identities/dimensions. No raster rendering, screenshot comparison, --update-goldens, image mutation, or test-case additions."
+}

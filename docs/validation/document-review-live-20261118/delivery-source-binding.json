@@ -1,0 +1,23 @@
+{
+  "tested_source": "bfd3df1596dd77d10d68f7909d5a3da2166135c4",
+  "delivery_parent": "5137304cbb577094352bd33701397d93190615a6",
+  "source_manifest": "source-sha256.json",
+  "verified_files": 599,
+  "mismatches": [],
+  "post_test_changed_paths": [
+    "docs/validation/native-spelling-resume-20261118/README.md",
+    "docs/validation/native-spelling-resume-20261118/correct_regression_accounting.py",
+    "docs/validation/native-spelling-resume-20261118/dictionary-audit-recovery.json",
+    "docs/validation/native-spelling-resume-20261118/evidence-index.json",
+    "docs/validation/native-spelling-resume-20261118/evidence.tar.xz",
+    "docs/validation/native-spelling-resume-20261118/reconciliation-current.md",
+    "docs/validation/native-spelling-resume-20261118/review.md",
+    "docs/validation/native-spelling-resume-20261118/run_baseline.py",
+    "docs/validation/native-spelling-resume-20261118/run_portable.py",
+    "docs/validation/native-spelling-resume-20261118/run_regressions.py",
+    "docs/validation/native-spelling-resume-20261118/seal_evidence.py",
+    "docs/validation/native-spelling-resume-20261118/status.json"
+  ],
+  "post_test_product_changes": false,
+  "final_record_scope": "Documentation, validation records and rendered screenshots only."
+}

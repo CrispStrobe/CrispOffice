@@ -1,7 +1,9 @@
 import 'dart:async';
+import 'dart:math' as math;
 import 'dart:ui' as ui;
 
 import 'package:flutter/scheduler.dart';
+import 'package:flutter/gestures.dart' show kDoubleTapTimeout;
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:quds_office_engine/quds_office_engine.dart';
@@ -17,6 +19,9 @@ import 'office_direction_keys.dart';
 import 'office_theme.dart';
 import 'word_notes_pane.dart';
 import 'word_proofing_dialog.dart';
+import 'word_review_dialog.dart';
+import 'word_review_pane.dart';
+import 'word_review_status.dart';
 import '../proofing/word_proofing.dart';
 
 /// Class OfficeUndoIntent.
@@ -91,7 +96,7 @@ class OfficeFindNextIntent extends Intent {
   final bool forward;
 }
 
-/// Handles Ctrl+F/H/P, F3, and F7 from Focus.onKeyEvent (Shortcuts is a child).
+/// Handles document shortcuts from Focus.onKeyEvent (Shortcuts is a child).
 bool officeHandleDocumentShortcut(OfficeController controller, KeyEvent event) {
   if (event is! KeyDownEvent && event is! KeyRepeatEvent) {
     return false;
@@ -123,6 +128,12 @@ bool officeHandleDocumentShortcut(OfficeController controller, KeyEvent event) {
     return true;
   }
   if (event.logicalKey == LogicalKeyboardKey.f7) {
+    if (controller is WordEditorController &&
+        HardwareKeyboard.instance.isAltPressed &&
+        !ctrl) {
+      _stepWritingFinding(controller, shift ? -1 : 1);
+      return true;
+    }
     controller.requestSpellCheck();
     return true;
   }
@@ -154,6 +165,25 @@ bool officeHandleDocumentShortcut(OfficeController controller, KeyEvent event) {
   return false;
 }
 
+void _stepWritingFinding(WordEditorController controller, int delta) {
+  if (controller.input.composing.isValid &&
+      !controller.input.composing.isCollapsed) {
+    return;
+  }
+  controller.openReviewPane();
+  controller.stepProofingIssue(delta);
+}
+
+class _WritingFindingIntent extends Intent {
+  const _WritingFindingIntent(this.delta);
+
+  final int delta;
+}
+
+class _WordContextIntent extends Intent {
+  const _WordContextIntent();
+}
+
 /// Embeddable Word surface with focus, IME, shortcuts, and chrome slots.
 class QudsWordEditor extends StatefulWidget {
   /// QudsWordEditor API.
@@ -168,6 +198,8 @@ class QudsWordEditor extends StatefulWidget {
     this.navigationBuilder,
     this.notesPaneBuilder,
     this.onSelectionChanged,
+    this.enableLiveProofing = true,
+    this.showReviewStatus = true,
   });
 
   /// controller API.
@@ -207,6 +239,13 @@ class QudsWordEditor extends StatefulWidget {
   /// onSelectionChanged API.
   final VoidCallback? onSelectionChanged;
 
+  /// Enables background checks on first attachment unless the session already
+  /// has an explicit preference. Optional manual providers remain explicit.
+  final bool enableLiveProofing;
+
+  /// Shows live check status and entry points to the non-modal review pane.
+  final bool showReviewStatus;
+
   @override
   /// createState API.
   State<QudsWordEditor> createState() => _QudsWordEditorState();
@@ -217,8 +256,13 @@ class _QudsWordEditorState extends State<QudsWordEditor>
   late final FocusNode _focus;
   late final bool _ownsFocus;
   late final Ticker _ticker;
+  final GlobalKey _canvasKey = GlobalKey(debugLabel: 'word-document-canvas');
   OverlayEntry? _contextMenu;
+  bool _contextKeyboard = false;
   bool _proofingOpen = false;
+  WordProofingIssue? _contextProofingIssue;
+  int? _contextContentRevision;
+  Timer? _inlineReviewTimer;
   ModalRoute<dynamic>? _inputRoute;
   bool? _inputRouteWasCurrent;
   final _directionKeys = OfficeDirectionKeyChord();
@@ -267,6 +311,7 @@ class _QudsWordEditorState extends State<QudsWordEditor>
         if (mounted && (_inputRoute?.isCurrent ?? true)) _focus.requestFocus();
       });
     }
+    _enableLiveProofing();
   }
 
   @override
@@ -279,6 +324,7 @@ class _QudsWordEditorState extends State<QudsWordEditor>
     _inputRoute = route;
     _inputRouteWasCurrent = isCurrent;
     if (!routeChanged) return;
+    if (!isCurrent) _dismissContextMenu();
     // A route can cover or reveal Word without changing its primary focus
     // (for example a requestFocus:false dialog). Reconcile the IME after the
     // route update even when no FocusNode notification will arrive.
@@ -310,9 +356,14 @@ class _QudsWordEditorState extends State<QudsWordEditor>
           _focus.requestFocus();
         }
       };
+      _dismissContextMenu();
+      _enableLiveProofing();
     }
     if (widget.config != null && !identical(widget.config, _c.config)) {
       _c.syncConfig(widget.config!);
+    }
+    if (!oldWidget.enableLiveProofing && widget.enableLiveProofing) {
+      _enableLiveProofing();
     }
     // Replacing a controller need not change the FocusNode, so no focus event
     // is guaranteed to attach the new controller or apply its mode.
@@ -328,9 +379,45 @@ class _QudsWordEditorState extends State<QudsWordEditor>
 
   Future<void> _openProofing() async {
     if (!mounted || _proofingOpen) return;
+    _c.commitPendingEdits();
+    _c.openReviewPane();
+    await _checkProofing(includeManualProviders: true);
+  }
+
+  void _enableLiveProofing() {
+    if (!widget.enableLiveProofing) return;
+    final controller = _c;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted && widget.enableLiveProofing && identical(controller, _c)) {
+        controller.proofing.enableBackgroundByDefault();
+      }
+    });
+  }
+
+  Future<void> _checkProofing({required bool includeManualProviders}) async {
+    final controller = _c;
+    try {
+      if (includeManualProviders) {
+        await controller.checkDocumentProofing();
+      } else {
+        await controller.proofing.checkNow(includeManualProviders: false);
+      }
+    } on Object {
+      // Provider failures are normally summarized by the session. Keep the
+      // editable surface alive if a host provider fails outside that contract.
+      if (mounted && identical(controller, _c)) controller.openReviewPane();
+    }
+  }
+
+  Future<void> _openReviewOptions() async {
+    if (!mounted || _proofingOpen) return;
     _proofingOpen = true;
     try {
-      await showWordProofingDialog(context, controller: _c);
+      if (_c.reviewPaneTab == WordReviewPaneTab.changes) {
+        await showWordReviewDialog(context, controller: _c);
+      } else {
+        await showWordProofingDialog(context, controller: _c);
+      }
     } finally {
       _proofingOpen = false;
     }
@@ -338,6 +425,13 @@ class _QudsWordEditorState extends State<QudsWordEditor>
 
   void _onCtrl() {
     if (mounted) {
+      _inlineReviewTimer?.cancel();
+      if (_contextMenu != null &&
+          (_contextContentRevision != _c.contentRevision ||
+              (_contextProofingIssue != null &&
+                  !_c.proofing.isCurrent(_contextProofingIssue!)))) {
+        _dismissContextMenu();
+      }
       setState(() {});
       widget.onSelectionChanged?.call();
     }
@@ -346,6 +440,7 @@ class _QudsWordEditorState extends State<QudsWordEditor>
   @override
   /// dispose API.
   void dispose() {
+    _contextKeyboard = false;
     _dismissContextMenu();
     if (identical(_c.input.inputAllowed, _inputGuard)) {
       _c.detachInput();
@@ -364,17 +459,148 @@ class _QudsWordEditorState extends State<QudsWordEditor>
     super.dispose();
   }
 
-  void _dismissContextMenu() {
-    OfficeContextMenu.dismiss(_contextMenu);
-    _contextMenu = null;
+  void _restoreContextFocus() {
+    if (!_contextKeyboard) return;
+    _contextKeyboard = false;
+    if (mounted && (_inputRoute?.isCurrent ?? true)) _focus.requestFocus();
   }
 
-  void _showWordContext(OfficeContextHit hit) {
+  void _dismissContextMenu() {
+    _inlineReviewTimer?.cancel();
+    OfficeContextMenu.dismiss(_contextMenu);
+    _contextMenu = null;
+    _contextProofingIssue = null;
+    _contextContentRevision = null;
+    _restoreContextFocus();
+  }
+
+  void _showCaretContext() {
+    if (_c.isEditingComment ||
+        (_c.input.composing.isValid && !_c.input.composing.isCollapsed)) {
+      return;
+    }
+    final canvas = _canvasKey.currentContext?.findRenderObject();
+    if (canvas is! RenderWordCanvas) return;
+    var hit = canvas.contextHitForCaret();
+    if (hit == null) return;
+    // A reviewed range ends just after its source. Preserve explicit identity
+    // as well as its offset: findings can overlap and revisions can be adjacent.
+    final selected = _c.selectedProofingIssue;
+    final selectedRevision = _c.selectedRevision;
+    final caret = _c.caret;
+    bool matchesSelection(int start, int end) =>
+        caret.selectionAnchorParagraph == caret.paragraphIndex &&
+        ((caret.selectionAnchor == start && caret.logicalIndex == end) ||
+            (caret.selectionAnchor == end && caret.logicalIndex == start));
+    WordProofingIssue? preferredIssue;
+    WmlRevision? preferredRevision;
+    if (selected != null &&
+        identical(selected.paragraph, hit.paragraph) &&
+        matchesSelection(selected.finding.start, selected.finding.end)) {
+      preferredIssue = selected;
+    }
+    if (selectedRevision != null &&
+        selectedRevision.accepted == null &&
+        identical(
+          WordRevisions.resolveParagraph(_c.document, selectedRevision),
+          hit.paragraph,
+        ) &&
+        matchesSelection(selectedRevision.start, selectedRevision.end)) {
+      preferredRevision = selectedRevision;
+    }
+    final sourceOffset =
+        preferredIssue?.finding.start ?? preferredRevision?.start;
+    if (sourceOffset != null) {
+      hit = canvas.contextHitForCaret(proofingOffset: sourceOffset);
+      if (hit == null) return;
+    }
+    _showWordContext(
+      hit,
+      keyboardNavigation: true,
+      preferredIssue: preferredIssue,
+      preferredRevision: preferredRevision,
+    );
+  }
+
+  void _showInlineReview(OfficeContextHit hit) {
+    _inlineReviewTimer?.cancel();
+    final controller = _c;
+    _inlineReviewTimer = Timer(kDoubleTapTimeout, () {
+      if (mounted && identical(controller, _c)) _presentInlineReview(hit);
+    });
+  }
+
+  void _presentInlineReview(OfficeContextHit hit) {
+    final paragraph = hit.paragraph;
+    final offset = hit.proofingOffset;
+    if (paragraph == null || offset == null) return;
+    final issue = _c.proofing.issuesAt(paragraph, offset).firstOrNull;
+    if (issue != null) {
+      _c.selectProofingIssue(issue, reveal: false);
+      if (_c.reviewPaneVisible) {
+        _c.setReviewPaneTab(WordReviewPaneTab.proofing);
+      } else {
+        _showWordContext(hit, reviewOnly: true);
+      }
+      return;
+    }
+    final revision = _revisionAt(hit);
+    if (revision != null) {
+      _c.selectedRevisionIndex = _c.document.revisions.indexOf(revision);
+      _c.openReviewPane(tab: WordReviewPaneTab.changes);
+    }
+  }
+
+  WmlRevision? _revisionAt(OfficeContextHit hit) {
+    final paragraph = hit.paragraph;
+    final offset = hit.proofingOffset;
+    if (paragraph == null || offset == null) return null;
+    return _c.document.revisions
+        .where(
+          (revision) =>
+              revision.accepted == null &&
+              identical(
+                WordRevisions.resolveParagraph(_c.document, revision),
+                paragraph,
+              ) &&
+              offset >= revision.start &&
+              offset < revision.end,
+        )
+        .firstOrNull;
+  }
+
+  void _showWordContext(
+    OfficeContextHit hit, {
+    bool reviewOnly = false,
+    bool keyboardNavigation = false,
+    WordProofingIssue? preferredIssue,
+    WmlRevision? preferredRevision,
+  }) {
     _dismissContextMenu();
     final issues = hit.paragraph != null && hit.proofingOffset != null
         ? _c.proofing.issuesAt(hit.paragraph!, hit.proofingOffset!)
         : const <WordProofingIssue>[];
-    final issue = issues.firstOrNull;
+    final issue = preferredIssue != null && issues.contains(preferredIssue)
+        ? preferredIssue
+        : issues.firstOrNull;
+    final revision =
+        preferredRevision != null &&
+            preferredRevision.accepted == null &&
+            _c.document.revisions.contains(preferredRevision) &&
+            identical(
+              WordRevisions.resolveParagraph(_c.document, preferredRevision),
+              hit.paragraph,
+            )
+        ? preferredRevision
+        : _revisionAt(hit);
+    var canResolveRevision = revision != null && _c.config.allowsMutation;
+    if (canResolveRevision) {
+      try {
+        WordRevisions.validateRevision(_c.document, revision);
+      } on Object {
+        canResolveRevision = false;
+      }
+    }
     final actions = <OfficeContextAction>[
       if (issue != null) ...[
         OfficeContextAction.caption(issue.finding.message),
@@ -389,31 +615,83 @@ class _QudsWordEditorState extends State<QudsWordEditor>
         const OfficeContextAction(id: 'proofing:ignore', label: 'Ignore once'),
         if (issue.finding.category == OfficeProofingCategory.spelling)
           const OfficeContextAction(
+            id: 'proofing:ignoreWord',
+            label: 'Ignore this word',
+          ),
+        if (issue.finding.category == OfficeProofingCategory.spelling)
+          const OfficeContextAction(
             id: 'proofing:add',
             label: 'Add to personal words',
           ),
       ],
+      if (revision != null) ...[
+        OfficeContextAction.caption(
+          '${revision.kind == WmlRevisionKind.insert ? 'Inserted' : 'Deleted'} by ${revision.author}',
+          separatorBefore: issue != null,
+        ),
+        OfficeContextAction(
+          id: 'revision:accept',
+          label: 'Accept change',
+          enabled: canResolveRevision,
+        ),
+        OfficeContextAction(
+          id: 'revision:reject',
+          label: 'Reject change',
+          enabled: canResolveRevision,
+        ),
+        const OfficeContextAction(
+          id: 'revision:review',
+          label: 'Open changes pane',
+        ),
+      ],
       const OfficeContextAction(
         id: 'proofing:review',
-        label: 'Spelling and writing…',
+        label: 'Open writing pane',
         shortcut: 'F7',
         separatorBefore: true,
       ),
-      ...OfficeContextMenu.word(hit: hit, controller: _c),
+      if (!reviewOnly) ...OfficeContextMenu.word(hit: hit, controller: _c),
     ];
+    _contextProofingIssue = issue;
+    _contextContentRevision = _c.contentRevision;
+    _contextKeyboard = keyboardNavigation;
     _contextMenu = OfficeContextMenu.show(
       context: context,
       globalPosition: hit.globalPosition,
       actions: actions,
+      enableFiltering: !reviewOnly,
+      keyboardNavigation: keyboardNavigation,
+      onDismiss: () {
+        _contextMenu = null;
+        _contextProofingIssue = null;
+        _contextContentRevision = null;
+        _restoreContextFocus();
+      },
       onSelect: (String id) {
         _contextMenu = null;
         if (id == 'proofing:review') {
-          unawaited(_openProofing());
+          _c.openReviewPane();
+          return;
+        }
+        if (revision != null && id.startsWith('revision:')) {
+          _c.selectedRevisionIndex = _c.document.revisions.indexOf(revision);
+          if (id == 'revision:review') {
+            _c.openReviewPane(tab: WordReviewPaneTab.changes);
+          } else {
+            try {
+              if (id == 'revision:accept') _c.acceptRevision(revision);
+              if (id == 'revision:reject') _c.rejectRevision(revision);
+            } on Object {
+              _c.openReviewPane(tab: WordReviewPaneTab.changes);
+            }
+          }
           return;
         }
         if (issue != null && id.startsWith('proofing:')) {
           if (id == 'proofing:ignore') {
             _c.proofing.ignoreOnce(issue);
+          } else if (id == 'proofing:ignoreWord') {
+            _c.proofing.ignoreWord(issue);
           } else if (id == 'proofing:add') {
             _c.proofing.addWord(issue);
           } else if (id.startsWith('proofing:replace:')) {
@@ -427,7 +705,9 @@ class _QudsWordEditorState extends State<QudsWordEditor>
               );
             }
           }
-          unawaited(_c.checkDocumentProofing());
+          if (!_c.proofing.enabled) {
+            unawaited(_checkProofing(includeManualProviders: false));
+          }
           return;
         }
         _runWordContext(hit, id);
@@ -523,7 +803,25 @@ class _QudsWordEditorState extends State<QudsWordEditor>
     if (event is! KeyDownEvent && event is! KeyRepeatEvent) {
       return KeyEventResult.ignored;
     }
+    if (event.logicalKey == LogicalKeyboardKey.escape && _contextMenu != null) {
+      _dismissContextMenu();
+      return KeyEventResult.handled;
+    }
+    if (event.logicalKey == LogicalKeyboardKey.contextMenu ||
+        (event.logicalKey == LogicalKeyboardKey.f10 &&
+            HardwareKeyboard.instance.isShiftPressed &&
+            !HardwareKeyboard.instance.isControlPressed &&
+            !HardwareKeyboard.instance.isMetaPressed &&
+            !HardwareKeyboard.instance.isAltPressed)) {
+      if (event is KeyDownEvent) _showCaretContext();
+      return KeyEventResult.handled;
+    }
+    if (event.logicalKey == LogicalKeyboardKey.f7) _dismissContextMenu();
     if (officeHandleDocumentShortcut(_c, event)) {
+      return KeyEventResult.handled;
+    }
+    if (event.logicalKey == LogicalKeyboardKey.escape && _c.reviewPaneVisible) {
+      _c.closeReviewPane();
       return KeyEventResult.handled;
     }
     final bool shift = HardwareKeyboard.instance.isShiftPressed;
@@ -795,6 +1093,14 @@ class _QudsWordEditorState extends State<QudsWordEditor>
           const OfficePrintIntent(),
       const SingleActivator(LogicalKeyboardKey.f7):
           const OfficeSpellCheckIntent(),
+      const SingleActivator(LogicalKeyboardKey.f7, alt: true):
+          const _WritingFindingIntent(1),
+      const SingleActivator(LogicalKeyboardKey.f7, alt: true, shift: true):
+          const _WritingFindingIntent(-1),
+      const SingleActivator(LogicalKeyboardKey.f10, shift: true):
+          const _WordContextIntent(),
+      const SingleActivator(LogicalKeyboardKey.contextMenu):
+          const _WordContextIntent(),
       const SingleActivator(LogicalKeyboardKey.f3):
           const OfficeFindNextIntent(),
       const SingleActivator(LogicalKeyboardKey.f3, shift: true):
@@ -817,200 +1123,264 @@ class _QudsWordEditorState extends State<QudsWordEditor>
               (config.showFindChrome || _c.findSession.active))
             widget.findBarBuilder!(context, _c),
           Expanded(
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                if (widget.navigationBuilder != null &&
-                    config.effectiveShowNavigationPane(
-                      MediaQuery.sizeOf(context),
-                    ))
-                  SizedBox(
-                    width: 220,
-                    child: widget.navigationBuilder!(context, _c),
-                  ),
-                Expanded(
-                  child: Focus(
-                    focusNode: _focus,
-                    onFocusChange: (_) => _onFocus(),
-                    onKeyEvent: _onWordKey,
-                    child: Shortcuts(
-                      shortcuts: _shortcuts,
-                      child: Actions(
-                        actions: <Type, Action<Intent>>{
-                          ..._documentActions(_c),
-                          OfficeUndoIntent: CallbackAction<OfficeUndoIntent>(
-                            onInvoke: (_) {
-                              _c.undo();
-                              return null;
-                            },
-                          ),
-                          OfficeRedoIntent: CallbackAction<OfficeRedoIntent>(
-                            onInvoke: (_) {
-                              _c.redo();
-                              return null;
-                            },
-                          ),
-                          OfficeSelectAllIntent:
-                              CallbackAction<OfficeSelectAllIntent>(
+            child: LayoutBuilder(
+              builder: (context, constraints) {
+                final canvas = Row(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: <Widget>[
+                    if (widget.navigationBuilder != null &&
+                        config.effectiveShowNavigationPane(
+                          MediaQuery.sizeOf(context),
+                        ))
+                      SizedBox(
+                        width: 220,
+                        child: widget.navigationBuilder!(context, _c),
+                      ),
+                    Expanded(
+                      child: Focus(
+                        focusNode: _focus,
+                        onFocusChange: (_) => _onFocus(),
+                        onKeyEvent: _onWordKey,
+                        child: Shortcuts(
+                          shortcuts: _shortcuts,
+                          child: Actions(
+                            actions: <Type, Action<Intent>>{
+                              ..._documentActions(_c),
+                              _WritingFindingIntent:
+                                  CallbackAction<_WritingFindingIntent>(
+                                    onInvoke: (intent) {
+                                      _stepWritingFinding(_c, intent.delta);
+                                      return null;
+                                    },
+                                  ),
+                              _WordContextIntent:
+                                  CallbackAction<_WordContextIntent>(
+                                    onInvoke: (_) {
+                                      _showCaretContext();
+                                      return null;
+                                    },
+                                  ),
+                              OfficeUndoIntent:
+                                  CallbackAction<OfficeUndoIntent>(
+                                    onInvoke: (_) {
+                                      _c.undo();
+                                      return null;
+                                    },
+                                  ),
+                              OfficeRedoIntent:
+                                  CallbackAction<OfficeRedoIntent>(
+                                    onInvoke: (_) {
+                                      _c.redo();
+                                      return null;
+                                    },
+                                  ),
+                              OfficeSelectAllIntent:
+                                  CallbackAction<OfficeSelectAllIntent>(
+                                    onInvoke: (_) {
+                                      _c.selectAll();
+                                      return null;
+                                    },
+                                  ),
+                              OfficeCopyIntent:
+                                  CallbackAction<OfficeCopyIntent>(
+                                    onInvoke: (_) {
+                                      _c.copyToClipboard();
+                                      return null;
+                                    },
+                                  ),
+                              OfficeCutIntent: CallbackAction<OfficeCutIntent>(
                                 onInvoke: (_) {
-                                  _c.selectAll();
+                                  _c.cutToClipboard();
                                   return null;
                                 },
                               ),
-                          OfficeCopyIntent: CallbackAction<OfficeCopyIntent>(
-                            onInvoke: (_) {
-                              _c.copyToClipboard();
-                              return null;
-                            },
-                          ),
-                          OfficeCutIntent: CallbackAction<OfficeCutIntent>(
-                            onInvoke: (_) {
-                              _c.cutToClipboard();
-                              return null;
-                            },
-                          ),
-                          OfficePasteIntent: CallbackAction<OfficePasteIntent>(
-                            onInvoke: (OfficePasteIntent i) {
-                              _c.pasteFromClipboard(mode: i.mode);
-                              return null;
-                            },
-                          ),
-                          ..._documentActions(_c),
-                          _MoveCaretIntent: CallbackAction<_MoveCaretIntent>(
-                            onInvoke: (_MoveCaretIntent i) {
-                              _c.moveCaretVisual(
-                                toRight: i.delta > 0,
-                                extend: i.extend,
-                              );
-                              return null;
-                            },
-                          ),
-                          _MoveParagraphIntent:
-                              CallbackAction<_MoveParagraphIntent>(
-                                onInvoke: (_MoveParagraphIntent i) {
-                                  _c.moveCaretLine(i.delta, extend: i.extend);
+                              OfficePasteIntent:
+                                  CallbackAction<OfficePasteIntent>(
+                                    onInvoke: (OfficePasteIntent i) {
+                                      _c.pasteFromClipboard(mode: i.mode);
+                                      return null;
+                                    },
+                                  ),
+                              ..._documentActions(_c),
+                              _MoveCaretIntent:
+                                  CallbackAction<_MoveCaretIntent>(
+                                    onInvoke: (_MoveCaretIntent i) {
+                                      _c.moveCaretVisual(
+                                        toRight: i.delta > 0,
+                                        extend: i.extend,
+                                      );
+                                      return null;
+                                    },
+                                  ),
+                              _MoveParagraphIntent:
+                                  CallbackAction<_MoveParagraphIntent>(
+                                    onInvoke: (_MoveParagraphIntent i) {
+                                      _c.moveCaretLine(
+                                        i.delta,
+                                        extend: i.extend,
+                                      );
+                                      return null;
+                                    },
+                                  ),
+                              _DeleteIntent: CallbackAction<_DeleteIntent>(
+                                onInvoke: (_DeleteIntent i) {
+                                  _c.deleteSelectionOr(backward: i.backward);
                                   return null;
                                 },
                               ),
-                          _DeleteIntent: CallbackAction<_DeleteIntent>(
-                            onInvoke: (_DeleteIntent i) {
-                              _c.deleteSelectionOr(backward: i.backward);
-                              return null;
-                            },
-                          ),
-                          _BreakIntent: CallbackAction<_BreakIntent>(
-                            onInvoke: (_) {
-                              _c.insertParagraphBreak();
-                              return null;
-                            },
-                          ),
-                        },
-                        child: Semantics(
-                          container: true,
-                          label: _c.semanticsLabel,
-                          value: _c.semanticsValue,
-                          readOnly: !config.allowsMutation,
-                          textField: config.allowsMutation,
-                          child: WordCanvas(
-                            document: _c.document,
-                            proofingFindings: _c.proofing.findingsByParagraph,
-                            laidOut: _c.documentLaidOut,
-                            caret: _c.caret,
-                            findHits: _c.findSession.hits,
-                            activeFindIndex: _c.findSession.index,
-                            viewport: _c.viewport,
-                            config: config,
-                            hasFocus:
-                                !_c.isEditingComment &&
-                                (_focus.hasFocus || _c.input.isAttached),
-                            semanticsLabel: _c.semanticsLabel,
-                            semanticsValue: _c.semanticsValue,
-                            selectedVisual: _c.selectedVisual,
-                            selectedFrame: _c.selectedFrame,
-                            editingFrame: _c.editingFrame,
-                            selectedEquation: _c.selectedEquation,
-                            equationSlot: _c.equationSlot,
-                            equationCaret: _c.equationCaret,
-                            pictureCropMode: _c.pictureCropMode,
-                            onBeginVisualTransform: _c.beginVisualTransform,
-                            onPreviewVisualMove: _c.previewVisualMove,
-                            onPreviewVisualResize: _c.previewVisualResize,
-                            onPreviewVisualCrop: _c.previewVisualCrop,
-                            onPreviewVisualRotate: _c.previewVisualRotate,
-                            onCommitVisualTransform: _c.commitVisualTransform,
-                            isVisualInSelection: _c.isVisualInSelection,
-                            onExtendThroughVisual:
-                                _c.extendSelectionThroughVisual,
-                            onSelectVisual: _c.selectVisualFromOffice,
-                            onSelectFrame: (WmlFrame? frame) =>
-                                _c.selectFrame(frame),
-                            onEditFrame: (WmlFrame frame) =>
-                                _c.selectFrame(frame, editing: true),
-                            onBeginFrameTransform: _c.beginFrameTransform,
-                            onPreviewFrameMove: _c.previewFrameMove,
-                            onPreviewFrameResize: _c.previewFrameResize,
-                            onCommitFrameTransform: _c.commitFrameTransform,
-                            onSelectEquation:
-                                (WmlEquation? equation, int? slot, int? caret) {
-                                  _c.selectEquation(
-                                    equation,
-                                    slot: slot,
-                                    caret: caret,
-                                  );
+                              _BreakIntent: CallbackAction<_BreakIntent>(
+                                onInvoke: (_) {
+                                  _c.insertParagraphBreak();
+                                  return null;
                                 },
-                            onActivateVisual: (OfficeVisual visual) {
-                              _c.selectVisualFromOffice(visual);
-                              _c.cycleSelectedVisualKind();
+                              ),
                             },
-                            onJumpParagraph: _c.jumpToParagraph,
-                            onFollowLink: _c.followLink,
-                            selectedCommentId: _c.selectedCommentId,
-                            onSelectComment: _c.selectComment,
-                            onContextMenu: _showWordContext,
-                            onInsertTableRowAt: _c.insertTableRowAt,
-                            onInsertTableColumnAt: _c.insertTableColumnAt,
-                            onBeginTableResize: _c.beginTableResize,
-                            onPreviewTableColumnWidth:
-                                _c.previewTableColumnWidth,
-                            onPreviewTableRowHeight: _c.previewTableRowHeight,
-                            onCommitTableResize: _c.commitTableResize,
-                            selectedTable: _c.selectedTable,
-                            onSelectTable: _c.selectTable,
-                            selectedTableBand: _c.selectedTableBand,
-                            onSelectTableBand: _c.selectTableBand,
-                            storyParagraphs: _c.isEditingHeaderFooter
-                                ? _c.headerFooterParagraphs
-                                : null,
-                            editingHeader: _c.isEditingHeader,
-                            editingFooter: _c.isEditingFooter,
-                            onBeginHeaderFooterEdit: _c.beginHeaderFooterEdit,
-                            onEndHeaderFooterEdit: _c.endHeaderFooterEdit,
-                            onBeginRulerEdit: _c.beginRulerEdit,
-                            onPreviewRulerEdit: _c.previewRulerEdit,
-                            onCommitRulerEdit: _c.commitRulerEdit,
-                            onChanged: () {
-                              _focus.requestFocus();
-                              if (config.allowsMutation) {
-                                _c.attachInput();
-                              }
-                              _c.refresh();
-                            },
+                            child: Semantics(
+                              container: true,
+                              label: _c.semanticsLabel,
+                              value: _c.semanticsValue,
+                              readOnly: !config.allowsMutation,
+                              textField: config.allowsMutation,
+                              child: WordCanvas(
+                                key: _canvasKey,
+                                document: _c.document,
+                                proofingFindings:
+                                    _c.proofing.findingsByParagraph,
+                                laidOut: _c.documentLaidOut,
+                                caret: _c.caret,
+                                findHits: _c.findSession.hits,
+                                activeFindIndex: _c.findSession.index,
+                                viewport: _c.viewport,
+                                config: config,
+                                hasFocus:
+                                    !_c.isEditingComment &&
+                                    (_focus.hasFocus || _c.input.isAttached),
+                                semanticsLabel: _c.semanticsLabel,
+                                semanticsValue: _c.semanticsValue,
+                                selectedVisual: _c.selectedVisual,
+                                selectedFrame: _c.selectedFrame,
+                                editingFrame: _c.editingFrame,
+                                selectedEquation: _c.selectedEquation,
+                                equationSlot: _c.equationSlot,
+                                equationCaret: _c.equationCaret,
+                                pictureCropMode: _c.pictureCropMode,
+                                onBeginVisualTransform: _c.beginVisualTransform,
+                                onPreviewVisualMove: _c.previewVisualMove,
+                                onPreviewVisualResize: _c.previewVisualResize,
+                                onPreviewVisualCrop: _c.previewVisualCrop,
+                                onPreviewVisualRotate: _c.previewVisualRotate,
+                                onCommitVisualTransform:
+                                    _c.commitVisualTransform,
+                                isVisualInSelection: _c.isVisualInSelection,
+                                onExtendThroughVisual:
+                                    _c.extendSelectionThroughVisual,
+                                onSelectVisual: _c.selectVisualFromOffice,
+                                onSelectFrame: (WmlFrame? frame) =>
+                                    _c.selectFrame(frame),
+                                onEditFrame: (WmlFrame frame) =>
+                                    _c.selectFrame(frame, editing: true),
+                                onBeginFrameTransform: _c.beginFrameTransform,
+                                onPreviewFrameMove: _c.previewFrameMove,
+                                onPreviewFrameResize: _c.previewFrameResize,
+                                onCommitFrameTransform: _c.commitFrameTransform,
+                                onSelectEquation:
+                                    (
+                                      WmlEquation? equation,
+                                      int? slot,
+                                      int? caret,
+                                    ) {
+                                      _c.selectEquation(
+                                        equation,
+                                        slot: slot,
+                                        caret: caret,
+                                      );
+                                    },
+                                onActivateVisual: (OfficeVisual visual) {
+                                  _c.selectVisualFromOffice(visual);
+                                  _c.cycleSelectedVisualKind();
+                                },
+                                onJumpParagraph: _c.jumpToParagraph,
+                                onFollowLink: _c.followLink,
+                                selectedCommentId: _c.selectedCommentId,
+                                onSelectComment: _c.selectComment,
+                                onContextMenu: _showWordContext,
+                                onReviewTap: _showInlineReview,
+                                onInsertTableRowAt: _c.insertTableRowAt,
+                                onInsertTableColumnAt: _c.insertTableColumnAt,
+                                onBeginTableResize: _c.beginTableResize,
+                                onPreviewTableColumnWidth:
+                                    _c.previewTableColumnWidth,
+                                onPreviewTableRowHeight:
+                                    _c.previewTableRowHeight,
+                                onCommitTableResize: _c.commitTableResize,
+                                selectedTable: _c.selectedTable,
+                                onSelectTable: _c.selectTable,
+                                selectedTableBand: _c.selectedTableBand,
+                                onSelectTableBand: _c.selectTableBand,
+                                storyParagraphs: _c.isEditingHeaderFooter
+                                    ? _c.headerFooterParagraphs
+                                    : null,
+                                editingHeader: _c.isEditingHeader,
+                                editingFooter: _c.isEditingFooter,
+                                onBeginHeaderFooterEdit:
+                                    _c.beginHeaderFooterEdit,
+                                onEndHeaderFooterEdit: _c.endHeaderFooterEdit,
+                                onBeginRulerEdit: _c.beginRulerEdit,
+                                onPreviewRulerEdit: _c.previewRulerEdit,
+                                onCommitRulerEdit: _c.commitRulerEdit,
+                                onChanged: () {
+                                  _focus.requestFocus();
+                                  if (config.allowsMutation) {
+                                    _c.attachInput();
+                                  }
+                                  _c.refreshView();
+                                },
+                              ),
+                            ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                ),
-                if (config.showNotesPane)
-                  SizedBox(
-                    width: 240,
-                    child: widget.notesPaneBuilder != null
-                        ? widget.notesPaneBuilder!(context, _c)
-                        : WordNotesPane(controller: _c),
-                  ),
-              ],
+                    if (config.showNotesPane)
+                      SizedBox(
+                        width: 240,
+                        child: widget.notesPaneBuilder != null
+                            ? widget.notesPaneBuilder!(context, _c)
+                            : WordNotesPane(controller: _c),
+                      ),
+                  ],
+                );
+                if (!_c.reviewPaneVisible) return canvas;
+                final pane = WordReviewPane(
+                  controller: _c,
+                  initialTab: _c.reviewPaneTab,
+                  onTabChanged: _c.setReviewPaneTab,
+                  onClose: _c.closeReviewPane,
+                  onMoreOptions: _openReviewOptions,
+                );
+                if (constraints.maxWidth >= 760) {
+                  return Row(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Expanded(child: canvas),
+                      SizedBox(width: 344, child: pane),
+                    ],
+                  );
+                }
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Expanded(child: canvas),
+                    SizedBox(
+                      height: math.min(320, constraints.maxHeight * 0.52),
+                      child: pane,
+                    ),
+                  ],
+                );
+              },
             ),
           ),
+          if (widget.showReviewStatus) WordReviewStatusBar(controller: _c),
           if (widget.statusBarBuilder != null)
             widget.statusBarBuilder!(context, _c),
         ],

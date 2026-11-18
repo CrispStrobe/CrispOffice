@@ -1,0 +1,55 @@
+[
+  {
+    "event": "key",
+    "key": "F7",
+    "alt": true,
+    "shift": false
+  },
+  {
+    "event": "key",
+    "key": "F10",
+    "alt": false,
+    "shift": true
+  },
+  {
+    "event": "key",
+    "key": "Arrow Down",
+    "alt": false,
+    "shift": false
+  },
+  {
+    "event": "keyboard_menu_observed",
+    "source": "schedual",
+    "highlighted_action": "timetable",
+    "menu_owns_focus": true,
+    "document_unchanged": true
+  },
+  {
+    "event": "screenshot",
+    "file": "keyboard-suggestions-desktop.png"
+  },
+  {
+    "event": "key",
+    "key": "Escape",
+    "alt": false,
+    "shift": false
+  },
+  {
+    "event": "key",
+    "key": "F7",
+    "alt": true,
+    "shift": false
+  },
+  {
+    "event": "background_check_observed",
+    "checking": true,
+    "checked_paragraphs": 3,
+    "total_paragraphs": 4,
+    "check_document_enabled": true,
+    "correction_enabled": true
+  },
+  {
+    "event": "screenshot",
+    "file": "keyboard-inflight-writing-desktop.png"
+  }
+]

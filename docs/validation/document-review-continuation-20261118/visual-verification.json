@@ -1,0 +1,155 @@
+{
+  "recorded_at_utc": "2026-11-18T16:39:31.050790+00:00",
+  "source_commit": "3925c63fca2f824a95566c1258caf5db1086e530",
+  "source_tree": "5e46936f2bc1d6ae9484aba4e9086a69d4605915",
+  "source_binding": {
+    "reference": "checks/source-before.json",
+    "reference_sha256": "0f13ff2d5d64ee49ddfe8fd9f7f78ea09c560af0527cc2476e16b46e60a8cc28",
+    "files_verified_after_render": 610,
+    "mismatches": [],
+    "tracked_and_untracked_worktree_clean_after_fixture_cleanup": true
+  },
+  "harness": {
+    "path": "render_previews.dart",
+    "git_blob": "a824e125b758e288daf47795c1c89102f590a551",
+    "sha256": "310ea46e08fa71b56033fd00587f083d271ce8c79470c7dac7d1f81316036c1f",
+    "temporary_execution_path": "packages/quds_office_editor/test/_review_previews_test.dart",
+    "temporary_execution_copy_removed": true
+  },
+  "command": [
+    "flutter",
+    "test",
+    "--no-pub",
+    "--reporter",
+    "json",
+    "test/_review_previews_test.dart"
+  ],
+  "cwd": "/workspace/scratch/d322553a8b9d/quds_office_suite/packages/quds_office_editor",
+  "environment": {
+    "QUDS_REVIEW_SCREENSHOT_DIR": "/workspace/scratch/d322553a8b9d/review-toolchain/visual-final/screenshots",
+    "FLUTTER_ROOT": "/workspace/scratch/d322553a8b9d/review-toolchain/flutter",
+    "PUB_CACHE": "/workspace/scratch/d322553a8b9d/review-toolchain/pub-cache"
+  },
+  "exit_code": 0,
+  "visual_cases": {
+    "passed": 4,
+    "failed": 0,
+    "skipped": 0,
+    "cases": [
+      {
+        "name": "desktop change projections and filtered batches",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "progressive writing retains actionable findings",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "narrow English changes preview",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "narrow Arabic changes preview",
+        "result": "success",
+        "skipped": false
+      }
+    ],
+    "counted_in_361_product_tests": false
+  },
+  "log": {
+    "path": "visual-events.jsonl.gz",
+    "sha256": "8cba15b9da6e900215889485c463eaeea2378c7b7a27108193a3b6b3fe6ecfda",
+    "raw_event_log_sha256": "ec1ab00c2bcf940622f0c2a09a358188000e1a13739266e63fc9c91d76b02263",
+    "elapsed_milliseconds": 13626
+  },
+  "screenshots": [
+    {
+      "path": "screenshots/changes-original-desktop.png",
+      "git_blob": "58030b5a90adeeef701db8dd52f843aed2487dd9",
+      "sha256": "76c9a505bd3cc6b72e2c375d50bac13c2abdae198cf00ee12193eb2f1bde80c5",
+      "bytes": 114601,
+      "width": 1280,
+      "height": 1000
+    },
+    {
+      "path": "screenshots/changes-final-desktop.png",
+      "git_blob": "7a8d5e8fd660426bb86c263af7fd90b9ffcf9866",
+      "sha256": "67118506137ddbf1302c5c6a9d7360ef83c16f7f46762fd6b58043fd8bceb74f",
+      "bytes": 114229,
+      "width": 1280,
+      "height": 1000
+    },
+    {
+      "path": "screenshots/changes-filter-controls-desktop.png",
+      "git_blob": "034916875d98786768b5c61544bcaf88d4a650be",
+      "sha256": "23eb9d3b66a03b8a233ed40ffb2b644b8032595c56f2abffa9bee2e575da2a63",
+      "bytes": 128208,
+      "width": 1280,
+      "height": 1360
+    },
+    {
+      "path": "screenshots/changes-filtered-desktop.png",
+      "git_blob": "7bcfcce0f46264c8470e4bd31444bce765330858",
+      "sha256": "06bf996895125b948e7d13a7ab0ce423c7f4eb35aea996f517cb55815b977aaa",
+      "bytes": 115768,
+      "width": 1280,
+      "height": 1000
+    },
+    {
+      "path": "screenshots/writing-in-flight-desktop.png",
+      "git_blob": "f677d56a315423f26b36d7e043a88be69e46875f",
+      "sha256": "eaff26490f8a714ca30768d6d2695b13e3063f1fb78173d71213b94afcc3f917",
+      "bytes": 89944,
+      "width": 1280,
+      "height": 1000
+    },
+    {
+      "path": "screenshots/changes-english-narrow.png",
+      "git_blob": "07467977948a16f7ddcd87311ae2e835a09c3589",
+      "sha256": "d1283bb87251ab7f67a2478f2a8795daa39387d82a510641f2ebe1952eb2f9d0",
+      "bytes": 64989,
+      "width": 360,
+      "height": 760
+    },
+    {
+      "path": "screenshots/changes-arabic-narrow.png",
+      "git_blob": "10c3d2295a4f0c88670ee5f5c747dc30d4162475",
+      "sha256": "f1397c0d343f25121c6e2a45569bdee46995e77386844d12d4c4387bdc9575e6",
+      "bytes": 55320,
+      "width": 360,
+      "height": 760
+    }
+  ],
+  "fonts": {
+    "text": "Repository OfficeHostFonts real bundled Liberation Sans and Noto Naskh Arabic; covered by the 610-file source manifest",
+    "icons": {
+      "path": "/workspace/scratch/d322553a8b9d/review-toolchain/flutter/bin/cache/artifacts/material_fonts/MaterialIcons-Regular.otf",
+      "sha256": "d9865b671a09d683d13a863089d8825e0f61a37696ce5d7d448bc8023aa62453"
+    }
+  },
+  "visual_inspection": {
+    "inspected_all_seven_images": true,
+    "observations": [
+      "Original preview shows Friday; final preview shows Monday while tracked markup stays on the editable canvas.",
+      "Expanded filters show Author Mira and Insertions, with 2 of 4 pending changes and batch actions for 2 shown changes.",
+      "Collapsed filtered view has no open dropdown or overlay.",
+      "Writing shows an actionable spelling correction while later paragraphs are still Checking.",
+      "360px English and Arabic page previews are fitted to viewport; document and persistent lower review pane remain visible."
+    ]
+  },
+  "fixture_notes": [
+    "Deterministic test providers and demonstration label; no optional live model inference.",
+    "Hit-testable ModalBarrier assertion excludes the baseline invisible Flutter barrier and rejects open modal overlays.",
+    "Earlier overly broad ModalBarrier fixture assertion attempt is historical and is not counted in this successful run."
+  ],
+  "github_actions_queried_or_awaited": false,
+  "historical_attempt": {
+    "path": "attempts/visual-modalbarrier.jsonl.gz",
+    "sha256": "a9e95bd8c1b069f91621bc06f547502f83e5fb1ceac8b885adc19160b493655a",
+    "exit_code": 1,
+    "cause": "Fixture assertion rejected the baseline invisible ModalBarrier; changed to hitTestable to verify only visible modal overlays."
+  }
+}

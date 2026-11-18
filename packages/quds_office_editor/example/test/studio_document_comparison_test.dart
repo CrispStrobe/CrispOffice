@@ -74,6 +74,75 @@ void main() {
     }
   });
 
+  test('comparison requires exactly one direct Word body', () {
+    for (final content in <String>[
+      '<body/>',
+      '<foreign:body xmlns:foreign="urn:not-word"/>',
+      '<w:body xmlns:w="http://purl.oclc.org/ooxml/wordprocessingml/main"/>',
+      '<w:body/><w:body/>',
+      '<w:customXml><w:body/></w:customXml>',
+    ]) {
+      final xml =
+          '<w:document xmlns:w="${OfficeNamespaces.w}">'
+          '$content</w:document>';
+      final package = OpcPackage.create(OpcPackageKind.word);
+      package.getPart('/word/document.xml')!.writeText(xml);
+      expect(
+        () => StudioFiles.decodeComparisonDocument(package.save()),
+        throwsFormatException,
+        reason: xml,
+      );
+    }
+  });
+
+  test('truncated and malformed XML cannot become an empty comparison', () {
+    final root = '<w:document xmlns:w="${OfficeNamespaces.w}">';
+    for (final xml in <String>[
+      '$root<w:body>',
+      '$root<w:body/>',
+      '$root<w:body><w:p><w:r><w:t>Unclosed text',
+      '$root<w:body></w:document>',
+      '$root<w:body/></w:document>$root<w:body/></w:document>',
+      'Unexpected text$root<w:body/></w:document>',
+      '$root<w:body/></w:document>Unexpected text',
+      '$root<w:body><![CDATA[outside]]></w:body></w:document><![CDATA[outside]]>',
+      '$root<w:body><undeclared:p/></w:body></w:document>',
+      '$root<w:body><w:p><w:r><w:t>&missing;</w:t></w:r></w:p></w:body></w:document>',
+      '$root<w:body/><?xml version="1.0"?></w:document>',
+      '<!DOCTYPE document>$root<w:body/></w:document>',
+    ]) {
+      final package = OpcPackage.create(OpcPackageKind.word);
+      package.getPart('/word/document.xml')!.writeText(xml);
+      expect(
+        () => StudioFiles.decodeComparisonDocument(package.save()),
+        throwsFormatException,
+        reason: xml,
+      );
+    }
+  });
+
+  test(
+    'valid namespace prefixes and default namespace retain document text',
+    () {
+      for (final xml in <String>[
+        '<?xml version="1.0"?><!--before-->'
+            '<word:document xmlns:word="${OfficeNamespaces.w}">'
+            '<word:body><word:p><word:r><word:t>Alpha &amp; beta</word:t>'
+            '</word:r></word:p></word:body></word:document><!--after-->',
+        '<document xmlns="${OfficeNamespaces.w}">'
+            '<body><p><r><t>Alpha &amp; beta</t></r></p></body></document>',
+        '<w:document xmlns:w="${OfficeNamespaces.w}">'
+            '<body xmlns="${OfficeNamespaces.w}">'
+            '<p><r><t>Alpha &amp; beta</t></r></p></body></w:document>',
+      ]) {
+        final package = OpcPackage.create(OpcPackageKind.word);
+        package.getPart('/word/document.xml')!.writeText(xml);
+        final document = StudioFiles.decodeComparisonDocument(package.save());
+        expect(document.paragraphs.single.text, 'Alpha & beta', reason: xml);
+      }
+    },
+  );
+
   test(
     'a valid empty Word document remains a legitimate comparison source',
     () {

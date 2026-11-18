@@ -1,0 +1,24 @@
+00:00 +0: loading /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart
+00:00 +0: a direct citation action starts once without navigating tabs
+00:03 +1: a direct action edits the citation enclosing the selection
+00:04 +2: a direct refresh action uses its native command
+00:04 +3: a direct setDocPrefs action uses its native command
+00:05 +4: a direct addEditBibliography action uses its native command
+00:05 +5: a direct desktop action without a transport keeps the document
+00:05 +6: desktop tools are absent when the host has no local transport
+00:05 +7: native picker inserts a linked footnote and preferences as one undo
+00:06 +8: Document style invokes Zotero preferences and persists its chosen locale
+00:07 +9: native cancel without changes leaves the undo history clean
+00:07 +10: unsupported capital variants are reviewed before mutation and can be discarded
+00:07 +11: native small caps apply without a simplification review
+00:08 +12: mixed formatting applies styled runs while retaining one protected field
+00:09 +13: moving the caret during review prevents a stale insertion
+00:09 +14: Zotero alert button set 0 returns its exact OK code
+00:10 +15: Zotero alert button set 1 returns its exact Cancel code
+00:10 +16: Zotero alert button set 2 returns its exact No code
+00:11 +17: Zotero alert button set 3 returns its exact Yes code
+00:12 +18: desktop error alert 0 discards staged fields even after complete
+00:12 +19: desktop error alert 2 discards staged fields even after complete
+00:12 +20: cancel waits for a native response then drains without live mutation
+00:13 +21: stale editor target reports an error and drains the native transaction
+00:13 +22: All tests passed!

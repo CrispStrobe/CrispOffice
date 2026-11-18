@@ -1,0 +1,16 @@
+00:00 +0: loading test/distribution_test.dart
+00:00 +0: catalog pins the published Linux capsule at an immutable revision
+00:00 +1: the macOS package is published without a grammar claim
+00:00 +2: claims are bound to exact library digests
+00:00 +3: catalog grammar claims match the planner's enforced build pin
+00:00 +4: unpublished platforms are unavailable with a stated reason
+00:00 +5: only immutable revisions and safe paths resolve
+00:00 +6: missing installation is null and a damaged one is reported
+00:00 +7: download failures leave no installation HTTP error
+00:00 +8: download failures leave no installation same length but wrong bytes fail SHA-256
+00:00 +9: download failures leave no installation declared length mismatch
+00:00 +10: download failures leave no installation undeclared oversized body is cut off
+00:00 +11: download failures leave no installation caller cancellation aborts the transfer
+00:00 +12: download failures leave no installation authentic bytes that are not a closed capsule are rejected
+00:00 +13: optional entities are validated against whole tokens
+00:00 +14: All tests passed!

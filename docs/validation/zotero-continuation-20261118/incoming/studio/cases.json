@@ -1,0 +1,58 @@
+[
+  {
+    "id": 3,
+    "name": "two real DOCX inputs retain tracking and compare final text safely",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/example/test/studio_document_comparison_test.dart"
+  },
+  {
+    "id": 4,
+    "name": "spreadsheet bytes cannot masquerade as an empty comparison document",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/example/test/studio_document_comparison_test.dart"
+  },
+  {
+    "id": 5,
+    "name": "missing main content is rejected before comparison",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/example/test/studio_document_comparison_test.dart"
+  },
+  {
+    "id": 6,
+    "name": "wrong XML root, foreign namespace and missing body are rejected",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/example/test/studio_document_comparison_test.dart"
+  },
+  {
+    "id": 7,
+    "name": "comparison requires exactly one direct Word body",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/example/test/studio_document_comparison_test.dart"
+  },
+  {
+    "id": 8,
+    "name": "truncated and malformed XML cannot become an empty comparison",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/example/test/studio_document_comparison_test.dart"
+  },
+  {
+    "id": 9,
+    "name": "valid namespace prefixes and default namespace retain document text",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/example/test/studio_document_comparison_test.dart"
+  },
+  {
+    "id": 10,
+    "name": "a valid empty Word document remains a legitimate comparison source",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/example/test/studio_document_comparison_test.dart"
+  }
+]

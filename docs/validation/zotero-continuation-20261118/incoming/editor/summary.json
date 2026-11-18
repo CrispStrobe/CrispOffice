@@ -1,0 +1,104 @@
+{
+  "actual_process_exit_code": 0,
+  "artifacts": {
+    "cases.json": {
+      "bytes": 8539,
+      "git_blob_sha1": "8fed0b63ff69bcf2810525dd91b55497781f1bb8",
+      "sha256": "3681e6c694ff23c8d2e961997b8a8ca1442c688b610ee37c3093bdb0153f5e52"
+    },
+    "events.jsonl": {
+      "bytes": 16357,
+      "git_blob_sha1": "a8ed2cf7171dbb25288484da3ae94b57c4178a8b",
+      "sha256": "a7c040eaf62b201fadec5afdbb72b339bbecaff80c9a247a65c1a406894a6f94"
+    },
+    "excluded-events.json": {
+      "bytes": 673,
+      "git_blob_sha1": "63cc5499d1b0cf00f39087d1fa5334ae5bc7f393",
+      "sha256": "81918e7f8fd5ea234b478fd9f0929bd4d347579e9ff90793d4759f17a9c737d0"
+    },
+    "run.json": {
+      "bytes": 1145,
+      "git_blob_sha1": "3918a406bce0508cc4a71cf9bb7ff63241c03747",
+      "sha256": "ea37e4faa081909711dd8946d7a3689505ca2ad841d35c2954b880087b4dbd14"
+    },
+    "run_incoming_editor.py": {
+      "bytes": 6504,
+      "git_blob_sha1": "4a7bc6735ab1a8f5f4acb57b442abc48879bc1b6",
+      "sha256": "a0994e5b9cabfdea58af8e588d393eb7297a7df0153348331f45e13ba527d923"
+    },
+    "runtime-binding-after.json": {
+      "bytes": 1600,
+      "git_blob_sha1": "ea9aab993305baf0796dcddb145cb8393d030398",
+      "sha256": "02755c32624fc4972ce344dec4ecc671705cb06d30e5cc0a4621529de4268eec"
+    },
+    "runtime-binding-before.json": {
+      "bytes": 1600,
+      "git_blob_sha1": "ea9aab993305baf0796dcddb145cb8393d030398",
+      "sha256": "02755c32624fc4972ce344dec4ecc671705cb06d30e5cc0a4621529de4268eec"
+    },
+    "source-after.json": {
+      "bytes": 115361,
+      "git_blob_sha1": "e0e46a97c01dd787ef83636ee1228a6a1bec5a14",
+      "sha256": "4e3374e875a644fcf042aa4f3fab44e30f96d1d1a492d0b872ee857b727272bc"
+    },
+    "source-before.json": {
+      "bytes": 115361,
+      "git_blob_sha1": "e0e46a97c01dd787ef83636ee1228a6a1bec5a14",
+      "sha256": "4e3374e875a644fcf042aa4f3fab44e30f96d1d1a492d0b872ee857b727272bc"
+    },
+    "stderr.log": {
+      "bytes": 0,
+      "git_blob_sha1": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "command": [
+    "/workspace/scratch/11b2f453fe98/zotero-toolchain/flutter-sdk/bin/flutter",
+    "test",
+    "--no-pub",
+    "--reporter",
+    "json",
+    "--concurrency",
+    "2",
+    "test/word_review_controller_test.dart",
+    "test/word_review_dialog_test.dart"
+  ],
+  "completion_events": [
+    {
+      "success": true,
+      "time": 14348,
+      "type": "done"
+    }
+  ],
+  "cwd": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor",
+  "dart_version": "Dart SDK version: 3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\"",
+  "elapsed_seconds": 15.23580019200017,
+  "error_events": [],
+  "finished_at_utc": "2026-11-18T13:12:27.965878+00:00",
+  "flutter_lock_path": "/workspace/scratch/11b2f453fe98/zotero-toolchain/flutter-cli.lock",
+  "guards": {
+    "both_selected_suites_executed": true,
+    "every_started_event_finished_once": true,
+    "runtime_graph_locks_unchanged": true,
+    "source_unchanged": true
+  },
+  "head_at_end": "b2bcfc23e692476d16d9a7a534ea95a93ae94cd3",
+  "head_at_start": "b2bcfc23e692476d16d9a7a534ea95a93ae94cd3",
+  "parse_errors": [],
+  "runner_sha256": "a0994e5b9cabfdea58af8e588d393eb7297a7df0153348331f45e13ba527d923",
+  "scope": "Existing incoming document-review controller/dialog tests; independent of Zotero cohort; serialized with the shared Flutter CLI lock; no CI or golden rendering.",
+  "selected_test_files": [
+    "packages/quds_office_editor/test/word_review_controller_test.dart",
+    "packages/quds_office_editor/test/word_review_dialog_test.dart"
+  ],
+  "skipped": 0,
+  "source_file_count": 472,
+  "started_at_utc": "2026-11-18T13:12:12.573431+00:00",
+  "status": "passed",
+  "substantive_results": {
+    "success": 31
+  },
+  "substantive_test_count": 31,
+  "suite_count": 2,
+  "timed_out": false
+}

@@ -1,0 +1,79 @@
+{
+  "repository": "CrispStrobe/quds_office_suite",
+  "branch": "codex/document-review-20261118",
+  "starting_head": "3840e19ff949f5fc03ecf1ec30ab0a71f67e8c68",
+  "initial_fast_forward": "fb1fd4dc3edda824c3e043c035dbfad1f0fe0869",
+  "checkpoints": [
+    {
+      "name": "incoming audit",
+      "sha": "e9dc92798d1c39ac48474d0aa5af7321e75e6bb0",
+      "tree": "01e9f59b83f1744c265c34666d1abc817fe871ef",
+      "parents": [
+        "fb1fd4dc3edda824c3e043c035dbfad1f0fe0869"
+      ],
+      "local_staged_tree_matched_remote": true,
+      "expected_head_checked": true,
+      "force": false
+    },
+    {
+      "name": "live review foundation",
+      "sha": "f96162ebd34ed2b0bbee8a43a5a808448f18a989",
+      "tree": "7639aab8b43c1be7550edc669006d1685d5be930",
+      "parents": [
+        "e9dc92798d1c39ac48474d0aa5af7321e75e6bb0"
+      ],
+      "local_staged_tree_matched_remote": true,
+      "expected_head_checked": true,
+      "force": false
+    },
+    {
+      "name": "interaction hardening",
+      "sha": "fb7a06ebdc2a28633607ffd872c16e26e04a2d33",
+      "tree": "03aea781b8bca995225a95420d2cc5d267349fc6",
+      "parents": [
+        "f96162ebd34ed2b0bbee8a43a5a808448f18a989"
+      ],
+      "local_staged_tree_matched_remote": true,
+      "expected_head_checked": true,
+      "force": false
+    },
+    {
+      "name": "Zotero PR 165 integration",
+      "sha": "32aa7b45a66dd70aad9650df34e203f477dd7bbb",
+      "tree": "456ca5f97a0330b66f62591cd8b4e016899b0417",
+      "parents": [
+        "fb7a06ebdc2a28633607ffd872c16e26e04a2d33",
+        "8d74db5da2992e60c7f17b58cd354b874a1ce33a"
+      ],
+      "local_staged_tree_matched_remote": true,
+      "expected_head_checked": true,
+      "force": false
+    },
+    {
+      "name": "final tested source",
+      "sha": "bfd3df1596dd77d10d68f7909d5a3da2166135c4",
+      "tree": "246c88e9ec7a99e8c57589dd15f92281cb738893",
+      "parents": [
+        "32aa7b45a66dd70aad9650df34e203f477dd7bbb"
+      ],
+      "local_staged_tree_matched_remote": true,
+      "expected_head_checked": true,
+      "force": false
+    },
+    {
+      "name": "late spelling evidence preservation",
+      "sha": "5137304cbb577094352bd33701397d93190615a6",
+      "tree": "c4986b7c6eb9de3105b6beca1ed3451642a91c4b",
+      "parents": [
+        "bfd3df1596dd77d10d68f7909d5a3da2166135c4",
+        "04be224b4a7f469476416ee86dc780cb6a1c0990"
+      ],
+      "local_staged_tree_matched_remote": true,
+      "expected_head_checked": true,
+      "force": false
+    }
+  ],
+  "github_actions_queried_or_awaited": false,
+  "checkpoint_messages_skip_ci": true,
+  "final_documentation_commit": "Contains this record, final local verification and screenshots; its parent is the last listed checkpoint."
+}

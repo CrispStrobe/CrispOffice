@@ -1,0 +1,3684 @@
+[
+  {
+    "id": 5,
+    "name": "direct German quotation retains initial determiner",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_quotes_test.dart"
+  },
+  {
+    "id": 8,
+    "name": "German low single direct quotation keeps its first capital",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_quotes_test.dart"
+  },
+  {
+    "id": 9,
+    "name": "German guillemets direct quotation keeps its first capital",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_quotes_test.dart"
+  },
+  {
+    "id": 10,
+    "name": "German single guillemets direct quotation keeps its first capital",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_quotes_test.dart"
+  },
+  {
+    "id": 11,
+    "name": "Swiss guillemets direct quotation keeps its first capital",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_quotes_test.dart"
+  },
+  {
+    "id": 12,
+    "name": "Swiss single guillemets direct quotation keeps its first capital",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_quotes_test.dart"
+  },
+  {
+    "id": 13,
+    "name": "curly double direct quotation keeps its first capital",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_quotes_test.dart"
+  },
+  {
+    "id": 7,
+    "name": "real shipped dictionary accepts ordinary modern German",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_test.dart"
+  },
+  {
+    "id": 14,
+    "name": "curly single direct quotation keeps its first capital",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_quotes_test.dart"
+  },
+  {
+    "id": 16,
+    "name": "ASCII double direct quotation keeps its first capital",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_quotes_test.dart"
+  },
+  {
+    "id": 17,
+    "name": "ASCII single direct quotation keeps its first capital",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_quotes_test.dart"
+  },
+  {
+    "id": 18,
+    "name": "horizontal spacing around an opening quotation is allowed",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_quotes_test.dart"
+  },
+  {
+    "id": 15,
+    "name": "transposed letters receive a useful bounded suggestion",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_test.dart"
+  },
+  {
+    "id": 20,
+    "name": "basic noun supplement preserves ordinary inflected forms",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_test.dart"
+  },
+  {
+    "id": 19,
+    "name": "quote context preserves emoji offsets and soft hyphen tokens",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_quotes_test.dart"
+  },
+  {
+    "id": 21,
+    "name": "offsets preserve emoji and decomposed source characters",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_test.dart"
+  },
+  {
+    "id": 22,
+    "name": "only the first word receives the quotation allowance",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_quotes_test.dart"
+  },
+  {
+    "id": 23,
+    "name": "explicit soft hyphens do not split logical spelling tokens",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_test.dart"
+  },
+  {
+    "id": 24,
+    "name": "lowercase nouns still require their lexical capital",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_quotes_test.dart"
+  },
+  {
+    "id": 25,
+    "name": "standalone soft hyphens and combining marks are not words",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_test.dart"
+  },
+  {
+    "id": 27,
+    "name": "ignored nonwords retain subsequent spelling source offsets",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_test.dart"
+  },
+  {
+    "id": 26,
+    "name": "real first-word errors remain flagged with capitalized suggestions",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_quotes_test.dart"
+  },
+  {
+    "id": 28,
+    "name": "joiner-adjacent spelling fragments do not fail the paragraph",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_test.dart"
+  },
+  {
+    "id": 30,
+    "name": "all-capitals sharp-s words are valid in German and Swiss forms",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_test.dart"
+  },
+  {
+    "id": 31,
+    "name": "obsolete source variants are excluded from modern spelling",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_test.dart"
+  },
+  {
+    "id": 29,
+    "name": "suggestion caches distinguish ordinary and quoted contexts",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_quotes_test.dart"
+  },
+  {
+    "id": 33,
+    "name": "ordinary adverb capitals stay contextual within the same check",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_quotes_test.dart"
+  },
+  {
+    "id": 34,
+    "name": "existing beginning and sentence-terminal recognition is unchanged",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_quotes_test.dart"
+  },
+  {
+    "id": 32,
+    "name": "Swiss spellings are locale-scoped and sharp-s receives ss suggestion",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_test.dart"
+  },
+  {
+    "id": 37,
+    "name": "Austrian source forms and canonical locale tags are supported",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_test.dart"
+  },
+  {
+    "id": 38,
+    "name": "Swiss capital sharp-s offers the matching SS replacement",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_test.dart"
+  },
+  {
+    "id": 39,
+    "name": "unsupported languages and disposed backend are explicit",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_test.dart"
+  },
+  {
+    "id": 40,
+    "name": "noun casing remains meaningful; all-capitals remain accepted",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_test.dart"
+  },
+  {
+    "id": 41,
+    "name": "explicit compounds keep German noun case significant",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_test.dart"
+  },
+  {
+    "id": 42,
+    "name": "explicit compound suggestions preserve other nouns and hyphen styles",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_test.dart"
+  },
+  {
+    "id": 43,
+    "name": "explicit compound repair honors the ordinary candidate budget",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_test.dart"
+  },
+  {
+    "id": 44,
+    "name": "compound suggestions keep per-occurrence separators and Swiss forms",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_test.dart"
+  },
+  {
+    "id": 45,
+    "name": "known explicit compounds and URL/email tokens avoid spurious findings",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_test.dart"
+  },
+  {
+    "id": 46,
+    "name": "URL schemes and www prefixes are protected without case folding text",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_test.dart"
+  },
+  {
+    "id": 47,
+    "name": "matching backtick spans protect code without hiding following prose",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_test.dart"
+  },
+  {
+    "id": 48,
+    "name": "unmatched backtick delimiters do not suppress the remaining paragraph",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_test.dart"
+  },
+  {
+    "id": 49,
+    "name": "personal words and ignores stay owned, reversible and language-scoped",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_test.dart"
+  },
+  {
+    "id": 50,
+    "name": "vocabulary snapshots round-trip with revision notification",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_test.dart"
+  },
+  {
+    "id": 51,
+    "name": "vocabulary parser rejects corrupt or mismatched data",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_test.dart"
+  },
+  {
+    "id": 52,
+    "name": "suggestions and long unknown tokens remain bounded",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_test.dart"
+  },
+  {
+    "id": 53,
+    "name": "combined keyboard transliterations offer dictionary-backed words",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_test.dart"
+  },
+  {
+    "id": 54,
+    "name": "combined orthography respects Swiss spelling and source capitals",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_test.dart"
+  },
+  {
+    "id": 55,
+    "name": "orthographic suggestions share the configured search and result caps",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_test.dart"
+  },
+  {
+    "id": 56,
+    "name": "suggestion cache preserves sentence-initial adjective capitals",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_test.dart"
+  },
+  {
+    "id": 57,
+    "name": "personal words compose explicit compounds in their declared locale",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_test.dart"
+  },
+  {
+    "id": 58,
+    "name": "compound correction preserves personal components and source ranges",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_test.dart"
+  },
+  {
+    "id": 59,
+    "name": "ignored tokens do not turn into declared compound vocabulary",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_test.dart"
+  },
+  {
+    "id": 62,
+    "name": "a vocabulary edit invalidates an in-flight compound check",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_test.dart"
+  },
+  {
+    "id": 63,
+    "name": "identifier fragments are protected while separate prose is checked",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_test.dart"
+  },
+  {
+    "id": 64,
+    "name": "Unicode email and delimited URLs preserve following spelling checks",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_test.dart"
+  },
+  {
+    "id": 65,
+    "name": "vocabulary restore merges aliases and canonicalizes like live edits",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_test.dart"
+  },
+  {
+    "id": 66,
+    "name": "vocabulary restore rejects empty normalized words and empty languages",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_test.dart"
+  },
+  {
+    "id": 61,
+    "name": "typographic apostrophes share exact dictionary word knowledge",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_apostrophes_test.dart"
+  },
+  {
+    "id": 71,
+    "name": "apostrophe comparison retains ordinary lexical case rules",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_apostrophes_test.dart"
+  },
+  {
+    "id": 72,
+    "name": "cached corrections preserve each occurrence and source offsets",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_apostrophes_test.dart"
+  },
+  {
+    "id": 73,
+    "name": "personal apostrophes remain reversible and locale scoped",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_apostrophes_test.dart"
+  },
+  {
+    "id": 74,
+    "name": "compound repairs preserve independent apostrophe and hyphen styles",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_apostrophes_test.dart"
+  },
+  {
+    "id": 75,
+    "name": "each apostrophe retains its source style in personal corrections",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_apostrophes_test.dart"
+  },
+  {
+    "id": 76,
+    "name": "apostrophes are not removed or generalized from arbitrary words",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_apostrophes_test.dart"
+  },
+  {
+    "id": 77,
+    "name": "quoted typo remains checkable without consuming the quotation marks",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_apostrophes_test.dart"
+  },
+  {
+    "id": 78,
+    "name": "apostrophe corrections obey disabled suggestions",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_apostrophes_test.dart"
+  },
+  {
+    "id": 70,
+    "name": "multiple component typos receive a complete dictionary-backed repair",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_compounds_test.dart"
+  },
+  {
+    "id": 81,
+    "name": "known middle components and all-capitals retain their authored case",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_compounds_test.dart"
+  },
+  {
+    "id": 82,
+    "name": "cached compound repairs retain separators and original UTF-16 ranges",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_compounds_test.dart"
+  },
+  {
+    "id": 83,
+    "name": "multiple repairs respect Swiss and standard spelling independently",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_compounds_test.dart"
+  },
+  {
+    "id": 86,
+    "name": "declared known components survive several other component repairs",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_compounds_test.dart"
+  },
+  {
+    "id": 87,
+    "name": "complete personal compounds do not require declared components",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_compounds_test.dart"
+  },
+  {
+    "id": 88,
+    "name": "whole-word dictionary corrections can remove an erroneous separator",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_compounds_test.dart"
+  },
+  {
+    "id": 89,
+    "name": "ignored unknown constituents cannot validate a partial compound repair",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_compounds_test.dart"
+  },
+  {
+    "id": 90,
+    "name": "suggestion limits and one shared small search budget remain bounded",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_compounds_test.dart"
+  },
+  {
+    "id": 91,
+    "name": "compound work remains bounded by component count and token length",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_compounds_test.dart"
+  },
+  {
+    "id": 92,
+    "name": "separate punctuation and protected tokens do not become compounds",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_compounds_test.dart"
+  },
+  {
+    "id": 85,
+    "name": "HALTT fills two slots with distinct visible corrections",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_shortlist_test.dart"
+  },
+  {
+    "id": 97,
+    "name": "Haltt fills two slots with distinct visible corrections",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_shortlist_test.dart"
+  },
+  {
+    "id": 98,
+    "name": "LERNNEN retains its first correction with a one-item cap",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_shortlist_test.dart"
+  },
+  {
+    "id": 99,
+    "name": "LERNNEN fills two slots after merging lexical case variants",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_shortlist_test.dart"
+  },
+  {
+    "id": 100,
+    "name": "LERNNEN fills five slots in stable order",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_shortlist_test.dart"
+  },
+  {
+    "id": 101,
+    "name": "Lernnen retains its first correction with a one-item cap",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_shortlist_test.dart"
+  },
+  {
+    "id": 102,
+    "name": "Lernnen fills two slots after merging lexical case variants",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_shortlist_test.dart"
+  },
+  {
+    "id": 103,
+    "name": "Lernnen fills five slots in stable order",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_shortlist_test.dart"
+  },
+  {
+    "id": 104,
+    "name": "ordinary mid-sentence noun and verb case remains distinct",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_shortlist_test.dart"
+  },
+  {
+    "id": 105,
+    "name": "declared mixed-case names retain their exact spelling",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_shortlist_test.dart"
+  },
+  {
+    "id": 106,
+    "name": "personal and dictionary forms remain distinct visible choices",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_shortlist_test.dart"
+  },
+  {
+    "id": 107,
+    "name": "a tiny candidate budget never expands to fill the shortlist",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_shortlist_test.dart"
+  },
+  {
+    "id": 108,
+    "name": "Swiss corrections retain locale and uppercase spelling",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_shortlist_test.dart"
+  },
+  {
+    "id": 109,
+    "name": "compound reconstruction keeps authored separators",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_shortlist_test.dart"
+  },
+  {
+    "id": 96,
+    "name": "marked numeric prefixes remain complete identifiers",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_continuation_test.dart"
+  },
+  {
+    "id": 114,
+    "name": "marked connectors protect following identifier fragments",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_continuation_test.dart"
+  },
+  {
+    "id": 115,
+    "name": "identifier guards cover arbitrarily long grapheme edges",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_continuation_test.dart"
+  },
+  {
+    "id": 116,
+    "name": "marked identifier suffixes and both sides remain protected",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_continuation_test.dart"
+  },
+  {
+    "id": 117,
+    "name": "marked punctuation and separate prose keep spelling checks",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_continuation_test.dart"
+  },
+  {
+    "id": 118,
+    "name": "short accented corrections include Caf\u00e9",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_continuation_test.dart"
+  },
+  {
+    "id": 119,
+    "name": "short accented corrections include Abb\u00e9",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_continuation_test.dart"
+  },
+  {
+    "id": 120,
+    "name": "short accented corrections include Ren\u00e9",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_continuation_test.dart"
+  },
+  {
+    "id": 121,
+    "name": "short accented corrections include ros\u00e9",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_continuation_test.dart"
+  },
+  {
+    "id": 122,
+    "name": "short accented corrections include Jo\u00ebl",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_continuation_test.dart"
+  },
+  {
+    "id": 123,
+    "name": "short fallback can restore a missing accented character",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_continuation_test.dart"
+  },
+  {
+    "id": 124,
+    "name": "accented corrections retain source ranges and uppercase style",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_continuation_test.dart"
+  },
+  {
+    "id": 125,
+    "name": "short accented words stay known in each supported locale",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_continuation_test.dart"
+  },
+  {
+    "id": 126,
+    "name": "short fallback rejects candidates needing two edits",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_continuation_test.dart"
+  },
+  {
+    "id": 127,
+    "name": "direct short-word corrections retain precedence",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_continuation_test.dart"
+  },
+  {
+    "id": 128,
+    "name": "short fallback respects suggestion and shared candidate limits",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_continuation_test.dart"
+  },
+  {
+    "id": 129,
+    "name": "explicit compounds can repair a short accented constituent",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_continuation_test.dart"
+  },
+  {
+    "id": 113,
+    "name": "decomposed shipped names stay known in de-DE",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_projection_test.dart"
+  },
+  {
+    "id": 134,
+    "name": "decomposed shipped names stay known in de-AT",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_projection_test.dart"
+  },
+  {
+    "id": 135,
+    "name": "decomposed shipped names stay known in de-CH",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_projection_test.dart"
+  },
+  {
+    "id": 136,
+    "name": "decomposed names retain uppercase dictionary acceptance",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_projection_test.dart"
+  },
+  {
+    "id": 137,
+    "name": "soft hyphens do not interrupt canonical accent composition",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_projection_test.dart"
+  },
+  {
+    "id": 138,
+    "name": "canonical comparison preserves case and additional marks",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_projection_test.dart"
+  },
+  {
+    "id": 139,
+    "name": "unknown decomposed words retain exact source ranges",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_projection_test.dart"
+  },
+  {
+    "id": 140,
+    "name": "decomposed compounds retain their authored hyphen style",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_projection_test.dart"
+  },
+  {
+    "id": 141,
+    "name": "personal canonical aliases share one reversible membership",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_projection_test.dart"
+  },
+  {
+    "id": 142,
+    "name": "ignored canonical aliases can be restored in their exact locale",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_projection_test.dart"
+  },
+  {
+    "id": 143,
+    "name": "restored vocabulary unifies canonical aliases and split accents",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_projection_test.dart"
+  },
+  {
+    "id": 144,
+    "name": "soft hyphens cannot hide numeric or connector prefixes",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_projection_test.dart"
+  },
+  {
+    "id": 145,
+    "name": "projection regroups marks and joiners with identifier edges",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_projection_test.dart"
+  },
+  {
+    "id": 146,
+    "name": "projected identifier edges are not limited by mark count",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_projection_test.dart"
+  },
+  {
+    "id": 147,
+    "name": "Unicode Prepend characters cannot hide identifier prefixes",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_projection_test.dart"
+  },
+  {
+    "id": 148,
+    "name": "Unicode Prepend characters cannot hide identifier suffixes",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_projection_test.dart"
+  },
+  {
+    "id": 149,
+    "name": "soft hyphen identifier suffixes remain protected",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_projection_test.dart"
+  },
+  {
+    "id": 150,
+    "name": "separated prose and marked punctuation remain checkable",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_projection_test.dart"
+  },
+  {
+    "id": 151,
+    "name": "projected protected text stays intact: ht\u00adtps://example.invalid/Huas",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_projection_test.dart"
+  },
+  {
+    "id": 152,
+    "name": "projected protected text stays intact: w\u00adww.example.invalid/Huas",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_projection_test.dart"
+  },
+  {
+    "id": 153,
+    "name": "projected protected text stays intact: Huas@exam\u00adple.invalid",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_projection_test.dart"
+  },
+  {
+    "id": 154,
+    "name": "projected protected text stays intact: Hu\u00adas@example.invalid",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_projection_test.dart"
+  },
+  {
+    "id": 155,
+    "name": "projected protected text stays intact: `\u00ad`Huas``",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_projection_test.dart"
+  },
+  {
+    "id": 156,
+    "name": "source-only links and backtick spans remain protected",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_projection_test.dart"
+  },
+  {
+    "id": 157,
+    "name": "projected joiner boundaries prevent partial grapheme edits",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_spelling_projection_test.dart"
+  },
+  {
+    "id": 133,
+    "name": "two independent mistakes receive dictionary-backed corrections",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_suggestion_quality_test.dart"
+  },
+  {
+    "id": 160,
+    "name": "changed first letter plus an internal error is not prefix-gated",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_suggestion_quality_test.dart"
+  },
+  {
+    "id": 161,
+    "name": "ranking retains direct corrections before more distant alternatives",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_suggestion_quality_test.dart"
+  },
+  {
+    "id": 162,
+    "name": "two-edit corrections preserve original ranges, emoji and source casing",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_suggestion_quality_test.dart"
+  },
+  {
+    "id": 165,
+    "name": "Swiss two-edit suggestions never reintroduce dictionary sharp-s",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_suggestion_quality_test.dart"
+  },
+  {
+    "id": 166,
+    "name": "mixed-case personal corrections preserve exact user spelling and locale",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_suggestion_quality_test.dart"
+  },
+  {
+    "id": 167,
+    "name": "ignored text never becomes a spelling correction candidate",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_suggestion_quality_test.dart"
+  },
+  {
+    "id": 168,
+    "name": "personal phrases and controls are not offered as single-word corrections",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_suggestion_quality_test.dart"
+  },
+  {
+    "id": 169,
+    "name": "personal corrections also repair an explicit compound component",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_suggestion_quality_test.dart"
+  },
+  {
+    "id": 170,
+    "name": "bounded fallback obeys candidate and result caps and skips long tokens",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_suggestion_quality_test.dart"
+  },
+  {
+    "id": 171,
+    "name": "repeated prose uses stable suggestions while protected text stays intact",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_suggestion_quality_test.dart"
+  },
+  {
+    "id": 172,
+    "name": "distinct expensive suggestions yield between searches",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_suggestion_quality_test.dart"
+  },
+  {
+    "id": 173,
+    "name": "disposal during suggestion work rejects partial findings",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_suggestion_quality_test.dart"
+  },
+  {
+    "id": 174,
+    "name": "vocabulary changes during suggestion work reject partial findings",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_suggestion_quality_test.dart"
+  },
+  {
+    "id": 164,
+    "name": "read-only word query uses existing dictionary and exact token scope",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_lexicon_query_test.dart"
+  },
+  {
+    "id": 179,
+    "name": "owner words remain language scoped and disposal fails explicitly",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_lexicon_query_test.dart"
+  },
+  {
+    "id": 178,
+    "name": "literal mention stays literal: Er hat das Wort gelest genannt.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_literal_ranges_test.dart"
+  },
+  {
+    "id": 184,
+    "name": "literal mention stays literal: Das Wort gelest wird hier erkl\u00e4rt.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_literal_ranges_test.dart"
+  },
+  {
+    "id": 185,
+    "name": "literal mention stays literal: Er hat den Titel \u00bbgelest\u00ab erkl\u00e4rt.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_literal_ranges_test.dart"
+  },
+  {
+    "id": 186,
+    "name": "literal mention stays literal: \u201eEr hat das Buch gelest\u201c steht im Text.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_literal_ranges_test.dart"
+  },
+  {
+    "id": 187,
+    "name": "literal mention stays literal: \u201eF\u00fcr diesem Schl\u00fcssel\u201c steht hier als Zitat.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_literal_ranges_test.dart"
+  },
+  {
+    "id": 188,
+    "name": "literal mention stays literal: \u00bbF\u00fcr diesem Schl\u00fcssel\u00ab erscheint als Zitat.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_literal_ranges_test.dart"
+  },
+  {
+    "id": 189,
+    "name": "literal mention stays literal: Er hat das Wort gelest.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_literal_ranges_test.dart"
+  },
+  {
+    "id": 190,
+    "name": "literal mention stays literal: Das Wort Wort ist hier ein Beispiel.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_literal_ranges_test.dart"
+  },
+  {
+    "id": 191,
+    "name": "ordinary prose and quoted speech remain checked: Er hat das Buch gelest.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_literal_ranges_test.dart"
+  },
+  {
+    "id": 192,
+    "name": "ordinary prose and quoted speech remain checked: Er sagte: \u201eEr hat das Buch gelest.\u201c",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_literal_ranges_test.dart"
+  },
+  {
+    "id": 193,
+    "name": "UTF-16 interval queries match independently selected literal: \ud83d\udc69\ud83c\udffd\u200d\ud83d\udcbb Das Wort Wort bleibt.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_literal_ranges_test.dart"
+  },
+  {
+    "id": 194,
+    "name": "UTF-16 interval queries match independently selected literal: \u201eDas Wort abc und das Wort def und gelest\u201c steht im Text.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_literal_ranges_test.dart"
+  },
+  {
+    "id": 195,
+    "name": "ordinary or mismatched quotations are not whole literal examples",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_literal_ranges_test.dart"
+  },
+  {
+    "id": 196,
+    "name": "an ordinary verb following Wort remains eligible for spelling",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_literal_ranges_test.dart"
+  },
+  {
+    "id": 183,
+    "name": "finite perfect preference: gelest",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_participle_suggestions_test.dart"
+  },
+  {
+    "id": 201,
+    "name": "finite perfect preference: geschreibt",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_participle_suggestions_test.dart"
+  },
+  {
+    "id": 202,
+    "name": "finite perfect preference: gefindet",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_participle_suggestions_test.dart"
+  },
+  {
+    "id": 203,
+    "name": "finite perfect preference: genehmt",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_participle_suggestions_test.dart"
+  },
+  {
+    "id": 204,
+    "name": "finite perfect preference: gegebt",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_participle_suggestions_test.dart"
+  },
+  {
+    "id": 205,
+    "name": "finite perfect preference: geesst",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_participle_suggestions_test.dart"
+  },
+  {
+    "id": 206,
+    "name": "finite perfect preference: getrinkt",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_participle_suggestions_test.dart"
+  },
+  {
+    "id": 207,
+    "name": "finite perfect preference: geseht",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_participle_suggestions_test.dart"
+  },
+  {
+    "id": 208,
+    "name": "finite perfect preference: gehelft",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_participle_suggestions_test.dart"
+  },
+  {
+    "id": 209,
+    "name": "finite perfect preference: gesprecht",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_participle_suggestions_test.dart"
+  },
+  {
+    "id": 210,
+    "name": "finite perfect preference: getrefft",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_participle_suggestions_test.dart"
+  },
+  {
+    "id": 211,
+    "name": "finite perfect preference: geruft",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_participle_suggestions_test.dart"
+  },
+  {
+    "id": 212,
+    "name": "finite perfect preference: geschlaft",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_participle_suggestions_test.dart"
+  },
+  {
+    "id": 213,
+    "name": "finite perfect preference: gezieht",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_participle_suggestions_test.dart"
+  },
+  {
+    "id": 214,
+    "name": "finite perfect preference: gefangt",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_participle_suggestions_test.dart"
+  },
+  {
+    "id": 215,
+    "name": "finite perfect preference: gehaltet",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_participle_suggestions_test.dart"
+  },
+  {
+    "id": 216,
+    "name": "finite perfect preference: geladet",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_participle_suggestions_test.dart"
+  },
+  {
+    "id": 217,
+    "name": "finite perfect preference: gelasst",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_participle_suggestions_test.dart"
+  },
+  {
+    "id": 218,
+    "name": "finite perfect preference: gewascht",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_participle_suggestions_test.dart"
+  },
+  {
+    "id": 219,
+    "name": "finite perfect preference: gewerft",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_participle_suggestions_test.dart"
+  },
+  {
+    "id": 220,
+    "name": "present and past finite auxiliaries keep pronoun agreement",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_participle_suggestions_test.dart"
+  },
+  {
+    "id": 221,
+    "name": "finite preferences work in supported locales and direct speech",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_participle_suggestions_test.dart"
+  },
+  {
+    "id": 222,
+    "name": "already accepted verbs and valid participle alternatives stay accepted",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_participle_suggestions_test.dart"
+  },
+  {
+    "id": 223,
+    "name": "unknown words outside the declared perfect frame keep ordinary ranking",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_participle_suggestions_test.dart"
+  },
+  {
+    "id": 224,
+    "name": "context does not cross clause punctuation or protected text",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_participle_suggestions_test.dart"
+  },
+  {
+    "id": 225,
+    "name": "cache separates preferred and ordinary occurrences in both orders",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_participle_suggestions_test.dart"
+  },
+  {
+    "id": 226,
+    "name": "personal and ignored words remain authoritative for their locale",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_participle_suggestions_test.dart"
+  },
+  {
+    "id": 227,
+    "name": "normalization and offsets refer to the original source",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_participle_suggestions_test.dart"
+  },
+  {
+    "id": 228,
+    "name": "all capitals retain case but titlecase names receive ordinary ranking",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_participle_suggestions_test.dart"
+  },
+  {
+    "id": 229,
+    "name": "candidate budget includes the dictionary-backed preferred candidate",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_participle_suggestions_test.dart"
+  },
+  {
+    "id": 230,
+    "name": "fast contextual suggestions still yield and reject cancellation",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_participle_suggestions_test.dart"
+  },
+  {
+    "id": 232,
+    "name": "reviewed sein participles prefers the licensed form for gegangt",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_participle_suggestions_test.dart"
+  },
+  {
+    "id": 233,
+    "name": "reviewed sein participles prefers the licensed form for gekommt",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_participle_suggestions_test.dart"
+  },
+  {
+    "id": 234,
+    "name": "reviewed sein participles prefers the licensed form for gebleibt",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_participle_suggestions_test.dart"
+  },
+  {
+    "id": 235,
+    "name": "reviewed sein participles prefers the licensed form for gefahrt",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_participle_suggestions_test.dart"
+  },
+  {
+    "id": 236,
+    "name": "reviewed sein participles prefers the licensed form for gefliegt",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_participle_suggestions_test.dart"
+  },
+  {
+    "id": 237,
+    "name": "reviewed sein participles prefers the licensed form for gelauft",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_participle_suggestions_test.dart"
+  },
+  {
+    "id": 238,
+    "name": "reviewed sein participles prefers the licensed form for gesteigt",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_participle_suggestions_test.dart"
+  },
+  {
+    "id": 239,
+    "name": "reviewed sein participles prefers the licensed form for gespringt",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_participle_suggestions_test.dart"
+  },
+  {
+    "id": 240,
+    "name": "reviewed sein participles prefers the licensed form for gestirbt",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_participle_suggestions_test.dart"
+  },
+  {
+    "id": 241,
+    "name": "reviewed sein participles requires an agreeing present or past finite sein",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_participle_suggestions_test.dart"
+  },
+  {
+    "id": 242,
+    "name": "reviewed sein participles keeps ordinary ranking outside the licensed bounded frame",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_participle_suggestions_test.dart"
+  },
+  {
+    "id": 243,
+    "name": "reviewed sein participles does not cross punctuation, protected spans or quoted fragments",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_participle_suggestions_test.dart"
+  },
+  {
+    "id": 244,
+    "name": "reviewed sein participles preserves accepted participles and ambiguous finite forms",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_participle_suggestions_test.dart"
+  },
+  {
+    "id": 245,
+    "name": "reviewed sein participles separates preferred and ordinary cache entries in either order",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_participle_suggestions_test.dart"
+  },
+  {
+    "id": 246,
+    "name": "reviewed sein participles keeps source offsets, normalization and case",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_participle_suggestions_test.dart"
+  },
+  {
+    "id": 247,
+    "name": "reviewed sein participles supports regional dictionaries and direct speech",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_participle_suggestions_test.dart"
+  },
+  {
+    "id": 248,
+    "name": "reviewed sein participles respects personal words and the existing suggestion budget",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_participle_suggestions_test.dart"
+  },
+  {
+    "id": 249,
+    "name": "reviewed sein participles agrees with the incoming grammar provider on the retained failure",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_participle_suggestions_test.dart"
+  },
+  {
+    "id": 200,
+    "name": "finite nouns retain their case in de-DE",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_nominal_word_forms_test.dart"
+  },
+  {
+    "id": 252,
+    "name": "finite nouns retain their case in de-AT",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_nominal_word_forms_test.dart"
+  },
+  {
+    "id": 253,
+    "name": "finite nouns retain their case in de-CH",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_nominal_word_forms_test.dart"
+  },
+  {
+    "id": 254,
+    "name": "ordinary lowercase verb forms keep their existing acceptance",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_nominal_word_forms_test.dart"
+  },
+  {
+    "id": 255,
+    "name": "finite entries support all-caps and authored genitive forms",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_nominal_word_forms_test.dart"
+  },
+  {
+    "id": 256,
+    "name": "new nouns do not accept neighboring typos or arbitrary inflections",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_nominal_word_forms_test.dart"
+  },
+  {
+    "id": 257,
+    "name": "source normalization preserves original nominalized text",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_nominal_word_forms_test.dart"
+  },
+  {
+    "id": 261,
+    "name": "missing provider is unavailable, never a clean check",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/office_proofing_test.dart"
+  },
+  {
+    "id": 262,
+    "name": "unsupported locale stays distinct from successful empty output",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/office_proofing_test.dart"
+  },
+  {
+    "id": 263,
+    "name": "optional unsupported provider does not invalidate an applicable success",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/office_proofing_test.dart"
+  },
+  {
+    "id": 266,
+    "name": "throwing provider is a failed result and never clean",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/office_proofing_test.dart"
+  },
+  {
+    "id": 267,
+    "name": "non-BMP scalars map to original UTF16 positions and enforce bounds",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/office_proofing_test.dart"
+  },
+  {
+    "id": 268,
+    "name": "language segments produce absolute source-bound offsets exactly once",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/office_proofing_test.dart"
+  },
+  {
+    "id": 269,
+    "name": "rejects range splitting surrogate pair",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/office_proofing_test.dart"
+  },
+  {
+    "id": 270,
+    "name": "rejects range splitting combining character",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/office_proofing_test.dart"
+  },
+  {
+    "id": 271,
+    "name": "rejects range splitting ZWJ sequence",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/office_proofing_test.dart"
+  },
+  {
+    "id": 272,
+    "name": "zero-length insertion at a grapheme boundary is valid",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/office_proofing_test.dart"
+  },
+  {
+    "id": 273,
+    "name": "invalid source text and stale identity fail validation",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/office_proofing_test.dart"
+  },
+  {
+    "id": 274,
+    "name": "rule opt-out filters findings without changing provider availability",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/office_proofing_test.dart"
+  },
+  {
+    "id": 265,
+    "name": "Unicode emails and uppercase URLs retain original UTF-16 positions",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/proofing_text_ranges_test.dart"
+  },
+  {
+    "id": 276,
+    "name": "URL punctuation keeps prose delimiters available to grammar checks",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/proofing_text_ranges_test.dart"
+  },
+  {
+    "id": 277,
+    "name": "decomposed email letters and apostrophes in URL paths stay protected",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/proofing_text_ranges_test.dart"
+  },
+  {
+    "id": 278,
+    "name": "matching backtick runs own nested ticks and multiline contents",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/proofing_text_ranges_test.dart"
+  },
+  {
+    "id": 275,
+    "name": "deadline disposes stalled backend and prevents reusing it",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/office_proofing_test.dart"
+  },
+  {
+    "id": 279,
+    "name": "overlapping links and code merge without hiding following prose",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/proofing_text_ranges_test.dart"
+  },
+  {
+    "id": 280,
+    "name": "disposed service stays unavailable and duplicate provider ids rejected",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/office_proofing_test.dart"
+  },
+  {
+    "id": 281,
+    "name": "empty input and invalid source intervals have explicit semantics",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/proofing_text_ranges_test.dart"
+  },
+  {
+    "id": 287,
+    "name": "short requests load a bounded subset and retain shared analyses",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_morphology_loading_test.dart"
+  },
+  {
+    "id": 291,
+    "name": "correct and recheck: Sie arbeitet mit dem Student.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_morphology_grammar_test.dart"
+  },
+  {
+    "id": 292,
+    "name": "correct and recheck: Das ist f\u00fcr den Kunde.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_morphology_grammar_test.dart"
+  },
+  {
+    "id": 293,
+    "name": "correct and recheck: Wir sprechen mit dem Junge.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_morphology_grammar_test.dart"
+  },
+  {
+    "id": 294,
+    "name": "correct and recheck: Wir sprechen mit einem Kollege.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_morphology_grammar_test.dart"
+  },
+  {
+    "id": 295,
+    "name": "correct and recheck: Er kommt ohne diesen Mensch.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_morphology_grammar_test.dart"
+  },
+  {
+    "id": 296,
+    "name": "correct and recheck: Sie spricht mit dem Assistent.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_morphology_grammar_test.dart"
+  },
+  {
+    "id": 297,
+    "name": "correct and recheck: Wir sprechen mit dem Journalist.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_morphology_grammar_test.dart"
+  },
+  {
+    "id": 298,
+    "name": "correct and recheck: Das ist f\u00fcr den Polizist.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_morphology_grammar_test.dart"
+  },
+  {
+    "id": 299,
+    "name": "correct and recheck: Sie kommt mit dem Herr.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_morphology_grammar_test.dart"
+  },
+  {
+    "id": 300,
+    "name": "correct and recheck: Wir sprechen mit dem Name.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_morphology_grammar_test.dart"
+  },
+  {
+    "id": 301,
+    "name": "correct and recheck: Sie arbeitet mit einem Gedanke.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_morphology_grammar_test.dart"
+  },
+  {
+    "id": 302,
+    "name": "correct and recheck: Wir rechnen mit den \u00c4rzte.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_morphology_grammar_test.dart"
+  },
+  {
+    "id": 303,
+    "name": "correct and recheck: Wir rechnen mit den A\u0308rzte.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_morphology_grammar_test.dart"
+  },
+  {
+    "id": 304,
+    "name": "correct and recheck: Sie kommt mit den G\u00e4ste.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_morphology_grammar_test.dart"
+  },
+  {
+    "id": 305,
+    "name": "correct and recheck: Wir arbeiten mit den Antr\u00e4ge.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_morphology_grammar_test.dart"
+  },
+  {
+    "id": 306,
+    "name": "correct and recheck: Sie kommt mit ihren Br\u00fcder.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_morphology_grammar_test.dart"
+  },
+  {
+    "id": 307,
+    "name": "correct and recheck: Das liegt bei den Schl\u00fcssel.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_morphology_grammar_test.dart"
+  },
+  {
+    "id": 308,
+    "name": "correct and recheck: Wir stehen bei die Universit\u00e4t.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_morphology_grammar_test.dart"
+  },
+  {
+    "id": 309,
+    "name": "correct and recheck: Das ist f\u00fcr dem Bildschirm.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_morphology_grammar_test.dart"
+  },
+  {
+    "id": 310,
+    "name": "correct and recheck: Sie steht bei einem Bibliothek.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_morphology_grammar_test.dart"
+  },
+  {
+    "id": 311,
+    "name": "correct and recheck: Das ist f\u00fcr einer Beh\u00f6rde.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_morphology_grammar_test.dart"
+  },
+  {
+    "id": 312,
+    "name": "correct and recheck: Ein helle Krankenhaus steht hier.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_morphology_grammar_test.dart"
+  },
+  {
+    "id": 316,
+    "name": "correct and recheck: Eine modernes Maschine steht hier.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_morphology_grammar_test.dart"
+  },
+  {
+    "id": 317,
+    "name": "correct and recheck: Unser neues Drucker funktioniert.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_morphology_grammar_test.dart"
+  },
+  {
+    "id": 318,
+    "name": "correct and recheck: Das ist f\u00fcr das neugierigen Publikum.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_morphology_grammar_test.dart"
+  },
+  {
+    "id": 319,
+    "name": "correct and recheck: Das ist f\u00fcr unseren neuen Krankenhaus.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_morphology_grammar_test.dart"
+  },
+  {
+    "id": 320,
+    "name": "correct and recheck: Sie kommt mit einem freundlichem Kunden.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_morphology_grammar_test.dart"
+  },
+  {
+    "id": 321,
+    "name": "correct and recheck: Die neue Studenten sind hier.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_morphology_grammar_test.dart"
+  },
+  {
+    "id": 322,
+    "name": "valid or ambiguous: Wir sprechen mit dem Studenten und den Studenten.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_morphology_grammar_test.dart"
+  },
+  {
+    "id": 323,
+    "name": "valid or ambiguous: Das ist f\u00fcr den Kunden und die Kunden.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_morphology_grammar_test.dart"
+  },
+  {
+    "id": 324,
+    "name": "valid or ambiguous: Der Student kommt mit dem neuen Kollegen.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_morphology_grammar_test.dart"
+  },
+  {
+    "id": 325,
+    "name": "valid or ambiguous: Wir sprechen mit dem Herrn.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_morphology_grammar_test.dart"
+  },
+  {
+    "id": 326,
+    "name": "valid or ambiguous: Wir arbeiten mit dem Band und der Band.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_morphology_grammar_test.dart"
+  },
+  {
+    "id": 327,
+    "name": "valid or ambiguous: Das ist f\u00fcr den Band und das Band.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_morphology_grammar_test.dart"
+  },
+  {
+    "id": 328,
+    "name": "valid or ambiguous: Sie steht bei dem Leiter und der Leiter.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_morphology_grammar_test.dart"
+  },
+  {
+    "id": 329,
+    "name": "valid or ambiguous: Wir fahren zu dem See und zu der See.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_morphology_grammar_test.dart"
+  },
+  {
+    "id": 330,
+    "name": "valid or ambiguous: Sie arbeitet mit dem Steuer und der Steuer.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_morphology_grammar_test.dart"
+  },
+  {
+    "id": 331,
+    "name": "valid or ambiguous: Das ist f\u00fcr den Kiefer und die Kiefer.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_morphology_grammar_test.dart"
+  },
+  {
+    "id": 315,
+    "name": "first-party phrase and clause corrections Ich komme mit mich.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 333,
+    "name": "first-party phrase and clause corrections Das kommt von dich.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 334,
+    "name": "first-party phrase and clause corrections Sie wohnt bei ihn.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 335,
+    "name": "first-party phrase and clause corrections Er kommt zu wir.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 336,
+    "name": "first-party phrase and clause corrections Sie spricht nach ich.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 337,
+    "name": "first-party phrase and clause corrections Das ist f\u00fcr mir.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 338,
+    "name": "first-party phrase and clause corrections Das ist f\u00fcr ihm.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 339,
+    "name": "first-party phrase and clause corrections Wir kommen ohne dir.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 340,
+    "name": "first-party phrase and clause corrections Das spricht gegen er.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 332,
+    "name": "valid or ambiguous: Er kommt mit den Daten und den Eltern.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_morphology_grammar_test.dart"
+  },
+  {
+    "id": 341,
+    "name": "first-party phrase and clause corrections Es geht um wir.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 343,
+    "name": "first-party phrase and clause corrections Es geht durch ihnen.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 342,
+    "name": "valid or ambiguous: Sie kommt mit den Teams und den Autos.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_morphology_grammar_test.dart"
+  },
+  {
+    "id": 345,
+    "name": "valid or ambiguous: Mit dem Herzen ist alles gut.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_morphology_grammar_test.dart"
+  },
+  {
+    "id": 346,
+    "name": "valid or ambiguous: Das ist f\u00fcr den Nachbarn.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_morphology_grammar_test.dart"
+  },
+  {
+    "id": 347,
+    "name": "valid or ambiguous: Das ist f\u00fcr den Nachbar.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_morphology_grammar_test.dart"
+  },
+  {
+    "id": 348,
+    "name": "valid or ambiguous: Sie kommt mit dem Nachbarn.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_morphology_grammar_test.dart"
+  },
+  {
+    "id": 349,
+    "name": "valid or ambiguous: Sie kommt mit dem Nachbar.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_morphology_grammar_test.dart"
+  },
+  {
+    "id": 350,
+    "name": "valid or ambiguous: Sie kommt mit den A\u0308rzten.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_morphology_grammar_test.dart"
+  },
+  {
+    "id": 351,
+    "name": "valid or ambiguous: Sie kommt mit den Bru\u0308dern.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_morphology_grammar_test.dart"
+  },
+  {
+    "id": 352,
+    "name": "valid or ambiguous: Mit dem Worte beginnt der Satz.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_morphology_grammar_test.dart"
+  },
+  {
+    "id": 344,
+    "name": "first-party phrase and clause corrections Ich rede mit den Mann.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 353,
+    "name": "valid or ambiguous: Das geschieht mit dem letzten Atemzuge.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_morphology_grammar_test.dart"
+  },
+  {
+    "id": 355,
+    "name": "valid or ambiguous: Sie spricht von dem fernen Sterne.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_morphology_grammar_test.dart"
+  },
+  {
+    "id": 356,
+    "name": "valid or ambiguous: Er steht bei dem hohen Tore.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_morphology_grammar_test.dart"
+  },
+  {
+    "id": 357,
+    "name": "valid or ambiguous: Aus dem Buche liest sie vor.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_morphology_grammar_test.dart"
+  },
+  {
+    "id": 354,
+    "name": "first-party phrase and clause corrections Sie kommt mit der Kind.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 358,
+    "name": "valid or ambiguous: Sie spricht mit einem neuen Angestellten.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_morphology_grammar_test.dart"
+  },
+  {
+    "id": 360,
+    "name": "valid or ambiguous: Ein neuer Angestellter kommt.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_morphology_grammar_test.dart"
+  },
+  {
+    "id": 361,
+    "name": "valid or ambiguous: Wir sprechen mit einem guten Bekannten.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_morphology_grammar_test.dart"
+  },
+  {
+    "id": 359,
+    "name": "first-party phrase and clause corrections Er kommt mit einem Frau.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 362,
+    "name": "valid or ambiguous: Sie spricht mit einer Deutschen.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_morphology_grammar_test.dart"
+  },
+  {
+    "id": 363,
+    "name": "first-party phrase and clause corrections Wir reden von diese Frage.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 364,
+    "name": "valid or ambiguous: Das ist f\u00fcr die Armen.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_morphology_grammar_test.dart"
+  },
+  {
+    "id": 366,
+    "name": "valid or ambiguous: Wir sprechen mit der Jungen.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_morphology_grammar_test.dart"
+  },
+  {
+    "id": 367,
+    "name": "valid or ambiguous: Das ist f\u00fcr die Junge.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_morphology_grammar_test.dart"
+  },
+  {
+    "id": 365,
+    "name": "first-party phrase and clause corrections Das steht bei das Haus.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 368,
+    "name": "valid or ambiguous: Das ist f\u00fcr die Reichen.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_morphology_grammar_test.dart"
+  },
+  {
+    "id": 370,
+    "name": "valid or ambiguous: Sie kommt mit den Armen.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_morphology_grammar_test.dart"
+  },
+  {
+    "id": 371,
+    "name": "valid or ambiguous: Das ist f\u00fcr die Bekannten.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_morphology_grammar_test.dart"
+  },
+  {
+    "id": 372,
+    "name": "valid or ambiguous: Ein Deutscher kommt heute.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_morphology_grammar_test.dart"
+  },
+  {
+    "id": 369,
+    "name": "first-party phrase and clause corrections Ich komme aus die Stadt.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 373,
+    "name": "valid or ambiguous: Ein technisch versierter Experte kommt.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_morphology_grammar_test.dart"
+  },
+  {
+    "id": 374,
+    "name": "first-party phrase and clause corrections Sie fragt nach einen Termin.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 375,
+    "name": "valid or ambiguous: Eine automatisch gespeicherte Kopie liegt hier.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_morphology_grammar_test.dart"
+  },
+  {
+    "id": 377,
+    "name": "valid or ambiguous: Ein leicht besch\u00e4digter Bildschirm steht hier.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_morphology_grammar_test.dart"
+  },
+  {
+    "id": 376,
+    "name": "first-party phrase and clause corrections Er kommt zu seine Schule.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 378,
+    "name": "valid or ambiguous: Sie kommt, ohne dem Studenten zu helfen.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_morphology_grammar_test.dart"
+  },
+  {
+    "id": 379,
+    "name": "first-party phrase and clause corrections Wir warten seit eine Woche.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 380,
+    "name": "valid or ambiguous: Er arbeitet, um dem Kunden einen Gefallen zu tun.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_morphology_grammar_test.dart"
+  },
+  {
+    "id": 382,
+    "name": "valid or ambiguous: Sie wollte mit den Studenten begleiten.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_morphology_grammar_test.dart"
+  },
+  {
+    "id": 381,
+    "name": "first-party phrase and clause corrections Sie kommt gegen\u00fcber das B\u00fcro.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 384,
+    "name": "first-party phrase and clause corrections Das ist f\u00fcr dem Kind.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 385,
+    "name": "first-party phrase and clause corrections Das ist f\u00fcr einem Frau.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 386,
+    "name": "first-party phrase and clause corrections Sie geht durch der Stadt.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 383,
+    "name": "valid or ambiguous: Wir sprechen mit dem Qudsbrand.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_morphology_grammar_test.dart"
+  },
+  {
+    "id": 388,
+    "name": "new noun rule is independently ignorable",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_morphology_grammar_test.dart"
+  },
+  {
+    "id": 387,
+    "name": "first-party phrase and clause corrections Er kommt ohne dem Buch.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 389,
+    "name": "Swiss aliases and authored soft hyphens retain source ownership",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_morphology_grammar_test.dart"
+  },
+  {
+    "id": 390,
+    "name": "first-party phrase and clause corrections Das spricht gegen diesem Plan.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 392,
+    "name": "first-party phrase and clause corrections Es geht um einer Frage.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 393,
+    "name": "first-party phrase and clause corrections Das kommt von euer Kind.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 391,
+    "name": "new coverage preserves code, URLs and whole grapheme boundaries",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_morphology_grammar_test.dart"
+  },
+  {
+    "id": 394,
+    "name": "first-party phrase and clause corrections Das ist f\u00fcr unserem Kind.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 397,
+    "name": "first-party phrase and clause corrections Er kommt mit den Kinder.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 398,
+    "name": "first-party phrase and clause corrections Sie liest aus den B\u00fccher.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 399,
+    "name": "first-party phrase and clause corrections Das steht bei den H\u00e4user.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 400,
+    "name": "first-party phrase and clause corrections Wir reden von den Fehler.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 401,
+    "name": "first-party phrase and clause corrections Sie kommt zu den Termine.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 402,
+    "name": "first-party phrase and clause corrections Er wartet seit diesen Tage.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 403,
+    "name": "first-party phrase and clause corrections Sie redet mit einem Student.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 404,
+    "name": "first-party phrase and clause corrections Er kommt mit den B\u00e4nder.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 405,
+    "name": "first-party phrase and clause corrections Ein gute Buch liegt hier.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 406,
+    "name": "first-party phrase and clause corrections Eine gutes Frau kommt.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 407,
+    "name": "first-party phrase and clause corrections Das guten Kind kommt.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 408,
+    "name": "first-party phrase and clause corrections Der gutes Mann kommt.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 409,
+    "name": "first-party phrase and clause corrections Die guter Frau kommt.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 410,
+    "name": "first-party phrase and clause corrections Die gute Kinder kommen.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 411,
+    "name": "first-party phrase and clause corrections Ich sehe einen gute Mann.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 412,
+    "name": "first-party phrase and clause corrections Ich komme mit einem gutem Buch.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 413,
+    "name": "first-party phrase and clause corrections Sie kommt mit einer gute Frau.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 414,
+    "name": "first-party phrase and clause corrections Er kommt aus dem sch\u00f6ne Haus.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 415,
+    "name": "first-party phrase and clause corrections Das ist f\u00fcr das neuen B\u00fcro.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 416,
+    "name": "first-party phrase and clause corrections Ich komme ohne einen guter Plan.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 417,
+    "name": "first-party phrase and clause corrections Unser gute Kind kommt.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 418,
+    "name": "first-party phrase and clause corrections Euer gute Kind kommt.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 419,
+    "name": "first-party phrase and clause corrections Diese guter Datei ist hier.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 420,
+    "name": "first-party phrase and clause corrections Ich denke, das du kommst.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 421,
+    "name": "first-party phrase and clause corrections Wir glauben, das er hier ist.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 422,
+    "name": "first-party phrase and clause corrections Er wei\u00df, das wir Zeit haben.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 423,
+    "name": "first-party phrase and clause corrections Sie hofft, das ich das Buch lese.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 424,
+    "name": "first-party phrase and clause corrections Ich glaube dass du kommst.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 425,
+    "name": "first-party phrase and clause corrections Wir wissen dass sie heute kommen.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 426,
+    "name": "first-party phrase and clause corrections Er meint, sie ist gr\u00f6\u00dfer wie ich.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 427,
+    "name": "first-party phrase and clause corrections Das ist besser wie vorher.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 428,
+    "name": "first-party phrase and clause corrections Sie ist j\u00fcnger wie er.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 429,
+    "name": "first-party phrase and clause corrections Er ist so gro\u00df als ich.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 430,
+    "name": "first-party phrase and clause corrections Sie ist genauso gut als er.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 431,
+    "name": "first-party phrase and clause corrections Die Datei ist ebenso wichtig als der Bericht.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 432,
+    "name": "first-party phrase and clause corrections Die Datei ist wichtiger wie der Bericht.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 434,
+    "name": "valid and unresolved structures remain untouched Ich komme mit dir. Sie kommt mit ihm. Wir sprechen mit ihnen.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 435,
+    "name": "valid and unresolved structures remain untouched Das ist f\u00fcr mich. Sie kommt ohne ihn. Wir sind gegen euch.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 436,
+    "name": "valid and unresolved structures remain untouched Bei mir ist alles gut. Nach dir bin ich dran.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 437,
+    "name": "valid and unresolved structures remain untouched F\u00fcr ihr Kind ist das wichtig. Das ist f\u00fcr ihre Kinder.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 438,
+    "name": "valid and unresolved structures remain untouched Sie spricht mit Ihr und Sie in einer Sprach\u00fcbung.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 439,
+    "name": "valid and unresolved structures remain untouched Das ist f\u00fcr das Ich. Wir sprechen vom Du.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 440,
+    "name": "valid and unresolved structures remain untouched Seit ich hier bin, ist alles gut.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 441,
+    "name": "valid and unresolved structures remain untouched Seit mich der Mann kennt, ist alles gut.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 442,
+    "name": "valid and unresolved structures remain untouched Seit er die Frau kennt, ist alles gut.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 443,
+    "name": "valid and unresolved structures remain untouched Ohne mir zu helfen geht er.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 444,
+    "name": "valid and unresolved structures remain untouched Ohne ihm helfen zu k\u00f6nnen bleibt er.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 445,
+    "name": "valid and unresolved structures remain untouched Sie kommt, ohne dem Kind zu helfen.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 446,
+    "name": "valid and unresolved structures remain untouched Er kommt, ohne der Frau bekannt zu sein.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 447,
+    "name": "valid and unresolved structures remain untouched Ohne ihm b\u00f6se zu sein kommt sie.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 448,
+    "name": "valid and unresolved structures remain untouched Ohne mir weh zu tun kommt sie.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 449,
+    "name": "valid and unresolved structures remain untouched Ohne dem Kind weh zu tun kommt sie.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 450,
+    "name": "valid and unresolved structures remain untouched Wir kommen, um ihm zu helfen.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 451,
+    "name": "valid and unresolved structures remain untouched Sie kommt, um dem Kind zu helfen.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 452,
+    "name": "valid and unresolved structures remain untouched Um ihm nahe zu sein kommt sie.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 453,
+    "name": "valid and unresolved structures remain untouched Um mir einen Gefallen zu tun kommt sie.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 454,
+    "name": "valid and unresolved structures remain untouched Er bittet um seiner Kinder willen.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 455,
+    "name": "valid and unresolved structures remain untouched Sie bittet um ihrer kleinen Kinder willen.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 456,
+    "name": "valid and unresolved structures remain untouched Das ist mit ein sch\u00f6nes Buch.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 457,
+    "name": "valid and unresolved structures remain untouched Die Datei ist mit die wichtigste Datei.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 458,
+    "name": "valid and unresolved structures remain untouched Er wollte mit den Mann begleiten.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 459,
+    "name": "valid and unresolved structures remain untouched Sie wollte mit ihn begleiten.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 460,
+    "name": "valid and unresolved structures remain untouched Wegen dem Kind kommt sie. Trotz dem Fehler bleibt sie.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 461,
+    "name": "valid and unresolved structures remain untouched Wegen des Kindes kommt sie. Trotz des Fehlers bleibt sie.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 462,
+    "name": "valid and unresolved structures remain untouched Au\u00dfer ich kommt niemand. Alle au\u00dfer mir kommen.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 463,
+    "name": "valid and unresolved structures remain untouched Wir gehen in die Stadt. Wir sind in der Stadt.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 464,
+    "name": "valid and unresolved structures remain untouched Wir gehen auf den Weg. Wir stehen auf dem Weg.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 465,
+    "name": "valid and unresolved structures remain untouched Wir gehen an das Haus. Wir stehen an dem Haus.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 466,
+    "name": "valid and unresolved structures remain untouched Er kommt bis n\u00e4chsten Dienstag. Wir k\u00f6nnen bis zu zehn Leute aufnehmen.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 467,
+    "name": "valid and unresolved structures remain untouched Er geht den Weg entlang. Entlang des Weges stehen H\u00e4user.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 468,
+    "name": "valid and unresolved structures remain untouched Das steht bei dem Mann. Sie kommt mit einem Mann.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 469,
+    "name": "valid and unresolved structures remain untouched Das ist f\u00fcr das Kind. Er kommt ohne einen Mann.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 470,
+    "name": "valid and unresolved structures remain untouched Das steht bei den Kindern, den B\u00fcchern und den Fehlern.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 471,
+    "name": "valid and unresolved structures remain untouched Er kommt mit den Frauen. Sie kommt mit den Autos.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 472,
+    "name": "valid and unresolved structures remain untouched Sie kommt mit den B\u00fcros. Wir reden von den Regeln.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 473,
+    "name": "valid and unresolved structures remain untouched Das ist f\u00fcr den Ordner. Das ist f\u00fcr die Ordner.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 474,
+    "name": "valid and unresolved structures remain untouched Er kommt mit einem Fehler. Er kommt mit den Fehlern.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 475,
+    "name": "valid and unresolved structures remain untouched Von diesem Tage an bleibt sie.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 476,
+    "name": "valid and unresolved structures remain untouched Nach dem Jahre 1990 kommt sie.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 477,
+    "name": "valid and unresolved structures remain untouched Aus dem Texte liest sie.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 478,
+    "name": "valid and unresolved structures remain untouched Mit dem Tage kommt sie.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 479,
+    "name": "valid and unresolved structures remain untouched Das ist f\u00fcr dem Qudsbrand.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 480,
+    "name": "valid and unresolved structures remain untouched Er kommt mit einem Mensch.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 481,
+    "name": "valid and unresolved structures remain untouched Sie redet mit der Leiter.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 482,
+    "name": "valid and unresolved structures remain untouched Ein gutes Buch liegt neben einem guten Buch.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 483,
+    "name": "valid and unresolved structures remain untouched Eine gute Frau kommt mit einer guten Frau.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 484,
+    "name": "valid and unresolved structures remain untouched Ein guter Mann kommt mit einem guten Mann.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 485,
+    "name": "valid and unresolved structures remain untouched Das gute Kind kommt. Die guten Kinder kommen.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 486,
+    "name": "valid and unresolved structures remain untouched Der gute Mann kommt. Die gute Frau kommt.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 487,
+    "name": "valid and unresolved structures remain untouched Diese gute Datei kommt mit diesen guten Dateien.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 488,
+    "name": "valid and unresolved structures remain untouched Er kommt mit einem neuen, guten Buch.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 489,
+    "name": "valid and unresolved structures remain untouched Das ist ein besseres Buch. Wir lesen die besseren B\u00fccher.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 490,
+    "name": "valid and unresolved structures remain untouched Das ist ein gr\u00f6\u00dferes Haus. Wir kommen mit dem gr\u00f6\u00dferen Auto.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 491,
+    "name": "valid and unresolved structures remain untouched Ein kleiner Mann kommt. Ein kleines Kind kommt.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 492,
+    "name": "valid and unresolved structures remain untouched Das ist ein gut lesbares Buch.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 493,
+    "name": "valid and unresolved structures remain untouched Die automatisch ge\u00e4nderte Datei ist hier.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 494,
+    "name": "valid and unresolved structures remain untouched Der \u00f6ffentlich gepr\u00fcfte Bericht ist hier.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 495,
+    "name": "valid and unresolved structures remain untouched Die endg\u00fcltig geschlossene T\u00fcr ist hier.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 496,
+    "name": "valid and unresolved structures remain untouched Eine leicht besch\u00e4digte T\u00fcr ist hier.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 497,
+    "name": "valid and unresolved structures remain untouched Ein vollst\u00e4ndig ge\u00e4nderter Text ist hier.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 498,
+    "name": "valid and unresolved structures remain untouched Ein einfach sch\u00f6nes Haus ist hier.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 499,
+    "name": "valid and unresolved structures remain untouched Ein leise geschlossenes Fenster hilft dem Kind.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 500,
+    "name": "valid and unresolved structures remain untouched Mit dem leise geschlossenen Fenster ist es ruhig.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 503,
+    "name": "valid and unresolved structures remain untouched Ein m\u00fcde gepr\u00fcfter Bericht liegt vor.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 504,
+    "name": "valid and unresolved structures remain untouched Eine leiser geschlossene T\u00fcr hilft dem Kind.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 505,
+    "name": "valid and unresolved structures remain untouched Ein besonders gutes Buch liegt hier.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 506,
+    "name": "valid and unresolved structures remain untouched Die Kinder spielen sch\u00f6n. Der Mann ist freundlich.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 507,
+    "name": "valid and unresolved structures remain untouched Ich denke, dass du kommst.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 508,
+    "name": "valid and unresolved structures remain untouched Ich denke das. Du kommst.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 509,
+    "name": "valid and unresolved structures remain untouched Ich sage das, was ich denke.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 510,
+    "name": "valid and unresolved structures remain untouched Das Buch, das ich lese, ist gut.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 511,
+    "name": "valid and unresolved structures remain untouched Ich sehe das Buch, das du liest.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 512,
+    "name": "valid and unresolved structures remain untouched Ich hoffe, das reicht.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 513,
+    "name": "valid and unresolved structures remain untouched Ich glaube das gerne.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 514,
+    "name": "valid and unresolved structures remain untouched Ich denke, das ich.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 515,
+    "name": "valid and unresolved structures remain untouched Ich denke, das ich Wort f\u00fcr Wort.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 502,
+    "name": "reviewed verb API uses the existing closed paradigms",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_agreement_facts_test.dart"
+  },
+  {
+    "id": 516,
+    "name": "valid and unresolved structures remain untouched Ich denke, das ich \u201ekomme\u201c sage.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 518,
+    "name": "valid and unresolved structures remain untouched Er ist gr\u00f6\u00dfer als ich. Sie ist genauso gro\u00df wie er.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 519,
+    "name": "valid and unresolved structures remain untouched Er ist kleiner, wie ich gestern bemerkt habe.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 520,
+    "name": "valid and unresolved structures remain untouched Die Lage war fr\u00fcher wie heute schwierig.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 521,
+    "name": "valid and unresolved structures remain untouched Er war fr\u00fcher wie ein Bruder f\u00fcr mich.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 522,
+    "name": "valid and unresolved structures remain untouched Sie sah sp\u00e4ter wie ihre Mutter aus.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 523,
+    "name": "valid and unresolved structures remain untouched Ich komme sp\u00e4ter wie vereinbart.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 524,
+    "name": "valid and unresolved structures remain untouched Er ist schneller wie auch zuverl\u00e4ssiger geworden.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 525,
+    "name": "valid and unresolved structures remain untouched Sie ist schneller wie beispielsweise das Auto.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 526,
+    "name": "valid and unresolved structures remain untouched Er arbeitet so schnell als m\u00f6glich.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 527,
+    "name": "valid and unresolved structures remain untouched Er ist so gro\u00df als ob er gewachsen w\u00e4re.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 528,
+    "name": "valid and unresolved structures remain untouched Er ist so gro\u00df als wenn er gewachsen w\u00e4re.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 529,
+    "name": "valid and unresolved structures remain untouched Er war so klein als er geboren wurde.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 530,
+    "name": "valid and unresolved structures remain untouched Er war so klein als er kam.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 531,
+    "name": "valid and unresolved structures remain untouched Die Datei ist ebenso wichtig wie der Bericht.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 532,
+    "name": "valid and unresolved structures remain untouched Die Datei ist wichtiger als der Bericht.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 533,
+    "name": "valid and unresolved structures remain untouched Der Bericht war so wichtig als er hier ankam.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 534,
+    "name": "valid and unresolved structures remain untouched Der Bericht war so wichtig als ob er alles bewiesen h\u00e4tte.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 535,
+    "name": "valid and unresolved structures remain untouched Er ist so gut als Lehrer.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 536,
+    "name": "valid and unresolved structures remain untouched Er ist so gut als Arzt.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 537,
+    "name": "valid and unresolved structures remain untouched Sie ist so wichtig als \u00c4rztin.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 538,
+    "name": "valid and unresolved structures remain untouched Der Besser ist ein Name. Besser wie fr\u00fcher ist ein Titel.",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 539,
+    "name": "every new rule has a stable independently ignorable identity",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 517,
+    "name": "all compatible Leiter readings survive the model boundary",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_agreement_facts_test.dart"
+  },
+  {
+    "id": 540,
+    "name": "phrase corrections preserve Unicode source and regional aliases",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 542,
+    "name": "subordinate correction and insertion retain soft hyphen ownership",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 543,
+    "name": "protected context cannot govern or supply phrase corrections",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_grammar_test.dart"
+  },
+  {
+    "id": 541,
+    "name": "licensed noun facts reject unknown and unresolved readings",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_agreement_facts_test.dart"
+  },
+  {
+    "id": 546,
+    "name": "reviewed adjective evidence must agree with every retained reading",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_agreement_facts_test.dart"
+  },
+  {
+    "id": 547,
+    "name": "grammar edits cannot split a grapheme or surrogate pair",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_agreement_facts_test.dart"
+  },
+  {
+    "id": 549,
+    "name": "ordinary German, valid repetitions and regional quotes stay clean",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_writing_rules_test.dart"
+  },
+  {
+    "id": 550,
+    "name": "spacing checks return precise reviewable replacements",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_writing_rules_test.dart"
+  },
+  {
+    "id": 551,
+    "name": "only conservative repeated conjunctions are flagged",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_writing_rules_test.dart"
+  },
+  {
+    "id": 552,
+    "name": "selected pronoun-verb disagreement is grammar, not a broad parser claim",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_writing_rules_test.dart"
+  },
+  {
+    "id": 553,
+    "name": "lowercase ich and du receive missing sein agreement corrections",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_writing_rules_test.dart"
+  },
+  {
+    "id": 554,
+    "name": "nominal Ich and Du remain outside the limited agreement rule",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_writing_rules_test.dart"
+  },
+  {
+    "id": 555,
+    "name": "comparison pronouns are not mistaken for the following subject",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_writing_rules_test.dart"
+  },
+  {
+    "id": 556,
+    "name": "agreement suggestions preserve all-capital verb casing",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_writing_rules_test.dart"
+  },
+  {
+    "id": 557,
+    "name": "finite auxiliary and modal agreement preserves exact source offsets",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_writing_rules_test.dart"
+  },
+  {
+    "id": 558,
+    "name": "valid German constructions remain outside finite agreement findings",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_writing_rules_test.dart"
+  },
+  {
+    "id": 559,
+    "name": "finite agreement handles horizontal spaces, regions and capitals",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_writing_rules_test.dart"
+  },
+  {
+    "id": 560,
+    "name": "finite agreement preserves exclusions and narrow ihr checks",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_writing_rules_test.dart"
+  },
+  {
+    "id": 561,
+    "name": "common lexical verbs receive finite agreement corrections",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_writing_rules_test.dart"
+  },
+  {
+    "id": 562,
+    "name": "lexical verb expansion preserves valid and ambiguous constructions",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_writing_rules_test.dart"
+  },
+  {
+    "id": 563,
+    "name": "lexical verb corrections retain regional and uppercase behavior",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_writing_rules_test.dart"
+  },
+  {
+    "id": 564,
+    "name": "seit and seid are distinguished only in reviewed contexts",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_writing_rules_test.dart"
+  },
+  {
+    "id": 565,
+    "name": "seit-seid controls preserve auxiliaries, imperatives and dative ihr",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_writing_rules_test.dart"
+  },
+  {
+    "id": 566,
+    "name": "seit-seid remains opt-out, protected and source-grapheme safe",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_writing_rules_test.dart"
+  },
+  {
+    "id": 567,
+    "name": "soft-hyphen grammar projection retains exact original UTF-16 ranges",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_writing_rules_test.dart"
+  },
+  {
+    "id": 568,
+    "name": "soft-hyphen projection preserves phrase and insertion ownership",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_writing_rules_test.dart"
+  },
+  {
+    "id": 569,
+    "name": "soft-hyphen grammar projection preserves adjacent controls and valid text",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_writing_rules_test.dart"
+  },
+  {
+    "id": 570,
+    "name": "projected findings never replace part of a joined or accented grapheme",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_writing_rules_test.dart"
+  },
+  {
+    "id": 571,
+    "name": "grammar does not infer subjects or verbs from joined identifiers",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_writing_rules_test.dart"
+  },
+  {
+    "id": 572,
+    "name": "capitalized nominal verb objects do not become agreement corrections",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_writing_rules_test.dart"
+  },
+  {
+    "id": 573,
+    "name": "declined determiners and fused prepositions preserve nominal pronouns",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_writing_rules_test.dart"
+  },
+  {
+    "id": 574,
+    "name": "word-internal apostrophes do not close enclosing single quotes",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_writing_rules_test.dart"
+  },
+  {
+    "id": 575,
+    "name": "decorated punctuation preserves ordinary paragraph findings",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_writing_rules_test.dart"
+  },
+  {
+    "id": 576,
+    "name": "unsafe grammar and spacing matches leave ordinary corrections available",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_writing_rules_test.dart"
+  },
+  {
+    "id": 577,
+    "name": "terminology substring rules do not replace partial graphemes",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_writing_rules_test.dart"
+  },
+  {
+    "id": 578,
+    "name": "unmatched delimiters and quotes remain advisory with no guessed correction",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_writing_rules_test.dart"
+  },
+  {
+    "id": 579,
+    "name": "URLs, inline code and rule opt-outs remain untouched",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_writing_rules_test.dart"
+  },
+  {
+    "id": 580,
+    "name": "matching multi-backtick spans protect grammar and punctuation",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_writing_rules_test.dart"
+  },
+  {
+    "id": 581,
+    "name": "protected tokens cannot supply a subject for following prose",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_writing_rules_test.dart"
+  },
+  {
+    "id": 582,
+    "name": "URL protection preserves enclosing brackets and typographic quotes",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_writing_rules_test.dart"
+  },
+  {
+    "id": 583,
+    "name": "unmatched punctuation after a URL still has exact source ranges",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_writing_rules_test.dart"
+  },
+  {
+    "id": 584,
+    "name": "language and disposed availability are explicit",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_writing_rules_test.dart"
+  },
+  {
+    "id": 585,
+    "name": "terminology uses literal terms, Unicode word boundaries and correct offsets",
+    "result": "success",
+    "skipped": false,
+    "suite": "test/proofing/german_writing_rules_test.dart"
+  }
+]

@@ -1,0 +1,23 @@
+{
+  "command": [
+    "/workspace/scratch/11b2f453fe98/zotero-toolchain/flutter-sdk/bin/flutter",
+    "test",
+    "--no-pub",
+    "--reporter",
+    "json",
+    "--concurrency",
+    "2",
+    "test/studio_document_comparison_test.dart"
+  ],
+  "cwd": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/example",
+  "dart_version": "Dart SDK version: 3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\"",
+  "flutter_lock_path": "/workspace/scratch/11b2f453fe98/zotero-toolchain/flutter-cli.lock",
+  "head_at_start": "b2bcfc23e692476d16d9a7a534ea95a93ae94cd3",
+  "runner_sha256": "bccee3658277d8b89174b158afc636afd49b8795a91168cb0c098f90f0c2ff1e",
+  "scope": "Existing changed Studio comparison parser tests; independent of Zotero cohort; serialized with the shared Flutter CLI lock; no CI or golden rendering.",
+  "selected_test_files": [
+    "packages/quds_office_editor/example/test/studio_document_comparison_test.dart"
+  ],
+  "source_file_count": 505,
+  "started_at_utc": "2026-11-18T13:12:28.136148+00:00"
+}

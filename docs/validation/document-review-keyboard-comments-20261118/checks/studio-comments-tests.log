@@ -1,0 +1,12 @@
+00:00 +0: loading /workspace/scratch/18d3825b0123/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_review_test.dart
+00:00 +0: Reply focuses the inline draft without posting or a dialog
+00:06 +1: thread drafts survive switching and explicit posts are undoable
+00:11 +2: hiding comments preserves drafts and Reply restores inline focus
+00:15 +3: a replaced thread cannot inherit a draft through its reused ID
+00:18 +4: a stale post callback cannot send into another document
+00:22 +5: posting waits until IME composition is complete
+00:25 +6: viewing mode keeps comments inspectable without reply controls
+00:29 +7: comment writing marks open the current finding in live review
+00:33 +8: narrow English comments stay below the editor
+00:37 +9: narrow Arabic comments stay below the editor
+00:41 +10: All tests passed!

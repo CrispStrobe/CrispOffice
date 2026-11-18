@@ -1,0 +1,106 @@
+{
+  "targets": [
+    "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart",
+    "packages/quds_office_editor/lib/src/embed/word_zotero_import.dart",
+    "packages/quds_office_editor/lib/src/embed/word_zotero_snapshot.dart",
+    "packages/quds_office_editor/test/word_zotero_import_search_test.dart",
+    "packages/quds_office_editor/test/word_zotero_snapshot_test.dart",
+    "packages/quds_office_editor/lib/src/embed/word_review_dialog.dart",
+    "packages/quds_office_editor/test/support/office_golden.dart",
+    "packages/quds_office_engine/lib/quds_office_engine.dart",
+    "packages/quds_office_engine/test/word_comparison_adversarial_test.dart"
+  ],
+  "checks": [
+    {
+      "name": "analyze",
+      "command": [
+        "/workspace/scratch/11b2f453fe98/zotero-toolchain/flutter-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart",
+        "packages/quds_office_editor/lib/src/embed/word_zotero_import.dart",
+        "packages/quds_office_editor/lib/src/embed/word_zotero_snapshot.dart",
+        "packages/quds_office_editor/test/word_zotero_import_search_test.dart",
+        "packages/quds_office_editor/test/word_zotero_snapshot_test.dart",
+        "packages/quds_office_editor/lib/src/embed/word_review_dialog.dart",
+        "packages/quds_office_editor/test/support/office_golden.dart",
+        "packages/quds_office_engine/lib/quds_office_engine.dart",
+        "packages/quds_office_engine/test/word_comparison_adversarial_test.dart"
+      ],
+      "cwd": "/workspace/scratch/11b2f453fe98/quds_office_suite",
+      "exit_code": 1
+    },
+    {
+      "name": "format",
+      "command": [
+        "/workspace/scratch/11b2f453fe98/zotero-toolchain/flutter-sdk/bin/dart",
+        "format",
+        "--language-version=3.12",
+        "--output=none",
+        "--set-exit-if-changed",
+        "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart",
+        "packages/quds_office_editor/lib/src/embed/word_zotero_import.dart",
+        "packages/quds_office_editor/lib/src/embed/word_zotero_snapshot.dart",
+        "packages/quds_office_editor/test/word_zotero_import_search_test.dart",
+        "packages/quds_office_editor/test/word_zotero_snapshot_test.dart",
+        "packages/quds_office_editor/lib/src/embed/word_review_dialog.dart",
+        "packages/quds_office_editor/test/support/office_golden.dart",
+        "packages/quds_office_engine/lib/quds_office_engine.dart",
+        "packages/quds_office_engine/test/word_comparison_adversarial_test.dart"
+      ],
+      "cwd": "/workspace/scratch/11b2f453fe98/quds_office_suite",
+      "exit_code": 0
+    },
+    {
+      "name": "whitespace",
+      "command": [
+        "git",
+        "diff",
+        "--check",
+        "517f6d10f0ec2509b1381b3cf23807645bba4f92"
+      ],
+      "cwd": "/workspace/scratch/11b2f453fe98/quds_office_suite",
+      "exit_code": 0
+    }
+  ],
+  "source_unchanged": true,
+  "source": {
+    "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart": {
+      "sha256": "b23ad93db95ba3c7c16327df437576bf885342d6989205501014a598e34e0c4c",
+      "git_blob_sha1": "baf0bd72903fbcec5f0db4a445e7af137605a8b0"
+    },
+    "packages/quds_office_editor/lib/src/embed/word_zotero_import.dart": {
+      "sha256": "af193a9307bb8dc82eb48d0de53f6336a3b3efb7c19bb9a52fd2e633700824a1",
+      "git_blob_sha1": "254b168d0d804d95ccdc1df0000cb88893cf7989"
+    },
+    "packages/quds_office_editor/lib/src/embed/word_zotero_snapshot.dart": {
+      "sha256": "e10b99b3d7e0a5123e2dd9d388050135ada0054eeb1a4d86eae8e5b6b5769309",
+      "git_blob_sha1": "27c623e853e544981085de58f36f5ea00d411708"
+    },
+    "packages/quds_office_editor/test/word_zotero_import_search_test.dart": {
+      "sha256": "e6ba9ff186115a51cf44b0bbfafa30191273525e8772f24c02a635abae96a3b8",
+      "git_blob_sha1": "cbb3c372c4ddad055a825382b8d8847a6e39acb8"
+    },
+    "packages/quds_office_editor/test/word_zotero_snapshot_test.dart": {
+      "sha256": "630edb2bd4d096a2c1ebc250294fe68867b4fd55c64412f81a23a7e2f153d1c9",
+      "git_blob_sha1": "a28efba4ce1b040aa1cfbc4ea2096a44ed2e8020"
+    },
+    "packages/quds_office_editor/lib/src/embed/word_review_dialog.dart": {
+      "sha256": "63c476753feb3025beb42e5ac0f2633de7d3434685f474636ecb63c43c9aaa47",
+      "git_blob_sha1": "8d7508900f7a62a9a772d29b5c92fdbbdea41a38"
+    },
+    "packages/quds_office_editor/test/support/office_golden.dart": {
+      "sha256": "a379efdd2ea6658fea371ae361e5321ca431cf121067b74dfd65be6fba3a2bf7",
+      "git_blob_sha1": "526b8deb61348ae83709d634936f3e5decbc6255"
+    },
+    "packages/quds_office_engine/lib/quds_office_engine.dart": {
+      "sha256": "c2a3871fd36d38d3642805c2320eebac2c610c32b1ad24e032014e72a4129753",
+      "git_blob_sha1": "f1a3a038c0f8399227d1924e1f92736d02247468"
+    },
+    "packages/quds_office_engine/test/word_comparison_adversarial_test.dart": {
+      "sha256": "7d3045b87f21f5c5ef3b97210e33f025ea8465010e4453208579e04d4cf49665",
+      "git_blob_sha1": "5207dda7d17fd5f60424579c92c29f44533a7dbc"
+    }
+  },
+  "all_passed": false
+}

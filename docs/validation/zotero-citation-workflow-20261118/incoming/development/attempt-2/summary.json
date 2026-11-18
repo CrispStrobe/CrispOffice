@@ -1,0 +1,116 @@
+{
+  "actual_process_exit": 0,
+  "artifacts": {
+    "events.jsonl.gz": {
+      "bytes": 1280,
+      "git_blob_sha1": "e2218eb9ec85ae34e276e0fc480efd0fa1626137",
+      "sha256": "1f35520caa713b857017884c199cd4c75f91b90f1efa0e308ad97a24e7916d50"
+    },
+    "inputs.json.gz": {
+      "bytes": 48038,
+      "git_blob_sha1": "64eb3872ee517172cf61e298bccec7ee8d2bcfd2",
+      "sha256": "f0e85a33e2fe4aded23f1985c964f9b8f1aa7fdeda19eb8a16e192372b2629ef"
+    },
+    "source-diff.patch": {
+      "bytes": 1962,
+      "git_blob_sha1": "6abea214018e02ab93c80791708f4eaa00ab8204",
+      "sha256": "995d5ba626395bc728882bc1a29b0e994503917aae8483be8673962e4521f6c5"
+    }
+  },
+  "auditor_sha256": "42957197b5d737b4e35d72e12cc869f324828951cf025a4c1d1bec976ae51a63",
+  "authorized_source_overrides": [
+    "packages/quds_office_editor/test/word_live_review_changes_test.dart"
+  ],
+  "checks": [
+    {
+      "command": [
+        "/workspace/scratch/ba0874ba8ec5/zotero-toolchain/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+        "format",
+        "--output=none",
+        "--set-exit-if-changed",
+        "packages/quds_office_editor/test/word_live_review_changes_test.dart"
+      ],
+      "cwd": "/workspace/scratch/ba0874ba8ec5/zotero-validation",
+      "exit_code": 0,
+      "name": "format",
+      "stderr": "",
+      "stdout": "Formatted 1 file (0 changed) in 0.02 seconds.\n"
+    },
+    {
+      "command": [
+        "/workspace/scratch/ba0874ba8ec5/zotero-toolchain/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "--fatal-warnings",
+        "packages/quds_office_editor/test/word_live_review_changes_test.dart"
+      ],
+      "cwd": "/workspace/scratch/ba0874ba8ec5/zotero-validation",
+      "exit_code": 0,
+      "name": "analyze",
+      "stderr": "",
+      "stdout": "Analyzing word_live_review_changes_test.dart...\nNo issues found!\n"
+    }
+  ],
+  "command": [
+    "/workspace/scratch/ba0874ba8ec5/zotero-toolchain/flutter-sdk/bin/flutter",
+    "test",
+    "--no-pub",
+    "--machine",
+    "--concurrency",
+    "1",
+    "test/word_live_review_changes_test.dart"
+  ],
+  "cwd": "/workspace/scratch/ba0874ba8ec5/zotero-validation/packages/quds_office_editor",
+  "elapsed_seconds": 14.063912764000179,
+  "finished_at_utc": "2026-11-18T16:25:30.236509+00:00",
+  "guards": {
+    "dependencies_unchanged": true,
+    "every_started_test_finished_once": true,
+    "expected_suite_executed": true,
+    "final_event_success": true,
+    "only_authorized_test_differs_from_frozen_base": true,
+    "runtime_unchanged": true,
+    "source_unchanged": true,
+    "workspace_unchanged": true
+  },
+  "runner_sha256": "09d4af988b0d1d9f58f18c9d5d25e5de67319061495f6c2b9f221d27c7ae7571",
+  "scope": "One helper-development suite on explicitly uncommitted test bytes. This run is excluded from acceptance and all final passing totals.",
+  "source_base_commit": "00ac2edf606359cea003b4ebb3a5f3aaac7b67cf",
+  "started_at_utc": "2026-11-18T16:24:56.159570+00:00",
+  "status": "passed",
+  "stderr": "",
+  "tests": {
+    "error_events": [],
+    "every_started_test_finished_once": true,
+    "excluded_failures": [],
+    "excluded_pseudo_cases": 3,
+    "excluded_reasons": {
+      "hidden_lifecycle": 3
+    },
+    "failed": 0,
+    "final_events": [
+      {
+        "success": true,
+        "time": 13317,
+        "type": "done"
+      }
+    ],
+    "flutter_envelopes": 1,
+    "layout_or_tap_diagnostics": [],
+    "parse_errors": [],
+    "passed": 13,
+    "skipped": 0,
+    "substantive_cases": 13,
+    "suite_count": 1,
+    "suites": [
+      {
+        "failed": 0,
+        "passed": 13,
+        "path": "/workspace/scratch/ba0874ba8ec5/zotero-validation/packages/quds_office_editor/test/word_live_review_changes_test.dart",
+        "skipped": 0
+      }
+    ],
+    "test_done_events": 16,
+    "test_start_events": 16
+  }
+}
