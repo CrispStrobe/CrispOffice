@@ -618,6 +618,69 @@ final class WordProofingSession extends ChangeNotifier {
             issue.finding.originalText;
   }
 
+  /// Keeps settled reports when [recordHistory] synchronously records text
+  /// that the host already applied and checked. Clean manual results need the
+  /// same protection as findings: an unchanged history boundary must not turn
+  /// their completed coverage into an unchecked or ordinary-only result.
+  ///
+  /// The callback always runs once. Results survive only one revision and one
+  /// invalidation with the same document, configuration and complete source.
+  /// Real edits and unfinished checks retain the normal invalidation path.
+  void preserveUnchangedHistory(VoidCallback recordHistory) {
+    final previous = _summary;
+    if (_disposed ||
+        !previous.hasResults ||
+        previous.checking ||
+        previous.scheduled ||
+        previous.manualProvidersSkipped ||
+        _timer != null) {
+      recordHistory();
+      return;
+    }
+    final document = _document();
+    final documentId = _documentIds[document];
+    final revision = _revision();
+    final generation = _generation;
+    final configuration = _configurationKey;
+    final useManual = hasManualProviders;
+    final captured = _capture(document);
+    // A host can change model text without notifying the session. Do not
+    // cancel its pending recheck or revive reports for that changed source.
+    if (documentId == null ||
+        previous.reports.any(
+          (report) =>
+              report.request.documentId != documentId ||
+              report.request.revision != revision,
+        ) ||
+        captured.paragraphs.any(
+          (snapshot) => _cachedReports(snapshot, useManual: useManual) == null,
+        )) {
+      recordHistory();
+      return;
+    }
+    recordHistory();
+    if (_disposed ||
+        !identical(document, _document()) ||
+        revision + 1 != _revision() ||
+        generation + 1 != _generation ||
+        configuration != _configurationKey ||
+        captured.key != _capture(document).key) {
+      return;
+    }
+    // The settled capture had no timer. The single invalidation above is the
+    // only owner of this redundant debounce; no new provider work is needed.
+    _timer?.cancel();
+    _timer = null;
+    _publishCached(
+      captured,
+      documentId: documentId,
+      revision: _revision(),
+      useManual: useManual,
+      finished: previous.hasResults,
+    );
+    notifyListeners();
+  }
+
   /// Finds the equivalent current result after a host records already-applied
   /// text in history. This is not permission to reuse an arbitrary stale UI
   /// handle: the host must first validate the old handle before that boundary.

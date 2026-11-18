@@ -3,6 +3,7 @@
 
 The JSON plan contains `groups` with `name`, repository-relative `cwd`,
 `runner` (`dart` or `flutter`), and exact cwd-relative `tests` paths. Optional
+`platform` is `vm` (the default) or `node` (Dart groups only). Optional
 `analysis` and `format` are lists of repository paths, or "changed". Optional
 `extra_inputs` lists tracked fixtures to bind. All groups run sequentially.
 This runner never installs dependencies or contacts GitHub/GitHub Actions.
@@ -46,28 +47,61 @@ def parse_reporter(log: Path, cwd: Path, requested: list[str]) -> dict:
     """Count completed user cases, retaining every error and protocol anomaly."""
     suites, started, completed, cases, errors, anomalies = {}, {}, set(), [], [], []
     excluded = Counter()
+    start_events = terminal_events = 0
     reporter_success = None
     expected = {str((cwd / name).resolve()) for name in requested}
     for line_number, line in enumerate(log.read_text(errors="replace").splitlines(), 1):
+        # Native build hooks may print progress immediately before a JSON event.
+        # Ordinary prose is allowed, but a malformed event must not disappear.
+        brace = line.find("{")
+        if brace < 0:
+            continue
         try:
-            event = json.loads(line)
+            event = json.loads(line[brace:])
         except ValueError:
-            continue  # Flutter can print ordinary build messages before JSON.
+            anomalies.append({"line": line_number, "malformed_json": True})
+            continue
         if not isinstance(event, dict):
+            anomalies.append({"line": line_number, "non_object_event": True})
             continue
         kind = event.get("type")
+        if not isinstance(kind, str):
+            anomalies.append({"line": line_number, "missing_event_type": True})
+            continue
+        if terminal_events:
+            anomalies.append({"line": line_number, "event_after_done": kind})
+        if kind == "start":
+            start_events += 1
+            if start_events != 1:
+                anomalies.append({"line": line_number, "duplicate_runner_start": True})
+        elif start_events != 1:
+            anomalies.append({"line": line_number, "event_without_runner_start": kind})
         try:
             if kind == "suite":
                 suite = event["suite"]
-                suites[suite["id"]] = str(Path(suite["path"]).resolve())
+                if (not isinstance(suite, dict) or type(suite.get("id")) is not int
+                        or not isinstance(suite.get("path"), str)):
+                    raise ValueError("Invalid suite payload")
+                if suite["id"] in suites:
+                    anomalies.append({"line": line_number, "duplicate_suite": suite["id"]})
+                suites[suite["id"]] = str((cwd / suite["path"]).resolve())
             elif kind == "testStart":
                 case = event["test"]
+                if (not isinstance(case, dict) or type(case.get("id")) is not int
+                        or type(case.get("suiteID")) is not int
+                        or not isinstance(case.get("name"), str)):
+                    raise ValueError("Invalid test start payload")
                 ident = case["id"]
                 if ident in started or ident in completed:
                     anomalies.append({"line": line_number, "duplicate_start": ident})
+                    continue
                 started[ident] = case
             elif kind == "testDone":
                 ident = event["testID"]
+                if (type(ident) is not int or type(event.get("skipped")) is not bool
+                        or type(event.get("hidden", False)) is not bool
+                        or event.get("result") not in {"success", "failure", "error"}):
+                    raise ValueError("Invalid test completion payload")
                 case = started.pop(ident, None)
                 if case is None or ident in completed:
                     anomalies.append({"line": line_number, "unmatched_completion": ident})
@@ -94,9 +128,12 @@ def parse_reporter(log: Path, cwd: Path, requested: list[str]) -> dict:
             elif kind == "error":
                 errors.append(event)
             elif kind == "done":
-                if reporter_success is not None:
+                terminal_events += 1
+                if terminal_events != 1:
                     anomalies.append({"line": line_number, "duplicate_done": True})
                 reporter_success = event["success"]
+                if type(reporter_success) is not bool:
+                    raise ValueError("Invalid terminal success flag")
         except (KeyError, TypeError, ValueError) as error:
             anomalies.append({"line": line_number, "malformed_event": repr(error)})
     per_suite = {}
@@ -113,6 +150,7 @@ def parse_reporter(log: Path, cwd: Path, requested: list[str]) -> dict:
         "skipped": sum(row["skipped"] for row in per_suite.values()),
         "per_suite": per_suite, "excluded_events": dict(excluded),
         "reporter_success": reporter_success,
+        "runner_start_events": start_events, "terminal_events": terminal_events,
         "missing_requested_suites": sorted(expected - observed),
         "unexpected_suites": sorted(observed - expected),
         "empty_requested_suites": sorted(expected - set(per_suite)),
@@ -123,11 +161,29 @@ def parse_reporter(log: Path, cwd: Path, requested: list[str]) -> dict:
 
 
 def reporter_passed(result: dict) -> bool:
-    return result.get("reporter_success") is True and not any(result.get(key) for key in (
+    return (result.get("reporter_success") is True
+            and result.get("runner_start_events") == 1 and result.get("terminal_events") == 1
+            and not any(result.get(key) for key in (
         "failed", "skipped", "missing_requested_suites", "unexpected_suites",
         "empty_requested_suites", "unfinished_reporter_events",
         "reporter_error_count", "protocol_anomalies",
-    ))
+    )))
+
+
+def test_command(runtime: Path, group: dict) -> list[str]:
+    runner = group["runner"]
+    platform = group.get("platform", "vm")
+    if runner not in {"dart", "flutter"} or platform not in {"vm", "node"}:
+        raise ValueError("Unsupported test runner/platform")
+    if runner == "flutter" and platform != "vm":
+        raise ValueError("This gate supports Flutter VM tests only")
+    command = [str(runtime / "bin" / runner), "test"]
+    if runner == "flutter":
+        command.append("--no-pub")
+    elif platform != "vm":
+        command.append("--platform=" + platform)
+    command.extend(["--concurrency=1", "--reporter=json", *group["tests"]])
+    return command
 
 
 def main() -> int:
@@ -188,6 +244,7 @@ def main() -> int:
         names.add(name)
         if runner not in {"dart", "flutter"} or not tests or len(tests) != len(set(tests)):
             raise RuntimeError("Invalid runner or empty/duplicate suite list: " + name)
+        test_command(runtime, group)  # Reject unsupported platforms before any gate runs.
         group_cwd = (repo / cwd).resolve()
         relative(group_cwd)
         for suite in tests:
@@ -341,10 +398,7 @@ def main() -> int:
     save()
     try:
         for group in groups:
-            command = [str(runtime / "bin" / group["runner"]), "test"]
-            if group["runner"] == "flutter":
-                command.append("--no-pub")
-            command.extend(["--concurrency=1", "--reporter=json", *group["tests"]])
+            command = test_command(runtime, group)
             run(group["name"], command, repo / group["cwd"], group["tests"])
         if analysis:
             run("analysis", [str(runtime / "bin/dart"), "analyze", "--fatal-infos", "--fatal-warnings", *analysis], repo)
