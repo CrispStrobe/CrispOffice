@@ -1,0 +1,116 @@
+{
+  "archive": "complete-results.tar.gz",
+  "archive_sha256": "7cba8b0a094f16546d3885ea85418540a35dcfa62c66ce1e6592593a5f8302b1",
+  "archive_bytes": 307997,
+  "qualified_commit": "356a3c75c645a9e91d41af0b151d773eb938f3fc",
+  "qualified_tree": "7d43df03c43e5615d7c3c5256d0156fc6ec79120",
+  "accepted": true,
+  "summary_sha256": "cd94fe2876243c717b9e78874aa507f0e38e1f370193f2800ba3631f298f657d",
+  "independent_audit_sha256": "6600230c69dbc38981d08c4b386b2d34e6f887445850e632ed51055b93a7b8ed",
+  "files": {
+    "analysis.log": {
+      "sha256": "01ea5a9d4fe06157c9d36392be71181d9201bfdb60521e7ef0a353ac57ffe1af",
+      "bytes": 988
+    },
+    "editor-cases.json": {
+      "sha256": "1aff3f27e6dc4665a227f564547283c74d36062919972c2053fff81a973078bd",
+      "bytes": 200826
+    },
+    "editor-error_events.json": {
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "bytes": 3
+    },
+    "editor.jsonl.gz": {
+      "sha256": "a7cd54bb916095710b0738c236e4b0ceb263ac4fddae20c092bd0c202ef768db",
+      "bytes": 35594
+    },
+    "engine-cases.json": {
+      "sha256": "c49a56c934669d9d16b19db630464e7c91c793160b5c22ccef3cef69ffafb783",
+      "bytes": 175964
+    },
+    "engine-error_events.json": {
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "bytes": 3
+    },
+    "engine.jsonl.gz": {
+      "sha256": "ec2c5356e3f43810d77157e505403bda1c07dfdb8b3b881d4d58943e48d79abc",
+      "bytes": 28660
+    },
+    "format.log": {
+      "sha256": "4be4ff795f6fc20f920f623196b52e4394e264411cf4253fa3bf462dc6515bfe",
+      "bytes": 48
+    },
+    "mail-core-cases.json": {
+      "sha256": "9231ef854be26bfa7a339f6dcf72e9d17e9b4ba242c88181726370361dc38350",
+      "bytes": 2365
+    },
+    "mail-core-error_events.json": {
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "bytes": 3
+    },
+    "mail-core.jsonl.gz": {
+      "sha256": "185e37f3c56aed4493836643b305142fb77b85fbc515d8453c41bcd89a4c5475",
+      "bytes": 928
+    },
+    "mail-runner-accounting.log": {
+      "sha256": "649b95a5983f26f365bc810c3e3d9e66b4cf07fa7189eb569c40223bd69d30f7",
+      "bytes": 2779
+    },
+    "mail-store-cases.json": {
+      "sha256": "d0d9ba27dab73f8b603132fe61598c9ae0e2f334cbdcb60cd6dd2de11c35fe4b",
+      "bytes": 19607
+    },
+    "mail-store-error_events.json": {
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "bytes": 3
+    },
+    "mail-store.jsonl.gz": {
+      "sha256": "8ae81aeb264372607a78d5edee032ce4311f29fbbc3bee93f157077d9a2f6b70",
+      "bytes": 5038
+    },
+    "mail-ui-cases.json": {
+      "sha256": "3b885c95d7b6de71962f7691c10bf551731b286a22c192cf7e99c016bf1c97c4",
+      "bytes": 2834
+    },
+    "mail-ui-error_events.json": {
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "bytes": 3
+    },
+    "mail-ui.jsonl.gz": {
+      "sha256": "cf05f9a8dc2e1dd68fe90f6a0989db44b64f740f591728c3470a3bba03e6d90e",
+      "bytes": 1127
+    },
+    "runner-accounting.log": {
+      "sha256": "8f9d53de5a9883f6c56756719ec1beffd2c46462e17c3014474c4e98295833e5",
+      "bytes": 4995
+    },
+    "source-after.json.gz": {
+      "sha256": "421464861fb29c3404881f39e0dfc2cd2a5b06821937eb6790d050dff1255638",
+      "bytes": 86384
+    },
+    "source-before.json.gz": {
+      "sha256": "421464861fb29c3404881f39e0dfc2cd2a5b06821937eb6790d050dff1255638",
+      "bytes": 86384
+    },
+    "studio-cases.json": {
+      "sha256": "9fe1ff223dcfe4376621144ff8e81f84fb9bc9632d4813883b5f75381bd94657",
+      "bytes": 27489
+    },
+    "studio-error_events.json": {
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "bytes": 3
+    },
+    "studio.jsonl.gz": {
+      "sha256": "3497ae0ba4d98b1afbe4cec4068933cb1cf5390feaa6d268848a158309ce9b3b",
+      "bytes": 5379
+    },
+    "summary.json": {
+      "sha256": "cd94fe2876243c717b9e78874aa507f0e38e1f370193f2800ba3631f298f657d",
+      "bytes": 52186
+    },
+    "whitespace.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    }
+  }
+}

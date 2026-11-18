@@ -1,5 +1,17 @@
 # Zotero validation
 
+## 18 November 2026 — research notes, native lists and completed Word-style workflows
+
+Qualified source: **`356a3c75c645a9e91d41af0b151d773eb938f3fc`**, on `codex/zotero-word-parity-20261118`, [PR #173](https://github.com/CrispStrobe/quds_office_suite/pull/173).
+
+The native research-note, direct-command and reference-navigation upgrade now has completed local qualification. Research notes also preserve flat bullet and decimal lists, independent counters and starting numbers, active inline/footnote/endnote citations, and numbering-aware undo/redo. Independent review corrected later ordinary lists inheriting research counters and invalid numbering child order.
+
+**1,558 distinct application cases pass across 98 files**: 641 engine, 724 editor, 98 Studio, 9 Mail core, 75 Mail store and 11 Mail UI. **50 Python accounting cases pass separately.** All 31 strict analysis/format targets pass, with zero failed/skipped/error/unfinished cases and complete exact suite coverage. Independent raw-event recount and hash checks confirm identical source/runtime/dependency fingerprints and all 1,747 recorded source inputs.
+
+The restored Flutter 3.47.8 / Dart 3.13.7 runtime resolves the incoming Mail dependencies with enforced locked resolution and an unchanged lock. The previously blocked IME checks pass. The bounded incoming snapshot contains 391 refs: 363 ancestors and 28 verified equivalents, with zero unaccounted. Checkpoints were saved remotely; GitHub Actions were not queried or awaited.
+
+The [complete report](validation/zotero-word-parity-20261118/README.md) links exact source identity, all raw evidence, the independently reviewed diagnostic corrections and the final passing audit. Six verbatim provenance/notice blobs remain unchanged under exact hash-checked whitespace exceptions. Current acceptance is local model/controller/widget and controlled transport, including Quds DOCX save/reopen; live account, installed application and actual Word/LibreOffice reopening remain separate.
+
 ## 18 November 2026 — Zotero citations from the Notes pane and keyboard
 
 Qualified application source: **`ff1518517dd9f67e214ff56fe7eef06349f5223a`**,
