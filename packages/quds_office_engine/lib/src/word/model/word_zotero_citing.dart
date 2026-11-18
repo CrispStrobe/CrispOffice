@@ -132,7 +132,12 @@ final class WordZoteroCitingSession {
       );
     }
     if (insertionParagraph != null &&
-        _bodyParagraphs.contains(insertionParagraph)) {
+        (_bodyParagraphs.contains(insertionParagraph) ||
+            _notes.any(
+              (anchor) => anchor.note.allParagraphs.any(
+                (paragraph) => identical(paragraph, insertionParagraph),
+              ),
+            ))) {
       if (insertionOffset < 0 ||
           insertionOffset > insertionParagraph!.text.length) {
         throw ArgumentError(
@@ -141,13 +146,11 @@ final class WordZoteroCitingSession {
       }
       _selected ??= _fields
           .where(
-            (f) =>
-                f.note == null &&
-                (f.original!.paragraphs.length > 1
-                    ? f.original!.paragraphs.contains(insertionParagraph)
-                    : identical(f.original?.paragraph, insertionParagraph) &&
-                          insertionOffset >= f.original!.start &&
-                          insertionOffset < f.original!.end),
+            (f) => (f.original!.paragraphs.length > 1
+                ? f.original!.paragraphs.contains(insertionParagraph)
+                : identical(f.original?.paragraph, insertionParagraph) &&
+                      insertionOffset >= f.original!.start &&
+                      insertionOffset < f.original!.end),
           )
           .firstOrNull;
     }
