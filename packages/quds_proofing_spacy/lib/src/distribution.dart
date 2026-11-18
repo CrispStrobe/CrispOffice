@@ -394,7 +394,7 @@ const _v2Source = '45b057700880e125d701d941a9e3123679960d35';
 
 /// CrispEmbed run that loaded the published English and French bundles with
 /// the published runtime capsules and compared them with original spaCy.
-const spacyLanguageConsumerRun = '44372635419';
+const spacyLanguageConsumerRun = '44377019364';
 
 const _v2Analysis =
     'Hosted development parity on this exact library (CrispEmbed run '
