@@ -1,0 +1,29 @@
+{
+ "schema": "quds.spacy.hub_macos_e2e.v1",
+ "package_url": "https://huggingface.co/cstr/crispembed-spacy-de-core-news-sm-3.8.0/resolve/24e607cbcf4187e7589619e725134c27d4d83817/packages/macos-arm64/28d8ce0eb24963ecd5eb37f823e7ca75ab6df8ee/spacy-de_core_news_sm-3.8.0-macos-arm64-f32.tar.gz",
+ "archive_sha256": "492c8bfb9e78d5e3fe9163918e2038900578f977aee830683cae7d7be6525fec",
+ "ner_url": "https://huggingface.co/cstr/crispembed-spacy-de-core-news-sm-3.8.0/resolve/8b5d7084bab236fff9921ef5e397069163e83738/ner/ner.gguf",
+ "library_sha256": "918a069e3ce3e6786fd11f91d9f7b6c9a99b1c18a96493ef86ab586146dc2992",
+ "capability_mask": 31,
+ "analysis_status": "success",
+ "tokens": [
+  "Angela/Angela/PROPN/pnc",
+  "Merkel/Merkel/PROPN/sb",
+  "besuchte/besuchen/VERB/ROOT",
+  "gestern/gestern/ADV/mo",
+  "die/der/DET/nk",
+  "Siemens/Siemens/PROPN/nk",
+  "AG/AG/NOUN/oa",
+  "in/in/ADP/mo",
+  "München/München/PROPN/nk",
+  "./--/PUNCT/punct"
+ ],
+ "entities": [
+  "Angela Merkel/PER",
+  "Siemens AG/ORG",
+  "München/LOC"
+ ],
+ "grammar_status": "failed",
+ "grammar_message": "runtime-mismatch",
+ "note": "Fresh empty install root; real Hugging Face download through the app installer on Apple silicon. Grammar refusal is the intended per-build binding."
+}
