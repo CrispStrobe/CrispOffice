@@ -31,7 +31,14 @@ class ZoteroImportedReference {
       ])
         ..._names(data[role]),
     ];
+    final searchText = [
+      title,
+      ...creators,
+      year,
+      _text(data['DOI']),
+    ].join('\n').toLowerCase();
     return ZoteroImportedReference._(
+      searchText,
       index: index,
       item: item,
       title: title,
@@ -42,22 +49,15 @@ class ZoteroImportedReference {
           editors.join(', '),
         if (year.isNotEmpty) year,
       ].join(' · '),
-      searchText: [
-        title,
-        ...creators,
-        year,
-        _text(data['DOI']),
-      ].join('\n').toLowerCase(),
     );
   }
 
-  const ZoteroImportedReference._({
+  const ZoteroImportedReference._(this._searchText, {
     required this.index,
     required this.item,
     required this.title,
     required this.subtitle,
-    required String searchText,
-  }) : _searchText = searchText;
+  });
 
   final int index;
   final ZoteroCitationItem item;

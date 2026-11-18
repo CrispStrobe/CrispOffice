@@ -4,6 +4,13 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Search imported Zotero CSL references locally by title, creators, year and
+  DOI, with creator/year labels, result counts and selections retained across
+  filters. Preserve original import identities even when IDs or titles repeat.
+- Copy selected stored CSL JSON offline or across libraries from Library and
+  Import. Retain selection order, repeated records, embedded metadata and URI
+  aliases without changing the document or requesting updated source data.
+
 - Add a document review workspace with reviewer attribution, author/type/text
   filters, undoable filtered accept/reject, story-aware navigation, and
   original/final paragraph previews. Compare two independently picked Word

@@ -199,14 +199,18 @@ group in Quds Studio and CrispCloud). The workspace has three tabs:
 - **Import CSL JSON:** paste a Zotero CSL JSON export for offline work. A single
   item, a CSL array, and Zotero's `{"items": [...]}` envelope are accepted.
   Import is bounded to 1 MB and 500 records. Linked Zotero URIs are retained;
-  records without them remain offline embedded references.
+  records without them remain offline embedded references. Search the loaded
+  references by title, creators, year or DOI, then select sources across filters.
 
 The selected references can also be copied as BibTeX, BibLaTeX, RIS, or CSL JSON
 from the Library tab. Source exports are copied as reference data, not inserted
 as document text. Library exports accept numeric user/group identities or unsynced local identities
 from one matching connected library. Desktop exports need Zotero 10 or later
 with database and library-version headers. Use **Document → Copy embedded CSL
-JSON** for mixed-library or offline documents, or with an older desktop client.
+JSON** for sources already in mixed-library or offline documents. Use
+**Copy stored CSL JSON** in Import, or under **Library → Export selected**, to
+copy the current selection without a connection, including with an older
+desktop client. This copies stored metadata; it does not fetch updates.
 Set the preview/export style ID and locale in Document (defaults: `apa` and `en-US`) before
 requesting a bibliography or individual citation preview. In the citation
 composer, expand a source's title to edit its locator and affixes.
@@ -241,6 +245,37 @@ keeps the revised selection; **Cancel** or dismissing the dialog discards those
 changes. Reordering and removal preserve each source's identity and embedded
 metadata and do not add document history. Inserting a citation remains a
 separate, undoable operation. The selection limit remains 20 sources.
+
+### Search imported references and copy stored data
+
+After **Load references**, use **Search imported references** to filter the
+loaded CSL records immediately. Each whitespace-separated search term must
+appear in the title, a creator name, publication year or DOI. Matching ignores
+case and treats punctuation literally. All supplied author/editor names are
+searchable, including names beyond the visible label. Creator and year labels
+help distinguish records with the same title.
+
+The result count shows how many loaded references match and how many selected
+sources are outside those results. Filtering and clearing the search keep all
+selections and their order, including sources selected in Library. **Review
+selected** still lets you reorder or remove them. Duplicate CSL IDs or titles
+retain their separate original import positions. Loading a new valid export
+clears the search and replaces only imported selections; an invalid export
+keeps the previous list, filter and selection intact.
+
+Choose **Copy stored CSL JSON** to copy the entire current selection in its
+reviewed order, including hidden sources and references from different
+libraries. The copied array retains embedded metadata, unknown CSL fields and
+Zotero URI aliases. It can be pasted back into **Import CSL JSON**. Repeated
+records and IDs are retained; this action does not deduplicate them or refresh
+their metadata. Citation-specific locators and affixes remain in the citation
+and are not part of the reference export. The copied JSON must fit the existing
+1 MB import limit; a missing or malformed snapshot stops the copy with an
+explanation instead of silently leaving out a selected source.
+
+Searching, reviewing and copying stored references work in a read-only document
+and make no network requests or document-history changes. The connected
+BibTeX/BibLaTeX/RIS/CSL JSON export choices continue to use the selected library.
 
 ### Find and sort references
 
