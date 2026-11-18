@@ -8,7 +8,9 @@ import 'package:url_launcher/url_launcher.dart';
 
 import 'office_controller.dart';
 import 'word_zotero_format.dart';
+import 'word_zotero_import.dart';
 import 'word_zotero_library.dart';
+import 'word_zotero_snapshot.dart';
 import 'word_zotero_sources.dart';
 
 /// Connection preferences belong to the host session, never to a document.
@@ -20,6 +22,14 @@ class ZoteroSession {
   ZoteroLibrary? library;
   String style = 'apa';
   String locale = 'en-US';
+}
+
+class _ZoteroSelectionExport {
+  const _ZoteroSelectionExport.stored() : format = null;
+  const _ZoteroSelectionExport.connected(ZoteroExportFormat value)
+    : format = value;
+
+  final ZoteroExportFormat? format;
 }
 
 /// Shared Quds citation workspace. The host supplies its own network transport
@@ -96,6 +106,8 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
   final _tag = TextEditingController();
   final _libraryId = TextEditingController();
   final _import = TextEditingController();
+  final _importSearch = TextEditingController();
+  final _importResultsScroll = ScrollController();
   String _submittedSearch = '';
   List<String> _tags = const [];
   String? _tagError;
@@ -125,7 +137,7 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
   String? _error;
   String? _notice;
   final _selected = <String, ZoteroCitationItem>{};
-  final _imported = <ZoteroCitationItem>[];
+  final _imported = <ZoteroImportedReference>[];
   WordEditorController get _controller => widget.controller;
   ZoteroSession get _session => widget.session;
   bool get _useLocal => _session.useLocal;
@@ -172,9 +184,11 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
       _tag,
       _libraryId,
       _import,
+      _importSearch,
     ]) {
       controller.dispose();
     }
+    _importResultsScroll.dispose();
     super.dispose();
   }
 
@@ -1286,6 +1300,22 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
     }
   });
 
+  Future<void> _copyStoredSelection() => _run(() async {
+    final text = zoteroSelectionCslJson(_selected.values);
+    try {
+      await Clipboard.setData(ClipboardData(text: text));
+    } on PlatformException {
+      throw const FormatException(
+        'Could not copy stored reference metadata to the clipboard.',
+      );
+    }
+    if (mounted) {
+      setState(
+        () => _notice = 'Stored reference metadata copied to the clipboard.',
+      );
+    }
+  });
+
   Future<({String text, ZoteroFormattedText? formattedText})?>
   _reviewBibliography(
     String title,
@@ -1392,7 +1422,7 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
                       _documentTab(),
                       _scrollableTab(
                         _importTab(),
-                        minHeight: size.width < 600 ? 656 : 600,
+                        minHeight: _importMinHeight(size),
                       ),
                     ],
                   ),
@@ -1429,6 +1459,17 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
         (size.width < 380 ? 520 : (narrow ? 340 : 180)) +
         140 +
         (_tags.isEmpty ? 0 : 220);
+  }
+
+  double _importMinHeight(Size size) {
+    final narrow = size.width < 600;
+    final base = narrow ? 656.0 : 600.0;
+    final controls = _imported.isEmpty ? 0.0 : (narrow ? 176.0 : 144.0);
+    final copyRow = _selected.isEmpty ? 0.0 : 56.0;
+    final textScale = max(1.0, MediaQuery.textScalerOf(context).scale(14) / 14);
+    // Reserve the loaded-list controls and wrapped actions before allowing
+    // the paste field to expand, including when accessibility text is larger.
+    return (base + controls + copyRow) * textScale;
   }
 
   Widget _banner(String text, {bool error = false}) => Container(
@@ -2229,18 +2270,29 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
                 icon: const Icon(Icons.format_quote),
                 label: const Text('Insert citation'),
               ),
-            PopupMenuButton<ZoteroExportFormat>(
+            PopupMenuButton<_ZoteroSelectionExport>(
               enabled: !_busy && _selected.isNotEmpty,
               tooltip: 'Copy selected references',
-              onSelected: (format) => _copySources(format: format),
-              itemBuilder: (_) => ZoteroExportFormat.values
-                  .map(
-                    (format) => PopupMenuItem(
-                      value: format,
-                      child: Text('Copy ${format.name}'),
-                    ),
-                  )
-                  .toList(),
+              onSelected: (choice) {
+                final format = choice.format;
+                if (format == null) {
+                  _copyStoredSelection();
+                } else {
+                  _copySources(format: format);
+                }
+              },
+              itemBuilder: (_) => [
+                const PopupMenuItem(
+                  value: _ZoteroSelectionExport.stored(),
+                  child: Text('Copy stored CSL JSON'),
+                ),
+                const PopupMenuDivider(),
+                for (final format in ZoteroExportFormat.values)
+                  PopupMenuItem(
+                    value: _ZoteroSelectionExport.connected(format),
+                    child: Text('Copy ${format.name}'),
+                  ),
+              ],
               child: const Padding(
                 padding: EdgeInsets.all(10),
                 child: Text('Export selected ▾'),
@@ -2442,97 +2494,177 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
     );
   }
 
-  Widget _importTab() => Padding(
-    padding: const EdgeInsets.all(16),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        const Text(
-          'In Zotero, export references as CSL JSON, then paste the file contents here. Sources stay embedded in the document. Records without a Zotero item URI remain offline references.',
-        ),
-        const SizedBox(height: 12),
-        Expanded(
-          child: TextField(
-            key: const ValueKey('zotero-csl-import'),
-            controller: _import,
-            expands: true,
-            minLines: null,
-            maxLines: null,
-            enabled: !_busy,
-            decoration: const InputDecoration(
-              labelText: 'CSL JSON (up to 1 MB / 500 sources)',
-              alignLabelWithHint: true,
-              border: OutlineInputBorder(),
+  void _filterImportedReferences({bool clear = false}) {
+    setState(() {
+      if (clear) _importSearch.clear();
+    });
+    if (_importResultsScroll.hasClients) _importResultsScroll.jumpTo(0);
+  }
+
+  Widget _importTab() {
+    final visible = filterZoteroImportedReferences(
+      _imported,
+      _importSearch.text,
+    );
+    final outsideResults =
+        _selected.length -
+        visible
+            .where((entry) => _selected.containsKey(entry.selectionKey))
+            .length;
+    return Padding(
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          const Text(
+            'In Zotero, export references as CSL JSON, then paste the file contents here. Sources stay embedded in the document. Records without a Zotero item URI remain offline references.',
+          ),
+          const SizedBox(height: 12),
+          Expanded(
+            child: TextField(
+              key: const ValueKey('zotero-csl-import'),
+              controller: _import,
+              expands: true,
+              minLines: null,
+              maxLines: null,
+              enabled: !_busy,
+              decoration: const InputDecoration(
+                labelText: 'CSL JSON (up to 1 MB / 500 sources)',
+                alignLabelWithHint: true,
+                border: OutlineInputBorder(),
+              ),
             ),
           ),
-        ),
-        const SizedBox(height: 8),
-        Wrap(
-          spacing: 8,
-          crossAxisAlignment: WrapCrossAlignment.center,
-          children: [
-            OutlinedButton(
-              onPressed: _busy
-                  ? null
-                  : () => _run(() async {
-                      final items = zoteroImportCslJson(_import.text);
-                      setState(() {
-                        _selected.removeWhere(
-                          (key, _) => key.startsWith('import:'),
+          const SizedBox(height: 8),
+          Wrap(
+            spacing: 8,
+            crossAxisAlignment: WrapCrossAlignment.center,
+            children: [
+              OutlinedButton(
+                onPressed: _busy
+                    ? null
+                    : () => _run(() async {
+                        final items = zoteroImportCslJson(_import.text);
+                        final references = [
+                          for (final (index, item) in items.indexed)
+                            ZoteroImportedReference(index: index, item: item),
+                        ];
+                        setState(() {
+                          _selected.removeWhere(
+                            (key, _) => key.startsWith('import:'),
+                          );
+                          _imported
+                            ..clear()
+                            ..addAll(references);
+                          _importSearch.clear();
+                          _notice =
+                              '${items.length} references loaded. Search or choose sources below.';
+                        });
+                        if (_importResultsScroll.hasClients) {
+                          _importResultsScroll.jumpTo(0);
+                        }
+                      }),
+                child: const Text('Load references'),
+              ),
+              _reviewSelectionButton('zotero-review-import-selection'),
+              if (_selected.isNotEmpty)
+                TextButton.icon(
+                  key: const ValueKey('zotero-copy-import-selection'),
+                  onPressed: _busy ? null : _copyStoredSelection,
+                  icon: const Icon(Icons.copy),
+                  label: const Text('Copy stored CSL JSON'),
+                ),
+            ],
+          ),
+          if (_imported.isNotEmpty) ...[
+            const SizedBox(height: 8),
+            TextField(
+              key: const ValueKey('zotero-import-search'),
+              controller: _importSearch,
+              enabled: !_busy,
+              decoration: InputDecoration(
+                labelText: 'Search imported references',
+                helperText:
+                    'Title, creator, year or DOI. All words must match.',
+                helperMaxLines: 3,
+                isDense: true,
+                prefixIcon: const Icon(Icons.search),
+                suffixIcon: _importSearch.text.isEmpty
+                    ? null
+                    : IconButton(
+                        key: const ValueKey('zotero-clear-import-search'),
+                        tooltip: 'Clear imported reference search',
+                        onPressed: _busy
+                            ? null
+                            : () => _filterImportedReferences(clear: true),
+                        icon: const Icon(Icons.clear),
+                      ),
+              ),
+              onChanged: (_) => _filterImportedReferences(),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              '${visible.length} of ${_imported.length} shown · ${_selected.length} selected'
+              '${outsideResults == 0 ? '' : ' ($outsideResults outside these results)'}',
+              key: const ValueKey('zotero-import-result-count'),
+            ),
+            const SizedBox(height: 4),
+            SizedBox(
+              height: 160,
+              child: visible.isEmpty
+                  ? const Center(
+                      child: Text(
+                        'No imported references match this search.',
+                        key: ValueKey('zotero-import-no-matches'),
+                      ),
+                    )
+                  : ListView.builder(
+                      key: const ValueKey('zotero-import-results'),
+                      controller: _importResultsScroll,
+                      itemCount: visible.length,
+                      itemBuilder: (context, index) {
+                        final entry = visible[index];
+                        final key = entry.selectionKey;
+                        return CheckboxListTile(
+                          key: ValueKey(key),
+                          dense: true,
+                          value: _selected.containsKey(key),
+                          title: Text(
+                            entry.title,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                          subtitle: entry.subtitle.isEmpty
+                              ? null
+                              : Text(
+                                  entry.subtitle,
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                          onChanged: _busy
+                              ? null
+                              : (value) => setState(() {
+                                  if (value == false) {
+                                    _selected.remove(key);
+                                  } else if (_selected.length < 20) {
+                                    _selected[key] = entry.item;
+                                  }
+                                }),
                         );
-                        _imported
-                          ..clear()
-                          ..addAll(items);
-                        _notice =
-                            '${items.length} references loaded. Choose a citation below.';
-                      });
-                    }),
-              child: const Text('Load references'),
-            ),
-            if (_imported.isNotEmpty) Text('${_imported.length} loaded'),
-            _reviewSelectionButton('zotero-review-import-selection'),
-          ],
-        ),
-        if (_imported.isNotEmpty)
-          SizedBox(
-            height: 160,
-            child: ListView.builder(
-              itemCount: _imported.length,
-              itemBuilder: (context, index) {
-                final item = _imported[index];
-                final key = 'import:$index:${item.id}';
-                return CheckboxListTile(
-                  dense: true,
-                  value: _selected.containsKey(key),
-                  title: Text(
-                    zoteroHtmlToPlainText(
-                      '${item.itemData?['title'] ?? item.id}',
+                      },
                     ),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  onChanged: _busy
-                      ? null
-                      : (value) => setState(() {
-                          if (value == false) {
-                            _selected.remove(key);
-                          } else if (_selected.length < 20) {
-                            _selected[key] = item;
-                          }
-                        }),
-                );
-              },
             ),
+          ],
+          FilledButton(
+            onPressed: _busy || !_canEdit || _selected.isEmpty
+                ? null
+                : () => _compose(_selected.values.toList()),
+            child: Text('Insert ${_selected.length} selected source(s)'),
           ),
-        FilledButton(
-          onPressed: _busy || !_canEdit || _selected.isEmpty
-              ? null
-              : () => _compose(_selected.values.toList()),
-          child: Text('Insert ${_selected.length} selected source(s)'),
-        ),
-      ],
-    ),
-  );
+        ],
+      ),
+    );
+  }
 }
 
 class _BibliographyReview extends StatefulWidget {
