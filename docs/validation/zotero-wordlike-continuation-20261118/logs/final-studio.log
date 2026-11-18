@@ -1,0 +1,23 @@
+Waiting for another flutter command to release the startup lock...
+00:00 +0: loading /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart
+00:00 +0: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart: Studio online catalog GET keeps the cloud client and key
+00:00 +1: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart: Studio local catalog GET stays direct with validated API headers
+00:00 +2: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart: saved-search reads stay on direct loopback with the pinned database
+00:00 +3: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart: saved-search writes and encoded route injection are refused before sending
+00:00 +4: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart: citing execCommand sends only local UTF-8 JSON without redirects
+00:00 +5: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart: citing respond sends only local UTF-8 JSON without redirects
+00:00 +6: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart: citing rejects other origins and protocol routes before sending
+00:00 +7: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart: citing requires POST and rejects cloud or catalog request bodies
+00:00 +8: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart: citing accepts case-insensitive names but no secrets or extra headers
+00:00 +9: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart: citing request bodies are valid JSON with a UTF-8 byte bound
+00:00 +10: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart: citing redirects return once without forwarding document data
+00:00 +11: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart: citing responses reject declared and streamed excess bytes
+00:00 +12: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart: native dialog uses its own longer timeout
+00:00 +13: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart: request timeout can shorten but cannot extend host limit
+00:00 +14: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart: dispose settles pending citing immediately and ignores late response
+00:00 +15: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart: dispose cancels a response body already being read
+00:00 +16: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart: citing network failures never expose document or credential data
+00:00 +17: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart: citing and catalog limits must be positive before client creation
+00:18 +18: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/example/test/widget_test.dart: Review keeps spelling available without the retired AOT action
+00:26 +19: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/example/test/widget_test.dart: studio hosts Word, Excel, and PowerPoint workspaces
+00:33 +20: All tests passed!

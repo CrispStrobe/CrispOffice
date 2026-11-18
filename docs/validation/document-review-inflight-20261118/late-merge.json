@@ -1,0 +1,173 @@
+{
+  "recorded_at_utc": "2026-11-18T18:34:03.950629+00:00",
+  "repository": "CrispStrobe/quds_office_suite",
+  "method": "Actual local git merge --no-ff --no-commit, with deliberate test conflict resolution before committing.",
+  "parents": [
+    "ebd9fce473ee96f4d11785d2edef12c19797b619",
+    "6c993f7406037ba462c6aea32e7e6afeebd28c03"
+  ],
+  "merge_base": "a77d67d04dfe4e1d61bc3dae5c96d5d9d3a4f1f4",
+  "incoming_branch": "codex/zotero-wordlike-20261118",
+  "incoming_pr": 168,
+  "incoming_observation": "late-merge-observation.json",
+  "source_tree_before_final_audit_update": "6b96b39c3b61601a6cd62fd729ce1970b4522d99",
+  "incoming_commits_not_in_first_parent": [
+    {
+      "sha": "6c993f7406037ba462c6aea32e7e6afeebd28c03",
+      "subject": "Record 1,047 passing local Zotero and integrated review regressions [skip ci]"
+    },
+    {
+      "sha": "d82d25cc1c89a9a8923601090796f797bcda763f",
+      "subject": "Qualify inherited proofing language and format integrated regression fixtures [skip ci]"
+    },
+    {
+      "sha": "86b9c03c272baec7277d2f8fb548711a73fe9aee",
+      "subject": "Integrate latest inline comment and proofing controls before final Zotero validation [skip ci]"
+    },
+    {
+      "sha": "1657771b03238390c8339694e42f94e81c24744c",
+      "subject": "Dispose note editor fixtures before live proofing timer checks [skip ci]"
+    },
+    {
+      "sha": "04415170e86180aa3921ebb41cfc38d5a9e7b7fb",
+      "subject": "Keep caret-aware Zotero workspace to one field scan and repair search test timing [skip ci]"
+    },
+    {
+      "sha": "81720ff1cd0004836e52fbccdf909d44ac82411c",
+      "subject": "Add direct Zotero commands, keyboard source selection and atomic unlinking [skip ci]"
+    },
+    {
+      "sha": "3b15d1c39667c73ed4bd88c297c3e9d819201d9b",
+      "subject": "Review connected Zotero source selections across searches [skip ci]"
+    },
+    {
+      "sha": "5e918a8df2f23c0048975005fba8fdea6f3899cc",
+      "subject": "Resolve existing Zotero citations at anchored note carets [skip ci]"
+    },
+    {
+      "sha": "8677c59b8dc295baef7befc5f39726b1bdc41112",
+      "subject": "Reconcile latest document review checkpoint before Zotero continuation [skip ci]"
+    }
+  ],
+  "conflicts": [
+    {
+      "path": "packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+      "resolution": "Retained the saved first-parent fixture, including its deliberate split between deterministic onReviewTap coverage and separate real-pointer geometry coverage, and its single later-viewing-mode test outside the parameter loop. Incoming changes to this file were formatting of the older fixture. Final file is byte-identical to the first parent.",
+      "resolved_blob": "bdd8dd3f80b73b22999618118606150beda1cc31"
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+      "resolution": "Retained all first-parent controller regressions and effective language fallback assertion, added incoming stronger assertions that the run language stays null after saving, the document default remains de-DE, and reopening then changing the document default to fr-FR immediately changes the effective target language.",
+      "resolved_blob": "bce291652880cad7612cc2ddf53ca438937b0699"
+    }
+  ],
+  "automerged_production_files": [
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+    "packages/quds_office_editor/example/lib/suite_workspace.dart"
+  ],
+  "retained_first_parent_implementation": [
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+      "blob": "36a43464890d7308d589d5aab58572fe2b4e6575",
+      "identical_to_first_parent": true
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/word_style_cascade.dart",
+      "blob": "0fc3fc52d5a29e2083dbc4bbd69c3dcda30bff54",
+      "identical_to_first_parent": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_proofing_inheritance_test.dart",
+      "blob": "69104cddd6572e9950aae39d021b5a1ff34f79af",
+      "identical_to_first_parent": true
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/editor_word/render_word_canvas.dart",
+      "blob": "ef397843dad5c5eb1463cb503e7266b861886598",
+      "identical_to_first_parent": true
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_proofing_geometry_test.dart",
+      "blob": "59999818f508e7aceedd498b942797e97e065a68",
+      "identical_to_first_parent": true
+    }
+  ],
+  "changed_paths_before_audit_update": [
+    "docs/validation/zotero-wordlike-continuation-20261118/README.md",
+    "docs/validation/zotero-wordlike-continuation-20261118/checkpoints.json",
+    "docs/validation/zotero-wordlike-continuation-20261118/earlier-source-binding.json",
+    "docs/validation/zotero-wordlike-continuation-20261118/incoming.json",
+    "docs/validation/zotero-wordlike-continuation-20261118/late-integration.json",
+    "docs/validation/zotero-wordlike-continuation-20261118/logs/README.md",
+    "docs/validation/zotero-wordlike-continuation-20261118/logs/accepted-analysis.log",
+    "docs/validation/zotero-wordlike-continuation-20261118/logs/accepted-editor.log.gz",
+    "docs/validation/zotero-wordlike-continuation-20261118/logs/accepted-format.log",
+    "docs/validation/zotero-wordlike-continuation-20261118/logs/accepted-studio-launcher-failure.log",
+    "docs/validation/zotero-wordlike-continuation-20261118/logs/accepted-studio.log",
+    "docs/validation/zotero-wordlike-continuation-20261118/logs/composer-analyze.log",
+    "docs/validation/zotero-wordlike-continuation-20261118/logs/composer-keyboard-tests.log",
+    "docs/validation/zotero-wordlike-continuation-20261118/logs/composer-review-tests.log",
+    "docs/validation/zotero-wordlike-continuation-20261118/logs/compressed-log-index.json",
+    "docs/validation/zotero-wordlike-continuation-20261118/logs/dialog-connected-search-full-file.log",
+    "docs/validation/zotero-wordlike-continuation-20261118/logs/dialog-connected-search-isolated.log",
+    "docs/validation/zotero-wordlike-continuation-20261118/logs/field-scan-regression.log",
+    "docs/validation/zotero-wordlike-continuation-20261118/logs/final-analysis.log",
+    "docs/validation/zotero-wordlike-continuation-20261118/logs/final-editor.log.gz",
+    "docs/validation/zotero-wordlike-continuation-20261118/logs/final-engine-launcher-failure.log",
+    "docs/validation/zotero-wordlike-continuation-20261118/logs/final-engine.log",
+    "docs/validation/zotero-wordlike-continuation-20261118/logs/final-format.log",
+    "docs/validation/zotero-wordlike-continuation-20261118/logs/final-studio.log",
+    "docs/validation/zotero-wordlike-continuation-20261118/logs/flutter-precache.log",
+    "docs/validation/zotero-wordlike-continuation-20261118/logs/flutter-version.log",
+    "docs/validation/zotero-wordlike-continuation-20261118/logs/notes-baseline-binding.json",
+    "docs/validation/zotero-wordlike-continuation-20261118/logs/notes-baseline-pub-get.log",
+    "docs/validation/zotero-wordlike-continuation-20261118/logs/notes-baseline-tests.log.gz",
+    "docs/validation/zotero-wordlike-continuation-20261118/logs/notes-current-analysis.log",
+    "docs/validation/zotero-wordlike-continuation-20261118/logs/notes-current-tests.log",
+    "docs/validation/zotero-wordlike-continuation-20261118/logs/notes-fixture-repair.json",
+    "docs/validation/zotero-wordlike-continuation-20261118/logs/notes-fixture-repair.patch.gz",
+    "docs/validation/zotero-wordlike-continuation-20261118/logs/proofing-inheritance-case.log",
+    "docs/validation/zotero-wordlike-continuation-20261118/logs/proofing-inheritance-file.log",
+    "docs/validation/zotero-wordlike-continuation-20261118/logs/release-analysis.log",
+    "docs/validation/zotero-wordlike-continuation-20261118/logs/release-editor.log",
+    "docs/validation/zotero-wordlike-continuation-20261118/logs/release-format.log",
+    "docs/validation/zotero-wordlike-continuation-20261118/logs/release-studio.log",
+    "docs/validation/zotero-wordlike-continuation-20261118/logs/root-analysis.log",
+    "docs/validation/zotero-wordlike-continuation-20261118/logs/root-document-actions-attempt2.log.gz",
+    "docs/validation/zotero-wordlike-continuation-20261118/logs/root-document-actions-attempt3.log",
+    "docs/validation/zotero-wordlike-continuation-20261118/logs/root-document-actions.log.gz",
+    "docs/validation/zotero-wordlike-continuation-20261118/logs/root-native-direct-actions.log",
+    "docs/validation/zotero-wordlike-continuation-20261118/logs/workspace-pub-get.log",
+    "docs/validation/zotero-wordlike-continuation-20261118/manifest.json",
+    "docs/validation/zotero-wordlike-continuation-20261118/merged-source-binding.json",
+    "docs/validation/zotero-wordlike-continuation-20261118/results.json",
+    "docs/validation/zotero-wordlike-continuation-20261118/run_local.py",
+    "docs/validation/zotero-wordlike-continuation-20261118/runtime.json",
+    "docs/validation/zotero-wordlike-continuation-20261118/source-binding.json",
+    "docs/validation/zotero-wordlike-continuation-20261118/workspace-pubspec.lock.txt",
+    "docs/zotero-support.md",
+    "packages/quds_office_editor/example/lib/suite_workspace.dart",
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+    "packages/quds_office_editor/lib/src/embed/word_zotero_composer.dart",
+    "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart",
+    "packages/quds_office_editor/test/word_note_numbering_test.dart",
+    "packages/quds_office_editor/test/word_notes_editing_test.dart",
+    "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart",
+    "packages/quds_office_editor/test/word_zotero_composer_test.dart",
+    "packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "packages/quds_office_editor/test/word_zotero_document_actions_test.dart",
+    "packages/quds_office_editor/test/word_zotero_field_at_caret_test.dart",
+    "packages/quds_office_editor/test/word_zotero_unlink_all_test.dart",
+    "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart",
+    "packages/quds_office_engine/test/word_zotero_caret_test.dart"
+  ],
+  "validation": {
+    "resolved_test_file_formatter": "Formatted 2 files; 0 changes.",
+    "staged_diff_check": "git diff --cached --check passed.",
+    "unresolved_conflicts": [],
+    "final_integrated_runtime_gate": "Pending the parent-run gate after remote publication; earlier logs remain historical evidence only."
+  },
+  "publication_intent": "Publish the exact completed local merge tree with the two parents above. The local merge SHA may differ from the Git Database API commit; ancestry evidence is bound to these published parents and the actual merged source tree.",
+  "github_actions": "No Actions or commit-status endpoints queried; no CI waiting."
+}

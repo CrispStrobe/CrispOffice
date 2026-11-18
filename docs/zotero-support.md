@@ -14,6 +14,19 @@ CrispCloud, and choose **Insert → Zotero → Document**. Native desktop hosts 
 They need the local transport and a running Zotero application, without an API
 key. Zotero's own windows may open behind the office application.
 
+In Quds Studio, **Insert → References** also offers **Add/Edit citation**,
+**Bibliography**, **Refresh citations**, and **Citation style** on native desktop
+platforms. These open the Document workspace and immediately start the selected
+Zotero command. **Add/Edit citation** edits the citation at the body caret, or
+one enclosing the selection within a paragraph; otherwise it uses the insertion
+point. Opening **Zotero** normally also selects Document when a citation or
+bibliography is at the caret, with a direct **Edit current citation…** action
+for offline editing and an **Edit current reference in Zotero…** action when
+desktop transport is available. A caret immediately after a field belongs to
+the following text. For citations in notes, use the Document field list's
+**Edit in Zotero…** action; the separate Notes text editor does not dispatch
+these ribbon commands from its own caret.
+
 | Control | Result |
 | --- | --- |
 | **Citation in Zotero…** | Opens Zotero's native picker at the document caret; edit locators, prefixes, suffixes and citation items there |
@@ -305,6 +318,17 @@ With a connected library, **Search Zotero…** also searches Zotero directly
 submit Search. Results are fetched in pages of 25; **Load more** keeps the
 submitted query, and selections survive new searches and page changes. Open
 stored details before adding a result. Typing alone makes no network request.
+The search box receives keyboard focus when the chooser opens. **Review selected**
+shows every staged search selection, including sources hidden on other pages or
+by a later search. Reorder, inspect or remove these sources, then choose
+**Apply selection**; **Cancel** leaves the staged selection unchanged. Removing
+a hidden source frees capacity for another result. Use **Down** from the search
+box to focus the first result, **Up/Down** to move between results, and **Enter**
+or **Space** to toggle a source. **Up** from the first result returns to the
+search box. Keyboard movement scrolls results into view, including long result
+lists and enlarged text. This review changes only the chooser's selection;
+adding the selected sources and the citation editor's final apply remain
+separate steps.
 Only citable results with CSL metadata can be selected; Zotero items that do
 not supply CSL data are excluded. Unsynced desktop items without a durable
 Zotero URI enter as standalone embedded references. Without a connection,
@@ -327,6 +351,29 @@ the original options without other changes preserves it. For full
 CSL numbering, disambiguation and bibliography updates, use **Edit in Zotero…**
 and the native refresh tools. A connected single-source preview always uses
 the current source after edits; preview errors keep the citation draft.
+
+### Convert all citations to ordinary text
+
+Choose **Document → Unlink all citations…** to convert the document's linked
+citations and bibliography fields together. The confirmation shows the number
+of each kind and explains that Zotero can no longer update the converted text.
+Keep a linked copy if you will need later citation updates. **Cancel** keeps
+the fields and does not add undo history.
+
+The complete conversion is one undoable change. It retains the visible text,
+character and paragraph formatting, notes, and reusable document style
+preferences, including multi-paragraph bibliographies. It covers fields in
+modeled document stories, rather than only the visible page. If a locked,
+nested, malformed or unsupported Zotero field prevents a complete conversion,
+the operation refuses before unlinking any fields. Protected content and
+unresolved tracked changes are also checked. Zotero instructions retained in
+unmodeled native content prevent a partial conversion.
+
+Read-only documents and active Track changes disable this action. Changing the
+document or insertion point while the confirmation is open invalidates the
+confirmation. Undo restores all field links together; after closing and
+reopening the unlinked file, it contains ordinary text. The existing per-field
+**Convert to text (undoable)** action remains available for a single reference.
 
 ### Search imported references and copy stored data
 
@@ -694,7 +741,14 @@ The engine exports `ZoteroClient`, `ZoteroLibrary`, `ZoteroItem`, `ZoteroSavedSe
 `ZoteroCitation`, `ZoteroCitationItem`, and `WordZotero`. The editor adds
 `WordEditorController.insertZoteroCitation`, `updateZoteroCitation`,
 `refreshZoteroCitations`, `insertZoteroBibliography`,
-`updateZoteroBibliography`, and `unlinkZoteroField`. Live field handles must be
+`updateZoteroBibliography`, `unlinkZoteroField`, and `unlinkZoteroFields`.
+The latter returns the converted field count and performs an atomic,
+document-wide conversion. `zoteroFieldAtCaret` returns a fresh field handle
+for the body caret or a selection confined to one paragraph. Hosts can pass
+`initialTab: WordZoteroTab.document` to `showWordZoteroDialog`, or an explicit
+`initialCommand: ZoteroCitingCommand.addEditCitation` (and the other native
+commands) to begin that command immediately with their local transport.
+Live field handles must be
 re-inspected after a mutation or history operation.
 
 For native transactions, use `ZoteroCitingClient`, `ZoteroCitingCancellation`,

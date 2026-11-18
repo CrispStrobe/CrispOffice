@@ -7095,6 +7095,44 @@ class WordEditorController extends OfficeController {
   /// Reinspect after mutations or undo/redo: field handles are short-lived.
   List<WmlZoteroField> get zoteroFields => WordZotero.fields(document);
 
+  /// A fresh field handle at the body caret or enclosing a selection in one
+  /// paragraph. A collapsed caret at a field's end belongs to the following
+  /// text. Other editor stories retain their explicit field-list actions.
+  WmlZoteroField? get zoteroFieldAtCaret => findZoteroFieldAtCaret();
+
+  /// Resolves the current body caret using a fresh field inventory when the
+  /// caller already inspected this document during the same synchronous build.
+  /// Omit [fields] to inspect the document here. Do not retain supplied handles
+  /// across document changes or undo/redo.
+  WmlZoteroField? findZoteroFieldAtCaret({Iterable<WmlZoteroField>? fields}) {
+    if (_disposed ||
+        isEditingHeaderFooter ||
+        isEditingComment ||
+        editingFrame ||
+        selectedFrame != null) {
+      return null;
+    }
+    final paragraphs = document.paragraphs.toList();
+    final range = caret.normalizedRange;
+    if (range.startPara != range.endPara ||
+        range.startPara < 0 ||
+        range.startPara >= paragraphs.length) {
+      return null;
+    }
+    final paragraph = paragraphs[range.startPara];
+    if (range.startIdx < 0 || range.endIdx > paragraph.text.length) return null;
+    return (fields ?? zoteroFields).where((field) {
+      final index = field.paragraphs.indexOf(paragraph);
+      if (index < 0) return false;
+      final start = index == 0 ? field.start : 0;
+      final end = index == field.paragraphs.length - 1
+          ? field.end
+          : paragraph.text.length;
+      return range.startIdx >= start &&
+          (caret.isCollapsed ? range.startIdx < end : range.endIdx <= end);
+    }).firstOrNull;
+  }
+
   /// Starts a detached Zotero desktop transaction tied to this exact editing
   /// target. The host drives its protocol and calls [WordZoteroTransaction.apply]
   /// only after completion and any formatting review.
@@ -7321,6 +7359,214 @@ class WordEditorController extends OfficeController {
     _commitZoteroChange(field.paragraphs, () => WordZotero.unlink(field));
   }
 
+  /// Converts all modeled Zotero citations and bibliographies to ordinary
+  /// text in one undo step. Cached character/paragraph formatting, notes,
+  /// other fields and document style preferences stay intact. A single unsafe
+  /// field prevents the entire operation; no partial conversion is committed.
+  /// Returns the number of converted fields, or zero for an uneditable or
+  /// citation-free document.
+  int unlinkZoteroFields() {
+    if (_disposed || !config.allowsMutation) return 0;
+    _assertNoUnmodeledZoteroFields();
+    final fields = zoteroFields;
+    if (fields.isEmpty) return 0;
+    _assertZoteroTrackingMode();
+    if (document.restrictEditing) {
+      throw UnsupportedError(
+        'Use an editable document before unlinking citations.',
+      );
+    }
+    if (fields.any(
+      (field) =>
+          field.locked ||
+          field.nested ||
+          field.opaqueMetadata ||
+          !field.isValid,
+    )) {
+      throw UnsupportedError(
+        'Resolve locked, nested, malformed or unsupported Zotero fields before unlinking citations. No fields were changed.',
+      );
+    }
+    final paragraphs = Set<WmlParagraph>.identity()
+      ..addAll(fields.expand((field) => field.paragraphs));
+    for (final paragraph in paragraphs) {
+      WordContentControls.assertCanEdit(paragraph, 0, paragraph.text.length);
+    }
+    _commitZoteroChange(paragraphs.toList(), () {
+      for (final field in fields.reversed) {
+        WordZotero.unlink(field);
+      }
+    }, commitNoteDrafts: true);
+    return fields.length;
+  }
+
+  void _assertNoUnmodeledZoteroFields() {
+    final opaque = <WmlOpaqueBlock>[];
+    _assertCompleteZoteroFieldPackets(document.paragraphs);
+    void inspectParagraph(WmlParagraph paragraph) {
+      opaque.addAll(
+        paragraph.inlines.whereType<WmlOpaqueInline>().map(
+          (inline) => inline.content,
+        ),
+      );
+    }
+
+    void inspectBlocks(Iterable<WmlBlock> blocks) {
+      for (final block in WordTree.descendants(blocks)) {
+        if (block is WmlOpaqueBlock) opaque.add(block);
+        if (block is WmlParagraph) inspectParagraph(block);
+      }
+    }
+
+    for (final section in document.sections) {
+      inspectBlocks(section.blocks);
+      final stories = <String, List<WmlParagraph>>{
+        'header': section.header,
+        'footer': section.footer,
+        'firstHeader': section.firstHeader,
+        'firstFooter': section.firstFooter,
+        'evenHeader': section.evenHeader,
+        'evenFooter': section.evenFooter,
+      };
+      for (final entry in stories.entries) {
+        _assertCompleteZoteroFieldPackets(entry.value);
+        for (final paragraph in entry.value) {
+          inspectParagraph(paragraph);
+        }
+        // A modeled replacement supersedes the preserved original story.
+        final preserved = section.preservedStories[entry.key];
+        if (entry.value.isEmpty && preserved != null) opaque.add(preserved);
+      }
+    }
+    for (final note in [...document.footnotes, ...document.endnotes]) {
+      _assertCompleteZoteroFieldPackets(note.allParagraphs);
+      inspectBlocks(note.blocks);
+    }
+    for (final comment in document.comments) {
+      _assertCompleteZoteroFieldPackets(comment.paragraphs);
+      for (final paragraph in comment.paragraphs) {
+        inspectParagraph(paragraph);
+      }
+    }
+    if (opaque.any(_opaqueContainsZoteroField)) {
+      throw UnsupportedError(
+        'This document contains Zotero fields in preserved content that cannot be unlinked here. Resolve those fields in the original word processor first. No fields were changed.',
+      );
+    }
+  }
+
+  static void _assertCompleteZoteroFieldPackets(
+    Iterable<WmlParagraph> paragraphs,
+  ) {
+    final open = <({StringBuffer code, bool separated})>[];
+    final detached = StringBuffer();
+    void rejectZotero(StringBuffer code) {
+      if (WordZotero.kindOfInstruction(code.toString()) != null) {
+        throw UnsupportedError(
+          'Resolve incomplete Zotero field boundaries before unlinking citations. No fields were changed.',
+        );
+      }
+    }
+
+    void flushDetached() {
+      rejectZotero(detached);
+      detached.clear();
+    }
+
+    // Field enumeration intentionally exposes only complete complex packets.
+    // Check incomplete or detached instructions separately, otherwise a batch
+    // could unlink the valid fields while leaving an unreported citation.
+    for (final paragraph in paragraphs) {
+      for (final inline in paragraph.inlines) {
+        if (inline is! WmlFieldBoundary) {
+          flushDetached();
+          continue;
+        }
+        if (inline.kind != WmlFieldBoundaryKind.instruction) flushDetached();
+        switch (inline.kind) {
+          case WmlFieldBoundaryKind.begin:
+            open.add((code: StringBuffer(), separated: false));
+          case WmlFieldBoundaryKind.instruction:
+            (open.isEmpty ? detached : open.last.code).write(inline.text);
+          case WmlFieldBoundaryKind.separate:
+            if (open.isNotEmpty) {
+              final field = open.removeLast();
+              open.add((code: field.code, separated: true));
+            }
+          case WmlFieldBoundaryKind.end:
+            if (open.isNotEmpty) {
+              final field = open.removeLast();
+              if (!field.separated) rejectZotero(field.code);
+            }
+        }
+      }
+    }
+    flushDetached();
+    for (final field in open) {
+      rejectZotero(field.code);
+    }
+  }
+
+  static bool _opaqueContainsZoteroField(WmlOpaqueBlock content) {
+    // Inspect native field instructions, never visible prose or unrelated
+    // fields that merely quote the word Zotero. Complex instructions can be
+    // split across several runs and may contain nested field packets.
+    final root = XmlDocument.parse(content.xml).root;
+    if (root == null) return false;
+    final instructions = <StringBuffer>[];
+    final detached = StringBuffer();
+    var found = false;
+    bool isWord(XmlElement element) =>
+        element.namespaceUri == OfficeNamespaces.w ||
+        (element.namespaceUri.isEmpty && element.prefix == 'w');
+    String? attribute(XmlElement element, String name) => element.attributes
+        .where(
+          (value) =>
+              value.localName == name &&
+              (value.namespaceUri == OfficeNamespaces.w ||
+                  (value.namespaceUri.isEmpty && value.prefix == 'w')),
+        )
+        .firstOrNull
+        ?.value;
+    void finish(StringBuffer instruction) {
+      if (WordZotero.kindOfInstruction(instruction.toString()) != null) {
+        found = true;
+      }
+    }
+
+    void visit(XmlElement element) {
+      if (isWord(element)) {
+        if (element.localName == 'fldSimple' &&
+            WordZotero.kindOfInstruction(attribute(element, 'instr')) != null) {
+          found = true;
+        } else if (element.localName == 'fldChar') {
+          switch (attribute(element, 'fldCharType')) {
+            case 'begin':
+              instructions.add(StringBuffer());
+            case 'separate':
+              if (instructions.isNotEmpty) finish(instructions.last);
+            case 'end':
+              if (instructions.isNotEmpty) finish(instructions.removeLast());
+          }
+        } else if (element.localName == 'instrText') {
+          (instructions.isEmpty ? detached : instructions.last).write(
+            element.text,
+          );
+        }
+      }
+      for (final child in element.childElements) {
+        visit(child);
+      }
+    }
+
+    visit(root);
+    finish(detached);
+    for (final instruction in instructions) {
+      finish(instruction);
+    }
+    return found;
+  }
+
   void _assertZoteroFieldOwner(WmlZoteroField field) {
     if (!zoteroFields.any(
       (current) =>
@@ -7336,7 +7582,11 @@ class WordEditorController extends OfficeController {
     }
   }
 
-  void _commitZoteroChange(List<WmlParagraph> paragraphs, VoidCallback mutate) {
+  void _commitZoteroChange(
+    List<WmlParagraph> paragraphs,
+    VoidCallback mutate, {
+    bool commitNoteDrafts = false,
+  }) {
     _assertZoteroTrackingMode();
     final touched = Set<WmlParagraph>.identity()..addAll(paragraphs);
     if (document.revisions.any(
@@ -7394,6 +7644,11 @@ class WordEditorController extends OfficeController {
     } finally {
       restore(before);
     }
+    // Finish existing note drafts only after the complete operation has been
+    // staged successfully. A failed preflight must preserve pending history,
+    // while undo of a successful bulk conversion must restore its field links
+    // before undoing an older note edit.
+    if (commitNoteDrafts) commitNoteEdits();
     commands.commit(
       _CallbackCommand(
         executeFn: () => restore(after),

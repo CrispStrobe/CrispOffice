@@ -318,11 +318,14 @@ void main() {
           return _json([
             _apiItem('IJKL9012', 'Companion study'),
             // Standalone notes are never proposed for citations.
-            {..._apiItem('NOTE0001', 'A note'), 'data': {
-              'key': 'NOTE0001',
-              'itemType': 'note',
-              'title': 'A note',
-            }},
+            {
+              ..._apiItem('NOTE0001', 'A note'),
+              'data': {
+                'key': 'NOTE0001',
+                'itemType': 'note',
+                'title': 'A note',
+              },
+            },
           ]);
         },
       );
@@ -346,16 +349,26 @@ void main() {
         'companion',
       );
       expect(requests, isEmpty);
-      await tester.tap(
-        find.byKey(const ValueKey('zotero-connected-source-search')),
+      // Typing schedules the empty-query button's enabled-state rebuild.
+      // Wait for that frame before attempting an explicit search.
+      await tester.pump();
+      final submitSearch = find.byKey(
+        const ValueKey('zotero-connected-source-search'),
       );
+      expect(tester.widget<FilledButton>(submitSearch).onPressed, isNotNull);
+      await tester.ensureVisible(submitSearch);
+      await tester.pump();
+      expect(submitSearch.hitTestable(), findsOneWidget);
+      await tester.tap(submitSearch);
       await tester.pumpAndSettle();
       expect(requests, hasLength(1));
       expect(find.text('Companion study'), findsOneWidget);
       expect(find.text('A note'), findsNothing);
       await tester.tap(find.byKey(const ValueKey('zotero-connected-source-0')));
       await tester.pumpAndSettle();
-      await tester.tap(find.byKey(const ValueKey('zotero-connected-source-add')));
+      await tester.tap(
+        find.byKey(const ValueKey('zotero-connected-source-add')),
+      );
       await tester.pumpAndSettle();
       await tester.tap(find.byKey(const ValueKey('zotero-composer-apply')));
       await tester.pumpAndSettle();
