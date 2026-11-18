@@ -667,15 +667,151 @@
           "sha": "e19577525c6edabd0c5631cbcfea5e9c00ca67ea"
         }
       ]
+    },
+    {
+      "sha": "6c92d138dda9a26f9be4c7e665651aa238ab1b69",
+      "parent": "eedf2aee03964329a2e4c7ee3c771d43b5df4991",
+      "tree": "15ea81b09ba4daf7710ec287b98e7f1431a37e79",
+      "files": [
+        {
+          "path": "docs/validation/document-review-inflight-20261118/README.md",
+          "sha": "501df73d1983b4d24dd42cc139afb1628ae0626b"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/accepted/checks/analysis.log",
+          "sha": "5c7f20407897fdcbc3798db4b2b6726fd911acf3"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/accepted/checks/editor-cases.json",
+          "sha": "bb74c36ab187b8cf1909db9893926ef379ee9990"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/accepted/checks/editor-errors.json",
+          "sha": "fe51488c7066f6687ef680d6bfaa4f7768ef205c"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/accepted/checks/editor.jsonl",
+          "sha": "0ff7a76c93a04f1c34e7efaa3a2bdb27a288dec8"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/accepted/checks/editor.jsonl.gz",
+          "sha": "8cc447858bb4135f556f4b2445acbde7b273cb10"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/accepted/checks/engine-cases.json",
+          "sha": "19a9fdb57514e03dc8ff8f2bcd0fda60ba14615a"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/accepted/checks/engine-errors.json",
+          "sha": "fe51488c7066f6687ef680d6bfaa4f7768ef205c"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/accepted/checks/engine.jsonl",
+          "sha": "5522746bfae7d4fbee0e27a068d346d95f0da909"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/accepted/checks/engine.jsonl.gz",
+          "sha": "ac8da059705223c4ff71e2e28587bf77de5313ab"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/accepted/checks/format.log",
+          "sha": "09f78c9d02fecce69eaa701b0d5a532aceaa86b5"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/accepted/checks/studio-cases.json",
+          "sha": "5e19e238c5390f5398fa18bfbf9780c3805a3191"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/accepted/checks/studio-errors.json",
+          "sha": "fe51488c7066f6687ef680d6bfaa4f7768ef205c"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/accepted/checks/studio.jsonl",
+          "sha": "dc7874181b73945b6d3134144ac664eed08ff897"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/accepted/checks/studio.jsonl.gz",
+          "sha": "ad266f8f2e4292115b4b6a5c0aedfdfb00dc58ed"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/accepted/checks/whitespace.log",
+          "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/accepted/environment-after.json",
+          "sha": "72269ad36f57091e247607e07ad1ec89d1e6e85b"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/accepted/environment-before.json",
+          "sha": "72269ad36f57091e247607e07ad1ec89d1e6e85b"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/accepted/files.json",
+          "sha": "4fd1ea239b9520e750f3abaca4c9861780656604"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/accepted/source-after.json",
+          "sha": "4abfa8393ba02fcad36ef4d57525a23c3d64bb97"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/accepted/source-before.json",
+          "sha": "4abfa8393ba02fcad36ef4d57525a23c3d64bb97"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/accepted/verification.json",
+          "sha": "c6fc09aaae3b45299c25c2532097a6643acd0c17"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/accepted/visuals/checks/comments.jsonl",
+          "sha": "f1e12b8738e34f766f393097c7fac9b6d085a052"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/accepted/visuals/checks/comments.jsonl.gz",
+          "sha": "7d0eccba53ec14c98d819fe0fb0355a0aee0f507"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/accepted/visuals/checks/text-options.jsonl",
+          "sha": "ea72b35048014a9c30f2c291ac1ff37d7977dd03"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/accepted/visuals/checks/text-options.jsonl.gz",
+          "sha": "00606fea4844feb1d9abac86a3dcb36651cd97ce"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/accepted/visuals/preflight.json",
+          "sha": "db786babc9a36bc53ab3d21466bd4805e6daa885"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/accepted/visuals/verification.json",
+          "sha": "4ea27732adc1a062e0d40be8869704756514be26"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/final-source-binding.json",
+          "sha": "0ac32aa01473be0c9d0d0cef0a38e5699b4f36c2"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/publication.json",
+          "sha": "fcb1010a9781320a7ab9352f1e3e6f04f63f3cbc"
+        },
+        {
+          "path": "docs/validation/document-review-inflight-20261118/screenshots/comments-context-suggestions-desktop.png",
+          "sha": "d84d1dfe5deb008efd24a86085a1d9938e60328e"
+        }
+      ]
     }
   ],
-  "recorded_at_utc": "2026-11-18T18:48:39.230Z",
-  "last_recorded_checkpoint": "eedf2aee03964329a2e4c7ee3c771d43b5df4991",
+  "recorded_at_utc": "2026-11-18T18:53:10.461Z",
+  "last_recorded_checkpoint": "6c92d138dda9a26f9be4c7e665651aa238ab1b69",
   "accepted_gate": {
     "path": "accepted/verification.json",
     "sha256": "69e1eeb0f1397b7939511015fa27ad5464d73ec4d7157160ae79b04c067dffc6",
     "passed": 633,
     "failed": 0,
     "skipped": 0
-  }
+  },
+  "source_binding": {
+    "path": "final-source-binding.json",
+    "verified_published_commit": "6c92d138dda9a26f9be4c7e665651aa238ab1b69"
+  },
+  "receipt_note": "This receipt records completed updates through the evidence checkpoint. A subsequent metadata-only commit stores the receipt; its own identity is available from Git history."
 }
