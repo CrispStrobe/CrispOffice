@@ -1,0 +1,90 @@
+{
+  "base_commit": "729ca77a4f51f8c096f974a645b37024711ad6a8",
+  "files": {
+    "packages/quds_proofing_spacy/lib/quds_proofing_spacy.dart": {
+      "bytes": 200,
+      "sha256": "d2ec35f73260fc3bee0d86726aecb9478665355258f0722e77055f09b5e8eb19"
+    },
+    "packages/quds_proofing_spacy/lib/quds_proofing_spacy_grammar.dart": {
+      "bytes": 273,
+      "sha256": "7fda24553f7af314f7e0d3af862c1460c73c0cd8726b4b86021da1044238fa9d"
+    },
+    "packages/quds_proofing_spacy/lib/quds_proofing_spacy_native.dart": {
+      "bytes": 221,
+      "sha256": "b4d68e940536d8272680f21057f1a7695eb78d8a02c338320b2376c6a159a002"
+    },
+    "packages/quds_proofing_spacy/lib/src/analysis.dart": {
+      "bytes": 9787,
+      "sha256": "65d0577b9ff41e498df5a8606b85a6058623a3bc5591e1efb05a74b5b97c0464"
+    },
+    "packages/quds_proofing_spacy/lib/src/backend.dart": {
+      "bytes": 2667,
+      "sha256": "4b3cf6561ec8811d8a85a48a7025efda7714ad0a088add42fc065a738993a732"
+    },
+    "packages/quds_proofing_spacy/lib/src/bundle.dart": {
+      "bytes": 1787,
+      "sha256": "970ec6672efada2bcbacd7223804b8cf8d504ec647aec0c289ee43e5c1f802cb"
+    },
+    "packages/quds_proofing_spacy/lib/src/grammar_planner.dart": {
+      "bytes": 20136,
+      "sha256": "898ff9f67a4acc20e825968f422c9fd1ae1def654ce63ef2942ba0e0cf317314"
+    },
+    "packages/quds_proofing_spacy/lib/src/grammar_provider.dart": {
+      "bytes": 6885,
+      "sha256": "892f2a06a7964834dd9c4752f7250ca25da72b5c6fb698b5f266bcb5542eddc3"
+    },
+    "packages/quds_proofing_spacy/lib/src/native_backend.dart": {
+      "bytes": 17147,
+      "sha256": "fe15180d48d19b0e79874615708106a88d6f948a026eaef61d26f39961ce9f1b"
+    },
+    "packages/quds_proofing_spacy/lib/src/native_backend_unsupported.dart": {
+      "bytes": 601,
+      "sha256": "ff38d1a0fd5fa93c2157649fdd064dd73830047497359ed2d51d7a07ff2814ae"
+    },
+    "packages/quds_proofing_spacy/lib/src/source_text.dart": {
+      "bytes": 2236,
+      "sha256": "fd2f2fdda8e608d32bf3b4a05c10b8777a106495cf97cbfafd3b05dd5e559330"
+    },
+    "packages/quds_proofing_spacy/lib/src/transport.dart": {
+      "bytes": 1689,
+      "sha256": "78b38b82fcec385d0d2d96d5861f0e2b0333b8af58bc542dd6d5cc23677f6305"
+    },
+    "packages/quds_proofing_spacy/lib/src/worker_native.dart": {
+      "bytes": 12233,
+      "sha256": "4d63dcc14292025493cbab07b839a26fefb66c6e5d4a2558c4fd01e74d46da80"
+    },
+    "packages/quds_proofing_spacy/lib/src/worker_unsupported.dart": {
+      "bytes": 447,
+      "sha256": "074c3ad98e4a873ec5d55535b3c1a404da4eb557068437a3b4eb9a622d1e3078"
+    },
+    "packages/quds_proofing_spacy/tool/consume_distribution.dart": {
+      "bytes": 23441,
+      "sha256": "2c950b6a5102fc97b59f5ee02355ce662d3d100b409949df330bdff5c25d4ab4"
+    }
+  },
+  "native_and_model_modified": false,
+  "package_configuration": {
+    "location": "external task-owned configuration; absolute local paths omitted",
+    "packages": [
+      {
+        "languageVersion": "3.4",
+        "name": "crypto"
+      },
+      {
+        "languageVersion": "3.7",
+        "name": "ffi"
+      },
+      {
+        "languageVersion": "3.5",
+        "name": "typed_data"
+      },
+      {
+        "languageVersion": "3.12",
+        "name": "quds_proofing_spacy"
+      }
+    ],
+    "sha256": "4e7312c5867198a9bf0251a1c30edc520d80a24744737c83e868b74e75fedcc1"
+  },
+  "schema": "quds.spacy.w7.dart_control_sources.v1",
+  "sdk_version": "Dart SDK version: 3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\""
+}

@@ -1,5 +1,5 @@
-// Source-only W7 developer checkpoint: not compiled or executed yet.
-// No shipped application/default changes. Publish and locally validate before native use.
+// W7 developer-only installed-package operational consumer.
+// No shipped application/default changes. Save locally checked source before native use.
 import 'dart:convert';
 import 'dart:ffi';
 import 'dart:io';
@@ -14,9 +14,17 @@ const librarySha =
     'ea89842ebf22c08508aff1cfbf18d78a107118af320523009616ff62b6e42977';
 const prefix = 'prefix🙂: ';
 const timeout = Duration(seconds: 60);
+const forbiddenLoaderEnvironment = [
+  'LD_PRELOAD', 'LD_LIBRARY_PATH', 'LD_AUDIT', 'LD_ORIGIN_PATH',
+];
 
 void require(bool condition, String message) {
   if (!condition) throw StateError(message);
+}
+
+void checkLoaderEnvironment(Map<String, String> environment) {
+  require(!forbiddenLoaderEnvironment.any(environment.containsKey),
+      'Loader environment overrides are not admitted, including empty values.');
 }
 
 Map<String, Object?> readMap(Object? value, String label) {
@@ -146,7 +154,7 @@ Future<Map<String, Object?>> cpuPreflight(Map<String, Object?> protocol) async {
 Future<List<Map<String, Object?>>> dependencyPreflight(
     String library, Map<String, Object?> manifest) async {
   // Developer harness only: ldd reads the already-authenticated candidate.
-  final result = await Process.run('ldd', [library]).timeout(timeout);
+  final result = await Process.run('/usr/bin/ldd', [library]).timeout(timeout);
   require(result.exitCode == 0, 'ldd dependency resolution failed.');
   final resolved = <String, String>{};
   for (final line in readString(result.stdout, 'ldd stdout').split('\n')) {
@@ -273,7 +281,20 @@ void selfTest() {
   require(input.startOffset == 10 && input.text.length == 4 &&
       utf8.encode(input.text).length == 6 && input.text.runes.length == 3,
       'UTF-16/source control failed.');
-  print(jsonEncode(<String, Object?>{'status': 'passed', 'model_free_controls': 3,
+  checkLoaderEnvironment(const {'PATH': '/unused', 'CRISPEMBED_SPACY': '1'});
+  var rejectedLoaderOverrides = 0;
+  for (final name in forbiddenLoaderEnvironment) {
+    for (final value in ['', 'test-override']) {
+      var rejected = false;
+      try { checkLoaderEnvironment({name: value}); }
+      on StateError { rejected = true; }
+      require(rejected, 'A loader override was admitted: $name.');
+      rejectedLoaderOverrides++;
+    }
+  }
+  print(jsonEncode(<String, Object?>{'status': 'passed', 'model_free_controls': 12,
+    'loader_environment_clean_cases': 1,
+    'loader_environment_rejection_cases': rejectedLoaderOverrides,
     'native_library_loaded': false, 'native_inference_executions': 0}));
 }
 
@@ -306,6 +327,8 @@ Future<void> main(List<String> args) async {
   SpacyTransport? worker;
   try {
     await save(output, report);
+    checkLoaderEnvironment(Platform.environment);
+    report['loader_overrides_absent'] = true;
     await directAncestors(options['--archive']!);
     await authenticate(File(options['--archive']!), options['--sha256']!, 16 * 1024 * 1024);
     final manifest = await installed(options['--installed']!, options['--sha256']!);
