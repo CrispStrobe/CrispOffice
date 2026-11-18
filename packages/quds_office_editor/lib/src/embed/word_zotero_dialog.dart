@@ -779,6 +779,9 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
       ]))
         reference.item,
     ];
+    final searchClient = _client;
+    final searchLibrary = _session.library;
+    final offlineSearchIds = <String, String>{};
     final result = await _showReview<ZoteroCitation>(
       (_) => ZoteroCitationComposer(
         items: items,
@@ -786,6 +789,53 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
         existing: field?.citation,
         existingCache: field?.cachedText,
         style: _session.style,
+        searchZoteroSources: searchClient == null || searchLibrary == null
+            ? null
+            : (query, start) async {
+                // Search the connected library, not just the currently viewed
+                // collection. Only usable citable CSL records enter a draft.
+                final page = await searchClient.items(
+                  searchLibrary,
+                  query: query,
+                  start: start,
+                  limit: 25,
+                );
+                final sources = <ZoteroCitationItem>[];
+                for (final item in page.items) {
+                  if (!item.isCitable || item.cslJson == null) continue;
+                  final uri = item.citationUri;
+                  if (uri != null) {
+                    sources.add(
+                      ZoteroCitationItem.fromCsl(
+                        itemData: item.cslJson!,
+                        uris: [uri.toString()],
+                      ),
+                    );
+                  } else {
+                    // Unsynced local sources cannot be identified by their
+                    // API route; retain a fresh standalone CSL snapshot.
+                    final id = offlineSearchIds.putIfAbsent(item.key, () {
+                      final nonce = Random.secure().nextInt(1 << 30);
+                      final time = DateTime.now().microsecondsSinceEpoch;
+                      return 'quds-offline-$time-$nonce';
+                    });
+                    sources.add(
+                      ZoteroCitationItem.fromJson({
+                        'id': id,
+                        'uris': <String>[],
+                        'itemData': {...item.cslJson!, 'id': id},
+                      }),
+                    );
+                  }
+                }
+                return ZoteroPage<ZoteroCitationItem>(
+                  items: sources,
+                  start: page.start,
+                  limit: page.limit,
+                  totalResults: page.totalResults,
+                  nextStart: page.nextStart,
+                );
+              },
         loadStyleSnapshot: _client == null
             ? null
             : (source) async {

@@ -93,6 +93,7 @@ Future<_Result> _open(
   ZoteroCitation? existing,
   String? existingCache,
   Future<String> Function(ZoteroCitationItem)? preview,
+  Future<ZoteroPage<ZoteroCitationItem>> Function(String, int)? searchZotero,
   Size size = const Size(1200, 1000),
   double scale = 1,
   TextDirection direction = TextDirection.ltr,
@@ -122,6 +123,7 @@ Future<_Result> _open(
                   existing: existing,
                   existingCache: existingCache,
                   loadStyleSnapshot: preview,
+                  searchZoteroSources: searchZotero,
                 ),
               );
               result.returned = true;
@@ -145,6 +147,165 @@ Future<void> _add(WidgetTester tester, List<int> indexes) async {
 }
 
 void main() {
+  testWidgets(
+    'connected Zotero search is explicit, paged and staged with fresh options',
+    (tester) async {
+      final calls = <(String, int)>[];
+      final first = _source('First remote', uris: [_firstUri], options: {
+        'locator': '77',
+        'prefix': 'old',
+      });
+      final second = _source('Second remote', uris: [_secondUri]);
+      final result = await _open(
+        tester,
+        items: [_source('Current')],
+        searchZotero: (query, start) async {
+          calls.add((query, start));
+          return ZoteroPage<ZoteroCitationItem>(
+            items: start == 0 ? [first] : [second],
+            start: start,
+            limit: 25,
+            nextStart: start == 0 ? 25 : null,
+          );
+        },
+      );
+      await _tap(tester, _key('zotero-composer-search-zotero'));
+      await _enter(tester, 'zotero-connected-source-query', 'Hassan');
+      expect(calls, isEmpty, reason: 'Typing must not contact the library');
+      await _tap(tester, _key('zotero-connected-source-search'));
+      expect(calls, [('Hassan', 0)]);
+      await _tap(tester, _key('zotero-connected-source-0'));
+      await _tap(tester, _key('zotero-connected-source-more'));
+      expect(calls, [('Hassan', 0), ('Hassan', 25)]);
+      await _tap(tester, _key('zotero-connected-source-1'));
+      await _tap(tester, _key('zotero-connected-source-add'));
+      expect(find.text('3 source(s)'), findsOneWidget);
+      await _tap(tester, _key('zotero-composer-apply'));
+
+      final items = result.citation!.items;
+      expect(items.map((item) => item.itemData!['title']), [
+        'Current',
+        'First remote',
+        'Second remote',
+      ]);
+      expect(items[1].uris, first.uris);
+      expect(items[1].locator, isEmpty);
+      expect(items[1].prefix, isEmpty);
+      expect(first.locator, '77');
+    },
+  );
+
+  testWidgets(
+    'failed connected search and cancellation leave the citation untouched',
+    (tester) async {
+      final original = _source('Original');
+      final result = await _open(
+        tester,
+        items: [original],
+        searchZotero: (query, start) async {
+          throw StateError('Connection unavailable');
+        },
+      );
+      await _tap(tester, _key('zotero-composer-search-zotero'));
+      await _enter(tester, 'zotero-connected-source-query', 'title');
+      await _tap(tester, _key('zotero-connected-source-search'));
+      expect(_key('zotero-connected-source-error'), findsOneWidget);
+      await _tap(tester, _key('zotero-connected-source-cancel'));
+      expect(find.text('1 source(s)'), findsOneWidget);
+      await _tap(tester, _key('zotero-composer-cancel'));
+      expect(result.returned, isTrue);
+      expect(result.citation, isNull);
+      expect(original.itemData!['title'], 'Original');
+    },
+  );
+
+  testWidgets(
+    'connected search remains usable in narrow doubled-text RTL layout',
+    (tester) async {
+      final result = await _open(
+        tester,
+        items: [_source('Original')],
+        size: const Size(320, 480),
+        scale: 2,
+        direction: TextDirection.rtl,
+        searchZotero: (query, start) async => ZoteroPage<ZoteroCitationItem>(
+          items: [_source('Arabic and German source', uris: [_firstUri])],
+          start: start,
+          limit: 25,
+        ),
+      );
+      await _tap(tester, _key('zotero-composer-search-zotero'));
+      await _enter(tester, 'zotero-connected-source-query', 'Arabic');
+      await _tap(tester, _key('zotero-connected-source-search'));
+      await _tap(tester, _key('zotero-connected-source-0'));
+      await _tap(tester, _key('zotero-connected-source-add'));
+      await _tap(tester, _key('zotero-composer-apply'));
+      expect(result.citation!.items, hasLength(2));
+      expect(tester.takeException(), isNull);
+    },
+  );
+
+  testWidgets(
+    'editing a custom locator requires text review and clears stale RTF',
+    (tester) async {
+      final first = _source('Citation with a page', options: {
+        'locator': '12',
+        'label': 'page',
+      });
+      final existing = _existing([first]);
+      final result = await _open(
+        tester,
+        items: existing.items,
+        existing: existing,
+      );
+      expect(_canApply(tester), isTrue);
+
+      await _tap(tester, _key('zotero-composer-options-0'));
+      await _enter(tester, 'zotero-composer-locator-0', '34');
+      expect(_preview(tester), 'Original custom text');
+      expect(_canApply(tester), isFalse);
+      expect(_key('zotero-composer-text-review-message'), findsOneWidget);
+      expect(existing.items.single.locator, '12');
+
+      await _tap(tester, _key('zotero-composer-confirm-text'));
+      expect(_canApply(tester), isTrue);
+      await _tap(tester, _key('zotero-composer-apply'));
+      expect(result.citation!.items.single.locator, '34');
+      expect(result.citation!.plainCitation, 'Original custom text');
+      expect(result.citation!.formattedCitation, 'Original custom text');
+      expect(result.citation!.properties['unknownProperty'], 'retain');
+      expect(existing.items.single.locator, '12');
+      expect(existing.formattedCitation, isNotNull);
+    },
+  );
+
+  testWidgets(
+    'author options and affixes invalidate custom cache, undoing edits restores it',
+    (tester) async {
+      final first = _source('Citation options', options: {'prefix': 'see'});
+      final existing = _existing([first]);
+      final result = await _open(
+        tester,
+        items: existing.items,
+        existing: existing,
+      );
+      await _tap(tester, _key('zotero-composer-options-0'));
+      await _enter(tester, 'zotero-composer-prefix-0', 'compare');
+      expect(_canApply(tester), isFalse);
+      await _enter(tester, 'zotero-composer-prefix-0', 'see');
+      expect(_canApply(tester), isTrue);
+
+      await _tap(tester, _key('zotero-composer-author-only-0'));
+      expect(_canApply(tester), isFalse);
+      await _tap(tester, _key('zotero-composer-confirm-text'));
+      await _tap(tester, _key('zotero-composer-apply'));
+      expect(result.citation!.items.single.authorOnly, isTrue);
+      expect(result.citation!.items.single.suppressAuthor, isFalse);
+      expect(result.citation!.formattedCitation, 'Original custom text');
+      expect(existing.items.single.authorOnly, isFalse);
+    },
+  );
+
   testWidgets(
     'reordering duplicate IDs keeps edited options on the correct occurrence',
     (tester) async {
