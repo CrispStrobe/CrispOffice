@@ -167,7 +167,7 @@ void main() {
         ]) {
           final bad = ZoteroCitationItem.fromJson({
             'id': 'bad',
-            if (data != null) 'itemData': data,
+            'itemData': ?data,
           });
           expect(
             () => zoteroSelectionCslJson([good, bad]),
