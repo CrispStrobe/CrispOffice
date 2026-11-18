@@ -90,7 +90,7 @@ void main() {
       );
     });
 
-    test('$kind caret boundaries do not permit new insertion in a note', () {
+    test('$kind caret boundaries distinguish editing from insertion', () {
       final document = WmlDocument.empty(text: 'Body');
       final note = _note(document, endnote: endnote);
       final paragraph = note.paragraphs.single;
@@ -98,20 +98,21 @@ void main() {
 
       final atStart = _session(document, paragraph, field.start);
       expect(_call(atStart, 'Document.cursorInField', ['Http']), isNotNull);
-      // Editing a known field is supported, but arbitrary note insertion is
-      // still refused even while the native processor has that selection.
+      final inside = _session(document, paragraph, field.start + 1);
       expect(
-        () => _call(atStart, 'Document.insertField', ['Http', 0]),
+        () => _call(inside, 'Document.insertField', ['Http', 0]),
         throwsUnsupportedError,
       );
       for (final offset in [0, field.end, paragraph.text.length]) {
         final outside = _session(document, paragraph, offset);
         expect(_call(outside, 'Document.cursorInField', ['Http']), isNull);
-        expect(_call(outside, 'Document.canInsertField', ['Http']), isFalse);
-        expect(
-          () => _call(outside, 'Document.insertField', ['Http', 0]),
-          throwsUnsupportedError,
-        );
+        expect(_call(outside, 'Document.canInsertField', ['Http']), isTrue);
+        final added =
+            _call(outside, 'Document.insertField', ['Http', 0]) as Map;
+        expect(added['noteIndex'], 1);
+        _call(outside, 'Field.delete', [added['id']]);
+        _call(outside, 'Document.complete');
+        outside.apply();
       }
       expect(paragraph.text, 'See (Source) for context.');
       expect(WordZotero.fields(document), hasLength(1));
