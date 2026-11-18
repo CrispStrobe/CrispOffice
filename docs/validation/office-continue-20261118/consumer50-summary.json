@@ -1,0 +1,105 @@
+{
+  "completed_utc": "2026-11-18T05:16:34.230928+00:00",
+  "source_commit": "9e591cc63b22a654abd7f919c51674164eac225b",
+  "all_passed": true,
+  "fixtures": 50,
+  "retained_fixtures": 40,
+  "frame_field_fixtures": 5,
+  "boundary_fixtures": 5,
+  "accepted_odf_xml_parts": 220,
+  "historical_outcomes_counted": false,
+  "github_actions_queried_or_awaited": false,
+  "gates": [
+    {
+      "gate": "frame5",
+      "source_commit": "9e591cc63b22a654abd7f919c51674164eac225b",
+      "passed": true,
+      "summary": {
+        "fixture_count": 5,
+        "fixture_passes": 5,
+        "schema_parts": 20,
+        "jing_valid": 20,
+        "lxml_valid": 19
+      },
+      "guard_sha256": "b8d54eee8a46a75a9465152d76ccb9eb512c6ab72b83b54603fbb3f6d25c75fa",
+      "report_sha256": "cc49629ac0b38921d21dd3c5e55c9e195f28039a3ce062fd82359e9c4949b86d",
+      "source_files_checked": 2107,
+      "runtime_files_checked": 10011,
+      "archive": "consumer-frame5-9e591cc6.tar.xz",
+      "archive_sha256": "3d26df262913b15d3c3f310ab6f286dcd86ba883083bb11ceb8558868a04e3e2",
+      "archive_bytes": 937168,
+      "member_count": 56,
+      "index": "consumer-frame5-9e591cc6.tar.index.json",
+      "index_sha256": "c8fbf2082780a20f65384b77fb3ed5c7e713d13c0ba1d7654f06fb169ea9e553"
+    },
+    {
+      "gate": "retained33",
+      "source_commit": "9e591cc63b22a654abd7f919c51674164eac225b",
+      "passed": true,
+      "summary": {
+        "fixtures": 33,
+        "passed": 33,
+        "failed": 0,
+        "schema_parts_passed": 132,
+        "schema_parts_total": 132
+      },
+      "guard_sha256": "38909e2ab1867932ecce58724ce857db7c38d044d233e4ba402f92d2e108c920",
+      "report_sha256": "5c13d9b68f2a37afece4a50a8f7b2cee2f35bb1f59d7867c96bf3b699ca8cd85",
+      "source_files_checked": 2107,
+      "runtime_files_checked": 10010,
+      "archive": "consumer-retained33-9e591cc6.tar.xz",
+      "archive_sha256": "96beaa74562b9f9d51dc4330b87d0f0d7a95aeb20349206e75463bc9cf1361a1",
+      "archive_bytes": 1507856,
+      "member_count": 426,
+      "index": "consumer-retained33-9e591cc6.tar.index.json",
+      "index_sha256": "906527a2607bd59d861e998224f0d014703acd858cceb1859ac61ed16d13041c"
+    },
+    {
+      "gate": "current7",
+      "source_commit": "9e591cc63b22a654abd7f919c51674164eac225b",
+      "passed": true,
+      "summary": {
+        "fixtures": 7,
+        "passed": 7,
+        "failed": 0,
+        "schema_parts_passed": 28,
+        "schema_parts_total": 28,
+        "lxml_false_negatives": 3
+      },
+      "guard_sha256": "b15ab870be85866bd095263eaeb853ee10a04de19b2cd18b0619c629d24c37f2",
+      "report_sha256": "54b9b1269d8e0ccee86cc58f61ca23e074b30a91b1ab5fe1ff04f8b91c50ac18",
+      "source_files_checked": 2107,
+      "runtime_files_checked": 10010,
+      "archive": "consumer-current7-9e591cc6.tar.xz",
+      "archive_sha256": "09c084eef6d547a5ea5ee916942e1b24c5dbe223404bb69c83bc3b5696d86359",
+      "archive_bytes": 1241952,
+      "member_count": 219,
+      "index": "consumer-current7-9e591cc6.tar.index.json",
+      "index_sha256": "f4775a58effe9e8c5b6c57f4432e67c227c313c02655ec9d8c9b6b0f90ecb847"
+    },
+    {
+      "gate": "boundary5",
+      "source_commit": "9e591cc63b22a654abd7f919c51674164eac225b",
+      "passed": true,
+      "summary": {
+        "fixtures": 5,
+        "passed": 5,
+        "pdf_variants": 15,
+        "reopened_docx": 10,
+        "schema_parts": 40
+      },
+      "guard_sha256": "eb17ccde53b2e878f1cd93359094f197037c26ca8a52490d3ff7d2ff5fe5bf5a",
+      "report_sha256": "0ce117b7cc4909582aa619d2224b00b2db9bf4621b7f1a3038c2e85fbf4877dc",
+      "source_files_checked": 2107,
+      "runtime_files_checked": 10011,
+      "archive": "consumer-boundary5-9e591cc6.tar.xz",
+      "archive_sha256": "3b69e09cfcef9e50a3c46083a3e3d8d876260264530eaca5695b3e0ef6c5e570",
+      "archive_bytes": 709992,
+      "member_count": 114,
+      "index": "consumer-boundary5-9e591cc6.tar.index.json",
+      "index_sha256": "10e170653df23723de3085dc6b99923a5253951a2b704470e2470f40430d25c9"
+    }
+  ],
+  "scope": "Bounded current-writer consumers on the pinned LibreOfficeDev26.8 runtime; arbitrary imported-document fidelity and complete DOCX field-result formatting are not qualified.",
+  "schema_note": "Official ODF1.3 schemas. Jing governs the frame/current-field groups; known lxml nested page-count disagreements remain diagnostic. Boundary controls use the retained RelaxNG checker."
+}
