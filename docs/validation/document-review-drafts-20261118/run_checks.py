@@ -24,6 +24,8 @@ import time
 
 
 BASE = "39eada31155dd85d971bab71d26cda6e67cb6844"
+VENDORED_IMPORT = "46d7422d5ac356c327759872ff28adcd154b75ad"
+VENDORED_PATH = "third_party/enough_mail"
 VISUAL_FIXTURES = ["render_comments.dart"]
 ENGINE_TESTS = [
     "word_zotero_note_insertion_test.dart",
@@ -142,6 +144,12 @@ def main() -> int:
         raise RuntimeError("HEAD differs from the supplied source commit")
     if not tracked_clean():
         raise RuntimeError("Tracked worktree and index must be clean before the gate")
+    # Imported MIME fixtures contain byte-significant CRLF/trailing whitespace.
+    # Preserve the complete imported tree, including notices and upstream tests,
+    # rather than rewriting it to satisfy an authored-source whitespace rule.
+    vendor_tree = git("rev-parse", head + ":" + VENDORED_PATH)
+    if vendor_tree != git("rev-parse", VENDORED_IMPORT + ":" + VENDORED_PATH):
+        raise RuntimeError("Vendored whitespace exclusion requires an exact imported tree")
     tracked = set(git("ls-files", "-z").split("\0")) - {""}
     tests = [
         "packages/quds_office_engine/test/" + name for name in ENGINE_TESTS
@@ -258,6 +266,12 @@ def main() -> int:
         "started_at_utc": datetime.now(timezone.utc).isoformat(),
         "source_commit": head, "source_tree": git("rev-parse", head + "^{tree}"),
         "source_base": base, "source_file_count": len(before),
+        "pristine_vendor": {
+            "path": VENDORED_PATH, "imported_from": VENDORED_IMPORT,
+            "tree": vendor_tree, "source_tree_matches_import": True,
+            "whitespace_excluded_only_after_exact_tree_verification": True,
+            "all_files_still_bound_by_source_manifest": True,
+        },
         "source_before_manifest": "source-before.json", "source_after_manifest": "source-after.json",
         "environment_before_manifest": "environment-before.json",
         "environment_after_manifest": "environment-after.json",
@@ -373,7 +387,10 @@ def main() -> int:
             raise RuntimeError("No changed tracked Dart files were selected for analysis")
         run("analysis", [str(dart), "analyze", "--fatal-infos", "--fatal-warnings", *changed], repo)
         run("format", [str(dart), "format", "--output=none", "--set-exit-if-changed", *changed], repo)
-        run("whitespace", ["git", "diff", "--check", base, head], repo)
+        run("whitespace", [
+            "git", "diff", "--check", base, head, "--", ".",
+            ":(exclude)" + VENDORED_PATH,
+        ], repo)
     except BaseException as exception:
         record["runner_error"] = repr(exception)
     finally:

@@ -18,6 +18,8 @@ dependencies:
 dev_dependencies:
   quds_mail_mime:
     path: ../quds_mail_mime
+  quds_mail_reader_example:
+    path: example
   flutter_test:
     sdk: flutter
   flutter_lints: ^6.0.0

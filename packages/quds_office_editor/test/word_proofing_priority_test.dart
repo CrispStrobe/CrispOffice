@@ -114,10 +114,7 @@ void main() {
         controller.proofing.summary.issues.single.paragraph,
         same(comment.paragraphs.single),
       );
-      expect(
-        controller.proofing.summary.issues.single.story,
-        'Comment 8',
-      );
+      expect(controller.proofing.summary.issues.single.story, 'Comment 8');
       gate.complete();
       final summary = await check;
       expect(summary.issues.first.sourceText, 'Body Feler');

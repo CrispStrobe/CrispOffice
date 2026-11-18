@@ -35,15 +35,17 @@ final class RuntimeNetworkGuard {
   Future<void> run(Future<void> Function() body) async {
     final fetch = _fetch, xhr = _xhrOpen;
     final properties = <(JSObject, String, JSObject)>[];
-    final JSAny? Function(JSAny?, JSAny?) denyFetch = (input, options) {
+    JSAny? denyFetch(JSAny? input, JSAny? options) {
       attempts++;
       throw StateError('Outbound fetch disabled by reader qualification.');
-    };
+    }
+
     _fetch = denyFetch.toJS;
-    final void Function(JSAny?, JSAny?, JSAny?) denyXhr = (method, url, async) {
+    void denyXhr(JSAny? method, JSAny? url, JSAny? asyncValue) {
       attempts++;
       throw StateError('Outbound XHR disabled by reader qualification.');
-    };
+    }
+
     _xhrOpen = denyXhr.toJS;
     for (final (prototype, name) in [
       (_imagePrototype, 'src'),

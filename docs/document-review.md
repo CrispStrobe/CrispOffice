@@ -179,7 +179,8 @@ It never posts a draft just because another Reply command was chosen.
   itself has not changed.
 - Waiting, checking, paused, and incomplete checks have distinct status.
   **Check reply** retries an incomplete check with the ordinary providers.
-  An unavailable or unsupported provider is never reported as a clean check.
+  An unavailable check, or a reply language unsupported by every configured
+  provider, is never reported as clean.
   Replies longer than 16,384 UTF-16 units report the live-check limit and can
   be checked as document comments after posting. Requests are bounded across
   thread switches: one draft check runs at a time, with only the latest pending
