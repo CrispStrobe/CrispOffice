@@ -187,6 +187,56 @@ class CommandTests(unittest.TestCase):
                 self.command(**options)
 
 
+class WhitespaceInputTests(unittest.TestCase):
+    def setUp(self):
+        self.path = "docs/validation/example/checks/raw.log"
+        self.blob = "a" * 40
+        self.tracked = {self.path: {"mode": "100644", "git_blob": self.blob}}
+        self.entry = {"path": self.path, "git_blob": self.blob, "reason": "Raw captured log"}
+
+    def test_exact_frozen_evidence_becomes_an_exact_path_exclusion(self):
+        for path in [self.path, "docs/validation/example/build.txt",
+                     "docs/validation/example/notices/LICENSE.md",
+                     "docs/validation/example/recovery/raw.patch"]:
+            with self.subTest(path=path):
+                entry = {**self.entry, "path": path}
+                tracked = {path: {"mode": "100644", "git_blob": self.blob}}
+                preserved = gate.validate_whitespace_preserved_inputs([entry], tracked)
+                self.assertEqual(preserved, [entry])
+                self.assertEqual(gate.whitespace_command("base", "head", preserved), [
+                    "git", "diff", "--check", "base", "head", "--", ".",
+                    ":(exclude)" + path,
+                ])
+        self.assertEqual(gate.whitespace_command("base", "head", []), [
+            "git", "diff", "--check", "base", "head", "--", ".",
+        ])
+
+    def test_changed_blob_path_duplicate_or_missing_reason_is_rejected(self):
+        for entries in [
+            [{**self.entry, "git_blob": "b" * 40}],
+            [{**self.entry, "path": "docs/validation/example/checks/different.log"}],
+            [self.entry, self.entry],
+            [{**self.entry, "reason": ""}],
+        ]:
+            with self.subTest(entries=entries), self.assertRaises(RuntimeError):
+                gate.validate_whitespace_preserved_inputs(entries, self.tracked)
+
+    def test_product_paths_globs_and_traversal_cannot_be_excluded(self):
+        for path in [
+            "packages/quds_office_editor/lib/editor.dart",
+            "docs/validation/**/*.log",
+            "docs/validation/../../packages/editor.dart",
+            "docs/validation/example/checks/raw?.log",
+            "docs/validation/example/run_checks.py",
+            "docs/validation/example/native_asset_smoke.dart",
+            "docs/validation/example/test-plan.json",
+            "docs/validation/example/README.md",
+        ]:
+            tracked = {path: {"mode": "100644", "git_blob": self.blob}}
+            with self.subTest(path=path), self.assertRaises(RuntimeError):
+                gate.validate_whitespace_preserved_inputs([{**self.entry, "path": path}], tracked)
+
+
 class RuntimeInputTests(unittest.TestCase):
     def setUp(self):
         temporary = tempfile.TemporaryDirectory(prefix="review gate ")

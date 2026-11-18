@@ -5,7 +5,9 @@ The JSON plan contains `groups` with `name`, repository-relative `cwd`,
 `runner` (`dart` or `flutter`), and exact cwd-relative `tests` paths. Optional
 `platform` is `vm` (the default) or `node` (Dart groups only). Optional
 `analysis` and `format` are lists of repository paths, or "changed". Optional
-`extra_inputs` lists tracked fixtures to bind. All groups run sequentially.
+`extra_inputs` lists tracked fixtures to bind. `whitespace_preserved_inputs`
+binds exact validation evidence blobs excluded from whitespace normalization.
+All groups run sequentially.
 This runner never installs dependencies or contacts GitHub/GitHub Actions.
 """
 
@@ -278,6 +280,41 @@ def test_command(
     return command
 
 
+def validate_whitespace_preserved_inputs(entries: object, tracked: dict) -> list[dict]:
+    """Allow exact, frozen evidence files; never product paths or glob exclusions."""
+    if not isinstance(entries, list):
+        raise RuntimeError("whitespace_preserved_inputs must be an explicit list")
+    validated, seen = [], set()
+    for entry in entries:
+        if not isinstance(entry, dict):
+            raise RuntimeError("Each whitespace exception must identify a path, blob and reason")
+        path, blob, reason = (entry.get(key) for key in ("path", "git_blob", "reason"))
+        if (not isinstance(path, str) or not path.startswith("docs/validation/")
+                or not re.fullmatch(r"[a-zA-Z0-9_./-]+", path)
+                or Path(path).as_posix() != path or ".." in Path(path).parts
+                or path in seen or path not in tracked
+                or tracked[path].get("mode") not in {"100644", "100755"}):
+            raise RuntimeError("Whitespace exceptions must name unique tracked validation files")
+        suffix = Path(path).suffix
+        if suffix not in {".log", ".txt", ".patch"} and not (
+            suffix == ".md" and "notices" in Path(path).parts
+        ):
+            raise RuntimeError("Only captured logs, raw patches and upstream notices may preserve whitespace")
+        if (not isinstance(blob, str) or blob != tracked[path]["git_blob"]
+                or not isinstance(reason, str) or not reason.strip()):
+            raise RuntimeError("Whitespace exception blob changed or its preservation reason is missing")
+        seen.add(path)
+        validated.append({"path": path, "git_blob": blob, "reason": reason})
+    return validated
+
+
+def whitespace_command(base: str, head: str, preserved: list[dict]) -> list[str]:
+    # Every exception is an exact validated evidence blob, including raw patches
+    # with required context spaces, and remains bound by the source manifests.
+    return ["git", "diff", "--check", base, head, "--", ".",
+            *[":(exclude)" + entry["path"] for entry in preserved]]
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--head", required=True)
@@ -325,6 +362,9 @@ def main() -> int:
     if plan_name not in tracked or runner_name not in tracked:
         raise RuntimeError("Commit both the plan and the runner before an accepted gate")
     plan = json.loads(plan_path.read_text())
+    whitespace_preserved = validate_whitespace_preserved_inputs(
+        plan.get("whitespace_preserved_inputs", []), tracked,
+    )
     groups = plan["groups"]
     if not isinstance(groups, list) or not groups:
         raise RuntimeError("Plan must request at least one test group")
@@ -380,6 +420,7 @@ def main() -> int:
     selected.update(path for path in tracked if "/" not in path and Path(path).suffix in {".yaml", ".lock"})
     selected.update([plan_name, runner_name, *requested, *analysis, *formatting])
     selected.update(plan.get("extra_inputs", []))
+    selected.update(entry["path"] for entry in whitespace_preserved)
     for path in selected:
         if path not in tracked:
             raise RuntimeError("Binding input is not tracked: " + path)
@@ -450,6 +491,7 @@ def main() -> int:
         "runtime_receipt_sha256": sha256(receipt_path),
         "test_launcher": str(test_entrypoint), "package_config": str(package_config),
         "additional_runtime_inputs": receipt.get("additional_inputs", {}),
+        "whitespace_preserved_inputs": whitespace_preserved,
         "planned_groups": groups, "analysis_files": analysis, "formatted_files": formatting,
         "tracked_worktree_clean_before": True, "runs": [],
         "github_actions_queried_or_awaited": False,
@@ -506,9 +548,7 @@ def main() -> int:
             run("analysis", [str(runtime / "bin/dart"), "analyze", "--fatal-infos", "--fatal-warnings", *analysis], repo)
         if formatting:
             run("format", [str(runtime / "bin/dart"), "format", "--output=none", "--set-exit-if-changed", *formatting], repo)
-        # Preserved raw patches contain required single-space context lines.
-        run("whitespace", ["git", "diff", "--check", base, head, "--", ".",
-                           ":(exclude)**/*.patch"], repo)
+        run("whitespace", whitespace_command(base, head, whitespace_preserved), repo)
     except BaseException as error:
         record["runner_error"] = repr(error)
     finally:
