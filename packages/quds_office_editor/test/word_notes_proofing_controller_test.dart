@@ -102,8 +102,8 @@ void _bodyAt(WordEditorController controller, int offset, {int? anchor}) {
   controller.caret
     ..paragraphIndex = 0
     ..logicalIndex = offset
-    ..selectionAnchor = anchor
-    ..selectionAnchorParagraph = anchor == null ? null : 0;
+    ..selectionAnchor = anchor ?? offset
+    ..selectionAnchorParagraph = 0;
 }
 
 void main() {
@@ -111,395 +111,371 @@ void main() {
 
   for (final endnote in [false, true]) {
     for (final hidden in [false, true]) {
-      test(
-        '${endnote ? 'endnote' : 'footnote'} maps UTF-16 multiline findings '
-        'with hidden reference space $hidden',
-        () async {
-          const text = '😀 Feler\nline Feler';
-          final fixture = _fixture(
-            endnote: endnote,
-            hiddenReferenceSpace: hidden,
-            text: text,
-          );
-          final controller = fixture.controller;
-          final note = fixture.note;
-          await controller.checkDocumentProofing();
-
-          expect(controller.noteEditText(note), text);
-          final entries = controller.proofingIssuesForNote(note);
-          expect(entries.map((entry) => entry.range), [
-            const TextRange(start: 3, end: 8),
-            const TextRange(start: 14, end: 19),
-          ]);
-          expect(entries.first.issue.paragraph, same(note.paragraphs.first));
-          expect(entries.last.issue.paragraph, same(note.paragraphs.last));
-          expect(entries.first.issue.finding.start, hidden ? 4 : 3);
-          for (final entry in entries) {
-            expect(entry.range.textInside(text), 'Feler');
-            expect(
-              controller.currentNoteProofingIssue(note, entry.issue),
-              same(entry.issue),
-            );
-          }
-          final foreign = WmlNote(
-            id: note.id,
-            endnote: endnote,
-            paragraphs: [_paragraph(text)],
-          );
-          expect(controller.proofingIssuesForNote(foreign), isEmpty);
-          expect(
-            controller.currentNoteProofingIssue(foreign, entries.first.issue),
-            isNull,
-          );
-          expect(controller.isDirty, isFalse);
-          expect(controller.canUndo, isFalse);
-        },
-      );
-    }
-
-    test(
-      '${endnote ? 'endnote' : 'footnote'} reveal focuses the editable note '
-      'without changing body selection or history',
-      () async {
+      test('${endnote ? 'endnote' : 'footnote'} maps UTF-16 multiline findings '
+          'with hidden reference space $hidden', () async {
+        const text = '😀 Feler\nline Feler';
         final fixture = _fixture(
           endnote: endnote,
-          text: 'First line\n😀 Feler',
+          hiddenReferenceSpace: hidden,
+          text: text,
         );
         final controller = fixture.controller;
         final note = fixture.note;
-        _bodyAt(controller, 4, anchor: 1);
-        final issue = await _issue(controller, note);
-        var bodyFocusRequests = 0;
-        controller.onRequestFocus = () => bodyFocusRequests++;
-        final revision = controller.contentRevision;
-        final focusRequest = controller.noteFocusRequest;
+        await controller.checkDocumentProofing();
 
-        expect(controller.revealProofingIssue(issue), isTrue);
-        expect(controller.noteEditingTarget?.note, same(note));
-        expect(
-          controller.noteEditingTarget?.selection,
-          const TextSelection(baseOffset: 14, extentOffset: 19),
+        expect(controller.noteEditText(note), text);
+        final entries = controller.proofingIssuesForNote(note);
+        expect(entries.map((entry) => entry.range), [
+          const TextRange(start: 3, end: 8),
+          const TextRange(start: 14, end: 19),
+        ]);
+        expect(entries.first.issue.paragraph, same(note.paragraphs.first));
+        expect(entries.last.issue.paragraph, same(note.paragraphs.last));
+        expect(entries.first.issue.finding.start, hidden ? 4 : 3);
+        for (final entry in entries) {
+          expect(entry.range.textInside(text), 'Feler');
+          expect(
+            controller.currentNoteProofingIssue(note, entry.issue),
+            same(entry.issue),
+          );
+        }
+        final foreign = WmlNote(
+          id: note.id,
+          endnote: endnote,
+          paragraphs: [_paragraph(text)],
         );
-        expect(controller.config.showNotesPane, isTrue);
-        expect(controller.noteFocusRequest, focusRequest + 1);
-        expect(bodyFocusRequests, 0);
-        expect(controller.caret.logicalIndex, 4);
-        expect(controller.caret.selectionAnchor, 1);
-        expect(controller.selectedProofingIssue, same(issue));
-        expect(controller.contentRevision, revision);
-        expect(controller.canUndo, isFalse);
+        expect(controller.proofingIssuesForNote(foreign), isEmpty);
+        expect(
+          controller.currentNoteProofingIssue(foreign, entries.first.issue),
+          isNull,
+        );
         expect(controller.isDirty, isFalse);
-
-        controller.setNoteEditingTarget(
-          note,
-          const TextSelection.collapsed(offset: 15),
-        );
-        expect(controller.proofingIssuesAtCaret, [same(issue)]);
-        controller.openReviewPane();
-        controller.closeReviewPane();
-        expect(controller.noteFocusRequest, focusRequest + 2);
-        expect(bodyFocusRequests, 0);
-      },
-    );
-
-    test(
-      '${endnote ? 'endnote' : 'footnote'} correction restores actual note '
-      'selection through undo and redo',
-      () async {
-        final fixture = _fixture(endnote: endnote, text: 'aFelerz');
-        final controller = fixture.controller;
-        final note = fixture.note;
-        _bodyAt(controller, 3, anchor: 1);
-        const before = TextSelection(baseOffset: 6, extentOffset: 1);
-        controller.setNoteEditingTarget(note, before);
-        final issue = await _issue(controller, note);
-
-        expect(controller.applyProofingSuggestion(issue, 'Fehler'), isTrue);
-        expect(controller.noteEditText(note), 'aFehlerz');
-        expect(
-          controller.noteEditingTarget?.selection,
-          const TextSelection.collapsed(offset: 7),
-        );
-        expect(controller.caret.logicalIndex, 3);
-        expect(controller.caret.selectionAnchor, 1);
-        controller.undo();
-        expect(controller.noteEditText(note), 'aFelerz');
-        expect(controller.noteEditingTarget?.selection, before);
         expect(controller.canUndo, isFalse);
-        controller.redo();
-        expect(controller.noteEditText(note), 'aFehlerz');
-        expect(
-          controller.noteEditingTarget?.selection,
-          const TextSelection.collapsed(offset: 7),
-        );
-        expect(controller.caret.logicalIndex, 3);
-        expect(controller.caret.selectionAnchor, 1);
-      },
-    );
+      });
+    }
 
-    test(
-      '${endnote ? 'endnote' : 'footnote'} tracked corrections and change '
-      'navigation use note ranges',
-      () async {
-        final fixture = _fixture(endnote: endnote, text: 'a Feler.');
-        final controller = fixture.controller;
-        final note = fixture.note;
-        controller.document.trackRevisions = true;
-        controller.setNoteEditingTarget(
-          note,
-          const TextSelection(baseOffset: 2, extentOffset: 7),
-        );
-        final issue = await _issue(controller, note);
+    test('${endnote ? 'endnote' : 'footnote'} reveal focuses the editable note '
+        'without changing body selection or history', () async {
+      final fixture = _fixture(endnote: endnote, text: 'First line\n😀 Feler');
+      final controller = fixture.controller;
+      final note = fixture.note;
+      _bodyAt(controller, 4, anchor: 1);
+      final issue = await _issue(controller, note);
+      var bodyFocusRequests = 0;
+      controller.onRequestFocus = () => bodyFocusRequests++;
+      final revision = controller.contentRevision;
+      final focusRequest = controller.noteFocusRequest;
 
-        expect(controller.applyProofingSuggestion(issue, 'Fehler'), isTrue);
-        expect(controller.noteEditText(note), 'a FelerFehler.');
-        final revisions = List<WmlRevision>.of(controller.document.revisions);
-        expect(revisions.map((revision) => revision.kind), [
-          WmlRevisionKind.delete,
-          WmlRevisionKind.insert,
-        ]);
-        expect(revisions.map((revision) => revision.author), [
-          'Notes reviewer',
-          'Notes reviewer',
-        ]);
-        expect(
-          controller.noteEditingTarget?.selection,
-          const TextSelection.collapsed(offset: 13),
-        );
-        controller.clearNoteEditingTarget();
-        expect(controller.revealRevision(revisions.last), isTrue);
-        expect(controller.noteEditingTarget?.note, same(note));
-        expect(
-          controller.noteEditingTarget?.selection,
-          const TextSelection(baseOffset: 7, extentOffset: 13),
-        );
-        controller.undo();
-        expect(controller.noteEditText(note), 'a Feler.');
-        expect(controller.document.revisions, isEmpty);
-        expect(
-          controller.noteEditingTarget?.selection,
-          const TextSelection(baseOffset: 2, extentOffset: 7),
-        );
-        controller.redo();
-        expect(controller.noteEditText(note), 'a FelerFehler.');
-        expect(controller.document.revisions, orderedEquals(revisions));
-      },
-    );
+      expect(controller.revealProofingIssue(issue), isTrue);
+      expect(controller.noteEditingTarget?.note, same(note));
+      expect(
+        controller.noteEditingTarget?.selection,
+        const TextSelection(baseOffset: 14, extentOffset: 19),
+      );
+      expect(controller.config.showNotesPane, isTrue);
+      expect(controller.noteFocusRequest, focusRequest + 1);
+      expect(bodyFocusRequests, 0);
+      expect(controller.caret.logicalIndex, 4);
+      expect(controller.caret.selectionAnchor, 1);
+      expect(controller.selectedProofingIssue, same(issue));
+      expect(controller.contentRevision, revision);
+      expect(controller.canUndo, isFalse);
+      expect(controller.isDirty, isFalse);
+
+      controller.setNoteEditingTarget(
+        note,
+        const TextSelection.collapsed(offset: 15),
+      );
+      expect(controller.proofingIssuesAtCaret, [same(issue)]);
+      controller.openReviewPane();
+      controller.closeReviewPane();
+      expect(controller.noteFocusRequest, focusRequest + 2);
+      expect(bodyFocusRequests, 0);
+    });
+
+    test('${endnote ? 'endnote' : 'footnote'} correction restores actual note '
+        'selection through undo and redo', () async {
+      final fixture = _fixture(endnote: endnote, text: 'aFelerz');
+      final controller = fixture.controller;
+      final note = fixture.note;
+      _bodyAt(controller, 3, anchor: 1);
+      const before = TextSelection(baseOffset: 6, extentOffset: 1);
+      controller.setNoteEditingTarget(note, before);
+      final issue = await _issue(controller, note);
+
+      expect(controller.applyProofingSuggestion(issue, 'Fehler'), isTrue);
+      expect(controller.noteEditText(note), 'aFehlerz');
+      expect(
+        controller.noteEditingTarget?.selection,
+        const TextSelection.collapsed(offset: 7),
+      );
+      expect(controller.caret.logicalIndex, 3);
+      expect(controller.caret.selectionAnchor, 1);
+      controller.undo();
+      expect(controller.noteEditText(note), 'aFelerz');
+      expect(controller.noteEditingTarget?.selection, before);
+      expect(controller.canUndo, isFalse);
+      controller.redo();
+      expect(controller.noteEditText(note), 'aFehlerz');
+      expect(
+        controller.noteEditingTarget?.selection,
+        const TextSelection.collapsed(offset: 7),
+      );
+      expect(controller.caret.logicalIndex, 3);
+      expect(controller.caret.selectionAnchor, 1);
+    });
+
+    test('${endnote ? 'endnote' : 'footnote'} tracked corrections and change '
+        'navigation use note ranges', () async {
+      final fixture = _fixture(endnote: endnote, text: 'a Feler.');
+      final controller = fixture.controller;
+      final note = fixture.note;
+      controller.document.trackRevisions = true;
+      controller.setNoteEditingTarget(
+        note,
+        const TextSelection(baseOffset: 2, extentOffset: 7),
+      );
+      final issue = await _issue(controller, note);
+
+      expect(controller.applyProofingSuggestion(issue, 'Fehler'), isTrue);
+      expect(controller.noteEditText(note), 'a FelerFehler.');
+      final revisions = List<WmlRevision>.of(controller.document.revisions);
+      expect(revisions.map((revision) => revision.kind), [
+        WmlRevisionKind.delete,
+        WmlRevisionKind.insert,
+      ]);
+      expect(revisions.map((revision) => revision.author), [
+        'Notes reviewer',
+        'Notes reviewer',
+      ]);
+      expect(
+        controller.noteEditingTarget?.selection,
+        const TextSelection.collapsed(offset: 13),
+      );
+      controller.clearNoteEditingTarget();
+      expect(controller.revealRevision(revisions.last), isTrue);
+      expect(controller.noteEditingTarget?.note, same(note));
+      expect(
+        controller.noteEditingTarget?.selection,
+        const TextSelection(baseOffset: 7, extentOffset: 13),
+      );
+      controller.undo();
+      expect(controller.noteEditText(note), 'a Feler.');
+      expect(controller.document.revisions, isEmpty);
+      expect(
+        controller.noteEditingTarget?.selection,
+        const TextSelection(baseOffset: 2, extentOffset: 7),
+      );
+      controller.redo();
+      expect(controller.noteEditText(note), 'a FelerFehler.');
+      expect(controller.document.revisions, orderedEquals(revisions));
+    });
   }
 
-  test('note tables remain checked but are not mapped to the plain editor', () async {
-    final fixture = _fixture(text: 'Feler');
-    final controller = fixture.controller;
-    final note = fixture.note;
-    final tableParagraph = _paragraph('Feler in a table');
-    note.blocks.add(
-      WmlTable(
-        rows: [
-          WmlTableRow(
-            cells: [
-              WmlTableCell(blocks: [tableParagraph]),
-            ],
-          ),
-        ],
-      ),
-    );
-    final summary = await controller.checkDocumentProofing();
-    final tableIssue = summary.issues.singleWhere(
-      (issue) => identical(issue.paragraph, tableParagraph),
-    );
-    expect(controller.proofingIssuesForNote(note), hasLength(1));
-    expect(controller.noteEditText(note), 'Feler');
-    expect(controller.currentNoteProofingIssue(note, tableIssue), isNull);
-    expect(controller.revealProofingIssue(tableIssue), isFalse);
-    expect(controller.noteEditingTarget, isNull);
-    expect(controller.canUndo, isFalse);
-  });
+  test(
+    'note tables remain checked but are not mapped to the plain editor',
+    () async {
+      final fixture = _fixture(text: 'Feler');
+      final controller = fixture.controller;
+      final note = fixture.note;
+      final tableParagraph = _paragraph('Feler in a table');
+      note.blocks.add(
+        WmlTable(
+          rows: [
+            WmlTableRow(
+              cells: [
+                WmlTableCell(blocks: [tableParagraph]),
+              ],
+            ),
+          ],
+        ),
+      );
+      final summary = await controller.checkDocumentProofing();
+      final tableIssue = summary.issues.singleWhere(
+        (issue) => identical(issue.paragraph, tableParagraph),
+      );
+      expect(controller.proofingIssuesForNote(note), hasLength(1));
+      expect(controller.noteEditText(note), 'Feler');
+      expect(controller.currentNoteProofingIssue(note, tableIssue), isNull);
+      expect(controller.revealProofingIssue(tableIssue), isFalse);
+      expect(controller.noteEditingTarget, isNull);
+      expect(controller.canUndo, isFalse);
+    },
+  );
 
-  test('explicit note selection survives an adjacent finding endpoint', () async {
-    final fixture = _fixture(text: 'FelerFeler');
-    final controller = fixture.controller;
-    final note = fixture.note;
-    await controller.checkDocumentProofing();
-    final entries = controller.proofingIssuesForNote(note);
-    final first = entries.first.issue;
-    final second = entries.last.issue;
+  test(
+    'explicit note selection survives an adjacent finding endpoint',
+    () async {
+      final fixture = _fixture(text: 'FelerFeler');
+      final controller = fixture.controller;
+      final note = fixture.note;
+      await controller.checkDocumentProofing();
+      final entries = controller.proofingIssuesForNote(note);
+      final first = entries.first.issue;
+      final second = entries.last.issue;
 
-    expect(controller.selectProofingIssue(first), isTrue);
-    expect(controller.proofingIssuesAtCaret, [same(second)]);
-    expect(controller.selectedProofingIssue, same(first));
-    controller.refreshView();
-    expect(controller.selectedProofingIssue, same(first));
-    controller.stepProofingIssue(1);
-    expect(controller.selectedProofingIssue, same(second));
-    expect(
-      controller.noteEditingTarget?.selection,
-      const TextSelection(baseOffset: 5, extentOffset: 10),
-    );
-  });
+      expect(controller.selectProofingIssue(first), isTrue);
+      expect(controller.proofingIssuesAtCaret, [same(second)]);
+      expect(controller.selectedProofingIssue, same(first));
+      controller.refreshView();
+      expect(controller.selectedProofingIssue, same(first));
+      controller.stepProofingIssue(1);
+      expect(controller.selectedProofingIssue, same(second));
+      expect(
+        controller.noteEditingTarget?.selection,
+        const TextSelection(baseOffset: 5, extentOffset: 10),
+      );
+    },
+  );
 
   for (final focusLossFirst in [false, true]) {
-    test(
-      'typed note correction survives an unchanged history boundary '
-      '(focus loss first: $focusLossFirst)',
-      () async {
-        final fixture = _fixture(text: 'Before');
-        final controller = fixture.controller;
-        final note = fixture.note;
-        controller.setNoteText(note, 'Feler typed');
-        controller.setNoteEditingTarget(
-          note,
-          const TextSelection(baseOffset: 5, extentOffset: 0),
-        );
-        final captured = await _issue(controller, note);
-        expect(controller.canUndo, isFalse);
-        if (focusLossFirst) {
-          controller.commitNoteEdit(note);
-          final current = controller.currentNoteProofingIssue(note, captured);
-          expect(current, isNotNull);
-          expect(current, isNot(same(captured)));
-          expect(controller.proofing.isCurrent(captured), isFalse);
-          expect(controller.proofing.isCurrent(current!), isTrue);
-        }
-        expect(
-          controller.applyProofingSuggestion(captured, 'Fehler'),
-          isTrue,
-        );
-        expect(controller.noteEditText(note), 'Fehler typed');
-        controller.undo();
-        expect(controller.noteEditText(note), 'Feler typed');
-        expect(
-          controller.noteEditingTarget?.selection,
-          const TextSelection(baseOffset: 5, extentOffset: 0),
-        );
-        controller.undo();
-        expect(controller.noteEditText(note), 'Before');
-        expect(controller.canUndo, isFalse);
-        controller.redo();
-        expect(controller.noteEditText(note), 'Feler typed');
-        controller.redo();
-        expect(controller.noteEditText(note), 'Fehler typed');
-      },
-    );
+    test('typed note correction survives an unchanged history boundary '
+        '(focus loss first: $focusLossFirst)', () async {
+      final fixture = _fixture(text: 'Before');
+      final controller = fixture.controller;
+      final note = fixture.note;
+      controller.setNoteText(note, 'Feler typed');
+      controller.setNoteEditingTarget(
+        note,
+        const TextSelection(baseOffset: 5, extentOffset: 0),
+      );
+      final captured = await _issue(controller, note);
+      expect(controller.canUndo, isFalse);
+      if (focusLossFirst) {
+        controller.commitNoteEdit(note);
+        final current = controller.currentNoteProofingIssue(note, captured);
+        expect(current, isNotNull);
+        expect(current, isNot(same(captured)));
+        expect(controller.proofing.isCurrent(captured), isFalse);
+        expect(controller.proofing.isCurrent(current!), isTrue);
+      }
+      expect(controller.applyProofingSuggestion(captured, 'Fehler'), isTrue);
+      expect(controller.noteEditText(note), 'Fehler typed');
+      controller.undo();
+      expect(controller.noteEditText(note), 'Feler typed');
+      expect(
+        controller.noteEditingTarget?.selection,
+        const TextSelection(baseOffset: 5, extentOffset: 0),
+      );
+      controller.undo();
+      expect(controller.noteEditText(note), 'Before');
+      expect(controller.canUndo, isFalse);
+      controller.redo();
+      expect(controller.noteEditText(note), 'Feler typed');
+      controller.redo();
+      expect(controller.noteEditText(note), 'Fehler typed');
+    });
 
-    test(
-      'manual findings survive only the unchanged note history boundary '
-      'without provider calls (focus loss first: $focusLossFirst)',
-      () async {
-        final ordinary = _NotesProvider('ordinary', findErrors: false);
-        final manual = _NotesProvider(
-          'manual',
-          category: OfficeProofingCategory.grammar,
-        );
-        final fixture = _fixture(
-          text: 'Before',
-          ordinary: ordinary,
-          manual: manual,
-        );
-        final controller = fixture.controller;
-        final note = fixture.note;
-        controller.setNoteText(note, 'Feler typed');
-        controller.setNoteEditingTarget(
-          note,
-          const TextSelection.collapsed(offset: 3),
-        );
-        final captured = await _issue(controller, note);
-        expect(captured.finding.providerId, 'manual');
+    test('manual findings survive only the unchanged note history boundary '
+        'without provider calls (focus loss first: $focusLossFirst)', () async {
+      final ordinary = _NotesProvider('ordinary', findErrors: false);
+      final manual = _NotesProvider(
+        'manual',
+        category: OfficeProofingCategory.grammar,
+      );
+      final fixture = _fixture(
+        text: 'Before',
+        ordinary: ordinary,
+        manual: manual,
+      );
+      final controller = fixture.controller;
+      final note = fixture.note;
+      controller.setNoteText(note, 'Feler typed');
+      controller.setNoteEditingTarget(
+        note,
+        const TextSelection.collapsed(offset: 3),
+      );
+      final captured = await _issue(controller, note);
+      expect(captured.finding.providerId, 'manual');
+      expect(controller.proofing.summary.complete, isTrue);
+      final manualCalls = manual.requests.length;
+      final ordinaryCalls = ordinary.requests.length;
+      if (focusLossFirst) {
+        controller.commitNoteEdit(note);
+        expect(controller.currentNoteProofingIssue(note, captured), isNotNull);
         expect(controller.proofing.summary.complete, isTrue);
-        final manualCalls = manual.requests.length;
-        final ordinaryCalls = ordinary.requests.length;
-        if (focusLossFirst) {
-          controller.commitNoteEdit(note);
-          expect(
-            controller.currentNoteProofingIssue(note, captured),
-            isNotNull,
-          );
-          expect(controller.proofing.summary.complete, isTrue);
-          expect(controller.proofing.summary.manualProvidersSkipped, isFalse);
-        }
-        expect(controller.applyProofingSuggestion(captured, 'Fehler'), isTrue);
-        expect(controller.noteEditText(note), 'Fehler typed');
-        expect(manual.requests, hasLength(manualCalls));
-        expect(ordinary.requests, hasLength(ordinaryCalls));
-        expect(controller.currentNoteProofingIssue(note, captured), isNull);
-        controller.undo();
-        expect(controller.noteEditText(note), 'Feler typed');
-        expect(controller.currentNoteProofingIssue(note, captured), isNull);
-        expect(manual.requests, hasLength(manualCalls));
-      },
-    );
+        expect(controller.proofing.summary.manualProvidersSkipped, isFalse);
+      }
+      expect(controller.applyProofingSuggestion(captured, 'Fehler'), isTrue);
+      expect(controller.noteEditText(note), 'Fehler typed');
+      expect(manual.requests, hasLength(manualCalls));
+      expect(ordinary.requests, hasLength(ordinaryCalls));
+      expect(controller.currentNoteProofingIssue(note, captured), isNull);
+      controller.undo();
+      expect(controller.noteEditText(note), 'Feler typed');
+      expect(controller.currentNoteProofingIssue(note, captured), isNull);
+      expect(manual.requests, hasLength(manualCalls));
+    });
   }
 
-
   for (final correctedProvider in ['ordinary', 'manual']) {
-    test(
-      'mixed provider history commit retains the ordinary issue identity '
-      'before correcting the $correctedProvider finding',
-      () async {
-        final ordinary = _NotesProvider('ordinary');
-        final manual = _NotesProvider(
-          'manual',
-          category: OfficeProofingCategory.grammar,
-        );
-        final fixture = _fixture(
-          text: 'Before',
-          ordinary: ordinary,
-          manual: manual,
-        );
-        final controller = fixture.controller;
-        final note = fixture.note;
-        controller.setNoteText(note, 'Feler typed');
-        controller.setNoteEditingTarget(
-          note,
-          const TextSelection.collapsed(offset: 3),
-        );
-        await controller.checkDocumentProofing();
-        final captured = controller.proofingIssuesForNote(note)
-            .map((entry) => entry.issue)
-            .toList();
-        // Exercise the ordinary-first order: its alias is collected before
-        // the manual finding causes cached manual reports to be republished.
-        expect(captured.map((issue) => issue.finding.providerId), [
-          'ordinary',
-          'manual',
-        ]);
-        final ordinaryCalls = ordinary.requests.length;
-        final manualCalls = manual.requests.length;
-        final beforeCommit = controller.contentRevision;
-        WordProofingIssue? ordinaryBeforeManual;
-        controller.addListener(() {
-          if (controller.contentRevision == beforeCommit + 1 &&
-              controller.proofing.summary.manualProvidersSkipped) {
-            ordinaryBeforeManual ??= controller.proofing.summary.issues
-                .where((issue) => issue.finding.providerId == 'ordinary')
-                .firstOrNull;
-          }
-        });
-
-        controller.commitNoteEdit(note);
-        expect(ordinaryBeforeManual, isNotNull);
-        final rebound = [
-          for (final issue in captured)
-            controller.currentNoteProofingIssue(note, issue),
-        ];
-        expect(rebound, everyElement(isNotNull));
-        expect(rebound.first, same(ordinaryBeforeManual));
-        for (final issue in rebound) {
-          expect(controller.proofing.isCurrent(issue!), isTrue);
+    test('mixed provider history commit retains the ordinary issue identity '
+        'before correcting the $correctedProvider finding', () async {
+      final ordinary = _NotesProvider('ordinary');
+      final manual = _NotesProvider(
+        'manual',
+        category: OfficeProofingCategory.grammar,
+      );
+      final fixture = _fixture(
+        text: 'Before',
+        ordinary: ordinary,
+        manual: manual,
+      );
+      final controller = fixture.controller;
+      final note = fixture.note;
+      controller.setNoteText(note, 'Feler typed');
+      controller.setNoteEditingTarget(
+        note,
+        const TextSelection.collapsed(offset: 3),
+      );
+      await controller.checkDocumentProofing();
+      final captured = controller
+          .proofingIssuesForNote(note)
+          .map((entry) => entry.issue)
+          .toList();
+      // Exercise the ordinary-first order: its alias is collected before
+      // the manual finding causes cached manual reports to be republished.
+      expect(captured.map((issue) => issue.finding.providerId), [
+        'ordinary',
+        'manual',
+      ]);
+      final ordinaryCalls = ordinary.requests.length;
+      final manualCalls = manual.requests.length;
+      final beforeCommit = controller.contentRevision;
+      WordProofingIssue? ordinaryBeforeManual;
+      controller.addListener(() {
+        if (controller.contentRevision == beforeCommit + 1 &&
+            controller.proofing.summary.manualProvidersSkipped) {
+          ordinaryBeforeManual ??= controller.proofing.summary.issues
+              .where((issue) => issue.finding.providerId == 'ordinary')
+              .firstOrNull;
         }
-        expect(controller.proofing.summary.complete, isTrue);
-        expect(ordinary.requests, hasLength(ordinaryCalls));
-        expect(manual.requests, hasLength(manualCalls));
+      });
 
-        final chosen = captured.singleWhere(
-          (issue) => issue.finding.providerId == correctedProvider,
-        );
-        expect(controller.applyProofingSuggestion(chosen, 'Fehler'), isTrue);
-        expect(controller.noteEditText(note), 'Fehler typed');
-        expect(ordinary.requests, hasLength(ordinaryCalls));
-        expect(manual.requests, hasLength(manualCalls));
-        expect(controller.currentNoteProofingIssue(note, chosen), isNull);
-      },
-    );
+      controller.commitNoteEdit(note);
+      expect(ordinaryBeforeManual, isNotNull);
+      final rebound = [
+        for (final issue in captured)
+          controller.currentNoteProofingIssue(note, issue),
+      ];
+      expect(rebound, everyElement(isNotNull));
+      expect(rebound.first, same(ordinaryBeforeManual));
+      for (final issue in rebound) {
+        expect(controller.proofing.isCurrent(issue!), isTrue);
+      }
+      expect(controller.proofing.summary.complete, isTrue);
+      expect(ordinary.requests, hasLength(ordinaryCalls));
+      expect(manual.requests, hasLength(manualCalls));
+
+      final chosen = captured.singleWhere(
+        (issue) => issue.finding.providerId == correctedProvider,
+      );
+      expect(controller.applyProofingSuggestion(chosen, 'Fehler'), isTrue);
+      expect(controller.noteEditText(note), 'Fehler typed');
+      expect(ordinary.requests, hasLength(ordinaryCalls));
+      expect(manual.requests, hasLength(manualCalls));
+      expect(controller.currentNoteProofingIssue(note, chosen), isNull);
+    });
   }
 
   for (final mutation in ['note', 'body', 'history', 'provider', 'detach']) {
@@ -534,25 +510,28 @@ void main() {
     });
   }
 
-  test('unobserved note source changes cannot move focus or apply stale text', () async {
-    final fixture = _fixture(text: 'Feler');
-    final controller = fixture.controller;
-    final note = fixture.note;
-    final captured = await _issue(controller, note);
-    note.paragraphs.single.inlines
-      ..clear()
-      ..add(WmlRun(text: ' Changed source'));
-    final revision = controller.contentRevision;
-    final focus = controller.noteFocusRequest;
-    expect(controller.proofingIssuesForNote(note), isEmpty);
-    expect(controller.currentNoteProofingIssue(note, captured), isNull);
-    expect(controller.revealProofingIssue(captured), isFalse);
-    expect(controller.applyProofingSuggestion(captured, 'Fehler'), isFalse);
-    expect(controller.noteFocusRequest, focus);
-    expect(controller.noteEditingTarget, isNull);
-    expect(controller.contentRevision, revision);
-    expect(controller.canUndo, isFalse);
-  });
+  test(
+    'unobserved note source changes cannot move focus or apply stale text',
+    () async {
+      final fixture = _fixture(text: 'Feler');
+      final controller = fixture.controller;
+      final note = fixture.note;
+      final captured = await _issue(controller, note);
+      note.paragraphs.single.inlines
+        ..clear()
+        ..add(WmlRun(text: ' Changed source'));
+      final revision = controller.contentRevision;
+      final focus = controller.noteFocusRequest;
+      expect(controller.proofingIssuesForNote(note), isEmpty);
+      expect(controller.currentNoteProofingIssue(note, captured), isNull);
+      expect(controller.revealProofingIssue(captured), isFalse);
+      expect(controller.applyProofingSuggestion(captured, 'Fehler'), isFalse);
+      expect(controller.noteFocusRequest, focus);
+      expect(controller.noteEditingTarget, isNull);
+      expect(controller.contentRevision, revision);
+      expect(controller.canUndo, isFalse);
+    },
+  );
 
   for (final mode in [
     OfficeInteractionMode.selecting,
@@ -590,47 +569,50 @@ void main() {
     expect(controller.canUndo, isFalse);
   });
 
-  test('note IME blocks correction and reveals before committing pending text', () async {
-    final fixture = _fixture(text: 'Before');
-    final controller = fixture.controller;
-    final note = fixture.note;
-    final body = controller.document.paragraphs.single;
-    final revision = WordRevisions.record(
-      controller.document,
-      kind: WmlRevisionKind.insert,
-      paragraph: body,
-      paragraphIndex: 0,
-      start: 0,
-      end: 4,
-      text: 'Body',
-      author: 'Reviewer',
-    );
-    controller.setNoteText(note, 'Feler typed');
-    final issue = await _issue(controller, note);
-    controller.setNoteEditingTarget(
-      note,
-      const TextSelection.collapsed(offset: 5),
-      composing: const TextRange(start: 0, end: 5),
-    );
-    final contentRevision = controller.contentRevision;
-    final target = controller.noteEditingTarget;
-    final focus = controller.noteFocusRequest;
-    expect(controller.canApplyProofingSuggestions, isFalse);
-    expect(controller.applyProofingSuggestion(issue, 'Fehler'), isFalse);
-    expect(controller.revealProofingIssue(issue), isFalse);
-    expect(controller.revealRevision(revision), isFalse);
-    expect(controller.noteEditingTarget, target);
-    expect(controller.noteFocusRequest, focus);
-    expect(controller.contentRevision, contentRevision);
-    expect(controller.canUndo, isFalse);
+  test(
+    'note IME blocks correction and reveals before committing pending text',
+    () async {
+      final fixture = _fixture(text: 'Before');
+      final controller = fixture.controller;
+      final note = fixture.note;
+      final body = controller.document.paragraphs.single;
+      final revision = WordRevisions.record(
+        controller.document,
+        kind: WmlRevisionKind.insert,
+        paragraph: body,
+        paragraphIndex: 0,
+        start: 0,
+        end: 4,
+        text: 'Body',
+        author: 'Reviewer',
+      );
+      controller.setNoteText(note, 'Feler typed');
+      final issue = await _issue(controller, note);
+      controller.setNoteEditingTarget(
+        note,
+        const TextSelection.collapsed(offset: 5),
+        composing: const TextRange(start: 0, end: 5),
+      );
+      final contentRevision = controller.contentRevision;
+      final target = controller.noteEditingTarget;
+      final focus = controller.noteFocusRequest;
+      expect(controller.canApplyProofingSuggestions, isFalse);
+      expect(controller.applyProofingSuggestion(issue, 'Fehler'), isFalse);
+      expect(controller.revealProofingIssue(issue), isFalse);
+      expect(controller.revealRevision(revision), isFalse);
+      expect(controller.noteEditingTarget, target);
+      expect(controller.noteFocusRequest, focus);
+      expect(controller.contentRevision, contentRevision);
+      expect(controller.canUndo, isFalse);
 
-    controller.setNoteEditingTarget(
-      note,
-      const TextSelection.collapsed(offset: 5),
-    );
-    expect(controller.applyProofingSuggestion(issue, 'Fehler'), isTrue);
-    expect(controller.noteEditText(note), 'Fehler typed');
-  });
+      controller.setNoteEditingTarget(
+        note,
+        const TextSelection.collapsed(offset: 5),
+      );
+      expect(controller.applyProofingSuggestion(issue, 'Fehler'), isTrue);
+      expect(controller.noteEditText(note), 'Fehler typed');
+    },
+  );
 
   test('canvas IME also prevents retargeting review into a note', () async {
     final fixture = _fixture();
@@ -651,71 +633,77 @@ void main() {
   });
 
   for (final otherStory in ['body', 'other note']) {
-    test('note correction history preserves a later $otherStory selection', () async {
-      final fixture = _fixture(text: 'Feler');
-      final controller = fixture.controller;
-      final note = fixture.note;
-      final other = WmlNote(
-        id: 2,
-        endnote: true,
-        addReference: false,
-        paragraphs: [_paragraph('Another note')],
-      );
-      controller.document.endnotes.add(other);
-      controller.setNoteEditingTarget(
-        note,
-        const TextSelection.collapsed(offset: 2),
-      );
-      final issue = await _issue(controller, note);
-      expect(controller.applyProofingSuggestion(issue, 'Fehler'), isTrue);
-      const otherSelection = TextSelection(baseOffset: 7, extentOffset: 2);
-      if (otherStory == 'body') {
-        controller.clearNoteEditingTarget();
-        _bodyAt(controller, 4, anchor: 1);
-      } else {
-        controller.setNoteEditingTarget(other, otherSelection);
-      }
-      controller.undo();
-      expect(controller.noteEditText(note), 'Feler');
-      if (otherStory == 'body') {
-        expect(controller.noteEditingTarget, isNull);
-        expect(controller.caret.logicalIndex, 4);
-        expect(controller.caret.selectionAnchor, 1);
-      } else {
-        expect(controller.noteEditingTarget?.note, same(other));
-        expect(controller.noteEditingTarget?.selection, otherSelection);
-      }
-      controller.redo();
-      expect(controller.noteEditText(note), 'Fehler');
-      if (otherStory == 'body') {
-        expect(controller.noteEditingTarget, isNull);
-        expect(controller.caret.logicalIndex, 4);
-        expect(controller.caret.selectionAnchor, 1);
-      } else {
-        expect(controller.noteEditingTarget?.note, same(other));
-        expect(controller.noteEditingTarget?.selection, otherSelection);
-      }
-    });
+    test(
+      'note correction history preserves a later $otherStory selection',
+      () async {
+        final fixture = _fixture(text: 'Feler');
+        final controller = fixture.controller;
+        final note = fixture.note;
+        final other = WmlNote(
+          id: 2,
+          endnote: true,
+          addReference: false,
+          paragraphs: [_paragraph('Another note')],
+        );
+        controller.document.endnotes.add(other);
+        controller.setNoteEditingTarget(
+          note,
+          const TextSelection.collapsed(offset: 2),
+        );
+        final issue = await _issue(controller, note);
+        expect(controller.applyProofingSuggestion(issue, 'Fehler'), isTrue);
+        const otherSelection = TextSelection(baseOffset: 7, extentOffset: 2);
+        if (otherStory == 'body') {
+          controller.clearNoteEditingTarget();
+          _bodyAt(controller, 4, anchor: 1);
+        } else {
+          controller.setNoteEditingTarget(other, otherSelection);
+        }
+        controller.undo();
+        expect(controller.noteEditText(note), 'Feler');
+        if (otherStory == 'body') {
+          expect(controller.noteEditingTarget, isNull);
+          expect(controller.caret.logicalIndex, 4);
+          expect(controller.caret.selectionAnchor, 1);
+        } else {
+          expect(controller.noteEditingTarget?.note, same(other));
+          expect(controller.noteEditingTarget?.selection, otherSelection);
+        }
+        controller.redo();
+        expect(controller.noteEditText(note), 'Fehler');
+        if (otherStory == 'body') {
+          expect(controller.noteEditingTarget, isNull);
+          expect(controller.caret.logicalIndex, 4);
+          expect(controller.caret.selectionAnchor, 1);
+        } else {
+          expect(controller.noteEditingTarget?.note, same(other));
+          expect(controller.noteEditingTarget?.selection, otherSelection);
+        }
+      },
+    );
   }
 
-  test('body corrections preserve a retained Notes selection through history', () async {
-    final fixture = _fixture(text: 'A note', body: 'Body Feler');
-    final controller = fixture.controller;
-    final note = fixture.note;
-    final summary = await controller.checkDocumentProofing();
-    final issue = summary.issues.single;
-    const selection = TextSelection(baseOffset: 5, extentOffset: 1);
-    controller.setNoteEditingTarget(note, selection);
-    expect(controller.applyProofingSuggestion(issue, 'Fehler'), isTrue);
-    expect(controller.document.paragraphs.single.text, 'Body Fehler');
-    expect(controller.noteEditingTarget?.selection, selection);
-    controller.undo();
-    expect(controller.document.paragraphs.single.text, 'Body Feler');
-    expect(controller.noteEditingTarget?.selection, selection);
-    controller.redo();
-    expect(controller.document.paragraphs.single.text, 'Body Fehler');
-    expect(controller.noteEditingTarget?.selection, selection);
-  });
+  test(
+    'body corrections preserve a retained Notes selection through history',
+    () async {
+      final fixture = _fixture(text: 'A note', body: 'Body Feler');
+      final controller = fixture.controller;
+      final note = fixture.note;
+      final summary = await controller.checkDocumentProofing();
+      final issue = summary.issues.single;
+      const selection = TextSelection(baseOffset: 5, extentOffset: 1);
+      controller.setNoteEditingTarget(note, selection);
+      expect(controller.applyProofingSuggestion(issue, 'Fehler'), isTrue);
+      expect(controller.document.paragraphs.single.text, 'Body Fehler');
+      expect(controller.noteEditingTarget?.selection, selection);
+      controller.undo();
+      expect(controller.document.paragraphs.single.text, 'Body Feler');
+      expect(controller.noteEditingTarget?.selection, selection);
+      controller.redo();
+      expect(controller.document.paragraphs.single.text, 'Body Fehler');
+      expect(controller.noteEditingTarget?.selection, selection);
+    },
+  );
 
   test('Notes proofing does not manufacture a body thesaurus target', () async {
     final fixture = _fixture(text: 'Feler', body: 'A useful word');

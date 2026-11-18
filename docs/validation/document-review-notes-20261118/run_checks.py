@@ -44,6 +44,12 @@ def repository_root() -> Path:
 
 def parse_reporter(log: Path, cwd: Path, requested: list[str]) -> dict:
     """Count completed user cases, retaining every error and protocol anomaly."""
+    # Share the separately regression-tested stream/exit qualification contract.
+    # Suite accounting below additionally proves that every requested file ran.
+    sys.path.insert(0, str(repository_root() / "tools/mail"))
+    from check_store import test_summary
+
+    strict = test_summary(log)
     suites, started, completed, cases, errors, anomalies = {}, {}, set(), [], [], []
     excluded = Counter()
     reporter_success = None
@@ -118,12 +124,13 @@ def parse_reporter(log: Path, cwd: Path, requested: list[str]) -> dict:
         "empty_requested_suites": sorted(expected - set(per_suite)),
         "unfinished_reporter_events": list(started.values()),
         "reporter_error_count": len(errors), "protocol_anomalies": anomalies,
+        "strict_event_accounting": {key: value for key, value in strict.items() if key != "cases"},
         "cases": cases, "errors": errors,
     }
 
 
 def reporter_passed(result: dict) -> bool:
-    return result.get("reporter_success") is True and not any(result.get(key) for key in (
+    return result.get("strict_event_accounting", {}).get("valid") is True and result.get("reporter_success") is True and not any(result.get(key) for key in (
         "failed", "skipped", "missing_requested_suites", "unexpected_suites",
         "empty_requested_suites", "unfinished_reporter_events",
         "reporter_error_count", "protocol_anomalies",
@@ -350,7 +357,9 @@ def main() -> int:
             run("analysis", [str(runtime / "bin/dart"), "analyze", "--fatal-infos", "--fatal-warnings", *analysis], repo)
         if formatting:
             run("format", [str(runtime / "bin/dart"), "format", "--output=none", "--set-exit-if-changed", *formatting], repo)
-        run("whitespace", ["git", "diff", "--check", base, head], repo)
+        # Preserved raw patches contain required single-space context lines.
+        run("whitespace", ["git", "diff", "--check", base, head, "--", ".",
+                           ":(exclude)**/*.patch"], repo)
     except BaseException as error:
         record["runner_error"] = repr(error)
     finally:

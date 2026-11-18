@@ -8608,9 +8608,9 @@ class WordEditorController extends OfficeController {
     if (_disposed || !_ownsNote(note)) return null;
     final current = _currentProofingIssue(issue);
     if (current == null) return null;
-    return proofingIssuesForNote(note).any(
-          (entry) => identical(entry.issue, current),
-        )
+    return proofingIssuesForNote(
+          note,
+        ).any((entry) => identical(entry.issue, current))
         ? current
         : null;
   }
@@ -10114,10 +10114,11 @@ class WordEditorController extends OfficeController {
     final activeCaret = caret;
     final activeParagraphs = _paragraphs;
     final activeNote = noteEditingTarget;
-    final activeNoteAffected = activeNote != null &&
-        _noteTextSegments(activeNote.note).any(
-          (segment) => identical(segment.paragraph, paragraph),
-        );
+    final activeNoteAffected =
+        activeNote != null &&
+        _noteTextSegments(
+          activeNote.note,
+        ).any((segment) => identical(segment.paragraph, paragraph));
     final activeComment = isEditingComment ? selectedComment : null;
     final activeHeaderFooter = isEditingHeaderFooter ? activeParagraphs : null;
     bool sameCaretStory() =>
@@ -10141,7 +10142,7 @@ class WordEditorController extends OfficeController {
       anchor: activeCaret.selectionAnchor,
     );
     void correctedCaret() {
-      if (activeNoteAffected && activeNote != null) {
+      if (activeNoteAffected) {
         if (identical(noteEditingTarget?.note, activeNote.note)) {
           _restoreNoteEditingTarget(
             _noteTargetAt(
@@ -10168,7 +10169,7 @@ class WordEditorController extends OfficeController {
     }
 
     void originalCaret() {
-      if (activeNoteAffected && activeNote != null) {
+      if (activeNoteAffected) {
         if (identical(noteEditingTarget?.note, activeNote.note)) {
           _restoreNoteEditingTarget(_clampNoteEditingTarget(activeNote));
         }
@@ -10375,9 +10376,7 @@ class WordEditorController extends OfficeController {
   /// that do not occur on a laid-out page remain available in the review pane.
   bool revealProofingIssue(WordProofingIssue issue) {
     var current = _currentProofingIssue(issue);
-    if (!config.allowsSelection ||
-        current == null ||
-        _hasProofingComposition) {
+    if (!config.allowsSelection || current == null || _hasProofingComposition) {
       return false;
     }
     commitPendingEdits();
@@ -10422,9 +10421,10 @@ class WordEditorController extends OfficeController {
     ) {
       final section = document.sections[sectionIndex];
       for (final footer in [false, true]) {
-        for (final paragraphs in footer
-            ? [section.footer, section.firstFooter, section.evenFooter]
-            : [section.header, section.firstHeader, section.evenHeader]) {
+        for (final paragraphs
+            in footer
+                ? [section.footer, section.firstFooter, section.evenFooter]
+                : [section.header, section.firstHeader, section.evenHeader]) {
           final index = paragraphs.indexOf(paragraph);
           if (index < 0) continue;
           // Navigate only to a page that renders this exact source story.
@@ -10499,9 +10499,10 @@ class WordEditorController extends OfficeController {
     if (paragraph == null) {
       return const <WordProofingIssue>[];
     }
-    return proofing.issuesAt(paragraph, position.offset).where(
-      proofing.isCurrent,
-    ).toList();
+    return proofing
+        .issuesAt(paragraph, position.offset)
+        .where(proofing.isCurrent)
+        .toList();
   }
 
   /// Legacy caller-supplied spelling callback. New hosts should use

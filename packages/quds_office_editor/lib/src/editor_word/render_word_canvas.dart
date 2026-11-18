@@ -4641,7 +4641,11 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
       final end = line.paragraphIndex == selection.endPara
           ? selection.endIdx
           : (line.sourceParagraph?.text.length ?? 0);
-      for (final range in WordProofingGeometry.displayRanges(line, start, end)) {
+      for (final range in WordProofingGeometry.displayRanges(
+        line,
+        start,
+        end,
+      )) {
         for (final box in painter.getBoxesForSelection(
           TextSelection(baseOffset: range.start, extentOffset: range.end),
         )) {
