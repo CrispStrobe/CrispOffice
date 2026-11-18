@@ -11,6 +11,8 @@ All notable changes to `quds_office_editor` are documented here.
 - Replace the mutating controller comparison helper with a read-only result;
   preserve source documents, mark stale reports, and support narrow LTR/RTL
   review layouts and viewing mode.
+- Reject incomplete or foreign Word document XML before comparison, so damaged
+  sources cannot silently import as empty documents and appear unchanged.
 
 - Keep exact reviewed macOS pixel references separate from Linux references.
 

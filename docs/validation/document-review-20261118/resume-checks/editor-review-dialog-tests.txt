@@ -1,0 +1,15 @@
+00:00 +0: loading /workspace/scratch/c87f8ac8c63c/review-toolchain/workspace/packages/quds_office_editor/test/word_review_dialog_test.dart
+00:00 +0: tracking and reviewer controls affect future edits with undo
+00:01 +1: author, kind and text filters intersect without changing sources
+00:02 +2: accept shown is a filtered undoable batch
+00:03 +3: reject shown is a filtered undoable batch
+00:03 +4: final and original previews leave tracked changes untouched
+00:04 +5: viewing mode exposes review but disables document mutations
+00:04 +6: two picked documents compare, display redlines and export without edits
+00:05 +7: export cancellation and errors preserve the report for retry
+00:05 +8: current-document edits mark comparison stale and disable export
+00:06 +9: picker cancellation and errors preserve selections and recover
+00:06 +10: closing during a pending picker ignores its later completion
+00:06 +11: narrow LTR dialog keeps both workflows usable
+00:06 +12: narrow RTL dialog keeps both workflows usable
+00:06 +13: All tests passed!
