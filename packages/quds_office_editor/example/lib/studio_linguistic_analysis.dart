@@ -34,10 +34,18 @@ final class StudioAnalysisSnapshot {
   final String languageSignature;
   final bool selectedText;
 
+  /// The analysis language of [request] (German de-DE, English or French).
+  SpacyLanguage get language => SpacyLanguage.forLocale(request.locale)!;
+
+  /// Captures the current body paragraph or selection. The language comes
+  /// from the text's proofing language unless [analyzeAs] explicitly names
+  /// one; an explicit choice keeps a marked regional variant of the same
+  /// language (for example en-GB) and otherwise uses its default locale.
   static StudioAnalysisSnapshot capture(
     WordEditorController controller, {
     required int generation,
     required String configurationId,
+    SpacyLanguage? analyzeAs,
   }) {
     if (controller.isDisposed || !_bodyTextActive(controller)) {
       throw const FormatException(
@@ -80,10 +88,15 @@ final class StudioAnalysisSnapshot {
         'The selection does not have complete text boundaries. Select the text again.',
       );
     }
-    final locale = _selectedLocale(document, paragraph, start, end);
-    if (locale != 'de-DE') {
+    final marked = _selectedLocale(document, paragraph, start, end);
+    final locale =
+        analyzeAs == null || SpacyLanguage.forLocale(marked) == analyzeAs
+        ? marked
+        : analyzeAs.defaultLocale;
+    if (SpacyLanguage.forLocale(locale) == null) {
       throw const FormatException(
-        'This analysis supports German (Germany). Choose text marked de-DE.',
+        'This analysis supports German (Germany), English and French. Choose '
+        'text marked de-DE, en or fr, or pick a language under “Analyze as”.',
       );
     }
     return StudioAnalysisSnapshot._(
@@ -231,7 +244,7 @@ String _selectedLocale(
   }
   if (languages.length > 1) {
     throw const FormatException(
-      'The selection contains several languages. Select one German (Germany) passage.',
+      'The selection contains several languages. Select a passage in one language.',
     );
   }
   return languages.isEmpty ? fallback : languages.single;
@@ -268,6 +281,8 @@ class StudioLinguisticAnalysisDialog extends StatefulWidget {
   });
 
   final WordEditorController controller;
+
+  /// Injected worker factory (hosts and tests); used for every language.
   final Future<SpacyTransport> Function()? transportFactory;
   final String? configurationId;
 
@@ -286,6 +301,10 @@ class _StudioLinguisticAnalysisDialogState
   int _transportEpoch = 0;
   SpacyTransport? _transport;
   Future<SpacyTransport>? _opening;
+  SpacyLanguage? _transportLanguage;
+
+  /// Explicit language choice; null follows the text's proofing language.
+  SpacyLanguage? _analyzeAs;
   final Set<SpacyTransport> _disposedTransports = Set.identity();
   final ScrollController _tokenScroll = ScrollController();
 
@@ -348,12 +367,18 @@ class _StudioLinguisticAnalysisDialogState
     }
   }
 
-  Future<SpacyTransport> _getTransport() async {
+  Future<SpacyTransport> _getTransport(SpacyLanguage language) async {
+    // One owned worker per dialog; switching language replaces it.
+    if (_transportLanguage != language) {
+      _releaseTransport();
+      _transportLanguage = language;
+    }
     final current = _transport;
     if (current != null) return current;
     final epoch = _transportEpoch;
+    final factory = widget.transportFactory;
     final future = _opening ??= Future.sync(
-      widget.transportFactory ?? openStudioSpacyTransport,
+      factory ?? () => openStudioSpacyTransport(language: language),
     );
     final SpacyTransport transport;
     try {
@@ -395,6 +420,7 @@ class _StudioLinguisticAnalysisDialogState
         widget.controller,
         generation: generation,
         configurationId: _configurationId,
+        analyzeAs: _analyzeAs,
       );
     } on FormatException catch (error) {
       setState(() => _message = error.message);
@@ -412,7 +438,7 @@ class _StudioLinguisticAnalysisDialogState
       _message = 'Analyzing locally…';
     });
     try {
-      final transport = await _getTransport();
+      final transport = await _getTransport(snapshot.language);
       if (!mounted || generation != _generation) return;
       if (!snapshot.isCurrent(widget.controller, _configurationId)) {
         _onDocumentChanged();
@@ -463,9 +489,9 @@ class _StudioLinguisticAnalysisDialogState
     LinguisticAnalysisStatus.timeout =>
       'Analysis took too long. Try a shorter passage.',
     LinguisticAnalysisStatus.unsupported =>
-      'This text or platform is unsupported by local German analysis.',
+      'This text or platform is unsupported by local analysis.',
     LinguisticAnalysisStatus.unavailable =>
-      'Local German analysis is unavailable. Check the host installation.',
+      'Local analysis is unavailable. Check the host installation.',
     LinguisticAnalysisStatus.failed =>
       'Analysis could not finish. Please try again.',
     LinguisticAnalysisStatus.success => '',
@@ -507,7 +533,7 @@ class _StudioLinguisticAnalysisDialogState
     final result = _result;
     final snapshot = _snapshot;
     return AlertDialog(
-      title: const Text('German text analysis'),
+      title: const Text('Text analysis'),
       content: SizedBox(
         width: 760,
         height: math.max(
@@ -519,7 +545,40 @@ class _StudioLinguisticAnalysisDialogState
           children: [
             const Text(
               'Selection within one paragraph, or the current paragraph. '
-              'Body and table text · German (Germany).',
+              'Body and table text · German (Germany), English or French.',
+            ),
+            const SizedBox(height: 8),
+            Row(
+              children: [
+                const Text('Analyze as: '),
+                DropdownButton<SpacyLanguage?>(
+                  key: const Key('analysis-language'),
+                  value: _analyzeAs,
+                  onChanged: _busy
+                      ? null
+                      : (value) => setState(() {
+                          _analyzeAs = value;
+                          _cancel(
+                            'The analysis language changed. Analyze again.',
+                          );
+                        }),
+                  items: [
+                    const DropdownMenuItem(
+                      value: null,
+                      child: Text('Marked text language'),
+                    ),
+                    for (final language in SpacyLanguage.values)
+                      DropdownMenuItem(
+                        value: language,
+                        child: Text(
+                          language == SpacyLanguage.german
+                              ? 'German (Germany)'
+                              : language.displayName,
+                        ),
+                      ),
+                  ],
+                ),
+              ],
             ),
             const SizedBox(height: 12),
             if (snapshot != null)
@@ -540,7 +599,7 @@ class _StudioLinguisticAnalysisDialogState
               Text(
                 '${result.tokens.length} ${result.tokens.length == 1 ? 'token' : 'tokens'} · '
                 '${result.sentences.length} ${result.sentences.length == 1 ? 'sentence' : 'sentences'} '
-                '· de_core_news_sm 3.8.0',
+                '· ${result.identity?.bundle?.modelName ?? 'spaCy'} 3.8.0',
               ),
               if (result.entitiesAvailable) ...[
                 const SizedBox(height: 4),

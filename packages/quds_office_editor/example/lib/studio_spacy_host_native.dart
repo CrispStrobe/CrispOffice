@@ -144,10 +144,12 @@ class NativeStudioSpacyHost extends StudioSpacyHost {
         qualification: base.qualification,
         analysisEnabled: true,
         grammarEnabled: settings.grammar,
+        languages: await _languageStatuses(),
       );
       notifyListeners();
       return;
     }
+    final languages = await _languageStatuses();
     final package = base.package;
     SpacyInstallation? installation;
     String? problem;
@@ -178,8 +180,118 @@ class NativeStudioSpacyHost extends StudioSpacyHost {
           installation != null &&
           settings.grammar &&
           (installation.qualification?.grammarQualified ?? false),
+      languages: languages,
     );
     notifyListeners();
+  }
+
+  /// English/French availability and verified installation state. Never
+  /// downloads; a damaged tree is reported, not treated as missing.
+  Future<List<StudioSpacyLanguageStatus>> _languageStatuses() async {
+    final platform = _platform;
+    final result = <StudioSpacyLanguageStatus>[];
+    for (final language in const [
+      SpacyLanguage.english,
+      SpacyLanguage.french,
+    ]) {
+      final download = spacyLanguageDownload(language);
+      final runtime = platform == null ? null : spacyRuntimePackage(platform);
+      if (download == null || runtime == null) {
+        result.add(
+          StudioSpacyLanguageStatus(
+            language: language,
+            download: download,
+            runtime: runtime,
+            unavailableReason: download == null
+                ? 'No verified ${language.displayName} bundle is published.'
+                : 'No native package that opens ${language.displayName} '
+                      'bundles is published for this platform.',
+          ),
+        );
+        continue;
+      }
+      var installed = false;
+      var runtimeInstalled = false;
+      String? problem;
+      try {
+        runtimeInstalled = await _installer.installed(runtime) != null;
+        installed =
+            await _installer.installedLanguage(download, runtime) != null;
+      } on SpacyInstallException catch (error) {
+        problem =
+            'The installed ${language.displayName} analysis files failed '
+            'verification (${error.message}). Remove and install them again.';
+      }
+      result.add(
+        StudioSpacyLanguageStatus(
+          language: language,
+          download: download,
+          runtime: runtime,
+          installed: installed,
+          runtimeInstalled: runtimeInstalled,
+          problem: problem,
+        ),
+      );
+    }
+    return result;
+  }
+
+  @override
+  Future<void> installLanguage(
+    SpacyLanguage language, {
+    void Function(int received, int total)? onProgress,
+    StudioSpacyInstallCancellation? cancellation,
+  }) async {
+    final item = _status.language(language);
+    if (item == null || !item.offered) {
+      throw SpacyInstallException(
+        item?.unavailableReason ??
+            '${language.displayName} analysis is not offered here.',
+      );
+    }
+    final token = SpacyInstallCancellation();
+    cancellation?.addListener(token.cancel);
+    await _installer.installLanguage(
+      item.download!,
+      item.runtime!,
+      onProgress: onProgress,
+      cancellation: token,
+    );
+    await refresh();
+  }
+
+  @override
+  Future<void> removeLanguage(SpacyLanguage language) async {
+    final download = spacyLanguageDownload(language);
+    if (download != null) await _installer.removeLanguage(download);
+    await refresh();
+  }
+
+  @override
+  Future<SpacyTransport> openLanguageTransport(SpacyLanguage language) async {
+    if (language == SpacyLanguage.german) return openTransport();
+    final item = _status.language(language);
+    if (item == null || !item.offered || !item.installed) {
+      throw SpacyUnavailableException(
+        'Local ${language.displayName} analysis is not set up. Use '
+        '“Analysis setup” to download and verify it.',
+      );
+    }
+    // Re-verify the bundle and the native package before every worker start.
+    final installation = await _installer.installedLanguage(
+      item.download!,
+      item.runtime!,
+    );
+    if (installation == null) {
+      throw SpacyUnavailableException(
+        'The local ${language.displayName} analysis files are missing. '
+        'Install them again.',
+      );
+    }
+    return startSpacyWorker(
+      bundle: installation.bundle,
+      backendFactory: installation.backendFactory(),
+    );
   }
 
   @override
@@ -284,11 +396,9 @@ class NativeStudioSpacyHost extends StudioSpacyHost {
     final nerPath = _status.nerEnabled && ner != null
         ? await _installer.installedNer(ner)
         : null;
-    if (!enableSpacyNativeGateForProcess(namedEntities: nerPath != null)) {
-      throw const SpacyUnavailableException(
-        'Native analysis cannot be enabled on this platform.',
-      );
-    }
+    // The worker enables the exact library it opens through
+    // crispembed_spacy_set_enabled (process environment untouched); only
+    // libraries without that export fall back to the POSIX setenv gate.
     return startSpacyWorker(
       bundle: const SpacyBundle.germanF32(),
       backendFactory: nerPath == null
