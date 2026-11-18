@@ -922,6 +922,7 @@ class WordEditorController extends OfficeController {
   /// input API.
   late final OfficeInputBridge input;
   var _applyingIme = false;
+  Object? _imeValueTarget;
 
   /// fromMillisecondsSinceEpoch API.
   var _localEditAt = DateTime.fromMillisecondsSinceEpoch(0);
@@ -2111,9 +2112,42 @@ class WordEditorController extends OfficeController {
     if (!config.allowsMutation) {
       return;
     }
+    // Restoring focus after host chrome must reconnect the current IME
+    // draft. Rebuilding it would silently finish an active composition.
+    final preserveComposition = _canResumeImeComposition;
     input.attach(multiline: true);
-    _writeImeValue();
+    if (!preserveComposition) _writeImeValue();
   }
+
+  bool get _canResumeImeComposition {
+    final value = input.value;
+    if (!input.composing.isValid ||
+        input.composing.isCollapsed ||
+        input.composing != value.composing ||
+        value.composing.end > value.text.length ||
+        !value.selection.isValid ||
+        value.selection.end > value.text.length ||
+        _imeValueTarget != _imeEditingTarget) {
+      return false;
+    }
+    final text = selectedEquation == null
+        ? _activeParagraph.text
+        : equationEditingText();
+    return value.text == text;
+  }
+
+  Object get _imeEditingTarget => (
+    document: document,
+    paragraph: _activeParagraph,
+    caret: caret,
+    paragraphIndex: caret.paragraphIndex,
+    offset: caret.logicalIndex,
+    anchorParagraph: caret.selectionAnchorParagraph,
+    anchorOffset: caret.selectionAnchor,
+    equation: selectedEquation,
+    equationSlot: selectedEquation == null ? null : equationSlot,
+    equationOffset: selectedEquation == null ? null : equationCaret,
+  );
 
   @override
   /// detachInput API.
@@ -4606,6 +4640,7 @@ class WordEditorController extends OfficeController {
     }
     if (selectedEquation != null) {
       _onEquationIme(value);
+      _imeValueTarget = _imeEditingTarget;
       return;
     }
     final WmlParagraph para = _activeParagraph;
@@ -4638,6 +4673,7 @@ class WordEditorController extends OfficeController {
       caret.selectionAnchorParagraph = caret.paragraphIndex;
     }
     caret.resetBlink();
+    _imeValueTarget = _imeEditingTarget;
     notifyListeners();
   }
 
@@ -4749,6 +4785,7 @@ class WordEditorController extends OfficeController {
   }
 
   void _writeImeValue() {
+    _imeValueTarget = _imeEditingTarget;
     if (selectedEquation != null) {
       final String text = equationEditingText();
       _applyingIme = true;
@@ -7531,6 +7568,11 @@ class WordEditorController extends OfficeController {
     if (_disposed || !config.allowsMutation) {
       throw StateError('This document is not editable.');
     }
+    if (input.composing.isValid && !input.composing.isCollapsed) {
+      throw UnsupportedError(
+        'Finish the current text composition before using Zotero.',
+      );
+    }
     final noteTarget = noteEditingTarget;
     _assertNoteTargetReady(noteTarget);
     if (command == ZoteroCitingCommand.addNote && noteTarget != null) {
@@ -8593,10 +8635,15 @@ class WordEditorController extends OfficeController {
   /// Returns keyboard focus to the active body or Notes insertion point after
   /// closing host chrome. The focused surface retains ownership of its IME.
   void requestEditingFocus() {
-    if (_disposed || !config.allowsSelection) return;
+    if (_disposed ||
+        !config.allowsSelection ||
+        (input.composing.isValid && !input.composing.isCollapsed)) {
+      return;
+    }
     final target = noteEditingTarget;
     if (target != null) {
-      if (!_ownsNote(target.note) ||
+      if ((target.composing.isValid && !target.composing.isCollapsed) ||
+          !_ownsNote(target.note) ||
           !target.selection.isValid ||
           target.selection.end > noteEditText(target.note).length) {
         return;
@@ -15225,6 +15272,7 @@ final class WordZoteroTransaction {
     offset: controller.caret.logicalIndex,
     anchorParagraph: controller.caret.selectionAnchorParagraph,
     anchorOffset: controller.caret.selectionAnchor,
+    composing: controller.input.composing,
     note: controller.noteEditingTarget,
     headerFooter: controller.isEditingHeaderFooter,
     footer: controller.isEditingFooter,

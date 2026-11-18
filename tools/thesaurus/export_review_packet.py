@@ -73,7 +73,8 @@ def make_packet(report_path: Path, packs: Path):
         notices = []
         for name in manifest["noticePaths"]:
             value = verified_bytes(directory, name, manifest["files"][name])
-            notices.append({"path": name, "sha256": digest(value), "bytes": len(value)})
+            notices.append({"path": name, "export_path": locale + "/" + name,
+                            "sha256": digest(value), "bytes": len(value)})
         pack_records[locale] = {
             "identity": identity, "source": manifest["source"],
             "source_url": manifest["sourceUrl"], "license": manifest["license"],
@@ -159,9 +160,15 @@ def render(packet):
         "Recorded native run: " + safe_text(packet["report"]["started_at_utc"]), "",
     ]
     for locale, pack in packet["packs"].items():
-        lines += ["- " + locale + ": `" + pack["identity"] + "`; " + safe_text(pack["license"])]
-    lines += ["", "Original attributions and licenses remain in the bundled notices; see the",
-              "`packs` object in the JSON for their exact paths and hashes.", ""]
+        lines += ["- " + locale + ": `" + pack["identity"] + "`; " + safe_text(pack["license"]),
+                  "", safe_text(pack["attribution"]), "",
+                  "Source: [" + safe_text(pack["source_url"]) + "](" + pack["source_url"] + ")", "",
+                  "Original notices: " + ", ".join(
+                      "[" + safe_text(Path(n["path"]).name) + "](" + n["export_path"] + ")"
+                      for n in pack["notices"]), ""]
+    lines += ["Original attributions and licenses are copied byte for byte beside this",
+              "packet. The JSON retains their exact paths and hashes. Source data keeps",
+              "the stated licenses; exporting this panel does not change those terms.", ""]
     for number, query in enumerate(packet["queries"], 1):
         lines += [f"## {number}. {safe_text(query['text'])} ({query['language']})", "",
                   f"Observed status: **{query['status']}**. Returned meanings: {len(query['senses'])}.", "",
@@ -201,6 +208,26 @@ def render(packet):
     return "\n".join(lines)
 
 
+def write_packet(packet, packs: Path, output: Path):
+    require(not output.exists(), "Choose a new output directory; completed review must not be overwritten")
+    # Read and recheck every notice before creating the new review directory.
+    notices = {}
+    for locale, pack in packet["packs"].items():
+        for record in pack["notices"]:
+            value = (packs / locale / record["path"]).read_bytes()
+            require(digest(value) == record["sha256"] and len(value) == record["bytes"],
+                    "Source notice changed during review export")
+            notices[record["export_path"]] = value
+    output.mkdir(parents=True)
+    (output / "linguistic-review.json").write_text(
+        json.dumps(packet, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    (output / "linguistic-review.md").write_text(render(packet), encoding="utf-8")
+    for name, value in notices.items():
+        path = output / name
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_bytes(value)
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--report", type=Path, required=True)
@@ -208,11 +235,7 @@ def main():
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
     packet = make_packet(args.report, args.packs)
-    require(not args.output.exists(), "Choose a new output directory; completed review must not be overwritten")
-    args.output.mkdir(parents=True)
-    (args.output / "linguistic-review.json").write_text(
-        json.dumps(packet, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    (args.output / "linguistic-review.md").write_text(render(packet), encoding="utf-8")
+    write_packet(packet, args.packs, args.output)
     print(json.dumps({"review_status": packet["review_status"], "queries": len(packet["queries"]),
                       "source_records": len(packet["source_records"]),
                       "report_sha256": packet["report"]["sha256"]}, indent=2))

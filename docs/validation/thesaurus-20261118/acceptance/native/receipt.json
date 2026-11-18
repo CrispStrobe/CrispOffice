@@ -1,0 +1,116 @@
+{
+  "started_at_utc": "2026-11-18T20:25:29.239378+00:00",
+  "base_commit": "7530f83a5503987dbee5b9678af56116ca98621f",
+  "runs": [
+    {
+      "name": "native-acceptance",
+      "command": [
+        "/workspace/scratch/50c979e0f188/zotero-toolchain/flutter-sdk/bin/flutter",
+        "test",
+        "--no-pub",
+        "--concurrency=1",
+        "--reporter",
+        "json",
+        "test/word_thesaurus_dialog_test.dart",
+        "test/word_thesaurus_controller_test.dart",
+        "test/word_proofing_correction_test.dart",
+        "test/word_proofing_capture_cache_test.dart",
+        "test/word_proofing_context_test.dart",
+        "test/word_review_pane_test.dart",
+        "test/word_thesaurus_review_integration_test.dart",
+        "test/word_keyboard_review_test.dart",
+        "test/word_keyboard_review_identity_test.dart",
+        "test/word_keyboard_context_geometry_test.dart",
+        "test/word_text_proofing_controls_test.dart",
+        "test/word_text_proofing_pane_test.dart",
+        "/workspace/scratch/50c979e0f188/quds_office_suite/docs/validation/thesaurus-20261118/continuation/local/fixtures/native_pack_test.dart",
+        "/workspace/scratch/50c979e0f188/quds_office_suite/docs/validation/thesaurus-20261118/continuation/local/fixtures/native_visual_test.dart"
+      ],
+      "cwd": "/workspace/scratch/50c979e0f188/zotero-validation/packages/quds_office_editor",
+      "exit_code": 0,
+      "seconds": 142.39540467100232,
+      "stdout": "logs/native-acceptance.stdout",
+      "stderr": "logs/native-acceptance.stderr",
+      "stdout_sha256": "4f2726c7b6cb50dbb2197174bbb3d09d6363095848b776a760bf020e26a6f478",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "browser-build",
+      "command": [
+        "/workspace/scratch/50c979e0f188/zotero-toolchain/flutter-sdk/bin/flutter",
+        "build",
+        "web",
+        "--no-pub",
+        "--release",
+        "--csp",
+        "--no-web-resources-cdn",
+        "--no-wasm-dry-run",
+        "--pwa-strategy=none",
+        "--target=/workspace/scratch/50c979e0f188/quds_office_suite/docs/validation/thesaurus-20261118/continuation/local/fixtures/lib/main.dart",
+        "--output=/workspace/scratch/50c979e0f188/thesaurus-acceptance-validation/browser-build"
+      ],
+      "cwd": "/workspace/scratch/50c979e0f188/zotero-validation/packages/quds_office_editor/example",
+      "exit_code": 0,
+      "seconds": 83.75990346199978,
+      "stdout": "logs/browser-build.stdout",
+      "stderr": "logs/browser-build.stderr",
+      "stdout_sha256": "5a433a2e8af3ce195415f4ad9fbee2ddc547513d066415949a4b6d76f4c98d81",
+      "stderr_sha256": "aa02819df39ec700ae4616271df6ed38b149d3a6aabcf8382426836fad94c5bc"
+    }
+  ],
+  "status": "native_passed_web_compiled_browser_not_run",
+  "input_digest": "8b2c182ed905d042f417e51a23a8b01df64722ebbffa274afa69fbb286229819",
+  "test_audit": {
+    "passed": 208,
+    "failed": 0,
+    "skipped": 0,
+    "suite_count": 14,
+    "every_started_test_finished_once": true,
+    "layout_or_tap_diagnostics": []
+  },
+  "native_acceptance_guards": {
+    "exit_success": true,
+    "all_selected_suites_executed": true,
+    "nonempty_cases": true,
+    "no_failed_or_skipped_cases": true,
+    "every_started_test_finished_once": true,
+    "final_event_success": true,
+    "clean_event_stream": true
+  },
+  "source_unchanged_during_tests": true,
+  "source_unchanged_during_build": true,
+  "compiled_browser_files": 1155,
+  "compiled_browser_bytes": 87397428,
+  "browser_build_binding": {
+    "schema": "quds-thesaurus-browser-build-v1",
+    "source_inputs": {
+      "path": "source-inputs.json.gz",
+      "sha256": "0bae40960f20a45f3edb0a339cdeeebdf3b7383399c2d06bdf7fe6f514e4e13a"
+    },
+    "compiled_files": {
+      "path": "browser-build-files.json.gz",
+      "sha256": "ad8c047fa99891ee56785f409f311f269e00b4e856a5d0962ac8802fac10a4aa"
+    }
+  },
+  "browser_execution": {
+    "status": "not_run",
+    "offline_gate": "pending; this runner compiles but does not launch a browser",
+    "install_command": [
+      "python",
+      "/workspace/scratch/50c979e0f188/quds_office_suite/docs/validation/thesaurus-20261118/continuation/local/fixtures/install_offline.py",
+      "/workspace/scratch/50c979e0f188/thesaurus-acceptance-validation/browser-build",
+      "--compile-receipt",
+      "/workspace/scratch/50c979e0f188/thesaurus-acceptance-validation/receipt.json"
+    ],
+    "acceptance_command": [
+      "python",
+      "/workspace/scratch/50c979e0f188/quds_office_suite/docs/validation/thesaurus-20261118/continuation/local/fixtures/run_browser.py",
+      "/workspace/scratch/50c979e0f188/thesaurus-acceptance-validation/browser-build",
+      "--compile-receipt",
+      "/workspace/scratch/50c979e0f188/thesaurus-acceptance-validation/receipt.json",
+      "--output",
+      "/workspace/scratch/50c979e0f188/thesaurus-acceptance-validation/browser-acceptance"
+    ]
+  },
+  "finished_at_utc": "2026-11-18T20:29:18.429983+00:00"
+}

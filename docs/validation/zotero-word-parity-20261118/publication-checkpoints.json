@@ -1,0 +1,40 @@
+{
+  "branch": "codex/zotero-word-parity-20261118",
+  "pull_request": 173,
+  "through_commit": "a8029e95401ecef674fcbd920f78d2eb68ea89c0",
+  "github_actions": "Never queried or awaited",
+  "checkpoints": [
+    {
+      "sha": "aad56eb498aa4839ad5bb11fd35d9f734d2ca397",
+      "purpose": "Initial incoming integration before feature work"
+    },
+    {
+      "sha": "389b232f2a895698ae8e6d72b4c86c2052ca67bd",
+      "purpose": "Complete captured-ref audit"
+    },
+    {
+      "sha": "29ccaef96827774197f00d28a707a94987120c77",
+      "purpose": "First native-note/direct-command/reference-navigation implementation"
+    },
+    {
+      "sha": "5a68c2fdec18f723dd97e3435cd5e33a315a5006",
+      "purpose": "Regression fixtures, guide and qualification plan"
+    },
+    {
+      "sha": "243f0175a0d2d3d724677aba15b57927ef43d3a9",
+      "purpose": "Final-run skip rejection and runtime binding"
+    },
+    {
+      "sha": "14835c7639314ce734db8518e356fe344221e5b8",
+      "purpose": "Exact reviewed controller and note-order fixes preserved during executor outage"
+    },
+    {
+      "sha": "55c02534868b13e1eb0b5c9391d133e9bac57ecb",
+      "purpose": "Remaining guards and recovered regression checkpoint; final tests pending"
+    },
+    {
+      "sha": "a8029e95401ecef674fcbd920f78d2eb68ea89c0",
+      "purpose": "New captured Mail/review/thesaurus integration; object preservation verified"
+    }
+  ]
+}

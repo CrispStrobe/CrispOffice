@@ -1,0 +1,64 @@
+{
+  "commit": "a8029e95401ecef674fcbd920f78d2eb68ea89c0",
+  "tree": "f922225fba3d3faa59863f0fe672bfaf4c183207",
+  "reviewer": "Independent collaboration agent zotero_workflow_review",
+  "parents": [
+    "55c02534868b13e1eb0b5c9391d133e9bac57ecb",
+    "8a6105a7ec217b48105d171703c8d0294c7d2dc6",
+    "840809bbe23f95815a5ddcd2a7ee76c250b9fb8c",
+    "7c4f8bfa67b69e6fa4d8809724ae036cdcde492f"
+  ],
+  "parents_exact": true,
+  "expected_union_changed_paths_from243": 137,
+  "actual_changed_paths_from243": 140,
+  "missing_expected_paths": [],
+  "unexpected_product_paths": [],
+  "unexpected_blob_mismatches_excluding_combined_suite": [],
+  "thesaurus": {
+    "expected_blobs": 50,
+    "exact_matches": 50,
+    "failures": []
+  },
+  "recovered_nine_files": {
+    "exact_unchanged": 8,
+    "suite_exact_unique_one_line_addition": true,
+    "suite_final_blob": "5bba4d2b2037e2a3fc8ff35ffc36a057d1326747"
+  },
+  "recovery_record_unchanged": true,
+  "mail_81_paths": {
+    "exact_unchanged": 77,
+    "newer_thesaurus_overlays": [
+      "docs/roadmaps/thesaurus/README.md",
+      "tools/thesaurus/export_review_packet.py",
+      "tools/thesaurus/test_export_review_packet.py"
+    ],
+    "combined_suite_only_other_overlay": true
+  },
+  "additional_paths_only": [
+    "docs/validation/zotero-word-parity-20261118/reconciliation/refresh-captured-refs.json",
+    "docs/validation/zotero-word-parity-20261118/reconciliation/refresh-delta.json",
+    "docs/validation/zotero-word-parity-20261118/reconciliation/refresh-merge-proof.json"
+  ],
+  "ref_accounting": {
+    "method": "Transitive existing local audit plus fresh GitHub parent/compare verification",
+    "captured_at_utc": "2026-11-18T20:43:35.918009+00:00",
+    "total_refs": 389,
+    "initial_audit_head": "aad56eb498aa4839ad5bb11fd35d9f734d2ca397",
+    "initial_classification": {
+      "ancestor": 358,
+      "historical_equivalent": 28
+    },
+    "initial_historical_checks_verified": 14,
+    "unchanged_refs": 381,
+    "changed_or_added_refs": 8,
+    "removed_refs": [],
+    "final_classification": {
+      "ancestor": 361,
+      "historical_equivalent": 28,
+      "unaccounted": 0
+    }
+  },
+  "local_runtime_gate": "NOT RUN: executor blocked",
+  "github_actions": "NOT QUERIED",
+  "qualification_boundary": "History and byte preservation only; no final local runtime gate or live Zotero acceptance claimed."
+}

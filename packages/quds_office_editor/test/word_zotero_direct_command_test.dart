@@ -230,6 +230,64 @@ void main() {
     expect(fixture.controller.canUndo, isFalse);
   });
 
+  testWidgets(
+    'body composition prevents modal focus changes and native requests',
+    (tester) async {
+      final desktop = _Desktop(_noChange());
+      final fixture = await _mount(tester, desktop: desktop);
+      const composing = TextEditingValue(
+        text: 'Before after',
+        selection: TextSelection.collapsed(offset: 3),
+        composing: TextRange(start: 0, end: 6),
+      );
+      fixture.controller.input.setValue(composing);
+      final revision = fixture.controller.contentRevision;
+      var focusChanges = 0;
+      fixture.bodyFocus.addListener(() => focusChanges++);
+      tester.widget<FilledButton>(find.byKey(_runKey)).onPressed!();
+      await _pump(tester);
+      expect(find.byType(AlertDialog), findsNothing);
+      expect(desktop.requests, isEmpty);
+      expect(fixture.bodyFocus.hasPrimaryFocus, isTrue);
+      expect(focusChanges, 0);
+      expect(fixture.controller.input.composing, composing.composing);
+      expect(fixture.controller.contentRevision, revision);
+      expect(fixture.controller.canUndo, isFalse);
+      expect(
+        find.text('Finish the current text composition before using Zotero.'),
+        findsOneWidget,
+      );
+    },
+  );
+
+  testWidgets(
+    'composition starting during native work remains intact on return',
+    (tester) async {
+      final desktop = _Desktop(_noChange())..firstResponse = Completer<void>();
+      final fixture = await _mount(tester, desktop: desktop);
+      await _run(tester);
+      fixture.controller.input.setValue(
+        const TextEditingValue(
+          text: 'Before after',
+          selection: TextSelection.collapsed(offset: 3),
+          composing: TextRange(start: 0, end: 6),
+        ),
+      );
+      desktop.firstResponse!.complete();
+      await _pump(tester);
+      expect(find.byKey(_directKey), findsOneWidget);
+      expect(find.textContaining('could not be applied safely'), findsOneWidget);
+      expect(fixture.controller.canUndo, isFalse);
+      await _tap(tester, 'Return to document');
+      expect(
+        fixture.controller.input.composing,
+        const TextRange(start: 0, end: 6),
+      );
+      expect(fixture.controller.document.paragraphs.single.text, 'Before after');
+      expect(fixture.controller.canUndo, isFalse);
+    },
+  );
+
   testWidgets('native citation returns to writing with one undo operation', (
     tester,
   ) async {
