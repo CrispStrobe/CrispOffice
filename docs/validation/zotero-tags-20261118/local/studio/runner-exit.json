@@ -1,0 +1,5 @@
+{
+  "actual_exit_code": 0,
+  "source": "/workspace/scratch/e06533a127f6/zotero-studio-full-final-runner.exit",
+  "scope": "Shell captured exit status of the evidence runner immediately after its completion; distinct from the Flutter child exit in process-exit.json."
+}

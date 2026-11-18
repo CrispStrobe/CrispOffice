@@ -1,5 +1,43 @@
 # Zotero validation
 
+## 18 November 2026 — literal tag filtering, initial qualification
+
+PR #156 was merged into `main` as `c60fce9c37ca960eb64dd06c7ffc55b2fdbb2ed7`.
+The next qualified product is **`270a38adf97b9a027b79a00e2654acac6ebb1df6`** on
+`codex/zotero-tags-20261118`.
+
+The catalog now supports bounded literal tag filters across libraries,
+collections and desktop saved searches. Multiple tags require all tags before
+pagination. Applied filters retain selected sources, survive scope changes and
+reconnection, and keep draft query/tag text separate from paging and removal.
+
+| Accepted local cohort | Substantive passes |
+| --- | ---: |
+| Engine Zotero — 21 suites | 422 |
+| Editor Zotero — 17 suites | 235 |
+| Studio transport — one suite | 18 |
+| **Disjoint total** | **675** |
+
+All tests pass with zero skips/errors, including 34 new regressions counted once.
+Strict analysis, declared-language formatting and whitespace checks pass for
+the five changed Dart files. Source/dependency/runtime/workspace guards pass;
+every consumed source input matches the final product. The matching-wording
+correction was independently reviewed before final editor acceptance.
+
+All 357 incoming fork/upstream branch and PR refs were fetched and reconciled;
+the late re-fetch then found concurrent PR #155 merged into main. The results
+above retain their exact pre-merge source identity; qualification after the
+shared-source/workspace merge is pending. Changes and evidence were saved
+incrementally with `[skip ci]` and verified remote readback.
+No GitHub Actions, check or status endpoint was queried or awaited.
+
+See the [complete report and retained raw evidence](validation/zotero-tags-20261118/README.md).
+Setup, overlapping development runs, a rejected widget-harness attempt and an
+interrupted editor run are excluded. This qualification covers controlled
+responses, synthetic documents, widgets and local HTTP transport; new live
+account/desktop-picker, full-build and Word/LibreOffice acceptance is outside
+this increment.
+
 ## 18 November 2026 — catalog controls and connected source aliases
 
 Qualified product: **`1ccf329da190d47720962bd9d8c65c90acf562db`** on

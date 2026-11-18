@@ -1,0 +1,27 @@
+{
+  "status": "passed-pre-main-155-baseline",
+  "qualified_product_commit": "270a38adf97b9a027b79a00e2654acac6ebb1df6",
+  "cohorts": {
+    "engine": {
+      "suites": 21,
+      "passes": 422
+    },
+    "editor": {
+      "suites": 17,
+      "passes": 235
+    },
+    "studio": {
+      "suites": 1,
+      "passes": 18
+    }
+  },
+  "total": {
+    "suites": 39,
+    "substantive_passes": 675,
+    "skips": 0,
+    "errors": 0
+  },
+  "new_regressions": 34,
+  "new_main_pending_integration": "1ffcf91a3443caf9a6e8b45a3e6cab3f041831ae",
+  "github_ci_used": false
+}
