@@ -104,6 +104,11 @@ class _SurfaceHarness {
       RepaintBoundary(
         key: _screenshotKey,
         child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            fontFamily: 'Liberation Sans',
+            fontFamilyFallback: const <String>['Noto Naskh Arabic'],
+          ),
           builder: (context, child) => MediaQuery(
             data: MediaQuery.of(
               context,
@@ -242,9 +247,29 @@ Future<void> _screenshot(WidgetTester tester, String name) async {
   }
 }
 
+Future<void> _loadSurfaceFonts() async {
+  await OfficeHostFonts.ensureRegistered();
+  // The package deliberately does not ship MaterialIcons. Use the host SDK's
+  // genuine icon font when available, without requiring a machine-local path
+  // for ordinary test execution on other hosts.
+  final sdk = Platform.environment['FLUTTER_ROOT'];
+  final configured = Platform.environment['QUDS_REVIEW_ICON_FONT'];
+  final path =
+      configured ??
+      (sdk == null
+          ? null
+          : '$sdk/bin/cache/artifacts/material_fonts/MaterialIcons-Regular.otf');
+  if (path == null) return;
+  final file = File(path);
+  if (!await file.exists()) return;
+  final loader = FontLoader('MaterialIcons')
+    ..addFont(file.readAsBytes().then(ByteData.sublistView));
+  await loader.load();
+}
+
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
-  setUpAll(OfficeHostFonts.ensureRegistered);
+  setUpAll(_loadSurfaceFonts);
 
   testWidgets(
     'automatic checks show pending and checking status without dialogs',
@@ -265,7 +290,7 @@ void main() {
         gate.complete();
         await _frames(tester);
         expect(harness.controller.proofing.summary.issues, hasLength(1));
-        expect(find.text('1 writing issues'), findsOneWidget);
+        expect(find.text('1 writing issue'), findsOneWidget);
         expect(_key('word-review-pane'), findsNothing);
 
         await harness.focusDocument(tester);
@@ -591,12 +616,12 @@ void main() {
   });
 
   testWidgets(
-    'viewing mode shows inline findings but cannot apply their replacements',
+    'selecting mode shows inline findings but cannot apply their replacements',
     (tester) async {
       final harness = _SurfaceHarness(
         config: const OfficeSurfaceConfig(
           showRulers: false,
-          mode: OfficeInteractionMode.viewing,
+          mode: OfficeInteractionMode.selecting,
         ),
       );
       try {
@@ -622,6 +647,39 @@ void main() {
       }
     },
   );
+
+  testWidgets('viewing mode inspects through the pane without enabling edits', (
+    tester,
+  ) async {
+    final harness = _SurfaceHarness(
+      config: const OfficeSurfaceConfig(
+        showRulers: false,
+        mode: OfficeInteractionMode.viewing,
+      ),
+    );
+    try {
+      await harness.mount(tester);
+      await _click(tester, harness.point(tester, 6));
+      expect(find.byKey(_menuKey), findsNothing);
+      await tester.tap(_key('word-review-writing-status'));
+      await _frames(tester);
+      expect(_key('word-review-pane'), findsOneWidget);
+      expect(
+        tester
+            .widget<OutlinedButton>(_key('live-proofing-replace-0'))
+            .onPressed,
+        isNull,
+      );
+      expect(harness.controller.input.isAttached, isFalse);
+      expect(
+        harness.controller.document.paragraphs.single.text,
+        'Ein Feler steht hier. Weiter schreiben.',
+      );
+      expect(harness.controller.canUndo, isFalse);
+    } finally {
+      await harness.close(tester);
+    }
+  });
 
   for (final arabic in <bool>[false, true]) {
     testWidgets(
@@ -649,6 +707,11 @@ void main() {
           await _tapPane(tester, 'live-proofing-reveal');
           expect(harness.focus.hasPrimaryFocus, isTrue);
           expect(tester.takeException(), isNull);
+          await Scrollable.ensureVisible(
+            tester.element(_key('live-proofing-replace-0')),
+            alignment: 1,
+          );
+          await tester.pump();
           await _screenshot(
             tester,
             arabic ? 'live-review-arabic-narrow' : 'live-review-english-narrow',

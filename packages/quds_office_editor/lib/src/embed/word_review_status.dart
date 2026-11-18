@@ -19,6 +19,9 @@ class WordReviewStatusBar extends StatelessWidget {
       final pending = controller.document.revisions
           .where((revision) => revision.accepted == null)
           .length;
+      final issueCount = summary.issues.length;
+      final issuesLabel = issueCount == 1 ? '1 issue' : '$issueCount issues';
+      final changesLabel = pending == 1 ? '1 change' : '$pending changes';
       final String label;
       final IconData icon;
       if (summary.checking) {
@@ -36,14 +39,16 @@ class WordReviewStatusBar extends StatelessWidget {
       } else if (!summary.complete) {
         label = arabic
             ? '${summary.issues.length} ملاحظات · تدقيق جزئي'
-            : '${summary.issues.length} issues · partial check';
+            : '$issuesLabel · partial check';
         icon = Icons.info_outline;
       } else {
         label = summary.issues.isEmpty
             ? (arabic ? 'لا توجد ملاحظات' : 'No writing issues')
             : (arabic
                   ? '${summary.issues.length} ملاحظات'
-                  : '${summary.issues.length} writing issues');
+                  : issueCount == 1
+                  ? '1 writing issue'
+                  : '$issueCount writing issues');
         icon = summary.issues.isEmpty
             ? Icons.check_circle_outline
             : Icons.spellcheck;
@@ -87,7 +92,7 @@ class WordReviewStatusBar extends StatelessWidget {
                         : Icons.rate_review_outlined,
                     size: 17,
                   ),
-                  label: Text(arabic ? '$pending تغييرات' : '$pending changes'),
+                  label: Text(arabic ? '$pending تغييرات' : changesLabel),
                 ),
               ),
             ],

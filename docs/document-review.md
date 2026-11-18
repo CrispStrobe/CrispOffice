@@ -58,7 +58,10 @@ The Changes pane offers reviewer attribution, **Track text changes**, change
 navigation, exact source text and location, and individual **Accept / Reject**
 controls with **Undo / Redo**. Clicking a marked tracked change opens it in this
 pane. Its context menu also offers accept/reject when the source is valid and
-editable. Read-only mode retains inspection and disables document mutations.
+editable. Where a writing finding overlaps a tracked change, the writing
+suggestion takes precedence; use its context-menu **Open changes pane** action
+to review the change. Read-only mode retains inspection and disables document
+mutations.
 
 Use **More review options** for author/type/text filters, filtered batch actions,
 and original/final paragraph previews described below. Embedded applications
