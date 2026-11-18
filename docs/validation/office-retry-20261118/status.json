@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "updated_utc": "2026-11-18T05:51:56.854566+00:00",
-  "state": "canonical-in-progress",
+  "updated_utc": "2026-11-18T05:56:39.567952+00:00",
+  "state": "supplemental-gates-in-progress",
   "branch": "codex/office-local-qualification-20261118",
   "execution_checkout": "9d060658ee6be8ec97d73f56b9aec10d346b7952",
   "implementation_commit": "9a7c80be00258def2dcae3bb288c28558c83aa72",
@@ -14,10 +14,18 @@
   "prior_failed_attempt_acceptance": "rejected-preserved",
   "prior_archive_member_audit": "complete-42-of-42",
   "consumer_runtime_files_verified": 3504,
-  "fresh_qualification": "canonical-in-progress",
+  "fresh_qualification": "canonical-passed",
   "actions_workflow_check_status_endpoint_calls": 0,
   "release_accepted": false,
   "runtime_restoration": "passed",
   "independent_flutter_recovery_audit": "passed-zero-findings",
-  "package_config_prewarmpostwarm_identical": true
+  "package_config_prewarmpostwarm_identical": true,
+  "canonical": {
+    "selected_files": 224,
+    "raw_successes": 4236,
+    "substantive_successes": 4234,
+    "all_input_integrity_surfaces_unchanged": true,
+    "process_exit": 0,
+    "independent_audit": "passed-5747-checks-zero-findings"
+  }
 }

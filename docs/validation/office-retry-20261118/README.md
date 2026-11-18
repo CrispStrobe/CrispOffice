@@ -19,3 +19,7 @@ The execution checkout is frozen at `9d060658ee6be8ec97d73f56b9aec10d346b7952`, 
 The normalized and prewarmed source is now running the fresh canonical gate. Complete the unchanged 224-file canonical selection, portable/example/timezone gates, document consumers, native thread sweep, and independent evidence audits. Publish each meaningful checkpoint immediately.
 
 No GitHub Actions, workflow, check, or status endpoint is queried or awaited. `status.json` is the current machine-readable state.
+
+## Fresh canonical result
+
+The complete 224-file canonical selection passed all 13 commands, including five strict analyses, 145 formatting targets, 117 Python controls, and six cohorts. It recorded 4,236 successful runner events, of which 4,234 qualify: two absent private-PDF fixture controls are explicitly excluded under the existing harness policy. There were no unexpected skips. All six input-integrity surfaces, frozen HEAD and restored analyzer configuration passed. Portable/example/timezone, document-consumer and native sweep gates remain pending. See `gates/canonical.json` and the complete archive.
