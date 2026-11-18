@@ -1,0 +1,52 @@
+{
+  "passed": 51,
+  "failed": 0,
+  "skipped": 0,
+  "substantive_cases": 51,
+  "suite_count": 4,
+  "suites": [
+    {
+      "path": "/workspace/scratch/a686c23de6c7/zotero-validation/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart",
+      "passed": 21,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "path": "/workspace/scratch/a686c23de6c7/zotero-validation/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart",
+      "passed": 22,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "path": "/workspace/scratch/a686c23de6c7/zotero-validation/packages/quds_office_editor/test/word_zotero_field_at_caret_test.dart",
+      "passed": 4,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "path": "/workspace/scratch/a686c23de6c7/zotero-validation/packages/quds_office_editor/test/word_notes_editing_test.dart",
+      "passed": 4,
+      "skipped": 0,
+      "failed": 0
+    }
+  ],
+  "excluded_pseudo_cases": 4,
+  "excluded_reasons": {
+    "hidden_lifecycle": 4
+  },
+  "excluded_failures": [],
+  "test_start_events": 55,
+  "test_done_events": 55,
+  "every_started_test_finished_once": true,
+  "final_events": [
+    {
+      "success": true,
+      "type": "done",
+      "time": 29270
+    }
+  ],
+  "error_events": [],
+  "parse_errors": [],
+  "layout_or_tap_diagnostics": [],
+  "flutter_envelopes": 0
+}
