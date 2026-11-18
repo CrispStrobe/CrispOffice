@@ -127,7 +127,7 @@ Future<void> _tap(WidgetTester tester, Finder finder) async {
   await tester.pump();
   await tester.tap(finder);
   await tester.pumpAndSettle();
-  expect(tester.takeException(), isNull, reason: 'After ${finder.description}');
+  expect(tester.takeException(), isNull, reason: 'After $finder');
 }
 
 Finder _query() => find.byWidgetPredicate(
@@ -146,7 +146,7 @@ Future<void> _choose(WidgetTester tester, String key, String label) async {
 }
 
 Future<void> _openOptions(WidgetTester tester) =>
-    _tap(tester, find.text('Search options'));
+    _tap(tester, find.byTooltip('Search options'));
 
 Future<WordEditorController> _open(
   WidgetTester tester,

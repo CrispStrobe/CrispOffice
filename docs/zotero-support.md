@@ -213,7 +213,8 @@ composer, expand a source's title to edit its locator and affixes.
 
 ### Find and sort references
 
-Expand **Search options** in the Library tab to choose:
+Choose **Search options** (the sliders icon beside the search box) in the Library
+tab to choose:
 
 - **Search in:** the default title/creator/year search, or **Include full text**
   to include content indexed by Zotero. Results depend on that library's indexed

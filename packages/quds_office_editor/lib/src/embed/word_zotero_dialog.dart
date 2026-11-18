@@ -1316,12 +1316,10 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
     final base = narrow
         ? (widget.localTransport == null ? 820.0 : 960.0)
         : (widget.localTransport == null ? 660.0 : 800.0);
-    if (_session.library == null) return base;
-    // Reserve room for the options header even while collapsed. At the
-    // narrowest widths, wrapped host controls also need a usable results list.
-    return base +
-        (size.width < 380 ? 200 : 64) +
-        (_searchOptionsExpanded ? (narrow ? 340 : 180) : 0);
+    if (_session.library == null || !_searchOptionsExpanded) return base;
+    // Expanded options wrap at narrow widths. Preserve a usable results list
+    // while keeping the default catalog and its paging controls compact.
+    return base + (size.width < 380 ? 520 : (narrow ? 340 : 180));
   }
 
   Widget _banner(String text, {bool error = false}) => Container(
@@ -1335,168 +1333,165 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
 
   Widget _catalogSearchOptions() {
     final enabled = !_busy && (!_savedSearchMode || _savedSearchKey != null);
-    return ExpansionTile(
-      key: const ValueKey('zotero-search-options'),
-      initiallyExpanded: _searchOptionsExpanded,
-      tilePadding: EdgeInsets.zero,
-      title: const Text('Search options', style: TextStyle(fontSize: 13)),
-      onExpansionChanged: (expanded) =>
-          setState(() => _searchOptionsExpanded = expanded),
-      children: [
-        Wrap(
-          spacing: 12,
-          runSpacing: 10,
-          children: [
-            SizedBox(
-              width: 220,
-              child: DropdownButtonFormField<ZoteroSearchMode>(
-                key: const ValueKey('zotero-search-mode'),
-                initialValue: _searchMode,
-                isExpanded: true,
-                decoration: const InputDecoration(
-                  labelText: 'Search in',
-                  isDense: true,
+    return Padding(
+      padding: const EdgeInsets.only(top: 12),
+      child: Column(
+        children: [
+          Wrap(
+            spacing: 12,
+            runSpacing: 10,
+            children: [
+              SizedBox(
+                width: 220,
+                child: DropdownButtonFormField<ZoteroSearchMode>(
+                  key: const ValueKey('zotero-search-mode'),
+                  initialValue: _searchMode,
+                  isExpanded: true,
+                  decoration: const InputDecoration(
+                    labelText: 'Search in',
+                    isDense: true,
+                  ),
+                  items: const [
+                    DropdownMenuItem(
+                      value: ZoteroSearchMode.titleCreatorYear,
+                      child: Text('Titles, creators and years'),
+                    ),
+                    DropdownMenuItem(
+                      value: ZoteroSearchMode.everything,
+                      child: Text('Include full text'),
+                    ),
+                  ],
+                  onChanged: !enabled
+                      ? null
+                      : (value) => _run(() async {
+                          if (value == null) return;
+                          _searchMode = value;
+                          await _loadItems();
+                        }),
                 ),
-                items: const [
-                  DropdownMenuItem(
-                    value: ZoteroSearchMode.titleCreatorYear,
-                    child: Text('Titles, creators and years'),
-                  ),
-                  DropdownMenuItem(
-                    value: ZoteroSearchMode.everything,
-                    child: Text('Include full text'),
-                  ),
-                ],
-                onChanged: !enabled
-                    ? null
-                    : (value) => _run(() async {
-                        if (value == null) return;
-                        _searchMode = value;
-                        await _loadItems();
-                      }),
               ),
-            ),
-            SizedBox(
-              width: 180,
-              child: DropdownButtonFormField<String>(
-                key: const ValueKey('zotero-item-type'),
-                initialValue: _itemType ?? '',
-                isExpanded: true,
-                decoration: const InputDecoration(
-                  labelText: 'Reference type',
-                  isDense: true,
+              SizedBox(
+                width: 180,
+                child: DropdownButtonFormField<String>(
+                  key: const ValueKey('zotero-item-type'),
+                  initialValue: _itemType ?? '',
+                  isExpanded: true,
+                  decoration: const InputDecoration(
+                    labelText: 'Reference type',
+                    isDense: true,
+                  ),
+                  items: const [
+                    DropdownMenuItem(value: '', child: Text('All types')),
+                    DropdownMenuItem(value: 'book', child: Text('Book')),
+                    DropdownMenuItem(
+                      value: 'bookSection',
+                      child: Text('Book section'),
+                    ),
+                    DropdownMenuItem(
+                      value: 'journalArticle',
+                      child: Text('Journal article'),
+                    ),
+                    DropdownMenuItem(
+                      value: 'conferencePaper',
+                      child: Text('Conference paper'),
+                    ),
+                    DropdownMenuItem(value: 'thesis', child: Text('Thesis')),
+                    DropdownMenuItem(value: 'report', child: Text('Report')),
+                    DropdownMenuItem(value: 'webpage', child: Text('Web page')),
+                  ],
+                  onChanged: !enabled
+                      ? null
+                      : (value) => _run(() async {
+                          _itemType = value == '' ? null : value;
+                          await _loadItems();
+                        }),
                 ),
-                items: const [
-                  DropdownMenuItem(value: '', child: Text('All types')),
-                  DropdownMenuItem(value: 'book', child: Text('Book')),
-                  DropdownMenuItem(
-                    value: 'bookSection',
-                    child: Text('Book section'),
-                  ),
-                  DropdownMenuItem(
-                    value: 'journalArticle',
-                    child: Text('Journal article'),
-                  ),
-                  DropdownMenuItem(
-                    value: 'conferencePaper',
-                    child: Text('Conference paper'),
-                  ),
-                  DropdownMenuItem(value: 'thesis', child: Text('Thesis')),
-                  DropdownMenuItem(value: 'report', child: Text('Report')),
-                  DropdownMenuItem(value: 'webpage', child: Text('Web page')),
-                ],
-                onChanged: !enabled
-                    ? null
-                    : (value) => _run(() async {
-                        _itemType = value == '' ? null : value;
-                        await _loadItems();
-                      }),
               ),
-            ),
-            SizedBox(
-              width: 170,
-              child: DropdownButtonFormField<ZoteroItemSort>(
-                key: const ValueKey('zotero-item-sort'),
-                initialValue: _itemSort,
-                isExpanded: true,
-                decoration: const InputDecoration(
-                  labelText: 'Sort by',
-                  isDense: true,
+              SizedBox(
+                width: 170,
+                child: DropdownButtonFormField<ZoteroItemSort>(
+                  key: const ValueKey('zotero-item-sort'),
+                  initialValue: _itemSort,
+                  isExpanded: true,
+                  decoration: const InputDecoration(
+                    labelText: 'Sort by',
+                    isDense: true,
+                  ),
+                  items: const [
+                    DropdownMenuItem(
+                      value: ZoteroItemSort.dateModified,
+                      child: Text('Date modified'),
+                    ),
+                    DropdownMenuItem(
+                      value: ZoteroItemSort.dateAdded,
+                      child: Text('Date added'),
+                    ),
+                    DropdownMenuItem(
+                      value: ZoteroItemSort.title,
+                      child: Text('Title'),
+                    ),
+                    DropdownMenuItem(
+                      value: ZoteroItemSort.creator,
+                      child: Text('Creator'),
+                    ),
+                    DropdownMenuItem(
+                      value: ZoteroItemSort.date,
+                      child: Text('Publication date'),
+                    ),
+                    DropdownMenuItem(
+                      value: ZoteroItemSort.itemType,
+                      child: Text('Reference type'),
+                    ),
+                  ],
+                  onChanged: !enabled
+                      ? null
+                      : (value) => _run(() async {
+                          if (value == null) return;
+                          _itemSort = value;
+                          await _loadItems();
+                        }),
                 ),
-                items: const [
-                  DropdownMenuItem(
-                    value: ZoteroItemSort.dateModified,
-                    child: Text('Date modified'),
-                  ),
-                  DropdownMenuItem(
-                    value: ZoteroItemSort.dateAdded,
-                    child: Text('Date added'),
-                  ),
-                  DropdownMenuItem(
-                    value: ZoteroItemSort.title,
-                    child: Text('Title'),
-                  ),
-                  DropdownMenuItem(
-                    value: ZoteroItemSort.creator,
-                    child: Text('Creator'),
-                  ),
-                  DropdownMenuItem(
-                    value: ZoteroItemSort.date,
-                    child: Text('Publication date'),
-                  ),
-                  DropdownMenuItem(
-                    value: ZoteroItemSort.itemType,
-                    child: Text('Reference type'),
-                  ),
-                ],
-                onChanged: !enabled
-                    ? null
-                    : (value) => _run(() async {
-                        if (value == null) return;
-                        _itemSort = value;
-                        await _loadItems();
-                      }),
               ),
-            ),
-            SizedBox(
-              width: 140,
-              child: DropdownButtonFormField<ZoteroSortDirection>(
-                key: const ValueKey('zotero-sort-direction'),
-                initialValue: _sortDirection,
-                isExpanded: true,
-                decoration: const InputDecoration(
-                  labelText: 'Order',
-                  isDense: true,
+              SizedBox(
+                width: 140,
+                child: DropdownButtonFormField<ZoteroSortDirection>(
+                  key: const ValueKey('zotero-sort-direction'),
+                  initialValue: _sortDirection,
+                  isExpanded: true,
+                  decoration: const InputDecoration(
+                    labelText: 'Order',
+                    isDense: true,
+                  ),
+                  items: const [
+                    DropdownMenuItem(
+                      value: ZoteroSortDirection.ascending,
+                      child: Text('Ascending'),
+                    ),
+                    DropdownMenuItem(
+                      value: ZoteroSortDirection.descending,
+                      child: Text('Descending'),
+                    ),
+                  ],
+                  onChanged: !enabled
+                      ? null
+                      : (value) => _run(() async {
+                          if (value == null) return;
+                          _sortDirection = value;
+                          await _loadItems();
+                        }),
                 ),
-                items: const [
-                  DropdownMenuItem(
-                    value: ZoteroSortDirection.ascending,
-                    child: Text('Ascending'),
-                  ),
-                  DropdownMenuItem(
-                    value: ZoteroSortDirection.descending,
-                    child: Text('Descending'),
-                  ),
-                ],
-                onChanged: !enabled
-                    ? null
-                    : (value) => _run(() async {
-                        if (value == null) return;
-                        _sortDirection = value;
-                        await _loadItems();
-                      }),
               ),
-            ),
-          ],
-        ),
-        const Padding(
-          padding: EdgeInsets.symmetric(vertical: 8),
-          child: Text(
-            'Options apply to the complete result set. Full-text matches depend on what Zotero has indexed.',
-            style: TextStyle(fontSize: 12),
+            ],
           ),
-        ),
-      ],
+          const Padding(
+            padding: EdgeInsets.symmetric(vertical: 8),
+            child: Text(
+              'Options apply to the complete result set. Full-text matches depend on what Zotero has indexed.',
+              style: TextStyle(fontSize: 12),
+            ),
+          ),
+        ],
+      ),
     );
   }
 
@@ -1847,31 +1842,47 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
               ],
             ),
           const SizedBox(height: 8),
-          TextField(
-            controller: _search,
-            enabled: !_busy && (!_savedSearchMode || _savedSearchKey != null),
-            decoration: InputDecoration(
-              labelText: _savedSearchMode
-                  ? 'Search within saved search'
-                  : _searchMode == ZoteroSearchMode.everything
-                  ? 'Search references and full text'
-                  : 'Search title, creator, or year',
-              isDense: true,
-              prefixIcon: const Icon(Icons.search),
-              suffixIcon: IconButton(
-                onPressed:
-                    _busy || (_savedSearchMode && _savedSearchKey == null)
-                    ? null
-                    : () => _run(_loadItems),
-                tooltip: 'Search',
-                icon: const Icon(Icons.arrow_forward),
+          Row(
+            children: [
+              Expanded(
+                child: TextField(
+                  controller: _search,
+                  enabled:
+                      !_busy && (!_savedSearchMode || _savedSearchKey != null),
+                  decoration: InputDecoration(
+                    labelText: _savedSearchMode
+                        ? 'Search within saved search'
+                        : _searchMode == ZoteroSearchMode.everything
+                        ? 'Search references and full text'
+                        : 'Search title, creator, or year',
+                    isDense: true,
+                    prefixIcon: const Icon(Icons.search),
+                    suffixIcon: IconButton(
+                      onPressed:
+                          _busy || (_savedSearchMode && _savedSearchKey == null)
+                          ? null
+                          : () => _run(_loadItems),
+                      tooltip: 'Search',
+                      icon: const Icon(Icons.arrow_forward),
+                    ),
+                  ),
+                  onSubmitted: (_) {
+                    if (!_busy) _run(_loadItems);
+                  },
+                ),
               ),
-            ),
-            onSubmitted: (_) {
-              if (!_busy) _run(_loadItems);
-            },
+              IconButton(
+                key: const ValueKey('zotero-search-options'),
+                tooltip: 'Search options',
+                isSelected: _searchOptionsExpanded,
+                onPressed: () => setState(
+                  () => _searchOptionsExpanded = !_searchOptionsExpanded,
+                ),
+                icon: const Icon(Icons.tune),
+              ),
+            ],
           ),
-          _catalogSearchOptions(),
+          if (_searchOptionsExpanded) _catalogSearchOptions(),
         ],
         Expanded(
           child: _page == null
