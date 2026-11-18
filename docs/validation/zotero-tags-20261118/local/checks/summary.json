@@ -1,0 +1,83 @@
+{
+  "status": "passed",
+  "qualified_product_commit": "270a38adf97b9a027b79a00e2654acac6ebb1df6",
+  "cwd": "/workspace/scratch/e06533a127f6/quds_office_suite",
+  "checks": {
+    "analyze": {
+      "command": [
+        "/workspace/scratch/e06533a127f6/zotero-toolchain/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "packages/quds_office_engine/lib/src/zotero/zotero_models.dart",
+        "packages/quds_office_engine/lib/src/zotero/zotero_client.dart",
+        "packages/quds_office_engine/test/zotero_tag_filter_test.dart",
+        "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart",
+        "packages/quds_office_editor/test/word_zotero_tag_filter_test.dart"
+      ],
+      "exit_code": 0,
+      "log": "analyze.log",
+      "log_sha256": "b9cddc354fd04a3ef6e408579aa926b87da2c55c354703cf8cf5bb88c4b177c3"
+    },
+    "format": {
+      "command": [
+        "/workspace/scratch/e06533a127f6/zotero-toolchain/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+        "format",
+        "--language-version=3.12",
+        "--output=none",
+        "--set-exit-if-changed",
+        "packages/quds_office_engine/lib/src/zotero/zotero_models.dart",
+        "packages/quds_office_engine/lib/src/zotero/zotero_client.dart",
+        "packages/quds_office_engine/test/zotero_tag_filter_test.dart",
+        "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart",
+        "packages/quds_office_editor/test/word_zotero_tag_filter_test.dart"
+      ],
+      "exit_code": 0,
+      "log": "format.log",
+      "log_sha256": "fa7c222e299400d65a9ab0674a18eb5d5a70d8903f4893013aa2574d4c502704"
+    },
+    "committed-whitespace": {
+      "command": [
+        "git",
+        "diff",
+        "--check",
+        "c60fce9c37ca960eb64dd06c7ffc55b2fdbb2ed7",
+        "270a38adf97b9a027b79a00e2654acac6ebb1df6"
+      ],
+      "exit_code": 0,
+      "log": "committed-whitespace.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "working-whitespace": {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "log": "working-whitespace.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "source_before": {
+    "packages/quds_office_engine/lib/src/zotero/zotero_models.dart": "fbbbb93063cc06f7b7433753d872f394aa8b0489c1fe717b7fa1f16e90aba069",
+    "packages/quds_office_engine/lib/src/zotero/zotero_client.dart": "bfb2d3074c89104613acf10192c6d44c60eb7e9a55dead35089e4029a4305f84",
+    "packages/quds_office_engine/test/zotero_tag_filter_test.dart": "981e51bc76aa66f4a9d6077b88d1f69905c6047d9ac7a5e302179c1439d28549",
+    "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart": "3ccd18b14323e547e7ab7f9e7d4b1fc683eae26147d5c5e48a48a5c7c8a56441",
+    "packages/quds_office_editor/test/word_zotero_tag_filter_test.dart": "65431a886247a564abfa7b63f1adbe8db03786cd71a617db74390111e2743229"
+  },
+  "source_after": {
+    "packages/quds_office_engine/lib/src/zotero/zotero_models.dart": "fbbbb93063cc06f7b7433753d872f394aa8b0489c1fe717b7fa1f16e90aba069",
+    "packages/quds_office_engine/lib/src/zotero/zotero_client.dart": "bfb2d3074c89104613acf10192c6d44c60eb7e9a55dead35089e4029a4305f84",
+    "packages/quds_office_engine/test/zotero_tag_filter_test.dart": "981e51bc76aa66f4a9d6077b88d1f69905c6047d9ac7a5e302179c1439d28549",
+    "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart": "3ccd18b14323e547e7ab7f9e7d4b1fc683eae26147d5c5e48a48a5c7c8a56441",
+    "packages/quds_office_editor/test/word_zotero_tag_filter_test.dart": "65431a886247a564abfa7b63f1adbe8db03786cd71a617db74390111e2743229"
+  },
+  "source_unchanged": true,
+  "source_matches_product": {
+    "packages/quds_office_engine/lib/src/zotero/zotero_models.dart": true,
+    "packages/quds_office_engine/lib/src/zotero/zotero_client.dart": true,
+    "packages/quds_office_engine/test/zotero_tag_filter_test.dart": true,
+    "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart": true,
+    "packages/quds_office_editor/test/word_zotero_tag_filter_test.dart": true
+  }
+}

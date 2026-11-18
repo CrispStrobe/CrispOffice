@@ -1,0 +1,20 @@
+{
+  "raw_substantive_count": 18,
+  "raw_results": {
+    "success": 18
+  },
+  "raw_skips": 0,
+  "raw_error_event_count": 0,
+  "missed_tap_warning_count": 0,
+  "raw_successful_completion_events": 1,
+  "summary_artifact_count": 15,
+  "artifact_hash_mismatches": [],
+  "guard_pair_equal": {
+    "source": true,
+    "dependencies": true,
+    "runtime": true,
+    "workspace": true
+  },
+  "runner_exit": 0,
+  "child_exit": 0
+}

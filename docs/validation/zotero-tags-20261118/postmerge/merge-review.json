@@ -1,0 +1,14 @@
+{
+  "product_commit": "4e06d42d20521f56164303aa6c135d5580ea0948",
+  "main_included": "1ffcf91a3443caf9a6e8b45a3e6cab3f041831ae",
+  "zotero_source_and_tests_equal_premerge": true,
+  "compared_paths": [
+    "packages/quds_office_engine/lib/src/zotero/zotero_client.dart",
+    "packages/quds_office_engine/lib/src/zotero/zotero_models.dart",
+    "packages/quds_office_engine/test/zotero_tag_filter_test.dart",
+    "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart",
+    "packages/quds_office_editor/test/word_zotero_tag_filter_test.dart"
+  ],
+  "conflicts": "Only the two changelog additions; both sides retained.",
+  "whitespace_scope": "git diff --check latestmain...product passes. Four preexisting whitespace notices in imported native spaCy archival logs/license-source files are left byte-exact; they are outside this PR diff."
+}

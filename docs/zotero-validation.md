@@ -1,5 +1,44 @@
 # Zotero validation
 
+## 18 November 2026 — literal tag filtering on current main
+
+PR #156 was merged into main as `c60fce9c37ca960eb64dd06c7ffc55b2fdbb2ed7`.
+The current qualified product is **`4e06d42d20521f56164303aa6c135d5580ea0948`**
+on `codex/zotero-tags-20261118`. It incorporates main `1ffcf91a`, including
+concurrent PR #155 and the native spaCy histories.
+
+The catalog supports bounded literal tag filters across libraries, collections
+and desktop saved searches. Multiple tags require all tags before pagination.
+Applied filters retain selected sources, survive scope changes and reconnection,
+and keep draft query/tag text separate from paging and tag removal.
+
+| Accepted current local cohort | Substantive passes |
+| --- | ---: |
+| Engine Zotero — 21 suites | 422 |
+| Editor Zotero — 17 suites | 235 |
+| Studio transport — one suite | 18 |
+| **Disjoint total** | **675** |
+
+All tests pass with zero skips/errors, including 34 new regressions counted once.
+Strict analysis, declared-language formatting and whitespace checks pass for
+the five changed Dart files. Source/dependency/runtime/workspace guards pass;
+all source inputs match the qualified merge commit. The refreshed workspace has
+110 packages and 11 current manifests, with the hosted lock unchanged.
+
+All 357 initial fork/upstream branch and PR refs were fetched and reconciled.
+A late re-fetch found concurrent PR #155; the continuation merged it, preserved
+both changelog additions, refreshed the actual graph and reran all Zotero cohorts.
+Source and evidence were saved incrementally with `[skip ci]` and verified remote
+readback. No GitHub Actions, check or status endpoint was queried or awaited.
+
+See the [complete report and retained raw evidence](validation/zotero-tags-20261118/README.md).
+The earlier 675-pass pre-merge baseline, setup and focused runs, rejected
+widget-harness attempt and interrupted editor attempt are retained separately
+and excluded from current totals. This qualification covers controlled
+responses, synthetic documents, widgets and local HTTP transport; new live
+account/desktop-picker, full-build and Word/LibreOffice acceptance is outside
+this increment.
+
 ## 18 November 2026 — catalog controls and connected source aliases
 
 Qualified product: **`1ccf329da190d47720962bd9d8c65c90acf562db`** on

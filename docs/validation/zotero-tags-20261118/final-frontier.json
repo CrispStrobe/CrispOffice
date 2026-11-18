@@ -1,0 +1,26 @@
+{
+  "scope": "Late incoming re-fetch after initial qualification, before integration",
+  "ref_count": 359,
+  "distinct_heads": 234,
+  "unchanged_incoming_refs": 354,
+  "changed": {
+    "refs/remotes/origin/codex/native-spelling-20261118": {
+      "before": "7e1294cd5d61566b4f0a1a479614f6bccd89a862",
+      "after": "536ee2086ce46ab629d4d77144d1ca22a43e3c19"
+    },
+    "refs/remotes/origin/main": {
+      "before": "c8eca37d1639ac1d20efb83ba2e9da51981a3ad4",
+      "after": "1ffcf91a3443caf9a6e8b45a3e6cab3f041831ae"
+    },
+    "refs/remotes/origin/pr/155": {
+      "before": "7e1294cd5d61566b4f0a1a479614f6bccd89a862",
+      "after": "536ee2086ce46ab629d4d77144d1ca22a43e3c19"
+    }
+  },
+  "added": {
+    "refs/remotes/origin/codex/native-spelling-quality-20261118": "86b8b7a394759a72540b05d2ec40f412c1902485",
+    "refs/remotes/origin/codex/zotero-tags-20261118": "270a38adf97b9a027b79a00e2654acac6ebb1df6"
+  },
+  "missing": {},
+  "main_disposition": "Merge1ffcf91a including PR155 and spaCy ancestors, then refresh workspace and requalify; no incoming Zotero path changes"
+}
