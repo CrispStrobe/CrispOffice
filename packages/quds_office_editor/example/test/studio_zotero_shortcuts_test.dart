@@ -257,6 +257,39 @@ void main() {
     }
   }
 
+  testWidgets('body composition blocks shortcuts and saved ribbon callbacks', (
+    tester,
+  ) async {
+    final desktop = _Desktop();
+    final controller = await _studio(tester, desktop);
+    await tester.tap(find.text('Insert').first);
+    await _frames(tester);
+    final ribbon = tester
+        .widget<StudioCmd>(_command('Add/Edit citation'))
+        .onPressed!;
+    final editor = tester.widget<QudsWordEditor>(find.byType(QudsWordEditor));
+    editor.focusNode!.requestFocus();
+    await _frames(tester);
+    const composition = TextRange(start: 0, end: 1);
+    controller.input.setValue(
+      TextEditingValue(
+        text: controller.document.paragraphs.single.text,
+        selection: const TextSelection.collapsed(offset: 1),
+        composing: composition,
+      ),
+    );
+    await _shortcut(tester, LogicalKeyboardKey.keyC);
+    await _shortcut(tester, LogicalKeyboardKey.keyR);
+    ribbon();
+    await _frames(tester);
+    expect(desktop.connections, 0);
+    expect(desktop.requests, isEmpty);
+    expect(find.byType(Dialog), findsNothing);
+    expect(controller.input.composing, composition);
+    expect(editor.focusNode!.hasPrimaryFocus, isTrue);
+    expect(controller.canUndo, isFalse);
+  });
+
   testWidgets('successive shortcuts return directly to the writing caret', (
     tester,
   ) async {

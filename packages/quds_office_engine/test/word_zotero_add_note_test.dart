@@ -243,6 +243,70 @@ void main() {
     expect(_fields(reopened).map((f) => f['noteIndex']), [2, 3]);
   });
 
+  for (final originalType in [1, 2]) {
+    test(
+      'inserted notes precede converted type $originalType note at the same anchor',
+      () {
+        final document = WmlDocument.empty(text: 'After');
+        final paragraph = document.paragraphs.first;
+        final existing = WordNotes.insert(
+          document,
+          paragraph,
+          endnote: originalType == 2,
+        );
+        final reference = paragraph.inlines.removeLast();
+        paragraph.inlines.insert(0, reference);
+        WordZotero.insertCitation(
+          existing.paragraphs.single,
+          _citation('old', 'Old citation'),
+          index: 0,
+        );
+        final before = _snapshot(document);
+        final session = _session(document);
+        final oldField = _fields(session).single;
+        final destinationType = originalType == 1 ? 2 : 1;
+        _nativeStart(session, '<p>$_one</p><p>$_two</p>', destinationType);
+        _call(session, 'Document.convert', [
+          [oldField['id']],
+          'Http',
+          [destinationType],
+        ]);
+        final inserted = _convert(session, [
+          'DEF456',
+          'ABC123',
+        ], destinationType);
+        expect(inserted.map((field) => field['noteIndex']), [2, 1]);
+        _set(session, inserted.first, 'second', 'Second citation');
+        _set(session, inserted.last, 'first', 'First citation');
+        final staged = _fields(session);
+        expect(staged.map((field) => field['text']), [
+          'First citation',
+          'Second citation',
+          'Old citation',
+        ]);
+        expect(staged.map((field) => field['noteIndex']), [1, 2, 3]);
+        expect(_snapshot(document), before);
+        _finish(session);
+        final reopened = WordDeserializer().readBytes(
+          WordSerializer().writeBytes(document),
+        );
+        for (final result in [document, reopened]) {
+          final fields = _fields(_session(result));
+          expect(fields.map((field) => field['text']), [
+            'First citation',
+            'Second citation',
+            'Old citation',
+          ]);
+          expect(fields.map((field) => field['noteIndex']), [1, 2, 3]);
+          expect(
+            originalType == 1 ? result.footnotes : result.endnotes,
+            isEmpty,
+          );
+        }
+      },
+    );
+  }
+
   test(
     'existing bibliography updates in same transaction as inserted note citations',
     () {

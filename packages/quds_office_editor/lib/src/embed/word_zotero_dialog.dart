@@ -64,6 +64,16 @@ Future<void> showWordZoteroDialog(
   if (closeAfterCommand && initialCommand == null) {
     throw ArgumentError('A direct Zotero command is required.');
   }
+  if (_hasZoteroComposition(controller)) {
+    ScaffoldMessenger.maybeOf(context)?.showSnackBar(
+      const SnackBar(
+        content: Text(
+          'Finish the current text composition before using Zotero.',
+        ),
+      ),
+    );
+    return;
+  }
   controller.commitPendingEdits();
   final document = controller.document;
   final destination = await showDialog<WmlZoteroField>(
@@ -87,14 +97,22 @@ Future<void> showWordZoteroDialog(
   }
   if (destination != null) {
     controller.revealZoteroField(destination);
-  } else if (closeAfterCommand) {
+  } else if (closeAfterCommand && !_hasZoteroComposition(controller)) {
     controller.requestEditingFocus();
   }
+}
+
+bool _hasZoteroComposition(WordEditorController controller) {
+  final body = controller.input.composing;
+  final note = controller.noteEditingTarget?.composing;
+  return (body.isValid && !body.isCollapsed) ||
+      (note != null && note.isValid && !note.isCollapsed);
 }
 
 Object _editTarget(WordEditorController controller) => (
   document: controller.document,
   revision: controller.contentRevision,
+  composing: controller.input.composing,
   caret: controller.caret,
   paragraph: controller.caret.paragraphIndex,
   offset: controller.caret.logicalIndex,

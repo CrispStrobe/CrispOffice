@@ -632,4 +632,221 @@ void main() {
       _clean(controller);
     },
   );
+
+  test('body composition rejects every native command before pending edits commit', () {
+    final document = WmlDocument.empty(text: 'Body');
+    final note = WordNotes.insert(
+      document,
+      document.paragraphs.single,
+      endnote: false,
+      text: 'Note',
+    );
+    final controller = _controller(document);
+    controller.setNoteText(note, 'Pending note text');
+    controller.caret.logicalIndex = 2;
+    controller.caret.collapseSelection();
+    final value = TextEditingValue(
+      text: document.paragraphs.single.text,
+      selection: const TextSelection.collapsed(offset: 2),
+      composing: const TextRange(start: 0, end: 2),
+    );
+    controller.input.setValue(value);
+    final before = _selection(controller);
+    final revision = controller.contentRevision;
+    expect(controller.canUndo, isFalse);
+    for (final command in <ZoteroCitingCommand?>[
+      null,
+      ...ZoteroCitingCommand.values,
+    ]) {
+      expect(
+        () => controller.beginZoteroTransaction(
+          documentId: 'body-composition',
+          command: command,
+        ),
+        throwsA(isA<UnsupportedError>().having(
+          (error) => error.message,
+          'message',
+          contains('composition'),
+        )),
+      );
+      expect(controller.input.value, value);
+      expect(controller.input.composing, value.composing);
+      expect(_selection(controller), before);
+      expect(controller.contentRevision, revision);
+      expect(controller.canUndo, isFalse);
+      expect(note.text, 'Pending note text');
+    }
+    controller.input.setValue(value.copyWith(composing: TextRange.empty));
+    controller.beginZoteroTransaction(documentId: 'composition-finished');
+    expect(controller.canUndo, isTrue);
+    controller.undo();
+    expect(note.text, 'Note');
+  });
+
+  test('body composition beginning during native work rejects completed changes', () {
+    final document = WmlDocument.empty(text: 'Body');
+    final controller = _controller(document);
+    controller.caret.logicalIndex = 2;
+    controller.caret.collapseSelection();
+    final transaction = controller.beginZoteroTransaction(
+      documentId: 'composition-started',
+      command: ZoteroCitingCommand.addNote,
+    );
+    transaction.session.handle('Document.insertText', [
+      'composition-started',
+      '<p>Research note</p>',
+    ]);
+    transaction.session.handle('Document.complete', ['composition-started']);
+    final value = TextEditingValue(
+      text: document.paragraphs.single.text,
+      selection: const TextSelection.collapsed(offset: 2),
+      composing: const TextRange(start: 0, end: 2),
+    );
+    controller.input.setValue(value);
+    final before = _selection(controller);
+    expect(transaction.assertCurrent, throwsStateError);
+    expect(transaction.apply, throwsStateError);
+    expect(document.paragraphs.single.text, 'Body');
+    expect(controller.input.value, value);
+    expect(controller.input.composing, value.composing);
+    expect(_selection(controller), before);
+    _clean(controller);
+  });
+
+  test('body focus return does not clear active composition or change selection', () {
+    final controller = _controller(WmlDocument.empty(text: 'Body'));
+    controller.caret.logicalIndex = 2;
+    controller.caret.collapseSelection();
+    const value = TextEditingValue(
+      text: 'Body',
+      selection: TextSelection.collapsed(offset: 2),
+      composing: TextRange(start: 0, end: 2),
+    );
+    controller.input.setValue(value);
+    final before = _selection(controller);
+    var calls = 0;
+    controller.onRequestFocus = () {
+      calls++;
+      controller.input.setValue(value.copyWith(composing: TextRange.empty));
+    };
+    controller.requestEditingFocus();
+    expect(calls, 0);
+    expect(controller.input.value, value);
+    expect(controller.input.composing, value.composing);
+    expect(_selection(controller), before);
+    _clean(controller);
+  });
+
+  test('Notes focus return does not reveal or interrupt active composition', () {
+    final document = WmlDocument.empty(text: 'Body');
+    final note = WordNotes.insert(
+      document,
+      document.paragraphs.single,
+      endnote: false,
+      text: 'Note',
+    );
+    final controller = _controller(document);
+    controller.syncConfig(controller.config.copyWith(showNotesPane: false));
+    controller.setNoteEditingTarget(
+      note,
+      const TextSelection.collapsed(offset: 2),
+      composing: const TextRange(start: 0, end: 2),
+    );
+    final before = _selection(controller);
+    controller.requestEditingFocus();
+    expect(controller.noteFocusRequest, 0);
+    expect(controller.config.showNotesPane, isFalse);
+    expect(_selection(controller), before);
+    expect(controller.noteEditingTarget?.composing, const TextRange(start: 0, end: 2));
+    _clean(controller);
+  });
+
+  test('reattaching an unchanged body target preserves the complete IME draft', () {
+    final controller = _controller(WmlDocument.empty(text: 'Body text'));
+    controller.caret.logicalIndex = 2;
+    controller.caret.collapseSelection();
+    controller.attachInput();
+    const value = TextEditingValue(
+      text: 'Body text',
+      selection: TextSelection.collapsed(offset: 3),
+      composing: TextRange(start: 0, end: 4),
+    );
+    controller.input.setValue(value);
+    controller.detachInput();
+    final before = _selection(controller);
+    controller.attachInput();
+    expect(controller.input.isAttached, isTrue);
+    expect(controller.input.value, value);
+    expect(controller.input.composing, value.composing);
+    expect(_selection(controller), before);
+    expect(controller.document.paragraphs.single.text, 'Body text');
+    _clean(controller);
+  });
+
+  test('accepted IME text retains its composition through reattachment', () {
+    final controller = _controller(WmlDocument.empty(text: 'Body'));
+    controller.caret.logicalIndex = 4;
+    controller.caret.collapseSelection();
+    controller.attachInput();
+    const value = TextEditingValue(
+      text: 'Body仮',
+      selection: TextSelection.collapsed(offset: 5),
+      composing: TextRange(start: 4, end: 5),
+    );
+    controller.input.updateEditingValue(value);
+    expect(controller.document.paragraphs.single.text, value.text);
+    expect(controller.caret.logicalIndex, 5);
+    final revision = controller.contentRevision;
+    final before = _selection(controller);
+    controller.detachInput();
+    controller.attachInput();
+    expect(controller.input.isAttached, isTrue);
+    expect(controller.input.value, value);
+    expect(controller.input.composing, value.composing);
+    expect(_selection(controller), before);
+    expect(controller.contentRevision, revision);
+    controller.undo();
+    expect(controller.document.paragraphs.single.text, 'Body');
+    expect(controller.canUndo, isFalse);
+  });
+
+  for (final changed in ['paragraph', 'caret', 'text']) {
+    test('reattachment does not reuse composition after changing $changed', () {
+      final first = _paragraph('Body text');
+      final second = _paragraph('Body text');
+      final controller = _controller(WmlDocument(
+        sections: [WmlSection(blocks: [first, second])],
+      ));
+      controller.caret.logicalIndex = 2;
+      controller.caret.collapseSelection();
+      controller.attachInput();
+      controller.input.setValue(const TextEditingValue(
+        text: 'Body text',
+        selection: TextSelection.collapsed(offset: 2),
+        composing: TextRange(start: 0, end: 4),
+      ));
+      controller.detachInput();
+      switch (changed) {
+        case 'paragraph':
+          controller.caret.paragraphIndex = 1;
+          controller.caret.collapseSelection();
+        case 'caret':
+          controller.caret.logicalIndex = 3;
+          controller.caret.collapseSelection();
+        case 'text':
+          (first.inlines.single as WmlRun).text = 'Changed text';
+      }
+      final before = _selection(controller);
+      controller.attachInput();
+      expect(controller.input.isAttached, isTrue);
+      expect(controller.input.composing, TextRange.empty);
+      expect(controller.input.value.composing, TextRange.empty);
+      expect(controller.input.value.text,
+          changed == 'text' ? 'Changed text' : 'Body text');
+      expect(controller.input.value.selection.extentOffset,
+          controller.caret.logicalIndex);
+      expect(_selection(controller), before);
+      _clean(controller);
+    });
+  }
 }

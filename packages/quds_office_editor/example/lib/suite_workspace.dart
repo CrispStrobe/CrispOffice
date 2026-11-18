@@ -2122,8 +2122,15 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       !_word.isDisposed &&
       _wordRouteIsCurrent;
 
-  bool get _canRunZoteroCommand =>
-      _canOpenZotero && _canMutate && _word.config.allowsMutation;
+  bool get _canRunZoteroCommand {
+    final body = _word.input.composing;
+    final note = _word.noteEditingTarget?.composing;
+    return _canOpenZotero &&
+        _canMutate &&
+        _word.config.allowsMutation &&
+        (!body.isValid || body.isCollapsed) &&
+        (note == null || !note.isValid || note.isCollapsed);
+  }
 
   void _addEditZoteroCitation() =>
       unawaited(_openZotero(command: ZoteroCitingCommand.addEditCitation));

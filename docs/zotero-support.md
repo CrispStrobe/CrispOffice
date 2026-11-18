@@ -43,6 +43,11 @@ The normal **Zotero** references workspace stays open for browsing and repeated
 operations. It is available in Studio's viewing and selecting modes too;
 commands that change the document still require editing mode.
 
+Finish active input-method composition before opening Zotero. Body and Notes
+composition prevent direct commands from starting; composition beginning during
+native work invalidates its result. Returning to the document preserves an
+unchanged composing draft.
+
 ### Insert a Zotero research note
 
 Place a collapsed caret in the document body, outside existing fields, and
