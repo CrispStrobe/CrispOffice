@@ -184,7 +184,10 @@ also covers restored dependencies and actual runtime files.
 [verification.json](verification.json) is the concise machine-readable result.
 [evidence.tar.xz](evidence.tar.xz) preserves **196 exact evidence files**, indexed
 by size and SHA-256 in [evidence-index.json](evidence-index.json). All members
-were read back and verified after packing. Contents include:
+were read back and verified after packing. A fresh GitHub file read at evidence
+commit `9e55eaeb` returned the exact complete archive bytes; the
+[remote readback receipt](remote-readback.json) records that verification.
+Contents include:
 
 - Runtime restoration, pinned dependency receipts and original baselines.
 - Final raw test events, commands, source/dependency/runtime bindings.
@@ -237,7 +240,8 @@ paths when replaying elsewhere.
 | `2292548e` → `1e07cb85` | New remote branch, then integrated main merge. |
 | `4b7a0798` | Native projection, Word regressions and initial reconciliation. |
 | `d6a9ca51` | German shortlists/identifier guards, review tests and portable panel. |
-| This evidence commit | Final validation, independent review and concurrent frontier. |
+| `9e55eaeb` | Final validation, independent review and concurrent frontier. |
+| This audit commit | Verified remote archive readback receipt. |
 
 Writes use non-forced expected-head updates and `[skip ci]`.
 [Independent review](review.md) covers mapping, protections, graphemes,
