@@ -37,6 +37,8 @@ retains detailed proofing settings and the advanced comparison workspace.
   in the pane. Filter by spelling, grammar, or writing style; navigate between
   findings; choose a replacement; ignore an occurrence, word, or rule; or add a
   spelling to personal words. Document corrections remain undoable.
+  Correction and stale-source feedback remains visible above the pane's
+  scrolling content.
 - Moving the caret, scrolling, and zooming preserve checked results. Editing a
   paragraph removes its old findings immediately while verified findings in
   unchanged paragraphs remain visible and actionable during the typing pause
