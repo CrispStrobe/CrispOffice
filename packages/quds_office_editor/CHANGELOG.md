@@ -4,6 +4,14 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Add a document review workspace with reviewer attribution, author/type/text
+  filters, undoable filtered accept/reject, story-aware navigation, and
+  original/final paragraph previews. Compare two independently picked Word
+  documents with side-by-side or inline differences and export JSON reports.
+- Replace the mutating controller comparison helper with a read-only result;
+  preserve source documents, mark stale reports, and support narrow LTR/RTL
+  review layouts and viewing mode.
+
 - Keep exact reviewed macOS pixel references separate from Linux references.
 
 - Check native spelling without discretionary soft hyphens while keeping exact

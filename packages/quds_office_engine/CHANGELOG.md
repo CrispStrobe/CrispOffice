@@ -4,6 +4,13 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Add bounded, read-only Word document comparison with paragraph alignment,
+  grapheme-safe inline differences, revision text projections, modeled
+  formatting/structure comparisons, stable locations and JSON reports.
+  Disclose scope limits and coarse alignment; preserve input revision state.
+- Deprecate the invalid mutating `WordCompare.compare` implementation and fail
+  before mutation. Use `WordDocumentComparison.compare` or `WordCompare.diff`.
+
 - Emit complete dynamic footer PAGE packets, preserving their result formatting.
 
 - Offer existing accented dictionary forms for short German misspellings such
