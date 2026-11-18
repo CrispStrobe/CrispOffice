@@ -1,0 +1,35 @@
+{
+  "branch": "codex/document-review-20261118",
+  "repository": "CrispStrobe/quds_office_suite",
+  "updates_use_expected_head": true,
+  "force_push": false,
+  "messages_skip_ci": true,
+  "github_actions_queried_or_awaited": false,
+  "checkpoints": [
+    {
+      "sha": "9ae76b5b7fdc010b187a52c67067474263b6f52b",
+      "previous": "ec28480130786cb923d0447ee92a1d3de19f35c0",
+      "tree": "7f4146370aac99094c91b7ea0830dcdc14e33147",
+      "parents": [
+        "ec28480130786cb923d0447ee92a1d3de19f35c0",
+        "8002b6748deec2be7b7527d2bab8810d8ec54d05"
+      ],
+      "scope": "incoming-reconciliation",
+      "local_tree": "7f4146370aac99094c91b7ea0830dcdc14e33147"
+    },
+    {
+      "sha": "c32efc44a082ccc55249561f2e7e07b406b0ad74",
+      "previous": "9ae76b5b7fdc010b187a52c67067474263b6f52b",
+      "tree": "b1f13db91a6381a20d085422bc53afb30b1943cb",
+      "scope": "inline-comment-implementation",
+      "local_tree": "b1f13db91a6381a20d085422bc53afb30b1943cb"
+    },
+    {
+      "sha": "7638c5eeab66fe8aa74513e2bb5d28fd39034560",
+      "previous": "c32efc44a082ccc55249561f2e7e07b406b0ad74",
+      "tree": "a6f8d97786921cf187c0b74eccd33fe32cca1e72",
+      "scope": "keyboard-and-comment-workflows",
+      "local_tree": "a6f8d97786921cf187c0b74eccd33fe32cca1e72"
+    }
+  ]
+}

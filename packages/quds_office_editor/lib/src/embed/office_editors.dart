@@ -324,6 +324,7 @@ class _QudsWordEditorState extends State<QudsWordEditor>
     _inputRoute = route;
     _inputRouteWasCurrent = isCurrent;
     if (!routeChanged) return;
+    if (!isCurrent) _dismissContextMenu();
     // A route can cover or reveal Word without changing its primary focus
     // (for example a requestFocus:false dialog). Reconcile the IME after the
     // route update even when no FocusNode notification will arrive.
@@ -482,21 +483,43 @@ class _QudsWordEditorState extends State<QudsWordEditor>
     if (canvas is! RenderWordCanvas) return;
     var hit = canvas.contextHitForCaret();
     if (hit == null) return;
-    // A reviewed range ends just after the issue. Preserve the selected issue
-    // instead of using an adjacent finding at that half-open endpoint.
+    // A reviewed range ends just after its source. Preserve explicit identity
+    // as well as its offset: findings can overlap and revisions can be adjacent.
     final selected = _c.selectedProofingIssue;
+    final selectedRevision = _c.selectedRevision;
     final caret = _c.caret;
+    bool matchesSelection(int start, int end) =>
+        caret.selectionAnchorParagraph == caret.paragraphIndex &&
+        ((caret.selectionAnchor == start && caret.logicalIndex == end) ||
+            (caret.selectionAnchor == end && caret.logicalIndex == start));
+    WordProofingIssue? preferredIssue;
+    WmlRevision? preferredRevision;
     if (selected != null &&
         identical(selected.paragraph, hit.paragraph) &&
-        caret.selectionAnchorParagraph == caret.paragraphIndex &&
-        ((caret.selectionAnchor == selected.finding.start &&
-                caret.logicalIndex == selected.finding.end) ||
-            (caret.selectionAnchor == selected.finding.end &&
-                caret.logicalIndex == selected.finding.start))) {
-      hit = canvas.contextHitForCaret(proofingOffset: selected.finding.start);
+        matchesSelection(selected.finding.start, selected.finding.end)) {
+      preferredIssue = selected;
+    }
+    if (selectedRevision != null &&
+        selectedRevision.accepted == null &&
+        identical(
+          WordRevisions.resolveParagraph(_c.document, selectedRevision),
+          hit.paragraph,
+        ) &&
+        matchesSelection(selectedRevision.start, selectedRevision.end)) {
+      preferredRevision = selectedRevision;
+    }
+    final sourceOffset =
+        preferredIssue?.finding.start ?? preferredRevision?.start;
+    if (sourceOffset != null) {
+      hit = canvas.contextHitForCaret(proofingOffset: sourceOffset);
       if (hit == null) return;
     }
-    _showWordContext(hit, keyboardNavigation: true);
+    _showWordContext(
+      hit,
+      keyboardNavigation: true,
+      preferredIssue: preferredIssue,
+      preferredRevision: preferredRevision,
+    );
   }
 
   void _showInlineReview(OfficeContextHit hit) {
@@ -550,13 +573,26 @@ class _QudsWordEditorState extends State<QudsWordEditor>
     OfficeContextHit hit, {
     bool reviewOnly = false,
     bool keyboardNavigation = false,
+    WordProofingIssue? preferredIssue,
+    WmlRevision? preferredRevision,
   }) {
     _dismissContextMenu();
     final issues = hit.paragraph != null && hit.proofingOffset != null
         ? _c.proofing.issuesAt(hit.paragraph!, hit.proofingOffset!)
         : const <WordProofingIssue>[];
-    final issue = issues.firstOrNull;
-    final revision = _revisionAt(hit);
+    final issue = preferredIssue != null && issues.contains(preferredIssue)
+        ? preferredIssue
+        : issues.firstOrNull;
+    final revision =
+        preferredRevision != null &&
+            preferredRevision.accepted == null &&
+            _c.document.revisions.contains(preferredRevision) &&
+            identical(
+              WordRevisions.resolveParagraph(_c.document, preferredRevision),
+              hit.paragraph,
+            )
+        ? preferredRevision
+        : _revisionAt(hit);
     var canResolveRevision = revision != null && _c.config.allowsMutation;
     if (canResolveRevision) {
       try {

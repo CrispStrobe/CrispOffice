@@ -195,6 +195,7 @@ abstract final class OfficeContextMenu {
     }
     final TextDirection direction =
         Directionality.maybeOf(context) ?? TextDirection.ltr;
+    final sourceRoute = ModalRoute.of(context);
     var closed = false;
     late final OverlayEntry entry;
     void close() {
@@ -219,7 +220,7 @@ abstract final class OfficeContextMenu {
           onDismiss: close,
           onSelect: (String id) {
             close();
-            onSelect(id);
+            if (sourceRoute?.isCurrent ?? true) onSelect(id);
           },
         );
       },

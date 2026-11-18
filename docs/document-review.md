@@ -92,10 +92,12 @@ findings. An unavailable or incomplete check remains visible in the status.
 Keyboard context menus take focus for command selection and return focus to the
 document when closed. Pointer-opened inline suggestions continue to preserve
 typing focus. Opening a keyboard menu does not move the caret, change a selection,
-scroll the document, or create an undo entry. A selected finding ending at the
-next finding's start still targets the selected finding. Source changes dismiss
-an obsolete menu. Navigation and context-menu shortcuts do not interrupt an
-active IME composition.
+scroll the document, or create an undo entry. Overlapping findings retain the
+explicitly selected finding, and adjacent tracked changes retain the selected
+change at their shared boundary. Source changes dismiss an obsolete menu.
+Review shortcuts and menu actions cannot operate through a covering modal
+dialog. Navigation and context-menu shortcuts do not interrupt an active IME
+composition.
 
 ### Keep comment replies inline in Studio
 
