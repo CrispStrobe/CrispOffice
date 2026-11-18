@@ -1,0 +1,2387 @@
+{
+  "packages/legacy_doc_parser/lib/legacy_doc_parser.dart": {
+    "bytes": 308,
+    "git_blob_sha1": "7b14d0e67b93a0eb79a1dd24aa1e90ed3bcd122d",
+    "sha256": "619db5c39bae8ff8cb6205203c4fdec21f7c98c0b3549c58c5207bf36f91e0c9"
+  },
+  "packages/legacy_doc_parser/lib/src/bounded_cfb_reader.dart": {
+    "bytes": 6926,
+    "git_blob_sha1": "e3dbcaa856a77dcc93c48a68a8f9863231a55c51",
+    "sha256": "1ab9d7d9cc26e7a468c1a4325fe2f8570fbcc9b127d919c11f7f7c27c53c511c"
+  },
+  "packages/legacy_doc_parser/lib/src/compound/byte_source.dart": {
+    "bytes": 6868,
+    "git_blob_sha1": "c70f20344e025de16f9653e010d83098af2081cf",
+    "sha256": "81c1106063cd0de199a40206591af203283e6f3c7e4b4e28992a2ab664b29a4a"
+  },
+  "packages/legacy_doc_parser/lib/src/compound/cfbf_names.dart": {
+    "bytes": 1468,
+    "git_blob_sha1": "cbe06bf7ce91bdad647f582d138277f9de2a998f",
+    "sha256": "113d3ef294e00f6a7e454eb6e15de4f27cd448b1e8df6fbe73d583406aa4bb4b"
+  },
+  "packages/legacy_doc_parser/lib/src/compound/cfbf_reader.dart": {
+    "bytes": 29332,
+    "git_blob_sha1": "05981649b8911affa7c8cd7420273051dcbac028",
+    "sha256": "668b5401cd185fa1077d0838d570924ede37f8c025699eb10641dfcaac53076b"
+  },
+  "packages/legacy_doc_parser/lib/src/compound/cfbf_writer.dart": {
+    "bytes": 17594,
+    "git_blob_sha1": "c29ac3e1c7d216d810919cf9c8f2b8e33ef2419a",
+    "sha256": "d3b27d1b4872274159678121a503e952b4f6e8b623d457a8c6bb69b74f34931a"
+  },
+  "packages/legacy_doc_parser/lib/src/conversion.dart": {
+    "bytes": 10716,
+    "git_blob_sha1": "367e75b79b8a77e8fcc5bf5004e91d27b5e705fb",
+    "sha256": "a41743ac05501531b1230dfee2b727603f51ffb0958e35098d33d159b3eb9675"
+  },
+  "packages/legacy_doc_parser/lib/src/legacy_word_binary_source.dart": {
+    "bytes": 8963,
+    "git_blob_sha1": "8e4327e330271d7b6b81f16c610ef80dd4b13369",
+    "sha256": "1bf315fd5dc57a648071f6ecc6a51ee6d105267adceb89e0be2bf79e93cba876"
+  },
+  "packages/legacy_doc_parser/lib/src/legacy_word_compatibility.dart": {
+    "bytes": 6237,
+    "git_blob_sha1": "dcebc9b4dcfa5c4f6f6c5392679c41c1896a6666",
+    "sha256": "a2b20b55fb0fcf7afbdc0c96f773a441d7ac44e24dc89c9517dc34ffc5639344"
+  },
+  "packages/legacy_doc_parser/lib/src/legacy_word_compatibility_parser.dart": {
+    "bytes": 5481,
+    "git_blob_sha1": "f960349d42e6ac592f20d007d9529f5e59b5750c",
+    "sha256": "166ab70cf56034d9bd614818552df0110d06a5e7c7335ea405bb92ad892f8940"
+  },
+  "packages/legacy_doc_parser/lib/src/legacy_word_decorations.dart": {
+    "bytes": 8027,
+    "git_blob_sha1": "753f7df7c11c14e3a012a8cfe8714cad1c4fe76d",
+    "sha256": "44f47d976b6dd2ba922fcf5bfedabca85043e44ce9394b7b558288eac089e793"
+  },
+  "packages/legacy_doc_parser/lib/src/legacy_word_document.dart": {
+    "bytes": 24253,
+    "git_blob_sha1": "f6b9c182dbf91e1cf6d9c85312f290369a8b91d1",
+    "sha256": "23278c48da73804d1e43720237d5f01bae50fa78ef7ea1be68511e266bef8756"
+  },
+  "packages/legacy_doc_parser/lib/src/legacy_word_fields.dart": {
+    "bytes": 7012,
+    "git_blob_sha1": "57dec712162ced4d2bf2300508b53b17b6f2a2a3",
+    "sha256": "929dc556a4f712223d3271502f52831569e212708f69f78f6077a64045361276"
+  },
+  "packages/legacy_doc_parser/lib/src/legacy_word_file_kind.dart": {
+    "bytes": 5388,
+    "git_blob_sha1": "86e1bb6170ab555fd32fdf3357cf32dd01f6e07c",
+    "sha256": "aeb5240fcdc1da2ea46260eed5c2edfaaf05336396ce43ad9c2266379ab79279"
+  },
+  "packages/legacy_doc_parser/lib/src/legacy_word_format_tables.dart": {
+    "bytes": 20546,
+    "git_blob_sha1": "af34a822b1f6880b0211a7dd7f3d000e865e6985",
+    "sha256": "c87e3e5750051389f3cedcff0af35b21f1a7193903ee17bf1142e065137f52a1"
+  },
+  "packages/legacy_doc_parser/lib/src/legacy_word_html_media.dart": {
+    "bytes": 12429,
+    "git_blob_sha1": "a155111300f667c5ac9ab5da75013d1c03731923",
+    "sha256": "00b2e9d3a6f0a77b91d727838f9e53028817596ebc388a523f5bd15d6a06119c"
+  },
+  "packages/legacy_doc_parser/lib/src/legacy_word_ink.dart": {
+    "bytes": 26814,
+    "git_blob_sha1": "c3aee0a61494842adce6eceb45b3509b035ea5fe",
+    "sha256": "ef852ce24cab013fc43ada29fac3f6673b86a88f72a08f4f4f9de2b50c46fcfd"
+  },
+  "packages/legacy_doc_parser/lib/src/legacy_word_layout_model.dart": {
+    "bytes": 4895,
+    "git_blob_sha1": "94b39c7cc4cc0b714cca049a0440bdd494d356a4",
+    "sha256": "9d3ec376dae848cd05b241857ceb0d94c3619a74924d421975ee214901153807"
+  },
+  "packages/legacy_doc_parser/lib/src/legacy_word_layout_parser.dart": {
+    "bytes": 11023,
+    "git_blob_sha1": "8c274e6307b098b854dea8b0b6d016d682cc3435",
+    "sha256": "1736b3decf1b082e08f79c22233420d0d37f2d0b622c0fc7565819ef97232965"
+  },
+  "packages/legacy_doc_parser/lib/src/legacy_word_lists.dart": {
+    "bytes": 13608,
+    "git_blob_sha1": "e4597e41132eedbeccc382b595d2c05e4da4619c",
+    "sha256": "86e3c0c66b154b11408eabb701c312ef35834da2a631672fe81f0e98145c3452"
+  },
+  "packages/legacy_doc_parser/lib/src/legacy_word_media_model.dart": {
+    "bytes": 14659,
+    "git_blob_sha1": "f63abb09e26a655a4d78844b2a100050615a8c20",
+    "sha256": "bdd1e647ab52f5caa387b0093a242efa5ed867d60d1eff3b4db211bbc994f6aa"
+  },
+  "packages/legacy_doc_parser/lib/src/legacy_word_media_parser.dart": {
+    "bytes": 48558,
+    "git_blob_sha1": "62f8d773c223e91db9e647f812113bb42fa5832d",
+    "sha256": "210adcf683ce9beaffe387b282d5907e9232987023e6c62fac7a58e0698a658f"
+  },
+  "packages/legacy_doc_parser/lib/src/legacy_word_metafile.dart": {
+    "bytes": 16072,
+    "git_blob_sha1": "d851c049db10c628ce792a0e8c0f5d4bccaed6b3",
+    "sha256": "1b852d36df20adcb846021452f58aba61aa51076f54ddd47e0f252320a6d73e1"
+  },
+  "packages/legacy_doc_parser/lib/src/legacy_word_metafile_render.dart": {
+    "bytes": 25174,
+    "git_blob_sha1": "abe4ffc89ff3dbc8f3a2f3e2d671706ec7516945",
+    "sha256": "56cc831a724e6d61d1bfa78a15895e5129d9615d71e59de0397f77f3911f440c"
+  },
+  "packages/legacy_doc_parser/lib/src/legacy_word_number_formats.dart": {
+    "bytes": 1556,
+    "git_blob_sha1": "a5158b488d4679a36218c4ea528ed6544dd01407",
+    "sha256": "3a98b56587fe4f1f72b2bcd6ca3020569d5a8f0f3b7f68fe19867b2fd19d42c8"
+  },
+  "packages/legacy_doc_parser/lib/src/legacy_word_numbering.dart": {
+    "bytes": 20466,
+    "git_blob_sha1": "21dcef2c9b96a09c3c3f31b5e399f1189ff3c766",
+    "sha256": "c9dbff5e7f058dec52f71cdda9bd4864cefae43c5576e932fe1ee5af7f4abc82"
+  },
+  "packages/legacy_doc_parser/lib/src/legacy_word_officeart_model.dart": {
+    "bytes": 10568,
+    "git_blob_sha1": "35eba111e1721d141ae7c4e0f6f17ca6ce3bdcd1",
+    "sha256": "d32a88158addb43fcca56dcff241595186670d32d71d8f480e9f3475301db71a"
+  },
+  "packages/legacy_doc_parser/lib/src/legacy_word_officeart_parser.dart": {
+    "bytes": 23740,
+    "git_blob_sha1": "db91fd61e0328f64062fae24bdad8d99d502af29",
+    "sha256": "017a427393a102f06cd98fa4dddadb060c6d5e8b83c38b3d5c9474af70f5a64c"
+  },
+  "packages/legacy_doc_parser/lib/src/legacy_word_pattern_dib.dart": {
+    "bytes": 1476,
+    "git_blob_sha1": "b752cb0b97e4e07afee080cae47172f48bd790d7",
+    "sha256": "47b2044c90f00512423409ebfc11a235e37315fe88491d560ac349a0cb02acae"
+  },
+  "packages/legacy_doc_parser/lib/src/legacy_word_revision_model.dart": {
+    "bytes": 980,
+    "git_blob_sha1": "b0ffd296d0c34c92e86db13435672e27c3ba0c82",
+    "sha256": "cf39ce7f1c21de1825f340718da077e3a0f74fff4f85871fa4774792778f0fcd"
+  },
+  "packages/legacy_doc_parser/lib/src/legacy_word_revisions.dart": {
+    "bytes": 20488,
+    "git_blob_sha1": "adaf5e23fc62d579af59b3a25cb6422a135668c5",
+    "sha256": "9289e3bafc346a42b446b938a18a4d1752e4fa7fed8a4fdafcfd49e4cd654698"
+  },
+  "packages/legacy_doc_parser/lib/src/legacy_word_section_geometry.dart": {
+    "bytes": 1217,
+    "git_blob_sha1": "fe792e09eec15d90fba23415d8f30c729cc96109",
+    "sha256": "76c61db1bc763597ad51c000b484507906444ad24c079ac52d09075f2eb8b8ec"
+  },
+  "packages/legacy_doc_parser/lib/src/legacy_word_sprms.dart": {
+    "bytes": 33703,
+    "git_blob_sha1": "0504ec7b16b8ea5a8d95aeb02d3fc817cfb513b6",
+    "sha256": "cad77bb97cbb44c86bd00c5172c37a846a1158cb5f561799b81bfe4e54763d2b"
+  },
+  "packages/legacy_doc_parser/lib/src/legacy_word_stories.dart": {
+    "bytes": 36175,
+    "git_blob_sha1": "990945e413f10dfa99640b83b508629866dda9a0",
+    "sha256": "8aa792cdc74867f77f352294d5ea2b1921e1ca7d6c5a488bc185c82e2289d555"
+  },
+  "packages/legacy_doc_parser/lib/src/legacy_word_structured_conversion.dart": {
+    "bytes": 25412,
+    "git_blob_sha1": "0817a1c5d2e35eb8925077396b5fdcec85a03d53",
+    "sha256": "11e2d5045fa354c5a952899d2ed3bd6f6814989b07683d1ba14ea3d57af7e889"
+  },
+  "packages/legacy_doc_parser/lib/src/legacy_word_structured_model.dart": {
+    "bytes": 40935,
+    "git_blob_sha1": "bef9695ac020e0a6a6834d3fd4e2cb7fb2f15bdb",
+    "sha256": "8424bd0e888a9a071f9aea7a5cf280339dc3215df3f5ecb04f6efd03d023987a"
+  },
+  "packages/legacy_doc_parser/lib/src/legacy_word_structured_parser.dart": {
+    "bytes": 34719,
+    "git_blob_sha1": "e0372bfbb0b6dfac6b00898eee2452e07be997ea",
+    "sha256": "057cd33bf9d958e25b1b12f77c8e5d742b7c3c7e082efc2b33fdc4448ed70718"
+  },
+  "packages/legacy_doc_parser/lib/src/legacy_word_structured_render.dart": {
+    "bytes": 35060,
+    "git_blob_sha1": "90bd90c4a7109548b459d75774c8805c79a887e2",
+    "sha256": "3f441935a94c7161c426d8cf83325eb0e0d62583557882aeaaf7adaac23ed5b6"
+  },
+  "packages/legacy_doc_parser/lib/src/legacy_word_table_model.dart": {
+    "bytes": 6223,
+    "git_blob_sha1": "8804e439bfb548c0757ca64ecda95df374c9a0eb",
+    "sha256": "a7cf0c0fe01e2f3f43b6ddaff20482e8d00b4a36a94795bbeb3fc43eaf2f09fc"
+  },
+  "packages/legacy_doc_parser/lib/src/legacy_word_table_operations.dart": {
+    "bytes": 8880,
+    "git_blob_sha1": "ddb2ffd1080bdffce6677d26ca725dc4de542638",
+    "sha256": "3c5ee6009319cfc2aebb72d9744f72c754dcbaabaca076dd83cb830c7f67c5ff"
+  },
+  "packages/legacy_doc_parser/lib/src/legacy_word_table_revisions.dart": {
+    "bytes": 4606,
+    "git_blob_sha1": "cbb83ffb95c91d41a3964398177ffe0793cc6f3f",
+    "sha256": "275e1795441c96583d3d6c828bdde0356a382e6cc3447a9d20ed9806f6bc68a3"
+  },
+  "packages/legacy_doc_parser/lib/src/legacy_word_table_styles.dart": {
+    "bytes": 16452,
+    "git_blob_sha1": "5422cc4474d34f319ed7d6c20fb9fddc9145e28b",
+    "sha256": "115bffeed7b8e525cb734c60ebf674764c693efa55b58e0bddcce674913cea4e"
+  },
+  "packages/legacy_doc_parser/lib/src/legacy_word_table_text.dart": {
+    "bytes": 10094,
+    "git_blob_sha1": "9cd9387d8f333d212df6b2dd90ae39b441c99c81",
+    "sha256": "62728620de18d52de0d909f871bcc9f5786600dae418cde9d942ffa26cc1a4f7"
+  },
+  "packages/legacy_doc_parser/lib/src/legacy_word_tables.dart": {
+    "bytes": 10453,
+    "git_blob_sha1": "25a99b63cbdac51b8ed2103e05f426b8b5d3e242",
+    "sha256": "6c1d4ddb93e8f367f3afb70736fd853a27f548103cd2b6d86d54765eedc86a36"
+  },
+  "packages/legacy_doc_parser/lib/src/legacy_word_textbox_alias.dart": {
+    "bytes": 12646,
+    "git_blob_sha1": "c0fa7e15da1e11bf8740798bedc2358382d5bb4d",
+    "sha256": "7e6d28d480b70bf883cdaa5ed4d06f90171bd8cd891b17cc0a53828d19d1a24e"
+  },
+  "packages/legacy_doc_parser/lib/src/opc_package_writer.dart": {
+    "bytes": 5163,
+    "git_blob_sha1": "7bf08df4092b5b9d365400d217f68bceb518b965",
+    "sha256": "6852b0de555c609ace9c7bddb29de27e0a2e46e642c69c853cd49beeb66cf97c"
+  },
+  "packages/legacy_doc_parser/lib/src/word_comment_writer.dart": {
+    "bytes": 6297,
+    "git_blob_sha1": "6df074a5935376f1866e25979f9996b141270e90",
+    "sha256": "68b825defa56365f9857c6533bda585b08db5a8de7575b961922772f61eec078"
+  },
+  "packages/legacy_doc_parser/lib/src/word_compatibility_writer.dart": {
+    "bytes": 1921,
+    "git_blob_sha1": "bab1d9c2986f96619a352406b555dc09a3c9693d",
+    "sha256": "a5ef25e5476f4aaeefc7dc16d0ca75dd8d962a9eded7dc1426dafef11f971ba5"
+  },
+  "packages/legacy_doc_parser/lib/src/word_compound_storage_validation.dart": {
+    "bytes": 3169,
+    "git_blob_sha1": "19f55a94838a1c42efbb474a77009e5ee47e94ed",
+    "sha256": "969b2f7f2d7b01620f628f616aae491be063364c3b00761dcca498b71712cb7c"
+  },
+  "packages/legacy_doc_parser/lib/src/word_decoration_writer.dart": {
+    "bytes": 5864,
+    "git_blob_sha1": "c51d8e9d87663072038f514bb7097e3d552c71bf",
+    "sha256": "ae6db28240462473763f98b96dac37ba5ccb8b9a8ba817fdf7cd5f4ded7c24de"
+  },
+  "packages/legacy_doc_parser/lib/src/word_field_binary_metadata.dart": {
+    "bytes": 8718,
+    "git_blob_sha1": "9825fd9283ae08aac5cca688d3f98fd9d1b0cba2",
+    "sha256": "b22862ee3e93929e58fc5515a7046e993449466d6f431d2d5d6621034309dd6c"
+  },
+  "packages/legacy_doc_parser/lib/src/word_font_writer.dart": {
+    "bytes": 3781,
+    "git_blob_sha1": "140f3bd8644d9493e57012d3e680231c4ddbece9",
+    "sha256": "09afb7ca08d619c164c331e3e58df17a60b6ab2755d807e4f196ea494abcd523"
+  },
+  "packages/legacy_doc_parser/lib/src/word_image_appearance_writer.dart": {
+    "bytes": 5705,
+    "git_blob_sha1": "8a2121a685dd5f1d46c431af3d2ad5ce2953d655",
+    "sha256": "e24db670081f3808f9d46aa730c9421f56edca44365931f4f202d34d0f67434e"
+  },
+  "packages/legacy_doc_parser/lib/src/word_layout_writer.dart": {
+    "bytes": 6881,
+    "git_blob_sha1": "bebff44bcaa09e1da6f5091eb4956ad8f9b1a631",
+    "sha256": "b9b30f35547fc5bdb0a7843d9d984c356dcaf398f4ef8da740752bc945fec4ef"
+  },
+  "packages/legacy_doc_parser/lib/src/word_media_writer.dart": {
+    "bytes": 48166,
+    "git_blob_sha1": "2d6a9abb22aed9405a27e0ce0bce0ca3d343a82e",
+    "sha256": "df60706a634340e3af2ddf737d74e66ff96b65a310a40f6bddd16d5a9160e7d4"
+  },
+  "packages/legacy_doc_parser/lib/src/word_numbering_writer.dart": {
+    "bytes": 22669,
+    "git_blob_sha1": "39a728451600dbd6ac0906e9e89803c2fd1307b6",
+    "sha256": "f470d5379a3b2efe67c8aa9664fd6ee61d215a23d0cb9e2c12ec5266634f370a"
+  },
+  "packages/legacy_doc_parser/lib/src/word_officeart_position_writer.dart": {
+    "bytes": 4520,
+    "git_blob_sha1": "2f86eb843e1b343ec88329c4dfee30b4240650fc",
+    "sha256": "e6a4dbd0621c97624dad8da26de63a5c057d96f440509a8a2dcc98e7c3f5a321"
+  },
+  "packages/legacy_doc_parser/lib/src/word_ole_placeholder.dart": {
+    "bytes": 9208,
+    "git_blob_sha1": "c1532dd30e6884245d3a5c8b7801f0c289bba9a0",
+    "sha256": "01ba91e6760f062420c4d0c691516627cb4aec54e5b9c69ae2db7368dbbdad72"
+  },
+  "packages/legacy_doc_parser/lib/src/word_revision_writer.dart": {
+    "bytes": 17831,
+    "git_blob_sha1": "710cdaae98001f5956c03fa1c0aa09bf97d33fb5",
+    "sha256": "e334579e6f3eded1a06acf14dd178cc59a21ffccc43c8b31012b638ec1e96aa2"
+  },
+  "packages/legacy_doc_parser/lib/src/word_shape_writer.dart": {
+    "bytes": 12957,
+    "git_blob_sha1": "8d44f72cc72e8b5e18b33319d906d931891cba51",
+    "sha256": "84879bda9bd841da1599cf5e91a971fb28e9c5538e18ccee75d6500b9d088ae6"
+  },
+  "packages/legacy_doc_parser/lib/src/word_story_writer.dart": {
+    "bytes": 46126,
+    "git_blob_sha1": "38099f93a3bd07d0fd03a13207c0d92d8eee9bee",
+    "sha256": "c44708e64e20b2c692f20020fba7ce02903217f6c1d2a8532ec601ba3e1bd78a"
+  },
+  "packages/legacy_doc_parser/lib/src/word_table_revision_writer.dart": {
+    "bytes": 4866,
+    "git_blob_sha1": "26598589349428c6964ad74274beac37aac9342e",
+    "sha256": "2430d40ffe5c694a53ce21f5ec2c813c6f1cb8b579fe6ee402fa32fb9d4b0740"
+  },
+  "packages/legacy_doc_parser/lib/src/word_table_style_writer.dart": {
+    "bytes": 6241,
+    "git_blob_sha1": "e324ab602101b960162cdbcb75d8393e37fb0547",
+    "sha256": "1e739f7f7179fbf1d3ee1b79825a779f035e7e20eb1406083466ece9d52dca99"
+  },
+  "packages/legacy_doc_parser/lib/src/word_table_text_writer.dart": {
+    "bytes": 7124,
+    "git_blob_sha1": "6120d7c91ff86ef1a4c63dbab5cbe9eb16bbc006",
+    "sha256": "e8c7af95651232e6c22e47f3816353e6b3126306011bf47bd55215cc18c8479b"
+  },
+  "packages/legacy_doc_parser/lib/src/word_table_writer.dart": {
+    "bytes": 14086,
+    "git_blob_sha1": "2564e83dacaf9bda02ac15c6acf9b17be6c96896",
+    "sha256": "e7511b11d0084b7f87e81a69d18aa53221651559b55ed333586c2c3a25e06b9b"
+  },
+  "packages/legacy_doc_parser/lib/src/word_textbox_writer.dart": {
+    "bytes": 10317,
+    "git_blob_sha1": "de42183a377d2172fc6d385909431599e0a63f24",
+    "sha256": "f62ea5bad051d425edc275111d9927e5546e669c605ab564bc40a063e82ae79e"
+  },
+  "packages/quds_office_editor/lib/quds_office_editor.dart": {
+    "bytes": 2996,
+    "git_blob_sha1": "414de2145e33346aca590711d8c83b0730020983",
+    "sha256": "f0cfd310fadc4211db668f9e112d669b812a456c4cb1c8e915591940886530fc"
+  },
+  "packages/quds_office_editor/lib/quds_reports.dart": {
+    "bytes": 1807,
+    "git_blob_sha1": "3d57bcd9b9ed8eef9a1e6d84f146f81072b7bb24",
+    "sha256": "c821f338965b6d493ceda62d306f3d9da972af28f2f054b3a9c5924dc4d00007"
+  },
+  "packages/quds_office_editor/lib/src/core/command_pipeline.dart": {
+    "bytes": 7215,
+    "git_blob_sha1": "683c12080dad2cb3e3510f15db879df7d4c261db",
+    "sha256": "dfa04bb658dba1b45868feaa598bf351c4ecab5d88321af43d830f54f13ad0ce"
+  },
+  "packages/quds_office_editor/lib/src/core/input_bridge.dart": {
+    "bytes": 4133,
+    "git_blob_sha1": "ca0a9e4d20ddf6412e4df3778e8a301299d88286",
+    "sha256": "e053ab3aab15e880abd17cb512f4f80e4c81d21f8818f720382140b38cdbfd5b"
+  },
+  "packages/quds_office_editor/lib/src/core/virtual_viewport.dart": {
+    "bytes": 2572,
+    "git_blob_sha1": "6f0f1533aec5c0a66c75dbd47bc8785dec1cfbe6",
+    "sha256": "252184295c20fdee28711d5d9285c64d47d02b2b2912cc495ebacffc62fc0520"
+  },
+  "packages/quds_office_editor/lib/src/editor_pdf/paint_pdf_display_list.dart": {
+    "bytes": 8360,
+    "git_blob_sha1": "063122a94b828bda5a1bf0eea3e50975f3979622",
+    "sha256": "e3815db40d1b723abb496ac3da074ecc870321c208083378cb758767bf9866ce"
+  },
+  "packages/quds_office_editor/lib/src/editor_pdf/pdf_find.dart": {
+    "bytes": 5249,
+    "git_blob_sha1": "7e3a2ab3bd00cf06d3b272409e2634c2bc4d6adc",
+    "sha256": "34e25241cee19572b6cde877d02e636c677092edb41864e3e3eb42e73b69fa2f"
+  },
+  "packages/quds_office_editor/lib/src/editor_pdf/pdf_font_faces.dart": {
+    "bytes": 8106,
+    "git_blob_sha1": "af274059768b2ad5c0d39d3280e05d808b265e94",
+    "sha256": "34092eab580521bbca9cdf553191fbd4b620fca62c59ee0b327e840e5dccbc0d"
+  },
+  "packages/quds_office_editor/lib/src/editor_pdf/pdf_page_layout.dart": {
+    "bytes": 4414,
+    "git_blob_sha1": "2113ebe1e96a6c8857e5002d5476f0de32ba3163",
+    "sha256": "80e1467aa4ff4ef5f95819162cae3a8f06f72ca5b8abdd51fd29454e1d35a9f6"
+  },
+  "packages/quds_office_editor/lib/src/editor_pdf/pdf_page_rotation.dart": {
+    "bytes": 805,
+    "git_blob_sha1": "1aa26c94e393e0f153dbad79b13a88fde84d471c",
+    "sha256": "6b1b76671cad9eced328f9ba9a4f8b905e5f2ab1b976effba7e379a1e892812e"
+  },
+  "packages/quds_office_editor/lib/src/editor_pdf/pdf_page_thumb.dart": {
+    "bytes": 4980,
+    "git_blob_sha1": "d0957104accff68497e955d42559a51cfb770fa9",
+    "sha256": "968b1b336639050a4c52025db239a58bbf2db383a656fc5aa25a28444ba62c7b"
+  },
+  "packages/quds_office_editor/lib/src/editor_pdf/pdf_raster.dart": {
+    "bytes": 3298,
+    "git_blob_sha1": "c4f228b308711710150ab7e73a7551e823f5d6f0",
+    "sha256": "8cb17e31779e5ac5eceddeb00eb518cd169bec87a618e1d8bdbe2879439d4f8b"
+  },
+  "packages/quds_office_editor/lib/src/editor_pdf/pdf_text_selection.dart": {
+    "bytes": 10723,
+    "git_blob_sha1": "9d8ead6dc70effba0c789df6f8894f9b9fb56865",
+    "sha256": "6aad5e043bdd57019780fa5b132071a6b660c32e6d800c5ba8f1410bcadc8c71"
+  },
+  "packages/quds_office_editor/lib/src/editor_pdf/render_pdf_canvas.dart": {
+    "bytes": 52452,
+    "git_blob_sha1": "47f3cbb0e34900aafb1138ed975eaeefa87b19fb",
+    "sha256": "64be265ac07ba8733826936ed4e732481da249688db6e166ec7bfc5ea20a44c5"
+  },
+  "packages/quds_office_editor/lib/src/editor_reports/quds_report_designer.dart": {
+    "bytes": 71311,
+    "git_blob_sha1": "3d059d20e32858406b00892a007f7b42ed405068",
+    "sha256": "391f1f697aaa803a6bd406e3e92dbc85ef8a4c55d858bae9cd0cd4ea8c0c10bc"
+  },
+  "packages/quds_office_editor/lib/src/editor_reports/render_report_data_explorer.dart": {
+    "bytes": 52289,
+    "git_blob_sha1": "de2cc97454a843b72696c7110fb97fa7a80d9b3b",
+    "sha256": "690fd1fb887143ec6ad155ce46dbbd556d32e097c85787015b3f5e254dd1b4d3"
+  },
+  "packages/quds_office_editor/lib/src/editor_reports/render_report_designer.dart": {
+    "bytes": 42562,
+    "git_blob_sha1": "9fa5045a99d96c468228339ed684a54b69bdc4ed",
+    "sha256": "46d88799c06bbcad7069b49b2e053ed58df6ad54e02ca55a8892610e4a521f2e"
+  },
+  "packages/quds_office_editor/lib/src/editor_reports/render_report_inspector.dart": {
+    "bytes": 117724,
+    "git_blob_sha1": "12e9b218812f9f371cd2fa68ff045e70a0ae532c",
+    "sha256": "6fa0259f426aaa1a26e94adc73d0fec76064a8d2dede03da138a8b562d248d81"
+  },
+  "packages/quds_office_editor/lib/src/editor_reports/render_report_preview.dart": {
+    "bytes": 12069,
+    "git_blob_sha1": "42154bc19ed0469db882d59fa9bf2ede4c739e89",
+    "sha256": "493f50b4bf4a51af7ea18a57e2c618f6e85c6e16bf202096249636669e2dfca3"
+  },
+  "packages/quds_office_editor/lib/src/editor_reports/render_report_problems.dart": {
+    "bytes": 23769,
+    "git_blob_sha1": "15cace19fa36b89b0be137e596b0631d9689f3ea",
+    "sha256": "e3a6b56bf9e81bae5b51adbdc8c9c5a9c3aae64ff5d290cbeaadbb54487108a0"
+  },
+  "packages/quds_office_editor/lib/src/editor_reports/render_report_toolbar.dart": {
+    "bytes": 26054,
+    "git_blob_sha1": "1dc94aeb0562b0149c0a4f36ba8592d9f7d39487",
+    "sha256": "0e6913fab02d90053369fa6d391dc379ca2e53d6669a7966cfc74b5ff4df30c4"
+  },
+  "packages/quds_office_editor/lib/src/editor_reports/render_report_toolbox.dart": {
+    "bytes": 29635,
+    "git_blob_sha1": "9f9a8ca6a29f8e86de4d7c0ed3372ee3156d3618",
+    "sha256": "60912695205e05fac6675f788b3bdc4b8a07a43921842916637b4fdb598c1a77"
+  },
+  "packages/quds_office_editor/lib/src/editor_reports/report_bundled_fonts.dart": {
+    "bytes": 2167,
+    "git_blob_sha1": "9088dd394c245c56379b0f03a620a75317bc076b",
+    "sha256": "04b73c2c74566b964ad507f3c0acc69cee781fd7826cb81fc0cca5cbec096eb2"
+  },
+  "packages/quds_office_editor/lib/src/editor_reports/report_completion_popup.dart": {
+    "bytes": 6922,
+    "git_blob_sha1": "c63ce60364f545f8b02e17755da099f3ad017e70",
+    "sha256": "6a70ff8fa1df9f4daed2900e57c832ec403868b6786b1cce5ee04cbfad3bb16c"
+  },
+  "packages/quds_office_editor/lib/src/editor_reports/report_design_layout.dart": {
+    "bytes": 6119,
+    "git_blob_sha1": "81172125824419769d94c990cb4e2ce53a6af96a",
+    "sha256": "edd7f9563a3908cf8a8813e4e52c891874afcdf0052ac12668fdd5572fc125fe"
+  },
+  "packages/quds_office_editor/lib/src/editor_reports/report_designer_controller.dart": {
+    "bytes": 271907,
+    "git_blob_sha1": "2c35579c5732732e75d6cdad6e83c195871d9b94",
+    "sha256": "6082f0b793a0bf5fe29924049bb45333fbc2784b18b7125bded4815e2ef51d5d"
+  },
+  "packages/quds_office_editor/lib/src/editor_reports/report_designer_strings.dart": {
+    "bytes": 37731,
+    "git_blob_sha1": "7290c2be6b0b7a22737e7d6fc665b01056c42ee4",
+    "sha256": "f85939f0243d2a8f24d71db47c12e5f6c51e7a66f5d58be30ef5c079a51ec3db"
+  },
+  "packages/quds_office_editor/lib/src/editor_reports/report_element_painter.dart": {
+    "bytes": 36575,
+    "git_blob_sha1": "153109cb76fea581f0551580aeb2f510a77a855f",
+    "sha256": "9e8414cd477dec6406950a943df9906b97069cd49f76a60e4fe7513f7eadb52b"
+  },
+  "packages/quds_office_editor/lib/src/editor_reports/report_inspector_glyphs.dart": {
+    "bytes": 8031,
+    "git_blob_sha1": "19e47d3eb9864f114ce77edc87ae0c7bbabe1417",
+    "sha256": "f611db65c43fc52b8a7d7ef08cbb51e144a32cd5f533e25168ee670953dfcc41"
+  },
+  "packages/quds_office_editor/lib/src/editor_reports/report_layout_painter.dart": {
+    "bytes": 12194,
+    "git_blob_sha1": "a5fb65838bc14f104ce6453500af82d13dc2178a",
+    "sha256": "48ff3b9e268c2354604919b495cbbfc6288a48fe371ac63a3258fe6d768c3c04"
+  },
+  "packages/quds_office_editor/lib/src/editor_reports/report_pinch_zoom.dart": {
+    "bytes": 2859,
+    "git_blob_sha1": "6552c6cf7c0d1a1cfed68c77028d9bf2d2dbd176",
+    "sha256": "4b0d6a23f9f2d5a58efa912a63e093deeb42fe4f58ab2fbf17edd3ef6148587e"
+  },
+  "packages/quds_office_editor/lib/src/editor_reports/report_template_library.dart": {
+    "bytes": 1745,
+    "git_blob_sha1": "cec33c949c4ebccdde103149e848cdc2cf043299",
+    "sha256": "1246b7a72eabc2770409fe339da37e6a82b4e4646ac912fa99409e7b1f880cc5"
+  },
+  "packages/quds_office_editor/lib/src/editor_sheet/formula_ref_style.dart": {
+    "bytes": 2341,
+    "git_blob_sha1": "e22337508749ec55ce1a13ba3fa2dab71277c160",
+    "sha256": "63ecbd1f2f83d3f23b8fc4db465ace7e3e22918fed4d2d9f1e67850f9ccfc53e"
+  },
+  "packages/quds_office_editor/lib/src/editor_sheet/inline_cell_editor.dart": {
+    "bytes": 4776,
+    "git_blob_sha1": "f975276a8a0c31e64f3f91c398677b28a38d4e82",
+    "sha256": "9cbb237d30ca4eae3b1fcf3d8ec5036e4e690ca69043b6df76919eac6c830f5d"
+  },
+  "packages/quds_office_editor/lib/src/editor_sheet/render_sheet_grid.dart": {
+    "bytes": 74638,
+    "git_blob_sha1": "b3379551b6f337122d391ad87b4a9e3b251a7ee7",
+    "sha256": "863ff81b16830d3403ab81363a19e0e7b4e6f063e1225037345a57d18567885f"
+  },
+  "packages/quds_office_editor/lib/src/editor_sheet/selection_matrix.dart": {
+    "bytes": 3663,
+    "git_blob_sha1": "b201d8f02611818abda7292533f1b138150419a4",
+    "sha256": "0be3af078d18dbf34f47b647dbf69d9b318567e4f3295eaa83ca73ad4d6418e5"
+  },
+  "packages/quds_office_editor/lib/src/editor_sheet/sheet_font_metrics.dart": {
+    "bytes": 1689,
+    "git_blob_sha1": "474c89df59a7c896231b10d70e22b95962f002b6",
+    "sha256": "433dc0ae1ba3bba52fd1ea25bd3c9640960aa4d289ecd38987c78a9467476eaa"
+  },
+  "packages/quds_office_editor/lib/src/editor_sheet/sheet_scroll_extent.dart": {
+    "bytes": 2944,
+    "git_blob_sha1": "c7d9a291873ca8f08e5b6a5706a0c0049331836b",
+    "sha256": "afe344279c6b2e167b8d5809770c3e8879082a7c0de09040b0bf75bf88d9e300"
+  },
+  "packages/quds_office_editor/lib/src/editor_slide/paint_slide_motion.dart": {
+    "bytes": 12581,
+    "git_blob_sha1": "62a277685db80b8c57e28161d5e1959b84be7ee0",
+    "sha256": "b759895cb94747c67c3f3dee9935277c1ed980ba18aaddd3ed05fad1a4d32ae5"
+  },
+  "packages/quds_office_editor/lib/src/editor_slide/render_slide_stage.dart": {
+    "bytes": 48446,
+    "git_blob_sha1": "f49cbbd637bae23d8255b985e9b2b6b697da58a7",
+    "sha256": "b179045c740e241ac24b81b5a9637d1425855603682b83c479fec0c05d4963b9"
+  },
+  "packages/quds_office_editor/lib/src/editor_slide/snap_guidelines.dart": {
+    "bytes": 3232,
+    "git_blob_sha1": "700816dfbd7c483f165224cf448c7b5a2723674d",
+    "sha256": "124f8f3ee7869d2adf235525811ca4e20a64e8a62f3a6a2a1c9eba9314510424"
+  },
+  "packages/quds_office_editor/lib/src/editor_slide/transform_handles.dart": {
+    "bytes": 7017,
+    "git_blob_sha1": "72150490a8cfcedede00723f8ba81b87e9318da0",
+    "sha256": "c098afda7369b6fc793364008dff98523dd3a5226657af12609579dddaead0b5"
+  },
+  "packages/quds_office_editor/lib/src/editor_word/caret_engine.dart": {
+    "bytes": 26302,
+    "git_blob_sha1": "53bb4d95345300b222e750d01b7e74994ef82fd3",
+    "sha256": "085b7ef4d4f6c327b53bfa184a3f6d4e5cc225aeb448b60be03284e6d8fe2801"
+  },
+  "packages/quds_office_editor/lib/src/editor_word/office_ruler.dart": {
+    "bytes": 42765,
+    "git_blob_sha1": "7e774d2b8734a9dc8591c4382dabc02b8c021136",
+    "sha256": "5d8314fbfe8e04f65dca3246f3bdac26756659ca74aba41c8d540de411b79e6b"
+  },
+  "packages/quds_office_editor/lib/src/editor_word/paint_equation.dart": {
+    "bytes": 12588,
+    "git_blob_sha1": "e467eca873fadb0dd75881415887c402faa392f2",
+    "sha256": "960c62ddad9e03649908a9f852f01fc70bbc2b7e270f18369e8106469f7c94f5"
+  },
+  "packages/quds_office_editor/lib/src/editor_word/paint_run_text.dart": {
+    "bytes": 28142,
+    "git_blob_sha1": "e284f3c033b56a3839b9302c26b5be47a0b10ab7",
+    "sha256": "dc94d91e6ec217651e763893bbb291e1feed05ca04e630bb0d039b71dc49d031"
+  },
+  "packages/quds_office_editor/lib/src/editor_word/proofing_geometry.dart": {
+    "bytes": 1172,
+    "git_blob_sha1": "a0a59c7e2bc93af6233483ec9a2d1301c8ea5681",
+    "sha256": "8210a778704748cd52783e32832949d1c6e69010139eaef1bedaf3bde26970ea"
+  },
+  "packages/quds_office_editor/lib/src/editor_word/render_word_canvas.dart": {
+    "bytes": 145535,
+    "git_blob_sha1": "a880531266a3053986e76b788bcb8e2132ed2131",
+    "sha256": "9e383755d2675b316646f23c5185f8885e7369cdb098a7cb4b951f7a99b8d5e0"
+  },
+  "packages/quds_office_editor/lib/src/editor_word/table_history.dart": {
+    "bytes": 2641,
+    "git_blob_sha1": "6f0882d5d032832279825333caa817ec65a49166",
+    "sha256": "5bb83807c45fd62aa5e3ae55def7538fb5da904c7237f43c51311994fa0c8640"
+  },
+  "packages/quds_office_editor/lib/src/editor_word/table_resizer.dart": {
+    "bytes": 1181,
+    "git_blob_sha1": "c8f98d3c0ff4623d96f885dcbaa1080be66b7ab9",
+    "sha256": "e9a1d3d50273617f8a4cde893c0e0dff652c02cad6fa72abb25ff90c9f54b57f"
+  },
+  "packages/quds_office_editor/lib/src/editor_word/word_run_metrics.dart": {
+    "bytes": 7533,
+    "git_blob_sha1": "f3d3a6be7b4560b56a3704cb396fb83a214fbc42",
+    "sha256": "f75824a15aa78c097ace1e42d83f46c492767a5eebe252f75ef847cee3b6fb15"
+  },
+  "packages/quds_office_editor/lib/src/embed/office_clipboard.dart": {
+    "bytes": 5889,
+    "git_blob_sha1": "4426a65e30e09e3fd5353c8d5371297c72d24a1c",
+    "sha256": "3a1f6c259ed2f414de01e0d4db82456d2f01457f33b0117789d033786fe12193"
+  },
+  "packages/quds_office_editor/lib/src/embed/office_context_menu.dart": {
+    "bytes": 43746,
+    "git_blob_sha1": "efbf537bd222870a8806a988dc6b4c8489af391f",
+    "sha256": "1333779cc883d308ece71ee790fe05691862450c4d99340fd15a9bc2fd6634ac"
+  },
+  "packages/quds_office_editor/lib/src/embed/office_controller.dart": {
+    "bytes": 379364,
+    "git_blob_sha1": "41dae255fce42d71c5eb31541ed1977c0afcd9af",
+    "sha256": "10fc38267cbbae7b7589c295af3a3c05b11212713e45b735a5c0c697804f1893"
+  },
+  "packages/quds_office_editor/lib/src/embed/office_direction_keys.dart": {
+    "bytes": 3899,
+    "git_blob_sha1": "b1a1efd3db9c59dbebf6b742ba3c2acf6f92b812",
+    "sha256": "2e3e4a904629e2a09746916d3caf15b6a3558d73d226e38ea495e46a056a22c3"
+  },
+  "packages/quds_office_editor/lib/src/embed/office_editors.dart": {
+    "bytes": 101713,
+    "git_blob_sha1": "3c5c34c582485c313c1888d51e7960a90c04b45c",
+    "sha256": "f83efa0ba4696eb60b018a09941ee454341a10d046b2df2f67526b305101c07a"
+  },
+  "packages/quds_office_editor/lib/src/embed/office_host_fonts.dart": {
+    "bytes": 6919,
+    "git_blob_sha1": "ed2d008b33e6a97e18cef7387f1c41b208af2a94",
+    "sha256": "96885c5b98b2413d68886770052ffd231f5f41070bc980b8a7db83d8f168a97b"
+  },
+  "packages/quds_office_editor/lib/src/embed/office_theme.dart": {
+    "bytes": 26207,
+    "git_blob_sha1": "b59694962ec1d745ad4886fb7990a5b6d262dbed",
+    "sha256": "3ee89d7daaf309375c85e7679af14cbc9c329e45196ae53a6790aaa456645861"
+  },
+  "packages/quds_office_editor/lib/src/embed/office_units.dart": {
+    "bytes": 1536,
+    "git_blob_sha1": "35af2f01df8e0b3bbc52dd29e238ec17bfca87fe",
+    "sha256": "cc8d5d9cdff427bf654af00a69382a26c0c814d291b9f544a633e922be77f726"
+  },
+  "packages/quds_office_editor/lib/src/embed/office_uri.dart": {
+    "bytes": 531,
+    "git_blob_sha1": "d4c960665f3bf7b630588aefdd512ff5752a4f49",
+    "sha256": "49a67998cb9266938b1e9b4d9a353ce61c352e6305db2beb3c6eb0f76ec4cd38"
+  },
+  "packages/quds_office_editor/lib/src/embed/office_uri_io.dart": {
+    "bytes": 350,
+    "git_blob_sha1": "ce2cb778ec0b95b260fa88f8cc93c5de1c03175c",
+    "sha256": "4993a5a1dcd8daa4fd693c5c55d6a93093f1a9b2a0038e9635d1c90a7041dceb"
+  },
+  "packages/quds_office_editor/lib/src/embed/office_uri_stub.dart": {
+    "bytes": 119,
+    "git_blob_sha1": "df286252389f0e161168fb9b0ef7ec51daba76a2",
+    "sha256": "56c6ea19476145c5f8f13af746c3fc20bd7f7e6559101bae54d2a035a729f821"
+  },
+  "packages/quds_office_editor/lib/src/embed/pdf_controller.dart": {
+    "bytes": 24781,
+    "git_blob_sha1": "80fa719aafb602ca64b6395f9c36c5c52bde8c52",
+    "sha256": "9f85b2e28d8476a69207140fab4d537dd599ae6fa43fa1ea3f5ce39954026375"
+  },
+  "packages/quds_office_editor/lib/src/embed/pdf_editors.dart": {
+    "bytes": 15192,
+    "git_blob_sha1": "9cdbdc9b227402fe96680dd3dd7d58c2c99eca08",
+    "sha256": "b710c80e9c0d3ad4d93c178a66b2e6a2af4eded0aac828f23aa7e773b98b247b"
+  },
+  "packages/quds_office_editor/lib/src/embed/pdf_viewer_options.dart": {
+    "bytes": 5228,
+    "git_blob_sha1": "7948d28fe2922a17f115abb525efabcd462209c7",
+    "sha256": "22e6c92711db9e964a657fdaaf434066c8cd663e7177f5524baa3cc23eff1679"
+  },
+  "packages/quds_office_editor/lib/src/embed/word_notes_pane.dart": {
+    "bytes": 13052,
+    "git_blob_sha1": "b95f2f720e5ff17e7f5c47d0274aef342a6d6d6e",
+    "sha256": "78b40ecc9ba3c1f556f23072f2900d59c4cba7579bb0d0fd32cdb5eeb0fec6d5"
+  },
+  "packages/quds_office_editor/lib/src/embed/word_proofing_dialog.dart": {
+    "bytes": 26405,
+    "git_blob_sha1": "2e9959c2e236719cba8fc21524fd70143d709f9e",
+    "sha256": "bdf0150d3271d1a71cb56ad91e3b1b9567fbcc938bce3e33f385aed6ce629c68"
+  },
+  "packages/quds_office_editor/lib/src/embed/word_review_dialog.dart": {
+    "bytes": 57793,
+    "git_blob_sha1": "8d7508900f7a62a9a772d29b5c92fdbbdea41a38",
+    "sha256": "63c476753feb3025beb42e5ac0f2633de7d3434685f474636ecb63c43c9aaa47"
+  },
+  "packages/quds_office_editor/lib/src/embed/word_tab_stops_editor.dart": {
+    "bytes": 8939,
+    "git_blob_sha1": "f888163fd1c72b667cfd641136917c50e700e5d7",
+    "sha256": "7af38384bd4abec5163b257506a87fa889313acb911d1bcf0e2622710e7d05d5"
+  },
+  "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart": {
+    "bytes": 114720,
+    "git_blob_sha1": "baf0bd72903fbcec5f0db4a445e7af137605a8b0",
+    "sha256": "b23ad93db95ba3c7c16327df437576bf885342d6989205501014a598e34e0c4c"
+  },
+  "packages/quds_office_editor/lib/src/embed/word_zotero_format.dart": {
+    "bytes": 9118,
+    "git_blob_sha1": "cff6c2aba85d77bfa770b0a2a28ad4acb965a3cd",
+    "sha256": "eb8397174298d27e09da29ca9729236c418e3c064fe2971d82e90833240616a4"
+  },
+  "packages/quds_office_editor/lib/src/embed/word_zotero_import.dart": {
+    "bytes": 3652,
+    "git_blob_sha1": "254b168d0d804d95ccdc1df0000cb88893cf7989",
+    "sha256": "af193a9307bb8dc82eb48d0de53f6336a3b3efb7c19bb9a52fd2e633700824a1"
+  },
+  "packages/quds_office_editor/lib/src/embed/word_zotero_library.dart": {
+    "bytes": 11182,
+    "git_blob_sha1": "1d1c66eb047f8f1951701725e068f9167941dd98",
+    "sha256": "3bdbc522824e013e7cd4e55749ecd6e59d141f4666638a10be2eefceb774e8c7"
+  },
+  "packages/quds_office_editor/lib/src/embed/word_zotero_snapshot.dart": {
+    "bytes": 2267,
+    "git_blob_sha1": "27c623e853e544981085de58f36f5ea00d411708",
+    "sha256": "e10b99b3d7e0a5123e2dd9d388050135ada0054eeb1a4d86eae8e5b6b5769309"
+  },
+  "packages/quds_office_editor/lib/src/embed/word_zotero_sources.dart": {
+    "bytes": 3619,
+    "git_blob_sha1": "48367f09675058f46699aa76afdf13eca98c01fc",
+    "sha256": "a7b6c5df55e765781e7a38de1a58d11f67ea900912d69e2c91ec372aeed2c40b"
+  },
+  "packages/quds_office_editor/lib/src/embedded/embedded_object_host.dart": {
+    "bytes": 1160,
+    "git_blob_sha1": "fe2a2545469b485681b1838521da6be3adff2d1a",
+    "sha256": "5b23a02608ddd69854f522f7dff99d3c02df7d4f6e11fa97d39632f541b494f4"
+  },
+  "packages/quds_office_editor/lib/src/proofing/platform_spelling_provider.dart": {
+    "bytes": 15588,
+    "git_blob_sha1": "a5e2e5fe6f7d9a1c70622fa749f4d11ef774a671",
+    "sha256": "26987523c1148309ebfa2b694eb6e5e2fd55834001975052637c5f1ad3d463f4"
+  },
+  "packages/quds_office_editor/lib/src/proofing/word_proofing.dart": {
+    "bytes": 33479,
+    "git_blob_sha1": "020c072581520560d49590c42241eda112b2ad49",
+    "sha256": "7582316701abb181b1d2ffbfde9ba4dc86f3625aaf2e9a308cedb5fa81a9060b"
+  },
+  "packages/quds_office_editor/lib/src/ui_components/office_chrome.dart": {
+    "bytes": 4688,
+    "git_blob_sha1": "20b6cab75cb4843e8f808cf1e2cc8a5c56b45ccb",
+    "sha256": "190abb22387a26e63bf9f91f7ad3921b56bfe9f2c2d1455cd09147db62a9163b"
+  },
+  "packages/quds_office_editor/lib/src/visual/paint_drawing_line.dart": {
+    "bytes": 3038,
+    "git_blob_sha1": "67e0263a9e3a73a69efee4df43f19fd94cc31f78",
+    "sha256": "5acccaa56defa41226c5f4bc2b757b9cb906dddc95a0065fcfd3ba7d7d6fd70a"
+  },
+  "packages/quds_office_editor/lib/src/visual/paint_office_visual.dart": {
+    "bytes": 19366,
+    "git_blob_sha1": "e0f0a2d7e8e754c454466d960d8539739fa8a126",
+    "sha256": "0a790252e7eda94a910ac9073a391710017139864e8fcb70453d1e3b106c124b"
+  },
+  "packages/quds_office_editor/test/platform_spelling_dialog_test.dart": {
+    "bytes": 9097,
+    "git_blob_sha1": "82bf73cedca0b21bab816d1a9863abb4e2600bca",
+    "sha256": "22ecf242e9911173b945dd26c872a77215b686ed7f4686b4f40fc7a1c3fcd753"
+  },
+  "packages/quds_office_editor/test/platform_spelling_identifier_review_test.dart": {
+    "bytes": 4313,
+    "git_blob_sha1": "e984ea8ccdd244045700ce28abfb7414c48ee7d0",
+    "sha256": "7b1ea4a9556ed65d552538c12e3adaaf154466262fd81387c3dd3980df0bf53e"
+  },
+  "packages/quds_office_editor/test/platform_spelling_identifiers_test.dart": {
+    "bytes": 8888,
+    "git_blob_sha1": "87b0c2f58db2df656a1eeebacfb4d713d357aa84",
+    "sha256": "cae83bc3bbc4ec09577bea4987a7709bb481491bfbd821298f40768d50bc4b8f"
+  },
+  "packages/quds_office_editor/test/platform_spelling_projection_review_test.dart": {
+    "bytes": 4187,
+    "git_blob_sha1": "2e6181c5f60ee6b3771144aa401bfea99465fbca",
+    "sha256": "1364c9f430d38f7f3b52ccf206f29558cfd750bdc0c7d7990df610ce5aa0daab"
+  },
+  "packages/quds_office_editor/test/platform_spelling_projection_test.dart": {
+    "bytes": 8465,
+    "git_blob_sha1": "aee57a5cc90bccbec026044a9dbcb3642f241fbb",
+    "sha256": "003a71436e603fef75f4bd46f75cb3ca108300dd66a6f1d56bc0ba189999bf22"
+  },
+  "packages/quds_office_editor/test/platform_spelling_provider_test.dart": {
+    "bytes": 32989,
+    "git_blob_sha1": "e0b81c41ce9c7daac4747eb634e66e982e771534",
+    "sha256": "d3d0575dc305a85e91d41ddd28d66f4ced3696b57f4ed21f5c4104ea494b83b1"
+  },
+  "packages/quds_office_editor/test/platform_spelling_vocabulary_unicode_test.dart": {
+    "bytes": 8978,
+    "git_blob_sha1": "7f48dbaed4f429b6123d31f2f06183af2a7de0ca",
+    "sha256": "24e35a06fe719301ccd2fb385f19eebc984460760c3086756d806e9616e3a412"
+  },
+  "packages/quds_office_engine/lib/pdf_file.dart": {
+    "bytes": 946,
+    "git_blob_sha1": "e2b6c62c40a6e16aa24b676b481d7ea17565560f",
+    "sha256": "52ef0127bb6fa2378ed7e01b2d536483f2b9acbefba6387a30f3bb50de9b0422"
+  },
+  "packages/quds_office_engine/lib/pdf_templates.dart": {
+    "bytes": 2155,
+    "git_blob_sha1": "6c4059729a87e7c080c74191e72bcab6ab251bff",
+    "sha256": "dd182a645531f5794632314c5fea6cb53509502d3f4398a10886a63c47594b9b"
+  },
+  "packages/quds_office_engine/lib/pdf_widgets.dart": {
+    "bytes": 1251,
+    "git_blob_sha1": "01733a8bc9a980e03c17afd34743a66b1ce14686",
+    "sha256": "d41e91e2e9b1e1973a9f620dae13d5bb183745e935dfdb12386232653f9e549c"
+  },
+  "packages/quds_office_engine/lib/pdf_widgets_samples.dart": {
+    "bytes": 221,
+    "git_blob_sha1": "644cb8535eda4d967f701cc3d54476986c80995a",
+    "sha256": "f34c9c4eb05ef7ca61b5571f433aef9ba44b0a0addfccd92e923c8b689e8bbec"
+  },
+  "packages/quds_office_engine/lib/quds_office_engine.dart": {
+    "bytes": 6377,
+    "git_blob_sha1": "f1a3a038c0f8399227d1924e1f92736d02247468",
+    "sha256": "c2a3871fd36d38d3642805c2320eebac2c610c32b1ad24e032014e72a4129753"
+  },
+  "packages/quds_office_engine/lib/quds_office_engine_optional.dart": {
+    "bytes": 315,
+    "git_blob_sha1": "15aa7e749b6f1e9baade2b7def40547968e54381",
+    "sha256": "1f397c7f0703e03b7beade08779b5dfc916b7d147b98c959ac35f4a193d6679c"
+  },
+  "packages/quds_office_engine/lib/quds_reports.dart": {
+    "bytes": 1322,
+    "git_blob_sha1": "e712486f81830a9e3899794e0289c4138e3b3de1",
+    "sha256": "2918c0d989f42c9705b6ca085eaf402aba7ca8278764e293f916069e653a7759"
+  },
+  "packages/quds_office_engine/lib/src/bidi/arabic_shaping.dart": {
+    "bytes": 9478,
+    "git_blob_sha1": "6ef5c39ac333a2867d502e7ac74e8cd7903957cb",
+    "sha256": "defaf787d5363c4da45b3524a0d4732ef15153987f93658b20fd615388de74b0"
+  },
+  "packages/quds_office_engine/lib/src/bidi/english_gb_hyphenation_data.dart": {
+    "bytes": 58302,
+    "git_blob_sha1": "44af454c915b8653b3701b4c038138ecbe8f1d62",
+    "sha256": "12ec89a0bec6172d782821f75dd9f78a6ac62ec980cc6cab6a4928fb69041d9d"
+  },
+  "packages/quds_office_engine/lib/src/bidi/english_hyphenator.dart": {
+    "bytes": 6017,
+    "git_blob_sha1": "c76cfce824dc3863158d950833bc8188423dfe54",
+    "sha256": "3255a47de0b6b1d72bda5d2d22c6189509ce8d2ccf379b7ec775b04c3ca43cf6"
+  },
+  "packages/quds_office_engine/lib/src/bidi/english_us_hyphenation_data.dart": {
+    "bytes": 34029,
+    "git_blob_sha1": "4398544149b0e7da21e36c3d9aaafd8696ce76ae",
+    "sha256": "809673b992606bbe3a249f99126ae14419e1969905954311e04125c34e231fea"
+  },
+  "packages/quds_office_engine/lib/src/bidi/german_hyphenation_data.dart": {
+    "bytes": 273438,
+    "git_blob_sha1": "21a92de63ac7e9dcaa3f45f5aa937683013a6cdc",
+    "sha256": "fdd6a9520d9dc26a240d69f01c74eb879659b21ec2431784a4660fe6db87a3e4"
+  },
+  "packages/quds_office_engine/lib/src/bidi/german_hyphenator.dart": {
+    "bytes": 5018,
+    "git_blob_sha1": "efa75837f0e0bb8331a8e9c34058d216468d0a2f",
+    "sha256": "a1b64b3afe443e80489192c5ba0aa47a748ffa07a272ca34878992fd7cf349e0"
+  },
+  "packages/quds_office_engine/lib/src/bidi/grapheme_clusters.dart": {
+    "bytes": 1411,
+    "git_blob_sha1": "f38d56ef9aa60fed29ccb810bc3fa46973b837b7",
+    "sha256": "f04618334611bb31abcf34a7388c45c0068b161f09a56303d3c39226f859ce60"
+  },
+  "packages/quds_office_engine/lib/src/bidi/hyphenation_words.dart": {
+    "bytes": 1006,
+    "git_blob_sha1": "c06d30ad7585f068dc3c5a9afdbfe16add86685a",
+    "sha256": "e9c7960534cb0518275c3c0dc18bef0b169c6a946a8899743b508de0507aa894"
+  },
+  "packages/quds_office_engine/lib/src/bidi/line_breaker.dart": {
+    "bytes": 42618,
+    "git_blob_sha1": "0824cdeedbe51aa9ebcd8beb47a7a19d6b3a8a7b",
+    "sha256": "326731d2e568a9c626b59814381731e7e0f1a9d6df7529dffdccadbca291ee48"
+  },
+  "packages/quds_office_engine/lib/src/bidi/office_direction.dart": {
+    "bytes": 864,
+    "git_blob_sha1": "43fe552ea39cd1e94286f0641fedaeaafed579df",
+    "sha256": "3937995152a52a6796a9229540ca4fe9f527a062e374d38108154d557d79d673"
+  },
+  "packages/quds_office_engine/lib/src/bidi/office_hyphenator.dart": {
+    "bytes": 1557,
+    "git_blob_sha1": "fdec98fe6a409f71113debfa66307c94d0f01cfb",
+    "sha256": "ad99fe6b455423fe5a85fdc9b2dce518d04b1af4a8484dca1aef5fcc232cd4e7"
+  },
+  "packages/quds_office_engine/lib/src/bidi/uax9_bidi.dart": {
+    "bytes": 17940,
+    "git_blob_sha1": "4872f03845fa9bcfbc35e61a4ad68aca7acff8b0",
+    "sha256": "708a616f9a28abb7d86fb9de1f975d5fa637c55cf29206b770f32113e5acb04a"
+  },
+  "packages/quds_office_engine/lib/src/builders/docx_builder.dart": {
+    "bytes": 30487,
+    "git_blob_sha1": "3af0f4dfcd94f2c73c7b45ece9fba8366a3e02eb",
+    "sha256": "6897166f6b134d8da1db92d095ad61829f74f898c741aeb0e8994e6d1f36aa62"
+  },
+  "packages/quds_office_engine/lib/src/builders/drawingml_charts.dart": {
+    "bytes": 22987,
+    "git_blob_sha1": "199bb2dd9612b00e42df7388e7cfd9f5f2e45f72",
+    "sha256": "dcd333224d534f528bc218a56b9297375286b24ef92016307ad45035e257993d"
+  },
+  "packages/quds_office_engine/lib/src/builders/image_fit.dart": {
+    "bytes": 4284,
+    "git_blob_sha1": "7a0bc198bc87df6d43d5c20e438236a17a7186d4",
+    "sha256": "1018b829fcc78d85b891f1c29e9287ef267ddea4d9befc76750fc31f161f53a8"
+  },
+  "packages/quds_office_engine/lib/src/builders/office_document_theme.dart": {
+    "bytes": 9518,
+    "git_blob_sha1": "8c2f297175f2133f9d39c255d778bdf60a09e3f5",
+    "sha256": "fe9ce8d4ca691c429d37dde98a476f6561a5cd93a9520bd67fb18dad832ad020"
+  },
+  "packages/quds_office_engine/lib/src/builders/office_markup.dart": {
+    "bytes": 2430,
+    "git_blob_sha1": "5b706744d172a6b3c97ce6cee3b2200b4e881130",
+    "sha256": "3b11bbd6ec7fb2203a058cf9780358128f04459bf8c240bdce186d5f6c52384e"
+  },
+  "packages/quds_office_engine/lib/src/builders/pptx_builder.dart": {
+    "bytes": 42657,
+    "git_blob_sha1": "5ace5977749fae8f5de9828421bbd8ebe750b489",
+    "sha256": "58771591344e8f06d66009971913d64809e4ff5609b50f6df32a683905367ba8"
+  },
+  "packages/quds_office_engine/lib/src/builders/xlsx_io.dart": {
+    "bytes": 34438,
+    "git_blob_sha1": "c9705002a6a294f110208588dd465c3bc37b141f",
+    "sha256": "b8eb4d80b5c62c17bede5d3b2320d5466690c088b3583898c2827c7e71ffb9f2"
+  },
+  "packages/quds_office_engine/lib/src/crypto/aes.dart": {
+    "bytes": 14999,
+    "git_blob_sha1": "10c1a383d6761aaa28d8730854080e0acda660ac",
+    "sha256": "638967fdf0683328de6c385221fedc7be6e08be3c3e948e6f634967f01007cdd"
+  },
+  "packages/quds_office_engine/lib/src/extract/office_search_text.dart": {
+    "bytes": 15058,
+    "git_blob_sha1": "cb1c11764f87daf75506b4825bc5a4af6ee345a8",
+    "sha256": "ae3ebb445cc76adf7bd9b9857b1a402d426b5a3acdce60badc84b056d1a14937"
+  },
+  "packages/quds_office_engine/lib/src/extract/office_text_extractor.dart": {
+    "bytes": 17363,
+    "git_blob_sha1": "799a17aeaea2d5473ff08c6a716e8d24cb5bd8f6",
+    "sha256": "d4fe68cc063bb569129cf7d3cb32122a4bc0cd6b5885e61d9371a7dab28118cb"
+  },
+  "packages/quds_office_engine/lib/src/fonts/cff_raster.dart": {
+    "bytes": 6148,
+    "git_blob_sha1": "a783c16ac60312d004e751cfc4ac3a02f2537a41",
+    "sha256": "ca6c60a925e1e6be3bd512ad26ae8ef04a71cab55a8d68c5ce0724b391f0a238"
+  },
+  "packages/quds_office_engine/lib/src/fonts/font_metrics.dart": {
+    "bytes": 1977,
+    "git_blob_sha1": "bf4ed25515f6ad1630c959d81b9227090cbc27e3",
+    "sha256": "70251ec7a527fecf872e10ff038fe0cd5eb7a5e3b327319c98f0d0248680c9c1"
+  },
+  "packages/quds_office_engine/lib/src/fonts/font_subsetter.dart": {
+    "bytes": 24876,
+    "git_blob_sha1": "7332885a95f34ea6d0d26c7b3160ff002bdd3c6d",
+    "sha256": "57537f5ad63b488a7ffb8e3234e5387bc25543742a0404554f8ff586c2d08077"
+  },
+  "packages/quds_office_engine/lib/src/fonts/glyph_outlines.dart": {
+    "bytes": 8628,
+    "git_blob_sha1": "5d73ad29fb96e76ad33638e80cfbfeab3c577ca1",
+    "sha256": "3e7b75e8031d5b0edee2cef8032c7727a97258e7587544d82fa7870f595dabc6"
+  },
+  "packages/quds_office_engine/lib/src/fonts/gpos_mark_to_base.dart": {
+    "bytes": 11179,
+    "git_blob_sha1": "b7a1f6120ab4f684cb9e66be19aaabf7d97911e2",
+    "sha256": "9e7f093e9e409d3a07d4df1470d29e1a42574d985933f6584f27a3ab8021e75b"
+  },
+  "packages/quds_office_engine/lib/src/fonts/gsub_ligature.dart": {
+    "bytes": 7772,
+    "git_blob_sha1": "b3f0c25743ba000dc5fcdc5bbcf2ec139d34fac3",
+    "sha256": "5954daa62892b542404f327128e7a9901fdcf08e70eb2f21fefaa24bd352bc22"
+  },
+  "packages/quds_office_engine/lib/src/fonts/office_font_set.dart": {
+    "bytes": 8365,
+    "git_blob_sha1": "b6885dbe34516767fe6bcb6f3543df6b71921b18",
+    "sha256": "aec925e9acbdfe07770461f1a956f3a53c1b3b91e5be08741291b9bcfdbf6b8a"
+  },
+  "packages/quds_office_engine/lib/src/fonts/office_typeface.dart": {
+    "bytes": 3857,
+    "git_blob_sha1": "344ed90769d9173c859b7aa37c2582084e160a9c",
+    "sha256": "2ac82a1d909a9e399764e25dda4ddad026c4d329272eb22bce736fc941cddc9b"
+  },
+  "packages/quds_office_engine/lib/src/fonts/sfnt_parser.dart": {
+    "bytes": 18975,
+    "git_blob_sha1": "09a71d9bde2bd4ef21cf254a4e9ce25823060c62",
+    "sha256": "18e71049408cfd6eb156201b7ed741bf70b6a99f6a3af283baae0c351df24505"
+  },
+  "packages/quds_office_engine/lib/src/io/byte_source.dart": {
+    "bytes": 6121,
+    "git_blob_sha1": "837c6e78ed41bea1236afc1922f2609e607f418c",
+    "sha256": "bfd604c766efa0a4ab052f85f9a6da1efa5a0cfd801b25419f8f89bb842c48cf"
+  },
+  "packages/quds_office_engine/lib/src/odf/odf_text.dart": {
+    "bytes": 12056,
+    "git_blob_sha1": "d68718e532e9876069321a48938dbde0fe662d71",
+    "sha256": "873b8144572eb9f6120868a55c68801dfd43f08a83137639984ecaf12d5c36d2"
+  },
+  "packages/quds_office_engine/lib/src/office/office_document_properties.dart": {
+    "bytes": 6834,
+    "git_blob_sha1": "c4889d76841e72564460150fd885bf660ba4d62b",
+    "sha256": "7a90bfcbc02e36409e8f0c8474195bf2dd4d95e89cb79458213b53b14030ed9b"
+  },
+  "packages/quds_office_engine/lib/src/office/office_find.dart": {
+    "bytes": 19488,
+    "git_blob_sha1": "1cda0085e716947387dec6bf309f4f49a2316a74",
+    "sha256": "d8a2db4efe75d217488a29c4f509450bd5424543c555901c9baee5f5ff1d3765"
+  },
+  "packages/quds_office_engine/lib/src/office/office_print.dart": {
+    "bytes": 4176,
+    "git_blob_sha1": "76c6598741a28dcd78b72ed18e22a0c0c6a4c09d",
+    "sha256": "81c9351edd6fcdbb784cf49969a2737b0e459c3cf14fd811b9d05b3cd125c464"
+  },
+  "packages/quds_office_engine/lib/src/office/office_spell.dart": {
+    "bytes": 1461,
+    "git_blob_sha1": "f444ff4971514c6e20bb6334f922fc06dbbc5382",
+    "sha256": "83552b83dc8d9401f9b800c97dd0f56ee19efb7c0bb7257486905d255b502ac2"
+  },
+  "packages/quds_office_engine/lib/src/office/office_text_stats.dart": {
+    "bytes": 4638,
+    "git_blob_sha1": "1313f594b48ee08040b9078b059a40e470b2c3ad",
+    "sha256": "13c398ceafa068532880ea813ab1a24f438d8be8cc04c3e9245afd9c8bf65a82"
+  },
+  "packages/quds_office_engine/lib/src/opc/content_types.dart": {
+    "bytes": 8463,
+    "git_blob_sha1": "8c4d1d46c6a149dc432cd49c37a299adf209149f",
+    "sha256": "9352bda521b43b980f9e9db26d2960363cdc10794cad2c66c8b385e36307d295"
+  },
+  "packages/quds_office_engine/lib/src/opc/crypto/office_crypto.dart": {
+    "bytes": 21095,
+    "git_blob_sha1": "b5c29641ba1109ae6610e8e6f3b30ada020475b3",
+    "sha256": "b14a302282ddeeeb818cda9931858a1f556c1b57e31a29a0afc7cd11d2980107"
+  },
+  "packages/quds_office_engine/lib/src/opc/office_isolate_open.dart": {
+    "bytes": 3730,
+    "git_blob_sha1": "686b16db56c4d1ecff08db203a7cb55d00c3d498",
+    "sha256": "5b80a374d75cf5374b750cdbbba31eae8facf8ae604a815c5b91ac02165c4ffb"
+  },
+  "packages/quds_office_engine/lib/src/opc/office_isolate_run.dart": {
+    "bytes": 143,
+    "git_blob_sha1": "2bf62acfb5bca8dcd115e54e0d141a631a639e95",
+    "sha256": "e8ff20077f107d26f1d78a05703e33b8b4f64ec234a3060a39dcf27c6fea7453"
+  },
+  "packages/quds_office_engine/lib/src/opc/office_isolate_run_io.dart": {
+    "bytes": 501,
+    "git_blob_sha1": "9a2107012b100495c6e44351e3568e3916dfed30",
+    "sha256": "8bebf64f33829e03a95660ad663aa8c333ef0413290c60fce26c5e19b4429504"
+  },
+  "packages/quds_office_engine/lib/src/opc/office_isolate_save.dart": {
+    "bytes": 5351,
+    "git_blob_sha1": "cfabc55d155e5d4ff741c461aedcc2939de919c2",
+    "sha256": "94d8a5cf8e17825a9f2d101bc135dd03710b7f8560310c5f219013543b34cef1"
+  },
+  "packages/quds_office_engine/lib/src/opc/office_isolate_spawn.dart": {
+    "bytes": 358,
+    "git_blob_sha1": "f487e978db6c654ba3a8927ef2fece97c92daa7c",
+    "sha256": "0cad8efa10e71084e6d0ab7978e73d2e8ce6c6b40925ea1dbaabfaf25cd6c8a6"
+  },
+  "packages/quds_office_engine/lib/src/opc/office_isolate_spawn_io.dart": {
+    "bytes": 3117,
+    "git_blob_sha1": "6920f74125acb8e7a824b345b02f81bfc5cd4a01",
+    "sha256": "33fffaa9a6b8c273acbf80513440c3183d2224816748d78c4e94d5180f672211"
+  },
+  "packages/quds_office_engine/lib/src/opc/office_open_decode.dart": {
+    "bytes": 2424,
+    "git_blob_sha1": "b1dcd2f3d13541613527bbc8d4f2a618f25e0b69",
+    "sha256": "fa8ce198614b9704a61688be5609d7c55073af172a1dadccf53bb82839367205"
+  },
+  "packages/quds_office_engine/lib/src/opc/office_open_types.dart": {
+    "bytes": 827,
+    "git_blob_sha1": "e8298e569557525accc66b57f37495dd39be4dba",
+    "sha256": "994a2cfe04cad7f0293316438efd298e588e4634ade41a924d2528a280aa5813"
+  },
+  "packages/quds_office_engine/lib/src/opc/office_package_parts.dart": {
+    "bytes": 8666,
+    "git_blob_sha1": "1075136cdc18000d3c103ab13507038944ba4e45",
+    "sha256": "7134c027e846e122aadf78bf1d870ba41e1093269bb3a949adc37fdaf1ae70c3"
+  },
+  "packages/quds_office_engine/lib/src/opc/ole/bounded_cfb_reader.dart": {
+    "bytes": 9643,
+    "git_blob_sha1": "4c47f041c0e8502f133d985b4ffe3b2aa4751ebd",
+    "sha256": "4641762d4c59fd45f3b790ac2b41afe31db64cedd8686eff7975ec736a115f7c"
+  },
+  "packages/quds_office_engine/lib/src/opc/ole/cfbf_reader.dart": {
+    "bytes": 17038,
+    "git_blob_sha1": "4de1dc84f2f00273856505162743d7305df0b2f4",
+    "sha256": "3fd389a63fa0c735b872365ad82c8f9128eee51e8e4964dc654b1c3022580cbc"
+  },
+  "packages/quds_office_engine/lib/src/opc/ole/cfbf_writer.dart": {
+    "bytes": 13824,
+    "git_blob_sha1": "da730303d6f9d3677364093e682c476621adc0d4",
+    "sha256": "156b1bdb09829f4c20683ff4871cbc7dbe24ed8ce93e1a660b5336df051b5ec5"
+  },
+  "packages/quds_office_engine/lib/src/opc/ole/embedded_part.dart": {
+    "bytes": 10139,
+    "git_blob_sha1": "97f9a8d7a3341687e53cb34ca3a78f674b513546",
+    "sha256": "2f964475b13d06aa268ba906d541e1c8b4d02cb6b10a992fcb7a02795c3f1ab0"
+  },
+  "packages/quds_office_engine/lib/src/opc/opc_archive.dart": {
+    "bytes": 13891,
+    "git_blob_sha1": "38f7d7bec5bf852eb063538c3c38106efb84f3a5",
+    "sha256": "038c553db1487ce5c879245189e50afa3934055f2962d783d213878530b942aa"
+  },
+  "packages/quds_office_engine/lib/src/opc/package_part.dart": {
+    "bytes": 5346,
+    "git_blob_sha1": "05994292ccb5fec5297e26f42e0911d189ec82d2",
+    "sha256": "02e6338ba76cef47c8fc351590b55f6eccc3908f365a62e5dce291907a3b71ba"
+  },
+  "packages/quds_office_engine/lib/src/opc/relationships.dart": {
+    "bytes": 5861,
+    "git_blob_sha1": "050cb22dba8f85fccdb2c0f09595385594e5e0b5",
+    "sha256": "e767ebdce03d7c08fe4c37503f88bd4bb9cb27130c700d1e3694f3fb7acabd0c"
+  },
+  "packages/quds_office_engine/lib/src/opc/repair/office_repair.dart": {
+    "bytes": 24144,
+    "git_blob_sha1": "ec4984bb29c09577a07776c8afcba2f6c154fa64",
+    "sha256": "dd9186249869819eb05708f4ec1ce88347b010a7881d1606b42ac30f3a35f7f9"
+  },
+  "packages/quds_office_engine/lib/src/opc/repair/xml_repair.dart": {
+    "bytes": 6212,
+    "git_blob_sha1": "ba2a1cfeb64f66a6f3277436d9aeb6ef4fe4147b",
+    "sha256": "f6a822db5c3800826c970c3160af8041cf1524502a158a4864f4c8f2c44005de"
+  },
+  "packages/quds_office_engine/lib/src/opc/repair/zip_recovery.dart": {
+    "bytes": 4260,
+    "git_blob_sha1": "c65212b471b95a4a30ffee104ecf2ad34d31856b",
+    "sha256": "9e19d5dbbb2ccce36d388833823002b29ad54f877d2243823240cc15bffaa95e"
+  },
+  "packages/quds_office_engine/lib/src/opc/zip/crc32.dart": {
+    "bytes": 738,
+    "git_blob_sha1": "93b9171763b80d2a612b25e40dd9269e8e913b9b",
+    "sha256": "d207f2653d8b00bbf412a6bc8b2e76a01f64ecfbb67aa06defa9ac7b0326c47f"
+  },
+  "packages/quds_office_engine/lib/src/opc/zip/deflate_codec.dart": {
+    "bytes": 15257,
+    "git_blob_sha1": "d4b6a29d8171191c8728e492cb98f1f8a418d9fe",
+    "sha256": "9fa29fdfaf787ab69a4b205ec58584c146be05484c25047a51d41328f64c7989"
+  },
+  "packages/quds_office_engine/lib/src/opc/zip/zip_reader.dart": {
+    "bytes": 15369,
+    "git_blob_sha1": "df8e786b4af01c83babcbec6e77ed81485dd1135",
+    "sha256": "271637e64400f6c0bb04a5aa76d3bfd26e940040256cc1c3d0588385a8f7f00f"
+  },
+  "packages/quds_office_engine/lib/src/opc/zip/zip_writer.dart": {
+    "bytes": 6306,
+    "git_blob_sha1": "468be87142a2c12fbdcb825626a1adae13a69894",
+    "sha256": "cde0651a022ba618b496e4093dea989acb27960d13abfe6fc354e34b3bfc7803"
+  },
+  "packages/quds_office_engine/lib/src/optional/pptx_media.dart": {
+    "bytes": 3389,
+    "git_blob_sha1": "8fea96582673e278287b65b0af7d04fd54fdef87",
+    "sha256": "8916827335419a88f0bff141e23492da454be00b91728fdb710072a3e897207a"
+  },
+  "packages/quds_office_engine/lib/src/pdf/file/cos/pdf_cos.dart": {
+    "bytes": 3990,
+    "git_blob_sha1": "bfefb729d5f23041ea4ff17422b516f513396b59",
+    "sha256": "a5cda23e0dfb889e294faad5296ffa0595467f54cb925317b9667949d7f2779d"
+  },
+  "packages/quds_office_engine/lib/src/pdf/file/cos/pdf_cos_reader.dart": {
+    "bytes": 11795,
+    "git_blob_sha1": "b055a7a72c1470c0ce4366c423c29ce0bc066efd",
+    "sha256": "67004bae5a4e0a4247a80688ba0ec399d688b4b0577ac7652b818bc9644c2c83"
+  },
+  "packages/quds_office_engine/lib/src/pdf/file/cos/pdf_cos_write.dart": {
+    "bytes": 2528,
+    "git_blob_sha1": "18b5a57ebc40f3546484a0e8a8e743da61cc696e",
+    "sha256": "9ad1436adcae03bd5ace09fefbc54c2b7453852da624747a71255a2273fbd50c"
+  },
+  "packages/quds_office_engine/lib/src/pdf/file/cos/pdf_open_error.dart": {
+    "bytes": 1337,
+    "git_blob_sha1": "ec767dbf4b8ddfb564339978c0b55744798b3b08",
+    "sha256": "4b2d82d7f931677ff7343a74e13662a7ca1f7957c122970bfc7ae5979f08ec47"
+  },
+  "packages/quds_office_engine/lib/src/pdf/file/cos/pdf_store.dart": {
+    "bytes": 5336,
+    "git_blob_sha1": "4b91dae6e169c5eed259fdd27996840c1d7181cc",
+    "sha256": "9aacae2c2e77c86954fe6833760f7151230ce3279afdb7b063f9c967623f807a"
+  },
+  "packages/quds_office_engine/lib/src/pdf/file/cos/pdf_xref.dart": {
+    "bytes": 9723,
+    "git_blob_sha1": "7531f420552da922a1fac3fe894a9cac75d35e61",
+    "sha256": "dc5be45a511394fde851f23ab7c8ff7fbd1c596daa46c8543f9cd74938a9d62e"
+  },
+  "packages/quds_office_engine/lib/src/pdf/file/crypto/pdf_rc4.dart": {
+    "bytes": 787,
+    "git_blob_sha1": "cf40290dfea89b75cd7ac7b538c73de6937e4f03",
+    "sha256": "b2e7e84e7852e81008a83ca09f48b9e1001f65330373bf1ce1d0141bff75bdcc"
+  },
+  "packages/quds_office_engine/lib/src/pdf/file/crypto/pdf_security.dart": {
+    "bytes": 8842,
+    "git_blob_sha1": "9f437f9942bfcfa96fee36f76c180829cd8248bf",
+    "sha256": "889d24940b271f454b9ab3041e1270830fea852119ccf7032f79c9112eb980fc"
+  },
+  "packages/quds_office_engine/lib/src/pdf/file/decode/pdf_ccitt.dart": {
+    "bytes": 9958,
+    "git_blob_sha1": "77cf66d749f864aa124eecade5495a5fff903fa5",
+    "sha256": "402149c19a31e35f326cb9a3b60cffc4fb5a0b5a852c1f2fdd75d42412719af4"
+  },
+  "packages/quds_office_engine/lib/src/pdf/file/decode/pdf_cms.dart": {
+    "bytes": 6924,
+    "git_blob_sha1": "806e433b0c34b8a2ddb9eb0a393fd8e23b263ddd",
+    "sha256": "8a69c059ef9633ad183d2d76268751143741a3f224a15bbfe060d04d4da3a1dd"
+  },
+  "packages/quds_office_engine/lib/src/pdf/file/decode/pdf_filters.dart": {
+    "bytes": 10365,
+    "git_blob_sha1": "3f66677710263fd946749b29c3d7c9b68ac94b51",
+    "sha256": "7999a93e4be17b2c9a2a4e714b6493cbf14dc11c9c6a50530fd0aec5512ddba5"
+  },
+  "packages/quds_office_engine/lib/src/pdf/file/decode/pdf_jbig2.dart": {
+    "bytes": 7560,
+    "git_blob_sha1": "63ddf16060c60f17fdb0ecb8c0f30332cef34d48",
+    "sha256": "ddfd8b1889b90bc913da73fcab7acd407cf95ac97504944945f4309420006596"
+  },
+  "packages/quds_office_engine/lib/src/pdf/file/interp/pdf_display_list.dart": {
+    "bytes": 6858,
+    "git_blob_sha1": "bc89406260b343a74f16cde69b9e1c154c35f962",
+    "sha256": "042f57bd80b65dd86f4281601e5f497ca695b4373d8a16426c8fe4f81371b321"
+  },
+  "packages/quds_office_engine/lib/src/pdf/file/interp/pdf_interpreter.dart": {
+    "bytes": 75748,
+    "git_blob_sha1": "c0a024a380b7bca16512b02c71c573ce7b3dda82",
+    "sha256": "176110ee11c8d09f7bc8bbf5a19a47a2f2c0c46f237747d8fee246baedd9a1a2"
+  },
+  "packages/quds_office_engine/lib/src/pdf/file/io/pdf_appearance.dart": {
+    "bytes": 12704,
+    "git_blob_sha1": "d774abb7b45a8ee4c6cd7af2b6a6efc76f4a68d7",
+    "sha256": "ad331187e6af292b3239742b001ce810b53b72a19fabfec797677dc2c7afb87f"
+  },
+  "packages/quds_office_engine/lib/src/pdf/file/io/pdf_incremental_save.dart": {
+    "bytes": 11950,
+    "git_blob_sha1": "6f10e5e3d5bf73cd41e20c10a4b3d0d57e1ef939",
+    "sha256": "6eec5e002e9c57fb672560cedb6da3db1351d96ba5fc8c3a9d05ccdc10f7ea54"
+  },
+  "packages/quds_office_engine/lib/src/pdf/file/io/pdf_open_payload.dart": {
+    "bytes": 334,
+    "git_blob_sha1": "66149a4b967a8b7e5e06fcb08359f4e31bc13ca8",
+    "sha256": "b10545144995425ba7d2c076052e8ee21c5e22de0e0cc83ed07573faa61f74e0"
+  },
+  "packages/quds_office_engine/lib/src/pdf/file/io/pdf_page_io.dart": {
+    "bytes": 4620,
+    "git_blob_sha1": "ca19c242d61ee6fd126607d597a0d59618f78787",
+    "sha256": "05dd69d7119206c904a9082976e33322f223256bdcb52b76e8c34ec4debf167f"
+  },
+  "packages/quds_office_engine/lib/src/pdf/file/io/pdf_xfdf.dart": {
+    "bytes": 3479,
+    "git_blob_sha1": "b182ff22477cf9fb392989277e1dba92c04a5226",
+    "sha256": "2ffd9ba1eb195c77687fe6946878ef40e275e58c01e48c489088c201880ec831"
+  },
+  "packages/quds_office_engine/lib/src/pdf/file/model/pdf_annot.dart": {
+    "bytes": 2245,
+    "git_blob_sha1": "469df08137d62087f7b1248385b45e855c071c12",
+    "sha256": "514a7129e70f0f321e2e7b39fc6a9d3a1c71c5782e1026048ce0669b3588b49a"
+  },
+  "packages/quds_office_engine/lib/src/pdf/file/model/pdf_extra.dart": {
+    "bytes": 3485,
+    "git_blob_sha1": "8b1e3388bec7d8389d3920271dc6b1405ec0be64",
+    "sha256": "ab39fe4078eb11b5b803a91ac24d2fcd4a7d1901f509472fc06ceaf5ef10125b"
+  },
+  "packages/quds_office_engine/lib/src/pdf/file/model/pdf_file.dart": {
+    "bytes": 37220,
+    "git_blob_sha1": "f51b1a0c8d1ef7a2e96688467118c8a55aee7737",
+    "sha256": "21c272d223d78b9bc962d66a84d91169a13581bdb57fd1d35cf6d8d13b7bcb90"
+  },
+  "packages/quds_office_engine/lib/src/pdf/file/model/pdf_form.dart": {
+    "bytes": 1370,
+    "git_blob_sha1": "7828972ba904bfad16e51d3931bc4c9005b83139",
+    "sha256": "0fda5540082c14e9daa420f9d32f5aaf2487339c688e63765edec4d70fb71ff9"
+  },
+  "packages/quds_office_engine/lib/src/pdf/file/model/pdf_page_info.dart": {
+    "bytes": 3237,
+    "git_blob_sha1": "c7a622b62d4f4444b3442610de50575729060bc4",
+    "sha256": "8ab944da5b0fe8bfb4ffc9869e49e1933464f2989908ee6f9d965e8dadc61ea2"
+  },
+  "packages/quds_office_engine/lib/src/pdf/file/text/pdf_cff_host.dart": {
+    "bytes": 27667,
+    "git_blob_sha1": "547fd5aa1642a16541aafc0565ff6b431ce261e5",
+    "sha256": "4404a96aae54609d2d6c50fa75fb7abe021551c83d54a36cfd73510027c8578b"
+  },
+  "packages/quds_office_engine/lib/src/pdf/file/text/pdf_extract.dart": {
+    "bytes": 2705,
+    "git_blob_sha1": "1a9cf5677e1bf3ce91f2b1fc764817a8447bc52f",
+    "sha256": "54564001c9afae96ae5a3302b9f9e85361b09d00701efe79eaa932405097a4b7"
+  },
+  "packages/quds_office_engine/lib/src/pdf/file/text/pdf_std14.dart": {
+    "bytes": 12265,
+    "git_blob_sha1": "64db5566af8265ee538de51f366145037ad5be2f",
+    "sha256": "0566f502fc111e9628033f602f0da774b0becd8e14e64a74e54b17c1846bf7d6"
+  },
+  "packages/quds_office_engine/lib/src/pdf/file/text/pdf_stream_redact.dart": {
+    "bytes": 3289,
+    "git_blob_sha1": "1cafb1e7e9cd67ef5a7cbb938347c93d19d90943",
+    "sha256": "54408fa640bfb70aa65b017c4195b51ff1ef1ad590a66d3a68be895a7196eaa8"
+  },
+  "packages/quds_office_engine/lib/src/pdf/file/text/pdf_text_string.dart": {
+    "bytes": 3036,
+    "git_blob_sha1": "1d460da66859de32966a3fa58b699654dee2ef1b",
+    "sha256": "175f0609122f307dffa6dbacb843755feeaeaf64475c691e40ac4b0e71b31cc2"
+  },
+  "packages/quds_office_engine/lib/src/pdf/file/text/pdf_tounicode.dart": {
+    "bytes": 2611,
+    "git_blob_sha1": "4329cd4df4829861c8d035ff9f268b076b76b15d",
+    "sha256": "f91ac6be7dbcac9186ab469f84e0d38f4bfb245a47a21d1f5e8af80902deb6ea"
+  },
+  "packages/quds_office_engine/lib/src/pdf/file/tools/pdf_page_graft.dart": {
+    "bytes": 13402,
+    "git_blob_sha1": "5ebc60c09168532d818aac2cda9d212218d00168",
+    "sha256": "ba490dc2494662a4f1cb3d29169d79a3b63d5a811f30077eef78e96e961939d7"
+  },
+  "packages/quds_office_engine/lib/src/pdf/file/tools/pdf_page_view.dart": {
+    "bytes": 1609,
+    "git_blob_sha1": "e9889458f04e1f35225820f0ac864deee7d3619b",
+    "sha256": "86e98283b22d1d9db05630d410c10074a550100855219e7ac8fcc083209516a2"
+  },
+  "packages/quds_office_engine/lib/src/pdf/file/tools/pdf_toolbox.dart": {
+    "bytes": 20387,
+    "git_blob_sha1": "f0bd0a808736c6c73d517fd9442908ae0b898571",
+    "sha256": "54573c89df47aa7f206af8e4e568037314520675f00290d7bc3597cfec884fc4"
+  },
+  "packages/quds_office_engine/lib/src/pdf/office/pdf_office_isolate.dart": {
+    "bytes": 6261,
+    "git_blob_sha1": "0e3c9a7743965fa2654c63aedd1f7fe0e2de1e8f",
+    "sha256": "7402c7cca85d4487949a9134afd0a7e041989be973d57da707eb6e5d8ebecd33"
+  },
+  "packages/quds_office_engine/lib/src/pdf/office/pdf_office_layout.dart": {
+    "bytes": 40742,
+    "git_blob_sha1": "e7a555b10aa35841c4cbb7cdf1ec64465c6371c6",
+    "sha256": "6076b05032f217da2eee8c3dd95fcd3479ec647dcab8943b5e938181239702da"
+  },
+  "packages/quds_office_engine/lib/src/pdf/office/pdf_office_model.dart": {
+    "bytes": 8889,
+    "git_blob_sha1": "3eb490e8f0d045e96e8569a143c9cbe1a60ca9dc",
+    "sha256": "5d9aae4311886aa909304a1c480c99d5d0cfe834b1e2bb6c9c49444aa7748fb7"
+  },
+  "packages/quds_office_engine/lib/src/pdf/office/pdf_to_office.dart": {
+    "bytes": 25029,
+    "git_blob_sha1": "c1d4b086bbdf729ea8c7c00f2eee652c52d907e1",
+    "sha256": "ea9d59e9056ed17c6d01adc7b5262c3092328b68b82511a63d0b362bd1c4ef15"
+  },
+  "packages/quds_office_engine/lib/src/pdf/office_pdf_export.dart": {
+    "bytes": 75994,
+    "git_blob_sha1": "f1668151670c1dbe4a577edade8b81a15bb5e9b9",
+    "sha256": "bcce2fdecb83a12d5e630fc0fd1fac1396531e05e965ba8cd7743cab30b4abbb"
+  },
+  "packages/quds_office_engine/lib/src/pdf/office_pdf_visuals.dart": {
+    "bytes": 10403,
+    "git_blob_sha1": "e8e4a7c8fc9af1809234808bcc3a3d847a7c043c",
+    "sha256": "8093a3b55be98bd79bca0999d5bcecefdecb9aaf4c540d213942f46a2002a86e"
+  },
+  "packages/quds_office_engine/lib/src/pdf/pdf_canvas.dart": {
+    "bytes": 11881,
+    "git_blob_sha1": "a7a7549d45bb64c48a250dfb7a16dd924d18ea84",
+    "sha256": "cab74f5ccdd3ed4e55a5db2edbf2076bbf318e156bc3448b28ca9ba4c6ac527b"
+  },
+  "packages/quds_office_engine/lib/src/pdf/pdf_document.dart": {
+    "bytes": 27194,
+    "git_blob_sha1": "b2404c1894c485511a276ca1628bee2cec40e010",
+    "sha256": "a9114581caf59635c538a7eb0b337bf1907a6bdd4ff2b6419cd1551ff150ae81"
+  },
+  "packages/quds_office_engine/lib/src/pdf/pdf_font.dart": {
+    "bytes": 9931,
+    "git_blob_sha1": "d879fc69f81d1e331a1be9b93062fd227f96e5dc",
+    "sha256": "d0c309b3091e9b6f245cafcc144d88d93e4b9f8b7e4887bd10f0c3c550351f67"
+  },
+  "packages/quds_office_engine/lib/src/pdf/pdf_image.dart": {
+    "bytes": 6670,
+    "git_blob_sha1": "15b9859fea102afe8a748431401199f8bb585ffb",
+    "sha256": "87370cda7fbbdfd26abe7bdd76c98b209a2a07124f7b28e686d992b107f9cfd1"
+  },
+  "packages/quds_office_engine/lib/src/pdf/pdf_report_builder.dart": {
+    "bytes": 17691,
+    "git_blob_sha1": "8bbc8ffb15e59485faad7b5b288409c45468617e",
+    "sha256": "f4f35c838fb40e67c2ff1ef3ec34419938ab5a5b68481391b6dfce75b6a0426f"
+  },
+  "packages/quds_office_engine/lib/src/pdf/pdf_save_options.dart": {
+    "bytes": 630,
+    "git_blob_sha1": "939db104b61676c6d527ad7486d2c1ed2b1fdd44",
+    "sha256": "247ffe16a09fad27c397574b6ae45bc126c81a9a563a62f808d7a085111e6d49"
+  },
+  "packages/quds_office_engine/lib/src/pdf/pdf_stream.dart": {
+    "bytes": 2256,
+    "git_blob_sha1": "755d41b7d6896bf0dc64d7969b98ff9cbbaa3a47",
+    "sha256": "fa24007793f6dab3454d9c80db8d8b33d081a0338767de4a27db5e742d502b28"
+  },
+  "packages/quds_office_engine/lib/src/pdf/samples/literary_arabic.dart": {
+    "bytes": 27413,
+    "git_blob_sha1": "c281544949b6bda89ab9fba1a8aa3d6a856834ad",
+    "sha256": "d37c258f981ef238a57ebaadd2c72a681e1fc2b05ccad557849fed0bb46b7f09"
+  },
+  "packages/quds_office_engine/lib/src/pdf/samples/widgets_catalog.dart": {
+    "bytes": 43777,
+    "git_blob_sha1": "16bdc51a1a2a6112f24fda43adbb84e61a681547",
+    "sha256": "27aa55c2f5cceb3688deaec69bf81cbd1ca57f1c4899b6741b33ad8b07df54da"
+  },
+  "packages/quds_office_engine/lib/src/pdf/templates/catalog.dart": {
+    "bytes": 8226,
+    "git_blob_sha1": "561d30d6e1fc79195744390bfb38bc6e20cc8d64",
+    "sha256": "e91af86fe4290377693cf48ca1e29e9d10ba17a1e4219ca580ecf20b25c0b409"
+  },
+  "packages/quds_office_engine/lib/src/pdf/templates/commerce.dart": {
+    "bytes": 10873,
+    "git_blob_sha1": "bb3fe33d2be49bcb4c44d92464947db6af42f403",
+    "sha256": "53dcbac4630e198f98c4358f6ee3bb51ac1bbab1f3337f6aee427b37d9524d7d"
+  },
+  "packages/quds_office_engine/lib/src/pdf/templates/data_reports.dart": {
+    "bytes": 4523,
+    "git_blob_sha1": "bc287fa29056b2295ef4450e0993a3e83b04cbcf",
+    "sha256": "2c7a6977c4ebc58db853b00f9a10df80255d08e35e5a246bbaf46f1678bbbdcf"
+  },
+  "packages/quds_office_engine/lib/src/pdf/templates/finance.dart": {
+    "bytes": 9910,
+    "git_blob_sha1": "9668ae13c153faf145a50c27b1cd99a5e4899016",
+    "sha256": "630982ca933805c9d9c1649a425b009d6529239da34d8d01b65043dcc5ec9873"
+  },
+  "packages/quds_office_engine/lib/src/pdf/templates/kit.dart": {
+    "bytes": 14478,
+    "git_blob_sha1": "b8bdce3b5439936db7f0cebf526625b7cd334dc5",
+    "sha256": "b019ff4468e7446b273b64f4de507197f00db4b3d998bd5419f77d580d03124c"
+  },
+  "packages/quds_office_engine/lib/src/pdf/templates/narrative.dart": {
+    "bytes": 4646,
+    "git_blob_sha1": "a59733d07949bd7445b3a99474b6ced54aa537c3",
+    "sha256": "9414af239fcd89a321f122d4998043e9235054b2349610e0e4533ef784092e32"
+  },
+  "packages/quds_office_engine/lib/src/pdf/templates/operations.dart": {
+    "bytes": 11371,
+    "git_blob_sha1": "67474440dea6bc070b7f65ad56aaf9ccb5b2ca2d",
+    "sha256": "f99d8dac0b7f75b13c2aff62e39f77cfa59ef684c41d2574730dbf9b98e19122"
+  },
+  "packages/quds_office_engine/lib/src/pdf/templates/people.dart": {
+    "bytes": 4440,
+    "git_blob_sha1": "d001d33e5155e4818d3a5af08922e3b80800dc8c",
+    "sha256": "5e4ea98b8532749bc1cdcbaebab158059b968ced5425427527979bb29751c465"
+  },
+  "packages/quds_office_engine/lib/src/pdf/templates/sheets.dart": {
+    "bytes": 7288,
+    "git_blob_sha1": "61459f44ecd6ca7a8ebfc047b487b415510541a1",
+    "sha256": "d76445a9a0fa5d593ec3e710a568dd1a28b6b56caf3405bd77d915aebf5dbc2d"
+  },
+  "packages/quds_office_engine/lib/src/pdf/templates/skins.dart": {
+    "bytes": 40111,
+    "git_blob_sha1": "0fc494d650a04bc15045391b8a98ed38a38ec4ab",
+    "sha256": "2d3392e33f9ecbd1d63193a8e411001f427bcf8ce20de9e9f26a83c11d19d1bc"
+  },
+  "packages/quds_office_engine/lib/src/pdf/templates/suite.dart": {
+    "bytes": 772746,
+    "git_blob_sha1": "2081c79556d789feaf828b40cedc6a1330365b91",
+    "sha256": "7e9f653a4fdceb83acfbe0b425502c5c0e64af81f5b2fef4c6ec4ccb016c2cc9"
+  },
+  "packages/quds_office_engine/lib/src/pdf/templates/suite_index.dart": {
+    "bytes": 32727,
+    "git_blob_sha1": "f76029ba9f4bd8d0faa20f1b870c7c412e6e1b25",
+    "sha256": "99ca5487e5cc91cfa67cba28624848532dd531de640c15ddf6123791845246e3"
+  },
+  "packages/quds_office_engine/lib/src/pdf/widgets/pw_barcode.dart": {
+    "bytes": 7054,
+    "git_blob_sha1": "00af48d9e79cb97198043c49d38e1c37e1c84b2b",
+    "sha256": "5060d23f1c0fa3727c65ea75f726e29153bd15d84d644c4ec292f28b0195b9a8"
+  },
+  "packages/quds_office_engine/lib/src/pdf/widgets/pw_box.dart": {
+    "bytes": 24278,
+    "git_blob_sha1": "5b0b4276e9e4b867c09a28bcdd357ab9f1e20d30",
+    "sha256": "b63d2729e82cc2fca65e599accd6a4086f1f571251ad55966c91c941d37abe52"
+  },
+  "packages/quds_office_engine/lib/src/pdf/widgets/pw_chrome.dart": {
+    "bytes": 5356,
+    "git_blob_sha1": "fd3b3def4db9b05a015d0c64ba4e8b0a61f0c8bd",
+    "sha256": "88ff7ed51c901b6ccabd9ffd82e56515a6a07c0a99aaff91543f4e0424f6f195"
+  },
+  "packages/quds_office_engine/lib/src/pdf/widgets/pw_content.dart": {
+    "bytes": 10540,
+    "git_blob_sha1": "30d67617377f1318fee3d0ac747b0874bd3e98ae",
+    "sha256": "a10a1a99f50163edbe7b82ddfe85607fc103bbdaa64aca1a33b3157cd87016c7"
+  },
+  "packages/quds_office_engine/lib/src/pdf/widgets/pw_core.dart": {
+    "bytes": 32287,
+    "git_blob_sha1": "ff70add1394df6495b6bd188db05db388570eff1",
+    "sha256": "1728312e5ab1c1de9a161a8e40a1f3aa5d3db053d3b99514ca42ff65166a015d"
+  },
+  "packages/quds_office_engine/lib/src/pdf/widgets/pw_flutter.dart": {
+    "bytes": 26264,
+    "git_blob_sha1": "15ca4611e728aef3f3b68b93c82020967cd3fd28",
+    "sha256": "508e46ed05c8c9fd9091e2bc80745170d0ad68d91a54e6bd94dae3566976443e"
+  },
+  "packages/quds_office_engine/lib/src/pdf/widgets/pw_layout.dart": {
+    "bytes": 23202,
+    "git_blob_sha1": "bc926f9ce813f2dbcc5747f8b5ea3279e195f246",
+    "sha256": "37b6acd87716a5723d740fd41030be6d56c883de27df4f7ef62a2cc56bb40eac"
+  },
+  "packages/quds_office_engine/lib/src/pdf/widgets/pw_media.dart": {
+    "bytes": 18821,
+    "git_blob_sha1": "37546f9b4d8c396b0800abd7a5acfc09cb8efaad",
+    "sha256": "987682606b36c68bbca090bc9bf9e56e3c91bc6f1b8bff0df095e6549d576217"
+  },
+  "packages/quds_office_engine/lib/src/pdf/widgets/pw_paint.dart": {
+    "bytes": 17577,
+    "git_blob_sha1": "e59afaa8c847f88a510a4cdc0eb8026f3aafcd09",
+    "sha256": "d6473b8629a62ddbb770aa94edd263b946dbf04a70515b32f5a6adba4d544ee2"
+  },
+  "packages/quds_office_engine/lib/src/pdf/widgets/pw_qr.dart": {
+    "bytes": 16777,
+    "git_blob_sha1": "91ba2f32880f67502d82c6e8809daeae84047732",
+    "sha256": "c357031b3f4a11cecf851dc1b087c8322d5000ecb52d18b7bcb24a58add240cb"
+  },
+  "packages/quds_office_engine/lib/src/pdf/widgets/pw_style.dart": {
+    "bytes": 5417,
+    "git_blob_sha1": "493bbe917c934f208468039476bf690cf60b810a",
+    "sha256": "983d041d7f904a71faf69493012af1e1b99be6c009ff6471dd37dc7ef837cbf8"
+  },
+  "packages/quds_office_engine/lib/src/pdf/widgets/pw_svg.dart": {
+    "bytes": 15501,
+    "git_blob_sha1": "449dd7b9a5ba6caf22a58ff6485520f3054006d4",
+    "sha256": "7247caa8b7ac0fe560701fd9e100051d9bfc83cc6785bd35e9627814ac7e650d"
+  },
+  "packages/quds_office_engine/lib/src/pdf/widgets/pw_table.dart": {
+    "bytes": 22834,
+    "git_blob_sha1": "2610d6e347414278f99336096f5fb7d4bce5961c",
+    "sha256": "d474a3aa28d89a456b7756e130e28a70196fb4ec2333a7c7d864c4383485d3bd"
+  },
+  "packages/quds_office_engine/lib/src/pdf/widgets/pw_text.dart": {
+    "bytes": 13063,
+    "git_blob_sha1": "639359d3a2e2515203eb4dc0cc44ab9baf31b1fd",
+    "sha256": "83ea47338a3101557e2eafefe6fff2f1a01a667244f2ce5eecdd742274c5ec79"
+  },
+  "packages/quds_office_engine/lib/src/pdf/widgets/pw_types.dart": {
+    "bytes": 14274,
+    "git_blob_sha1": "16c1385e5a6488322a7f9e771291b91bec35c439",
+    "sha256": "8140b3080fea4e84906aa2c3c5caf491b0fa452bb125e85d67dbf363c8782c5c"
+  },
+  "packages/quds_office_engine/lib/src/proofing/data/german_common_00.dart": {
+    "bytes": 1116,
+    "git_blob_sha1": "8ca935eba741770c85b934ebdd2d1f1fe201a4cf",
+    "sha256": "a9297b80fb74caf783b6b9497c5155324d21e8706954c96c99db640c08da9fc4"
+  },
+  "packages/quds_office_engine/lib/src/proofing/data/german_lexicon_data.dart": {
+    "bytes": 1301,
+    "git_blob_sha1": "035283d30116ad6c848a08bf1ff8ca37c731f704",
+    "sha256": "beb4e809b577fc950e39ffb759b9435834d1f2763e7d00911816da21b8b5d3a1"
+  },
+  "packages/quds_office_engine/lib/src/proofing/data/german_morphology_data.dart": {
+    "bytes": 11140,
+    "git_blob_sha1": "6cda1b95732c35a18643b991dd23ac5612e578c5",
+    "sha256": "3e8944139d410a20d5c8b3f03326e0ed3085abfeb81cf4c8e5426983b70dc842"
+  },
+  "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_00.dart": {
+    "bytes": 307347,
+    "git_blob_sha1": "4a7a798f772a5f20036561141de9eb2f769881da",
+    "sha256": "6a8de28c9223446d5210a9fa88196a5e71fae90e1f67a6e5489368ee095e9384"
+  },
+  "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_01.dart": {
+    "bytes": 301712,
+    "git_blob_sha1": "292ebf0cc7e028a4b2c87eb8d70e31a4035c0609",
+    "sha256": "a983cf3b6475103208c1b6104f4f8b5c81c15dd9c247680f04587f30262d3e83"
+  },
+  "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_02.dart": {
+    "bytes": 296202,
+    "git_blob_sha1": "36567fe428716bad444879005d42e8006aec9893",
+    "sha256": "455b00a4799d77cecf7c28b815b34cdc4c8bc44d50f640ec3f2ae031afa5c397"
+  },
+  "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_03.dart": {
+    "bytes": 300564,
+    "git_blob_sha1": "ad0f8c1c7db304872c80ad6d4387f2a57715a7b3",
+    "sha256": "73180e17bdf9f1d71a574239c23e5c735120c351a5c13a757aecd77bbaab4a39"
+  },
+  "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_04.dart": {
+    "bytes": 309315,
+    "git_blob_sha1": "195ab2e2e156cdac09bd9639053dab4c3becb14f",
+    "sha256": "9f7529d41913f4a8f73e4cdf5ef5878217d778a0460e9aaa60e3e1051a8156a5"
+  },
+  "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_05.dart": {
+    "bytes": 304027,
+    "git_blob_sha1": "caee1db780b6c6681982180642dcb15fba5123f0",
+    "sha256": "0b800946c3a4a5c5aa1078f86f0162b04c8dc4f865f577bd38044d142ea4c5bd"
+  },
+  "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_06.dart": {
+    "bytes": 305793,
+    "git_blob_sha1": "8994cb328a5437a1ed6e363eab4f5ebe5154ad1b",
+    "sha256": "38800cc1293c6fdf50d8ca418dcc8fc87877bfebc5c8dba17bcbd190f09adb36"
+  },
+  "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_07.dart": {
+    "bytes": 303868,
+    "git_blob_sha1": "47aacc66cdfa845e611102dcdc92a8a70086670c",
+    "sha256": "ebf858e4c3ee31a24814046668e22d6642f3530cc20b56f423e40d227c250845"
+  },
+  "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_08.dart": {
+    "bytes": 300201,
+    "git_blob_sha1": "4de9eda37444f2f5f0428b2227a1f7b4dbf104be",
+    "sha256": "e513de7134c4819d48861d2afd0080fce030ce158b6170bd6cb6a1830c434768"
+  },
+  "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_09.dart": {
+    "bytes": 302895,
+    "git_blob_sha1": "6a1c049d1117826687138d2cb62e9dde4dca8db4",
+    "sha256": "80adb15e779c30930c6f0d46b518475e4f5df4bed7bf1f808d11c28ec2742d93"
+  },
+  "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_10.dart": {
+    "bytes": 299782,
+    "git_blob_sha1": "e45ca6464a9ae7b6034768b0c7d18b83a8531d93",
+    "sha256": "fc7a72862769578cea01626c617b9b8e7091e8eb93fe8e679be57bbbf18a8591"
+  },
+  "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_11.dart": {
+    "bytes": 301947,
+    "git_blob_sha1": "7c9cf524d9fd6f9bacc28dd7ecfe1abff3d6490e",
+    "sha256": "329647a0c8aa6a0996372c20b4896f1bda4232d478efc22c6e1035b74cf27e68"
+  },
+  "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_12.dart": {
+    "bytes": 302811,
+    "git_blob_sha1": "f777982e76d89bef7c8146e3cb118207335d3835",
+    "sha256": "75ad0e0178676ff259a95335cc0d16ecc187fae118a99824b66c04d0dce6defc"
+  },
+  "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_13.dart": {
+    "bytes": 305990,
+    "git_blob_sha1": "b37a134299b74c3cbfd219eb8416c8b017fb5857",
+    "sha256": "2c75c1ff283124a71cde2374f686aa5f9d248a7ada6cb80254048b38b5a8c995"
+  },
+  "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_14.dart": {
+    "bytes": 303136,
+    "git_blob_sha1": "72b5501d9e1c66aef514fcfeb6f9c01942202b90",
+    "sha256": "3d56b7a6aaa261b21ec92824b489151a9ac0d6bdce6c4c66a54b350190a9f648"
+  },
+  "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_15.dart": {
+    "bytes": 306098,
+    "git_blob_sha1": "b0f490a5496d6baf96d6d482ec01cc762ff70831",
+    "sha256": "50964f9fcdb68adc5b10a1e59edf7efa567ab4b44dcc26ccebcd145058c51c1a"
+  },
+  "packages/quds_office_engine/lib/src/proofing/data/german_standard_00.dart": {
+    "bytes": 163837,
+    "git_blob_sha1": "04c3c29326db061b112056929620f0c945d9f383",
+    "sha256": "dfc3548af79c27f6d306ae91fc8711e6f5013295d4deaab6442f9fda964f54a4"
+  },
+  "packages/quds_office_engine/lib/src/proofing/data/german_standard_01.dart": {
+    "bytes": 165122,
+    "git_blob_sha1": "23626dd5de7a13cc47a343db868406b07141d3d3",
+    "sha256": "75216e458beeeade0c3b647fda64064f3a2468887f716d8ee00947b1e1a319f1"
+  },
+  "packages/quds_office_engine/lib/src/proofing/data/german_standard_02.dart": {
+    "bytes": 165901,
+    "git_blob_sha1": "39dcf2dddb717030d42334e5df980a2620906ed8",
+    "sha256": "554eba69a5558a3e234eb1c07db1bca1125d17403a3cadcb2951c39270f856d3"
+  },
+  "packages/quds_office_engine/lib/src/proofing/data/german_standard_03.dart": {
+    "bytes": 166111,
+    "git_blob_sha1": "1496a30f00a49ad797b52a26741cc7be33ae7d1a",
+    "sha256": "9425e9817ded89627b93cc3f86661ad55986efac02efa012d13e75c5eb82471b"
+  },
+  "packages/quds_office_engine/lib/src/proofing/data/german_standard_04.dart": {
+    "bytes": 165344,
+    "git_blob_sha1": "88d250fb4b76f9b839cf6014444206988d21ca67",
+    "sha256": "69ff9e7f58e113756efa35204ba4951d9737c8024117dacbe183fab0797882bf"
+  },
+  "packages/quds_office_engine/lib/src/proofing/data/german_standard_05.dart": {
+    "bytes": 163612,
+    "git_blob_sha1": "1b00c34f0983fb87d0ea51ee25c694cd4d1a2c6f",
+    "sha256": "5f8b2d1fc67396074c015f1441faf618f0de995b9f1d017770dd52b9e673019f"
+  },
+  "packages/quds_office_engine/lib/src/proofing/data/german_standard_06.dart": {
+    "bytes": 135863,
+    "git_blob_sha1": "56872249b72eab7c4c2a46cd2db19b5ebb5d0a48",
+    "sha256": "e07eb4f404778a644d069c9766abc95b2a0c5d8687d217cb0bcd7fbb859d8f2e"
+  },
+  "packages/quds_office_engine/lib/src/proofing/data/german_standard_07.dart": {
+    "bytes": 110772,
+    "git_blob_sha1": "1de49879083874f929be5057caf23c859bbdc348",
+    "sha256": "bd80b1c0429bc75631a9df417257d22648bb9897cf8a8a3fd1fcced8992973e7"
+  },
+  "packages/quds_office_engine/lib/src/proofing/data/german_standard_08.dart": {
+    "bytes": 111087,
+    "git_blob_sha1": "8451faaef625b88ed8f77aab4b2721cf315541ab",
+    "sha256": "8309c190e75c545129b33fc99d01e157bdca58a7174f02c723456c5924dbf332"
+  },
+  "packages/quds_office_engine/lib/src/proofing/data/german_standard_09.dart": {
+    "bytes": 114516,
+    "git_blob_sha1": "ef9539e9e365a6d160ad4f5a4b496cecce5688e2",
+    "sha256": "53fe9be61e8f377a0cf5f0d7c867a3a80538c22b92c1ee9a2090f9dbdb9ef59f"
+  },
+  "packages/quds_office_engine/lib/src/proofing/data/german_standard_10.dart": {
+    "bytes": 114867,
+    "git_blob_sha1": "e21532a43d39cbc79489198d1453c824af41b431",
+    "sha256": "e4da39622bdfd6a03d18d51913e7af1feb6f1ef03f411aae33ec32d1af271cbc"
+  },
+  "packages/quds_office_engine/lib/src/proofing/data/german_standard_11.dart": {
+    "bytes": 111510,
+    "git_blob_sha1": "b0c3c806061f98fc2f1d684121c58bafeb6ea864",
+    "sha256": "feb85cdb0915a3e5fb55fa689964f7231414d8b9a1935b0cfc64ae3ce3d491a1"
+  },
+  "packages/quds_office_engine/lib/src/proofing/data/german_standard_12.dart": {
+    "bytes": 108499,
+    "git_blob_sha1": "6e924797682775c9a38dac7b735b92bcbd3cd478",
+    "sha256": "12092f7a9c07be0fdd664a95cb9e0316be9f8a456c6382aef36965775add1642"
+  },
+  "packages/quds_office_engine/lib/src/proofing/data/german_standard_13.dart": {
+    "bytes": 63903,
+    "git_blob_sha1": "565a4e8df2db99547454b22882d030ad0628ce57",
+    "sha256": "6cff772cc350ac0e892be55837ec3b1d19543e410fe13ddf22047588eb6d4364"
+  },
+  "packages/quds_office_engine/lib/src/proofing/data/german_swiss_00.dart": {
+    "bytes": 42584,
+    "git_blob_sha1": "05bd0f57e62e4f364d2f1bbe56d73637c0ebdb4c",
+    "sha256": "03628d2ecdcec9c94781cebf32d1288b7cd6c8eb4710ebe7946263867b108683"
+  },
+  "packages/quds_office_engine/lib/src/proofing/german_agreement_facts.dart": {
+    "bytes": 8104,
+    "git_blob_sha1": "b657d1f531081cca83a54f02fa75eb5b41b64079",
+    "sha256": "4370c5c7d848e123f4059765e19e3c8e284480fe66203e17f2b9d9cc2e9d02b1"
+  },
+  "packages/quds_office_engine/lib/src/proofing/german_context_grammar.dart": {
+    "bytes": 16430,
+    "git_blob_sha1": "9c9497253f8b7684c67f786a642ca12dd9cea3d8",
+    "sha256": "9f3b6006ad8da9f5f0e6c5e76df6b135fd325604185f2ca3c97fdd2c4823f1d9"
+  },
+  "packages/quds_office_engine/lib/src/proofing/german_grammar.dart": {
+    "bytes": 62510,
+    "git_blob_sha1": "cd49025e50c62a3e3bbbff8596a63a66a9efb13f",
+    "sha256": "ab3947b5c27f91084f40433d3a12784559fb67dcaa6ff0b929196844d2ba6897"
+  },
+  "packages/quds_office_engine/lib/src/proofing/german_literal_ranges.dart": {
+    "bytes": 3356,
+    "git_blob_sha1": "dd05465fceccaae696fa46b4b7879e82faa66e6b",
+    "sha256": "c975a512605f7c0b2d9251547492253319c80a37a9829e04de48ff2a4e271f23"
+  },
+  "packages/quds_office_engine/lib/src/proofing/german_morphology.dart": {
+    "bytes": 11115,
+    "git_blob_sha1": "7ce803bb3653956f14ea8258a83ce6975adf4259",
+    "sha256": "b87a9873de8ad8b7ee9f3881971739c2a112098fa3491f43560302b055224183"
+  },
+  "packages/quds_office_engine/lib/src/proofing/german_spelling.dart": {
+    "bytes": 49506,
+    "git_blob_sha1": "ecc7412beff90e20107e3e88e797ca52488189fa",
+    "sha256": "f178d019d17b8f05137affae177f3b3dc78b329aabec6366423324f264fa9ca4"
+  },
+  "packages/quds_office_engine/lib/src/proofing/german_writing_rules.dart": {
+    "bytes": 39385,
+    "git_blob_sha1": "15cd32640570700fc93ea5a76fa8a751d536cf2f",
+    "sha256": "ddd5b60c3bf9d150a86f73df6255a6e7e51407106cf676266a1a01b998214f67"
+  },
+  "packages/quds_office_engine/lib/src/proofing/office_proofing.dart": {
+    "bytes": 17649,
+    "git_blob_sha1": "cc9d139554d5e3c599daa3d3d4ee175aea305a4a",
+    "sha256": "5a2711e5102948b88524aa6933c447791bf0839e83429c7e861d7a51cd23518e"
+  },
+  "packages/quds_office_engine/lib/src/proofing/proofing_text_ranges.dart": {
+    "bytes": 3906,
+    "git_blob_sha1": "1422a652db9a8880b714feac495736394cfbcc9a",
+    "sha256": "4760ffde9a19bcaa6bb09f43e31a52d0e84bdbfb4b7940086938c098f0c47b17"
+  },
+  "packages/quds_office_engine/lib/src/reports/arabic_tafqeet.dart": {
+    "bytes": 18265,
+    "git_blob_sha1": "f4782bc1351fedc63aa91b02f782fe94f182ede1",
+    "sha256": "da894f2489fef1ae6f7fab329ca996a315d7dd1623c069d2ba8172bb2fd5ed9c"
+  },
+  "packages/quds_office_engine/lib/src/reports/english_words.dart": {
+    "bytes": 6046,
+    "git_blob_sha1": "51894ffbea2d72d29a951e5b5a6cd4312f6d51d7",
+    "sha256": "c9bec248c51d460e1720ae5ca5c30299bca4ddfadabc0998b691fb106e611287"
+  },
+  "packages/quds_office_engine/lib/src/reports/report_chart.dart": {
+    "bytes": 90470,
+    "git_blob_sha1": "37ebd60abb53b7d8a2b2e262e1c2e794977afa41",
+    "sha256": "fae9b77b7f9dcb2abfb93860f6ba9afed720072b50ff38063d0dc1bfdaa84de0"
+  },
+  "packages/quds_office_engine/lib/src/reports/report_completion.dart": {
+    "bytes": 28149,
+    "git_blob_sha1": "8b23fde25c6858a3dbc3499183ee27cf754d34d9",
+    "sha256": "479f506fbebdd9607484485edd5c2e7bd9d7e307b6295d58c3e8a67e9f053f62"
+  },
+  "packages/quds_office_engine/lib/src/reports/report_data.dart": {
+    "bytes": 19868,
+    "git_blob_sha1": "ad531a059854a4c740500b04cd4fdbddbb559c39",
+    "sha256": "f8509a958b8856549ad986e4cebba96f36572f24964e92eace4509ca59f15eb8"
+  },
+  "packages/quds_office_engine/lib/src/reports/report_diagnostic_target.dart": {
+    "bytes": 9824,
+    "git_blob_sha1": "83ddc13e5f5d7a80159df9973f111ee96af877e4",
+    "sha256": "dce6f359be7735b9ca48b37c2911fa380a3e0046547cf34c1247517262f3cf4e"
+  },
+  "packages/quds_office_engine/lib/src/reports/report_docx_writer.dart": {
+    "bytes": 35183,
+    "git_blob_sha1": "4d04ff27b19b4ef4339f0799a7a495a9143c6e28",
+    "sha256": "d3ea5722dde7e5fe36da90b1c9ec78eea6cce6d8fc32ac74d7067e825cb5b103"
+  },
+  "packages/quds_office_engine/lib/src/reports/report_engine.dart": {
+    "bytes": 25105,
+    "git_blob_sha1": "7ff0e1a40b1071a5603d27477372d5706bbb2a77",
+    "sha256": "55ca4071747ab6bd8a69522d05e09c49a5809262f8b66322df5579fed5d67901"
+  },
+  "packages/quds_office_engine/lib/src/reports/report_expression.dart": {
+    "bytes": 25579,
+    "git_blob_sha1": "8e1bbded7c4cb87ef629a66346226126716b7403",
+    "sha256": "7055ef101c552873b0610ea540ff2ed92a32bddc18c3926788396d1f46e5e672"
+  },
+  "packages/quds_office_engine/lib/src/reports/report_expression_engine.dart": {
+    "bytes": 40473,
+    "git_blob_sha1": "1b688bbd9139797cc25bb5abbb5cbc264e3ac8af",
+    "sha256": "dfbfcb9b9c22bb406e3415a69c36f78e192127c231587cea2ba0f0a249274750"
+  },
+  "packages/quds_office_engine/lib/src/reports/report_font_file.dart": {
+    "bytes": 14509,
+    "git_blob_sha1": "417ea58b18c2d9eb70d686c7e5b29f187f43f33a",
+    "sha256": "5f235aeae9c5d9f25b15d5e1ea22544ee5d0f835f949b59d07cad05c8c74251a"
+  },
+  "packages/quds_office_engine/lib/src/reports/report_fonts.dart": {
+    "bytes": 13321,
+    "git_blob_sha1": "e805633214df2f68e6e01d8be8bb47694576c413",
+    "sha256": "94fcd79218dddb5471d88a2ad2441909cab33ae5f2abc85aed3f0a96386e2200"
+  },
+  "packages/quds_office_engine/lib/src/reports/report_format.dart": {
+    "bytes": 13107,
+    "git_blob_sha1": "5241117423727fee752b9686afb99039a484dc0c",
+    "sha256": "d92126415bac12f8c01d89fb0cfda026e33a3bbc417add2d18a85c79aba99ae7"
+  },
+  "packages/quds_office_engine/lib/src/reports/report_generator.dart": {
+    "bytes": 92524,
+    "git_blob_sha1": "1db7fd4ce923f54062a2ab1843d7f941767fd1ed",
+    "sha256": "a4a5fd0f13f9f2389f196e69ddb38fa7b9e0eee176fa7a16aab38076a4a9b09a"
+  },
+  "packages/quds_office_engine/lib/src/reports/report_layout.dart": {
+    "bytes": 15721,
+    "git_blob_sha1": "dbb74c9d8878412d3e4f40e4a047a77326039570",
+    "sha256": "dcc29102c68ed02e6a304955dcb04242af17a1794948d73161062c18798f5c21"
+  },
+  "packages/quds_office_engine/lib/src/reports/report_mock_data.dart": {
+    "bytes": 13746,
+    "git_blob_sha1": "18a6e561ac64febb1ec2403c43907057f1a22384",
+    "sha256": "3b8d0a8c7b652453033e647b30dbaffee2eec40a5cd4f1763cde8a5f3db8e535"
+  },
+  "packages/quds_office_engine/lib/src/reports/report_package.dart": {
+    "bytes": 17078,
+    "git_blob_sha1": "d11801b2090303aeb025424e835e34c692b44f4c",
+    "sha256": "d7fe45275f2113392ce94b283353b8a42df5484fee86c37822d1e1620258fc75"
+  },
+  "packages/quds_office_engine/lib/src/reports/report_pdf_writer.dart": {
+    "bytes": 13345,
+    "git_blob_sha1": "d0297f181d23663db57e8372649d3bae292ec9df",
+    "sha256": "26fb8a808adcca5a369316889e396a445ce8c2ab4a995172a1d401783bea0f7b"
+  },
+  "packages/quds_office_engine/lib/src/reports/report_png.dart": {
+    "bytes": 4172,
+    "git_blob_sha1": "df0c5a09aa92e478a21e689f1df9e65af7a6f050",
+    "sha256": "451e7f40df483c5e42dcdf830cbe2072423ec06d97e057c2df1c542ffe78d688"
+  },
+  "packages/quds_office_engine/lib/src/reports/report_shape.dart": {
+    "bytes": 33486,
+    "git_blob_sha1": "b76d233240dd6c8461b97abbf531721d69141627",
+    "sha256": "e7ba9a3d094cc51e5a2bc2d187385e8e896b7e9a60cf49b756947d6024009c27"
+  },
+  "packages/quds_office_engine/lib/src/reports/report_template.dart": {
+    "bytes": 60667,
+    "git_blob_sha1": "31472a0fe8d917f8d1f646eedd5844afb16ad584",
+    "sha256": "13895fdc90c6e60df49bbb3f245b6e25fd8a22ad88ac27dc8fb4915a7802ecc7"
+  },
+  "packages/quds_office_engine/lib/src/reports/report_template_art.dart": {
+    "bytes": 29705,
+    "git_blob_sha1": "e2157d0f7368daef548a29db137390eb33b793b3",
+    "sha256": "a114998f93e7567dd5fa79df490ad84ccbee9dc1fa0c9582973ac15fd7b3f969"
+  },
+  "packages/quds_office_engine/lib/src/reports/report_template_manifest.dart": {
+    "bytes": 4536,
+    "git_blob_sha1": "bc8b2f1df05bd3c8dab17c8c3c6d24b98b6a9834",
+    "sha256": "462d375401e0eba1713df6f892b936a05e797564a88ad66a02c39ce3236e07b3"
+  },
+  "packages/quds_office_engine/lib/src/reports/report_templates.dart": {
+    "bytes": 175392,
+    "git_blob_sha1": "5a03edbf1f3f6a636937a8910b5e89f25b8267be",
+    "sha256": "1062f004b3e69666dbe5f8ab0e29a315f9f024976393436b30a142a4406bad5d"
+  },
+  "packages/quds_office_engine/lib/src/reports/report_units.dart": {
+    "bytes": 6448,
+    "git_blob_sha1": "7bf460f79d880a0a8f7f9e5ec7399ba59977472a",
+    "sha256": "c21ca263d00ded7d2d3e19c4b4aceaabb656e9d4d8a647940a4125dfa4e2f7ba"
+  },
+  "packages/quds_office_engine/lib/src/reports/report_value.dart": {
+    "bytes": 9544,
+    "git_blob_sha1": "2e93b383220bdbc49ea06f555b5ea2cacc250e0e",
+    "sha256": "3a8ecea02011ef329e0fac77966f4fa7d37a16e79fa060c144c6503ff6e984aa"
+  },
+  "packages/quds_office_engine/lib/src/reports/report_xlsx_writer.dart": {
+    "bytes": 15026,
+    "git_blob_sha1": "3951fc902d0523a8878948925e20d35b9a2f5658",
+    "sha256": "0c60392d90db8e6c6319f035eae94998e85a365284af34052115e91761d08d99"
+  },
+  "packages/quds_office_engine/lib/src/reports/report_xml.dart": {
+    "bytes": 84510,
+    "git_blob_sha1": "4d40fee590ffd0d3af8e639c99ae5296002f51b9",
+    "sha256": "dcd3ff512297fafe22232b71cc2bf1921bc86f51496645b744e5a2df055fb9e8"
+  },
+  "packages/quds_office_engine/lib/src/reports/world_countries.dart": {
+    "bytes": 68561,
+    "git_blob_sha1": "c73a0fa6fe725d29a07e49443da5813f3a842b01",
+    "sha256": "a4e9fd7f17760e0fc85fc502bffeb36374fddd613d8d5f6ae2e39b9f3721da90"
+  },
+  "packages/quds_office_engine/lib/src/sheet/formula/dep_graph.dart": {
+    "bytes": 8729,
+    "git_blob_sha1": "f529349185113d19daea527917ddb3f8f915dd3f",
+    "sha256": "5f3ee9dc9bbebe01a037f2a52362f3f61213b67012d27b0a13d94b94b1bdf2de"
+  },
+  "packages/quds_office_engine/lib/src/sheet/formula/formula_ast.dart": {
+    "bytes": 13962,
+    "git_blob_sha1": "feee7fd5c750b09fdd81639a24998217ee7ebd34",
+    "sha256": "766a72f98a95383007137824bdee899b67e2765ab612ae5ca19f22a782de1d0e"
+  },
+  "packages/quds_office_engine/lib/src/sheet/formula/formula_eval.dart": {
+    "bytes": 17165,
+    "git_blob_sha1": "7a9297fa3505f36a3ad706dd22591014022cad9c",
+    "sha256": "657562b859ae08a39e042a6c8e60232b2bce70317a6f724bcf6960711394cdf7"
+  },
+  "packages/quds_office_engine/lib/src/sheet/formula/formula_functions.dart": {
+    "bytes": 51395,
+    "git_blob_sha1": "5cb9ea69926d387d8ee3b462adbdfe6aaaa1604d",
+    "sha256": "01899654404992e8d68cd2846136b690117d02db2dd6dab446b03762404bfd4e"
+  },
+  "packages/quds_office_engine/lib/src/sheet/formula/formula_guide.dart": {
+    "bytes": 37911,
+    "git_blob_sha1": "d57dc1c8d5687e713733fe80274c636c0c8ec307",
+    "sha256": "13d8d4e9090fb3a4a5ca66509cf59b1a47132a2033b5419a35e1060bc7e21047"
+  },
+  "packages/quds_office_engine/lib/src/sheet/formula/formula_refs.dart": {
+    "bytes": 5461,
+    "git_blob_sha1": "efd175331019ef78c673a15c4ca2bc7e38d01812",
+    "sha256": "1c1eac769bd2657dd65a78351ce41ff69a6d6c3c52e31ad48696144a383daa22"
+  },
+  "packages/quds_office_engine/lib/src/sheet/legacy/legacy_sheet_reader.dart": {
+    "bytes": 54026,
+    "git_blob_sha1": "09f9e3fc7118dc98ceb4c5ced8a816eed93267a7",
+    "sha256": "a7bc75d47fae7234699fb8c4c651a35a45fcc5186cb57a7c19efbd050175fc8b"
+  },
+  "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_reader.dart": {
+    "bytes": 88160,
+    "git_blob_sha1": "019cc333487c12aaf34a8fcee06c5857db97441c",
+    "sha256": "073299c116f15718734101c334b33b6c7a2c82be87933b599f6ce3b5498b266e"
+  },
+  "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart": {
+    "bytes": 47647,
+    "git_blob_sha1": "f1c97290e74dbb54fc0efc7f6ee3c29e348d7e90",
+    "sha256": "2f95138d1ed01e9bd36295b08535e2bbeb7bfbbd6721747b2c62724d714ad3be"
+  },
+  "packages/quds_office_engine/lib/src/sheet/model/sheet_rename.dart": {
+    "bytes": 28393,
+    "git_blob_sha1": "ce42173898f2e52fa25cb3fbd86319e35805267b",
+    "sha256": "b2f76237f1fdf4ccae41de73f65b9c9b1f852a6e46bfd7cca962dc99aba8964e"
+  },
+  "packages/quds_office_engine/lib/src/sheet/model/sml_analysis.dart": {
+    "bytes": 26147,
+    "git_blob_sha1": "b94f4565c2e4adc4621f861d5b21558fba82e6b6",
+    "sha256": "f409c115f4272bc4c96c1278ab81b052175022be1271ce68aeeffeb8c26914e8"
+  },
+  "packages/quds_office_engine/lib/src/sheet/model/sml_conditional_format.dart": {
+    "bytes": 18861,
+    "git_blob_sha1": "396f78b7b391258e29d5fe9b1ea6c0bd19262af2",
+    "sha256": "9cb1750572e55f8c99b379f4fc3de4fe7532a4447d6f631a7bd3c0998ca172bd"
+  },
+  "packages/quds_office_engine/lib/src/sheet/model/sml_power_query.dart": {
+    "bytes": 1801,
+    "git_blob_sha1": "3ce11bd7640a02a1679f480c522f53681892d912",
+    "sha256": "610f105eef406d0b80f0ac9e8c9c22fb7972a5cf82a9e28e618ce0bf4a19aae7"
+  },
+  "packages/quds_office_engine/lib/src/sheet/model/sml_solver.dart": {
+    "bytes": 1219,
+    "git_blob_sha1": "89da79c3d5d288325d0aaf2bfcded146d18943d6",
+    "sha256": "ab723570ce9ae44b63a846e8bde2bdcdcffaa03d0a8f92d8e3cbdc4f5210c292"
+  },
+  "packages/quds_office_engine/lib/src/sheet/model/sml_sparkline.dart": {
+    "bytes": 780,
+    "git_blob_sha1": "7a06598c20fe506f58ee029449d96cbf64536c7a",
+    "sha256": "e60f743c048b6436033921da16068938b703083397ce3d38f103ecf9f4118a03"
+  },
+  "packages/quds_office_engine/lib/src/sheet/model/sml_workbook.dart": {
+    "bytes": 49717,
+    "git_blob_sha1": "29fa6f2df3c50180434bff095d9bb500ae5591a1",
+    "sha256": "d82636f4adc11a975540aea49d71114ccbc8be67585d96759651838b64e83aef"
+  },
+  "packages/quds_office_engine/lib/src/sheet/serial/sheet_drawing_io.dart": {
+    "bytes": 25660,
+    "git_blob_sha1": "fe634f89a15110ff9c793b6b7cda8dd049c856dd",
+    "sha256": "12bdcd3963ce4acb83bc6465f7d4343d9c4a0303d17d124ea76dbe5e83ac9f77"
+  },
+  "packages/quds_office_engine/lib/src/sheet/serial/sheet_package_fidelity.dart": {
+    "bytes": 10566,
+    "git_blob_sha1": "95ebebedb071606b27330b3394907da63006941b",
+    "sha256": "f8984392e9f886bdbc121880643f05d22a28d451cc79a7a85f74962f9ad81864"
+  },
+  "packages/quds_office_engine/lib/src/sheet/serial/sheet_serial.dart": {
+    "bytes": 90796,
+    "git_blob_sha1": "91ef617481c01c5ea4ce82179f38f7fb39688c04",
+    "sha256": "ce68acd0f2cb69cec5e60e264c2a600d092db01f54ca1a7e2fd7194697aa0ffc"
+  },
+  "packages/quds_office_engine/lib/src/sheet/shared_strings.dart": {
+    "bytes": 2305,
+    "git_blob_sha1": "dfc1f1eb0caa52f35f5dda7d199efcf52fe0aea6",
+    "sha256": "f9b284994c4de672abe5d7f305dc10f58c6abd94e259509e6f80d87ed0950a79"
+  },
+  "packages/quds_office_engine/lib/src/sheet/styles/sml_styles.dart": {
+    "bytes": 58290,
+    "git_blob_sha1": "3d5c16e4eec6da31bc370bff148aff92d5664c87",
+    "sha256": "0e67f3a761f6a97981d81bbc16b55b6954dbafd597c30a74022f062603394e6b"
+  },
+  "packages/quds_office_engine/lib/src/slide/anim/pml_morph.dart": {
+    "bytes": 8074,
+    "git_blob_sha1": "a161126f355e1b1514f831ce00db8903cac08fa1",
+    "sha256": "635d239f0732e64b8ab2c4a1bc1c0a500f87219738c52ba9ced4453c8fe8d4fe"
+  },
+  "packages/quds_office_engine/lib/src/slide/anim/pml_motion.dart": {
+    "bytes": 33654,
+    "git_blob_sha1": "a5ab1347b2961741bb640a30a02279887d6bc930",
+    "sha256": "45f8fca83b6eb1a403d3d8f4387fc96af60b960034bf1232bc9bc41acb8063a1"
+  },
+  "packages/quds_office_engine/lib/src/slide/anim/pml_motion_io.dart": {
+    "bytes": 14750,
+    "git_blob_sha1": "66bdad4ad144a8634ff769d963cf2680f6951a09",
+    "sha256": "c651ee0235ed5c96b47398ac86fa5ba8f414aad1bc2ae8066752de01af42e88c"
+  },
+  "packages/quds_office_engine/lib/src/slide/model/pml_arrange.dart": {
+    "bytes": 14833,
+    "git_blob_sha1": "ebcff59a509613a5f14d575fc024eab32d1ea0bd",
+    "sha256": "55b511cf38d76de917fcbde0d80990a2e5eb99f7caf80d5c9c51da48a05948b7"
+  },
+  "packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart": {
+    "bytes": 14676,
+    "git_blob_sha1": "d8fd9bb3479baa2b416dc7a45a7609ca56b82f32",
+    "sha256": "c18bfea9cc8db55de0e9c823d82539a1e9738a7b6c16e8a2eb26d361a05a5de0"
+  },
+  "packages/quds_office_engine/lib/src/slide/serial/odp_presentation_writer.dart": {
+    "bytes": 33351,
+    "git_blob_sha1": "f52ba407769c2b9d830ffd3024798b007f219489",
+    "sha256": "2f36307103d3d429bdd98b1866795c1d2e0d7001c312927fdcad7aed2acb9313"
+  },
+  "packages/quds_office_engine/lib/src/slide/serial/slide_section_io.dart": {
+    "bytes": 12065,
+    "git_blob_sha1": "d6dfb9d0d091f7ca3ce969cc95d6d8e1b5a7bfaa",
+    "sha256": "c00aeed36b9a30c1d7a50b9b831d368c7cf07475c757e371b9bed10f424df7bd"
+  },
+  "packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart": {
+    "bytes": 33801,
+    "git_blob_sha1": "e2ffb9ef6ba976d328b4c16d4a52764dd9c9afa1",
+    "sha256": "7de3bdd8c8fb7285080766b98c0fe89a6808744d792dd05b6fe9e517318f2165"
+  },
+  "packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart": {
+    "bytes": 38791,
+    "git_blob_sha1": "7c5c13518a28ae53a0cb267745d86ef7e548dab5",
+    "sha256": "db979f21e10238a4c87731f35e29c267bda82891b0809c8c27ed206a83c8da37"
+  },
+  "packages/quds_office_engine/lib/src/visual/drawing_line_style.dart": {
+    "bytes": 5900,
+    "git_blob_sha1": "4c288fbafc703e94fff45ffc774b096c85512222",
+    "sha256": "d4dbf492555193c51f9fe63e844c77b8834e9aed518f2199d59226b7bbd78384"
+  },
+  "packages/quds_office_engine/lib/src/visual/drawingml_visual_io.dart": {
+    "bytes": 14773,
+    "git_blob_sha1": "4eef27b0b146eeda217a2979020f29f60dc5aad2",
+    "sha256": "84e7e37982ffeb7d90db8d1488210066692f69b8c7cc075747c3c61aa9482884"
+  },
+  "packages/quds_office_engine/lib/src/visual/office_visual.dart": {
+    "bytes": 15612,
+    "git_blob_sha1": "73d56440ff9d6cfbe82a2ead4520ccd985f1b98f",
+    "sha256": "a3b8f8ece59b04275fba456803072de1aa84e602f6dedb6f69a51a4090daa949"
+  },
+  "packages/quds_office_engine/lib/src/visual/png_bytes.dart": {
+    "bytes": 14465,
+    "git_blob_sha1": "246db3010b5d2ab5625dfde3eb6930e2d63ffaca",
+    "sha256": "8407ce49c50be4267c68232ad6465eeadae754c5204c9497c7028ca4b5313b12"
+  },
+  "packages/quds_office_engine/lib/src/visual/sheet_chart_data.dart": {
+    "bytes": 7253,
+    "git_blob_sha1": "0e65ef785ac45001e9b21ed87fb0fe488079b931",
+    "sha256": "5a46d7e32acaf4bc62a391975eef53e79b4c2f5345fa64f3871af0cecee1cbcd"
+  },
+  "packages/quds_office_engine/lib/src/word/layout/word_contained_layout.dart": {
+    "bytes": 4921,
+    "git_blob_sha1": "70f92dc7da0dc153f31ff6db78e1d8ec6c0c4ee9",
+    "sha256": "23aef5888b747f1d36b1ce605809425ea119531988ff0177f35886f57f4facb9"
+  },
+  "packages/quds_office_engine/lib/src/word/layout/word_layout.dart": {
+    "bytes": 103677,
+    "git_blob_sha1": "9964637f6abb2614514ad31783caa3683ab61856",
+    "sha256": "2994b7326b8aad9d73f7eca07d0add5e7d6832f8ae46b3a61118a2c3db127ee6"
+  },
+  "packages/quds_office_engine/lib/src/word/layout/word_note_layout.dart": {
+    "bytes": 9623,
+    "git_blob_sha1": "4ba7734a42ef6da14a0048395cb14eb4fc448d75",
+    "sha256": "110b39eabcb7d01d4d4dd7f6404e681dc7f7b827057a4b30b049f026266f4661"
+  },
+  "packages/quds_office_engine/lib/src/word/layout/word_run_measure.dart": {
+    "bytes": 6641,
+    "git_blob_sha1": "267e4d8847db01906be05ab75e34d076edacef34",
+    "sha256": "3aa42a3ffb3eef67bee936e68dcef3fd24b8498b4c4df9e8ea7dd8de553c5f29"
+  },
+  "packages/quds_office_engine/lib/src/word/layout/word_table_row_layout.dart": {
+    "bytes": 7040,
+    "git_blob_sha1": "6ae688961a865d012aab2229c81b9dc63b0e4536",
+    "sha256": "fc4caedf39d71d8e6ea1221abbe9b73d98c8c0b5c6206a74dc0a955032427732"
+  },
+  "packages/quds_office_engine/lib/src/word/layout/word_wrap_layout.dart": {
+    "bytes": 2586,
+    "git_blob_sha1": "8002fa1c1cf05227e03b8cac635f30bb046ad0a2",
+    "sha256": "b4f1d789f93d4c8d37e44d0b9a9270f1282e29cad927e10594e77187b91a22af"
+  },
+  "packages/quds_office_engine/lib/src/word/legacy/legacy_word_conversion.dart": {
+    "bytes": 1617,
+    "git_blob_sha1": "08a84b15390bc10deec4602fd682521f546bd757",
+    "sha256": "5ba402ba6094655584d8f16573f0c52c8327d86054c28ec01cd522ebf0a8f364"
+  },
+  "packages/quds_office_engine/lib/src/word/legacy/legacy_word_document.dart": {
+    "bytes": 59,
+    "git_blob_sha1": "a912cf1d0f57a3624e09621a6586202e9ddbab71",
+    "sha256": "5cb6c5c61f2d38082adad5b4809f8892aaa228b517f7af11a2d1409ab06edff8"
+  },
+  "packages/quds_office_engine/lib/src/word/legacy/legacy_word_structured_render.dart": {
+    "bytes": 59,
+    "git_blob_sha1": "a912cf1d0f57a3624e09621a6586202e9ddbab71",
+    "sha256": "5cb6c5c61f2d38082adad5b4809f8892aaa228b517f7af11a2d1409ab06edff8"
+  },
+  "packages/quds_office_engine/lib/src/word/math/omml_document.dart": {
+    "bytes": 6136,
+    "git_blob_sha1": "5d1a417c5ebb214dd6e25cefb91368c48a138784",
+    "sha256": "81be3a1ad74fa883b4774be7f96cb3883c7dfb2768a56eadaf8a5ca8c8d2c380"
+  },
+  "packages/quds_office_engine/lib/src/word/math/omml_edit.dart": {
+    "bytes": 17144,
+    "git_blob_sha1": "322bed8656c55826fb4df41014e0e29240540416",
+    "sha256": "275e6c2c73c054ae21a56a3f2eee893f5857199b4be95d93ae2358c40dbedc75"
+  },
+  "packages/quds_office_engine/lib/src/word/math/omml_gallery.dart": {
+    "bytes": 2913,
+    "git_blob_sha1": "9d122265b4a2bad9cf4b4a5e75d263131f2ba774",
+    "sha256": "837c5bf486e74f747642dc5d18704accb6619eb298712b2b7c6a28b511c2a027"
+  },
+  "packages/quds_office_engine/lib/src/word/math/omml_io.dart": {
+    "bytes": 16102,
+    "git_blob_sha1": "5685a5f5deaa1ea98e41bb664667d25d3b136d15",
+    "sha256": "e5ab0496063bd85e6e17643aa064aa3c5d7030ea65d0aeaf6560086f6ed8d8ed"
+  },
+  "packages/quds_office_engine/lib/src/word/math/omml_layout.dart": {
+    "bytes": 21660,
+    "git_blob_sha1": "73c1aa6151e7ff705de0ae4a46f9eecffe7672c9",
+    "sha256": "ac4cb3f066c09c011142cfa3e0b6e4915aab68043025d4349d483fd374a38ee9"
+  },
+  "packages/quds_office_engine/lib/src/word/math/omml_linear.dart": {
+    "bytes": 14746,
+    "git_blob_sha1": "35dae436bc4e7ed3baa129dfcee2514747985c2b",
+    "sha256": "810de8e1bcbbae88b7641060563ed12c9e815a1d1571e4f8ce37c582b0fa0e9c"
+  },
+  "packages/quds_office_engine/lib/src/word/model/wml_clone.dart": {
+    "bytes": 15177,
+    "git_blob_sha1": "bca020035c1a7e355354b19df9f68b17a8ff131d",
+    "sha256": "0d794fc9b620c8e8c2fce18c071a90891107925b7d09049b5e9e607e8bda1530"
+  },
+  "packages/quds_office_engine/lib/src/word/model/wml_document.dart": {
+    "bytes": 38235,
+    "git_blob_sha1": "425dc1f786e620a5170aeb670f150e396eaa175b",
+    "sha256": "941f81781871aacea236eb87cbb0767a9e6307a5cdd974916924a206a32d3f79"
+  },
+  "packages/quds_office_engine/lib/src/word/model/wml_run_edit.dart": {
+    "bytes": 17361,
+    "git_blob_sha1": "70c8b50c41cd732959ffb70c42c4fdef9f0f84f3",
+    "sha256": "e9dc3be5aef6069b6a04e4b4dedb2d64a522be9dbf5b50bf4283dbba2ac93879"
+  },
+  "packages/quds_office_engine/lib/src/word/model/word_bookmarks.dart": {
+    "bytes": 25778,
+    "git_blob_sha1": "7205069e29c991379cd970c38b7a2e939efe90d2",
+    "sha256": "b1f92acec245ca4a237ef7411d1e6029824ca7b5f0169d944efecf2c586d42a5"
+  },
+  "packages/quds_office_engine/lib/src/word/model/word_captions.dart": {
+    "bytes": 1340,
+    "git_blob_sha1": "2ded1e19fbab26d7fdd89fbefa001b856c66d5f3",
+    "sha256": "7edd44419e2353456ae738272451f01979c7f37d1739f66dc3fc18bb094e73ae"
+  },
+  "packages/quds_office_engine/lib/src/word/model/word_citations.dart": {
+    "bytes": 3346,
+    "git_blob_sha1": "3e616418a7d6d4bfbc2ee72dd9b7e88125881010",
+    "sha256": "7efeded806a0f183a9671a18938a38841af440a89473d69a807d210fb14ed245"
+  },
+  "packages/quds_office_engine/lib/src/word/model/word_comment.dart": {
+    "bytes": 5024,
+    "git_blob_sha1": "d8e0916d0f1e835169f30ef4478cd9703f904002",
+    "sha256": "707febc7fb5e3a5fa4d98c44632d5320efb3cbb935f43e9c07b0bf101dac9161"
+  },
+  "packages/quds_office_engine/lib/src/word/model/word_compare.dart": {
+    "bytes": 1295,
+    "git_blob_sha1": "3c14b85eb5be9a9bf85c944aeffc86dbb0f2f8c1",
+    "sha256": "72d031b9b595293d44a86a980d9de67bae3c8f368cf0b16b3221e5ea74002565"
+  },
+  "packages/quds_office_engine/lib/src/word/model/word_comparison.dart": {
+    "bytes": 54058,
+    "git_blob_sha1": "fca1a5873210a048ef5cda982a901cfabb98cb6d",
+    "sha256": "283ba60630832a7466f519de2bb5b11d7c8e0786843a96a8300baae05c65a89b"
+  },
+  "packages/quds_office_engine/lib/src/word/model/word_content_controls.dart": {
+    "bytes": 12376,
+    "git_blob_sha1": "7b444dbd0589284b42c4cd372c7a50bd8ca29289",
+    "sha256": "68734e7971c45c23da7309f4d0a7a1b83dea96df086dff0cef943c6936b695e5"
+  },
+  "packages/quds_office_engine/lib/src/word/model/word_field_spans.dart": {
+    "bytes": 7089,
+    "git_blob_sha1": "467670fec112ac26ec8790e92e93973dab75022b",
+    "sha256": "02c799161c6bbce89aff8844577723ab8c7e3d7f7cdc845bb3659fa1136b13c1"
+  },
+  "packages/quds_office_engine/lib/src/word/model/word_fields.dart": {
+    "bytes": 14201,
+    "git_blob_sha1": "58dac867721a20a50d870cecd408fe3a8e2e55eb",
+    "sha256": "1ae309cac6d8eef0ae71d852ebb9f444fb9276f0fc342dedd48c61c9b442dbba"
+  },
+  "packages/quds_office_engine/lib/src/word/model/word_link.dart": {
+    "bytes": 6223,
+    "git_blob_sha1": "0ad8e0096b221f2bd174937fa157dfddb8a67f50",
+    "sha256": "04b7b12dd5ec4578e38445ac24b84c6437c8cab8e29e2a7dfc08436142b8fd61"
+  },
+  "packages/quds_office_engine/lib/src/word/model/word_lists.dart": {
+    "bytes": 8280,
+    "git_blob_sha1": "e0e504a5b58dc4181458c3d918804f5fdf78b6eb",
+    "sha256": "0b5f16675db8f5e43d19be9ee1869a5efc11d6810a07f6fba49460e5fc8d9336"
+  },
+  "packages/quds_office_engine/lib/src/word/model/word_mail_merge.dart": {
+    "bytes": 8030,
+    "git_blob_sha1": "371371ddce174766e6cdaf8689d3547dc96a1070",
+    "sha256": "17c93cdf1112441ec78d23909f7a003e894ddd932cd8aeb3b5d406e96a145cfb"
+  },
+  "packages/quds_office_engine/lib/src/word/model/word_note_numbering.dart": {
+    "bytes": 10103,
+    "git_blob_sha1": "d776e10b7a445f0f1c919f36bdd9a6ec6f5d9b45",
+    "sha256": "10af8219998715ad54bb7ee0ef38ad4638df42d8c72620db7819fb0365984832"
+  },
+  "packages/quds_office_engine/lib/src/word/model/word_notes.dart": {
+    "bytes": 20845,
+    "git_blob_sha1": "3736a10600cc37f3022a456205ed76d0345cec3c",
+    "sha256": "20cbb79f1a96659d122636d0cf449adcf7986d14ab2cf84f3d49c2f74000df3f"
+  },
+  "packages/quds_office_engine/lib/src/word/model/word_revision.dart": {
+    "bytes": 18320,
+    "git_blob_sha1": "29e3ad2a31942e5a000328bde8601d076af5df30",
+    "sha256": "445c4feeb63ebef6b0033fc66c56575d2df6e48ecda5206e48fea68b5c5b51d0"
+  },
+  "packages/quds_office_engine/lib/src/word/model/word_small_caps.dart": {
+    "bytes": 2260,
+    "git_blob_sha1": "4ebd0e0a771716b38bc305b771b7f680423d8179",
+    "sha256": "4420d1d7cc2aa18f7e897fdb34debc581cf169d3fad04f910a613999609c437a"
+  },
+  "packages/quds_office_engine/lib/src/word/model/word_small_caps_case_data.dart": {
+    "bytes": 5039,
+    "git_blob_sha1": "c2f671fcbfe74cae71b087fb8fbc805ebdcdeacd",
+    "sha256": "dd05f3ae8bf4366f6609953d54d92952fbf1310c2b2e3a1251f88c198e70e2dc"
+  },
+  "packages/quds_office_engine/lib/src/word/model/word_styles.dart": {
+    "bytes": 11690,
+    "git_blob_sha1": "39c8b05dca8db3f39ba56b2ebf8f90ebc022260f",
+    "sha256": "b862cc2edd6a1e8e1995d1eb95bd518463fae9e51d61b0ed02ce4bdc52e861d6"
+  },
+  "packages/quds_office_engine/lib/src/word/model/word_table.dart": {
+    "bytes": 21061,
+    "git_blob_sha1": "71c24179a985c21933ed8c30c5fe1989a19c0393",
+    "sha256": "70832100a936de09391ff2b38a7151503a937653fbd55ca20d8a7c3beac71c2f"
+  },
+  "packages/quds_office_engine/lib/src/word/model/word_toc.dart": {
+    "bytes": 24073,
+    "git_blob_sha1": "45f0d85ebec5be257d55963c7b8a0c66b7b1398a",
+    "sha256": "3c7cd91f5c9051c7630b8c4dbc3e78ac2b843a428e615698b12625c112e7851e"
+  },
+  "packages/quds_office_engine/lib/src/word/model/word_tree.dart": {
+    "bytes": 4554,
+    "git_blob_sha1": "317d861e4a69549d46a15d0e23c0e679cd0f08d6",
+    "sha256": "5c60de3bc9620e7f357d408ed7fd7821e6167e7b21d1b6dd7f874c76186a6008"
+  },
+  "packages/quds_office_engine/lib/src/word/model/word_zotero.dart": {
+    "bytes": 53335,
+    "git_blob_sha1": "7716655a90429c9b76f73b3aedd3fb737915a3f6",
+    "sha256": "e679eb2fbf1c752f159caaa0d7df0c2d217c54a556c8e5a3b73b7802cb470478"
+  },
+  "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart": {
+    "bytes": 42956,
+    "git_blob_sha1": "6c1951e088391b620c8c1aacbc2b18b91c673e08",
+    "sha256": "fd89825b3628fbaf897404b1e4f0405367a0f90fee312915bcc9509c1e8f42ef"
+  },
+  "packages/quds_office_engine/lib/src/word/model/word_zotero_data.dart": {
+    "bytes": 23187,
+    "git_blob_sha1": "7f30e37606603e5adae06caca9f71308123de465",
+    "sha256": "7237f53590374d841151c0ec5b623ed1779e19c0fe9707299e3fa6c748a9f2be"
+  },
+  "packages/quds_office_engine/lib/src/word/properties/wml_properties.dart": {
+    "bytes": 20399,
+    "git_blob_sha1": "989250cd4a58f1bddbaaf02f145a66fa27bbaddc",
+    "sha256": "bc9581a4e0be7063a8b19e18ee8defb17e212b5efb055472eb72d36d108a03b5"
+  },
+  "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart": {
+    "bytes": 94973,
+    "git_blob_sha1": "3533eeb152a2d6ece407799eae3ab5cd00fccd02",
+    "sha256": "24000befe75c5358c2bd06656a4154a35d93d7803d2424218fa6ad2d23c75be3"
+  },
+  "packages/quds_office_engine/lib/src/word/serial/word_bibliography_io.dart": {
+    "bytes": 11758,
+    "git_blob_sha1": "43e306e64efa02413a32a11ffda506ca92d4213d",
+    "sha256": "0a48751bbbd2d251fcf4d61b087679c1d736b7add7bc1395339d0623a183bce3"
+  },
+  "packages/quds_office_engine/lib/src/word/serial/word_bookmark_io.dart": {
+    "bytes": 1489,
+    "git_blob_sha1": "3d1c6b1c0ee70101dd1ff16a37f59900c0bafd4d",
+    "sha256": "b1c4a0f896af2f8500b607895d3f23ef204729a17361e07553a93df9961a688c"
+  },
+  "packages/quds_office_engine/lib/src/word/serial/word_comment_io.dart": {
+    "bytes": 6036,
+    "git_blob_sha1": "638ddbb5dca4ec48c60da5d0957b2fc3e08a74cf",
+    "sha256": "a605eda98d8f99561db02a21524db9c6a1a8d06db5bc46e33704580d856f6f59"
+  },
+  "packages/quds_office_engine/lib/src/word/serial/word_content_control_io.dart": {
+    "bytes": 3759,
+    "git_blob_sha1": "ca521bee2c1b52880a8a20281ae2ffd7f91d5e0c",
+    "sha256": "d7bb3046bdb8030eee54ffb5baaece8a16688eecf9f9a056be20f0b436cebb3b"
+  },
+  "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart": {
+    "bytes": 146554,
+    "git_blob_sha1": "4e30fa0fef45350b6d0ad53ebf6e6a75bded48d8",
+    "sha256": "5ecbcd9d94c4cceb8cd9540e5fef744626069f029cae7c52e9776d9ab83d8193"
+  },
+  "packages/quds_office_engine/lib/src/word/serial/word_drawing_io.dart": {
+    "bytes": 29631,
+    "git_blob_sha1": "507c3ebe5187cb2da12d443d8d0c326b5d30dc6a",
+    "sha256": "d4b779e24fa1eb5b6ea816cace0368a05e9abcc7c7029c9088ea1fda6b36a4bb"
+  },
+  "packages/quds_office_engine/lib/src/word/serial/word_frame_io.dart": {
+    "bytes": 16298,
+    "git_blob_sha1": "67b19dd8443233a69af6b023bd7a7d078d163792",
+    "sha256": "c305e87f48e65d29d97f512cf0a2fdeb05da5f76641d5d836cf38ac8b2e8de6b"
+  },
+  "packages/quds_office_engine/lib/src/word/serial/word_heading_io.dart": {
+    "bytes": 11229,
+    "git_blob_sha1": "0bbba58f2df2b1f29ab616d6ae9ce173b837ca9b",
+    "sha256": "9b33040494f89f141f704e18950d9c205f59a0a82a1a19580cffb24e8083ec54"
+  },
+  "packages/quds_office_engine/lib/src/word/serial/word_markup_compatibility.dart": {
+    "bytes": 2869,
+    "git_blob_sha1": "937c49fda6030931944dcc899fed51ed8a64312b",
+    "sha256": "24558ff5c518ffa2cb22f35e887fcab1622d2631a1f1f1ef82ecd12960783c87"
+  },
+  "packages/quds_office_engine/lib/src/word/serial/word_numbering_io.dart": {
+    "bytes": 7330,
+    "git_blob_sha1": "18bebabd51344d61ac7311d01f82e7553ab47d5d",
+    "sha256": "0149afb504bd0ff5287cabd15069b1481087dcb6ce7d01b0536711af524d2df9"
+  },
+  "packages/quds_office_engine/lib/src/word/serial/word_opaque_io.dart": {
+    "bytes": 4780,
+    "git_blob_sha1": "c655d38cdd98be043fe62096ca4135215511d91d",
+    "sha256": "e7a1d2c190e998bdcea27387a957470b11bb61e34dcf41cd792e37df73b07896"
+  },
+  "packages/quds_office_engine/lib/src/word/serial/word_package_preservation.dart": {
+    "bytes": 12624,
+    "git_blob_sha1": "eb55c0ce9084b0b9c215e9ae163f6008f6072136",
+    "sha256": "d498dba54add5833e0114978eb382a783ad7fe4cbdb6397db87fc098b3ba62f2"
+  },
+  "packages/quds_office_engine/lib/src/word/serial/word_property_io.dart": {
+    "bytes": 8562,
+    "git_blob_sha1": "148aa35f6987d6bca6f2ac946ca390b4d650b28b",
+    "sha256": "fad0cbe9069626e75f4895118227aef3ade9c54219f4893121f721be7695c28a"
+  },
+  "packages/quds_office_engine/lib/src/word/serial/word_section_io.dart": {
+    "bytes": 8014,
+    "git_blob_sha1": "ee1e7c9f1636b86f7112a933aa70516180897a1a",
+    "sha256": "346354c4fab12d533247d32a053966990e5446a4ebf5e73b7e755d4ef5c54e3a"
+  },
+  "packages/quds_office_engine/lib/src/word/serial/word_serializer.dart": {
+    "bytes": 84037,
+    "git_blob_sha1": "68870647bfc232acc6b5226d30709fe0d5f54c57",
+    "sha256": "525e67d8243473db7fa4a79c3131ec2c05f72af4635e2cacb009bfce6baece14"
+  },
+  "packages/quds_office_engine/lib/src/word/serial/word_settings_io.dart": {
+    "bytes": 8280,
+    "git_blob_sha1": "cdd620ce4743e82f7fd0b632f5dc1f926ec3bd12",
+    "sha256": "a59946f07c7c8bd1d01da399e35f59de02f545d36ab59aa50cee477ae6e38d17"
+  },
+  "packages/quds_office_engine/lib/src/word/serial/word_style_cascade.dart": {
+    "bytes": 16785,
+    "git_blob_sha1": "503f13740dad5593ecda99989de6fda025edbc9a",
+    "sha256": "ee778127464c1cfcc793877383fc9ea2a620f21c0230ec76140ffb11b2ad312e"
+  },
+  "packages/quds_office_engine/lib/src/word/serial/word_table_property_io.dart": {
+    "bytes": 4472,
+    "git_blob_sha1": "ec5598d4822222b8de0d452844ab8090dcc722f2",
+    "sha256": "af42a17a4a0a5e2f2c1bfd04a0f3d3aac16e2cce4ae9eebb6b0728c14d4b851b"
+  },
+  "packages/quds_office_engine/lib/src/xml/namespaces.dart": {
+    "bytes": 10011,
+    "git_blob_sha1": "9b3d4388a597ed87a52118a9fba4ec2c9ea4d1b4",
+    "sha256": "f043295589e663e0aa8b80403cc3ffd84e162d213a8b8d81dc90dd65031e9a48"
+  },
+  "packages/quds_office_engine/lib/src/xml/xml_node.dart": {
+    "bytes": 12860,
+    "git_blob_sha1": "081fbd81e68a9968ca3e484c351de714558b320c",
+    "sha256": "911378e591f1092b51cce5cba72aeede115dceb06e1a3e5171687bad56a7408c"
+  },
+  "packages/quds_office_engine/lib/src/xml/xml_reader.dart": {
+    "bytes": 20097,
+    "git_blob_sha1": "d0ceee61c48547cb07b1e8a7471ef62eaea769b1",
+    "sha256": "1a41c5f8e7b9c90fc9bd1759ca86f729cb28a8398b7833eff92b8a68c96e98c3"
+  },
+  "packages/quds_office_engine/lib/src/xml/xml_writer.dart": {
+    "bytes": 4566,
+    "git_blob_sha1": "361f8ed9cb271436e8f959b21a5bbb70fd9d1ad9",
+    "sha256": "8bb95958c14001e6c7f51627a5c1f28f34c9a2ff3a337a64dcb9e79828bd478b"
+  },
+  "packages/quds_office_engine/lib/src/zotero/zotero_citing.dart": {
+    "bytes": 21362,
+    "git_blob_sha1": "e0265033bed528e8eeb1d1b96a9826f1b71eaa76",
+    "sha256": "b044dd7dda4a78235aa0fb3933738593c23f1ee4c0712b0908774cd3ea34e492"
+  },
+  "packages/quds_office_engine/lib/src/zotero/zotero_client.dart": {
+    "bytes": 39920,
+    "git_blob_sha1": "7a271ac4cfee0f18346ca886d0ef35a06f382235",
+    "sha256": "de76599335f53bceb979e99898c0bd6f44bfd7741531e8dbb2b90fb730a92395"
+  },
+  "packages/quds_office_engine/lib/src/zotero/zotero_formatted_text.dart": {
+    "bytes": 19441,
+    "git_blob_sha1": "3416e1301ddb3ec8819aee07cec162b3c4164838",
+    "sha256": "c62c917ad10dd7f6f7996da070f04fd6c0a2d5a4809290f1498cb1fbdb216478"
+  },
+  "packages/quds_office_engine/lib/src/zotero/zotero_models.dart": {
+    "bytes": 10628,
+    "git_blob_sha1": "0b014ac068548fecc57694d318d3c6929b558de1",
+    "sha256": "6fd982a56c1c30316d24d44c36820dc71ebd0aee1e3ed96f638b1883b8a5611b"
+  }
+}

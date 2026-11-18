@@ -1,5 +1,33 @@
 # Zotero validation
 
+## 18 November 2026 — imported-reference search and offline selection copying
+
+Qualified product: **`b2bcfc23e692476d16d9a7a534ea95a93ae94cd3`**, on
+`codex/zotero-continuation-20261118` ([PR #164](https://github.com/CrispStrobe/quds_office_suite/pull/164)).
+Search loaded CSL references by title, creator, year or DOI, retain selections
+across filters, distinguish duplicate IDs by their original import positions,
+and copy selected stored CSL metadata offline or across libraries. The full
+workspace flow remains usable at 320 × 480 with doubled text.
+
+The final **741 Zotero tests across 43 suites** pass with zero skips/errors,
+including 21 new cases counted once. Fresh local checks of the newly integrated
+comparison/review and spelling branches bring the disjoint total to **1,409
+tests across 74 suites**. A separate 48-case Dart VM panel also passes. All 18
+strict analysis/formatting targets and source/runtime guards pass; 701 unique
+recorded inputs bind to the qualified product.
+
+The fixed final inventory accounts for **373 incoming refs / 241 heads**,
+including main `f383c826`, review `3840e19f` and spelling `f482b06f`, with no
+observed head unaccounted for. The prior interrupted work was already saved and
+merged as PR #161. Incremental remote checkpoints preserve all work, and no
+GitHub Actions or CI-status endpoint was queried or awaited.
+
+The [complete report](validation/zotero-continuation-20261118/README.md) includes
+commands, source bindings, raw streams, earlier attempts and the explicit
+spelling receipt correction. These checks use controlled transports/native
+responses and do not claim new live-account, device, full-build or
+Word/LibreOffice acceptance.
+
 ## 18 November 2026 — reference details and selection review
 
 Qualified product: **`d36413a2cc8e1de9fd7493b5d1baf2900e63f04b`** on

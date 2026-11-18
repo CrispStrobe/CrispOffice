@@ -1,0 +1,36 @@
+{
+  "all_actual_test_process_exits": 0,
+  "all_source_and_runtime_guards_passed": true,
+  "disjoint_test_total": {
+    "failed": 0,
+    "passed": 590,
+    "skipped": 0,
+    "suites": 26
+  },
+  "editor": {
+    "failed": 0,
+    "passed": 64,
+    "skipped": 0,
+    "suites": 7
+  },
+  "engine": {
+    "failed": 0,
+    "passed": 526,
+    "skipped": 0,
+    "suites": 19
+  },
+  "qualified_source_commit": "b2bcfc23e692476d16d9a7a534ea95a93ae94cd3",
+  "scope": "Controlled native-channel provider responses and local Dart VM. No installed OS dictionary, device, AOT, JavaScript or live desktop acceptance claimed.",
+  "separate_portable_vm_panel": {
+    "case_count": 48,
+    "failed": 0,
+    "passed": 48
+  },
+  "source_binding": {
+    "bytes": 2602,
+    "sha256": "30baf31961c070a2d87d9a8a1dd771661300f81c90131e8133ad64f5437182a6"
+  },
+  "status": "passed",
+  "strict_analysis": "../../checks/summary.json",
+  "suite_path_correction": "engine/suite-path-correction.json"
+}

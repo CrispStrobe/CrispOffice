@@ -1,0 +1,134 @@
+{
+  "files": [
+    {
+      "path": "zotero-import-development/README.md",
+      "bytes": 2866,
+      "sha256": "83d7483b41f0416ce476865f7a7ce76c5bc638923f27985d1f1c56863a689d85"
+    },
+    {
+      "path": "zotero-import-development/attempt-1-receipt.json",
+      "bytes": 1426,
+      "sha256": "beecb1fa48db061aeff30e229859b237cd27da82e6c802ec2a8aed6e5a96d9f9"
+    },
+    {
+      "path": "zotero-import-development/attempt-1.jsonl",
+      "bytes": 9030,
+      "sha256": "ce407aa4a790623cba1b87e6f07c93a2f63c4cb424a71e7d5c111596e7b9215e"
+    },
+    {
+      "path": "zotero-import-development/attempt-1.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "zotero-import-development/attempt-2-receipt.json",
+      "bytes": 1426,
+      "sha256": "9a4f4c201bed70e5a219ecaf1a935bbb7d31fa52fc8b9c38353a3d5d31cc6b25"
+    },
+    {
+      "path": "zotero-import-development/attempt-2.jsonl",
+      "bytes": 8528,
+      "sha256": "af528b2eb6851d1d876e0337fbd7c09ea51050a37e49bc9bf786ab5e583f9846"
+    },
+    {
+      "path": "zotero-import-development/attempt-2.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "zotero-import-development/attempt-3-receipt.json",
+      "bytes": 1426,
+      "sha256": "90ab53306a131c367b7dce77a2a7e823f57a9a3d0bf47ade6871a9339481a27b"
+    },
+    {
+      "path": "zotero-import-development/attempt-3.jsonl",
+      "bytes": 10327,
+      "sha256": "d2e7ad637c80bf69f690c096757ebbc7cb00e1874c8b57ad73164bd74af6723f"
+    },
+    {
+      "path": "zotero-import-development/attempt-3.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "zotero-import-development/debug-2.jsonl",
+      "bytes": 7481,
+      "sha256": "01f46192e425dd32c3a3916731438542644a7ed3802955a7e0c491f235c634fe"
+    },
+    {
+      "path": "zotero-import-development/debug-2.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "zotero-import-development/debug-3.jsonl",
+      "bytes": 7352,
+      "sha256": "c1818d382995f15f36483886ff0d068df93097e9a31b78c515070e2f3cdce421"
+    },
+    {
+      "path": "zotero-import-development/debug-3.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "zotero-import-development/debug.jsonl",
+      "bytes": 3540,
+      "sha256": "6acee82380db188eb528665d0df7837fce9248a146a2a5fe7a4aca880b869b9e"
+    },
+    {
+      "path": "zotero-import-development/debug.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "zotero-import-development/debug_test.dart",
+      "bytes": 19717,
+      "sha256": "d297ea780d18041e2e1c4ac039d4231fe193e380fe0fd8a12a6bac0f7a7e9b2a"
+    },
+    {
+      "path": "zotero-import-development/layout-final-retest-receipt.json",
+      "bytes": 1610,
+      "sha256": "ffd0e9343a52f67606d6573cc54876873e54abc33d6f0321ef40cff5994a59c1"
+    },
+    {
+      "path": "zotero-import-development/layout-final-retest.jsonl",
+      "bytes": 1445,
+      "sha256": "e14fbbbec638d3d6ae7f2f024a0c58db617978dd6920ec97178d1ec1c1e05831"
+    },
+    {
+      "path": "zotero-import-development/layout-final-retest.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "zotero-import-development/layout-retest-receipt.json",
+      "bytes": 1524,
+      "sha256": "535a427134e4d5305ee1cf7a6c640525a28cbcb34a79583e8745001760d58fe8"
+    },
+    {
+      "path": "zotero-import-development/layout-retest.jsonl",
+      "bytes": 3803,
+      "sha256": "b34a988d64eb1653f884d882afef69acfe9238ab1ac4dfc8515bec2218cd7d61"
+    },
+    {
+      "path": "zotero-import-development/layout-retest.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "zotero-snapshot-tests.jsonl",
+      "bytes": 6768,
+      "sha256": "9df66f7ba76b7c0e6a69ab8f03f9e2a48f2db0da6a07ccd39cb01e2b18b14e2a"
+    },
+    {
+      "path": "zotero-snapshot-tests-final.jsonl",
+      "bytes": 6333,
+      "sha256": "e670067be61484d18cacff1a59094c3e9f15ce7b8cfaaa7344942d0552aecbbc"
+    }
+  ],
+  "archive": {
+    "path": "attempts.tar.gz",
+    "bytes": 13243,
+    "sha256": "96b6871024dd167b421679a2824228519c20aeca34312c8025c27120be1c706c"
+  }
+}

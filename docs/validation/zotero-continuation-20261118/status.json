@@ -1,0 +1,126 @@
+{
+  "all_source_bindings_passed": true,
+  "cohorts": [
+    {
+      "actual_process_exit": 0,
+      "cohort": "engine",
+      "errors": 0,
+      "passed": 445,
+      "skipped": 0,
+      "suites": 22,
+      "summary": {
+        "bytes": 8702,
+        "sha256": "86f9e87c9e1cc28a2551c8ac02ae56a9532b002d849ad2885546a158db65479a"
+      }
+    },
+    {
+      "actual_process_exit": 0,
+      "cohort": "editor",
+      "errors": 0,
+      "passed": 278,
+      "skipped": 0,
+      "suites": 20,
+      "summary": {
+        "bytes": 9241,
+        "sha256": "94e0f2d049219f97d21b02ede0209d8045ad448f1819afe5aa3ade68b9a39ccc"
+      }
+    },
+    {
+      "actual_process_exit": 0,
+      "cohort": "studio",
+      "errors": 0,
+      "passed": 18,
+      "skipped": 0,
+      "suites": 1,
+      "summary": {
+        "bytes": 7551,
+        "sha256": "0eb199ab8665bc21c45a41060b3ef0997b26502ca12234a67a2b66bbced0ded5"
+      }
+    },
+    {
+      "actual_process_exit": 0,
+      "cohort": "incoming/engine",
+      "errors": 0,
+      "passed": 39,
+      "skipped": 0,
+      "suites": 2,
+      "summary": {
+        "bytes": 3947,
+        "sha256": "ae279fdefed00107f70fee3659e4f85ea138010a72179b3ba928461dd8f04e35"
+      }
+    },
+    {
+      "actual_process_exit": 0,
+      "cohort": "incoming/editor",
+      "errors": 0,
+      "passed": 31,
+      "skipped": 0,
+      "suites": 2,
+      "summary": {
+        "bytes": 3902,
+        "sha256": "bd469b6d8025ed9e4ca5cc536c14de952ed9000ddb37a2b4236545188ccf1e7f"
+      }
+    },
+    {
+      "actual_process_exit": 0,
+      "cohort": "incoming/studio",
+      "errors": 0,
+      "passed": 8,
+      "skipped": 0,
+      "suites": 1,
+      "summary": {
+        "bytes": 3795,
+        "sha256": "a57b333c088fac17ce40ae564ec4f8fb302abda01a14045b3462d70e12e8a977"
+      }
+    },
+    {
+      "actual_process_exit": 0,
+      "cohort": "incoming/spelling/engine",
+      "errors": 0,
+      "passed": 526,
+      "skipped": 0,
+      "suites": 19,
+      "summary": {
+        "bytes": 6321,
+        "sha256": "6c1e5ba3add930a980398c921905d88d56f504ae441217f46ea8e59eb4deeefd"
+      }
+    },
+    {
+      "actual_process_exit": 0,
+      "cohort": "incoming/spelling/editor",
+      "errors": 0,
+      "passed": 64,
+      "skipped": 0,
+      "suites": 7,
+      "summary": {
+        "bytes": 4566,
+        "sha256": "63f430539527add7f0405f2f60b455b912a490eed1dd63893e45129492c06a37"
+      }
+    }
+  ],
+  "errors": 0,
+  "incoming_comparison_review": {
+    "passed": 78,
+    "suites": 5
+  },
+  "incoming_spelling": {
+    "passed": 590,
+    "suites": 26
+  },
+  "limits": "Controlled transports and native-channel responses; no fresh live Zotero account, installed OS dictionary, full application build, native OS or Word/LibreOffice acceptance.",
+  "passed": 1409,
+  "qualified_product": "b2bcfc23e692476d16d9a7a534ea95a93ae94cd3",
+  "separate_dart_vm_panel": {
+    "included_in_test_total": false,
+    "passed": 48
+  },
+  "skipped": 0,
+  "status": "passed",
+  "strict_target_count": 18,
+  "suites": 74,
+  "zotero": {
+    "new_cases": 21,
+    "passed": 741,
+    "suites": 43
+  }
+}

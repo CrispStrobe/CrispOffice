@@ -1,0 +1,450 @@
+[
+  {
+    "id": 5,
+    "name": "unavailable and undeclared dictionaries never claim a clean check",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/platform_spelling_provider_test.dart"
+  },
+  {
+    "id": 6,
+    "name": "an empty successful response remains distinct from an incomplete response",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/platform_spelling_provider_test.dart"
+  },
+  {
+    "id": 9,
+    "name": "platform exceptions and malformed ranges fail the request",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/platform_spelling_provider_test.dart"
+  },
+  {
+    "id": 10,
+    "name": "UTF-16 offsets, locale and bounded suggestions survive adapter mapping",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/platform_spelling_provider_test.dart"
+  },
+  {
+    "id": 8,
+    "name": "only discretionary hyphens are omitted from native input",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/platform_spelling_projection_test.dart"
+  },
+  {
+    "id": 11,
+    "name": "concurrent paragraphs serialize requests on the platform channel",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/platform_spelling_provider_test.dart"
+  },
+  {
+    "id": 12,
+    "name": "native ranges map back across repeated and earlier soft hyphens",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/platform_spelling_projection_test.dart"
+  },
+  {
+    "id": 13,
+    "name": "distinct providers serialize the shared Flutter channel",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/platform_spelling_provider_test.dart"
+  },
+  {
+    "id": 15,
+    "name": "a shared injected service serializes providers too",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/platform_spelling_provider_test.dart"
+  },
+  {
+    "id": 14,
+    "name": "projection does not own leading or trailing layout controls",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/platform_spelling_projection_test.dart"
+  },
+  {
+    "id": 16,
+    "name": "independent injected services do not block each other",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/platform_spelling_provider_test.dart"
+  },
+  {
+    "id": 17,
+    "name": "native no-op suggestions do not remove discretionary layout",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/platform_spelling_projection_test.dart"
+  },
+  {
+    "id": 18,
+    "name": "disposal settles callers without releasing the active channel",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/platform_spelling_provider_test.dart"
+  },
+  {
+    "id": 19,
+    "name": "projected links email and code remain protected",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/platform_spelling_projection_test.dart"
+  },
+  {
+    "id": 21,
+    "name": "soft hyphens do not expose numeric or marked connector fragments",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/platform_spelling_projection_test.dart"
+  },
+  {
+    "id": 22,
+    "name": "empty projected input completes without occupying the native lane",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/platform_spelling_projection_test.dart"
+  },
+  {
+    "id": 23,
+    "name": "equal projected texts retain independent original source maps",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/platform_spelling_projection_test.dart"
+  },
+  {
+    "id": 24,
+    "name": "backend bounds are checked against projected text length",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/platform_spelling_projection_test.dart"
+  },
+  {
+    "id": 25,
+    "name": "projected ranges cannot split newly joined grapheme clusters",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/platform_spelling_projection_test.dart"
+  },
+  {
+    "id": 20,
+    "name": "a stuck channel bounds later callers without starting native work",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/platform_spelling_provider_test.dart"
+  },
+  {
+    "id": 26,
+    "name": "late native errors release the channel only after actual completion",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/platform_spelling_provider_test.dart"
+  },
+  {
+    "id": 29,
+    "name": "a queued request has its own deadline including channel wait",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/platform_spelling_provider_test.dart"
+  },
+  {
+    "id": 30,
+    "name": "platform locales preserve scripts and numeric regions exactly",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/platform_spelling_provider_test.dart"
+  },
+  {
+    "id": 31,
+    "name": "unrepresentable variants never fall back to a different dictionary",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/platform_spelling_provider_test.dart"
+  },
+  {
+    "id": 32,
+    "name": "platform findings leave URLs email and code alone",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/platform_spelling_provider_test.dart"
+  },
+  {
+    "id": 33,
+    "name": "native suggestions discard unusable entries before the display cap",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/platform_spelling_provider_test.dart"
+  },
+  {
+    "id": 34,
+    "name": "native suggestions preserve multiword and Unicode spelling",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/platform_spelling_provider_test.dart"
+  },
+  {
+    "id": 35,
+    "name": "native suggestions reject invisible and bidi-control replacements",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/platform_spelling_provider_test.dart"
+  },
+  {
+    "id": 36,
+    "name": "only invisible native suggestions leave an issue without blank actions",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/platform_spelling_provider_test.dart"
+  },
+  {
+    "id": 37,
+    "name": "native suggestion inspection and replacement sizes are bounded",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/platform_spelling_provider_test.dart"
+  },
+  {
+    "id": 38,
+    "name": "an unknown word stays reviewable when no native suggestion is usable",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/platform_spelling_provider_test.dart"
+  },
+  {
+    "id": 39,
+    "name": "native spelling leaves numeric and connector identifier fragments alone",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/platform_spelling_provider_test.dart"
+  },
+  {
+    "id": 40,
+    "name": "native spelling protects marked identifier grapheme edges",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/platform_spelling_provider_test.dart"
+  },
+  {
+    "id": 41,
+    "name": "native word boundaries retain hyphen parts and CJK dictionary spans",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/platform_spelling_provider_test.dart"
+  },
+  {
+    "id": 42,
+    "name": "malformed grapheme boundaries fail direct provider checks",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/platform_spelling_provider_test.dart"
+  },
+  {
+    "id": 43,
+    "name": "non-positive platform deadlines are rejected",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/platform_spelling_provider_test.dart"
+  },
+  {
+    "id": 44,
+    "name": "timeout retires a provider before another channel request starts",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/platform_spelling_provider_test.dart"
+  },
+  {
+    "id": 45,
+    "name": "a result completing after disposal is unavailable",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/platform_spelling_provider_test.dart"
+  },
+  {
+    "id": 46,
+    "name": "real Flutter channel failures remain failed instead of successful empty responses",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/platform_spelling_provider_test.dart"
+  },
+  {
+    "id": 47,
+    "name": "real Flutter service checks the same text independently across locales",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/platform_spelling_provider_test.dart"
+  },
+  {
+    "id": 51,
+    "name": "native correction cannot split a source flag after projection",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/platform_spelling_projection_review_test.dart"
+  },
+  {
+    "id": 52,
+    "name": "different soft-hyphen placements are still native no-op choices",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/platform_spelling_projection_review_test.dart"
+  },
+  {
+    "id": 53,
+    "name": "empty projection preserves unavailable and exact-locale outcomes",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/platform_spelling_projection_review_test.dart"
+  },
+  {
+    "id": 54,
+    "name": "empty projection does not revive a disposed native provider",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/platform_spelling_projection_review_test.dart"
+  },
+  {
+    "id": 60,
+    "name": "whole native identifiers containing digits are protected",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/platform_spelling_identifiers_test.dart"
+  },
+  {
+    "id": 61,
+    "name": "whole native identifiers containing connectors are protected",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/platform_spelling_identifiers_test.dart"
+  },
+  {
+    "id": 62,
+    "name": "whole native identifiers containing marked numeric and connector clusters are protected",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/platform_spelling_identifiers_test.dart"
+  },
+  {
+    "id": 63,
+    "name": "partial native spans that contain an identifier marker are protected",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/platform_spelling_identifiers_test.dart"
+  },
+  {
+    "id": 64,
+    "name": "soft hyphens cannot expose a whole native identifier",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/platform_spelling_identifiers_test.dart"
+  },
+  {
+    "id": 65,
+    "name": "identifier protection retains separate prose, hyphen parts and CJK spans",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/platform_spelling_identifiers_test.dart"
+  },
+  {
+    "id": 66,
+    "name": "identifier lookup is independent of native result order",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/platform_spelling_identifiers_test.dart"
+  },
+  {
+    "id": 58,
+    "name": "native review maps a soft-hyphen correction to its original text and undo",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/platform_spelling_dialog_test.dart"
+  },
+  {
+    "id": 68,
+    "name": "native soft-hyphen personal spelling is normalized and owner scoped",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/platform_spelling_dialog_test.dart"
+  },
+  {
+    "id": 69,
+    "name": "native review exposes a usable multiword correction after invalid suggestions",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/platform_spelling_dialog_test.dart"
+  },
+  {
+    "id": 67,
+    "name": "native Word review corrects prose without rewriting whole identifiers",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/platform_spelling_identifiers_test.dart"
+  },
+  {
+    "id": 70,
+    "name": "a native unknown word without usable replacements remains reviewable",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/platform_spelling_dialog_test.dart"
+  },
+  {
+    "id": 76,
+    "name": "whole identifiers retain markers inside prepended graphemes",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/platform_spelling_identifier_review_test.dart"
+  },
+  {
+    "id": 77,
+    "name": "prepended markers protect adjacent native letter fragments",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/platform_spelling_identifier_review_test.dart"
+  },
+  {
+    "id": 78,
+    "name": "prepended marker protection survives soft-hyphen projection",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/platform_spelling_identifier_review_test.dart"
+  },
+  {
+    "id": 79,
+    "name": "numeric symbols and connector punctuation stay intact",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/platform_spelling_identifier_review_test.dart"
+  },
+  {
+    "id": 80,
+    "name": "marked separators and numeral words retain prose findings",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/platform_spelling_identifier_review_test.dart"
+  },
+  {
+    "id": 82,
+    "name": "native personal spelling survives a decomposed reopen with exact owner and locale scope",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/platform_spelling_vocabulary_unicode_test.dart"
+  },
+  {
+    "id": 83,
+    "name": "native ignored caron spelling restores from JSON and reappears after alias removal",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/platform_spelling_vocabulary_unicode_test.dart"
+  },
+  {
+    "id": 84,
+    "name": "native soft hyphen before an accent saves a canonical personal word without rewriting source",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/platform_spelling_vocabulary_unicode_test.dart"
+  }
+]
