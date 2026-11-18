@@ -486,6 +486,22 @@ Full walkthrough: [`packages/quds_office_editor/README.md`](packages/quds_office
 
 ---
 
+## Planned Mail and standalone Office
+
+The [Mail scope](docs/roadmaps/mail/README.md) and
+[coding plan / TODO](docs/roadmaps/mail/implementation-plan.md) specify a
+shared Dart/Flutter saved-message reader and mail client, CrispCloud host
+integration, and a new standalone Office app with documents, Mail, Calendar
+and People. MPL-2.0 dependencies are allowed with matching source and notices;
+new independent Quds code remains MIT.
+
+The plan preserves CrispCloud's existing EML/MSG/MBOX workflows without
+importing its AGPL implementation into Quds. Standalone and CrispCloud
+distribution/App Store gates are tracked separately. This is planned work;
+the existing applications below remain the currently documented apps.
+
+---
+
 ## Run the apps
 
 **Quds Report Studio**: the standalone report editor (open, design, preview, export).
@@ -598,3 +614,4 @@ See [`CONTRIBUTING.md`](CONTRIBUTING.md). Issues and pull requests are welcome.
 ## License
 
 [MIT](LICENSE) © Mohammed Asaad Asaad. Fork changes © CrispStrobe, same license.
+
