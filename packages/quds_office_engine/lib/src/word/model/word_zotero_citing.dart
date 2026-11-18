@@ -1321,6 +1321,11 @@ final class WordZoteroCitingSession {
           if (priority != 0) return priority;
           final aPlaceholder = _noteTextFields[a.identity];
           final bPlaceholder = _noteTextFields[b.identity];
+          // A converted existing note still follows newly inserted note text
+          // at its marker, matching field order and the applied document.
+          if ((aPlaceholder != null) != (bPlaceholder != null)) {
+            return aPlaceholder != null ? -1 : 1;
+          }
           if (aPlaceholder != null && bPlaceholder != null) {
             final paragraph = aPlaceholder.paragraphIndex.compareTo(
               bPlaceholder.paragraphIndex,
