@@ -4,6 +4,10 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Protect complete identifiers and numeric/connector-containing spans returned
+  by native spell checkers, including marked and prepended Unicode clusters.
+  Keep surrounding prose, explicit hyphen parts and CJK words reviewable.
+
 - Add a document review workspace with reviewer attribution, author/type/text
   filters, undoable filtered accept/reject, story-aware navigation, and
   original/final paragraph previews. Compare two independently picked Word

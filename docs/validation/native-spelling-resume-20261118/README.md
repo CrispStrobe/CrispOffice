@@ -21,8 +21,23 @@ the repair, the initial four-file native selection passes 52 substantive tests,
 zero failures or skips. These development results will be superseded by the
 final source-bound qualification and archived raw evidence.
 
-German dictionary normalization and projected-text protections are being
-implemented separately. They are not claimed by this checkpoint.
+German spelling now recognizes the remaining decomposed letters in the shipped
+dictionary (ë/Ë and š/Š), and composes accents after removing discretionary soft
+hyphens. Original and projected link, email, code, identifier and grapheme
+protections prevent partial corrections without changing the original tokenizer
+or finding offsets. Personal and ignored vocabulary shares canonical comparison.
+
+Independent review identified Unicode Prepend characters before numeric or
+connector markers within one grapheme. Both checkers now examine the complete
+grapheme when collecting those markers. The final focused German file passes
+25 tests; the five independent native tests pass after the repair. Three native
+Word-session tests cover canonical vocabulary, persistence, owner/locale
+boundaries and cache invalidation. These focused runs overlap final acceptance.
+
+The portable smoke panel contains 48 cases. Final complete engine/editor,
+isolated baseline, strict analysis and VM/native/JavaScript validation will run
+against the next saved implementation checkpoint. See [independent review](review.md)
+and the [dictionary audit](dictionary-audit.json).
 
 ## Incoming work
 

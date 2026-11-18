@@ -289,16 +289,17 @@ final class _PlatformSpellingText {
     }
     for (final cluster in GraphemeClusters.segment(text)) {
       _checkedBoundaries.add(cluster.end);
-      // A marked digit/connector is one edge, even when a layout control hid
-      // the adjacency in the source. Build this once for all returned spans.
-      if (_identifierLeading.matchAsPrefix(text, cluster.start) != null) {
+      // A digit/connector owns its whole grapheme, including marks and any
+      // Unicode Prepend characters before it. A layout control may have hidden
+      // this adjacency in the source. Build this once for all returned spans.
+      if (_identifierMarker.hasMatch(cluster.text)) {
         _identifierStarts.add(cluster.start);
         _identifierEnds.add(cluster.end);
       }
     }
   }
 
-  static final _identifierLeading = RegExp(r'[\p{N}\p{Pc}]', unicode: true);
+  static final _identifierMarker = RegExp(r'[\p{N}\p{Pc}]', unicode: true);
   late final String text;
   late final List<int>? _sourceOffsets;
   late final OfficeProofingTextRanges _sourceProtected;
