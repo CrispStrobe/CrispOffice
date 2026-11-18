@@ -96,6 +96,45 @@ Future<void> _tap(WidgetTester tester, Finder finder) async {
 
 void main() {
   for (final scenario in <({String source, String replacement, String result})>[
+    (
+      source: '🙂 Er draf’s.',
+      replacement: 'darf’s',
+      result: '🙂 Er darf’s.',
+    ),
+    (
+      source: 'Ein Huas\u2011Türr.',
+      replacement: 'Haus\u2011Tür',
+      result: 'Ein Haus\u2011Tür.',
+    ),
+  ]) {
+    testWidgets(
+      'native spelling review preserves separators and undo: ${scenario.replacement}',
+      (tester) async {
+        final provider = GermanSpellingProvider();
+        await tester.runAsync(provider.warmUp);
+        final controller = await _open(
+          tester,
+          document: WmlDocument.empty(text: scenario.source),
+          provider: provider,
+        );
+        final correction = find.widgetWithText(
+          OutlinedButton,
+          scenario.replacement,
+        );
+        expect(correction, findsOneWidget);
+        await _tap(tester, correction);
+        await tester.pumpAndSettle();
+        expect(controller.document.paragraphs.first.text, scenario.result);
+        expect(controller.proofing.summary.issues, isEmpty);
+        controller.undo();
+        expect(controller.document.paragraphs.first.text, scenario.source);
+        controller.redo();
+        expect(controller.document.paragraphs.first.text, scenario.result);
+      },
+    );
+  }
+
+  for (final scenario in <({String source, String replacement, String result})>[
     (source: 'Ihr seit hier.', replacement: 'seid', result: 'Ihr seid hier.'),
     (
       source: '😀 ich ha\u00adst Zeit.',

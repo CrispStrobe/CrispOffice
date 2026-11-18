@@ -884,14 +884,36 @@ required, as is real-browser hosting/CSP acceptance.
 Flutter and `dart:ui` out of the pure-Dart engine. It wraps Flutter's
 `DefaultSpellCheckService` for Android/iOS. The host declares the installed
 `supportedLanguages`; Flutter does not provide reliable dictionary enumeration.
-Requests are serialized, the framework's text-only cache is cleared between
-languages, UTF-16 ranges are validated and suggestions are bounded. A null
-platform response is a failure; an empty successful response is distinct.
+Language, script and alphabetic or numeric region subtags are preserved, for
+example `zh-Hant-TW` and `es-419`. Tags containing variants or extensions that
+Flutter's `Locale` cannot represent are unsupported; they never silently select
+a different dictionary. The shared reviewed English/German aliases still apply.
+
+All Quds providers using the default Flutter service share one serialized lane,
+including separate documents and replacement providers. Sharing a custom
+`SpellCheckService` instance also shares its lane; distinct custom services run
+independently. Every request's positive timeout includes time waiting for that
+lane. Disposal settles active and queued callers immediately, and a timeout
+retires that provider. Flutter exposes no way to cancel an outstanding native
+spell check, so only its actual completion releases the occupied lane. A stuck
+system call makes later requests fail within their own deadlines; creating a
+new provider cannot bypass an unfinished call. This coordination covers Quds
+providers, not unrelated host widgets calling Flutter's channel directly.
+
+The framework's text-only cache is cleared when the next call actually starts.
+Findings must use complete grapheme boundaries in the original UTF-16 source;
+malformed ranges fail the request. URLs, email addresses and closed backtick
+spans use the same protected-range policy as the other local spelling providers.
+Suggestions remain bounded to eight. A null platform response is a failure;
+an empty successful response is distinct.
 
 The local tests exercise the provider protocol, including two uses of the real
-Flutter service against a mocked platform channel. They do not demonstrate
-installed dictionaries or spelling behavior on an Android/iOS device. Hosts
-must perform that device acceptance before advertising mobile availability.
+Flutter service for locale isolation and failures, and multiple providers
+against a mocked platform channel. They cover shared-channel scheduling,
+disposal, bounded queued deadlines, recovery after late completion, locale
+mapping and protected source spans. They do not demonstrate installed
+dictionaries or spelling behavior on an Android/iOS device. Hosts must perform
+that device acceptance before advertising mobile availability.
 
 ## Integration contracts
 
