@@ -1,0 +1,78 @@
+{
+  "archive": "setup.tar.gz",
+  "bytes": 22427,
+  "sha256": "b49a5f17cb1f52cbab6f3cd39887c5e69070e052457452d9bf2fb082d33a6d67",
+  "members": [
+    {
+      "path": "runtime-ready.json",
+      "bytes": 5879,
+      "sha256": "0861a77432e45d13dfe6d1af984638f063cea9bec6bf195fb0d794935c813276"
+    },
+    {
+      "path": "flutter-recovery.json",
+      "bytes": 392,
+      "sha256": "3949c231293789ae6e8c206c65bf78109c7caec76f66d8c8c8504c474356542e"
+    },
+    {
+      "path": "setup/official-release-current.json",
+      "bytes": 354,
+      "sha256": "0512d2f3e1ecc398936a6dcd0d9b57f89c7cf6221efa5c103b95490c77eab9dd"
+    },
+    {
+      "path": "setup/all-package-downloads.json",
+      "bytes": 69669,
+      "sha256": "20c831d9771da06ac6fc9d4df9cd418cd9421730ea945a0d321ee293f532d1d4"
+    },
+    {
+      "path": "setup/readiness-audit.json",
+      "bytes": 376,
+      "sha256": "06f16c6d8ebd2df0304753c7dbb204806951fc0f2b3e5e6dcec5a803690de1f6"
+    },
+    {
+      "path": "probes/runtime-probe.json",
+      "bytes": 1359,
+      "sha256": "8bd44aa4242f0bc1571f6bc28dccc10319ed07606244091acd131401fe8bbb5a"
+    },
+    {
+      "path": "logs/flutter-version.json",
+      "bytes": 632,
+      "sha256": "ed0c794b603702f1e7005ba3194aa4ad8d47b58eb58a5a544b3bc9baeb1e2650"
+    },
+    {
+      "path": "logs/dart-version.log",
+      "bytes": 82,
+      "sha256": "945e6a359e53647f8fd753347245ed78bc06c2808919b2d7749817181d010ff4"
+    },
+    {
+      "path": "logs/workspace-pub-get.log",
+      "bytes": 68,
+      "sha256": "d4cb7a3c68b4133b4f6e58c67ff5bfd13725d8021e930388cdc98da8a575919d"
+    },
+    {
+      "path": "logs/flutter-tools-pub-get.log",
+      "bytes": 1016,
+      "sha256": "84831966b2cffe4d707cf6ed4db78da9fa8861dbd5f35f866cb276041384018f"
+    },
+    {
+      "path": "restore_runtime.py",
+      "bytes": 4366,
+      "sha256": "6f360a01e38340969f7910ebdb83c6ea25dbf4e53d61ad8f4d4e89856fde3f87"
+    },
+    {
+      "path": "prefetch_incoming_mail.py",
+      "bytes": 2886,
+      "sha256": "9e4fbd380d462af130c5715ecea5c07238608459f7e12bc255dc28acbfc62c73"
+    },
+    {
+      "path": "prepare_workspace.py",
+      "bytes": 4725,
+      "sha256": "a932b97fe88a5a8696ffea90d257151b49b432385369a8337d2af8280cd743ad"
+    },
+    {
+      "path": "env.sh",
+      "bytes": 604,
+      "sha256": "ba03d11296e6335288ff8b81842934dfd2acbb2c491b024faca0c86033b7643a"
+    }
+  ],
+  "readback_verified": true
+}

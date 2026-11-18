@@ -6,7 +6,7 @@ from pathlib import Path
 import tempfile
 import unittest
 
-from export_review_packet import DEFAULT_OUTPUT, ROOT, make_packet, render, safe_text
+from export_review_packet import DEFAULT_OUTPUT, ROOT, make_packet, render, safe_text, write_packet
 
 REPORT = ROOT / "docs/validation/thesaurus-20261118/resume/native/native-pack-report.json"
 
@@ -32,6 +32,20 @@ class ReviewPacketTest(unittest.TestCase):
     def test_source_text_cannot_create_markdown_blocks(self):
         self.assertEqual(safe_text("# headline\r\n---\r- item\n1. item <script>"),
                          "\\# headline / \\-\\-\\- / \\- item / 1\\. item &lt;script&gt;")
+
+    def test_export_keeps_original_notices_and_refuses_overwrite(self):
+        packet = make_packet(REPORT, DEFAULT_OUTPUT)
+        with tempfile.TemporaryDirectory() as temporary:
+            output = Path(temporary) / "review"
+            write_packet(packet, DEFAULT_OUTPUT, output)
+            for locale, pack in packet["packs"].items():
+                for notice in pack["notices"]:
+                    self.assertEqual((output / notice["export_path"]).read_bytes(),
+                                     (DEFAULT_OUTPUT / locale / notice["path"]).read_bytes())
+            (output / "reviewer-notes.txt").write_text("Human decision retained")
+            with self.assertRaisesRegex(ValueError, "must not be overwritten"):
+                write_packet(packet, DEFAULT_OUTPUT, output)
+            self.assertEqual((output / "reviewer-notes.txt").read_text(), "Human decision retained")
 
     def test_modified_term_is_rejected(self):
         def alter(data):

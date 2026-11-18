@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "repository": "CrispStrobe/quds_office_suite",
+  "recorded_at_utc": "2026-11-18T20:23:36.712018+00:00",
+  "scope": "Local Git object ancestry at the immutable integration commit. This does not assert current remote state, conflict-resolution semantics, or test results.",
+  "integration_commit": "813a7cdd7d55f2028e377393ae6bbc7388f5db73",
+  "tree": "35339d2a22adc3a4057bc42b623149a5e9dd9365",
+  "parents": [
+    "4600c0ebc9ac5e6acabd92935821d1c15315f2c1",
+    "2fef06f5fe9aefb07a48c75c0e762eee3edf26e1"
+  ],
+  "inputs": {
+    "incoming_audit_snapshot.json": "5dc2cbc847a7209f9684843ae9939a85e4f8027b4e4debba38583e62c866308d",
+    "incoming_upstream_snapshot.json": "008dd210ae1a5cddf6aad0abb7a12e5ad9f264a54147ecdfa9747f969cfa9862",
+    "incoming_audit_result.json": "3139146a2c192b7b8b97abb12703b9623aaf632ee5d90e496fd9ccbf905d0c09"
+  },
+  "ancestor_checks": [
+    {
+      "name": "handoff",
+      "commit": "0e84dc951e7a9e923107d7895fa457cf29a7af71",
+      "is_ancestor": true
+    },
+    {
+      "name": "main",
+      "commit": "4fbc8741f314af67592517595c760ba3036dedba",
+      "is_ancestor": true
+    },
+    {
+      "name": "document_review",
+      "commit": "4600c0ebc9ac5e6acabd92935821d1c15315f2c1",
+      "is_ancestor": true
+    },
+    {
+      "name": "mail_reader",
+      "commit": "2fef06f5fe9aefb07a48c75c0e762eee3edf26e1",
+      "is_ancestor": true
+    }
+  ],
+  "all_ancestors_present": true,
+  "portable_replay_matches_original_except_recording_time": true,
+  "network_access": false,
+  "git_ref_mutations": false
+}

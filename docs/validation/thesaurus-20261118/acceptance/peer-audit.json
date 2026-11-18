@@ -1,0 +1,463 @@
+{
+  "schema_version": 1,
+  "recorded_at_utc": "2026-11-18T20:35:05.030704+00:00",
+  "scope": "Independent reconstruction from existing logs and byte inventories. No tests rerun; no Git refs/index changed.",
+  "audit_script_sha256": "e87c75284a61b5cb3fc93e7155352ef36e74ba0df909f1966c773bb40a37410b",
+  "status": "verified_with_open_release_gates",
+  "passed": true,
+  "failures": [],
+  "cohorts": [
+    {
+      "cohort": "studio",
+      "passed": 36,
+      "suite_count": 4,
+      "per_suite": {
+        "packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart": 15,
+        "packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart": 9,
+        "packages/quds_office_editor/example/test/studio_compact_navigation_test.dart": 1,
+        "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart": 11
+      },
+      "excluded_lifecycle_cases": 4,
+      "start_events": 40,
+      "completion_events": 40,
+      "final_success": true,
+      "error_events": 0,
+      "parse_errors": [],
+      "layout_or_tap_diagnostics": [],
+      "stdout_sha256": "fe16bcf8b16c95365dfa96f286a4182cafc4bf369027212ce87897239385cf45",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "cohort": "mail-ui",
+      "passed": 30,
+      "suite_count": 4,
+      "per_suite": {
+        "packages/quds_mail_ui/test/controller_test.dart": 5,
+        "packages/quds_mail_ui/test/example_test.dart": 1,
+        "packages/quds_mail_ui/test/message_view_test.dart": 11,
+        "packages/quds_mail_ui/test/presentation_test.dart": 13
+      },
+      "excluded_lifecycle_cases": 4,
+      "start_events": 34,
+      "completion_events": 34,
+      "final_success": true,
+      "error_events": 0,
+      "parse_errors": [],
+      "layout_or_tap_diagnostics": [],
+      "stdout_sha256": "cf3a5f94486fa844c4ab2df330f3dc728a3f7509df9048926fce8ee01f6eb5f2",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "cohort": "mail-core",
+      "passed": 28,
+      "suite_count": 4,
+      "per_suite": {
+        "packages/quds_mail_core/test/cancellation_test.dart": 3,
+        "packages/quds_mail_core/test/models_test.dart": 8,
+        "packages/quds_mail_core/test/outbox_test.dart": 10,
+        "packages/quds_mail_core/test/sync_coordinator_test.dart": 7
+      },
+      "excluded_lifecycle_cases": 4,
+      "start_events": 32,
+      "completion_events": 32,
+      "final_success": true,
+      "error_events": 0,
+      "parse_errors": [],
+      "layout_or_tap_diagnostics": [],
+      "stdout_sha256": "438233587209cfff20385c3fa3f28a7ce0baa1591344b7f3ad23be7607693d2a",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "cohort": "mail-mime",
+      "passed": 32,
+      "suite_count": 6,
+      "per_suite": {
+        "packages/quds_mail_mime/test/eml_bytes_test.dart": 4,
+        "packages/quds_mail_mime/test/mime_encodings_test.dart": 7,
+        "packages/quds_mail_mime/test/mime_limits_test.dart": 10,
+        "packages/quds_mail_mime/test/mime_parts_test.dart": 8,
+        "packages/quds_mail_mime/test/mime_review_regressions_test.dart": 2,
+        "packages/quds_mail_mime/test/portable_import_test.dart": 1
+      },
+      "excluded_lifecycle_cases": 6,
+      "start_events": 38,
+      "completion_events": 38,
+      "final_success": true,
+      "error_events": 0,
+      "parse_errors": [],
+      "layout_or_tap_diagnostics": [],
+      "stdout_sha256": "24900baae9a0895fe2ec72a041e8587a32936c1c538551364c3305b9e28e81fc",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "cohort": "engine",
+      "passed": 65,
+      "suite_count": 2,
+      "per_suite": {
+        "packages/quds_office_engine/test/office_thesaurus_test.dart": 24,
+        "packages/quds_office_engine/test/word_zotero_note_insertion_test.dart": 41
+      },
+      "excluded_lifecycle_cases": 2,
+      "start_events": 67,
+      "completion_events": 67,
+      "final_success": true,
+      "error_events": 0,
+      "parse_errors": [],
+      "layout_or_tap_diagnostics": [],
+      "stdout_sha256": "b7a3025d7e10de5bf0813692d04087753b4aa3e21dc69d8f2e14f7492c636172",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "cohort": "native-acceptance",
+      "passed": 208,
+      "suite_count": 14,
+      "per_suite": {
+        "docs/validation/thesaurus-20261118/continuation/local/fixtures/native_pack_test.dart": 1,
+        "docs/validation/thesaurus-20261118/continuation/local/fixtures/native_visual_test.dart": 3,
+        "packages/quds_office_editor/test/word_keyboard_context_geometry_test.dart": 11,
+        "packages/quds_office_editor/test/word_keyboard_review_identity_test.dart": 4,
+        "packages/quds_office_editor/test/word_keyboard_review_test.dart": 16,
+        "packages/quds_office_editor/test/word_proofing_capture_cache_test.dart": 4,
+        "packages/quds_office_editor/test/word_proofing_context_test.dart": 5,
+        "packages/quds_office_editor/test/word_proofing_correction_test.dart": 33,
+        "packages/quds_office_editor/test/word_review_pane_test.dart": 11,
+        "packages/quds_office_editor/test/word_text_proofing_controls_test.dart": 31,
+        "packages/quds_office_editor/test/word_text_proofing_pane_test.dart": 13,
+        "packages/quds_office_editor/test/word_thesaurus_controller_test.dart": 52,
+        "packages/quds_office_editor/test/word_thesaurus_dialog_test.dart": 21,
+        "packages/quds_office_editor/test/word_thesaurus_review_integration_test.dart": 3
+      },
+      "excluded_lifecycle_cases": 26,
+      "start_events": 234,
+      "completion_events": 234,
+      "final_success": true,
+      "error_events": 0,
+      "parse_errors": [],
+      "layout_or_tap_diagnostics": [],
+      "stdout_sha256": "4f2726c7b6cb50dbb2197174bbb3d09d6363095848b776a760bf020e26a6f478",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "totals": {
+    "dart_flutter_cases": 399,
+    "dart_flutter_suites": 34,
+    "python_controls": 22,
+    "all_targeted_cases_and_controls": 421,
+    "strict_analysis_files": 5
+  },
+  "case_inventory": {
+    "path": "substantive-cases.json.gz",
+    "bytes": 9912,
+    "sha256": "3b1c831a634397fbaa4d0ff18b3093a1c350eecea62e81c643aa39250da7e32a"
+  },
+  "integration_sources": {
+    "entries": 2195,
+    "repository_entries": 2188,
+    "special_entries": 7,
+    "commit": "813a7cdd7d55f2028e377393ae6bbc7388f5db73",
+    "commit_entries_checked": 2188,
+    "execution_workspace_entries_checked": 2187,
+    "current_mismatches": [],
+    "commit_mismatches": [],
+    "execution_workspace_mismatches": [],
+    "canonical_digest": "e97c29ae421f6e1c5455a45a919243fe1650cf7587c7498adc90d7fa9eebbbd5",
+    "exact_declared_scope_verified": true
+  },
+  "native_sources": {
+    "entries": 2878,
+    "repository_entries": 2868,
+    "special_entries": 10,
+    "commit": "7530f83a5503987dbee5b9678af56116ca98621f",
+    "commit_entries_checked": 2876,
+    "execution_workspace_entries_checked": 2867,
+    "current_mismatches": [],
+    "commit_mismatches": [],
+    "execution_workspace_mismatches": [],
+    "canonical_digest": "8b2c182ed905d042f417e51a23a8b01df64722ebbffa274afa69fbb286229819",
+    "exact_current_scope_verified": true
+  },
+  "python_harness": {
+    "cases": 15,
+    "names": [
+      "test_changed_missing_and_unlisted_build_assets_are_rejected",
+      "test_changed_worker_is_rejected_even_with_unchanged_assets",
+      "test_competing_default_worker_bootstrap_is_rejected",
+      "test_failed_stale_or_inconsistent_compile_evidence_is_rejected",
+      "test_generated_worker_checks_bytes_cache_scope_and_offline_fetch",
+      "test_http_origin_serves_csp_then_really_closes",
+      "test_incomplete_build_and_symbolic_links_are_rejected_before_writing",
+      "test_inventory_is_repeatable_and_preserves_compiled_assets",
+      "test_mutated_compile_members_and_stale_fixture_are_rejected",
+      "test_resealed_installation_cannot_substitute_a_different_compiled_application",
+      "test_unrelated_build_is_rejected_before_entry_points_are_changed",
+      "test_complete_declared_panel_is_accepted",
+      "test_lost_distinctions_fallback_and_cache_bounds_cannot_pass",
+      "test_missing_cases_wrong_status_or_pack_cannot_pass",
+      "test_unread_or_tampered_notices_cannot_pass"
+    ],
+    "passed": true,
+    "source_inputs_checked": {
+      "build_binding.py": {
+        "bytes": 6819,
+        "sha256": "e57dd9a57a2ccf9e4657aae04d8d63e2159e079512cb9645b0f6b948d576ae2a"
+      },
+      "install_offline.py": {
+        "bytes": 10955,
+        "sha256": "174329331c5e363afcb4dd58d8182aa14b4f86b405e0ec84be5179414fc968aa"
+      },
+      "run_browser.py": {
+        "bytes": 22822,
+        "sha256": "ac79690ad9d54d8bb62258b2418e8219fd306f56afd51740448e4979730a81db"
+      },
+      "run_final_validation.py": {
+        "bytes": 9225,
+        "sha256": "d034b1ea82a61dafd41117c2ce67bb053acc2aaab27ffce39281bd7c69e2c9f0"
+      },
+      "test_browser_harness.py": {
+        "bytes": 23364,
+        "sha256": "29626b0d738377e498b99af9be502974db8cc652cbf4695d21f4a6e81474bd0c"
+      },
+      "lib/main.dart": {
+        "bytes": 8440,
+        "sha256": "9caff2312188c3fd1b668055495bc1e6b37b897ddebfe85b2c32b9e8d75485a4"
+      }
+    },
+    "scope": "Python and Node mocked-worker controls plus local HTTP serving/shutdown; no browser or Flutter execution"
+  },
+  "python_exporter": {
+    "cases": 7,
+    "names": [
+      "test_current_source_records_remain_unreviewed",
+      "test_export_keeps_original_notices_and_refuses_overwrite",
+      "test_failed_native_run_is_rejected",
+      "test_missing_or_repeated_query_is_rejected",
+      "test_modified_term_is_rejected",
+      "test_source_text_cannot_create_markdown_blocks",
+      "test_stale_pack_is_rejected"
+    ],
+    "passed": true,
+    "source_inputs_checked": {
+      "tools/thesaurus/export_review_packet.py": {
+        "bytes": 13361,
+        "sha256": "1d14bd72961bad937d2eaf624ea179bafce8cc61fc6534c8b893deed1f33945f"
+      },
+      "tools/thesaurus/test_export_review_packet.py": {
+        "bytes": 3415,
+        "sha256": "f5bf1ab698351f39648f1cd5d1049a4ce4c899c313737f9ab791674413904e7c"
+      },
+      "tools/thesaurus/build_packs.py": {
+        "bytes": 19016,
+        "sha256": "52c87f52f7c85ed2ec9d58b91e5afeb5bb658e7b99fe167cc4a26e6fb5608e4c"
+      },
+      "docs/validation/thesaurus-20261118/resume/native/native-pack-report.json": {
+        "bytes": 145119,
+        "sha256": "5a65825ca8cbfd83c26d858427b0b1b101dd3ee0c6a8ac9dffd2065cd7333986"
+      },
+      "packages/quds_office_editor/assets/thesaurus/en/manifest.json": {
+        "bytes": 126855,
+        "sha256": "13ae58da2a20c0eb74ccf20acc3fade665e12e48daf783351f90b3073fd28e23"
+      },
+      "packages/quds_office_editor/assets/thesaurus/de/manifest.json": {
+        "bytes": 127549,
+        "sha256": "8788f9af67186b40f963f948aeceed01c012f3e9653ddab68947e16213cb0453"
+      }
+    },
+    "scope": "Exporter/source-integrity controls; not a new provider run or independent linguistic review."
+  },
+  "evidence_archive": {
+    "bytes": 773521,
+    "sha256": "9cc24a6bb36160400cc73b0401d04a5bf9298ed5ac54971b3faee438c5d11988",
+    "members": 50,
+    "original_evidence_mismatches": [],
+    "all_member_hashes_and_original_bytes_match": true
+  },
+  "pack_continuity": {
+    "handoff": "0e84dc951e7a9e923107d7895fa457cf29a7af71",
+    "checkpoint": "7530f83a5503987dbee5b9678af56116ca98621f",
+    "tree": "dd43fa0789f93538d6684114c63abade7e7a7e52",
+    "packaged_files_checked": 1037,
+    "new_full_rebuild_claimed": false
+  },
+  "commit_delta": {
+    "base": "813a7cdd7d55f2028e377393ae6bbc7388f5db73",
+    "head": "7530f83a5503987dbee5b9678af56116ca98621f",
+    "paths": [
+      "docs/roadmaps/thesaurus/README.md",
+      "docs/roadmaps/thesaurus/release-acceptance.md",
+      "docs/validation/thesaurus-20261118/continuation/local/README.md",
+      "docs/validation/thesaurus-20261118/continuation/local/fixtures/build_binding.py",
+      "docs/validation/thesaurus-20261118/continuation/local/fixtures/install_offline.py",
+      "docs/validation/thesaurus-20261118/continuation/local/fixtures/lib/main.dart",
+      "docs/validation/thesaurus-20261118/continuation/local/fixtures/run_browser.py",
+      "docs/validation/thesaurus-20261118/continuation/local/fixtures/run_final_validation.py",
+      "docs/validation/thesaurus-20261118/continuation/local/fixtures/test_browser_harness.py",
+      "tools/thesaurus/README.md",
+      "tools/thesaurus/export_review_packet.py",
+      "tools/thesaurus/test_export_review_packet.py"
+    ],
+    "application_source_changed": false
+  },
+  "web_compile": {
+    "exit_code": 0,
+    "compiled_files": 1155,
+    "compiled_bytes": 87397428,
+    "installed_files": 1156,
+    "installed_bytes": 87398019,
+    "installed_overlay_verified": true,
+    "cache_identity": "2b023299f0dc1befe2fdf88db341ebb43e73a57d6f37e0d65a8f77e1cb1ab354",
+    "warning": "Flutter reports that --pwa-strategy is deprecated; compilation succeeded."
+  },
+  "actual_browser": {
+    "status": "blocked_before_application_start",
+    "completed_steps": 0,
+    "application_requests": 0,
+    "acceptance_passed": false,
+    "reason": "Chromium socket() startup failed with Operation not permitted (EPERM)."
+  },
+  "release_gates": {
+    "actual_offline_browser": "open",
+    "installed_native_desktop": "open",
+    "independent_human_linguistic_review": "open"
+  },
+  "limits": [
+    "These are targeted cohorts, not a complete repository suite.",
+    "The native 15-query panel is one test case; queries are not counted as extra cases.",
+    "Python/Node mocked-worker controls and release web compilation do not establish browser acceptance.",
+    "Before/after inventories and captured subprocess receipts are local evidence, not signed attestations.",
+    "Current source equality covers the recorded input scopes, not unrelated repository documents."
+  ],
+  "input_evidence": {
+    "integration-validation/summary.json": {
+      "bytes": 10166,
+      "sha256": "0c60edcf3311a6c6757067f72d55e02f84a3c655bb368f8fa9ff231340cd65e4"
+    },
+    "integration-validation/source-before.json.gz": {
+      "bytes": 112028,
+      "sha256": "1535db6e3b4100d84e1f95d383c26217ad33f9745eeb3c12923893c2119b7cee"
+    },
+    "integration-validation/source-after.json.gz": {
+      "bytes": 112027,
+      "sha256": "8cd6b0b2d86242ed182d7d62f009f85b8e5ab93d2186731c662eee18b16eda19"
+    },
+    "integration-validation/studio/stdout.jsonl": {
+      "bytes": 22964,
+      "sha256": "fe16bcf8b16c95365dfa96f286a4182cafc4bf369027212ce87897239385cf45"
+    },
+    "integration-validation/studio/stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "integration-validation/mail-ui/stdout.jsonl": {
+      "bytes": 16976,
+      "sha256": "cf3a5f94486fa844c4ab2df330f3dc728a3f7509df9048926fce8ee01f6eb5f2"
+    },
+    "integration-validation/mail-ui/stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "integration-validation/mail-core/stdout.jsonl": {
+      "bytes": 14355,
+      "sha256": "438233587209cfff20385c3fa3f28a7ce0baa1591344b7f3ad23be7607693d2a"
+    },
+    "integration-validation/mail-core/stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "integration-validation/mail-mime/stdout.jsonl": {
+      "bytes": 17177,
+      "sha256": "24900baae9a0895fe2ec72a041e8587a32936c1c538551364c3305b9e28e81fc"
+    },
+    "integration-validation/mail-mime/stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "integration-validation/engine/stdout.jsonl": {
+      "bytes": 30105,
+      "sha256": "b7a3025d7e10de5bf0813692d04087753b4aa3e21dc69d8f2e14f7492c636172"
+    },
+    "integration-validation/engine/stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "integration-validation/evidence-index.json": {
+      "bytes": 3824,
+      "sha256": "7d2e87f600e258fd559749122f1c108b8e3b1dc049632411ebfd9717f6d7b397"
+    },
+    "integration-validation/analysis/stdout.jsonl": {
+      "bytes": 97,
+      "sha256": "5d0f056da7e064df2a9680840a398a32bea2713d8e75bfce177e8423a58e167f"
+    },
+    "integration-validation/analysis/stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "thesaurus-acceptance-validation/receipt.json": {
+      "bytes": 4992,
+      "sha256": "6ca0a575cadc2680c26d763c985d5b843b8e83465156b36ad2f550956325ef4d"
+    },
+    "thesaurus-acceptance-validation/source-inputs.json.gz": {
+      "bytes": 142027,
+      "sha256": "0bae40960f20a45f3edb0a339cdeeebdf3b7383399c2d06bdf7fe6f514e4e13a"
+    },
+    "thesaurus-acceptance-validation/logs/native-acceptance.stdout": {
+      "bytes": 117269,
+      "sha256": "4f2726c7b6cb50dbb2197174bbb3d09d6363095848b776a760bf020e26a6f478"
+    },
+    "thesaurus-acceptance-validation/logs/native-acceptance.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "thesaurus-acceptance-validation/logs/browser-build.stdout": {
+      "bytes": 953,
+      "sha256": "5a433a2e8af3ce195415f4ad9fbee2ddc547513d066415949a4b6d76f4c98d81"
+    },
+    "thesaurus-acceptance-validation/logs/browser-build.stderr": {
+      "bytes": 165,
+      "sha256": "aa02819df39ec700ae4616271df6ed38b149d3a6aabcf8382426836fad94c5bc"
+    },
+    "thesaurus-acceptance-validation/browser-build-files.json.gz": {
+      "bytes": 56333,
+      "sha256": "ad8c047fa99891ee56785f409f311f269e00b4e856a5d0962ac8802fac10a4aa"
+    },
+    "thesaurus-acceptance-validation/native-pack-report.json": {
+      "bytes": 145127,
+      "sha256": "a85d212a9545309f546335fac5e8ef40222a8b1c3d808d87a8c9fcfbcd13ced7"
+    },
+    "acceptance-harness-review/receipt.json": {
+      "bytes": 1501,
+      "sha256": "587f4d19d794b3301288ee2944b42d681ef7a68ed672d84580af9fade0f1f89d"
+    },
+    "acceptance-harness-review/harness.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "acceptance-harness-review/harness.stderr": {
+      "bytes": 2411,
+      "sha256": "4438f61ca7dcd1813a7d98159a3db8fb494afa9652f3115fdcd606abddb086ec"
+    },
+    "review-packet-validation/receipt.json": {
+      "bytes": 2916,
+      "sha256": "597e58f2b7bedce4537d210d25be6fe1541ca11c0b00e4e863ee2e4c5651ec10"
+    },
+    "review-packet-validation/stdout.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "review-packet-validation/stderr.log": {
+      "bytes": 917,
+      "sha256": "9b0817956d199a99e27f121e2ad2f1aabc5ed8f4f782c15288c946dfb6ac3ad2"
+    },
+    "thesaurus-browser-acceptance/browser-report.json": {
+      "bytes": 8422,
+      "sha256": "01b95aa68b93e29409af4e0cda774e7605b3cfc40432cb23c44d6c333bfaaf22"
+    },
+    "quds_office_suite/docs/validation/thesaurus-20261118/acceptance/evidence-index.json": {
+      "bytes": 8669,
+      "sha256": "2588d7530053e1593f46418d86059767504a06a8fde274775335fafb901d9669"
+    },
+    "quds_office_suite/docs/validation/thesaurus-20261118/acceptance/pack-continuity.json": {
+      "bytes": 462,
+      "sha256": "f3f88bb9361ed117c50ab89a619f632f96f592e514da2502dded431e5b27fb7e"
+    }
+  }
+}

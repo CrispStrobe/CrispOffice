@@ -1,0 +1,29 @@
+{
+  "finished_at_utc": "2026-11-18T20:22:55.718968+00:00",
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "/workspace/scratch/50c979e0f188/quds_office_suite/docs/validation/thesaurus-20261118/continuation/local/fixtures/test_browser_harness.py",
+    "-v"
+  ],
+  "cwd": "/workspace/scratch/50c979e0f188/quds_office_suite",
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+  "node": "v24.22.3",
+  "exit_code": 0,
+  "cases": 15,
+  "passed": true,
+  "source_unchanged": true,
+  "source_sha256": {
+    "build_binding.py": "e57dd9a57a2ccf9e4657aae04d8d63e2159e079512cb9645b0f6b948d576ae2a",
+    "install_offline.py": "174329331c5e363afcb4dd58d8182aa14b4f86b405e0ec84be5179414fc968aa",
+    "run_browser.py": "ac79690ad9d54d8bb62258b2418e8219fd306f56afd51740448e4979730a81db",
+    "run_final_validation.py": "d034b1ea82a61dafd41117c2ce67bb053acc2aaab27ffce39281bd7c69e2c9f0",
+    "test_browser_harness.py": "29626b0d738377e498b99af9be502974db8cc652cbf4695d21f4a6e81474bd0c",
+    "lib/main.dart": "9caff2312188c3fd1b668055495bc1e6b37b897ddebfe85b2c32b9e8d75485a4"
+  },
+  "logs": {
+    "harness.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "harness.stderr": "4438f61ca7dcd1813a7d98159a3db8fb494afa9652f3115fdcd606abddb086ec"
+  },
+  "scope": "Python and Node mocked-worker controls plus local HTTP serving/shutdown; no browser or Flutter execution"
+}

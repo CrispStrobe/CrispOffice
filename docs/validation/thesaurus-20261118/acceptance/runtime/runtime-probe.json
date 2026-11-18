@@ -1,0 +1,20 @@
+{
+  "/usr/bin/chromium --version": {
+    "returncode": 0,
+    "output": "Chromium 156.0.8078.79 built on Debian GNU/Linux 13 (trixie)\n"
+  },
+  "pkg-config --modversion gtk+-3.0": {
+    "returncode": 1,
+    "output": "Package gtk+-3.0 was not found in the pkg-config search path.\nPerhaps you should add the directory containing `gtk+-3.0.pc'\nto the PKG_CONFIG_PATH environment variable\nPackage 'gtk+-3.0', required by 'virtual:world', not found\n"
+  },
+  "gcc --version": {
+    "returncode": 0,
+    "output": "gcc (Debian 14.2.0-19) 14.2.0\nCopyright (C) 2024 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n"
+  },
+  "1": "PermissionError(1, 'Operation not permitted')",
+  "2": "bind OK",
+  "chromium_headless": {
+    "returncode": -6,
+    "output": "[23:23:1118/211540.758966:FATAL:chrome/browser/process_singleton_posix.cc:297] Check failed: . socket() failed: Operation not permitted (1)\n[1118/211540.760801:ERROR:third_party/crashpad/crashpad/util/linux/scoped_ptrace_attach.cc:27] ptrace: Operation not permitted (1)\n[41:41:0100/000000.828765:ERROR:content/zygote/zygote_linux.cc:662] write: Broken pipe (32)\n[40:40:0100/000000.845161:ERROR:content/zygote/zygote_linux.cc:662] write: Broken pipe (32)\n"
+  }
+}
