@@ -1,0 +1,32 @@
+{
+  "archive": "harness-controls.tar.xz",
+  "bytes": 2752,
+  "sha256": "d7a706149a411b1ddf7028cf193494be163a491dddb8d3b934544c61f9aa8649",
+  "files": [
+    {
+      "path": "receipt.json",
+      "bytes": 7126,
+      "sha256": "f77848251cef4acf263e886f5fe6c5690bdc5e5412dba50822e4abe3b5385c7c"
+    },
+    {
+      "path": "test_browser_harness.py.stderr",
+      "bytes": 3017,
+      "sha256": "de2e2312d26d4a9ab132fa0f7e4dc03cf3c2fe98ba63ea4ca5c9c111ac6f1fdf"
+    },
+    {
+      "path": "test_browser_harness.py.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "test_workspace_binding.py.stderr",
+      "bytes": 1949,
+      "sha256": "37c49ac428e75f0a87c8a7cff6953c0abca810e63c2853c0fbecc417adf6e592"
+    },
+    {
+      "path": "test_workspace_binding.py.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

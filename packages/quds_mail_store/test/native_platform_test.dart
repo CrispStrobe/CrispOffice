@@ -146,7 +146,7 @@ void main() {
         ),
         MailProblemCode.invalidInput,
       );
-    expect(Directory('relative-container').existsSync(), isFalse);
+      expect(Directory('relative-container').existsSync(), isFalse);
     },
   );
 
