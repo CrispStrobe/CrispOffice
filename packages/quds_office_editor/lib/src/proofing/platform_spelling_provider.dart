@@ -108,12 +108,19 @@ final class OfficePlatformSpellingProvider extends OfficeProofingProvider {
       final spans = await _scheduler.run(
         owner: this,
         timeout: timeout,
+        onTimeout: () {
+          // Retire before another timer at the same deadline can run. Sibling
+          // requests become unavailable, rather than independently failing.
+          _disposed = true;
+          _scheduler.cancel(this);
+        },
         action: () {
           final service = _service;
           // Clear this only once the previous native request has completed;
           // that request can still update the framework's text-only cache.
-          if (service is DefaultSpellCheckService)
+          if (service is DefaultSpellCheckService) {
             service.lastSavedResults = null;
+          }
           return service.fetchSpellCheckSuggestions(locale, request.text);
         },
       );
@@ -209,6 +216,7 @@ final class _SpellingScheduler {
   Future<List<SuggestionSpan>?> run({
     required Object owner,
     required Duration timeout,
+    required void Function() onTimeout,
     required Future<List<SuggestionSpan>?> Function() action,
   }) {
     final call = _SpellingCall(owner, action);
@@ -217,6 +225,7 @@ final class _SpellingScheduler {
       call.fail(
         TimeoutException('System spelling deadline exceeded.', timeout),
       );
+      onTimeout();
     });
     _queue.add(call);
     _pump();

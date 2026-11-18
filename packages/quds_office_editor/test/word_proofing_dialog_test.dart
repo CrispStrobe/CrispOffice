@@ -96,11 +96,7 @@ Future<void> _tap(WidgetTester tester, Finder finder) async {
 
 void main() {
   for (final scenario in <({String source, String replacement, String result})>[
-    (
-      source: '🙂 Er draf’s.',
-      replacement: 'darf’s',
-      result: '🙂 Er darf’s.',
-    ),
+    (source: '🙂 Er draf’s.', replacement: 'darf’s', result: '🙂 Er darf’s.'),
     (
       source: 'Ein Huas\u2011Türr.',
       replacement: 'Haus\u2011Tür',
@@ -121,7 +117,12 @@ void main() {
           OutlinedButton,
           scenario.replacement,
         );
-        expect(correction, findsOneWidget);
+        expect(
+          correction,
+          findsOneWidget,
+          reason: '${controller.proofing.summary.statusMessage} '
+              '${controller.proofing.summary.issues.map((issue) => issue.finding.replacements)}',
+        );
         await _tap(tester, correction);
         await tester.pumpAndSettle();
         expect(controller.document.paragraphs.first.text, scenario.result);

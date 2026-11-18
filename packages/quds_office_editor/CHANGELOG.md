@@ -4,6 +4,13 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Coordinate system spell checks across documents using Flutter's shared native
+  channel. Bound active and queued callers, settle disposal promptly, and keep
+  unfinished OS calls from colliding with a replacement provider.
+- Preserve representable scripts and numeric locale regions without silently
+  dropping dictionary variants; exclude URLs, emails and code from platform
+  findings and reject ranges that cut Unicode graphemes.
+
 - Add an optional manual proofing service for preloaded grammar providers. F7
   and explicit checks include it; typing checks skip it with explicit coverage,
   keep separate caches, and preserve deterministic findings on overlap.

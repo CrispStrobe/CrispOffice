@@ -496,15 +496,23 @@ German morphology. Unknown proper names, new terms and unlisted inflections can
 produce findings. Messages describe absence from the word list, and the UI
 offers personal vocabulary and ignore controls.
 
-Common decomposed accents and soft hyphens are normalized for lookup only;
-findings retain original UTF-16 offsets and original text. German noun casing
+Common decomposed accents, soft hyphens and internal straight/typographic
+apostrophes are normalized for lookup only; findings retain original UTF-16
+offsets and original text. Thus `darf’s` uses the same dictionary entry as
+`darf's`, and declared names such as `O'Connor` also recognize `O’Connor`.
+Quotation delimiters are not apostrophe aliases. German noun casing
 remains significant. Sentence-initial capitals and all-capitals are accepted
 when a corresponding listed form exists. URLs, email addresses and closed code
 spans with matching backtick-run delimiters are excluded. Unmatched delimiters
-do not hide the remaining prose. Explicit hyphen compounds can repair one
-unknown constituent while retaining the other constituents' case and authored
-U+2010/U+2011 separator style. This reuses one bounded component search; it does
-not infer unrestricted closed compounds or import morphology data.
+do not hide the remaining prose. Explicit hyphen compounds can repair multiple
+unknown constituents while retaining known constituents' case and each authored
+apostrophe or U+2010/U+2011 separator. Component reconstruction is limited to
+eight constituents within the existing 64-code-unit suggestion limit, shares
+one candidate budget across all searches, and emits only fully verified
+combinations. For example, `Huas‑Türr` can offer `Haus‑Tür`. This does not infer
+unrestricted closed compounds or import morphology data. Complete-word
+dictionary and personal-name suggestions remain available alongside component
+repairs.
 Suggestions use bounded local edits and German accent/sharp-s variants, with
 defaults of at most five suggestions and 6,000 candidate checks. A shared
 length/anchor index supports an additional distance-two shortlist, including
@@ -785,7 +793,8 @@ WordEditorController createController({
 vocabulary instance referenced by configured providers. Snapshots use
 `OfficeProofingVocabulary.toJson()`/`fromJson()` and retain language-scoped
 personal and ignored words; membership is case-sensitive after canonical
-accent normalization. Ignore-once is tied to the captured issue/source
+accent and lexical-separator normalization. Internal straight/typographic
+apostrophes share membership, including restoration and removal. Ignore-once is tied to the captured issue/source
 snapshot. Rule ignores are session settings exposed through `ignoreRule` and
 `restoreRule`. Neither the shipped lexicon nor the document is changed when a
 word is added, and no shared account storage is selected automatically.

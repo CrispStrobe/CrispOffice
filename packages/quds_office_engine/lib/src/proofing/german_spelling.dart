@@ -698,10 +698,12 @@ class GermanSpellingProvider extends OfficeProofingProvider {
         !_participleSpace.hasMatch(prefix.substring(words.last.end))) {
       return null;
     }
-    final String subject = normalizeGermanWord(words[0].group(0)!)
-        .toLowerCase();
-    final String auxiliary = normalizeGermanWord(words[1].group(0)!)
-        .toLowerCase();
+    final String subject = normalizeGermanWord(
+      words[0].group(0)!,
+    ).toLowerCase();
+    final String auxiliary = normalizeGermanWord(
+      words[1].group(0)!,
+    ).toLowerCase();
     final String? preferred =
         (_habenParticipleAuxiliaries[subject]?.contains(auxiliary) ?? false)
         ? habenPreferred
@@ -737,52 +739,124 @@ class GermanSpellingProvider extends OfficeProofingProvider {
     required Set<String> personal,
     required bool sentenceInitial,
     String? preferredParticiple,
+    _GermanSuggestionBudget? sharedBudget,
+    int? candidateLimit,
+    bool splitCompounds = true,
   }) {
     if (maximumSuggestions == 0 || word.isEmpty || word.length > 64) {
       return const <String>[];
     }
-    // Repair one unknown component of an explicitly joined compound. Other
-    // components keep their source case, and every component must be known.
-    // Only one ordinary suggestion search is performed, so the existing
-    // per-token candidate budget also bounds this path.
-    if (word.contains('-')) {
+    final budget =
+        sharedBudget ?? _GermanSuggestionBudget(maximumCandidateChecks);
+    final limit = candidateLimit ?? budget.remaining;
+    // An explicit compound can contain several mistakes. All component
+    // searches share one token budget, with a reserved share for each remaining
+    // component. Known components retain their exact authored case. We never
+    // publish a partially repaired compound or infer closed-compound boundaries.
+    if (splitCompounds && word.contains('-')) {
       final List<String> parts = word.split('-');
-      int unknown = -1;
       if (parts.length <= 8 && parts.every((String part) => part.isNotEmpty)) {
+        final unknown = <int>[];
         for (int i = 0; i < parts.length; i++) {
-          if (lexicon.contains(
+          if (!lexicon.contains(
             parts[i],
             swiss: swiss,
             sentenceInitial: sentenceInitial && i == 0,
             personal: personal,
           )) {
-            continue;
+            unknown.add(i);
           }
-          if (unknown >= 0) {
-            unknown = -2;
-            break;
-          }
-          unknown = i;
         }
-        if (unknown >= 0) {
-          final List<String> compounds = <String>[];
-          for (final String replacement in _suggest(
-            parts[unknown],
+        if (unknown.isNotEmpty) {
+          // A complete declared proper name need not have separately declared
+          // constituents. Preserve that correction path before splitting work.
+          final compounds = _personalCompoundSuggestions(
+            word,
+            personal,
+            budget,
+            maximumChecks: budget.remaining ~/ (unknown.length + 1),
+          );
+          if (compounds.length >= maximumSuggestions) {
+            return List<String>.unmodifiable(compounds);
+          }
+          // The separator itself may be wrong: Make-up -> Makeup is an exact
+          // lexical correction. Keep the ordinary whole-token search before
+          // constructing alternatives from known parts, under the same budget.
+          final wholeWords = _suggest(
+            word,
             lexicon,
             swiss,
             personal: personal,
-            sentenceInitial: sentenceInitial && unknown == 0,
-          )) {
-            final List<String> corrected = List<String>.of(parts);
-            corrected[unknown] = replacement;
-            final String candidate = corrected.join('-');
-            if (lexicon.contains(
-              candidate,
-              swiss: swiss,
-              sentenceInitial: sentenceInitial,
+            sentenceInitial: sentenceInitial,
+            sharedBudget: budget,
+            candidateLimit: budget.remaining ~/ (unknown.length + 1),
+            splitCompounds: false,
+          );
+          for (final wholeWord in wholeWords) {
+            if (!compounds.contains(wholeWord)) compounds.add(wholeWord);
+            if (compounds.length >= maximumSuggestions) {
+              return List<String>.unmodifiable(compounds);
+            }
+          }
+          final choices = <List<String>>[];
+          for (int at = 0; at < unknown.length; at++) {
+            final index = unknown[at];
+            final replacements = _suggest(
+              parts[index],
+              lexicon,
+              swiss,
               personal: personal,
-            )) {
+              sentenceInitial: sentenceInitial && index == 0,
+              sharedBudget: budget,
+              candidateLimit: budget.remaining ~/ (unknown.length - at),
+            );
+            final valid = replacements
+                .where(
+                  (String replacement) => lexicon.contains(
+                    replacement,
+                    swiss: swiss,
+                    sentenceInitial: sentenceInitial && index == 0,
+                    personal: personal,
+                  ),
+                )
+                .toList(growable: false);
+            if (valid.isEmpty) {
+              return List<String>.unmodifiable(compounds);
+            }
+            choices.add(valid);
+          }
+          // Visit rank combinations breadth first instead of expanding the
+          // Cartesian product. At most maximumSuggestions combinations are
+          // inspected, with at most eight bounded neighbors per inspection.
+          final pending = <List<int>>[List<int>.filled(unknown.length, 0)];
+          final seen = <String>{pending.first.join(',')};
+          for (
+            int at = 0;
+            at < pending.length &&
+                at < maximumSuggestions &&
+                compounds.length < maximumSuggestions;
+            at++
+          ) {
+            final ranks = pending[at];
+            final corrected = List<String>.of(parts);
+            for (int i = 0; i < unknown.length; i++) {
+              corrected[unknown[i]] = choices[i][ranks[i]];
+            }
+            final candidate = corrected.join('-');
+            if (!compounds.contains(candidate) &&
+                lexicon.contains(
+                  candidate,
+                  swiss: swiss,
+                  sentenceInitial: sentenceInitial,
+                  personal: personal,
+                )) {
               compounds.add(candidate);
+            }
+            for (int i = 0; i < ranks.length; i++) {
+              if (ranks[i] + 1 >= choices[i].length) continue;
+              final next = List<int>.of(ranks);
+              next[i]++;
+              if (seen.add(next.join(','))) pending.add(next);
             }
           }
           return List<String>.unmodifiable(compounds);
@@ -792,14 +866,16 @@ class GermanSpellingProvider extends OfficeProofingProvider {
     final Set<String> found = <String>{};
     final Set<String> checked = <String>{};
     int examined = 0;
+    bool canSearch() =>
+        examined < limit &&
+        budget.remaining > 0 &&
+        found.length < maximumSuggestions;
     void candidate(String value, {bool dictionaryOnly = false}) {
-      if (examined >= maximumCandidateChecks ||
-          found.length >= maximumSuggestions ||
-          value == word ||
-          !checked.add(value)) {
+      if (!canSearch() || value == word || !checked.add(value)) {
         return;
       }
       examined++;
+      budget.remaining--;
       if (!dictionaryOnly && personal.contains(value) ||
           lexicon.exact(value, swiss: swiss)) {
         found.add(value);
@@ -842,8 +918,6 @@ class GermanSpellingProvider extends OfficeProofingProvider {
     };
     final List<String> variants = <String>[lower];
     final Set<String> visited = <String>{lower};
-    bool canSearch() =>
-        examined < maximumCandidateChecks && found.length < maximumSuggestions;
     void orthographicCandidate(String value) {
       if (variants.length >= 32 || !canSearch() || !visited.add(value)) return;
       variants.add(value);
@@ -875,20 +949,8 @@ class GermanSpellingProvider extends OfficeProofingProvider {
     for (int i = 0; i < lower.length; i++) {
       candidateCase(lower.replaceRange(i, i + 1, ''));
     }
-    for (
-      int i = 0;
-      i <= lower.length &&
-          examined < maximumCandidateChecks &&
-          found.length < maximumSuggestions;
-      i++
-    ) {
-      for (
-        int c = 0;
-        c < _alphabet.length &&
-            examined < maximumCandidateChecks &&
-            found.length < maximumSuggestions;
-        c++
-      ) {
+    for (int i = 0; i <= lower.length && canSearch(); i++) {
+      for (int c = 0; c < _alphabet.length && canSearch(); c++) {
         final String letter = _alphabet[c];
         if (i < lower.length) {
           candidateCase(lower.replaceRange(i, i + 1, letter));
@@ -907,6 +969,7 @@ class GermanSpellingProvider extends OfficeProofingProvider {
       if (!canSearch() || personalChecks >= 256) break;
       if (value == word || !checked.add(value)) continue;
       examined++;
+      budget.remaining--;
       personalChecks++;
       if ((value.length - lower.length).abs() > 2 ||
           _tokens.stringMatch(value) != value) {
@@ -940,9 +1003,10 @@ class GermanSpellingProvider extends OfficeProofingProvider {
     if (lower.length >= 5 && canSearch()) {
       final List<(String, int)> matches = <(String, int)>[];
       for (final String value in lexicon.suggestionCandidates(lower)) {
-        if (examined >= maximumCandidateChecks) break;
+        if (!canSearch()) break;
         if (value == word || !checked.add(value)) continue;
         examined++;
+        budget.remaining--;
         final int distance = _boundedEditDistance(lower, value.toLowerCase());
         if (distance <= 2 && lexicon.exact(value, swiss: swiss)) {
           matches.add((value, distance));
@@ -970,18 +1034,46 @@ class GermanSpellingProvider extends OfficeProofingProvider {
     );
   }
 
+  List<String> _personalCompoundSuggestions(
+    String word,
+    Set<String> personal,
+    _GermanSuggestionBudget budget, {
+    required int maximumChecks,
+  }) {
+    final matches = <(String, int)>[];
+    final lower = word.toLowerCase();
+    int checked = 0;
+    for (final value in personal) {
+      if (checked >= 256 || checked >= maximumChecks || budget.remaining <= 0) {
+        break;
+      }
+      checked++;
+      budget.remaining--;
+      if (value == word ||
+          (value.length - word.length).abs() > 2 ||
+          _tokens.stringMatch(value) != value) {
+        continue;
+      }
+      final distance = _boundedEditDistance(lower, value.toLowerCase());
+      if (distance <= 2) matches.add((value, distance));
+    }
+    matches.sort((a, b) {
+      final byDistance = a.$2.compareTo(b.$2);
+      return byDistance != 0 ? byDistance : a.$1.compareTo(b.$1);
+    });
+    return matches.take(maximumSuggestions).map((match) => match.$1).toList();
+  }
+
   static List<String> _withSourceSeparators(
     String source,
     List<String> replacements,
   ) {
-    final List<String> hyphens = RegExp(r'[-\u2010\u2011]')
-        .allMatches(source)
-        .map((RegExpMatch match) => match.group(0)!)
-        .toList();
-    final List<String> apostrophes = RegExp(r"['\u2019]")
-        .allMatches(source)
-        .map((RegExpMatch match) => match.group(0)!)
-        .toList();
+    final List<String> hyphens = RegExp(
+      r'[-\u2010\u2011]',
+    ).allMatches(source).map((RegExpMatch match) => match.group(0)!).toList();
+    final List<String> apostrophes = RegExp(
+      r"['\u2019]",
+    ).allMatches(source).map((RegExpMatch match) => match.group(0)!).toList();
     if (hyphens.every((String separator) => separator == '-') &&
         apostrophes.every((String separator) => separator == "'")) {
       return replacements;
@@ -1015,6 +1107,12 @@ class GermanSpellingProvider extends OfficeProofingProvider {
   Future<void> dispose() async {
     _disposed = true;
   }
+}
+
+final class _GermanSuggestionBudget {
+  _GermanSuggestionBudget(this.remaining);
+
+  int remaining;
 }
 
 String _upper(String word) => word.replaceAll('ß', 'ss').toUpperCase();

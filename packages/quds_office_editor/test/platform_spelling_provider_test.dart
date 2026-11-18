@@ -374,6 +374,53 @@ void main() {
   );
 
   test(
+    'late native errors release the channel only after actual completion',
+    () async {
+      for (final retireByDisposal in [false, true]) {
+        final pending = Completer<List<SuggestionSpan>?>();
+        final service = _Service((_, text) async {
+          if (text == 'First') return pending.future;
+          return [];
+        });
+        final firstProvider = OfficePlatformSpellingProvider(
+          supportedLanguages: ['de-DE'],
+          service: service,
+          isAvailable: () => true,
+          timeout: retireByDisposal
+              ? const Duration(seconds: 2)
+              : const Duration(milliseconds: 10),
+        );
+        final secondProvider = OfficePlatformSpellingProvider(
+          supportedLanguages: ['de-DE'],
+          service: service,
+          isAvailable: () => true,
+          timeout: const Duration(seconds: 2),
+        );
+        addTearDown(firstProvider.dispose);
+        addTearDown(secondProvider.dispose);
+        final first = firstProvider.check(_request(text: 'First'));
+        await Future<void>.delayed(Duration.zero);
+        final second = secondProvider.check(_request(text: 'Second'));
+        if (retireByDisposal) await firstProvider.dispose();
+        final firstResult = await first;
+        final callsBeforeCompletion = service.calls
+            .map((call) => call.text)
+            .toList();
+        pending.completeError(StateError('Late native failure'));
+        expect((await second).status, OfficeProofingStatus.success);
+        expect(
+          firstResult.status,
+          retireByDisposal
+              ? OfficeProofingStatus.unavailable
+              : OfficeProofingStatus.failed,
+        );
+        expect(callsBeforeCompletion, ['First']);
+        expect(service.calls.map((call) => call.text), ['First', 'Second']);
+      }
+    },
+  );
+
+  test(
     'a queued request has its own deadline including channel wait',
     () async {
       final pending = Completer<List<SuggestionSpan>?>();
@@ -556,25 +603,29 @@ void main() {
     expect((await future).status, OfficeProofingStatus.unavailable);
   });
 
-  test('real Flutter channel failures remain failed instead of successful empty responses', () async {
-    final messenger =
-        TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger;
-    messenger.setMockMethodCallHandler(
-      SystemChannels.spellCheck,
-      (_) async => throw PlatformException(code: 'channel-failed'),
-    );
-    addTearDown(
-      () => messenger.setMockMethodCallHandler(SystemChannels.spellCheck, null),
-    );
-    final provider = OfficePlatformSpellingProvider(
-      supportedLanguages: ['de-DE'],
-      isAvailable: () => true,
-    );
-    addTearDown(provider.dispose);
-    final result = await provider.check(_request());
-    expect(result.status, OfficeProofingStatus.failed);
-    expect(result.findings, isEmpty);
-  });
+  test(
+    'real Flutter channel failures remain failed instead of successful empty responses',
+    () async {
+      final messenger =
+          TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger;
+      messenger.setMockMethodCallHandler(
+        SystemChannels.spellCheck,
+        (_) async => throw PlatformException(code: 'channel-failed'),
+      );
+      addTearDown(
+        () =>
+            messenger.setMockMethodCallHandler(SystemChannels.spellCheck, null),
+      );
+      final provider = OfficePlatformSpellingProvider(
+        supportedLanguages: ['de-DE'],
+        isAvailable: () => true,
+      );
+      addTearDown(provider.dispose);
+      final result = await provider.check(_request());
+      expect(result.status, OfficeProofingStatus.failed);
+      expect(result.findings, isEmpty);
+    },
+  );
 
   test(
     'real Flutter service checks the same text independently across locales',

@@ -4,6 +4,13 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Recognize internal typographic apostrophes in German dictionary and personal
+  vocabulary lookups while preserving each source apostrophe, hyphen and UTF-16
+  range in corrections. Keep quotation punctuation and noun casing distinct.
+- Offer complete corrections for multiple misspelled parts of explicit German
+  hyphen compounds, sharing one bounded candidate budget and preserving known
+  constituents, whole-word suggestions, locale and authored separator styles.
+
 - Keep calendar-relative conditional formatting on the injected clock's civil
   dates across timezone offsets, daylight-saving transitions and year changes.
 
