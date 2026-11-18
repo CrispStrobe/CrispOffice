@@ -7,12 +7,16 @@ final class _NotesProvider extends OfficeProofingProvider {
     this.id, {
     this.findErrors = true,
     this.category = OfficeProofingCategory.spelling,
+    this.token = 'Feler',
+    this.replacement = 'Fehler',
   });
 
   @override
   final String id;
   final bool findErrors;
   final OfficeProofingCategory category;
+  final String token;
+  final String replacement;
   final requests = <OfficeProofingRequest>[];
 
   @override
@@ -27,16 +31,18 @@ final class _NotesProvider extends OfficeProofingProvider {
       status: OfficeProofingStatus.success,
       findings: [
         if (findErrors)
-          for (final match in RegExp('Feler').allMatches(request.text))
+          for (final match in RegExp(
+            RegExp.escape(token),
+          ).allMatches(request.text))
             OfficeProofingFinding.forRequest(
               request,
               providerId: id,
               start: match.start,
               end: match.end,
               ruleId: '$id-rule',
-              message: 'Use Fehler.',
+              message: 'Use $replacement.',
               category: category,
-              replacements: const ['Fehler'],
+              replacements: [replacement],
             ),
       ],
     );
@@ -415,6 +421,8 @@ void main() {
       final manual = _NotesProvider(
         'manual',
         category: OfficeProofingCategory.grammar,
+        token: 'are is',
+        replacement: 'is',
       );
       final fixture = _fixture(
         text: 'Before',
@@ -423,7 +431,8 @@ void main() {
       );
       final controller = fixture.controller;
       final note = fixture.note;
-      controller.setNoteText(note, 'Feler typed');
+      // Distinct ranges survive the service's intentional overlap merging.
+      controller.setNoteText(note, 'Feler are is typed');
       controller.setNoteEditingTarget(
         note,
         const TextSelection.collapsed(offset: 3),
@@ -438,6 +447,10 @@ void main() {
       expect(captured.map((issue) => issue.finding.providerId), [
         'ordinary',
         'manual',
+      ]);
+      expect(captured.map((issue) => issue.finding.originalText), [
+        'Feler',
+        'are is',
       ]);
       final ordinaryCalls = ordinary.requests.length;
       final manualCalls = manual.requests.length;
@@ -470,8 +483,14 @@ void main() {
       final chosen = captured.singleWhere(
         (issue) => issue.finding.providerId == correctedProvider,
       );
-      expect(controller.applyProofingSuggestion(chosen, 'Fehler'), isTrue);
-      expect(controller.noteEditText(note), 'Fehler typed');
+      final replacement = correctedProvider == 'ordinary' ? 'Fehler' : 'is';
+      expect(controller.applyProofingSuggestion(chosen, replacement), isTrue);
+      expect(
+        controller.noteEditText(note),
+        correctedProvider == 'ordinary'
+            ? 'Fehler are is typed'
+            : 'Feler is typed',
+      );
       expect(ordinary.requests, hasLength(ordinaryCalls));
       expect(manual.requests, hasLength(manualCalls));
       expect(controller.currentNoteProofingIssue(note, chosen), isNull);
@@ -610,7 +629,23 @@ void main() {
         const TextSelection.collapsed(offset: 5),
       );
       expect(controller.applyProofingSuggestion(issue, 'Fehler'), isTrue);
-      expect(controller.noteEditText(note), 'Fehler typed');
+      // Recording the existing body revision enabled tracking. Finishing IME
+      // permits the correction but must retain normal tracked-edit semantics.
+      expect(controller.document.trackRevisions, isTrue);
+      expect(controller.noteEditText(note), 'FelerFehler typed');
+      expect(controller.document.revisions, hasLength(3));
+      expect(controller.document.revisions.first, same(revision));
+      final corrections = controller.document.revisions.skip(1).toList();
+      expect(corrections.map((change) => (change.kind, change.text)), [
+        (WmlRevisionKind.delete, 'Feler'),
+        (WmlRevisionKind.insert, 'Fehler'),
+      ]);
+      for (final change in corrections) {
+        expect(
+          WordRevisions.resolveParagraph(controller.document, change),
+          same(note.paragraphs.single),
+        );
+      }
     },
   );
 

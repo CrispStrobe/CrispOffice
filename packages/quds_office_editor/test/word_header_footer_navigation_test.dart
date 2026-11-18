@@ -7,6 +7,8 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quds_office_editor/quds_office_editor.dart';
 
+import 'support/review_fonts.dart';
+
 WmlParagraph _paragraph(String text, {bool newPage = false}) => WmlParagraph(
   properties: WmlParagraphProps(pageBreakBefore: newPage),
   inlines: [WmlRun(text: text)],
@@ -107,6 +109,7 @@ int _pageFor(WordHeaderFooterVariant variant) => switch (variant) {
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
+  setUpAll(loadReviewFonts);
   setUpAll(OfficeHostFonts.ensureRegistered);
 
   for (final footer in [false, true]) {
@@ -386,6 +389,10 @@ void main() {
       });
       await tester.pumpWidget(
         MaterialApp(
+          theme: ThemeData(
+            fontFamily: 'Liberation Sans',
+            fontFamilyFallback: const ['Noto Naskh Arabic'],
+          ),
           home: Scaffold(
             body: QudsWordEditor(controller: controller, focusNode: focus),
           ),
@@ -488,6 +495,10 @@ void main() {
           RepaintBoundary(
             key: pictureKey,
             child: MaterialApp(
+              theme: ThemeData(
+                fontFamily: 'Liberation Sans',
+                fontFamilyFallback: const ['Noto Naskh Arabic'],
+              ),
               home: Scaffold(body: QudsWordEditor(controller: controller)),
             ),
           ),
@@ -582,6 +593,10 @@ void main() {
       RepaintBoundary(
         key: pictureKey,
         child: MaterialApp(
+          theme: ThemeData(
+            fontFamily: 'Liberation Sans',
+            fontFamilyFallback: const ['Noto Naskh Arabic'],
+          ),
           home: Scaffold(body: QudsWordEditor(controller: controller)),
         ),
       ),

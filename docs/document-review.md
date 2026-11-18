@@ -107,7 +107,8 @@ tooltip identifies the current text scope and language.
   Excluded text continues to be reported as excluded coverage.
 
 Body text, editable table/frame text, rendered default/first/even headers and
-footers, and active existing comment text use their exact selected story. Generated fields, note
+footers, active existing comments, and editable Notes text use their exact
+selected story. Generated fields, note
 marks, protected/native content, unsupported selections, and an active IME
 composition disable unsafe changes. If the text, selection, document, or
 inherited style context changes while a control is open, the old action is
@@ -264,6 +265,17 @@ status reports checking progress and incomplete or unavailable coverage.
   **Ignore once** or **Add to dictionary**. The correction returns focus to the
   note and uses normal document Undo. Previously typed text remains a separate
   history step.
+- **Ctrl+Z**, **Ctrl+Shift+Z**, and **Ctrl+Y** in the Notes field use document
+  history, including tracked revision records. The platform's Command-based
+  text Undo/Redo shortcuts also use that history. New typing after Undo retires
+  the old redo branch when committed, so Redo cannot overwrite a new draft.
+- The status bar's **Language and checking** controls apply to the actual
+  selected Notes text, or its current editable paragraph. Multiline and reversed
+  selections retain their exact source ranges. Finish composing and let pending
+  typing commit before changing these options. The hidden reference separator
+  and body text are left intact.
+- Opening or closing Writing, and moving it beside or below the document as the
+  window resizes, retains the Notes field and selection.
 - Use the previous/next arrows or **Alt+F7 / Alt+Shift+F7** to select a finding in
   the active note. Navigation accounts for paragraph separators and the hidden
   native note-reference separator.
@@ -271,6 +283,10 @@ status reports checking progress and incomplete or unavailable coverage.
   replaced documents and protected text cannot be corrected by retained actions.
 - **Review changes** opens the persistent **Changes** pane. Selecting a supported
   note revision reveals its exact range in Notes.
+- Completed checks, including a manual check with no findings, survive recording
+  already-applied typing into history. That unchanged commit does not rerun the
+  provider or quietly lose completed coverage. Actual edits still invalidate
+  affected results and manual coverage still requires an explicit check.
 
 Nested table or frame paragraphs that the flat Notes field does not expose
 remain reviewable in Writing/Changes. Navigation does not redirect those ranges

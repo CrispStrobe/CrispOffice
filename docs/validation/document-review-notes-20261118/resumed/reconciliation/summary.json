@@ -81,5 +81,11 @@
   "remote_integrated_tree": "2ad7d3b44e9039ab4c753bd9c16c6a3d281f6c91",
   "remote_integration_url": "https://github.com/CrispStrobe/quds_office_suite/commit/842e419ca03ac9da8423f49913a182d20751f671",
   "all_captured_refs_in_remote_integrated_head": true,
-  "all_api_fetched_refs_match": true
+  "all_api_fetched_refs_match": true,
+  "final_bounded_snapshot": "final-merge-refs.json",
+  "final_bounded_snapshot_at_utc": "2026-11-18T21:33:28.251151+00:00",
+  "final_remote_integrated_head": "56e21b897ab6c6d273e09652a574389ec2f21999",
+  "final_remote_integrated_tree": "3098b97f56bda1d4747f16f0953559785e5a2a8f",
+  "all_final_captured_refs_in_remote_integrated_head": true,
+  "final_equivalences_reverified": 14
 }
