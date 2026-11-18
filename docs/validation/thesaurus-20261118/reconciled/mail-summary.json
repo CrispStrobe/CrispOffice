@@ -1,10 +1,20 @@
 {
   "status": "PASS",
-  "recorded_utc": "2026-11-18T21:31:36.627971+00:00",
+  "recorded_utc": "2026-11-18T21:45:24.204542+00:00",
   "distinct_dart_cases": 152,
   "runtime_case_executions": 250,
-  "distinct_python_controls": 23,
-  "distinct_cases_and_controls": 175,
+  "distinct_python_controls": 34,
+  "python_control_runs": [
+    {
+      "path": "store-attempt-2-offline/runner-regressions.log",
+      "methods": 23
+    },
+    {
+      "path": "final-parser-reconciliation/controls.log",
+      "methods": 34
+    }
+  ],
+  "distinct_cases_and_controls": 186,
   "packages": {
     "quds_mail_core": 30,
     "quds_mail_store": 90,

@@ -2,7 +2,8 @@
 
 This continuation integrates the captured Mail, Zotero and Notes/header review
 heads into PR #174, including the later Notes language/history and Zotero
-research-list changes. The remote incoming checkpoint is `0ea205e0`. All **391**
+research-list changes. The refreshed incoming checkpoint is `a6c165d3`; the final application fix
+is saved at `3847d5f4`. All **391**
 captured branch/PR/upstream refs are accounted for: 363 by ancestry and 28 by
 freshly replayed historical equivalence. See `incoming/`.
 
@@ -12,16 +13,22 @@ dependency resolution, and binds thesaurus execution to effective workspace
 roots and source-verified browser result records. Original failed and
 interrupted attempts are preserved in the evidence archives.
 
-## Status at this source checkpoint
+## Status at the evidence checkpoint
 
 - Mail: 152 distinct Dart cases plus 34 parser controls passed. VM/Node repeats
   are recorded separately. Actual browser persistence is not qualified.
-- Notes controller: 33 cases passed after correcting the fixture; this isolated
-  result is not added again when the complete union plan runs.
+- Notes/Review integration: the host now preserves Notes state when Review
+  opens, closes or changes layout. All 28 focused pane cases passed; these are
+  not added again to the complete union plan.
 - Workspace/browser harness: 36 controls passed. These are synthetic/control
   execution, not actual browser acceptance.
 - Combined Notes/Zotero/Studio/Mail UI: the committed plan selects 129 distinct
   suites; the complete replay is still pending at this checkpoint.
+- Final native fixture: 208 cases passed; release compilation produced 1,155
+  files / 87,446,594 bytes. Preparation and independent byte verification passed
+  for the 1,156-file installed inventory. Actual browser execution is not run.
+- The fresh `linguistic/` packet preserves 15 observed queries, 109 distinct
+  meaning records and ten original notices. Human decisions remain blank.
 - Actual offline browser, installed Studio/OS IME, and independent human
   linguistic review remain open.
 
@@ -39,7 +46,7 @@ python3 docs/validation/thesaurus-20261118/reconciled/run_targeted.py \
   --output /absolute/new-combined-evidence
 ```
 
-The 26 analysis/format targets are Dart files changed since `5535d2eb`; the
+The 28 analysis/format targets are Dart files changed since `5535d2eb`; the
 129-suite test selection is the union of the prior pending Notes and Zotero
 plans, plus the other three Mail UI suites, refreshed research-list tests and
 direct callers of the changed WordLists numbering API. Mail core/store/MIME are covered by
