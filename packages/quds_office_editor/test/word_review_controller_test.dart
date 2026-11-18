@@ -288,46 +288,52 @@ void main() {
   }
 
   for (final accept in <bool>[true, false]) {
-    test('resolving a middle change keeps the successor through undo and redo (${accept ? 'accept' : 'reject'})', () {
+    test(
+      'resolving a middle change keeps the successor through undo and redo (${accept ? 'accept' : 'reject'})',
+      () {
+        final controller = _controller();
+        final paragraph = controller.document.paragraphs.single;
+        final first = _revision(controller, paragraph, 2, 4);
+        final middle = _revision(controller, paragraph, 6, 8);
+        final last = _revision(controller, paragraph, 10, 12);
+        controller.selectedRevisionIndex = 1;
+        if (accept) {
+          controller.acceptRevision(middle);
+        } else {
+          controller.rejectRevision(middle);
+        }
+        expect(controller.selectedRevision, same(last));
+        controller.undo();
+        expect(controller.selectedRevision, same(middle));
+        controller.redo();
+        expect(controller.selectedRevision, same(last));
+        if (accept) {
+          controller.acceptRevision(last);
+        } else {
+          controller.rejectRevision(last);
+        }
+        expect(controller.selectedRevision, same(first));
+      },
+    );
+  }
+
+  test(
+    'resolving another batch preserves an unaffected explicit selection',
+    () {
       final controller = _controller();
       final paragraph = controller.document.paragraphs.single;
       final first = _revision(controller, paragraph, 2, 4);
       final middle = _revision(controller, paragraph, 6, 8);
       final last = _revision(controller, paragraph, 10, 12);
       controller.selectedRevisionIndex = 1;
-      if (accept) {
-        controller.acceptRevision(middle);
-      } else {
-        controller.rejectRevision(middle);
-      }
-      expect(controller.selectedRevision, same(last));
+      controller.acceptRevisions(<WmlRevision>[first, last]);
+      expect(controller.selectedRevision, same(middle));
       controller.undo();
       expect(controller.selectedRevision, same(middle));
       controller.redo();
-      expect(controller.selectedRevision, same(last));
-      if (accept) {
-        controller.acceptRevision(last);
-      } else {
-        controller.rejectRevision(last);
-      }
-      expect(controller.selectedRevision, same(first));
-    });
-  }
-
-  test('resolving another batch preserves an unaffected explicit selection', () {
-    final controller = _controller();
-    final paragraph = controller.document.paragraphs.single;
-    final first = _revision(controller, paragraph, 2, 4);
-    final middle = _revision(controller, paragraph, 6, 8);
-    final last = _revision(controller, paragraph, 10, 12);
-    controller.selectedRevisionIndex = 1;
-    controller.acceptRevisions(<WmlRevision>[first, last]);
-    expect(controller.selectedRevision, same(middle));
-    controller.undo();
-    expect(controller.selectedRevision, same(middle));
-    controller.redo();
-    expect(controller.selectedRevision, same(middle));
-  });
+      expect(controller.selectedRevision, same(middle));
+    },
+  );
 
   test('navigation starts at first or last pending and wraps exact spans', () {
     final firstParagraph = _paragraph('aaXXbb');

@@ -511,8 +511,8 @@ final class WordProofingSession extends ChangeNotifier {
       await Future<void>.delayed(Duration.zero);
       if (!current()) return _summary;
       final cached = _cachedReports(snapshot, useManual: useManual);
-      final reusable = cached != null &&
-          cached.every((report) => report.complete);
+      final reusable =
+          cached != null && cached.every((report) => report.complete);
       final paragraphReports = <OfficeProofingReport>[];
       for (var index = 0; index < snapshot.segments.length; index++) {
         final request = _request(
@@ -612,8 +612,9 @@ final class WordProofingSession extends ChangeNotifier {
     // during typing, but never carry manual findings or coverage into a
     // background pass, and never start the manual service here.
     final manualIds = {
-      for (final provider in _manualService?.providers ??
-          const <OfficeProofingProvider>[]) provider.id,
+      for (final provider
+          in _manualService?.providers ?? const <OfficeProofingProvider>[])
+        provider.id,
     };
     return [
       for (final report in cached.reports)
@@ -639,8 +640,7 @@ final class WordProofingSession extends ChangeNotifier {
     final attached = HashSet<WmlParagraph>.identity()
       ..addAll(captured.paragraphs.map((snapshot) => snapshot.paragraph));
     _cache.removeWhere((paragraph, _) => !attached.contains(paragraph));
-    final previous =
-        HashMap<WmlParagraph, List<WordProofingIssue>>.identity();
+    final previous = HashMap<WmlParagraph, List<WordProofingIssue>>.identity();
     for (final issue in _summary.issues) {
       previous.putIfAbsent(issue.paragraph, () => []).add(issue);
     }
@@ -691,7 +691,8 @@ final class WordProofingSession extends ChangeNotifier {
               )
               .firstOrNull;
           issues.add(
-            existing ?? WordProofingIssue._(finding, snapshot, segment.language),
+            existing ??
+                WordProofingIssue._(finding, snapshot, segment.language),
           );
         }
       }

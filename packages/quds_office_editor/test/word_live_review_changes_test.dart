@@ -177,6 +177,12 @@ Future<void> _choose(
   String key,
   String label,
 ) async {
+  if (key == 'live-review-author-filter' || key == 'live-review-kind-filter') {
+    await _reveal(tester, _key('live-review-filters'));
+    if (_key(key).evaluate().isEmpty) {
+      await _tap(tester, _key('live-review-filters'));
+    }
+  }
   await _tap(tester, _key(key));
   await tester.tap(find.text(label).last);
   await _drain(tester);
@@ -349,6 +355,25 @@ void main() {
     expect(controller.canUndo, isFalse);
   });
 
+  testWidgets('detached captured changes cannot become actionable through a cached target map', (
+    tester,
+  ) async {
+    final controller = _controller();
+    final document = controller.document;
+    final revision = document.revisions.first;
+    final detached = document.sections.single.blocks.removeAt(0);
+    expect(detached, same(revision.targetParagraph));
+    controller.selectedRevisionIndex = 0;
+    await _mount(tester, controller);
+    await _reveal(tester, _key('live-review-accept'));
+    expect(_enabled(tester, 'live-review-accept'), isFalse);
+    expect(_enabled(tester, 'live-review-reject'), isFalse);
+    expect(_text(tester, 'live-review-conflict'), contains('no longer in the document'));
+    expect(_key('live-review-preview-text'), findsNothing);
+    expect(document.revisions, hasLength(4));
+    expect(controller.canUndo, isFalse);
+  });
+
   testWidgets('viewing mode keeps filters and previews but disables decisions', (
     tester,
   ) async {
@@ -377,6 +402,7 @@ void main() {
       OfficeProofingService(providers: <OfficeProofingProvider>[manual]),
     );
     await _mount(tester, controller);
+    await _tap(tester, _key('live-review-filters'));
     await tester.enterText(_key('live-review-search'), 'Alpha');
     await tester.sendKeyEvent(LogicalKeyboardKey.f7);
     await _drain(tester);

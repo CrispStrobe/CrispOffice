@@ -6865,7 +6865,7 @@ class WordEditorController extends OfficeController {
             }
             final next = successor == null
                 ? -1
-                : document.revisions.indexOf(successor!);
+                : document.revisions.indexOf(successor);
             selectedRevisionIndex = next < 0 ? null : next;
           } on Object {
             restore();

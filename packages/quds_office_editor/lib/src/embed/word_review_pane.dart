@@ -605,18 +605,38 @@ class _WordReviewPaneState extends State<WordReviewPane> {
   }
 
   Map<WmlRevision, WmlParagraph?> _reviewTargets(List<WmlRevision> pending) {
-    final body = pending.any((revision) => !revision.hasCapturedTarget)
-        ? _c.document.paragraphs.toList()
-        : const <WmlParagraph>[];
+    // validateRevision trusts an explicitly supplied map. Resolve attachment
+    // once across every supported story before using it for controls/previews.
+    final document = _c.document;
+    final body = document.paragraphs.toList();
+    final attached = <WmlParagraph>{
+      ...body,
+      for (final section in document.sections) ...<WmlParagraph>[
+        ...section.header,
+        ...section.footer,
+        ...section.firstHeader,
+        ...section.firstFooter,
+        ...section.evenHeader,
+        ...section.evenFooter,
+      ],
+      for (final note in <WmlNote>[
+        ...document.footnotes,
+        ...document.endnotes,
+      ])
+        ...note.allParagraphs,
+      for (final comment in document.comments) ...comment.paragraphs,
+    };
+    WmlParagraph? target(WmlRevision revision) {
+      final paragraph = revision.targetParagraph ??
+          (!revision.hasCapturedTarget &&
+                  revision.paragraphIndex >= 0 &&
+                  revision.paragraphIndex < body.length
+              ? body[revision.paragraphIndex]
+              : null);
+      return paragraph != null && attached.contains(paragraph) ? paragraph : null;
+    }
     return <WmlRevision, WmlParagraph?>{
-      for (final revision in pending)
-        revision:
-            revision.targetParagraph ??
-            (!revision.hasCapturedTarget &&
-                    revision.paragraphIndex >= 0 &&
-                    revision.paragraphIndex < body.length
-                ? body[revision.paragraphIndex]
-                : null),
+      for (final revision in pending) revision: target(revision),
     };
   }
 
@@ -697,7 +717,14 @@ class _WordReviewPaneState extends State<WordReviewPane> {
         ),
         onSubmitted: (_) => _setAuthor(),
       ),
-      const SizedBox(height: 12),
+      ExpansionTile(
+        key: const ValueKey<String>('live-review-filters'),
+        tilePadding: EdgeInsets.zero,
+        childrenPadding: const EdgeInsets.only(top: 4, bottom: 8),
+        initiallyExpanded: _hasChangeFilters,
+        maintainState: true,
+        title: Text(_s('Filter changes', 'تصفية التغييرات')),
+        children: <Widget>[
       TextField(
         key: const ValueKey<String>('live-review-search'),
         controller: _changeSearch,
@@ -783,6 +810,8 @@ class _WordReviewPaneState extends State<WordReviewPane> {
           _changeKind = value;
           _notice = null;
         }),
+      ),
+        ],
       ),
       const SizedBox(height: 6),
       Wrap(
@@ -961,6 +990,8 @@ class _WordReviewPaneState extends State<WordReviewPane> {
     WmlRevision revision,
     Map<WmlRevision, WmlParagraph?> targets,
   ) {
+    final paragraph = WordRevisions.resolveParagraph(_c.document, revision);
+    targets[revision] = paragraph;
     String? problem;
     try {
       WordRevisions.validateRevision(_c.document, revision, resolved: targets);
@@ -968,7 +999,6 @@ class _WordReviewPaneState extends State<WordReviewPane> {
       problem = '$error';
     }
     final editable = _c.config.allowsMutation && problem == null;
-    final paragraph = WordRevisions.resolveParagraph(_c.document, revision);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
