@@ -1,0 +1,111 @@
+{
+  "schema": "quds.zotero.final_frontier.v1",
+  "observed_at_utc": "2026-11-18T10:04:38.086115+00:00",
+  "repository": "CrispStrobe/quds_office_suite",
+  "upstream_repository": "MohammedAsaadAsaad/quds_office_suite",
+  "frozen_initial_inventory": {
+    "file": "reconciliation.json",
+    "bytes": 109116,
+    "sha256": "c96bb3567ef6c3495232e837fe18055b732a7073cadbb8c8a72d3ee399d90bd7",
+    "incoming_refs": 353,
+    "unique_heads": 230,
+    "modified": false
+  },
+  "method": "Read-only local inventory after root fetched all fork/upstream branch and PR heads; GitHub open-PR metadata was read during this review. No further fetch or remote mutation was performed by the reviewer.",
+  "main_sha": "c8eca37d1639ac1d20efb83ba2e9da51981a3ad4",
+  "main_unchanged": true,
+  "incoming_counts": {
+    "fork_branch": 192,
+    "fork_pr": 155,
+    "upstream_pr": 4,
+    "upstream_branch": 4
+  },
+  "total_incoming_refs": 355,
+  "unique_incoming_heads": 231,
+  "snapshot_digest": {
+    "serialization": "UTF-8 sorted refname + single space + SHA + newline, excluding symbolic HEAD and this work branch",
+    "sha256": "5eef6e925b614d1c8c2f873f110aad311cba546ab0745ef78c7a1d627b6b6591"
+  },
+  "changed_original_refs": {},
+  "removed_original_refs": [],
+  "original_dispositions_remain_applicable": true,
+  "added_refs": [
+    {
+      "ref": "refs/remotes/origin/codex/native-spelling-20261118",
+      "sha": "7e1294cd5d61566b4f0a1a479614f6bccd89a862",
+      "category": "fork_branch",
+      "disposition": "separate_native_spelling_and_optional_spacy_draft"
+    },
+    {
+      "ref": "refs/remotes/pull/155",
+      "sha": "7e1294cd5d61566b4f0a1a479614f6bccd89a862",
+      "category": "fork_pr",
+      "disposition": "separate_native_spelling_and_optional_spacy_draft"
+    }
+  ],
+  "excluded_current_work_refs": [
+    {
+      "ref": "refs/remotes/origin/codex/zotero-capabilities-20261118",
+      "sha": "23841e187c92ce0917ed7dc21940117d10b29300"
+    }
+  ],
+  "open_prs": [
+    {
+      "number": 155,
+      "title": "Improve native spelling and reconcile current Office work [skip ci]",
+      "head": "codex/native-spelling-20261118",
+      "head_sha": "7e1294cd5d61566b4f0a1a479614f6bccd89a862",
+      "base": "main",
+      "state": "open",
+      "draft": true,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/155"
+    },
+    {
+      "number": 153,
+      "title": "Continue W7 spaCy packaging from the completed grammar qualification",
+      "head": "feat/native-spacy-w7-20261118",
+      "head_sha": "2e013f26c7d4db54ecabe2c955117cbce5379408",
+      "base": "feat/native-spacy-reference-20261117",
+      "state": "open",
+      "draft": true,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/153"
+    },
+    {
+      "number": 139,
+      "title": "Add optional native German analysis and qualified manual agreement corrections",
+      "head": "feat/native-spacy-reference-20261117",
+      "head_sha": "6df76a0dff0051312faa04317af41d479dd94162",
+      "base": "main",
+      "state": "open",
+      "draft": true,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/139"
+    }
+  ],
+  "new_native_spelling_assessment": {
+    "head": "7e1294cd5d61566b4f0a1a479614f6bccd89a862",
+    "baseline_merge": "98a2a15056e55699b8ba5651fc79b26f94e5efd3",
+    "qualified_source_commit": "01e4b7223bf41ab589cbeeaada82cf2d6faee97d",
+    "contains_main_and_both_spacy_draft_heads": {
+      "c8eca37d1639ac1d20efb83ba2e9da51981a3ad4": true,
+      "6df76a0dff0051312faa04317af41d479dd94162": true,
+      "2e013f26c7d4db54ecabe2c955117cbce5379408": true
+    },
+    "changed_paths_against_main": 398,
+    "zotero_changed_paths": [],
+    "after_qualified_source_commit_paths": [
+      "docs/validation/native-spelling-20261118/README.md",
+      "docs/validation/native-spelling-20261118/delivery.json",
+      "docs/validation/native-spelling-20261118/evidence-index.json",
+      "docs/validation/native-spelling-20261118/evidence.tar.gz",
+      "docs/validation/native-spelling-20261118/review-closeout.json",
+      "docs/validation/native-spelling-20261118/review-comparison.json",
+      "docs/validation/native-spelling-20261118/review-spacy-baseline.log",
+      "docs/validation/native-spelling-20261118/review.md",
+      "docs/validation/native-spelling-20261118/verification.json"
+    ],
+    "scope": "Native platform spelling dispatch and German spelling rules/tests plus inherited optional spaCy work; later commits only add spelling evidence/delivery documentation.",
+    "integration_decision": "Preserve separately on its existing remote draft PR. It contains no new Zotero paths and inherits optional spaCy architecture; no source from it is merged or activated in the Zotero improvement branch."
+  },
+  "unresolved_refs": [],
+  "github_actions_or_status_queried_or_waited": false
+}

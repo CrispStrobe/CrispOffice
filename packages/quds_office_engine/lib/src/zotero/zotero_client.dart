@@ -279,8 +279,8 @@ class ZoteroClient {
   }
 
   /// Executes an existing saved search in Zotero, with an optional additional
-  /// title/creator/year filter. Pagination and sorting happen in Zotero before
-  /// results are returned. Notes/attachments may be returned by the saved
+  /// quick-search and single item-type filter. Pagination and sorting happen
+  /// in Zotero before results are returned. Notes/attachments may be returned by the saved
   /// search; callers should use [ZoteroItem.isCitable] for citation selection.
   Future<ZoteroPage<ZoteroItem>> savedSearchItems(
     ZoteroLibrary library,
@@ -288,6 +288,10 @@ class ZoteroClient {
     String query = '',
     int start = 0,
     int limit = 50,
+    ZoteroSearchMode searchMode = ZoteroSearchMode.titleCreatorYear,
+    ZoteroItemSort sort = ZoteroItemSort.dateModified,
+    ZoteroSortDirection direction = ZoteroSortDirection.descending,
+    String? itemType,
   }) async {
     _requireLocalSearches();
     validateZoteroKey(searchKey);
@@ -298,6 +302,10 @@ class ZoteroClient {
         query: query,
         start: start,
         limit: limit,
+        searchMode: searchMode,
+        sort: sort,
+        direction: direction,
+        itemType: itemType,
       );
     } on ZoteroApiException catch (error) {
       if (error.kind != ZoteroApiErrorKind.notFound) rethrow;
@@ -318,18 +326,35 @@ class ZoteroClient {
 
   /// Browses/searches top-level items. [ZoteroItem.isCitable] distinguishes
   /// bibliographic items from standalone notes and attachments.
+  /// Filters and ordering apply to the whole library or collection, before
+  /// pagination. [itemType] accepts one Zotero type name, such as `book` or
+  /// `journalArticle`; it does not accept Boolean search expressions.
   Future<ZoteroPage<ZoteroItem>> items(
     ZoteroLibrary library, {
     String? collectionKey,
     String query = '',
     int start = 0,
     int limit = 50,
+    ZoteroSearchMode searchMode = ZoteroSearchMode.titleCreatorYear,
+    ZoteroItemSort sort = ZoteroItemSort.dateModified,
+    ZoteroSortDirection direction = ZoteroSortDirection.descending,
+    String? itemType,
   }) async {
     if (collectionKey != null) validateZoteroKey(collectionKey);
     final path = collectionKey == null
         ? '${_libraryPath(library)}/items/top'
         : '${_libraryPath(library)}/collections/$collectionKey/items/top';
-    return _items(library, path, query: query, start: start, limit: limit);
+    return _items(
+      library,
+      path,
+      query: query,
+      start: start,
+      limit: limit,
+      searchMode: searchMode,
+      sort: sort,
+      direction: direction,
+      itemType: itemType,
+    );
   }
 
   Future<ZoteroPage<ZoteroItem>> _items(
@@ -338,18 +363,27 @@ class ZoteroClient {
     required String query,
     required int start,
     required int limit,
+    required ZoteroSearchMode searchMode,
+    required ZoteroItemSort sort,
+    required ZoteroSortDirection direction,
+    required String? itemType,
   }) async {
     if (query.length > 1024 || RegExp(r'[\x00-\x1f\x7f]').hasMatch(query)) {
       throw ArgumentError('Use a Zotero search of at most 1024 characters.');
+    }
+    if (itemType != null &&
+        !RegExp(r'^[a-zA-Z][a-zA-Z0-9]{0,63}$').hasMatch(itemType)) {
+      throw ArgumentError('Use a single Zotero item type, such as book.');
     }
     final text = query.trim();
     final parameters = {
       ..._pagination(start, limit),
       'include': 'data,csljson',
-      'sort': 'dateModified',
-      'direction': 'desc',
+      'sort': sort.name,
+      'direction': direction.apiValue,
+      'itemType': ?itemType,
       if (text.isNotEmpty) 'q': text,
-      if (text.isNotEmpty) 'qmode': 'titleCreatorYear',
+      if (text.isNotEmpty) 'qmode': searchMode.name,
     };
     final uri = _uri(path, parameters);
     final response = await _request(uri);

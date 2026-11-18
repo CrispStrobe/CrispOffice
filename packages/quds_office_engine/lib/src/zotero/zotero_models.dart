@@ -6,6 +6,20 @@ library;
 
 enum ZoteroLibraryType { user, group }
 
+/// Zotero evaluates quick searches across the complete requested catalog.
+/// Full-text matches depend on the connected library's indexed content.
+enum ZoteroSearchMode { titleCreatorYear, everything }
+
+/// Supported catalog ordering, applied by Zotero before pagination.
+enum ZoteroItemSort { dateModified, dateAdded, title, creator, date, itemType }
+
+enum ZoteroSortDirection {
+  ascending,
+  descending;
+
+  String get apiValue => this == ascending ? 'asc' : 'desc';
+}
+
 /// A Zotero library is identified by its kind and numeric ID, not its name.
 class ZoteroLibrary {
   ZoteroLibrary({required this.type, required this.id}) {

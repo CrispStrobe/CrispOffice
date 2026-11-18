@@ -1,0 +1,97 @@
+{
+  "archive": "setup-evidence.tar.gz",
+  "archive_sha256": "507920ad918d7b15add01439a01e25eec8654f048f6dbb4297406eb20c60b5f4",
+  "archive_bytes": 25838,
+  "members": [
+    {
+      "path": "env.sh",
+      "bytes": 417,
+      "sha256": "f402ae0723207622f0735aa5d0bce45c623681aee9a8a9a65fbf52b97be79c72"
+    },
+    {
+      "path": "logs/editor-format-smoke.log",
+      "bytes": 3240,
+      "sha256": "8696e85142572b62d550e5a811d5d01a653acb6d55b3e62879aae1a85681986b"
+    },
+    {
+      "path": "logs/engine-pub-get-final.log",
+      "bytes": 68,
+      "sha256": "d4cb7a3c68b4133b4f6e58c67ff5bfd13725d8021e930388cdc98da8a575919d"
+    },
+    {
+      "path": "logs/engine-pub-get.log",
+      "bytes": 409,
+      "sha256": "ac619fa308fc24b7542bda6d64579172f6014b5225b922c0d2ff07b07b6abea8"
+    },
+    {
+      "path": "logs/engine-query-analysis-final.log",
+      "bytes": 290,
+      "sha256": "66749cfed763b23b9448b04e499f89df15da219d6885181f8295b4fd76e84838"
+    },
+    {
+      "path": "logs/engine-query-analysis.log",
+      "bytes": 26750,
+      "sha256": "b3e11981bf0da825c660f046c56f9933282d948f1015c72d1f18658403e4e9b2"
+    },
+    {
+      "path": "logs/engine-query-smoke.log",
+      "bytes": 1066,
+      "sha256": "ca07bd570d1ef81430873979fd9b2aa8793d227115c36643b57eaad3cad4ef53"
+    },
+    {
+      "path": "logs/flutter-precache.log",
+      "bytes": 2236,
+      "sha256": "4ed0eabdb158d81e292118a106926344e83e2072e8f0b922f5fac9e26e270f1b"
+    },
+    {
+      "path": "logs/flutter-version.log",
+      "bytes": 4939,
+      "sha256": "e07bf88783275368db2cf741b5e51de4b7b7ad2d818193c11a1eccfa75194e35"
+    },
+    {
+      "path": "logs/pub-cache-receipt.json",
+      "bytes": 33804,
+      "sha256": "1ea54c83a181b69245da6a77897f7eb910973b39c703ad680712c1f1784284dc"
+    },
+    {
+      "path": "logs/pub-cache-restore-engine.log",
+      "bytes": 186,
+      "sha256": "4568ab2af39e6c76c666c387e4b2c0dadb6bef4d8ec9996ce8660c16d1074d08"
+    },
+    {
+      "path": "logs/pub-cache-restore.log",
+      "bytes": 2207,
+      "sha256": "56b8393111239d35496acf65b717b09617349f0bc6a833c62d57fc69a7281ddd"
+    },
+    {
+      "path": "logs/workspace-pub-get-final.log",
+      "bytes": 423,
+      "sha256": "3b472f7613c71b90ffb46219cc2bef8d7ecdb1e2fde5b42a95ffd7b086ba9039"
+    },
+    {
+      "path": "setup/flutter-tools-recorded.lock",
+      "bytes": 23779,
+      "sha256": "6a98afb61c0cc72f31631ab444932f072fd275aa04d56cde2bf6831ba02fc8f8"
+    },
+    {
+      "path": "setup/prepare_engine.py",
+      "bytes": 928,
+      "sha256": "3fd533f04497b3ace74ad47d856155bcb3cccc8abe739d0f0d8722829d143623"
+    },
+    {
+      "path": "setup/prepare_workspace.py",
+      "bytes": 3484,
+      "sha256": "132bebad13b119536f1913f808a8a89cec1d571b417505227883fe57fcc313d7"
+    },
+    {
+      "path": "setup/record_ready.py",
+      "bytes": 4455,
+      "sha256": "0204e08a8167635b00b21b09f3750869ff1bd632a06d7c3ab94805c0050e0604"
+    },
+    {
+      "path": "setup/restore_pub_cache.py",
+      "bytes": 2436,
+      "sha256": "64945297b27608ebb09ab3d927a75fdc82841122be5ff14b2cef75bb85053683"
+    }
+  ]
+}

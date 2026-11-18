@@ -1,0 +1,816 @@
+{
+  "schema": "quds.zotero.independent_review.v2",
+  "reviewed_at_utc": "2026-11-18T10:02:51.040828+00:00",
+  "reviewer": "reconcile_review independent agent",
+  "repository": "CrispStrobe/quds_office_suite",
+  "product_commit": "1ccf329da190d47720962bd9d8c65c90acf562db",
+  "status": "passed",
+  "scope": [
+    "Independent static review of typed catalog query options, connected-source resolution, refresh/bibliography integration, catalog UI and new regression assertions.",
+    "Final static diff review from 1180537c95309fc23bd971b087720d2c66b201b1 to the frozen product commit.",
+    "Independent replay of accepted engine, editor and Studio raw JSON events; comparison with retained case records, process results, artifact indexes and source/runtime/workspace inventories.",
+    "Byte comparison of all 632 distinct recorded source inputs against the frozen Git commit and current checkout; independently reconstructed inventory completeness and dependency closure checks."
+  ],
+  "product_tests_rerun": false,
+  "github_actions_or_status_queried_or_waited": false,
+  "static_review": {
+    "blocking_findings": [],
+    "resolved_findings": [
+      "Full-text labels no longer claim arbitrary field searching in the Web API.",
+      "Search options use one state-controlled conditional panel, preserving expansion and preferences across disconnect/reconnect.",
+      "A Search options icon in the search row preserves default catalog height and paging visibility; additional height is allocated only to the expanded panel.",
+      "The page summary uses Expanded with one-line ellipsis to leave navigation controls their width.",
+      "Each catalog query test tap checks immediately for Flutter exceptions; accepted coverage includes 320, 360 and 420 logical-pixel widths and the existing default paging regression."
+    ],
+    "final_diff_assessment": "The final delta since 1180537c replaces the ExpansionTile header with a Search options icon and conditional panel, factors layout allocation into _catalogMinHeight, and strengthens widget exception assertions. Query, resolver and document mutation semantics remain unchanged. No unresolved static correctness issue was found in this scope.",
+    "verified_design": [
+      "Validated complete Zotero URIs establish transitive aliases; matching keys or CSL IDs alone do not merge scopes.",
+      "Representative source identities are deterministic in first-declared order, preferring eligible numeric identities online; failures do not retry through aliases.",
+      "Refresh and bibliography limits count resolved components; the resolver bounds unique aliases at 10,000.",
+      "Alias declarations in custom or snapshot-free citations can bridge components; refresh mutation remains restricted to supported basic-author-year fields.",
+      "Refresh preserves citation identities, URI arrays, locators, affixes and unknown citation metadata while staging fetched CSL updates; existing controller transaction and DOCX behavior remain in the accepted test cohort.",
+      "Unsubmitted text does not affect either paging direction; option and scope changes submit the current draft from offset zero.",
+      "Source/disconnect transitions retain query preferences and invalidate prior catalog generations; asynchronous mutation guards remain in place."
+    ]
+  },
+  "reviewed_product_files": {
+    "packages/quds_office_engine/lib/src/zotero/zotero_models.dart": {
+      "bytes": 7560,
+      "sha256": "116868ae0f2321e54e11b3e27d728139108fc2cd7d62f19f1e9535c5cb470397"
+    },
+    "packages/quds_office_engine/lib/src/zotero/zotero_client.dart": {
+      "bytes": 37871,
+      "sha256": "1943b6f2c2cf18d6148933fefa8284bb1d2d82e2e4d83a43a125b7a4f593c503"
+    },
+    "packages/quds_office_engine/test/zotero_catalog_query_test.dart": {
+      "bytes": 6426,
+      "sha256": "f0e50885bab32508e279db106c9f08b434ab2aeea7772fe28695320cc06122a3"
+    },
+    "packages/quds_office_editor/lib/src/embed/word_zotero_sources.dart": {
+      "bytes": 3619,
+      "sha256": "a7b6c5df55e765781e7a38de1a58d11f67ea900912d69e2c91ec372aeed2c40b"
+    },
+    "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart": {
+      "bytes": 100557,
+      "sha256": "86b5298b6f162db66378ffd52a1bf325bdb6aae0698496523181d96fabe9ddad"
+    },
+    "packages/quds_office_editor/test/word_zotero_source_resolver_test.dart": {
+      "bytes": 4884,
+      "sha256": "3f10898c2bdff33ca4f62f258e3ce668ea1cae1d32c52d99e7a3d7b240d592e6"
+    },
+    "packages/quds_office_editor/test/word_zotero_connected_alias_test.dart": {
+      "bytes": 15666,
+      "sha256": "a1af68087ffd08e9f50d004dd5833e05bd5c0cf8482a6bae5b2bed20c7643ed6"
+    },
+    "packages/quds_office_editor/test/word_zotero_catalog_query_test.dart": {
+      "bytes": 15488,
+      "sha256": "b5cf89f3d52947e1040c22b74387c172e7eb797511f887720d06c0b9cee55821"
+    }
+  },
+  "accepted_execution_audit": {
+    "substantive_tests_passed": 641,
+    "disjoint_suites": 37,
+    "hidden_loading_events_excluded": 37,
+    "error_events": 0,
+    "skipped_tests": 0,
+    "indexed_artifacts_verified": 44,
+    "distinct_source_files_bound_to_product_commit": 632,
+    "check_count": 148,
+    "cohorts": {
+      "engine": {
+        "summary": {
+          "bytes": 6870,
+          "sha256": "887dcd59ea7591b8bc7682bcbf72858210b12413fb31b0b7d5907285190460e4"
+        },
+        "indexed_artifact_count": 13,
+        "runner": "docs/validation/zotero-capabilities-20261118/local/engine/run_engine.py",
+        "runner_sha256": "6b15d4756148b0bbb715149ffde1e5f64d759039213dbb61046e86f13e8b38c3",
+        "raw_event_counts": {
+          "start": 1,
+          "suite": 20,
+          "testStart": 428,
+          "allSuites": 1,
+          "testDone": 428,
+          "group": 21,
+          "done": 1
+        },
+        "substantive_successes": 408,
+        "hidden_loading_events_excluded": 20,
+        "suites": 20,
+        "machine_envelopes_excluded": 0,
+        "process_exit_code": 0,
+        "errors": 0,
+        "skips": 0,
+        "source_files": 416,
+        "dependency_files": 1714,
+        "runtime_files": 1047,
+        "workspace_inputs": 7,
+        "source_head_at_execution_start": "6f44d2b901d81f1ab7a5817e37f24da9e4bb79fe",
+        "source_head_at_execution_end": "6f44d2b901d81f1ab7a5817e37f24da9e4bb79fe",
+        "workspace_inputs_artifact": {
+          "bytes": 11623,
+          "sha256": "8628498ebb03d8f159a7e4de7c92a296d228287d17862d39607c0017702f3a33"
+        },
+        "retained_run_receipt_status": "running",
+        "summary_file": "local/engine/summary.json",
+        "all_indexed_artifacts_verified": true,
+        "all_before_after_maps_equal": true,
+        "all_source_records_match_product_commit_and_checkout": true,
+        "all_recorded_dependency_runtime_and_workspace_bytes_match_current_inputs": true,
+        "runner_receipt_note": "run.json is an immutable launch receipt with status=running; the accepted summary, raw terminal event and exit result establish completion.",
+        "execution_head_note": "Engine ran before the final editor-only changes; its complete 416-file source map is independently byte-identical to the final product commit."
+      },
+      "editor": {
+        "summary": {
+          "bytes": 7375,
+          "sha256": "d918b7c52b4619245cbc36cd7decbf16c2180003351c4fbb6b2466ce84fa5117"
+        },
+        "indexed_artifact_count": 16,
+        "runner": "docs/validation/zotero-capabilities-20261118/local/editor/run_editor.py",
+        "runner_sha256": "b97cc79a6297b4601f98a48bc91594b4d1d4e85018df9d74953d4f9f3d2ad94b",
+        "raw_event_counts": {
+          "start": 1,
+          "suite": 16,
+          "testStart": 231,
+          "allSuites": 1,
+          "testDone": 231,
+          "group": 22,
+          "done": 1
+        },
+        "substantive_successes": 215,
+        "hidden_loading_events_excluded": 16,
+        "suites": 16,
+        "machine_envelopes_excluded": 16,
+        "process_exit_code": 0,
+        "errors": 0,
+        "skips": 0,
+        "source_files": 534,
+        "dependency_files": 1966,
+        "runtime_files": 1170,
+        "workspace_inputs": 13,
+        "source_head_at_execution_start": "1ccf329da190d47720962bd9d8c65c90acf562db",
+        "source_head_at_execution_end": "1ccf329da190d47720962bd9d8c65c90acf562db",
+        "workspace_inputs_artifact": {
+          "bytes": 12792,
+          "sha256": "45961c6cf703cb7974cedfa3cd035483e0f628ec0ff4d8f5ed053574f6fde934"
+        },
+        "retained_run_receipt_status": "running",
+        "summary_file": "local/editor/summary.json",
+        "all_indexed_artifacts_verified": true,
+        "all_before_after_maps_equal": true,
+        "all_source_records_match_product_commit_and_checkout": true,
+        "all_recorded_dependency_runtime_and_workspace_bytes_match_current_inputs": true,
+        "runner_receipt_note": "run.json is an immutable launch receipt with status=running; the accepted summary, raw terminal event and exit result establish completion."
+      },
+      "studio": {
+        "summary": {
+          "bytes": 5950,
+          "sha256": "97a6440d057a7a7d661378a03dcce02266daefb3160b1b3f4f876353f9ac3a94"
+        },
+        "indexed_artifact_count": 15,
+        "runner": "docs/validation/zotero-capabilities-20261118/local/editor/run_editor.py",
+        "runner_sha256": "b97cc79a6297b4601f98a48bc91594b4d1d4e85018df9d74953d4f9f3d2ad94b",
+        "raw_event_counts": {
+          "start": 1,
+          "suite": 1,
+          "testStart": 19,
+          "allSuites": 1,
+          "testDone": 19,
+          "group": 1,
+          "done": 1
+        },
+        "substantive_successes": 18,
+        "hidden_loading_events_excluded": 1,
+        "suites": 1,
+        "machine_envelopes_excluded": 1,
+        "process_exit_code": 0,
+        "errors": 0,
+        "skips": 0,
+        "source_files": 596,
+        "dependency_files": 2738,
+        "runtime_files": 1170,
+        "workspace_inputs": 16,
+        "source_head_at_execution_start": "1ccf329da190d47720962bd9d8c65c90acf562db",
+        "source_head_at_execution_end": "1ccf329da190d47720962bd9d8c65c90acf562db",
+        "workspace_inputs_artifact": {
+          "bytes": 13773,
+          "sha256": "f715a9f066e4cc14ba7c84ef23dffcedc6a01281b539224acaf859458b6b9b20"
+        },
+        "retained_run_receipt_status": "running",
+        "summary_file": "local/studio/summary.json",
+        "all_indexed_artifacts_verified": true,
+        "all_before_after_maps_equal": true,
+        "all_source_records_match_product_commit_and_checkout": true,
+        "all_recorded_dependency_runtime_and_workspace_bytes_match_current_inputs": true,
+        "runner_receipt_note": "run.json is an immutable launch receipt with status=running; the accepted summary, raw terminal event and exit result establish completion."
+      }
+    },
+    "excluded_attempts": [
+      "local/editor/attempt-1-f57fde45: superseded run with an existing pagination regression; none of its 214 passes are included in the accepted total.",
+      "Earlier setup, focused smokes and intermediate attempts are not added to the accepted total."
+    ],
+    "checks": [
+      {
+        "check": "engine:artifact:cases.json.gz",
+        "passed": true
+      },
+      {
+        "check": "engine:artifact:dependencies-after.json.gz",
+        "passed": true
+      },
+      {
+        "check": "engine:artifact:dependencies-before.json.gz",
+        "passed": true
+      },
+      {
+        "check": "engine:artifact:events.jsonl.gz",
+        "passed": true
+      },
+      {
+        "check": "engine:artifact:run.json",
+        "passed": true
+      },
+      {
+        "check": "engine:artifact:run_engine.py",
+        "passed": true
+      },
+      {
+        "check": "engine:artifact:runtime-after.json.gz",
+        "passed": true
+      },
+      {
+        "check": "engine:artifact:runtime-before.json.gz",
+        "passed": true
+      },
+      {
+        "check": "engine:artifact:source-after.json.gz",
+        "passed": true
+      },
+      {
+        "check": "engine:artifact:source-before.json.gz",
+        "passed": true
+      },
+      {
+        "check": "engine:artifact:stderr.log.gz",
+        "passed": true
+      },
+      {
+        "check": "engine:artifact:workspace-after.json.gz",
+        "passed": true
+      },
+      {
+        "check": "engine:artifact:workspace-before.json.gz",
+        "passed": true
+      },
+      {
+        "check": "engine:runner_hash",
+        "passed": true
+      },
+      {
+        "check": "engine:process_exit",
+        "passed": true
+      },
+      {
+        "check": "engine:parse_and_envelopes",
+        "passed": true
+      },
+      {
+        "check": "engine:envelopes_only_process_notifications",
+        "passed": true
+      },
+      {
+        "check": "engine:ids_and_completion",
+        "passed": true
+      },
+      {
+        "check": "engine:one_successful_final_event",
+        "passed": true
+      },
+      {
+        "check": "engine:no_error_or_skip_events",
+        "passed": true
+      },
+      {
+        "check": "engine:expected_substantive_results",
+        "passed": true
+      },
+      {
+        "check": "engine:hidden_loads_excluded",
+        "passed": true
+      },
+      {
+        "check": "engine:expected_suite_count",
+        "passed": true
+      },
+      {
+        "check": "engine:summary_counts_equal_replay",
+        "passed": true
+      },
+      {
+        "check": "engine:retained_cases_equal_replay",
+        "passed": true
+      },
+      {
+        "check": "engine:stderr_empty",
+        "passed": true
+      },
+      {
+        "check": "engine:complete_selected_suites",
+        "passed": true
+      },
+      {
+        "check": "engine:reachable_dependency_closure",
+        "passed": true
+      },
+      {
+        "check": "engine:source_before_after_equal",
+        "passed": true
+      },
+      {
+        "check": "engine:dependencies_before_after_equal",
+        "passed": true
+      },
+      {
+        "check": "engine:runtime_before_after_equal",
+        "passed": true
+      },
+      {
+        "check": "engine:workspace_before_after_equal",
+        "passed": true
+      },
+      {
+        "check": "engine:source_map_complete",
+        "passed": true
+      },
+      {
+        "check": "engine:source_matches_current_files",
+        "passed": true
+      },
+      {
+        "check": "engine:dependency_map_complete",
+        "passed": true
+      },
+      {
+        "check": "engine:dependencies_match_current_files",
+        "passed": true
+      },
+      {
+        "check": "engine:runtime_map_complete",
+        "passed": true
+      },
+      {
+        "check": "engine:runtime_matches_current_files",
+        "passed": true
+      },
+      {
+        "check": "engine:workspace_matches_retained_text_and_files",
+        "passed": true
+      },
+      {
+        "check": "engine:source_library_routes",
+        "passed": true
+      },
+      {
+        "check": "engine:source_test_route",
+        "passed": true
+      },
+      {
+        "check": "engine:selected_relative_imports_captured",
+        "passed": true
+      },
+      {
+        "check": "engine:summary_unchanged_during_audit",
+        "passed": true
+      },
+      {
+        "check": "editor:artifact:cases.json.gz",
+        "passed": true
+      },
+      {
+        "check": "editor:artifact:dependencies-after.json.gz",
+        "passed": true
+      },
+      {
+        "check": "editor:artifact:dependencies-before.json.gz",
+        "passed": true
+      },
+      {
+        "check": "editor:artifact:events.jsonl.gz",
+        "passed": true
+      },
+      {
+        "check": "editor:artifact:machine-envelopes.json.gz",
+        "passed": true
+      },
+      {
+        "check": "editor:artifact:process-exit.json",
+        "passed": true
+      },
+      {
+        "check": "editor:artifact:run.json",
+        "passed": true
+      },
+      {
+        "check": "editor:artifact:run_editor.py",
+        "passed": true
+      },
+      {
+        "check": "editor:artifact:runtime-after.json.gz",
+        "passed": true
+      },
+      {
+        "check": "editor:artifact:runtime-before.json.gz",
+        "passed": true
+      },
+      {
+        "check": "editor:artifact:source-after.json.gz",
+        "passed": true
+      },
+      {
+        "check": "editor:artifact:source-before.json.gz",
+        "passed": true
+      },
+      {
+        "check": "editor:artifact:stderr.log.gz",
+        "passed": true
+      },
+      {
+        "check": "editor:artifact:workspace-after.json.gz",
+        "passed": true
+      },
+      {
+        "check": "editor:artifact:workspace-before.json.gz",
+        "passed": true
+      },
+      {
+        "check": "editor:artifact:workspace-inputs.json.gz",
+        "passed": true
+      },
+      {
+        "check": "editor:runner_hash",
+        "passed": true
+      },
+      {
+        "check": "editor:process_exit",
+        "passed": true
+      },
+      {
+        "check": "editor:exit_receipt",
+        "passed": true
+      },
+      {
+        "check": "editor:execution_head",
+        "passed": true
+      },
+      {
+        "check": "editor:parse_and_envelopes",
+        "passed": true
+      },
+      {
+        "check": "editor:envelopes_only_process_notifications",
+        "passed": true
+      },
+      {
+        "check": "editor:ids_and_completion",
+        "passed": true
+      },
+      {
+        "check": "editor:one_successful_final_event",
+        "passed": true
+      },
+      {
+        "check": "editor:no_error_or_skip_events",
+        "passed": true
+      },
+      {
+        "check": "editor:expected_substantive_results",
+        "passed": true
+      },
+      {
+        "check": "editor:hidden_loads_excluded",
+        "passed": true
+      },
+      {
+        "check": "editor:expected_suite_count",
+        "passed": true
+      },
+      {
+        "check": "editor:summary_counts_equal_replay",
+        "passed": true
+      },
+      {
+        "check": "editor:retained_cases_equal_replay",
+        "passed": true
+      },
+      {
+        "check": "editor:stderr_empty",
+        "passed": true
+      },
+      {
+        "check": "editor:complete_selected_suites",
+        "passed": true
+      },
+      {
+        "check": "editor:reachable_dependency_closure",
+        "passed": true
+      },
+      {
+        "check": "editor:canonical_sources",
+        "passed": true
+      },
+      {
+        "check": "editor:source_before_after_equal",
+        "passed": true
+      },
+      {
+        "check": "editor:dependencies_before_after_equal",
+        "passed": true
+      },
+      {
+        "check": "editor:runtime_before_after_equal",
+        "passed": true
+      },
+      {
+        "check": "editor:workspace_before_after_equal",
+        "passed": true
+      },
+      {
+        "check": "editor:source_map_complete",
+        "passed": true
+      },
+      {
+        "check": "editor:source_matches_current_files",
+        "passed": true
+      },
+      {
+        "check": "editor:dependency_map_complete",
+        "passed": true
+      },
+      {
+        "check": "editor:dependencies_match_current_files",
+        "passed": true
+      },
+      {
+        "check": "editor:runtime_map_complete",
+        "passed": true
+      },
+      {
+        "check": "editor:runtime_matches_current_files",
+        "passed": true
+      },
+      {
+        "check": "editor:workspace_matches_retained_text_and_files",
+        "passed": true
+      },
+      {
+        "check": "editor:source_library_routes",
+        "passed": true
+      },
+      {
+        "check": "editor:source_test_route",
+        "passed": true
+      },
+      {
+        "check": "editor:selected_relative_imports_captured",
+        "passed": true
+      },
+      {
+        "check": "editor:summary_unchanged_during_audit",
+        "passed": true
+      },
+      {
+        "check": "studio:artifact:cases.json.gz",
+        "passed": true
+      },
+      {
+        "check": "studio:artifact:dependencies-after.json.gz",
+        "passed": true
+      },
+      {
+        "check": "studio:artifact:dependencies-before.json.gz",
+        "passed": true
+      },
+      {
+        "check": "studio:artifact:events.jsonl.gz",
+        "passed": true
+      },
+      {
+        "check": "studio:artifact:machine-envelopes.json.gz",
+        "passed": true
+      },
+      {
+        "check": "studio:artifact:process-exit.json",
+        "passed": true
+      },
+      {
+        "check": "studio:artifact:run.json",
+        "passed": true
+      },
+      {
+        "check": "studio:artifact:runtime-after.json.gz",
+        "passed": true
+      },
+      {
+        "check": "studio:artifact:runtime-before.json.gz",
+        "passed": true
+      },
+      {
+        "check": "studio:artifact:source-after.json.gz",
+        "passed": true
+      },
+      {
+        "check": "studio:artifact:source-before.json.gz",
+        "passed": true
+      },
+      {
+        "check": "studio:artifact:stderr.log.gz",
+        "passed": true
+      },
+      {
+        "check": "studio:artifact:workspace-after.json.gz",
+        "passed": true
+      },
+      {
+        "check": "studio:artifact:workspace-before.json.gz",
+        "passed": true
+      },
+      {
+        "check": "studio:artifact:workspace-inputs.json.gz",
+        "passed": true
+      },
+      {
+        "check": "studio:runner_hash",
+        "passed": true
+      },
+      {
+        "check": "studio:process_exit",
+        "passed": true
+      },
+      {
+        "check": "studio:exit_receipt",
+        "passed": true
+      },
+      {
+        "check": "studio:execution_head",
+        "passed": true
+      },
+      {
+        "check": "studio:parse_and_envelopes",
+        "passed": true
+      },
+      {
+        "check": "studio:envelopes_only_process_notifications",
+        "passed": true
+      },
+      {
+        "check": "studio:ids_and_completion",
+        "passed": true
+      },
+      {
+        "check": "studio:one_successful_final_event",
+        "passed": true
+      },
+      {
+        "check": "studio:no_error_or_skip_events",
+        "passed": true
+      },
+      {
+        "check": "studio:expected_substantive_results",
+        "passed": true
+      },
+      {
+        "check": "studio:hidden_loads_excluded",
+        "passed": true
+      },
+      {
+        "check": "studio:expected_suite_count",
+        "passed": true
+      },
+      {
+        "check": "studio:summary_counts_equal_replay",
+        "passed": true
+      },
+      {
+        "check": "studio:retained_cases_equal_replay",
+        "passed": true
+      },
+      {
+        "check": "studio:stderr_empty",
+        "passed": true
+      },
+      {
+        "check": "studio:complete_selected_suites",
+        "passed": true
+      },
+      {
+        "check": "studio:reachable_dependency_closure",
+        "passed": true
+      },
+      {
+        "check": "studio:canonical_sources",
+        "passed": true
+      },
+      {
+        "check": "studio:source_before_after_equal",
+        "passed": true
+      },
+      {
+        "check": "studio:dependencies_before_after_equal",
+        "passed": true
+      },
+      {
+        "check": "studio:runtime_before_after_equal",
+        "passed": true
+      },
+      {
+        "check": "studio:workspace_before_after_equal",
+        "passed": true
+      },
+      {
+        "check": "studio:source_map_complete",
+        "passed": true
+      },
+      {
+        "check": "studio:source_matches_current_files",
+        "passed": true
+      },
+      {
+        "check": "studio:dependency_map_complete",
+        "passed": true
+      },
+      {
+        "check": "studio:dependencies_match_current_files",
+        "passed": true
+      },
+      {
+        "check": "studio:runtime_map_complete",
+        "passed": true
+      },
+      {
+        "check": "studio:runtime_matches_current_files",
+        "passed": true
+      },
+      {
+        "check": "studio:workspace_matches_retained_text_and_files",
+        "passed": true
+      },
+      {
+        "check": "studio:source_library_routes",
+        "passed": true
+      },
+      {
+        "check": "studio:source_test_route",
+        "passed": true
+      },
+      {
+        "check": "studio:selected_relative_imports_captured",
+        "passed": true
+      },
+      {
+        "check": "studio:summary_unchanged_during_audit",
+        "passed": true
+      },
+      {
+        "check": "all_accepted_source_maps_match_final_product",
+        "passed": true
+      },
+      {
+        "check": "engine:source_map_matches_final_commit",
+        "passed": true
+      },
+      {
+        "check": "editor:source_map_matches_final_commit",
+        "passed": true
+      },
+      {
+        "check": "studio:source_map_matches_final_commit",
+        "passed": true
+      },
+      {
+        "check": "cohort_suite_paths_are_disjoint",
+        "passed": true
+      },
+      {
+        "check": "accepted_substantive_total",
+        "passed": true
+      },
+      {
+        "check": "all_eight_reviewed_files_match_final_product",
+        "passed": true
+      },
+      {
+        "check": "overlapping_source_records_agree",
+        "passed": true,
+        "compared_records": 914
+      }
+    ]
+  },
+  "findings": [],
+  "remaining_acceptance_boundaries": [
+    "Accepted tests use synthetic documents, fixtures and transport doubles; live Zotero account/desktop searches, server indexing, result ordering and service responses remain live acceptance work.",
+    "No external Microsoft Word or LibreOffice interoperability session, operating-system credential store or full application release acceptance was performed in this review.",
+    "Responsive coverage is bounded to the recorded widget cases; arbitrary screen sizes, text scales and platform integrations are not claimed.",
+    "The review verifies recorded test evidence and declared source/runtime inputs. It does not independently authenticate the runtime distribution or repeat product execution.",
+    "Optional native spaCy/spelling branches remain separately reviewed draft work and were not activated by the Zotero branch."
+  ]
+}
