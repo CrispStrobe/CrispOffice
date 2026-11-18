@@ -31,6 +31,14 @@ identified source records. Its output is a machine-readable qualification
 receipt. The panel does not establish universal linguistic quality or substitute
 for an independent human linguistic review.
 
+For a reviewable packet, run `export_review_packet.py --report PATH --output NEW_DIR`
+with the real native panel report for the build being assessed. It verifies the
+observed meanings against current pack hashes and exports readable Markdown plus
+full source records and blank decisions in JSON. It does not execute the provider
+or approve quality. `test_export_review_packet.py` covers stale/corrupt reports.
+The [release acceptance guide](../../docs/roadmaps/thesaurus/release-acceptance.md)
+provides actual-browser, installed-desktop/IME and human-review procedures.
+
 ## Source choice and conversion
 
 English uses the **regular OEWN 2025 WN-LMF XML**, not the names-expanded 2025+

@@ -150,6 +150,7 @@ class _FixtureState extends State<_Fixture> {
                 'pos': sense.pos,
                 'gloss': sense.gloss,
                 'labels': sense.labels,
+                'examples': sense.examples,
                 'terms': <Map<String, Object?>>[
                   for (final term in sense.terms)
                     {'id': term.id, 'text': term.text, 'labels': term.labels},

@@ -11,6 +11,8 @@ evidence and environment limitations are recorded in the
 The [resumed integration report](../../validation/thesaurus-20261118/resume/README.md)
 records the newer review/Zotero reconciliation, IME refusal fix and strengthened
 offline replay checks; its results are separate from the earlier qualification.
+Use the [release acceptance guide](release-acceptance.md) for the remaining
+actual-browser, installed-desktop/IME and independent linguistic review steps.
 The original integration assessment used the CrispStrobe fork at
 [`f383c826205e321eda3ed3bdbcd584e9a2d4da14`](https://github.com/CrispStrobe/quds_office_suite/tree/f383c826205e321eda3ed3bdbcd584e9a2d4da14);
 earlier findings about the much smaller public upstream are not the fork's
