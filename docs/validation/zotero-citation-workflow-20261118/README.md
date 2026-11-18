@@ -43,34 +43,65 @@ for the complete flow and its distinction from native document-wide CSL
 formatting. These additions complement the existing Zotero desktop picker,
 style, bibliography and refresh integration.
 
-## Local validation status
+## Completed local validation
 
-Zotero integration source: **`3668ed92829dfa012ec5b129943a86738ebb7992`**.
-All **348 editor Zotero tests across 26 suites pass**, including **49 new cases**
-counted once. Actual Flutter exit is zero. Strict analysis and formatting pass
-for all eight Zotero Dart targets. All 374 machine starts finish once; 26
-loading/lifecycle cases and Flutter notifications are excluded from the total.
-There are no skips, failures, error events or overflow/missed-tap diagnostics.
+Qualified final source: **`40e92e5222a26db132f8be05126df285b4227a86`**.
+The [independent evidence audit](qualification-audit.md) verifies the two
+completed local runs against this source and independently recounts their raw
+events. Their suite sets are disjoint.
 
-All **562** recorded source inputs match the committed integration. Source,
-dependency, runtime and workspace before/after guards pass. The runtime is
-genuine Flutter 3.47.8 / Dart 3.13.7, with 162 SHA-256-verified hosted archives,
-11 unchanged manifests and the exact locked 110-package graph.
+| Accepted cohort | Suites | Passed | Failed / skipped | Actual process exit |
+| --- | ---: | ---: | ---: | ---: |
+| Complete editor Zotero | 26 | 348 | 0 / 0 | 0 |
+| Incoming editor review and proofing | 18 | 269 | 0 / 0 | 0 |
+| **Disjoint total** | **44** | **617** | **0 / 0** | |
 
-The separately selected incoming review/proofing cohort is undergoing its final
-rerun after two test-only repairs. Its first 18-suite attempt is retained under
-[incoming/attempt-1](incoming/attempt-1/summary.json): 262 passed, seven failed,
-zero skipped, actual process exit one. Six failures came from a helper trying
-to tap controls retained inside a collapsed filter tile. The seventh expected
-a temporary null selection that the new incremental proofing no longer needs.
-The repairs require real hit-testable interaction and verify immediate current
-revision/paragraph/caret binding while retaining rejection of the stale issue.
-No product implementation was changed to repair those tests. That unsuccessful
-attempt contributes nothing to the final passing count.
+The **49 new Zotero cases** are included once in the 348. All 374 Zotero and
+297 incoming machine starts finish exactly once. The totals exclude 26 Zotero
+and 28 incoming loading/lifecycle cases, plus Flutter process notifications.
+Both final streams end successfully with zero error events, parse failures,
+overflow or missed-tap diagnostics. Strict analysis and nonmutating formatting
+pass all **15 distinct Dart targets**: eight Zotero and seven incoming.
 
-The report will be updated with the completed incoming result and a final
-source/evidence binding before the PR is marked ready. Passing development
-runs overlap the final Zotero cohort and are not added to its count.
+The complete Zotero run executed on integration
+`3668ed92829dfa012ec5b129943a86738ebb7992`. All **562** of its recorded source
+inputs also match the final source. The incoming run executed on
+`40e92e5222a26db132f8be05126df285b4227a86` and records **550** source inputs.
+Their union contains **581 distinct paths**, all matching the final Git tree;
+shared records agree. Product code has not changed since the Zotero run.
+The later source changes only repair two incoming review test expectations and
+interaction helpers, which the final incoming cohort exercises.
+
+Source, dependency, runtime and workspace before/after guards pass. Executed
+runner and artifact hashes match the receipts. The runtime is genuine Flutter
+3.47.8 / Dart 3.13.7, with 162 SHA-256-verified hosted archives, 11 unchanged
+manifests and the exact locked 110-package graph. The incoming inventory also
+records the SDK's MaterialIcons font; the shared executable, dependency and
+workspace identities agree between runs.
+
+### Retained attempts and test repairs
+
+Two earlier full incoming runs failed and remain available in
+[attempt 1](incoming/attempt-1/summary.json) and
+[attempt 2](incoming/attempt-2/summary.json), with their exact runners, raw
+events and input fingerprints. Neither contributes to the passing total.
+The first recorded 262 passes and seven failures; the second recorded 261
+passes and eight failures. Both exited with code one.
+
+The incoming incremental proofing now rebinds a selected issue immediately when
+another paragraph changes. Its test now verifies the current revision, correct
+paragraph and stable caret, while retaining rejection of the stale issue.
+The filter test helper now opens a collapsed tile through its visible header,
+starts and advances the expansion animation, and requires hit-testable controls
+before each real tap. It reads expansion state but never forces the controller
+open. The filter suite retains every case and assertion; only the selection
+expectation changes as described above. No product code was changed to repair
+these tests. The final affected suites pass 9/9 and 13/13 respectively.
+
+Focused [helper development](incoming/development/README.md) preserves both the
+failed intermediate attempt and the successful 13-case attempt. Earlier
+[Zotero development](development/README.md), all focused runs, historical
+results and source review are excluded from the final acceptance totals.
 
 ## Incoming work and saved checkpoints
 
@@ -98,6 +129,13 @@ claim about later concurrent remote activity.
 | `ee88b8f8` | Initial reconciliation, runtime recovery and cited-source selection |
 | `d0598533` | Complete Zotero implementation, 49 regressions and user guide |
 | `3668ed92` | Three-parent merge of new review/main work and formatting normalization |
+| `00ac2edf` | Complete Zotero evidence, independent source review and initial incoming test repairs |
+| `40e92e52` | Final incoming helper repair and preserved failed/focused evidence; qualified source |
+
+The final evidence checkpoint adds the passing incoming run, independent
+qualification audit, this report and the artifact index. It changes no product
+or test source. The commit containing this report identifies that evidence
+checkpoint; the tested source remains the explicit commit above.
 
 Checkpoint updates are non-forced and require the expected remote branch head.
 Every checkpoint message carries `[skip ci]`. No GitHub Actions, workflow,
@@ -107,11 +145,19 @@ check or CI-status endpoint was queried, awaited, dispatched or rerun.
 
 - [Zotero machine summary](editor/summary.json), [raw events](editor/events.jsonl.gz)
   and [input fingerprints](editor/inputs.json.gz).
+- [Incoming machine summary](incoming/editor/summary.json),
+  [raw events](incoming/editor/events.jsonl.gz),
+  [input fingerprints](incoming/editor/inputs.json.gz) and
+  [runner output](incoming/runner.log).
+- [Independent qualification audit](qualification-audit.md), its
+  [machine-readable checks](qualification-audit.json),
+  [completed status](status.json) and [artifact index](index.json).
 - [Executed Zotero runner](editor/run_editor_zotero.py), selecting all
   `word_zotero*_test.dart` suites and requiring the four new suites.
 - [Incoming selection and controls](incoming/plan.md),
-  [incoming runner](incoming/run_incoming_editor.py), and
-  [retained first-run diagnosis](incoming/first-run.md).
+  [incoming runner](incoming/run_incoming_editor.py),
+  [first-run diagnosis](incoming/first-run.md) and
+  [second-run diagnosis](incoming/second-run.md).
 - [Runtime recovery](runtime/README.md) and verified setup bundle.
 - [Independent review](independent-review.md), including the resolved error
   boundaries for oversized alias catalogs and oversized combined citations.
@@ -129,7 +175,8 @@ python quds_office_suite/docs/validation/zotero-citation-workflow-20261118/edito
   --output fresh-zotero-results
 ```
 
-The incoming runner additionally requires `--source-commit` for its frozen
+The incoming runner additionally requires
+`--source-commit 40e92e5222a26db132f8be05126df285b4227a86` for its frozen
 qualification source. Both runners preserve existing output directories,
 capture actual process exits and raw events, require complete suite/start/end
 accounting, and guard source, dependency, runtime and workspace inputs.
