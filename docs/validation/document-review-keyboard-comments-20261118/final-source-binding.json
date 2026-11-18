@@ -1,0 +1,34 @@
+{
+  "tested_source_commit": "6c88efed8de24951ef640f79af64b8df6097b248",
+  "tested_source_tree": "d1425163a0560ec60ad7481d5c0efb51d2103b85",
+  "source_file_count": 629,
+  "manifest": "accepted/source-after.json",
+  "manifest_sha256": "94dbff715c66869fc96a0c324884314a0e17204e6a802c6d4db3dfac8cc36310",
+  "source_mismatches": [],
+  "environment_manifest": "accepted/environment-after.json",
+  "environment_manifest_sha256": "0fac9f6a847f962fdae339272db62fb8c78ce66aa64bc44efb8b138a2d335304",
+  "runtime_unchanged_during_checks": true,
+  "visual_bindings": [
+    {
+      "record": "comments-verification.json",
+      "verified_source_files": 2,
+      "verified_screenshots": 4,
+      "mismatches": []
+    },
+    {
+      "record": "keyboard-visual-verification.json",
+      "verified_source_files": 7,
+      "verified_screenshots": 2,
+      "mismatches": []
+    }
+  ],
+  "integrated_remote_parents": [
+    "785f4694b6afb9904ed496b7b50ef05cc099c32b",
+    "1cdedeebcae9c4fd1a50a7bfea6f487af5bb688c",
+    "a40a26663f7a2c6b7fb8de91540fd04b9875ed9c",
+    "decde7792890bf4724c91403fbb6528d8423b01e"
+  ],
+  "all_integrated_parents_ancestors_of_tested_source": true,
+  "github_actions_queried_or_awaited": false,
+  "note": "Verified after final documentation/evidence assembly. Subsequent publication updates are constrained to documentation/evidence; all recorded source/test/manifest/font/runner hashes are rechecked before delivery."
+}

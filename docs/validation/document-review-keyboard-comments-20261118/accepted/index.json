@@ -1,0 +1,70 @@
+{
+  "archive": "evidence.tar.xz",
+  "archive_sha256": "7f39393d99774aba852c3adf7509260803d2ecae5dd90121910b5e627d4dc8f5",
+  "files": {
+    "checks/analysis.log": {
+      "bytes": 479,
+      "sha256": "07c948ca298926bdd0013edd8ee84fdcef14bcbd99dda69e28fb59bb34512925"
+    },
+    "checks/editor-cases.json": {
+      "bytes": 107356,
+      "sha256": "3f85d8da9078509d0207354c0b86a00cec6a1e835dbd45a592aed19258304993"
+    },
+    "checks/editor-errors.json": {
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    "checks/editor.jsonl": {
+      "bytes": 202265,
+      "sha256": "8dc93afd5286023288efafd6c3f198f686c5206498d432703554e89990d9ee8c"
+    },
+    "checks/editor.jsonl.gz": {
+      "bytes": 19298,
+      "sha256": "59ac3d3e11c264b784188e6eb44c1ac1d534ab668b4597964fffe9d50991d383"
+    },
+    "checks/format.log": {
+      "bytes": 48,
+      "sha256": "8ee012539e81f50411695c1fe8dc90f28b2cd484dc1d114abc8e8bbbd2f42257"
+    },
+    "checks/studio-cases.json": {
+      "bytes": 9323,
+      "sha256": "2d6ccec1e7b38c4fab9f38d98dd42ae3f345c1584afcd975cad2c93cef100629"
+    },
+    "checks/studio-errors.json": {
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    "checks/studio.jsonl": {
+      "bytes": 19759,
+      "sha256": "ed88e921f35b563b965920d91d76cf47735c09c15c212d0378e151f5c4f9a064"
+    },
+    "checks/studio.jsonl.gz": {
+      "bytes": 2327,
+      "sha256": "3a1364a58347f5305f687d278d502ca370088e16543bf01c1ce06039d125937a"
+    },
+    "checks/whitespace.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "environment-after.json": {
+      "bytes": 1083,
+      "sha256": "0fac9f6a847f962fdae339272db62fb8c78ce66aa64bc44efb8b138a2d335304"
+    },
+    "environment-before.json": {
+      "bytes": 1083,
+      "sha256": "0fac9f6a847f962fdae339272db62fb8c78ce66aa64bc44efb8b138a2d335304"
+    },
+    "source-after.json": {
+      "bytes": 86717,
+      "sha256": "94dbff715c66869fc96a0c324884314a0e17204e6a802c6d4db3dfac8cc36310"
+    },
+    "source-before.json": {
+      "bytes": 86717,
+      "sha256": "94dbff715c66869fc96a0c324884314a0e17204e6a802c6d4db3dfac8cc36310"
+    },
+    "verification.json": {
+      "bytes": 15356,
+      "sha256": "ea3e93547ec8b9a58bbac3f73fc9e46a5dab1fbc243f9833b1074fe12ac67d6e"
+    }
+  }
+}
