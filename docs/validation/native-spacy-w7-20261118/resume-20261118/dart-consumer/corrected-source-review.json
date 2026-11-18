@@ -1,0 +1,47 @@
+{
+  "additional_actionable_findings": [],
+  "driver_sha256": "cecbc3a4c52dc8880c9eae7add5a925b0c74660e9d1ba1aee7aaae0ffe02cdf6",
+  "limitations": [
+    "Worker repeat and lifecycle assertions are supported by the authenticated executed driver and recorded outcomes; separate repeat-result arrays are not retained for independent recomparison.",
+    "This repeats the same eight operational inputs and adds no distinct linguistic-quality cases.",
+    "No claim is established for another platform/device, Flutter UI behavior or interruption of physical native computation."
+  ],
+  "public_report_sha256": "10f56d4dca10291e7b7bd7db5f9761749bebfc5652057036ace726dfefb58a68",
+  "raw_report_sha256": "71a758b47c925ca6b9add1b99bbc0052d81259366ea8a2f2721fa6945c6b3db5",
+  "reviewer_actions": {
+    "ci_queries": false,
+    "native_execution": false,
+    "source_or_evidence_edits": false,
+    "tests_rerun": false
+  },
+  "schema": "quds.spacy.w7.dart_consumer_independent_review.v1",
+  "source_commit": "71e87486489200f7e259594d2967bba8c0682143",
+  "status": "passed",
+  "verified": {
+    "additional_control_requests": 5,
+    "all_eight_saved_results_equal_first_run_ignoring_timing": true,
+    "exit_code": 0,
+    "external_timeout_reached": false,
+    "frozen_dependency_matches": "All six identities match in preflight, initial mappings and final mappings.",
+    "independently_recomputed_sentence_coordinates": 12,
+    "independently_recomputed_token_coordinates": 75,
+    "nonzero_utf16_origin": 10,
+    "operational_cases": 8,
+    "original_first_report_unchanged": true,
+    "proper_source_labels_and_verified_hashes": 38,
+    "quds_library_blobs_verified_at_published_commit": 14,
+    "raw_to_public_changes_only_declared_redactions": true,
+    "recorded_elapsed_seconds": 2.4863879680633545,
+    "recorded_worker_controls_passed": [
+      "same-worker repeat",
+      "unsupported de-AT",
+      "caller cancellation",
+      "awaited and idempotent disposal",
+      "disposed-worker rejection",
+      "copied-result stability after disposal",
+      "immutable returned token collection",
+      "reopened-worker repeat"
+    ],
+    "sources_before_after_equal": true
+  }
+}

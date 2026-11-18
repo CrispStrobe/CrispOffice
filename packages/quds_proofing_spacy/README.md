@@ -17,13 +17,18 @@ reports unavailable. The engine has no Flutter or native dependency.
 
 ## Explicit local installation
 
-Build/install the standalone target as documented in
-[CrispEmbed tools/spacy](https://github.com/CrispStrobe/CrispEmbed/blob/feat/native-spacy-20261117/tools/spacy/README.md).
-Use the frozen model converter to create the five-file bundle. Keep the native
-library and its dependencies/notices installed immutably, placing the library
-inside a directory named by its SHA-256. Supply that hash from a trusted build
-receipt. The bundle's original wheel/model/resource/manifest and notice hashes
-are fixed in `bundle.dart`; an adjacent manifest cannot change the trusted pins.
+For the qualified Linux candidate, use the [W7 immutable package and installation
+procedure](../../../docs/validation/native-spacy-w7-20261118/CONTINUE.md). Its
+original native/header/notices and five-file model bundle are authenticated by
+external hashes, installed atomically, and verified as a complete immutable
+tree. The actual installed worker is qualified on this exact candidate and six
+external dependency builds. Portable rebuilds and other devices require separate
+qualification; do not substitute rebuilt bytes into the retained result.
+
+The native library lives inside a directory named by its SHA-256. The bundle's
+original wheel/model/resource/manifest and notice hashes remain fixed in
+`bundle.dart`; an adjacent manifest cannot change the trusted pins. Build and
+conversion details remain in [CrispEmbed tools/spacy](https://github.com/CrispStrobe/CrispEmbed/blob/feat/native-spacy-w7-20261118/tools/spacy/README.md).
 
 The host must set `CRISPEMBED_SPACY=1` before starting its process. This adapter
 does not change environment variables, download files, start subprocesses,
