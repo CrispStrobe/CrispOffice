@@ -59,6 +59,111 @@ def package_name(manifest):
     return names[0]
 
 
+def lock_scalar(value):
+    """Read scalar strings emitted by pub's lockfile writer, without YAML dependencies."""
+    value = value.strip()
+    if value.startswith('"'):
+        result = json.loads(value)
+        require(isinstance(result, str), 'Expected a lockfile string')
+        return result
+    if value.startswith("'"):
+        require(value.endswith("'"), 'Unclosed lockfile string')
+        return value[1:-1].replace("''", "'")
+    require(re.fullmatch(r'[A-Za-z0-9_./-]+', value) is not None,
+            'Unsupported lockfile scalar: ' + value)
+    return value
+
+
+def locked_path_dependencies(repo):
+    """Read repository-relative path entries from pub's generated lock format."""
+    blocks = {}
+    active = False
+    current = None
+    for line in (repo / 'pubspec.lock').read_text().splitlines():
+        if line in ('packages:', 'packages: {}'):
+            require(not active, 'Repeated lockfile packages declaration')
+            active = True
+            continue
+        if not active or not line.strip() or line.lstrip().startswith('#'):
+            continue
+        if not line[0].isspace():
+            break
+        match = re.fullmatch(r'  ([a-z_][a-z0-9_]*):', line)
+        if match:
+            current = match[1]
+            require(current not in blocks, 'Duplicate locked dependency: ' + current)
+            blocks[current] = []
+        else:
+            require(current is not None and line.startswith('    '),
+                    'Unsupported lockfile package declaration: ' + line)
+            blocks[current].append(line)
+    require(active, 'Lockfile has no packages declaration')
+    result = {}
+    for name, lines in blocks.items():
+        block = '\n'.join(lines)
+        sources = re.findall(r'^    source: (.+)$', block, re.M)
+        require(len(sources) == 1, 'Expected one locked dependency source: ' + name)
+        if lock_scalar(sources[0]) != 'path':
+            continue
+        paths = re.findall(r'^      path: (.+)$', block, re.M)
+        relatives = re.findall(r'^      relative: (.+)$', block, re.M)
+        require(len(paths) == len(relatives) == 1 and relatives[0].strip() == 'true',
+                'Locked path dependency must be repository-relative: ' + name)
+        relative = lock_scalar(paths[0])
+        path = PurePosixPath(relative)
+        require(not path.is_absolute() and path.parts and '..' not in path.parts
+                and str(path) == relative and relative != '.',
+                'Noncanonical locked dependency path: ' + name)
+        require((repo / relative).resolve().is_relative_to(repo),
+                'Locked dependency path escapes the checkout: ' + name)
+        result[name] = relative
+    return result
+
+
+def vendor_inventory(root):
+    """Include package source/data and manifest; omit generated pub/build state."""
+    result = {}
+    for path in sorted(root.rglob('*')):
+        relative = path.relative_to(root)
+        if relative.parts[0] in GENERATED - {'pubspec.yaml'}:
+            continue
+        if path.is_file():
+            result[relative.as_posix()] = record(path)
+    return result
+
+
+def validate_locked_paths(repo, workspace, config_path, packages, local_names):
+    roots, records = {}, {}
+    for name, relative in locked_path_dependencies(repo).items():
+        require(name not in local_names, 'Locked dependency duplicates a workspace package: ' + name)
+        require(name in packages, 'Locked path dependency missing from configuration: ' + name)
+        expected = (repo / relative).resolve()
+        entry = packages[name]
+        root = resolve_uri(config_path.parent, entry.get('rootUri'))
+        require(root in {expected, (workspace / relative).resolve()}
+                and (root.is_relative_to(repo) or root.is_relative_to(workspace)),
+                'Locked path dependency resolves to another checkout: ' + name)
+        require(expected.is_dir() and root.is_dir(), 'Missing locked path dependency: ' + name)
+        require(package_name(expected / 'pubspec.yaml') == name,
+                'Locked path dependency manifest name differs: ' + name)
+        require(not (expected / 'pubspec_overrides.yaml').exists()
+                and not (root / 'pubspec_overrides.yaml').exists(),
+                'Locked path dependency overrides are not qualified: ' + name)
+        library = resolve_uri(root, entry.get('packageUri'))
+        require((expected / 'lib').is_dir() and library == (root / 'lib').resolve()
+                and (library.is_relative_to(repo) or library.is_relative_to(workspace)),
+                'Locked dependency library does not resolve to its lib directory: ' + name)
+        source_records = vendor_inventory(expected)
+        # Separate workspaces may copy vendored packages instead of linking
+        # them. Every source/data byte must still match, both before and after.
+        require(source_records == vendor_inventory(root),
+                'Locked dependency source differs from the checkout: ' + name)
+        records.update({relative + '/' + path: value for path, value in source_records.items()})
+        roots[name] = {'root': str(root), 'library': str(library), 'source': str(expected),
+                       'locked_path': relative, 'mode': 'live' if root == expected else 'verified_copy'}
+    return roots, records
+
+
 def resolve_uri(base, value):
     require(isinstance(value, str) and value, 'Package configuration URI is missing')
     uri = urlparse(value)
@@ -141,6 +246,8 @@ def snapshot_sources(repo, workspace):
             require(not (root / 'lib').exists() and library == (root / 'lib').resolve(),
                     'Workspace package gained an unqualified library: ' + name)
         roots[name] = {'root': str(root), 'library': str(library), 'source': str(expected)}
+    vendor_roots, vendor_records = validate_locked_paths(repo, workspace, config_path, packages, names)
+    roots.update(vendor_roots)
     # Include every verified source child, not just conventional lib/assets
     # folders: tests and package manifests may refer to fonts, native sources,
     # example fixtures or other package-relative files.
@@ -156,9 +263,11 @@ def snapshot_sources(repo, workspace):
         if (repo / name).is_file():
             files.add(repo / name)
     result = {path.relative_to(repo).as_posix(): record(path) for path in sorted(files)}
+    result.update(vendor_records)
     result['__workspace_lock__'] = record(workspace / 'pubspec.lock')
     result['__workspace_package_config__'] = record(config_path)
     result['__workspace_binding__'] = {
         'schema': SCHEMA, 'package_roots': dict(sorted(roots.items())), 'source_links': links,
+        'locked_path_dependencies': vendor_roots,
     }
     return result

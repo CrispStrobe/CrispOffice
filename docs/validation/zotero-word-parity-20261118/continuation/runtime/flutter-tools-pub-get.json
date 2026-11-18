@@ -1,0 +1,18 @@
+{
+  "command": [
+    "/workspace/scratch/55eaa121d5ad/runtime-recovery/flutter/bin/cache/dart-sdk/bin/dart",
+    "pub",
+    "get",
+    "--offline",
+    "--enforce-lockfile",
+    "--example"
+  ],
+  "cwd": "/workspace/scratch/55eaa121d5ad/runtime-recovery/flutter/packages/flutter_tools",
+  "exit_code": 0,
+  "tool_manifest_sha256_before": "16adc154e94044c70ea2da3bb6813090806088155e48240613d60bef45f1f31f",
+  "tool_manifest_sha256_after": "16adc154e94044c70ea2da3bb6813090806088155e48240613d60bef45f1f31f",
+  "tool_lock_sha256_before": "6a98afb61c0cc72f31631ab444932f072fd275aa04d56cde2bf6831ba02fc8f8",
+  "tool_lock_sha256_after": "6a98afb61c0cc72f31631ab444932f072fd275aa04d56cde2bf6831ba02fc8f8",
+  "package_config_sha256": "8d6136dbc34e200b9789cabf5f1b06e7da141a3d1d82462011309a0baa9267bb",
+  "log_sha256": "1d361b8bffb98cac0cc78a00cf4408c97e5f63fd2e3c42e6836e24ac9453123a"
+}

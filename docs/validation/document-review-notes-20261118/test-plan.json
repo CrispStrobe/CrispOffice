@@ -1,5 +1,5 @@
 {
-  "description": "Pending sequential acceptance plan for integrated Notes/header review. No pass result is implied by this plan. Restore runtime, finish source formatting, commit source, then run.",
+  "description": "Sequential acceptance plan for integrated Notes/header review and incoming Mail/Zotero/thesaurus work. No pass result is implied by this plan. Restore the pinned runtime including the verified dart2js compiler for the Node group, finish source formatting, commit source, then run.",
   "groups": [
     {
       "name": "engine-review-and-incoming-zotero",
@@ -104,9 +104,20 @@
       "tests": [
         "test/adversarial_store_test.dart",
         "test/codec_test.dart",
+        "test/crash_recovery_test.dart",
+        "test/migration_test.dart",
         "test/native_platform_test.dart",
         "test/platform_configuration_test.dart",
         "test/repository_test.dart"
+      ]
+    },
+    {
+      "name": "incoming-mail-browser-problems",
+      "cwd": "packages/quds_mail_store",
+      "runner": "dart",
+      "platform": "node",
+      "tests": [
+        "test/browser_problem_test.dart"
       ]
     },
     {
@@ -117,6 +128,12 @@
         "test/message_view_test.dart"
       ]
     }
+  ],
+  "extra_inputs": [
+    "docs/validation/document-review-notes-20261118/test_run_checks.py",
+    "tools/mail/check_store.py",
+    "tools/mail/check_reader.py",
+    "tools/mail/test_check_store.py"
   ],
   "analysis": "changed",
   "format": "changed"

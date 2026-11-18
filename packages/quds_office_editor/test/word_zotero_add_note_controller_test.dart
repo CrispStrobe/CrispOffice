@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -192,6 +193,38 @@ String _state(WmlDocument document) => jsonEncode({
   ],
   'preferences': WordZoteroDocumentData.read(document),
 });
+
+String? _numberingXml(WmlDocument document) {
+  final package = document.package;
+  if (package == null) return null;
+  final relationships = package.relationshipsFor('/word/document.xml');
+  final relationship = relationships.firstByType(RelationshipTypes.numbering);
+  return relationship == null
+      ? null
+      : package.getPart(relationships.resolve(relationship))?.readText();
+}
+
+List<Object?> _listProperties(WmlParagraph paragraph) => [
+  paragraph.properties.numId,
+  paragraph.properties.ilvl,
+  paragraph.properties.listLabel,
+  paragraph.properties.listRestart,
+  paragraph.properties.numberingSuppressed,
+];
+
+List<String> _citationsInReadingOrder(WmlDocument document) {
+  final session = WordZoteroCitingSession(
+    document: document,
+    documentId: 'list-reading-order',
+  );
+  final fields =
+      session.handle('Document.getFields', ['list-reading-order', 'Http'])!
+          as List<Object?>;
+  return fields
+      .cast<Map<String, Object>>()
+      .map((f) => f['text']! as String)
+      .toList();
+}
 
 typedef _Step = Map<String, Object?> Function(_Desktop desktop);
 
@@ -513,6 +546,182 @@ void main() {
     ]);
     expect(controller.canUndo, isFalse);
   });
+
+  for (final noteType in [0, 1, 2]) {
+    test(
+      'cited research lists retain numbering and one-step undo for style $noteType',
+      () {
+        final controller = _controller();
+        final document = controller.document;
+        final original = document.paragraphs.first;
+        final before = _state(document);
+        final transaction = _begin(controller);
+        _stageCitedNote(
+          transaction,
+          noteType: noteType,
+          html:
+              '<ul><li>Quote $_firstPlaceholder</li></ul>'
+              '<ol start="4"><li>Conclusion $_secondPlaceholder</li>'
+              '<li><b>Continue</b></li></ol>',
+        );
+        _complete(transaction);
+        expect(_numberingXml(document), isNull);
+        expect(_state(document), before);
+        transaction.apply();
+        final paragraphs = document.paragraphs.toList();
+        expect(paragraphs.map((p) => p.text).first, 'Before');
+        expect(paragraphs[4].text, 'After');
+        expect(paragraphs[5].text, 'Unrelated');
+        expect(paragraphs.first.properties.numId, isNull);
+        expect(paragraphs[4].properties.numId, isNull);
+        expect(paragraphs[1].properties.listLabel?.trim(), '•');
+        expect(paragraphs[2].properties.listLabel?.trim(), '4.');
+        expect(paragraphs[3].properties.listLabel?.trim(), '5.');
+        expect(_citationsInReadingOrder(document), [
+          '(First, 2024)',
+          '(Second, 2025)',
+        ]);
+        expect(controller.caret.paragraphIndex, 3);
+        expect(controller.caret.logicalIndex, 'Continue'.length);
+        final after = _state(document);
+        final lists = paragraphs.skip(1).take(3).map(_listProperties).toList();
+        final numbering = _numberingXml(document);
+        expect(numbering, isNotNull);
+        controller.undo();
+        expect(_state(document), before);
+        expect(document.paragraphs.first, same(original));
+        expect(_numberingXml(document), isNull);
+        expect(controller.caret.logicalIndex, 6);
+        expect(controller.canUndo, isFalse);
+        controller.redo();
+        expect(_state(document), after);
+        expect(document.paragraphs.skip(1).take(3).map(_listProperties), lists);
+        expect(_numberingXml(document), numbering);
+        final reopened = WordDeserializer().readBytes(
+          WordSerializer().writeBytes(document),
+        );
+        final reopenedLists = reopened.paragraphs.skip(1).take(3).toList();
+        expect(reopenedLists.map((p) => p.properties.listLabel?.trim()), [
+          '•',
+          '4.',
+          '5.',
+        ]);
+        expect(_citationsInReadingOrder(reopened), [
+          '(First, 2024)',
+          '(Second, 2025)',
+        ]);
+        expect(WordZotero.fields(reopened).every((f) => f.canEdit), isTrue);
+        expect(reopened.footnotes, hasLength(noteType == 1 ? 2 : 0));
+        expect(reopened.endnotes, hasLength(noteType == 2 ? 2 : 0));
+      },
+    );
+  }
+
+  test(
+    'research-list history preserves imported numbering and unrelated package data after save',
+    () {
+      final document = _document();
+      final authored = document.paragraphs.last;
+      WordLists.applyLevel(authored, numbered: true, document: document);
+      final controller = _controller(document: document);
+      final beforeNumbering = _numberingXml(document);
+      final authoredList = _listProperties(authored);
+      final transaction = _begin(controller);
+      _insertText(transaction, '<ol start="3"><li>New</li><li>Next</li></ol>');
+      _complete(transaction);
+      transaction.apply();
+      final insertedId = document.paragraphs.elementAt(1).properties.numId;
+      expect(insertedId, isNot(authored.properties.numId));
+      final afterNumbering = _numberingXml(document);
+      WordSerializer().writeBytes(document);
+      final package = document.package!;
+      final payload = Uint8List.fromList([7, 11, 13]);
+      package.createPart(
+        '/word/media/preserved.bin',
+        'application/octet-stream',
+        payload,
+      );
+      final related = package
+          .relationshipsFor('/word/document.xml')
+          .add(type: RelationshipTypes.image, target: 'media/preserved.bin');
+      controller.undo();
+      expect(_numberingXml(document), beforeNumbering);
+      expect(_listProperties(authored), authoredList);
+      expect(
+        package.getPart('/word/media/preserved.bin')!.readBytes(),
+        payload,
+      );
+      expect(
+        package.relationshipsFor('/word/document.xml').byId(related.id),
+        same(related),
+      );
+      controller.redo();
+      expect(_numberingXml(document), afterNumbering);
+      expect(_listProperties(authored), authoredList);
+      expect(
+        package.getPart('/word/media/preserved.bin')!.readBytes(),
+        payload,
+      );
+      expect(
+        package.relationshipsFor('/word/document.xml').byId(related.id),
+        same(related),
+      );
+      final reopened = WordDeserializer().readBytes(
+        WordSerializer().writeBytes(document),
+      );
+      expect(
+        reopened.paragraphs.elementAt(1).properties.listLabel?.trim(),
+        '3.',
+      );
+      expect(
+        reopened.paragraphs.elementAt(2).properties.listLabel?.trim(),
+        '4.',
+      );
+      expect(reopened.paragraphs.last.properties.listLabel?.trim(), '1.');
+    },
+  );
+
+  test(
+    'redo allocates a numbering relationship without overwriting a reused ID',
+    () {
+      final controller = _controller();
+      final document = controller.document;
+      final transaction = _begin(controller);
+      _insertText(transaction, '<ol><li>Research</li></ol>');
+      _complete(transaction);
+      transaction.apply();
+      final package = document.package!;
+      final relationships = package.relationshipsFor('/word/document.xml');
+      final formerId = relationships
+          .firstByType(RelationshipTypes.numbering)!
+          .id;
+      controller.undo();
+      expect(relationships.byId(formerId), isNull);
+      final unrelated = relationships.add(
+        id: formerId,
+        type: RelationshipTypes.hyperlink,
+        target: 'https://example.org/preserved',
+        targetMode: RelationshipTargetMode.external,
+      );
+      controller.redo();
+      expect(relationships.byId(formerId), same(unrelated));
+      expect(
+        relationships.firstByType(RelationshipTypes.numbering)!.id,
+        isNot(formerId),
+      );
+      expect(
+        document.paragraphs.elementAt(1).properties.listLabel?.trim(),
+        '1.',
+      );
+      final reopened = WordDeserializer().readBytes(
+        WordSerializer().writeBytes(document),
+      );
+      expect(
+        reopened.paragraphs.elementAt(1).properties.listLabel?.trim(),
+        '1.',
+      );
+    },
+  );
 
   for (final endnote in [false, true]) {
     test(

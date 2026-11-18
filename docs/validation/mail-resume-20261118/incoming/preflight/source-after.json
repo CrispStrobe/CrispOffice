@@ -1,0 +1,18 @@
+{
+  "packages/quds_office_editor/example/lib/suite_workspace.dart": "b89df7aad7f8ccb17e20597fdd6e6a6528499b510f0371d945759f6bd895cb77",
+  "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart": "eabbb24ec43a3f62754245423de03314536d9cbac2ebbaa801c792883cda4e68",
+  "packages/quds_office_editor/lib/src/editor_word/render_word_canvas.dart": "180218eaa3404aa8c62a3afe7c2a3339fa7a806316c76984e14e0a06bda392c2",
+  "packages/quds_office_editor/lib/src/embed/office_controller.dart": "52ca0fad209bc7e144f74230fe92d2e35b6d8239217cc0bedf651146c07e971b",
+  "packages/quds_office_editor/lib/src/embed/word_notes_pane.dart": "8f394b0564df5d9de3a311fb7c36992d37df7fb6d58e92631372d6676eaf68f8",
+  "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart": "df9d24fd18efad8555763b2f820f8d268f740cbcae910fc99a147511a31fa26b",
+  "packages/quds_office_editor/lib/src/proofing/word_proofing.dart": "e3c2a350b59d83678aa7f3d0a35512bfc3b92396cfa0283f2f3fd8e537cbd0c7",
+  "packages/quds_office_editor/test/word_header_footer_navigation_test.dart": "7a3ada3bf5e1e09dead70dfe05cc61f942af0ffb4f41d1a1df661d7cd5638dba",
+  "packages/quds_office_editor/test/word_live_review_selection_test.dart": "68ce71cf8d5b3acae8b091cf6c550800bc604318d063b2e040b59858558278e0",
+  "packages/quds_office_editor/test/word_notes_proofing_controller_test.dart": "d6361953391ccdfae5a9f447ebb4fe23182f5b2636d438705d71b932015c3905",
+  "packages/quds_office_editor/test/word_notes_proofing_pane_test.dart": "e74797c39115ebb697d1c62ebb26d0f04735c90a06475064e3f93c3c7254bbeb",
+  "packages/quds_office_editor/test/word_review_controller_test.dart": "2e74f22c775d487bb8e8599132e43ca93fa9fdabf0dc9744a05654312ea815d4",
+  "packages/quds_office_editor/test/word_zotero_direct_command_test.dart": "9bbbe01480705458d240f30a96b32f75bd0d33a3475e2ded64aa8788593c02b3",
+  "packages/quds_office_editor/test/word_zotero_navigation_test.dart": "48f30f13a3404ddbd6589008cb927cf2a7b26639b11b3fde475691778dfe498a",
+  "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart": "154d32c4f43bacc1bc41a91e3eb98928569985145250f7c05f6e18c6611f8c71",
+  "packages/quds_office_engine/test/word_zotero_add_note_test.dart": "deb965b0de7d03697b85028a114badbda492aadd83d20d605da857cc2ba4f213"
+}

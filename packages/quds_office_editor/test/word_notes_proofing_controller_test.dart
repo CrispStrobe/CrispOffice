@@ -449,6 +449,10 @@ void main() {
         'ordinary',
         'manual',
       ]);
+      expect(captured.map((issue) => issue.finding.originalText), [
+        'Feler',
+        'Gramatik',
+      ]);
       final ordinaryCalls = ordinary.requests.length;
       final manualCalls = manual.requests.length;
       final beforeCommit = controller.contentRevision;
@@ -587,73 +591,86 @@ void main() {
     expect(controller.canUndo, isFalse);
   });
 
-  test(
-    'note IME blocks correction and reveals before committing pending text',
-    () async {
-      final fixture = _fixture(text: 'Before');
-      final controller = fixture.controller;
-      final note = fixture.note;
-      final body = controller.document.paragraphs.single;
-      final revision = WordRevisions.record(
-        controller.document,
-        kind: WmlRevisionKind.insert,
-        paragraph: body,
-        paragraphIndex: 0,
-        start: 0,
-        end: 4,
-        text: 'Body',
-        author: 'Reviewer',
-      );
-      controller.setNoteText(note, 'Feler typed');
-      final issue = await _issue(controller, note);
-      controller.setNoteEditingTarget(
-        note,
-        const TextSelection.collapsed(offset: 5),
-        composing: const TextRange(start: 0, end: 5),
-      );
-      final contentRevision = controller.contentRevision;
-      final target = controller.noteEditingTarget;
-      final focus = controller.noteFocusRequest;
-      expect(controller.canApplyProofingSuggestions, isFalse);
-      expect(controller.applyProofingSuggestion(issue, 'Fehler'), isFalse);
-      expect(controller.revealProofingIssue(issue), isFalse);
-      expect(controller.revealRevision(revision), isFalse);
-      expect(controller.noteEditingTarget, target);
-      expect(controller.noteFocusRequest, focus);
-      expect(controller.contentRevision, contentRevision);
-      expect(controller.canUndo, isFalse);
+  for (final tracking in [false, true]) {
+    test(
+      'note IME blocks correction and reveals before committing pending text '
+      'with tracking $tracking',
+      () async {
+        final fixture = _fixture(text: 'Before');
+        final controller = fixture.controller;
+        final note = fixture.note;
+        final body = controller.document.paragraphs.single;
+        final revision = WordRevisions.record(
+          controller.document,
+          kind: WmlRevisionKind.insert,
+          paragraph: body,
+          paragraphIndex: 0,
+          start: 0,
+          end: 4,
+          text: 'Body',
+          author: 'Reviewer',
+        );
+        // Seeding the navigation target enables tracking; exercise both normal
+        // correction and preservation of tracked replacement spans after IME.
+        controller.document.trackRevisions = tracking;
+        controller.setNoteText(note, 'Feler typed');
+        final issue = await _issue(controller, note);
+        controller.setNoteEditingTarget(
+          note,
+          const TextSelection.collapsed(offset: 5),
+          composing: const TextRange(start: 0, end: 5),
+        );
+        final contentRevision = controller.contentRevision;
+        final target = controller.noteEditingTarget;
+        final focus = controller.noteFocusRequest;
+        expect(controller.canApplyProofingSuggestions, isFalse);
+        expect(controller.applyProofingSuggestion(issue, 'Fehler'), isFalse);
+        expect(controller.revealProofingIssue(issue), isFalse);
+        expect(controller.revealRevision(revision), isFalse);
+        expect(controller.noteEditingTarget, target);
+        expect(controller.noteFocusRequest, focus);
+        expect(controller.contentRevision, contentRevision);
+        expect(controller.canUndo, isFalse);
 
-      controller.setNoteEditingTarget(
-        note,
-        const TextSelection.collapsed(offset: 5),
-      );
-      expect(controller.applyProofingSuggestion(issue, 'Fehler'), isTrue);
-      // Recording the body revision enabled tracking. The correction must
-      // retain the deleted source and inserted replacement as distinct spans.
-      expect(controller.document.trackRevisions, isTrue);
-      expect(controller.noteEditText(note), 'FelerFehler typed');
-      final changes = controller.document.revisions
-          .where(
-            (change) => identical(
-              WordRevisions.resolveParagraph(controller.document, change),
-              note.paragraphs.single,
-            ),
-          )
-          .toList();
-      expect(changes.map((change) => change.kind), [
-        WmlRevisionKind.delete,
-        WmlRevisionKind.insert,
-      ]);
-      expect(changes.map((change) => change.text), ['Feler', 'Fehler']);
-      controller.undo();
-      expect(controller.noteEditText(note), 'Feler typed');
-      expect(controller.document.revisions, [revision]);
-      controller.undo();
-      expect(controller.noteEditText(note), 'Before');
-      expect(controller.document.revisions, [revision]);
-      expect(controller.canUndo, isFalse);
-    },
-  );
+        controller.setNoteEditingTarget(
+          note,
+          const TextSelection.collapsed(offset: 5),
+        );
+        expect(controller.applyProofingSuggestion(issue, 'Fehler'), isTrue);
+        expect(controller.document.trackRevisions, tracking);
+        expect(
+          controller.noteEditText(note),
+          tracking ? 'FelerFehler typed' : 'Fehler typed',
+        );
+        final changes = controller.document.revisions
+            .where(
+              (change) => identical(
+                WordRevisions.resolveParagraph(controller.document, change),
+                note.paragraphs.single,
+              ),
+            )
+            .toList();
+        if (tracking) {
+          // A tracked correction retains both deleted and inserted spans.
+          expect(changes.map((change) => change.kind), [
+            WmlRevisionKind.delete,
+            WmlRevisionKind.insert,
+          ]);
+          expect(changes.map((change) => change.text), ['Feler', 'Fehler']);
+        } else {
+          expect(changes, isEmpty);
+          expect(controller.document.revisions, [revision]);
+        }
+        controller.undo();
+        expect(controller.noteEditText(note), 'Feler typed');
+        expect(controller.document.revisions, [revision]);
+        controller.undo();
+        expect(controller.noteEditText(note), 'Before');
+        expect(controller.document.revisions, [revision]);
+        expect(controller.canUndo, isFalse);
+      },
+    );
+  }
 
   test('canvas IME also prevents retargeting review into a note', () async {
     final fixture = _fixture();
@@ -765,4 +782,264 @@ void main() {
     expect(controller.document.paragraphs.single.text, 'A useful word');
     expect(controller.canUndo, isFalse);
   });
+
+  for (final endnote in [false, true]) {
+    for (final hidden in [false, true]) {
+      test('Notes language maps reversed multiline UTF-16 selection '
+          '(endnote: $endnote, hidden separator: $hidden)', () {
+        final (:controller, :note) = _fixture(
+          endnote: endnote,
+          hiddenReferenceSpace: hidden,
+          text: '😀 Feler\nSecond line',
+        );
+        _bodyAt(controller, 4, anchor: 1);
+        const selection = TextSelection(baseOffset: 15, extentOffset: 3);
+        controller.setNoteEditingTarget(note, selection);
+        final target = controller.textProofingTarget!;
+        expect(target.canEdit, isTrue);
+        expect(target.isSelection, isTrue);
+        expect(target.language, 'de-DE');
+        expect(
+          controller.setTextProofingLanguage('en-US', target: target),
+          isTrue,
+        );
+        final first = note.paragraphs.first.inlines
+            .whereType<WmlRun>()
+            .toList();
+        final second = note.paragraphs.last.inlines
+            .whereType<WmlRun>()
+            .toList();
+        expect(first.map((run) => run.text), [
+          hidden ? ' 😀 ' : '😀 ',
+          'Feler',
+        ]);
+        expect(first.map((run) => run.properties.proofingLanguage), [
+          null,
+          'en-US',
+        ]);
+        expect(second.map((run) => run.text), ['Second', ' line']);
+        expect(second.map((run) => run.properties.proofingLanguage), [
+          'en-US',
+          null,
+        ]);
+        expect(
+          controller.document.paragraphs.single.inlines
+              .whereType<WmlRun>()
+              .every((run) => run.properties.proofingLanguage == null),
+          isTrue,
+        );
+        expect(controller.noteEditingTarget?.selection, selection);
+        expect(controller.caret.logicalIndex, 4);
+        expect(controller.caret.selectionAnchor, 1);
+        controller.undo();
+        expect(
+          note.allParagraphs
+              .expand((paragraph) => paragraph.inlines)
+              .whereType<WmlRun>()
+              .every((run) => run.properties.proofingLanguage == null),
+          isTrue,
+        );
+        expect(controller.canUndo, isFalse);
+        controller.redo();
+        expect(controller.textProofingTarget?.language, 'en-US');
+        expect(controller.noteEditingTarget?.selection, selection);
+      });
+    }
+  }
+
+  test(
+    'Notes paragraph checking excludes hidden separator and nested table',
+    () {
+      final (:controller, :note) = _fixture(text: 'Feler');
+      final tableParagraph = _paragraph('Table text');
+      note.blocks.add(
+        WmlTable(
+          rows: [
+            WmlTableRow(
+              cells: [
+                WmlTableCell(blocks: [tableParagraph]),
+              ],
+            ),
+          ],
+        ),
+      );
+      controller.setNoteEditingTarget(
+        note,
+        const TextSelection.collapsed(offset: 2),
+      );
+      final target = controller.textProofingTarget!;
+      expect(target.isSelection, isFalse);
+      expect(controller.setTextProofingEnabled(false, target: target), isTrue);
+      final runs = note.paragraphs.single.inlines.whereType<WmlRun>().toList();
+      expect(runs.map((run) => run.text), [' ', 'Feler']);
+      expect(runs.map((run) => run.properties.noProof), [null, true]);
+      expect(
+        tableParagraph.inlines.whereType<WmlRun>().single.properties.noProof,
+        isNull,
+      );
+      expect(
+        controller.document.paragraphs.single.inlines.whereType<WmlRun>().every(
+          (run) => run.properties.noProof == null,
+        ),
+        isTrue,
+      );
+      controller.undo();
+      expect(controller.textProofingTarget?.checkingEnabled, isTrue);
+      controller.redo();
+      expect(controller.textProofingTarget?.checkingEnabled, isFalse);
+    },
+  );
+
+  test('Notes text options retain native block protection', () {
+    final (:controller, :note) = _fixture();
+    final paragraphs = List<WmlParagraph>.of(note.paragraphs);
+    note.blocks
+      ..clear()
+      ..add(
+        WmlContentControlBlock(
+          control: WmlContentControlData(
+            xml:
+                '<w:sdt xmlns:w="${OfficeNamespaces.w}"><w:sdtPr>'
+                '<w:id w:val="42"/><w:lock w:val="contentLocked"/>'
+                '</w:sdtPr><w:sdtContent/></w:sdt>',
+            sourcePartUri: '/word/footnotes.xml',
+            relationships: const [],
+          ),
+          blocks: paragraphs,
+        ),
+      );
+    controller.setNoteEditingTarget(
+      note,
+      const TextSelection.collapsed(offset: 2),
+    );
+    final target = controller.textProofingTarget!;
+    expect(target.canEdit, isFalse);
+    expect(target.unavailableReason, contains('protected content control'));
+    expect(
+      controller.setTextProofingLanguage('en-US', target: target),
+      isFalse,
+    );
+    expect(controller.setTextProofingEnabled(false, target: target), isFalse);
+    expect(controller.canUndo, isFalse);
+  });
+
+  for (final change in ['selection', 'body', 'detach', 'composition']) {
+    test(
+      'retained Notes text options reject $change without changing the body',
+      () {
+        final (:controller, :note) = _fixture();
+        controller.setNoteEditingTarget(
+          note,
+          const TextSelection.collapsed(offset: 2),
+        );
+        final target = controller.textProofingTarget!;
+        switch (change) {
+          case 'selection':
+            controller.setNoteEditingTarget(
+              note,
+              const TextSelection.collapsed(offset: 3),
+            );
+          case 'body':
+            controller.clearNoteEditingTarget();
+          case 'detach':
+            controller.document.footnotes.remove(note);
+          case 'composition':
+            controller.setNoteEditingTarget(
+              note,
+              const TextSelection.collapsed(offset: 2),
+              composing: const TextRange(start: 0, end: 5),
+            );
+            expect(controller.textProofingTarget?.canEdit, isFalse);
+        }
+        expect(
+          controller.setTextProofingLanguage('en-US', target: target),
+          isFalse,
+        );
+        expect(
+          controller.setTextProofingEnabled(false, target: target),
+          isFalse,
+        );
+        expect(
+          controller.document.paragraphs.single.inlines
+              .whereType<WmlRun>()
+              .every(
+                (run) =>
+                    run.properties.proofingLanguage == null &&
+                    run.properties.noProof == null,
+              ),
+          isTrue,
+        );
+        expect(controller.canUndo, isFalse);
+        expect(controller.isDirty, isFalse);
+      },
+    );
+  }
+
+  test(
+    'committed Notes typing uses Notes text options instead of the body',
+    () {
+      final (:controller, :note) = _fixture(text: 'Before');
+      controller.setNoteText(note, 'Typed note');
+      controller.setNoteEditingTarget(
+        note,
+        const TextSelection.collapsed(offset: 5),
+      );
+      expect(controller.textProofingTarget, isNull);
+      controller.commitNoteEdit(note);
+      final target = controller.textProofingTarget!;
+      expect(
+        controller.setTextProofingLanguage('en-US', target: target),
+        isTrue,
+      );
+      expect(
+        note.paragraphs.single.inlines
+            .whereType<WmlRun>()
+            .where((run) => run.text.trim().isNotEmpty)
+            .every((run) => run.properties.proofingLanguage == 'en-US'),
+        isTrue,
+      );
+      controller.undo();
+      expect(controller.noteEditText(note), 'Typed note');
+      controller.undo();
+      expect(controller.noteEditText(note), 'Before');
+      expect(
+        controller.document.paragraphs.single.inlines.whereType<WmlRun>().every(
+          (run) => run.properties.proofingLanguage == null,
+        ),
+        isTrue,
+      );
+    },
+  );
+
+  test(
+    'clean manual coverage survives unchanged Notes history and debounce',
+    () async {
+      final ordinary = _NotesProvider('ordinary', findErrors: false);
+      final manual = _NotesProvider('manual', findErrors: false);
+      final (:controller, :note) = _fixture(
+        text: 'Before',
+        ordinary: ordinary,
+        manual: manual,
+      );
+      controller.proofing.enabled = true;
+      controller.setNoteText(note, 'A clean typed note');
+      await controller.checkDocumentProofing();
+      expect(controller.proofing.summary.complete, isTrue);
+      expect(controller.proofing.summary.issues, isEmpty);
+      final ordinaryCalls = ordinary.requests.length;
+      final manualCalls = manual.requests.length;
+      controller.commitNoteEdit(note);
+      expect(controller.proofing.summary.complete, isTrue);
+      expect(controller.proofing.summary.manualProvidersSkipped, isFalse);
+      await Future<void>.delayed(const Duration(milliseconds: 500));
+      expect(controller.proofing.summary.complete, isTrue);
+      expect(controller.proofing.summary.manualProvidersSkipped, isFalse);
+      expect(ordinary.requests, hasLength(ordinaryCalls));
+      expect(manual.requests, hasLength(manualCalls));
+      controller.setNoteText(note, 'A changed note needs a fresh check');
+      expect(controller.proofing.summary.complete, isFalse);
+      expect(controller.proofing.summary.manualProvidersSkipped, isTrue);
+      expect(manual.requests, hasLength(manualCalls));
+    },
+  );
 }

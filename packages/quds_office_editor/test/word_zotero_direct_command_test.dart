@@ -276,14 +276,20 @@ void main() {
       desktop.firstResponse!.complete();
       await _pump(tester);
       expect(find.byKey(_directKey), findsOneWidget);
-      expect(find.textContaining('could not be applied safely'), findsOneWidget);
+      expect(
+        find.textContaining('could not be applied safely'),
+        findsOneWidget,
+      );
       expect(fixture.controller.canUndo, isFalse);
       await _tap(tester, 'Return to document');
       expect(
         fixture.controller.input.composing,
         const TextRange(start: 0, end: 6),
       );
-      expect(fixture.controller.document.paragraphs.single.text, 'Before after');
+      expect(
+        fixture.controller.document.paragraphs.single.text,
+        'Before after',
+      );
       expect(fixture.controller.canUndo, isFalse);
     },
   );

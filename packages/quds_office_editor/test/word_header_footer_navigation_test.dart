@@ -4,7 +4,6 @@ import 'dart:ui' as ui;
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quds_office_editor/quds_office_editor.dart';
 
@@ -92,7 +91,9 @@ WordEditorController _controller(WmlDocument document, {_Provider? provider}) {
   final controller = WordEditorController(
     document: document,
     config: const OfficeSurfaceConfig(showRulers: false),
-    proofingService: OfficeProofingService(providers: [provider ?? _Provider()]),
+    proofingService: OfficeProofingService(
+      providers: [provider ?? _Provider()],
+    ),
   );
   addTearDown(controller.dispose);
   return controller;
@@ -139,10 +140,11 @@ void main() {
 
           expect(controller.applyProofingSuggestion(issue, 'Fehler'), isTrue);
           expect(paragraph.text, original.replaceFirst('Feler', 'Fehler'));
-          expect(
-            document.paragraphs.map((paragraph) => paragraph.text),
-            ['Body one', 'Body two', 'Body three'],
-          );
+          expect(document.paragraphs.map((paragraph) => paragraph.text), [
+            'Body one',
+            'Body two',
+            'Body three',
+          ]);
           for (final other in WordHeaderFooterVariant.values) {
             if (other == variant) continue;
             expect(
@@ -184,12 +186,19 @@ void main() {
           isTrue,
         );
         expect(
-          paragraphs[1].inlines.whereType<WmlRun>().first.properties.proofingLanguage,
+          paragraphs[1].inlines
+              .whereType<WmlRun>()
+              .first
+              .properties
+              .proofingLanguage,
           'en-US',
         );
         expect(
-          document.sections.single.header[1]
-              .inlines.whereType<WmlRun>().first.properties.proofingLanguage,
+          document.sections.single.header[1].inlines
+              .whereType<WmlRun>()
+              .first
+              .properties
+              .proofingLanguage,
           isNull,
         );
         controller.undo();
@@ -312,13 +321,19 @@ void main() {
         isFalse,
       );
       expect(
-        document.sections.single.firstHeader.first
-            .inlines.whereType<WmlRun>().first.properties.proofingLanguage,
+        document.sections.single.firstHeader.first.inlines
+            .whereType<WmlRun>()
+            .first
+            .properties
+            .proofingLanguage,
         isNull,
       );
       expect(
-        document.sections.single.evenHeader.first
-            .inlines.whereType<WmlRun>().first.properties.proofingLanguage,
+        document.sections.single.evenHeader.first.inlines
+            .whereType<WmlRun>()
+            .first
+            .properties
+            .proofingLanguage,
         isNull,
       );
       expect(controller.canUndo, isFalse);
@@ -348,11 +363,11 @@ void main() {
       expect(controller.caret.selectionAnchor, 2);
       expect(controller.caret.logicalIndex, 6);
       final reopened = WordDeserializer().readBytes(controller.saveBytes());
-      expect(reopened.sections.single.evenFooter[1].text, contains('New Feler'));
       expect(
-        reopened.sections.single.footer[1].text,
-        isNot(contains('New ')),
+        reopened.sections.single.evenFooter[1].text,
+        contains('New Feler'),
       );
+      expect(reopened.sections.single.footer[1].text, isNot(contains('New ')));
     },
   );
 
@@ -429,6 +444,119 @@ void main() {
       await tester.pumpWidget(const SizedBox.shrink());
     },
   );
+
+  for (final footer in [false, true]) {
+    testWidgets(
+      'selecting ${footer ? 'footer' : 'header'} paragraphs leaves body table cells unselected',
+      (tester) async {
+        final section = WmlSection(
+          pageSize: const WmlPageSize(width: 420, height: 360),
+          margins: const WmlPageMargins(
+            top: 90,
+            bottom: 80,
+            left: 48,
+            right: 48,
+            header: 24,
+            footer: 24,
+          ),
+          header: [_paragraph('First header'), _paragraph('Second header')],
+          footer: [_paragraph('First footer'), _paragraph('Second footer')],
+          blocks: [
+            WmlTable(
+              grid: [140, 140],
+              rows: [
+                WmlTableRow(
+                  cells: [
+                    WmlTableCell(blocks: [_paragraph('Left body cell')]),
+                    WmlTableCell(blocks: [_paragraph('Right body cell')]),
+                  ],
+                ),
+              ],
+            ),
+          ],
+        );
+        final controller = _controller(WmlDocument(sections: [section]));
+        controller.proofing.enabled = false;
+        tester.view.devicePixelRatio = 1;
+        tester.view.physicalSize = const Size(900, 700);
+        addTearDown(() {
+          tester.view.resetPhysicalSize();
+          tester.view.resetDevicePixelRatio();
+        });
+        const pictureKey = Key('header-body-table-picture');
+        await tester.pumpWidget(
+          RepaintBoundary(
+            key: pictureKey,
+            child: MaterialApp(
+              home: Scaffold(body: QudsWordEditor(controller: controller)),
+            ),
+          ),
+        );
+        controller.beginHeaderFooterEdit(0, footer: footer);
+        await tester.pump();
+        final canvas = tester.renderObject<RenderWordCanvas>(
+          find.byType(WordCanvas),
+        );
+        final boundary = tester.renderObject<RenderRepaintBoundary>(
+          find.byKey(pictureKey),
+        );
+        final cells = controller.documentLaidOut.pages.single.frames
+            .where((box) => box.kind == LaidOutBoxKind.tableCell)
+            .toList();
+        expect(cells, hasLength(2));
+
+        Future<List<int>> bodyTablePixels() async {
+          final image = (await tester.runAsync(() => boundary.toImage()))!;
+          final data = (await tester.runAsync(
+            () => image.toByteData(format: ui.ImageByteFormat.rawRgba),
+          ))!;
+          final pixels = data.buffer.asUint8List();
+          final sampled = <int>[];
+          for (final cell in cells) {
+            final start = boundary.globalToLocal(
+              canvas.localToGlobal(
+                canvas.windowForPagePoint(0, Offset(cell.x + 2, cell.y + 2)),
+              ),
+            );
+            final end = boundary.globalToLocal(
+              canvas.localToGlobal(
+                canvas.windowForPagePoint(
+                  0,
+                  Offset(cell.x + cell.width - 2, cell.y + cell.height - 2),
+                ),
+              ),
+            );
+            expect(start.dx.ceil(), greaterThanOrEqualTo(0));
+            expect(start.dy.ceil(), greaterThanOrEqualTo(0));
+            expect(end.dx.floor(), lessThanOrEqualTo(image.width));
+            expect(end.dy.floor(), lessThanOrEqualTo(image.height));
+            for (var y = start.dy.ceil(); y < end.dy.floor(); y++) {
+              for (var x = start.dx.ceil(); x < end.dx.floor(); x++) {
+                final index = (y * image.width + x) * 4;
+                sampled.addAll(pixels.sublist(index, index + 4));
+              }
+            }
+          }
+          image.dispose();
+          expect(sampled, isNotEmpty);
+          return sampled;
+        }
+
+        final before = await bodyTablePixels();
+        controller.headerFooterCaret
+          ..paragraphIndex = 1
+          ..logicalIndex = 6
+          ..selectionAnchorParagraph = 0
+          ..selectionAnchor = 0;
+        controller.refreshView();
+        await tester.pump();
+        expect(controller.headerFooterCaret.isCollapsed, isFalse);
+        expect(await bodyTablePixels(), before);
+        expect(tester.takeException(), isNull);
+        await tester.pumpWidget(const SizedBox.shrink());
+      },
+    );
+  }
 
   testWidgets('alternate header selection remains visible below its text', (
     tester,

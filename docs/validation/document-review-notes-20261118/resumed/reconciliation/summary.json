@@ -1,0 +1,85 @@
+{
+  "schema": 1,
+  "snapshot_captured_at_utc": "2026-11-18T21:19:35.382Z",
+  "counts": {
+    "fork_branches": 212,
+    "pull_request_heads": 175,
+    "upstream_branches": 4,
+    "total_references": 391,
+    "distinct_heads": 253
+  },
+  "baseline": "c9f8cd8e213b0d5ed3edc31546dd19db553048f2",
+  "incoming_heads": [
+    {
+      "name": "Mail",
+      "pr": 172,
+      "branch": "codex/mail-reader-20261118",
+      "sha": "514c341d985e01bbc38f8ec4a1f5708e2b7fc8f3"
+    },
+    {
+      "name": "Zotero",
+      "pr": 173,
+      "branch": "codex/zotero-word-parity-20261118",
+      "sha": "2d31df46d9aa684c60b75053671b0f45016388d2"
+    },
+    {
+      "name": "Thesaurus",
+      "pr": 174,
+      "branch": "codex/offline-thesaurus-20261118",
+      "sha": "5535d2eb8ed153b937f372912d3279c7794090ed"
+    }
+  ],
+  "main_unchanged": "690e6ac8a1f7d8f5c8d4bea69d989a6728f3b27e",
+  "upstream_unchanged": [
+    {
+      "ref": "refs/heads/ci/flutter-workspace",
+      "sha": "aca2f66941832bd0b19b436baeab1656a1b7de98"
+    },
+    {
+      "ref": "refs/heads/cursor/class-certificates-2db8",
+      "sha": "f45099688e7a3f67a1302efdb442830d052f2240"
+    },
+    {
+      "ref": "refs/heads/cursor/cloud-agent-1790580069020-0rk1h",
+      "sha": "9930be8df44ffe117fb22778c514eea0ee73ce21"
+    },
+    {
+      "ref": "refs/heads/main",
+      "sha": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba"
+    }
+  ],
+  "open_pr_feedback": [
+    {
+      "pr": 172,
+      "comments": [],
+      "review_threads": []
+    },
+    {
+      "pr": 173,
+      "comments": [],
+      "review_threads": []
+    },
+    {
+      "pr": 174,
+      "comments": [],
+      "review_threads": []
+    },
+    {
+      "pr": 175,
+      "comments": [],
+      "review_threads": []
+    }
+  ],
+  "local_integrated_head": "55f1921e539ca142b8a5b1c09e9059409f600c2e",
+  "integrated_tree": "2ad7d3b44e9039ab4c753bd9c16c6a3d281f6c91",
+  "all_captured_refs_accounted_for": true,
+  "all_captured_refs_in_integrated_head": true,
+  "historical_equivalences_reverified": 14,
+  "github_actions_calls": 0,
+  "limitations": "Bounded snapshot; excludes any branches or PRs advancing after capture. Git integration proof does not establish runtime validation.",
+  "remote_integrated_head": "842e419ca03ac9da8423f49913a182d20751f671",
+  "remote_integrated_tree": "2ad7d3b44e9039ab4c753bd9c16c6a3d281f6c91",
+  "remote_integration_url": "https://github.com/CrispStrobe/quds_office_suite/commit/842e419ca03ac9da8423f49913a182d20751f671",
+  "all_captured_refs_in_remote_integrated_head": true,
+  "all_api_fetched_refs_match": true
+}

@@ -137,21 +137,29 @@ def main():
         config_path = REPO / '.dart_tool/package_config.json'
         config = json.loads(config_path.read_text())
         lock = yaml.safe_load((REPO / 'pubspec.lock').read_text())['packages']
-        local_roots = {Path(v['source']) for v in source_before['__workspace_binding__']['package_roots'].values()}
+        local_packages = source_before['__workspace_binding__']['package_roots']
         sdk = (runtime / 'flutter').resolve()
         for package in config['packages']:
             parsed = urlparse(package['rootUri'])
             assert parsed.scheme in ('', 'file') and parsed.netloc in ('', 'localhost')
             root = Path(unquote(parsed.path))
             root = (root if root.is_absolute() else config_path.parent / root).resolve()
-            if root in local_roots:
-                continue
             name = package['name']
+            if name in local_packages:
+                assert root == Path(local_packages[name]['source']), name
+                continue
             if lock[name]['source'] == 'hosted':
                 expected = runtime / 'pub-cache/hosted/pub.dev' / (name + '-' + lock[name]['version'])
                 assert root == expected.resolve(), 'Redirected hosted package: ' + name
+            elif lock[name]['source'] == 'path':
+                description = lock[name]['description']
+                assert description.get('relative') is True, name
+                expected = (REPO / description['path']).resolve()
+                assert expected.is_relative_to(REPO) and root == expected, name
             else:
-                assert lock[name]['source'] == 'sdk' and root.is_relative_to(sdk), name
+                assert lock[name]['source'] == 'sdk', name
+                expected = sdk / ('bin/cache/pkg' if name == 'sky_engine' else 'packages') / name
+                assert root == expected.resolve(), 'Redirected SDK package: ' + name
             assert package.get('packageUri') == 'lib/', name
             files.extend(p for p in root.rglob('*') if p.is_file()
                          and not any(part in {'.git', '.dart_tool', 'build', '__pycache__'}

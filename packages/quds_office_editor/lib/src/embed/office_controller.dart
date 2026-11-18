@@ -8608,9 +8608,9 @@ class WordEditorController extends OfficeController {
     if (_disposed || !_ownsNote(note)) return null;
     final current = _currentProofingIssue(issue);
     if (current == null) return null;
-    return proofingIssuesForNote(note).any(
-          (entry) => identical(entry.issue, current),
-        )
+    return proofingIssuesForNote(
+          note,
+        ).any((entry) => identical(entry.issue, current))
         ? current
         : null;
   }
@@ -8916,6 +8916,9 @@ class WordEditorController extends OfficeController {
   @override
   void redo() {
     if (config.allowsMutation) {
+      // A new Notes draft is already document content. Record it first so
+      // committing that new edit retires an older, incompatible redo branch.
+      commitNoteEdits();
       super.redo();
     } else if (config.enableUndo && canRedo) {
       beforeHistoryChange();
@@ -8945,12 +8948,17 @@ class WordEditorController extends OfficeController {
     );
     final previousDocument = document;
     final previousRevision = contentRevision;
-    commands.commit(
+    void recordHistory() => commands.commit(
       _CallbackCommand(
         executeFn: () => after.restore(note, document),
         undoFn: () => before.restore(note, document),
       ),
     );
+    if (session == null) {
+      recordHistory();
+    } else {
+      session.preserveUnchangedHistory(recordHistory);
+    }
     // A focus-loss history commit records text that was already applied and
     // checked while typing. Keep only capabilities validated immediately
     // before this exact boundary, never handles from an earlier source edit.
@@ -9186,19 +9194,45 @@ class WordEditorController extends OfficeController {
       return null;
     }
     final current = caret;
-    final selection = current.normalizedRange;
-    final startParagraph = current.isCollapsed
-        ? current.paragraphIndex
-        : selection.startPara;
-    final endParagraph = current.isCollapsed
-        ? current.paragraphIndex
-        : selection.endPara;
-    if (startParagraph < 0) return null;
+    final note = noteEditingTarget;
+    final noteSegments = note == null
+        ? null
+        : _noteTextSegments(note.note).toList();
+    var selection = current.normalizedRange;
+    final collapsed = note?.selection.isCollapsed ?? current.isCollapsed;
+    if (note != null) {
+      // Notes owns a separate, flattened UTF-16 selection. Never pair it with
+      // the retained canvas caret, even after the note's typing is committed.
+      final start = _noteSelectionRange((
+        note: note.note,
+        selection: TextSelection.collapsed(offset: note.selection.start),
+        composing: note.composing,
+      ));
+      final end = _noteSelectionRange((
+        note: note.note,
+        selection: TextSelection.collapsed(offset: note.selection.end),
+        composing: note.composing,
+      ));
+      if (start == null || end == null) return null;
+      selection = (
+        startPara: noteSegments!.indexWhere(
+          (segment) => identical(segment.paragraph, start.paragraph),
+        ),
+        startIdx: start.start,
+        endPara: noteSegments.indexWhere(
+          (segment) => identical(segment.paragraph, end.paragraph),
+        ),
+        endIdx: end.end,
+      );
+    }
+    final startParagraph = selection.startPara;
+    final endParagraph = selection.endPara;
+    if (startParagraph < 0 || endParagraph < startParagraph) return null;
     final entries = _textProofingStory.take(endParagraph + 1).toList();
     if (endParagraph >= entries.length) return null;
-    if (current.isCollapsed &&
-        (current.logicalIndex < 0 ||
-            current.logicalIndex >
+    if (collapsed &&
+        (selection.startIdx < 0 ||
+            selection.startIdx >
                 entries[startParagraph].paragraph.text.length)) {
       return null;
     }
@@ -9211,7 +9245,7 @@ class WordEditorController extends OfficeController {
             (document.restrictMode != WmlRestrictMode.none ||
                 document.protectionFormattingRestricted))) {
       unavailable = 'This document is read-only or protected.';
-    } else if (input.composing.isValid && !input.composing.isCollapsed) {
+    } else if (_hasProofingComposition) {
       unavailable = 'Finish composing text before changing its options.';
     }
     var fieldDepth = 0;
@@ -9232,10 +9266,10 @@ class WordEditorController extends OfficeController {
       }
       final text = paragraph.text;
       final selected = index >= startParagraph;
-      var from = current.isCollapsed || index != startParagraph
-          ? 0
+      var from = collapsed || index != startParagraph
+          ? (noteSegments?[index].hidden ?? 0)
           : selection.startIdx;
-      var to = current.isCollapsed || index != endParagraph
+      var to = collapsed || index != endParagraph
           ? text.length
           : selection.endIdx;
       if (selected && (from < 0 || to > text.length || from > to)) return null;
@@ -9346,6 +9380,7 @@ class WordEditorController extends OfficeController {
             : null,
         footer: _editingFooter,
         headerFooterVariant: _editingHeaderFooterVariant,
+        note: note,
         documentLanguage: document.proofingLanguage,
         styles: _textProofingStylesToken,
         tracking: document.trackRevisions,
@@ -9354,7 +9389,7 @@ class WordEditorController extends OfficeController {
         formattingRestricted: document.protectionFormattingRestricted,
       ),
       List.unmodifiable(ranges),
-      isSelection: !current.isCollapsed,
+      isSelection: !collapsed,
       language: languages.length == 1 ? languages.single : null,
       checkingEnabled: enabledValues.length == 1 ? enabledValues.single : null,
       unavailableReason: unavailable,
@@ -9442,6 +9477,19 @@ class WordEditorController extends OfficeController {
       }
     }
 
+    final note = noteEditingTarget;
+    if (note != null) {
+      if (!_ownsNote(note.note)) return;
+      final editable = WordNotes.editableParagraphs(note.note).toSet();
+      // Retain native block-control protection and style context, but expose
+      // only the paragraphs actually present in the flat Notes field.
+      yield* visit(
+        note.note.blocks,
+        const [],
+        const [],
+      ).where((entry) => editable.contains(entry.paragraph));
+      return;
+    }
     yield* visit(
       document.sections.expand((section) => section.blocks),
       const [],
@@ -10114,10 +10162,11 @@ class WordEditorController extends OfficeController {
     final activeCaret = caret;
     final activeParagraphs = _paragraphs;
     final activeNote = noteEditingTarget;
-    final activeNoteAffected = activeNote != null &&
-        _noteTextSegments(activeNote.note).any(
-          (segment) => identical(segment.paragraph, paragraph),
-        );
+    final activeNoteAffected =
+        activeNote != null &&
+        _noteTextSegments(
+          activeNote.note,
+        ).any((segment) => identical(segment.paragraph, paragraph));
     final activeComment = isEditingComment ? selectedComment : null;
     final activeHeaderFooter = isEditingHeaderFooter ? activeParagraphs : null;
     bool sameCaretStory() =>
@@ -10141,7 +10190,7 @@ class WordEditorController extends OfficeController {
       anchor: activeCaret.selectionAnchor,
     );
     void correctedCaret() {
-      if (activeNoteAffected && activeNote != null) {
+      if (activeNoteAffected) {
         if (identical(noteEditingTarget?.note, activeNote.note)) {
           _restoreNoteEditingTarget(
             _noteTargetAt(
@@ -10168,7 +10217,7 @@ class WordEditorController extends OfficeController {
     }
 
     void originalCaret() {
-      if (activeNoteAffected && activeNote != null) {
+      if (activeNoteAffected) {
         if (identical(noteEditingTarget?.note, activeNote.note)) {
           _restoreNoteEditingTarget(_clampNoteEditingTarget(activeNote));
         }
@@ -10375,9 +10424,7 @@ class WordEditorController extends OfficeController {
   /// that do not occur on a laid-out page remain available in the review pane.
   bool revealProofingIssue(WordProofingIssue issue) {
     var current = _currentProofingIssue(issue);
-    if (!config.allowsSelection ||
-        current == null ||
-        _hasProofingComposition) {
+    if (!config.allowsSelection || current == null || _hasProofingComposition) {
       return false;
     }
     commitPendingEdits();
@@ -10422,9 +10469,10 @@ class WordEditorController extends OfficeController {
     ) {
       final section = document.sections[sectionIndex];
       for (final footer in [false, true]) {
-        for (final paragraphs in footer
-            ? [section.footer, section.firstFooter, section.evenFooter]
-            : [section.header, section.firstHeader, section.evenHeader]) {
+        for (final paragraphs
+            in footer
+                ? [section.footer, section.firstFooter, section.evenFooter]
+                : [section.header, section.firstHeader, section.evenHeader]) {
           final index = paragraphs.indexOf(paragraph);
           if (index < 0) continue;
           // Navigate only to a page that renders this exact source story.
@@ -10499,9 +10547,10 @@ class WordEditorController extends OfficeController {
     if (paragraph == null) {
       return const <WordProofingIssue>[];
     }
-    return proofing.issuesAt(paragraph, position.offset).where(
-      proofing.isCurrent,
-    ).toList();
+    return proofing
+        .issuesAt(paragraph, position.offset)
+        .where(proofing.isCurrent)
+        .toList();
   }
 
   /// Legacy caller-supplied spelling callback. New hosts should use
@@ -15319,6 +15368,7 @@ final class _ZoteroDocumentSnapshot {
     required this.footnotes,
     required this.endnotes,
     required this.data,
+    required this.numbering,
   });
 
   factory _ZoteroDocumentSnapshot.capture(WmlDocument document) {
@@ -15355,6 +15405,7 @@ final class _ZoteroDocumentSnapshot {
       footnotes: List<WmlNote>.of(document.footnotes),
       endnotes: List<WmlNote>.of(document.endnotes),
       data: WordZoteroDocumentData.read(document),
+      numbering: WordListNumberingSnapshot.capture(document),
     );
   }
 
@@ -15367,6 +15418,7 @@ final class _ZoteroDocumentSnapshot {
   final List<WmlNote> footnotes;
   final List<WmlNote> endnotes;
   final String data;
+  final WordListNumberingSnapshot numbering;
 
   void restore(WmlDocument document) {
     for (final entry in blocks.entries) {
@@ -15387,6 +15439,7 @@ final class _ZoteroDocumentSnapshot {
       ..clear()
       ..addAll(endnotes);
     document.zoteroDocumentData = data;
+    numbering.restore(document);
   }
 }
 

@@ -1,0 +1,22 @@
+{
+  "recorded_at_utc": "2026-11-18T21:26:06.592180+00:00",
+  "purpose": "Restore genuine SDK source directories required by Flutter analysis discovery after selective artifact extraction",
+  "reason": "First two preflight attempts stopped before source analysis on missing dev and examples directories",
+  "source": "Original Git metadata included inside the hash-verified official SDK archive",
+  "framework_commit": "737ba8f885dc774b53b442759999a312c9461e4e",
+  "command": [
+    "git",
+    "restore",
+    "--source=HEAD",
+    "--worktree",
+    "--",
+    "."
+  ],
+  "tracked_source_diff_exit": 0,
+  "sdk_binary_hashes": {
+    "bin/cache/dart-sdk/bin/dart": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb",
+    "bin/cache/artifacts/engine/linux-x64/flutter_tester": "800f4ca182df7dd2fb46a42dea5d76277b9dbc5e8cd2915e02bcbc978681b45f"
+  },
+  "no_source_or_version_edits": true,
+  "no_github_actions_used": true
+}

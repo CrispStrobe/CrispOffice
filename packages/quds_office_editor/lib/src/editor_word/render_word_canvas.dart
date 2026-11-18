@@ -1640,6 +1640,9 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
   }
 
   LaidOutBox? _cellBoxForParagraph(int paraIndex) {
+    // Header/footer paragraph indices belong to a separate story. A body
+    // table at the same index cannot supply that story's ruler bounds.
+    if (_editingHeaderFooter) return null;
     for (final LaidOutPage page in laidOut.pages) {
       for (final LaidOutBox box in page.frames) {
         if (box.table == null) {
@@ -3738,6 +3741,9 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
   }
 
   bool _cellSelected(LaidOutBox box) {
+    // A selection in page chrome must not select body cells that happen to
+    // have matching paragraph indices.
+    if (_editingHeaderFooter) return false;
     if (selectedTable != null &&
         box.table != null &&
         identical(selectedTable, box.table)) {
@@ -4641,7 +4647,11 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
       final end = line.paragraphIndex == selection.endPara
           ? selection.endIdx
           : (line.sourceParagraph?.text.length ?? 0);
-      for (final range in WordProofingGeometry.displayRanges(line, start, end)) {
+      for (final range in WordProofingGeometry.displayRanges(
+        line,
+        start,
+        end,
+      )) {
         for (final box in painter.getBoxesForSelection(
           TextSelection(baseOffset: range.start, extentOffset: range.end),
         )) {

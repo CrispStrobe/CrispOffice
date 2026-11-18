@@ -154,6 +154,111 @@ class WorkspaceBindingTests(unittest.TestCase):
         self.assertEqual(result['__workspace_binding__']['package_roots']['editor']['source'],
                          str(self.repo / 'packages/editor'))
 
+    def add_vendor(self, *, copied=False):
+        relative = 'third_party/vendor_mail'
+        source = self.repo / relative
+        (source / 'lib').mkdir(parents=True)
+        (source / 'test').mkdir()
+        (source / 'pubspec.yaml').write_text('name: vendor_mail\n')
+        (source / 'lib/mail.dart').write_text('const version = 1;\n')
+        (source / 'test/message.eml').write_text('Subject: sample\n\nbody\n')
+        target = self.workspace / relative
+        target.parent.mkdir()
+        if copied:
+            shutil.copytree(source, target)
+        else:
+            target.symlink_to(source, target_is_directory=True)
+        lock = ('packages:\n  _shared:\n    dependency: transitive\n'
+                '    description:\n      name: _shared\n    source: hosted\n'
+                '    version: "1.0.0"\n  vendor_mail:\n    dependency: transitive\n'
+                '    description:\n      path: "third_party/vendor_mail"\n'
+                '      relative: true\n    source: path\n    version: "1.0.0"\n'
+                'sdks:\n  dart: ">=3.12.0 <4.0.0"\n')
+        (self.repo / 'pubspec.lock').write_text(lock)
+        (self.workspace / 'pubspec.lock').write_text(lock)
+        self.config['packages'].append(
+            {'name': 'vendor_mail', 'rootUri': '../third_party/vendor_mail', 'packageUri': 'lib/'})
+        self.write_config(self.config)
+        return source, target
+
+    def test_locked_vendor_is_bound_in_separate_and_direct_workspaces(self):
+        source, _ = self.add_vendor()
+        separate = self.snapshot()
+        binding = separate['__workspace_binding__']['locked_path_dependencies']['vendor_mail']
+        self.assertEqual(binding['source'], str(source))
+        self.assertEqual(binding['locked_path'], 'third_party/vendor_mail')
+        self.assertIn('third_party/vendor_mail/pubspec.yaml', separate)
+        self.assertIn('third_party/vendor_mail/lib/mail.dart', separate)
+        self.assertIn('third_party/vendor_mail/test/message.eml', separate)
+        (self.repo / '.dart_tool').mkdir()
+        (self.repo / '.dart_tool/package_config.json').write_text(json.dumps(self.config))
+        direct = workspace_binding.snapshot_sources(self.repo, self.repo)
+        self.assertEqual(direct['third_party/vendor_mail/lib/mail.dart'],
+                         separate['third_party/vendor_mail/lib/mail.dart'])
+
+    def test_current_copied_vendor_is_verified_and_stale_source_is_rejected(self):
+        source, target = self.add_vendor(copied=True)
+        result = self.snapshot()
+        self.assertEqual(result['__workspace_binding__']['locked_path_dependencies']['vendor_mail']['mode'],
+                         'verified_copy')
+        path = target / 'lib/mail.dart'
+        original = path.read_bytes()
+        for mutation in ('changed', 'missing', 'extra'):
+            with self.subTest(mutation=mutation):
+                if mutation == 'changed':
+                    path.write_text('old vendored source\n')
+                elif mutation == 'missing':
+                    path.unlink()
+                else:
+                    (target / 'lib/extra.dart').write_text('unexpected source\n')
+                with self.assertRaisesRegex(ValueError, 'source differs from the checkout'):
+                    self.snapshot()
+                path.write_bytes(original)
+                (target / 'lib/extra.dart').unlink(missing_ok=True)
+        (source / 'lib/mail.dart').write_text('new source after validation\n')
+        with self.assertRaisesRegex(ValueError, 'source differs from the checkout'):
+            self.snapshot()
+
+    def test_locked_vendor_root_and_library_cannot_be_redirected(self):
+        self.add_vendor()
+        for mutation in ('root', 'library', 'missing'):
+            with self.subTest(mutation=mutation):
+                config = copy.deepcopy(self.config)
+                if mutation == 'root':
+                    config['packages'][-1]['rootUri'] = (self.root / 'old-vendor').as_uri()
+                elif mutation == 'library':
+                    config['packages'][-1]['packageUri'] = 'test/'
+                else:
+                    config['packages'].pop()
+                self.write_config(config)
+                with self.assertRaises(ValueError):
+                    self.snapshot()
+
+    def test_locked_vendor_paths_must_be_canonical_and_within_checkout(self):
+        self.add_vendor()
+        original = (self.repo / 'pubspec.lock').read_text()
+        for value in ('../old-vendor', '/tmp/old-vendor', 'third_party/./vendor_mail'):
+            with self.subTest(path=value):
+                lock = original.replace('third_party/vendor_mail', value)
+                (self.repo / 'pubspec.lock').write_text(lock)
+                (self.workspace / 'pubspec.lock').write_text(lock)
+                with self.assertRaisesRegex(ValueError, 'Noncanonical locked dependency path'):
+                    self.snapshot()
+
+    def test_locked_vendor_manifest_and_overrides_are_verified(self):
+        source, target = self.add_vendor(copied=True)
+        (source / 'pubspec.yaml').write_text('name: wrong_package\n')
+        with self.assertRaisesRegex(ValueError, 'manifest name differs'):
+            self.snapshot()
+        (source / 'pubspec.yaml').write_text('name: vendor_mail\n')
+        for root in (source, target):
+            with self.subTest(root=root.name):
+                override = root / 'pubspec_overrides.yaml'
+                override.write_text('dependency_overrides: {}\n')
+                with self.assertRaisesRegex(ValueError, 'overrides are not qualified'):
+                    self.snapshot()
+                override.unlink()
+
     def prepare_workspace(self):
         toolchain = self.root / 'zotero-toolchain'
         (toolchain / 'setup').mkdir(parents=True, exist_ok=True)

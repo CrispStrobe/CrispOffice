@@ -183,7 +183,6 @@ class _WordNotesPaneState extends State<WordNotesPane> {
     return edit;
   }
 
-
   String _s(String english, String arabic) => widget.arabic ? arabic : english;
 
   bool get _canInspect =>
@@ -207,6 +206,25 @@ class _WordNotesPaneState extends State<WordNotesPane> {
     }
   }
 
+  void _history(WmlNote note, {required bool redo}) {
+    if (!_canInspect ||
+        !_c.canApplyProofingSuggestions ||
+        _composing(note) ||
+        !(note.endnote ? _c.document.endnotes : _c.document.footnotes).contains(
+          note,
+        )) {
+      return;
+    }
+    _publishSelection(note);
+    setState(() => _notice = null);
+    if (redo) {
+      _c.redo();
+    } else {
+      _c.undo();
+    }
+    _c.requestEditingFocus();
+  }
+
   void _refreshAfterChoice() {
     if (!_c.proofing.enabled) {
       unawaited(_check(includeManualProviders: false));
@@ -218,7 +236,9 @@ class _WordNotesPaneState extends State<WordNotesPane> {
     final issues = _c.proofingIssuesForNote(note);
     if (issues.isEmpty) return;
     final selected = _c.selectedProofingIssue;
-    final current = issues.indexWhere((entry) => identical(entry.issue, selected));
+    final current = issues.indexWhere(
+      (entry) => identical(entry.issue, selected),
+    );
     final next = current < 0
         ? (delta > 0 ? 0 : issues.length - 1)
         : (current + delta) % issues.length;
@@ -231,8 +251,10 @@ class _WordNotesPaneState extends State<WordNotesPane> {
     // this button. A retained callback cannot edit a replacement document.
     final current = _c.currentNoteProofingIssue(note, issue);
     if (current == null || !_c.canApplyProofingIssue(current)) return;
-    final range = _c.proofingIssuesForNote(note)
-        .firstWhere((entry) => identical(entry.issue, current)).range;
+    final range = _c
+        .proofingIssuesForNote(note)
+        .firstWhere((entry) => identical(entry.issue, current))
+        .range;
     _c.setNoteEditingTarget(
       note,
       TextSelection(baseOffset: range.start, extentOffset: range.end),
@@ -240,7 +262,10 @@ class _WordNotesPaneState extends State<WordNotesPane> {
     final applied = _c.applyProofingSuggestion(current, replacement);
     setState(() {
       _notice = applied
-          ? _s('Correction applied. Undo is available.', 'تم التصحيح. يمكنك التراجع.')
+          ? _s(
+              'Correction applied. Undo is available.',
+              'تم التصحيح. يمكنك التراجع.',
+            )
           : _s(
               'The text changed or is protected. Check it again before correcting.',
               'تغير النص أو أنه محمي. أعد تدقيقه قبل التصحيح.',
@@ -270,9 +295,15 @@ class _WordNotesPaneState extends State<WordNotesPane> {
     final status = summary.checking
         ? _s('Checking document…', 'جارٍ تدقيق المستند…')
         : summary.scheduled
-        ? _s('Waiting for a pause in typing…', 'في انتظار توقف قصير عن الكتابة…')
+        ? _s(
+            'Waiting for a pause in typing…',
+            'في انتظار توقف قصير عن الكتابة…',
+          )
         : !session.enabled
-        ? _s('Check as you type is paused.', 'التدقيق أثناء الكتابة متوقف مؤقتًا.')
+        ? _s(
+            'Check as you type is paused.',
+            'التدقيق أثناء الكتابة متوقف مؤقتًا.',
+          )
         : summary.statusMessage;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -303,7 +334,7 @@ class _WordNotesPaneState extends State<WordNotesPane> {
           alignment: AlignmentDirectional.centerStart,
           child: TextButton(
             key: const ValueKey<String>('notes-check-now'),
-            onPressed: !_c.config.allowsSelection || summary.checking
+            onPressed: !_c.config.allowsSelection
                 ? null
                 : () => unawaited(_check()),
             child: Text(_s('Check document (F7)', 'تدقيق المستند (F7)')),
@@ -329,7 +360,8 @@ class _WordNotesPaneState extends State<WordNotesPane> {
     OfficeTheme theme,
   ) {
     final selected = _c.selectedProofingIssue;
-    final entry = issues.where((entry) => identical(entry.issue, selected)).firstOrNull ??
+    final entry =
+        issues.where((entry) => identical(entry.issue, selected)).firstOrNull ??
         issues.first;
     final issue = entry.issue;
     final finding = issue.finding;
@@ -344,7 +376,10 @@ class _WordNotesPaneState extends State<WordNotesPane> {
           children: [
             Expanded(
               child: Text(
-                _s('${issues.length} writing suggestions', '${issues.length} اقتراحات للكتابة'),
+                _s(
+                  '${issues.length} writing suggestions',
+                  '${issues.length} اقتراحات للكتابة',
+                ),
                 style: TextStyle(color: theme.headerText, fontSize: 11),
               ),
             ),
@@ -385,7 +420,11 @@ class _WordNotesPaneState extends State<WordNotesPane> {
             TextButton(
               key: ValueKey<String>('notes-ignore-$identity'),
               onPressed: canInspect
-                  ? () => _ignore(note, issue, (current) => _c.proofing.ignoreOnce(current))
+                  ? () => _ignore(
+                      note,
+                      issue,
+                      (current) => _c.proofing.ignoreOnce(current),
+                    )
                   : null,
               child: Text(_s('Ignore once', 'تجاهل مرة واحدة')),
             ),
@@ -393,7 +432,11 @@ class _WordNotesPaneState extends State<WordNotesPane> {
               TextButton(
                 key: ValueKey<String>('notes-add-word-$identity'),
                 onPressed: canInspect
-                    ? () => _ignore(note, issue, (current) => _c.proofing.addWord(current))
+                    ? () => _ignore(
+                        note,
+                        issue,
+                        (current) => _c.proofing.addWord(current),
+                      )
                     : null,
                 child: Text(_s('Add to dictionary', 'إضافة إلى القاموس')),
               ),
@@ -402,8 +445,14 @@ class _WordNotesPaneState extends State<WordNotesPane> {
         if (composing || (!canApply && finding.replacements.isNotEmpty))
           Text(
             composing
-                ? _s('Finish composing before correcting.', 'أكمل إدخال النص قبل التصحيح.')
-                : _s('Corrections are unavailable for this text.', 'التصحيحات غير متاحة لهذا النص.'),
+                ? _s(
+                    'Finish composing before correcting.',
+                    'أكمل إدخال النص قبل التصحيح.',
+                  )
+                : _s(
+                    'Corrections are unavailable for this text.',
+                    'التصحيحات غير متاحة لهذا النص.',
+                  ),
             style: TextStyle(color: theme.headerText, fontSize: 11),
           ),
       ],
@@ -432,260 +481,300 @@ class _WordNotesPaneState extends State<WordNotesPane> {
     return CallbackShortcuts(
       bindings: <ShortcutActivator, VoidCallback>{
         const SingleActivator(LogicalKeyboardKey.f7): () => unawaited(_check()),
+        const SingleActivator(LogicalKeyboardKey.keyY, control: true): () {
+          final note = _c.noteEditingTarget?.note;
+          if (note != null) _history(note, redo: true);
+        },
         const SingleActivator(LogicalKeyboardKey.f7, alt: true): () {
           final target = _c.noteEditingTarget;
           if (target != null) _stepFinding(target.note, 1);
         },
-        const SingleActivator(LogicalKeyboardKey.f7, alt: true, shift: true): () {
+        const SingleActivator(
+          LogicalKeyboardKey.f7,
+          alt: true,
+          shift: true,
+        ): () {
           final target = _c.noteEditingTarget;
           if (target != null) _stepFinding(target.note, -1);
         },
       },
       child: TextFieldTapRegion(
-      child: ColoredBox(
-      color: theme.chromeFill,
-      child: Padding(
-        padding: const EdgeInsets.all(8),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              Text(
-                widget.arabic ? 'ملاحظات' : 'Notes',
-                style: TextStyle(
-                  color: theme.chromeText,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 12,
-                ),
-              ),
-              _writingStatus(theme),
-              if (editable) ...<Widget>[
-                const SizedBox(height: 6),
-                Wrap(
-                  spacing: 12,
-                  children: <Widget>[
-                    GestureDetector(
-                      key: const ValueKey<String>('notes-add-footnote'),
-                      onTap: () => _c.insertFootnote(),
-                      child: Text(
-                        widget.arabic ? '+ حاشية سفلية' : '+ Footnote',
-                        style: TextStyle(color: theme.focusRing, fontSize: 11),
-                      ),
+        child: ColoredBox(
+          color: theme.chromeFill,
+          child: Padding(
+            padding: const EdgeInsets.all(8),
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: <Widget>[
+                  Text(
+                    widget.arabic ? 'ملاحظات' : 'Notes',
+                    style: TextStyle(
+                      color: theme.chromeText,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 12,
                     ),
-                    GestureDetector(
-                      key: const ValueKey<String>('notes-add-endnote'),
-                      onTap: () => _c.insertFootnote(endnote: true),
-                      child: Text(
-                        widget.arabic ? '+ حاشية ختامية' : '+ Endnote',
-                        style: TextStyle(color: theme.focusRing, fontSize: 11),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-              const SizedBox(height: 8),
-              if (notes.isEmpty)
-                Text(
-                  widget.arabic ? 'لا توجد حواشٍ' : 'No notes',
-                  style: TextStyle(color: theme.headerText, fontSize: 11),
-                )
-              else
-                ...notes.map((WmlNote note) {
-                  final String label = numbering.labelFor(note);
-                  final String mark = label.isEmpty
-                      ? (widget.arabic ? 'مخصصة' : 'custom')
-                      : (note.endnote ? 'E$label' : label);
-                  // Widget identity follows the native link, not its changing
-                  // visible number, so edits and focus survive renumbering.
-                  final String identity = note.endnote
-                      ? 'E${note.id}'
-                      : '${note.id}';
-                  final String title = numbering.hasExactLabel(note)
-                      ? (widget.arabic ? 'حاشية $mark' : 'Note $mark')
-                      : (widget.arabic
-                            ? 'حاشية (معرّف المصدر $identity)'
-                            : 'Note (source ID $identity)');
-                  final issues = _c.proofingIssuesForNote(note);
-                  final edit = _editFor(note)
-                    ..checkedText = _c.noteEditText(note)
-                    ..issues = issues;
-                  return Padding(
-                    key: ValueKey<WmlNote>(note),
-                    padding: const EdgeInsets.only(bottom: 8),
-                    child: Column(
-                      key: _noteLocations.putIfAbsent(note, GlobalKey.new),
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                  ),
+                  _writingStatus(theme),
+                  if (editable) ...<Widget>[
+                    const SizedBox(height: 6),
+                    Wrap(
+                      spacing: 12,
                       children: <Widget>[
-                        Row(
-                          children: <Widget>[
-                            Expanded(
-                              child: GestureDetector(
-                                onTap: () => _c.jumpToNote(note),
-                                child: Text(
-                                  title,
-                                  style: TextStyle(
-                                    color: theme.focusRing,
-                                    fontSize: 11,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                              ),
+                        GestureDetector(
+                          key: const ValueKey<String>('notes-add-footnote'),
+                          onTap: () => _c.insertFootnote(),
+                          child: Text(
+                            widget.arabic ? '+ حاشية سفلية' : '+ Footnote',
+                            style: TextStyle(
+                              color: theme.focusRing,
+                              fontSize: 11,
                             ),
-                            if (editable)
-                              GestureDetector(
-                                key: ValueKey<String>('notes-delete-$identity'),
-                                onTap: () => _c.deleteNote(note),
-                                child: Text(
-                                  widget.arabic ? 'حذف' : 'Delete',
-                                  style: TextStyle(
-                                    color: theme.headerText,
-                                    fontSize: 10,
-                                  ),
-                                ),
-                              ),
-                          ],
-                        ),
-                        const SizedBox(height: 4),
-                        TextField(
-                          key: ValueKey<String>('notes-edit-$identity'),
-                          controller: edit,
-                          focusNode: _focusFor(note),
-                          minLines: 1,
-                          maxLines: null,
-                          keyboardType: TextInputType.multiline,
-                          enabled: _c.config.allowsSelection,
-                          readOnly: !editable,
-                          enableInteractiveSelection: _c.config.allowsSelection,
-                          style: TextStyle(
-                            color: theme.chromeText,
-                            fontSize: 11,
                           ),
-                          decoration: const InputDecoration(
-                            isDense: true,
-                            border: InputBorder.none,
-                          ),
-                          onChanged: editable
-                              ? (String value) {
-                                  _notice = null;
-                                  _c.setNoteText(note, value);
-                                  _publishSelection(note);
-                                }
-                              : null,
-                          onTapOutside: (_) => _focusFor(note).unfocus(),
                         ),
-                        if (issues.isNotEmpty)
-                          _findingControls(note, identity, issues, theme),
+                        GestureDetector(
+                          key: const ValueKey<String>('notes-add-endnote'),
+                          onTap: () => _c.insertFootnote(endnote: true),
+                          child: Text(
+                            widget.arabic ? '+ حاشية ختامية' : '+ Endnote',
+                            style: TextStyle(
+                              color: theme.focusRing,
+                              fontSize: 11,
+                            ),
+                          ),
+                        ),
                       ],
                     ),
-                  );
-                }),
-              const SizedBox(height: 12),
-              Align(
-                alignment: AlignmentDirectional.centerStart,
-                child: TextButton(
-                  key: const ValueKey<String>('notes-review-changes'),
-                  onPressed: () => _c.openReviewPane(
-                    tab: WordReviewPaneTab.changes,
-                  ),
-                  child: Text(
-                    widget.arabic ? 'مراجعة التغييرات' : 'Review changes',
-                  ),
-                ),
-              ),
-              Text(
-                widget.arabic ? 'التغييرات' : 'Revisions',
-                style: TextStyle(
-                  color: theme.chromeText,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 12,
-                ),
-              ),
-              const SizedBox(height: 8),
-              if (_c.document.revisions.isEmpty)
-                Text(
-                  widget.arabic ? 'لا توجد تغييرات' : 'No revisions',
-                  style: TextStyle(color: theme.headerText, fontSize: 11),
-                )
-              else
-                ..._c.document.revisions.map((WmlRevision revision) {
-                  final bool on = identical(revision, _c.selectedRevision);
-                  final String kind = revision.kind == WmlRevisionKind.insert
-                      ? (widget.arabic ? 'إدراج' : 'Insert')
-                      : (widget.arabic ? 'حذف' : 'Delete');
-                  return GestureDetector(
-                    onTap: () => _c.revealRevision(revision),
-                    child: Padding(
-                      padding: const EdgeInsets.only(bottom: 6),
-                      child: ColoredBox(
-                        color: on
-                            ? theme.focusRing.withValues(alpha: 0.12)
-                            : const Color(0x00000000),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 4,
-                            vertical: 4,
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                            children: <Widget>[
-                              Text(
-                                '$kind · ${revision.author}',
+                  ],
+                  const SizedBox(height: 8),
+                  if (notes.isEmpty)
+                    Text(
+                      widget.arabic ? 'لا توجد حواشٍ' : 'No notes',
+                      style: TextStyle(color: theme.headerText, fontSize: 11),
+                    )
+                  else
+                    ...notes.map((WmlNote note) {
+                      final String label = numbering.labelFor(note);
+                      final String mark = label.isEmpty
+                          ? (widget.arabic ? 'مخصصة' : 'custom')
+                          : (note.endnote ? 'E$label' : label);
+                      // Widget identity follows the native link, not its changing
+                      // visible number, so edits and focus survive renumbering.
+                      final String identity = note.endnote
+                          ? 'E${note.id}'
+                          : '${note.id}';
+                      final String title = numbering.hasExactLabel(note)
+                          ? (widget.arabic ? 'حاشية $mark' : 'Note $mark')
+                          : (widget.arabic
+                                ? 'حاشية (معرّف المصدر $identity)'
+                                : 'Note (source ID $identity)');
+                      final issues = _c.proofingIssuesForNote(note);
+                      final edit = _editFor(note)
+                        ..checkedText = _c.noteEditText(note)
+                        ..issues = issues;
+                      return Padding(
+                        key: ValueKey<WmlNote>(note),
+                        padding: const EdgeInsets.only(bottom: 8),
+                        child: Column(
+                          key: _noteLocations.putIfAbsent(note, GlobalKey.new),
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: <Widget>[
+                            Row(
+                              children: <Widget>[
+                                Expanded(
+                                  child: GestureDetector(
+                                    onTap: () => _c.jumpToNote(note),
+                                    child: Text(
+                                      title,
+                                      style: TextStyle(
+                                        color: theme.focusRing,
+                                        fontSize: 11,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                if (editable)
+                                  GestureDetector(
+                                    key: ValueKey<String>(
+                                      'notes-delete-$identity',
+                                    ),
+                                    onTap: () => _c.deleteNote(note),
+                                    child: Text(
+                                      widget.arabic ? 'حذف' : 'Delete',
+                                      style: TextStyle(
+                                        color: theme.headerText,
+                                        fontSize: 10,
+                                      ),
+                                    ),
+                                  ),
+                              ],
+                            ),
+                            const SizedBox(height: 4),
+                            // Override EditableText's private text-only history:
+                            // native Undo/Redo shortcuts must restore document
+                            // revisions and formatting as well as the field text.
+                            Actions(
+                              actions: <Type, Action<Intent>>{
+                                UndoTextIntent: CallbackAction<UndoTextIntent>(
+                                  onInvoke: (_) {
+                                    _history(note, redo: false);
+                                    return null;
+                                  },
+                                ),
+                                RedoTextIntent: CallbackAction<RedoTextIntent>(
+                                  onInvoke: (_) {
+                                    _history(note, redo: true);
+                                    return null;
+                                  },
+                                ),
+                              },
+                              child: TextField(
+                                key: ValueKey<String>('notes-edit-$identity'),
+                                controller: edit,
+                                focusNode: _focusFor(note),
+                                minLines: 1,
+                                maxLines: null,
+                                keyboardType: TextInputType.multiline,
+                                enabled: _c.config.allowsSelection,
+                                readOnly: !editable,
+                                enableInteractiveSelection:
+                                    _c.config.allowsSelection,
                                 style: TextStyle(
                                   color: theme.chromeText,
                                   fontSize: 11,
-                                  fontWeight: FontWeight.w600,
                                 ),
-                              ),
-                              Text(
-                                revision.text,
-                                maxLines: 2,
-                                overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
-                                  color: theme.headerText,
-                                  fontSize: 11,
+                                decoration: const InputDecoration(
+                                  isDense: true,
+                                  border: InputBorder.none,
                                 ),
+                                onChanged: editable
+                                    ? (String value) {
+                                        _notice = null;
+                                        _c.setNoteText(note, value);
+                                        _publishSelection(note);
+                                      }
+                                    : null,
+                                onTapOutside: (_) => _focusFor(note).unfocus(),
                               ),
-                              Row(
+                            ),
+                            if (issues.isNotEmpty)
+                              _findingControls(note, identity, issues, theme),
+                          ],
+                        ),
+                      );
+                    }),
+                  const SizedBox(height: 12),
+                  Align(
+                    alignment: AlignmentDirectional.centerStart,
+                    child: TextButton(
+                      key: const ValueKey<String>('notes-review-changes'),
+                      onPressed: () =>
+                          _c.openReviewPane(tab: WordReviewPaneTab.changes),
+                      child: Text(
+                        widget.arabic ? 'مراجعة التغييرات' : 'Review changes',
+                      ),
+                    ),
+                  ),
+                  Text(
+                    widget.arabic ? 'التغييرات' : 'Revisions',
+                    style: TextStyle(
+                      color: theme.chromeText,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 12,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  if (_c.document.revisions.isEmpty)
+                    Text(
+                      widget.arabic ? 'لا توجد تغييرات' : 'No revisions',
+                      style: TextStyle(color: theme.headerText, fontSize: 11),
+                    )
+                  else
+                    ..._c.document.revisions.map((WmlRevision revision) {
+                      final bool on = identical(revision, _c.selectedRevision);
+                      final String kind =
+                          revision.kind == WmlRevisionKind.insert
+                          ? (widget.arabic ? 'إدراج' : 'Insert')
+                          : (widget.arabic ? 'حذف' : 'Delete');
+                      return GestureDetector(
+                        onTap: () => _c.revealRevision(revision),
+                        child: Padding(
+                          padding: const EdgeInsets.only(bottom: 6),
+                          child: ColoredBox(
+                            color: on
+                                ? theme.focusRing.withValues(alpha: 0.12)
+                                : const Color(0x00000000),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 4,
+                                vertical: 4,
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
                                 children: <Widget>[
-                                  GestureDetector(
-                                    onTap: editable && revision.conflict == null
-                                        ? () => _c.acceptRevision(revision)
-                                        : null,
-                                    child: Text(
-                                      widget.arabic ? 'قبول' : 'Accept',
-                                      style: TextStyle(
-                                        color: theme.focusRing,
-                                        fontSize: 10,
-                                      ),
+                                  Text(
+                                    '$kind · ${revision.author}',
+                                    style: TextStyle(
+                                      color: theme.chromeText,
+                                      fontSize: 11,
+                                      fontWeight: FontWeight.w600,
                                     ),
                                   ),
-                                  const SizedBox(width: 12),
-                                  GestureDetector(
-                                    onTap: editable && revision.conflict == null
-                                        ? () => _c.rejectRevision(revision)
-                                        : null,
-                                    child: Text(
-                                      widget.arabic ? 'رفض' : 'Reject',
-                                      style: TextStyle(
-                                        color: theme.focusRing,
-                                        fontSize: 10,
-                                      ),
+                                  Text(
+                                    revision.text,
+                                    maxLines: 2,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: TextStyle(
+                                      color: theme.headerText,
+                                      fontSize: 11,
                                     ),
+                                  ),
+                                  Row(
+                                    children: <Widget>[
+                                      GestureDetector(
+                                        onTap:
+                                            editable &&
+                                                revision.conflict == null
+                                            ? () => _c.acceptRevision(revision)
+                                            : null,
+                                        child: Text(
+                                          widget.arabic ? 'قبول' : 'Accept',
+                                          style: TextStyle(
+                                            color: theme.focusRing,
+                                            fontSize: 10,
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(width: 12),
+                                      GestureDetector(
+                                        onTap:
+                                            editable &&
+                                                revision.conflict == null
+                                            ? () => _c.rejectRevision(revision)
+                                            : null,
+                                        child: Text(
+                                          widget.arabic ? 'رفض' : 'Reject',
+                                          style: TextStyle(
+                                            color: theme.focusRing,
+                                            fontSize: 10,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ],
                               ),
-                            ],
+                            ),
                           ),
                         ),
-                      ),
-                    ),
-                  );
-                }),
-            ],
+                      );
+                    }),
+                ],
+              ),
+            ),
           ),
         ),
-      ),
-      ),
       ),
     );
   }
@@ -719,7 +808,8 @@ class _NoteProofingTextController extends TextEditingController {
       return range.isValid &&
           !range.isCollapsed &&
           range.end <= text.length &&
-          text.substring(range.start, range.end) == entry.issue.finding.originalText;
+          text.substring(range.start, range.end) ==
+              entry.issue.finding.originalText;
     }).toList();
     final boundaries = <int>{0, text.length};
     for (final entry in valid) {
@@ -733,10 +823,16 @@ class _NoteProofingTextController extends TextEditingController {
           TextSpan(
             text: text.substring(sorted[index], sorted[index + 1]),
             style: _findingStyle(
-              valid.where((entry) =>
-                entry.range.start <= sorted[index] &&
-                entry.range.end >= sorted[index + 1],
-              ).firstOrNull?.issue.finding.category,
+              valid
+                  .where(
+                    (entry) =>
+                        entry.range.start <= sorted[index] &&
+                        entry.range.end >= sorted[index + 1],
+                  )
+                  .firstOrNull
+                  ?.issue
+                  .finding
+                  .category,
             ),
           ),
       ],
