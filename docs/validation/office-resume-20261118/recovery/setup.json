@@ -1,0 +1,462 @@
+{
+  "source": "/workspace/scratch/5fe2474d40d1/qualification-source",
+  "workspace": "/workspace/scratch/5fe2474d40d1/frozen-workspace",
+  "command": [
+    "/workspace/scratch/5fe2474d40d1/toolchains/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+    "pub",
+    "get",
+    "--offline",
+    "--enforce-lockfile"
+  ],
+  "exit_code": 0,
+  "environment": {
+    "FLUTTER_ROOT": "/workspace/scratch/5fe2474d40d1/toolchains/flutter-sdk",
+    "PUB_CACHE": "/workspace/scratch/5fe2474d40d1/toolchains/pub-cache",
+    "TMPDIR": "/workspace/scratch/5fe2474d40d1/frozen-workspace/tmp",
+    "XDG_CONFIG_HOME": "/workspace/scratch/5fe2474d40d1/frozen-workspace/config"
+  },
+  "lock_before_sha256": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130",
+  "lock_after_sha256": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130",
+  "links": [
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/legacy_doc_parser/UPSTREAM.json",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/legacy_doc_parser/UPSTREAM.json"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/legacy_doc_parser/tool",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/legacy_doc_parser/tool"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/legacy_doc_parser/test",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/legacy_doc_parser/test"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/legacy_doc_parser/third_party",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/legacy_doc_parser/third_party"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/legacy_doc_parser/.github",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/legacy_doc_parser/.github"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/legacy_doc_parser/doc",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/legacy_doc_parser/doc"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/legacy_doc_parser/.gitignore",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/legacy_doc_parser/.gitignore"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/legacy_doc_parser/lib",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/legacy_doc_parser/lib"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/legacy_doc_parser/analysis_options.yaml",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/legacy_doc_parser/analysis_options.yaml"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/legacy_doc_parser/NOTICE",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/legacy_doc_parser/NOTICE"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/legacy_doc_parser/example",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/legacy_doc_parser/example"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/legacy_doc_parser/LICENSE",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/legacy_doc_parser/LICENSE"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/legacy_doc_parser/.gitattributes",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/legacy_doc_parser/.gitattributes"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/legacy_doc_parser/README.md",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/legacy_doc_parser/README.md"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/legacy_doc_parser/CHANGELOG.md",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/legacy_doc_parser/CHANGELOG.md"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/quds_office_engine/tool",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/quds_office_engine/tool"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/quds_office_engine/test",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/quds_office_engine/test"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/quds_office_engine/third_party",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/quds_office_engine/third_party"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/quds_office_engine/lib",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/quds_office_engine/lib"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/quds_office_engine/.pubignore",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/quds_office_engine/.pubignore"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/quds_office_engine/analysis_options.yaml",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/quds_office_engine/analysis_options.yaml"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/quds_office_engine/FORK.md",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/quds_office_engine/FORK.md"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/quds_office_engine/LICENSE",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/quds_office_engine/LICENSE"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/quds_office_engine/README.md",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/quds_office_engine/README.md"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/quds_office_engine/CHANGELOG.md",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/quds_office_engine/CHANGELOG.md"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/quds_proofing_harper/tool",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/quds_proofing_harper/tool"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/quds_proofing_harper/test",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/quds_proofing_harper/test"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/quds_proofing_harper/native",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/quds_proofing_harper/native"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/quds_proofing_harper/.gitignore",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/quds_proofing_harper/.gitignore"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/quds_proofing_harper/lib",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/quds_proofing_harper/lib"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/quds_proofing_harper/web",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/quds_proofing_harper/web"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/quds_proofing_harper/LICENSE",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/quds_proofing_harper/LICENSE"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/quds_proofing_harper/README.md",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/quds_proofing_harper/README.md"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/quds_proofing_harper/licenses",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/quds_proofing_harper/licenses"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/quds_proofing_harper/CHANGELOG.md",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/quds_proofing_harper/CHANGELOG.md"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/quds_proofing_gector/tool",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/quds_proofing_gector/tool"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/quds_proofing_gector/test",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/quds_proofing_gector/test"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/quds_proofing_gector/third_party",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/quds_proofing_gector/third_party"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/quds_proofing_gector/lib",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/quds_proofing_gector/lib"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/quds_proofing_gector/NOTICE",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/quds_proofing_gector/NOTICE"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/quds_proofing_gector/LICENSE",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/quds_proofing_gector/LICENSE"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/quds_proofing_gector/README.md",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/quds_proofing_gector/README.md"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/quds_proofing_gector/CHANGELOG.md",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/quds_proofing_gector/CHANGELOG.md"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/quds_proofing_spacy/tool",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/quds_proofing_spacy/tool"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/quds_proofing_spacy/test",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/quds_proofing_spacy/test"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/quds_proofing_spacy/lib",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/quds_proofing_spacy/lib"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/quds_proofing_spacy/NOTICE",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/quds_proofing_spacy/NOTICE"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/quds_proofing_spacy/LICENSE",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/quds_proofing_spacy/LICENSE"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/quds_proofing_spacy/README.md",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/quds_proofing_spacy/README.md"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/quds_office_engine/example/word_gallery.dart",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/quds_office_engine/example/word_gallery.dart"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/quds_office_engine/example/pdf_widgets_catalog.dart",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/quds_office_engine/example/pdf_widgets_catalog.dart"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/quds_office_engine/example/report_quickstart.dart",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/quds_office_engine/example/report_quickstart.dart"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/quds_office_engine/example/sheet_gallery.dart",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/quds_office_engine/example/sheet_gallery.dart"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/quds_office_engine/example/gallery_io.dart",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/quds_office_engine/example/gallery_io.dart"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/quds_office_engine/example/rich_export_gallery.dart",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/quds_office_engine/example/rich_export_gallery.dart"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/quds_office_engine/example/pdf_widgets_report.dart",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/quds_office_engine/example/pdf_widgets_report.dart"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/quds_office_engine/example/example.dart",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/quds_office_engine/example/example.dart"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/quds_office_engine/example/pdf_widgets_invoice.dart",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/quds_office_engine/example/pdf_widgets_invoice.dart"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/quds_office_engine/example/screenshots",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/quds_office_engine/example/screenshots"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/quds_office_engine/example/engine_quickstart.dart",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/quds_office_engine/example/engine_quickstart.dart"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/quds_office_engine/example/slide_gallery.dart",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/quds_office_engine/example/slide_gallery.dart"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/quds_office_engine/example/word_report_sample.dart",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/quds_office_engine/example/word_report_sample.dart"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/quds_office_engine/example/README.md",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/quds_office_engine/example/README.md"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/quds_office_engine/example/pdf_widgets_proposal.dart",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/quds_office_engine/example/pdf_widgets_proposal.dart"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/quds_reports/test",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/quds_reports/test"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/quds_reports/lib",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/quds_reports/lib"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/quds_reports/analysis_options.yaml",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/quds_reports/analysis_options.yaml"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/quds_reports/example",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/quds_reports/example"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/quds_reports/LICENSE",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/quds_reports/LICENSE"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/quds_reports/README.md",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/quds_reports/README.md"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/quds_reports/CHANGELOG.md",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/quds_reports/CHANGELOG.md"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/quds_office_editor/tool",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/quds_office_editor/tool"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/quds_office_editor/test",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/quds_office_editor/test"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/quds_office_editor/lib",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/quds_office_editor/lib"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/quds_office_editor/.pubignore",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/quds_office_editor/.pubignore"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/quds_office_editor/analysis_options.yaml",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/quds_office_editor/analysis_options.yaml"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/quds_office_editor/FORK.md",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/quds_office_editor/FORK.md"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/quds_office_editor/fonts",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/quds_office_editor/fonts"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/quds_office_editor/LICENSE",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/quds_office_editor/LICENSE"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/quds_office_editor/templates",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/quds_office_editor/templates"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/quds_office_editor/README.md",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/quds_office_editor/README.md"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/quds_office_editor/CHANGELOG.md",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/quds_office_editor/CHANGELOG.md"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/quds_office_editor/example/tool",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/quds_office_editor/example/tool"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/quds_office_editor/example/test",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/quds_office_editor/example/test"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/quds_office_editor/example/.gitignore",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/quds_office_editor/example/.gitignore"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/quds_office_editor/example/lib",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/quds_office_editor/example/lib"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/quds_office_editor/example/analysis_options.yaml",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/quds_office_editor/example/analysis_options.yaml"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/quds_office_editor/example/web",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/quds_office_editor/example/web"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/quds_office_editor/example/android",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/quds_office_editor/example/android"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/quds_office_editor/example/screenshots",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/quds_office_editor/example/screenshots"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/quds_office_editor/example/fonts",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/quds_office_editor/example/fonts"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/quds_office_editor/example/linux",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/quds_office_editor/example/linux"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/quds_office_editor/example/assets",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/quds_office_editor/example/assets"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/quds_office_editor/example/.metadata",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/quds_office_editor/example/.metadata"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/quds_office_editor/example/README.md",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/quds_office_editor/example/README.md"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/packages/quds_office_editor/example/windows",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/packages/quds_office_editor/example/windows"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/apps/quds_report_studio/tool",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/apps/quds_report_studio/tool"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/apps/quds_report_studio/test",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/apps/quds_report_studio/test"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/apps/quds_report_studio/macos",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/apps/quds_report_studio/macos"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/apps/quds_report_studio/.gitignore",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/apps/quds_report_studio/.gitignore"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/apps/quds_report_studio/lib",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/apps/quds_report_studio/lib"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/apps/quds_report_studio/analysis_options.yaml",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/apps/quds_report_studio/analysis_options.yaml"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/apps/quds_report_studio/web",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/apps/quds_report_studio/web"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/apps/quds_report_studio/packaging",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/apps/quds_report_studio/packaging"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/apps/quds_report_studio/screenshots",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/apps/quds_report_studio/screenshots"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/apps/quds_report_studio/linux",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/apps/quds_report_studio/linux"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/apps/quds_report_studio/assets",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/apps/quds_report_studio/assets"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/apps/quds_report_studio/.metadata",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/apps/quds_report_studio/.metadata"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/apps/quds_report_studio/README.md",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/apps/quds_report_studio/README.md"
+    },
+    {
+      "path": "/workspace/scratch/5fe2474d40d1/frozen-workspace/apps/quds_report_studio/windows",
+      "source": "/workspace/scratch/5fe2474d40d1/qualification-source/apps/quds_report_studio/windows"
+    }
+  ]
+}

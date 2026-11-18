@@ -4,6 +4,9 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Keep calendar-relative conditional formatting on the injected clock's civil
+  dates across timezone offsets, daylight-saving transitions and year changes.
+
 - Preserve floating text-frame bookmarks through LibreOffice ODT-to-DOCX
   conversion by linking their graphic style to a common ODF parent.
 

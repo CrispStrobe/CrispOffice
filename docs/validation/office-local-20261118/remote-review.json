@@ -1,0 +1,154 @@
+{
+  "schema_version": 1,
+  "kind": "independent-incoming-office-review",
+  "reviewer": "remote_review agent",
+  "repository": "CrispStrobe/quds_office_suite",
+  "observed_on": "2026-11-18",
+  "scope": "Read-only GitHub branch/PR/commit inspection and local Git/source review; no CI endpoints and no remote mutation.",
+  "snapshot": {
+    "initial_live_branch_count": 188,
+    "refreshed_live_branch_count": 190,
+    "pull_request_head_count": 152,
+    "local_ref_count_caution": "The initial upstream clone leaves three non-CrispStrobe remote-tracking branch names and origin/HEAD. Count actual connector branch heads, not every local origin/* ref.",
+    "main": "482e08176dea6bd8f5fc80d1c0064d96b712db43",
+    "recent_prs": [
+      {
+        "number": 152,
+        "status": "merged",
+        "head": "da9c956ec5d65c0e5a9f9ea84c2b0bca98e824a0",
+        "merge": "23f3b4204fce45d38a103e3159bdc7f1e8d37c4e",
+        "meaning": "Reconciles union source and removes unsupported header/footer frame fixture"
+      },
+      {
+        "number": 151,
+        "status": "merged",
+        "head": "7ef09f2408f467c65427700e65907531ecb26acb",
+        "merge": "34dc6b6806869570e9ec342e4d7ee0d6951c0ba6",
+        "meaning": "Calendar-relative conditional formats"
+      },
+      {
+        "number": 150,
+        "status": "closed-unmerged-superseded-by-152",
+        "head": "6d97fedccde17244a917ee7d3372adebe5494089"
+      },
+      {
+        "number": 149,
+        "status": "merged",
+        "meaning": "Earlier Office union"
+      },
+      {
+        "number": 139,
+        "status": "open-draft-separately-owned",
+        "head": "20026ff49ac37391e2a1fd0947560a587f2f7332",
+        "meaning": "Native spaCy W5/W6 development; inspect isolated Office fixes without importing the complete optional integration"
+      }
+    ],
+    "new_branches_since_initial_snapshot": [
+      {
+        "name": "codex/office-continue-20261118",
+        "sha": "8ad80eb29a3984d58d5564c6759e853c0a8ab4af",
+        "decision": "Concurrent continuation, no unique commits relative to the captured recovery head at observation"
+      },
+      {
+        "name": "codex/office-local-qualification-20261118",
+        "sha": "482e08176dea6bd8f5fc80d1c0064d96b712db43",
+        "decision": "Current continuation checkpoint"
+      }
+    ],
+    "original_branch_tips_changed_during_review": [],
+    "github_actions_queried_or_awaited": false
+  },
+  "source_recommendation": {
+    "base": "482e08176dea6bd8f5fc80d1c0064d96b712db43",
+    "reason": "Current main includes PR151/152, later German proofing completion, icon marker spacing, and formatting-preserving complete grammar corrections. Restoring an earlier union product tree would discard this landed work.",
+    "preserve_aot_rml_product_removal": true,
+    "do_not_wholesale_merge_old_recovery_or_spacy_branch": true
+  },
+  "calendar_repair_review": {
+    "commit": "2bfac9b203f9eed840dad21f69b9a2c6d3287237",
+    "relevance": "Isolated Office correctness fix embedded in separately owned native-spaCy work.",
+    "recommended_action": "Bring exactly the resolver and calendar regression test into current-main-based continuation; retain original calendar evidence with its historical source attribution.",
+    "paths": [
+      "packages/quds_office_engine/lib/src/sheet/model/sml_conditional_format.dart",
+      "packages/quds_office_engine/test/sheet_time_period_calendar_test.dart"
+    ],
+    "main_and_incoming_parent_resolver_blob": "c5f20dc40ada7c1405a2465008b890bbea3483d5",
+    "fixed_resolver_blob": "396f78b7b391258e29d5fe9b1ea6c0bd19262af2",
+    "incoming_parent_resolver_exactly_equals_main": true,
+    "latest_spacy_tip_retains_identical_repair": true,
+    "production_change": "Construct today and monthOffset as UTC civil dates from the injected clock's year, month and day.",
+    "correctness_reasoning": [
+      "Cell serial values already become UTC date-only values. Comparing them with local midnight instants shifts inclusive/exclusive last7Days and week endpoints by the timezone offset.",
+      "Subtracting a 24-hour Duration from local midnight across a spring DST change can land at 23:00 on the preceding calendar day, causing yesterday/week boundaries to use the wrong date.",
+      "DateTime.utc(now.year, now.month, now.day) keeps the clock's intended local calendar fields while making civil day arithmetic uniform. now.toUtc() would incorrectly change the intended day near midnight."
+    ],
+    "test_review": {
+      "new_tests": 8,
+      "coverage": [
+        "last7Days inclusive/exclusive endpoints near midnight",
+        "Sunday week boundaries",
+        "Berlin spring/fall DST dates",
+        "Los Angeles spring/fall DST dates",
+        "January previous-month/year rollover",
+        "December next-month/year rollover"
+      ],
+      "required_process_timezones": [
+        "UTC",
+        "Europe/Berlin",
+        "America/Los_Angeles"
+      ],
+      "portable_pure_dart": true,
+      "no_assertion_discarded": true
+    },
+    "historical_validation": {
+      "source": "docs/validation/native-spacy-w6-20261117/calendar-repair/final.json",
+      "reported_utc_sheet_regressions": 178,
+      "reported_calendar_controls_per_non_utc_timezone": 8,
+      "reported_retained_probe_cases_per_timezone": 12,
+      "reported_analysis_issues": 0,
+      "this_review_did_not_rerun_tests": true,
+      "current_continuation_runtime_acceptance": false
+    },
+    "blocking_static_findings": []
+  },
+  "evidence_recovery": [
+    {
+      "source_branch": "codex/office-union-resume-20261118",
+      "source_commit": "6d97fedccde17244a917ee7d3372adebe5494089",
+      "unique_files_absent_main": 7,
+      "prefix": "docs/validation/office-union-resume-20261117/",
+      "paths": [
+        "evidence/consumers-3d487008-retained33.tar.index.json",
+        "evidence/consumers-3d487008-retained33.tar.xz",
+        "evidence/flutter-runtime-recovery.tar.index.json",
+        "evidence/flutter-runtime-recovery.tar.xz",
+        "evidence/frame-development.tar.index.json",
+        "evidence/frame-development.tar.xz",
+        "independent-runtime-archive-audit.json"
+      ],
+      "additional_updated_handoff_paths": [
+        "README.md",
+        "qualification-plan.json",
+        "reconciliation.json"
+      ],
+      "attribution": "3d487008 was rejected by the focused compile check because WmlFrame is not valid in the header/footer WmlVisual list. Its retained33 consumer receipt is historical, not final acceptance. Corrected frozen source5c66e629758cacda91d67fa216fe24bfa664bf35 retained both body/no-unused-style controls. Product logic was unchanged.",
+      "stale_main_documentation": "Current main's older union README still identifies3d487008 as active and describes unsupported header/footer frame coverage. Preserve the corrected6d97fedc report or supersede it explicitly."
+    },
+    {
+      "source_branch": "codex/office-resume-20261118",
+      "source_commit": "8ad80eb29a3984d58d5564c6759e853c0a8ab4af",
+      "prefix": "docs/validation/office-resume-20261118/",
+      "unique_files_absent_main": 19,
+      "decision": "Preserve the complete historical directory, including consumer-boundary5, consumer-current7 and consumer-retained33 archives/indexes, runtime receipts and incoming audit.",
+      "attribution": "These receipts qualify historical c08fdc703acd986850ce6d1c079a0576fd438046, whose product tree uses the alternate direct-common SectionFrame style and includes old spaCy W5. Do not silently substitute that product tree for current main or label these receipts as new-source evidence."
+    }
+  ],
+  "remaining_work": [
+    "Publish current-main source plus isolated calendar fix and preserved evidence before sustained local qualification.",
+    "Recalculate selected test-file counts from the final source; old222-file scope predates newer main tests and the calendar regression.",
+    "Retain complete raw receipts for canonical, portable, example, consumer and serial native gates, with one explicit frozen source and independent archive readback.",
+    "Keep native spaCy product integration separately owned; the isolated calendar change is independent of its grammar/provider changes."
+  ],
+  "qualification_accepted": false
+}
+
