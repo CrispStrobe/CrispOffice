@@ -4,6 +4,11 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Check native spelling without discretionary soft hyphens while keeping exact
+  original UTF-16 finding ranges and undoable corrections. Preserve authored
+  layout outside corrections, reject layout-only suggestions, and keep links,
+  code, marked identifiers and grapheme clusters protected after projection.
+
 - Keep native spelling shortlists useful by filtering blank, unchanged,
   duplicate and malformed replacements before the eight-suggestion limit.
   Preserve multiword and Unicode corrections, keep unknown words reviewable
