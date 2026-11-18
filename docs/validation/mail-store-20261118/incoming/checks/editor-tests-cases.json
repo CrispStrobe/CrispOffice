@@ -1,0 +1,219 @@
+[
+  {
+    "name": "keyboard hit preserves source, selection, layout and viewport",
+    "result": "success",
+    "skipped": false,
+    "url": "package:flutter_test/src/widget_tester.dart",
+    "line": 174
+  },
+  {
+    "name": "keyboard hit follows the wrapped LTR caret",
+    "result": "success",
+    "skipped": false,
+    "url": "package:flutter_test/src/widget_tester.dart",
+    "line": 174
+  },
+  {
+    "name": "keyboard hit follows the wrapped RTL caret",
+    "result": "success",
+    "skipped": false,
+    "url": "package:flutter_test/src/widget_tester.dart",
+    "line": 174
+  },
+  {
+    "name": "offscreen hit clamps its anchor without revealing the caret",
+    "result": "success",
+    "skipped": false,
+    "url": "package:flutter_test/src/widget_tester.dart",
+    "line": 174
+  },
+  {
+    "name": "keyboard hit uses exact active header",
+    "result": "success",
+    "skipped": false,
+    "url": "package:flutter_test/src/widget_tester.dart",
+    "line": 174
+  },
+  {
+    "name": "keyboard hit uses exact active footer",
+    "result": "success",
+    "skipped": false,
+    "url": "package:flutter_test/src/widget_tester.dart",
+    "line": 174
+  },
+  {
+    "name": "repeated header anchors to its visible source occurrence",
+    "result": "success",
+    "skipped": false,
+    "url": "package:flutter_test/src/widget_tester.dart",
+    "line": 174
+  },
+  {
+    "name": "nested cell hit retains link and comment from its source run",
+    "result": "success",
+    "skipped": false,
+    "url": "package:flutter_test/src/widget_tester.dart",
+    "line": 174
+  },
+  {
+    "name": "context metadata follows the caret, without stale selection",
+    "result": "success",
+    "skipped": false,
+    "url": "package:flutter_test/src/widget_tester.dart",
+    "line": 174
+  },
+  {
+    "name": "invalid indices and detached source do not target another paragraph",
+    "result": "success",
+    "skipped": false,
+    "url": "package:flutter_test/src/widget_tester.dart",
+    "line": 174
+  },
+  {
+    "name": "empty paragraphs need an identity-bound layout line for a hit",
+    "result": "success",
+    "skipped": false,
+    "url": "package:flutter_test/src/widget_tester.dart",
+    "line": 174
+  },
+  {
+    "name": "Alt F7 opens writing and wraps without invoking manual tools",
+    "result": "success",
+    "skipped": false,
+    "url": "package:flutter_test/src/widget_tester.dart",
+    "line": 174
+  },
+  {
+    "name": "Alt Shift F7 navigates backwards and wraps at the first issue",
+    "result": "success",
+    "skipped": false,
+    "url": "package:flutter_test/src/widget_tester.dart",
+    "line": 174
+  },
+  {
+    "name": "keyboard correction preserves an explicitly selected overlapping finding",
+    "result": "success",
+    "skipped": false,
+    "url": "package:flutter_test/src/widget_tester.dart",
+    "line": 174
+  },
+  {
+    "name": "keyboard change decisions preserve the selected adjacent revision",
+    "result": "success",
+    "skipped": false,
+    "url": "package:flutter_test/src/widget_tester.dart",
+    "line": 174
+  },
+  {
+    "name": "issue navigation with no findings opens a usable writing pane",
+    "result": "success",
+    "skipped": false,
+    "url": "package:flutter_test/src/widget_tester.dart",
+    "line": 174
+  },
+  {
+    "name": "review navigation and context shortcuts preserve active IME composition",
+    "result": "success",
+    "skipped": false,
+    "url": "package:flutter_test/src/widget_tester.dart",
+    "line": 174
+  },
+  {
+    "name": "focused Writing filter limits both issue navigation shortcuts",
+    "result": "success",
+    "skipped": false,
+    "url": "package:flutter_test/src/widget_tester.dart",
+    "line": 174
+  },
+  {
+    "name": "covered pane shortcuts cannot navigate, check or close review",
+    "result": "success",
+    "skipped": false,
+    "url": "package:flutter_test/src/widget_tester.dart",
+    "line": 174
+  },
+  {
+    "name": "an open keyboard menu cannot act after its origin route is covered",
+    "result": "success",
+    "skipped": false,
+    "url": "package:flutter_test/src/widget_tester.dart",
+    "line": 174
+  },
+  {
+    "name": "issue navigation from a Changes search field opens Writing",
+    "result": "success",
+    "skipped": false,
+    "url": "package:flutter_test/src/widget_tester.dart",
+    "line": 174
+  },
+  {
+    "name": "ordinary shortcuts in a focused reviewer field edit only the field",
+    "result": "success",
+    "skipped": false,
+    "url": "package:flutter_test/src/widget_tester.dart",
+    "line": 174
+  },
+  {
+    "name": "Shift F10 opens suggestions without moving the caret and Enter corrects",
+    "result": "success",
+    "skipped": false,
+    "url": "package:flutter_test/src/widget_tester.dart",
+    "line": 174
+  },
+  {
+    "name": "Context Menu key and Escape restore canvas focus and text input",
+    "result": "success",
+    "skipped": false,
+    "url": "package:flutter_test/src/widget_tester.dart",
+    "line": 174
+  },
+  {
+    "name": "selected issue ending at the next issue uses its own keyboard correction",
+    "result": "success",
+    "skipped": false,
+    "url": "package:flutter_test/src/widget_tester.dart",
+    "line": 174
+  },
+  {
+    "name": "a short unfiltered context menu supports arrows and Enter",
+    "result": "success",
+    "skipped": false,
+    "url": "package:flutter_test/src/widget_tester.dart",
+    "line": 174
+  },
+  {
+    "name": "source edits dismiss a keyboard suggestion before it can act",
+    "result": "success",
+    "skipped": false,
+    "url": "package:flutter_test/src/widget_tester.dart",
+    "line": 174
+  },
+  {
+    "name": "viewing keeps keyboard findings inspectable without correction",
+    "result": "success",
+    "skipped": false,
+    "url": "package:flutter_test/src/widget_tester.dart",
+    "line": 174
+  },
+  {
+    "name": "document protection keeps keyboard findings inspectable without correction",
+    "result": "success",
+    "skipped": false,
+    "url": "package:flutter_test/src/widget_tester.dart",
+    "line": 174
+  },
+  {
+    "name": "keyboard context resolves the current tracked change with Undo",
+    "result": "success",
+    "skipped": false,
+    "url": "package:flutter_test/src/widget_tester.dart",
+    "line": 174
+  },
+  {
+    "name": "Check document upgrades a held background check and shares its full result",
+    "result": "success",
+    "skipped": false,
+    "url": "package:flutter_test/src/widget_tester.dart",
+    "line": 174
+  }
+]

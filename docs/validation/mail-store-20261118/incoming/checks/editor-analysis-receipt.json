@@ -1,0 +1,19 @@
+{
+  "name": "editor-analysis",
+  "argv": [
+    "/workspace/scratch/28080c14894b/toolchain/flutter/bin/cache/dart-sdk/bin/dart",
+    "analyze",
+    "--fatal-infos",
+    "lib/src/embed/office_editors.dart",
+    "test/word_keyboard_review_test.dart",
+    "test/word_keyboard_context_geometry_test.dart",
+    "test/word_keyboard_review_identity_test.dart"
+  ],
+  "cwd": "packages/quds_office_editor",
+  "started_at_utc": "2026-11-18T20:29:23.550511+00:00",
+  "status": "PASS",
+  "exit_code": 0,
+  "finished_at_utc": "2026-11-18T20:29:44.128087+00:00",
+  "stdout": "editor-analysis.stdout",
+  "stderr": "editor-analysis.stderr"
+}

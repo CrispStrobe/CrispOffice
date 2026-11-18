@@ -1,0 +1,72 @@
+{
+  "status": "passed",
+  "started_at_utc": "2026-11-18T20:31:07.104792+00:00",
+  "finished_at_utc": "2026-11-18T20:31:08.346270+00:00",
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "tools/thesaurus/test_export_review_packet.py",
+    "-v"
+  ],
+  "cwd": "/workspace/scratch/50c979e0f188/quds_office_suite",
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "exit_code": 0,
+  "cases": 7,
+  "source_before": {
+    "tools/thesaurus/export_review_packet.py": {
+      "bytes": 13361,
+      "sha256": "1d14bd72961bad937d2eaf624ea179bafce8cc61fc6534c8b893deed1f33945f"
+    },
+    "tools/thesaurus/test_export_review_packet.py": {
+      "bytes": 3415,
+      "sha256": "f5bf1ab698351f39648f1cd5d1049a4ce4c899c313737f9ab791674413904e7c"
+    },
+    "tools/thesaurus/build_packs.py": {
+      "bytes": 19016,
+      "sha256": "52c87f52f7c85ed2ec9d58b91e5afeb5bb658e7b99fe167cc4a26e6fb5608e4c"
+    },
+    "docs/validation/thesaurus-20261118/resume/native/native-pack-report.json": {
+      "bytes": 145119,
+      "sha256": "5a65825ca8cbfd83c26d858427b0b1b101dd3ee0c6a8ac9dffd2065cd7333986"
+    },
+    "packages/quds_office_editor/assets/thesaurus/en/manifest.json": {
+      "bytes": 126855,
+      "sha256": "13ae58da2a20c0eb74ccf20acc3fade665e12e48daf783351f90b3073fd28e23"
+    },
+    "packages/quds_office_editor/assets/thesaurus/de/manifest.json": {
+      "bytes": 127549,
+      "sha256": "8788f9af67186b40f963f948aeceed01c012f3e9653ddab68947e16213cb0453"
+    }
+  },
+  "source_after": {
+    "tools/thesaurus/export_review_packet.py": {
+      "bytes": 13361,
+      "sha256": "1d14bd72961bad937d2eaf624ea179bafce8cc61fc6534c8b893deed1f33945f"
+    },
+    "tools/thesaurus/test_export_review_packet.py": {
+      "bytes": 3415,
+      "sha256": "f5bf1ab698351f39648f1cd5d1049a4ce4c899c313737f9ab791674413904e7c"
+    },
+    "tools/thesaurus/build_packs.py": {
+      "bytes": 19016,
+      "sha256": "52c87f52f7c85ed2ec9d58b91e5afeb5bb658e7b99fe167cc4a26e6fb5608e4c"
+    },
+    "docs/validation/thesaurus-20261118/resume/native/native-pack-report.json": {
+      "bytes": 145119,
+      "sha256": "5a65825ca8cbfd83c26d858427b0b1b101dd3ee0c6a8ac9dffd2065cd7333986"
+    },
+    "packages/quds_office_editor/assets/thesaurus/en/manifest.json": {
+      "bytes": 126855,
+      "sha256": "13ae58da2a20c0eb74ccf20acc3fade665e12e48daf783351f90b3073fd28e23"
+    },
+    "packages/quds_office_editor/assets/thesaurus/de/manifest.json": {
+      "bytes": 127549,
+      "sha256": "8788f9af67186b40f963f948aeceed01c012f3e9653ddab68947e16213cb0453"
+    }
+  },
+  "source_unchanged": true,
+  "logs": {
+    "stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr.log": "9b0817956d199a99e27f121e2ad2f1aabc5ed8f4f782c15288c946dfb6ac3ad2"
+  },
+  "scope": "Exporter/source-integrity controls; not a new provider run or independent linguistic review."
+}

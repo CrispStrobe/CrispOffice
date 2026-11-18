@@ -1,0 +1,22 @@
+9e8ca25e60fff3e5d7b1f5ced6630d3827bdfae6
+100644 b11869b34b5d22ac068290b7722df4a830e821e5 1	packages/quds_mail_ui/test/support/runtime_network_guard_web.dart
+100644 2b5a8719c86e734b328ab8bcd13d93c7044feec5 2	packages/quds_mail_ui/test/support/runtime_network_guard_web.dart
+100644 883c813ce185a65fd3785e9ff4c9810b5c9c1fe6 3	packages/quds_mail_ui/test/support/runtime_network_guard_web.dart
+100644 cdceb3b06925ba20d809cfccda2c988d12226668 1	packages/quds_office_editor/example/lib/studio_chrome.dart
+100644 79beeb40ce2432338025506dcbbedacf465c3402 2	packages/quds_office_editor/example/lib/studio_chrome.dart
+100644 fc655d783d39dda834ab36b64fca421322177b8f 3	packages/quds_office_editor/example/lib/studio_chrome.dart
+100644 e1eb21237fe3b5dff4dc64f21ccbc71a8330fce4 1	packages/quds_office_editor/example/lib/suite_workspace.dart
+100644 add530ea3e325a5beea540d090b93e1ab6eb54a7 2	packages/quds_office_editor/example/lib/suite_workspace.dart
+100644 d48e974d4bd6ab715690782464221c7f7f0dbb5a 3	packages/quds_office_editor/example/lib/suite_workspace.dart
+100644 b17e67462e4cd430524e07fad0a8732d413f9678 1	packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart
+100644 d4c1da65313ac604294274b64a3a5ffd5cad53f4 2	packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart
+100644 25396473ef75f3532cfff03811208038beb0a291 3	packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart
+
+Auto-merging packages/quds_mail_ui/test/support/runtime_network_guard_web.dart
+CONFLICT (content): Merge conflict in packages/quds_mail_ui/test/support/runtime_network_guard_web.dart
+Auto-merging packages/quds_office_editor/example/lib/studio_chrome.dart
+CONFLICT (content): Merge conflict in packages/quds_office_editor/example/lib/studio_chrome.dart
+Auto-merging packages/quds_office_editor/example/lib/suite_workspace.dart
+CONFLICT (content): Merge conflict in packages/quds_office_editor/example/lib/suite_workspace.dart
+Auto-merging packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart
+CONFLICT (content): Merge conflict in packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart

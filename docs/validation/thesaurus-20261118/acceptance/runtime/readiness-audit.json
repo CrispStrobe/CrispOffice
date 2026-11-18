@@ -1,0 +1,10 @@
+{
+  "workspace_package_count": 121,
+  "every_manifest_matches": true,
+  "root_lock_matches": true,
+  "source_package_config_link": "/workspace/scratch/50c979e0f188/runtime/validation/.dart_tool",
+  "compatibility_aliases": {
+    "zotero-toolchain": "/workspace/scratch/50c979e0f188/runtime",
+    "zotero-validation": "/workspace/scratch/50c979e0f188/runtime/validation"
+  }
+}

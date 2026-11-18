@@ -1,0 +1,273 @@
+{
+  "status": "passed",
+  "started_at_utc": "2026-11-18T20:22:16.732570+00:00",
+  "source_sha": "813a7cdd7d55f2028e377393ae6bbc7388f5db73",
+  "github_actions_used": false,
+  "browser_executed": false,
+  "runs": [
+    {
+      "name": "analysis",
+      "command": [
+        "/workspace/scratch/50c979e0f188/runtime/flutter-sdk/bin/flutter",
+        "analyze",
+        "--no-pub",
+        "--fatal-infos",
+        "packages/quds_mail_ui/test/support/runtime_network_guard_web.dart",
+        "packages/quds_office_editor/example/lib/studio_chrome.dart",
+        "packages/quds_office_editor/example/lib/suite_workspace.dart",
+        "packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart",
+        "packages/quds_mail_ui/lib/src/reader/message_view.dart"
+      ],
+      "cwd": "/workspace/scratch/50c979e0f188/quds_office_suite",
+      "exit_code": 0,
+      "seconds": 21.697438662999048,
+      "stdout": "analysis/stdout.jsonl",
+      "stderr": "analysis/stderr.log",
+      "stdout_sha256": "5d0f056da7e064df2a9680840a398a32bea2713d8e75bfce177e8423a58e167f",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "studio",
+      "command": [
+        "/workspace/scratch/50c979e0f188/runtime/flutter-sdk/bin/flutter",
+        "test",
+        "--no-pub",
+        "--concurrency=1",
+        "--reporter",
+        "json",
+        "test/studio_comment_draft_proofing_test.dart",
+        "test/studio_compact_navigation_test.dart",
+        "test/studio_comment_keyboard_review_test.dart",
+        "test/studio_zotero_shortcuts_test.dart"
+      ],
+      "cwd": "/workspace/scratch/50c979e0f188/runtime/validation/packages/quds_office_editor/example",
+      "exit_code": 0,
+      "seconds": 173.37052388300071,
+      "stdout": "studio/stdout.jsonl",
+      "stderr": "studio/stderr.log",
+      "stdout_sha256": "fe16bcf8b16c95365dfa96f286a4182cafc4bf369027212ce87897239385cf45",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test_audit": {
+        "passed": 36,
+        "failed": 0,
+        "skipped": 0,
+        "suite_count": 4
+      },
+      "guards": {
+        "exit_success": true,
+        "all_selected_suites_executed": true,
+        "nonempty_cases": true,
+        "no_failed_or_skipped_cases": true,
+        "every_started_test_finished_once": true,
+        "final_event_success": true,
+        "clean_event_stream": true
+      },
+      "selected_tests": [
+        "test/studio_comment_draft_proofing_test.dart",
+        "test/studio_compact_navigation_test.dart",
+        "test/studio_comment_keyboard_review_test.dart",
+        "test/studio_zotero_shortcuts_test.dart"
+      ],
+      "source_unchanged": true,
+      "changed_inputs": []
+    },
+    {
+      "name": "mail-ui",
+      "command": [
+        "/workspace/scratch/50c979e0f188/runtime/flutter-sdk/bin/flutter",
+        "test",
+        "--no-pub",
+        "--concurrency=1",
+        "--reporter",
+        "json",
+        "test/controller_test.dart",
+        "test/example_test.dart",
+        "test/message_view_test.dart",
+        "test/presentation_test.dart"
+      ],
+      "cwd": "/workspace/scratch/50c979e0f188/runtime/validation/packages/quds_mail_ui",
+      "exit_code": 0,
+      "seconds": 24.376476028999605,
+      "stdout": "mail-ui/stdout.jsonl",
+      "stderr": "mail-ui/stderr.log",
+      "stdout_sha256": "cf3a5f94486fa844c4ab2df330f3dc728a3f7509df9048926fce8ee01f6eb5f2",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test_audit": {
+        "passed": 30,
+        "failed": 0,
+        "skipped": 0,
+        "suite_count": 4
+      },
+      "guards": {
+        "exit_success": true,
+        "all_selected_suites_executed": true,
+        "nonempty_cases": true,
+        "no_failed_or_skipped_cases": true,
+        "every_started_test_finished_once": true,
+        "final_event_success": true,
+        "clean_event_stream": true
+      },
+      "selected_tests": [
+        "test/controller_test.dart",
+        "test/example_test.dart",
+        "test/message_view_test.dart",
+        "test/presentation_test.dart"
+      ],
+      "source_unchanged": true,
+      "changed_inputs": []
+    },
+    {
+      "name": "mail-core",
+      "command": [
+        "/workspace/scratch/50c979e0f188/runtime/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+        "--disable-dart-dev",
+        "--packages=/workspace/scratch/50c979e0f188/runtime/validation/.dart_tool/package_config.json",
+        "/workspace/scratch/50c979e0f188/runtime/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+        "--concurrency=1",
+        "--reporter",
+        "json",
+        "test/cancellation_test.dart",
+        "test/models_test.dart",
+        "test/outbox_test.dart",
+        "test/sync_coordinator_test.dart"
+      ],
+      "cwd": "/workspace/scratch/50c979e0f188/runtime/validation/packages/quds_mail_core",
+      "exit_code": 0,
+      "seconds": 31.546567396999308,
+      "stdout": "mail-core/stdout.jsonl",
+      "stderr": "mail-core/stderr.log",
+      "stdout_sha256": "438233587209cfff20385c3fa3f28a7ce0baa1591344b7f3ad23be7607693d2a",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test_audit": {
+        "passed": 28,
+        "failed": 0,
+        "skipped": 0,
+        "suite_count": 4
+      },
+      "guards": {
+        "exit_success": true,
+        "all_selected_suites_executed": true,
+        "nonempty_cases": true,
+        "no_failed_or_skipped_cases": true,
+        "every_started_test_finished_once": true,
+        "final_event_success": true,
+        "clean_event_stream": true
+      },
+      "selected_tests": [
+        "test/cancellation_test.dart",
+        "test/models_test.dart",
+        "test/outbox_test.dart",
+        "test/sync_coordinator_test.dart"
+      ],
+      "source_unchanged": true,
+      "changed_inputs": []
+    },
+    {
+      "name": "mail-mime",
+      "command": [
+        "/workspace/scratch/50c979e0f188/runtime/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+        "--disable-dart-dev",
+        "--packages=/workspace/scratch/50c979e0f188/runtime/validation/.dart_tool/package_config.json",
+        "/workspace/scratch/50c979e0f188/runtime/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+        "--concurrency=1",
+        "--reporter",
+        "json",
+        "test/eml_bytes_test.dart",
+        "test/mime_encodings_test.dart",
+        "test/mime_limits_test.dart",
+        "test/mime_parts_test.dart",
+        "test/mime_review_regressions_test.dart",
+        "test/portable_import_test.dart"
+      ],
+      "cwd": "/workspace/scratch/50c979e0f188/runtime/validation/packages/quds_mail_mime",
+      "exit_code": 0,
+      "seconds": 36.20769162800207,
+      "stdout": "mail-mime/stdout.jsonl",
+      "stderr": "mail-mime/stderr.log",
+      "stdout_sha256": "24900baae9a0895fe2ec72a041e8587a32936c1c538551364c3305b9e28e81fc",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test_audit": {
+        "passed": 32,
+        "failed": 0,
+        "skipped": 0,
+        "suite_count": 6
+      },
+      "guards": {
+        "exit_success": true,
+        "all_selected_suites_executed": true,
+        "nonempty_cases": true,
+        "no_failed_or_skipped_cases": true,
+        "every_started_test_finished_once": true,
+        "final_event_success": true,
+        "clean_event_stream": true
+      },
+      "selected_tests": [
+        "test/eml_bytes_test.dart",
+        "test/mime_encodings_test.dart",
+        "test/mime_limits_test.dart",
+        "test/mime_parts_test.dart",
+        "test/mime_review_regressions_test.dart",
+        "test/portable_import_test.dart"
+      ],
+      "source_unchanged": true,
+      "changed_inputs": []
+    },
+    {
+      "name": "engine",
+      "command": [
+        "/workspace/scratch/50c979e0f188/runtime/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+        "--disable-dart-dev",
+        "--packages=/workspace/scratch/50c979e0f188/runtime/validation/.dart_tool/package_config.json",
+        "/workspace/scratch/50c979e0f188/runtime/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+        "--concurrency=1",
+        "--reporter",
+        "json",
+        "test/office_thesaurus_test.dart",
+        "test/word_zotero_note_insertion_test.dart"
+      ],
+      "cwd": "/workspace/scratch/50c979e0f188/runtime/validation/packages/quds_office_engine",
+      "exit_code": 0,
+      "seconds": 36.85666158300228,
+      "stdout": "engine/stdout.jsonl",
+      "stderr": "engine/stderr.log",
+      "stdout_sha256": "b7a3025d7e10de5bf0813692d04087753b4aa3e21dc69d8f2e14f7492c636172",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test_audit": {
+        "passed": 65,
+        "failed": 0,
+        "skipped": 0,
+        "suite_count": 2
+      },
+      "guards": {
+        "exit_success": true,
+        "all_selected_suites_executed": true,
+        "nonempty_cases": true,
+        "no_failed_or_skipped_cases": true,
+        "every_started_test_finished_once": true,
+        "final_event_success": true,
+        "clean_event_stream": true
+      },
+      "selected_tests": [
+        "test/office_thesaurus_test.dart",
+        "test/word_zotero_note_insertion_test.dart"
+      ],
+      "source_unchanged": true,
+      "changed_inputs": []
+    }
+  ],
+  "analysis_targets": [
+    "packages/quds_mail_ui/test/support/runtime_network_guard_web.dart",
+    "packages/quds_office_editor/example/lib/studio_chrome.dart",
+    "packages/quds_office_editor/example/lib/suite_workspace.dart",
+    "packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart",
+    "packages/quds_mail_ui/lib/src/reader/message_view.dart"
+  ],
+  "input_digest": "e97c29ae421f6e1c5455a45a919243fe1650cf7587c7498adc90d7fa9eebbbd5",
+  "source_files": 2195,
+  "output_digest": "e97c29ae421f6e1c5455a45a919243fe1650cf7587c7498adc90d7fa9eebbbd5",
+  "source_unchanged": true,
+  "changed_inputs": [],
+  "source_sha_after": "7530f83a5503987dbee5b9678af56116ca98621f",
+  "finished_at_utc": "2026-11-18T20:27:45.335488+00:00",
+  "passed_cases": 191
+}

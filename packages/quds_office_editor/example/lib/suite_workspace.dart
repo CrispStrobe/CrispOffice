@@ -1057,6 +1057,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                   key: const ValueKey<String>('studio-ribbon-tabs-scroll'),
                   scrollDirection: Axis.horizontal,
                   child: Row(
+                    mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       const SizedBox(width: 4),
                       for (final _RibbonTab tab in _tabsForApp)
