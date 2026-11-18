@@ -12,10 +12,10 @@ The execution checkout is frozen at `9d060658ee6be8ec97d73f56b9aec10d346b7952`, 
 
 - Completed the formerly interrupted full member audit: all 42 archived failed-attempt members match indexed SHA-256 and size. Native recovery (72 members) and helper recovery (10 members) also match.
 - Restored and verified the document-consumer runtime: 710 evidence files and 3,504 installed runtime files.
-- Fresh workspace starts with approximately 59 GiB free. Flutter and native recovery are in progress, using the original pins.
+- Fresh workspace starts with approximately 59 GiB free. Flutter, native, Python and document-consumer recovery now pass against the original pins. The actual-root 109-package configuration remains byte-identical after prewarm. Independent SDK, package and compiler input audits pass.
 
 ## Remaining acceptance work
 
-Normalize the package graph using the actual Flutter path and prewarm the CLI before taking fresh snapshots. Then complete the unchanged 224-file canonical selection, portable/example/timezone gates, document consumers, native thread sweep, and independent evidence audits. Publish each meaningful checkpoint immediately.
+The normalized and prewarmed source is now running the fresh canonical gate. Complete the unchanged 224-file canonical selection, portable/example/timezone gates, document consumers, native thread sweep, and independent evidence audits. Publish each meaningful checkpoint immediately.
 
 No GitHub Actions, workflow, check, or status endpoint is queried or awaited. `status.json` is the current machine-readable state.

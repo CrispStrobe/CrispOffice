@@ -1,0 +1,9 @@
+{
+  "commit": "85098d52ac025994d140192ed3808fba3ed349fc",
+  "tree": "62748adfc1fe9e9a2a5bb445365ee48d1aed02bf",
+  "parent": "9d060658ee6be8ec97d73f56b9aec10d346b7952",
+  "non_forced_expected_head_update": true,
+  "all19_uploaded_blob_ids_match_local_objects": true,
+  "remote_status_file_readback_matches": true,
+  "shell_push_failed_authentication_before_plugin_fallback": true
+}
