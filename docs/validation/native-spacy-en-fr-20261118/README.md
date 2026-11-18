@@ -30,7 +30,7 @@ still moving during the work, so a second pass ran before the final checkpoint.
 | French bundle | `cstr/crispembed-spacy-fr-core-news-sm-3.8.0` at `5e90593195cc4ecd20ceb864d932d7d7f5e3d762` |
 | Publication | CrispEmbed run 44372635419 (main `e91b054d`): converted on hosted Linux from the pinned wheels, every pin checked, immutable tree and fresh empty-cache readback of every file |
 | v2 runtime capsules | Built from CrispEmbed main `45b05770` by run 44369523105 and published in the German repository: linux-x86_64 `6e21ae15…` (revision `d143d26a`), linux-arm64 `21d15c1e…` (`fd75184d`), macos-arm64 `f3300152…` (`cf833ae5`). The Windows build failed its text-API controls and is not published. |
-| Consumers | Same run: each published capsule + bundle downloaded, verified and installed; admission controls and a ctypes-only analysis vs original spaCy: EN 2,077/2,077 texts, 25,531 tokens, 1,876/1,876 entities; FR 416/416, 9,786 tokens, 469/469 (Linux x86-64, Linux arm64, macOS arm64) |
+| Consumers | Run 44377019364 (published bundles read back, no reconversion): each published capsule + bundle downloaded, verified and installed; admission controls and a ctypes-only analysis vs original spaCy: EN 2,077/2,077 texts, 25,531 tokens, 1,876/1,876 entities; FR 416/416, 9,786 tokens, 469/469 on Linux x86-64, Linux arm64 and macOS arm64. Windows: no v2 capsule. Cards: EN `e1808ee0`, FR `577d2711` (LGPL-LR metadata). |
 
 The French model is **LGPL-LR** (as the official `fr_core_news_sm` package),
 not MIT; the setup view says so and installs the full license text.
