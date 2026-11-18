@@ -8,7 +8,7 @@ The fresh checkout had no user modifications and no competing Mail packages.
 ## Incoming work
 
 Fetched all remote heads and PR head refs before implementation. The initial
-inventory accounts for 207 pre-existing branches and 169 PR heads. The current
+inventory accounts for 207 pre-existing branches and 169 PR heads. The initial
 document-review head (`eedf2aee`) includes the Zotero follow-ups; the completed
 thesaurus head (`315beeb3`) adds two commits beyond their common baseline.
 Both were merged with main on the implementation branch. Six overlapping
@@ -19,6 +19,17 @@ full SHA identities and proof of the 14 historical equivalent heads. They were
 not blindly re-applied. The first two remote integration checkpoints are
 `6db30ea1b290d7632110e881d404085648796d94` and
 `0e07d24714e6261123fcb835c36a592d6827982d`.
+
+A second full head/PR-ref fetch captured work published while the Mail reader
+was being implemented. The external inventory increased to 209 branches and
+170 PR heads. Updated review/thesaurus heads and new Zotero-note/spaCy heads
+are all ancestors of `b9728ea1ec835cb589b266cfe9fc98507eb7acfa`. Its 26 additional
+commits were merged into the already saved Mail branch at
+`c473a25f27bbbce083ef8a5aa40eaa74e70d3146`. The merge had no source conflicts;
+Git preserved both the Mail roadmap update and the incoming EOF cleanup.
+`final-reconciliation.json` records the exact captured refs and ancestry proof.
+The `checks/late-*` receipts identify the separate local regression cohort for
+that later source; imported historical validation totals are not re-counted.
 
 ## Toolchain
 

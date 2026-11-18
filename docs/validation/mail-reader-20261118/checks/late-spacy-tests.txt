@@ -1,0 +1,53 @@
+00:00 +0: loading packages/quds_proofing_spacy/test/language_catalog_test.dart
+00:00 +0: packages/quds_proofing_spacy/test/language_catalog_test.dart: request locales map to exactly one analysis language
+00:00 +1: packages/quds_proofing_spacy/test/analysis_test.dart: source map keeps UTF8, scalars, UTF16, NUL and decomposed text distinct
+00:00 +2: packages/quds_proofing_spacy/test/analysis_test.dart: source map keeps UTF8, scalars, UTF16, NUL and decomposed text distinct
+00:00 +3: packages/quds_proofing_spacy/test/analysis_test.dart: source map keeps UTF8, scalars, UTF16, NUL and decomposed text distinct
+00:00 +4: packages/quds_proofing_spacy/test/analysis_test.dart: source map keeps UTF8, scalars, UTF16, NUL and decomposed text distinct
+00:00 +5: packages/quds_proofing_spacy/test/analysis_test.dart: source map keeps UTF8, scalars, UTF16, NUL and decomposed text distinct
+00:00 +6: packages/quds_proofing_spacy/test/language_catalog_test.dart: a language bundle needs a v2-capable runtime package
+00:00 +7: packages/quds_proofing_spacy/test/language_catalog_test.dart: a language bundle needs a v2-capable runtime package
+00:00 +8: packages/quds_proofing_spacy/test/analysis_test.dart: byte admission checks multibyte input without truncation
+00:00 +9: packages/quds_proofing_spacy/test/analysis_test.dart: byte admission checks multibyte input without truncation
+00:00 +10: packages/quds_proofing_spacy/test/language_catalog_test.dart: wrong bundle bytes of the pinned length leave no installation
+00:00 +11: packages/quds_proofing_spacy/test/language_catalog_test.dart: wrong bundle bytes of the pinned length leave no installation
+00:00 +12: packages/quds_proofing_spacy/test/language_catalog_test.dart: wrong bundle bytes of the pinned length leave no installation
+00:00 +13: packages/quds_proofing_spacy/test/language_catalog_test.dart: wrong bundle bytes of the pinned length leave no installation
+00:00 +14: packages/quds_proofing_spacy/test/language_catalog_test.dart: wrong bundle bytes of the pinned length leave no installation
+00:00 +15: packages/quds_proofing_spacy/test/language_catalog_test.dart: wrong bundle bytes of the pinned length leave no installation
+00:00 +16: packages/quds_proofing_spacy/test/language_catalog_test.dart: wrong bundle bytes of the pinned length leave no installation
+00:00 +17: packages/quds_proofing_spacy/test/language_catalog_test.dart: wrong bundle bytes of the pinned length leave no installation
+00:00 +18: packages/quds_proofing_spacy/test/language_catalog_test.dart: wrong bundle bytes of the pinned length leave no installation
+00:00 +19: packages/quds_proofing_spacy/test/language_catalog_test.dart: wrong bundle bytes of the pinned length leave no installation
+00:00 +20: packages/quds_proofing_spacy/test/language_catalog_test.dart: wrong bundle bytes of the pinned length leave no installation
+00:00 +21: packages/quds_proofing_spacy/test/language_catalog_test.dart: wrong bundle bytes of the pinned length leave no installation
+00:00 +22: packages/quds_proofing_spacy/test/language_catalog_test.dart: wrong bundle bytes of the pinned length leave no installation
+00:01 +23: packages/quds_proofing_spacy/test/distribution_test.dart: catalog pins the published Linux capsule at an immutable revision
+00:01 +24: packages/quds_proofing_spacy/test/distribution_test.dart: the macOS package is published without a grammar claim
+00:01 +25: packages/quds_proofing_spacy/test/distribution_test.dart: claims are bound to exact library digests
+00:01 +26: packages/quds_proofing_spacy/test/distribution_test.dart: catalog grammar claims match the planner's enforced build pin
+00:01 +27: packages/quds_proofing_spacy/test/distribution_test.dart: unpublished platforms are unavailable with a stated reason
+00:01 +28: packages/quds_proofing_spacy/test/distribution_test.dart: only immutable revisions and safe paths resolve
+00:01 +29: packages/quds_proofing_spacy/test/distribution_test.dart: missing installation is null and a damaged one is reported
+00:01 +30: packages/quds_proofing_spacy/test/worker_test.dart: persistent native ownership serializes calls and recovers after failure
+00:01 +31: packages/quds_proofing_spacy/test/distribution_test.dart: download failures leave no installation HTTP error
+00:01 +32: packages/quds_proofing_spacy/test/distribution_test.dart: download failures leave no installation HTTP error
+00:01 +33: packages/quds_proofing_spacy/test/distribution_test.dart: download failures leave no installation HTTP error
+00:01 +34: packages/quds_proofing_spacy/test/distribution_test.dart: download failures leave no installation HTTP error
+00:01 +35: packages/quds_proofing_spacy/test/worker_test.dart: timeout retains physical slot and never publishes a late result
+00:01 +36: packages/quds_proofing_spacy/test/worker_test.dart: timeout retains physical slot and never publishes a late result
+00:01 +37: packages/quds_proofing_spacy/test/worker_test.dart: timeout retains physical slot and never publishes a late result
+00:01 +38: packages/quds_proofing_spacy/test/worker_test.dart: timeout retains physical slot and never publishes a late result
+00:01 +39: packages/quds_proofing_spacy/test/worker_test.dart: timeout retains physical slot and never publishes a late result
+00:01 +40: packages/quds_proofing_spacy/test/worker_test.dart: timeout retains physical slot and never publishes a late result
+00:01 +41: packages/quds_proofing_spacy/test/distribution_test.dart: optional entities are validated against whole tokens
+00:01 +42: packages/quds_proofing_spacy/test/distribution_test.dart: optional entities are validated against whole tokens
+00:01 +43: packages/quds_proofing_spacy/test/distribution_test.dart: optional entities are validated against whole tokens
+00:01 +44: packages/quds_proofing_spacy/test/worker_test.dart: unexpected isolate exit rejects all callers
+00:01 +45: packages/quds_proofing_spacy/test/worker_test.dart: startup failure returns explicit unavailable
+00:01 +46: packages/quds_proofing_spacy/test/worker_test.dart: cleanup failure is explicit and repeated disposal preserves the error
+00:01 +47: packages/quds_proofing_spacy/test/worker_test.dart: spawn failure has no unhandled readiness error
+00:01 +48: packages/quds_proofing_spacy/test/worker_test.dart: startup timeout returns promptly then releases late initialized context
+00:01 +49: packages/quds_proofing_spacy/test/worker_test.dart: web worker boundary reports unavailable without opening backend
+00:01 +50: packages/quds_proofing_spacy/test/worker_test.dart: worker limit admission is explicit
+00:01 +51: All tests passed!

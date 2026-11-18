@@ -9,7 +9,7 @@ remains [implementation-plan.md](implementation-plan.md).
 
 | Area | Current implementation | Acceptance limits |
 | --- | --- | --- |
-| M00 baseline | Reconciled current main, recent document review/Zotero work, and completed offline thesaurus work; 207 branches and 169 PR heads accounted for | Historical test reports were not treated as new results |
+| M00 baseline | Reconciled main and the captured review, Zotero-note, thesaurus and EN/FR analysis heads; final captured inventory covers 209 external branches and 170 PR heads | The ref capture and subsequent merge are recorded separately; historical test reports are not new results |
 | M01 fork | Pinned enough_mail 3.0.0 source, retained MPL/provenance, supported public `mime_core.dart`, content-redacted diagnostics, strict charset admission, RFC2231 and date corrections, selected dependency/source inventory | Actual browser execution and per-product shipped dependency/notice clearance remain open |
 | M02 core | Pure-Dart immutable DTOs, exact-byte ownership, profile/account/IMAP identity, budgets/capabilities, typed host/provider/store ports, cancellation leases, atomic sync-page contract and tested outbox state machine | Ports do not constitute a database, SMTP implementation or live account support |
 | M03 codec | Bounded byte-range scanning, public upstream header parsing, strict transfer/charset decoding, exact raw export and attachment snapshots, deterministic multipart alternatives/CID metadata | Synchronous bounded work; no streaming claim or low-memory-device qualification |
@@ -32,16 +32,22 @@ are separate from original Quds tests.
 
 - Core: clean fatal-infos analysis; 28 tests on the native VM and the same 28 in
   Node/JavaScript; public-entry JavaScript and native executable compilation.
-- MIME: native and Node tests cover original octets, raw/decode/body/attachment/
+- Fork: 170 native tests across 14 files, clean native library analysis, public
+  portable JavaScript compilation and equal native/Node fixture projections.
+- MIME: 32 tests on the native VM and the same 32 in Node cover original octets,
+  raw/decode/body/attachment/
   part/header/depth limits, malformed encodings, alternatives, CID metadata,
   cancellation and review regressions. Both runtimes produce identical public
-  fixture projections and hashes. See the final test log for the exact count.
+  fixture projections and hashes.
 - Reader: 30 native Flutter tests cover actual MIME integration, search,
   graphemes, immutable callbacks, resource denial with a positive control,
   host-approval invalidation, full/preview budgets and enlarged RTL layouts.
-- Incoming integration: targeted engine/editor/Studio regressions and scoped
-  analysis cover the actual review/thesaurus merge overlaps. See the integration
-  receipt; unrelated historical totals are not carried forward.
+  Two additional visual fixtures were captured and inspected. The release web
+  target and browser guard compile; neither is an actual browser runtime pass.
+- Initial incoming integration: 190 targeted engine/editor/Studio regressions
+  and scoped analysis passed on the initial review/thesaurus merge. The later
+  captured head has its own `checks/late-*` results and source hashes. Earlier
+  test totals are not presented as a new run on the later source.
 
 No GitHub Actions status was queried, awaited or rerun. Source checkpoints use
 `[skip ci]` and are written incrementally to the remote implementation branch.

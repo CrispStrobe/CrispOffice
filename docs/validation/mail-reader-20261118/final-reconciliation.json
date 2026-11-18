@@ -2,7 +2,7 @@
   "checked_at_utc": "2026-11-18T19:25:38.496532+00:00",
   "repository": "CrispStrobe/quds_office_suite",
   "method": "Local comparison of already fetched origin branch and PR-head refs against baseline receipts; no network requests, Actions polling, merge, index change, or ref mutation.",
-  "integration_status": "pending_new_external_work",
+  "integration_status": "integrated_pending_local_regression_receipts",
   "checked_local_head": "46d7422d5ac356c327759872ff28adcd154b75ad",
   "excluded_current_work_branch": {
     "ref": "refs/heads/codex/mail-reader-20261118",
@@ -334,11 +334,8 @@
     "spacy_catalog": "Adds pinned v2 native runtime catalog and separate English/French model downloads. Incoming catalog labels English MIT and French LGPL-LR; these are source-declared model terms, not a new license audit."
   },
   "suggested_next_steps": [
-    "Checkpoint current working Mail/UI/docs changes.",
-    "Integrate the dominant document-review head b9728ea1 once; it includes the moved thesaurus head, Zotero note branch/PR170, and spaCy EN/FR integration.",
-    "Preserve current Mail roadmap status and incoming final-newline cleanup.",
-    "Resolve root workspace and run focused modified review-draft, note-aware Zotero, thesaurus and spaCy language-catalog/setup regressions locally.",
-    "Refresh this receipt after integration; this receipt deliberately does not assert reconciliation is complete."
+    "Complete focused local tests for the changed engine/editor/Studio/spaCy source, retaining separate source hashes.",
+    "Continue Mail plan from the implemented reader foundation; browser runtime and later product milestones remain open."
   ],
   "fork_frozen": {
     "unchanged_since_agent_handoff": true,
@@ -347,5 +344,196 @@
     "local_source_hash_mismatches": [],
     "git_status": "",
     "working_tree_clean": true
+  },
+  "integration": {
+    "recorded_at_utc": "2026-11-18T19:31:06.754734+00:00",
+    "remote_merge_commit": "c473a25f27bbbce083ef8a5aa40eaa74e70d3146",
+    "tree": "019514acce3efd5524d96f721a0be6143cb34a70",
+    "parents": [
+      "6c728e1a3543f6feee80b1f9a8087f67b09a8006",
+      "b9728ea1ec835cb589b266cfe9fc98507eb7acfa"
+    ],
+    "strategy": "ort; clean merge, ROADMAP EOF auto-merge",
+    "captured_frontier_ancestry": [
+      {
+        "head": "b9728ea1ec835cb589b266cfe9fc98507eb7acfa",
+        "reachable_from_merge": true
+      },
+      {
+        "head": "b9e8c159cea315aa0a044c4b0a6fc2cd35d11055",
+        "reachable_from_merge": true
+      },
+      {
+        "head": "ff1518517dd9f67e214ff56fe7eef06349f5223a",
+        "reachable_from_merge": true
+      },
+      {
+        "head": "17fe8db8755a5ab55a677fc7f95aa103c3e2ddc6",
+        "reachable_from_merge": true
+      }
+    ],
+    "mail_source_changed_by_merge": false,
+    "local_and_remote_trees_verified_equal": true,
+    "workspace_resolution": "checks/late-workspace-resolution.txt",
+    "regression_evidence": "checks/late-*; final validation summary records completed checks",
+    "github_actions_used": false,
+    "all_captured_ref_accounting": {
+      "branches": {
+        "captured_total": 209,
+        "included_by_ancestry": 195,
+        "verified_historical_equivalents": 14,
+        "unaccounted": 0,
+        "historical_heads": [
+          {
+            "ref": "refs/remotes/origin/codex/odt-field-continuation-20261117",
+            "sha": "c34945761e7991f5fe49037d79529acdd260b31c",
+            "proof": "unchanged head, exact historical equivalence retained in baseline audit"
+          },
+          {
+            "ref": "refs/remotes/origin/docs/aot-removal",
+            "sha": "128a187d69555db80890c2a1945a442b951f9c74",
+            "proof": "unchanged head, exact historical equivalence retained in baseline audit"
+          },
+          {
+            "ref": "refs/remotes/origin/docs/ods-color-scale",
+            "sha": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+            "proof": "unchanged head, exact historical equivalence retained in baseline audit"
+          },
+          {
+            "ref": "refs/remotes/origin/docs/ods-data-bar",
+            "sha": "69d14f84cabd3931b7640c1654b401c89faba766",
+            "proof": "unchanged head, exact historical equivalence retained in baseline audit"
+          },
+          {
+            "ref": "refs/remotes/origin/docs/ods-dynamic-validation",
+            "sha": "b8ddaaeb581e010467de304c828764d353149102",
+            "proof": "unchanged head, exact historical equivalence retained in baseline audit"
+          },
+          {
+            "ref": "refs/remotes/origin/docs/ods-icon-sets",
+            "sha": "a7f144cc983f2df7c16d88f8644ad67a9254c3d0",
+            "proof": "unchanged head, exact historical equivalence retained in baseline audit"
+          },
+          {
+            "ref": "refs/remotes/origin/feat/ods-color-scale",
+            "sha": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+            "proof": "unchanged head, exact historical equivalence retained in baseline audit"
+          },
+          {
+            "ref": "refs/remotes/origin/feat/ods-data-bar",
+            "sha": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+            "proof": "unchanged head, exact historical equivalence retained in baseline audit"
+          },
+          {
+            "ref": "refs/remotes/origin/feat/ods-dynamic-validation-links",
+            "sha": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+            "proof": "unchanged head, exact historical equivalence retained in baseline audit"
+          },
+          {
+            "ref": "refs/remotes/origin/feat/ods-icon-sets",
+            "sha": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
+            "proof": "unchanged head, exact historical equivalence retained in baseline audit"
+          },
+          {
+            "ref": "refs/remotes/origin/feat/ods-time-period-conditions",
+            "sha": "7ef09f2408f467c65427700e65907531ecb26acb",
+            "proof": "unchanged head, exact historical equivalence retained in baseline audit"
+          },
+          {
+            "ref": "refs/remotes/origin/integrate/odt-column-boundary-144",
+            "sha": "cee6e2632f891a3fe21c5c02d6bf508805973051",
+            "proof": "unchanged head, exact historical equivalence retained in baseline audit"
+          },
+          {
+            "ref": "refs/remotes/origin/integrate/office-union-148",
+            "sha": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+            "proof": "unchanged head, exact historical equivalence retained in baseline audit"
+          },
+          {
+            "ref": "refs/remotes/origin/integrate/office-union-150",
+            "sha": "da9c956ec5d65c0e5a9f9ea84c2b0bca98e824a0",
+            "proof": "unchanged head, exact historical equivalence retained in baseline audit"
+          }
+        ]
+      },
+      "pull_request_heads": {
+        "captured_total": 170,
+        "included_by_ancestry": 156,
+        "verified_historical_equivalents": 14,
+        "unaccounted": 0,
+        "historical_heads": [
+          {
+            "ref": "refs/remotes/pull/134",
+            "sha": "128a187d69555db80890c2a1945a442b951f9c74",
+            "proof": "unchanged head, exact historical equivalence retained in baseline audit"
+          },
+          {
+            "ref": "refs/remotes/pull/135",
+            "sha": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+            "proof": "unchanged head, exact historical equivalence retained in baseline audit"
+          },
+          {
+            "ref": "refs/remotes/pull/136",
+            "sha": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+            "proof": "unchanged head, exact historical equivalence retained in baseline audit"
+          },
+          {
+            "ref": "refs/remotes/pull/137",
+            "sha": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+            "proof": "unchanged head, exact historical equivalence retained in baseline audit"
+          },
+          {
+            "ref": "refs/remotes/pull/138",
+            "sha": "b8ddaaeb581e010467de304c828764d353149102",
+            "proof": "unchanged head, exact historical equivalence retained in baseline audit"
+          },
+          {
+            "ref": "refs/remotes/pull/140",
+            "sha": "c34945761e7991f5fe49037d79529acdd260b31c",
+            "proof": "unchanged head, exact historical equivalence retained in baseline audit"
+          },
+          {
+            "ref": "refs/remotes/pull/141",
+            "sha": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+            "proof": "unchanged head, exact historical equivalence retained in baseline audit"
+          },
+          {
+            "ref": "refs/remotes/pull/142",
+            "sha": "69d14f84cabd3931b7640c1654b401c89faba766",
+            "proof": "unchanged head, exact historical equivalence retained in baseline audit"
+          },
+          {
+            "ref": "refs/remotes/pull/145",
+            "sha": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
+            "proof": "unchanged head, exact historical equivalence retained in baseline audit"
+          },
+          {
+            "ref": "refs/remotes/pull/146",
+            "sha": "a7f144cc983f2df7c16d88f8644ad67a9254c3d0",
+            "proof": "unchanged head, exact historical equivalence retained in baseline audit"
+          },
+          {
+            "ref": "refs/remotes/pull/147",
+            "sha": "cee6e2632f891a3fe21c5c02d6bf508805973051",
+            "proof": "unchanged head, exact historical equivalence retained in baseline audit"
+          },
+          {
+            "ref": "refs/remotes/pull/149",
+            "sha": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+            "proof": "unchanged head, exact historical equivalence retained in baseline audit"
+          },
+          {
+            "ref": "refs/remotes/pull/151",
+            "sha": "7ef09f2408f467c65427700e65907531ecb26acb",
+            "proof": "unchanged head, exact historical equivalence retained in baseline audit"
+          },
+          {
+            "ref": "refs/remotes/pull/152",
+            "sha": "da9c956ec5d65c0e5a9f9ea84c2b0bca98e824a0",
+            "proof": "unchanged head, exact historical equivalence retained in baseline audit"
+          }
+        ]
+      }
+    }
   }
 }
