@@ -269,6 +269,49 @@ void main() {
     expect(controller.captureThesaurusTarget().target!.language, 'en-US');
   });
 
+  test(
+    'text language controls and undo retire an earlier thesaurus lookup',
+    () async {
+      final controller = _controller();
+      _select(controller, 0, 4);
+      final lookup = await _lookup(controller);
+      final term = _term(lookup, 'depository');
+      final textTarget = controller.textProofingTarget!;
+      final revision = controller.contentRevision;
+      expect(controller.canApplyThesaurusTerm(lookup, term), isTrue);
+      expect(
+        controller.setTextProofingLanguage('de-DE', target: textTarget),
+        isTrue,
+      );
+      expect(controller.document.paragraphs.single.text, 'bank');
+      expect(controller.contentRevision, greaterThan(revision));
+      expect(controller.canApplyThesaurusTerm(lookup, term), isFalse);
+      expect(controller.applyThesaurusTerm(lookup, term), isFalse);
+      final german = await _lookup(
+        controller,
+        service: testThesaurusService(locale: 'de'),
+      );
+      expect(german.target.language, 'de-DE');
+      final germanTerm = _term(german, 'Geldinstitut');
+      expect(controller.canApplyThesaurusTerm(german, germanTerm), isTrue);
+      controller.undo();
+      expect(controller.canUndo, isFalse);
+      expect(controller.document.paragraphs.single.text, 'bank');
+      expect(controller.applyThesaurusTerm(lookup, term), isFalse);
+      expect(controller.applyThesaurusTerm(german, germanTerm), isFalse);
+      final fresh = await _lookup(controller);
+      expect(fresh.target.language, 'en-US');
+      expect(
+        controller.applyThesaurusTerm(fresh, _term(fresh, 'depository')),
+        isTrue,
+      );
+      expect(controller.document.paragraphs.single.text, 'depository');
+      controller.undo();
+      expect(controller.document.paragraphs.single.text, 'bank');
+      expect(controller.canUndo, isFalse);
+    },
+  );
+
   for (final splitGrapheme in [false, true]) {
     test(
       'mixed source language is explicit (split grapheme $splitGrapheme)',

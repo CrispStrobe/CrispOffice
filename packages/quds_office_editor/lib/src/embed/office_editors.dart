@@ -412,14 +412,28 @@ class _QudsWordEditorState extends State<QudsWordEditor>
 
   Future<void> _presentThesaurus({WordThesaurusCapture? capture}) async {
     if (!mounted || _thesaurusOpen || _proofingOpen) return;
-    _thesaurusOpen = true;
     final controller = _c;
+    final target = capture ?? controller.captureThesaurusTarget();
+    if (target.status == WordThesaurusTargetStatus.composing ||
+        (controller.input.composing.isValid &&
+            !controller.input.composing.isCollapsed)) {
+      // The helper reports the refusal without opening a route. Do not run
+      // modal focus restoration: attaching the editor would clear its IME.
+      await showWordThesaurusDialog(
+        context,
+        controller: controller,
+        service: widget.thesaurusService,
+        capture: target,
+      );
+      return;
+    }
+    _thesaurusOpen = true;
     try {
       await showWordThesaurusDialog(
         context,
         controller: controller,
         service: widget.thesaurusService,
-        capture: capture,
+        capture: target,
       );
     } finally {
       _thesaurusOpen = false;

@@ -4,6 +4,11 @@
 complete on the working branch. Installed-desktop, actual offline-browser and
 independent human linguistic review remain release gates.**
 
+This is the historical qualification at `315beeb3`. Later review/Zotero
+integration, IME/shortcut fixes and refreshed checks are recorded separately in
+the [resumed work report](../resume/README.md); the earlier 155 cases do not
+automatically qualify the later merged source.
+
 ## Recovered checkpoint and completed work
 
 This continuation starts at `decde7792890bf4724c91403fbb6528d8423b01e` on
