@@ -1,0 +1,69 @@
+00:00 +0: loading test/analysis_test.dart
+00:00 +0: test/analysis_test.dart: source map keeps UTF8, scalars, UTF16, NUL and decomposed text distinct
+00:00 +1: test/analysis_test.dart: unpaired UTF16 never silently becomes replacement UTF8
+00:00 +2: test/analysis_test.dart: byte admission checks multibyte input without truncation
+00:00 +3: test/bundle_test.dart: closed bundle includes exact source notices and never accepts path input
+00:00 +4: test/analysis_test.dart: empty is explicit and nonempty cannot masquerade as empty success
+00:00 +5: test/analysis_test.dart: empty is explicit and nonempty cannot masquerade as empty success
+00:00 +6: test/bundle_test.dart: missing explicit assets fail startup rather than produce empty success
+00:00 +7: test/bundle_test.dart: missing explicit assets fail startup rather than produce empty success
+00:00 +8: test/bundle_test.dart: missing explicit assets fail startup rather than produce empty success
+00:00 +9: test/bundle_test.dart: missing explicit assets fail startup rather than produce empty success
+00:00 +10: test/bundle_test.dart: missing explicit assets fail startup rather than produce empty success
+00:00 +11: test/bundle_test.dart: missing explicit assets fail startup rather than produce empty success
+00:00 +12: test/bundle_test.dart: missing explicit assets fail startup rather than produce empty success
+00:00 +13: test/bundle_test.dart: missing explicit assets fail startup rather than produce empty success
+00:00 +14: test/bundle_test.dart: missing explicit assets fail startup rather than produce empty success
+00:07 +15: test/distribution_test.dart: catalog pins the published Linux capsule at an immutable revision
+00:07 +16: test/distribution_test.dart: the macOS package is published without a grammar claim
+00:07 +17: test/distribution_test.dart: claims are bound to exact library digests
+00:07 +18: test/distribution_test.dart: catalog grammar claims match the planner's enforced build pin
+00:07 +19: test/distribution_test.dart: unpublished platforms are unavailable with a stated reason
+00:07 +20: test/distribution_test.dart: only immutable revisions and safe paths resolve
+00:07 +21: test/distribution_test.dart: missing installation is null and a damaged one is reported
+00:07 +22: test/distribution_test.dart: download failures leave no installation HTTP error
+00:07 +23: test/distribution_test.dart: download failures leave no installation same length but wrong bytes fail SHA-256
+00:07 +24: test/distribution_test.dart: download failures leave no installation declared length mismatch
+00:07 +25: test/distribution_test.dart: download failures leave no installation undeclared oversized body is cut off
+00:07 +26: test/distribution_test.dart: download failures leave no installation caller cancellation aborts the transfer
+00:07 +27: test/distribution_test.dart: download failures leave no installation authentic bytes that are not a closed capsule are rejected
+00:07 +28: test/distribution_test.dart: optional entities are validated against whole tokens
+00:07 +29: test/language_catalog_test.dart: request locales map to exactly one analysis language
+00:07 +30: test/worker_test.dart: persistent native ownership serializes calls and recovers after failure
+00:07 +31: test/worker_test.dart: persistent native ownership serializes calls and recovers after failure
+00:07 +32: test/worker_test.dart: persistent native ownership serializes calls and recovers after failure
+00:07 +33: test/worker_test.dart: persistent native ownership serializes calls and recovers after failure
+00:08 +34: test/worker_test.dart: persistent native ownership serializes calls and recovers after failure
+00:08 +35: test/worker_test.dart: persistent native ownership serializes calls and recovers after failure
+00:08 +36: test/worker_test.dart: persistent native ownership serializes calls and recovers after failure
+00:08 +37: test/language_catalog_test.dart: wrong bundle bytes of the pinned length leave no installation
+00:08 +38: test/language_catalog_test.dart: wrong bundle bytes of the pinned length leave no installation
+00:08 +39: test/language_catalog_test.dart: wrong bundle bytes of the pinned length leave no installation
+00:08 +40: test/language_catalog_test.dart: wrong bundle bytes of the pinned length leave no installation
+00:08 +41: test/language_catalog_test.dart: wrong bundle bytes of the pinned length leave no installation
+00:08 +42: test/language_catalog_test.dart: wrong bundle bytes of the pinned length leave no installation
+00:08 +43: test/language_catalog_test.dart: wrong bundle bytes of the pinned length leave no installation
+00:08 +44: test/language_catalog_test.dart: wrong bundle bytes of the pinned length leave no installation
+00:08 +45: test/language_catalog_test.dart: wrong bundle bytes of the pinned length leave no installation
+00:08 +46: test/language_catalog_test.dart: wrong bundle bytes of the pinned length leave no installation
+00:08 +47: test/language_catalog_test.dart: wrong bundle bytes of the pinned length leave no installation
+00:08 +48: test/language_catalog_test.dart: wrong bundle bytes of the pinned length leave no installation
+00:08 +49: test/language_catalog_test.dart: wrong bundle bytes of the pinned length leave no installation
+00:08 +50: test/language_catalog_test.dart: wrong bundle bytes of the pinned length leave no installation
+00:09 +51: test/grammar_provider_test.dart: default disabled provider makes zero analysis calls
+00:09 +52: test/grammar_provider_test.dart: disabled load refuses before any backend can open
+00:09 +53: test/grammar_provider_test.dart: unsupported locales and ignored rules make zero analysis calls
+00:09 +54: test/grammar_provider_test.dart: admitted check preserves the exact request and nonzero source origin
+00:09 +55: test/grammar_provider_test.dart: personal and ignored words are captured before inference
+00:09 +56: test/grammar_provider_test.dart: a vocabulary change during inference invalidates the returned snapshot
+00:09 +57: test/grammar_provider_test.dart: a vocabulary change while lexical planning yields invalidates completion
+00:09 +58: test/grammar_provider_test.dart: all exact analysis snapshot fields are authenticated before planning
+00:09 +59: test/grammar_provider_test.dart: reply runtime and grammar-qualified runtime identities are both enforced
+00:09 +60: test/grammar_provider_test.dart: obsolete request cancellation and completion cannot invalidate its successor
+00:09 +61: test/grammar_provider_test.dart: current cancellation invalidates even a late successful reply
+00:09 +62: test/grammar_provider_test.dart: a new ignored request cancels an older pending check without inference
+00:09 +63: test/grammar_provider_test.dart: independent blocks retain independent cancellation ownership
+00:09 +64: test/grammar_provider_test.dart: dispose invalidates pending work and joins transport cleanup once
+00:09 +65: test/grammar_provider_test.dart: native failures and timeouts remain explicit operational outcomes
+00:09 +66: test/grammar_provider_test.dart: transport exceptions stay failed or unavailable without findings
+00:09 +67: All tests passed!

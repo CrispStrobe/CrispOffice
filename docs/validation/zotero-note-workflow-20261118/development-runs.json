@@ -1,0 +1,125 @@
+{
+  "description": "Development and failure evidence; not added to the final pass total. Source is not uniformly the final application commit.",
+  "files": {
+    "runtime/logs/zotero-note-engine-first.log": {
+      "sha256": "518677073c31c64c7191ac9dd1460ad214d67599c2e7a2d8cd14728a7ca7ff30",
+      "bytes": 12592
+    },
+    "runtime/logs/zotero-note-engine-final.log": {
+      "sha256": "8d551f37d93b480204ec4dcabaa02551b69d173534dbe8f66fb67efd6be74696",
+      "bytes": 16710
+    },
+    "runtime/logs/zotero-note-engine-analysis.log": {
+      "sha256": "9f0cb2321e6684a28f3e64cbae2e8175dda0a9f33d04802b678cec843208f939",
+      "bytes": 121
+    },
+    "runtime/note-target-tests-first.log": {
+      "sha256": "bce86a9700599fd98ee83d2f3076b3daad4cbd6951b25fed97ec8ee8ff29d2b3",
+      "bytes": 1699
+    },
+    "runtime/note-target-tests-second.log": {
+      "sha256": "ee848e4843720425d78fbfc6885890363bcb71e0d9b51e8a2f495c8fdf37b9c9",
+      "bytes": 6475
+    },
+    "runtime/note-target-tests-third.log": {
+      "sha256": "a9e21393c060b42eb5aa8480258ea76eb89512cfe6889f0c076d47fe2a6fab43",
+      "bytes": 2614
+    },
+    "runtime/note-target-analysis.log": {
+      "sha256": "7c0ae1aedc00c699ded5046fb2374720ca7a6bf46fbe8c386f4161be12b9e2d7",
+      "bytes": 64
+    },
+    "runtime/note-target-tested-source.json": {
+      "sha256": "f5777914d8d5c39bed2ee3cb5eb7e12e081703dd80bfe7deb618ab536ede2ec5",
+      "bytes": 425
+    },
+    "runtime/logs/zotero-notes-pane-first.log": {
+      "sha256": "9e4008f29d6e9b61fa8ec22f8e8dfddeb86e5edb006261c24a110ef5351cc102",
+      "bytes": 18802
+    },
+    "runtime/logs/zotero-notes-pane-second.log": {
+      "sha256": "f935360d2dd217250e699ed597f9f77a38bbfe8b9248b1f7095a928777901124",
+      "bytes": 18802
+    },
+    "runtime/logs/zotero-notes-pane-third.log": {
+      "sha256": "9b681d73ef9f2f1474f70c72c244e0e59247cf106e07b79adb5c42ca78f66f9f",
+      "bytes": 913
+    },
+    "runtime/logs/zotero-note-editor-final-dev.log": {
+      "sha256": "4ea71f9f2bfd039742bef982a5ec04620ab4c5b3757001770ea163c3a0f08cdd",
+      "bytes": 9304
+    },
+    "runtime/logs/zotero-note-editor-analysis.log": {
+      "sha256": "4c70794dc81e6581b7c587fc752d7374f1150014bb041cbabffceb0d84422583",
+      "bytes": 190
+    },
+    "runtime/logs/review-note-sync.log": {
+      "sha256": "e994e00c812949c6117f9bfee478683b17e792b1a9739309798ac8865d432657",
+      "bytes": 2123
+    },
+    "runtime/logs/review-note-sync-both.log": {
+      "sha256": "5c715203d4ab00f626b37621350bf784a948d82170d07c30d6e016e8b315479b",
+      "bytes": 3982
+    },
+    "runtime/logs/review-note-sync-fixed.log": {
+      "sha256": "e23cd08b3d669ae922ba48d2146e5231b0d8ac05d9ef6854607a0135d380a26c",
+      "bytes": 268
+    },
+    "runtime/review_note_sync_test.dart": {
+      "sha256": "eb0d9b7e0a3f61380655fe2d43470f29c39d7664ebf213390c4b9e9f6868e31a",
+      "bytes": 2495
+    },
+    "studio-zotero-shortcuts-first.log": {
+      "sha256": "e282c2925f4ff8743318822026cf6207318b98737dc38fdd233367b284763d81",
+      "bytes": 18425
+    },
+    "studio-zotero-shortcuts-second.log": {
+      "sha256": "bab7e9611619ccd10fc45f773f1ab1be8791eca5622b8565216bf3e829bc3810",
+      "bytes": 23492
+    },
+    "studio-zotero-shortcuts-third.log": {
+      "sha256": "ba623d95e667ac461dabe49148e7a708e550a61ba576c8b738d96c4cf91f6657",
+      "bytes": 8832
+    },
+    "studio-zotero-shortcuts-probe.log": {
+      "sha256": "59df575d0dd2d3b4de7f7176b4bb2dfe0b920f62a6d7918323ae6f61cab5a99a",
+      "bytes": 3875
+    },
+    "studio-zotero-shortcuts-probe2.log": {
+      "sha256": "f21f86698fd3535fdb370a72f1fce680f82226d2a7fb73dbd0459f53c290e214",
+      "bytes": 3875
+    },
+    "studio-zotero-shortcuts-probe3.log": {
+      "sha256": "c03490959a18541f1c25441fcb6709dafd3dbaae431ea70e2e38ab63a9e29079",
+      "bytes": 3909
+    },
+    "studio-zotero-shortcuts-final.log": {
+      "sha256": "cd43858afc02e321b2c89a7747f5b033b4ce02eea27240c5d25edbf41f7f31e0",
+      "bytes": 822
+    },
+    "studio-zotero-shortcuts-note.log": {
+      "sha256": "21fd9fa9afad15712e8de4d42ba36b09ab33841f50aa0728b8344815db178c20",
+      "bytes": 239
+    },
+    "studio-zotero-shortcuts-analysis-notes.log": {
+      "sha256": "ae2829d4809ae8445b7fdf4f94657d13246649ece98169cca4ea3e34c81ef15f",
+      "bytes": 86
+    },
+    "runtime/logs/combined-analyze.log": {
+      "sha256": "a61aae4f75f6185d473d4a9ab084f74d0f301e1c00a49d516f84dd3ed3ef1807",
+      "bytes": 1414
+    },
+    "runtime/logs/combined-format.log": {
+      "sha256": "d9d72d655b8105ab8568ce73222d7adf765c391cabacb63d57da4bdb418d2a0c",
+      "bytes": 355
+    },
+    "runtime/logs/final-analyze.log": {
+      "sha256": "5da05eda71a4fc94eba93de94a807dfa78f98ba85b490df40f236e75349f52e1",
+      "bytes": 1162
+    },
+    "runtime/logs/final-format.log": {
+      "sha256": "6759e5e8eb6d0a0b0ff4c10b4fd980b05738eee11e406e538643fb1a00e13dd3",
+      "bytes": 48
+    }
+  }
+}
