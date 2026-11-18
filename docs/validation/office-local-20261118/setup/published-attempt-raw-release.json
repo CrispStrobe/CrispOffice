@@ -1,0 +1,20 @@
+{
+  "verified_archive": "/workspace/scratch/5e1b9c2fa60d/flutter-qualification/canonical-preflight-401d0126.tar.xz",
+  "sha256": "6cca773d22116c3b11954b12d6bb3518e062427bb8827aa44daf2742d0be98b4",
+  "all_members_verified": 27,
+  "remote_checkpoint": "9a7c80be00258def2dcae3bb288c28558c83aa72",
+  "released": [
+    {
+      "path": "/workspace/scratch/5e1b9c2fa60d/flutter-qualification/canonical-401d0126",
+      "bytes": 4008254
+    },
+    {
+      "path": "/workspace/scratch/5e1b9c2fa60d/flutter-qualification/format-preflight-401d0126",
+      "bytes": 19166
+    },
+    {
+      "path": "/workspace/scratch/5e1b9c2fa60d/flutter-qualification/canonical-401d0126.log",
+      "bytes": 676
+    }
+  ]
+}

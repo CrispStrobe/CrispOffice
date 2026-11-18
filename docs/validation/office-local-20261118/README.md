@@ -1,15 +1,47 @@
 # Quds Office local qualification — 18 November 2026
 
-## Saved source and reconciliation
+## Saved state
 
-Source checkpoint: `401d012657881a54727d58bc35e537faa45d5fbe`. The continuation starts from main `482e0817`, retaining PRs #151/#152 and the later German grammar/formatting changes. It adopts the isolated civil-date conditional-format repair and its eight regression tests from `2bfac9b2`, and restores missing historical evidence without changing that evidence’s original source attribution. See `remote-review.md` and `remote-review.json` for the incoming audit of 190 branch heads and 152 PR heads.
+- Branch: `codex/office-local-qualification-20261118`.
+- Corrected source candidate: `9a7c80be00258def2dcae3bb288c28558c83aa72`.
+- Main reconciled at `482e08176dea6bd8f5fc80d1c0064d96b712db43`, including PRs #151/#152 and the later German grammar, complete-phrase formatting and spreadsheet icon work.
+- Initial inventory: 190 branch heads / 152 PR heads. Follow-up review: 191 branches / 152 PR records; main remained unchanged.
+- **Final qualification is not accepted.** The latest canonical attempt ended with a disk-full error. The execution workspace subsequently became unavailable.
 
-Remote branch: `codex/office-local-qualification-20261118`. Each checkpoint uses a non-forced expected-head update and `[skip ci]`. GitHub Actions are neither queried nor awaited. The source checkout stays detached and clean; evidence is published through a separate index, preserving source/HEAD stability without a duplicate checkout.
+The only production-library change relative to that main is the reviewed civil-date conditional-format repair from `2bfac9b2`: construct today and month offsets as UTC civil dates using the injected clock's calendar fields. Eight regressions cover timezone endpoints, DST and year boundaries. The other non-documentation changes are those tests, the changelog, and braces around an existing rendering-test statement required by strict analysis. The lint repair changes no condition, assertion or test behavior.
 
-## Current qualification status
+Historical recovery evidence omitted by the squash merge has been preserved from `6d97fedc` and `8ad80eb2`, keeping its original source attribution. The native spaCy branches and the concurrent Office continuation retain their distinct ownership and frame implementation; their outcomes are not counted as qualification of this source.
 
-Final qualification is **in progress, not accepted**. The source-derived selection has 224 unique test files: engine Zotero 19, editor Zotero 13, engine integration 138, editor integration 37, Harper 3 and GECToR 14. It retains all 179 historical baseline files. Required gates also include five strict analysis commands, formatting and Python controls, 17 Node suites, two editor-example smoke tests, the calendar regression under UTC/Berlin/Los Angeles, 40 retained document consumers, five boundary cases, five existing focused frame/field consumers, and the serial native 1/2/4/8-thread sweep.
+## Actual current-source results
 
-The native recovery archive records exact library, quantizer, model and pack hashes, restoration of 27 pinned Python packages, all eight public font fixtures and 3,504 matching document-runtime files. It is a setup receipt, not a fresh product qualification. Limited shared-disk capacity requires compact Flutter extraction and release of reproducible build intermediates; every adaptation will be recorded before the qualification input snapshots.
+| Gate | Result on 9a7c80be |
+| --- | --- |
+| Five strict analysis commands | Passed |
+| Formatting | 145 files checked; passed |
+| Python controls | 117 passed |
+| Engine Zotero selection | 390 success events across 19 selected suites, followed by process exit 255 |
+| Remaining five canonical cohorts | Not started |
+| 17 Node suites / two example smoke tests | Not started |
+| Calendar controls under UTC, Berlin and Los Angeles | Not started |
+| Retained 33+7 / boundary five / focused frame five consumers | Not started |
+| Serial native 1/2/4/8-thread sweep | Not started |
 
-No final passing total is inferred from previous runs. Two inherited private-PDF early returns remain explicitly excluded from substantive counts. Native DOCX rendering uses LibreOffice; no Microsoft Word result is claimed.
+The engine test events do **not** make the cohort accepted. Its compiler could not create its cleanup/cache directory because the shared filesystem had no free space. The workspace integrity check also correctly rejected a changed package-config byte hash. The runner author observed only an equivalent `flutterRoot` symlink-versus-actual-path change after normalizing the 109 package records; that observation is not a waiver of the failed byte-integrity gate.
+
+Source, dependency, runtime, system and harness maps remained unchanged. The exact run remains rejected. No product assertion failure was observed before the environmental exit.
+
+## Evidence and independent review
+
+The complete ended attempt is [canonical-attempt-9a7c80be.tar.xz](evidence/canonical-attempt-9a7c80be.tar.xz), with its [member index](evidence/canonical-attempt-9a7c80be.tar.index.json). It retains raw events, stdout/stderr, commands, all before/after maps, the failure receipt and helpers. Size: 638,988 bytes; SHA-256: `14a2e5d6d0ae73501eb6e240d67896a3936482188a3344c1eee44c877e161e42`.
+
+The archive's `checkpoint_complete` flag means the ended attempt was completely packaged. Its run status is failed and qualification acceptance is false.
+
+The native and Flutter recovery archives, rejected `401d0126` lint preflight, independent runtime reviews, latest remote source review and bounded qualification helpers are also preserved here. Native recovery reproduced the pinned library/model/pack hashes; independent review checked 3,504 consumer runtime files and eight fonts. Flutter recovery independently checked the retained SDK, all 162 Pub archive pins, runtime core hashes and source bindings. These setup results do not substitute for the missing current-source gates.
+
+See [recovery-handoff.md](recovery-handoff.md) for exact commands, pins, remaining work and the package-config stabilization step. See [verification.json](verification.json) for machine-readable status.
+
+## Publication policy
+
+Source and completed evidence were saved incrementally through non-forced expected-head branch updates, with `[skip ci]` checkpoint messages. Evidence publication used a separate Git index and then direct verified Git blobs, keeping the qualification checkout and HEAD fixed. GitHub Actions, workflow, check and status endpoints were neither queried nor awaited.
+
+Two unavailable private-PDF early returns remain explicitly excluded from substantive broad-run counts. Native DOCX rendering uses LibreOffice; no Microsoft Word result is claimed. No final broad, portable, consumer or native-sweep success is inferred from an earlier source.
