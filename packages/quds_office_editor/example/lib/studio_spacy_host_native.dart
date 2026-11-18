@@ -92,23 +92,28 @@ class NativeStudioSpacyHost extends StudioSpacyHost {
     );
   }
 
-  ({bool analysis, bool grammar}) _readSettings() {
+  ({bool analysis, bool grammar, bool ner}) _readSettings() {
+    const none = (analysis: false, grammar: false, ner: false);
     try {
-      if (!_settings.existsSync()) return (analysis: false, grammar: false);
+      if (!_settings.existsSync()) return none;
       final decoded = jsonDecode(_settings.readAsStringSync());
-      if (decoded is! Map<String, Object?>) {
-        return (analysis: false, grammar: false);
-      }
+      if (decoded is! Map<String, Object?>) return none;
       return (
         analysis: decoded['analysis_enabled'] == true,
         grammar: decoded['grammar_enabled'] == true,
+        ner: decoded['ner_enabled'] == true,
       );
     } on Object {
-      return (analysis: false, grammar: false);
+      return none;
     }
   }
 
-  void _writeSettings({required bool analysis, required bool grammar}) {
+  void _writeSettings({
+    required bool analysis,
+    required bool grammar,
+    bool? ner,
+  }) {
+    ner ??= _readSettings().ner;
     root.createSync(recursive: true);
     final temporary = File(
       '${root.path}/.settings-${DateTime.now().microsecondsSinceEpoch}.json',
@@ -118,6 +123,7 @@ class NativeStudioSpacyHost extends StudioSpacyHost {
         'schema': 'quds.studio.spacy.settings.v1',
         'analysis_enabled': analysis,
         'grammar_enabled': grammar,
+        'ner_enabled': ner,
       }),
       flush: true,
     );
@@ -165,6 +171,9 @@ class NativeStudioSpacyHost extends StudioSpacyHost {
       qualification: installation?.qualification,
       problem: problem,
       analysisEnabled: installation != null && settings.analysis,
+      nerOffered: installation != null && spacyNerDownload != null,
+      nerEnabled:
+          installation != null && settings.ner && spacyNerDownload != null,
       grammarEnabled:
           installation != null &&
           settings.grammar &&
@@ -206,7 +215,7 @@ class NativeStudioSpacyHost extends StudioSpacyHost {
   @override
   Future<void> remove() async {
     final package = _status.package;
-    _writeSettings(analysis: false, grammar: false);
+    _writeSettings(analysis: false, grammar: false, ner: false);
     if (package != null) await _installer.remove(package);
     await refresh();
   }
@@ -233,6 +242,26 @@ class NativeStudioSpacyHost extends StudioSpacyHost {
   }
 
   @override
+  Future<void> setNerEnabled(bool enabled) async {
+    final ner = spacyNerDownload;
+    if (enabled) {
+      if (ner == null || !_status.analysisEnabled) {
+        throw const SpacyUnavailableException(
+          'No verified named-entity model is published for this setup.',
+        );
+      }
+      await _installer.installNer(ner);
+    }
+    final settings = _readSettings();
+    _writeSettings(
+      analysis: settings.analysis,
+      grammar: settings.grammar,
+      ner: enabled,
+    );
+    await refresh();
+  }
+
+  @override
   Future<SpacyTransport> openTransport() async {
     if (_developerConfigured) return _openDeveloperTransport();
     if (!_status.analysisEnabled) {
@@ -251,14 +280,26 @@ class NativeStudioSpacyHost extends StudioSpacyHost {
         'The local German analysis files are missing. Install them again.',
       );
     }
-    if (!enableSpacyNativeGateForProcess()) {
+    final ner = spacyNerDownload;
+    final nerPath = _status.nerEnabled && ner != null
+        ? await _installer.installedNer(ner)
+        : null;
+    if (!enableSpacyNativeGateForProcess(namedEntities: nerPath != null)) {
       throw const SpacyUnavailableException(
         'Native analysis cannot be enabled on this platform.',
       );
     }
     return startSpacyWorker(
       bundle: const SpacyBundle.germanF32(),
-      backendFactory: installation.backendFactory(),
+      backendFactory: nerPath == null
+          ? installation.backendFactory()
+          : SpacyNativeBackendFactory(
+              bundleDirectory: installation.bundleDirectory,
+              libraryPath: installation.libraryPath!,
+              librarySha256: installation.librarySha256!,
+              nerPath: nerPath,
+              nerSha256: ner!.sha256,
+            ),
     );
   }
 
