@@ -129,15 +129,35 @@ The runner captures sources before and after, runs all native suites
 To replay the pending browser gate on a host that permits Chromium startup:
 
 ```bash
-python quds_office_suite/docs/validation/thesaurus-20261118/continuation/local/fixtures/install_offline.py thesaurus-final-validation/browser-build
-python quds_office_suite/docs/validation/thesaurus-20261118/continuation/local/fixtures/run_browser.py thesaurus-final-validation/browser-build --output browser-replay
+python quds_office_suite/docs/validation/thesaurus-20261118/continuation/local/fixtures/install_offline.py \
+  thesaurus-final-validation/browser-build \
+  --compile-receipt thesaurus-final-validation/receipt.json
+python quds_office_suite/docs/validation/thesaurus-20261118/continuation/local/fixtures/run_browser.py \
+  thesaurus-final-validation/browser-build \
+  --compile-receipt thesaurus-final-validation/receipt.json \
+  --output browser-replay
 ```
 
 The current runner accepts `--output` and `--browser-build-output` and refuses
 to overwrite an existing receipt. Its default compiled build is now
 `<output>/browser-build`; the historical build above used a different path.
-Keep the native/build receipt and its compiled-file inventory with the later
-browser receipt to bind the executable artifact to its source.
+The current installer and browser runner require the successful compile receipt,
+its source and artifact inventories, and its original compile logs. They check
+their hashes and the exact current fixture sources. The installer verifies all
+original compiled bytes before replacing `index.html` and adding its local
+bootstrap. Later validation allows precisely those two changes and verifies
+every other compiled file against the compile receipt. Rebuilding an offline
+manifest around a different application cannot qualify it. Historical receipts
+without the new binding remain historical evidence; build the current fixture
+again to run the strengthened gate.
+
+The current compile explicitly selects `--pwa-strategy=none`. The pinned SDK's
+default bootstrap otherwise configures Flutter's own service worker, whose
+unregister stub can compete with this fixture's worker at the same scope. The
+installer additionally rejects a bootstrap that does not end in the qualified
+default `_flutter.loader.load();` invocation without worker settings. This is a
+fixture correction based on the pinned SDK source; it is not a claim that the
+browser session has run successfully.
 
 The browser script uses Python Playwright and `/usr/bin/chromium`; pass
 `--browser-executable` for a different qualified host. It verifies the local
@@ -147,6 +167,21 @@ one-step undo/redo and verified source notices are required. These strengthened
 checks are described in the [resumed report](../../resume/README.md) and do not
 retroactively turn the historical compile result into browser acceptance. The
 service worker is test infrastructure, not a production deployment change.
+
+Before reporting readiness, the worker checks the exact expected cache URLs and
+re-verifies every cached response's size and SHA-256 in bounded batches. A
+same-count substitution, missing file, or damaged response cannot report ready.
+An installed asset is also checked before being served and never silently
+replaced with an online response. The browser receipt includes the compile
+provenance and preserves source examples alongside meanings, terms, labels and
+relations. Actual browser, installed desktop and human linguistic acceptance
+remain separate open gates.
+
+Local Python/Node controls cover changed or stale compile evidence, substituted
+application bytes, competing worker bootstrap settings, equal-count cache
+substitution, post-install byte corruption and missing source examples. These
+controls execute mocked worker APIs and local HTTP shutdown; they do not launch
+a browser or establish a successful install on a desktop.
 
 ## Earlier attempts retained
 

@@ -460,7 +460,13 @@ void main() {
     await _finishCheck(tester);
     expect(provider.requests.where((r) => r.text.startsWith('Draft')), isEmpty);
     expect(tester.widget<Text>(_status()).data, contains('incomplete'));
-    expect(find.textContaining('16384'), findsWidgets);
+    expect(
+      find.textContaining(
+        'This reply exceeds the live checking limit '
+        '(${WordProofingSession.maxDraftLength})',
+      ),
+      findsOneWidget,
+    );
     await _close(tester, provider);
   });
 
