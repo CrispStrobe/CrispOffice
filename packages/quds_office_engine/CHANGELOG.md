@@ -11,15 +11,16 @@ All notable changes to `quds_office_engine` are documented here.
 - Deprecate the invalid mutating `WordCompare.compare` implementation and fail
   before mutation. Use `WordDocumentComparison.compare` or `WordCompare.diff`.
 
-- Expose loaded Zotero abstracts, item-specific publication titles, publishers
-  and immutable exact tag names for reference inspection. Preserve optional
-  metadata without changing source identities, embedded CSL or request routes.
+- Emit complete dynamic footer PAGE packets, preserving their result formatting.
 
 - Offer existing accented dictionary forms for short German misspellings such
   as `Cafè` and `Joêl` through a bounded one-edit shortlist. Keep direct choices
   first, prefer matching lexical case within that fallback, and preserve the
   shared candidate limit. Protect identifier prefixes with supplementary digits,
   connectors and combining marks without copying or rescanning source prefixes.
+- Expose loaded Zotero abstracts, item-specific publication titles, publishers
+  and immutable exact tag names for reference inspection. Preserve optional
+  metadata without changing source identities, embedded CSL or request routes.
 
 - Count distinct displayed German corrections after applying source casing,
   so uppercase and sentence-initial variants do not consume duplicate shortlist

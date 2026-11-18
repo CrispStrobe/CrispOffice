@@ -1,0 +1,20 @@
+{
+  "schema": "quds.native_spelling.remote_readback.v1",
+  "checked_at_utc": "2026-11-18T12:28:23.892867+00:00",
+  "repository": "CrispStrobe/quds_office_suite",
+  "branch": "codex/native-spelling-continuation-20261118",
+  "qualified_product": "d6a9ca51b16daa9d3d54e163bc723b76659d70ac",
+  "complete_evidence_commit": "9e55eaebf5c451e4f15eb6eda8eda08ec719f993",
+  "evidence_commit_tree": "0c005b8c475350ecb54891ee0a5465c43340083b",
+  "readback_method": "GitHub connector fetch_file with encoding=base64 at exact evidence commit; whitespace-normalized payload equals the entire uploaded base64 payload",
+  "archive_blob_sha": "4816002d4bc8a7d1b140738436f951b27e09fa8d",
+  "archive_sha256": "77cdcbc43deb65a73363a857044d7f2c686a331c6293e373d3e4ca62e3c145f1",
+  "archive_bytes": 632624,
+  "remote_bytes_match_uploaded_and_locally_verified_archive": true,
+  "archive_member_count": 196,
+  "all_members_recomputed_and_verified": true,
+  "independent_archive_audit_passed": true,
+  "tracked_working_tree_clean_before_this_receipt": true,
+  "github_actions_workflow_checks_or_status_endpoints_used": false,
+  "note": "This receipt is a documentation-only continuation after verification of the complete source and evidence payload; no product, test or archive bytes change."
+}

@@ -1,0 +1,461 @@
+{
+  "note": "Hashes all evidence files except this root index; nested cohort indexes keep their original hashes.",
+  "files": {
+    "README.md": {
+      "bytes": 9395,
+      "sha256": "7063e67fd301d755caca159b7ef15cb93ebb4c0c2776d5299527673b5bf0b0d0"
+    },
+    "RECONCILIATION.md": {
+      "bytes": 5155,
+      "sha256": "2b0d970e287188a8b8e511e99c50b779184404d9a4e3a8b59a1220e194ad22aa"
+    },
+    "attempts/README.md": {
+      "bytes": 1209,
+      "sha256": "4004627e3baebac1f428c04e9e31b212474da5c96035917fd8ffed552285fdc1"
+    },
+    "attempts/checks-before-test-braces/analyze.log": {
+      "bytes": 634,
+      "sha256": "24288b3cb485587b811be23721474d8edbfe25b5291536693f1de096b1901876"
+    },
+    "attempts/checks-before-test-braces/format.log": {
+      "bytes": 47,
+      "sha256": "9219654a1b9917a792fbe3a1351e70ebe5790cc91737cbfd2a301878bb51624b"
+    },
+    "attempts/checks-before-test-braces/summary.json": {
+      "bytes": 3720,
+      "sha256": "23f0804600381ad5932a95d20661a48cd59dc382320412ec7c96d2dedec273fc"
+    },
+    "attempts/checks-before-test-braces/whitespace.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "attempts/editor-initial-overflow.index.json": {
+      "bytes": 3383,
+      "sha256": "b3ce14f12a10d9beb7c0a014300328c1a6d5c7bd68c31489746552560acad1e8"
+    },
+    "attempts/editor-initial-overflow.tar.xz": {
+      "bytes": 339864,
+      "sha256": "c00fbc3803d67ba13331fa4730bd0efe9fd881e9458c01accb1ad663023279fa"
+    },
+    "attempts/editor-interrupted-before-test-style-fix.index.json": {
+      "bytes": 2142,
+      "sha256": "83ff354767d8e3aee86c76857c5166b9d5f5eb300ecbbb28b9578aa8a323b739"
+    },
+    "attempts/editor-interrupted-before-test-style-fix.tar.xz": {
+      "bytes": 309612,
+      "sha256": "15b2cae6e8ef946080700e18ce338294dcedfddb33d80f6eb3fbd8550f2e7be1"
+    },
+    "checks/analyze.log": {
+      "bytes": 190,
+      "sha256": "a8b0c3da193e989ff88685805f78cf785a418bb0b6e8221ea21e056f7ec894e4"
+    },
+    "checks/format.log": {
+      "bytes": 47,
+      "sha256": "75f97eb3a3602dbaed332e8ffb6bbfc2004d68f58a838e00dbd3d8d09318a7b9"
+    },
+    "checks/run_checks.py": {
+      "bytes": 2271,
+      "sha256": "d19d2bc8ca6c70cf7b84e15b812b09f7c28f63ad277e5616e9e4f55af6c1b39b"
+    },
+    "checks/summary.json": {
+      "bytes": 3719,
+      "sha256": "f908d771a7128d9edb0ff5dfc2b71d4460b5a1661d243635959626c51b13aaec"
+    },
+    "checks/whitespace.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "development/README.md": {
+      "bytes": 1052,
+      "sha256": "c0f1f9edde96ccfd5030edfcafcc55bd81f7e28380bc07a1743f004e4f09586c"
+    },
+    "development/focused-checks.index.json": {
+      "bytes": 6013,
+      "sha256": "8bbd663ee72f4d105c59f7356943ce1d4d64d7a117e087b9b0df1d22e1bc54ab"
+    },
+    "development/focused-checks.tar.xz": {
+      "bytes": 316644,
+      "sha256": "1d177b30b221fb5f8ef26c9923ef345de8340d2b049f64e5db0ea4fda889053c"
+    },
+    "development/library-details-development-summary.json": {
+      "bytes": 2801,
+      "sha256": "170d659b89ff06bd09707ef8c32c7a278ce8326c4d0792c254fd69eddadbd0eb"
+    },
+    "editor/README.md": {
+      "bytes": 2199,
+      "sha256": "85431c06481a3700e807d3ca57204707166f4e954f3fc5e7e66366def0004583"
+    },
+    "editor/cases.json.gz": {
+      "bytes": 7273,
+      "sha256": "47264128726cec4404ab4ac0ae38253467a4a2d57543dd14ca674f38e1a27df6"
+    },
+    "editor/dependencies-after.json.gz": {
+      "bytes": 153971,
+      "sha256": "ad839b47afaaa3b516ef0921152c752f2b9be89d58aa3970a0a04c6262c792c8"
+    },
+    "editor/dependencies-before.json.gz": {
+      "bytes": 153971,
+      "sha256": "ad839b47afaaa3b516ef0921152c752f2b9be89d58aa3970a0a04c6262c792c8"
+    },
+    "editor/diagnostics.json": {
+      "bytes": 180,
+      "sha256": "41ddc6afbd8cc704cc14bac961c9849abd9bff0d4a922d1af17cfebed151c50a"
+    },
+    "editor/events.jsonl.gz": {
+      "bytes": 13434,
+      "sha256": "a20ab919a8ede56110bc418642643233c10b01bc77308932cbd1995d25798053"
+    },
+    "editor/excluded-events.json.gz": {
+      "bytes": 262,
+      "sha256": "ceae1cca7fc42e8f6d74dd72c48173c586ab25e0ec2127303db07c9752dbafbe"
+    },
+    "editor/index.json": {
+      "bytes": 2773,
+      "sha256": "3075da556416481f10fec084a2e005508df870a8afc7292c200c42c28822dee8"
+    },
+    "editor/launcher.log": {
+      "bytes": 501,
+      "sha256": "2d384f5794d7c47c632f30e10c8311d60b9014d629642f067c24aa0f0e9c88cb"
+    },
+    "editor/machine-envelopes.json.gz": {
+      "bytes": 203,
+      "sha256": "a3d30d830cd913bc6a6f27a0a65e155a56a0eb4f08ea0aec160ad634b128d654"
+    },
+    "editor/process-exit.json": {
+      "bytes": 1347,
+      "sha256": "3577263e04f636479e56e2c59caa949cded7bfdbb8baa0ec1f95d25b446e8dc1"
+    },
+    "editor/run.json": {
+      "bytes": 4310,
+      "sha256": "02c789865a3c5f15e6581d27533cf9357a12e48970d37f556b6fcf423a75ff16"
+    },
+    "editor/run_flutter_cohort.py": {
+      "bytes": 13322,
+      "sha256": "17d61107e964fc4f778ccea1d005595ade12f03c6cee97355d5fb0087b25211f"
+    },
+    "editor/runtime-after.json.gz": {
+      "bytes": 91103,
+      "sha256": "fbea0d7c61d56470f13e3e828ea84d533f4b6519018b9e98cbd85d1637c37bee"
+    },
+    "editor/runtime-before.json.gz": {
+      "bytes": 91103,
+      "sha256": "fbea0d7c61d56470f13e3e828ea84d533f4b6519018b9e98cbd85d1637c37bee"
+    },
+    "editor/source-after.json.gz": {
+      "bytes": 43115,
+      "sha256": "86e692c4174783d9dc0aed04c71e1d8efcf18c9a684f84aedf56db2da8ea65a9"
+    },
+    "editor/source-before.json.gz": {
+      "bytes": 43115,
+      "sha256": "86e692c4174783d9dc0aed04c71e1d8efcf18c9a684f84aedf56db2da8ea65a9"
+    },
+    "editor/stderr.log.gz": {
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    "editor/summary.json": {
+      "bytes": 9212,
+      "sha256": "752eb50f63ce6a7ccba51a68b1bdf72b1fbf5d2317ea8b3cc7d2cba0bc0622fe"
+    },
+    "editor/workspace-after.json.gz": {
+      "bytes": 1059,
+      "sha256": "5af0addcb755664cea67655dc05225ff8a3f4ae6d6b13e45bc0195ba1c9ced75"
+    },
+    "editor/workspace-before.json.gz": {
+      "bytes": 1059,
+      "sha256": "5af0addcb755664cea67655dc05225ff8a3f4ae6d6b13e45bc0195ba1c9ced75"
+    },
+    "editor/workspace-inputs.json.gz": {
+      "bytes": 13197,
+      "sha256": "08c413eec1f52af5f2a72d33a9e72b2e31df9e41ebc4b9928b21ca9a234e6e57"
+    },
+    "engine/README.md": {
+      "bytes": 3262,
+      "sha256": "93dea62ac20d334ad60a3769814687471fdcc0e4a1b33bcdf1fec7d0ecad21b0"
+    },
+    "engine/cases.json.gz": {
+      "bytes": 11393,
+      "sha256": "64c75a6a4426d36ac029bd4d229b5691ae74d37685c28316c1fd891443137794"
+    },
+    "engine/dependencies-after.json.gz": {
+      "bytes": 134644,
+      "sha256": "1f35efa0bbcab3f8a1f55029918eaccc12927bcecbceecd85299a98b8981dad6"
+    },
+    "engine/dependencies-before.json.gz": {
+      "bytes": 134644,
+      "sha256": "1f35efa0bbcab3f8a1f55029918eaccc12927bcecbceecd85299a98b8981dad6"
+    },
+    "engine/events.jsonl.gz": {
+      "bytes": 20344,
+      "sha256": "aaf646e2cfaef78a2c84aca04fef9a87f197b266dc6a0c044bf07abe88728c83"
+    },
+    "engine/excluded-events.json.gz": {
+      "bytes": 517,
+      "sha256": "8790cd4cd969eeaad646bf07fca37b5554938c2b6be3c6a0b86bb864fffc4c18"
+    },
+    "engine/index.json": {
+      "bytes": 5098,
+      "sha256": "5b81da651de6a65737828eaa9d0a9d0e5c6c0602157d4ea4225fa086e95383f8"
+    },
+    "engine/launcher.log": {
+      "bytes": 434,
+      "sha256": "f6105b053779600adc7527848e001b4c2b925420538f17c27c89e86791cec8e4"
+    },
+    "engine/run.json": {
+      "bytes": 4617,
+      "sha256": "b1e75d1b79cf48a65ca2063cee88b7d533bf6cb9e53b4c78ef8bfcf2990b5e0b"
+    },
+    "engine/run_engine.py": {
+      "bytes": 10228,
+      "sha256": "3be67e2182ac848a0589bc9b0e2b287ae8e71da23ebf20e6b72f7f20909b6273"
+    },
+    "engine/runtime-after.json.gz": {
+      "bytes": 80972,
+      "sha256": "08658d67b3033f0a616c1d8499a8e57c432797d0684811422f5cba06afdbee5b"
+    },
+    "engine/runtime-before.json.gz": {
+      "bytes": 80972,
+      "sha256": "08658d67b3033f0a616c1d8499a8e57c432797d0684811422f5cba06afdbee5b"
+    },
+    "engine/setup/env.sh": {
+      "bytes": 667,
+      "sha256": "0a3bc76009658b2e24644254346154b756c07b0b6746e8f26cff2152643c5c21"
+    },
+    "engine/setup/flutter-recovery.json": {
+      "bytes": 542,
+      "sha256": "7087b9e53365700122ad34aa82d640ac5367cacf7713e967623aac9d27376121"
+    },
+    "engine/setup/logs/dart-version.log": {
+      "bytes": 82,
+      "sha256": "945e6a359e53647f8fd753347245ed78bc06c2808919b2d7749817181d010ff4"
+    },
+    "engine/setup/logs/flutter-tools-pub-get.log": {
+      "bytes": 1069,
+      "sha256": "e16a62f9005c169d9e2f1a9504171a77a2106b841a81ae046530ced1ced89127"
+    },
+    "engine/setup/logs/flutter-version.json": {
+      "bytes": 641,
+      "sha256": "d34300e8182172d273e4bf696ca83e2cccc069e71a211a792c1982087c8ec301"
+    },
+    "engine/setup/logs/flutter-version.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "engine/setup/logs/pub-prefetch-tools.log": {
+      "bytes": 35780,
+      "sha256": "2ec34c0c67e0aa50c7365c167e43c39c9dece58d6087f771a8c3115b7d9d2fd4"
+    },
+    "engine/setup/logs/pub-prefetch.log": {
+      "bytes": 30120,
+      "sha256": "81a05be0c5951be7d673a0907f695dde37a307dc2aaed32e2a02382bf81db14f"
+    },
+    "engine/setup/logs/restore_flutter.log": {
+      "bytes": 559,
+      "sha256": "ac45c0b3671ddef7e760558f0372f7f84a42b6bebe8fc5b66e884f1a3147f757"
+    },
+    "engine/setup/logs/setup-editor-format-smoke-accepted.log": {
+      "bytes": 3240,
+      "sha256": "3653bd5850a8e7f2ae14379ef24e7c51ce51e639c218e142053a13b95f934318"
+    },
+    "engine/setup/logs/setup-editor-format-smoke-verbose.log": {
+      "bytes": 3613,
+      "sha256": "500a939d57d278834c189b0bf5ded3af762e0ef76688979c536a3bfd8e222a28"
+    },
+    "engine/setup/logs/setup-editor-format-smoke.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "engine/setup/logs/workspace-pub-get.log": {
+      "bytes": 68,
+      "sha256": "d4cb7a3c68b4133b4f6e58c67ff5bfd13725d8021e930388cdc98da8a575919d"
+    },
+    "engine/setup/prepare_workspace.py": {
+      "bytes": 2444,
+      "sha256": "e37579d4fbe6f02c6474bf5f2e5ed4fd5439f4df76b5b3ad0850b4d15ff809d9"
+    },
+    "engine/setup/restore_flutter.py": {
+      "bytes": 1937,
+      "sha256": "74b0093f0f375b8e3f121a55336e09d9a7ecd193b2570f11fb6a3370383427db"
+    },
+    "engine/setup/runtime-ready.json": {
+      "bytes": 8592,
+      "sha256": "5c909fb29e41ca92d6f4fea5fdb3474d37e88f38f2862ca8b9ec0fdc76e8fcce"
+    },
+    "engine/setup/scripts/prefetch_pub.py": {
+      "bytes": 3701,
+      "sha256": "ca07eba475d2613491aee15f192902676f1983501ddabaacdfff5f329fd0c229"
+    },
+    "engine/setup/setup/prefetch-162.json": {
+      "bytes": 42730,
+      "sha256": "9287adee3b5986f4ba4f24b258f51b57d29d371ce9912b21c503b60a641a89c2"
+    },
+    "engine/setup/setup/workspace-prepared.json": {
+      "bytes": 17397,
+      "sha256": "f4a8e35c8215d9d47fbc225ae2336e59d7af43f8f0bd11cbc84fa85252f69cbe"
+    },
+    "engine/source-after.json.gz": {
+      "bytes": 33489,
+      "sha256": "56b0fc177f4aa79cae169331df53b7f47a46fa5facae4aa7c2852573c81e6c49"
+    },
+    "engine/source-before.json.gz": {
+      "bytes": 33489,
+      "sha256": "56b0fc177f4aa79cae169331df53b7f47a46fa5facae4aa7c2852573c81e6c49"
+    },
+    "engine/stderr.log.gz": {
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    "engine/summary.json": {
+      "bytes": 9102,
+      "sha256": "c1efd225b066490b4af93d196747f2b9d0adb7ebc647bb32bbdbba231fb21322"
+    },
+    "engine/workspace-after.json.gz": {
+      "bytes": 680,
+      "sha256": "988adf54f47ffda09f6181d9551aa43d7aa230a5433151a1d316671ee5f8cf91"
+    },
+    "engine/workspace-before.json.gz": {
+      "bytes": 680,
+      "sha256": "988adf54f47ffda09f6181d9551aa43d7aa230a5433151a1d316671ee5f8cf91"
+    },
+    "engine/workspace-inputs.json.gz": {
+      "bytes": 11290,
+      "sha256": "93dd7aa2baf3be616e06fb19e341112ca03c810643ee4861a0effd4042b62d5d"
+    },
+    "engine-binding.json": {
+      "bytes": 301,
+      "sha256": "6c185c69a5f92aa2651925077a06b8001a9996226f845894822ab1cb2ed060ac"
+    },
+    "final-frontier.json": {
+      "bytes": 46276,
+      "sha256": "85a87e543c8a721e52bfe7a8854a08c9e272168dd2204f3576ebc3e6878b1d57"
+    },
+    "integrated-main.json": {
+      "bytes": 796,
+      "sha256": "df11cd0d7d99d80a34a7f6aac7362b684a41d1f411f26859fcb335a64ff21eab"
+    },
+    "reconciliation-final-external-comparisons.json": {
+      "bytes": 11950,
+      "sha256": "a34cfb473671206b451e08851fa4bdbc332ec44f74bb91adec7d883cbaa33bb7"
+    },
+    "reconciliation-final-pr-state.json": {
+      "bytes": 1587,
+      "sha256": "0abeada26b1b9c799a5effd946545674fd2d1d4d331fe01f751cd3eb9c5ecfb3"
+    },
+    "reconciliation-final-remote-refs.json": {
+      "bytes": 68670,
+      "sha256": "de26bc1177ff1f6c06c4466f4da21ffd64bf529972f38b830e11f22945389628"
+    },
+    "reconciliation-final-review.md": {
+      "bytes": 3914,
+      "sha256": "ad030f74912191151a214f00259af568c791a1baaf79129648dc2141afe37284"
+    },
+    "reconciliation-initial.json": {
+      "bytes": 153747,
+      "sha256": "7c126166d8af29e17b0428e67b7dcf0021a6988011fffde64cdb75ec8ec61879"
+    },
+    "source-commit-binding.json": {
+      "bytes": 1061,
+      "sha256": "d5c4d01597c71ef1722443909c5b1a0b024dda49ca2133aa003ac7f6bf92a866"
+    },
+    "status.json": {
+      "bytes": 1687,
+      "sha256": "e1165bf1254541d308b84decdc070797c87cff0e1a7daf98e9354bc20837b5b3"
+    },
+    "studio/README.md": {
+      "bytes": 2207,
+      "sha256": "462e2582877c9641f9cf830e31405cc909c0efcc3e08644de77811edc813ed3d"
+    },
+    "studio/cases.json.gz": {
+      "bytes": 806,
+      "sha256": "88249c6ca6180bd6acbef95aba7f9fe84a74803e48517741a3688048b51764d6"
+    },
+    "studio/dependencies-after.json.gz": {
+      "bytes": 213957,
+      "sha256": "ddaac96e35138958c50fb353a94a1e3edbc8c745bc4b60ae2c5fd54a0e05140b"
+    },
+    "studio/dependencies-before.json.gz": {
+      "bytes": 213957,
+      "sha256": "ddaac96e35138958c50fb353a94a1e3edbc8c745bc4b60ae2c5fd54a0e05140b"
+    },
+    "studio/diagnostics.json": {
+      "bytes": 180,
+      "sha256": "41ddc6afbd8cc704cc14bac961c9849abd9bff0d4a922d1af17cfebed151c50a"
+    },
+    "studio/events.jsonl.gz": {
+      "bytes": 1386,
+      "sha256": "a57a8ff726b2c8b6eef895d784f923aa300b6b76b2c6731d6cc1d06f2b5f16f2"
+    },
+    "studio/excluded-events.json.gz": {
+      "bytes": 117,
+      "sha256": "7c83db31870ab09fa370329725baa7982d8e0d6af74c25137dc24710dc5e90b0"
+    },
+    "studio/index.json": {
+      "bytes": 2770,
+      "sha256": "80135f64d05fd43164fc79525b1bbe7cbe2a3f95edffeefb1df5dbeae27d7bfa"
+    },
+    "studio/launcher.log": {
+      "bytes": 496,
+      "sha256": "4d0bf32c2e93ed1bdeb0a69323893f93405988997f44070ad5c1d2120c52ae20"
+    },
+    "studio/machine-envelopes.json.gz": {
+      "bytes": 124,
+      "sha256": "3b4498c3f086a533ca86921112a9201ddb498dfd5f106720a40aa29ede89c1c0"
+    },
+    "studio/process-exit.json": {
+      "bytes": 531,
+      "sha256": "e7b4248d9e3b91a2bc53839f06014708add2dcf942d169db19ea4d7361e8d2b3"
+    },
+    "studio/run.json": {
+      "bytes": 2869,
+      "sha256": "4ee36ecc73fbb7a13fe06fdad648391cb19f24740919bfcf1dbbd74bcdf99291"
+    },
+    "studio/run_flutter_cohort.py": {
+      "bytes": 13322,
+      "sha256": "17d61107e964fc4f778ccea1d005595ade12f03c6cee97355d5fb0087b25211f"
+    },
+    "studio/runtime-after.json.gz": {
+      "bytes": 91103,
+      "sha256": "fbea0d7c61d56470f13e3e828ea84d533f4b6519018b9e98cbd85d1637c37bee"
+    },
+    "studio/runtime-before.json.gz": {
+      "bytes": 91103,
+      "sha256": "fbea0d7c61d56470f13e3e828ea84d533f4b6519018b9e98cbd85d1637c37bee"
+    },
+    "studio/source-after.json.gz": {
+      "bytes": 49892,
+      "sha256": "451abfbec2110bde736d616bb02d2ac0567c12299885d93afbf36d36d3b81d26"
+    },
+    "studio/source-before.json.gz": {
+      "bytes": 49892,
+      "sha256": "451abfbec2110bde736d616bb02d2ac0567c12299885d93afbf36d36d3b81d26"
+    },
+    "studio/stderr.log.gz": {
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    "studio/summary.json": {
+      "bytes": 7763,
+      "sha256": "bdbd41e83c408a72a36fa1a8cac745fa5b0143196aee35d5fe41d0d2492fe1fb"
+    },
+    "studio/workspace-after.json.gz": {
+      "bytes": 1373,
+      "sha256": "f4646737a341da0143f11235852b20d2408d0a96dc177b57c40c85205c37ece7"
+    },
+    "studio/workspace-before.json.gz": {
+      "bytes": 1373,
+      "sha256": "f4646737a341da0143f11235852b20d2408d0a96dc177b57c40c85205c37ece7"
+    },
+    "studio/workspace-inputs.json.gz": {
+      "bytes": 14402,
+      "sha256": "7c8658c495d92eb1c734142a66ecb9b1e187ff7556ac57e64f62253e6ebb0d51"
+    },
+    "zotero-independent-review.md": {
+      "bytes": 10371,
+      "sha256": "8e4cde1c28a01ab306d8588bbcbead4b401ba59f2a90f0de593bd33973e86484"
+    },
+    "zotero-review-validation-binding.json": {
+      "bytes": 873,
+      "sha256": "0c82f2cb856dddbf474f79517a33b095d24f1e7cbf40f98fcc6f002ea6971c85"
+    }
+  }
+}

@@ -12,17 +12,18 @@ All notable changes to `quds_office_editor` are documented here.
   preserve source documents, mark stale reports, and support narrow LTR/RTL
   review layouts and viewing mode.
 
+- Keep exact reviewed macOS pixel references separate from Linux references.
+
+- Check native spelling without discretionary soft hyphens while keeping exact
+  original UTF-16 finding ranges and undoable corrections. Preserve authored
+  layout outside corrections, reject layout-only suggestions, and keep links,
+  code, marked identifiers and grapheme clusters protected after projection.
 - Add read-only Zotero reference details and plain-text copying, plus exact tag
   filtering directly from loaded metadata. Preserve search drafts and selected
   sources, and explain tags that cannot be filtered literally.
 - Add staged selection review in Library and CSL import: inspect sources across
   pages, remove individual references and arrange citation order. Apply or cancel
   without changing document history; retain original source keys and metadata.
-
-- Check native spelling without discretionary soft hyphens while keeping exact
-  original UTF-16 finding ranges and undoable corrections. Preserve authored
-  layout outside corrections, reject layout-only suggestions, and keep links,
-  code, marked identifiers and grapheme clusters protected after projection.
 
 - Keep native spelling shortlists useful by filtering blank, unchanged,
   duplicate and malformed replacements before the eight-suggestion limit.

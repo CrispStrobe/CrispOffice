@@ -1,0 +1,3 @@
+Waiting for shared Flutter CLI lock
+RUN quds_office_studio Zotero suites: 1
+{"status": "passed", "exit_code": 0, "suite_count": 1, "substantive_test_count": 18, "substantive_results": {"success": 18}, "substantive_skips": 0, "hidden_test_count": 1, "guards": {"source_unchanged": true, "dependencies_unchanged": true, "runtime_unchanged": true, "workspace_inputs_unchanged": true, "selected_tests_unchanged": true, "every_started_test_finished_once": true, "all_selected_suites_executed": true}}
