@@ -1,0 +1,34 @@
+{
+  "baseline": "b2597485b923003f01c1bd69e02d0c62a6943514",
+  "tree": "15610941461683660ac10e072f1e8bac9f26694d",
+  "tracked_status": "",
+  "workspace_roots": {
+    "quds_office_suite": "/workspace/scratch/9b01e2d302a4/zotero-notes-baseline/",
+    "legacy_doc_parser": "/workspace/scratch/9b01e2d302a4/zotero-notes-baseline/packages/legacy_doc_parser",
+    "quds_office_engine": "/workspace/scratch/9b01e2d302a4/zotero-notes-baseline/packages/quds_office_engine",
+    "quds_proofing_harper": "/workspace/scratch/9b01e2d302a4/zotero-notes-baseline/packages/quds_proofing_harper",
+    "quds_proofing_gector": "/workspace/scratch/9b01e2d302a4/zotero-notes-baseline/packages/quds_proofing_gector",
+    "quds_proofing_spacy": "/workspace/scratch/9b01e2d302a4/zotero-notes-baseline/packages/quds_proofing_spacy",
+    "quds_reports": "/workspace/scratch/9b01e2d302a4/zotero-notes-baseline/packages/quds_reports",
+    "quds_office_editor": "/workspace/scratch/9b01e2d302a4/zotero-notes-baseline/packages/quds_office_editor"
+  },
+  "package_config_sha256": "7a89dab45ebca1019f3a9674fad74048a3c1f8aea29ffc2691cd1f5f09d77547",
+  "file_sha256": {
+    "packages/quds_office_editor/test/word_notes_editing_test.dart": "5a4dd0fa0e2a6ca5af7af288cbe3ca54821570089a218a3829246353570a7619",
+    "packages/quds_office_editor/test/word_note_numbering_test.dart": "e6219eec357284406dabd1ea47955463179e18fe17b1e8aa5ebcf185fa624bdd",
+    "packages/quds_office_editor/lib/src/proofing/word_proofing.dart": "3f70a533f302db59c06623645c06777eafeacf43a8cd153cb5711bda0fcaa68b",
+    "packages/quds_office_editor/lib/src/embed/office_editors.dart": "7059572f46d8457e1ec33b0f68a9507e374d36bd7d1535f325e0d52d82a77843",
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart": "4f1041a63596eff52e8e7cf480e8177517dd4ecaaa4a1df7786526fc59048227",
+    "pubspec.lock": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130"
+  },
+  "command": "flutter test --no-pub test/word_notes_editing_test.dart test/word_note_numbering_test.dart --reporter expanded",
+  "log": "notes-baseline-tests.log",
+  "result": {
+    "exit_code": 1,
+    "passed": 8,
+    "failed": 3,
+    "cause": "Three preexisting widget fixtures leave a 400 ms WordProofingSession timer pending after the test body returns."
+  },
+  "log_sha256": "aa06665c9de9e8acb0faa22af76f25568a3de727ca5969074a046f717916da03",
+  "tracked_status_after_test": ""
+}

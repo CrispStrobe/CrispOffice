@@ -1,0 +1,32 @@
+{
+  "accepted-editor.log": {
+    "stored_as": "accepted-editor.log.gz",
+    "original_sha256": "abf0e07a2dc9c94c941c25b7097be6cb70f8b033b90d066f7e82ac6142e6a996",
+    "stored_sha256": "cedea3adde5f05c8f25e7fcd97574909eac126ec096c8cdd01982eb94dfeb991"
+  },
+  "final-editor.log": {
+    "stored_as": "final-editor.log.gz",
+    "original_sha256": "bd792aba2bff05863c84716aa41df2b9f42419f7169d7a10a4bbe0066de2c65b",
+    "stored_sha256": "c033ba434a75e611f19ad9f567351860e31cca210b00f6c577c0c0542cb11df2"
+  },
+  "notes-baseline-tests.log": {
+    "stored_as": "notes-baseline-tests.log.gz",
+    "original_sha256": "aa06665c9de9e8acb0faa22af76f25568a3de727ca5969074a046f717916da03",
+    "stored_sha256": "bd5e17a86a805e8f7913ef55060dfffe75259b0a63d18289180b8927b1e1d7b5"
+  },
+  "notes-fixture-repair.patch": {
+    "stored_as": "notes-fixture-repair.patch.gz",
+    "original_sha256": "c8e6c2f5a337132fa57a1b2245b999209d5b0012e89883298db1a81e011a1fc5",
+    "stored_sha256": "b5f4de03b4d7eab7d22d6d4a18886e2a74905f5fc4d0e04f582e5c2abea45812"
+  },
+  "root-document-actions-attempt2.log": {
+    "stored_as": "root-document-actions-attempt2.log.gz",
+    "original_sha256": "6adeb66bb4f6a4e525a090b082ca7330dd1e24c9095b32cb496674aab823267a",
+    "stored_sha256": "8f65701f9bf51a78feac2f17ea7ffdc32fb650561085f3da94e7ba6a566094ee"
+  },
+  "root-document-actions.log": {
+    "stored_as": "root-document-actions.log.gz",
+    "original_sha256": "858ed596316ea2b1e87fd0891141a21c46186b950b26856a5849f6fa1aedee54",
+    "stored_sha256": "96bda3c1d39fd0febe913435ae5e3959ed97d5a71cdda4384261f1f2844e0c61"
+  }
+}

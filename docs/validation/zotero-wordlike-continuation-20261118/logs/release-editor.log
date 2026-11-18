@@ -1,0 +1,529 @@
+Waiting for another flutter command to release the startup lock...
+00:00 +0: loading /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_backoff_session_test.dart
+00:00 +0: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_backoff_session_test.dart: reconnecting and reopening keep an online session pause
+00:01 +1: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_backoff_session_test.dart: reconnecting and reopening keep an online session pause
+00:01 +2: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_backoff_session_test.dart: reconnecting and reopening keep an online session pause
+00:02 +3: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_backoff_session_test.dart: reconnecting and reopening keep an online session pause
+00:02 +4: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_backoff_session_test.dart: reconnecting and reopening keep an online session pause
+00:02 +5: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_backoff_session_test.dart: reconnecting and reopening keep an online session pause
+00:02 +6: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_backoff_session_test.dart: reconnecting and reopening keep an online session pause
+00:02 +7: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_backoff_session_test.dart: reconnecting and reopening keep an online session pause
+00:02 +8: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_backoff_session_test.dart: reconnecting and reopening keep an online session pause
+00:02 +9: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_backoff_session_test.dart: reconnecting and reopening keep an online session pause
+00:02 +10: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_backoff_session_test.dart: reconnecting and reopening keep an online session pause
+00:02 +11: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_backoff_session_test.dart: reconnecting and reopening keep an online session pause
+00:02 +12: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_backoff_session_test.dart: reconnecting and reopening keep an online session pause
+00:02 +13: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_backoff_session_test.dart: reconnecting and reopening keep an online session pause
+00:03 +14: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_catalog_citing_test.dart: a saved-search source seeds native first insertion and survives DOCX and undo
+00:05 +15: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_catalog_citing_test.dart: a saved-search source seeds native first insertion and survives DOCX and undo
+00:05 +16: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_catalog_citing_test.dart: a saved-search source seeds native first insertion and survives DOCX and undo
+00:05 +17: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_catalog_citing_test.dart: a saved-search source seeds native first insertion and survives DOCX and undo
+00:05 +18: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_catalog_citing_test.dart: a saved-search source seeds native first insertion and survives DOCX and undo
+00:06 +19: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_catalog_citing_test.dart: a saved-search source seeds native first insertion and survives DOCX and undo
+00:06 +20: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_catalog_citing_test.dart: a saved-search source seeds native first insertion and survives DOCX and undo
+00:06 +21: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_catalog_citing_test.dart: a saved-search source seeds native first insertion and survives DOCX and undo
+00:06 +22: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_catalog_citing_test.dart: a saved-search source seeds native first insertion and survives DOCX and undo
+00:06 +23: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_catalog_citing_test.dart: a saved-search source seeds native first insertion and survives DOCX and undo
+00:06 +24: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_catalog_citing_test.dart: a saved-search source seeds native first insertion and survives DOCX and undo
+00:06 +25: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_catalog_citing_test.dart: a saved-search source seeds native first insertion and survives DOCX and undo
+00:06 +26: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_catalog_citing_test.dart: a saved-search source seeds native first insertion and survives DOCX and undo
+00:06 +27: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_catalog_citing_test.dart: a saved-search source seeds native first insertion and survives DOCX and undo
+00:06 +28: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_catalog_citing_test.dart: a saved-search source seeds native first insertion and survives DOCX and undo
+00:06 +29: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_catalog_citing_test.dart: a saved-search source seeds native first insertion and survives DOCX and undo
+00:07 +30: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_catalog_citing_test.dart: a saved-search source seeds native first insertion and survives DOCX and undo
+00:07 +31: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_catalog_citing_test.dart: a saved-search source seeds native first insertion and survives DOCX and undo
+00:07 +32: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_catalog_citing_test.dart: a saved-search source seeds native first insertion and survives DOCX and undo
+00:07 +33: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_catalog_citing_test.dart: a saved-search source seeds native first insertion and survives DOCX and undo
+00:07 +34: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_catalog_citing_test.dart: a saved-search source seeds native first insertion and survives DOCX and undo
+00:07 +35: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_catalog_query_test.dart: online query controls apply to every page and retain selection
+00:07 +36: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_catalog_query_test.dart: online query controls apply to every page and retain selection
+00:07 +37: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_catalog_query_test.dart: online query controls apply to every page and retain selection
+00:07 +38: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_catalog_query_test.dart: online query controls apply to every page and retain selection
+00:07 +39: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_catalog_query_test.dart: online query controls apply to every page and retain selection
+00:08 +40: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_catalog_query_test.dart: online query controls apply to every page and retain selection
+00:08 +41: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_catalog_query_test.dart: online query controls apply to every page and retain selection
+00:09 +42: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_catalog_citing_test.dart: first catalog insertion chooses placement 1 in one undo
+00:09 +43: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart: a direct citation action starts once without navigating tabs
+00:10 +44: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart: a direct citation action starts once without navigating tabs
+00:10 +45: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart: a direct citation action starts once without navigating tabs
+00:11 +46: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart: a direct citation action starts once without navigating tabs
+00:11 +47: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart: a direct citation action starts once without navigating tabs
+00:12 +48: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart: a direct citation action starts once without navigating tabs
+00:12 +49: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart: a direct citation action starts once without navigating tabs
+00:12 +50: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_collection_pagination_test.dart: initial collection duplicates keep one selectable latest entry
+00:13 +51: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_collection_pagination_test.dart: initial collection duplicates keep one selectable latest entry
+00:13 +52: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_collection_pagination_test.dart: initial collection duplicates keep one selectable latest entry
+00:14 +53: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_collection_pagination_test.dart: initial collection duplicates keep one selectable latest entry
+00:14 +54: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_collection_pagination_test.dart: initial collection duplicates keep one selectable latest entry
+00:14 +55: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_collection_pagination_test.dart: initial collection duplicates keep one selectable latest entry
+00:14 +56: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_collection_pagination_test.dart: initial collection duplicates keep one selectable latest entry
+00:14 +57: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_catalog_query_test.dart: collection and group changes retain filters and restart pagination
+00:14 +58: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_catalog_query_test.dart: collection and group changes retain filters and restart pagination
+00:15 +59: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_catalog_query_test.dart: collection and group changes retain filters and restart pagination
+00:15 +60: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_catalog_query_test.dart: collection and group changes retain filters and restart pagination
+00:15 +61: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_catalog_query_test.dart: collection and group changes retain filters and restart pagination
+00:15 +62: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_collection_pagination_test.dart: later collection pages replace duplicate metadata and retain selected keys
+00:16 +63: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_collection_pagination_test.dart: later collection pages replace duplicate metadata and retain selected keys
+00:16 +64: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart: native picker inserts a linked footnote and preferences as one undo
+00:16 +65: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_catalog_query_test.dart: desktop saved-search query controls keep their endpoint and credentials
+00:17 +66: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_catalog_query_test.dart: desktop saved-search query controls keep their endpoint and credentials
+00:18 +67: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_catalog_query_test.dart: desktop saved-search query controls keep their endpoint and credentials
+00:18 +68: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart: native cancel without changes leaves the undo history clean
+00:18 +69: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_collection_pagination_test.dart: closing during collection pagination discards the response
+00:18 +70: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart: connected chooser supports keyboard search and selection beyond visible results
+00:19 +71: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart: connected chooser supports keyboard search and selection beyond visible results
+00:20 +72: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart: connected chooser supports keyboard search and selection beyond visible results
+00:20 +73: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart: connected chooser supports keyboard search and selection beyond visible results
+00:21 +74: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart: connected chooser supports keyboard search and selection beyond visible results
+00:21 +75: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart: connected chooser supports keyboard search and selection beyond visible results
+00:22 +76: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart: connected chooser supports keyboard search and selection beyond visible results
+00:22 +77: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart: connected chooser supports keyboard search and selection beyond visible results
+00:23 +78: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart: connected chooser supports keyboard search and selection beyond visible results
+00:23 +79: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart: connected chooser supports keyboard search and selection beyond visible results
+00:23 +80: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart: connected chooser supports keyboard search and selection beyond visible results
+00:24 +81: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart: connected chooser supports keyboard search and selection beyond visible results
+00:24 +82: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart: connected chooser supports keyboard search and selection beyond visible results
+00:25 +83: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart: connected chooser supports keyboard search and selection beyond visible results
+00:25 +84: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_connected_alias_test.dart: refresh counts 1,001 declared aliases as one linked source
+00:26 +85: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_connected_alias_test.dart: refresh counts 1,001 declared aliases as one linked source
+00:26 +86: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart: connected Zotero search is explicit, paged and staged with fresh options
+00:26 +87: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart: desktop error alert 2 discards staged fields even after complete
+00:26 +88: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_connected_alias_test.dart: bibliography counts 51 declared aliases as one linked source
+00:27 +89: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_connected_alias_test.dart: bibliography counts 51 declared aliases as one linked source
+00:27 +90: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart: connected selection review includes hidden sources and stages removal and order
+00:27 +91: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart: connected selection review includes hidden sources and stages removal and order
+00:27 +92: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart: connected selection review includes hidden sources and stages removal and order
+00:27 +93: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart: connected selection review includes hidden sources and stages removal and order
+00:27 +94: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart: connected selection review includes hidden sources and stages removal and order
+00:27 +95: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart: connected selection review includes hidden sources and stages removal and order
+00:27 +96: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart: connected selection review includes hidden sources and stages removal and order
+00:27 +97: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart: connected selection review includes hidden sources and stages removal and order
+00:27 +98: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart: connected selection review includes hidden sources and stages removal and order
+00:27 +99: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart: connected selection review includes hidden sources and stages removal and order
+00:27 +100: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart: connected selection review includes hidden sources and stages removal and order
+00:27 +101: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart: connected selection review includes hidden sources and stages removal and order
+00:27 +102: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart: connected selection review includes hidden sources and stages removal and order
+00:27 +103: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart: connected selection review includes hidden sources and stages removal and order
+00:27 +104: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart: connected selection review includes hidden sources and stages removal and order
+00:27 +105: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart: connected selection review includes hidden sources and stages removal and order
+00:27 +106: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart: connected selection review includes hidden sources and stages removal and order
+00:27 +107: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart: connected selection review includes hidden sources and stages removal and order
+00:27 +108: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart: connected selection review includes hidden sources and stages removal and order
+00:27 +109: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart: connected selection review includes hidden sources and stages removal and order
+00:28 +110: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart: connected selection review includes hidden sources and stages removal and order
+00:29 +111: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_connected_alias_test.dart: alias refresh mismatch discards all staged updates
+00:29 +112: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart: removing hidden connected selections frees capacity and supports an empty selection
+00:29 +113: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart: removing hidden connected selections frees capacity and supports an empty selection
+00:30 +114: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart: removing hidden connected selections frees capacity and supports an empty selection
+00:30 +115: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart: removing hidden connected selections frees capacity and supports an empty selection
+00:31 +116: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart: removing hidden connected selections frees capacity and supports an empty selection
+00:31 +117: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_scaling_test.dart: opening references scans a 1000-citation document once
+00:31 +118: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_scaling_test.dart: opening references scans a 1000-citation document once
+00:31 +119: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_scaling_test.dart: opening references scans a 1000-citation document once
+00:32 +120: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_scaling_test.dart: opening references scans a 1000-citation document once
+00:32 +121: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_scaling_test.dart: opening references scans a 1000-citation document once
+00:32 +122: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: citation editing searches connected Zotero without leaving the editor
+00:33 +123: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: citation editing searches connected Zotero without leaving the editor
+00:33 +124: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: citation editing searches connected Zotero without leaving the editor
+00:34 +125: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: citation editing searches connected Zotero without leaving the editor
+00:34 +126: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: citation editing searches connected Zotero without leaving the editor
+00:35 +127: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_document_actions_test.dart: a citation at the caret opens its document editing tools
+00:35 +128: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_document_actions_test.dart: a citation at the caret opens its document editing tools
+00:36 +129: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_document_actions_test.dart: a citation at the caret opens its document editing tools
+00:36 +130: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_document_actions_test.dart: a citation at the caret opens its document editing tools
+00:36 +131: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_document_reuse_test.dart: reuses stored source offline with fresh options and one undo step
+00:37 +132: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_document_reuse_test.dart: reuses stored source offline with fresh options and one undo step
+00:37 +133: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_document_reuse_test.dart: reuses stored source offline with fresh options and one undo step
+00:37 +134: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_document_reuse_test.dart: reuses stored source offline with fresh options and one undo step
+00:37 +135: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_document_reuse_test.dart: reuses stored source offline with fresh options and one undo step
+00:37 +136: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 51 sources and duplicate citations into one undo
+00:38 +137: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 51 sources and duplicate citations into one undo
+00:38 +138: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_document_actions_test.dart: unlink all reviews counts, cancels, then converts as one undo
+00:38 +139: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_document_actions_test.dart: unlink all reviews counts, cancels, then converts as one undo
+00:38 +140: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_document_reuse_test.dart: document and imported selections retain chosen order across tabs
+00:39 +141: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_document_reuse_test.dart: document and imported selections retain chosen order across tabs
+00:40 +142: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 101 sources and duplicate citations into one undo
+00:40 +143: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 101 sources and duplicate citations into one undo
+00:40 +144: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 101 sources and duplicate citations into one undo
+00:40 +145: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 101 sources and duplicate citations into one undo
+00:40 +146: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 101 sources and duplicate citations into one undo
+00:40 +147: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 101 sources and duplicate citations into one undo
+00:40 +148: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_document_reuse_test.dart: selection and citation cancellation leave document and undo untouched
+00:41 +149: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart: larger imported clusters retain every source and remain editable
+00:41 +150: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 1000 sources and duplicate citations into one undo
+00:41 +151: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 1000 sources and duplicate citations into one undo
+00:41 +152: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 1000 sources and duplicate citations into one undo
+00:41 +153: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 1000 sources and duplicate citations into one undo
+00:42 +154: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 1000 sources and duplicate citations into one undo
+00:42 +155: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 1000 sources and duplicate citations into one undo
+00:42 +156: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 1000 sources and duplicate citations into one undo
+00:43 +157: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 1000 sources and duplicate citations into one undo
+00:43 +158: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 1000 sources and duplicate citations into one undo
+00:43 +159: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 1000 sources and duplicate citations into one undo
+00:43 +160: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 1000 sources and duplicate citations into one undo
+00:43 +161: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 1000 sources and duplicate citations into one undo
+00:44 +162: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 1000 sources and duplicate citations into one undo
+00:44 +163: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 1000 sources and duplicate citations into one undo
+00:44 +164: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_document_source_picker_test.dart: stages selection changes and returns their selection order
+00:44 +165: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_document_source_picker_test.dart: stages selection changes and returns their selection order
+00:45 +166: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_document_source_picker_test.dart: stages selection changes and returns their selection order
+00:45 +167: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_document_source_picker_test.dart: stages selection changes and returns their selection order
+00:45 +168: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_document_reuse_test.dart: editing a citation adds loaded sources in a single undoable update
+00:45 +169: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart: composer and chooser work at doubled text in narrow TextDirection.ltr
+00:45 +170: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh chunks each library without combining matching keys
+00:46 +171: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh chunks each library without combining matching keys
+00:46 +172: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh chunks each library without combining matching keys
+00:46 +173: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh chunks each library without combining matching keys
+00:46 +174: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh chunks each library without combining matching keys
+00:46 +175: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh chunks each library without combining matching keys
+00:46 +176: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh chunks each library without combining matching keys
+00:46 +177: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh chunks each library without combining matching keys
+00:46 +178: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh chunks each library without combining matching keys
+00:46 +179: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh chunks each library without combining matching keys
+00:46 +180: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh chunks each library without combining matching keys
+00:46 +181: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh chunks each library without combining matching keys
+00:46 +182: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh chunks each library without combining matching keys
+00:46 +183: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh chunks each library without combining matching keys
+00:47 +184: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh chunks each library without combining matching keys
+00:47 +185: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_document_source_picker_test.dart: nested details preserve filtered draft and cancellation
+00:47 +186: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_document_reuse_test.dart: cited-source insertion works at 320x480 doubled text ltr
+00:47 +187: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_document_reuse_test.dart: cited-source insertion works at 320x480 doubled text ltr
+00:47 +188: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_document_reuse_test.dart: cited-source insertion works at 320x480 doubled text ltr
+00:48 +189: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_document_reuse_test.dart: cited-source insertion works at 320x480 doubled text ltr
+00:48 +190: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: later same-library batch missing CSL keeps all citations
+00:48 +191: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: later same-library batch missing CSL keeps all citations
+00:48 +192: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: later same-library batch missing CSL keeps all citations
+00:48 +193: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: later same-library batch missing CSL keeps all citations
+00:48 +194: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: later same-library batch missing CSL keeps all citations
+00:48 +195: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_document_source_picker_test.dart: narrow doubled-text picker and details remain usable in TextDirection.ltr
+00:49 +196: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_document_source_picker_test.dart: narrow doubled-text picker and details remain usable in TextDirection.ltr
+00:49 +197: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_document_source_picker_test.dart: narrow doubled-text picker and details remain usable in TextDirection.ltr
+00:49 +198: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_document_source_picker_test.dart: narrow doubled-text picker and details remain usable in TextDirection.ltr
+00:49 +199: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_document_source_picker_test.dart: narrow doubled-text picker and details remain usable in TextDirection.ltr
+00:49 +200: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_document_source_picker_test.dart: narrow doubled-text picker and details remain usable in TextDirection.ltr
+00:49 +201: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_document_source_picker_test.dart: narrow doubled-text picker and details remain usable in TextDirection.ltr
+00:49 +202: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_document_source_picker_test.dart: narrow doubled-text picker and details remain usable in TextDirection.ltr
+00:49 +203: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_document_source_picker_test.dart: narrow doubled-text picker and details remain usable in TextDirection.ltr
+00:49 +204: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_document_source_picker_test.dart: narrow doubled-text picker and details remain usable in TextDirection.ltr
+00:49 +205: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_document_source_picker_test.dart: narrow doubled-text picker and details remain usable in TextDirection.ltr
+00:49 +206: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: later same-library batch server error keeps all citations
+00:49 +207: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: later same-library batch server error keeps all citations
+00:49 +208: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: later same-library batch server error keeps all citations
+00:49 +209: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: later same-library batch server error keeps all citations
+00:49 +210: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: later same-library batch server error keeps all citations
+00:49 +211: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: later same-library batch server error keeps all citations
+00:49 +212: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: later same-library batch server error keeps all citations
+00:49 +213: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: later same-library batch server error keeps all citations
+00:49 +214: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: later same-library batch server error keeps all citations
+00:49 +215: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: later same-library batch server error keeps all citations
+00:49 +216: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: later same-library batch server error keeps all citations
+00:49 +217: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: later same-library batch server error keeps all citations
+00:49 +218: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: later same-library batch server error keeps all citations
+00:49 +219: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: later same-library batch server error keeps all citations
+00:49 +220: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: later same-library batch server error keeps all citations
+00:49 +221: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: later same-library batch server error keeps all citations
+00:49 +222: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: later same-library batch server error keeps all citations
+00:49 +223: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: later same-library batch server error keeps all citations
+00:49 +224: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: later same-library batch server error keeps all citations
+00:49 +225: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: later same-library batch server error keeps all citations
+00:49 +226: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: later same-library batch server error keeps all citations
+00:49 +227: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: later same-library batch server error keeps all citations
+00:49 +228: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: later same-library batch server error keeps all citations
+00:49 +229: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: later same-library batch server error keeps all citations
+00:50 +230: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_import_search_test.dart: filtering retains duplicate IDs, hidden selections and review order
+00:50 +231: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_import_search_test.dart: filtering retains duplicate IDs, hidden selections and review order
+00:50 +232: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_import_search_test.dart: filtering retains duplicate IDs, hidden selections and review order
+00:51 +233: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_import_search_test.dart: filtering retains duplicate IDs, hidden selections and review order
+00:51 +234: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_import_search_test.dart: filtering retains duplicate IDs, hidden selections and review order
+00:51 +235: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_import_search_test.dart: filtering retains duplicate IDs, hidden selections and review order
+00:51 +236: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_import_search_test.dart: filtering retains duplicate IDs, hidden selections and review order
+00:51 +237: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_import_search_test.dart: filtering retains duplicate IDs, hidden selections and review order
+00:51 +238: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_import_search_test.dart: filtering retains duplicate IDs, hidden selections and review order
+00:51 +239: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_import_search_test.dart: filtering retains duplicate IDs, hidden selections and review order
+00:52 +240: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_library_details_test.dart: reference details inspect loaded metadata without selecting or fetching
+00:52 +241: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: closing during the second batch stops further refresh requests
+00:53 +242: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_saved_search_test.dart: saved-search browsing keeps selected identities through filters and pages
+00:53 +243: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_saved_search_test.dart: saved-search browsing keeps selected identities through filters and pages
+00:53 +244: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_saved_search_test.dart: saved-search browsing keeps selected identities through filters and pages
+00:54 +245: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_saved_search_test.dart: saved-search browsing keeps selected identities through filters and pages
+00:54 +246: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_saved_search_test.dart: saved-search browsing keeps selected identities through filters and pages
+00:55 +247: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_saved_search_test.dart: saved-search browsing keeps selected identities through filters and pages
+00:56 +248: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_saved_search_test.dart: saved-search browsing keeps selected identities through filters and pages
+00:56 +249: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_saved_search_test.dart: saved-search browsing keeps selected identities through filters and pages
+00:56 +250: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_saved_search_test.dart: saved-search browsing keeps selected identities through filters and pages
+00:56 +251: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh refuses 1001 distinct sources before any request
+00:56 +252: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh refuses 1001 distinct sources before any request
+00:57 +253: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_library_details_test.dart: details tag filters the submitted saved search query and preserves drafts
+00:57 +254: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_library_details_test.dart: details tag filters the submitted saved search query and preserves drafts
+00:57 +255: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_library_details_test.dart: details tag filters the submitted saved search query and preserves drafts
+00:57 +256: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_library_details_test.dart: details tag filters the submitted saved search query and preserves drafts
+00:57 +257: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_import_search_test.dart: import search and copy controls fit 320.0×480.0 at 2.0× text
+00:57 +258: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_import_search_test.dart: import search and copy controls fit 320.0×480.0 at 2.0× text
+00:57 +259: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_saved_search_test.dart: group library resets the saved-search view without losing other selected sources
+00:58 +260: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_saved_search_test.dart: group library resets the saved-search view without losing other selected sources
+00:58 +261: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_saved_search_test.dart: group library resets the saved-search view without losing other selected sources
+00:58 +262: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_saved_search_test.dart: group library resets the saved-search view without losing other selected sources
+00:58 +263: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_saved_search_test.dart: group library resets the saved-search view without losing other selected sources
+00:58 +264: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_saved_search_test.dart: group library resets the saved-search view without losing other selected sources
+00:58 +265: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_saved_search_test.dart: group library resets the saved-search view without losing other selected sources
+00:58 +266: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_saved_search_test.dart: group library resets the saved-search view without losing other selected sources
+00:58 +267: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_saved_search_test.dart: group library resets the saved-search view without losing other selected sources
+00:58 +268: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_saved_search_test.dart: group library resets the saved-search view without losing other selected sources
+00:58 +269: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_saved_search_test.dart: group library resets the saved-search view without losing other selected sources
+00:58 +270: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_saved_search_test.dart: group library resets the saved-search view without losing other selected sources
+00:58 +271: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_saved_search_test.dart: group library resets the saved-search view without losing other selected sources
+00:58 +272: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_saved_search_test.dart: group library resets the saved-search view without losing other selected sources
+00:58 +273: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_saved_search_test.dart: group library resets the saved-search view without losing other selected sources
+00:59 +274: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_saved_search_test.dart: group library resets the saved-search view without losing other selected sources
+00:59 +275: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: wrong desktop profile with the same item key cannot refresh
+00:59 +276: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_library_details_test.dart: selection review stages cross-page changes and inserts the applied order in one undo
+00:59 +277: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_library_details_test.dart: selection review stages cross-page changes and inserts the applied order in one undo
+00:59 +278: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_library_details_test.dart: selection review stages cross-page changes and inserts the applied order in one undo
+00:59 +279: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_library_details_test.dart: selection review stages cross-page changes and inserts the applied order in one undo
+01:00 +280: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_library_details_test.dart: selection review stages cross-page changes and inserts the applied order in one undo
+01:00 +281: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_library_details_test.dart: selection review stages cross-page changes and inserts the applied order in one undo
+01:00 +282: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_library_details_test.dart: selection review stages cross-page changes and inserts the applied order in one undo
+01:00 +283: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_library_details_test.dart: selection review stages cross-page changes and inserts the applied order in one undo
+01:00 +284: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_library_details_test.dart: selection review stages cross-page changes and inserts the applied order in one undo
+01:00 +285: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_library_details_test.dart: selection review stages cross-page changes and inserts the applied order in one undo
+01:00 +286: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_library_details_test.dart: selection review stages cross-page changes and inserts the applied order in one undo
+01:00 +287: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_library_details_test.dart: selection review stages cross-page changes and inserts the applied order in one undo
+01:00 +288: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_library_details_test.dart: selection review stages cross-page changes and inserts the applied order in one undo
+01:00 +289: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_library_details_test.dart: selection review stages cross-page changes and inserts the applied order in one undo
+01:00 +290: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_library_details_test.dart: selection review stages cross-page changes and inserts the applied order in one undo
+01:00 +291: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_saved_search_test.dart: an externally changed library cannot display a pending saved-search result
+01:00 +292: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: unsynced single-source preview verifies identity: mismatch false
+01:01 +293: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: unsynced single-source preview verifies identity: mismatch false
+01:01 +294: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_library_details_test.dart: barrier dismissal discards staged removal and reordering
+01:01 +295: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_saved_search_test.dart: switching to the online source removes saved-search navigation
+01:01 +296: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: unsynced single-source preview verifies identity: mismatch true
+01:02 +297: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_stored_details_dialog_test.dart: import details distinguish duplicate IDs without selecting them
+01:02 +298: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_stored_details_dialog_test.dart: import details distinguish duplicate IDs without selecting them
+01:02 +299: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_stored_details_dialog_test.dart: import details distinguish duplicate IDs without selecting them
+01:02 +300: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_stored_details_dialog_test.dart: import details distinguish duplicate IDs without selecting them
+01:02 +301: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_stored_details_dialog_test.dart: import details distinguish duplicate IDs without selecting them
+01:02 +302: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_stored_details_dialog_test.dart: import details distinguish duplicate IDs without selecting them
+01:02 +303: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_stored_details_dialog_test.dart: import details distinguish duplicate IDs without selecting them
+01:02 +304: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_stored_details_dialog_test.dart: import details distinguish duplicate IDs without selecting them
+01:02 +305: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_stored_details_dialog_test.dart: import details distinguish duplicate IDs without selecting them
+01:02 +306: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_stored_details_dialog_test.dart: import details distinguish duplicate IDs without selecting them
+01:02 +307: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_stored_details_dialog_test.dart: import details distinguish duplicate IDs without selecting them
+01:02 +308: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_stored_details_dialog_test.dart: import details distinguish duplicate IDs without selecting them
+01:02 +309: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_stored_details_dialog_test.dart: import details distinguish duplicate IDs without selecting them
+01:02 +310: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_stored_details_dialog_test.dart: import details distinguish duplicate IDs without selecting them
+01:03 +311: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_stored_details_dialog_test.dart: import details distinguish duplicate IDs without selecting them
+01:03 +312: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_stored_details_dialog_test.dart: import details distinguish duplicate IDs without selecting them
+01:03 +313: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_stored_details_dialog_test.dart: import details distinguish duplicate IDs without selecting them
+01:04 +314: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_stored_details_dialog_test.dart: import details distinguish duplicate IDs without selecting them
+01:04 +315: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_stored_details_dialog_test.dart: import details distinguish duplicate IDs without selecting them
+01:05 +316: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart: adding AND tags restarts the submitted query and keeps selection
+01:05 +317: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart: adding AND tags restarts the submitted query and keeps selection
+01:05 +318: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart: adding AND tags restarts the submitted query and keeps selection
+01:05 +319: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart: adding AND tags restarts the submitted query and keeps selection
+01:05 +320: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart: adding AND tags restarts the submitted query and keeps selection
+01:05 +321: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart: adding AND tags restarts the submitted query and keeps selection
+01:06 +322: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart: adding AND tags restarts the submitted query and keeps selection
+01:06 +323: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart: adding AND tags restarts the submitted query and keeps selection
+01:06 +324: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart: adding AND tags restarts the submitted query and keeps selection
+01:06 +325: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart: adding AND tags restarts the submitted query and keeps selection
+01:07 +326: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart: adding AND tags restarts the submitted query and keeps selection
+01:07 +327: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_library_details_test.dart: twenty-source review scrolls at 320.0x760.0 scale 1.0
+01:07 +328: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_library_details_test.dart: twenty-source review scrolls at 320.0x760.0 scale 1.0
+01:07 +329: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: older desktop cannot render an unverified aggregate bibliography
+01:07 +330: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart: draft tag and query do not change either pagination direction
+01:07 +331: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart: draft tag and query do not change either pagination direction
+01:08 +332: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart: draft tag and query do not change either pagination direction
+01:08 +333: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart: draft tag and query do not change either pagination direction
+01:09 +334: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_stored_details_dialog_test.dart: nested details preserve staged order and removals on cancel and apply
+01:09 +335: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_stored_details_dialog_test.dart: nested details preserve staged order and removals on cancel and apply
+01:09 +336: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_stored_details_dialog_test.dart: nested details preserve staged order and removals on cancel and apply
+01:09 +337: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart: removing and clearing tags restart the last submitted search
+01:09 +338: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart: removing and clearing tags restart the last submitted search
+01:10 +339: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart: removing and clearing tags restart the last submitted search
+01:10 +340: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart: removing and clearing tags restart the last submitted search
+01:10 +341: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart: removing and clearing tags restart the last submitted search
+01:10 +342: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart: removing and clearing tags restart the last submitted search
+01:10 +343: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_stored_details_dialog_test.dart: hidden mixed-library selections expose their stored details without fetches
+01:10 +344: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_stored_details_dialog_test.dart: hidden mixed-library selections expose their stored details without fetches
+01:11 +345: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_stored_details_dialog_test.dart: hidden mixed-library selections expose their stored details without fetches
+01:11 +346: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_stored_details_dialog_test.dart: hidden mixed-library selections expose their stored details without fetches
+01:11 +347: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart: new searches preserve tags and collapsing options keeps them active
+01:11 +348: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: cancelling the citation composer leaves document and history unchanged
+01:11 +349: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_stored_details_dialog_test.dart: selection limit counts hidden catalog sources and still permits deselection
+01:12 +350: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_stored_details_dialog_test.dart: selection limit counts hidden catalog sources and still permits deselection
+01:12 +351: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_stored_details_dialog_test.dart: selection limit counts hidden catalog sources and still permits deselection
+01:12 +352: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_stored_details_dialog_test.dart: selection limit counts hidden catalog sources and still permits deselection
+01:12 +353: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_stored_details_dialog_test.dart: selection limit counts hidden catalog sources and still permits deselection
+01:12 +354: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_stored_details_dialog_test.dart: selection limit counts hidden catalog sources and still permits deselection
+01:12 +355: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_stored_details_dialog_test.dart: selection limit counts hidden catalog sources and still permits deselection
+01:12 +356: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_stored_details_dialog_test.dart: selection limit counts hidden catalog sources and still permits deselection
+01:12 +357: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_stored_details_dialog_test.dart: selection limit counts hidden catalog sources and still permits deselection
+01:12 +358: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_stored_details_dialog_test.dart: selection limit counts hidden catalog sources and still permits deselection
+01:12 +359: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_stored_details_dialog_test.dart: selection limit counts hidden catalog sources and still permits deselection
+01:12 +360: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_stored_details_dialog_test.dart: selection limit counts hidden catalog sources and still permits deselection
+01:13 +361: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_stored_details_dialog_test.dart: selection limit counts hidden catalog sources and still permits deselection
+01:13 +362: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_stored_details_dialog_test.dart: selection limit counts hidden catalog sources and still permits deselection
+01:13 +363: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_stored_details_dialog_test.dart: selection limit counts hidden catalog sources and still permits deselection
+01:13 +364: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_stored_details_dialog_test.dart: selection limit counts hidden catalog sources and still permits deselection
+01:13 +365: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_stored_details_dialog_test.dart: selection limit counts hidden catalog sources and still permits deselection
+01:13 +366: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_stored_details_dialog_test.dart: selection limit counts hidden catalog sources and still permits deselection
+01:13 +367: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: mock Web API connection, pagination and search keep the key outside the document
+01:13 +368: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart: desktop saved searches apply tags before pagination without API keys
+01:14 +369: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart: desktop saved searches apply tags before pagination without API keys
+01:14 +370: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_stored_details_dialog_test.dart: import details and failure feedback fit 320x480 with doubled text in TextDirection.rtl
+01:14 +371: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_stored_details_dialog_test.dart: import details and failure feedback fit 320x480 with doubled text in TextDirection.rtl
+01:14 +372: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_stored_details_dialog_test.dart: import details and failure feedback fit 320x480 with doubled text in TextDirection.rtl
+01:14 +373: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_stored_details_dialog_test.dart: import details and failure feedback fit 320x480 with doubled text in TextDirection.rtl
+01:15 +374: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: imported bibliography customizations cannot be overwritten by basic update
+01:15 +375: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: imported bibliography customizations cannot be overwritten by basic update
+01:15 +376: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_notes_editing_test.dart: the notes pane edits, adds and deletes notes
+01:16 +377: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_notes_editing_test.dart: the notes pane edits, adds and deletes notes
+01:16 +378: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_notes_editing_test.dart: the notes pane edits, adds and deletes notes
+01:16 +379: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_notes_editing_test.dart: the notes pane edits, adds and deletes notes
+01:16 +380: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_stored_details_dialog_test.dart: twenty-source narrow review keeps nested details and actions reachable
+01:17 +381: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_stored_details_dialog_test.dart: twenty-source narrow review keeps nested details and actions reachable
+01:17 +382: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_stored_details_dialog_test.dart: twenty-source narrow review keeps nested details and actions reachable
+01:17 +383: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_stored_details_dialog_test.dart: twenty-source narrow review keeps nested details and actions reachable
+01:17 +384: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_stored_details_dialog_test.dart: twenty-source narrow review keeps nested details and actions reachable
+01:17 +385: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_stored_details_dialog_test.dart: twenty-source narrow review keeps nested details and actions reachable
+01:17 +386: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_stored_details_dialog_test.dart: twenty-source narrow review keeps nested details and actions reachable
+01:17 +387: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_stored_details_dialog_test.dart: twenty-source narrow review keeps nested details and actions reachable
+01:18 +388: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_stored_details_dialog_test.dart: twenty-source narrow review keeps nested details and actions reachable
+01:18 +389: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_stored_details_dialog_test.dart: twenty-source narrow review keeps nested details and actions reachable
+01:18 +390: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_stored_details_dialog_test.dart: twenty-source narrow review keeps nested details and actions reachable
+01:18 +391: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_stored_details_dialog_test.dart: twenty-source narrow review keeps nested details and actions reachable
+01:18 +392: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+01:18 +393: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+01:18 +394: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+01:18 +395: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+01:18 +396: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+01:18 +397: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+01:18 +398: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+01:18 +399: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+01:18 +400: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+01:18 +401: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+01:18 +402: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+01:18 +403: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+01:18 +404: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+01:18 +405: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+01:18 +406: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+01:18 +407: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+01:18 +408: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+01:18 +409: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+01:18 +410: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+01:18 +411: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+01:18 +412: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+01:18 +413: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+01:18 +414: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+01:18 +415: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+01:18 +416: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+01:18 +417: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+01:19 +418: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart: invalid "two\tparts" keeps the catalog and selection intact
+01:19 +419: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart: invalid "two\tparts" keeps the catalog and selection intact
+01:19 +420: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart: invalid "two\tparts" keeps the catalog and selection intact
+01:19 +421: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart: invalid 257-character tag keeps the catalog and selection intact
+01:20 +422: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_pane_test.dart: language status opens paragraph options without a dialog or document edit
+01:20 +423: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_pane_test.dart: language status opens paragraph options without a dialog or document edit
+01:20 +424: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_pane_test.dart: language status opens paragraph options without a dialog or document edit
+01:20 +425: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_pane_test.dart: language status opens paragraph options without a dialog or document edit
+01:20 +426: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_pane_test.dart: language status opens paragraph options without a dialog or document edit
+01:20 +427: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_pane_test.dart: language status opens paragraph options without a dialog or document edit
+01:20 +428: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_pane_test.dart: language status opens paragraph options without a dialog or document edit
+01:20 +429: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_pane_test.dart: language status opens paragraph options without a dialog or document edit
+01:20 +430: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_pane_test.dart: language status opens paragraph options without a dialog or document edit
+01:20 +431: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_pane_test.dart: language status opens paragraph options without a dialog or document edit
+01:21 +432: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart: the twenty-tag limit rejects extra input without a request
+01:22 +433: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart: the twenty-tag limit rejects extra input without a request
+01:23 +434: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_live_review_surface_test.dart: automatic checks show pending and checking status without dialogs
+01:23 +435: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_pane_test.dart: selection language updates live checking and preserves the selection with Undo
+01:23 +436: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_pane_test.dart: selection language updates live checking and preserves the selection with Undo
+01:23 +437: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_pane_test.dart: selection language updates live checking and preserves the selection with Undo
+01:23 +438: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_pane_test.dart: selection language updates live checking and preserves the selection with Undo
+01:23 +439: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_pane_test.dart: selection language updates live checking and preserves the selection with Undo
+01:24 +440: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_live_review_changes_test.dart: accept shown affects exactly the filtered batch with one undo
+01:24 +441: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart: failed tag requests retain editable filters for a successful retry
+01:24 +442: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_live_review_surface_test.dart: F7 opens a nonmodal pane and shares one explicit manual check
+01:24 +443: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_live_review_surface_test.dart: F7 opens a nonmodal pane and shares one explicit manual check
+01:25 +444: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_live_review_surface_test.dart: F7 opens a nonmodal pane and shares one explicit manual check
+01:25 +445: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_live_review_surface_test.dart: F7 opens a nonmodal pane and shares one explicit manual check
+01:25 +446: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart: twenty applied tags and paging fit a 320.0-pixel window
+01:25 +447: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart: twenty applied tags and paging fit a 320.0-pixel window
+01:25 +448: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart: twenty applied tags and paging fit a 320.0-pixel window
+01:25 +449: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart: twenty applied tags and paging fit a 320.0-pixel window
+01:25 +450: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart: twenty applied tags and paging fit a 320.0-pixel window
+01:25 +451: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart: twenty applied tags and paging fit a 320.0-pixel window
+01:26 +452: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart: twenty applied tags and paging fit a 320.0-pixel window
+01:26 +453: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart: twenty applied tags and paging fit a 320.0-pixel window
+01:26 +454: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart: twenty applied tags and paging fit a 320.0-pixel window
+01:26 +455: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart: twenty applied tags and paging fit a 320.0-pixel window
+01:26 +456: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart: twenty applied tags and paging fit a 320.0-pixel window
+01:26 +457: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart: twenty applied tags and paging fit a 320.0-pixel window
+01:27 +458: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart: twenty applied tags and paging fit a 320.0-pixel window
+01:27 +459: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart: twenty applied tags and paging fit a 320.0-pixel window
+01:27 +460: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_live_review_changes_test.dart: F7 checks writing from a focused Changes pane search field
+01:27 +461: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_live_review_changes_test.dart: F7 checks writing from a focused Changes pane search field
+01:27 +462: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_pane_test.dart: old dropdown action refuses a different selection
+01:27 +463: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart: twenty applied tags and paging fit a 360.0-pixel window
+01:27 +464: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart: twenty applied tags and paging fit a 360.0-pixel window
+01:27 +465: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart: twenty applied tags and paging fit a 360.0-pixel window
+01:27 +466: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart: twenty applied tags and paging fit a 360.0-pixel window
+01:27 +467: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart: twenty applied tags and paging fit a 360.0-pixel window
+01:28 +468: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart: twenty applied tags and paging fit a 360.0-pixel window
+01:28 +469: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart: twenty applied tags and paging fit a 360.0-pixel window
+01:28 +470: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart: twenty applied tags and paging fit a 360.0-pixel window
+01:28 +471: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart: twenty applied tags and paging fit a 360.0-pixel window
+01:28 +472: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart: twenty applied tags and paging fit a 360.0-pixel window
+01:28 +473: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart: twenty applied tags and paging fit a 360.0-pixel window
+01:29 +474: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart: twenty applied tags and paging fit a 360.0-pixel window
+01:29 +475: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart: twenty applied tags and paging fit a 360.0-pixel window
+01:29 +476: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart: twenty applied tags and paging fit a 360.0-pixel window
+01:29 +477: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart: twenty applied tags and paging fit a 360.0-pixel window
+01:29 +478: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_live_review_changes_test.dart: narrow scaled Arabic Changes pane supports filtering and review
+01:29 +479: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart: twenty applied tags and paging fit a 420.0-pixel window
+01:30 +480: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart: twenty applied tags and paging fit a 420.0-pixel window
+01:30 +481: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart: twenty applied tags and paging fit a 420.0-pixel window
+01:30 +482: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart: twenty applied tags and paging fit a 420.0-pixel window
+01:30 +483: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart: twenty applied tags and paging fit a 420.0-pixel window
+01:30 +484: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart: twenty applied tags and paging fit a 420.0-pixel window
+01:30 +485: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart: twenty applied tags and paging fit a 420.0-pixel window
+01:30 +486: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart: twenty applied tags and paging fit a 420.0-pixel window
+01:30 +487: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart: twenty applied tags and paging fit a 420.0-pixel window
+01:30 +488: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart: twenty applied tags and paging fit a 420.0-pixel window
+01:30 +489: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart: twenty applied tags and paging fit a 420.0-pixel window
+01:30 +490: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart: twenty applied tags and paging fit a 420.0-pixel window
+01:30 +491: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart: twenty applied tags and paging fit a 420.0-pixel window
+01:30 +492: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart: twenty applied tags and paging fit a 420.0-pixel window
+01:30 +493: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart: twenty applied tags and paging fit a 420.0-pixel window
+01:30 +494: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart: twenty applied tags and paging fit a 420.0-pixel window
+01:30 +495: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart: twenty applied tags and paging fit a 420.0-pixel window
+01:30 +496: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart: twenty applied tags and paging fit a 420.0-pixel window
+01:30 +497: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart: twenty applied tags and paging fit a 420.0-pixel window
+01:30 +498: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart: twenty applied tags and paging fit a 420.0-pixel window
+01:30 +499: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart: twenty applied tags and paging fit a 420.0-pixel window
+01:30 +500: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart: twenty applied tags and paging fit a 420.0-pixel window
+01:32 +501: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_review_dialog_test.dart: tracking and reviewer controls affect future edits with undo
+01:32 +502: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_review_dialog_test.dart: tracking and reviewer controls affect future edits with undo
+01:33 +503: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_review_dialog_test.dart: tracking and reviewer controls affect future edits with undo
+01:33 +504: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_review_dialog_test.dart: tracking and reviewer controls affect future edits with undo
+01:33 +505: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_review_dialog_test.dart: tracking and reviewer controls affect future edits with undo
+01:34 +506: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_review_pane_test.dart: a suggestion captured before an edit cannot change newer text
+01:34 +507: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_review_dialog_test.dart: author, kind and text filters intersect without changing sources
+01:34 +508: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_review_dialog_test.dart: author, kind and text filters intersect without changing sources
+01:35 +509: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_review_pane_test.dart: tracked changes resolve in place and undo restores them
+01:35 +510: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_review_dialog_test.dart: accept shown is a filtered undoable batch
+01:36 +511: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_review_pane_test.dart: reviewer field affects future attribution and leaves document alone
+01:36 +512: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_review_dialog_test.dart: reject shown is a filtered undoable batch
+01:36 +513: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_review_dialog_test.dart: reject shown is a filtered undoable batch
+01:36 +514: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_review_pane_test.dart: stale checks stay pending until a current provider result arrives
+01:37 +515: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_review_dialog_test.dart: final and original previews leave tracked changes untouched
+01:37 +516: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_review_dialog_test.dart: final and original previews leave tracked changes untouched
+01:37 +517: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_review_pane_test.dart: narrow Arabic pane remains scrollable
+01:38 +518: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_review_pane_test.dart: narrow Arabic pane remains scrollable
+01:38 +519: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_review_dialog_test.dart: two picked documents compare, display redlines and export without edits
+01:38 +520: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_review_dialog_test.dart: export cancellation and errors preserve the report for retry
+01:39 +521: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_review_dialog_test.dart: current-document edits mark comparison stale and disable export
+01:39 +522: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_review_dialog_test.dart: picker cancellation and errors preserve selections and recover
+01:39 +523: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_review_dialog_test.dart: closing during a pending picker ignores its later completion
+01:40 +524: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_review_dialog_test.dart: narrow LTR dialog keeps both workflows usable
+01:40 +525: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_review_dialog_test.dart: narrow RTL dialog keeps both workflows usable
+01:41 +526: All tests passed!

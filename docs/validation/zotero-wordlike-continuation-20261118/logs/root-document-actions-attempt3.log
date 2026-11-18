@@ -1,0 +1,11 @@
+00:00 +0: loading /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_document_actions_test.dart
+00:00 +0: a citation at the caret opens its document editing tools
+00:02 +1: hosts can explicitly open Library from an existing citation
+00:02 +2: a plain-text caret keeps the Library as the default page
+00:02 +3: unlink all reviews counts, cancels, then converts as one undo
+00:03 +4: a locked field rejects the complete conversion
+00:04 +5: a changed document cannot accept an old unlink confirmation
+00:04 +6: unlink is disabled for read-only documents
+00:04 +7: unlink is disabled for tracked documents
+00:04 +8: unlink review remains usable at narrow RTL with doubled text
+00:05 +9: All tests passed!
