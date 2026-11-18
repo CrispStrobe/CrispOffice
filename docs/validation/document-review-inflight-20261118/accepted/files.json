@@ -1,0 +1,137 @@
+{
+  "schema_version": 1,
+  "source_commit": "eedf2aee03964329a2e4c7ee3c771d43b5df4991",
+  "description": "Exact frozen gate output and final visual receipts. This index excludes itself. Raw and compressed reporter logs are both preserved.",
+  "files": [
+    {
+      "path": "checks/analysis.log",
+      "bytes": 779,
+      "sha256": "d06c254e1cef2c774605248a161dfa7677c9c73690d6553b5b909a0550923219"
+    },
+    {
+      "path": "checks/editor-cases.json",
+      "bytes": 162741,
+      "sha256": "feb369a4d45ee271e1e2e94088d550135e9682e520c6552788bd72db05921be9"
+    },
+    {
+      "path": "checks/editor-errors.json",
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    {
+      "path": "checks/editor.jsonl",
+      "bytes": 304366,
+      "sha256": "87fc48dd035cb98094611bd04cefc00385104aa1d9cff8d733f4dd40a4b1f53c"
+    },
+    {
+      "path": "checks/editor.jsonl.gz",
+      "bytes": 28481,
+      "sha256": "44d286e7961fcf84623c6b1d22e5dc0d6023ca22345e58614315f73e35cbe36f"
+    },
+    {
+      "path": "checks/engine-cases.json",
+      "bytes": 6712,
+      "sha256": "0b47475c3447615f9c0fb603ce251ad48b72f4bd18cd9970635c668f32019b40"
+    },
+    {
+      "path": "checks/engine-errors.json",
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    {
+      "path": "checks/engine.jsonl",
+      "bytes": 15845,
+      "sha256": "50c9f189a947834062dd97d9a26fc07dcec9f10837009137191098a64e26c668"
+    },
+    {
+      "path": "checks/engine.jsonl.gz",
+      "bytes": 2032,
+      "sha256": "5ad0979d4710fc049d8aba9c3d97dae65ccb8e528614dd5a5a8288640f75f831"
+    },
+    {
+      "path": "checks/format.log",
+      "bytes": 48,
+      "sha256": "b254259ebcd1203369ee9012751d4fcc2ab5dc899d36523b42ab80350a8f460f"
+    },
+    {
+      "path": "checks/studio-cases.json",
+      "bytes": 17824,
+      "sha256": "2dd994ecd2e0ff3b4b77a9d86615a9880993ed4924345d2c62f5f651c6e4d3f5"
+    },
+    {
+      "path": "checks/studio-errors.json",
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    {
+      "path": "checks/studio.jsonl",
+      "bytes": 34793,
+      "sha256": "94054622fdf44ca23575404f858c8f51c7b15944077d443227017c6f0ce2e536"
+    },
+    {
+      "path": "checks/studio.jsonl.gz",
+      "bytes": 3422,
+      "sha256": "e86e5fe54b7ff4574e587cfed5752c2ed4df2e4faab0edad6d6524e4b270f9b1"
+    },
+    {
+      "path": "checks/whitespace.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "environment-after.json",
+      "bytes": 1083,
+      "sha256": "03ce9ccc6176ae4fcf550044355e4a3f7b40a97a3af9689b43da8d5f85afcda6"
+    },
+    {
+      "path": "environment-before.json",
+      "bytes": 1083,
+      "sha256": "03ce9ccc6176ae4fcf550044355e4a3f7b40a97a3af9689b43da8d5f85afcda6"
+    },
+    {
+      "path": "source-after.json",
+      "bytes": 530291,
+      "sha256": "39fff2337cce65c7c03d13f9d45411ec18e0fc61182e5e5cdae5c9232f3518a0"
+    },
+    {
+      "path": "source-before.json",
+      "bytes": 530291,
+      "sha256": "39fff2337cce65c7c03d13f9d45411ec18e0fc61182e5e5cdae5c9232f3518a0"
+    },
+    {
+      "path": "verification.json",
+      "bytes": 22093,
+      "sha256": "69e1eeb0f1397b7939511015fa27ad5464d73ec4d7157160ae79b04c067dffc6"
+    },
+    {
+      "path": "visuals/checks/comments.jsonl",
+      "bytes": 1442,
+      "sha256": "78a358639a8c00f76bae7c46bc045b747fd6c445b055c87d10e6ffe60fbc4b22"
+    },
+    {
+      "path": "visuals/checks/comments.jsonl.gz",
+      "bytes": 531,
+      "sha256": "86d7a26a62f9f63896cf29520dc9a70abbc99bafb059ebd5db32d1fad7cf195e"
+    },
+    {
+      "path": "visuals/checks/text-options.jsonl",
+      "bytes": 2663,
+      "sha256": "5d338d477a813302a4558093b9c649c9764fd8eaf5010954247c81d8e9e557f5"
+    },
+    {
+      "path": "visuals/checks/text-options.jsonl.gz",
+      "bytes": 665,
+      "sha256": "e1189aa633e61f957a456fa34e197f84b2bd6e2f1c93711eff0f4c9ac905319c"
+    },
+    {
+      "path": "visuals/preflight.json",
+      "bytes": 742,
+      "sha256": "32d225c33ccdb97cf46f469a2e48dfbaf1a9883212ec98cce7bcef317223749a"
+    },
+    {
+      "path": "visuals/verification.json",
+      "bytes": 5634,
+      "sha256": "bc4bb4767f6703ba05b1cb98cf2638cd0ffa5b4a855162a4584398d9806a5e94"
+    }
+  ]
+}

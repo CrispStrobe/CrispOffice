@@ -1,0 +1,57 @@
+00:00 +0: loading test/eml_bytes_test.dart
+00:00 +0: loading test/portable_import_test.dart
+Hint: When run on the command-line, the compiled output might require a preamble file located in:
+  <sdk>/lib/_internal/js_runtime/lib/preambles.
+Compiled 8,596,639 input bytes (5,432,882 characters source) to 1,361,868 characters JavaScript in 6.63 seconds
+
+00:00 +0: loading test/mime_parts_test.dart
+Hint: When run on the command-line, the compiled output might require a preamble file located in:
+  <sdk>/lib/_internal/js_runtime/lib/preambles.
+Compiled 8,599,830 input bytes (5,436,073 characters source) to 1,370,856 characters JavaScript in 6.80 seconds
+
+00:00 +0: test/portable_import_test.dart: both supported public MIME imports work without native libraries
+00:00 +1: test/mime_parts_test.dart: multipart alternatives and RFC2231 attachment filename
+00:00 +2: test/mime_parts_test.dart: alternative selection is deterministic and uses last supported type
+00:00 +2: loading test/mime_encodings_test.dart
+Hint: When run on the command-line, the compiled output might require a preamble file located in:
+  <sdk>/lib/_internal/js_runtime/lib/preambles.
+Compiled 8,600,615 input bytes (5,436,858 characters source) to 1,375,035 characters JavaScript in 7.29 seconds
+
+00:00 +3: test/mime_parts_test.dart: text attachment does not become a message body
+00:00 +4: test/mime_parts_test.dart: related root start parameter and local CID attachment mapping
+00:00 +5: test/mime_parts_test.dart: boundary prefixes within content are not recognized as delimiters
+00:00 +6: test/mime_parts_test.dart: missing closing boundary is partial rather than silent success
+00:00 +7: test/mime_parts_test.dart: duplicate structural headers and missing boundaries fail closed
+00:00 +8: test/mime_parts_test.dart: safe display names remove paths and bidi control characters
+00:00 +9: test/mime_encodings_test.dart: encoded subject, display name, date and text project through public MIME
+00:00 +10: test/mime_encodings_test.dart: strict UTF8, ASCII, Latin1 and Windows1252 bodies
+00:00 +11: test/mime_encodings_test.dart: unknown header/body charset has diagnostics and source fallback
+00:00 +12: test/mime_encodings_test.dart: malformed UTF8 is never silently replaced
+00:00 +13: test/mime_encodings_test.dart: malformed transfer alphabets, padding and QP escapes fail explicitly
+00:00 +14: test/mime_encodings_test.dart: malformed words and dates do not leak private source to print
+00:00 +15: test/mime_encodings_test.dart: unknown transfer encoding is not passed through as exact content
+00:00 +15: loading test/eml_bytes_test.dart
+Hint: When run on the command-line, the compiled output might require a preamble file located in:
+  <sdk>/lib/_internal/js_runtime/lib/preambles.
+Compiled 8,598,729 input bytes (5,434,972 characters source) to 1,395,423 characters JavaScript in 8.20 seconds
+
+00:01 +16: test/eml_bytes_test.dart: original input remains exact and cannot be mutated through aliases
+00:01 +17: test/eml_bytes_test.dart: non UTF-8 source and LF line endings survive display decoding
+00:01 +18: test/eml_bytes_test.dart: identity attachment bytes retain internal CRLF and high bytes
+00:01 +19: test/eml_bytes_test.dart: signed MIME source exports without canonicalizing any octet
+00:05 +20: loading test/mime_limits_test.dart
+Hint: When run on the command-line, the compiled output might require a preamble file located in:
+  <sdk>/lib/_internal/js_runtime/lib/preambles.
+Compiled 8,600,226 input bytes (5,436,469 characters source) to 1,388,205 characters JavaScript in 5.34 seconds
+
+00:05 +20: test/mime_limits_test.dart: raw limit is enforced before retaining another copy
+00:05 +21: test/mime_limits_test.dart: decoded and body budgets count alternatives cumulatively
+00:05 +22: test/mime_limits_test.dart: attachment decoded size is checked before base64 allocation
+00:05 +23: test/mime_limits_test.dart: part and attachment count bounds stop traversal
+00:06 +24: test/mime_limits_test.dart: depth bounds are checked before entering child headers
+00:06 +25: test/mime_limits_test.dart: unsupported attachments still count toward the attachment budget
+00:06 +26: test/mime_limits_test.dart: folded fields and cumulative header bytes are bounded
+00:06 +27: test/mime_limits_test.dart: decoded legacy charset expansion respects rendering bytes
+00:06 +28: test/mime_limits_test.dart: a cancelled parse never starts copying or projecting source
+00:06 +29: test/mime_limits_test.dart: invalid caller budgets are programmer errors
+00:06 +30: All tests passed!

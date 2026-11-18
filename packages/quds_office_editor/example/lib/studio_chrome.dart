@@ -3,6 +3,25 @@ import 'package:quds_office_editor/quds_office_editor.dart';
 
 import 'studio_window.dart';
 
+/// Measures a chrome label at the user's text scale, including Arabic metrics.
+double studioChromeLineHeight(BuildContext context, double fontSize) {
+  // Material supplies bodyMedium below the host's build context. Match that
+  // style here as well, including its line height, before measuring a label.
+  final style = Theme.of(context).textTheme.bodyMedium!;
+  final painter = TextPainter(
+    text: TextSpan(
+      text: 'Agالعربية',
+      style: style.copyWith(fontSize: fontSize),
+    ),
+    textDirection: Directionality.of(context),
+    textScaler: MediaQuery.textScalerOf(context),
+    maxLines: 1,
+  )..layout();
+  final height = painter.height;
+  painter.dispose();
+  return height;
+}
+
 /// Compact Office-style command used only in the example host chrome.
 class StudioCmd extends StatelessWidget {
   const StudioCmd({
@@ -25,7 +44,9 @@ class StudioCmd extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bool enabled = onPressed != null;
-    final Color color = enabled ? (selected ? accent : foreground) : Colors.grey;
+    final Color color = enabled
+        ? (selected ? accent : foreground)
+        : Colors.grey;
     return Tooltip(
       message: label,
       child: InkWell(
@@ -33,20 +54,20 @@ class StudioCmd extends StatelessWidget {
         borderRadius: BorderRadius.circular(4),
         child: DecoratedBox(
           decoration: BoxDecoration(
-            color: selected ? accent.withValues(alpha: 0.12) : Colors.transparent,
+            color: selected
+                ? accent.withValues(alpha: 0.12)
+                : Colors.transparent,
             borderRadius: BorderRadius.circular(4),
           ),
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
             child: Column(
+              mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Icon(icon, size: 18, color: enabled ? accent : Colors.grey),
                 if (label.isNotEmpty)
-                  Text(
-                    label,
-                    style: TextStyle(fontSize: 10, color: color),
-                  ),
+                  Text(label, style: TextStyle(fontSize: 10, color: color)),
               ],
             ),
           ),
@@ -88,7 +109,9 @@ class StudioIconCmd extends StatelessWidget {
           height: 32,
           alignment: Alignment.center,
           decoration: BoxDecoration(
-            color: selected ? accent.withValues(alpha: 0.14) : Colors.transparent,
+            color: selected
+                ? accent.withValues(alpha: 0.14)
+                : Colors.transparent,
             borderRadius: BorderRadius.circular(4),
           ),
           child: Icon(
@@ -139,10 +162,13 @@ class StudioPasteCmd extends StatelessWidget {
         children: <Widget>[
           InkWell(
             onTap: onPaste,
-            borderRadius: const BorderRadius.horizontal(left: Radius.circular(4)),
+            borderRadius: const BorderRadius.horizontal(
+              left: Radius.circular(4),
+            ),
             child: Padding(
               padding: const EdgeInsets.fromLTRB(8, 4, 4, 4),
               child: Column(
+                mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Icon(
@@ -175,20 +201,21 @@ class StudioPasteCmd extends StatelessWidget {
                   (onTextOnly ?? onPaste)?.call();
               }
             },
-            itemBuilder: (BuildContext context) => <PopupMenuEntry<OfficePasteMode>>[
-              PopupMenuItem<OfficePasteMode>(
-                value: OfficePasteMode.keepSource,
-                child: Text(keepSourceLabel),
-              ),
-              PopupMenuItem<OfficePasteMode>(
-                value: OfficePasteMode.mergeFormatting,
-                child: Text(mergeLabel),
-              ),
-              PopupMenuItem<OfficePasteMode>(
-                value: OfficePasteMode.keepTextOnly,
-                child: Text(textOnlyLabel),
-              ),
-            ],
+            itemBuilder: (BuildContext context) =>
+                <PopupMenuEntry<OfficePasteMode>>[
+                  PopupMenuItem<OfficePasteMode>(
+                    value: OfficePasteMode.keepSource,
+                    child: Text(keepSourceLabel),
+                  ),
+                  PopupMenuItem<OfficePasteMode>(
+                    value: OfficePasteMode.mergeFormatting,
+                    child: Text(mergeLabel),
+                  ),
+                  PopupMenuItem<OfficePasteMode>(
+                    value: OfficePasteMode.keepTextOnly,
+                    child: Text(textOnlyLabel),
+                  ),
+                ],
             child: Icon(
               Icons.arrow_drop_down,
               size: 16,
@@ -275,7 +302,9 @@ class StudioCombo<T> extends StatelessWidget {
               Icon(
                 Icons.arrow_drop_down,
                 size: 16,
-                color: enabled ? const Color(0xFF555555) : const Color(0xFFBDBDBD),
+                color: enabled
+                    ? const Color(0xFF555555)
+                    : const Color(0xFFBDBDBD),
               ),
             ],
           ),
@@ -317,6 +346,15 @@ class StudioRibbonStrip extends StatelessWidget {
   const StudioRibbonStrip({super.key, required this.groups});
 
   final List<StudioRibbonGroup> groups;
+
+  /// Leaves space for the icon, command label and group title at full scale.
+  static double preferredHeight(BuildContext context) =>
+      (40 +
+              studioChromeLineHeight(context, 10) +
+              studioChromeLineHeight(context, 9))
+          .ceilToDouble()
+          .clamp(72.0, double.infinity)
+          .toDouble();
 
   @override
   Widget build(BuildContext context) {
@@ -392,15 +430,17 @@ class StudioAppSwitcher extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 6),
+      padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 3),
       child: Material(
-        color: selected ? Colors.white.withValues(alpha: 0.22) : Colors.transparent,
+        color: selected
+            ? Colors.white.withValues(alpha: 0.22)
+            : Colors.transparent,
         borderRadius: BorderRadius.circular(6),
         child: InkWell(
           onTap: onTap,
           borderRadius: BorderRadius.circular(6),
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 3),
             child: Row(
               children: <Widget>[
                 Icon(icon, size: 15, color: Colors.white),
@@ -423,11 +463,7 @@ class StudioAppSwitcher extends StatelessWidget {
 }
 
 class StudioPaneTitle extends StatelessWidget {
-  const StudioPaneTitle({
-    super.key,
-    required this.text,
-    required this.accent,
-  });
+  const StudioPaneTitle({super.key, required this.text, required this.accent});
 
   final String text;
   final Color accent;
@@ -491,11 +527,7 @@ class StudioCaptionButton extends StatelessWidget {
 
 /// Drag region that moves the desktop window, Office title-bar style.
 class StudioDragRegion extends StatelessWidget {
-  const StudioDragRegion({
-    super.key,
-    required this.child,
-    this.onDoubleTap,
-  });
+  const StudioDragRegion({super.key, required this.child, this.onDoubleTap});
 
   final Widget child;
   final VoidCallback? onDoubleTap;

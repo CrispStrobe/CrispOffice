@@ -1,0 +1,76 @@
+{
+  "passed": 126,
+  "failed": 0,
+  "skipped": 0,
+  "substantive_cases": 126,
+  "suite_count": 8,
+  "suites": [
+    {
+      "path": "/workspace/scratch/51a3f3361ce7/zotero-validation/packages/quds_office_editor/test/word_thesaurus_dialog_test.dart",
+      "passed": 18,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "path": "/workspace/scratch/51a3f3361ce7/zotero-validation/packages/quds_office_editor/test/word_thesaurus_controller_test.dart",
+      "passed": 51,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "path": "/workspace/scratch/51a3f3361ce7/zotero-validation/packages/quds_office_editor/test/word_proofing_correction_test.dart",
+      "passed": 33,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "path": "/workspace/scratch/51a3f3361ce7/zotero-validation/packages/quds_office_editor/test/word_proofing_capture_cache_test.dart",
+      "passed": 4,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "path": "/workspace/scratch/51a3f3361ce7/zotero-validation/packages/quds_office_editor/test/word_proofing_context_test.dart",
+      "passed": 5,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "path": "/workspace/scratch/51a3f3361ce7/zotero-validation/packages/quds_office_editor/test/word_review_pane_test.dart",
+      "passed": 11,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "path": "/workspace/scratch/51a3f3361ce7/thesaurus-browser-fixture/native_pack_test.dart",
+      "passed": 1,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "path": "/workspace/scratch/51a3f3361ce7/thesaurus-browser-fixture/native_visual_test.dart",
+      "passed": 3,
+      "skipped": 0,
+      "failed": 0
+    }
+  ],
+  "excluded_pseudo_cases": 10,
+  "excluded_reasons": {
+    "hidden_lifecycle": 10
+  },
+  "excluded_failures": [],
+  "test_start_events": 136,
+  "test_done_events": 136,
+  "every_started_test_finished_once": true,
+  "final_events": [
+    {
+      "success": true,
+      "type": "done",
+      "time": 74343
+    }
+  ],
+  "error_events": [],
+  "parse_errors": [],
+  "layout_or_tap_diagnostics": [],
+  "flutter_envelopes": 0
+}

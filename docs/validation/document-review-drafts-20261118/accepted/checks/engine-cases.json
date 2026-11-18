@@ -1,0 +1,762 @@
+[
+  {
+    "id": 3,
+    "name": "footnote insertion with request type 0 preserves prose and rich text through DOCX",
+    "suite_id": 0,
+    "suite": "test/word_zotero_note_insertion_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 4,
+    "name": "footnote insertion with request type 1 preserves prose and rich text through DOCX",
+    "suite_id": 0,
+    "suite": "test/word_zotero_note_insertion_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 5,
+    "name": "footnote insertion before keeps processor order and note numbers",
+    "suite_id": 0,
+    "suite": "test/word_zotero_note_insertion_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 6,
+    "name": "footnote insertion between keeps processor order and note numbers",
+    "suite_id": 0,
+    "suite": "test/word_zotero_note_insertion_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 7,
+    "name": "footnote insertion after keeps processor order and note numbers",
+    "suite_id": 0,
+    "suite": "test/word_zotero_note_insertion_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 8,
+    "name": "footnote insertion later paragraph keeps processor order and note numbers",
+    "suite_id": 0,
+    "suite": "test/word_zotero_note_insertion_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 9,
+    "name": "footnote catalog seed with preference 0 cancels atomically",
+    "suite_id": 0,
+    "suite": "test/word_zotero_note_insertion_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 10,
+    "name": "footnote catalog seed with preference 0 applies atomically",
+    "suite_id": 0,
+    "suite": "test/word_zotero_note_insertion_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 11,
+    "name": "footnote catalog seed with preference 1 cancels atomically",
+    "suite_id": 0,
+    "suite": "test/word_zotero_note_insertion_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 12,
+    "name": "footnote catalog seed with preference 1 applies atomically",
+    "suite_id": 0,
+    "suite": "test/word_zotero_note_insertion_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 13,
+    "name": "footnote preferences can be chosen before seeding in the same transaction",
+    "suite_id": 0,
+    "suite": "test/word_zotero_note_insertion_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 14,
+    "name": "footnote insertion refuses an incompatible note kind and bibliography",
+    "suite_id": 0,
+    "suite": "test/word_zotero_note_insertion_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 15,
+    "name": "footnote seed refuses a later incompatible preference without applying",
+    "suite_id": 0,
+    "suite": "test/word_zotero_note_insertion_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 16,
+    "name": "footnote deletion of an old sole citation keeps the newly inserted citation and note",
+    "suite_id": 0,
+    "suite": "test/word_zotero_note_insertion_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 17,
+    "name": "endnote insertion with request type 0 preserves prose and rich text through DOCX",
+    "suite_id": 0,
+    "suite": "test/word_zotero_note_insertion_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 18,
+    "name": "endnote insertion with request type 2 preserves prose and rich text through DOCX",
+    "suite_id": 0,
+    "suite": "test/word_zotero_note_insertion_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 19,
+    "name": "endnote insertion before keeps processor order and note numbers",
+    "suite_id": 0,
+    "suite": "test/word_zotero_note_insertion_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 20,
+    "name": "endnote insertion between keeps processor order and note numbers",
+    "suite_id": 0,
+    "suite": "test/word_zotero_note_insertion_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 21,
+    "name": "endnote insertion after keeps processor order and note numbers",
+    "suite_id": 0,
+    "suite": "test/word_zotero_note_insertion_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 22,
+    "name": "endnote insertion later paragraph keeps processor order and note numbers",
+    "suite_id": 0,
+    "suite": "test/word_zotero_note_insertion_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 23,
+    "name": "endnote catalog seed with preference 0 cancels atomically",
+    "suite_id": 0,
+    "suite": "test/word_zotero_note_insertion_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 24,
+    "name": "endnote catalog seed with preference 0 applies atomically",
+    "suite_id": 0,
+    "suite": "test/word_zotero_note_insertion_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 25,
+    "name": "endnote catalog seed with preference 2 cancels atomically",
+    "suite_id": 0,
+    "suite": "test/word_zotero_note_insertion_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 26,
+    "name": "endnote catalog seed with preference 2 applies atomically",
+    "suite_id": 0,
+    "suite": "test/word_zotero_note_insertion_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 27,
+    "name": "endnote preferences can be chosen before seeding in the same transaction",
+    "suite_id": 0,
+    "suite": "test/word_zotero_note_insertion_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 28,
+    "name": "endnote insertion refuses an incompatible note kind and bibliography",
+    "suite_id": 0,
+    "suite": "test/word_zotero_note_insertion_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 29,
+    "name": "endnote seed refuses a later incompatible preference without applying",
+    "suite_id": 0,
+    "suite": "test/word_zotero_note_insertion_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 30,
+    "name": "endnote deletion of an old sole citation keeps the newly inserted citation and note",
+    "suite_id": 0,
+    "suite": "test/word_zotero_note_insertion_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 31,
+    "name": "a staged new citation prevents converting the existing sole-citation note",
+    "suite_id": 0,
+    "suite": "test/word_zotero_note_insertion_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 32,
+    "name": "an already staged note conversion prevents inserting into that note",
+    "suite_id": 0,
+    "suite": "test/word_zotero_note_insertion_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 33,
+    "name": "a note table cell is an anchored insertion location",
+    "suite_id": 0,
+    "suite": "test/word_zotero_note_insertion_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 34,
+    "name": "unanchored and detached note paragraphs do not accept new fields",
+    "suite_id": 0,
+    "suite": "test/word_zotero_note_insertion_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 35,
+    "name": "locked citation in the destination note prevents native insertion",
+    "suite_id": 0,
+    "suite": "test/word_zotero_note_insertion_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 36,
+    "name": "malformed citation in the destination note prevents native insertion",
+    "suite_id": 0,
+    "suite": "test/word_zotero_note_insertion_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 37,
+    "name": "a nested note reference is rejected without creating another note",
+    "suite_id": 0,
+    "suite": "test/word_zotero_note_insertion_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 38,
+    "name": "remove note after staging rejects stale note insertion",
+    "suite_id": 0,
+    "suite": "test/word_zotero_note_insertion_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 39,
+    "name": "replace note after staging rejects stale note insertion",
+    "suite_id": 0,
+    "suite": "test/word_zotero_note_insertion_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 40,
+    "name": "detach paragraph after staging rejects stale note insertion",
+    "suite_id": 0,
+    "suite": "test/word_zotero_note_insertion_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 41,
+    "name": "reorder paragraphs after staging rejects stale note insertion",
+    "suite_id": 0,
+    "suite": "test/word_zotero_note_insertion_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 42,
+    "name": "change note ID after staging rejects stale note insertion",
+    "suite_id": 0,
+    "suite": "test/word_zotero_note_insertion_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 43,
+    "name": "replace anchor after staging rejects stale note insertion",
+    "suite_id": 0,
+    "suite": "test/word_zotero_note_insertion_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 47,
+    "name": "UTF-8 shard vectors match the compiler on VM and JavaScript",
+    "suite_id": 44,
+    "suite": "test/office_thesaurus_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 48,
+    "name": "unsupported language and missing pack are distinct",
+    "suite_id": 44,
+    "suite": "test/office_thesaurus_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 49,
+    "name": "source meanings, labels and relations remain separate",
+    "suite_id": 44,
+    "suite": "test/office_thesaurus_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 50,
+    "name": "normalization keeps original source query and phrase spellings",
+    "suite_id": 44,
+    "suite": "test/office_thesaurus_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 51,
+    "name": "German sharp-s and umlauts are not folded",
+    "suite_id": 44,
+    "suite": "test/office_thesaurus_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 52,
+    "name": "source aliases preserve ambiguity and compatible POS",
+    "suite_id": 44,
+    "suite": "test/office_thesaurus_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 53,
+    "name": "German noun fallback normalizes lookup whitespace and soft hyphens",
+    "suite_id": 44,
+    "suite": "test/office_thesaurus_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 54,
+    "name": "detachment fallback cannot import an incompatible POS",
+    "suite_id": 44,
+    "suite": "test/office_thesaurus_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 55,
+    "name": "no entry remains separate from malformed index",
+    "suite_id": 44,
+    "suite": "test/office_thesaurus_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 56,
+    "name": "null index record is a damaged pack",
+    "suite_id": 44,
+    "suite": "test/office_thesaurus_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 57,
+    "name": "a missing referenced meaning is a damaged pack",
+    "suite_id": 44,
+    "suite": "test/office_thesaurus_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 58,
+    "name": "source identity mismatch fails closed",
+    "suite_id": 44,
+    "suite": "test/office_thesaurus_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 59,
+    "name": "control characters in literal replacement terms are rejected",
+    "suite_id": 44,
+    "suite": "test/office_thesaurus_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 60,
+    "name": "pinned manifest rejects modification",
+    "suite_id": 44,
+    "suite": "test/office_thesaurus_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 61,
+    "name": "logical digest detects damaged shard bytes",
+    "suite_id": 44,
+    "suite": "test/office_thesaurus_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 62,
+    "name": "compressed shards verify both forms and load on demand",
+    "suite_id": 44,
+    "suite": "test/office_thesaurus_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 63,
+    "name": "compressed digest detects damage before decompression",
+    "suite_id": 44,
+    "suite": "test/office_thesaurus_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 64,
+    "name": "decompression cannot exceed declared logical size",
+    "suite_id": 44,
+    "suite": "test/office_thesaurus_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 65,
+    "name": "compressed packs require an explicit byte loader",
+    "suite_id": 44,
+    "suite": "test/office_thesaurus_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 66,
+    "name": "missing shard is a failed pack, not missing corpus or no entry",
+    "suite_id": 44,
+    "suite": "test/office_thesaurus_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 67,
+    "name": "pack clear rejects an in-flight result without restoring old caches",
+    "suite_id": 44,
+    "suite": "test/office_thesaurus_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 68,
+    "name": "cache limits remain bounded and repeated results retain candidate identity",
+    "suite_id": 44,
+    "suite": "test/office_thesaurus_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 69,
+    "name": "pack notices are read through integrity checks",
+    "suite_id": 44,
+    "suite": "test/office_thesaurus_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 70,
+    "name": "default cache retains high-polysemy meanings across equivalent queries",
+    "suite_id": 44,
+    "suite": "test/office_thesaurus_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 74,
+    "name": "native add/edit finds the existing footnote citation at its caret",
+    "suite_id": 71,
+    "suite": "test/word_zotero_caret_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 75,
+    "name": "footnote caret boundaries distinguish editing from insertion",
+    "suite_id": 71,
+    "suite": "test/word_zotero_caret_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 76,
+    "name": "footnote caret offsets outside the paragraph are rejected",
+    "suite_id": 71,
+    "suite": "test/word_zotero_caret_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 77,
+    "name": "native add/edit finds the existing endnote citation at its caret",
+    "suite_id": 71,
+    "suite": "test/word_zotero_caret_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 78,
+    "name": "endnote caret boundaries distinguish editing from insertion",
+    "suite_id": 71,
+    "suite": "test/word_zotero_caret_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 79,
+    "name": "endnote caret offsets outside the paragraph are rejected",
+    "suite_id": 71,
+    "suite": "test/word_zotero_caret_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 80,
+    "name": "same numeric footnote and endnote IDs select by paragraph identity",
+    "suite_id": 71,
+    "suite": "test/word_zotero_caret_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 81,
+    "name": "a detached lookalike paragraph cannot select an anchored citation",
+    "suite_id": 71,
+    "suite": "test/word_zotero_caret_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 82,
+    "name": "unanchored note citations remain unsupported",
+    "suite_id": 71,
+    "suite": "test/word_zotero_caret_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 86,
+    "name": "clearing a direct override restores paragraph style live and after save",
+    "suite_id": 83,
+    "suite": "test/word_proofing_inheritance_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 87,
+    "name": "clearing a direct override restores character style live and after save",
+    "suite_id": 83,
+    "suite": "test/word_proofing_inheritance_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 88,
+    "name": "partial reset preserves other runs, pending formatting, unknown XML and explicit noProof",
+    "suite_id": 83,
+    "suite": "test/word_proofing_inheritance_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 89,
+    "name": "already inherited text is a no-op but equal direct overrides are removed",
+    "suite_id": 83,
+    "suite": "test/word_proofing_inheritance_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 90,
+    "name": "a pending unsaved override is removed without changing inherited formatting",
+    "suite_id": 83,
+    "suite": "test/word_proofing_inheritance_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 91,
+    "name": "document and explicit paragraph defaults remain live after reset",
+    "suite_id": 83,
+    "suite": "test/word_proofing_inheritance_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 92,
+    "name": "newly authored language resets after an earlier save without sparse import metadata",
+    "suite_id": 83,
+    "suite": "test/word_proofing_inheritance_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 93,
+    "name": "table condition en-US is restored with source tblLook",
+    "suite_id": 83,
+    "suite": "test/word_proofing_inheritance_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 94,
+    "name": "table condition de-CH is restored with source tblLook",
+    "suite_id": 83,
+    "suite": "test/word_proofing_inheritance_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 95,
+    "name": "table condition de-AT is restored with source tblLook",
+    "suite_id": 83,
+    "suite": "test/word_proofing_inheritance_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 96,
+    "name": "comment inheritance uses its exact story without touching body text",
+    "suite_id": 83,
+    "suite": "test/word_proofing_inheritance_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 97,
+    "name": "shallow detached previews cannot mutate live source properties",
+    "suite_id": 83,
+    "suite": "test/word_proofing_inheritance_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 98,
+    "name": "live, detached-source and invalid-range requests leave source unchanged",
+    "suite_id": 83,
+    "suite": "test/word_proofing_inheritance_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 102,
+    "name": "comments inherit document, paragraph and character proofing settings on import",
+    "suite_id": 99,
+    "suite": "test/word_comment_proofing_styles_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 103,
+    "name": "inherited and explicit comment proofing values survive three DOCX saves",
+    "suite_id": 99,
+    "suite": "test/word_comment_proofing_styles_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 104,
+    "name": "document language changes remain live for comments without overrides",
+    "suite_id": 99,
+    "suite": "test/word_comment_proofing_styles_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 105,
+    "name": "style refresh updates comments while retaining explicit run settings",
+    "suite_id": 99,
+    "suite": "test/word_comment_proofing_styles_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 109,
+    "name": "new TOC link appearance survives its first export",
+    "suite_id": 106,
+    "suite": "test/word_style_introduction_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 110,
+    "name": "unrelated style catalog false retains native paragraph defaults",
+    "suite_id": 106,
+    "suite": "test/word_style_introduction_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 111,
+    "name": "unrelated style catalog true retains native paragraph defaults",
+    "suite_id": 106,
+    "suite": "test/word_style_introduction_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 112,
+    "name": "declared defaults still cascade and explicit zero overrides them",
+    "suite_id": 106,
+    "suite": "test/word_style_introduction_test.dart",
+    "result": "success",
+    "skipped": false
+  }
+]

@@ -1,0 +1,56 @@
+{
+  "cohort": "editor-zotero",
+  "started_at_utc": "2026-11-18T19:06:45.221566+00:00",
+  "source_sha": "b9e8c159cea315aa0a044c4b0a6fc2cd35d11055",
+  "runs": [
+    {
+      "name": "tests",
+      "command": [
+        "/workspace/scratch/a686c23de6c7/zotero-toolchain/flutter-sdk/bin/flutter",
+        "test",
+        "--no-pub",
+        "--concurrency=1",
+        "--reporter",
+        "json",
+        "test/word_zotero_citing_controller_test.dart",
+        "test/word_zotero_citing_dialog_test.dart",
+        "test/word_zotero_field_at_caret_test.dart",
+        "test/word_notes_editing_test.dart"
+      ],
+      "cwd": "/workspace/scratch/a686c23de6c7/zotero-validation/packages/quds_office_editor",
+      "exit_code": 0,
+      "seconds": 31.935487458000352,
+      "error": null,
+      "stdout": "logs/tests.stdout",
+      "stderr": "logs/tests.stderr",
+      "stdout_sha256": "de3e6002d6b985b377db647bf4c7a7c7e7efeb7d850db2e26d7efe4c8f230e11",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "status": "passed",
+  "github_actions_used": false,
+  "browser_executed": false,
+  "model_downloads_requested": false,
+  "source_files": 3308,
+  "input_digest": "efd9ec376bbbf396e9deb528f8cd3f71a7852faccf2575ce148b68fa8bf6f11d",
+  "test_audit": {
+    "passed": 51,
+    "failed": 0,
+    "skipped": 0,
+    "suite_count": 4
+  },
+  "acceptance_guards": {
+    "exit_success": true,
+    "all_selected_suites_executed": true,
+    "nonempty_cases": true,
+    "no_failed_or_skipped_cases": true,
+    "every_started_test_finished_once": true,
+    "final_event_success": true,
+    "clean_event_stream": true
+  },
+  "output_digest": "efd9ec376bbbf396e9deb528f8cd3f71a7852faccf2575ce148b68fa8bf6f11d",
+  "source_unchanged": true,
+  "changed_inputs": [],
+  "source_sha_after": "b9e8c159cea315aa0a044c4b0a6fc2cd35d11055",
+  "finished_at_utc": "2026-11-18T19:07:18.044990+00:00"
+}

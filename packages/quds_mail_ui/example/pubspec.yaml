@@ -1,0 +1,22 @@
+name: quds_mail_reader_example
+description: In-memory Quds saved-message reader with no account or network setup.
+publish_to: none
+resolution: workspace
+version: 0.1.0
+
+environment:
+  sdk: ^3.12.0
+  flutter: ">=3.44.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  quds_mail_core:
+    path: ../../quds_mail_core
+  quds_mail_mime:
+    path: ../../quds_mail_mime
+  quds_mail_ui:
+    path: ..
+
+flutter:
+  uses-material-design: true

@@ -11,6 +11,10 @@ environment:
   sdk: ^3.12.0
 
 workspace:
+  - packages/quds_mail_core
+  - packages/quds_mail_mime
+  - packages/quds_mail_ui
+  - packages/quds_mail_ui/example
   - packages/legacy_doc_parser
   - packages/quds_office_engine
   - packages/quds_proofing_harper

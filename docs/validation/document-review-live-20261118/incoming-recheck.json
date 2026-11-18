@@ -1,0 +1,145 @@
+{
+  "recorded_at_utc": "2026-11-18T15:01:42.791Z",
+  "repository": "CrispStrobe/quds_office_suite",
+  "initial_audit_file": "incoming_audit.json",
+  "comparison_checkpoint": "f96162ebd34ed2b0bbee8a43a5a808448f18a989",
+  "source_endpoints": [
+    "branches?per_page=100&page=1",
+    "branches?per_page=100&page=2",
+    "branches?per_page=100&page=3",
+    "pulls?state=all&sort=updated&direction=desc&per_page=100&page=1",
+    "pulls?state=all&sort=updated&direction=desc&per_page=100&page=2"
+  ],
+  "counts": {
+    "fork_branches": 204,
+    "pull_request_heads": 165,
+    "upstream_branches": 4
+  },
+  "branch_delta": [
+    {
+      "branch": "codex/document-review-20261118",
+      "sha": "f96162ebd34ed2b0bbee8a43a5a808448f18a989",
+      "previous_sha": "3840e19ff949f5fc03ecf1ec30ab0a71f67e8c68"
+    },
+    {
+      "branch": "codex/native-spelling-resume-20261118",
+      "sha": "fb1fd4dc3edda824c3e043c035dbfad1f0fe0869",
+      "previous_sha": "f482b06fc47545c8b03124c30ea78f54e8e4b9e5"
+    },
+    {
+      "branch": "codex/zotero-offline-workflow-20261118",
+      "sha": "8d74db5da2992e60c7f17b58cd354b874a1ce33a",
+      "previous_sha": null
+    }
+  ],
+  "pr_head_delta": [
+    {
+      "number": 165,
+      "title": "Inspect stored Zotero references throughout the workspace [skip ci]",
+      "state": "open",
+      "head": "8d74db5da2992e60c7f17b58cd354b874a1ce33a",
+      "branch": "codex/zotero-offline-workflow-20261118",
+      "previous_sha": null,
+      "merged_at": null
+    },
+    {
+      "number": 162,
+      "title": "Add document review and safe two-document comparison",
+      "state": "open",
+      "head": "f96162ebd34ed2b0bbee8a43a5a808448f18a989",
+      "branch": "codex/document-review-20261118",
+      "previous_sha": "3840e19ff949f5fc03ecf1ec30ab0a71f67e8c68",
+      "merged_at": null
+    }
+  ],
+  "removed_fork_branches": [],
+  "removed_pr_numbers": [],
+  "upstream_heads": [
+    {
+      "branch": "ci/flutter-workspace",
+      "sha": "aca2f66941832bd0b19b436baeab1656a1b7de98"
+    },
+    {
+      "branch": "cursor/class-certificates-2db8",
+      "sha": "f45099688e7a3f67a1302efdb442830d052f2240"
+    },
+    {
+      "branch": "cursor/cloud-agent-1790580069020-0rk1h",
+      "sha": "9930be8df44ffe117fb22778c514eea0ee73ce21"
+    },
+    {
+      "branch": "main",
+      "sha": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba"
+    }
+  ],
+  "heads": {
+    "main": "f383c826205e321eda3ed3bdbcd584e9a2d4da14",
+    "review": "f96162ebd34ed2b0bbee8a43a5a808448f18a989",
+    "new_work": "8d74db5da2992e60c7f17b58cd354b874a1ce33a"
+  },
+  "new_external_work": {
+    "pr": 165,
+    "url": "https://github.com/CrispStrobe/quds_office_suite/pull/165",
+    "branch": "codex/zotero-offline-workflow-20261118",
+    "head": "8d74db5da2992e60c7f17b58cd354b874a1ce33a",
+    "common_ancestor_with_checkpoint": "e9dc92798d1c39ac48474d0aa5af7321e75e6bb0",
+    "contains_only_prior_audit_from_live_review": true,
+    "contains_live_review_implementation": false,
+    "unique_commits": [
+      "c192200568aa71afab0aa9feb4df240d701c39a8",
+      "3ad7c8b6e14ae09985bb58c9c7ce8a25277e056a",
+      "02da86d9ba82f5d14dc04a3759c247064bcd6a25",
+      "8d74db5da2992e60c7f17b58cd354b874a1ce33a"
+    ],
+    "production_paths": [
+      "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart",
+      "packages/quds_office_editor/lib/src/embed/word_zotero_library.dart",
+      "packages/quds_office_editor/lib/src/embed/word_zotero_stored_details.dart"
+    ],
+    "test_paths": [
+      "packages/quds_office_editor/test/word_zotero_stored_details_dialog_test.dart",
+      "packages/quds_office_editor/test/word_zotero_stored_details_test.dart"
+    ],
+    "documentation_paths": [
+      "packages/quds_office_editor/CHANGELOG.md",
+      "docs/zotero-support.md",
+      "docs/zotero-validation.md",
+      "docs/validation/zotero-offline-workflow-20261118/"
+    ],
+    "recommendation": "Commit the completed live-review changes, then merge this exact incoming head with both parents preserved. Retain both sets of Unreleased changelog bullets if Git reports an insertion conflict.",
+    "checkpoint_merge_tree": {
+      "parents": [
+        "f96162ebd34ed2b0bbee8a43a5a808448f18a989",
+        "8d74db5da2992e60c7f17b58cd354b874a1ce33a"
+      ],
+      "tree": "09799762a3ef64dc6a7d2fd6faf17d5065ea174b",
+      "conflicts": []
+    },
+    "worktree_overlap_at_observation": [
+      "packages/quds_office_editor/CHANGELOG.md"
+    ],
+    "status_at_recording": "Reported to root; integration pending root checkpoint and merge."
+  },
+  "existing_branch_advance": {
+    "branch": "codex/native-spelling-resume-20261118",
+    "from": "f482b06fc47545c8b03124c30ea78f54e8e4b9e5",
+    "to": "fb1fd4dc3edda824c3e043c035dbfad1f0fe0869",
+    "already_contained_in_review": true
+  },
+  "github_actions": {
+    "queried": false,
+    "waited": false,
+    "dispatched": false
+  },
+  "remote_mutations_by_audit_agent": false,
+  "tracked_files_modified_by_audit_agent": false,
+  "initial_audit_sha256": "ae3da6305d6a7077652f6be865e88512ddd4c13e80655cf6b3f71a25dadd378a",
+  "all_branch_heads_sha256": "a4907ab1ed73a204366575098b270c68582f3980903b593edd52143f6f8eda18",
+  "all_pr_heads_sha256": "4f27ab50e0e8155622705ebe65c33ccf70ac31a6ca074555184bedc8be0d33f9",
+  "inventory_reconstruction": "Apply the recorded branch/PR head deltas and removals to the exact initial audit inventory. Every other head is unchanged; the canonical sorted-key compact JSON inventories have the recorded SHA-256 digests.",
+  "inventory_order": {
+    "branches": "lexicographically ascending branch name",
+    "pull_requests": "ascending number"
+  },
+  "reconstruction_verified": true
+}

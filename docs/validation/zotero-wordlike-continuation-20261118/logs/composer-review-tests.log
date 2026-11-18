@@ -1,0 +1,29 @@
+00:00 +0: loading /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart
+00:00 +0: connected Zotero search is explicit, paged and staged with fresh options
+00:02 +1: connected selection review includes hidden sources and stages removal and order
+00:03 +2: removing hidden connected selections frees capacity and supports an empty selection
+00:05 +3: failed connected search and cancellation leave the citation untouched
+00:05 +4: connected search remains usable in narrow doubled-text RTL layout
+00:06 +5: editing a custom locator requires text review and clears stale RTF
+00:06 +6: author options and affixes invalidate custom cache, undoing edits restores it
+00:06 +7: reordering duplicate IDs keeps edited options on the correct occurrence
+00:07 +8: added sources reset occurrence options but keep complete data
+00:07 +9: oversized combined citation keeps its draft and can be repaired
+00:08 +10: chooser preserves hidden duplicate-ID selections and add order
+00:08 +11: filtering scrolled source candidates starts at the first match
+00:09 +12: cancelled chooser and composer do not modify their inputs
+00:10 +13: empty citations cannot apply and can recover by adding a source
+00:10 +14: addition limit permits deselection and prevents a 21st source
+00:11 +15: larger imported clusters retain every source and remain editable
+00:12 +16: custom text requires review after changing membership or order
+00:12 +17: confirming unchanged custom text discards old formatted cache
+00:13 +18: restoring the original sequence preserves imported formatting
+00:13 +19: choosing basic format regenerates text for the revised sources
+00:13 +20: single-source preview receives the current source after edits
+00:14 +21: failed preview keeps draft text and allows a successful retry
+00:14 +22: pending preview cannot mutate sources or resurrect a closed draft
+00:14 +23: offline and malformed identities do not offer connected previews
+00:14 +24: nested source details retain reordered options and custom review
+00:15 +25: composer and chooser work at doubled text in narrow TextDirection.rtl
+00:16 +26: composer and chooser work at doubled text in narrow TextDirection.ltr
+00:16 +27: All tests passed!

@@ -2,8 +2,8 @@ import 'package:quds_proofing_spacy/quds_proofing_spacy.dart';
 
 String configurationId() => 'studio-spacy-browser-unavailable-v1';
 
-Future<SpacyTransport> openTransport() async {
+Future<SpacyTransport> openTransport(SpacyLanguage language) async {
   throw const SpacyUnavailableException(
-    'Local German text analysis is unavailable in this browser.',
+    'Local text analysis is unavailable in this browser.',
   );
 }

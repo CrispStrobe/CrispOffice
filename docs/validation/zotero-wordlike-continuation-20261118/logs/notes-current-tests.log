@@ -1,0 +1,13 @@
+00:00 +0: loading /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_notes_editing_test.dart
+00:00 +0: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_notes_editing_test.dart: note edits keep formatting and undo as one step
+00:00 +1: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_notes_editing_test.dart: undo commits a pending note edit before undoing it
+00:00 +2: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_notes_editing_test.dart: deleting a note removes its mark and undo restores both
+00:00 +3: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_notes_editing_test.dart: the notes pane edits, adds and deletes notes
+00:00 +4: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_notes_editing_test.dart: the notes pane edits, adds and deletes notes
+00:00 +5: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_notes_editing_test.dart: the notes pane edits, adds and deletes notes
+00:00 +6: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_notes_editing_test.dart: the notes pane edits, adds and deletes notes
+00:01 +7: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_notes_editing_test.dart: the notes pane edits, adds and deletes notes
+00:01 +8: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_notes_editing_test.dart: the notes pane edits, adds and deletes notes
+00:01 +9: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+00:03 +10: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: limited and orphaned note labels identify source IDs explicitly
+00:03 +11: All tests passed!

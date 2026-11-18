@@ -1,0 +1,104 @@
+{
+  "qualified_product": "02da86d9ba82f5d14dc04a3759c247064bcd6a25",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 7361,
+      "sha256": "6cd0f254ac581f73fe14bd5a471766db7eb9bc53bfd77aa4042889e545b72fb4",
+      "git_blob_sha1": "6f806462ae1e0b8ecbbf69a3a1bc2dec8e101b00"
+    },
+    {
+      "path": "development/README.md",
+      "bytes": 701,
+      "sha256": "034e2ba5f8d6bef2e9a4885de207fb872f885e3e689830d208cb96e8a86cd866",
+      "git_blob_sha1": "564abaf030c22bbf648951d6c77782e5e32c02cf"
+    },
+    {
+      "path": "development/widget-first-attempt.log.gz",
+      "bytes": 1207,
+      "sha256": "c0d307842c652f297685c6f329d13bbbcae78aa32ed7cbdd20aa784d9e6975ad",
+      "git_blob_sha1": "68ee9d621e8a9d8ad6c2224986e6832204cf258f"
+    },
+    {
+      "path": "development/widget-focused-pass.log.gz",
+      "bytes": 556,
+      "sha256": "a87b96a4601959fc136b299f949091b915c6c97f5a895e08c7df1db4e1014f6e",
+      "git_blob_sha1": "50f8275932286c54c03b7a90e1beb50b2846eeaf"
+    },
+    {
+      "path": "editor/events.jsonl.gz",
+      "bytes": 15935,
+      "sha256": "89a8bc3ed92c1268659a79872cc3908fb4555ff374acfe32485ca4c803ce9fa2",
+      "git_blob_sha1": "b9b9c1c60c712fe1c3301b35f601265e7b8966e5"
+    },
+    {
+      "path": "editor/inputs.json.gz",
+      "bytes": 50056,
+      "sha256": "e123b290f1a6ed2dd08f78bbd09bcd2bda2353a0b27a68749a84b5f59c9a1eac",
+      "git_blob_sha1": "4a4e8931cf2db2528397ddf39ebfefe74a46aca5"
+    },
+    {
+      "path": "editor/run_editor_zotero.py",
+      "bytes": 17733,
+      "sha256": "0ba08a9b96101ffe7736302b32af4bad26197d09ef3b53bb4fddf4fd9be39d96",
+      "git_blob_sha1": "09873c2a49ef640b94188d7fc433b2b23ebe44ec"
+    },
+    {
+      "path": "editor/summary.json",
+      "bytes": 12346,
+      "sha256": "315b27c1c4b6ceebced83db4f319735350ce4a6182d6cb430239985ef1bbaf5c",
+      "git_blob_sha1": "28080c5537ecb4b6471e35e539e65547f595473c"
+    },
+    {
+      "path": "independent-review.md",
+      "bytes": 4578,
+      "sha256": "5e7c18469efc39effec23bd2fd0ebd83901d89720ce99631ec2eefc35c653951",
+      "git_blob_sha1": "e008268ad033822fbff046e17cbc92046c932336"
+    },
+    {
+      "path": "reconciliation-final.json",
+      "bytes": 92375,
+      "sha256": "b5cf60a5366c6571a1f2e63f4fda1cc21b5a6912b29826eaff6d55583ea1cdd4",
+      "git_blob_sha1": "ac1785dba81d9fb594c41e38b0b669af6b6f6d3d"
+    },
+    {
+      "path": "reconciliation-initial.json",
+      "bytes": 59759,
+      "sha256": "b398f1d7c4a4568b3f095b0cf903abd40ced0757fa6302bcb0de7c4e99954b56",
+      "git_blob_sha1": "819e9d233da9753af100e44b55049d8b55c4756a"
+    },
+    {
+      "path": "runtime/README.md",
+      "bytes": 5183,
+      "sha256": "bfbe0858718a275927000676a3f36d38614a3ab8ca33999ec557ea001c934b7c",
+      "git_blob_sha1": "c928225251ba1c1d4831b58d3766839c4113a763"
+    },
+    {
+      "path": "runtime/index.json",
+      "bytes": 3858,
+      "sha256": "bef75f930df48b2c12f8a3cadc99e7679f581ab546d62e2829b5ff7f5305da0c",
+      "git_blob_sha1": "0eda44565210d429b3009d9d06ebd5ddcfdd5ad4"
+    },
+    {
+      "path": "runtime/runtime-ready.json",
+      "bytes": 4302,
+      "sha256": "fa0e9a4955e988128cf1ce0a6b5c2fb75895f9f2a44ec8482c83bf9f49529264",
+      "git_blob_sha1": "cea44db94ebe3ee46b09e6fc66a4789c5920674a"
+    },
+    {
+      "path": "runtime/setup.tar.gz",
+      "bytes": 54449,
+      "sha256": "0f91d5c1c7067e8925cba02d9779b9423c7edf16dc26b003b8c725f2d411f3d6",
+      "git_blob_sha1": "35d58493303dc5cc0756f1eb7029127a06f039ba"
+    },
+    {
+      "path": "status.json",
+      "bytes": 981,
+      "sha256": "1ddaccc6576d4a0baf486554b7e6a099e13c319a5cdb7725f89f019e27514d52",
+      "git_blob_sha1": "389138065ac4230c2a1ef872619b9d09907ca426"
+    }
+  ],
+  "total_files": 16,
+  "total_bytes": 331380,
+  "scope": "Every saved artifact in this report directory except this self-referential index. The root docs/zotero-validation.md links this report."
+}

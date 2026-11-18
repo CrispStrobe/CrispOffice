@@ -1,0 +1,1448 @@
+[
+  {
+    "name": "standalone sessions do not start background checks",
+    "suite_id": 0,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "default checking distinguishes debounce from running and repeated attachment does not restart it",
+    "suite_id": 0,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "explicit false before attachment survives repeated attachment and edits",
+    "suite_id": 0,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "explicit false after attachment survives repeated attachment and edits",
+    "suite_id": 0,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "editing rejects late replies while the new pass is scheduled",
+    "suite_id": 0,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "typing removes old findings and restarts the debounce",
+    "suite_id": 0,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "default background passes never invoke manual providers",
+    "suite_id": 0,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "disabling a running pass rejects its late results and stays off",
+    "suite_id": 0,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "explicit footnote selection survives an unchanged body caret",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "undo schedules a fresh pass and rebinds restored findings",
+    "suite_id": 0,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "explicit first header selection survives an unchanged body caret",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "explicit even footer selection survives an unchanged body caret",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "revealing a finding does not select an adjacent endpoint finding",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "subsequent caret navigation follows a different current finding",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "unchanged selected text rebinds after another paragraph is corrected",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "repeated current explicit checks share one manual-provider future",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "a text edit allows a new explicit check during an old pass",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "a provider configuration allows a new explicit check during an old pass",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "automatic checks show pending and checking status without dialogs",
+    "suite_id": 4,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "editing stays available while live findings update in the pane",
+    "suite_id": 6,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "closed empty complex fields never reach providers",
+    "suite_id": 20,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "empty paragraphs inside and ending a spanning field are excluded while later authored paragraphs are checked",
+    "suite_id": 20,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "generated page-number paragraphs never reach providers",
+    "suite_id": 20,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "page-number metadata invalidates findings without a text edit",
+    "suite_id": 20,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "pending page-number metadata changes discard provider results",
+    "suite_id": 20,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "nonempty findings use half-open hit ranges",
+    "suite_id": 20,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "a new document reusing the same paragraph gets fresh provider results and no inherited ignore-once state",
+    "suite_id": 20,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "language changes inside a combining cluster retain the full cluster and its first language",
+    "suite_id": 20,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "a surrogate pair split across runs and languages remains one emoji in provider input",
+    "suite_id": 20,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "single marked-text click opens inline correction after double-click interval",
+    "suite_id": 4,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "noProof on part of a combining cluster excludes the entire cluster",
+    "suite_id": 20,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "review traverses body, nested tables, frames, all headers/footers, notes and comments",
+    "suite_id": 20,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "formatting fragments join while language and noProof boundaries preserve UTF-16 offsets",
+    "suite_id": 20,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "run language overrides paragraph language, which overrides the document default",
+    "suite_id": 20,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "late results after a revision change never become current findings",
+    "suite_id": 20,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "direct model edits during a pending check invalidate its snapshot even without revision notification",
+    "suite_id": 20,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "replacing a document with identical text and revision rejects the old document result",
+    "suite_id": 20,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "provider reconfiguration cancels pending publication and disposes the previous provider",
+    "suite_id": 20,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "unchanged paragraphs reuse results while rebinding findings to the current revision",
+    "suite_id": 20,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "provider configuration revisions invalidate otherwise identical cached text",
+    "suite_id": 20,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "moving a paragraph between stories invalidates its old finding and cache",
+    "suite_id": 20,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "a document with no checkable paragraphs never claims a clean completed check",
+    "suite_id": 20,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "no configured provider is visibly unavailable",
+    "suite_id": 20,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "unavailable checks are incomplete and can be retried instead of cached as clean",
+    "suite_id": 20,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "unsupported checks are incomplete and can be retried instead of cached as clean",
+    "suite_id": 20,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "failed checks are incomplete and can be retried instead of cached as clean",
+    "suite_id": 20,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "an unsupported document language reports its locale without calling the checker",
+    "suite_id": 20,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "opaque body blocks and preserved header stories are explicit coverage gaps",
+    "suite_id": 20,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "typing never invokes the manual model and reports omitted coverage",
+    "suite_id": 32,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "personal words are language-scoped and host snapshots preserve owner identity",
+    "suite_id": 20,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "ignore once suppresses one occurrence and resets when its paragraph text changes",
+    "suite_id": 20,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "ignored rules can be restored without changing source text or personal words",
+    "suite_id": 20,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "restoring ignored occurrences preserves word and rule preferences",
+    "suite_id": 20,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "manual and background caches cannot stand in for each other",
+    "suite_id": 32,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "an unsupported manual locale does not reduce background coverage",
+    "suite_id": 32,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "a supported run still reports omitted manual coverage in a mixed document",
+    "suite_id": 32,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "many inline suggestions retain editor focus and typing dismisses stale menu",
+    "suite_id": 4,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "manual failure stays visible alongside successful ordinary checking",
+    "suite_id": 32,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "deterministic findings take precedence over competing model proposals",
+    "suite_id": 32,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "configuration refuses shared ownership and duplicate provider IDs",
+    "suite_id": 32,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "replacing a service cannot dispose providers still in the replacement",
+    "suite_id": 32,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "replacing or clearing manual service disposes it and invalidates results",
+    "suite_id": 32,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "changed document rejects an in-flight manual result",
+    "suite_id": 32,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "session disposal owns both services exactly once",
+    "suite_id": 32,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "F7 opens a nonmodal pane and shares one explicit manual check",
+    "suite_id": 4,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "opening and correcting do not implicitly run manual providers",
+    "suite_id": 6,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "native spelling review preserves apostrophes and compounds through undo and redo",
+    "suite_id": 74,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "review centers a late finding and preserves Unicode clusters",
+    "suite_id": 86,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "unavailable provider status is not presented as a clean document",
+    "suite_id": 6,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "a suggestion captured before an edit cannot change newer text",
+    "suite_id": 6,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "selection wheel scrolling and zoom preserve published findings",
+    "suite_id": 4,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "category filtering navigates only matching findings",
+    "suite_id": 6,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "double and triple clicks select text without opening suggestions",
+    "suite_id": 4,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "dragging from marked text selects a range without opening suggestions",
+    "suite_id": 4,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "single click on a revision opens its Changes pane and preserves focus",
+    "suite_id": 4,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "tracked changes resolve in place and undo restores them",
+    "suite_id": 6,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "an insertion has a visible and accessible context marker",
+    "suite_id": 86,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "short passages retain their complete context without ellipses",
+    "suite_id": 86,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "long findings remain bounded without splitting joined emoji",
+    "suite_id": 86,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "clicking a finding follows an open pane without stealing document focus",
+    "suite_id": 4,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "narrow review at large text scale does not hide its finding",
+    "suite_id": 86,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "reviewer field affects future attribution and leaves document alone",
+    "suite_id": 6,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "Escape closes the pane from its focused reviewer field",
+    "suite_id": 4,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "selecting mode shows inline findings but cannot apply their replacements",
+    "suite_id": 4,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "viewing mode inspects through the pane without enabling edits",
+    "suite_id": 4,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "narrow English review retains a usable document canvas",
+    "suite_id": 4,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "viewing mode allows inspection while disabling document mutations",
+    "suite_id": 6,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "stale checks stay pending until a current provider result arrives",
+    "suite_id": 6,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "German grammar correction preserves source and undo: seid",
+    "suite_id": 74,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "narrow Arabic review retains a usable document canvas",
+    "suite_id": 4,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "narrow English pane remains scrollable",
+    "suite_id": 6,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "mixed bidi source ranges have disjoint boxes and span wrapped lines",
+    "suite_id": 110,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "repeated header text maps only to its matching source occurrence",
+    "suite_id": 110,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "note presentation labels cannot acquire authored source ranges",
+    "suite_id": 110,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "squiggles follow paragraph identity through body and table text and clear on refresh",
+    "suite_id": 110,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "German grammar correction preserves source and undo: habe",
+    "suite_id": 74,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "narrow Arabic pane remains scrollable",
+    "suite_id": 6,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "German grammar correction preserves source and undo: gibst",
+    "suite_id": 74,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "generated field text receives no findings or squiggles",
+    "suite_id": 110,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "generated header labels cannot paint source squiggles",
+    "suite_id": 110,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "right-click source hits distinguish repeated body, table, and footnote text",
+    "suite_id": 110,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "right-click header hits use measured glyphs and alignment",
+    "suite_id": 110,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "seit-seid ignore can be restored by its visible rule name",
+    "suite_id": 74,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "zero-length finding at body end remains visible",
+    "suite_id": 110,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "zero-length finding at header end remains visible",
+    "suite_id": 110,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "spacing correction Insert space is visible and undoable",
+    "suite_id": 74,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "caret lookup leaves an empty read-only document unchanged",
+    "suite_id": 127,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "caret lookup uses half-open findings and exact insertion positions",
+    "suite_id": 127,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "spacing correction Use space is visible and undoable",
+    "suite_id": 74,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "header and footer navigation synchronizes the exact IME paragraph",
+    "suite_id": 127,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "body navigation leaves equation editing and routes subsequent IME text",
+    "suite_id": 127,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "ignored words can be restored in their run language without clearing other preferences",
+    "suite_id": 74,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "body navigation clears picture cropping and frame editing states",
+    "suite_id": 127,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "body navigation replaces a prior header IME selection",
+    "suite_id": 127,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "tracking and reviewer controls affect future edits with undo",
+    "suite_id": 137,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "header tracked typing rejects in its own story after close and reopen",
+    "suite_id": 142,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "an ignored writing rule can be restored from review",
+    "suite_id": 74,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "ignored occurrences can be reviewed again in a read-only document",
+    "suite_id": 74,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "header tracked link rejects in its own story after close and reopen",
+    "suite_id": 142,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "header tracked backspace accepts only its own text with history",
+    "suite_id": 142,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "header tracked range keeps paragraphs and body drawings until accepted",
+    "suite_id": 142,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "footer tracked typing rejects in its own story after close and reopen",
+    "suite_id": 142,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "swapping the dialog controller checks its document and clears old notices",
+    "suite_id": 74,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "footer tracked link rejects in its own story after close and reopen",
+    "suite_id": 142,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "footer tracked backspace accepts only its own text with history",
+    "suite_id": 142,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "footer tracked range keeps paragraphs and body drawings until accepted",
+    "suite_id": 142,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "modal text input retains ownership over stale Word IME traffic",
+    "suite_id": 154,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "comment tracked typing rejects in its own story after close and reopen",
+    "suite_id": 142,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "comment tracked link rejects in its own story after close and reopen",
+    "suite_id": 142,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "comment tracked backspace accepts only its own text with history",
+    "suite_id": 142,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "a previous controller completing its check cannot replace the new results",
+    "suite_id": 74,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "comment tracked range keeps paragraphs and body drawings until accepted",
+    "suite_id": 142,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "revision retains body target after an unrelated paragraph split",
+    "suite_id": 142,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "auxiliary revisions do not paint changes over body text",
+    "suite_id": 142,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "ignore once dismisses a finding without adding or ignoring its word",
+    "suite_id": 74,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "opening proofing checks the document and offers undoable corrections",
+    "suite_id": 74,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "unavailable provider never produces a clean-document message",
+    "suite_id": 74,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "unsupported provider never produces a clean-document message",
+    "suite_id": 74,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "failed provider never produces a clean-document message",
+    "suite_id": 74,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "read-only documents retain review but disable correction and formatting",
+    "suite_id": 74,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "covered route rejects stale input even when Word keeps focus",
+    "suite_id": 154,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "adding a personal word dismisses its finding without changing document text",
+    "suite_id": 74,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "author, kind and text filters intersect without changing sources",
+    "suite_id": 137,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "covered editors reject late IME text, actions and macOS selectors",
+    "suite_id": 182,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "headless controller input retains its existing behavior",
+    "suite_id": 182,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "controller replacement transfers the focused input guard",
+    "suite_id": 154,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "unmounted editor rejects stale traffic and can be mounted again",
+    "suite_id": 154,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "ignore word applies to the session and leaves personal words unchanged",
+    "suite_id": 74,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "focused selecting mode preserves navigation and rejects edits",
+    "suite_id": 154,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "language and hyphenation controls save source settings with undo",
+    "suite_id": 74,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "unsupported existing language and a narrow viewport remain reviewable",
+    "suite_id": 74,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "command pipeline undo/redo insert and delete",
+    "suite_id": 195,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "show in document selects the current finding and closes review",
+    "suite_id": 74,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "paint run rebuilds logical Arabic for HarfBuzz",
+    "suite_id": 195,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "script runs stay in their own paint group and sit off the baseline",
+    "suite_id": 195,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "caret selects a word and a paragraph",
+    "suite_id": 195,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "flagged caret points with the writing direction",
+    "suite_id": 195,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "justified caret and selection share the same word X",
+    "suite_id": 195,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "accept shown is a filtered undoable batch",
+    "suite_id": 137,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "justified hitTest and range rects stay on word edges",
+    "suite_id": 195,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "caret X snaps to TextPainter glyph edges after fitLine",
+    "suite_id": 195,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "caret stays on an RTL line whose visual order is reversed",
+    "suite_id": 195,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "caret covers a contiguous range of table paragraphs",
+    "suite_id": 195,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "selection matrix and table resizer",
+    "suite_id": 195,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "Word canvas and sheet grid mount as RenderBoxes",
+    "suite_id": 195,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "import details distinguish duplicate IDs without selecting them",
+    "suite_id": 202,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "header edit paints a usable header band",
+    "suite_id": 195,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "Word canvas pans from a trackpad swipe",
+    "suite_id": 195,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "Word canvas cursor follows handles, objects, and text",
+    "suite_id": 195,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "word canvas click hits the second table cell",
+    "suite_id": 195,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "caret coversIndex includes the selected range",
+    "suite_id": 195,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "right click inside a text selection keeps the range",
+    "suite_id": 195,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "reject shown is a filtered undoable batch",
+    "suite_id": 137,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "right click outside a text selection keeps the range",
+    "suite_id": 195,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "shows complete stored publication metadata and full creator names",
+    "suite_id": 215,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "right click keeps a multi-cell table selection",
+    "suite_id": 195,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "includes every supplied CSL creator role without truncation",
+    "suite_id": 215,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "retains date ranges and each stored literal date representation",
+    "suite_id": 215,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "does not invent missing date precision or a modern year",
+    "suite_id": 215,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "missing snapshot remains inspectable by its existing identity",
+    "suite_id": 215,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "malformed optional values are skipped while valid names survive",
+    "suite_id": 215,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "malformed date ranges are not displayed as a partial single date",
+    "suite_id": 215,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "shows every linked and opaque URI without inventing linked identity",
+    "suite_id": 215,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "URI-shaped stored data alone does not promote an offline source",
+    "suite_id": 215,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "copy is readable source metadata and leaves citation state untouched",
+    "suite_id": 215,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "sheet drag extends a contiguous cell range",
+    "suite_id": 195,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "header drag keeps whole columns and whole rows",
+    "suite_id": 195,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "rtl sheet places column A on the right",
+    "suite_id": 195,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "sheet scroll and hit-test reach past the used-range window",
+    "suite_id": 195,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "frozen row stays put after vertical scroll",
+    "suite_id": 195,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "frozen column stays put and hides scrolled columns under it",
+    "suite_id": 195,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "dragging a column header edge resizes the column",
+    "suite_id": 195,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "dragging a row header edge resizes the row",
+    "suite_id": 195,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "viewport clamp stops endless scrolling",
+    "suite_id": 195,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "slide snap guidelines and transform handles",
+    "suite_id": 195,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "Slide stage mounts as a RenderBox",
+    "suite_id": 195,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "leaving slide text edit does not rotate the shape",
+    "suite_id": 195,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "styled runs do not overlap after paint fit",
+    "suite_id": 195,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "paint fit keeps justified wrapped lines flush to the column",
+    "suite_id": 195,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "paint fit places glyphs next to each other without justify gaps",
+    "suite_id": 195,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "embedded host unpacks a nested workbook",
+    "suite_id": 195,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "final and original previews leave tracked changes untouched",
+    "suite_id": 137,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "Word controller inserts and edits an equation",
+    "suite_id": 195,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "Word equation cells navigate and stay editable after reopen",
+    "suite_id": 195,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "equation arrows move by character and cross cells at the edges",
+    "suite_id": 195,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "equation backspace deletes letters then the empty tool",
+    "suite_id": 195,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "clicking an equation cell routes IME into that cell",
+    "suite_id": 195,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "Word text frame can be selected, moved, and resized",
+    "suite_id": 195,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "Word text frame edit mode keeps the box and hides transform",
+    "suite_id": 195,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "Word picture handles resize, move, and crop on the canvas",
+    "suite_id": 195,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "Word comments can be inserted, edited, and deleted",
+    "suite_id": 195,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "ribbon formatting bolds only the selected comment range",
+    "suite_id": 195,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "rejected native TOC refresh preserves heading aliases, selection and history",
+    "suite_id": 195,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "viewing mode exposes review but disables document mutations",
+    "suite_id": 137,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "Word headings feed a live table of contents",
+    "suite_id": 195,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "ruler first-line drag sets firstLine and hanging stays exclusive",
+    "suite_id": 195,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "ruler hanging drag keeps the first-line page position",
+    "suite_id": 195,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "ruler left-indent square moves both markers together",
+    "suite_id": 195,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "ruler tab alignment cycles left-center-right-decimal",
+    "suite_id": 195,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "ruler zero sits at the content origin",
+    "suite_id": 195,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "ruler drag guide follows the active marker",
+    "suite_id": 195,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "ruler paragraph box follows page, cell, column, and frame",
+    "suite_id": 195,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "ruler selected frame follows native insets and the laid-out width",
+    "suite_id": 195,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "ruler focus line follows the active page caret",
+    "suite_id": 195,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "two picked documents compare, display redlines and export without edits",
+    "suite_id": 137,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "read-only offline details retain linked identities and metadata",
+    "suite_id": 202,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "export cancellation and errors preserve the report for retry",
+    "suite_id": 137,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "copy failure leaves selectable metadata and allows retry",
+    "suite_id": 202,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "current-document edits mark comparison stale and disable export",
+    "suite_id": 137,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "closing pending details copy leaves parent selection intact",
+    "suite_id": 202,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "picker cancellation and errors preserve selections and recover",
+    "suite_id": 137,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "closing during a pending picker ignores its later completion",
+    "suite_id": 137,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "narrow LTR dialog keeps both workflows usable",
+    "suite_id": 137,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "nested details preserve staged order and removals on cancel and apply",
+    "suite_id": 202,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "narrow RTL dialog keeps both workflows usable",
+    "suite_id": 137,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "hidden mixed-library selections expose their stored details without fetches",
+    "suite_id": 202,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "selection limit counts hidden catalog sources and still permits deselection",
+    "suite_id": 202,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "import details and failure feedback fit 320x480 with doubled text in TextDirection.rtl",
+    "suite_id": 202,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "import details and failure feedback fit 320x480 with doubled text in TextDirection.ltr",
+    "suite_id": 202,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "twenty-source narrow review keeps nested details and actions reachable",
+    "suite_id": 202,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "reference without stored CSL metadata remains inspectable",
+    "suite_id": 202,
+    "result": "success",
+    "skipped": false
+  }
+]

@@ -1,0 +1,7 @@
+Analyzing 40 items...                                           
+
+   info • The imported package 'flutter' isn't a dependency of the importing package. Try adding a dependency for 'flutter' in the 'pubspec.yaml' file • docs/validation/thesaurus-20261118/continuation/local/fixtures/lib/main.dart:4:8 • depend_on_referenced_packages
+   info • The imported package 'flutter' isn't a dependency of the importing package. Try adding a dependency for 'flutter' in the 'pubspec.yaml' file • docs/validation/thesaurus-20261118/continuation/local/fixtures/lib/main.dart:5:8 • depend_on_referenced_packages
+   info • The imported package 'quds_office_editor' isn't a dependency of the importing package. Try adding a dependency for 'quds_office_editor' in the 'pubspec.yaml' file • docs/validation/thesaurus-20261118/continuation/local/fixtures/lib/main.dart:6:8 • depend_on_referenced_packages
+
+3 issues found. (ran in 22.4s)

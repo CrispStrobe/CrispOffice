@@ -4,6 +4,7 @@ import 'dart:io';
 import 'dart:math' as math;
 
 import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:quds_office_editor/quds_office_editor.dart';
@@ -48,7 +49,11 @@ enum _RibbonTab {
 }
 
 class SuiteWorkspace extends StatefulWidget {
-  const SuiteWorkspace({super.key});
+  const SuiteWorkspace({super.key, this.zoteroTransportFactory});
+
+  /// Creates a connection owned by one Zotero workspace. Hosts may supply
+  /// their own client configuration; the workspace disposes it when closed.
+  final StudioZoteroTransport Function()? zoteroTransportFactory;
 
   @override
   State<SuiteWorkspace> createState() => _SuiteWorkspaceState();
@@ -76,16 +81,25 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
 
   late final WordEditorController _word;
   final ZoteroSession _zoteroSession = ZoteroSession();
+  bool _zoteroOpen = false;
   late final SheetEditorController _sheet;
   late final SlideEditorController _slides;
   late final PdfEditorController _pdf;
-  final TextEditingController _commentReply = TextEditingController();
+  WmlDocument? _commentDraftDocument;
+  final Map<int, _CommentReplyDraft> _commentReplyDrafts =
+      <int, _CommentReplyDraft>{};
+  Timer? _commentReviewTimer;
   final TextEditingController _pdfFind = TextEditingController();
   Timer? _pdfFindDebounce;
   final TextEditingController _slideNotesEdit = TextEditingController();
   int _notesSlideIndex = -1;
   final VirtualViewport _commentViewport = VirtualViewport();
+  final GlobalKey _commentCanvasKey = GlobalKey(
+    debugLabel: 'studio-comment-caret-context',
+  );
   OverlayEntry? _commentContextMenu;
+  bool Function()? _commentContextIsCurrent;
+  bool _commentContextKeyboard = false;
   OverlayEntry? _slideSorterMenu;
   var _savePhase = _SavePhase.idle;
   var _saveHeavy = false;
@@ -170,6 +184,12 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   }
 
   void _rebuild() {
+    _commentReviewTimer?.cancel();
+    if (_commentContextMenu != null &&
+        !(_commentContextIsCurrent?.call() ?? false)) {
+      _dismissCommentContext();
+    }
+    _syncCommentReplyDrafts();
     if (!mounted || _rebuildScheduled) {
       return;
     }
@@ -282,18 +302,19 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     _pdf
       ..removeListener(_rebuild)
       ..dispose();
-    _commentReply.dispose();
+    _commentReviewTimer?.cancel();
+    _commentReplyDrafts.clear();
     _pdfFindDebounce?.cancel();
     _pdfFind.dispose();
     _pdfThumbScroll.dispose();
     _slideNotesEdit.dispose();
+    _commentContextKeyboard = false;
     _wordFocus.dispose();
     _sheetFocus.dispose();
     _slideFocus.dispose();
     _saveTicker?.cancel();
     _openTicker?.cancel();
-    OfficeContextMenu.dismiss(_commentContextMenu);
-    _commentContextMenu = null;
+    _dismissCommentContext();
     OfficeContextMenu.dismiss(_slideSorterMenu);
     _slideSorterMenu = null;
     if (_slideshowFullscreen) {
@@ -323,6 +344,22 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         const SingleActivator(LogicalKeyboardKey.keyA, meta: true): _selectAll,
         const SingleActivator(LogicalKeyboardKey.keyC, control: true): _copy,
         const SingleActivator(LogicalKeyboardKey.keyC, meta: true): _copy,
+        if (studioZoteroDesktopAvailable) ...{
+          const SingleActivator(
+            LogicalKeyboardKey.keyC,
+            control: true,
+            alt: true,
+          ): _addEditZoteroCitation,
+          const SingleActivator(LogicalKeyboardKey.keyC, meta: true, alt: true):
+              _addEditZoteroCitation,
+          const SingleActivator(
+            LogicalKeyboardKey.keyR,
+            control: true,
+            alt: true,
+          ): _refreshZoteroCitations,
+          const SingleActivator(LogicalKeyboardKey.keyR, meta: true, alt: true):
+              _refreshZoteroCitations,
+        },
         const SingleActivator(LogicalKeyboardKey.keyX, control: true): _cut,
         const SingleActivator(LogicalKeyboardKey.keyX, meta: true): _cut,
         const SingleActivator(LogicalKeyboardKey.keyV, control: true): _paste,
@@ -358,6 +395,8 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
             _findPrevious,
         const SingleActivator(LogicalKeyboardKey.f1): _openPdfSampleGallery,
         const SingleActivator(LogicalKeyboardKey.f7): _showSpelling,
+        const SingleActivator(LogicalKeyboardKey.f7, shift: true):
+            _word.requestThesaurus,
         const SingleActivator(LogicalKeyboardKey.keyB, control: true):
             _toggleBold,
         const SingleActivator(LogicalKeyboardKey.keyB, meta: true): _toggleBold,
@@ -542,7 +581,9 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       child: Directionality(
         textDirection: TextDirection.ltr,
         child: SizedBox(
-          height: 36,
+          height: (studioChromeLineHeight(context, 13) + 12)
+              .clamp(36.0, double.infinity)
+              .toDouble(),
           width: double.infinity,
           child: Stack(
             fit: StackFit.expand,
@@ -554,78 +595,91 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
               Row(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
-                  const Padding(
-                    padding: EdgeInsets.only(left: 10, right: 4),
-                    child: Row(
-                      children: <Widget>[
-                        Icon(
-                          Icons.auto_awesome_mosaic,
-                          color: Colors.white,
-                          size: 16,
-                        ),
-                        SizedBox(width: 8),
-                        Text(
-                          'Quds Office Studio',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w600,
-                            fontSize: 12,
-                            letterSpacing: 0.2,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  _titleQuickAccess(),
-                  FittedBox(
-                    fit: BoxFit.scaleDown,
-                    alignment: Alignment.centerLeft,
-                    child: Row(
-                      children: <Widget>[
-                        StudioAppSwitcher(
-                          label: 'Word',
-                          icon: Icons.description_outlined,
-                          selected: _app == SuiteApp.word,
-                          onTap: () => _switchApp(SuiteApp.word),
-                        ),
-                        StudioAppSwitcher(
-                          label: 'Excel',
-                          icon: Icons.grid_on_outlined,
-                          selected: _app == SuiteApp.excel,
-                          onTap: () => _switchApp(SuiteApp.excel),
-                        ),
-                        StudioAppSwitcher(
-                          label: 'PowerPoint',
-                          icon: Icons.slideshow_outlined,
-                          selected: _app == SuiteApp.powerpoint,
-                          onTap: () => _switchApp(SuiteApp.powerpoint),
-                        ),
-                        StudioAppSwitcher(
-                          label: 'PDF',
-                          icon: Icons.picture_as_pdf_outlined,
-                          selected: _app == SuiteApp.pdf,
-                          onTap: () => _switchApp(SuiteApp.pdf),
-                        ),
-                      ],
-                    ),
-                  ),
                   Expanded(
-                    child: IgnorePointer(
-                      child: Align(
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 10),
-                          child: Text(
-                            _documentLabel,
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: Colors.white.withValues(alpha: 0.94),
-                              fontSize: 12,
-                              fontWeight: FontWeight.w600,
+                    child: SingleChildScrollView(
+                      key: const ValueKey('studio-title-actions-scroll'),
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: <Widget>[
+                          const Padding(
+                            padding: EdgeInsets.only(left: 10, right: 4),
+                            child: Row(
+                              children: <Widget>[
+                                Icon(
+                                  Icons.auto_awesome_mosaic,
+                                  color: Colors.white,
+                                  size: 16,
+                                ),
+                                SizedBox(width: 8),
+                                Text(
+                                  'Quds Office Studio',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 12,
+                                    letterSpacing: 0.2,
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
-                        ),
+                          _titleQuickAccess(),
+                          Row(
+                            children: <Widget>[
+                              StudioAppSwitcher(
+                                label: 'Word',
+                                icon: Icons.description_outlined,
+                                selected: _app == SuiteApp.word,
+                                onTap: () => _switchApp(SuiteApp.word),
+                              ),
+                              StudioAppSwitcher(
+                                label: 'Excel',
+                                icon: Icons.grid_on_outlined,
+                                selected: _app == SuiteApp.excel,
+                                onTap: () => _switchApp(SuiteApp.excel),
+                              ),
+                              StudioAppSwitcher(
+                                label: 'PowerPoint',
+                                icon: Icons.slideshow_outlined,
+                                selected: _app == SuiteApp.powerpoint,
+                                onTap: () => _switchApp(SuiteApp.powerpoint),
+                              ),
+                              StudioAppSwitcher(
+                                label: 'PDF',
+                                icon: Icons.picture_as_pdf_outlined,
+                                selected: _app == SuiteApp.pdf,
+                                onTap: () => _switchApp(SuiteApp.pdf),
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            width: 280,
+                            child: StudioDragRegion(
+                              onDoubleTap: StudioWindow.toggleMaximize,
+                              child: Align(
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 10,
+                                  ),
+                                  child: Text(
+                                    _documentLabel,
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      color: Colors.white.withValues(
+                                        alpha: 0.94,
+                                      ),
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
@@ -801,6 +855,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   }
 
   void _switchApp(SuiteApp app) {
+    _dismissCommentContext();
     setState(() {
       _app = app;
       _tab = app == SuiteApp.pdf ? _RibbonTab.view : _RibbonTab.home;
@@ -983,15 +1038,25 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         height: 36,
         child: Row(
           children: <Widget>[
-            const SizedBox(width: 4),
-            for (final _RibbonTab tab in _tabsForApp)
-              StudioTabChip(
-                label: _tabLabel(tab),
-                selected: _tab == tab,
-                accent: _accent,
-                onTap: () => setState(() => _tab = tab),
+            Expanded(
+              child: SingleChildScrollView(
+                key: const ValueKey<String>('studio-ribbon-tabs-scroll'),
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const SizedBox(width: 4),
+                    for (final _RibbonTab tab in _tabsForApp)
+                      StudioTabChip(
+                        label: _tabLabel(tab),
+                        selected: _tab == tab,
+                        accent: _accent,
+                        onTap: () => setState(() => _tab = tab),
+                      ),
+                  ],
+                ),
               ),
-            const Spacer(),
+            ),
             StudioIconCmd(
               icon: Icons.undo,
               tooltip: _arabic ? 'تراجع' : 'Undo',
@@ -1041,7 +1106,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
           ),
         ),
         child: SizedBox(
-          height: 72,
+          height: StudioRibbonStrip.preferredHeight(context),
           child: StudioRibbonStrip(groups: _ribbonGroups()),
         ),
       ),
@@ -2005,6 +2070,63 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     ];
   }
 
+  bool get _canOpenZotero =>
+      mounted &&
+      !_zoteroOpen &&
+      _app == SuiteApp.word &&
+      _canMutate &&
+      _word.config.allowsMutation &&
+      _wordRouteIsCurrent;
+
+  void _addEditZoteroCitation() =>
+      unawaited(_openZotero(command: ZoteroCitingCommand.addEditCitation));
+
+  void _refreshZoteroCitations() =>
+      unawaited(_openZotero(command: ZoteroCitingCommand.refresh));
+
+  Future<void> _openZotero({ZoteroCitingCommand? command}) async {
+    if (!_canOpenZotero || (command != null && !studioZoteroDesktopAvailable)) {
+      return;
+    }
+    final transport =
+        widget.zoteroTransportFactory?.call() ?? StudioZoteroTransport();
+    setState(() => _zoteroOpen = true);
+    try {
+      await showWordZoteroDialog(
+        context,
+        controller: _word,
+        session: _zoteroSession,
+        transport: transport.send,
+        localTransport: transport.supportsLocal ? transport.send : null,
+        initialCommand: command,
+      );
+    } finally {
+      transport.dispose();
+      if (mounted) setState(() => _zoteroOpen = false);
+    }
+  }
+
+  Widget _zoteroCommand(
+    IconData icon,
+    String label,
+    ZoteroCitingCommand command, {
+    String? shortcut,
+  }) {
+    final button = _cmd(
+      icon,
+      label,
+      _canOpenZotero ? () => _openZotero(command: command) : null,
+    );
+    if (shortcut == null) return button;
+    final modifier = defaultTargetPlatform == TargetPlatform.macOS
+        ? 'Cmd+Alt'
+        : 'Ctrl+Alt';
+    return Tooltip(
+      message: '$label ($modifier+$shortcut)',
+      child: TooltipVisibility(visible: false, child: button),
+    );
+  }
+
   List<StudioRibbonGroup> _wordInsert() {
     return <StudioRibbonGroup>[
       StudioRibbonGroup(
@@ -2013,25 +2135,32 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
           _cmd(
             Icons.menu_book_outlined,
             'Zotero',
-            _canMutate
-                ? () async {
-                    final transport = StudioZoteroTransport();
-                    try {
-                      await showWordZoteroDialog(
-                        context,
-                        controller: _word,
-                        session: _zoteroSession,
-                        transport: transport.send,
-                        localTransport: transport.supportsLocal
-                            ? transport.send
-                            : null,
-                      );
-                    } finally {
-                      transport.dispose();
-                    }
-                  }
-                : null,
+            _canOpenZotero ? _openZotero : null,
           ),
+          if (studioZoteroDesktopAvailable) ...[
+            _zoteroCommand(
+              Icons.format_quote,
+              _arabic ? 'إضافة/تحرير استشهاد' : 'Add/Edit citation',
+              ZoteroCitingCommand.addEditCitation,
+              shortcut: 'C',
+            ),
+            _zoteroCommand(
+              Icons.list_alt,
+              _arabic ? 'قائمة المراجع' : 'Bibliography',
+              ZoteroCitingCommand.addEditBibliography,
+            ),
+            _zoteroCommand(
+              Icons.refresh,
+              _arabic ? 'تحديث الاستشهادات' : 'Refresh citations',
+              ZoteroCitingCommand.refresh,
+              shortcut: 'R',
+            ),
+            _zoteroCommand(
+              Icons.format_paint_outlined,
+              _arabic ? 'نمط الاستشهاد' : 'Citation style',
+              ZoteroCitingCommand.setDocPrefs,
+            ),
+          ],
         ],
       ),
       StudioRibbonGroup(
@@ -2728,126 +2857,39 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   List<StudioRibbonGroup> _wordReview() {
     return <StudioRibbonGroup>[
       StudioRibbonGroup(
-        title: _arabic ? 'تحليل لغوي' : 'Language analysis',
+        title: _arabic ? 'التدقيق' : 'Proofing',
         children: <Widget>[
           _cmd(
-            Icons.manage_search,
-            _arabic ? 'تحليل الألمانية' : 'German analysis',
-            _showLinguisticAnalysis,
+            Icons.spellcheck,
+            _arabic ? 'تدقيق' : 'Spelling',
+            _showSpelling,
+            selected:
+                _word.reviewPaneVisible &&
+                _word.reviewPaneTab == WordReviewPaneTab.proofing,
           ),
           _cmd(
-            Icons.download_for_offline_outlined,
-            _arabic ? 'إعداد التحليل' : 'Analysis setup',
-            _showSpacySetup,
+            Icons.menu_book_outlined,
+            _arabic ? 'قاموس المرادفات' : 'Thesaurus',
+            _word.requestThesaurus,
+          ),
+          _cmd(
+            Icons.edit_note,
+            _arabic ? 'تدقيق أثناء الكتابة' : 'Check as you type',
+            () => _word.proofing.enabled = !_word.proofing.enabled,
+            selected: _word.proofing.enabled,
           ),
         ],
       ),
       StudioRibbonGroup(
-        title: _arabic ? 'تحديد' : 'Select',
+        title: _arabic ? 'تغييرات' : 'Changes',
         children: <Widget>[
-          _cmd(Icons.select_all, _arabic ? 'الكل' : 'All', _selectAllDocument),
-          _cmd(
-            Icons.text_fields,
-            _arabic ? 'كلمة' : 'Word',
-            _word.selectWordAtCaret,
-          ),
-          _cmd(
-            Icons.notes,
-            _arabic ? 'فقرة' : 'Paragraph',
-            _word.selectParagraphAtCaret,
-          ),
-        ],
-      ),
-      StudioRibbonGroup(
-        title: _arabic ? 'تحرير' : 'Edit',
-        children: <Widget>[
-          _cmd(
-            Icons.undo,
-            _arabic ? 'تراجع' : 'Undo',
-            _canMutate && _word.canUndo ? _word.undo : null,
-          ),
-          _cmd(
-            Icons.redo,
-            _arabic ? 'إعادة' : 'Redo',
-            _canMutate && _word.canRedo ? _word.redo : null,
-          ),
-        ],
-      ),
-      StudioRibbonGroup(
-        title: _arabic ? 'تعليقات' : 'Comments',
-        children: <Widget>[
-          _cmd(
-            Icons.view_sidebar_outlined,
-            _arabic ? 'اللوحة' : 'Pane',
-            () => setState(() => _showComments = !_showComments),
-            selected: _showComments,
-          ),
-          _cmd(
-            Icons.add_comment_outlined,
-            _arabic ? 'جديد' : 'New',
-            _canMutate ? _newWordComment : null,
-          ),
-          _cmd(
-            Icons.reply,
-            _arabic ? 'رد' : 'Reply',
-            _canMutate && _word.selectedComment != null
-                ? () => _replyWordComment(_word.selectedCommentId!)
-                : null,
-          ),
-          _cmd(
-            _selectedThreadResolved ? Icons.replay : Icons.task_alt,
-            _selectedThreadResolved
-                ? (_arabic ? 'إعادة فتح' : 'Reopen')
-                : (_arabic ? 'حل' : 'Resolve'),
-            _canMutate && _word.selectedComment != null
-                ? () => _word.setCommentResolved(
-                    _word.selectedCommentId!,
-                    !_selectedThreadResolved,
-                  )
-                : null,
-          ),
-          _cmd(
-            Icons.delete_outline,
-            _arabic ? 'حذف' : 'Delete',
-            _canMutate && _word.selectedCommentId != null
-                ? () => _word.deleteComment(_word.selectedCommentId!)
-                : null,
-          ),
-          _cmd(
-            Icons.keyboard_arrow_up,
-            _arabic ? 'السابق' : 'Previous',
-            WordComment.roots(_word.document).isNotEmpty
-                ? () => _word.stepComment(-1)
-                : null,
-          ),
-          _cmd(
-            Icons.keyboard_arrow_down,
-            _arabic ? 'التالي' : 'Next',
-            WordComment.roots(_word.document).isNotEmpty
-                ? () => _word.stepComment(1)
-                : null,
-          ),
-        ],
-      ),
-      StudioRibbonGroup(
-        title: _arabic ? 'تحرير المستند' : 'Proofing',
-        children: <Widget>[
-          _cmd(Icons.search, _arabic ? 'بحث' : 'Find', _openFind),
-          _cmd(
-            Icons.find_replace,
-            _arabic ? 'استبدال' : 'Replace',
-            _canMutate ? _openReplace : null,
-          ),
-          _cmd(Icons.spellcheck, _arabic ? 'تدقيق' : 'Spelling', _showSpelling),
-          _cmd(
-            Icons.info_outline,
-            _arabic ? 'خصائص' : 'Properties',
-            _showProperties,
-          ),
           _cmd(
             Icons.rate_review_outlined,
             _arabic ? 'مراجعة التغييرات' : 'Review changes',
-            () => _showDocumentReview(WordReviewTab.changes),
+            () => _word.openReviewPane(tab: WordReviewPaneTab.changes),
+            selected:
+                _word.reviewPaneVisible &&
+                _word.reviewPaneTab == WordReviewPaneTab.changes,
           ),
           _cmd(
             Icons.track_changes,
@@ -2907,7 +2949,10 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
           _cmd(
             Icons.lock_outline,
             _arabic ? 'تقييد' : 'Restrict',
-            () => _word.setRestrictEditing(!_word.document.restrictEditing),
+            _canMutate
+                ? () =>
+                      _word.setRestrictEditing(!_word.document.restrictEditing)
+                : null,
             selected: _word.document.restrictEditing,
           ),
           _cmd(
@@ -2925,6 +2970,124 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
             Icons.preview,
             _arabic ? 'سجل دمج' : 'Merge record',
             _canMutate ? _studioMergePreview : null,
+          ),
+        ],
+      ),
+      StudioRibbonGroup(
+        title: _arabic ? 'تحليل لغوي' : 'Language analysis',
+        children: <Widget>[
+          _cmd(
+            Icons.manage_search,
+            _arabic ? 'تحليل الألمانية' : 'German analysis',
+            _showLinguisticAnalysis,
+          ),
+          _cmd(
+            Icons.download_for_offline_outlined,
+            _arabic ? 'إعداد التحليل' : 'Analysis setup',
+            _showSpacySetup,
+          ),
+        ],
+      ),
+      StudioRibbonGroup(
+        title: _arabic ? 'تحديد' : 'Select',
+        children: <Widget>[
+          _cmd(Icons.select_all, _arabic ? 'الكل' : 'All', _selectAllDocument),
+          _cmd(
+            Icons.text_fields,
+            _arabic ? 'كلمة' : 'Word',
+            _word.selectWordAtCaret,
+          ),
+          _cmd(
+            Icons.notes,
+            _arabic ? 'فقرة' : 'Paragraph',
+            _word.selectParagraphAtCaret,
+          ),
+        ],
+      ),
+      StudioRibbonGroup(
+        title: _arabic ? 'تحرير' : 'Edit',
+        children: <Widget>[
+          _cmd(
+            Icons.undo,
+            _arabic ? 'تراجع' : 'Undo',
+            _canMutate && _word.canUndo ? _word.undo : null,
+          ),
+          _cmd(
+            Icons.redo,
+            _arabic ? 'إعادة' : 'Redo',
+            _canMutate && _word.canRedo ? _word.redo : null,
+          ),
+        ],
+      ),
+      StudioRibbonGroup(
+        title: _arabic ? 'تعليقات' : 'Comments',
+        children: <Widget>[
+          _cmd(
+            Icons.view_sidebar_outlined,
+            _arabic ? 'اللوحة' : 'Pane',
+            () => _setShowComments(!_showComments),
+            selected: _showComments,
+          ),
+          _cmd(
+            Icons.add_comment_outlined,
+            _arabic ? 'جديد' : 'New',
+            _canMutate ? _newWordComment : null,
+          ),
+          _cmd(
+            Icons.reply,
+            _arabic ? 'رد' : 'Reply',
+            _canMutate && _word.selectedComment != null
+                ? () => _replyWordComment(_word.selectedCommentId!)
+                : null,
+          ),
+          _cmd(
+            _selectedThreadResolved ? Icons.replay : Icons.task_alt,
+            _selectedThreadResolved
+                ? (_arabic ? 'إعادة فتح' : 'Reopen')
+                : (_arabic ? 'حل' : 'Resolve'),
+            _canMutate && _word.selectedComment != null
+                ? () => _word.setCommentResolved(
+                    _word.selectedCommentId!,
+                    !_selectedThreadResolved,
+                  )
+                : null,
+          ),
+          _cmd(
+            Icons.delete_outline,
+            _arabic ? 'حذف' : 'Delete',
+            _canMutate && _word.selectedCommentId != null
+                ? () => _word.deleteComment(_word.selectedCommentId!)
+                : null,
+          ),
+          _cmd(
+            Icons.keyboard_arrow_up,
+            _arabic ? 'السابق' : 'Previous',
+            WordComment.roots(_word.document).isNotEmpty
+                ? () => _word.stepComment(-1)
+                : null,
+          ),
+          _cmd(
+            Icons.keyboard_arrow_down,
+            _arabic ? 'التالي' : 'Next',
+            WordComment.roots(_word.document).isNotEmpty
+                ? () => _word.stepComment(1)
+                : null,
+          ),
+        ],
+      ),
+      StudioRibbonGroup(
+        title: _arabic ? 'تحرير المستند' : 'Document',
+        children: <Widget>[
+          _cmd(Icons.search, _arabic ? 'بحث' : 'Find', _openFind),
+          _cmd(
+            Icons.find_replace,
+            _arabic ? 'استبدال' : 'Replace',
+            _canMutate ? _openReplace : null,
+          ),
+          _cmd(
+            Icons.info_outline,
+            _arabic ? 'خصائص' : 'Properties',
+            _showProperties,
           ),
         ],
       ),
@@ -4355,8 +4518,13 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       setState(() {});
       return;
     }
-    _active.viewport.setScale(value);
-    _active.refresh();
+    final controller = _active;
+    controller.viewport.setScale(value);
+    if (controller is WordEditorController) {
+      controller.refreshView();
+    } else {
+      controller.refresh();
+    }
   }
 
   void _shortcutZoomIn() {
@@ -4812,6 +4980,9 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
           ],
         ),
       );
+      // Set the Studio session's initial preference once. Rebuilding the editor
+      // or returning from another app must preserve a later user opt-out.
+      controller.proofing.enabled = true;
     }
     controller.onFindRequested = () {
       if (!mounted) {
@@ -4900,19 +5071,40 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   }
 
   void _workspaceEscape() {
+    if (_commentContextMenu != null) {
+      _dismissCommentContext();
+      return;
+    }
     if (_findOpen) {
       _closeFind();
+      return;
+    }
+    if (_app == SuiteApp.word && _word.reviewPaneVisible) {
+      _word.closeReviewPane();
+      _wordFocus.requestFocus();
       return;
     }
     _slideShowEscape();
   }
 
-  void _showSpelling() {
-    if (_active is WordEditorController) {
-      unawaited(showWordProofingDialog(context, controller: _word));
+  Future<void> _showSpelling() async {
+    if (_app != SuiteApp.word) {
+      _toast(_arabic ? 'التدقيق للمستندات' : 'Spelling is available in Word');
       return;
     }
-    _toast(_arabic ? 'التدقيق للمستندات' : 'Spelling is available in Word');
+    if (_word.config.allowsMutation) _word.commitPendingEdits();
+    _word.openReviewPane();
+    try {
+      // An explicit F7/ribbon check may use opted-in manual grammar providers;
+      // ordinary editing remains on the lightweight background service.
+      await _word.checkDocumentProofing();
+    } catch (_) {
+      _toast(
+        _arabic
+            ? 'تعذر إكمال تدقيق المستند. حاول مجددًا.'
+            : 'The document check could not finish. Try again.',
+      );
+    }
   }
 
   Future<void> _showSpacySetup() async {
@@ -5804,56 +5996,366 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     _word.insertComment(author: 'Quds Office', initials: 'QO');
   }
 
-  Future<void> _replyWordComment(int parentId) async {
-    if (!_canMutate) {
-      return;
-    }
-    setState(() => _showComments = true);
-    _word.selectComment(parentId);
-    if (_commentReply.text.trim().isNotEmpty) {
-      _sendCommentReply(parentId);
-      return;
-    }
-    final TextEditingController reply = TextEditingController();
-    final bool? ok = await showDialog<bool>(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text(_arabic ? 'رد على التعليق' : 'Reply to comment'),
-          content: TextField(
-            controller: reply,
-            minLines: 2,
-            maxLines: 5,
-            autofocus: true,
-            decoration: InputDecoration(labelText: _arabic ? 'الرد' : 'Reply'),
-          ),
-          actions: <Widget>[
-            TextButton(
-              onPressed: () => Navigator.pop(context, false),
-              child: Text(_arabic ? 'إلغاء' : 'Cancel'),
-            ),
-            FilledButton(
-              onPressed: () => Navigator.pop(context, true),
-              child: Text(_arabic ? 'إرسال' : 'Reply'),
-            ),
-          ],
-        );
-      },
-    );
-    final String text = reply.text.trim();
-    reply.dispose();
-    if (ok == true && text.isNotEmpty) {
-      _word.replyToComment(parentId, text: text);
-    }
+  void _setShowComments(bool show) {
+    if (!show) _dismissCommentContext();
+    setState(() => _showComments = show);
   }
 
-  void _sendCommentReply(int parentId) {
-    final String text = _commentReply.text.trim();
-    if (text.isEmpty || !_canMutate) {
+  void _dismissCommentContext() {
+    _commentReviewTimer?.cancel();
+    OfficeContextMenu.dismiss(_commentContextMenu);
+    _commentContextMenu = null;
+    _restoreCommentContextFocus();
+    _commentContextIsCurrent = null;
+  }
+
+  void _restoreCommentContextFocus() {
+    final restore =
+        _commentContextKeyboard && (_commentContextIsCurrent?.call() ?? false);
+    _commentContextKeyboard = false;
+    if (restore && mounted && _wordRouteIsCurrent) _wordFocus.requestFocus();
+  }
+
+  void _syncCommentReplyDrafts() {
+    final document = _word.document;
+    if (!identical(_commentDraftDocument, document)) {
+      _commentReplyDrafts.clear();
+      _commentDraftDocument = document;
+    }
+    _commentReplyDrafts.removeWhere(
+      (id, draft) =>
+          !identical(WordComment.byId(document, id), draft.root) ||
+          draft.root.parentId != null,
+    );
+  }
+
+  _CommentReplyDraft _commentReplyDraft(WmlComment root) {
+    _syncCommentReplyDrafts();
+    return _commentReplyDrafts.putIfAbsent(
+      root.id,
+      () => _CommentReplyDraft(root),
+    );
+  }
+
+  void _replyWordComment(int parentId) {
+    if (!_canMutate || !_word.config.allowsMutation) return;
+    final document = _word.document;
+    final root = WordComment.byId(
+      document,
+      WordComment.threadRootId(document, parentId),
+    );
+    if (root == null || root.parentId != null) return;
+    final draft = _commentReplyDraft(root);
+    setState(() => _showComments = true);
+    _word.endCommentEdit();
+    _word.selectComment(root.id);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted ||
+          !_showComments ||
+          !_canMutate ||
+          !identical(document, _word.document) ||
+          !identical(WordComment.byId(document, root.id), root) ||
+          _word.selectedCommentId != root.id) {
+        return;
+      }
+      draft.key.currentState?.focusReply();
+    });
+  }
+
+  bool _postCommentReply(_CommentReplyDraft draft) {
+    _syncCommentReplyDrafts();
+    final text = draft.text.trim();
+    final root = draft.root;
+    final selected = _word.selectedCommentId;
+    if (text.isEmpty ||
+        !_canMutate ||
+        !_word.config.allowsMutation ||
+        !identical(_commentReplyDrafts[root.id], draft) ||
+        !identical(WordComment.byId(_word.document, root.id), root) ||
+        selected == null ||
+        WordComment.threadRootId(_word.document, selected) != root.id) {
+      return false;
+    }
+    final before = _word.document.comments.length;
+    _word.replyToComment(root.id, text: text);
+    if (_word.document.comments.length != before + 1) return false;
+    draft.text = '';
+    return true;
+  }
+
+  void _showCommentReview(OfficeContextHit hit) {
+    _commentReviewTimer?.cancel();
+    final document = _word.document;
+    final comment = _word.selectedComment;
+    _commentReviewTimer = Timer(kDoubleTapTimeout, () {
+      if (!mounted ||
+          comment == null ||
+          !_wordRouteIsCurrent ||
+          (_word.input.composing.isValid &&
+              !_word.input.composing.isCollapsed) ||
+          !identical(document, _word.document) ||
+          !identical(comment, _word.selectedComment)) {
+        return;
+      }
+      final paragraph = hit.paragraph;
+      final offset = hit.proofingOffset;
+      if (paragraph == null || offset == null) return;
+      final issue = _word.proofing.issuesAt(paragraph, offset).firstOrNull;
+      if (issue == null) return;
+      _word.selectProofingIssue(issue, reveal: false);
+      if (_word.reviewPaneVisible) {
+        _word.setReviewPaneTab(WordReviewPaneTab.proofing);
+      } else {
+        _showCommentContext(comment, hit, reviewOnly: true);
+      }
+    });
+  }
+
+  bool get _wordRouteIsCurrent => ModalRoute.of(context)?.isCurrent ?? true;
+
+  void _showCommentCaretContext() {
+    if (!mounted ||
+        _app != SuiteApp.word ||
+        !_showComments ||
+        !_wordFocus.hasPrimaryFocus ||
+        !_wordRouteIsCurrent ||
+        !_word.config.allowsSelection ||
+        !_word.isEditingComment ||
+        (_word.input.composing.isValid && !_word.input.composing.isCollapsed)) {
       return;
     }
-    _word.replyToComment(parentId, text: text);
-    _commentReply.clear();
+    final comment = _word.selectedComment;
+    final canvas = _commentCanvasKey.currentContext?.findRenderObject();
+    if (comment == null ||
+        canvas is! RenderWordCanvas ||
+        canvas.selectedCommentId != comment.id ||
+        !identical(canvas.caret, _word.commentCaret)) {
+      return;
+    }
+    var hit = canvas.contextHitForCaret();
+    if (hit == null || !comment.paragraphs.contains(hit.paragraph)) return;
+    // The selected finding's caret can sit just past its underline. Preserve
+    // both the source offset and the identity of overlapping findings.
+    final selected = _word.selectedProofingIssue;
+    final caret = _word.commentCaret;
+    WordProofingIssue? preferredIssue;
+    if (selected != null &&
+        identical(selected.paragraph, hit.paragraph) &&
+        caret.selectionAnchorParagraph == caret.paragraphIndex &&
+        ((caret.selectionAnchor == selected.finding.start &&
+                caret.logicalIndex == selected.finding.end) ||
+            (caret.selectionAnchor == selected.finding.end &&
+                caret.logicalIndex == selected.finding.start))) {
+      preferredIssue = selected;
+      hit = canvas.contextHitForCaret(proofingOffset: selected.finding.start);
+      if (hit == null) return;
+    }
+    _showCommentContext(
+      comment,
+      hit,
+      keyboardNavigation: true,
+      preferredIssue: preferredIssue,
+    );
+  }
+
+  void _showCommentContext(
+    WmlComment comment,
+    OfficeContextHit hit, {
+    bool reviewOnly = false,
+    bool keyboardNavigation = false,
+    WordProofingIssue? preferredIssue,
+  }) {
+    _dismissCommentContext();
+    if (!_wordRouteIsCurrent ||
+        !_word.config.allowsSelection ||
+        (_word.input.composing.isValid && !_word.input.composing.isCollapsed)) {
+      return;
+    }
+    final document = _word.document;
+    if (!identical(comment, _word.selectedComment) ||
+        !identical(WordComment.byId(document, comment.id), comment)) {
+      return;
+    }
+    // A secondary click does not run the canvas's primary-click selection
+    // handler. Route ordinary editing commands to this comment as well as
+    // routing proofing commands by their explicit finding.
+    if (!_word.isEditingComment) {
+      _word.beginCommentEdit(comment.id);
+    }
+    final root = WordComment.byId(
+      document,
+      WordComment.threadRootId(document, comment.id),
+    );
+    final revision = _word.contentRevision;
+    final paragraph = hit.paragraph;
+    final offset = hit.proofingOffset;
+    final issues =
+        paragraph != null &&
+            offset != null &&
+            comment.paragraphs.contains(paragraph)
+        ? _word.proofing.issuesAt(paragraph, offset)
+        : const <WordProofingIssue>[];
+    final issue = preferredIssue != null && issues.contains(preferredIssue)
+        ? preferredIssue
+        : issues.firstOrNull;
+    final editing = _word.isEditingComment;
+    final caret = (
+      paragraph: _word.commentCaret.paragraphIndex,
+      index: _word.commentCaret.logicalIndex,
+      anchorParagraph: _word.commentCaret.selectionAnchorParagraph,
+      anchor: _word.commentCaret.selectionAnchor,
+    );
+    bool current() =>
+        mounted &&
+        _app == SuiteApp.word &&
+        _showComments &&
+        identical(document, _word.document) &&
+        identical(comment, _word.selectedComment) &&
+        identical(WordComment.byId(document, comment.id), comment) &&
+        root != null &&
+        identical(WordComment.byId(document, root.id), root) &&
+        _word.contentRevision == revision &&
+        _word.isEditingComment == editing &&
+        _word.commentCaret.paragraphIndex == caret.paragraph &&
+        _word.commentCaret.logicalIndex == caret.index &&
+        _word.commentCaret.selectionAnchorParagraph == caret.anchorParagraph &&
+        _word.commentCaret.selectionAnchor == caret.anchor &&
+        (issue == null || _word.proofing.isCurrent(issue));
+    bool canMutateCurrent() =>
+        current() &&
+        _wordRouteIsCurrent &&
+        _canMutate &&
+        _word.config.allowsMutation &&
+        !(_word.input.composing.isValid && !_word.input.composing.isCollapsed);
+    if (!current()) return;
+    final actions = <OfficeContextAction>[
+      if (issue != null) ...[
+        OfficeContextAction.caption(issue.finding.message),
+        for (var i = 0; i < issue.finding.replacements.length && i < 8; i++)
+          OfficeContextAction(
+            id: 'proofing:replace:$i',
+            label: issue.finding.replacements[i].isEmpty
+                ? (_arabic ? 'حذف' : 'Delete')
+                : issue.finding.replacements[i],
+            enabled: _canMutate && _word.canApplyProofingIssue(issue),
+          ),
+        OfficeContextAction(
+          id: 'proofing:ignore',
+          label: _arabic ? 'تجاهل مرة واحدة' : 'Ignore once',
+        ),
+        if (issue.finding.category == OfficeProofingCategory.spelling) ...[
+          OfficeContextAction(
+            id: 'proofing:ignoreWord',
+            label: _arabic ? 'تجاهل هذه الكلمة' : 'Ignore this word',
+          ),
+          OfficeContextAction(
+            id: 'proofing:add',
+            label: _arabic
+                ? 'إضافة إلى الكلمات الشخصية'
+                : 'Add to personal words',
+          ),
+        ],
+      ],
+      OfficeContextAction(
+        id: 'proofing:review',
+        label: _arabic ? 'فتح لوحة الكتابة' : 'Open writing pane',
+        shortcut: 'F7',
+        separatorBefore: issue != null,
+      ),
+      if (!reviewOnly)
+        ...OfficeContextMenu.word(
+          hit: OfficeContextHit(
+            kind: OfficeContextKind.comment,
+            globalPosition: hit.globalPosition,
+            commentId: comment.id,
+            paragraph: paragraph,
+            proofingOffset: offset,
+          ),
+          controller: _word,
+        ),
+    ];
+    _commentContextIsCurrent = current;
+    _commentContextKeyboard = keyboardNavigation;
+    _commentContextMenu = OfficeContextMenu.show(
+      context: context,
+      globalPosition: hit.globalPosition,
+      actions: actions,
+      enableFiltering: !reviewOnly,
+      keyboardNavigation: keyboardNavigation,
+      onDismiss: () {
+        _commentContextMenu = null;
+        _restoreCommentContextFocus();
+        _commentContextIsCurrent = null;
+      },
+      onSelect: (id) {
+        if (!current() || !_wordRouteIsCurrent) return;
+        if (id == 'proofing:review') {
+          if (issue != null) _word.selectProofingIssue(issue, reveal: false);
+          _word.openReviewPane();
+          return;
+        }
+        if (_word.input.composing.isValid &&
+            !_word.input.composing.isCollapsed) {
+          return;
+        }
+        if (issue != null && id.startsWith('proofing:')) {
+          if (id == 'proofing:ignore') {
+            _word.proofing.ignoreOnce(issue);
+          } else if (id == 'proofing:ignoreWord') {
+            _word.proofing.ignoreWord(issue);
+          } else if (id == 'proofing:add') {
+            _word.proofing.addWord(issue);
+          } else if (id.startsWith('proofing:replace:') && _canMutate) {
+            final index = int.tryParse(id.split(':').last);
+            if (index != null &&
+                index >= 0 &&
+                index < issue.finding.replacements.length) {
+              _word.applyProofingSuggestion(
+                issue,
+                issue.finding.replacements[index],
+              );
+            }
+          }
+          if (!_word.proofing.enabled) {
+            unawaited(_checkCommentProofing());
+          }
+          return;
+        }
+        if (id == 'copy') {
+          _word.copyToClipboard();
+        } else if (id == 'selectAll') {
+          _word.selectAll();
+        } else if (_canMutate && _word.config.allowsMutation) {
+          switch (id) {
+            case 'cut':
+              _word.cutToClipboard(isCurrent: canMutateCurrent);
+            case 'paste':
+              _word.pasteFromClipboard(isCurrent: canMutateCurrent);
+            case 'replyComment':
+              _replyWordComment(comment.id);
+            case 'resolveComment':
+              _word.setCommentResolved(comment.id, true);
+            case 'reopenComment':
+              _word.setCommentResolved(comment.id, false);
+            case 'deleteComment':
+              _word.deleteComment(comment.id);
+          }
+        }
+      },
+    );
+  }
+
+  Future<void> _checkCommentProofing() async {
+    try {
+      await _word.proofing.checkNow(includeManualProviders: false);
+    } on Object {
+      if (!mounted) return;
+      _toast(
+        _arabic
+            ? 'تعذر إكمال تدقيق المستند. حاول مجددًا.'
+            : 'The document check could not finish. Try again.',
+      );
+    }
   }
 
   Future<void> _insertCommentPicture() async {
@@ -5936,13 +6438,21 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     return spans;
   }
 
-  Widget _wordCommentsPane(bool dark) {
+  Widget _wordCommentsPane(bool dark, {bool expanded = false}) {
+    // Match the Word surface's current mode before its child rebuilds.
+    _word.syncConfig(
+      _printPreview
+          ? _config.copyWith(mode: OfficeInteractionMode.viewing)
+          : _config,
+    );
+    _syncCommentReplyDrafts();
     final Color bg = dark ? const Color(0xFF242424) : const Color(0xFFF3F3F3);
     final List<WmlComment> roots = WordComment.roots(_word.document);
     return Material(
       color: bg,
       child: SizedBox(
-        width: 320,
+        key: const ValueKey<String>('studio-comments-pane'),
+        width: expanded ? null : 320,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
@@ -5970,7 +6480,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                   IconButton(
                     tooltip: _arabic ? 'إخفاء' : 'Hide',
                     visualDensity: VisualDensity.compact,
-                    onPressed: () => setState(() => _showComments = false),
+                    onPressed: () => _setShowComments(false),
                     icon: const Icon(Icons.close, size: 16),
                   ),
                 ],
@@ -6010,7 +6520,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                             ) ==
                             root.id &&
                         _canMutate)
-                      _commentReplyBox(root.id, dark),
+                      _commentReplyBox(root, dark),
                     const SizedBox(height: 8),
                   ],
                 ],
@@ -6022,34 +6532,32 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     );
   }
 
-  Widget _commentReplyBox(int rootId, bool dark) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(4, 0, 4, 8),
-      child: Row(
-        children: <Widget>[
-          Expanded(
-            child: TextField(
-              controller: _commentReply,
-              minLines: 1,
-              maxLines: 3,
-              style: TextStyle(fontSize: 12, color: _officeTheme.chromeText),
-              decoration: InputDecoration(
-                isDense: true,
-                hintText: _arabic ? 'كتابة رد…' : 'Write a reply…',
-                filled: true,
-                fillColor: dark ? const Color(0xFF1E1E1E) : Colors.white,
-                border: const OutlineInputBorder(),
-              ),
-              onSubmitted: (_) => _sendCommentReply(rootId),
-            ),
-          ),
-          IconButton(
-            tooltip: _arabic ? 'إرسال' : 'Send',
-            onPressed: () => _sendCommentReply(rootId),
-            icon: Icon(Icons.send, size: 16, color: _accent),
-          ),
-        ],
-      ),
+  Widget _commentReplyBox(WmlComment root, bool dark) {
+    final draft = _commentReplyDraft(root);
+    final document = _word.document;
+    return _CommentReplyComposer(
+      key: draft.key,
+      draft: draft,
+      proofing: _word.proofing,
+      isCurrent: () =>
+          mounted &&
+          _app == SuiteApp.word &&
+          _showComments &&
+          !_opening &&
+          _canMutate &&
+          _word.config.allowsMutation &&
+          _wordRouteIsCurrent &&
+          identical(document, _word.document) &&
+          identical(_commentReplyDrafts[root.id], draft) &&
+          identical(WordComment.byId(document, root.id), root) &&
+          _word.selectedCommentId != null &&
+          WordComment.threadRootId(document, _word.selectedCommentId!) ==
+              root.id,
+      arabic: _arabic,
+      dark: dark,
+      textColor: _officeTheme.chromeText,
+      accent: _accent,
+      onPost: () => _postCommentReply(draft),
     );
   }
 
@@ -6061,6 +6569,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     final bool selected = _word.selectedCommentId == comment.id;
     final bool dimmed = root.resolved;
     return Opacity(
+      key: ValueKey<String>('studio-comment-${comment.id}'),
       opacity: dimmed ? 0.55 : 1,
       child: Padding(
         padding: const EdgeInsets.only(bottom: 6),
@@ -6145,7 +6654,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                   ),
                 ),
                 const SizedBox(height: 6),
-                if (selected && _canMutate)
+                if (selected && !_opening && _word.config.allowsSelection)
                   _commentBodySurface(comment)
                 else
                   Text.rich(
@@ -6172,6 +6681,17 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                     child: Wrap(
                       spacing: 0,
                       children: <Widget>[
+                        IconButton(
+                          key: ValueKey<String>(
+                            'studio-comment-reply-action-${comment.id}',
+                          ),
+                          tooltip: _arabic ? 'رد' : 'Reply',
+                          visualDensity: VisualDensity.compact,
+                          onPressed: _canMutate
+                              ? () => _replyWordComment(root.id)
+                              : null,
+                          icon: const Icon(Icons.reply, size: 16),
+                        ),
                         IconButton(
                           tooltip: root.resolved
                               ? (_arabic ? 'إعادة فتح' : 'Reopen')
@@ -6222,58 +6742,34 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         }
         return SizedBox(
           height: _word.commentSurfaceHeight,
-          child: WordCanvas(
-            compact: true,
-            document: _word.commentDocument,
-            laidOut: laid,
-            caret: _word.commentCaret,
-            viewport: _commentViewport,
-            hasFocus:
-                _word.isEditingComment && _word.selectedCommentId == comment.id,
-            config: _config.copyWith(showRulers: false),
-            selectedCommentId: comment.id,
-            onContextMenu: (OfficeContextHit hit) {
-              OfficeContextMenu.dismiss(_commentContextMenu);
-              _commentContextMenu = OfficeContextMenu.show(
-                context: context,
-                globalPosition: hit.globalPosition,
-                actions: OfficeContextMenu.word(
-                  hit: OfficeContextHit(
-                    kind: OfficeContextKind.comment,
-                    globalPosition: hit.globalPosition,
-                    commentId: comment.id,
-                  ),
-                  controller: _word,
-                ),
-                onSelect: (String id) {
-                  _commentContextMenu = null;
-                  switch (id) {
-                    case 'cut':
-                      _word.cutToClipboard();
-                    case 'copy':
-                      _word.copyToClipboard();
-                    case 'paste':
-                      _word.pasteFromClipboard();
-                    case 'selectAll':
-                      _word.selectAll();
-                    case 'replyComment':
-                      _word.insertComment(parentId: comment.id);
-                    case 'resolveComment':
-                      _word.setCommentResolved(comment.id, true);
-                    case 'reopenComment':
-                      _word.setCommentResolved(comment.id, false);
-                    case 'deleteComment':
-                      _word.deleteComment(comment.id);
-                  }
-                },
-              );
-            },
-            onChanged: () {
-              if (!_word.isEditingComment ||
-                  _word.selectedCommentId != comment.id) {
-                _word.beginCommentEdit(comment.id);
-              }
-            },
+          child: Builder(
+            key: _commentCanvasKey,
+            builder: (_) => WordCanvas(
+              key: ValueKey<String>('studio-comment-canvas-${comment.id}'),
+              compact: true,
+              document: _word.commentDocument,
+              laidOut: laid,
+              caret: _word.commentCaret,
+              viewport: _commentViewport,
+              hasFocus:
+                  _word.isEditingComment &&
+                  _word.selectedCommentId == comment.id,
+              config: _word.config.copyWith(showRulers: false),
+              selectedCommentId: comment.id,
+              proofingFindings: _word.proofing.findingsByParagraph,
+              onReviewTap: _showCommentReview,
+              onContextMenu: (hit) => _showCommentContext(comment, hit),
+              onChanged: () {
+                if (!_word.isEditingComment ||
+                    _word.selectedCommentId != comment.id) {
+                  _word.beginCommentEdit(comment.id);
+                } else {
+                  // Selection, dragging, and repeated clicks must cancel a
+                  // pending review tap without invalidating checked text.
+                  _word.refreshView();
+                }
+              },
+            ),
           ),
         );
       },
@@ -6992,26 +7488,46 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       _word.viewport.origin.dx,
       _word.documentLaidOut.pageStackTop(page, scale),
     );
-    _word.refresh();
+    _word.refreshView();
   }
 
   Widget _body(bool dark) {
     return ColoredBox(
       color: dark ? const Color(0xFF121212) : const Color(0xFFD0D0D0),
-      child: Row(
-        children: <Widget>[
-          if (!(_app == SuiteApp.powerpoint && _slides.isPresenting))
-            _sidePane(dark),
-          Expanded(child: _stage(dark)),
-          if (_app == SuiteApp.word && _showComments) _wordCommentsPane(dark),
-          if (_selectedOfficeVisual != null &&
-              !(_app == SuiteApp.powerpoint && _slides.isPresenting))
-            _visualPane(dark),
-          if (_app == SuiteApp.powerpoint &&
-              _showAnimPane &&
-              !_slides.isPresenting)
-            _animationPane(dark),
-        ],
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          final commentsBelow =
+              _app == SuiteApp.word &&
+              _showComments &&
+              constraints.maxWidth < 1040;
+          final stage = Row(
+            children: <Widget>[
+              if (!(_app == SuiteApp.powerpoint && _slides.isPresenting))
+                _sidePane(dark),
+              Expanded(child: _stage(dark)),
+              if (_app == SuiteApp.word && _showComments && !commentsBelow)
+                _wordCommentsPane(dark),
+              if (_selectedOfficeVisual != null &&
+                  !(_app == SuiteApp.powerpoint && _slides.isPresenting))
+                _visualPane(dark),
+              if (_app == SuiteApp.powerpoint &&
+                  _showAnimPane &&
+                  !_slides.isPresenting)
+                _animationPane(dark),
+            ],
+          );
+          if (!commentsBelow) return stage;
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              Expanded(child: stage),
+              SizedBox(
+                height: math.min(340, constraints.maxHeight * 0.45),
+                child: _wordCommentsPane(dark, expanded: true),
+              ),
+            ],
+          );
+        },
       ),
     );
   }
@@ -7036,6 +7552,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                   QudsWordEditor(
                     controller: _word,
                     focusNode: _wordFocus,
+                    onCommentContextMenuRequested: _showCommentCaretContext,
                     config: _printPreview
                         ? _config.copyWith(mode: OfficeInteractionMode.viewing)
                         : _config,
@@ -9200,4 +9717,627 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   }
 
   int get _wordCount => _word.documentStats.words;
+}
+
+/// Draft identity includes the thread object, because IDs can be reused after
+/// a deletion or when another document is opened.
+class _CommentReplyDraft {
+  _CommentReplyDraft(this.root);
+
+  final WmlComment root;
+  final GlobalKey<_CommentReplyComposerState> key =
+      GlobalKey<_CommentReplyComposerState>();
+  String text = '';
+}
+
+class _CommentReplyComposer extends StatefulWidget {
+  const _CommentReplyComposer({
+    super.key,
+    required this.draft,
+    required this.proofing,
+    required this.isCurrent,
+    required this.arabic,
+    required this.dark,
+    required this.textColor,
+    required this.accent,
+    required this.onPost,
+  });
+
+  final _CommentReplyDraft draft;
+  final WordProofingSession proofing;
+  final bool Function() isCurrent;
+  final bool arabic;
+  final bool dark;
+  final Color textColor;
+  final Color accent;
+  final bool Function() onPost;
+
+  @override
+  State<_CommentReplyComposer> createState() => _CommentReplyComposerState();
+}
+
+class _CommentReplyComposerState extends State<_CommentReplyComposer> {
+  late final _DraftProofingTextController _text;
+  final FocusNode _focus = FocusNode(debugLabel: 'studio-comment-reply');
+  late TextEditingValue _observedValue;
+  late Object _configuration;
+  Timer? _checkTimer;
+  WordDraftProofingResult? _result;
+  int _generation = 0;
+  int _findingIndex = 0;
+  bool _checking = false;
+  bool _checkError = false;
+  bool _wasCurrent = false;
+  bool _requestActive = false;
+  bool _pendingCheck = false;
+
+  bool get _composing =>
+      _text.value.composing.isValid && !_text.value.composing.isCollapsed;
+
+  bool get _canCheck =>
+      mounted &&
+      widget.isCurrent() &&
+      widget.proofing.enabled &&
+      !_composing &&
+      _text.text.trim().isNotEmpty;
+
+  List<OfficeProofingFinding> get _findings =>
+      _result?.report.findings ?? const <OfficeProofingFinding>[];
+
+  @override
+  void initState() {
+    super.initState();
+    _text = _DraftProofingTextController(text: widget.draft.text);
+    _observedValue = _text.value;
+    _configuration = widget.proofing.draftConfigurationKey;
+    _text.addListener(_onTextChanged);
+    _focus.addListener(_onFocusChanged);
+    widget.proofing.addListener(_onProofingChanged);
+    _scheduleCheck(rebuild: false);
+  }
+
+  @override
+  void didUpdateWidget(covariant _CommentReplyComposer oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (!identical(oldWidget.proofing, widget.proofing)) {
+      oldWidget.proofing.removeListener(_onProofingChanged);
+      widget.proofing.addListener(_onProofingChanged);
+    }
+    final configuration = widget.proofing.draftConfigurationKey;
+    if (configuration != _configuration || _wasCurrent != widget.isCurrent()) {
+      _configuration = configuration;
+      _scheduleCheck(rebuild: false);
+    }
+  }
+
+  void _onTextChanged() {
+    final previous = _observedValue;
+    _observedValue = _text.value;
+    widget.draft.text = _text.text;
+    if (previous.text != _text.text ||
+        previous.composing != _text.value.composing) {
+      _scheduleCheck();
+      return;
+    }
+    if (previous.selection != _text.selection && _findings.isNotEmpty) {
+      final index = _findingAtCaret(_findings);
+      if (index != null && index != _findingIndex) {
+        setState(() => _findingIndex = index);
+      }
+    }
+  }
+
+  int? _findingAtCaret(List<OfficeProofingFinding> findings) {
+    final offset = _text.selection.extentOffset;
+    if (offset < 0) return null;
+    final index = findings.indexWhere(
+      (finding) => offset >= finding.start && offset <= finding.end,
+    );
+    return index < 0 ? null : index;
+  }
+
+  void _onFocusChanged() {
+    if (_focus.hasFocus &&
+        _result == null &&
+        !_checking &&
+        _checkTimer == null &&
+        _canCheck) {
+      _scheduleCheck();
+    }
+  }
+
+  void _onProofingChanged() {
+    final configuration = widget.proofing.draftConfigurationKey;
+    if (configuration == _configuration) return;
+    _configuration = configuration;
+    _scheduleCheck();
+  }
+
+  void _scheduleCheck({bool rebuild = true}) {
+    void update() {
+      _checkTimer?.cancel();
+      _checkTimer = null;
+      _generation++;
+      _checking = false;
+      _checkError = false;
+      _pendingCheck = false;
+      _result = null;
+      _findingIndex = 0;
+      _text.findings = const [];
+      _wasCurrent = widget.isCurrent();
+      if (_canCheck) {
+        _checkTimer = Timer(widget.proofing.debounce, _checkDraft);
+      }
+    }
+
+    if (rebuild) {
+      setState(update);
+    } else {
+      update();
+    }
+  }
+
+  Future<void> _checkDraft() async {
+    if (!_canCheck) {
+      _scheduleCheck();
+      return;
+    }
+    // Configured native providers are also serving the document. Keep only
+    // one request in flight and check the latest debounced draft afterward.
+    if (_requestActive) {
+      setState(() {
+        _checkTimer?.cancel();
+        _checkTimer = null;
+        _pendingCheck = true;
+      });
+      return;
+    }
+    _requestActive = true;
+    _pendingCheck = false;
+    final generation = ++_generation;
+    final source = _text.text;
+    final proofing = widget.proofing;
+    final configuration = proofing.draftConfigurationKey;
+    final draft = widget.draft;
+    setState(() {
+      _checkTimer?.cancel();
+      _checkTimer = null;
+      _checking = true;
+      _checkError = false;
+    });
+    bool current() =>
+        mounted &&
+        generation == _generation &&
+        identical(proofing, widget.proofing) &&
+        identical(draft, widget.draft) &&
+        source == _text.text &&
+        configuration == proofing.draftConfigurationKey;
+    try {
+      final result = await proofing.checkDraft(source);
+      if (!current()) return;
+      if (!_canCheck) {
+        _scheduleCheck();
+        return;
+      }
+      setState(() {
+        _checking = false;
+        _checkError = result == null;
+        if (result != null &&
+            proofing.isDraftResultCurrent(result, text: source)) {
+          _result = result;
+          _text.findings = result.report.findings;
+          _findingIndex = _findingAtCaret(result.report.findings) ?? 0;
+        }
+      });
+    } on Object {
+      if (!current()) return;
+      setState(() {
+        _checking = false;
+        _checkError = true;
+      });
+    } finally {
+      _requestActive = false;
+      if (mounted && _pendingCheck) {
+        _pendingCheck = false;
+        unawaited(_checkDraft());
+      }
+    }
+  }
+
+  void _applySuggestion(
+    WordDraftProofingResult result,
+    OfficeProofingFinding finding,
+    String replacement,
+  ) {
+    if (!_canCheck ||
+        !identical(result, _result) ||
+        !result.report.findings.contains(finding) ||
+        !finding.replacements.contains(replacement) ||
+        !widget.proofing.isDraftResultCurrent(result, text: _text.text) ||
+        finding.start < 0 ||
+        finding.end < finding.start ||
+        finding.end > _text.text.length ||
+        _text.text.substring(finding.start, finding.end) !=
+            finding.originalText) {
+      return;
+    }
+    _text.value = TextEditingValue(
+      text: _text.text.replaceRange(finding.start, finding.end, replacement),
+      selection: TextSelection.collapsed(
+        offset: finding.start + replacement.length,
+      ),
+    );
+    _focus.requestFocus();
+  }
+
+  void _stepFinding(int delta) {
+    if (!mounted || _findings.isEmpty || !widget.isCurrent() || _composing) {
+      return;
+    }
+    setState(() {
+      _findingIndex = (_findingIndex + delta) % _findings.length;
+    });
+  }
+
+  String get _checkStatus {
+    if (!widget.proofing.enabled) {
+      return widget.arabic
+          ? 'تدقيق الرد متوقف مؤقتًا.'
+          : 'Reply checking paused.';
+    }
+    if (_composing) {
+      return widget.arabic
+          ? 'أكمل الكتابة لتدقيق الرد.'
+          : 'Finish typing to check this reply.';
+    }
+    if (_checkTimer != null) {
+      return widget.arabic ? 'بانتظار توقف الكتابة…' : 'Waiting for a pause…';
+    }
+    if (_checking) {
+      return widget.arabic ? 'جارٍ تدقيق الرد…' : 'Checking reply…';
+    }
+    if (_pendingCheck) {
+      return widget.arabic ? 'بانتظار تدقيق الرد…' : 'Waiting to check reply…';
+    }
+    if (_checkError) {
+      return widget.arabic
+          ? 'تعذر إكمال تدقيق الرد. حاول مجددًا.'
+          : 'The reply check could not finish. Try again.';
+    }
+    final report = _result?.report;
+    if (report == null) {
+      return widget.arabic
+          ? 'لم يُدقّق الرد بعد.'
+          : 'Reply has not been checked.';
+    }
+    if (!report.complete) {
+      return widget.arabic
+          ? '${_findings.length} اقتراحات؛ تدقيق الرد غير مكتمل.'
+          : '${_findings.length} suggestions; reply check incomplete.';
+    }
+    if (_findings.isEmpty) {
+      return widget.arabic
+          ? 'لم يُعثر على أخطاء في الرد.'
+          : 'No issues found in this reply.';
+    }
+    return widget.arabic
+        ? '${_findings.length} اقتراحات في الرد.'
+        : '${_findings.length} ${_findings.length == 1 ? 'suggestion' : 'suggestions'} in reply.';
+  }
+
+  Widget _proofingStatus() {
+    final result = _result;
+    final findings = _findings;
+    final finding = findings.isEmpty
+        ? null
+        : findings[_findingIndex.clamp(0, findings.length - 1)];
+    final problems = result?.report.results
+        .where((provider) => provider.status != OfficeProofingStatus.success)
+        .map((provider) => provider.message ?? provider.status.name)
+        .toSet()
+        .join(' ');
+    return Padding(
+      padding: const EdgeInsets.only(top: 4),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Row(
+            children: [
+              Expanded(
+                child: Semantics(
+                  liveRegion: true,
+                  child: Text(
+                    _checkStatus,
+                    key: ValueKey<String>(
+                      'studio-comment-draft-status-${widget.draft.root.id}',
+                    ),
+                    style: TextStyle(fontSize: 11, color: widget.textColor),
+                  ),
+                ),
+              ),
+              if (_checkError || (result != null && !result.report.complete))
+                IconButton(
+                  tooltip: widget.arabic ? 'تدقيق الرد' : 'Check reply',
+                  onPressed: _canCheck ? _checkDraft : null,
+                  visualDensity: VisualDensity.compact,
+                  icon: const Icon(Icons.refresh, size: 16),
+                ),
+            ],
+          ),
+          if (result != null &&
+              !result.report.complete &&
+              problems != null &&
+              problems.isNotEmpty)
+            Padding(
+              padding: const EdgeInsets.only(top: 3),
+              child: Text(
+                problems,
+                style: TextStyle(
+                  fontSize: 10,
+                  color: widget.textColor.withValues(alpha: 0.75),
+                ),
+              ),
+            ),
+          if (result != null && finding != null)
+            Container(
+              key: ValueKey<String>(
+                'studio-comment-draft-suggestions-${widget.draft.root.id}',
+              ),
+              margin: const EdgeInsets.only(top: 4),
+              padding: const EdgeInsets.all(6),
+              decoration: BoxDecoration(
+                color: widget.accent.withValues(alpha: 0.06),
+                borderRadius: BorderRadius.circular(4),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          finding.message,
+                          style: TextStyle(
+                            fontSize: 11,
+                            color: widget.textColor,
+                          ),
+                        ),
+                      ),
+                      if (findings.length > 1) ...[
+                        IconButton(
+                          key: ValueKey<String>(
+                            'studio-comment-draft-previous-${widget.draft.root.id}',
+                          ),
+                          tooltip: widget.arabic
+                              ? 'الاقتراح السابق'
+                              : 'Previous reply suggestion',
+                          onPressed: () => _stepFinding(-1),
+                          visualDensity: VisualDensity.compact,
+                          icon: const Icon(Icons.chevron_left, size: 16),
+                        ),
+                        Text(
+                          '${_findingIndex + 1}/${findings.length}',
+                          style: TextStyle(
+                            fontSize: 10,
+                            color: widget.textColor,
+                          ),
+                        ),
+                        IconButton(
+                          key: ValueKey<String>(
+                            'studio-comment-draft-next-${widget.draft.root.id}',
+                          ),
+                          tooltip: widget.arabic
+                              ? 'الاقتراح التالي'
+                              : 'Next reply suggestion',
+                          onPressed: () => _stepFinding(1),
+                          visualDensity: VisualDensity.compact,
+                          icon: const Icon(Icons.chevron_right, size: 16),
+                        ),
+                      ],
+                    ],
+                  ),
+                  Wrap(
+                    spacing: 4,
+                    runSpacing: 2,
+                    children: [
+                      for (
+                        var index = 0;
+                        index < finding.replacements.length && index < 5;
+                        index++
+                      )
+                        ActionChip(
+                          key: ValueKey<String>(
+                            'studio-comment-draft-replace-${widget.draft.root.id}-$index',
+                          ),
+                          tooltip: finding.replacements[index].isEmpty
+                              ? (widget.arabic ? 'حذف' : 'Delete')
+                              : finding.replacements[index],
+                          label: ConstrainedBox(
+                            constraints: const BoxConstraints(maxWidth: 170),
+                            child: Text(
+                              finding.replacements[index].isEmpty
+                                  ? (widget.arabic ? 'حذف' : 'Delete')
+                                  : finding.replacements[index],
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                          visualDensity: VisualDensity.compact,
+                          onPressed: () => _applySuggestion(
+                            result,
+                            finding,
+                            finding.replacements[index],
+                          ),
+                        ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+        ],
+      ),
+    );
+  }
+
+  void focusReply() {
+    Scrollable.ensureVisible(
+      context,
+      alignment: 1,
+      alignmentPolicy: ScrollPositionAlignmentPolicy.keepVisibleAtEnd,
+    );
+    _focus.requestFocus();
+  }
+
+  void _post() {
+    if (!mounted || !widget.isCurrent() || _composing) {
+      return;
+    }
+    widget.draft.text = _text.text;
+    if (widget.onPost()) {
+      _text.clear();
+      setState(() {});
+    }
+  }
+
+  @override
+  void dispose() {
+    _generation++;
+    _checkTimer?.cancel();
+    widget.proofing.removeListener(_onProofingChanged);
+    _text.removeListener(_onTextChanged);
+    _focus.removeListener(_onFocusChanged);
+    _text.dispose();
+    _focus.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) => CallbackShortcuts(
+    bindings: <ShortcutActivator, VoidCallback>{
+      const SingleActivator(LogicalKeyboardKey.enter, control: true): _post,
+      const SingleActivator(LogicalKeyboardKey.enter, meta: true): _post,
+    },
+    child: Padding(
+      padding: const EdgeInsets.fromLTRB(4, 4, 4, 8),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
+          Text(
+            widget.arabic
+                ? 'رد على ${widget.draft.root.author}'
+                : 'Reply to ${widget.draft.root.author}',
+            style: TextStyle(fontSize: 11, color: widget.textColor),
+          ),
+          const SizedBox(height: 4),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: <Widget>[
+              Expanded(
+                child: TextField(
+                  key: ValueKey<String>(
+                    'studio-comment-reply-${widget.draft.root.id}',
+                  ),
+                  controller: _text,
+                  focusNode: _focus,
+                  minLines: 1,
+                  maxLines: 4,
+                  textInputAction: TextInputAction.newline,
+                  style: TextStyle(fontSize: 12, color: widget.textColor),
+                  decoration: InputDecoration(
+                    isDense: true,
+                    hintText: widget.arabic ? 'كتابة رد…' : 'Write a reply…',
+                    filled: true,
+                    fillColor: widget.dark
+                        ? const Color(0xFF1E1E1E)
+                        : Colors.white,
+                    border: const OutlineInputBorder(),
+                  ),
+                ),
+              ),
+              IconButton(
+                key: ValueKey<String>(
+                  'studio-comment-post-${widget.draft.root.id}',
+                ),
+                tooltip: widget.arabic
+                    ? 'نشر الرد (Ctrl+Enter)'
+                    : 'Post reply (Ctrl+Enter)',
+                onPressed: _text.text.trim().isEmpty ? null : _post,
+                icon: Icon(Icons.send, size: 16, color: widget.accent),
+              ),
+            ],
+          ),
+          if (_text.text.trim().isNotEmpty) _proofingStatus(),
+        ],
+      ),
+    ),
+  );
+}
+
+/// Presents validated draft findings without changing the TextField's text,
+/// selection, composition, or undo history.
+class _DraftProofingTextController extends TextEditingController {
+  _DraftProofingTextController({super.text});
+
+  List<OfficeProofingFinding> findings = const [];
+
+  @override
+  TextSpan buildTextSpan({
+    required BuildContext context,
+    TextStyle? style,
+    required bool withComposing,
+  }) {
+    if (findings.isEmpty ||
+        (value.composing.isValid && !value.composing.isCollapsed)) {
+      return super.buildTextSpan(
+        context: context,
+        style: style,
+        withComposing: withComposing,
+      );
+    }
+    final valid = findings
+        .where(
+          (finding) =>
+              finding.start >= 0 &&
+              finding.end > finding.start &&
+              finding.end <= text.length &&
+              text.substring(finding.start, finding.end) ==
+                  finding.originalText,
+        )
+        .toList();
+    final boundaries = <int>{0, text.length};
+    for (final finding in valid) {
+      boundaries.addAll([finding.start, finding.end]);
+    }
+    final sorted = boundaries.toList()..sort();
+    return TextSpan(
+      style: style,
+      children: [
+        for (var index = 0; index < sorted.length - 1; index++)
+          TextSpan(
+            text: text.substring(sorted[index], sorted[index + 1]),
+            style: _findingStyle(
+              valid
+                  .where(
+                    (finding) =>
+                        finding.start <= sorted[index] &&
+                        finding.end >= sorted[index + 1],
+                  )
+                  .firstOrNull,
+            ),
+          ),
+      ],
+    );
+  }
+
+  TextStyle? _findingStyle(OfficeProofingFinding? finding) => finding == null
+      ? null
+      : TextStyle(
+          decoration: TextDecoration.underline,
+          decorationStyle: TextDecorationStyle.wavy,
+          decorationColor: switch (finding.category) {
+            OfficeProofingCategory.spelling => const Color(0xFFC62828),
+            OfficeProofingCategory.grammar => const Color(0xFF1565C0),
+            OfficeProofingCategory.style => const Color(0xFFAD6800),
+          },
+        );
 }

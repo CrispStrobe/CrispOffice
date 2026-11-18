@@ -1,0 +1,56 @@
+{
+  "status": "passed",
+  "scope": "208 headless Flutter cases; release web build recorded separately",
+  "source_commit": "af4971352fa14247e2de7be8c9b5733921e2ff30",
+  "input_digest": "f3763e2ac403611f73b8ba935b52ee21cfc7fce1ea48f37c5998c5f340de96cd",
+  "source_unchanged_during_tests": true,
+  "run": {
+    "name": "native-acceptance",
+    "command": [
+      "/workspace/scratch/a686c23de6c7/zotero-toolchain/flutter-sdk/bin/flutter",
+      "test",
+      "--no-pub",
+      "--concurrency=1",
+      "--reporter",
+      "json",
+      "test/word_thesaurus_dialog_test.dart",
+      "test/word_thesaurus_controller_test.dart",
+      "test/word_proofing_correction_test.dart",
+      "test/word_proofing_capture_cache_test.dart",
+      "test/word_proofing_context_test.dart",
+      "test/word_review_pane_test.dart",
+      "test/word_thesaurus_review_integration_test.dart",
+      "test/word_keyboard_review_test.dart",
+      "test/word_keyboard_review_identity_test.dart",
+      "test/word_keyboard_context_geometry_test.dart",
+      "test/word_text_proofing_controls_test.dart",
+      "test/word_text_proofing_pane_test.dart",
+      "/workspace/scratch/a686c23de6c7/quds_office_suite/docs/validation/thesaurus-20261118/continuation/local/fixtures/native_pack_test.dart",
+      "/workspace/scratch/a686c23de6c7/quds_office_suite/docs/validation/thesaurus-20261118/continuation/local/fixtures/native_visual_test.dart"
+    ],
+    "cwd": "/workspace/scratch/a686c23de6c7/zotero-validation/packages/quds_office_editor",
+    "exit_code": 0,
+    "seconds": 97.01215126100033,
+    "stdout": "logs/native-acceptance.stdout",
+    "stderr": "logs/native-acceptance.stderr",
+    "stdout_sha256": "eb3312aa5960894239d40b4764033d5997b9a6980b924edb09ad1c385abc21e8",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "acceptance_guards": {
+    "exit_success": true,
+    "all_selected_suites_executed": true,
+    "nonempty_cases": true,
+    "no_failed_or_skipped_cases": true,
+    "every_started_test_finished_once": true,
+    "final_event_success": true,
+    "clean_event_stream": true
+  },
+  "test_audit": {
+    "passed": 208,
+    "failed": 0,
+    "skipped": 0,
+    "suite_count": 14,
+    "every_started_test_finished_once": true,
+    "layout_or_tap_diagnostics": []
+  }
+}

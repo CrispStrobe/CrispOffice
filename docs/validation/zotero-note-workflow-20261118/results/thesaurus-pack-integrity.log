@@ -1,0 +1,20 @@
+{
+  "en": {
+    "manifestSha256": "13ae58da2a20c0eb74ccf20acc3fade665e12e48daf783351f90b3073fd28e23",
+    "verifiedFiles": 518,
+    "meaningGroups": 107519,
+    "indexKeys": 131094,
+    "packBytes": 14434207,
+    "validationSeconds": 3.326,
+    "negativeControl": "qudszznonexistentlexicalprobe"
+  },
+  "de": {
+    "manifestSha256": "8788f9af67186b40f963f948aeceed01c012f3e9653ddab68947e16213cb0453",
+    "verifiedFiles": 519,
+    "meaningGroups": 50264,
+    "indexKeys": 225581,
+    "packBytes": 10144956,
+    "validationSeconds": 6.165,
+    "negativeControl": "qudszznonexistentlexicalprobe"
+  }
+}

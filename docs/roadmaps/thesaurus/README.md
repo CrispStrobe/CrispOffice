@@ -1,14 +1,78 @@
 # English and German thesaurus
 
-Status: scoped; implementation and language-pack qualification are pending.
-Scope recorded: 18 November 2026.
+Status: implemented in the offline-thesaurus branch; installed-desktop and
+actual offline-browser release acceptance remain open. Updated 18 November 2026.
 
-This is a documentation-only plan. This change adds no thesaurus corpus,
-compiled language pack, executable provider, model, or user-visible feature.
-The integration assessment uses the CrispStrobe fork at
+The branch includes full English/German packs, an injectable pure-Dart lookup
+service, guarded Word replacement, and a Flutter dialog. The original scope
+and acceptance requirements below remain the release contract. Current local
+evidence and environment limitations are recorded in the
+[continuation report](../../validation/thesaurus-20261118/continuation/README.md).
+The [resumed integration report](../../validation/thesaurus-20261118/resume/README.md)
+records the newer review/Zotero reconciliation, IME refusal fix and strengthened
+offline replay checks; its results are separate from the earlier qualification.
+The original integration assessment used the CrispStrobe fork at
 [`f383c826205e321eda3ed3bdbcd584e9a2d4da14`](https://github.com/CrispStrobe/quds_office_suite/tree/f383c826205e321eda3ed3bdbcd584e9a2d4da14);
 earlier findings about the much smaller public upstream are not the fork's
 implementation baseline.
+
+## Use the thesaurus
+
+Select a word or phrase in a single Word paragraph, or place the caret in a
+word. Open **Review → Thesaurus**, the book action in the review status/pane,
+the **Thesaurus…** context-menu action, or **Shift+F7** from the document or
+Review pane. Plain F7 retains writing review, and Alt+F7 / Alt+Shift+F7 navigate
+writing findings. A host using `QudsWordEditor` gets the bundled service by default and
+can inject a different `thesaurusService`.
+
+The dialog inherits the text's effective language. **Look up in** changes only
+the lookup language. Select a literal alternative in a meaning group, then
+choose **Replace**. Lookup alone adds no document changes or undo entries;
+replacement is one undo unit. **Sources and licenses** displays verified
+bundled notices. A stale selection, changed language or pack, active IME,
+mixed-language selection, protected/generated content or unsupported target
+cannot be silently replaced.
+
+Finish an active IME composition before opening the thesaurus. The dialog
+helper refuses the request before transferring focus; hosts with a Scaffold
+show an inline notice. A supplied earlier target does not bypass this check.
+
+| Installed pack | Meaning groups | Source terms | Shipped size, including manifest/notices |
+| --- | ---: | ---: | ---: |
+| Regular OEWN 2025 | 107,519 | 185,129 | about 13.8 MiB |
+| OpenThesaurus export, 17 November 2026 | 50,264 | 203,767 | about 9.7 MiB |
+
+Packs retain separate meanings, original IDs, source spellings, available
+labels, definitions/examples and typed relations. Related-concept identifiers
+are separate from selectable alternatives. The compiler indexes all accepted
+lexical records; it does not restrict them to the school-vocabulary or spelling
+allowlist. English source forms and documented WordNet suffix rules provide
+bounded inflected lookup. German uses the existing finite Unicode noun
+resource, preserving unresolved readings and ambiguity. No automatic
+grammatical reinflection, contextual sense selection or de-CH spelling rewrite
+is claimed.
+
+### Implementation and regeneration
+
+- Engine: `OfficeThesaurusService`, typed query/sense/term/result/manifest
+  contracts, per-file raw-deflate compression, verified logical/compressed
+  bytes, and bounded shard/result caches. The engine has no Flutter, filesystem
+  or network dependency.
+- Editor: `captureThesaurusTarget`, `lookupThesaurus`,
+  `canApplyThesaurusTerm` and `applyThesaurusTerm` bind the exact source,
+  controller, selection, language, service generation and returned candidate.
+  They reuse a neutral source-range capability and the existing rich-text
+  transaction without manufacturing proofing findings.
+- Flutter: `BundledOfficeThesaurus`, `showWordThesaurusDialog` and
+  `WordThesaurusDialog`. Package assets include the notices for both packs.
+- Data: [immutable inputs and source notices](../../../packages/quds_office_engine/third_party/thesaurus/README.md),
+  [compiler and verifier](../../../tools/thesaurus/README.md). The Python
+  standard-library compiler consumes checked-in source archives without network
+  access and emits deterministic shards plus pinned Dart manifest digests.
+
+The stock service reads only the requested index/sense shards. It distinguishes
+no entry, unsupported language, missing pack and failed verification. It does
+not download a model, send document text to a service or run on each keystroke.
 
 ## Goal and license decision
 
@@ -20,18 +84,17 @@ Prefer MIT, Apache, BSD, CC0 and similarly permissive inputs. Noncommercial
 restrictions are unacceptable. Evaluate implementation code, lexical data,
 morphology, ranking inputs, model outputs and transitive inputs separately.
 
-| Role | Planned source | License treatment and decision |
+| Role | Selected source | License treatment and decision |
 | --- | --- | --- |
-| English default | Open English WordNet (OEWN), regular lexical edition | CC BY 4.0 for OEWN developments plus the underlying Princeton WordNet terms. Attribute both projects. The current target is the 2025 lexical edition; the exact artifact, revision and digest must be pinned in TH1. |
+| English default | Open English WordNet (OEWN), regular 2025 lexical edition | CC BY 4.0 for OEWN developments plus the underlying Princeton WordNet terms. Both original notices and attribution are bundled; exact input bytes are pinned in `third_party/thesaurus/sources.json`. |
 | English alternative | Princeton WordNet | Custom permissive WordNet license. Prefer this alternative if minimizing data-license conditions outweighs continuing lexical maintenance. Do not combine it with OEWN as a second default corpus. |
-| German default | OpenThesaurus | Select its offered CC BY-SA 4.0 option. Preserve attribution and the applicable ShareAlike obligations for distributed adapted data. The exact export snapshot remains a TH1 decision. |
+| German default | OpenThesaurus, SQL export 2026-11-17 23:15:01 UTC | CC BY-SA 4.0 selected from the archive's dual-license offer. Original notices, attribution, change description and exact archive bytes are retained. The SQL reader is independent code and never executes SQL. |
 | Initial German noun lookup support | Existing qualified Unicode Inflection-derived resource in this fork | Reuse its Unicode-3.0 notices, manifest and finite coverage; do not relicense or imply complete German morphology. |
 
 Independent implementation code follows the repository's existing MIT
 licensing. Language packs retain their source-specific terms. The
-[planned licensing and notices record](licensing-and-notices.md) is the
-source of truth for the future packs; it is not a statement that those packs
-are already distributed.
+[licensing and notices record](licensing-and-notices.md) describes the actual
+bundled sources and their redistribution boundary.
 
 ## Existing fork capabilities to reuse
 
@@ -90,9 +153,9 @@ its canvas can navigate to or edit every position. Mixed-language selections,
 multi-paragraph selections, generated fields, locked content and unsupported
 targets must produce a clear state.
 
-## Proposed architecture
+## Architecture and boundaries
 
-New names in this section are proposed contracts, not existing exported APIs.
+The implementation follows these boundaries; exported names are listed above.
 
 | Component | Responsibility | Boundary |
 | --- | --- | --- |
@@ -157,14 +220,14 @@ hyphens and formatting runs.
 
 ## Delivery sequence and acceptance
 
-| Stage | Deliverable | Completion evidence |
+| Stage | Deliverable | Current completion evidence / remaining gate |
 | --- | --- | --- |
-| TH0 | Scope, roadmap links and planned-source notices | This documentation change; all implementation stages below remain pending |
-| TH1 | Source selection and redistribution record | Exact input artifacts/revisions/digests, original notices, chosen license option, export-field review and a reproducible source manifest |
-| TH2 | Pack schema and deterministic importers | Identical outputs from identical pinned inputs; sense/relation/label preservation; output digests, counts and notices; malformed/corrupt input handling |
-| TH3 | Offline lookup and bounded morphology | Real EN/DE packs; exact and phrase lookup; qualified inflected forms; ambiguity, unsupported/missing/error outcomes; measured load/query/memory costs |
-| TH4 | Word review and replacement | Current-language resolution, target/candidate validation, stale-result rejection, protection/IME handling, formatting/revision preservation and one-unit undo/redo |
-| TH5 | Distribution and product acceptance | Pack notices in each shipped target, offline desktop and actual-browser evidence, representative linguistic review and accurately scoped documentation |
+| TH0 | Scope, roadmap links and source policy | Original scope retained; no additional corpus families added |
+| TH1 | Source selection and redistribution record | Pinned source archives, original notices, selected license option and `sources.json` |
+| TH2 | Pack schema and deterministic importers | Compiler, parser/provider tests, full-byte verification and repeat-build comparison |
+| TH3 | Offline lookup and bounded morphology | Real EN/DE pack queries and native measurements; actual-browser performance remains unqualified |
+| TH4 | Word review and replacement | Controller/UI tests plus existing proofing regressions; rich-text, source/candidate and undo/redo gates |
+| TH5 | Distribution and product acceptance | Native Flutter bundle checks and web release compilation; installed-desktop execution, actual offline-browser interaction and independent human linguistic review remain open |
 
 ### TH1: source and notice acceptance
 
@@ -230,8 +293,9 @@ rebuild the packs exactly, inspect the packaged notices, and exercise an actual
 desktop and browser runtime. A compiled-JavaScript test alone is not browser
 loading/CSP/UI acceptance. Preserve source and artifact identities with results.
 
-This planning commit requires Markdown content/link review only. It does not
-claim Dart, Flutter, pack-generation or product acceptance tests have run.
+The local validation report distinguishes executed checks from compiled-only
+or blocked release gates. Synthetic parser/editor tests do not establish
+linguistic quality, and a successful web compilation is not browser acceptance.
 
 ## Deferred work and related dataset review
 

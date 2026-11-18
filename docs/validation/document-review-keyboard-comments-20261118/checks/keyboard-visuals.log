@@ -1,0 +1,6 @@
+00:00 +0: loading /workspace/scratch/18d3825b0123/quds_office_suite/docs/validation/document-review-keyboard-comments-20261118/render_keyboard.dart
+00:00 +0: (setUpAll)
+00:00 +0: capture a keyboard-opened suggestion with its active action
+00:03 +1: capture actionable findings while a background check continues
+00:04 +2: (tearDownAll)
+00:04 +2: All tests passed!

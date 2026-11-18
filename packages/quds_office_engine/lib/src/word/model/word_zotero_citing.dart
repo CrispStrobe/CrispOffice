@@ -94,9 +94,12 @@ final class WordZoteroCitingSession {
           );
         } else {
           final note = entry.note!;
-          _notes.add(_NoteAnchor(note, paragraph, p, entry.offset));
+          final noteParagraphs = _flowParagraphs(note.blocks).toList();
+          _notes.add(
+            _NoteAnchor(note, paragraph, p, entry.offset, noteParagraphs),
+          );
           var noteOrder = 0;
-          for (final noteParagraph in _flowParagraphs(note.blocks)) {
+          for (final noteParagraph in noteParagraphs) {
             for (final field
                 in byParagraph[noteParagraph] ?? <WmlZoteroField>[]) {
               seen.add(field);
@@ -108,10 +111,11 @@ final class WordZoteroCitingSession {
                   anchor: paragraph,
                   anchorOffset: entry.offset,
                   note: note,
-                  noteOrder: noteOrder++,
+                  noteOrder: noteOrder,
                 ),
               );
             }
+            noteOrder++;
           }
         }
       }
@@ -131,8 +135,21 @@ final class WordZoteroCitingSession {
         'The selected Zotero field changed. Reopen the citation.',
       );
     }
+    if (insertionParagraph != null) {
+      final owners = _notes
+          .where((anchor) => anchor.paragraphs.contains(insertionParagraph))
+          .toList();
+      if (owners.length > 1 ||
+          (owners.isNotEmpty && _bodyParagraphs.contains(insertionParagraph))) {
+        throw UnsupportedError(
+          'The citation insertion paragraph belongs to more than one story.',
+        );
+      }
+      _insertionNote = owners.firstOrNull;
+    }
     if (insertionParagraph != null &&
-        _bodyParagraphs.contains(insertionParagraph)) {
+        (_bodyParagraphs.contains(insertionParagraph) ||
+            _insertionNote != null)) {
       if (insertionOffset < 0 ||
           insertionOffset > insertionParagraph!.text.length) {
         throw ArgumentError(
@@ -141,13 +158,11 @@ final class WordZoteroCitingSession {
       }
       _selected ??= _fields
           .where(
-            (f) =>
-                f.note == null &&
-                (f.original!.paragraphs.length > 1
-                    ? f.original!.paragraphs.contains(insertionParagraph)
-                    : identical(f.original?.paragraph, insertionParagraph) &&
-                          insertionOffset >= f.original!.start &&
-                          insertionOffset < f.original!.end),
+            (f) => (f.original!.paragraphs.length > 1
+                ? f.original!.paragraphs.contains(insertionParagraph)
+                : identical(f.original?.paragraph, insertionParagraph) &&
+                      insertionOffset >= f.original!.start &&
+                      insertionOffset < f.original!.end),
           )
           .firstOrNull;
     }
@@ -178,12 +193,14 @@ final class WordZoteroCitingSession {
   final _fieldsById = <String, _CitingField>{};
   final _originalFieldsPerNote = Map<WmlNote, int>.identity();
   final _notes = <_NoteAnchor>[];
+  _NoteAnchor? _insertionNote;
   final _sourceParagraphs = <WmlParagraph>{};
   final _sourceTexts = <WmlParagraph, String>{};
   final formattingWarnings = <String>{};
   late final String _originalData;
   late String _nativeData;
   _CitingField? _selected;
+  _CitingField? _stagedInsertion;
   bool _complete = false;
   bool _applied = false;
   _BibliographyStyle? _bibliographyStyle;
@@ -241,6 +258,16 @@ final class WordZoteroCitingSession {
     field.text = citation.plainCitation;
     field.seeded = true;
     _selected = field;
+  }
+
+  bool _seedPlacementMatches(_CitingField field) {
+    final preferred = WordZoteroDocumentData.citationNoteType(_nativeData);
+    // An inline style can be cited within an authored note. Its physical note
+    // index still belongs to that note, independently of the document style.
+    if (field.original == null && field.note != null) {
+      return preferred == 0 || preferred == field.noteType;
+    }
+    return preferred == field.noteType;
   }
 
   /// Document.displayAlert is handled by the host UI, with Zotero's exact
@@ -356,8 +383,7 @@ final class WordZoteroCitingSession {
           if (field.seeded &&
               !field.deleted &&
               !field.unlinked &&
-              field.noteType !=
-                  WordZoteroDocumentData.citationNoteType(_nativeData)) {
+              !_seedPlacementMatches(field)) {
             throw StateError(
               'Zotero changed the note placement while opening this citation. Choose Document style… first, then insert the selected sources again.',
             );
@@ -385,6 +411,15 @@ final class WordZoteroCitingSession {
         final field = _field(args[1]);
         final code = _string(args[2]);
         if (code != 'TEMP') _validateCode(code);
+        if (code != 'TEMP' &&
+            field.original == null &&
+            field.note != null &&
+            WordZotero.kindOfInstruction(_toNative(code)) ==
+                ZoteroFieldKind.bibliography) {
+          throw UnsupportedError(
+            'A bibliography must be in the document body.',
+          );
+        }
         if (field.original != null &&
             code != 'TEMP' &&
             WordZotero.kindOfInstruction(_toNative(code)) !=
@@ -472,6 +507,7 @@ final class WordZoteroCitingSession {
         _sourceTexts.entries.any((e) => e.key.text != e.value)) {
       throw StateError('The document changed while Zotero was open.');
     }
+    _assertNoteAnchorsUnchanged();
     final current = WordZotero.fields(document);
     final original = _fields.where((f) => f.original != null).toList();
     if (current.length != original.length) {
@@ -509,6 +545,50 @@ final class WordZoteroCitingSession {
     }
   }
 
+  void _assertNoteAnchorsUnchanged() {
+    final expected = <WmlNote, _NoteAnchor>{
+      for (final anchor in _notes) anchor.note: anchor,
+    };
+    final footnotes = _notesById(document.footnotes);
+    final endnotes = _notesById(document.endnotes);
+    final seen = <WmlNote>{};
+    for (final paragraph in _body) {
+      var offset = 0;
+      for (final inline in paragraph.inlines) {
+        if (inline is! WmlRun) continue;
+        if (inline.noteRefId != null) {
+          final matches =
+              (inline.noteRefEndnote
+                  ? endnotes
+                  : footnotes)[inline.noteRefId] ??
+              const <WmlNote>[];
+          final note = matches.length == 1 ? matches.single : null;
+          final anchor = expected[note];
+          final paragraphs = note == null
+              ? const <WmlParagraph>[]
+              : _flowParagraphs(note.blocks).toList();
+          if (note == null ||
+              anchor == null ||
+              !seen.add(note) ||
+              note.id != anchor.noteId ||
+              note.endnote != inline.noteRefEndnote ||
+              !identical(paragraph, anchor.paragraph) ||
+              offset != anchor.offset ||
+              paragraphs.length != anchor.paragraphs.length ||
+              Iterable<int>.generate(
+                paragraphs.length,
+              ).any((i) => !identical(paragraphs[i], anchor.paragraphs[i]))) {
+            throw StateError('A citation note changed while Zotero was open.');
+          }
+        }
+        offset += inline.text.length;
+      }
+    }
+    if (seen.length != _notes.length) {
+      throw StateError('A citation note changed while Zotero was open.');
+    }
+  }
+
   /// Applies a completed result. Call only inside the editor's rollback/undo
   /// boundary; a throwing application must restore all affected model state.
   void apply() {
@@ -523,7 +603,11 @@ final class WordZoteroCitingSession {
       final original = field.original;
       if (original == null) {
         if (!field.deleted) {
-          _insertResult(field, field.anchor, field.anchorOffset);
+          _insertResult(
+            field,
+            field.insertionParagraph!,
+            field.insertionOffset,
+          );
         }
         continue;
       }
@@ -693,7 +777,8 @@ final class WordZoteroCitingSession {
     }
     var paragraph = anchor;
     var at = offset;
-    if (field.noteType != 0) {
+    if (field.noteType != 0 &&
+        !(field.original == null && field.note != null)) {
       final note = WordNotes.insert(
         document,
         anchor,
@@ -723,15 +808,45 @@ final class WordZoteroCitingSession {
   }
 
   bool get _canInsert =>
-      insertionParagraph != null && _body.contains(insertionParagraph);
+      insertionParagraph != null &&
+      (_bodyParagraphs.contains(insertionParagraph) || _insertionNote != null);
 
   _CitingField _insert(int noteType) {
-    if (!_canInsert || _fields.any((f) => f.original == null && !f.deleted)) {
+    if (!_canInsert || _stagedInsertion?.deleted == false) {
       throw UnsupportedError(
-        'This Zotero operation needs one insertion point in the document body.',
+        'This Zotero operation needs one insertion point in the document body or an anchored note.',
       );
     }
     final paragraph = insertionParagraph!;
+    final owner = _insertionNote;
+    if (owner != null) {
+      final actualType = owner.note.endnote ? 2 : 1;
+      if (noteType != 0 && noteType != actualType) {
+        throw UnsupportedError(
+          'This citation belongs to an existing ${owner.note.endnote ? 'endnote' : 'footnote'}. Choose a compatible document style before inserting it.',
+        );
+      }
+      if (owner.paragraphs.any(
+        (paragraph) => paragraph.inlines.any(
+          (inline) => inline is WmlRun && inline.noteRefId != null,
+        ),
+      )) {
+        throw UnsupportedError(
+          'An existing note cannot contain another note reference. Resolve it before inserting a citation.',
+        );
+      }
+      if (_fields.any(
+        (field) =>
+            identical(field.note, owner.note) &&
+            !field.deleted &&
+            field.noteType != field.originalNoteType,
+      )) {
+        throw UnsupportedError(
+          'The destination note is being converted. Finish changing the document style before inserting a citation.',
+        );
+      }
+      noteType = actualType;
+    }
     if (_fields.any(
       (field) =>
           field.original != null &&
@@ -750,7 +865,6 @@ final class WordZoteroCitingSession {
     if (range.start != insertionOffset ||
         _fields.any(
           (f) =>
-              f.note == null &&
               f.original != null &&
               identical(f.original!.paragraph, paragraph) &&
               insertionOffset > f.original!.start &&
@@ -767,18 +881,28 @@ final class WordZoteroCitingSession {
     );
     final result = _CitingField.inserted(
       id: 'f${_fields.length}',
-      bodyIndex: _body.indexOf(paragraph),
-      anchor: paragraph,
-      anchorOffset: insertionOffset,
+      bodyIndex: owner?.bodyIndex ?? _body.indexOf(paragraph),
+      anchor: owner?.paragraph ?? paragraph,
+      anchorOffset: owner?.offset ?? insertionOffset,
+      insertionParagraph: paragraph,
+      insertionOffset: insertionOffset,
+      note: owner?.note,
+      noteOrder: owner?.paragraphs.indexOf(paragraph) ?? -1,
       noteType: noteType,
     );
     _addField(result);
+    _stagedInsertion = result;
     _selected = result;
     return result;
   }
 
   void _assertCanConvert(_CitingField field, int type) {
     if (type == field.originalNoteType) return;
+    if (field.original == null && field.note != null) {
+      throw UnsupportedError(
+        'A citation inserted into an existing note must stay in that note.',
+      );
+    }
     if (_kind(field) == ZoteroFieldKind.bibliography && type != 0) {
       throw UnsupportedError('A bibliography cannot be moved into a note.');
     }
@@ -797,6 +921,8 @@ final class WordZoteroCitingSession {
         note.blocks.length != 1 ||
         !identical(note.blocks.single, original.paragraph) ||
         _originalFieldsPerNote[note] != 1 ||
+        (_stagedInsertion?.deleted == false &&
+            identical(_stagedInsertion!.note, note)) ||
         original.paragraph.contentControlWrappers.isNotEmpty) {
       return false;
     }
@@ -844,6 +970,7 @@ final class WordZoteroCitingSession {
       var value = a.bodyIndex.compareTo(b.bodyIndex);
       if (value == 0) value = a.anchorOffset.compareTo(b.anchorOffset);
       if (value == 0) value = a.noteOrder.compareTo(b.noteOrder);
+      if (value == 0) value = a.noteOffset.compareTo(b.noteOffset);
       if (value == 0) {
         value = a.original == null
             ? -1
@@ -890,7 +1017,8 @@ final class WordZoteroCitingSession {
           for (final f in _fields)
             if (!f.deleted &&
                 f.noteType != 0 &&
-                (f.original == null || f.noteType != f.originalNoteType))
+                ((f.original == null && f.note == null) ||
+                    f.noteType != f.originalNoteType))
               (
                 body: f.bodyIndex,
                 offset: f.anchorOffset,
@@ -1091,6 +1219,8 @@ final class _CitingField {
     this.note,
     this.noteOrder = 0,
   }) : original = original,
+       insertionParagraph = null,
+       insertionOffset = 0,
        originalNoteType = note == null
            ? 0
            : note.endnote
@@ -1111,11 +1241,17 @@ final class _CitingField {
     required this.bodyIndex,
     required this.anchor,
     required this.anchorOffset,
+    required this.insertionParagraph,
+    required this.insertionOffset,
     required this.noteType,
+    this.note,
+    this.noteOrder = -1,
   }) : original = null,
-       originalNoteType = 0,
-       note = null,
-       noteOrder = -1,
+       originalNoteType = note == null
+           ? 0
+           : note.endnote
+           ? 2
+           : 1,
        code = 'TEMP',
        text = '',
        originalRuns = null;
@@ -1125,8 +1261,11 @@ final class _CitingField {
   final int bodyIndex;
   final WmlParagraph anchor;
   final int anchorOffset;
+  final WmlParagraph? insertionParagraph;
+  final int insertionOffset;
   final WmlNote? note;
   final int noteOrder;
+  int get noteOffset => original?.start ?? insertionOffset;
   final int originalNoteType;
   int noteType;
   String code;
@@ -1150,11 +1289,20 @@ final class _CitingField {
 }
 
 final class _NoteAnchor {
-  const _NoteAnchor(this.note, this.paragraph, this.bodyIndex, this.offset);
+  _NoteAnchor(
+    this.note,
+    this.paragraph,
+    this.bodyIndex,
+    this.offset,
+    List<WmlParagraph> paragraphs,
+  ) : noteId = note.id,
+      paragraphs = List.unmodifiable(paragraphs);
   final WmlNote note;
+  final int noteId;
   final WmlParagraph paragraph;
   final int bodyIndex;
   final int offset;
+  final List<WmlParagraph> paragraphs;
 }
 
 /// Zotero's native layout callback uses twips; line spacing is expressed in

@@ -1,0 +1,638 @@
+{
+  "audited_at_utc": "2026-11-18T19:12:35.384570+00:00",
+  "audit_method": "Independent standard-library parsing and hashing of saved local receipts; no tests executed; no remote queries.",
+  "frozen_application_source": "af4971352fa14247e2de7be8c9b5733921e2ff30",
+  "current_head": "b9e8c159cea315aa0a044c4b0a6fc2cd35d11055",
+  "native": {
+    "receipt": "thesaurus-resume-native-attempt1/receipt.json",
+    "receipt_sha256": "6e8571da91103fccb003755c13674d0fa2531f19916e99bf6a005c3aa1d466f7",
+    "status": "native_passed_web_compiled_browser_not_run",
+    "started_at_utc": "2026-11-18T19:01:31.814690+00:00",
+    "finished_at_utc": "2026-11-18T19:04:09.581925+00:00",
+    "independent_event_audit": {
+      "passed": 208,
+      "failed": 0,
+      "skipped": 0,
+      "suite_count": 14,
+      "test_start_events": 234,
+      "test_done_events": 234,
+      "excluded_lifecycle_events": 26,
+      "guards": {
+        "exit_success": true,
+        "all_selected_suites_executed": true,
+        "nonempty_cases": true,
+        "no_failed_or_skipped_cases": true,
+        "every_started_test_finished_once": true,
+        "final_event_success": true,
+        "clean_event_stream": true
+      },
+      "all_guards_pass": true,
+      "parse_errors": [],
+      "error_events": 0,
+      "layout_or_tap_diagnostics": 0,
+      "excluded_failures": 0,
+      "suites": [
+        {
+          "path": "/workspace/scratch/a686c23de6c7/zotero-validation/packages/quds_office_editor/test/word_thesaurus_dialog_test.dart",
+          "passed": 21
+        },
+        {
+          "path": "/workspace/scratch/a686c23de6c7/zotero-validation/packages/quds_office_editor/test/word_thesaurus_controller_test.dart",
+          "passed": 52
+        },
+        {
+          "path": "/workspace/scratch/a686c23de6c7/zotero-validation/packages/quds_office_editor/test/word_proofing_correction_test.dart",
+          "passed": 33
+        },
+        {
+          "path": "/workspace/scratch/a686c23de6c7/zotero-validation/packages/quds_office_editor/test/word_proofing_capture_cache_test.dart",
+          "passed": 4
+        },
+        {
+          "path": "/workspace/scratch/a686c23de6c7/zotero-validation/packages/quds_office_editor/test/word_proofing_context_test.dart",
+          "passed": 5
+        },
+        {
+          "path": "/workspace/scratch/a686c23de6c7/zotero-validation/packages/quds_office_editor/test/word_review_pane_test.dart",
+          "passed": 11
+        },
+        {
+          "path": "/workspace/scratch/a686c23de6c7/zotero-validation/packages/quds_office_editor/test/word_thesaurus_review_integration_test.dart",
+          "passed": 3
+        },
+        {
+          "path": "/workspace/scratch/a686c23de6c7/zotero-validation/packages/quds_office_editor/test/word_keyboard_review_test.dart",
+          "passed": 16
+        },
+        {
+          "path": "/workspace/scratch/a686c23de6c7/zotero-validation/packages/quds_office_editor/test/word_keyboard_review_identity_test.dart",
+          "passed": 4
+        },
+        {
+          "path": "/workspace/scratch/a686c23de6c7/zotero-validation/packages/quds_office_editor/test/word_keyboard_context_geometry_test.dart",
+          "passed": 11
+        },
+        {
+          "path": "/workspace/scratch/a686c23de6c7/zotero-validation/packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+          "passed": 31
+        },
+        {
+          "path": "/workspace/scratch/a686c23de6c7/zotero-validation/packages/quds_office_editor/test/word_text_proofing_pane_test.dart",
+          "passed": 13
+        },
+        {
+          "path": "/workspace/scratch/a686c23de6c7/quds_office_suite/docs/validation/thesaurus-20261118/continuation/local/fixtures/native_pack_test.dart",
+          "passed": 1
+        },
+        {
+          "path": "/workspace/scratch/a686c23de6c7/quds_office_suite/docs/validation/thesaurus-20261118/continuation/local/fixtures/native_visual_test.dart",
+          "passed": 3
+        }
+      ],
+      "recorded_counts_match": true,
+      "recorded_guards_match": true
+    },
+    "new_regressions": [
+      {
+        "name": "Shift F7 refuses thesaurus without interrupting active IME",
+        "result": "success",
+        "skipped": false,
+        "hidden": false
+      },
+      {
+        "name": "an earlier ready capture refuses thesaurus without interrupting active IME",
+        "result": "success",
+        "skipped": false,
+        "hidden": false
+      },
+      {
+        "name": "a host without Scaffold refuses thesaurus without interrupting active IME",
+        "result": "success",
+        "skipped": false,
+        "hidden": false
+      },
+      {
+        "name": "text language controls and undo retire an earlier thesaurus lookup",
+        "result": "success",
+        "skipped": false,
+        "hidden": false
+      },
+      {
+        "name": "390px English review keeps language and thesaurus actions usable at 1.5x text",
+        "result": "success",
+        "skipped": false,
+        "hidden": false
+      },
+      {
+        "name": "390px Arabic RTL review keeps language and thesaurus actions usable at 1.5x text",
+        "result": "success",
+        "skipped": false,
+        "hidden": false
+      },
+      {
+        "name": "Alt Shift F7 keeps reverse review navigation while Shift F7 opens thesaurus",
+        "result": "success",
+        "skipped": false,
+        "hidden": false
+      }
+    ],
+    "seven_new_regressions_executed_successfully": true,
+    "runs": [
+      {
+        "name": "native-acceptance",
+        "exit_code": 0,
+        "seconds": 97.01215126100033,
+        "stdout_hash_matches": true,
+        "stderr_hash_matches": true
+      },
+      {
+        "name": "browser-build",
+        "exit_code": 0,
+        "seconds": 58.18567911399987,
+        "stdout_hash_matches": true,
+        "stderr_hash_matches": true
+      }
+    ],
+    "source_receipt_checks": {
+      "file_count": 2825,
+      "input_digest_matches": true,
+      "recorded_source_unchanged_during_tests": true,
+      "recorded_source_unchanged_during_build": true,
+      "note": "The native runner retained the initial inventory and stability flags; current source and execution-workspace hashes are independently rechecked below."
+    }
+  },
+  "supplemental": {
+    "static": {
+      "receipt": "thesaurus-supplemental/static/receipt.json",
+      "receipt_sha256": "45e76023e0d10a61eb0100aa7e02a1234438994d635ffa15c0abbd8049008009",
+      "status": "passed",
+      "started_at_utc": "2026-11-18T19:05:38.667944+00:00",
+      "finished_at_utc": "2026-11-18T19:06:09.110356+00:00",
+      "runs": [
+        {
+          "name": "format",
+          "exit_code": 0,
+          "seconds": 2.0232342009985587,
+          "stdout_hash_matches": true,
+          "stderr_hash_matches": true
+        },
+        {
+          "name": "analysis",
+          "exit_code": 0,
+          "seconds": 27.498849330000667,
+          "stdout_hash_matches": true,
+          "stderr_hash_matches": true
+        }
+      ],
+      "static_target_count": 58,
+      "source_receipt_checks": {
+        "file_count": 3308,
+        "before_equals_after": true,
+        "input_digest_matches": true,
+        "output_digest_matches": true,
+        "recorded_source_unchanged": true
+      }
+    },
+    "engine": {
+      "receipt": "thesaurus-supplemental/engine/receipt.json",
+      "receipt_sha256": "3728e113bfbe2cf11e49f2eeadb6b3f15c1892ebede89f49104a354578b948ed",
+      "status": "passed",
+      "started_at_utc": "2026-11-18T19:06:09.171749+00:00",
+      "finished_at_utc": "2026-11-18T19:06:45.036010+00:00",
+      "independent_event_audit": {
+        "passed": 171,
+        "failed": 0,
+        "skipped": 0,
+        "suite_count": 8,
+        "test_start_events": 179,
+        "test_done_events": 179,
+        "excluded_lifecycle_events": 8,
+        "guards": {
+          "exit_success": true,
+          "all_selected_suites_executed": true,
+          "nonempty_cases": true,
+          "no_failed_or_skipped_cases": true,
+          "every_started_test_finished_once": true,
+          "final_event_success": true,
+          "clean_event_stream": true
+        },
+        "all_guards_pass": true,
+        "parse_errors": [],
+        "error_events": 0,
+        "layout_or_tap_diagnostics": 0,
+        "excluded_failures": 0,
+        "suites": [
+          {
+            "path": "test/office_thesaurus_test.dart",
+            "passed": 24
+          },
+          {
+            "path": "test/word_proofing_inheritance_test.dart",
+            "passed": 13
+          },
+          {
+            "path": "test/word_zotero_note_insertion_test.dart",
+            "passed": 41
+          },
+          {
+            "path": "test/word_zotero_caret_test.dart",
+            "passed": 9
+          },
+          {
+            "path": "test/word_zotero_citing_test.dart",
+            "passed": 59
+          },
+          {
+            "path": "test/word_zotero_preference_flow_test.dart",
+            "passed": 11
+          },
+          {
+            "path": "test/word_zotero_style_preferences_review_test.dart",
+            "passed": 9
+          },
+          {
+            "path": "test/word_zotero_scaling_test.dart",
+            "passed": 5
+          }
+        ],
+        "recorded_counts_match": true,
+        "recorded_guards_match": true
+      },
+      "runs": [
+        {
+          "name": "tests",
+          "exit_code": 0,
+          "seconds": 34.799767411001085,
+          "stdout_hash_matches": true,
+          "stderr_hash_matches": true
+        }
+      ],
+      "source_receipt_checks": {
+        "file_count": 3308,
+        "before_equals_after": true,
+        "input_digest_matches": true,
+        "output_digest_matches": true,
+        "recorded_source_unchanged": true
+      }
+    },
+    "editor-zotero": {
+      "receipt": "thesaurus-supplemental/editor-zotero/receipt.json",
+      "receipt_sha256": "1807874174148cd73314aece02dfd8806d00cd11a79e7b34e25fe9e2a7f2deb6",
+      "status": "passed",
+      "started_at_utc": "2026-11-18T19:06:45.221566+00:00",
+      "finished_at_utc": "2026-11-18T19:07:18.044990+00:00",
+      "independent_event_audit": {
+        "passed": 51,
+        "failed": 0,
+        "skipped": 0,
+        "suite_count": 4,
+        "test_start_events": 55,
+        "test_done_events": 55,
+        "excluded_lifecycle_events": 4,
+        "guards": {
+          "exit_success": true,
+          "all_selected_suites_executed": true,
+          "nonempty_cases": true,
+          "no_failed_or_skipped_cases": true,
+          "every_started_test_finished_once": true,
+          "final_event_success": true,
+          "clean_event_stream": true
+        },
+        "all_guards_pass": true,
+        "parse_errors": [],
+        "error_events": 0,
+        "layout_or_tap_diagnostics": 0,
+        "excluded_failures": 0,
+        "suites": [
+          {
+            "path": "/workspace/scratch/a686c23de6c7/zotero-validation/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart",
+            "passed": 21
+          },
+          {
+            "path": "/workspace/scratch/a686c23de6c7/zotero-validation/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart",
+            "passed": 22
+          },
+          {
+            "path": "/workspace/scratch/a686c23de6c7/zotero-validation/packages/quds_office_editor/test/word_zotero_field_at_caret_test.dart",
+            "passed": 4
+          },
+          {
+            "path": "/workspace/scratch/a686c23de6c7/zotero-validation/packages/quds_office_editor/test/word_notes_editing_test.dart",
+            "passed": 4
+          }
+        ],
+        "recorded_counts_match": true,
+        "recorded_guards_match": true
+      },
+      "runs": [
+        {
+          "name": "tests",
+          "exit_code": 0,
+          "seconds": 31.935487458000352,
+          "stdout_hash_matches": true,
+          "stderr_hash_matches": true
+        }
+      ],
+      "source_receipt_checks": {
+        "file_count": 3308,
+        "before_equals_after": true,
+        "input_digest_matches": true,
+        "output_digest_matches": true,
+        "recorded_source_unchanged": true
+      }
+    },
+    "spacy": {
+      "receipt": "thesaurus-supplemental/spacy/receipt.json",
+      "receipt_sha256": "245d14ee09ba9f26558278cc0758d0355f818144adf6614d34cddb08b32197c1",
+      "status": "passed",
+      "started_at_utc": "2026-11-18T19:07:18.131634+00:00",
+      "finished_at_utc": "2026-11-18T19:07:45.715840+00:00",
+      "independent_event_audit": {
+        "passed": 67,
+        "failed": 0,
+        "skipped": 0,
+        "suite_count": 6,
+        "test_start_events": 73,
+        "test_done_events": 73,
+        "excluded_lifecycle_events": 6,
+        "guards": {
+          "exit_success": true,
+          "all_selected_suites_executed": true,
+          "nonempty_cases": true,
+          "no_failed_or_skipped_cases": true,
+          "every_started_test_finished_once": true,
+          "final_event_success": true,
+          "clean_event_stream": true
+        },
+        "all_guards_pass": true,
+        "parse_errors": [],
+        "error_events": 0,
+        "layout_or_tap_diagnostics": 0,
+        "excluded_failures": 0,
+        "suites": [
+          {
+            "path": "test/language_catalog_test.dart",
+            "passed": 8
+          },
+          {
+            "path": "test/bundle_test.dart",
+            "passed": 3
+          },
+          {
+            "path": "test/analysis_test.dart",
+            "passed": 12
+          },
+          {
+            "path": "test/worker_test.dart",
+            "passed": 14
+          },
+          {
+            "path": "test/distribution_test.dart",
+            "passed": 14
+          },
+          {
+            "path": "test/grammar_provider_test.dart",
+            "passed": 16
+          }
+        ],
+        "recorded_counts_match": true,
+        "recorded_guards_match": true
+      },
+      "runs": [
+        {
+          "name": "tests",
+          "exit_code": 0,
+          "seconds": 26.99778282799889,
+          "stdout_hash_matches": true,
+          "stderr_hash_matches": true
+        }
+      ],
+      "source_receipt_checks": {
+        "file_count": 3308,
+        "before_equals_after": true,
+        "input_digest_matches": true,
+        "output_digest_matches": true,
+        "recorded_source_unchanged": true
+      }
+    },
+    "studio": {
+      "receipt": "thesaurus-supplemental/studio/receipt.json",
+      "receipt_sha256": "331f06b0ad3d87d9fc8479f15faccfb7d42b3546cd4c69709a6db7567fda9567",
+      "status": "passed",
+      "started_at_utc": "2026-11-18T19:07:45.781791+00:00",
+      "finished_at_utc": "2026-11-18T19:11:11.390514+00:00",
+      "independent_event_audit": {
+        "passed": 94,
+        "failed": 0,
+        "skipped": 0,
+        "suite_count": 5,
+        "test_start_events": 99,
+        "test_done_events": 99,
+        "excluded_lifecycle_events": 5,
+        "guards": {
+          "exit_success": true,
+          "all_selected_suites_executed": true,
+          "nonempty_cases": true,
+          "no_failed_or_skipped_cases": true,
+          "every_started_test_finished_once": true,
+          "final_event_success": true,
+          "clean_event_stream": true
+        },
+        "all_guards_pass": true,
+        "parse_errors": [],
+        "error_events": 0,
+        "layout_or_tap_diagnostics": 0,
+        "excluded_failures": 0,
+        "suites": [
+          {
+            "path": "/workspace/scratch/a686c23de6c7/zotero-validation/packages/quds_office_editor/example/test/studio_review_pane_test.dart",
+            "passed": 3
+          },
+          {
+            "path": "/workspace/scratch/a686c23de6c7/zotero-validation/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+            "passed": 38
+          },
+          {
+            "path": "/workspace/scratch/a686c23de6c7/zotero-validation/packages/quds_office_editor/example/test/studio_linguistic_analysis_test.dart",
+            "passed": 24
+          },
+          {
+            "path": "/workspace/scratch/a686c23de6c7/zotero-validation/packages/quds_office_editor/example/test/studio_spacy_setup_test.dart",
+            "passed": 11
+          },
+          {
+            "path": "/workspace/scratch/a686c23de6c7/zotero-validation/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart",
+            "passed": 18
+          }
+        ],
+        "recorded_counts_match": true,
+        "recorded_guards_match": true
+      },
+      "runs": [
+        {
+          "name": "tests",
+          "exit_code": 0,
+          "seconds": 203.58983350500057,
+          "stdout_hash_matches": true,
+          "stderr_hash_matches": true
+        }
+      ],
+      "source_receipt_checks": {
+        "file_count": 3308,
+        "before_equals_after": true,
+        "input_digest_matches": true,
+        "output_digest_matches": true,
+        "recorded_source_unchanged": true
+      }
+    },
+    "web-import": {
+      "receipt": "thesaurus-supplemental/web-import/receipt.json",
+      "receipt_sha256": "b4efb8c746509a31931390c137274a3df8bf12775b43c237b938e40cd496cba4",
+      "status": "passed",
+      "started_at_utc": "2026-11-18T19:11:11.495393+00:00",
+      "finished_at_utc": "2026-11-18T19:11:13.991584+00:00",
+      "runs": [
+        {
+          "name": "web-compile",
+          "exit_code": 0,
+          "seconds": 0.9280700710005476,
+          "stdout_hash_matches": true,
+          "stderr_hash_matches": true
+        },
+        {
+          "name": "node-import",
+          "exit_code": 0,
+          "seconds": 0.11797640700024203,
+          "stdout_hash_matches": true,
+          "stderr_hash_matches": true
+        }
+      ],
+      "artifact_hash_matches": true,
+      "artifact_bytes_match": true,
+      "source_receipt_checks": {
+        "file_count": 3308,
+        "before_equals_after": true,
+        "input_digest_matches": true,
+        "output_digest_matches": true,
+        "recorded_source_unchanged": true
+      }
+    }
+  },
+  "source_freeze": {
+    "tracked_changes_since_frozen": [
+      "docs/validation/thesaurus-20261118/resume/dart-final-targets.json",
+      "docs/validation/thesaurus-20261118/resume/format-late-initial.log",
+      "docs/validation/thesaurus-20261118/resume/native/native-acceptance.stderr.gz",
+      "docs/validation/thesaurus-20261118/resume/native/native-acceptance.stdout.gz",
+      "docs/validation/thesaurus-20261118/resume/native/native-pack-report.json",
+      "docs/validation/thesaurus-20261118/resume/native/native-test-audit.json",
+      "docs/validation/thesaurus-20261118/resume/native/source-inputs.json.gz",
+      "docs/validation/thesaurus-20261118/resume/native/test-receipt.json",
+      "docs/validation/thesaurus-20261118/resume/native/visuals/english-desktop.png",
+      "docs/validation/thesaurus-20261118/resume/native/visuals/german-desktop.png",
+      "docs/validation/thesaurus-20261118/resume/native/visuals/german-narrow-large-text.png",
+      "docs/validation/thesaurus-20261118/resume/run_selected.py"
+    ],
+    "non_documentation_changes_since_frozen": [],
+    "non_documentation_worktree_changes": [],
+    "non_documentation_untracked_files": [],
+    "native_inventory": {
+      "inventory": "thesaurus-resume-native-attempt1/source-inputs.json.gz",
+      "file_count": 2825,
+      "current_missing": [],
+      "current_mismatches": [],
+      "workspace_package_application_file_count": 2814,
+      "workspace_missing": [],
+      "workspace_mismatches": []
+    },
+    "supplemental_inventory": {
+      "inventory": "thesaurus-supplemental/engine/source-inputs.json.gz",
+      "file_count": 3308,
+      "current_missing": [],
+      "current_mismatches": [],
+      "workspace_package_application_file_count": 3292,
+      "workspace_missing": [],
+      "workspace_mismatches": []
+    }
+  },
+  "actual_browser": {
+    "status": "launch_blocked",
+    "receipt": "quds_office_suite/docs/validation/thesaurus-20261118/resume/browser-attempt/browser-report.json",
+    "receipt_sha256": "7c2b935c492f9ede4c4d826968e8b8d4f0e46c4883c1f454923fec09c4cdfec8",
+    "recorded_status": "failed",
+    "completed_steps": 0,
+    "recorded_requests": 0,
+    "launch_error_contains_socket_denial": true,
+    "offline_browser_acceptance_passed": false
+  },
+  "web_build_artifacts": {
+    "compiled_files": 1155,
+    "compiled_bytes": 87384043,
+    "installed_files": 1156,
+    "installed_bytes": 87384466,
+    "installer_added_files": [
+      "offline-install.js"
+    ],
+    "installer_removed_files": [],
+    "installer_changed_files": [
+      "index.html"
+    ],
+    "installed_files_match": true,
+    "compile_log_has_cupertino_font_notice": true
+  },
+  "visual_artifacts": [
+    {
+      "name": "english-desktop.png",
+      "sha256": "bece8327216f76679552e82ade84253b9065b00fcd10acd8bc78bd60b5915682",
+      "width": 1200,
+      "height": 900
+    },
+    {
+      "name": "german-desktop.png",
+      "sha256": "26bbc3c3cafe70e2464e5ebaf2223dc7356b319a70a6760399127f3c59b542c9",
+      "width": 1200,
+      "height": 900
+    },
+    {
+      "name": "german-narrow-large-text.png",
+      "sha256": "32114c3c60870a47bbfb92691d37c87139e1fb91fe4b58c44397cd9fcef9b620",
+      "width": 390,
+      "height": 844
+    }
+  ],
+  "python_test_logs": [
+    {
+      "path": "quds_office_suite/docs/validation/thesaurus-20261118/resume/compiler-tests.log",
+      "sha256": "6273232de4d3ef7acd4ecafa5c86beeeb974f56586b21089a2990b3f72facbe6",
+      "passed_count": 5,
+      "expected_count_and_final_OK": true,
+      "evidence_kind": "Saved unittest text log, not Dart machine events."
+    },
+    {
+      "path": "quds_office_suite/docs/validation/thesaurus-20261118/resume/harness-controls.log",
+      "sha256": "7de90a90930761b0f20435a215eb1039b897d24313c8d2a9d5dcc6f6fd9ac912",
+      "passed_count": 10,
+      "expected_count_and_final_OK": true,
+      "evidence_kind": "Saved unittest text log, not Dart machine events."
+    }
+  ],
+  "classification": {
+    "native_and_editor_studio_tests": "Dart VM / Flutter native headless tests, not installed desktop acceptance.",
+    "real_pack_panel": "15 source-identified queries within one passing native case, not independent linguistic review.",
+    "visual_fixtures": "Three rendered native headless widget fixtures, not screenshots of an installed desktop app.",
+    "release_web_compile": "Successful compiled thesaurus acceptance fixture, not actual browser execution.",
+    "web_import": "Dart-to-JavaScript compile plus Node import capability check, not browser execution.",
+    "spaCy": "Local selected unit/model-contract tests; no model-download or real EN/FR model acceptance claim.",
+    "open_release_checks": [
+      "Actual installed-offline browser acceptance",
+      "Installed native desktop acceptance",
+      "Independent human linguistic review"
+    ],
+    "scope": "Targeted validation only; not the full repository suite. Hidden/lifecycle events excluded from case counts."
+  },
+  "completed_machine_test_cases": 591,
+  "machine_test_suite_count": 37,
+  "selected_suites_are_distinct": true,
+  "combined_test_count_including_python": 606,
+  "pending_cohorts": []
+}

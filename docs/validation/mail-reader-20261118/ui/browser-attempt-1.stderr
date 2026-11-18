@@ -1,0 +1,14 @@
+org-dartlang-app:///example_test.dart:8:8: Error: Error when reading 'org-dartlang-app:///example/lib/main.dart': File not found
+import '../example/lib/main.dart' show exampleMessage;
+       ^
+org-dartlang-app:///example_test.dart:14:19: Error: Method not found: 'exampleMessage'.
+      final raw = exampleMessage();
+                  ^^^^^^^^^^^^^^
+org-dartlang-app:///support/runtime_network_guard_web.dart:41:8: Error: Function converted via 'toJS' contains invalid types in its function signature: '*Never* Function(JSAny?, JSAny?)'.
+Use one of these valid types instead: JS types from 'dart:js_interop', ExternalDartReference, void, bool, num, double, int, String, extension types that erase to one of these types, '@staticInterop' types, 'dart:html' types when compiling to JS, or a type parameter that is a subtype of a valid non-primitive type.
+    }).toJS;
+       ^
+org-dartlang-app:///support/runtime_network_guard_web.dart:45:8: Error: Function converted via 'toJS' contains invalid types in its function signature: '*Never* Function(JSAny?, JSAny?, JSAny?)'.
+Use one of these valid types instead: JS types from 'dart:js_interop', ExternalDartReference, void, bool, num, double, int, String, extension types that erase to one of these types, '@staticInterop' types, 'dart:html' types when compiling to JS, or a type parameter that is a subtype of a valid non-primitive type.
+    }).toJS;
+       ^

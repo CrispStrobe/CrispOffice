@@ -1,0 +1,860 @@
+{
+  "repository": "https://github.com/Enough-Software/enough_mail",
+  "commit": "fc69f17e24e9d03ce813bbf613c07a2ce94e5e9a",
+  "git_tree": "f0ece6bb3dd5b15c3cfb9b472bbefa8c73c657a9",
+  "version": "3.0.0",
+  "git_archive_tar_sha256": "b5e6773f4ddeb7ffdc32bdae3c6cb058a0ca8ed49368bce07023b0ffdb7f227e",
+  "archive_bytes": 2631680,
+  "pub_dev_archive_identity": "not asserted; source is pinned Git commit",
+  "license": "MPL-2.0",
+  "upstream_files": [
+    {
+      "path": ".github/workflows/dart.yml",
+      "sha256": "107770de2373021c050443afcdb358172744a4fc3a37a290f190f5e79ead93e5"
+    },
+    {
+      "path": ".gitignore",
+      "sha256": "d7a68747c51cc8a80cd88863a080030931adc91c065dfe51a19a41bb875deb0f"
+    },
+    {
+      "path": ".vscode/settings.json",
+      "sha256": "75596ad4f8c28f50cc4ff327c97347e2df3ef6b9a03cf115a1061314a72d75a1"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "sha256": "77a7ebab8a23de06d159b641bc47a7db9a2409a2b3f7687258721c77d82ef06e"
+    },
+    {
+      "path": "LICENSE",
+      "sha256": "1f256ecad192880510e84ad60474eab7589218784b9a50bc7ceee34c2b91f1d5"
+    },
+    {
+      "path": "README.md",
+      "sha256": "524e3d1f28e9d1fd8912effae2262fb7b5eb0ab0b596291153946678982d1e0f"
+    },
+    {
+      "path": "analysis_options.yaml",
+      "sha256": "cbcd99e298d94b53dd500283ea7eb3a7957da04c586b5283914e0125b6c426d8"
+    },
+    {
+      "path": "build.yaml",
+      "sha256": "0f89c475ed5c9f35e0da0acf57fb80c5da45070e5067f1771215906e501fc02b"
+    },
+    {
+      "path": "example/discover.dart",
+      "sha256": "31461bccf500c12284201cd5cf9053d9ae03cfe9b4310aafde2410c64b3e2937"
+    },
+    {
+      "path": "example/enough_mail_example.dart",
+      "sha256": "219e16cade754bb6cb5b4548871663a145a60ae8daf5976b6033e075094558e0"
+    },
+    {
+      "path": "example/example.dart",
+      "sha256": "c7ddcb9d033fef41e95e64755fa6d98d1929f08bfbf5810feeb38d20533a5d40"
+    },
+    {
+      "path": "lib/codecs.dart",
+      "sha256": "76dc937ce12229dc09f10352117dca1cdc2c1e3b2889da6ea4f5d49be008eff9"
+    },
+    {
+      "path": "lib/discover.dart",
+      "sha256": "9cab3c5239a35f84c4010854212f83c9d76562782e79a010ac8e862a48bd2c8e"
+    },
+    {
+      "path": "lib/enough_mail.dart",
+      "sha256": "70dcdf4a9d6a0757fca3440044ab36dd6f840af1a9f774faa6684f535c4cca89"
+    },
+    {
+      "path": "lib/highlevel.dart",
+      "sha256": "3ecd0a3754a50c7883b70faf87b2893c86a5ccf82d1013a34d6cd9e2195c3cbb"
+    },
+    {
+      "path": "lib/imap.dart",
+      "sha256": "e055ea47aec2cc250816e617b987f28c1565c0fbbd1b8f71e368c6c769e34654"
+    },
+    {
+      "path": "lib/mime.dart",
+      "sha256": "2d168d95f525b227fe413b2267f84901169098658bfdf94697eacf1b593da6ff"
+    },
+    {
+      "path": "lib/pop.dart",
+      "sha256": "a73fb01ac816c89143c70433035bddd372f659730236f4b12346ab265f8c61da"
+    },
+    {
+      "path": "lib/smtp.dart",
+      "sha256": "509bd3a86ed9a0a84034da636ca06ebe8b1ad4e79e7c264219557998c1bb63a9"
+    },
+    {
+      "path": "lib/src/codecs/base64_mail_codec.dart",
+      "sha256": "702d08cb65f8247a9e55519ea49a33d7fba9fc3a8e224ba146c4db99bcebd9bb"
+    },
+    {
+      "path": "lib/src/codecs/date_codec.dart",
+      "sha256": "22bece2f5a282553c693903bb13cc3c44bf2163128d268f64a08a1c31822fa0f"
+    },
+    {
+      "path": "lib/src/codecs/mail_codec.dart",
+      "sha256": "5210b3470fd995191c94ff5c4f6af9915014c7890dc3c1225cd7a1a8d088cd7a"
+    },
+    {
+      "path": "lib/src/codecs/modified_utf7_codec.dart",
+      "sha256": "4cf223a8668a58036ab9dce30fa08cc209ed645cf7eceda466fd5ac542eba556"
+    },
+    {
+      "path": "lib/src/codecs/quoted_printable_mail_codec.dart",
+      "sha256": "a4dc7ffe4d9cf3e454858d45aea587319fac5b2ea2cb0ec0190f5e9d27f6261f"
+    },
+    {
+      "path": "lib/src/discover/client_config.dart",
+      "sha256": "0d4267385bd02caf04cf6561c723ec9554f4a38b150f513e25a20c7ffb324303"
+    },
+    {
+      "path": "lib/src/discover/client_config.g.dart",
+      "sha256": "059c4be6e04215848638bd76d861ecba9906d1bb74facf273ca8bf9fd9aeee64"
+    },
+    {
+      "path": "lib/src/discover/discover.dart",
+      "sha256": "802d0b157eded22db8123c77040adbb588898f3b7f358144ef2be2cab96b765d"
+    },
+    {
+      "path": "lib/src/exception.dart",
+      "sha256": "9d302e1a61fe9e067543f5c457d7b479cf2903eacd0a930af3f985e57765d27d"
+    },
+    {
+      "path": "lib/src/imap/extended_data.dart",
+      "sha256": "19f87095d7b09855739479ecd0c1e78f79f09fd7f98eca19cba5f8800103aab4"
+    },
+    {
+      "path": "lib/src/imap/id.dart",
+      "sha256": "a5d54bde0a84865e7a0906b2b0bfc8fa63fc6f22fd4f18beca00cef6c7e7c6c7"
+    },
+    {
+      "path": "lib/src/imap/imap_client.dart",
+      "sha256": "044dc6b0562cc56ec1ef32f98c83363ced304df400ae2c405a2bec6cced18e7c"
+    },
+    {
+      "path": "lib/src/imap/imap_client.g.dart",
+      "sha256": "01290247fa20ea23b3b35d3f0466ac5f07d61afb225db7c7e72db70503f27b5e"
+    },
+    {
+      "path": "lib/src/imap/imap_events.dart",
+      "sha256": "4246c419037f6463e668f31527a8dbb37eb0ef03eb34c7ffe822414f40ccfff9"
+    },
+    {
+      "path": "lib/src/imap/imap_exception.dart",
+      "sha256": "e0502b925aeb64667b457a0fe52daedc07690d3ab4970be48ce77bd15b582e77"
+    },
+    {
+      "path": "lib/src/imap/imap_search.dart",
+      "sha256": "a76978f9f7461b67920fd9fb9efabb8d81cb395fb754153f7a61700480be0a0b"
+    },
+    {
+      "path": "lib/src/imap/mailbox.dart",
+      "sha256": "491e346ee0efec763ce221954115f41ce6b883fce5ad69b8ec37cbfa43ec07e6"
+    },
+    {
+      "path": "lib/src/imap/message_sequence.dart",
+      "sha256": "d31880648a67a60a42b0b7d19f83f836416dfacf9109611dc4f03ea4d843a0ac"
+    },
+    {
+      "path": "lib/src/imap/message_sequence.g.dart",
+      "sha256": "814907c12dd8ba1d22bb8dfa62e97c4e697fc6e4cd77f04dd3ee0274368c5043"
+    },
+    {
+      "path": "lib/src/imap/metadata.dart",
+      "sha256": "8ca22accf28ea88807180c5cf62e2d4932881bbab07e83df3d2c4ae4597e479e"
+    },
+    {
+      "path": "lib/src/imap/namespace.dart",
+      "sha256": "e53c5e23d0e13762a308d62a5501028ff3e924528a5108f1ea8ab5aa77ac51af"
+    },
+    {
+      "path": "lib/src/imap/qresync.dart",
+      "sha256": "9303ce63defe2f544a9fbd5cc3b23a1bc84fb9614b7c86837236d876b43f7495"
+    },
+    {
+      "path": "lib/src/imap/resource_limit.dart",
+      "sha256": "42a29fce75898d7261b70d49f2c702d44c793e80c21028e3f0267bba7c58b446"
+    },
+    {
+      "path": "lib/src/imap/response.dart",
+      "sha256": "b4151b105acd2b25f64da025a251d9576ddde8920090e8f7d917d9ceffc2ceaa"
+    },
+    {
+      "path": "lib/src/imap/return_option.dart",
+      "sha256": "5daebc26b6eaecda26000ea4cf75b6ea4777e42f7fdab452be11a69ba38fb3a6"
+    },
+    {
+      "path": "lib/src/imap/selection_options.dart",
+      "sha256": "dda0524a4c4ff23e0fb0de1a114bc5fa3e17eb94c1b0a1ba7b37f730f71eb57f"
+    },
+    {
+      "path": "lib/src/mail/mail_account.dart",
+      "sha256": "291fc93ea406c2ef6a36e543421cbee73e2d3722ea549758d338ea27bef757b3"
+    },
+    {
+      "path": "lib/src/mail/mail_account.g.dart",
+      "sha256": "e15c532e061ab19bbdc04d25778418c78d570f75871aed363b716cc41dd2992f"
+    },
+    {
+      "path": "lib/src/mail/mail_authentication.dart",
+      "sha256": "6ed62dc8761e099e7f8cdc3f4e9c7a06c464cac1355062d516cde1fc9f40bd5f"
+    },
+    {
+      "path": "lib/src/mail/mail_authentication.g.dart",
+      "sha256": "a473cac9c6f4a3d91b6f80a3dc3917045ca41eb31def59a2ed875366521a407b"
+    },
+    {
+      "path": "lib/src/mail/mail_client.dart",
+      "sha256": "816bda3430bcafc4a41e72ab52c8a6d1029b69c543c31bb9d526d51e00287ba7"
+    },
+    {
+      "path": "lib/src/mail/mail_events.dart",
+      "sha256": "53e807031c82e93eba1a143b7f905f5c3eb40c4d6ba8ec17025a318eb82c408d"
+    },
+    {
+      "path": "lib/src/mail/mail_exception.dart",
+      "sha256": "a893d32f28683902319c5defd15efef68623a0ebc6dc3e0e24da125ca2af3919"
+    },
+    {
+      "path": "lib/src/mail/mail_search.dart",
+      "sha256": "ba0e715bc268131f5d4540f9c22d6534bf9af8a6bd49ac52f078b3252d39e304"
+    },
+    {
+      "path": "lib/src/mail/results.dart",
+      "sha256": "5bd0fe02d1a3d67a8125dc390c19a4a60d134916f940693744c93a33aabb0a9b"
+    },
+    {
+      "path": "lib/src/mail/tree.dart",
+      "sha256": "1369bebae288e59a35a5486f5238e8f8db195d56be60c07b1b2b2a4ec5a8bb5c"
+    },
+    {
+      "path": "lib/src/mail_address.dart",
+      "sha256": "ac60bef5c178c025b0ff2356545f686190fea582b9e9f4f4e13b7c2c07d78ee9"
+    },
+    {
+      "path": "lib/src/mail_address.g.dart",
+      "sha256": "9c0d571bbf85b971c8a9d7f904dfe29055ea478b1f96f41185d15811b7b12eeb"
+    },
+    {
+      "path": "lib/src/mail_conventions.dart",
+      "sha256": "e17abbd1654e650aaae89c4729dcb9da7de74b123eab61b29582ff08942574b5"
+    },
+    {
+      "path": "lib/src/media_type.dart",
+      "sha256": "6fd3bad3857a75de25c4db8e7ee19acb0fb0e96eae0ccc4b43d823093324d9c7"
+    },
+    {
+      "path": "lib/src/message_builder.dart",
+      "sha256": "3a5d87e6951239c262ea6f236fd1dd68499c70213150387e42cade21c98c08e7"
+    },
+    {
+      "path": "lib/src/message_flags.dart",
+      "sha256": "ed84ab72ec823cb23be9ea2df363a1848d6a3186e149d5984d5b8a34737066d0"
+    },
+    {
+      "path": "lib/src/mime_data.dart",
+      "sha256": "99f8b076ae93ce692f1319e542b8ddd86d2dedccc935842e1dbd9159fd05d42f"
+    },
+    {
+      "path": "lib/src/mime_message.dart",
+      "sha256": "69d0cf4cd46e64ae327538aa6f2de808f48ba6adb65c67d7523ee8cfd9a5fa52"
+    },
+    {
+      "path": "lib/src/pop/pop_client.dart",
+      "sha256": "4004c947a847418aa5b9867c8597b152f715931ca40f414c0c7d5fd451fb89b2"
+    },
+    {
+      "path": "lib/src/pop/pop_events.dart",
+      "sha256": "35967ec466a541e08fa1fe546237529e4eeace2e8f270ea9986c80181bd64eae"
+    },
+    {
+      "path": "lib/src/pop/pop_exception.dart",
+      "sha256": "51bd37243df7b5d9e9e63fa3610317c36bb0c29d98793dc2da359fe48a4018a7"
+    },
+    {
+      "path": "lib/src/pop/pop_response.dart",
+      "sha256": "11614e01ffd46ee8597a50560c0bc23490cca5c3aa15d6039dc7e63b7a319b5f"
+    },
+    {
+      "path": "lib/src/private/imap/all_parsers.dart",
+      "sha256": "4d71fd95165eda86063f5fbd1d2e3d59bc029209230083372a0de26ef294b5f8"
+    },
+    {
+      "path": "lib/src/private/imap/capability_parser.dart",
+      "sha256": "fe2fbf4dc374de340ece42e8c7088197eee99e26cae4eb8ea121c312857248b3"
+    },
+    {
+      "path": "lib/src/private/imap/command.dart",
+      "sha256": "bf959f76cf79e9abd5f7ef4eb0b438a404cfae8a0b1537e741b774ec173997a3"
+    },
+    {
+      "path": "lib/src/private/imap/enable_parser.dart",
+      "sha256": "b6583d94c8bd6d168414739ec6f98fd090627cae2a8296df6f69aea559e24873"
+    },
+    {
+      "path": "lib/src/private/imap/fetch_parser.dart",
+      "sha256": "7f0dba37e191cbd2f01e4495c1d0bb3786af73e180f3571d3bd5c49074ecddb0"
+    },
+    {
+      "path": "lib/src/private/imap/generic_parser.dart",
+      "sha256": "ba4ab0e4e17ce3e369def1f41a92b09bfef39ce0e7da95ffdc03e24944f5f29a"
+    },
+    {
+      "path": "lib/src/private/imap/id_parser.dart",
+      "sha256": "40c3110ccbbc5d2b7db48b716d138a7153dea54b70cc2bcf00930692b8f4d399"
+    },
+    {
+      "path": "lib/src/private/imap/imap_response.dart",
+      "sha256": "fc675ce5fda7ea37dfe6eabd961884847344f38c631cf6c9cc14b487ef52568a"
+    },
+    {
+      "path": "lib/src/private/imap/imap_response_line.dart",
+      "sha256": "24827b5075922c3d7a26c7b9525142b704c9ae0117713ab41102ea87df6af00a"
+    },
+    {
+      "path": "lib/src/private/imap/imap_response_reader.dart",
+      "sha256": "a77d3340b3e16babe325006ea880f7b7ba7babbf790947d2d694a083d7ba7543"
+    },
+    {
+      "path": "lib/src/private/imap/list_parser.dart",
+      "sha256": "a3cc56246750ff4413d21819812a51407c88d180870df56d4386a7b4b8d5f323"
+    },
+    {
+      "path": "lib/src/private/imap/logout_parser.dart",
+      "sha256": "8689c2f01294528dc4742b499381411601a4393d79fcb085af72e0690034a699"
+    },
+    {
+      "path": "lib/src/private/imap/meta_data_parser.dart",
+      "sha256": "1f8b89142adbf048f0683f66f7385d09cee68ab8548c83d857bbc3bc3b14491c"
+    },
+    {
+      "path": "lib/src/private/imap/namespace_parser.dart",
+      "sha256": "84a30f00519f03339ce5c63c1cc817898f055f272301c7fa6710c363f5e5748a"
+    },
+    {
+      "path": "lib/src/private/imap/no_response_parser.dart",
+      "sha256": "14870825aff0b09c1d72fca9ae15a9f41fff9d02105b440de3089e22980f7a14"
+    },
+    {
+      "path": "lib/src/private/imap/noop_parser.dart",
+      "sha256": "e0c6c2c4af6c0f07b17f07cfd75564d6e90362cac8215d3501352699e36e953e"
+    },
+    {
+      "path": "lib/src/private/imap/parser_helper.dart",
+      "sha256": "053e93f213bd2c31537f67fdefc73b2ae71a07738b2da914e2cfc4a9d03a3970"
+    },
+    {
+      "path": "lib/src/private/imap/quota_parser.dart",
+      "sha256": "dfd3808fa8683548fab7e0e04844e0d98b9c73cc42f47a258c6d27a71d959d4c"
+    },
+    {
+      "path": "lib/src/private/imap/response_parser.dart",
+      "sha256": "ceca6d26a798b60d2e2167eb948b963c6304767dad2b5279f544b6f76a543f38"
+    },
+    {
+      "path": "lib/src/private/imap/search_parser.dart",
+      "sha256": "c76289dfcc3d7078bc160b941ea5523ab3b4a1e5cd89aedb5155aa57da3de04f"
+    },
+    {
+      "path": "lib/src/private/imap/select_parser.dart",
+      "sha256": "83d2b0c74a17c6d50ee61658f6fe9d96df8a221f2c28cc4e015e870fb4b3b5d9"
+    },
+    {
+      "path": "lib/src/private/imap/sort_parser.dart",
+      "sha256": "d04525acfcb21cf6e9196f753d7a22febe84fb5d6940930764f60d398a8f09e9"
+    },
+    {
+      "path": "lib/src/private/imap/status_parser.dart",
+      "sha256": "a9f55babfb83a42194d987303580ec4d9595d8838c1ba0e827fb4d8ef02d1a50"
+    },
+    {
+      "path": "lib/src/private/imap/thread_parser.dart",
+      "sha256": "b2a1210349f65fae113d251f3d5a97c1900302d933305cf5228caa93296767d9"
+    },
+    {
+      "path": "lib/src/private/pop/commands/all_commands.dart",
+      "sha256": "3688053d7bd25cd180dfd73b99ce1532b56b6837eb69234f36e7997eb4e4dc76"
+    },
+    {
+      "path": "lib/src/private/pop/commands/pop_apop_command.dart",
+      "sha256": "62ca086e758e1fb6b96cfb4e612610ee4d0d6a4109cafa1a7c6a354adb3693a6"
+    },
+    {
+      "path": "lib/src/private/pop/commands/pop_auth_xoauth2_command.dart",
+      "sha256": "386747feaf29acc95368451b0984b8c73daa855913428598b2698ea1b0ebf777"
+    },
+    {
+      "path": "lib/src/private/pop/commands/pop_delete_command.dart",
+      "sha256": "ab89c4cd3bafdcccd4043161042f1836dd275964084fd3be783e5d98055eb144"
+    },
+    {
+      "path": "lib/src/private/pop/commands/pop_list_command.dart",
+      "sha256": "0ada1e34996d36aac71e37be20a5c998e05312e6d92fb9c61d16208359528bda"
+    },
+    {
+      "path": "lib/src/private/pop/commands/pop_noop_command.dart",
+      "sha256": "687aada72b2dde806c8f39ab9bfd8fd6989a00294b7a246ec08fbda6a395294b"
+    },
+    {
+      "path": "lib/src/private/pop/commands/pop_pass_command.dart",
+      "sha256": "1dd48fb1c148ca93aa0254911f892547512de1cbaf3be70c782b68362dcd2740"
+    },
+    {
+      "path": "lib/src/private/pop/commands/pop_quit_command.dart",
+      "sha256": "13122a16cf3b24cb8228cce2c87fb0cd072878ab4dac7b2f55f00378fc587490"
+    },
+    {
+      "path": "lib/src/private/pop/commands/pop_reset_command.dart",
+      "sha256": "2e9e6f82a84b8be16cfed07d5de12d156b27a1f4c33a743511517555a325cb69"
+    },
+    {
+      "path": "lib/src/private/pop/commands/pop_retrieve_command.dart",
+      "sha256": "08c3f85d775d17f4f4292f80c2740906a12516953b8679f4e4a7a0a5a22827db"
+    },
+    {
+      "path": "lib/src/private/pop/commands/pop_starttls_command.dart",
+      "sha256": "29108ad67bbaf66b51ae5153ab901afd63a67aa5e6cb9d0ac245a36f3bee4016"
+    },
+    {
+      "path": "lib/src/private/pop/commands/pop_status_command.dart",
+      "sha256": "91cfde56221aac701c995910628492089d3f4571459b2f69970dc5468b8260ec"
+    },
+    {
+      "path": "lib/src/private/pop/commands/pop_top_command.dart",
+      "sha256": "aa4050b0786b9e06638977058df50aa8f0e9c20682a8b2e5599d414325c3438a"
+    },
+    {
+      "path": "lib/src/private/pop/commands/pop_uidl_command.dart",
+      "sha256": "5b46708bf6e8dddb0d20a85a0c7900403479d7ab2f0e2b8456d3d1c3c500e5ed"
+    },
+    {
+      "path": "lib/src/private/pop/commands/pop_user_command.dart",
+      "sha256": "733edb27507a10a9dc07157a0289f2bd4aa1c5f4f3a380c07e106298dc7bcb83"
+    },
+    {
+      "path": "lib/src/private/pop/parsers/all_parsers.dart",
+      "sha256": "ebcb95e0e437a6b4b36606d04e488b816fa34cd18a14c49dd7770fc7f19a1457"
+    },
+    {
+      "path": "lib/src/private/pop/parsers/pop_list_parser.dart",
+      "sha256": "5d8a947a5f6067392bb0a5e15eb42713bc8a1e367d0bdd38c47bdc9ce9f548bb"
+    },
+    {
+      "path": "lib/src/private/pop/parsers/pop_retrieve_parser.dart",
+      "sha256": "0d6184a85a5c0ce5f714c78d17085b135fe6073f856e3530610e63af3b38728d"
+    },
+    {
+      "path": "lib/src/private/pop/parsers/pop_standard_parser.dart",
+      "sha256": "5807a834837e63b25792243bf05f9323bdcf1619bc121a5b073d19218883ecd3"
+    },
+    {
+      "path": "lib/src/private/pop/parsers/pop_status_parser.dart",
+      "sha256": "be558371c3295432bd28eb8ab8e139122004341d875844c38ec5faa308df3be0"
+    },
+    {
+      "path": "lib/src/private/pop/parsers/pop_uidl_parser.dart",
+      "sha256": "0903b9f249ed1c297853d78a33a044237b53e1433ef38355f7159ed8117a27f8"
+    },
+    {
+      "path": "lib/src/private/pop/pop_command.dart",
+      "sha256": "da342e7c9419c3664c7e3e2263d046a627db03a6693a9d2c20917af8dbf3d3c7"
+    },
+    {
+      "path": "lib/src/private/pop/pop_response_parser.dart",
+      "sha256": "0bd2114ee11a59dce7700470c5abf15f6ed9eb4a3956bd41b478cfb6aa5cce90"
+    },
+    {
+      "path": "lib/src/private/smtp/commands/all_commands.dart",
+      "sha256": "71918b9cfa8db5ba8469e43852ca84335d216bb57a81bddded9451b62c509ed1"
+    },
+    {
+      "path": "lib/src/private/smtp/commands/smtp_auth_cram_md5_command.dart",
+      "sha256": "655cfed6d581760a7f60ed185127b76fa2a9b6123f5b6138d64405c6732b1b74"
+    },
+    {
+      "path": "lib/src/private/smtp/commands/smtp_auth_login_command.dart",
+      "sha256": "35ef57965da264a96f23794440360e0f50bb30a22ade411d0fe851ef9afe01cb"
+    },
+    {
+      "path": "lib/src/private/smtp/commands/smtp_auth_plain_command.dart",
+      "sha256": "3f2bd3f7f912e37112ada068cfc9fb7d7bcc50b396cb874307a4af8a26de194f"
+    },
+    {
+      "path": "lib/src/private/smtp/commands/smtp_auth_xoauth2_command.dart",
+      "sha256": "f12124603561637221e667a85054a6b608b7cb2446b4cbe59c4d58382fa5482a"
+    },
+    {
+      "path": "lib/src/private/smtp/commands/smtp_ehlo_command.dart",
+      "sha256": "ce2d48a67838ca66fcc4a16bb40edd488a498c449928069569c3786ae4f5b950"
+    },
+    {
+      "path": "lib/src/private/smtp/commands/smtp_quit_command.dart",
+      "sha256": "c877093b8f411b079fa00bab901149c173860fcbe28c960a12e1b109d6cd7275"
+    },
+    {
+      "path": "lib/src/private/smtp/commands/smtp_send_bdat_command.dart",
+      "sha256": "050d2c08bfa6eb6e2349ad5abc2bcc608720ad2600ca7a796d7a7dbeba11cc05"
+    },
+    {
+      "path": "lib/src/private/smtp/commands/smtp_sendmail_command.dart",
+      "sha256": "5a620bf527ebf95970c0ca75cd5d4cad47a2b1c416ee8683b1b61c417e06910f"
+    },
+    {
+      "path": "lib/src/private/smtp/commands/smtp_starttls_command.dart",
+      "sha256": "37812683b8415fe9b4afa683b5a524113f1a57c780f5a128e04198546f602239"
+    },
+    {
+      "path": "lib/src/private/smtp/smtp_command.dart",
+      "sha256": "03ba0c37dae726c0a1a3ca1dae1198ad569377ca65e489494e3400ee5d23e060"
+    },
+    {
+      "path": "lib/src/private/util/ascii_runes.dart",
+      "sha256": "c33343ccf8ebc9b9560ba99567093f25db60a9a073b8c4acb689e3bb083cab9e"
+    },
+    {
+      "path": "lib/src/private/util/byte_utils.dart",
+      "sha256": "0567286bb985963a3d5779c212a0ca7591e1e09f8269747963d818a942f62afc"
+    },
+    {
+      "path": "lib/src/private/util/client_base.dart",
+      "sha256": "da3be8afc3e54fed14758d87076655e06efd51337782d6a112d5e48b1bdc0999"
+    },
+    {
+      "path": "lib/src/private/util/discover_helper.dart",
+      "sha256": "4c258aaa907b6bc75ebcc15acd9eca9467063872410eae0cc9b60668c1a33b80"
+    },
+    {
+      "path": "lib/src/private/util/http_helper.dart",
+      "sha256": "0f53583f4c06f4296ea6271e703b681884b836e464d90025545f5ebfee60f179"
+    },
+    {
+      "path": "lib/src/private/util/mail_address_parser.dart",
+      "sha256": "e7ba47363837de42ca10b537c1ad6638a6b8f6a6cb9a8a41560a3de4df0ef61e"
+    },
+    {
+      "path": "lib/src/private/util/mail_signature.dart",
+      "sha256": "6311814e2d989c29e24ae0a0add49716cf4495312f6aae63d4f7928c464afa03"
+    },
+    {
+      "path": "lib/src/private/util/non_nullable.dart",
+      "sha256": "a53657bf0f1a79fe72de4651f33f13086ca6f2efcfd845988b5f5474574879cd"
+    },
+    {
+      "path": "lib/src/private/util/stack_list.dart",
+      "sha256": "70241a53065aa86b30c9592a64f6005b7efe807925a088a2e174d678e0aaae56"
+    },
+    {
+      "path": "lib/src/private/util/uint8_list_reader.dart",
+      "sha256": "c57efe7fb3c43d1a06089d7cc8d13fba3b3acfe7b64e1645a7b7ac32c31b1145"
+    },
+    {
+      "path": "lib/src/private/util/word.dart",
+      "sha256": "4f468dcee5b196f9c744a60eae8d720050da7f268faa36f57de4c71d2df7be63"
+    },
+    {
+      "path": "lib/src/smtp/smtp_client.dart",
+      "sha256": "1cdaee788670f32eccec95a7f3728b777cd1a6d39f5f7c9750321375c4f7b269"
+    },
+    {
+      "path": "lib/src/smtp/smtp_events.dart",
+      "sha256": "4735697ec7140e05da97e5ea57d99a8f190d9a5d54a111b336e862b927d85bca"
+    },
+    {
+      "path": "lib/src/smtp/smtp_exception.dart",
+      "sha256": "2c9bf8e1f5106377156c2449d7bad0dc2c0342da5c014da55d20a51c0702c968"
+    },
+    {
+      "path": "lib/src/smtp/smtp_response.dart",
+      "sha256": "6a1275f82993a64ed85cf56f9bdeba7d06abb36c8bf8affd9f830b62d3a2b8c5"
+    },
+    {
+      "path": "migration.md",
+      "sha256": "90ac4010b37f52566c6a8138aeb0828139e9f403edf4ab59d947ac0d03bd9166"
+    },
+    {
+      "path": "pubspec.yaml",
+      "sha256": "062326e3afb1fafe5e799f475440e3193934c876224405214b2ea68d49f74464"
+    },
+    {
+      "path": "test/codecs/base64_mail_codec_test.dart",
+      "sha256": "05a68637c762862a0f18ba40a12288619c21ef01ddd4ed62cbaeb40485710eb5"
+    },
+    {
+      "path": "test/codecs/date_codec_test.dart",
+      "sha256": "cfe8088eee699a44eb0badbf3d5f2ebf380807b3a19c23d3264b2a88d83404c5"
+    },
+    {
+      "path": "test/codecs/encoding_correctness_test.dart",
+      "sha256": "2f651dba1dacc29d4a8217372e5fbb9a09f3c9a813c874e6cd6d065d01c5d35d"
+    },
+    {
+      "path": "test/codecs/folding_test.dart",
+      "sha256": "de9727503e52dbf8eb5d7a8f8b470ae80c08d94363f312b941a52d36b09441f7"
+    },
+    {
+      "path": "test/codecs/mail_codec_test.dart",
+      "sha256": "d17386c051b129fc3cbc1808e2e9ef1b30a1f0a836c39147e0e28b1041ef97d7"
+    },
+    {
+      "path": "test/codecs/modified_utf7_codec_test.dart",
+      "sha256": "dee4c43355179d4dca3ccb2c1d35c021fc7b7f992aa6af887912b79c644f0a39"
+    },
+    {
+      "path": "test/codecs/quoted_printable_mail_codec_test.dart",
+      "sha256": "6afc8cb7234d0f13f4f53ffe64bdb594b30d02b9b38f4898577a91c125200d34"
+    },
+    {
+      "path": "test/connection_robustness_test.dart",
+      "sha256": "6e2f328bd6d35b9ea4fdcbaaba4600fe2ba1617115f2d026b574f410ff15aac8"
+    },
+    {
+      "path": "test/folding_test.dart",
+      "sha256": "e62a1a8cf5e16884f48a80e75c0048dc95e148ef39cb13d75cdba1d997c92893"
+    },
+    {
+      "path": "test/header_injection_test.dart",
+      "sha256": "516fe914c9f4cf8b32ce5568aeb3cc2ee2ea0c193aee8da0020b6962a558a7db"
+    },
+    {
+      "path": "test/imap/imap_client_test.dart",
+      "sha256": "e37a45f577cc666a8ab9ed7faad90ca7dba135412d621356137a4853c2129788"
+    },
+    {
+      "path": "test/imap/imap_quoting_test.dart",
+      "sha256": "c9ab536a51f9625c1eecd2d84be83add402e604f73879920972cb58d7de704b6"
+    },
+    {
+      "path": "test/imap/imap_robustness_test.dart",
+      "sha256": "eb2bc62f1975d18ba825ff98075f8e57ec6c5f818544db4a3707acf18696a8c7"
+    },
+    {
+      "path": "test/imap/mailbox_test.dart",
+      "sha256": "6fe4b1ea846137620ec45a2b94f9915aa7a0ba4e6e8660d3e2b66a92f98dddb3"
+    },
+    {
+      "path": "test/imap/message_sequence_test.dart",
+      "sha256": "30523bd851ca06ab7c3335e59b3f0a699d5d85bf97f0f2cc09ccc44d6ff79eb7"
+    },
+    {
+      "path": "test/imap/mock_imap_server.dart",
+      "sha256": "ca9d4caecdfda7193d68726c7e54e89d01ae53fe7e5f0107410539fa98f1f198"
+    },
+    {
+      "path": "test/imap/qresync_test.dart",
+      "sha256": "b5f4864e411dce4c30a1d685e27508ffe0c2924d4771bdd08cc44806f05aadd7"
+    },
+    {
+      "path": "test/imap/response_test.dart",
+      "sha256": "6362c6f210907de7bc33d4e19d45de3311d82d53fb698e4c2c319b7fdde1416f"
+    },
+    {
+      "path": "test/mail/imap_loopback_server.dart",
+      "sha256": "85366ad536b6a053c8db04b769ccaabee4158d3075bc7058bdb27211e2b989ab"
+    },
+    {
+      "path": "test/mail/mail_account_test.dart",
+      "sha256": "ff1ddf05752ff6f1fd94d23afa597bd9fc0fddd3f2b0af9da777a6a105470ae5"
+    },
+    {
+      "path": "test/mail/mail_client_delete_test.dart",
+      "sha256": "2314a4862261239a1c5984ce22ff7b1d09cb813c941c01ed400a59ea2c5322b3"
+    },
+    {
+      "path": "test/mail/mail_client_oauth_test.dart",
+      "sha256": "39877eaada6b354a53423b318d5a746b61a3828cb6eb644d07741b0489019438"
+    },
+    {
+      "path": "test/mail/mail_client_pop_test.dart",
+      "sha256": "1447c08acfe9e18c1eb43b85d2e4ff43bc8af7c79acff5b816e177ee879ac50a"
+    },
+    {
+      "path": "test/mail/mail_client_reconnect_test.dart",
+      "sha256": "dfa71c78fe374276093990de6fad6321767f88971810d73d5f654e10d4138468"
+    },
+    {
+      "path": "test/mail/mail_client_send_test.dart",
+      "sha256": "56091640deb44621bf621ee635ea3d0a1f4d8812d1d2e6e951c9e91bb9c57270"
+    },
+    {
+      "path": "test/mail/mail_client_starttls_test.dart",
+      "sha256": "ff2a741bf1eb1e01ccc54202c4e913358f4e90dbd9d952a7ab2dec23281ff312"
+    },
+    {
+      "path": "test/mail/redaction_test.dart",
+      "sha256": "b455654e6b65d5a45d8d2daae404c4751ed230b607d1c4b6544175dab3e20b98"
+    },
+    {
+      "path": "test/mail/results_test.dart",
+      "sha256": "04cfe8032cdd478095f7803cda984a982285ebd02cbd2beecff4125a5b1eb043"
+    },
+    {
+      "path": "test/mail_address_parser_test.dart",
+      "sha256": "fa14a6585f6af330b38cbc8e0686a164a954ddd93ad760b5afe9c0ca58beb7c2"
+    },
+    {
+      "path": "test/mail_signature_test.dart",
+      "sha256": "fbaeece54d17ee7d8fbf4f8a23c55ec28fed680b07cbdedcf8cee765d4485a99"
+    },
+    {
+      "path": "test/message_builder_test.dart",
+      "sha256": "4f9751409e6a33b338d99cf63688fb22ae16444df929cca17586e917396c42cc"
+    },
+    {
+      "path": "test/mime_bare_lf_test.dart",
+      "sha256": "a79787fb0e63d5b3f6830964742be099cf12b7f5868ae7dbc13f61de76e869eb"
+    },
+    {
+      "path": "test/mime_boundary_test.dart",
+      "sha256": "23d6ad61e10bbbd92761a21cc8906334e48b288446b35eec875b026090127ab9"
+    },
+    {
+      "path": "test/mime_message_test.dart",
+      "sha256": "ab250bd17370668998a5057263657bc7adb84fce88bec53576057944c5837204"
+    },
+    {
+      "path": "test/mime_robustness_test.dart",
+      "sha256": "fc6ee10f83f1c4ea6d2ca296123b20154e61b90009013ea77158b13e6ce11137"
+    },
+    {
+      "path": "test/mock_socket.dart",
+      "sha256": "3072ada0a030cf52cacc3644e49277bc893285ce0d390cc108a1e188bc22fe46"
+    },
+    {
+      "path": "test/pop/mock_pop_server.dart",
+      "sha256": "f161bb5f37916002b34ac71ab65f1683b96be97b6e5927ad8d1d70ee60981a0e"
+    },
+    {
+      "path": "test/pop/pop_client_test.dart",
+      "sha256": "55868e940311318d345047703e88473f2482384f15dd05e3cae03b2b6a432f0f"
+    },
+    {
+      "path": "test/pop/pop_framing_test.dart",
+      "sha256": "e1e31d4d341acaec3cf88a3b5c473fc9d110eb53533dc1dcecd555ae00f2ad78"
+    },
+    {
+      "path": "test/reconnect_state_test.dart",
+      "sha256": "11392a014c028f63ee3b6a6d0a2b1eb11dd1812db0a8d017b0daddc78661e7f3"
+    },
+    {
+      "path": "test/remove_header_test.dart",
+      "sha256": "c4bb3ffa44c8efefd9be3a18a48fa4df5a2ab01fb978c63a23c285f6364cb865"
+    },
+    {
+      "path": "test/smtp/mock_smtp_server.dart",
+      "sha256": "37a48c9dd2196db4e77e710038af55fff33113c006cb6fc8c8f54b6c343688e6"
+    },
+    {
+      "path": "test/smtp/remove_bcc_header_test.dart",
+      "sha256": "c403aa779fe09c7037d75536678ebb08fb8bc64f4119074f0bc73dd1988afb8d"
+    },
+    {
+      "path": "test/smtp/smtp_auth_encoding_test.dart",
+      "sha256": "d2429decc322a7706f42473145d276ca2a74241a8385ba0fd6292cc3b099a9e9"
+    },
+    {
+      "path": "test/smtp/smtp_client_test.dart",
+      "sha256": "d6dd330675edde3f9dc51d071e2d814f3296b776faa7acda58d564ca7a8c2a42"
+    },
+    {
+      "path": "test/smtp/smtp_framing_test.dart",
+      "sha256": "81ab6bc8163704452dddf78199418681a80a7cfd91cf46b6fbd2fe0fad9e3740"
+    },
+    {
+      "path": "test/smtp/smtp_send_state_test.dart",
+      "sha256": "efd82908b1c166664e544559ccc6423ac1756cc204c9af0eda7f19daa250dba1"
+    },
+    {
+      "path": "test/smtp/smtp_sendmail_command_test.dart",
+      "sha256": "76b2e791fac7c926faf95d41ad0ea8edddb2373655fb46419dc6af10147d225e"
+    },
+    {
+      "path": "test/smtp/smtp_transparency_test.dart",
+      "sha256": "74dd272291c1be4109ec2d795dda5e2b18a13c35b3dfcd6cf2a79596f7216f83"
+    },
+    {
+      "path": "test/smtp/testimage-large.jpg",
+      "sha256": "b11bbef5b4c15f0b970f05a929800a1f3e57420c71c4fef27bf7b5e0fec63c7c"
+    },
+    {
+      "path": "test/smtp/testimage.jpg",
+      "sha256": "9c0493eb8d5079ecb53501c45227bdb32ad74b1e30fbc8274371ff400c8aec48"
+    },
+    {
+      "path": "test/src/imap/fetch_parser_test.dart",
+      "sha256": "7957ba8b0b2538b7cc136195009caa761453457cf984e41088004141119fc5c8"
+    },
+    {
+      "path": "test/src/imap/id_parser_test.dart",
+      "sha256": "6fad1d05a21f877192f7c73e93f85bafc11ff2a938450672e580a3f718d13ba6"
+    },
+    {
+      "path": "test/src/imap/imap_response_line_test.dart",
+      "sha256": "7d8d07b98ffaedea87af1438451a83fdf424e57e85c43c03535ac41e65dfc764"
+    },
+    {
+      "path": "test/src/imap/imap_response_reader_test.dart",
+      "sha256": "d2e76b54c30bfeba4622fc862b5d3144723ab4f12f07cb1606c9b97fffe27541"
+    },
+    {
+      "path": "test/src/imap/imap_response_test.dart",
+      "sha256": "f98f5ade08eeab9dac33401ac4f20cf25726cb174da801de7bec4c57821dee2b"
+    },
+    {
+      "path": "test/src/imap/list_parser_test.dart",
+      "sha256": "15fbfb3c06e43226c1719184352cdc8d23cd9b0631604161204a1c9eef2bd29f"
+    },
+    {
+      "path": "test/src/imap/namespace_parser_test.dart",
+      "sha256": "f172fcb5e309f358aea7cd18bdc05da9d7ff1b28dddca2f0ad9ca567af73e72f"
+    },
+    {
+      "path": "test/src/imap/parser_helper_test.dart",
+      "sha256": "ca56602d45e553b5e2c27c2455c46a081d53378a172bf522d1dd8a4d2a1b9d66"
+    },
+    {
+      "path": "test/src/imap/search_parser_test.dart",
+      "sha256": "6d8ed316a18737d41855e143df510ec912b5f058f7126159e97a0b4367b80818"
+    },
+    {
+      "path": "test/src/imap/sort_parser_test.dart",
+      "sha256": "b7abad12cf53e5f314e64c56a1f38ec64d67390d18acbd9261d6dbbd25c68c16"
+    },
+    {
+      "path": "test/src/imap/status_parser_test.dart",
+      "sha256": "81d11fdc899f8705b921aab155105f1414eef35a2e84e77ac8ed5657cace144d"
+    },
+    {
+      "path": "test/src/imap/thread_parser_test.dart",
+      "sha256": "7bae514ac7f84c13fa91ce27cc4f8b9026b9a0ef8fefb5bad1b02390bbfa49e4"
+    },
+    {
+      "path": "test/src/smtp/commands/smtp_auth_cram_md5_command_test.dart",
+      "sha256": "3ddeb6792a13df3ad44710b99e0c1a9a182095f03fcc18bf2a2be782a8bbdf13"
+    },
+    {
+      "path": "test/src/smtp/smtp_response_test.dart",
+      "sha256": "ad870f2c370a936e7675a03326c4f9106ccba816c48f7bb33d0f0c414ac73322"
+    },
+    {
+      "path": "test/src/util/client_config_test.dart",
+      "sha256": "69dec8c0661371ecf0a2ab0b2248544fe67a3169f22fcfd88c361eb5dcc715ad"
+    },
+    {
+      "path": "test/src/util/discover_helper_test.dart",
+      "sha256": "029121e838a304b9e1d0d297ca8d2f3b464a16ab0933cb20e79eb5fa4b68cec4"
+    },
+    {
+      "path": "test/src/util/http_helper_test.dart",
+      "sha256": "d9f09e79145b9451a643f0658ce28bb634d7689c12f022c7fa945ed87eaa4e9f"
+    },
+    {
+      "path": "test/src/util/uint8_list_reader_test.dart",
+      "sha256": "ea6725ac6972b37969273407774e6d4be2d8ac506a951b99c264127e9740a257"
+    },
+    {
+      "path": "test/write_failure_test.dart",
+      "sha256": "d66187add5969ac3180911b2d578fadeaf2126eb909dfeaeae7b95487cc87361"
+    }
+  ]
+}

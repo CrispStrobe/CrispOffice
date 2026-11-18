@@ -1,0 +1,117 @@
+{
+  "actual_test_process_exit_code": 0,
+  "all_selected_suites_executed": true,
+  "all_substantive_tests_passed": true,
+  "corrected_at_utc": "2026-11-18T13:19:16.390041+00:00",
+  "corrected_runner": {
+    "bytes": 13527,
+    "sha256": "ff7c674965037eeb747c8b753ac9a485cd1a5faf993279373c49c50e6e68a899"
+  },
+  "correction_script": {
+    "bytes": 4784,
+    "sha256": "e4b6f056acdfe08aa054bc3305d33f45aeb461807e0f8398fb58aa0d8fe184d5"
+  },
+  "executed_runner": {
+    "bytes": 13525,
+    "sha256": "a010493802093f1c76fa401a14f2567257f98bfe71591ca784b890c89565d381"
+  },
+  "input_artifacts": {
+    "events.jsonl": {
+      "bytes": 253900,
+      "sha256": "88031aba25454b875ef0411c7b508acafa87566af2e35dbb71723a4d1d376309"
+    },
+    "run.json": {
+      "bytes": 3667,
+      "sha256": "60422796191b69136462c5c274ee23696d64c5f07077ecd221525ab1398491b2"
+    },
+    "runtime-binding-after.json": {
+      "bytes": 1568,
+      "sha256": "076e445a6f7e25a0fec97a9848a0cf0f86f44409a2bb9089f8708384fe3c440a"
+    },
+    "runtime-binding-before.json": {
+      "bytes": 1568,
+      "sha256": "076e445a6f7e25a0fec97a9848a0cf0f86f44409a2bb9089f8708384fe3c440a"
+    },
+    "source-after.json": {
+      "bytes": 99682,
+      "sha256": "b6ce665567f3543f5bbebd3b13760aaecbad488a128518e77fb2db1eb87cb63a"
+    },
+    "source-before.json": {
+      "bytes": 99682,
+      "sha256": "b6ce665567f3543f5bbebd3b13760aaecbad488a128518e77fb2db1eb87cb63a"
+    }
+  },
+  "observed_reporter_paths": [
+    "test/proofing/german_spelling_test.dart",
+    "test/proofing/german_spelling_quotes_test.dart",
+    "test/proofing/german_spelling_apostrophes_test.dart",
+    "test/proofing/german_spelling_compounds_test.dart",
+    "test/proofing/german_spelling_shortlist_test.dart",
+    "test/proofing/german_spelling_continuation_test.dart",
+    "test/proofing/german_spelling_projection_test.dart",
+    "test/proofing/german_suggestion_quality_test.dart",
+    "test/proofing/german_lexicon_query_test.dart",
+    "test/proofing/german_literal_ranges_test.dart",
+    "test/proofing/german_participle_suggestions_test.dart",
+    "test/proofing/german_nominal_word_forms_test.dart",
+    "test/proofing/office_proofing_test.dart",
+    "test/proofing/proofing_text_ranges_test.dart",
+    "test/proofing/german_morphology_loading_test.dart",
+    "test/proofing/german_morphology_grammar_test.dart",
+    "test/proofing/german_grammar_test.dart",
+    "test/proofing/german_agreement_facts_test.dart",
+    "test/proofing/german_writing_rules_test.dart"
+  ],
+  "original_runner_process_exit_code": 1,
+  "original_summary": {
+    "bytes": 6365,
+    "sha256": "b0f6ff96662f5ffaca6499dac034a3c4e67af0c43053d3b044ea902bb1337579"
+  },
+  "reason": "Dart JSON reporter returns relative suite paths. Resolve them against the recorded test process cwd, not the receipt runner cwd.",
+  "recorded_test_cwd": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_engine",
+  "resolved_expected_paths": [
+    "/workspace/scratch/11b2f453fe98/quds_office_suite/packages/quds_office_engine/test/proofing/german_agreement_facts_test.dart",
+    "/workspace/scratch/11b2f453fe98/quds_office_suite/packages/quds_office_engine/test/proofing/german_grammar_test.dart",
+    "/workspace/scratch/11b2f453fe98/quds_office_suite/packages/quds_office_engine/test/proofing/german_lexicon_query_test.dart",
+    "/workspace/scratch/11b2f453fe98/quds_office_suite/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart",
+    "/workspace/scratch/11b2f453fe98/quds_office_suite/packages/quds_office_engine/test/proofing/german_morphology_grammar_test.dart",
+    "/workspace/scratch/11b2f453fe98/quds_office_suite/packages/quds_office_engine/test/proofing/german_morphology_loading_test.dart",
+    "/workspace/scratch/11b2f453fe98/quds_office_suite/packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart",
+    "/workspace/scratch/11b2f453fe98/quds_office_suite/packages/quds_office_engine/test/proofing/german_participle_suggestions_test.dart",
+    "/workspace/scratch/11b2f453fe98/quds_office_suite/packages/quds_office_engine/test/proofing/german_spelling_apostrophes_test.dart",
+    "/workspace/scratch/11b2f453fe98/quds_office_suite/packages/quds_office_engine/test/proofing/german_spelling_compounds_test.dart",
+    "/workspace/scratch/11b2f453fe98/quds_office_suite/packages/quds_office_engine/test/proofing/german_spelling_continuation_test.dart",
+    "/workspace/scratch/11b2f453fe98/quds_office_suite/packages/quds_office_engine/test/proofing/german_spelling_projection_test.dart",
+    "/workspace/scratch/11b2f453fe98/quds_office_suite/packages/quds_office_engine/test/proofing/german_spelling_quotes_test.dart",
+    "/workspace/scratch/11b2f453fe98/quds_office_suite/packages/quds_office_engine/test/proofing/german_spelling_shortlist_test.dart",
+    "/workspace/scratch/11b2f453fe98/quds_office_suite/packages/quds_office_engine/test/proofing/german_spelling_test.dart",
+    "/workspace/scratch/11b2f453fe98/quds_office_suite/packages/quds_office_engine/test/proofing/german_suggestion_quality_test.dart",
+    "/workspace/scratch/11b2f453fe98/quds_office_suite/packages/quds_office_engine/test/proofing/german_writing_rules_test.dart",
+    "/workspace/scratch/11b2f453fe98/quds_office_suite/packages/quds_office_engine/test/proofing/office_proofing_test.dart",
+    "/workspace/scratch/11b2f453fe98/quds_office_suite/packages/quds_office_engine/test/proofing/proofing_text_ranges_test.dart"
+  ],
+  "resolved_observed_paths": [
+    "/workspace/scratch/11b2f453fe98/quds_office_suite/packages/quds_office_engine/test/proofing/german_agreement_facts_test.dart",
+    "/workspace/scratch/11b2f453fe98/quds_office_suite/packages/quds_office_engine/test/proofing/german_grammar_test.dart",
+    "/workspace/scratch/11b2f453fe98/quds_office_suite/packages/quds_office_engine/test/proofing/german_lexicon_query_test.dart",
+    "/workspace/scratch/11b2f453fe98/quds_office_suite/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart",
+    "/workspace/scratch/11b2f453fe98/quds_office_suite/packages/quds_office_engine/test/proofing/german_morphology_grammar_test.dart",
+    "/workspace/scratch/11b2f453fe98/quds_office_suite/packages/quds_office_engine/test/proofing/german_morphology_loading_test.dart",
+    "/workspace/scratch/11b2f453fe98/quds_office_suite/packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart",
+    "/workspace/scratch/11b2f453fe98/quds_office_suite/packages/quds_office_engine/test/proofing/german_participle_suggestions_test.dart",
+    "/workspace/scratch/11b2f453fe98/quds_office_suite/packages/quds_office_engine/test/proofing/german_spelling_apostrophes_test.dart",
+    "/workspace/scratch/11b2f453fe98/quds_office_suite/packages/quds_office_engine/test/proofing/german_spelling_compounds_test.dart",
+    "/workspace/scratch/11b2f453fe98/quds_office_suite/packages/quds_office_engine/test/proofing/german_spelling_continuation_test.dart",
+    "/workspace/scratch/11b2f453fe98/quds_office_suite/packages/quds_office_engine/test/proofing/german_spelling_projection_test.dart",
+    "/workspace/scratch/11b2f453fe98/quds_office_suite/packages/quds_office_engine/test/proofing/german_spelling_quotes_test.dart",
+    "/workspace/scratch/11b2f453fe98/quds_office_suite/packages/quds_office_engine/test/proofing/german_spelling_shortlist_test.dart",
+    "/workspace/scratch/11b2f453fe98/quds_office_suite/packages/quds_office_engine/test/proofing/german_spelling_test.dart",
+    "/workspace/scratch/11b2f453fe98/quds_office_suite/packages/quds_office_engine/test/proofing/german_suggestion_quality_test.dart",
+    "/workspace/scratch/11b2f453fe98/quds_office_suite/packages/quds_office_engine/test/proofing/german_writing_rules_test.dart",
+    "/workspace/scratch/11b2f453fe98/quds_office_suite/packages/quds_office_engine/test/proofing/office_proofing_test.dart",
+    "/workspace/scratch/11b2f453fe98/quds_office_suite/packages/quds_office_engine/test/proofing/proofing_text_ranges_test.dart"
+  ],
+  "source_or_test_edits": false,
+  "substantive_test_count": 526,
+  "test_process_rerun": false
+}

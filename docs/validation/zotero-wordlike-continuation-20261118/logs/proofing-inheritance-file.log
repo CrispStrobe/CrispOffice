@@ -1,0 +1,30 @@
+00:00 +0: loading /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_controls_test.dart
+00:00 +0: inspection and options chrome never create text or history
+00:00 +1: collapsed caret changes the whole paragraph and preserves rich runs
+00:00 +2: multiline reversed selection formats complete emoji and combining clusters only
+00:00 +3: effective mixed states, inherited languages and no-op history are distinct
+00:00 +4: live changes recheck language, suppress findings and reject late results without manual inference
+00:00 +5: a captured target refuses stale caret without history
+00:00 +6: a captured target refuses stale text without history
+00:00 +7: a captured target refuses stale language without history
+00:00 +8: a captured target refuses stale run language without history
+00:00 +9: a captured target refuses stale suppression without history
+00:00 +10: a captured target refuses stale run replacement without history
+00:00 +11: a captured target refuses stale document without history
+00:00 +12: a captured target refuses stale paragraph order without history
+00:00 +13: a field in a multiline target refuses the entire change
+00:00 +14: a note in a multiline target refuses the entire change
+00:00 +15: a complex field in a multiline target refuses the entire change
+00:00 +16: a generated paragraph in a multiline target refuses the entire change
+00:00 +17: a complex field opened in a prior paragraph remains protected
+00:00 +18: protected block controls refuse both proofing operations
+00:00 +19: protected inline controls refuse both proofing operations
+00:00 +20: protected wrapper controls refuse both proofing operations
+00:00 +21: protected binding controls refuse both proofing operations
+00:00 +22: unlocked control boundaries survive selected formatting and Undo
+00:00 +23: formatting leaves tracked insertion/deletion ranges and authors intact
+00:00 +24: comment target follows exact ownership and history preserves other story selections
+00:00 +25: header target follows exact ownership and history preserves other story selections
+00:00 +26: viewing mode, late protection and IME never mutate displayed targets
+00:00 +27: language inheritance and explicit checking permission survive DOCX save
+00:01 +28: All tests passed!

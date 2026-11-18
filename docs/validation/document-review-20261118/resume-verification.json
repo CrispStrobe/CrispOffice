@@ -1,0 +1,294 @@
+{
+  "earlier_39_file_manifest": {
+    "changed": [
+      {
+        "current_sha256": "cdc3af084d99eff0cd973724561b7d2e01bfbd4084bef476e60aeff5ad816f7b",
+        "path": "packages/quds_office_editor/example/lib/studio_files.dart",
+        "previous_sha256": "a6c38c734696ab773a54658bb87b32a0485cb7b191de74e89c42fa76ead50555"
+      },
+      {
+        "current_sha256": "621174add0d377e583b4ad5177165baa88e02a2a7222aaba42e13f3cbe4ee6c0",
+        "path": "packages/quds_office_editor/example/test/studio_document_comparison_test.dart",
+        "previous_sha256": "82c8c4f7590642c2446353aa33b4f96158be91032dcd53c01b85c66f76876f39"
+      },
+      {
+        "current_sha256": "e5c33766218a08b1e178adafa919718b5f60f36a4faa471a6ec32c885ef7e6f0",
+        "path": "packages/quds_proofing_spacy/lib/src/distribution.dart",
+        "previous_sha256": "6c2670da23e27a1eb44783eb3fe22619e39571894e5c5eb87c1a46270493ddb5"
+      }
+    ],
+    "unchanged": 36
+  },
+  "final_main_reconciliation": {
+    "main": "f383c826205e321eda3ed3bdbcd584e9a2d4da14",
+    "matches_tested_tree": true,
+    "merged_tree": "cc036c7190f868fb0bc4414f6efa0055df4904f5",
+    "method": "git merge-tree --write-tree 41c15e2309ae4100126381adb702b27410a52069 f383c826205e321eda3ed3bdbcd584e9a2d4da14",
+    "note": "Main now joins the same two incoming histories already preserved in 366e9b34. Final evidence checkpoint also includes main as a parent without altering the tested source.",
+    "parents": [
+      "ca42a7fa3947d0b59b9b2d3e14e807116327d714",
+      "517f6d10f0ec2509b1381b3cf23807645bba4f92"
+    ],
+    "production_or_test_changes": false
+  },
+  "finished_at_utc": "2026-11-18T12:52:57.101574+00:00",
+  "github_actions": {
+    "dispatched": false,
+    "queried": false,
+    "waited": false
+  },
+  "golden_path_mappings_identical": true,
+  "local_head_at_end": "41c15e2309ae4100126381adb702b27410a52069",
+  "local_head_at_start": "41c15e2309ae4100126381adb702b27410a52069",
+  "passed": true,
+  "runs": [
+    {
+      "command": [
+        "/workspace/scratch/c87f8ac8c63c/review-toolchain/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+        "--packages=/workspace/scratch/c87f8ac8c63c/review-toolchain/workspace/.dart_tool/package_config.json",
+        "/workspace/scratch/c87f8ac8c63c/review-toolchain/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+        "test/distribution_test.dart",
+        "--reporter",
+        "expanded"
+      ],
+      "cwd": "/workspace/scratch/c87f8ac8c63c/review-toolchain/workspace/packages/quds_proofing_spacy",
+      "elapsed_seconds": 16.53,
+      "exit_code": 0,
+      "log": "resume-checks/spacy-distribution-tests.txt",
+      "log_sha256": "d805bc7e6f1862dde705bb3cd51a3d6cf2537558c5cfc94ca94f93367c68fa7d",
+      "name": "spacy-distribution-tests",
+      "passed": 14,
+      "skipped": 0,
+      "started_at_utc": "2026-11-18T12:51:08.590199+00:00"
+    },
+    {
+      "command": [
+        "/workspace/scratch/c87f8ac8c63c/review-toolchain/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "packages/quds_proofing_spacy/lib/src/distribution.dart"
+      ],
+      "cwd": "/workspace/scratch/c87f8ac8c63c/review-toolchain/workspace",
+      "elapsed_seconds": 0.7,
+      "exit_code": 0,
+      "log": "resume-checks/analyze-distribution.txt",
+      "log_sha256": "2926b26e1003597122d2a075da91c5a5f5879a8308de0202f3d394b42affe7d0",
+      "name": "analyze-distribution",
+      "passed": null,
+      "skipped": null,
+      "started_at_utc": "2026-11-18T12:51:25.120773+00:00"
+    },
+    {
+      "command": [
+        "/workspace/scratch/c87f8ac8c63c/review-toolchain/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "packages/quds_proofing_spacy/tool/install_from_hub.dart"
+      ],
+      "cwd": "/workspace/scratch/c87f8ac8c63c/review-toolchain/workspace",
+      "elapsed_seconds": 0.621,
+      "exit_code": 0,
+      "log": "resume-checks/analyze-install_from_hub.txt",
+      "log_sha256": "08443a630f9f68350e9f8cd1d4badcd25b9aa964dfc17f26d6b8c4900528d27d",
+      "name": "analyze-install_from_hub",
+      "passed": null,
+      "skipped": null,
+      "started_at_utc": "2026-11-18T12:51:25.829568+00:00"
+    },
+    {
+      "command": [
+        "/workspace/scratch/c87f8ac8c63c/review-toolchain/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "packages/quds_office_editor/test/support/office_golden.dart"
+      ],
+      "cwd": "/workspace/scratch/c87f8ac8c63c/review-toolchain/workspace",
+      "elapsed_seconds": 0.419,
+      "exit_code": 0,
+      "log": "resume-checks/analyze-office_golden.txt",
+      "log_sha256": "debab2c40e18ca93f910a4db8bb87c51b6089b803b33f1930a8c0e81a6198f9d",
+      "name": "analyze-office_golden",
+      "passed": null,
+      "skipped": null,
+      "started_at_utc": "2026-11-18T12:51:26.450959+00:00"
+    },
+    {
+      "command": [
+        "/workspace/scratch/c87f8ac8c63c/review-toolchain/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "packages/quds_office_editor/example/lib/studio_files.dart"
+      ],
+      "cwd": "/workspace/scratch/c87f8ac8c63c/review-toolchain/workspace",
+      "elapsed_seconds": 11.933,
+      "exit_code": 0,
+      "log": "resume-checks/analyze-studio_files.txt",
+      "log_sha256": "b78f417475d2dec4bc84dc700d701a9be07b7b67ace9df907d18f68f72d03cf8",
+      "name": "analyze-studio_files",
+      "passed": null,
+      "skipped": null,
+      "started_at_utc": "2026-11-18T12:51:26.870356+00:00"
+    },
+    {
+      "command": [
+        "/workspace/scratch/c87f8ac8c63c/review-toolchain/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "packages/quds_office_editor/example/test/studio_document_comparison_test.dart"
+      ],
+      "cwd": "/workspace/scratch/c87f8ac8c63c/review-toolchain/workspace",
+      "elapsed_seconds": 15.437,
+      "exit_code": 0,
+      "log": "resume-checks/analyze-studio_document_comparison_test.txt",
+      "log_sha256": "2bd7a25a0af740d6cabca35608bf3d7929bb7d859751b12ed6c79b35cdf46e36",
+      "name": "analyze-studio_document_comparison_test",
+      "passed": null,
+      "skipped": null,
+      "started_at_utc": "2026-11-18T12:51:38.804308+00:00"
+    },
+    {
+      "command": [
+        "/workspace/scratch/c87f8ac8c63c/review-toolchain/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+        "/workspace/scratch/c87f8ac8c63c/review-toolchain/verification/golden_path_probe.dart"
+      ],
+      "cwd": "/workspace/scratch/c87f8ac8c63c/quds_office_suite",
+      "elapsed_seconds": 0.266,
+      "exit_code": 0,
+      "log": "resume-checks/golden-path-repo.txt",
+      "log_sha256": "977bf0da73602bb068592e8c7f7676f6ce4ad9fbe6c3c1fae7746d0bce9459e2",
+      "name": "golden-path-repo",
+      "passed": null,
+      "skipped": null,
+      "started_at_utc": "2026-11-18T12:51:54.242471+00:00"
+    },
+    {
+      "command": [
+        "/workspace/scratch/c87f8ac8c63c/review-toolchain/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+        "/workspace/scratch/c87f8ac8c63c/review-toolchain/verification/golden_path_probe.dart"
+      ],
+      "cwd": "/workspace/scratch/c87f8ac8c63c/quds_office_suite/packages/quds_office_editor",
+      "elapsed_seconds": 0.266,
+      "exit_code": 0,
+      "log": "resume-checks/golden-path-package.txt",
+      "log_sha256": "977bf0da73602bb068592e8c7f7676f6ce4ad9fbe6c3c1fae7746d0bce9459e2",
+      "name": "golden-path-package",
+      "passed": null,
+      "skipped": null,
+      "started_at_utc": "2026-11-18T12:51:54.509597+00:00"
+    },
+    {
+      "command": [
+        "/workspace/scratch/c87f8ac8c63c/review-toolchain/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+        "/workspace/scratch/c87f8ac8c63c/review-toolchain/flutter-sdk/bin/cache/flutter_tools.snapshot",
+        "--no-version-check",
+        "test",
+        "--no-pub",
+        "test/word_review_dialog_test.dart",
+        "--reporter",
+        "expanded"
+      ],
+      "cwd": "/workspace/scratch/c87f8ac8c63c/review-toolchain/workspace/packages/quds_office_editor",
+      "elapsed_seconds": 24.239,
+      "exit_code": 0,
+      "log": "resume-checks/editor-review-dialog-tests.txt",
+      "log_sha256": "a5e60bd7d157a5b42862597a3b742db0b9c0914de3727152f41b1f40d6527ebe",
+      "name": "editor-review-dialog-tests",
+      "passed": 13,
+      "skipped": 0,
+      "started_at_utc": "2026-11-18T12:51:57.631491+00:00"
+    },
+    {
+      "command": [
+        "/workspace/scratch/c87f8ac8c63c/review-toolchain/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+        "/workspace/scratch/c87f8ac8c63c/review-toolchain/flutter-sdk/bin/cache/flutter_tools.snapshot",
+        "--no-version-check",
+        "test",
+        "--no-pub",
+        "test/studio_document_comparison_test.dart",
+        "test/studio_spacy_setup_test.dart",
+        "--reporter",
+        "expanded"
+      ],
+      "cwd": "/workspace/scratch/c87f8ac8c63c/review-toolchain/workspace/packages/quds_office_editor/example",
+      "elapsed_seconds": 24.456,
+      "exit_code": 0,
+      "log": "resume-checks/studio-comparison-setup-tests.txt",
+      "log_sha256": "9f401572916f3cbaa03fade0522c78adbb30e8cbf1636f191236134b43b816a8",
+      "name": "studio-comparison-setup-tests",
+      "passed": 17,
+      "skipped": 0,
+      "started_at_utc": "2026-11-18T12:52:21.873766+00:00"
+    }
+  ],
+  "runtime": {
+    "channel": "stable",
+    "dartSdkVersion": "3.13.7",
+    "devToolsVersion": "2.60.0",
+    "engineBuildDate": "2026-10-22 20:34:48.330",
+    "engineCommitDate": "2026-10-23 02:13:38.000Z",
+    "engineContentHash": "dfd2e6cb7d319db05e3bf1503f3e2ac60f6288a2",
+    "engineRevision": "cf636b1dfb818dd6a3ff16e390e93b1a036969c8",
+    "flutterRoot": "/workspace/scratch/c87f8ac8c63c/review-toolchain/flutter-sdk",
+    "flutterVersion": "3.47.8",
+    "frameworkCommitDate": "2026-10-22 21:37:31 -0700",
+    "frameworkRevision": "737ba8f885dc774b53b442759999a312c9461e4e",
+    "frameworkVersion": "3.47.8",
+    "repositoryUrl": "https://github.com/flutter/flutter.git"
+  },
+  "runtime_additional_hashes": {
+    "bin/cache/flutter_tools.snapshot": "803f5eabe0f147bbd7cbfb5810d012f88d909d092d15de36a62be43c42af0da9",
+    "bin/cache/flutter_tools.stamp": "f69ea68e4e502214791c229f4005c9ed0d000b15b23e0c510902429d86e49675",
+    "packages/flutter_tools/pubspec.lock": "6a98afb61c0cc72f31631ab444932f072fd275aa04d56cde2bf6831ba02fc8f8"
+  },
+  "runtime_executable_hashes_still_match": true,
+  "runtime_hashes": {
+    "expected": {
+      "bin/cache/artifacts/engine/linux-x64/flutter_tester": "800f4ca182df7dd2fb46a42dea5d76277b9dbc5e8cd2915e02bcbc978681b45f",
+      "bin/cache/dart-sdk/bin/dart": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb"
+    },
+    "match": true,
+    "observed": {
+      "bin/cache/artifacts/engine/linux-x64/flutter_tester": "800f4ca182df7dd2fb46a42dea5d76277b9dbc5e8cd2915e02bcbc978681b45f",
+      "bin/cache/dart-sdk/bin/dart": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb"
+    }
+  },
+  "runtime_hashes_file": "resume-checks/runtime-hashes.json",
+  "runtime_recovery": {
+    "archive_bytes": 1581444364,
+    "archive_sha256": "baf7dcc5a3dbba60fe863bf493a6cf203195621f7786eaa5a1bba02cd0d87dd2",
+    "elapsed_seconds": 101.28304906500125,
+    "sdk_root": "/workspace/scratch/c87f8ac8c63c/review-toolchain/flutter-sdk",
+    "telemetry_consent_changed": false,
+    "telemetry_environment_required": {
+      "CI": "true",
+      "DASH__SUPPRESS_ANALYTICS": "true",
+      "FLUTTER_SUPPRESS_ANALYTICS": "true"
+    },
+    "url": "https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.47.8-stable.tar.xz"
+  },
+  "scope": "Selected local continuation checks. No full platform builds, native macOS visual checks, or live spaCy/NER Hub installation or inference.",
+  "setup_notes": [
+    "The official Flutter 3.47.8 SDK archive SHA-256 was verified before extraction.",
+    "Hosted dependencies for the workspace and Flutter tool were restored from pinned locks and every archive SHA-256 was verified.",
+    "Production dependency manifests were not modified. The isolated workspace links current canonical source.",
+    "Quiet online resolver startup attempts were cancelled before tests; recorded test runs use the direct pinned test-1.31.1 entrypoint and the genuine Flutter tool snapshot with --no-version-check.",
+    "The canonical checkout has an ignored .dart_tool symlink to the isolated workspace for analyzer resolution."
+  ],
+  "source_after_manifest": "resume-checks/source-after.json",
+  "source_file_count": 560,
+  "source_manifest": "resume-checks/source-before.json",
+  "source_manifest_after_sha256": "14c6f1648dd2b558371b2e28a001e9515001cfd12124bc0d31036c12bb01ae31",
+  "source_manifest_matches_tested_commit": true,
+  "source_manifest_sha256": "14c6f1648dd2b558371b2e28a001e9515001cfd12124bc0d31036c12bb01ae31",
+  "source_unchanged": true,
+  "started_at_utc": "2026-11-18T12:50:09.890833+00:00",
+  "strict_analysis_runs": 5,
+  "tested_commit": "41c15e2309ae4100126381adb702b27410a52069",
+  "tested_tree": "cc036c7190f868fb0bc4414f6efa0055df4904f5",
+  "total_selected_tests": 44,
+  "total_selected_tests_passed": 44,
+  "total_selected_tests_skipped": 0,
+  "total_skipped": 0,
+  "workspace_lock_sha256": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130",
+  "workspace_lock_unchanged": true
+}

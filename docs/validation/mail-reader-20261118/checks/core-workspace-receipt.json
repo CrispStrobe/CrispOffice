@@ -1,0 +1,103 @@
+{
+  "scope": "Actual Quds workspace dependency resolution. Source and test paths are in the implementation branch.",
+  "source_head": "0e07d24714e6261123fcb835c36a592d6827982d",
+  "checks": [
+    {
+      "check": "core-workspace-analyze",
+      "command": [
+        "/workspace/scratch/ab53c04e2d5e/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos"
+      ],
+      "cwd": "/workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_mail_core",
+      "exit_code": 0,
+      "seconds": 1.967
+    },
+    {
+      "check": "core-workspace-native-tests",
+      "command": [
+        "/workspace/scratch/ab53c04e2d5e/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+        "test",
+        "--reporter",
+        "expanded"
+      ],
+      "cwd": "/workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_mail_core",
+      "exit_code": 0,
+      "seconds": 7.463
+    },
+    {
+      "check": "core-workspace-node-tests",
+      "command": [
+        "/workspace/scratch/ab53c04e2d5e/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+        "test",
+        "--platform",
+        "node",
+        "--reporter",
+        "expanded"
+      ],
+      "cwd": "/workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_mail_core",
+      "exit_code": 0,
+      "seconds": 7.258
+    },
+    {
+      "check": "core-workspace-js-compile",
+      "command": [
+        "/workspace/scratch/ab53c04e2d5e/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+        "compile",
+        "js",
+        "test/compile/portable_import.dart",
+        "-o",
+        "build/core.js"
+      ],
+      "cwd": "/workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_mail_core",
+      "exit_code": 0,
+      "seconds": 1.376
+    },
+    {
+      "check": "core-workspace-js-run",
+      "command": [
+        "node",
+        "build/core.js"
+      ],
+      "cwd": "/workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_mail_core",
+      "exit_code": 0,
+      "seconds": 0.133
+    },
+    {
+      "check": "core-workspace-exe-compile",
+      "command": [
+        "/workspace/scratch/ab53c04e2d5e/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+        "compile",
+        "exe",
+        "test/compile/portable_import.dart",
+        "-o",
+        "build/core-smoke"
+      ],
+      "cwd": "/workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_mail_core",
+      "exit_code": 0,
+      "seconds": 2.418
+    },
+    {
+      "check": "core-workspace-exe-run",
+      "command": [
+        "/workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_mail_core/build/core-smoke"
+      ],
+      "cwd": "/workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_mail_core",
+      "exit_code": 0,
+      "seconds": 0.007
+    },
+    {
+      "check": "integration-thesaurus-engine",
+      "command": [
+        "/workspace/scratch/ab53c04e2d5e/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+        "test",
+        "test/office_thesaurus_test.dart",
+        "--reporter",
+        "expanded"
+      ],
+      "cwd": "/workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_engine",
+      "exit_code": 0,
+      "seconds": 3.564
+    }
+  ]
+}

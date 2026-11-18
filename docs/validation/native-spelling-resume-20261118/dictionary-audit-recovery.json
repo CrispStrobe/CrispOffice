@@ -1,0 +1,267 @@
+{
+  "schema": "quds.native_spelling_resume.recovery_dictionary_audit.v1",
+  "scope": "Read-only decoded shipped standard, Swiss and common dictionaries; all single-character canonical decompositions compared to explicit source map. No claim of general NFC normalization or runtime execution.",
+  "baseline": "4dceb86e9fae51877bb5b7dc01e7a8bc721cb6ea",
+  "source_head": "f482b06fc47545c8b03124c30ea78f54e8e4b9e5",
+  "source_sha256": "f178d019d17b8f05137affae177f3b3dc78b329aabec6366423324f264fa9ca4",
+  "unicode_version": "15.0.0",
+  "dictionary_forms": 453594,
+  "unique_dictionary_forms": 453594,
+  "decomposable_dictionary_characters": 20,
+  "baseline_missing": [
+    {
+      "character": "ë",
+      "decomposition": "ë",
+      "occurrences": 4,
+      "words": [
+        "Brontë",
+        "Citroën",
+        "Danaë",
+        "Joël"
+      ]
+    },
+    {
+      "character": "Š",
+      "decomposition": "Š",
+      "occurrences": 2,
+      "words": [
+        "Škoda",
+        "Škodas"
+      ]
+    }
+  ],
+  "final_missing": [],
+  "shards": [
+    {
+      "path": "packages/quds_office_engine/lib/src/proofing/data/german_common_00.dart",
+      "sha256": "a9297b80fb74caf783b6b9497c5155324d21e8706954c96c99db640c08da9fc4",
+      "forms": 216,
+      "chunk_counts": [
+        216
+      ]
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/proofing/data/german_standard_00.dart",
+      "sha256": "dfc3548af79c27f6d306ae91fc8711e6f5013295d4deaab6442f9fda964f54a4",
+      "forms": 32768,
+      "chunk_counts": [
+        4096,
+        4096,
+        4096,
+        4096,
+        4096,
+        4096,
+        4096,
+        4096
+      ]
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/proofing/data/german_standard_01.dart",
+      "sha256": "75216e458beeeade0c3b647fda64064f3a2468887f716d8ee00947b1e1a319f1",
+      "forms": 32768,
+      "chunk_counts": [
+        4096,
+        4096,
+        4096,
+        4096,
+        4096,
+        4096,
+        4096,
+        4096
+      ]
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/proofing/data/german_standard_02.dart",
+      "sha256": "554eba69a5558a3e234eb1c07db1bca1125d17403a3cadcb2951c39270f856d3",
+      "forms": 32768,
+      "chunk_counts": [
+        4096,
+        4096,
+        4096,
+        4096,
+        4096,
+        4096,
+        4096,
+        4096
+      ]
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/proofing/data/german_standard_03.dart",
+      "sha256": "9425e9817ded89627b93cc3f86661ad55986efac02efa012d13e75c5eb82471b",
+      "forms": 32768,
+      "chunk_counts": [
+        4096,
+        4096,
+        4096,
+        4096,
+        4096,
+        4096,
+        4096,
+        4096
+      ]
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/proofing/data/german_standard_04.dart",
+      "sha256": "69ff9e7f58e113756efa35204ba4951d9737c8024117dacbe183fab0797882bf",
+      "forms": 32768,
+      "chunk_counts": [
+        4096,
+        4096,
+        4096,
+        4096,
+        4096,
+        4096,
+        4096,
+        4096
+      ]
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/proofing/data/german_standard_05.dart",
+      "sha256": "5f8b2d1fc67396074c015f1441faf618f0de995b9f1d017770dd52b9e673019f",
+      "forms": 32768,
+      "chunk_counts": [
+        4096,
+        4096,
+        4096,
+        4096,
+        4096,
+        4096,
+        4096,
+        4096
+      ]
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/proofing/data/german_standard_06.dart",
+      "sha256": "e07eb4f404778a644d069c9766abc95b2a0c5d8687d217cb0bcd7fbb859d8f2e",
+      "forms": 32768,
+      "chunk_counts": [
+        4096,
+        4096,
+        4096,
+        4096,
+        4096,
+        4096,
+        4096,
+        4096
+      ]
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/proofing/data/german_standard_07.dart",
+      "sha256": "bd80b1c0429bc75631a9df417257d22648bb9897cf8a8a3fd1fcced8992973e7",
+      "forms": 32768,
+      "chunk_counts": [
+        4096,
+        4096,
+        4096,
+        4096,
+        4096,
+        4096,
+        4096,
+        4096
+      ]
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/proofing/data/german_standard_08.dart",
+      "sha256": "8309c190e75c545129b33fc99d01e157bdca58a7174f02c723456c5924dbf332",
+      "forms": 32768,
+      "chunk_counts": [
+        4096,
+        4096,
+        4096,
+        4096,
+        4096,
+        4096,
+        4096,
+        4096
+      ]
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/proofing/data/german_standard_09.dart",
+      "sha256": "53fe9be61e8f377a0cf5f0d7c867a3a80538c22b92c1ee9a2090f9dbdb9ef59f",
+      "forms": 32768,
+      "chunk_counts": [
+        4096,
+        4096,
+        4096,
+        4096,
+        4096,
+        4096,
+        4096,
+        4096
+      ]
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/proofing/data/german_standard_10.dart",
+      "sha256": "e4da39622bdfd6a03d18d51913e7af1feb6f1ef03f411aae33ec32d1af271cbc",
+      "forms": 32768,
+      "chunk_counts": [
+        4096,
+        4096,
+        4096,
+        4096,
+        4096,
+        4096,
+        4096,
+        4096
+      ]
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/proofing/data/german_standard_11.dart",
+      "sha256": "feb85cdb0915a3e5fb55fa689964f7231414d8b9a1935b0cfc64ae3ce3d491a1",
+      "forms": 32768,
+      "chunk_counts": [
+        4096,
+        4096,
+        4096,
+        4096,
+        4096,
+        4096,
+        4096,
+        4096
+      ]
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/proofing/data/german_standard_12.dart",
+      "sha256": "12092f7a9c07be0fdd664a95cb9e0316be9f8a456c6382aef36965775add1642",
+      "forms": 32768,
+      "chunk_counts": [
+        4096,
+        4096,
+        4096,
+        4096,
+        4096,
+        4096,
+        4096,
+        4096
+      ]
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/proofing/data/german_standard_13.dart",
+      "sha256": "6cff772cc350ac0e892be55837ec3b1d19543e410fe13ddf22047588eb6d4364",
+      "forms": 17941,
+      "chunk_counts": [
+        4096,
+        4096,
+        4096,
+        4096,
+        1557
+      ]
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/proofing/data/german_swiss_00.dart",
+      "sha256": "03628d2ecdcec9c94781cebf32d1288b7cd6c8eb4710ebe7946263867b108683",
+      "forms": 9453,
+      "chunk_counts": [
+        4096,
+        4096,
+        1261
+      ]
+    }
+  ],
+  "new_mapping_entries": {
+    "ë": "ë",
+    "Ë": "Ë",
+    "š": "š",
+    "Š": "Š"
+  }
+}

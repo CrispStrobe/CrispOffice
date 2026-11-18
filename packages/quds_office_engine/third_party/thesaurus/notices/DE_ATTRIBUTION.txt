@@ -1,0 +1,29 @@
+Quds German thesaurus data pack
+
+OpenThesaurus - Deutscher Thesaurus
+Copyright (C) 2003-2026 Daniel Naber (www.danielnaber.de)
+Source: https://www.openthesaurus.de/
+Export: 17 November 2026, 23:15:01 UTC.
+Quds selects the offered Creative Commons Attribution-ShareAlike 4.0
+International option. The adapted German pack is distributed under that
+same license: https://creativecommons.org/licenses/by-sa/4.0/
+
+Quds changes, 18 November 2026: visible German synonym groups and their
+original group/term IDs are indexed and compressed into JSON. Per-term
+usage levels/tags, group categories and typed relations are retained.
+Reverse relations use the reverse labels expressly provided by the source.
+Parenthetical material may be omitted or unwrapped for lookup-only aliases;
+literal displayed terms remain unchanged. Source normalized_word columns
+are not used because they fold umlauts and sharp-s. Invisible groups, other
+languages and links to excluded records are not distributed in the pack.
+The source word_mapping morphology table is not imported.
+
+Additional German noun lookup reuses Quds existing qualified Unicode
+Inflection-derived resource under Unicode-3.0. Its finite noun readings
+preserve ambiguity; general verbs/adjectives and automatic reinflection
+are not provided. Its original license and notice are included here.
+
+Independent Quds implementation code remains MIT. This does not relicense
+the OpenThesaurus data or remove its ShareAlike obligations. No additional
+restrictions are imposed on covered data. See OPENTHESAURUS_COPYING.txt,
+CC_BY_SA_4.0.txt and the Unicode notices in this directory.

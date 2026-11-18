@@ -1,0 +1,75 @@
+{
+  "recorded_at": "2026-11-18T17:01:56.324351+00:00",
+  "scope": "Studio inline comment replies, draft isolation, comment proofing surface, responsive comments pane",
+  "source_sha256": {
+    "packages/quds_office_editor/example/lib/suite_workspace.dart": "b4cee9afae91fbb1a2d6e2b16de8c3dd91882a121f363421dfe0e3ce920a839a",
+    "packages/quds_office_editor/example/test/studio_comment_review_test.dart": "6f904911dce35943ee9eb6fdaa3ccaff110f80511767ab0c2cfd8d6ed3ea09c2"
+  },
+  "regressions": {
+    "passed": 10,
+    "failed": 0,
+    "skipped": 0,
+    "exit_code": 0,
+    "working_directory": ".",
+    "command": "flutter test --no-pub packages/quds_office_editor/example/test/studio_comment_review_test.dart --reporter expanded",
+    "log": "checks/studio-comments-tests.log"
+  },
+  "analysis": {
+    "files": [
+      "packages/quds_office_editor/example/lib/suite_workspace.dart",
+      "packages/quds_office_editor/example/test/studio_comment_review_test.dart"
+    ],
+    "exit_code": 0,
+    "result": "No issues found",
+    "command": "dart analyze --fatal-infos packages/quds_office_editor/example/lib/suite_workspace.dart packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+    "log": "checks/studio-comments-analysis.log"
+  },
+  "visuals": {
+    "fixture": "render_comments.dart",
+    "fixture_sha256": "bdd98274f4da44107288f87bf72acfa3dece03b679ea7951ad99b565c05cfa35",
+    "fixture_cases": 1,
+    "passed": 1,
+    "failed": 0,
+    "included_in_regression_count": false,
+    "working_directory": "packages/quds_office_editor/example",
+    "command": "QUDS_REVIEW_VISUAL_OUTPUT=<absolute screenshot directory> flutter test --no-pub ../../../docs/validation/document-review-keyboard-comments-20261118/render_comments.dart --reporter expanded",
+    "log": "checks/studio-comments-visuals.log",
+    "screenshots": [
+      {
+        "path": "docs/validation/document-review-keyboard-comments-20261118/screenshots/comments-drafts-arabic-narrow.png",
+        "sha256": "75084f9a6febf1841174779ca09232d0da68af8601ee7a5f6273650ff84c54dc",
+        "width": 900,
+        "height": 1000,
+        "inspected": true
+      },
+      {
+        "path": "docs/validation/document-review-keyboard-comments-20261118/screenshots/comments-drafts-desktop.png",
+        "sha256": "6d94a6ab6521753f6b68b6b36bd7c623149c3d6f1cf9246b48b73c90c21535f6",
+        "width": 1760,
+        "height": 1000,
+        "inspected": true
+      },
+      {
+        "path": "docs/validation/document-review-keyboard-comments-20261118/screenshots/comments-drafts-english-narrow.png",
+        "sha256": "726710d0ab18f8a542599ae124d860501a0801c3554e453360edee19c5fbae0b",
+        "width": 900,
+        "height": 1000,
+        "inspected": true
+      },
+      {
+        "path": "docs/validation/document-review-keyboard-comments-20261118/screenshots/comments-writing-desktop.png",
+        "sha256": "02fc3d68e8230b765f96d6143130412af3ae01fbdc0f813fa811a1a9357a0e62",
+        "width": 1760,
+        "height": 1000,
+        "inspected": true
+      }
+    ]
+  },
+  "notes": [
+    "The fixture explicitly loads bundled Liberation/Noto/Tajawal/Cairo faces and actual MaterialIcons.",
+    "The visual proofing provider is a deterministic fixture, not live native-model inference.",
+    "Unposted replies are kept separately by exact thread and document identity and are not document proofing input until posted.",
+    "All four final screenshots were inspected for readable text, available composer controls, and desktop/narrow English/Arabic layout.",
+    "The visual fixture is stored under docs, outside a Flutter package. It is validated by real Flutter compilation/rendering; strict analyzer scope is production and regression files."
+  ]
+}

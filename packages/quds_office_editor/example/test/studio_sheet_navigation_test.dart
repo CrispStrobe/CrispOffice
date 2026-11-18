@@ -81,9 +81,12 @@ Future<SheetEditorController> _studio(WidgetTester tester) async {
   await tester.pump();
   await tester.tap(find.text('Excel').first);
   await tester.pump();
-  return tester
-      .widget<QudsSheetEditor>(find.byType(QudsSheetEditor))
-      .controller;
+  final editor = tester.widget<QudsSheetEditor>(find.byType(QudsSheetEditor));
+  // Embedded input rejects synthetic updates until its editor owns focus.
+  editor.focusNode!.requestFocus();
+  await tester.pump();
+  expect(editor.focusNode!.hasPrimaryFocus, isTrue);
+  return editor.controller;
 }
 
 void main() {
@@ -184,6 +187,7 @@ void main() {
   ) async {
     final controller = await _studio(tester);
     _rejectDraft(controller);
+    expect(controller.formulaBarText, 'invalid');
     final before = controller.contentRevision;
     await tester.tap(find.text('Roster').last);
     await tester.pump();

@@ -1,0 +1,47 @@
+00:00 +0: loading /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart
+00:00 +0: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart: Studio online catalog GET keeps the cloud client and key
+00:00 +1: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart: Studio local catalog GET stays direct with validated API headers
+00:00 +2: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart: saved-search reads stay on direct loopback with the pinned database
+00:00 +3: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart: saved-search writes and encoded route injection are refused before sending
+00:00 +4: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart: citing execCommand sends only local UTF-8 JSON without redirects
+00:00 +5: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart: citing respond sends only local UTF-8 JSON without redirects
+00:00 +6: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart: citing rejects other origins and protocol routes before sending
+00:00 +7: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart: citing requires POST and rejects cloud or catalog request bodies
+00:00 +8: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart: citing accepts case-insensitive names but no secrets or extra headers
+00:00 +9: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart: citing request bodies are valid JSON with a UTF-8 byte bound
+00:00 +10: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart: citing redirects return once without forwarding document data
+00:00 +11: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart: citing responses reject declared and streamed excess bytes
+00:00 +12: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart: native dialog uses its own longer timeout
+00:00 +13: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart: request timeout can shorten but cannot extend host limit
+00:00 +14: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart: dispose settles pending citing immediately and ignores late response
+00:00 +15: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart: dispose cancels a response body already being read
+00:00 +16: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart: citing network failures never expose document or credential data
+00:00 +17: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart: citing and catalog limits must be positive before client creation
+00:01 +18: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/example/test/widget_test.dart: Review keeps spelling available without the retired AOT action
+00:11 +19: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_review_test.dart: Reply focuses the inline draft without posting or a dialog
+00:16 +20: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_review_test.dart: Reply focuses the inline draft without posting or a dialog
+00:18 +21: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_review_test.dart: thread drafts survive switching and explicit posts are undoable
+00:25 +22: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/example/test/studio_review_pane_test.dart: F7 opens live review and only explicit checks run manual grammar
+00:29 +23: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_review_test.dart: hiding comments preserves drafts and Reply restores inline focus
+00:30 +24: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/example/test/studio_review_pane_test.dart: typing check preference survives switching Studio applications
+00:33 +25: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_review_test.dart: a replaced thread cannot inherit a draft through its reused ID
+00:34 +26: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/example/test/studio_review_pane_test.dart: review commands remain nonmodal and read-only in viewing mode
+00:38 +27: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_review_test.dart: a stale post callback cannot send into another document
+00:38 +28: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_review_test.dart: posting waits until IME composition is complete
+00:42 +29: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_review_test.dart: viewing mode keeps comments inspectable without reply controls
+00:47 +30: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_review_test.dart: comment writing marks offer focused inline corrections
+00:51 +31: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_review_test.dart: comment marks follow the existing Writing pane
+00:55 +32: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_review_test.dart: comment context menus combine corrections and thread actions
+00:59 +33: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_review_test.dart: comment menu Ignore once respects the current finding
+01:02 +34: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_review_test.dart: comment menu Ignore this word respects the current finding
+01:05 +35: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_review_test.dart: comment menu Add to personal words respects the current finding
+01:08 +36: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_review_test.dart: comment suggestions survive unrelated in-flight check progress
+01:12 +37: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_review_test.dart: stale comment menus cannot act on another document or reused ID
+01:14 +38: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_review_test.dart: comment menus dismiss on changed source or selected thread
+01:18 +39: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_review_test.dart: comment menus preserve IME and cannot act through a modal
+01:21 +40: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_review_test.dart: resolved reply context offers Reopen for its whole thread
+01:25 +41: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_review_test.dart: narrow English comments stay below the editor
+01:28 +42: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_review_test.dart: comment menu mutations respect a later viewing-mode change
+01:31 +43: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_review_test.dart: narrow Arabic comments stay below the editor
+01:33 +44: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_review_test.dart: comment menu mutations respect a later viewing-mode change
+01:36 +45: All tests passed!

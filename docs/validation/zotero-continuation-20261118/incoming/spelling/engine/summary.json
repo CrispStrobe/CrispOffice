@@ -1,0 +1,143 @@
+{
+  "actual_process_exit_code": 0,
+  "artifacts": {
+    "cases.json": {
+      "bytes": 112240,
+      "sha256": "1f90991fb53feca8292914cdcc0e6e51d600e5ad8c7edcede8e8607fb206be1f"
+    },
+    "events.jsonl": {
+      "bytes": 253900,
+      "sha256": "88031aba25454b875ef0411c7b508acafa87566af2e35dbb71723a4d1d376309"
+    },
+    "excluded-events.json": {
+      "bytes": 3874,
+      "sha256": "417ca191be9f138c51aa5b07e2d5e4f6ddbb7f1064e581f006fff003d20fccd6"
+    },
+    "run.json": {
+      "bytes": 3667,
+      "sha256": "60422796191b69136462c5c274ee23696d64c5f07077ecd221525ab1398491b2"
+    },
+    "run_spelling_at_execution.py": {
+      "bytes": 13525,
+      "sha256": "a010493802093f1c76fa401a14f2567257f98bfe71591ca784b890c89565d381"
+    },
+    "runtime-binding-after.json": {
+      "bytes": 1568,
+      "sha256": "076e445a6f7e25a0fec97a9848a0cf0f86f44409a2bb9089f8708384fe3c440a"
+    },
+    "runtime-binding-before.json": {
+      "bytes": 1568,
+      "sha256": "076e445a6f7e25a0fec97a9848a0cf0f86f44409a2bb9089f8708384fe3c440a"
+    },
+    "source-after.json": {
+      "bytes": 99682,
+      "sha256": "b6ce665567f3543f5bbebd3b13760aaecbad488a128518e77fb2db1eb87cb63a"
+    },
+    "source-before.json": {
+      "bytes": 99682,
+      "sha256": "b6ce665567f3543f5bbebd3b13760aaecbad488a128518e77fb2db1eb87cb63a"
+    },
+    "stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "suite-path-correction.json": {
+      "bytes": 8129,
+      "sha256": "b6761fdb5e0624c44e160e9215df5c2bc021686efaa2e11177c5870ca1766cc1"
+    },
+    "summary-before-path-normalization.json": {
+      "bytes": 6365,
+      "sha256": "b0f6ff96662f5ffaca6499dac034a3c4e67af0c43053d3b044ea902bb1337579"
+    }
+  },
+  "cohort": "engine",
+  "command": [
+    "/workspace/scratch/11b2f453fe98/zotero-toolchain/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+    "--packages=/workspace/scratch/11b2f453fe98/zotero-validation/.dart_tool/package_config.json",
+    "/workspace/scratch/11b2f453fe98/zotero-toolchain/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+    "--reporter",
+    "json",
+    "--concurrency",
+    "2",
+    "test/proofing/german_spelling_test.dart",
+    "test/proofing/german_spelling_quotes_test.dart",
+    "test/proofing/german_spelling_apostrophes_test.dart",
+    "test/proofing/german_spelling_compounds_test.dart",
+    "test/proofing/german_spelling_shortlist_test.dart",
+    "test/proofing/german_spelling_continuation_test.dart",
+    "test/proofing/german_spelling_projection_test.dart",
+    "test/proofing/german_suggestion_quality_test.dart",
+    "test/proofing/german_lexicon_query_test.dart",
+    "test/proofing/german_literal_ranges_test.dart",
+    "test/proofing/german_participle_suggestions_test.dart",
+    "test/proofing/german_nominal_word_forms_test.dart",
+    "test/proofing/office_proofing_test.dart",
+    "test/proofing/proofing_text_ranges_test.dart",
+    "test/proofing/german_morphology_loading_test.dart",
+    "test/proofing/german_morphology_grammar_test.dart",
+    "test/proofing/german_grammar_test.dart",
+    "test/proofing/german_agreement_facts_test.dart",
+    "test/proofing/german_writing_rules_test.dart"
+  ],
+  "completion_events": [
+    {
+      "success": true,
+      "time": 15481,
+      "type": "done"
+    }
+  ],
+  "cwd": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_engine",
+  "dart_version": "Dart SDK version: 3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\"",
+  "derived_summary_correction": "suite-path-correction.json",
+  "diagnostic_events": [],
+  "elapsed_seconds": 28.362537294000504,
+  "error_events": [],
+  "finished_at_utc": "2026-11-18T13:16:46.126398+00:00",
+  "flutter_lock_path": null,
+  "guards": {
+    "all_selected_suites_executed": true,
+    "every_started_event_finished_once": true,
+    "runtime_graph_locks_unchanged": true,
+    "source_matches_end_commit": true,
+    "source_matches_start_commit": true,
+    "source_unchanged": true,
+    "workspace_matches_source": true
+  },
+  "head_at_end": "b2bcfc23e692476d16d9a7a534ea95a93ae94cd3",
+  "head_at_start": "b2bcfc23e692476d16d9a7a534ea95a93ae94cd3",
+  "original_runner_process_exit_code": 1,
+  "parse_errors": [],
+  "runner_sha256": "a010493802093f1c76fa401a14f2567257f98bfe71591ca784b890c89565d381",
+  "scope": "Current merged incoming spelling dependency. Controlled providers and local Dart VM; no installed-OS spelling, desktop-device, AOT or JavaScript acceptance.",
+  "selected_files": [
+    "packages/quds_office_engine/test/proofing/german_spelling_test.dart",
+    "packages/quds_office_engine/test/proofing/german_spelling_quotes_test.dart",
+    "packages/quds_office_engine/test/proofing/german_spelling_apostrophes_test.dart",
+    "packages/quds_office_engine/test/proofing/german_spelling_compounds_test.dart",
+    "packages/quds_office_engine/test/proofing/german_spelling_shortlist_test.dart",
+    "packages/quds_office_engine/test/proofing/german_spelling_continuation_test.dart",
+    "packages/quds_office_engine/test/proofing/german_spelling_projection_test.dart",
+    "packages/quds_office_engine/test/proofing/german_suggestion_quality_test.dart",
+    "packages/quds_office_engine/test/proofing/german_lexicon_query_test.dart",
+    "packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart",
+    "packages/quds_office_engine/test/proofing/german_participle_suggestions_test.dart",
+    "packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart",
+    "packages/quds_office_engine/test/proofing/office_proofing_test.dart",
+    "packages/quds_office_engine/test/proofing/proofing_text_ranges_test.dart",
+    "packages/quds_office_engine/test/proofing/german_morphology_loading_test.dart",
+    "packages/quds_office_engine/test/proofing/german_morphology_grammar_test.dart",
+    "packages/quds_office_engine/test/proofing/german_grammar_test.dart",
+    "packages/quds_office_engine/test/proofing/german_agreement_facts_test.dart",
+    "packages/quds_office_engine/test/proofing/german_writing_rules_test.dart"
+  ],
+  "skipped": 0,
+  "source_file_count": 408,
+  "started_at_utc": "2026-11-18T13:16:17.596328+00:00",
+  "status": "passed",
+  "substantive_results": {
+    "success": 526
+  },
+  "substantive_test_count": 526,
+  "suite_count": 19,
+  "timed_out": false
+}

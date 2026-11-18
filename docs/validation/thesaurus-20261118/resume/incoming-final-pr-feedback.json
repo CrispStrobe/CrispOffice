@@ -1,0 +1,487 @@
+{
+  "repository": "CrispStrobe/quds_office_suite",
+  "pr_number": 169,
+  "inspected_at_utc": "2026-11-18T18:56:55.711Z",
+  "pr": {
+    "number": 169,
+    "head": "eb1ff4dddbf65384bc61e2e7a0973360f76729ce",
+    "base": "4fbc8741f314af67592517595c760ba3036dedba",
+    "draft": true,
+    "mergeable": true,
+    "updated_at": "2026-11-18T18:54:45Z",
+    "url": "https://github.com/CrispStrobe/quds_office_suite/pull/169"
+  },
+  "comments": {
+    "comments": [],
+    "url": "https://github.com/CrispStrobe/quds_office_suite/pull/169",
+    "title": "CrispStrobe/quds_office_suite PR #169 comments",
+    "display_url": "https://github.com/CrispStrobe/quds_office_suite/pull/169",
+    "display_title": "CrispStrobe/quds_office_suite PR #169 comments"
+  },
+  "reviews": {
+    "reviews": []
+  },
+  "review_threads": {
+    "review_threads": []
+  },
+  "recent_prs": [
+    {
+      "number": 169,
+      "title": "Complete offline English and German thesaurus with local qualification",
+      "updated_at": "2026-11-18T18:54:45Z",
+      "head": "eb1ff4dddbf65384bc61e2e7a0973360f76729ce",
+      "branch": "codex/offline-thesaurus-20261118",
+      "state": "open",
+      "merged": false
+    },
+    {
+      "number": 168,
+      "title": "Improve Zotero citation commands, source selection and document unlinking [skip ci]",
+      "updated_at": "2026-11-18T18:35:34Z",
+      "head": "6c993f7406037ba462c6aea32e7e6afeebd28c03",
+      "branch": "codex/zotero-wordlike-20261118",
+      "state": "closed",
+      "merged": true
+    },
+    {
+      "number": 167,
+      "title": "Save final Zotero citation workflow validation and audit evidence [skip ci]",
+      "updated_at": "2026-11-18T17:20:02Z",
+      "head": "a40a26663f7a2c6b7fb8de91540fd04b9875ed9c",
+      "branch": "codex/zotero-citation-workflow-20261118",
+      "state": "closed",
+      "merged": true
+    },
+    {
+      "number": 166,
+      "title": "Reuse cited Zotero sources and edit citation source lists [skip ci]",
+      "updated_at": "2026-11-18T17:01:06Z",
+      "head": "3668ed92829dfa012ec5b129943a86738ebb7992",
+      "branch": "codex/zotero-citation-workflow-20261118",
+      "state": "closed",
+      "merged": true
+    },
+    {
+      "number": 165,
+      "title": "Inspect stored Zotero references throughout the workspace [skip ci]",
+      "updated_at": "2026-11-18T14:57:19Z",
+      "head": "8d74db5da2992e60c7f17b58cd354b874a1ce33a",
+      "branch": "codex/zotero-offline-workflow-20261118",
+      "state": "open",
+      "merged": false
+    },
+    {
+      "number": 164,
+      "title": "Improve Zotero import search and offline reference copying [skip ci]",
+      "updated_at": "2026-11-18T13:30:42Z",
+      "head": "fb1fd4dc3edda824c3e043c035dbfad1f0fe0869",
+      "branch": "codex/zotero-continuation-20261118",
+      "state": "open",
+      "merged": false
+    },
+    {
+      "number": 163,
+      "title": "spaCy follow-up: opt-in NER and published macOS arm64 capsule pins [skip ci]",
+      "updated_at": "2026-11-18T12:36:33Z",
+      "head": "ce4d3d19a21eae96a473291ffb9f47ac3be6a74c",
+      "branch": "integrate/spacy-ner-macos-followup-20261118",
+      "state": "closed",
+      "merged": true
+    },
+    {
+      "number": 162,
+      "title": "Add in-editor writing, change, and comment review",
+      "updated_at": "2026-11-18T18:54:32Z",
+      "head": "b5d4df516db210a6f8ea566b290988dab5652630",
+      "branch": "codex/document-review-20261118",
+      "state": "open",
+      "merged": false
+    },
+    {
+      "number": 161,
+      "title": "Add Zotero reference details and selection review [skip ci]",
+      "updated_at": "2026-11-18T12:32:49Z",
+      "head": "acfa3c2bf543debd2fff518304ab514ab677418b",
+      "branch": "codex/zotero-workspace-20261118",
+      "state": "closed",
+      "merged": true
+    },
+    {
+      "number": 160,
+      "title": "Improve native spelling across soft hyphens and short accented words [skip ci]",
+      "updated_at": "2026-11-18T12:32:49Z",
+      "head": "8cbdb9d9a05ff7f0e795efe0ee7848b196f424a3",
+      "branch": "codex/native-spelling-continuation-20261118",
+      "state": "closed",
+      "merged": true
+    },
+    {
+      "number": 159,
+      "title": "Distribute native German spaCy from Hugging Face and wire setup, analysis and manual grammar into Studio [skip ci]",
+      "updated_at": "2026-11-18T12:33:57Z",
+      "head": "2292548eb69de2dbb5240ab9da59256f362137c6",
+      "branch": "integrate/native-spacy-distribution-20261118",
+      "state": "closed",
+      "merged": true
+    },
+    {
+      "number": 158,
+      "title": "Add Zotero tag filtering on reconciled current main [skip ci]",
+      "updated_at": "2026-11-18T12:02:57Z",
+      "head": "5dd3eb7c1434f0c1063290d5698fa5c760c201e2",
+      "branch": "codex/zotero-tags-20261118",
+      "state": "closed",
+      "merged": true
+    },
+    {
+      "number": 157,
+      "title": "Improve native spelling shortlists and Unicode correction guards [skip ci]",
+      "updated_at": "2026-11-18T12:02:57Z",
+      "head": "9fc211f6c72be9495767bd7cacfd8df51abf2fad",
+      "branch": "codex/native-spelling-quality-20261118",
+      "state": "closed",
+      "merged": true
+    },
+    {
+      "number": 156,
+      "title": "Improve Zotero catalog search and connected citation aliases [skip ci]",
+      "updated_at": "2026-11-18T10:26:08Z",
+      "head": "f4aa218c87293527b3e2b7514500a28d13bd8f70",
+      "branch": "codex/zotero-capabilities-20261118",
+      "state": "closed",
+      "merged": true
+    },
+    {
+      "number": 155,
+      "title": "Improve native spelling and reconcile current Office work [skip ci]",
+      "updated_at": "2026-11-18T10:30:55Z",
+      "head": "536ee2086ce46ab629d4d77144d1ca22a43e3c19",
+      "branch": "codex/native-spelling-20261118",
+      "state": "closed",
+      "merged": true
+    },
+    {
+      "number": 154,
+      "title": "Fix civil-date boundaries and complete local Office qualification",
+      "updated_at": "2026-11-18T07:11:12Z",
+      "head": "295752ff93b24bafc510e60197b62faa647e2aa3",
+      "branch": "codex/office-local-qualification-20261118",
+      "state": "closed",
+      "merged": true
+    },
+    {
+      "number": 153,
+      "title": "Continue W7 spaCy packaging from the completed grammar qualification",
+      "updated_at": "2026-11-18T12:30:05Z",
+      "head": "2e013f26c7d4db54ecabe2c955117cbce5379408",
+      "branch": "feat/native-spacy-w7-20261118",
+      "state": "closed",
+      "merged": false
+    },
+    {
+      "number": 152,
+      "title": "Reconcile Office union qualification and frame bookmarks",
+      "updated_at": "2026-11-17T22:10:11Z",
+      "head": "da9c956ec5d65c0e5a9f9ea84c2b0bca98e824a0",
+      "branch": "integrate/office-union-150",
+      "state": "closed",
+      "merged": true
+    },
+    {
+      "number": 151,
+      "title": "Support calendar-relative conditional periods",
+      "updated_at": "2026-11-17T22:05:17Z",
+      "head": "7ef09f2408f467c65427700e65907531ecb26acb",
+      "branch": "feat/ods-time-period-conditions",
+      "state": "closed",
+      "merged": true
+    },
+    {
+      "number": 150,
+      "title": "Complete local Office union qualification and preserve recovery evidence",
+      "updated_at": "2026-11-17T22:10:14Z",
+      "head": "6d97fedccde17244a917ee7d3372adebe5494089",
+      "branch": "codex/office-union-resume-20261118",
+      "state": "closed",
+      "merged": false
+    }
+  ],
+  "review_branch_compare": {
+    "repository_full_name": "CrispStrobe/quds_office_suite",
+    "base": "eedf2aee03964329a2e4c7ee3c771d43b5df4991",
+    "head": "b5d4df516db210a6f8ea566b290988dab5652630",
+    "status": "ahead",
+    "ahead_by": 2,
+    "behind_by": 0,
+    "total_commits": 2,
+    "too_large": null,
+    "base_commit": {
+      "sha": "eedf2aee03964329a2e4c7ee3c771d43b5df4991",
+      "url": "https://api.github.com/repos/CrispStrobe/quds_office_suite/commits/eedf2aee03964329a2e4c7ee3c771d43b5df4991",
+      "html_url": "https://github.com/CrispStrobe/quds_office_suite/commit/eedf2aee03964329a2e4c7ee3c771d43b5df4991"
+    },
+    "merge_base_commit": {
+      "sha": "eedf2aee03964329a2e4c7ee3c771d43b5df4991",
+      "url": "https://api.github.com/repos/CrispStrobe/quds_office_suite/commits/eedf2aee03964329a2e4c7ee3c771d43b5df4991",
+      "html_url": "https://github.com/CrispStrobe/quds_office_suite/commit/eedf2aee03964329a2e4c7ee3c771d43b5df4991"
+    },
+    "files": [
+      {
+        "filename": "docs/validation/document-review-inflight-20261118/README.md",
+        "status": "modified",
+        "additions": 88,
+        "deletions": 56,
+        "changes": 144,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/document-review-inflight-20261118/accepted/checks/analysis.log",
+        "status": "added",
+        "additions": 2,
+        "deletions": 0,
+        "changes": 2,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/document-review-inflight-20261118/accepted/checks/editor-cases.json",
+        "status": "added",
+        "additions": 4354,
+        "deletions": 0,
+        "changes": 4354,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/document-review-inflight-20261118/accepted/checks/editor-errors.json",
+        "status": "added",
+        "additions": 1,
+        "deletions": 0,
+        "changes": 1,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/document-review-inflight-20261118/accepted/checks/editor.jsonl",
+        "status": "added",
+        "additions": 1273,
+        "deletions": 0,
+        "changes": 1273,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/document-review-inflight-20261118/accepted/checks/editor.jsonl.gz",
+        "status": "added",
+        "additions": 0,
+        "deletions": 0,
+        "changes": 0,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/document-review-inflight-20261118/accepted/checks/engine-cases.json",
+        "status": "added",
+        "additions": 242,
+        "deletions": 0,
+        "changes": 242,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/document-review-inflight-20261118/accepted/checks/engine-errors.json",
+        "status": "added",
+        "additions": 1,
+        "deletions": 0,
+        "changes": 1,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/document-review-inflight-20261118/accepted/checks/engine.jsonl",
+        "status": "added",
+        "additions": 79,
+        "deletions": 0,
+        "changes": 79,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/document-review-inflight-20261118/accepted/checks/engine.jsonl.gz",
+        "status": "added",
+        "additions": 0,
+        "deletions": 0,
+        "changes": 0,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/document-review-inflight-20261118/accepted/checks/format.log",
+        "status": "added",
+        "additions": 1,
+        "deletions": 0,
+        "changes": 1,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/document-review-inflight-20261118/accepted/checks/studio-cases.json",
+        "status": "added",
+        "additions": 474,
+        "deletions": 0,
+        "changes": 474,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/document-review-inflight-20261118/accepted/checks/studio-errors.json",
+        "status": "added",
+        "additions": 1,
+        "deletions": 0,
+        "changes": 1,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/document-review-inflight-20261118/accepted/checks/studio.jsonl",
+        "status": "added",
+        "additions": 141,
+        "deletions": 0,
+        "changes": 141,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/document-review-inflight-20261118/accepted/checks/studio.jsonl.gz",
+        "status": "added",
+        "additions": 0,
+        "deletions": 0,
+        "changes": 0,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/document-review-inflight-20261118/accepted/checks/whitespace.log",
+        "status": "added",
+        "additions": 0,
+        "deletions": 0,
+        "changes": 0,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/document-review-inflight-20261118/accepted/environment-after.json",
+        "status": "added",
+        "additions": 13,
+        "deletions": 0,
+        "changes": 13,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/document-review-inflight-20261118/accepted/environment-before.json",
+        "status": "added",
+        "additions": 13,
+        "deletions": 0,
+        "changes": 13,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/document-review-inflight-20261118/accepted/files.json",
+        "status": "added",
+        "additions": 137,
+        "deletions": 0,
+        "changes": 137,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/document-review-inflight-20261118/accepted/source-after.json",
+        "status": "added",
+        "additions": 3550,
+        "deletions": 0,
+        "changes": 3550,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/document-review-inflight-20261118/accepted/source-before.json",
+        "status": "added",
+        "additions": 3550,
+        "deletions": 0,
+        "changes": 3550,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/document-review-inflight-20261118/accepted/verification.json",
+        "status": "added",
+        "additions": 578,
+        "deletions": 0,
+        "changes": 578,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/document-review-inflight-20261118/accepted/visuals/checks/comments.jsonl",
+        "status": "added",
+        "additions": 9,
+        "deletions": 0,
+        "changes": 9,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/document-review-inflight-20261118/accepted/visuals/checks/comments.jsonl.gz",
+        "status": "added",
+        "additions": 0,
+        "deletions": 0,
+        "changes": 0,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/document-review-inflight-20261118/accepted/visuals/checks/text-options.jsonl",
+        "status": "added",
+        "additions": 15,
+        "deletions": 0,
+        "changes": 15,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/document-review-inflight-20261118/accepted/visuals/checks/text-options.jsonl.gz",
+        "status": "added",
+        "additions": 0,
+        "deletions": 0,
+        "changes": 0,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/document-review-inflight-20261118/accepted/visuals/preflight.json",
+        "status": "added",
+        "additions": 18,
+        "deletions": 0,
+        "changes": 18,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/document-review-inflight-20261118/accepted/visuals/verification.json",
+        "status": "added",
+        "additions": 163,
+        "deletions": 0,
+        "changes": 163,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/document-review-inflight-20261118/final-source-binding.json",
+        "status": "added",
+        "additions": 85,
+        "deletions": 0,
+        "changes": 85,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/document-review-inflight-20261118/publication.json",
+        "status": "added",
+        "additions": 817,
+        "deletions": 0,
+        "changes": 817,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/document-review-inflight-20261118/screenshots/comments-context-suggestions-desktop.png",
+        "status": "modified",
+        "additions": 0,
+        "deletions": 0,
+        "changes": 0,
+        "previous_filename": null
+      }
+    ]
+  },
+  "limitations": [
+    "The three large new-branch API comparisons returned exactly 300 paths, so they are not used as complete source inventories. Complete classification uses fetched Git objects."
+  ],
+  "github_actions": {
+    "queried": false,
+    "waited": false,
+    "dispatched": false
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "scope": "Core-only scratch dependency resolution; source/test symlinks point to actual new package. Actual workspace qualification recorded separately.",
+  "checks": [
+    {
+      "check": "core-isolated-analyze",
+      "command": [
+        "/workspace/scratch/ab53c04e2d5e/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos"
+      ],
+      "cwd": "/workspace/scratch/ab53c04e2d5e/mail-core-check",
+      "exit_code": 0,
+      "seconds": 1.432
+    },
+    {
+      "check": "core-isolated-native-tests",
+      "command": [
+        "/workspace/scratch/ab53c04e2d5e/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+        "test",
+        "--reporter",
+        "expanded"
+      ],
+      "cwd": "/workspace/scratch/ab53c04e2d5e/mail-core-check",
+      "exit_code": 0,
+      "seconds": 1.629
+    },
+    {
+      "check": "core-isolated-node-tests",
+      "command": [
+        "/workspace/scratch/ab53c04e2d5e/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+        "test",
+        "--platform",
+        "node",
+        "--reporter",
+        "expanded"
+      ],
+      "cwd": "/workspace/scratch/ab53c04e2d5e/mail-core-check",
+      "exit_code": 0,
+      "seconds": 8.65
+    },
+    {
+      "check": "core-isolated-js-compile",
+      "command": [
+        "/workspace/scratch/ab53c04e2d5e/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+        "compile",
+        "js",
+        "test/compile/portable_import.dart",
+        "-o",
+        "build/core.js"
+      ],
+      "cwd": "/workspace/scratch/ab53c04e2d5e/mail-core-check",
+      "exit_code": 0,
+      "seconds": 1.007
+    },
+    {
+      "check": "core-isolated-js-run",
+      "command": [
+        "node",
+        "build/core.js"
+      ],
+      "cwd": "/workspace/scratch/ab53c04e2d5e/mail-core-check",
+      "exit_code": 0,
+      "seconds": 0.089
+    },
+    {
+      "check": "core-isolated-exe-compile",
+      "command": [
+        "/workspace/scratch/ab53c04e2d5e/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+        "compile",
+        "exe",
+        "test/compile/portable_import.dart",
+        "-o",
+        "build/core-smoke"
+      ],
+      "cwd": "/workspace/scratch/ab53c04e2d5e/mail-core-check",
+      "exit_code": 0,
+      "seconds": 1.958
+    },
+    {
+      "check": "core-isolated-exe-run",
+      "command": [
+        "/workspace/scratch/ab53c04e2d5e/mail-core-check/build/core-smoke"
+      ],
+      "cwd": "/workspace/scratch/ab53c04e2d5e/mail-core-check",
+      "exit_code": 0,
+      "seconds": 0.005
+    }
+  ]
+}

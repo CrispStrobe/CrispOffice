@@ -1,0 +1,93 @@
+[
+  {
+    "name": "F7 opens live review and only explicit checks run manual grammar",
+    "suite_id": 0,
+    "suite": "/workspace/scratch/d322553a8b9d/quds_office_suite/packages/quds_office_editor/example/test/studio_review_pane_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "Review keeps spelling available without the retired AOT action",
+    "suite_id": 2,
+    "suite": "/workspace/scratch/d322553a8b9d/quds_office_suite/packages/quds_office_editor/example/test/widget_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "two real DOCX inputs retain tracking and compare final text safely",
+    "suite_id": 4,
+    "suite": "/workspace/scratch/d322553a8b9d/quds_office_suite/packages/quds_office_editor/example/test/studio_document_comparison_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "spreadsheet bytes cannot masquerade as an empty comparison document",
+    "suite_id": 4,
+    "suite": "/workspace/scratch/d322553a8b9d/quds_office_suite/packages/quds_office_editor/example/test/studio_document_comparison_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "missing main content is rejected before comparison",
+    "suite_id": 4,
+    "suite": "/workspace/scratch/d322553a8b9d/quds_office_suite/packages/quds_office_editor/example/test/studio_document_comparison_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "wrong XML root, foreign namespace and missing body are rejected",
+    "suite_id": 4,
+    "suite": "/workspace/scratch/d322553a8b9d/quds_office_suite/packages/quds_office_editor/example/test/studio_document_comparison_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "comparison requires exactly one direct Word body",
+    "suite_id": 4,
+    "suite": "/workspace/scratch/d322553a8b9d/quds_office_suite/packages/quds_office_editor/example/test/studio_document_comparison_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "truncated and malformed XML cannot become an empty comparison",
+    "suite_id": 4,
+    "suite": "/workspace/scratch/d322553a8b9d/quds_office_suite/packages/quds_office_editor/example/test/studio_document_comparison_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "valid namespace prefixes and default namespace retain document text",
+    "suite_id": 4,
+    "suite": "/workspace/scratch/d322553a8b9d/quds_office_suite/packages/quds_office_editor/example/test/studio_document_comparison_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "a valid empty Word document remains a legitimate comparison source",
+    "suite_id": 4,
+    "suite": "/workspace/scratch/d322553a8b9d/quds_office_suite/packages/quds_office_editor/example/test/studio_document_comparison_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "studio hosts Word, Excel, and PowerPoint workspaces",
+    "suite_id": 2,
+    "suite": "/workspace/scratch/d322553a8b9d/quds_office_suite/packages/quds_office_editor/example/test/widget_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "typing check preference survives switching Studio applications",
+    "suite_id": 0,
+    "suite": "/workspace/scratch/d322553a8b9d/quds_office_suite/packages/quds_office_editor/example/test/studio_review_pane_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "name": "review commands remain nonmodal and read-only in viewing mode",
+    "suite_id": 0,
+    "suite": "/workspace/scratch/d322553a8b9d/quds_office_suite/packages/quds_office_editor/example/test/studio_review_pane_test.dart",
+    "result": "success",
+    "skipped": false
+  }
+]

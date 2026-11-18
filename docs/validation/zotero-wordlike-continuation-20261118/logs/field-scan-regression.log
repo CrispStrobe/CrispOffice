@@ -1,0 +1,17 @@
+00:00 +0: loading /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_scaling_test.dart
+00:00 +0: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_document_actions_test.dart: a citation at the caret opens its document editing tools
+00:00 +1: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_document_actions_test.dart: a citation at the caret opens its document editing tools
+00:00 +2: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_document_actions_test.dart: a citation at the caret opens its document editing tools
+00:00 +3: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_document_actions_test.dart: a citation at the caret opens its document editing tools
+00:00 +4: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_document_actions_test.dart: a citation at the caret opens its document editing tools
+00:02 +5: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_scaling_test.dart: opening references scans a 1000-citation document once
+00:03 +6: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_scaling_test.dart: opening references scans a 1000-citation document once
+00:03 +7: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_scaling_test.dart: opening references scans a 1000-citation document once
+00:03 +8: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_document_actions_test.dart: unlink all reviews counts, cancels, then converts as one undo
+00:04 +9: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_document_actions_test.dart: unlink all reviews counts, cancels, then converts as one undo
+00:04 +10: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_document_actions_test.dart: a locked field rejects the complete conversion
+00:05 +11: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_document_actions_test.dart: a changed document cannot accept an old unlink confirmation
+00:05 +12: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_document_actions_test.dart: unlink is disabled for read-only documents
+00:05 +13: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_document_actions_test.dart: unlink is disabled for tracked documents
+00:06 +14: /workspace/scratch/9b01e2d302a4/quds_office_suite/packages/quds_office_editor/test/word_zotero_document_actions_test.dart: unlink review remains usable at narrow RTL with doubled text
+00:06 +15: All tests passed!

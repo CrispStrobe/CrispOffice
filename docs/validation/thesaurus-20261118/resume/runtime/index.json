@@ -1,0 +1,128 @@
+{
+  "archive": "setup.tar.gz",
+  "archive_bytes": 118068,
+  "archive_sha256": "18b875f221e0318348bbbece32a5a3d0d1b38f3ebe93ca0d8f291f2fdf12f3db",
+  "members": [
+    {
+      "path": "env.sh",
+      "bytes": 667,
+      "sha256": "9a21f47447928ae78d923a18ab59d868b9bea4433dd05c330a6681521ecbabdb"
+    },
+    {
+      "path": "restore_flutter.py",
+      "bytes": 1937,
+      "sha256": "e0550d23992813070751b86097ad34dfb996798eb4c8462c0d1ba20bee264068"
+    },
+    {
+      "path": "prefetch_recorded_packages.py",
+      "bytes": 2885,
+      "sha256": "7f2eb1c464fae683d21f137ca2cc44f3b5f1d6ff95451261b78fff996b81608b"
+    },
+    {
+      "path": "prepare_workspace.py",
+      "bytes": 2400,
+      "sha256": "e7569cce66711ddcf5d3f32e4db2041d46f68ba051c0e821ef7accb696500f99"
+    },
+    {
+      "path": "finish_runtime.py",
+      "bytes": 3227,
+      "sha256": "90d1df8230460886cb36919d62f016fb3043a0b7fe8b829b4745c6e75969782f"
+    },
+    {
+      "path": "runtime-ready.json",
+      "bytes": 4156,
+      "sha256": "084d8cba050e8b841f91e7a043ed094f9fd91dd9465c72c9808efa3d6738f825"
+    },
+    {
+      "path": "flutter-recovery.json",
+      "bytes": 542,
+      "sha256": "297dcc6eee9bbcb1ce42956951066772f6b33ac6cb7ab29ad90982cf72cc4501"
+    },
+    {
+      "path": "setup-recovery-verification.json",
+      "bytes": 284,
+      "sha256": "0df7e5daf9ee3e3a9272afa6bf9e089652dee1bde763938d79e95e763a82efae"
+    },
+    {
+      "path": "setup/prefetch-162.json",
+      "bytes": 42729,
+      "sha256": "ec09f8084200e73c058f9a53e3fe328531b7f551dcbfd9e6dcfbd71fd6b46dbf"
+    },
+    {
+      "path": "setup/prefetch-current.json",
+      "bytes": 66299,
+      "sha256": "98392ea36cd687a304e3bed555bc7f3ce44ed5722a52165418aab58cd43bfe4b"
+    },
+    {
+      "path": "setup/workspace-prepared.json",
+      "bytes": 17479,
+      "sha256": "e5bea2ccbda9cc8ed3c549146769247eadb1a8ae47bb4120b20edda6322d810e"
+    },
+    {
+      "path": "setup/workspace-pubspec.lock",
+      "bytes": 22686,
+      "sha256": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130"
+    },
+    {
+      "path": "setup/official-release-current.json",
+      "bytes": 572,
+      "sha256": "462b420ac9dd69c3ded2ca02d324c89bd56e6a011a5cb4aa76f58ac93be4b73b"
+    },
+    {
+      "path": "setup/releases_linux_current.json",
+      "bytes": 272878,
+      "sha256": "20b6dacd9851bfb82b8f33b065cab4edeed2b80458c076d851edcafd30128848"
+    },
+    {
+      "path": "logs/dart-version.log",
+      "bytes": 82,
+      "sha256": "945e6a359e53647f8fd753347245ed78bc06c2808919b2d7749817181d010ff4"
+    },
+    {
+      "path": "logs/finish-current.log",
+      "bytes": 1010,
+      "sha256": "37a8b78ada20e4d834a3e62e1de1450b73818724d354d27c3774718c5f0d9519"
+    },
+    {
+      "path": "logs/flutter-tools-pub-get.log",
+      "bytes": 1016,
+      "sha256": "9f349fca172146e2595a50ccbe19f4d21b8845690372a19239884f3b932864c3"
+    },
+    {
+      "path": "logs/flutter-version.json",
+      "bytes": 641,
+      "sha256": "9daa995c924362eeae7e6d698a08da74c5cb89d1ee181f3181018bebfaccd641"
+    },
+    {
+      "path": "logs/official-release-current.log",
+      "bytes": 712,
+      "sha256": "1660044abbd7b2e4a5e2bbbd10ac9263c72dc6a0bb66373ab40ceffb75c901ac"
+    },
+    {
+      "path": "logs/prefetch-current.log",
+      "bytes": 56596,
+      "sha256": "9d6f1a1fec8ce19c3f791fb8f5c3826317c3a7da89f03eff304de8b766153e8f"
+    },
+    {
+      "path": "logs/prepare-current.log",
+      "bytes": 187,
+      "sha256": "00e6bda568722b01ca4333f2050fdfb2f55812316421fe65c94fee2de09694e6"
+    },
+    {
+      "path": "logs/restore-current.log",
+      "bytes": 559,
+      "sha256": "e4a6a9d39ef7cdd9c2cfdadae5c51d2efda79e5189931bbe9b0174c253007da2"
+    },
+    {
+      "path": "logs/sdk-download-current.log",
+      "bytes": 3793,
+      "sha256": "035783dac2e5bbae24478f53ec2424705d9d1f1fd104411e85853badb68028ed"
+    },
+    {
+      "path": "logs/workspace-pub-get.log",
+      "bytes": 68,
+      "sha256": "d4cb7a3c68b4133b4f6e58c67ff5bfd13725d8021e930388cdc98da8a575919d"
+    }
+  ],
+  "scope": "Fresh runtime recovery only: official SDK archive and manifest verified, 162 hosted archives verified, offline enforced locks, source-linked workspace, no product tests run."
+}

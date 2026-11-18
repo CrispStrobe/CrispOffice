@@ -1,0 +1,37 @@
+{
+  "status": "ready",
+  "finished_at_utc": "2026-11-18T17:54:49.420067+00:00",
+  "runtime": {
+    "frameworkVersion": "3.47.8",
+    "channel": "[user-branch]",
+    "repositoryUrl": "https://github.com/flutter/flutter.git",
+    "frameworkRevision": "737ba8f885dc774b53b442759999a312c9461e4e",
+    "frameworkCommitDate": "2026-10-22 21:37:31 -0700",
+    "engineRevision": "cf636b1dfb818dd6a3ff16e390e93b1a036969c8",
+    "engineCommitDate": "2026-10-23 02:13:38.000Z",
+    "engineContentHash": "dfd2e6cb7d319db05e3bf1503f3e2ac60f6288a2",
+    "engineBuildDate": "2026-10-23 05:34:48.330",
+    "dartSdkVersion": "3.13.7",
+    "devToolsVersion": "2.60.0",
+    "flutterVersion": "3.47.8",
+    "flutterRoot": "/workspace/scratch/9b01e2d302a4/zotero-toolchain/flutter-sdk"
+  },
+  "installation": "Official Flutter Git release tag 3.47.8 followed by normal Flutter bootstrap and flutter precache --universal",
+  "official_sdk_source_url": "https://github.com/flutter/flutter",
+  "sdk_tracked_files_clean": true,
+  "executables_sha256": {
+    "bin/cache/dart-sdk/bin/dart": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb",
+    "bin/cache/artifacts/engine/linux-x64/flutter_tester": "800f4ca182df7dd2fb46a42dea5d76277b9dbc5e8cd2915e02bcbc978681b45f"
+  },
+  "workspace_lock_sha256": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130",
+  "workspace_package_config_sha256": "7a89dab45ebca1019f3a9674fad74048a3c1f8aea29ffc2691cd1f5f09d77547",
+  "workspace_package_count": 110,
+  "workspace_get": "dart pub get --enforce-lockfile; exit 0; recorded lock unchanged",
+  "early_setup_attempt": "One initial workspace pub call before Flutter finished generating version metadata failed with Flutter SDK unavailable; retried only after Flutter version completed successfully.",
+  "environment_script": "/workspace/scratch/9b01e2d302a4/zotero-toolchain/env.sh",
+  "github_actions_used": false,
+  "verified_after_gates_at_utc": "2026-11-18T18:23:08.593239+00:00",
+  "flutter_tools_snapshot_sha256": "4b12459a4d54512ae4c89647339971440635ba4cc2b42fc00ef170fd1a6a9ac2",
+  "launcher": "Pinned Dart executable and flutter_tools.snapshot invoked directly for final gates.",
+  "setup_log_hashes": "Omitted from the setup snapshot; current copied logs are hashed in manifest.json."
+}

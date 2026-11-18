@@ -1,0 +1,27 @@
+{
+  "/workspace/scratch/11b2f453fe98/zotero-toolchain/flutter-sdk/bin/cache/dart-sdk/bin/dart": {
+    "bytes": 4835712,
+    "git_blob_sha1": "3f2ebcf182d0783e2e24133364aa6ad802b8e96b",
+    "sha256": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb"
+  },
+  "/workspace/scratch/11b2f453fe98/zotero-toolchain/pub-cache/hosted/pub.dev/test-1.31.1/pubspec.yaml": {
+    "bytes": 1286,
+    "git_blob_sha1": "84f7d9f18a9c0af3b5f1c59e9bb341d4346ae0bc",
+    "sha256": "ceddf4148e4e58654efb8965232596da97756c807b0ec57d1b45d14690740f9f"
+  },
+  "/workspace/scratch/11b2f453fe98/zotero-validation/.dart_tool/package_config.json": {
+    "bytes": 24019,
+    "git_blob_sha1": "a37f14e65ea0a142d06c4a03f7ce32a716143c62",
+    "sha256": "d87f3699bc11443b8419dc4be21e6eb006849e16c2753e479d8f56c5a4f1a916"
+  },
+  "/workspace/scratch/11b2f453fe98/zotero-validation/.dart_tool/package_graph.json": {
+    "bytes": 19532,
+    "git_blob_sha1": "47f6c9d3b4141501641792c2fd2bb0b3766249a0",
+    "sha256": "90a1aa9c020ffbb8d8e11f7b7accee03fddd3b691b89238f8924e9b8af0ce124"
+  },
+  "/workspace/scratch/11b2f453fe98/zotero-validation/pubspec.lock": {
+    "bytes": 22686,
+    "git_blob_sha1": "bafa332db4f09903cbd975e0f9b48fe12df35b6d",
+    "sha256": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130"
+  }
+}

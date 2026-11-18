@@ -1,0 +1,77 @@
+{
+  "source_commit": "bfa88aab88a74028285619dfa07f3a81868fe59b",
+  "source_tree": "3418afd634efcaaa14c4712103f69ae5e817bffd",
+  "tracked_status_before": "",
+  "source_before": {
+    "packages/quds_office_editor/example/lib/suite_workspace.dart": "e1b565c6ad1be107a3b2362c67ecf3afa5a3acbd9d43629e3cd195c72eb6a850",
+    "packages/quds_office_editor/example/lib/studio_chrome.dart": "eb8fa1fa1ff1f87f819eb062acc8b262a87f3e4c6cee1d982488b58241dbc217",
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart": "7c7bc2d2c770992f6082713ae19d674ad4eaa8954f2dbe7c8027184099c95e06",
+    "packages/quds_office_editor/lib/src/embed/office_editors.dart": "1cc77f67931864984749afde116074b93241e163cddebea88fbf6d2d0fe8cdd2",
+    "packages/quds_office_editor/lib/src/proofing/word_proofing.dart": "004be3692fcf2a15b572a39272afbafc4671c7d956b18bf1d3b1b494bc4d3ebe",
+    "docs/validation/document-review-drafts-20261118/render_comments.dart": "58d23866df251a335f40414094360d99c1e4abee754104f8fc690e9b89d93a41"
+  },
+  "command": [
+    "/workspace/scratch/4a0b7fce84dc/toolchains/bin/flutter",
+    "test",
+    "--no-pub",
+    "--concurrency=1",
+    "--reporter=json",
+    "test/review_drafts_visual_fixture_test.dart"
+  ],
+  "cwd": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example",
+  "runtime_receipt_sha256": "832ca49151c4b20d1a32732d3461d93329085a4cab9ecf121ff6d672c4deab18",
+  "github_actions_queried_or_awaited": false,
+  "exit_code": 0,
+  "elapsed_seconds": 21.012,
+  "source_after": {
+    "packages/quds_office_editor/example/lib/suite_workspace.dart": "e1b565c6ad1be107a3b2362c67ecf3afa5a3acbd9d43629e3cd195c72eb6a850",
+    "packages/quds_office_editor/example/lib/studio_chrome.dart": "eb8fa1fa1ff1f87f819eb062acc8b262a87f3e4c6cee1d982488b58241dbc217",
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart": "7c7bc2d2c770992f6082713ae19d674ad4eaa8954f2dbe7c8027184099c95e06",
+    "packages/quds_office_editor/lib/src/embed/office_editors.dart": "1cc77f67931864984749afde116074b93241e163cddebea88fbf6d2d0fe8cdd2",
+    "packages/quds_office_editor/lib/src/proofing/word_proofing.dart": "004be3692fcf2a15b572a39272afbafc4671c7d956b18bf1d3b1b494bc4d3ebe",
+    "docs/validation/document-review-drafts-20261118/render_comments.dart": "58d23866df251a335f40414094360d99c1e4abee754104f8fc690e9b89d93a41"
+  },
+  "source_head_after": "bfa88aab88a74028285619dfa07f3a81868fe59b",
+  "tracked_status_after": "",
+  "cases": [
+    {
+      "name": "render desktop draft checks and an unposted correction",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "name": "render Arabic narrow draft checks beside reply text",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "name": "render keyboard correction menu at the comment caret",
+      "result": "success",
+      "skipped": false
+    }
+  ],
+  "errors": [],
+  "reporter_success": true,
+  "passed": 3,
+  "failed": 0,
+  "skipped": 0,
+  "images": [
+    {
+      "file": "screenshots/comment-draft-arabic-narrow.png",
+      "bytes": 79086,
+      "sha256": "2834bc12ed1b662375c5a5c04205885290852ade28a7117a63db614f6f586106"
+    },
+    {
+      "file": "screenshots/comment-draft-desktop.png",
+      "bytes": 140669,
+      "sha256": "18c129f7754d5b17b5ab362c870e9d76bcb3feba8810e1446f06613a4104c0ef"
+    },
+    {
+      "file": "screenshots/comment-keyboard-menu-desktop.png",
+      "bytes": 140517,
+      "sha256": "40739ccc52da8e720c9d36dbc31a8b4484cdf897e12af87239630bbb345b7b74"
+    }
+  ],
+  "source_unchanged": true,
+  "success": true
+}

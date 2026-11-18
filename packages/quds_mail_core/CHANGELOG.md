@@ -1,0 +1,7 @@
+## 0.1.0
+
+- Introduce independently implemented MIT portable Mail domain models and ports.
+- Preserve exact immutable message/attachment bytes and typed parsing budgets.
+- Add profile/account scoping, cooperative cancellation and stale callback guards.
+- Add tested immutable outbox transitions and bounded transactional sync-page
+  coordination, with explicit uncertain and unsupported outcomes.

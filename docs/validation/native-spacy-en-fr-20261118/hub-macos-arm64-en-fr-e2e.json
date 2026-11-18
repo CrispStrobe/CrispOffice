@@ -1,0 +1,150 @@
+{
+  "schema": "quds.spacy.language_worker_smoke.v1",
+  "passed": true,
+  "mode": "published-runtime-capsule",
+  "host": "macos 3.12.2",
+  "grammar_used": false,
+  "german": [
+    {
+      "library_sha256": "918a069e3ce3e6786fd11f91d9f7b6c9a99b1c18a96493ef86ab586146dc2992",
+      "opens_v2_bundles": false,
+      "grammar_qualified_build": false,
+      "status": "success",
+      "tokens": 10,
+      "lemmas": [
+        "Angela",
+        "Merkel",
+        "besuchen",
+        "gestern",
+        "der",
+        "Siemens",
+        "AG",
+        "in",
+        "München",
+        "--"
+      ]
+    },
+    {
+      "library_sha256": "f3300152c8b063960ff9c21785241bb8b99ffc8f1b2150e362b46d78b0272647",
+      "opens_v2_bundles": true,
+      "grammar_qualified_build": false,
+      "status": "success",
+      "tokens": 10,
+      "lemmas": [
+        "Angela",
+        "Merkel",
+        "besuchen",
+        "gestern",
+        "der",
+        "Siemens",
+        "AG",
+        "in",
+        "München",
+        "--"
+      ]
+    }
+  ],
+  "languages": [
+    {
+      "language": "en",
+      "bundle_revision": "eb659259b489593ddf29c747bc4562fbad5570f4",
+      "bundle_repository": "cstr/crispembed-spacy-en-core-web-sm-3.8.0",
+      "runtime": {
+        "url": "https://huggingface.co/cstr/crispembed-spacy-de-core-news-sm-3.8.0/resolve/cf833ae59e6e92773af90c4cbae67a2ba68dec03/packages/macos-arm64/45b057700880e125d701d941a9e3123679960d35/spacy-de_core_news_sm-3.8.0-macos-arm64-f32.tar.gz",
+        "archive_sha256": "200a09b1f582e67abf813355424c0ae9066d47a076c2bf641daed0ff605c7d8c",
+        "library_sha256": "f3300152c8b063960ff9c21785241bb8b99ffc8f1b2150e362b46d78b0272647"
+      },
+      "install_seconds": 6.602,
+      "closed_tree_reverified": true,
+      "status": "success",
+      "identity": {
+        "library_sha256": "f3300152c8b063960ff9c21785241bb8b99ffc8f1b2150e362b46d78b0272647",
+        "bundle_sha256": "5cba3b979c67e6a6ecd2f5414bc953728cc4601c2cbe69bf89e9b62465d8dc6c",
+        "model_sha256": "17b18871a2c1e766be4572c1dd9a9902ba01c4a46679797ccb3c4d0048d24e7d",
+        "resources_sha256": "d585e59b9b2f1aedfd5eb37716ff0d362969f6f8ba8535dad4ae50991567981a",
+        "abi_version": 1,
+        "text_abi_version": 1,
+        "capability_mask": 28
+      },
+      "tokens": [
+        "Apple/PROPN/NNP/Apple/nsubj->2/Number=Sing",
+        "is/AUX/VBZ/be/aux->2/Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin",
+        "looking/VERB/VBG/look/ROOT->2/Aspect=Prog|Tense=Pres|VerbForm=Part",
+        "at/ADP/IN/at/prep->2",
+        "buying/VERB/VBG/buy/pcomp->3/Aspect=Prog|Tense=Pres|VerbForm=Part",
+        "a/DET/DT/a/det->6/Definite=Ind|PronType=Art",
+        "U.K./PROPN/NNP/U.K./dobj->4/Number=Sing",
+        "startup/NOUN/NN/startup/advcl->2/Number=Sing",
+        "for/ADP/IN/for/prep->7",
+        "$/SYM/$/$/quantmod->11",
+        "1/NUM/CD/1/compound->11/NumType=Card",
+        "billion/NUM/CD/billion/pobj->8/NumType=Card",
+        "./PUNCT/././punct->2/PunctType=Peri",
+        "Tim/PROPN/NNP/Tim/compound->14/Number=Sing",
+        "Cook/PROPN/NNP/Cook/nsubj->15/Number=Sing",
+        "visited/VERB/VBD/visit/ROOT->15/Tense=Past|VerbForm=Fin",
+        "London/PROPN/NNP/London/dobj->15/Number=Sing",
+        "on/ADP/IN/on/prep->15",
+        "Monday/PROPN/NNP/Monday/pobj->17/Number=Sing",
+        "./PUNCT/././punct->15/PunctType=Peri"
+      ],
+      "sentences": 2,
+      "entities": [
+        "Apple (ORG)",
+        "U.K. (GPE)",
+        "$1 billion (MONEY)",
+        "Tim Cook (PERSON)",
+        "London (GPE)",
+        "Monday (DATE)"
+      ],
+      "german_request_refused": "unsupported"
+    },
+    {
+      "language": "fr",
+      "bundle_revision": "5e90593195cc4ecd20ceb864d932d7d7f5e3d762",
+      "bundle_repository": "cstr/crispembed-spacy-fr-core-news-sm-3.8.0",
+      "runtime": {
+        "url": "https://huggingface.co/cstr/crispembed-spacy-de-core-news-sm-3.8.0/resolve/cf833ae59e6e92773af90c4cbae67a2ba68dec03/packages/macos-arm64/45b057700880e125d701d941a9e3123679960d35/spacy-de_core_news_sm-3.8.0-macos-arm64-f32.tar.gz",
+        "archive_sha256": "200a09b1f582e67abf813355424c0ae9066d47a076c2bf641daed0ff605c7d8c",
+        "library_sha256": "f3300152c8b063960ff9c21785241bb8b99ffc8f1b2150e362b46d78b0272647"
+      },
+      "install_seconds": 10.331,
+      "closed_tree_reverified": true,
+      "status": "success",
+      "identity": {
+        "library_sha256": "f3300152c8b063960ff9c21785241bb8b99ffc8f1b2150e362b46d78b0272647",
+        "bundle_sha256": "986d620edc745624198c56d3494fa30f3b649786c1d93a29db76fe55196f2264",
+        "model_sha256": "8b8f9ab4aa322191faa1735d1b7d53e0e744e18f4025290fe37242faa9a8e53e",
+        "resources_sha256": "bbdd7b6a51478abcc8e6d6e9cfad0d70e3a3f44a76de6ed4be4fdbb699825f8d",
+        "abi_version": 1,
+        "text_abi_version": 1,
+        "capability_mask": 28
+      },
+      "tokens": [
+        "Emmanuel/PROPN/PROPN/Emmanuel/nsubj->3/Gender=Masc|Number=Sing",
+        "Macron/PROPN/PROPN/Macron/flat:name->0/Gender=Masc|Number=Sing",
+        "a/AUX/AUX/avoir/aux:tense->3/Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin",
+        "rencontré/VERB/VERB/rencontrer/ROOT->3/Gender=Masc|Number=Sing|Tense=Past|VerbForm=Part",
+        "les/DET/DET/le/det->5/Definite=Def|Number=Plur|PronType=Art",
+        "dirigeants/NOUN/NOUN/dirigeant/obj->3/Gender=Masc|Number=Plur",
+        "de/ADP/ADP/de/case->7",
+        "Renault/PROPN/PROPN/Renault/nmod->5/Gender=Masc|Number=Sing",
+        "à/ADP/ADP/à/case->9",
+        "Paris/PROPN/PROPN/Paris/nmod->5/Gender=Masc|Number=Sing",
+        "./PUNCT/PUNCT/./punct->3",
+        "Les/DET/DET/le/det->12/Definite=Def|Number=Plur|PronType=Art",
+        "négociations/NOUN/NOUN/négociation/nsubj->13/Gender=Fem|Number=Plur",
+        "reprendront/VERB/VERB/reprendre/ROOT->13/Mood=Ind|Number=Plur|Person=3|Tense=Fut|VerbForm=Fin",
+        "lundi/NOUN/NOUN/lundi/obj->13/Gender=Masc|Number=Sing",
+        "./PUNCT/PUNCT/./punct->13"
+      ],
+      "sentences": 2,
+      "entities": [
+        "Emmanuel Macron (PER)",
+        "Renault (ORG)",
+        "Paris (LOC)"
+      ],
+      "german_request_refused": "unsupported"
+    }
+  ]
+}

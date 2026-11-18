@@ -1,5 +1,147 @@
 # Zotero validation
 
+## 18 November 2026 — Zotero citations from the Notes pane and keyboard
+
+Qualified application source: **`ff1518517dd9f67e214ff56fe7eef06349f5223a`**,
+on `codex/zotero-note-workflow-20261118`,
+[PR #170](https://github.com/CrispStrobe/quds_office_suite/pull/170).
+
+The Notes pane now supplies its caret, selection and composition state to
+native and offline citation commands. Citations can be inserted into existing
+authored footnotes/endnotes while preserving their explanatory text, formatting
+and body reference; existing citations can be edited at that caret. Undo/redo
+and ordinary note-text undo retain the correct target. Native Studio adds
+Ctrl+Alt+C for Add/Edit citation and Ctrl+Alt+R for Refresh, with Cmd in place of
+Ctrl on macOS and guards for read-only documents, unavailable transport and
+active dialogs.
+
+The final local gates pass **1,489 distinct tests**: **549 engine**,
+**737 editor**, **107 Studio**, and **96 incoming provider/compiler**
+cases. The **98 new Zotero regression cases are included once**.
+Strict analysis and formatting pass for all **42 changed product/test Dart
+files**. All before/after source and runtime bindings match the frozen source.
+The bundled thesaurus verifier separately checks **1,037 files**, outside the
+test-case total.
+
+Recent work was reconciled before implementation and refreshed once before
+final qualification. The bounded final snapshot contains **384 refs**
+(210 fork branches, 170 PR heads, four upstream): 356 are included by ancestry,
+and 28 historical refs at 14 heads are verified equivalent. The incoming
+review, thesaurus, Mail baseline and spaCy EN/FR heads are preserved, with zero
+captured refs unaccounted for. All source checkpoints were saved remotely with
+non-forced expected-head updates and `[skip ci]`. No GitHub Actions, workflow,
+check or commit-status endpoint was queried or awaited.
+
+The [complete report](validation/zotero-note-workflow-20261118/README.md)
+contains exact suite selections, raw results, source/runtime fingerprints,
+development failures and corrections, reconciliation receipts, and replay
+commands. This increment establishes local model/controller/widget and
+controlled-transport behavior, including DOCX serializer/deserializer reopen
+paths. New live Zotero/account, installed native application and actual
+Word/LibreOffice reopening acceptance remain separate. Historical live
+acceptance below retains its originally recorded source identity.
+
+## 18 November 2026 — reuse cited sources and edit citation source lists
+
+Qualified combined source: **`8002b6748deec2be7b7527d2bab8810d8ec54d05`**, on
+`codex/zotero-citation-workflow-20261118`.
+[PR #166](https://github.com/CrispStrobe/quds_office_suite/pull/166) was merged into
+the active document-review branch (#162, already containing #164 and #165)
+while validation was running. The completed follow-up integrates fixed newer
+review base `ecbb1e0b`, preserves both sides of its selection-test conflict and
+saves fresh complete local qualification.
+
+**Document → Cited references…** searches stored document sources offline,
+shows occurrence counts and details, and reuses sources with fresh
+citation-specific options. The citation composer can add, remove, reorder and
+inspect sources while preserving their individual locators and affixes. Custom
+text requires review after a changed source list.
+
+| Accepted current local cohort | Suites | Substantive passes |
+| --- | ---: | ---: |
+| Complete editor Zotero | 26 | 348 |
+| Incoming editor review and proofing | 20 | 278 |
+| **Disjoint total** | **46** | **626** |
+
+Both fresh runs exit zero with no failures, skips, error events, overflow or
+missed-tap diagnostics. The **49 new Zotero cases are included once**. All 17
+distinct strict-analysis and formatting targets pass. An independent raw-event
+audit checks the counts, artifact hashes and source/runtime guards. The 562
+Zotero and 552 incoming source records form a 583-path union matching the frozen
+combined source. Both runs started and ended at that exact commit. The earlier
+617-test qualification, failed attempts and focused development remain
+preserved separately and are excluded from the fresh total.
+
+The original fixed incoming inventory closed at **17:03:14 Europe/Berlin** and
+accounts for **377 incoming refs / 244 distinct heads**, with zero unaccounted.
+A later targeted delivery check identified the PR merge and newer review base;
+its ordinary integration and source preservation are recorded separately.
+All work and raw evidence were saved incrementally with non-forced expected-head
+updates and `[skip ci]`. No GitHub Actions, workflow or CI-status endpoint was
+queried, awaited or rerun.
+
+The [complete report](validation/zotero-citation-workflow-20261118/README.md)
+contains usage, both reconciliation stages, source binding, raw evidence and
+reproduction commands. This qualifies real Flutter editor/controller flows
+with controlled transport and clipboard channels. Historical engine/Studio
+results are not added; it makes no new installed-device, live-account,
+full-build or Word/LibreOffice interoperability acceptance claim.
+
+## 18 November 2026 — stored-reference details throughout the workspace
+
+Qualified integration: **`02da86d9ba82f5d14dc04a3759c247064bcd6a25`**, on
+`codex/zotero-offline-workflow-20261118` ([PR #165](https://github.com/CrispStrobe/quds_office_suite/pull/165),
+stacked on #164). Imported results and selection review now expose full stored
+metadata with plain-text copying, including offline, hidden and mixed-library
+sources. Nested inspection preserves staged reordering/removals. A refused 21st
+imported selection explains the shared 20-source limit.
+
+The complete editor Zotero cohort passes **299 tests across 22 suites**, including
+all **21 new cases counted once**, with zero skips/errors. All five changed Dart
+targets pass strict analysis and formatting. The full details workflow passes at
+320 × 480 with doubled text in LTR and RTL layouts. All before/after guards pass;
+554 source input identities match the saved integration commit.
+
+The final fixed inventory accounts for **375 incoming refs / 241 distinct heads**,
+with no observed head unaccounted for. The latest document-review audit-only
+commit is preserved through an ordinary two-parent merge. Remote checkpoints use
+`[skip ci]`; no Actions, workflow or CI-status endpoint was queried or awaited.
+
+The [complete report and compact raw evidence](validation/zotero-offline-workflow-20261118/README.md)
+include exact-source bindings, final reconciliation and reproducible commands.
+Engine, Studio and other incoming cohorts were unchanged and were not rerun or
+added to this increment's test count. This editor qualification uses real Flutter
+widgets and controlled channels; it does not claim new installed-app, live-account
+or Word/LibreOffice acceptance.
+
+## 18 November 2026 — imported-reference search and offline selection copying
+
+Qualified product: **`b2bcfc23e692476d16d9a7a534ea95a93ae94cd3`**, on
+`codex/zotero-continuation-20261118` ([PR #164](https://github.com/CrispStrobe/quds_office_suite/pull/164)).
+Search loaded CSL references by title, creator, year or DOI, retain selections
+across filters, distinguish duplicate IDs by their original import positions,
+and copy selected stored CSL metadata offline or across libraries. The full
+workspace flow remains usable at 320 × 480 with doubled text.
+
+The final **741 Zotero tests across 43 suites** pass with zero skips/errors,
+including 21 new cases counted once. Fresh local checks of the newly integrated
+comparison/review and spelling branches bring the disjoint total to **1,409
+tests across 74 suites**. A separate 48-case Dart VM panel also passes. All 18
+strict analysis/formatting targets and source/runtime guards pass; 701 unique
+recorded inputs bind to the qualified product.
+
+The fixed final inventory accounts for **373 incoming refs / 241 heads**,
+including main `f383c826`, review `3840e19f` and spelling `f482b06f`, with no
+observed head unaccounted for. The prior interrupted work was already saved and
+merged as PR #161. Incremental remote checkpoints preserve all work, and no
+GitHub Actions or CI-status endpoint was queried or awaited.
+
+The [complete report](validation/zotero-continuation-20261118/README.md) includes
+commands, source bindings, raw streams, earlier attempts and the explicit
+spelling receipt correction. These checks use controlled transports/native
+responses and do not claim new live-account, device, full-build or
+Word/LibreOffice acceptance.
+
 ## 18 November 2026 — reference details and selection review
 
 Qualified product: **`d36413a2cc8e1de9fd7493b5d1baf2900e63f04b`** on

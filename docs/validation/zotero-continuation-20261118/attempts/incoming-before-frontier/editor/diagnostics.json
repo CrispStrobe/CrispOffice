@@ -1,0 +1,12 @@
+{
+  "source_count": 472,
+  "head_at_start": "6aa6ffb5043cd03b344e582bb6119a4da63823c7",
+  "head_at_end": "6aa6ffb5043cd03b344e582bb6119a4da63823c7",
+  "by_suite": {
+    "word_review_controller_test.dart": 18,
+    "word_review_dialog_test.dart": 13
+  },
+  "print_event_count": 0,
+  "stderr_bytes": 0,
+  "matched_diagnostics": []
+}

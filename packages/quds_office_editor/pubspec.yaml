@@ -60,6 +60,7 @@ dependencies:
     path: ../quds_reports
 
 dev_dependencies:
+  crypto: ^3.0.7
   flutter_lints: ^6.0.0
   flutter_test:
     sdk: flutter
@@ -69,3 +70,11 @@ flutter:
   assets:
     - fonts/
     - templates/
+    - assets/thesaurus/en/
+    - assets/thesaurus/en/index/
+    - assets/thesaurus/en/senses/
+    - assets/thesaurus/en/notices/
+    - assets/thesaurus/de/
+    - assets/thesaurus/de/index/
+    - assets/thesaurus/de/senses/
+    - assets/thesaurus/de/notices/

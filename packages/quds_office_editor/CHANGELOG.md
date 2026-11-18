@@ -4,6 +4,87 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Keep Shift+F7 available from both the document and the Review pane alongside
+  Alt+F7 / Alt+Shift+F7 writing navigation. Keep language, changes and thesaurus
+  actions within the narrow review status bar.
+- Refuse thesaurus presentation during active IME composition before opening a
+  modal or restoring focus, including when a menu supplies an earlier capture.
+  Show a non-focus-taking notice when the host provides a Scaffold.
+
+- Review current writing findings with Alt+F7 / Alt+Shift+F7 and use
+  Shift+F10 / Menu for keyboard-operated suggestions at the caret. Preserve
+  selections, adjacent finding boundaries, IME composition, and document focus
+  on dismissal; repeated navigation from the pane respects its category filter.
+- Keep Check document available during background checking, while repeated
+  explicit requests share their existing pass and retain manual-provider rules.
+- Keep Studio comment replies inline with separate thread drafts and explicit
+  undoable posting. Prevent stale drafts from being attached to another thread
+  or replacement document; show comments below the editor in narrow windows.
+  Display live findings in the active comment body and open its Writing review
+  from marked text without disrupting selection gestures.
+
+- Preserve verified findings in unchanged paragraphs during typing and checking,
+  publish new findings progressively, and keep current inline suggestions usable
+  during unrelated progress. Reject stale sources and preserve explicit/manual
+  checking boundaries and request coalescing.
+- Add author/type/text filters, exact filtered batch Accept/Reject, and
+  markup/final/original paragraph previews to the persistent Changes pane.
+  Keep filters collapsible, verify source attachment, support protected text
+  inspection, and advance to the next pending change with Undo/Redo.
+- Add document-language selection and restoring ignored findings directly to the
+  Writing pane, preserving personal dictionary entries and run languages.
+  F7 works from pane controls as well as the document.
+- Search and reuse cited Zotero document references offline, with stored details,
+  occurrence counts, shared selection review and fresh citation options. Preserve
+  mixed-library identities, explicit URI aliases and distinct offline snapshots.
+- Add, remove and reorder sources while composing or editing a Zotero citation.
+  Keep per-occurrence options attached and require review of custom text after
+  source-list changes. Preview the current single source and preserve drafts on
+  cancellation or preview failure.
+
+- Add live writing checks by default in the shared Word editor, preserving an
+  explicit off preference. Show debounce, active, paused and incomplete check
+  status alongside a count of pending tracked changes.
+- Keep Writing and Changes review panes open while editing, with responsive
+  placement, finding/category navigation, suggestions, dictionary/ignore actions,
+  reviewer attribution and undoable tracked-change decisions. Preserve advanced
+  dialogs for detailed settings and two-document comparison.
+- Offer suggestions directly from marked text and tracked-change actions from
+  its context menu. Preserve input focus, double-click/drag selection and checked
+  results during caret/viewport movement; reject stale source actions.
+- Keep manual providers behind explicit F7/Check document requests and reuse an
+  identical active explicit check. Export pane/status widgets and controller
+  navigation APIs for embedders.
+
+- Inspect and copy stored reference details from CSL import results and staged
+  selection review, including full titles, creator roles, bibliographic fields
+  and source identities. Keep offline and mixed-library selections unchanged.
+- Explain the 20-source citation limit when another imported reference cannot
+  be selected, including when selected sources are hidden by a filter.
+
+- Search imported Zotero CSL references locally by title, creators, year and
+  DOI, with creator/year labels, result counts and selections retained across
+  filters. Preserve original import identities even when IDs or titles repeat.
+- Copy selected stored CSL JSON offline or across libraries from Library and
+  Import. Retain selection order, repeated records, embedded metadata and URI
+  aliases without changing the document or requesting updated source data.
+- Keep Zotero import controls, Library content and complete status/error
+  messages usable in narrow windows with enlarged text.
+
+- Protect complete identifiers and numeric/connector-containing spans returned
+  by native spell checkers, including marked and prepended Unicode clusters.
+  Keep surrounding prose, explicit hyphen parts and CJK words reviewable.
+
+- Add a document review workspace with reviewer attribution, author/type/text
+  filters, undoable filtered accept/reject, story-aware navigation, and
+  original/final paragraph previews. Compare two independently picked Word
+  documents with side-by-side or inline differences and export JSON reports.
+- Replace the mutating controller comparison helper with a read-only result;
+  preserve source documents, mark stale reports, and support narrow LTR/RTL
+  review layouts and viewing mode.
+- Reject incomplete or foreign Word document XML before comparison, so damaged
+  sources cannot silently import as empty documents and appear unchanged.
+
 - Keep exact reviewed macOS pixel references separate from Linux references.
 
 - Check native spelling without discretionary soft hyphens while keeping exact

@@ -32,29 +32,27 @@ cloud providers, Calendar/People and per-product App Store evidence.
 All tasks are planned: this entry does not claim Mail code, a standalone
 Office release or App Store qualification has been delivered.
 
-## English/German thesaurus — scoped 18 November 2026
+## English/German offline thesaurus — 18 November 2026
 
-The [thesaurus scope](roadmaps/thesaurus/README.md) records an offline,
-sense-grouped English/German lookup and explicit Word replacement workflow.
-Planned sources are Open English WordNet with its CC BY 4.0 and inherited
-WordNet notices, or Princeton WordNet as the permissive alternative, and
-OpenThesaurus under its offered CC BY-SA 4.0 option. Noncommercial sources
-are excluded; independently written application code retains its license.
+The [thesaurus workstream](roadmaps/thesaurus/README.md) now includes full
+OEWN 2025 and OpenThesaurus 17 November packs, deterministic compilation,
+manifest/file verification, lazy offline lookup, bounded word-form support,
+and guarded Word replacement. The dialog is available from Review, the
+context menu and Shift+F7, with lookup-language override and actual source
+notices. Lookup adds no proofing finding or undo entry; explicit replacement
+uses one undo unit and preserves the existing source protections.
 
-The work reuses the fork's existing effective-language resolution,
-source/grapheme guards, finite Unicode noun morphology and rich-text
-correction/undo machinery. Thesaurus targets and candidates receive their
-own validation contract rather than fabricated proofing findings.
+The [data notices](roadmaps/thesaurus/licensing-and-notices.md) document the
+actual MIT-code / CC BY 4.0-and-WordNet-English / CC BY-SA 4.0-German boundary.
+TH1–TH4 have source, compiler, provider, controller and UI evidence. TH5 still
+requires installed-desktop and actual offline-browser acceptance plus
+independent human linguistic review. The
+[continuation report](validation/thesaurus-20261118/continuation/README.md)
+records the completed local checks, measurements and environment blockers.
 
-TH1–TH5 cover pinned source/notice review, reproducible packs, offline lookup,
-editor integration and qualified distribution. The
-[planned notices](roadmaps/thesaurus/licensing-and-notices.md) distinguish
-future data from shipped assets. This is scope documentation only: no
-thesaurus corpus, provider, UI or model is implemented or bundled here.
-The [HF pipeline review](roadmaps/thesaurus/hf-pipeline-review.md) records
-existing EN/DE sense extraction, reuse opportunities and concrete provenance
-and publication gaps. Source/metadata inspection is complete; binary and
-input-license qualification remain pending before any reuse.
+The [HF pipeline review](roadmaps/thesaurus/hf-pipeline-review.md) remains a
+separate source/metadata audit. No combined school-vocabulary database or
+additional corpus family is imported by the dedicated thesaurus packs.
 
 ## Proofing and German hyphenation — 16 November 2026
 
@@ -195,4 +193,3 @@ Do not skip sub-phases. Do not route OOXML export through `PdfFile`.
 - `quds_office_engine` — pure Dart, no `dart:ui`
 - `quds_office_editor` — Flutter `RenderBox` / `LeafRenderObjectWidget` only
 - No `TODO` stubs; no `dynamic`; general-purpose fixtures only in tests
-

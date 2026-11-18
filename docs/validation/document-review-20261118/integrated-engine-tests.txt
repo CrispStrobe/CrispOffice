@@ -1,0 +1,117 @@
+00:00 +0: loading test/word_comparison_test.dart
+00:00 +0: test/word_comparison_test.dart: middle paragraph insertion does not rewrite following paragraphs
+00:00 +1: test/word_comparison_test.dart: whole paragraph removal and empty paragraphs remain visible
+00:00 +2: test/word_comparison_test.dart: word-level redline retains unchanged context and reconstructs both inputs
+00:00 +3: test/word_comparison_test.dart: repeated paragraphs align deterministically
+00:00 +4: test/word_comparison_test.dart: Unicode, Arabic, combining marks and joined emoji are indivisible
+00:00 +5: test/word_comparison_test.dart: normalization preserves source text and reports only requested differences
+00:00 +6: test/word_comparison_test.dart: direct run formatting is detected but equivalent run splitting is not
+00:00 +7: test/word_comparison_test.dart: paragraph and section formatting changes have readable details
+00:00 +8: test/word_comparison_test.dart: projecting pending revisions never changes metadata or input identity
+00:00 +9: test/word_comparison_test.dart: tracked deletion projection excludes deleted character formatting
+00:00 +10: test/word_comparison_test.dart: invalid or overlapping revision ranges cannot silently project wrong text
+00:00 +11: test/word_comparison_adversarial_test.dart: a previously captured missing target never binds a later paragraph
+00:00 +12: test/word_comparison_adversarial_test.dart: a previously captured missing target never binds a later paragraph
+00:00 +13: test/word_comparison_adversarial_test.dart: a previously captured missing target never binds a later paragraph
+00:00 +14: test/word_comparison_adversarial_test.dart: a previously captured missing target never binds a later paragraph
+00:00 +15: test/word_comparison_adversarial_test.dart: a previously captured missing target never binds a later paragraph
+00:00 +16: test/word_comparison_adversarial_test.dart: a previously captured missing target never binds a later paragraph
+00:00 +17: test/word_comparison_adversarial_test.dart: a previously captured missing target never binds a later paragraph
+00:00 +18: test/word_comparison_adversarial_test.dart: a previously captured missing target never binds a later paragraph
+00:00 +19: test/word_comparison_test.dart: large mostly identical inputs use anchors without quadratic work
+00:00 +20: test/word_comparison_test.dart: large mostly identical inputs use anchors without quadratic work
+00:00 +21: test/word_comparison_test.dart: large mostly identical inputs use anchors without quadratic work
+00:00 +22: test/word_comparison_test.dart: large mostly identical inputs use anchors without quadratic work
+00:00 +23: test/word_comparison_test.dart: large mostly identical inputs use anchors without quadratic work
+00:00 +24: test/word_comparison_test.dart: large mostly identical inputs use anchors without quadratic work
+00:00 +25: test/word_comparison_test.dart: large mostly identical inputs use anchors without quadratic work
+00:00 +26: test/word_comparison_test.dart: large mostly identical inputs use anchors without quadratic work
+00:00 +27: test/word_comparison_test.dart: large mostly identical inputs use anchors without quadratic work
+00:00 +28: test/word_comparison_test.dart: large mostly identical inputs use anchors without quadratic work
+00:00 +29: test/word_comparison_test.dart: large mostly identical inputs use anchors without quadratic work
+00:00 +30: test/word_comparison_test.dart: large mostly identical inputs use anchors without quadratic work
+00:00 +31: test/word_comparison_test.dart: large mostly identical inputs use anchors without quadratic work
+00:00 +32: test/word_comparison_test.dart: large mostly identical inputs use anchors without quadratic work
+00:00 +33: test/word_comparison_test.dart: large mostly identical inputs use anchors without quadratic work
+00:00 +34: test/word_comparison_test.dart: large mostly identical inputs use anchors without quadratic work
+00:00 +35: test/word_comparison_test.dart: large mostly identical inputs use anchors without quadratic work
+00:00 +36: test/word_comparison_test.dart: large mostly identical inputs use anchors without quadratic work
+00:00 +37: test/word_comparison_test.dart: large mostly identical inputs use anchors without quadratic work
+00:00 +38: test/word_comparison_test.dart: large mostly identical inputs use anchors without quadratic work
+00:00 +39: test/word_comparison_test.dart: large mostly identical inputs use anchors without quadratic work
+00:00 +40: test/word_comparison_test.dart: large mostly identical inputs use anchors without quadratic work
+00:00 +41: test/word_comparison_test.dart: large mostly identical inputs use anchors without quadratic work
+00:00 +42: test/word_comparison_test.dart: large mostly identical inputs use anchors without quadratic work
+00:00 +43: test/word_comparison_test.dart: large mostly identical inputs use anchors without quadratic work
+00:00 +44: test/word_comparison_test.dart: large mostly identical inputs use anchors without quadratic work
+00:00 +45: test/word_comparison_test.dart: large mostly identical inputs use anchors without quadratic work
+00:00 +46: test/word_comparison_test.dart: large mostly identical inputs use anchors without quadratic work
+00:00 +47: test/word_comparison_test.dart: large mostly identical inputs use anchors without quadratic work
+00:00 +48: test/office_features_test.dart: merges mail compares documents and builds citations
+00:00 +49: test/office_features_test.dart: merges mail compares documents and builds citations
+00:00 +50: test/office_features_test.dart: merges mail compares documents and builds citations
+00:00 +51: test/office_features_test.dart: merges mail compares documents and builds citations
+00:00 +52: test/word_comparison_test.dart: independently authored native XML produces a readable comparison
+00:00 +53: test/word_comparison_test.dart: independently authored native XML produces a readable comparison
+00:00 +54: test/word_comparison_test.dart: independently authored native XML produces a readable comparison
+00:00 +55: test/word_comparison_test.dart: independently authored native XML produces a readable comparison
+00:00 +56: test/office_features_test.dart: writes slide groups and speaker notes parts
+00:00 +57: test/word_comparison_test.dart: many independent edit sequences reconstruct both paragraph streams
+00:00 +58: test/office_features_test.dart: goal seek power query sparklines mail merge and citations xml
+00:00 +59: test/word_revision_story_test.dart: record binds a body paragraph before index-changing structural edits
+00:00 +60: test/word_revision_story_test.dart: record binds a body paragraph before index-changing structural edits
+00:00 +61: test/word_revision_story_test.dart: record binds a body paragraph before index-changing structural edits
+00:00 +62: test/word_revision_story_test.dart: record binds a body paragraph before index-changing structural edits
+00:00 +63: test/word_revision_story_test.dart: detached targets and invalid recorded indices never redirect into body
+00:00 +64: test/word_revision_story_test.dart: legacy directly constructed revisions bind once and note tables resolve
+00:00 +65: test/word_revision_story_test.dart: direct preserves native revision ownership through three saves
+00:00 +66: test/word_revision_story_test.dart: direct preserves native revision ownership through three saves
+00:00 +67: test/word_revision_story_test.dart: direct preserves native revision ownership through three saves
+00:00 +68: test/word_revision_story_test.dart: direct preserves native revision ownership through three saves
+00:00 +69: test/word_revision_story_test.dart: direct preserves native revision ownership through three saves
+00:00 +70: test/word_revision_scaling_test.dart: many tracked changes import and save in linear-ish time
+00:00 +71: test/word_revision_scaling_test.dart: many tracked changes import and save in linear-ish time
+00:00 +72: test/word_revision_scaling_test.dart: many tracked changes import and save in linear-ish time
+00:00 +73: test/word_revision_scaling_test.dart: many tracked changes import and save in linear-ish time
+00:00 +74: test/word_revision_scaling_test.dart: many tracked changes import and save in linear-ish time
+00:00 +75: test/word_revision_scaling_test.dart: many tracked changes import and save in linear-ish time
+00:00 +76: test/word_revision_scaling_test.dart: many tracked changes import and save in linear-ish time
+00:00 +77: test/word_revision_scaling_test.dart: many tracked changes import and save in linear-ish time
+00:00 +78: test/word_revision_scaling_test.dart: many tracked changes import and save in linear-ish time
+00:00 +79: test/word_revision_scaling_test.dart: many tracked changes import and save in linear-ish time
+00:00 +80: test/word_revision_scaling_test.dart: many tracked changes import and save in linear-ish time
+00:00 +81: test/word_revision_scaling_test.dart: many tracked changes import and save in linear-ish time
+00:00 +82: test/word_revision_scaling_test.dart: many tracked changes import and save in linear-ish time
+00:00 +83: test/word_revision_scaling_test.dart: many tracked changes import and save in linear-ish time
+00:00 +84: test/word_revision_scaling_test.dart: many tracked changes import and save in linear-ish time
+00:00 +85: test/word_revision_scaling_test.dart: many tracked changes import and save in linear-ish time
+00:00 +86: test/word_revision_scaling_test.dart: many tracked changes import and save in linear-ish time
+00:01 +87: test/word_revision_scaling_test.dart: many tracked changes import and save in linear-ish time
+00:01 +88: test/word_revision_scaling_test.dart: many tracked changes import and save in linear-ish time
+00:01 +89: test/word_revision_scaling_test.dart: many tracked changes import and save in linear-ish time
+00:01 +90: test/word_revision_scaling_test.dart: many tracked changes import and save in linear-ish time
+00:01 +91: test/word_revision_scaling_test.dart: many tracked changes import and save in linear-ish time
+00:01 +92: test/word_revision_scaling_test.dart: many tracked changes import and save in linear-ish time
+00:01 +93: test/word_revision_scaling_test.dart: many tracked changes import and save in linear-ish time
+00:01 +94: test/word_revision_scaling_test.dart: many tracked changes import and save in linear-ish time
+00:01 +95: test/word_revision_scaling_test.dart: many tracked changes import and save in linear-ish time
+00:01 +96: test/word_revision_scaling_test.dart: many tracked changes import and save in linear-ish time
+00:01 +97: test/proofing/german_spelling_continuation_test.dart: marked numeric prefixes remain complete identifiers
+00:01 +98: test/proofing/german_spelling_continuation_test.dart: marked numeric prefixes remain complete identifiers
+00:02 +99: test/proofing/german_spelling_continuation_test.dart: marked connectors protect following identifier fragments
+00:02 +100: test/proofing/german_spelling_continuation_test.dart: identifier guards cover arbitrarily long grapheme edges
+00:02 +101: test/proofing/german_spelling_continuation_test.dart: marked identifier suffixes and both sides remain protected
+00:02 +102: test/proofing/german_spelling_continuation_test.dart: marked punctuation and separate prose keep spelling checks
+00:02 +103: test/proofing/german_spelling_continuation_test.dart: short accented corrections include Café
+00:02 +104: test/proofing/german_spelling_continuation_test.dart: short accented corrections include Abbé
+00:02 +105: test/proofing/german_spelling_continuation_test.dart: short accented corrections include René
+00:02 +106: test/proofing/german_spelling_continuation_test.dart: short accented corrections include rosé
+00:02 +107: test/proofing/german_spelling_continuation_test.dart: short accented corrections include Joël
+00:02 +108: test/proofing/german_spelling_continuation_test.dart: short fallback can restore a missing accented character
+00:02 +109: test/proofing/german_spelling_continuation_test.dart: accented corrections retain source ranges and uppercase style
+00:02 +110: test/proofing/german_spelling_continuation_test.dart: short accented words stay known in each supported locale
+00:02 +111: test/proofing/german_spelling_continuation_test.dart: short fallback rejects candidates needing two edits
+00:02 +112: test/proofing/german_spelling_continuation_test.dart: direct short-word corrections retain precedence
+00:02 +113: test/proofing/german_spelling_continuation_test.dart: short fallback respects suggestion and shared candidate limits
+00:02 +114: test/proofing/german_spelling_continuation_test.dart: explicit compounds can repair a short accented constituent
+00:02 +115: All tests passed!

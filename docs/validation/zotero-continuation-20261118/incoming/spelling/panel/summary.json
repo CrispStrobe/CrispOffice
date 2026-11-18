@@ -1,0 +1,76 @@
+{
+  "actual_process_exit_code": 0,
+  "artifacts": {
+    "panel.json": {
+      "bytes": 20155,
+      "git_blob_sha1": "f6b8d03fe3c6117d6bf5975dce78da51233e355b",
+      "sha256": "5c48b27369502e70a68b5445523e7055567694e656c2acac3950f6978aa6c57d"
+    },
+    "run.json": {
+      "bytes": 999,
+      "git_blob_sha1": "59d276f878cc6ab2c3561f59f65785ca202e2762",
+      "sha256": "0336bcebaa0e7731d371bc175526ea694ab8dfed41125656f306a944a378861e"
+    },
+    "runtime-binding-after.json": {
+      "bytes": 1568,
+      "git_blob_sha1": "01f977aad5725be140acc7b198107e7e31fa45af",
+      "sha256": "076e445a6f7e25a0fec97a9848a0cf0f86f44409a2bb9089f8708384fe3c440a"
+    },
+    "runtime-binding-before.json": {
+      "bytes": 1568,
+      "git_blob_sha1": "01f977aad5725be140acc7b198107e7e31fa45af",
+      "sha256": "076e445a6f7e25a0fec97a9848a0cf0f86f44409a2bb9089f8708384fe3c440a"
+    },
+    "source-after.json": {
+      "bytes": 95114,
+      "git_blob_sha1": "2801253821b0e61815a67e9969be9af8eaa4b77e",
+      "sha256": "ad3158f006a1ec3d0289285feddbd6a85f83e07ed3c31723f67968851279bf0a"
+    },
+    "source-before.json": {
+      "bytes": 95114,
+      "git_blob_sha1": "2801253821b0e61815a67e9969be9af8eaa4b77e",
+      "sha256": "ad3158f006a1ec3d0289285feddbd6a85f83e07ed3c31723f67968851279bf0a"
+    },
+    "stderr.log": {
+      "bytes": 0,
+      "git_blob_sha1": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stdout.log": {
+      "bytes": 11663,
+      "git_blob_sha1": "787905cd39dc6bedd14d63e94465b0a822c90af3",
+      "sha256": "eaff376df6815b240ae144441442b07340aac4dda24371d83cac3b8952f3c7fc"
+    }
+  },
+  "case_count": 48,
+  "cohort": "panel",
+  "command": [
+    "/workspace/scratch/11b2f453fe98/zotero-toolchain/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+    "--packages=/workspace/scratch/11b2f453fe98/zotero-validation/.dart_tool/package_config.json",
+    "tool/check_native_spelling.dart"
+  ],
+  "cwd": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_engine",
+  "dart_version": "Dart SDK version: 3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\"",
+  "elapsed_seconds": 10.631512023999676,
+  "failed_cases": 0,
+  "finished_at_utc": "2026-11-18T13:16:28.417472+00:00",
+  "flutter_lock_path": null,
+  "guards": {
+    "runtime_graph_locks_unchanged": true,
+    "source_matches_end_commit": true,
+    "source_matches_start_commit": true,
+    "source_unchanged": true,
+    "workspace_matches_source": true
+  },
+  "head_at_end": "b2bcfc23e692476d16d9a7a534ea95a93ae94cd3",
+  "head_at_start": "b2bcfc23e692476d16d9a7a534ea95a93ae94cd3",
+  "runner_sha256": "a010493802093f1c76fa401a14f2567257f98bfe71591ca784b890c89565d381",
+  "scope": "Current merged incoming spelling dependency. Controlled providers and local Dart VM; no installed-OS spelling, desktop-device, AOT or JavaScript acceptance.",
+  "selected_files": [
+    "packages/quds_office_engine/tool/check_native_spelling.dart"
+  ],
+  "source_file_count": 390,
+  "started_at_utc": "2026-11-18T13:16:17.596107+00:00",
+  "status": "passed",
+  "timed_out": false
+}

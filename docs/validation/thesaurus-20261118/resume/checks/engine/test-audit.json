@@ -1,0 +1,76 @@
+{
+  "passed": 171,
+  "failed": 0,
+  "skipped": 0,
+  "substantive_cases": 171,
+  "suite_count": 8,
+  "suites": [
+    {
+      "path": "test/office_thesaurus_test.dart",
+      "passed": 24,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "path": "test/word_proofing_inheritance_test.dart",
+      "passed": 13,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "path": "test/word_zotero_note_insertion_test.dart",
+      "passed": 41,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "path": "test/word_zotero_caret_test.dart",
+      "passed": 9,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "path": "test/word_zotero_citing_test.dart",
+      "passed": 59,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "path": "test/word_zotero_preference_flow_test.dart",
+      "passed": 11,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "path": "test/word_zotero_style_preferences_review_test.dart",
+      "passed": 9,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "path": "test/word_zotero_scaling_test.dart",
+      "passed": 5,
+      "skipped": 0,
+      "failed": 0
+    }
+  ],
+  "excluded_pseudo_cases": 8,
+  "excluded_reasons": {
+    "hidden_lifecycle": 8
+  },
+  "excluded_failures": [],
+  "test_start_events": 179,
+  "test_done_events": 179,
+  "every_started_test_finished_once": true,
+  "final_events": [
+    {
+      "success": true,
+      "type": "done",
+      "time": 17035
+    }
+  ],
+  "error_events": [],
+  "parse_errors": [],
+  "layout_or_tap_diagnostics": [],
+  "flutter_envelopes": 0
+}

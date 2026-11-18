@@ -1,0 +1,3699 @@
+{
+  "observed_at_utc": "2026-11-18T14:42:47.528Z",
+  "repository": "CrispStrobe/quds_office_suite",
+  "base_sha": "3840e19ff949f5fc03ecf1ec30ab0a71f67e8c68",
+  "recommended_integration_sha": "fb1fd4dc3edda824c3e043c035dbfad1f0fe0869",
+  "delta_from_resumed_prior_audit": [
+    {
+      "branch": "codex/native-spelling-resume-20261118",
+      "sha": "f482b06fc47545c8b03124c30ea78f54e8e4b9e5",
+      "prior_sha": null
+    },
+    {
+      "branch": "codex/zotero-continuation-20261118",
+      "sha": "fb1fd4dc3edda824c3e043c035dbfad1f0fe0869",
+      "prior_sha": null
+    },
+    {
+      "branch": "integrate/macbook-current-20261118",
+      "sha": "f383c826205e321eda3ed3bdbcd584e9a2d4da14",
+      "prior_sha": "ca42a7fa3947d0b59b9b2d3e14e807116327d714"
+    }
+  ],
+  "fork_branches": [
+    {
+      "branch": "codex/aot-daemon-free-20261117",
+      "sha": "e37ccdb47c047f6a0250585cf5cb20efc17573b4",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "codex/aot-proofing-analysis-20261117",
+      "sha": "8b19ead89800f81ed9743ffbaf3279ac88fdd06d",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "codex/document-review-20261118",
+      "sha": "3840e19ff949f5fc03ecf1ec30ab0a71f67e8c68",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "codex/gector-office-resume-20261117",
+      "sha": "205e913ec1525b5e5157a6f6d7ff84c883217e48",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "codex/german-morphology-20261117",
+      "sha": "867df7f257eac69adfe3355c051cdb2f773c53ac",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "codex/native-spelling-20261118",
+      "sha": "536ee2086ce46ab629d4d77144d1ca22a43e3c19",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "codex/native-spelling-continuation-20261118",
+      "sha": "8cbdb9d9a05ff7f0e795efe0ee7848b196f424a3",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "codex/native-spelling-quality-20261118",
+      "sha": "9fc211f6c72be9495767bd7cacfd8df51abf2fad",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "codex/native-spelling-resume-20261118",
+      "sha": "f482b06fc47545c8b03124c30ea78f54e8e4b9e5",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": false
+    },
+    {
+      "branch": "codex/odf-annotation-visibility-20261117",
+      "sha": "0b229004ee928fa1c1206957dbfc0419307cf254",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "codex/odt-column-boundary-followup-20261117",
+      "sha": "a1e026b496f91b54bbd3017aae54717bf25a5586",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "codex/odt-field-continuation-20261117",
+      "sha": "c34945761e7991f5fe49037d79529acdd260b31c",
+      "disposition": "all_changed_files_identical_in_merged_pr_140",
+      "equivalent_commit": "2c47165d01d01cc883135a434ac9f6591ce6e770",
+      "verified_file_count": 37,
+      "notes": "Exact file identities against the preserved integrated equivalent were reverified; later changes on the integrated history remain preserved."
+    },
+    {
+      "branch": "codex/office-consolidation-20261117",
+      "sha": "1138cffdc4a1c909b2b149db80312037c21909d8",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "codex/office-continuation-20261117",
+      "sha": "93c832f53982a9f5956f19ae0cb9418f55fac8c0",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "codex/office-continue-20261118",
+      "sha": "e397671e815232847d7223314ba946d1d6740f44",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "codex/office-fidelity-20261117",
+      "sha": "d1738017afd3696adbd2e895678b1fa7d26065ec",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "codex/office-fidelity-improvements-20261117-e1978379",
+      "sha": "814f165cb24a5b719dde65495f64d85f86563328",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "codex/office-local-qualification-20261118",
+      "sha": "295752ff93b24bafc510e60197b62faa647e2aa3",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "codex/office-qualified-resume-20261117",
+      "sha": "07926acb46f0d451491046066a35dd6c1227b5a1",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "codex/office-reconciled-20261117",
+      "sha": "83f8c380f9271b6bf34a300c3aedc19442cb61f1",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "codex/office-resume-20261118",
+      "sha": "8ad80eb29a3984d58d5564c6759e853c0a8ab4af",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "codex/office-union-qualification-20261117",
+      "sha": "16c7b0fb48c72527645678b76e25b5c5cb7b9c22",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "codex/office-union-resume-20261118",
+      "sha": "6d97fedccde17244a917ee7d3372adebe5494089",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "codex/proofing-20261116-resume",
+      "sha": "738f0b6a3f1f46f83585579291d0847613d780c5",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "codex/proofing-20261116",
+      "sha": "c0403890fc00f38c0ee6e1d533f6fef549c6fc03",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "codex/proofing-en-de-20261116",
+      "sha": "7dfcfe9fcbf7e6d0d0abc14de7ed1ed901fa99c2",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "codex/proofing-en-de-20261117",
+      "sha": "5cff80ce4ba85e645f21a31efb4fa4d9043b7e79",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "codex/proofing-en-hyphenation-20261116",
+      "sha": "ffc672fec2df9919233b4ee5b0ba783ef1758f99",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "codex/proofing-german-quality-20261116",
+      "sha": "a916bbf09169f6906a89bd2ca3e3c42120ead466",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "codex/proofing-harper-source-20261116",
+      "sha": "65d5815e4866549fe7f03b145b626f2c4aaba8e0",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "codex/terminal-integration-ods-20261116",
+      "sha": "4fadcc68d52d51e72e8d782765a0dd5086b982c6",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "codex/terminal-recovery-office-20261116",
+      "sha": "be2c3a91b0dd5b4abb1b9a7baa8f5e10769bc87a",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "codex/terminal-sharing-office-20261116",
+      "sha": "4235e690602195cc504438a6b937972c71f1ad39",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "codex/text-rendering-20261116-continuation",
+      "sha": "aff69c221f24d2bf9bcab7001f976ac085b4e841",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "codex/text-rendering-20261116",
+      "sha": "57bc0f98eb94997b73f22cc267bd8d61dccaee59",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "codex/zotero-capabilities-20261116",
+      "sha": "2480f0988167068d9aeddf6573b9c2c6871a8481",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "codex/zotero-capabilities-20261118",
+      "sha": "f4aa218c87293527b3e2b7514500a28d13bd8f70",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "codex/zotero-continuation-20261118",
+      "sha": "fb1fd4dc3edda824c3e043c035dbfad1f0fe0869",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": false
+    },
+    {
+      "branch": "codex/zotero-optimization-20261116",
+      "sha": "ca9e4f052d988d77f9ded3a6b13f840f76a26159",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "codex/zotero-recovery-20261116",
+      "sha": "1549a9c7884eb688732262398b5d9859a68103eb",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "codex/zotero-support-20261115",
+      "sha": "fc37658c907edf6687eccb9564d3046283b49a3a",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "codex/zotero-support-20261116",
+      "sha": "428679a33381f943a8ae63117d4207f01dd15462",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "codex/zotero-tags-20261118",
+      "sha": "5dd3eb7c1434f0c1063290d5698fa5c760c201e2",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "codex/zotero-workspace-20261118",
+      "sha": "acfa3c2bf543debd2fff518304ab514ab677418b",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "docs/aot-removal",
+      "sha": "128a187d69555db80890c2a1945a442b951f9c74",
+      "disposition": "all_commits_patch_equivalent",
+      "cherry": [
+        "- 128a187d69555db80890c2a1945a442b951f9c74"
+      ]
+    },
+    {
+      "branch": "docs/build30-validation-20261117",
+      "sha": "16e2477ff93f7a1ec5c6ed78491f2716ce4d1658",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "docs/conditional-top-bottom",
+      "sha": "5fb8762e771fe68be8bc8025fe26e159d14eda8e",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "docs/current-office-capabilities",
+      "sha": "1675bbbb7c03090a87b6df783e3741e2cbc1768f",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "docs/filter-operators",
+      "sha": "379fa8663c81f32b4328415f56c776746ccc23bc",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "docs/filters-closed",
+      "sha": "4a122b3b71ddc539f8ffda5541b7e6ab0f1dce8f",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "docs/metadata-closed",
+      "sha": "a5febc3362d2fccdb979f012a5296af72e465797",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "docs/metadata-complete",
+      "sha": "b23ee557ea121774833c7a188a49189e4f80ce70",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "docs/native-spacy-handoff-20261117",
+      "sha": "f965fce6a54141b753a22f1e1b6c2fabba44e389",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "docs/odp-presentation-writer",
+      "sha": "8221b0081b02af33101ca7f58438e69e487d2bf6",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "docs/odp-transitions",
+      "sha": "434a26933501eb288a1b16ffd9f971a5fe3b3bc7",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "docs/ods-color-scale",
+      "sha": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+      "disposition": "all_commits_patch_equivalent",
+      "cherry": [
+        "- 58fdddfbcf198a8c0e38e32f6fcc9d6604e95283"
+      ]
+    },
+    {
+      "branch": "docs/ods-data-bar",
+      "sha": "69d14f84cabd3931b7640c1654b401c89faba766",
+      "disposition": "all_commits_patch_equivalent",
+      "cherry": [
+        "- 69d14f84cabd3931b7640c1654b401c89faba766"
+      ]
+    },
+    {
+      "branch": "docs/ods-dynamic-validation",
+      "sha": "b8ddaaeb581e010467de304c828764d353149102",
+      "disposition": "all_commits_patch_equivalent",
+      "cherry": [
+        "- b8ddaaeb581e010467de304c828764d353149102"
+      ]
+    },
+    {
+      "branch": "docs/ods-filter-predicates",
+      "sha": "bb9866d25bf98e5aa42c10ce4679835dbc8617f1",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "docs/ods-header-footer",
+      "sha": "846c15f0de92a17bb2720e295b9a40412ebcb6fb",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "docs/ods-icon-sets",
+      "sha": "a7f144cc983f2df7c16d88f8644ad67a9254c3d0",
+      "disposition": "all_commits_patch_equivalent",
+      "cherry": [
+        "- a7f144cc983f2df7c16d88f8644ad67a9254c3d0"
+      ]
+    },
+    {
+      "branch": "docs/ods-row-groups",
+      "sha": "06828a5e63365495c86a4a0e1c68ecd113f891e5",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "docs/ods-writer-images",
+      "sha": "108b4087c15f5640dbc906ad243f3030b7592f3f",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "docs/odt-frame-size",
+      "sha": "6da74faa9160275df9c10a864c758033c92f114d",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "docs/odt-image-registry",
+      "sha": "f27e9b0e7ee9b1db8f6b7393abd752dab67d1ca5",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "docs/odt-odp-rows",
+      "sha": "a733c9f3367b9833f242100fcda0cff9e92767ff",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "docs/page-setup-fix",
+      "sha": "4497c737623c1339d2422487d53941c20472bac9",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "docs/readme-remaining-gaps",
+      "sha": "e6fdd16849aaf7ccbaf50f2593d7a92b6a82e630",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "docs/remaining-gaps",
+      "sha": "0a26be7f136ad3e57dbe894b0bc4cdb0602addd0",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "docs/sheet-page-setup",
+      "sha": "eb95211e4d82933ba5b1db23ea7b79938b77909f",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "docs/validation-complete",
+      "sha": "f5b67cc296b7d27e4f3a480dc46160f472d78694",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "docs/validation-operators",
+      "sha": "01f62eb1812ca54827cc14e074e03abd82f963d7",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "feat/conditional-affix",
+      "sha": "20681b8658392212c128f51b4c91f0b638942448",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "feat/conditional-between",
+      "sha": "b69bad50fb235118a5334b325683cd1524b3e3d1",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "feat/conditional-dxf",
+      "sha": "b0efe6c661009ffa463f2bf6d7945216ce1dae4c",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "feat/conditional-dxf-styles",
+      "sha": "31a26383639dc7f751cfb0ea543ec7454a537ff6",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "feat/conditional-operators",
+      "sha": "21de3c3963b0334068b87fb1c25c787660cb17cf",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "feat/conditional-text",
+      "sha": "752a94dfddf69522429f3025f9d25702499cb6da",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "feat/conditional-top-bottom",
+      "sha": "001367e89cb0034cf33467783d7258bb0800deb9",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "feat/german-context-20261117",
+      "sha": "97f6553c3fdca35be0270a66d6eaeb286c884fef",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "feat/german-gector-proofing",
+      "sha": "34c70ece1e9c14954398826f93c1bb6aa61007a8",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "feat/german-morphology-completion-20261117",
+      "sha": "482e08176dea6bd8f5fc80d1c0064d96b712db43",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "feat/grammar-release-20261117",
+      "sha": "96e65705ad69f969710d3ff6d2897bd4aa38fbf9",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "feat/native-spacy-reference-20261117",
+      "sha": "6df76a0dff0051312faa04317af41d479dd94162",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "feat/native-spacy-w7-20261118",
+      "sha": "2e013f26c7d4db54ecabe2c955117cbce5379408",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "feat/odf-metadata",
+      "sha": "b842ae4b4df892ec5f058f6207589953f3e9dae9",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "feat/odf-story-fidelity",
+      "sha": "0ecd1615b96d7b90156c1e913e105d467efe9a39",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "feat/odp-chart-data",
+      "sha": "a86a4ec6a231ed66cd868ea1ece3acc3aea2bb8f",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "feat/odp-presentation-writer",
+      "sha": "5088f3ab7e81f353593f16fcaa86d1467d4e1af9",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "feat/odp-preset-shapes",
+      "sha": "8fae38da39c3c45344e723abca92c9330f15a791",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "feat/odp-shape-links",
+      "sha": "3ec638bd7de5cb6648774abbf14da1c315f5e418",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "feat/odp-transitions",
+      "sha": "a920b13aef776e0fb8a2ce3cc32848c2e7c0166a",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "feat/ods-color-scale",
+      "sha": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+      "disposition": "all_commits_patch_equivalent",
+      "cherry": [
+        "- 74ce9ffb816c70c0d2ae50b91ec52a614f26d688"
+      ]
+    },
+    {
+      "branch": "feat/ods-conditional",
+      "sha": "e59751246a200e7477657d0e4835bf77b153422c",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "feat/ods-custom-validation",
+      "sha": "2e3074c8e1860f9503b059a87870911afc3eee7d",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "feat/ods-data-bar",
+      "sha": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+      "disposition": "all_commits_patch_equivalent",
+      "cherry": [
+        "- b8ddaaeb581e010467de304c828764d353149102",
+        "- 0a53b8a70128870f3e1df6d18cdb177bb64290ee"
+      ]
+    },
+    {
+      "branch": "feat/ods-default-geometry",
+      "sha": "912f26f21446ef9bdbf4f542535438dae0ded9a9",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "feat/ods-default-style",
+      "sha": "49b447324159595c59e64d8425b54a09f79ec736",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "feat/ods-dynamic-validation-links",
+      "sha": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+      "disposition": "all_commits_patch_equivalent",
+      "cherry": [
+        "- 68a0db23408e4c95d6d283219504c79aea33a6fe"
+      ]
+    },
+    {
+      "branch": "feat/ods-filter-conditions",
+      "sha": "1deb61cf78add61f5d26bea36ff596d769d06a87",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "feat/ods-filter-operators",
+      "sha": "3bb505ce5fea00236238e37c450ace8b18e4e34e",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "feat/ods-filter-predicates",
+      "sha": "089e53fce443ca2169fc44f3700e1b23780d2c95",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "feat/ods-header-footer",
+      "sha": "331be9688e2de1feb52635490b534042dea10c27",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "feat/ods-hyperlinks",
+      "sha": "e5daa20587e10971e8cb97d82a5495584b5c1553",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "feat/ods-icon-sets",
+      "sha": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
+      "disposition": "all_commits_patch_equivalent",
+      "cherry": [
+        "- 005c708e9f747cb46cf02e12c869b0a2f85ac824"
+      ]
+    },
+    {
+      "branch": "feat/ods-images",
+      "sha": "7fe296e29e2e1b173580f6854507fc060cb4f080",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "feat/ods-metadata",
+      "sha": "d6d6866c0f4ddbbaa196e1a5eb7ff9e31007fdea",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "feat/ods-named-expressions",
+      "sha": "864e674795eb422855df2b26ccc375d3255e61a2",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "feat/ods-outline",
+      "sha": "988f423b9b95037d8f5273ee368b58ceedab0667",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "feat/ods-row-groups",
+      "sha": "27137499f8cc1a946bfcdd7446f43945ea81d2be",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "feat/ods-tab-color",
+      "sha": "0dd9dd9763c2eb6bdc4f6b6e30fb7726035e7d4b",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "feat/ods-time-period-conditions",
+      "sha": "7ef09f2408f467c65427700e65907531ecb26acb",
+      "disposition": "all_commits_patch_equivalent",
+      "cherry": [
+        "- 7ef09f2408f467c65427700e65907531ecb26acb"
+      ]
+    },
+    {
+      "branch": "feat/ods-validation-messages",
+      "sha": "49ba086251ba61032f15b3e7b726fc921874fd12",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "feat/ods-validation-operators",
+      "sha": "8769019fb8be5483939edd4655dd88005e2515c4",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "feat/ods-validations",
+      "sha": "b85501b2810e537e21040d82528d8dbaa6fdcf15",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "feat/ods-writer",
+      "sha": "0ee0a8320875248adac9718cae2e67875b6b932c",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "feat/ods-writer-conditional",
+      "sha": "ec94795114d11c73bd8fc689fde364cc110b5cd3",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "feat/ods-writer-images",
+      "sha": "9ad9ba92133932b0a3824619168f07dd218c2b26",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "feat/ods-writer-metadata",
+      "sha": "82215309dc64ef8c473fec3c4892cf0c9884bc91",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "feat/odt-columns",
+      "sha": "2c7d58d2e83e542655db7e9bbcc04b6bade44902",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "feat/odt-comments",
+      "sha": "e15205c97f0fe0c7fcc5c3441e72cb0e9a3bdc01",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "feat/odt-document-writer",
+      "sha": "e8cb60efc2360be9bb72db7af8e4c675edf5b76f",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "feat/odt-fields",
+      "sha": "b005a46b32c8b3ec92d60bb99147f2aa3af51f06",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "feat/odt-first-even-headers",
+      "sha": "f87533cdbf9f98e5cfc11d21d8903f8501212ab8",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "feat/odt-footnotes",
+      "sha": "946942a1e30332892aaf19a068ca5a29470d682a",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "feat/odt-links-bookmarks",
+      "sha": "8471633ed09e2a49ba35ff162a2bac5eb04073c9",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "feat/odt-lists",
+      "sha": "f862fe550bc8b7d3afcdb74016ccfefd7477fd20",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "feat/odt-nested-lists",
+      "sha": "7686ec52876288e6799023fd686af79228236826",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "feat/odt-ordered-lists",
+      "sha": "8e94cf878cfbdeb13482f37f7848ef5a400425f3",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "feat/odt-page-fields",
+      "sha": "35ae6328a884975c23d2aa5001bf0df05a436f91",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "feat/odt-paragraph-breaks",
+      "sha": "54a3a8593bdb34dd7c1f737960aa732d401fc2da",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "feat/odt-paragraph-shading",
+      "sha": "12601a41b6785dcd1d617adba8e13297d9af4bc0",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "feat/odt-sections2",
+      "sha": "2a6f3a94ce1d4a5ba6cddc1687a075191448da3d",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "feat/odt-tab-stops",
+      "sha": "4391669c881cbcba372c742d2300c24cdc465a2f",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "feat/odt-table-borders",
+      "sha": "b54ef7d2955f44266a87d9067d0e4c332e868c54",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "feat/odt-toc",
+      "sha": "8b70fdb42fb2d974587c75437b3adb5018190159",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "feat/office-proofing-followup-20261117",
+      "sha": "e3a38789359adaa33b2da1345c952fa1c2d8aebb",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "feat/sheet-hidden-sheets",
+      "sha": "4c8036bbf16ac224c3fc102b5c44d8913a512b18",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "feat/sheet-hidden-state",
+      "sha": "46850ae47e0241733750decb22417a0150e4b0e4",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "feat/sheet-page-setup",
+      "sha": "5aa16674e64cc01b89aec017c85afd3899cd96d5",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "fix/ods-global-validations-20261116",
+      "sha": "e5e1e9af6beb0972a010d8208c1690a642809113",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "fix/ods-writer-page-layout",
+      "sha": "8a0107cbca4b00766a2a76d43a1db244c006e976",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "fix/odt-inline-fields",
+      "sha": "84076f8ec8e4604a631cbaad9b88b030e508f0bc",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "fix/sdt-multi-section-control",
+      "sha": "866c14f0b3a876e11732bc544dc25a05d8f10524",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "fix/sdt-trailing-section-break",
+      "sha": "8fc3d06be36da5c2176feb107c14245f61650d75",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "fix/utf16-custom-xml",
+      "sha": "09a05d7d60d2a2e1d2547487ad4545c50472834b",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "fix/word-dialog-focus-rendering-20261116",
+      "sha": "094d6bacb9cb253e4d04443e9f3c4171e7433c8a",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "integrate/aot-then-remove-20261117",
+      "sha": "bb5a97a8d7c5f9ffa261e64753f53a3c044b610f",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "integrate/codex-office-continuation-20261117",
+      "sha": "af2a61862d23572b108bd7ef7719c7f575348d83",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "integrate/macbook-current-20261118",
+      "sha": "f383c826205e321eda3ed3bdbcd584e9a2d4da14",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "integrate/native-spacy-distribution-20261118",
+      "sha": "8f93545eb46c1f1f4c653c7beaf23d28c3307940",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "integrate/odt-column-boundary-144",
+      "sha": "cee6e2632f891a3fe21c5c02d6bf508805973051",
+      "disposition": "identical_tree_already_integrated",
+      "equivalent_commit": "bb5556e8cc4cb73e2c668b5319a2844a20c6c50c",
+      "tree": "a30201059a62b8034ac747367c1af8de054a2afb"
+    },
+    {
+      "branch": "integrate/office-union-148",
+      "sha": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+      "disposition": "identical_tree_already_integrated",
+      "equivalent_commit": "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4",
+      "tree": "e3adc9e259c6120b4b1e3e03177391f880243e13"
+    },
+    {
+      "branch": "integrate/office-union-150",
+      "sha": "da9c956ec5d65c0e5a9f9ea84c2b0bca98e824a0",
+      "disposition": "identical_tree_already_integrated",
+      "equivalent_commit": "23f3b4204fce45d38a103e3159bdc7f1e8d37c4e",
+      "tree": "b73ebcc6f72c49a2883c5749f6450d497c647324"
+    },
+    {
+      "branch": "integrate/spacy-ner-macos-followup-20261118",
+      "sha": "ce4d3d19a21eae96a473291ffb9f47ac3be6a74c",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "main",
+      "sha": "f383c826205e321eda3ed3bdbcd584e9a2d4da14",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "vendor/conditional-dxf-styles",
+      "sha": "76c7087c22da8ace85b9a71ca266a90f84faa3ae",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "vendor/conditional-top-bottom",
+      "sha": "ea9d16edd489b3a4ccff7a25cc5277b686c4e263",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "vendor/odf-metadata",
+      "sha": "3a5cacc12c23e577903dcb6d9eba085da6e205a9",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "vendor/odp-chart-data",
+      "sha": "66273aa2f743ed33f20944a6e1251c1a396af0eb",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "vendor/odp-presentation-writer",
+      "sha": "578846d395baa0c9dfd1f32a805125f331fda248",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "vendor/odp-preset-shapes",
+      "sha": "fbc8abbcdd4bf6df90be04fc953e4b490d20c599",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "vendor/odp-shape-links",
+      "sha": "0585fac1a56c3dc5c3d728962794299ddfe50bbb",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "vendor/odp-transitions",
+      "sha": "d061a578646493b71ad19f8fd8358f6cc509e8b8",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "vendor/ods-custom-validation",
+      "sha": "90acedb9835cb5bdef30606301e74482f5977448",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "vendor/ods-filter-conditions",
+      "sha": "928f85483ec1cb85e468ca9381585875137ba8d5",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "vendor/ods-filter-conditions-correct",
+      "sha": "817982d580e990a5ca21d74c35135db4817e54b5",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "vendor/ods-filter-operators",
+      "sha": "777bcb876a9c8cc170586d117fa41f8331ef84ad",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "vendor/ods-filter-predicates",
+      "sha": "a53a37b0b5c1b55aff20d581f80f1b2027bf3ddb",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "vendor/ods-header-footer",
+      "sha": "c6a7eff46bcfcb806ee7c43252636b06c088963c",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "vendor/ods-hyperlinks",
+      "sha": "95debbcce02c1e24d6e8159cd1f524bbf68afeba",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "vendor/ods-hyperlinks-current",
+      "sha": "be6aa3cf2fca1b775c2b1352881e2ca3f9134c13",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "vendor/ods-metadata",
+      "sha": "18dc693fbf4e39fc6c38e3d655d1e5b35eeef273",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "vendor/ods-metadata-zotero",
+      "sha": "4fbd1687d3c0ada22d460cf5cadb9586c4f62905",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "vendor/ods-named-expressions",
+      "sha": "388a1c76339507d493bab577424affd80732446c",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "vendor/ods-outline",
+      "sha": "33a0508a502f5809aa997928e8428bdec3e02503",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "vendor/ods-row-groups",
+      "sha": "891ccc21cf91fb9f49fa0af98143468fbbd3eac7",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "vendor/ods-tab-color",
+      "sha": "375390c3853ce26f43d6ac3f71c592acf3e094dc",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "vendor/ods-validation",
+      "sha": "c7bb6d6f51885e4082882252f502bbf2de81d552",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "vendor/ods-validation-current",
+      "sha": "4ffdf113803806ba5f8ade4a0846eee85dcfbe68",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "vendor/ods-validation-messages",
+      "sha": "14fde4b1bd2539f0c6168be4569ac1adcc5105cd",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "vendor/ods-writer",
+      "sha": "e14a55b50af4b6870ed1044284f74c36b5f194d9",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "vendor/ods-writer-conditional",
+      "sha": "abdbc8b576f5327786c8a0f19bf91bef1250de12",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "vendor/ods-writer-images",
+      "sha": "546368fe3aad7ccb65c72f897b6585513b0199f1",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "vendor/ods-writer-metadata",
+      "sha": "1808f38493d1cf2fddc1761d146432ceaaea70aa",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "vendor/ods-writer-page-layout",
+      "sha": "2aee95e6aa7021869a198cf19ebbb43a44d7910f",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "vendor/odt-columns",
+      "sha": "1f417ad7a61dfb69034704a67f85243eff89830a",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "vendor/odt-comments",
+      "sha": "04505306af39c47bd0fe96423d1515ee6ca5027e",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "vendor/odt-document-writer",
+      "sha": "5f019253d247073b715b7a7ae4a82763ceafd02f",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "vendor/odt-fields",
+      "sha": "ec5ecbff742580c0e7d1136507b953e8cc877e4c",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "vendor/odt-footnotes",
+      "sha": "f6c9be054b016192673ba82e608ae0ae987b5308",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "vendor/odt-links-bookmarks",
+      "sha": "109b49f5c8c0c50c5051a970e6cabbfd2d32af18",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "vendor/odt-lists",
+      "sha": "94532021b720e3035022a2fed08ec88f48340892",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "vendor/odt-nested-lists",
+      "sha": "406798f7e47332f92438828dcfc6a2184d4361bb",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "vendor/odt-ordered-lists",
+      "sha": "aa346a296e8b19bb937c345f7142c60720c3d6e4",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "vendor/odt-ordered-lists2",
+      "sha": "0eb60d0fc706a4da54df07ae86df029c1caac074",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "vendor/odt-page-fields",
+      "sha": "5dbe3f5b81d20f9c263b4f2d9ba9c01c9216b1e3",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "vendor/odt-paragraph-breaks",
+      "sha": "b990f9041cce78e3768c2ee0190413bf26962431",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "vendor/odt-paragraph-shading",
+      "sha": "22ce45e70591a6be561a5abee1807455e3df52be",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "vendor/odt-sections",
+      "sha": "a5cd1f30aa4764e990ed81b9ac8387efe3182f82",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "vendor/odt-tab-stops",
+      "sha": "156cc755df74dcbafec0ebd882945349c40a5005",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "vendor/odt-table-borders",
+      "sha": "17c6b2a808e39b1a74cb4afb2c3dc7f2c06de70c",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "vendor/sheet-page-setup",
+      "sha": "f938d7fc3cb9aa42ea8d30b1c2ab50ccca694699",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    }
+  ],
+  "pull_requests": [
+    {
+      "number": 164,
+      "title": "Improve Zotero import search and offline reference copying [skip ci]",
+      "state": "open",
+      "draft": false,
+      "head_sha": "fb1fd4dc3edda824c3e043c035dbfad1f0fe0869",
+      "head_ref": "codex/zotero-continuation-20261118",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "fa99f2058e14f46c5ceb96c8ff115f9b6464511c",
+      "merged_at": null,
+      "updated_at": "2026-11-18T13:30:42Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": false
+    },
+    {
+      "number": 162,
+      "title": "Add document review and safe two-document comparison",
+      "state": "open",
+      "draft": false,
+      "head_sha": "3840e19ff949f5fc03ecf1ec30ab0a71f67e8c68",
+      "head_ref": "codex/document-review-20261118",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "a475c72e04c03f135eb5f3280267fd745660d4f1",
+      "merged_at": null,
+      "updated_at": "2026-11-18T12:56:48Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 163,
+      "title": "spaCy follow-up: opt-in NER and published macOS arm64 capsule pins [skip ci]",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "ce4d3d19a21eae96a473291ffb9f47ac3be6a74c",
+      "head_ref": "integrate/spacy-ner-macos-followup-20261118",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "517f6d10f0ec2509b1381b3cf23807645bba4f92",
+      "merged_at": "2026-11-18T12:36:33Z",
+      "updated_at": "2026-11-18T12:36:33Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 159,
+      "title": "Distribute native German spaCy from Hugging Face and wire setup, analysis and manual grammar into Studio [skip ci]",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "2292548eb69de2dbb5240ab9da59256f362137c6",
+      "head_ref": "integrate/native-spacy-distribution-20261118",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "1e07cb852766f8651815138785be74c64a09ddc0",
+      "merged_at": "2026-11-18T12:02:55Z",
+      "updated_at": "2026-11-18T12:33:57Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 161,
+      "title": "Add Zotero reference details and selection review [skip ci]",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "acfa3c2bf543debd2fff518304ab514ab677418b",
+      "head_ref": "codex/zotero-workspace-20261118",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "f678948564bf293be00bf3a5a770232f8a368cb8",
+      "merged_at": "2026-11-18T12:32:49Z",
+      "updated_at": "2026-11-18T12:32:49Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 160,
+      "title": "Improve native spelling across soft hyphens and short accented words [skip ci]",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "8cbdb9d9a05ff7f0e795efe0ee7848b196f424a3",
+      "head_ref": "codex/native-spelling-continuation-20261118",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "9bd4490808235f7799ea0f988fbb16ca341c4a23",
+      "merged_at": "2026-11-18T12:32:49Z",
+      "updated_at": "2026-11-18T12:32:49Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 153,
+      "title": "Continue W7 spaCy packaging from the completed grammar qualification",
+      "state": "closed",
+      "draft": true,
+      "head_sha": "2e013f26c7d4db54ecabe2c955117cbce5379408",
+      "head_ref": "feat/native-spacy-w7-20261118",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "7d22b0e1fb77ba9dfc145d354513ca3860288226",
+      "merged_at": null,
+      "updated_at": "2026-11-18T12:30:05Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 158,
+      "title": "Add Zotero tag filtering on reconciled current main [skip ci]",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "5dd3eb7c1434f0c1063290d5698fa5c760c201e2",
+      "head_ref": "codex/zotero-tags-20261118",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "841714fed1efbad2927048b0e2c8deaf06872ab8",
+      "merged_at": "2026-11-18T12:02:57Z",
+      "updated_at": "2026-11-18T12:02:57Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 157,
+      "title": "Improve native spelling shortlists and Unicode correction guards [skip ci]",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "9fc211f6c72be9495767bd7cacfd8df51abf2fad",
+      "head_ref": "codex/native-spelling-quality-20261118",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "3813f79e04b177d0cfce3755b77b209a58be528a",
+      "merged_at": "2026-11-18T12:02:57Z",
+      "updated_at": "2026-11-18T12:02:57Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 139,
+      "title": "Add optional native German analysis and qualified manual agreement corrections",
+      "state": "closed",
+      "draft": true,
+      "head_sha": "6df76a0dff0051312faa04317af41d479dd94162",
+      "head_ref": "feat/native-spacy-reference-20261117",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "98a2a15056e55699b8ba5651fc79b26f94e5efd3",
+      "merged_at": "2026-11-18T10:30:57Z",
+      "updated_at": "2026-11-18T10:30:57Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 155,
+      "title": "Improve native spelling and reconcile current Office work [skip ci]",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "536ee2086ce46ab629d4d77144d1ca22a43e3c19",
+      "head_ref": "codex/native-spelling-20261118",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "1ffcf91a3443caf9a6e8b45a3e6cab3f041831ae",
+      "merged_at": "2026-11-18T10:30:55Z",
+      "updated_at": "2026-11-18T10:30:55Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 156,
+      "title": "Improve Zotero catalog search and connected citation aliases [skip ci]",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "f4aa218c87293527b3e2b7514500a28d13bd8f70",
+      "head_ref": "codex/zotero-capabilities-20261118",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "c60fce9c37ca960eb64dd06c7ffc55b2fdbb2ed7",
+      "merged_at": "2026-11-18T10:26:07Z",
+      "updated_at": "2026-11-18T10:26:08Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 154,
+      "title": "Fix civil-date boundaries and complete local Office qualification",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "295752ff93b24bafc510e60197b62faa647e2aa3",
+      "head_ref": "codex/office-local-qualification-20261118",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "c8eca37d1639ac1d20efb83ba2e9da51981a3ad4",
+      "merged_at": "2026-11-18T07:11:12Z",
+      "updated_at": "2026-11-18T07:11:12Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 150,
+      "title": "Complete local Office union qualification and preserve recovery evidence",
+      "state": "closed",
+      "draft": true,
+      "head_sha": "6d97fedccde17244a917ee7d3372adebe5494089",
+      "head_ref": "codex/office-union-resume-20261118",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "50071acec7e69f0e1b5d3e3500ca5e1caaee1ae5",
+      "merged_at": null,
+      "updated_at": "2026-11-17T22:10:14Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 152,
+      "title": "Reconcile Office union qualification and frame bookmarks",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "da9c956ec5d65c0e5a9f9ea84c2b0bca98e824a0",
+      "head_ref": "integrate/office-union-150",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "23f3b4204fce45d38a103e3159bdc7f1e8d37c4e",
+      "merged_at": "2026-11-17T22:10:10Z",
+      "updated_at": "2026-11-17T22:10:11Z",
+      "disposition": "identical_tree_already_integrated",
+      "equivalent_commit": "23f3b4204fce45d38a103e3159bdc7f1e8d37c4e",
+      "tree": "b73ebcc6f72c49a2883c5749f6450d497c647324"
+    },
+    {
+      "number": 151,
+      "title": "Support calendar-relative conditional periods",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "7ef09f2408f467c65427700e65907531ecb26acb",
+      "head_ref": "feat/ods-time-period-conditions",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "34dc6b6806869570e9ec342e4d7ee0d6951c0ba6",
+      "merged_at": "2026-11-17T22:05:16Z",
+      "updated_at": "2026-11-17T22:05:17Z",
+      "disposition": "all_commits_patch_equivalent",
+      "cherry": [
+        "- 7ef09f2408f467c65427700e65907531ecb26acb"
+      ]
+    },
+    {
+      "number": 148,
+      "title": "Reconcile recent Office work and finish local qualification",
+      "state": "closed",
+      "draft": true,
+      "head_sha": "e3831cdde529aa0c2368845cd72c1b9b65154665",
+      "head_ref": "codex/office-union-qualification-20261117",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": null,
+      "merged_at": null,
+      "updated_at": "2026-11-17T21:32:27Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 144,
+      "title": "Reconcile Office fidelity and preserve later-section column breaks",
+      "state": "closed",
+      "draft": true,
+      "head_sha": "a1e026b496f91b54bbd3017aae54717bf25a5586",
+      "head_ref": "codex/odt-column-boundary-followup-20261117",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "7600c94b5479431f112279a7461aa9a8d45d9f6c",
+      "merged_at": null,
+      "updated_at": "2026-11-17T21:32:25Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 143,
+      "title": "Fix ODT field and bookmark boundaries; reconcile German proofing controls",
+      "state": "closed",
+      "draft": true,
+      "head_sha": "83f8c380f9271b6bf34a300c3aedc19442cb61f1",
+      "head_ref": "codex/office-reconciled-20261117",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": null,
+      "merged_at": null,
+      "updated_at": "2026-11-17T21:32:22Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 149,
+      "title": "Reconcile Office union and finish ODT boundary qualification",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+      "head_ref": "integrate/office-union-148",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4",
+      "merged_at": "2026-11-17T21:32:16Z",
+      "updated_at": "2026-11-17T21:32:16Z",
+      "disposition": "identical_tree_already_integrated",
+      "equivalent_commit": "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4",
+      "tree": "e3adc9e259c6120b4b1e3e03177391f880243e13"
+    },
+    {
+      "number": 147,
+      "title": "Reconcile ODT field, bookmark and column-break fidelity",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "cee6e2632f891a3fe21c5c02d6bf508805973051",
+      "head_ref": "integrate/odt-column-boundary-144",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "bb5556e8cc4cb73e2c668b5319a2844a20c6c50c",
+      "merged_at": "2026-11-17T21:29:45Z",
+      "updated_at": "2026-11-17T21:29:45Z",
+      "disposition": "identical_tree_already_integrated",
+      "equivalent_commit": "bb5556e8cc4cb73e2c668b5319a2844a20c6c50c",
+      "tree": "a30201059a62b8034ac747367c1af8de054a2afb"
+    },
+    {
+      "number": 146,
+      "title": "Record icon sets",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "a7f144cc983f2df7c16d88f8644ad67a9254c3d0",
+      "head_ref": "docs/ods-icon-sets",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "0ff7d23929e4640af6c1d57f87c7ac71b73d2ed4",
+      "merged_at": "2026-11-17T21:25:17Z",
+      "updated_at": "2026-11-17T21:25:17Z",
+      "disposition": "all_commits_patch_equivalent",
+      "cherry": [
+        "- a7f144cc983f2df7c16d88f8644ad67a9254c3d0"
+      ]
+    },
+    {
+      "number": 145,
+      "title": "Support icon-set conditional formats",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
+      "head_ref": "feat/ods-icon-sets",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "c84d5e16024c502f6c451fd04b9807b1e65f20d3",
+      "merged_at": "2026-11-17T21:23:29Z",
+      "updated_at": "2026-11-17T21:23:29Z",
+      "disposition": "all_commits_patch_equivalent",
+      "cherry": [
+        "- 005c708e9f747cb46cf02e12c869b0a2f85ac824"
+      ]
+    },
+    {
+      "number": 140,
+      "title": "Preserve cached page fields through DOCX import and ODT export",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "c34945761e7991f5fe49037d79529acdd260b31c",
+      "head_ref": "codex/odt-field-continuation-20261117",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "2c47165d01d01cc883135a434ac9f6591ce6e770",
+      "merged_at": "2026-11-17T20:14:56Z",
+      "updated_at": "2026-11-17T20:14:56Z",
+      "disposition": "all_changed_files_identical_in_merged_pr_140",
+      "equivalent_commit": "2c47165d01d01cc883135a434ac9f6591ce6e770",
+      "verified_file_count": 37,
+      "notes": "Exact file identities against the preserved integrated equivalent were reverified; later changes on the integrated history remain preserved."
+    },
+    {
+      "number": 142,
+      "title": "Record data bars",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "69d14f84cabd3931b7640c1654b401c89faba766",
+      "head_ref": "docs/ods-data-bar",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "52c73ae4dbadf2ca00a5d619144350ccc353b31a",
+      "merged_at": "2026-11-17T20:14:26Z",
+      "updated_at": "2026-11-17T20:14:26Z",
+      "disposition": "all_commits_patch_equivalent",
+      "cherry": [
+        "- 69d14f84cabd3931b7640c1654b401c89faba766"
+      ]
+    },
+    {
+      "number": 141,
+      "title": "Support data-bar conditional formats",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+      "head_ref": "feat/ods-data-bar",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "b3f41eb4b4bca8ca13676b4114891ea6d9185043",
+      "merged_at": "2026-11-17T20:13:20Z",
+      "updated_at": "2026-11-17T20:13:20Z",
+      "disposition": "all_commits_patch_equivalent",
+      "cherry": [
+        "- b8ddaaeb581e010467de304c828764d353149102",
+        "- 0a53b8a70128870f3e1df6d18cdb177bb64290ee"
+      ]
+    },
+    {
+      "number": 138,
+      "title": "Record dynamic ODS validation links",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "b8ddaaeb581e010467de304c828764d353149102",
+      "head_ref": "docs/ods-dynamic-validation",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "d6010059644b34accd6f188e0e2a4863ab63e318",
+      "merged_at": "2026-11-17T20:02:18Z",
+      "updated_at": "2026-11-17T20:02:18Z",
+      "disposition": "all_commits_patch_equivalent",
+      "cherry": [
+        "- b8ddaaeb581e010467de304c828764d353149102"
+      ]
+    },
+    {
+      "number": 137,
+      "title": "Preserve range-backed ODS list validations",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+      "head_ref": "feat/ods-dynamic-validation-links",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "d754bf15b07a24c8a86c8dce339ca749fecd9531",
+      "merged_at": "2026-11-17T20:01:17Z",
+      "updated_at": "2026-11-17T20:01:17Z",
+      "disposition": "all_commits_patch_equivalent",
+      "cherry": [
+        "- 68a0db23408e4c95d6d283219504c79aea33a6fe"
+      ]
+    },
+    {
+      "number": 136,
+      "title": "Record color scales",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+      "head_ref": "docs/ods-color-scale",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "4eaca83b192897edad82658107dfeb5bcbed0920",
+      "merged_at": "2026-11-17T19:47:40Z",
+      "updated_at": "2026-11-17T19:47:40Z",
+      "disposition": "all_commits_patch_equivalent",
+      "cherry": [
+        "- 58fdddfbcf198a8c0e38e32f6fcc9d6604e95283"
+      ]
+    },
+    {
+      "number": 135,
+      "title": "Support color-scale conditional formats",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+      "head_ref": "feat/ods-color-scale",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "4584d5f319aab198f1d705f48b4d6647e6cbabea",
+      "merged_at": "2026-11-17T19:45:42Z",
+      "updated_at": "2026-11-17T19:45:42Z",
+      "disposition": "all_commits_patch_equivalent",
+      "cherry": [
+        "- 74ce9ffb816c70c0d2ae50b91ec52a614f26d688"
+      ]
+    },
+    {
+      "number": 134,
+      "title": "Record AOT removal",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "128a187d69555db80890c2a1945a442b951f9c74",
+      "head_ref": "docs/aot-removal",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "d790bca444eef0e160a75ce3d8cb555af541004f",
+      "merged_at": "2026-11-17T19:25:07Z",
+      "updated_at": "2026-11-17T19:25:07Z",
+      "disposition": "all_commits_patch_equivalent",
+      "cherry": [
+        "- 128a187d69555db80890c2a1945a442b951f9c74"
+      ]
+    },
+    {
+      "number": 133,
+      "title": "Write ODT first and even header/footer variants",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "f87533cdbf9f98e5cfc11d21d8903f8501212ab8",
+      "head_ref": "feat/odt-first-even-headers",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "fdec8c24fde94fbffee212a7541b0cb236f682e4",
+      "merged_at": "2026-11-17T19:23:07Z",
+      "updated_at": "2026-11-17T19:23:08Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 128,
+      "title": "Fix visible ODF extraction and ODT story fidelity",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "814f165cb24a5b719dde65495f64d85f86563328",
+      "head_ref": "codex/office-fidelity-improvements-20261117-e1978379",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": null,
+      "merged_at": null,
+      "updated_at": "2026-11-17T19:17:14Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 132,
+      "title": "Preserve ODF stories, header media and bookmark ranges",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "0ecd1615b96d7b90156c1e913e105d467efe9a39",
+      "head_ref": "feat/odf-story-fidelity",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "081af8a55338c713ba8b350f2519f2021d9caee3",
+      "merged_at": "2026-11-17T19:17:06Z",
+      "updated_at": "2026-11-17T19:17:06Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 131,
+      "title": "Document native spaCy/CrispEmbed implementation handoff",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "f965fce6a54141b753a22f1e1b6c2fabba44e389",
+      "head_ref": "docs/native-spacy-handoff-20261117",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "3ee7e5eeefdec0570246d4f0995e29995d5343e0",
+      "merged_at": "2026-11-17T19:15:25Z",
+      "updated_at": "2026-11-17T19:15:25Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 114,
+      "title": "Complete German proofing qualification and repair Office integration [skip ci]",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "867df7f257eac69adfe3355c051cdb2f773c53ac",
+      "head_ref": "codex/german-morphology-20261117",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "25cb4c2848557d5f43fb0d030391361df5bafb15",
+      "merged_at": null,
+      "updated_at": "2026-11-17T19:15:08Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 116,
+      "title": "Qualify Office continuation and repair paragraph decoration caching [skip ci]",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "6a32a919325d71c121c63e3879cfd1b28d64312e",
+      "head_ref": "codex/office-qualified-resume-20261117",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": null,
+      "merged_at": null,
+      "updated_at": "2026-11-17T19:15:04Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 117,
+      "title": "Add optional AOT grammar checking and linguistic analysis [skip ci]",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "8b19ead89800f81ed9743ffbaf3279ac88fdd06d",
+      "head_ref": "codex/aot-proofing-analysis-20261117",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": null,
+      "merged_at": null,
+      "updated_at": "2026-11-17T19:15:01Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 120,
+      "title": "Run AOT locally without SynanDaemon and improve analysis workflow [skip ci]",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "e37ccdb47c047f6a0250585cf5cb20efc17573b4",
+      "head_ref": "codex/aot-daemon-free-20261117",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "29772094616b589d04647e2400eb13744eb0d3e3",
+      "merged_at": null,
+      "updated_at": "2026-11-17T19:14:58Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 123,
+      "title": "Consolidate Office and proofing continuations with local qualification [skip ci]",
+      "state": "closed",
+      "draft": true,
+      "head_sha": "1138cffdc4a1c909b2b149db80312037c21909d8",
+      "head_ref": "codex/office-consolidation-20261117",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": null,
+      "merged_at": null,
+      "updated_at": "2026-11-17T19:14:55Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 130,
+      "title": "Preserve inline ODT PAGE and NUMPAGES fields",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "84076f8ec8e4604a631cbaad9b88b030e508f0bc",
+      "head_ref": "fix/odt-inline-fields",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "aa9591d496d66a549d4e0c67aee73eada0d9d46f",
+      "merged_at": "2026-11-17T19:11:34Z",
+      "updated_at": "2026-11-17T19:11:35Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 129,
+      "title": "Merge remaining proofing branches and remove AOT/RML",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "bb5a97a8d7c5f9ffa261e64753f53a3c044b610f",
+      "head_ref": "integrate/aot-then-remove-20261117",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "6061aa72e2e59ba23085451c04286184aa23b9e0",
+      "merged_at": "2026-11-17T19:09:23Z",
+      "updated_at": "2026-11-17T19:09:24Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 127,
+      "title": "Write cached ODT table-of-contents entries",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "8b70fdb42fb2d974587c75437b3adb5018190159",
+      "head_ref": "feat/odt-toc",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "162288351af0ad43bb4d869fd2d814eaaa30a930",
+      "merged_at": "2026-11-17T18:59:52Z",
+      "updated_at": "2026-11-17T18:59:52Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 126,
+      "title": "Export ODP ellipse and rounded-rectangle shapes",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "8fae38da39c3c45344e723abca92c9330f15a791",
+      "head_ref": "feat/odp-preset-shapes",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "4c9d60cdc329d83fe0d5c7cb69daabb093973dff",
+      "merged_at": "2026-11-17T18:38:00Z",
+      "updated_at": "2026-11-17T18:38:01Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 113,
+      "title": "Reconcile Office, proofing and Zotero continuation [skip ci]",
+      "state": "closed",
+      "draft": true,
+      "head_sha": "93c832f53982a9f5956f19ae0cb9418f55fac8c0",
+      "head_ref": "codex/office-continuation-20261117",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": null,
+      "merged_at": null,
+      "updated_at": "2026-11-17T18:26:04Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 125,
+      "title": "Merge Office continuation without AOT",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "af2a61862d23572b108bd7ef7719c7f575348d83",
+      "head_ref": "integrate/codex-office-continuation-20261117",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "13e7172977d671190ba8c3cf964deec4d7473090",
+      "merged_at": "2026-11-17T18:25:42Z",
+      "updated_at": "2026-11-17T18:25:42Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 124,
+      "title": "Write ODT field results",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "b005a46b32c8b3ec92d60bb99147f2aa3af51f06",
+      "head_ref": "feat/odt-fields",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "93cb0773f82b3d41a75bc50705074efcb9d4df78",
+      "merged_at": "2026-11-17T18:17:58Z",
+      "updated_at": "2026-11-17T18:17:59Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 111,
+      "title": "Archive local qualification for merged ODF lists and sections",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "d1738017afd3696adbd2e895678b1fa7d26065ec",
+      "head_ref": "codex/office-fidelity-20261117",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "9626152fced037379a79ef4fec458645e0d8c2ff",
+      "merged_at": "2026-11-17T18:12:57Z",
+      "updated_at": "2026-11-17T18:12:57Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 122,
+      "title": "Write ODT column breaks and keep-together",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "54a3a8593bdb34dd7c1f737960aa732d401fc2da",
+      "head_ref": "feat/odt-paragraph-breaks",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "914d74f13d1ae75d9b45ea0e51873c31ff63ec62",
+      "merged_at": "2026-11-17T18:00:25Z",
+      "updated_at": "2026-11-17T18:00:25Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 121,
+      "title": "Preserve ODP chart data as tables",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "a86a4ec6a231ed66cd868ea1ece3acc3aea2bb8f",
+      "head_ref": "feat/odp-chart-data",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "edd023c3505942cd2433bfa6c815a7d009432a3c",
+      "merged_at": "2026-11-17T17:54:19Z",
+      "updated_at": "2026-11-17T17:54:19Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 119,
+      "title": "Write multi-column ODT sections",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "2c7d58d2e83e542655db7e9bbcc04b6bade44902",
+      "head_ref": "feat/odt-columns",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "924f09bab2caf7b5985ffa6c16702a837a58d7bc",
+      "merged_at": "2026-11-17T17:42:54Z",
+      "updated_at": "2026-11-17T17:42:54Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 118,
+      "title": "Write ODT paragraph tab stops",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "4391669c881cbcba372c742d2300c24cdc465a2f",
+      "head_ref": "feat/odt-tab-stops",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "cc9b467f69401ca3d689b56e7306e3cebd01df68",
+      "merged_at": "2026-11-17T17:26:19Z",
+      "updated_at": "2026-11-17T17:26:19Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 115,
+      "title": "Write ODT table borders and row heights",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "b54ef7d2955f44266a87d9067d0e4c332e868c54",
+      "head_ref": "feat/odt-table-borders",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "2eb080e708257c36b54d3ade18b9e012ebc73ed3",
+      "merged_at": "2026-11-17T16:11:54Z",
+      "updated_at": "2026-11-17T16:11:55Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 112,
+      "title": "Write ODT paragraph shading and borders",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "12601a41b6785dcd1d617adba8e13297d9af4bc0",
+      "head_ref": "feat/odt-paragraph-shading",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "7cf48a2f7b73aafb8bd2019bda4e0ddc6698f9ad",
+      "merged_at": "2026-11-17T15:52:04Z",
+      "updated_at": "2026-11-17T15:52:04Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 101,
+      "title": "Preserve ODF lists, sections, text stories and slide geometry",
+      "state": "closed",
+      "draft": true,
+      "head_sha": "cf60a17bcd825dc9b4ecdf840d54e6a0271d3647",
+      "head_ref": "codex/office-fidelity-20261117",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "9545fbb500c1fa531201d53a47606d47efa3ac7d",
+      "merged_at": "2026-11-17T15:43:05Z",
+      "updated_at": "2026-11-17T15:48:20Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 110,
+      "title": "Write ODT page-number fields",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "35ae6328a884975c23d2aa5001bf0df05a436f91",
+      "head_ref": "feat/odt-page-fields",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "9941c80d09145310efd752b1558356c7bfb97f02",
+      "merged_at": "2026-11-17T15:45:06Z",
+      "updated_at": "2026-11-17T15:45:06Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 105,
+      "title": "Broaden offline German grammar with morphology and optional GECToR",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "6f1abf273bd10d7ebe5641661dd307c492f897c2",
+      "head_ref": "codex/german-morphology-20261117",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "eaebdac8332ec365617152a7aec1fbfe2641532c",
+      "merged_at": "2026-11-17T15:44:28Z",
+      "updated_at": "2026-11-17T15:44:29Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 109,
+      "title": "Export document metadata in ODT and ODP",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "b842ae4b4df892ec5f058f6207589953f3e9dae9",
+      "head_ref": "feat/odf-metadata",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "379d3c8e5e46afb806f9ac181bc814288c9c8893",
+      "merged_at": "2026-11-17T15:37:09Z",
+      "updated_at": "2026-11-17T15:37:09Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 108,
+      "title": "Write ODP text-shape hyperlinks",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "3ec638bd7de5cb6648774abbf14da1c315f5e418",
+      "head_ref": "feat/odp-shape-links",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "4af75017a9b7df726c1f80741809f5bccdb70f4c",
+      "merged_at": "2026-11-17T15:21:10Z",
+      "updated_at": "2026-11-17T15:21:10Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 107,
+      "title": "Write ODT bookmarks and linked ranges",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "8471633ed09e2a49ba35ff162a2bac5eb04073c9",
+      "head_ref": "feat/odt-links-bookmarks",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "67482c25a90631d54dd6dff6cda489687efb380f",
+      "merged_at": "2026-11-17T14:52:11Z",
+      "updated_at": "2026-11-17T14:52:11Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 106,
+      "title": "Write nested ODT list levels",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "7686ec52876288e6799023fd686af79228236826",
+      "head_ref": "feat/odt-nested-lists",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "2277634a33b77405f045321ee3ea9ae432066f9a",
+      "merged_at": "2026-11-17T14:40:22Z",
+      "updated_at": "2026-11-17T14:40:23Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 104,
+      "title": "Write ODT section layouts and page breaks",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "2a6f3a94ce1d4a5ba6cddc1687a075191448da3d",
+      "head_ref": "feat/odt-sections2",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "6f9caa0736828dbbb2c4d00d2af89277243dbf2b",
+      "merged_at": "2026-11-17T14:18:03Z",
+      "updated_at": "2026-11-17T14:18:03Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 103,
+      "title": "Write ODT comments",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "e15205c97f0fe0c7fcc5c3441e72cb0e9a3bdc01",
+      "head_ref": "feat/odt-comments",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "3458c8977cef969a86a07b39734c761ba62e4b40",
+      "merged_at": "2026-11-17T13:47:00Z",
+      "updated_at": "2026-11-17T13:47:00Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 102,
+      "title": "Land combined Zotero and ODF source with fresh local qualification [skip ci]",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "1549a9c7884eb688732262398b5d9859a68103eb",
+      "head_ref": "codex/zotero-recovery-20261116",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "518fb28b1cff7aeefad446cbf41c2832673c4d33",
+      "merged_at": "2026-11-17T09:35:15Z",
+      "updated_at": "2026-11-17T09:42:21Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 85,
+      "title": "Complete Zotero recovery, incoming sync and local qualification [skip ci]",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "9f2dbd81c2289a2285521e1491a9c860c4b59646",
+      "head_ref": "codex/zotero-recovery-20261116",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "0e6951703827257ed6f12844e3e12b3f209f5174",
+      "merged_at": "2026-11-17T08:13:44Z",
+      "updated_at": "2026-11-17T09:36:10Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 100,
+      "title": "Write ODT footnotes and endnotes",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "946942a1e30332892aaf19a068ca5a29470d682a",
+      "head_ref": "feat/odt-footnotes",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "fb3d3a4d275f0be7161c13a4763fcd6cac3e2c13",
+      "merged_at": "2026-11-17T09:02:35Z",
+      "updated_at": "2026-11-17T09:02:36Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 99,
+      "title": "Record ODP transitions",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "434a26933501eb288a1b16ffd9f971a5fe3b3bc7",
+      "head_ref": "docs/odp-transitions",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "b0d6c58b45a7e2cf4d161270b0e8223f05e0d470",
+      "merged_at": "2026-11-17T08:53:52Z",
+      "updated_at": "2026-11-17T08:53:52Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 98,
+      "title": "Write ODP slide transitions",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "a920b13aef776e0fb8a2ce3cc32848c2e7c0166a",
+      "head_ref": "feat/odp-transitions",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "dedac9cf14e2fca66363e282d7fe787ac9b71690",
+      "merged_at": "2026-11-17T08:48:42Z",
+      "updated_at": "2026-11-17T08:48:42Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 97,
+      "title": "Write ordered ODT list groups",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "8e94cf878cfbdeb13482f37f7848ef5a400425f3",
+      "head_ref": "feat/odt-ordered-lists",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "69a1396eacae0ec5c79f5d0feba6431e641d9448",
+      "merged_at": "2026-11-17T08:36:14Z",
+      "updated_at": "2026-11-17T08:36:14Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 96,
+      "title": "Correct ODT and ODP writer rows",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "a733c9f3367b9833f242100fcda0cff9e92767ff",
+      "head_ref": "docs/odt-odp-rows",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "ee72594686c17e508740e1b446c87593da9ffbda",
+      "merged_at": "2026-11-17T08:27:34Z",
+      "updated_at": "2026-11-17T08:27:34Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 95,
+      "title": "Write ODT list groups",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "f862fe550bc8b7d3afcdb74016ccfefd7477fd20",
+      "head_ref": "feat/odt-lists",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "f4e6edc8d639e887d09fde07ac9886df03139169",
+      "merged_at": "2026-11-17T08:24:48Z",
+      "updated_at": "2026-11-17T08:24:48Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 91,
+      "title": "Expand German grammar and strengthen English/German proofing",
+      "state": "closed",
+      "draft": true,
+      "head_sha": "5cff80ce4ba85e645f21a31efb4fa4d9043b7e79",
+      "head_ref": "codex/proofing-en-de-20261117",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "9f2dbd81c2289a2285521e1491a9c860c4b59646",
+      "merged_at": "2026-11-17T08:13:44Z",
+      "updated_at": "2026-11-17T08:13:45Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 87,
+      "title": "Improve English/German hyphenation, spelling and grammar without GPL components",
+      "state": "closed",
+      "draft": true,
+      "head_sha": "7dfcfe9fcbf7e6d0d0abc14de7ed1ed901fa99c2",
+      "head_ref": "codex/proofing-en-de-20261116",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "ad3c6edce16fd0e02ad43e0d4e176b22d334f21d",
+      "merged_at": "2026-11-17T08:13:44Z",
+      "updated_at": "2026-11-17T08:13:45Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 72,
+      "title": "Improve text rendering, worksheet conditional formats and ODF fidelity",
+      "state": "closed",
+      "draft": true,
+      "head_sha": "57bc0f98eb94997b73f22cc267bd8d61dccaee59",
+      "head_ref": "codex/text-rendering-20261116",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "000b47625ffa15aa1ed28f840b2acda33cc4f42b",
+      "merged_at": "2026-11-17T08:13:44Z",
+      "updated_at": "2026-11-17T08:13:45Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 94,
+      "title": "Record the bounded ODP writer",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "8221b0081b02af33101ca7f58438e69e487d2bf6",
+      "head_ref": "docs/odp-presentation-writer",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "6860985f0a33e0fdff26c4e661a1faaf213b6a46",
+      "merged_at": "2026-11-17T06:17:05Z",
+      "updated_at": "2026-11-17T06:17:07Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 93,
+      "title": "Add a bounded ODP presentation writer",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "5088f3ab7e81f353593f16fcaa86d1467d4e1af9",
+      "head_ref": "feat/odp-presentation-writer",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "5c38679bab0819c8726444a98d4fbf6ab8437b40",
+      "merged_at": "2026-11-17T06:11:15Z",
+      "updated_at": "2026-11-17T06:11:15Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 92,
+      "title": "Add a bounded ODT document writer",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "e8cb60efc2360be9bb72db7af8e4c675edf5b76f",
+      "head_ref": "feat/odt-document-writer",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "8a3f5a9de14c556fd01ffacb3897629c51f4fa7e",
+      "merged_at": "2026-11-16T23:41:09Z",
+      "updated_at": "2026-11-16T23:41:09Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 90,
+      "title": "Record ODT frame dimensions",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "6da74faa9160275df9c10a864c758033c92f114d",
+      "head_ref": "docs/odt-frame-size",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "f57d8f5debd8c27fe7cb9b9322c84fb284ff2c49",
+      "merged_at": "2026-11-16T23:32:48Z",
+      "updated_at": "2026-11-16T23:32:48Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 89,
+      "title": "Retain conditional-format dxf styles",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "31a26383639dc7f751cfb0ea543ec7454a537ff6",
+      "head_ref": "feat/conditional-dxf-styles",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "281b5d4cd705c1f32d98a741233ebb836d1ef20a",
+      "merged_at": "2026-11-16T23:17:46Z",
+      "updated_at": "2026-11-16T23:17:46Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 88,
+      "title": "Record ranked and average conditional rules",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "5fb8762e771fe68be8bc8025fe26e159d14eda8e",
+      "head_ref": "docs/conditional-top-bottom",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "8e405a09e7b6a017c95ffc6bd32b49ab613a7a3f",
+      "merged_at": "2026-11-16T23:15:43Z",
+      "updated_at": "2026-11-16T23:15:43Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 86,
+      "title": "Import and export top, bottom and average conditional rules",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "001367e89cb0034cf33467783d7258bb0800deb9",
+      "head_ref": "feat/conditional-top-bottom",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "fb62dbfc3a0fff95325a9a95b62e32f85f1abb80",
+      "merged_at": "2026-11-16T20:11:30Z",
+      "updated_at": "2026-11-16T20:11:30Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 84,
+      "title": "Record ODS header and footer round-trips",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "846c15f0de92a17bb2720e295b9a40412ebcb6fb",
+      "head_ref": "docs/ods-header-footer",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "63194d8e482892f284eaccb95ce48a8a8132376d",
+      "merged_at": "2026-11-16T19:59:59Z",
+      "updated_at": "2026-11-16T19:59:59Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 83,
+      "title": "Round-trip ODS header and footer sections",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "331be9688e2de1feb52635490b534042dea10c27",
+      "head_ref": "feat/ods-header-footer",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "6811f8a7194f8e7b12a34e3c1cf13fd2e3bf7195",
+      "merged_at": "2026-11-16T19:57:58Z",
+      "updated_at": "2026-11-16T19:57:58Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 82,
+      "title": "Finish the ODS page-setup note",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "4497c737623c1339d2422487d53941c20472bac9",
+      "head_ref": "docs/page-setup-fix",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "merged_at": "2026-11-16T19:50:02Z",
+      "updated_at": "2026-11-16T19:50:02Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 81,
+      "title": "Record worksheet page setup",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "eb95211e4d82933ba5b1db23ea7b79938b77909f",
+      "head_ref": "docs/sheet-page-setup",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "ff26ea5cc85afd36e0ed376b7f789563c5e2b7fa",
+      "merged_at": "2026-11-16T19:49:42Z",
+      "updated_at": "2026-11-16T19:49:42Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 80,
+      "title": "Model and round-trip worksheet page setup",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "5aa16674e64cc01b89aec017c85afd3899cd96d5",
+      "head_ref": "feat/sheet-page-setup",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "36db2a6cbc0f028dd15b558914045f995aeae949",
+      "merged_at": "2026-11-16T19:47:41Z",
+      "updated_at": "2026-11-16T19:47:41Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 79,
+      "title": "Record ODS row groups",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "06828a5e63365495c86a4a0e1c68ecd113f891e5",
+      "head_ref": "docs/ods-row-groups",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "be9eeec9ea3455018de26fff5874c558dbc66798",
+      "merged_at": "2026-11-16T19:25:30Z",
+      "updated_at": "2026-11-16T19:25:30Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 78,
+      "title": "Write ODS row outline groups and off-extent geometry",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "27137499f8cc1a946bfcdd7446f43945ea81d2be",
+      "head_ref": "feat/ods-row-groups",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "a3417522a54a1d46beef535e10f609c1295d8cfd",
+      "merged_at": "2026-11-16T19:23:12Z",
+      "updated_at": "2026-11-16T19:23:13Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 77,
+      "title": "Record ODS filter predicates",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "bb9866d25bf98e5aa42c10ce4679835dbc8617f1",
+      "head_ref": "docs/ods-filter-predicates",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "44a56cd0bd4f7cfc4feb1ce41a1818b8ffe69b18",
+      "merged_at": "2026-11-16T19:21:01Z",
+      "updated_at": "2026-11-16T19:21:01Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 76,
+      "title": "Write ODS autofilter predicates",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "1deb61cf78add61f5d26bea36ff596d769d06a87",
+      "head_ref": "feat/ods-filter-conditions",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "e81650bd7f17dc8e38f892e05dfc9025ad5705b1",
+      "merged_at": "2026-11-16T19:17:09Z",
+      "updated_at": "2026-11-16T19:17:10Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 75,
+      "title": "Record the host ODT picture registry",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "f27e9b0e7ee9b1db8f6b7393abd752dab67d1ca5",
+      "head_ref": "docs/odt-image-registry",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "ff873a4e304f247902cf4cd9a75d447baa8796d9",
+      "merged_at": "2026-11-16T19:15:03Z",
+      "updated_at": "2026-11-16T19:15:03Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 74,
+      "title": "Describe the current Office and ODF capabilities",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "1675bbbb7c03090a87b6df783e3741e2cbc1768f",
+      "head_ref": "docs/current-office-capabilities",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "ba79d47028d70b4124ced59cb9d34583ff0a9514",
+      "merged_at": "2026-11-16T18:52:45Z",
+      "updated_at": "2026-11-16T18:52:45Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 63,
+      "title": "Improve Zotero source identity, dialog scaling, and session backoff",
+      "state": "closed",
+      "draft": true,
+      "head_sha": "2480f0988167068d9aeddf6573b9c2c6871a8481",
+      "head_ref": "codex/zotero-capabilities-20261116",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "bfb24bf57d5efd52f00ab7079b4ac8968259a478",
+      "merged_at": "2026-11-16T18:48:29Z",
+      "updated_at": "2026-11-16T18:48:29Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 73,
+      "title": "Define the ODS writer default page layout",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "8a0107cbca4b00766a2a76d43a1db244c006e976",
+      "head_ref": "fix/ods-writer-page-layout",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "c108be5f5033af9c0d07123e1650a16a361dd3e0",
+      "merged_at": "2026-11-16T18:30:45Z",
+      "updated_at": "2026-11-16T18:30:45Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 71,
+      "title": "Record ODS writer picture support",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "108b4087c15f5640dbc906ad243f3030b7592f3f",
+      "head_ref": "docs/ods-writer-images",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "ed5facb4bd503667749ed3d13378da6a1b34738b",
+      "merged_at": "2026-11-16T15:58:08Z",
+      "updated_at": "2026-11-16T15:58:08Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 70,
+      "title": "Write worksheet pictures into ODS packages",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "9ad9ba92133932b0a3824619168f07dd218c2b26",
+      "head_ref": "feat/ods-writer-images",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "8ddbb76580fc914f1bb60b8cda76ee7f71caacdf",
+      "merged_at": "2026-11-16T15:55:20Z",
+      "updated_at": "2026-11-16T15:55:20Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 69,
+      "title": "Write ODS conditional formats and validations",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "ec94795114d11c73bd8fc689fde364cc110b5cd3",
+      "head_ref": "feat/ods-writer-conditional",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "b6d13f6546e1f240b2d4c5940fbf66bcf9ca53f2",
+      "merged_at": "2026-11-16T15:49:13Z",
+      "updated_at": "2026-11-16T15:49:13Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 68,
+      "title": "Extend the ODS writer to metadata and number formats",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "82215309dc64ef8c473fec3c4892cf0c9884bc91",
+      "head_ref": "feat/ods-writer-metadata",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "a042466eaf8cc83db2b7b6a5123d67a1b58f9304",
+      "merged_at": "2026-11-16T15:16:47Z",
+      "updated_at": "2026-11-16T15:16:47Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 67,
+      "title": "Add a bounded ODS workbook writer",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "0ee0a8320875248adac9718cae2e67875b6b932c",
+      "head_ref": "feat/ods-writer",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "3398d53198263d3b76189fabb25b9d53ddf934db",
+      "merged_at": "2026-11-16T15:11:41Z",
+      "updated_at": "2026-11-16T15:11:42Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 66,
+      "title": "Record ODS filter operator progress",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "379fa8663c81f32b4328415f56c776746ccc23bc",
+      "head_ref": "docs/filter-operators",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "90024d5d76a784dd96974988a5f54effcaac911d",
+      "merged_at": "2026-11-16T14:16:19Z",
+      "updated_at": "2026-11-16T14:16:19Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 65,
+      "title": "Support ODS filter comparison operators",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "3bb505ce5fea00236238e37c450ace8b18e4e34e",
+      "head_ref": "feat/ods-filter-operators",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "5d89092e779d2cbf776f21f2f7682f7416c0d25f",
+      "merged_at": "2026-11-16T14:13:30Z",
+      "updated_at": "2026-11-16T14:13:30Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 64,
+      "title": "Close ODS metadata and validation backlog",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "4a122b3b71ddc539f8ffda5541b7e6ab0f1dce8f",
+      "head_ref": "docs/filters-closed",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "47aa74ab2c45a5ce514343b44296a1a14fa3ae95",
+      "merged_at": "2026-11-16T13:52:49Z",
+      "updated_at": "2026-11-16T13:52:50Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 62,
+      "title": "Preserve ODS filter predicates",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "089e53fce443ca2169fc44f3700e1b23780d2c95",
+      "head_ref": "feat/ods-filter-predicates",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "7edb096d3328263c75dc0229ff43bb77183e1ad3",
+      "merged_at": "2026-11-16T13:37:17Z",
+      "updated_at": "2026-11-16T13:37:18Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 61,
+      "title": "Record ODS metadata and hyperlink progress",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "b23ee557ea121774833c7a188a49189e4f80ce70",
+      "head_ref": "docs/metadata-complete",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "3624a9702054f6f64f7132b374bbcf827bfcf232",
+      "merged_at": "2026-11-16T13:35:44Z",
+      "updated_at": "2026-11-16T13:35:44Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 60,
+      "title": "Preserve ODS outline groups",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "988f423b9b95037d8f5273ee368b58ceedab0667",
+      "head_ref": "feat/ods-outline",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "0969b2203a6758116bf42b53d7348898cc79d7ea",
+      "merged_at": "2026-11-16T13:32:40Z",
+      "updated_at": "2026-11-16T13:32:41Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 59,
+      "title": "Preserve ODS cell hyperlinks",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "e5daa20587e10971e8cb97d82a5495584b5c1553",
+      "head_ref": "feat/ods-hyperlinks",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "14b13980e0005f4a56e0d0790ed3a2c1fa4798e2",
+      "merged_at": "2026-11-16T13:26:38Z",
+      "updated_at": "2026-11-16T13:26:38Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 56,
+      "title": "Optimize Zotero metadata refresh and native citation scaling",
+      "state": "closed",
+      "draft": true,
+      "head_sha": "ca9e4f052d988d77f9ded3a6b13f840f76a26159",
+      "head_ref": "codex/zotero-optimization-20261116",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "53f35a30de0f354967aca7ce0dfdb0bd2c6d1d3f",
+      "merged_at": "2026-11-16T11:33:19Z",
+      "updated_at": "2026-11-16T11:33:19Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 50,
+      "title": "Improve Zotero catalog insertion, rich citations and note numbering [skip ci]",
+      "state": "closed",
+      "draft": true,
+      "head_sha": "428679a33381f943a8ae63117d4207f01dd15462",
+      "head_ref": "codex/zotero-support-20261116",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "4235e690602195cc504438a6b937972c71f1ad39",
+      "merged_at": "2026-11-16T11:33:19Z",
+      "updated_at": "2026-11-16T11:33:19Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 58,
+      "title": "Import ODS named expressions",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "864e674795eb422855df2b26ccc375d3255e61a2",
+      "head_ref": "feat/ods-named-expressions",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "bad2d9d30fd94db8de92a4f4bf83a55b0692b884",
+      "merged_at": "2026-11-16T10:37:36Z",
+      "updated_at": "2026-11-16T10:37:36Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 57,
+      "title": "Preserve ODS worksheet tab colours",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "0dd9dd9763c2eb6bdc4f6b6e30fb7726035e7d4b",
+      "head_ref": "feat/ods-tab-color",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "91d574acefb45f326a82b9e416719213050068cc",
+      "merged_at": "2026-11-16T10:30:10Z",
+      "updated_at": "2026-11-16T10:30:10Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 55,
+      "title": "Close the modeled ODS validation backlog",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "f5b67cc296b7d27e4f3a480dc46160f472d78694",
+      "head_ref": "docs/validation-complete",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "6c2e3d173b8ed3a84b26792105a061bd9dd57c35",
+      "merged_at": "2026-11-16T09:17:36Z",
+      "updated_at": "2026-11-16T09:17:36Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 54,
+      "title": "Import ODS validation prompts and error styles",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "49ba086251ba61032f15b3e7b726fc921874fd12",
+      "head_ref": "feat/ods-validation-messages",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "73eee5d925998e94643be4f3988cc46e1f559e63",
+      "merged_at": "2026-11-16T09:10:51Z",
+      "updated_at": "2026-11-16T09:10:51Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 53,
+      "title": "Import ODS custom formula validations",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "2e3074c8e1860f9503b059a87870911afc3eee7d",
+      "head_ref": "feat/ods-custom-validation",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "adffad55e28479bcae20a87a95fb4e96e25cd96c",
+      "merged_at": "2026-11-16T09:04:41Z",
+      "updated_at": "2026-11-16T09:04:41Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 52,
+      "title": "Record numeric validation progress",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "01f62eb1812ca54827cc14e074e03abd82f963d7",
+      "head_ref": "docs/validation-operators",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "bd130094b4d1bc666aa9b166e6ed7fb1b447aeb3",
+      "merged_at": "2026-11-16T08:41:03Z",
+      "updated_at": "2026-11-16T08:41:03Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 51,
+      "title": "Import ODS numeric, date and length validations",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "8769019fb8be5483939edd4655dd88005e2515c4",
+      "head_ref": "feat/ods-validation-operators",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "d9508c94cccc8e638ca6ae5badfcb2ef50e71259",
+      "merged_at": "2026-11-16T08:32:57Z",
+      "updated_at": "2026-11-16T08:32:58Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 49,
+      "title": "Record ODS metadata and validation progress",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "a5febc3362d2fccdb979f012a5296af72e465797",
+      "head_ref": "docs/metadata-closed",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "7259c27bb69b3b3f97fd50e52e2d70fffe7d721f",
+      "merged_at": "2026-11-15T23:08:16Z",
+      "updated_at": "2026-11-15T23:08:16Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 48,
+      "title": "Import ODS workbook metadata",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "d6d6866c0f4ddbbaa196e1a5eb7ff9e31007fdea",
+      "head_ref": "feat/ods-metadata",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "d0975da6eadd10e706b5bcf158bd663e4072a226",
+      "merged_at": "2026-11-15T23:02:25Z",
+      "updated_at": "2026-11-15T23:02:26Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 47,
+      "title": "Add native Zotero citation tools and document-wide style refresh",
+      "state": "closed",
+      "draft": true,
+      "head_sha": "fc37658c907edf6687eccb9564d3046283b49a3a",
+      "head_ref": "codex/zotero-support-20261115",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "fc37658c907edf6687eccb9564d3046283b49a3a",
+      "merged_at": "2026-11-15T22:52:54Z",
+      "updated_at": "2026-11-15T22:52:54Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 46,
+      "title": "Link the remaining office-format backlog",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "e6fdd16849aaf7ccbaf50f2593d7a92b6a82e630",
+      "head_ref": "docs/readme-remaining-gaps",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "b4b00a883348ad9864a4433fe4edbfad4958523a",
+      "merged_at": "2026-11-15T22:24:09Z",
+      "updated_at": "2026-11-15T22:24:09Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 45,
+      "title": "Document remaining Office engine work and update changelogs",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "0a26be7f136ad3e57dbe894b0bc4cdb0602addd0",
+      "head_ref": "docs/remaining-gaps",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "d5db3b28384c317809f9926b1fec1653741380ae",
+      "merged_at": "2026-11-15T22:22:34Z",
+      "updated_at": "2026-11-15T22:22:35Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 44,
+      "title": "Split content controls across multiple document sections",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "866c14f0b3a876e11732bc544dc25a05d8f10524",
+      "head_ref": "fix/sdt-multi-section-control",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "33d36cd0e111fbfdd152c49d54532286fe8e8d2d",
+      "merged_at": "2026-11-15T22:18:54Z",
+      "updated_at": "2026-11-15T22:18:55Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 40,
+      "title": "Add Zotero online and desktop libraries with DOCX citation fields",
+      "state": "closed",
+      "draft": true,
+      "head_sha": "8855b88a96b5c94349e3b5278c339228a1688c3e",
+      "head_ref": "codex/zotero-support-20261115",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "3304f42ee17b52659a82d5714dcc730184050960",
+      "merged_at": "2026-11-15T22:12:58Z",
+      "updated_at": "2026-11-15T22:12:58Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 43,
+      "title": "Support begins-with and ends-with conditions",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "20681b8658392212c128f51b4c91f0b638942448",
+      "head_ref": "feat/conditional-affix",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "b01455fa415f9411411d06c7c2ab66947630af1a",
+      "merged_at": "2026-11-15T22:05:48Z",
+      "updated_at": "2026-11-15T22:05:48Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 42,
+      "title": "Lift a trailing section break out of a body content control",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "8fc3d06be36da5c2176feb107c14245f61650d75",
+      "head_ref": "fix/sdt-trailing-section-break",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "b2d5331f49001af189118d90af208cbc1ee2ae67",
+      "merged_at": "2026-11-15T20:24:56Z",
+      "updated_at": "2026-11-15T20:24:56Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 41,
+      "title": "Support between conditional rules",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "b69bad50fb235118a5334b325683cd1524b3e3d1",
+      "head_ref": "feat/conditional-between",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "42b7f1e767454a962ef3a21342eac335bbf925db",
+      "merged_at": "2026-11-15T20:23:40Z",
+      "updated_at": "2026-11-15T20:23:41Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 39,
+      "title": "Import ODS list validations",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "b85501b2810e537e21040d82528d8dbaa6fdcf15",
+      "head_ref": "feat/ods-validations",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "c210315bee537776b556ae9885e907483b6df7bd",
+      "merged_at": "2026-11-15T19:18:34Z",
+      "updated_at": "2026-11-15T19:18:35Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 38,
+      "title": "Import ODS contains-text and duplicate rules",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "752a94dfddf69522429f3025f9d25702499cb6da",
+      "head_ref": "feat/conditional-text",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "9f1efe0758f5e67f10cec05883cc587a3b08b14c",
+      "merged_at": "2026-11-15T19:13:56Z",
+      "updated_at": "2026-11-15T19:13:56Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 37,
+      "title": "Emit conditional dxf styles for generated rules",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "b0efe6c661009ffa463f2bf6d7945216ce1dae4c",
+      "head_ref": "feat/conditional-dxf",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "85f5109c8067133bc30942d71b0be6ea9d9bf68c",
+      "merged_at": "2026-11-15T19:10:36Z",
+      "updated_at": "2026-11-15T19:10:36Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 36,
+      "title": "Support the full numeric conditional comparators",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "21de3c3963b0334068b87fb1c25c787660cb17cf",
+      "head_ref": "feat/conditional-operators",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "8815cec9705f8a0b099f83f38d5eca75c5564171",
+      "merged_at": "2026-11-15T19:01:57Z",
+      "updated_at": "2026-11-15T19:01:57Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 35,
+      "title": "Import ODS conditional formats and paint matches",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "e59751246a200e7477657d0e4835bf77b153422c",
+      "head_ref": "feat/ods-conditional",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "1d7fee380def59d5a766cab106e519952d5c3292",
+      "merged_at": "2026-11-15T18:57:27Z",
+      "updated_at": "2026-11-15T18:57:27Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 34,
+      "title": "Accept UTF-16 custom XML while probing bibliography ownership",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "09a05d7d60d2a2e1d2547487ad4545c50472834b",
+      "head_ref": "fix/utf16-custom-xml",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "7b3b0bbba3a8530678d77325bbec1091f6aae9c9",
+      "merged_at": "2026-11-15T18:49:26Z",
+      "updated_at": "2026-11-15T18:49:26Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 33,
+      "title": "Preserve hidden ODS worksheets",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "4c8036bbf16ac224c3fc102b5c44d8913a512b18",
+      "head_ref": "feat/sheet-hidden-sheets",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "3d255f0f5c37af3efbaf69b29f4fcfc869de3eaa",
+      "merged_at": "2026-11-15T18:39:22Z",
+      "updated_at": "2026-11-15T18:39:22Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 32,
+      "title": "Preserve hidden ODS rows and columns",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "46850ae47e0241733750decb22417a0150e4b0e4",
+      "head_ref": "feat/sheet-hidden-state",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "a6c9d7efc3b986baac52d1237deb5f50a162db3a",
+      "merged_at": "2026-11-15T16:51:32Z",
+      "updated_at": "2026-11-15T16:51:32Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 31,
+      "title": "Honor nameless ODS default styles and geometry",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "912f26f21446ef9bdbf4f542535438dae0ded9a9",
+      "head_ref": "feat/ods-default-geometry",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "2f47132206a88c6dd0f724a665fb6b7158cf3a57",
+      "merged_at": "2026-11-15T16:45:53Z",
+      "updated_at": "2026-11-15T16:45:53Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 30,
+      "title": "Apply ODS document default cell styles",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "49b447324159595c59e64d8425b54a09f79ec736",
+      "head_ref": "feat/ods-default-style",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "39761edb40a140fc488b3bdb0ddc36dbee557a93",
+      "merged_at": "2026-11-15T16:25:32Z",
+      "updated_at": "2026-11-15T16:25:32Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 28,
+      "title": "Prove edited XLSM/XLTX saves preserve package type",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "a8cd28d8af8ca966e8c4259862587ecc9aade2f4",
+      "head_ref": "test/xlsm-preservation",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "93b138d48fe12e1a49c9587e228b792c4e49f6f5",
+      "merged_at": "2026-11-15T14:17:35Z",
+      "updated_at": "2026-11-15T14:59:45Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 25,
+      "title": "Accept OOXML step vocabulary, keep all Word underline styles, continue formatting after a split",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "b6d27c84a72d622f670a7e646e36ba4bd920cfc8",
+      "head_ref": "fix/word-steps-vocabulary",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "25240781e0fdac36bc9d1bf75d6d3e4bc6c3c279",
+      "merged_at": "2026-11-15T11:30:45Z",
+      "updated_at": "2026-11-15T14:59:44Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 22,
+      "title": "Keep inline pictures inside their line of text",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "4637ddce4154f4b50105c7322fedc1c75fd02193",
+      "head_ref": "fix/word-inline-pictures",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "62af42d0f241bfd78559124cbf78c5143faa50be",
+      "merged_at": "2026-11-15T07:11:20Z",
+      "updated_at": "2026-11-15T14:59:44Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 21,
+      "title": "Apply headings the way Word does; shade theme colours in HSL",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "1f30a823b30678e3684c98fee6a2cd5c4945c4f2",
+      "head_ref": "fix/word-heading-like-word",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "29ae021647d36a98153ca05d26525e1c4baffab1",
+      "merged_at": "2026-11-15T06:24:52Z",
+      "updated_at": "2026-11-15T14:59:44Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 20,
+      "title": "Keep shapes without text free of empty text boxes on save",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "5278aafd512640608fe06b8f7d357c4cffe8520a",
+      "head_ref": "fix/word-shape-no-textbox",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "61f30f303727a285d1cb87bfdd4e3fa9521fc906",
+      "merged_at": "2026-11-15T06:24:51Z",
+      "updated_at": "2026-11-15T14:59:44Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 27,
+      "title": "Fix the reviewed Word golden checks on Linux",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "cde05b85bcd00c26d519d43283fcc6b55a1884e7",
+      "head_ref": "fix/linux-goldens",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "6d7c696e2ae9095b395fba9f3bc22ec1c1139ed6",
+      "merged_at": "2026-11-15T12:23:53Z",
+      "updated_at": "2026-11-15T14:59:43Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 26,
+      "title": "Declare archive for the ODS fixture builder",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "5b9ac71db1934252c4b8ae48ac03d4cd976e15ae",
+      "head_ref": "fix/odf-legacy-spreadsheets",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "56ed6c8876d0a8cc8bad1f1d890325237f6cd32d",
+      "merged_at": "2026-11-15T11:41:44Z",
+      "updated_at": "2026-11-15T14:59:43Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 19,
+      "title": "Word-like text selection in the Word editor",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "e8227569a3b90fb21db598483690bd13fe74ddef",
+      "head_ref": "feat/word-like-selection",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "4f7d0e0064cb430cc14e3daca663cffade777938",
+      "merged_at": "2026-11-15T06:13:02Z",
+      "updated_at": "2026-11-15T14:59:43Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 18,
+      "title": "Preserve cell drafts during worksheet and find navigation",
+      "state": "closed",
+      "draft": true,
+      "head_sha": "f31cf308013ceb4527e3f4de677785894bb1bfc0",
+      "head_ref": "codex/office-recovery-20261115",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "5099d3063046d53815a64ee6c06f5e6a75aeda29",
+      "merged_at": "2026-11-15T06:13:02Z",
+      "updated_at": "2026-11-15T14:59:43Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 29,
+      "title": "Carry ODS pictures into worksheet drawings",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "7fe296e29e2e1b173580f6854507fc060cb4f080",
+      "head_ref": "feat/ods-images",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "04f7a8aa696e9e1cc622e325fba1353910d09243",
+      "merged_at": "2026-11-15T14:12:12Z",
+      "updated_at": "2026-11-15T14:12:12Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 24,
+      "title": "Finish ODS fidelity: geometry and date formats",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "9cc8c6e91ff9acf0f52a68aea7c0da69934a2661",
+      "head_ref": "fix/odf-legacy-spreadsheets",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "13a30542462353a74803af87a1ace7f0103d9ffb",
+      "merged_at": "2026-11-15T11:30:45Z",
+      "updated_at": "2026-11-15T11:30:45Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 23,
+      "title": "Read OpenDocument spreadsheets into the workbook model",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "e002b9584bead9761fac8c7cf818431966d1b1c3",
+      "head_ref": "fix/odf-legacy-spreadsheets",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "793c64ac4fc2e896706aa65c13eaa70bd27f7267",
+      "merged_at": "2026-11-15T08:57:53Z",
+      "updated_at": "2026-11-15T08:57:54Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 16,
+      "title": "Import legacy .xls workbooks and harden spreadsheet saves",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "78a7b6f4e613c7d18d4bcc6434cda12b50ed184e",
+      "head_ref": "fix/excel-legacy-import",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "865d93fe9183af60abfaac222e3586b7c5dd6097",
+      "merged_at": "2026-11-15T06:13:02Z",
+      "updated_at": "2026-11-15T08:51:16Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 15,
+      "title": "Make tracked-change import and save linear instead of quadratic",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "448eff5aac55054a34eccd4f8a1e79e754909a05",
+      "head_ref": "fix/word-revision-quadratic",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "59860a37c83fd5dedf71d8dac0f4f2f88bed5f40",
+      "merged_at": "2026-11-15T06:13:02Z",
+      "updated_at": "2026-11-15T06:20:56Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 17,
+      "title": "Keep unmodelable header/footer parts verbatim instead of refusing documents",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "89c7f06c592edde0c67774e9c7e087d96f52184b",
+      "head_ref": "fix/word-header-controls",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "af0b1bd2b8613681ab59aa2c42b4858e30531338",
+      "merged_at": "2026-11-15T06:13:02Z",
+      "updated_at": "2026-11-15T06:20:55Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 14,
+      "title": "Keep complex fields as spans instead of wrapping whole paragraphs",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "d4e2a0fcf1fe18e0e5158ac7d86b1f71bf3b70da",
+      "head_ref": "fix/word-field-loss",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "79b4b5b033aa1f9e4204404f07074c0f5e44fe28",
+      "merged_at": "2026-11-15T06:13:02Z",
+      "updated_at": "2026-11-15T06:20:55Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 13,
+      "title": "Preserve legacy VML content (w:pict) instead of dropping it on import",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "73b354efdf0f2e7fbe0e87bc67f332a9dfb4903e",
+      "head_ref": "fix/word-preserve-vml-pict",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "73b354efdf0f2e7fbe0e87bc67f332a9dfb4903e",
+      "merged_at": "2026-11-14T22:11:16Z",
+      "updated_at": "2026-11-15T06:20:55Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 12,
+      "title": "test(office): preserve combined sorting and worksheet history regression",
+      "state": "closed",
+      "draft": true,
+      "head_sha": "579f2105cf7fca61536f7e3f9b59004929bdb6c5",
+      "head_ref": "integration/crispcloud-storage-reconcile-20261114",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "ed41dd8e9e1ad6f129ab6bade6063bc8d37f8024",
+      "merged_at": "2026-11-14T22:03:26Z",
+      "updated_at": "2026-11-14T22:37:41Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 10,
+      "title": "Stop text boxes anchored in one paragraph from nesting exponentially",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "1b1bac125f426b05f868d482e9fbd657d4ffb73a",
+      "head_ref": "fix/word-textbox-nesting",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "02398e26ba0e2a93a9153be6ba777bd9c16d324c",
+      "merged_at": "2026-11-14T22:03:26Z",
+      "updated_at": "2026-11-14T22:37:41Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 9,
+      "title": "Keep symbol-font characters (w:sym) through import and save",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "58de54567d45e38c05dd77064b7607c577374b9d",
+      "head_ref": "fix/word-sym-chars",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "8085366ec916af6ad97015b4ef47fdc1fc340262",
+      "merged_at": "2026-11-14T22:03:26Z",
+      "updated_at": "2026-11-14T22:37:41Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 11,
+      "title": "Reuse identical media payloads instead of storing a copy on every save",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "5c1ab430c6911bb11f71d29efa35027ead5ac1d5",
+      "head_ref": "fix/word-media-dedupe",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "7416d759956618ea1e6267a5c43392c1c8952659",
+      "merged_at": "2026-11-14T22:03:26Z",
+      "updated_at": "2026-11-14T22:37:40Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 8,
+      "title": "Import real-world Word packages the importer used to refuse (17.3% \u2192 3.3%)",
+      "state": "closed",
+      "draft": false,
+      "head_sha": "a86a360bf9bd45c729e00b31dd9a97492e23f2e7",
+      "head_ref": "fix/word-block-bookmarks",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "8abb9a92b9e14105f5af749cbc3ca864ead3ba06",
+      "merged_at": "2026-11-14T20:19:59Z",
+      "updated_at": "2026-11-14T22:37:40Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 7,
+      "title": "Resolve Office fonts consistently across layout and PDF export",
+      "state": "closed",
+      "draft": true,
+      "head_sha": "e82c997b6df8746fe86fb83b9f416a89bb3e3b80",
+      "head_ref": "feature/document-fonts-20261113",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "c7e7fe4c1e636974da0f997260763f50d4261062",
+      "merged_at": "2026-11-13T21:16:46Z",
+      "updated_at": "2026-11-13T21:24:42Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 6,
+      "title": "Pin canonical parser d14f03f and record complete workspace validation",
+      "state": "closed",
+      "draft": true,
+      "head_sha": "78ed85f5fd19d44f672dee11420fed261c974f4a",
+      "head_ref": "feature/legacy-doc-fidelity-continuation-20261112",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "78ed85f5fd19d44f672dee11420fed261c974f4a",
+      "merged_at": "2026-11-12T20:58:32Z",
+      "updated_at": "2026-11-13T00:08:18Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 4,
+      "title": "Update vendored legacy DOC parser fidelity checkpoint",
+      "state": "closed",
+      "draft": true,
+      "head_sha": "09f5ec4b8eba290ff4d65678179854fb6ff6a468",
+      "head_ref": "feature/legacy-doc-fidelity-20261112",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "9a0a0268aa57f0d61b4112e101968e29a3a5f077",
+      "merged_at": "2026-11-12T18:25:32Z",
+      "updated_at": "2026-11-12T20:12:31Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 5,
+      "title": "Continue legacy DOC fidelity integration from current main",
+      "state": "closed",
+      "draft": true,
+      "head_sha": "da0979a5c6c4273ea68f360ce9a079bfa747384f",
+      "head_ref": "feature/legacy-doc-fidelity-continuation-20261112",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "f6c693aa85b440418f217e950a613063eb8e1c09",
+      "merged_at": "2026-11-12T20:10:12Z",
+      "updated_at": "2026-11-12T20:10:12Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 2,
+      "title": "Preserve spreadsheet font metrics and add Word grid and tab controls",
+      "state": "closed",
+      "draft": true,
+      "head_sha": "08b09485588d2b6270f594a07c983689c087587d",
+      "head_ref": "feature/office-fidelity-followup-20261112",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "27747074c30e88d7955fef0bb841a390af01da33",
+      "merged_at": "2026-11-12T15:25:55Z",
+      "updated_at": "2026-11-12T18:16:24Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 3,
+      "title": "Expand shared Office fidelity and recover interrupted workflows",
+      "state": "closed",
+      "draft": true,
+      "head_sha": "e550723b0f2a7cd849970f58820d260c36857502",
+      "head_ref": "feature/office-fidelity-expansion-20261112",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "177e080c91842b24bf704baa5d1025337cc249c0",
+      "merged_at": null,
+      "updated_at": "2026-11-12T18:16:22Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "number": 1,
+      "title": "Preserve worksheet cache types and add bounded legacy Word conversion",
+      "state": "closed",
+      "draft": true,
+      "head_sha": "54f0f8de01416640560519aa9d732f668f603709",
+      "head_ref": "feature/office-fidelity-gap-closure-20261112",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "merge_sha": "54f0f8de01416640560519aa9d732f668f603709",
+      "merged_at": "2026-11-12T11:37:16Z",
+      "updated_at": "2026-11-12T15:28:23Z",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    }
+  ],
+  "upstream_branches": [
+    {
+      "branch": "ci/flutter-workspace",
+      "sha": "aca2f66941832bd0b19b436baeab1656a1b7de98",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "cursor/class-certificates-2db8",
+      "sha": "f45099688e7a3f67a1302efdb442830d052f2240",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "cursor/cloud-agent-1790580069020-0rk1h",
+      "sha": "9930be8df44ffe117fb22778c514eea0ee73ce21",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    },
+    {
+      "branch": "main",
+      "sha": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+      "disposition": "contained_by_ancestry",
+      "contained_before_integration": true
+    }
+  ],
+  "verification_completed_at_utc": "2026-11-18T14:43:23.055297+00:00",
+  "counts": {
+    "fork_branches": 203,
+    "pull_request_heads": 164,
+    "upstream_branches": 4,
+    "fork_branch_dispositions": {
+      "contained_by_ancestry": 189,
+      "all_changed_files_identical_in_merged_pr_140": 1,
+      "all_commits_patch_equivalent": 10,
+      "identical_tree_already_integrated": 3
+    },
+    "pull_request_head_dispositions": {
+      "contained_by_ancestry": 150,
+      "identical_tree_already_integrated": 3,
+      "all_commits_patch_equivalent": 10,
+      "all_changed_files_identical_in_merged_pr_140": 1
+    },
+    "upstream_dispositions": {
+      "contained_by_ancestry": 4
+    }
+  },
+  "integration": {
+    "method": "Fast-forward review branch to existing PR #164 head; all new commits and old review history remain intact.",
+    "fast_forward_possible": true,
+    "new_commits": [
+      "4dceb86e9fae51877bb5b7dc01e7a8bc721cb6ea Integrate current review and golden-host branches before native spelling continuation [skip ci]",
+      "80168fd5605e0c519b26f35b775bec85ef0692b1 Reconcile current Office branches before Zotero continuation [skip ci]",
+      "805414d7c58725274eca3371e26d16c78ad9de91 Add local CSL import search and stored selection export [skip ci]",
+      "3abf74caab362d0ba8fade9f5eb1f42d57ade9d0 Protect complete native spelling identifiers and preserve integration audit [skip ci]",
+      "6d19f988bf0175f1ff2a74114cce9b692a946357 Record reconciled refs and document offline Zotero workflows [skip ci]",
+      "604fa00427f88d18ffa96df71128c38e38502afb Preserve newly consolidated main without changing Zotero source [skip ci]",
+      "b27e3f2188a64cf51c5d244c925a71b017f06043 Recognize canonical German spellings and preserve projected text boundaries [skip ci]",
+      "df7265b8e0e41dee93cf6e595619d1875461b2f9 Save local Zotero engine and incoming integration evidence [skip ci]",
+      "f482b06fc47545c8b03124c30ea78f54e8e4b9e5 Preserve latest qualified comparison work and clean spelling test analysis [skip ci]",
+      "6aa6ffb5043cd03b344e582bb6119a4da63823c7 Complete offline Zotero interaction tests and accessible layouts [skip ci]",
+      "0d549fde73d139cfe329777cd566c8d8365f2e93 Finish strict formatting for Zotero snapshot regressions [skip ci]",
+      "b2bcfc23e692476d16d9a7a534ea95a93ae94cd3 Integrate observed spelling and document comparison frontier [skip ci]",
+      "d395de7c73b6d2acaf251d3d76fd0ba8a94ad266 Save complete local Zotero and comparison qualification [skip ci]",
+      "640d7b7a6ae115297a6e3b7a73d0a2a6c6e13033 Save final Zotero report and complete local validation evidence [skip ci]",
+      "fb1fd4dc3edda824c3e043c035dbfad1f0fe0869 Retain complete validation logs in evidence bundle [skip ci]"
+    ],
+    "new_native_spelling_head": "f482b06fc47545c8b03124c30ea78f54e8e4b9e5",
+    "native_spelling_included": true,
+    "main_sha": "f383c826205e321eda3ed3bdbcd584e9a2d4da14",
+    "main_included": true,
+    "target_tree": "d75c06607da4074dbcb153d90c7d99cd59107ce7",
+    "conflicts": [],
+    "remaining_integration_gaps": [],
+    "production_and_test_changes": [
+      "M\tdocs/zotero-support.md",
+      "M\tdocs/zotero-validation.md",
+      "M\tpackages/quds_office_editor/CHANGELOG.md",
+      "M\tpackages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart",
+      "A\tpackages/quds_office_editor/lib/src/embed/word_zotero_import.dart",
+      "A\tpackages/quds_office_editor/lib/src/embed/word_zotero_snapshot.dart",
+      "M\tpackages/quds_office_editor/lib/src/proofing/platform_spelling_provider.dart",
+      "A\tpackages/quds_office_editor/test/platform_spelling_identifier_review_test.dart",
+      "A\tpackages/quds_office_editor/test/platform_spelling_identifiers_test.dart",
+      "A\tpackages/quds_office_editor/test/platform_spelling_vocabulary_unicode_test.dart",
+      "A\tpackages/quds_office_editor/test/word_zotero_import_search_test.dart",
+      "A\tpackages/quds_office_editor/test/word_zotero_snapshot_test.dart",
+      "M\tpackages/quds_office_engine/CHANGELOG.md",
+      "M\tpackages/quds_office_engine/lib/src/proofing/german_spelling.dart",
+      "A\tpackages/quds_office_engine/test/proofing/german_spelling_projection_test.dart",
+      "M\tpackages/quds_office_engine/tool/check_native_spelling.dart"
+    ],
+    "note": "This audit records the integration candidate and its ancestry. Root performs and confirms branch mutation separately."
+  },
+  "methods": [
+    "GitHub plugin paginated REST inventory: 203 fork branches (100/100/3), 164 PRs including all states (100/64), 4 upstream branches.",
+    "Fetched every fork PR head and upstream branch into local remote refs and verified exact identity against REST inventory.",
+    "Local git ancestry checked for every branch, PR head, and upstream tip against the integration candidate.",
+    "Non-ancestral legacy refs reverified with git cherry patch equivalence, exact tree identity, or exact changed-file blob identity against preserved merged PR #140."
+  ],
+  "github_actions": {
+    "queried": false,
+    "waited": false,
+    "dispatched": false
+  },
+  "remote_mutations_by_audit_agent": false
+}

@@ -1,0 +1,55 @@
+{
+  "assembled_at_utc": "2026-11-18T19:32:51.899658+00:00",
+  "source_commit": "bfa88aab88a74028285619dfa07f3a81868fe59b",
+  "source_tree": "3418afd634efcaaa14c4712103f69ae5e817bffd",
+  "original": {
+    "runtime_receipt": "original/runtime.json",
+    "workspace_lock": "original/workspace-pubspec.lock",
+    "workspace_lock_sha256": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130",
+    "workspace_packages": 111,
+    "verified_hosted_archives": 162,
+    "baseline_lock_source": "docs/validation/proofing-20261116/integration-resume/workspace-pubspec.lock"
+  },
+  "final": {
+    "runtime_receipt": "runtime.json",
+    "workspace_lock": "workspace-pubspec.lock",
+    "workspace_lock_sha256": "43261dbd4acce9c423c8f19f5c86841a9f05aff3b3b968c94a7b48f94c9f8239",
+    "workspace_packages": 121,
+    "verified_hosted_archives": 168
+  },
+  "late_merge": {
+    "observed_mail_commit": "86d6f5078c95a585dda70f4acd8bc9588be62844",
+    "dependency_update_local_commit": "20090caada5d8309e30ec0065c5ce1853aaaf72d",
+    "dependency_update_tree": "3418afd634efcaaa14c4712103f69ae5e817bffd",
+    "published_equivalent_commit": "bfa88aab88a74028285619dfa07f3a81868fe59b",
+    "published_tree": "3418afd634efcaaa14c4712103f69ae5e817bffd",
+    "added_hosted_archives": 6,
+    "added_path_dependency": "enough_mail",
+    "changed_or_removed_existing_lock_entries": 0
+  },
+  "scripts": {
+    "historical_bootstrap": "scripts/bootstrap_runtime.py.gz",
+    "historical_update": "scripts/refresh_mail_runtime.py.gz",
+    "replay_adapter": "restore_runtime.py",
+    "replay_adapter_executed": false,
+    "replay_adapter_validation": "Python AST syntax parse and static replacement assertions only; no Dart/Flutter launch during packaging."
+  },
+  "scope": "Runtime provenance only. No SDK binaries, package cache, user configuration, full process environment, or acceptance logs included.",
+  "credential_scan": {
+    "method": "Inspect explicit allowlist of runtime/development artifacts; scan uncompressed bytes for common private keys, service tokens, authenticated URLs, authorization values and credential assignments. Environment helper contains only runtime paths, analytics suppressions, CI and PATH.",
+    "patterns": [
+      "private_key",
+      "github_token",
+      "openai_key",
+      "slack_token",
+      "aws_access_key",
+      "jwt",
+      "authenticated_url",
+      "authorization_value",
+      "credential_assignment"
+    ],
+    "matches": 0,
+    "redactions": 0
+  },
+  "github_actions_queried": false
+}
