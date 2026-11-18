@@ -4,6 +4,13 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Recognize decomposed accented forms of all shipped German dictionary letters,
+  including Joël and Škoda, and normalize accents separated by soft hyphens.
+  Personal and ignored words share the same case-sensitive comparison.
+- Keep soft hyphens from exposing links, email, code and numeric/connector
+  identifier fragments to German spelling corrections. Preserve exact source
+  offsets and complete graphemes, including Unicode Prepend characters.
+
 - Add bounded, read-only Word document comparison with paragraph alignment,
   grapheme-safe inline differences, revision text projections, modeled
   formatting/structure comparisons, stable locations and JSON reports.

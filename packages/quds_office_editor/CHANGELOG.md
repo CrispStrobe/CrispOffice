@@ -13,6 +13,10 @@ All notable changes to `quds_office_editor` are documented here.
 - Keep Zotero import controls, Library content and complete status/error
   messages usable in narrow windows with enlarged text.
 
+- Protect complete identifiers and numeric/connector-containing spans returned
+  by native spell checkers, including marked and prepended Unicode clusters.
+  Keep surrounding prose, explicit hyphen parts and CJK words reviewable.
+
 - Add a document review workspace with reviewer attribution, author/type/text
   filters, undoable filtered accept/reject, story-aware navigation, and
   original/final paragraph previews. Compare two independently picked Word
@@ -20,6 +24,8 @@ All notable changes to `quds_office_editor` are documented here.
 - Replace the mutating controller comparison helper with a read-only result;
   preserve source documents, mark stale reports, and support narrow LTR/RTL
   review layouts and viewing mode.
+- Reject incomplete or foreign Word document XML before comparison, so damaged
+  sources cannot silently import as empty documents and appear unchanged.
 
 - Keep exact reviewed macOS pixel references separate from Linux references.
 
