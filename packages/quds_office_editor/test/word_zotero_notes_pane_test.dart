@@ -169,6 +169,11 @@ Future<void> _select(
   WmlNote note,
   TextSelection selection,
 ) async {
+  // Notes and proofing controls share a scroll view. Large text can place the
+  // editor below the viewport, so reveal it before exercising its selection.
+  await tester.ensureVisible(_field(note));
+  await tester.pump();
+  expect(_field(note).hitTestable(), findsOneWidget);
   await tester.tap(_field(note));
   await tester.pump();
   tester.widget<TextField>(_field(note)).controller!.selection = selection;

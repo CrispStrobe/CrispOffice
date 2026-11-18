@@ -1,7 +1,7 @@
 {
   "branch": "codex/zotero-word-parity-20261118",
   "pull_request": 173,
-  "through_commit": "f40c667adb8f7e721d498f16de4531f6d08c8f7d",
+  "through_commit": "9547b087011695efa43014a64b128369b319e0f6",
   "github_actions": "Never queried or awaited",
   "checkpoints": [
     {
@@ -47,6 +47,10 @@
     {
       "sha": "f40c667adb8f7e721d498f16de4531f6d08c8f7d",
       "purpose": "Native research lists, numbering undo snapshots, restored runtime and focusedIME evidence,98file qualification plan"
+    },
+    {
+      "sha": "9547b087011695efa43014a64b128369b319e0f6",
+      "purpose": "Numbering isolation/XML-order fixes; first frozen98file diagnostic preserved with explicit failures"
     }
   ]
 }

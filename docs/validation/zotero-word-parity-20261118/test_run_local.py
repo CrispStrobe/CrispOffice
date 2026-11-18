@@ -6,7 +6,9 @@ from pathlib import Path
 import tempfile
 import unittest
 
-from run_local import counts, python_counts, validate_plan
+from run_local import (
+    counts, python_counts, validate_plan, verified_whitespace_exceptions,
+)
 
 
 def events():
@@ -268,6 +270,55 @@ class FrozenPlanTests(unittest.TestCase):
         self.plan['support_tests'] = {'example': 'tools/support_test.py'}
         with self.assertRaises(ValueError):
             validate_plan(self.plan, self.repo, self.tracked)
+
+
+class VerbatimWhitespaceTests(unittest.TestCase):
+    def setUp(self):
+        self.entry = {
+            'path': 'docs/unmaterialized/original-notice.txt',
+            'git_blob': 'a' * 40,
+            'reason': 'Preserve the distributed notice byte-for-byte.',
+        }
+        self.tracked = {self.entry['path']}
+
+    def test_pinned_tracked_blob_needs_no_materialized_file(self):
+        lookups = []
+
+        def head_blob(path):
+            lookups.append(path)
+            return 'a' * 40
+
+        self.assertFalse(Path(self.entry['path']).exists())
+        result = verified_whitespace_exceptions([self.entry], self.tracked, head_blob)
+        self.assertEqual(result, [self.entry])
+        self.assertEqual(lookups, [self.entry['path']])
+
+    def test_changed_blob_cannot_reuse_the_whitespace_exception(self):
+        with self.assertRaisesRegex(ValueError, 'Excepted blob changed'):
+            verified_whitespace_exceptions([self.entry], self.tracked, lambda _: 'b' * 40)
+
+    def test_duplicate_exception_is_rejected(self):
+        with self.assertRaisesRegex(ValueError, 'Duplicate whitespace exception'):
+            verified_whitespace_exceptions(
+                [self.entry, dict(self.entry)], self.tracked, lambda _: 'a' * 40)
+
+    def test_absolute_traversal_backslash_and_noncanonical_paths_are_rejected(self):
+        for path in ('../outside.txt', '/absolute.txt', 'docs/./notice.txt',
+                     'docs/../notice.txt', 'docs//notice.txt', 'docs\\notice.txt', ''):
+            with self.subTest(path=path):
+                entry = {**self.entry, 'path': path}
+                # Even an alleged tracked name cannot bypass path validation.
+                with self.assertRaisesRegex(ValueError, 'canonical relative path'):
+                    verified_whitespace_exceptions([entry], {path}, lambda _: 'a' * 40)
+
+    def test_untracked_unpinned_or_unexplained_exception_is_rejected(self):
+        with self.assertRaisesRegex(ValueError, 'not a tracked file'):
+            verified_whitespace_exceptions([self.entry], set(), lambda _: 'a' * 40)
+        for change in ({'git_blob': 'HEAD'}, {'git_blob': None}, {'reason': ''}, {'reason': None}):
+            with self.subTest(change=change):
+                with self.assertRaises(ValueError):
+                    verified_whitespace_exceptions(
+                        [{**self.entry, **change}], self.tracked, lambda _: 'a' * 40)
 
 
 if __name__ == '__main__':

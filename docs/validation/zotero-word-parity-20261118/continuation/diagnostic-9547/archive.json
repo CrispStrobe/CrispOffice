@@ -1,0 +1,11 @@
+{
+  "archive": "complete-results.tar.gz",
+  "sha256": "ce1b7d1073a2a89ee5a8396459fbf26fac7af31b71a73dbdc5b4f4fa0342fb9e",
+  "size": 306155,
+  "source_commit": "9547b087011695efa43014a64b128369b319e0f6",
+  "accepted": false,
+  "failures": [
+    "six unchanged provenance/license files triggered the broad whitespace check",
+    "one narrow RTL fixture tapped below the visible viewport"
+  ]
+}
