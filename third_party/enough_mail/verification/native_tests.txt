@@ -1,0 +1,172 @@
+00:00 +0: loading test/quds_portable_mime_test.dart
+00:00 +0: test/quds_portable_mime_test.dart: public portable entry parses an original RFC fixture
+00:00 +1: test/quds_portable_mime_test.dart: public portable entry parses an original RFC fixture
+00:00 +2: test/quds_portable_mime_test.dart: public portable entry parses an original RFC fixture
+00:00 +3: test/quds_portable_mime_test.dart: public portable entry parses an original RFC fixture
+00:00 +4: test/quds_portable_mime_test.dart: public portable entry parses an original RFC fixture
+00:00 +5: test/quds_portable_mime_test.dart: public portable entry parses an original RFC fixture
+00:00 +6: test/quds_portable_mime_test.dart: public portable entry parses an original RFC fixture
+00:00 +7: test/quds_portable_mime_test.dart: public portable entry parses an original RFC fixture
+00:00 +8: test/mime_message_test.dart: parse tests multipart/alternative  1
+00:00 +9: test/quds_portable_mime_test.dart: malformed input emits redacted codes with no console output
+00:00 +10: test/quds_portable_mime_test.dart: malformed input emits redacted codes with no console output
+00:00 +11: test/mime_message_test.dart: parse tests complex multipart example from rfc2049 appendix A
+00:00 +12: test/quds_portable_mime_test.dart: diagnostics stay isolated across concurrent async operations
+00:00 +13: test/mime_message_test.dart: parse tests realworld maillist-example 1
+00:00 +14: test/mime_message_test.dart: parse tests realworld maillist-example 1
+00:00 +15: test/mime_message_test.dart: parse tests realworld maillist-example 1
+00:00 +16: test/quds_portable_mime_test.dart: undefined single-byte charset slots never become question marks
+00:00 +17: test/mime_message_test.dart: parse tests realworld maillist-example 2
+00:00 +18: test/quds_portable_mime_test.dart: dates reject calendar, clock, zone and weekday normalization
+00:00 +19: test/mime_message_test.dart: parse tests Realworld PGP Message Test
+00:00 +20: test/quds_portable_mime_test.dart: RFC 2231 preserves characters split across encoded sections
+00:00 +21: test/mime_message_test.dart: header tests https://tools.ietf.org/html/rfc2047 example 1
+00:00 +22: test/mime_message_test.dart: header tests https://tools.ietf.org/html/rfc2047 example 1
+00:00 +23: test/mime_message_test.dart: header tests https://tools.ietf.org/html/rfc2047 example 2
+00:00 +24: test/mime_message_test.dart: Header tests header?.render() short line
+00:00 +25: test/mime_message_test.dart: Header tests header?.render() long line 1
+00:00 +26: test/mime_message_test.dart: Header tests header?.render() long line 2
+00:00 +27: test/mime_message_test.dart: Header tests header?.render() long line 3
+00:00 +28: test/mime_message_test.dart: Header tests header?.render() long line without split pos
+00:00 +29: test/mime_message_test.dart: decodeSender() From
+00:00 +30: test/mime_message_test.dart: decodeSender() Reply To
+00:00 +31: test/mime_message_test.dart: decodeSender() Combine Reply-To, Sender and From
+00:00 +32: test/mime_message_test.dart: isFrom() From
+00:00 +33: test/mime_message_test.dart: isFrom() From with + Alias
+00:00 +34: test/mime_message_test.dart: isFrom() Combine Reply-To, Sender and From
+00:00 +35: test/mime_message_test.dart: ContentDispositionHeader tests render()
+00:00 +36: test/mime_message_test.dart: ContentDispositionHeader tests listContentInfo() 1
+00:00 +37: test/mime_message_test.dart: ContentDispositionHeader tests listContentInfo() 2
+00:00 +38: test/mime_message_test.dart: ContentDispositionHeader tests apple message with image attachment
+00:00 +39: test/mime_message_test.dart: RFC822 tests UTF8 message
+00:00 +40: test/mime_message_test.dart: RFC822 tests cp-1253 message
+00:00 +41: test/mime_robustness_test.dart: quoted-printable malformed sequences never throw
+00:00 +42: test/mime_robustness_test.dart: quoted-printable malformed encoded words in headers are kept as is
+00:00 +43: test/mime_robustness_test.dart: base64 ignores invalid characters and fixes padding
+00:00 +44: test/mime_robustness_test.dart: base64 bare LF base64 attachments decode from binary data
+00:00 +45: test/mime_robustness_test.dart: binary transfer encodings binary and 8bit bodies are returned byte for byte
+00:00 +46: test/mime_robustness_test.dart: binary transfer encodings quoted-printable attachments are decoded from binary data
+00:00 +47: test/mime_robustness_test.dart: parts getPartWithContentId accepts any cid notation
+00:00 +48: test/mime_robustness_test.dart: parts text lookup ignores attached messages and text attachments
+00:00 +49: test/mime_robustness_test.dart: header parameters are split at unquoted semicolons only and trimmed
+00:00 +50: test/mime_robustness_test.dart: header parameters decodes RFC 2231 encoded and continued parameters
+00:00 +51: test/mime_robustness_test.dart: header parameters a message/rfc822 part with astral display names parses
+00:00 +52: test/mime_boundary_test.dart: multipart boundaries delimiter in the middle of a line is content, not a boundary
+00:00 +53: test/mime_boundary_test.dart: multipart boundaries a boundary that is a prefix of another boundary does not match
+00:00 +54: test/mime_boundary_test.dart: multipart boundaries transport padding after the delimiter is tolerated
+00:00 +55: test/mime_boundary_test.dart: multipart boundaries binary path finds small parts and a missing closing delimiter
+00:00 +56: test/mime_boundary_test.dart: multipart boundaries message/rfc822 without a header separator does not throw
+00:00 +57: test/mime_boundary_test.dart: multipart boundaries binary rfc822 boundary quote search stays in the header
+00:00 +58: test/mime_boundary_test.dart: multipart boundaries deeply nested multiparts are parsed up to the depth limit
+00:00 +59: test/mime_bare_lf_test.dart: MimeMessage with bare LF (nostr-mail-js output) parses headers with bare LF
+00:01 +60: test/mime_bare_lf_test.dart: MimeMessage with bare LF (nostr-mail-js output) parses From address with bare LF
+00:01 +61: test/mime_bare_lf_test.dart: MimeMessage with bare LF (nostr-mail-js output) parses multipart/alternative structure with bare LF
+00:01 +62: test/mime_bare_lf_test.dart: MimeMessage with bare LF (nostr-mail-js output) extracts plain text part with bare LF
+00:01 +63: test/mime_bare_lf_test.dart: MimeMessage with bare LF (nostr-mail-js output) extracts HTML part with bare LF
+00:01 +64: test/mime_bare_lf_test.dart: MimeMessage with bare LF (nostr-mail-js output) parses boundary correctly with bare LF
+00:01 +65: test/mime_bare_lf_test.dart: MimeMessage with bare LF (nostr-mail-js output) roundtrip: render and re-parse with bare LF
+00:01 +66: test/folding_test.dart: Should not fold long email address in From header
+00:01 +67: test/header_injection_test.dart: header injection line breaks in a subject cannot start another header
+00:01 +68: test/header_injection_test.dart: header injection line breaks in a custom header value are neutralised
+00:01 +69: test/header_injection_test.dart: header injection line breaks in an attachment file name are neutralised
+00:01 +70: test/header_injection_test.dart: header injection quotes in a display name cannot add recipients
+00:01 +71: test/header_injection_test.dart: header injection non-ASCII display names become bare phrase encoded-words
+00:01 +72: test/header_injection_test.dart: header injection an email address with unsafe characters cannot be encoded
+00:01 +73: test/header_injection_test.dart: SMTP envelope rejects addresses that could break out of MAIL FROM / RCPT TO
+00:01 +74: test/header_injection_test.dart: SMTP envelope send command refuses unsafe recipients and missing sender
+00:01 +75: test/header_injection_test.dart: SMTP envelope mailto links cannot smuggle recipients
+00:01 +76: test/remove_header_test.dart: bcc cleanup
+00:02 +77: test/mail_address_parser_test.dart: MailAddressParser resolves quoted-pairs in display names
+00:02 +78: test/codecs/base64_mail_codec_test.dart: Base64 decoding encoding.iso-8859-1 base64 directly repeated
+00:02 +79: test/codecs/base64_mail_codec_test.dart: Base64 decoding encoding.iso-8859-1 base64 directly repeated
+00:02 +80: test/codecs/base64_mail_codec_test.dart: Base64 decoding encoding.iso-8859-1 base64 directly repeated
+00:02 +81: test/codecs/base64_mail_codec_test.dart: Base64 decoding encoding.UTF-8.Base64 with non-devidable-by-four base64 text
+00:02 +82: test/codecs/base64_mail_codec_test.dart: Base64 decoding encoding.US-ASCII.Base64
+00:02 +83: test/codecs/base64_mail_codec_test.dart: Base64 encoding encodeHeader.base64 with ASCII input
+00:02 +84: test/codecs/base64_mail_codec_test.dart: Base64 encoding encodeHeader.base64 with UTF8 input
+00:02 +85: test/codecs/quoted_printable_mail_codec_test.dart: Quoted Printable decoding encodings.quoted-printable header
+00:02 +86: test/codecs/quoted_printable_mail_codec_test.dart: Quoted Printable decoding encodings.quoted-printable header no direct start
+00:02 +87: test/codecs/quoted_printable_mail_codec_test.dart: Quoted Printable decoding encoding.iso-8859-1 quoted printable
+00:02 +88: test/codecs/quoted_printable_mail_codec_test.dart: Quoted Printable decoding encoding.iso-8859-1 quoted printable not at start
+00:02 +89: test/codecs/quoted_printable_mail_codec_test.dart: Quoted Printable decoding encoding.UTF-8.QuotedPrintable with several codes
+00:02 +90: test/codecs/quoted_printable_mail_codec_test.dart: Quoted Printable decoding encoding.US-ASCII.QuotedPrintable
+00:02 +91: test/codecs/quoted_printable_mail_codec_test.dart: Quoted Printable decoding encoding.UTF-8.QuotedPrintable with line break
+00:02 +92: test/codecs/quoted_printable_mail_codec_test.dart: Quoted Printable decoding encoding latin1.QuotedPrintable
+00:02 +93: test/codecs/quoted_printable_mail_codec_test.dart: Quoted Printable encoding encodeHeader.quoted-printable with ASCII input
+00:02 +94: test/codecs/quoted_printable_mail_codec_test.dart: Quoted Printable encoding encodeHeader.quoted-printable with UTF8 input
+00:02 +95: test/codecs/mail_codec_test.dart: Wrap wrap short input
+00:02 +96: test/codecs/mail_codec_test.dart: Wrap wrap short input
+00:02 +97: test/codecs/mail_codec_test.dart: Wrap wrap short input
+00:02 +98: test/codecs/mail_codec_test.dart: Wrap wrap short input
+00:02 +99: test/codecs/mail_codec_test.dart: Wrap wrap short input
+00:02 +100: test/codecs/mail_codec_test.dart: Wrap wrap short input
+00:02 +101: test/codecs/mail_codec_test.dart: Wrap wrap short input
+00:02 +102: test/codecs/mail_codec_test.dart: Wrap wrap short input
+00:02 +103: test/codecs/mail_codec_test.dart: Wrap wrap short input
+00:02 +104: test/codecs/mail_codec_test.dart: Wrap wrap short input
+00:02 +105: test/codecs/mail_codec_test.dart: Wrap wrap short input
+00:02 +106: test/codecs/mail_codec_test.dart: Wrap wrap short input
+00:02 +107: test/codecs/mail_codec_test.dart: Wrap wrap short input
+00:02 +108: test/codecs/quoted_printable_mail_codec_test.dart: Quoted Printable binary decoding a trailing = has no hex digits to consume
+00:02 +109: test/codecs/quoted_printable_mail_codec_test.dart: Quoted Printable binary decoding decodeBinary routes quoted-printable here
+00:02 +110: test/codecs/mail_codec_test.dart: Wrap wrap long input
+00:02 +111: test/codecs/quoted_printable_mail_codec_test.dart: Quoted Printable binary decoding decodeBinary knows 7bit, which it used to fall through on
+00:02 +112: test/codecs/mail_codec_test.dart: Wrap wrap long input at word boundary
+00:02 +113: test/codecs/mail_codec_test.dart: Wrap wrap long input at word boundary
+00:02 +114: test/codecs/quoted_printable_mail_codec_test.dart: malformed truncated =XY escapes are preserved verbatim trailing "=A"
+00:02 +115: test/codecs/mail_codec_test.dart: Wrap wrap long input with line breaks
+00:02 +116: test/codecs/quoted_printable_mail_codec_test.dart: malformed truncated =XY escapes are preserved verbatim lone "=A" at end of a short input
+00:02 +117: test/codecs/mail_codec_test.dart: Wrap wrap long input with line breaks at beginning and end
+00:02 +118: test/codecs/quoted_printable_mail_codec_test.dart: malformed truncated =XY escapes are preserved verbatim valid multi-byte escape followed by truncated "=A"
+00:02 +119: test/codecs/mail_codec_test.dart: Wrap wrap long input with line break at 76
+00:02 +120: test/codecs/mail_codec_test.dart: Decode header decode 2 consecutive encoded words
+00:02 +121: test/codecs/mail_codec_test.dart: Decode header decode empty Q encoded header
+00:02 +122: test/codecs/mail_codec_test.dart: Decode header decode empty Base64 encoded header
+00:02 +123: test/codecs/mail_codec_test.dart: Decode header decode header with tab between decoded words
+00:02 +124: test/message_builder_test.dart: buildSimpleTextMessage Simple text message
+00:02 +125: test/message_builder_test.dart: buildSimpleTextMessage Simple text message with reply to message
+00:02 +126: test/message_builder_test.dart: multipart tests multipart/alternative with 2 text parts
+00:02 +127: test/mail/mail_account_test.dart: Serialization Test ServerConfig
+00:02 +128: test/mail/mail_account_test.dart: Serialization Test ServerConfig
+00:02 +129: test/message_builder_test.dart: multipart tests implicit multipart with binary attachment
+00:02 +130: test/mail/mail_account_test.dart: Serialization serialize account
+00:02 +131: test/mail/mail_account_test.dart: Serialization serialize account
+00:02 +132: test/mail/mail_account_test.dart: Serialization serialize account
+00:02 +133: test/mail/mail_account_test.dart: Serialization serialize account
+00:02 +134: test/message_builder_test.dart: reply reply just sender 1
+00:02 +135: test/mail/mail_account_test.dart: Serialization serialize OAuth account
+00:02 +136: test/mail/mail_account_test.dart: Serialization serialize OAuth account
+00:02 +137: test/message_builder_test.dart: reply reply simple text msg with quote
+00:02 +138: test/message_builder_test.dart: reply reply simple text msg with quote
+00:02 +139: test/message_builder_test.dart: reply reply simple text msg with quote
+00:02 +140: test/message_builder_test.dart: reply reply multipart text msg with quote
+00:02 +141: test/message_builder_test.dart: reply reply to myself
+00:02 +142: test/message_builder_test.dart: reply reply to myself with alias
+00:02 +143: test/message_builder_test.dart: reply reply to myself with plus alias
+00:02 +144: test/message_builder_test.dart: reply reply simple text msg with alias recognition
+00:02 +145: test/message_builder_test.dart: reply reply simple text msg with +alias recognition
+00:02 +146: test/message_builder_test.dart: forward forward simple text msg
+00:02 +147: test/message_builder_test.dart: forward forward multipart text msg
+00:02 +148: test/message_builder_test.dart: forward forward multipart msg with attachments
+00:02 +149: test/message_builder_test.dart: forward forward multipart msg with attachments without quote
+00:02 +150: test/message_builder_test.dart: File addFile
+00:02 +151: test/message_builder_test.dart: File addFile with large image
+00:03 +152: test/message_builder_test.dart: Binary addBinary
+00:03 +153: test/message_builder_test.dart: Helper methods createReplySubject
+00:03 +154: test/message_builder_test.dart: Helper methods createFowardSubject
+00:03 +155: test/message_builder_test.dart: Helper methods createRandomId
+00:03 +156: test/message_builder_test.dart: Helper methods fillTemplate
+00:03 +157: test/message_builder_test.dart: Content type MultiPart
+00:03 +158: test/message_builder_test.dart: mailto adddress, subject, body
+00:03 +159: test/message_builder_test.dart: mailto several adddresses
+00:03 +160: test/message_builder_test.dart: mailto to, subject, body
+00:03 +161: test/message_builder_test.dart: mailto address & to, subject, body
+00:03 +162: test/message_builder_test.dart: mailto address, cc, subject, body, in-reply-to
+00:03 +163: test/message_builder_test.dart: addMessagePart add text message
+00:03 +164: test/message_builder_test.dart: addMessagePart add text message with quotes in subject
+00:03 +165: test/message_builder_test.dart: addMessagePart add multipart/alternative message
+00:03 +166: test/message_builder_test.dart: addMessagePart add multipart/mixed message
+00:03 +167: test/message_builder_test.dart: addMessagePart real world test
+00:03 +168: test/message_builder_test.dart: MDNs buildReadReceipt
+00:03 +169: test/message_builder_test.dart: performance buildMimeMessage should be fast with 100KB body
+00:03 +170: All tests passed!

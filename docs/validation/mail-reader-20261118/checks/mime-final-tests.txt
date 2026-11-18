@@ -1,0 +1,96 @@
+00:00 +0: [VM, Kernel] loading test/eml_bytes_test.dart
+00:00 +0: [VM, Kernel] test/eml_bytes_test.dart: original input remains exact and cannot be mutated through aliases
+00:00 +1: [VM, Kernel] test/eml_bytes_test.dart: original input remains exact and cannot be mutated through aliases
+00:00 +2: [VM, Kernel] test/eml_bytes_test.dart: original input remains exact and cannot be mutated through aliases
+00:00 +3: [VM, Kernel] test/eml_bytes_test.dart: original input remains exact and cannot be mutated through aliases
+00:00 +4: [VM, Kernel] test/eml_bytes_test.dart: original input remains exact and cannot be mutated through aliases
+00:00 +5: [VM, Kernel] test/eml_bytes_test.dart: original input remains exact and cannot be mutated through aliases
+00:00 +6: [VM, Kernel] test/eml_bytes_test.dart: original input remains exact and cannot be mutated through aliases
+00:00 +7: [VM, Kernel] test/mime_parts_test.dart: multipart alternatives and RFC2231 attachment filename
+00:00 +8: [VM, Kernel] test/mime_parts_test.dart: multipart alternatives and RFC2231 attachment filename
+00:00 +9: [VM, Kernel] test/mime_parts_test.dart: multipart alternatives and RFC2231 attachment filename
+00:00 +10: [VM, Kernel] test/mime_parts_test.dart: multipart alternatives and RFC2231 attachment filename
+00:00 +11: [VM, Kernel] test/mime_parts_test.dart: multipart alternatives and RFC2231 attachment filename
+00:00 +12: [VM, Kernel] test/mime_parts_test.dart: multipart alternatives and RFC2231 attachment filename
+00:00 +13: [VM, Kernel] test/mime_parts_test.dart: alternative selection is deterministic and uses last supported type
+00:00 +14: [VM, Kernel] test/mime_parts_test.dart: text attachment does not become a message body
+00:00 +15: [VM, Kernel] test/mime_parts_test.dart: related root start parameter and local CID attachment mapping
+00:00 +16: [VM, Kernel] test/mime_parts_test.dart: boundary prefixes within content are not recognized as delimiters
+00:00 +17: [VM, Kernel] test/mime_parts_test.dart: missing closing boundary is partial rather than silent success
+00:00 +18: [VM, Kernel] test/mime_parts_test.dart: duplicate structural headers and missing boundaries fail closed
+00:00 +19: [VM, Kernel] test/mime_parts_test.dart: safe display names remove paths and bidi control characters
+00:00 +20: [VM, Kernel] test/mime_limits_test.dart: raw limit is enforced before retaining another copy
+00:00 +21: [VM, Kernel] test/mime_limits_test.dart: decoded and body budgets count alternatives cumulatively
+00:00 +22: [VM, Kernel] test/mime_limits_test.dart: attachment decoded size is checked before base64 allocation
+00:00 +23: [VM, Kernel] test/mime_limits_test.dart: part and attachment count bounds stop traversal
+00:00 +24: [VM, Kernel] test/mime_limits_test.dart: depth bounds are checked before entering child headers
+00:00 +25: [VM, Kernel] test/mime_limits_test.dart: unsupported attachments still count toward the attachment budget
+00:00 +26: [VM, Kernel] test/mime_limits_test.dart: folded fields and cumulative header bytes are bounded
+00:00 +27: [VM, Kernel] test/mime_limits_test.dart: decoded legacy charset expansion respects rendering bytes
+00:00 +28: [VM, Kernel] test/mime_limits_test.dart: a cancelled parse never starts copying or projecting source
+00:00 +29: [VM, Kernel] test/mime_limits_test.dart: invalid caller budgets are programmer errors
+00:00 +30: [VM, Kernel] test/mime_review_regressions_test.dart: encoded Q word can start with an escaped UTF8 octet
+00:00 +31: [VM, Kernel] test/mime_review_regressions_test.dart: rendered bytes accumulate across every MIME alternative
+00:07 +32: [Node.js, Dart2Js] loading test/eml_bytes_test.dart
+Hint: When run on the command-line, the compiled output might require a preamble file located in:
+  <sdk>/lib/_internal/js_runtime/lib/preambles.
+Compiled 8,601,175 input bytes (5,437,418 characters source) to 1,398,982 characters JavaScript in 7.36 seconds
+
+00:08 +32: [Node.js, Dart2Js] test/eml_bytes_test.dart: original input remains exact and cannot be mutated through aliases
+00:08 +33: [Node.js, Dart2Js] test/eml_bytes_test.dart: non UTF-8 source and LF line endings survive display decoding
+00:08 +34: [Node.js, Dart2Js] test/eml_bytes_test.dart: identity attachment bytes retain internal CRLF and high bytes
+00:08 +35: [Node.js, Dart2Js] test/eml_bytes_test.dart: signed MIME source exports without canonicalizing any octet
+00:09 +36: [Node.js, Dart2Js] loading test/mime_parts_test.dart
+Hint: When run on the command-line, the compiled output might require a preamble file located in:
+  <sdk>/lib/_internal/js_runtime/lib/preambles.
+Compiled 8,602,276 input bytes (5,438,519 characters source) to 1,374,415 characters JavaScript in 8.24 seconds
+
+00:09 +36: [Node.js, Dart2Js] test/mime_parts_test.dart: multipart alternatives and RFC2231 attachment filename
+00:09 +37: [Node.js, Dart2Js] test/mime_parts_test.dart: alternative selection is deterministic and uses last supported type
+00:10 +38: [Node.js, Dart2Js] test/mime_parts_test.dart: text attachment does not become a message body
+00:10 +39: [Node.js, Dart2Js] loading test/portable_import_test.dart
+Hint: When run on the command-line, the compiled output might require a preamble file located in:
+  <sdk>/lib/_internal/js_runtime/lib/preambles.
+Compiled 8,599,085 input bytes (5,435,328 characters source) to 1,365,427 characters JavaScript in 9.65 seconds
+
+00:10 +39: [Node.js, Dart2Js] test/mime_parts_test.dart: related root start parameter and local CID attachment mapping
+00:10 +40: [Node.js, Dart2Js] test/mime_parts_test.dart: boundary prefixes within content are not recognized as delimiters
+00:10 +41: [Node.js, Dart2Js] test/mime_parts_test.dart: missing closing boundary is partial rather than silent success
+00:10 +42: [Node.js, Dart2Js] test/mime_parts_test.dart: duplicate structural headers and missing boundaries fail closed
+00:10 +42: [Node.js, Dart2Js] loading test/mime_encodings_test.dart
+Hint: When run on the command-line, the compiled output might require a preamble file located in:
+  <sdk>/lib/_internal/js_runtime/lib/preambles.
+Compiled 8,603,061 input bytes (5,439,304 characters source) to 1,378,594 characters JavaScript in 9.48 seconds
+
+00:10 +43: [Node.js, Dart2Js] test/mime_parts_test.dart: safe display names remove paths and bidi control characters
+00:10 +44: [Node.js, Dart2Js] test/portable_import_test.dart: both supported public MIME imports work without native libraries
+00:10 +45: [Node.js, Dart2Js] test/mime_encodings_test.dart: encoded subject, display name, date and text project through public MIME
+00:10 +46: [Node.js, Dart2Js] test/mime_encodings_test.dart: strict UTF8, ASCII, Latin1 and Windows1252 bodies
+00:10 +47: [Node.js, Dart2Js] test/mime_encodings_test.dart: unknown header/body charset has diagnostics and source fallback
+00:10 +48: [Node.js, Dart2Js] test/mime_encodings_test.dart: malformed UTF8 is never silently replaced
+00:10 +49: [Node.js, Dart2Js] test/mime_encodings_test.dart: malformed transfer alphabets, padding and QP escapes fail explicitly
+00:10 +50: [Node.js, Dart2Js] test/mime_encodings_test.dart: malformed words and dates do not leak private source to print
+00:10 +51: [Node.js, Dart2Js] test/mime_encodings_test.dart: unknown transfer encoding is not passed through as exact content
+00:16 +52: [Node.js, Dart2Js] loading test/mime_limits_test.dart
+Hint: When run on the command-line, the compiled output might require a preamble file located in:
+  <sdk>/lib/_internal/js_runtime/lib/preambles.
+Compiled 8,602,672 input bytes (5,438,915 characters source) to 1,391,764 characters JavaScript in 7.82 seconds
+
+00:17 +52: [Node.js, Dart2Js] test/mime_limits_test.dart: raw limit is enforced before retaining another copy
+00:17 +53: [Node.js, Dart2Js] test/mime_limits_test.dart: decoded and body budgets count alternatives cumulatively
+00:17 +54: [Node.js, Dart2Js] test/mime_limits_test.dart: attachment decoded size is checked before base64 allocation
+00:17 +55: [Node.js, Dart2Js] test/mime_limits_test.dart: part and attachment count bounds stop traversal
+00:17 +56: [Node.js, Dart2Js] test/mime_limits_test.dart: depth bounds are checked before entering child headers
+00:17 +57: [Node.js, Dart2Js] test/mime_limits_test.dart: unsupported attachments still count toward the attachment budget
+00:17 +58: [Node.js, Dart2Js] test/mime_limits_test.dart: folded fields and cumulative header bytes are bounded
+00:17 +59: [Node.js, Dart2Js] test/mime_limits_test.dart: decoded legacy charset expansion respects rendering bytes
+00:17 +60: [Node.js, Dart2Js] test/mime_limits_test.dart: a cancelled parse never starts copying or projecting source
+00:17 +61: [Node.js, Dart2Js] test/mime_limits_test.dart: invalid caller budgets are programmer errors
+00:19 +62: [Node.js, Dart2Js] loading test/mime_review_regressions_test.dart
+Hint: When run on the command-line, the compiled output might require a preamble file located in:
+  <sdk>/lib/_internal/js_runtime/lib/preambles.
+Compiled 8,599,701 input bytes (5,435,944 characters source) to 1,370,781 characters JavaScript in 8.64 seconds
+
+00:19 +62: [Node.js, Dart2Js] test/mime_review_regressions_test.dart: encoded Q word can start with an escaped UTF8 octet
+00:19 +63: [Node.js, Dart2Js] test/mime_review_regressions_test.dart: rendered bytes accumulate across every MIME alternative
+00:19 +64: All tests passed!

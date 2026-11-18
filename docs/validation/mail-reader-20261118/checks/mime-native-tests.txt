@@ -1,0 +1,32 @@
+00:00 +0: loading test/eml_bytes_test.dart
+00:00 +0: test/eml_bytes_test.dart: original input remains exact and cannot be mutated through aliases
+00:00 +1: test/portable_import_test.dart: both supported public MIME imports work without native libraries
+00:00 +2: test/portable_import_test.dart: both supported public MIME imports work without native libraries
+00:00 +3: test/portable_import_test.dart: both supported public MIME imports work without native libraries
+00:00 +4: test/portable_import_test.dart: both supported public MIME imports work without native libraries
+00:00 +5: test/mime_parts_test.dart: multipart alternatives and RFC2231 attachment filename
+00:00 +6: test/mime_encodings_test.dart: encoded subject, display name, date and text project through public MIME
+00:00 +7: test/mime_encodings_test.dart: encoded subject, display name, date and text project through public MIME
+00:00 +8: test/mime_encodings_test.dart: encoded subject, display name, date and text project through public MIME
+00:00 +9: test/mime_encodings_test.dart: encoded subject, display name, date and text project through public MIME
+00:00 +10: test/mime_encodings_test.dart: encoded subject, display name, date and text project through public MIME
+00:00 +11: test/mime_encodings_test.dart: encoded subject, display name, date and text project through public MIME
+00:00 +12: test/mime_encodings_test.dart: encoded subject, display name, date and text project through public MIME
+00:00 +13: test/mime_encodings_test.dart: encoded subject, display name, date and text project through public MIME
+00:00 +14: test/mime_encodings_test.dart: strict UTF8, ASCII, Latin1 and Windows1252 bodies
+00:00 +15: test/mime_encodings_test.dart: unknown header/body charset has diagnostics and source fallback
+00:00 +16: test/mime_encodings_test.dart: malformed UTF8 is never silently replaced
+00:00 +17: test/mime_encodings_test.dart: malformed transfer alphabets, padding and QP escapes fail explicitly
+00:00 +18: test/mime_encodings_test.dart: malformed words and dates do not leak private source to print
+00:00 +19: test/mime_encodings_test.dart: unknown transfer encoding is not passed through as exact content
+00:00 +20: test/mime_limits_test.dart: raw limit is enforced before retaining another copy
+00:00 +21: test/mime_limits_test.dart: decoded and body budgets count alternatives cumulatively
+00:00 +22: test/mime_limits_test.dart: attachment decoded size is checked before base64 allocation
+00:00 +23: test/mime_limits_test.dart: part and attachment count bounds stop traversal
+00:00 +24: test/mime_limits_test.dart: depth bounds are checked before entering child headers
+00:00 +25: test/mime_limits_test.dart: unsupported attachments still count toward the attachment budget
+00:00 +26: test/mime_limits_test.dart: folded fields and cumulative header bytes are bounded
+00:00 +27: test/mime_limits_test.dart: decoded legacy charset expansion respects rendering bytes
+00:00 +28: test/mime_limits_test.dart: a cancelled parse never starts copying or projecting source
+00:00 +29: test/mime_limits_test.dart: invalid caller budgets are programmer errors
+00:00 +30: All tests passed!

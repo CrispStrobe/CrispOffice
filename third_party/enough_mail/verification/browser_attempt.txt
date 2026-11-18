@@ -1,0 +1,15 @@
+Command: dart test test/quds_portable_mime_test.dart --platform chrome --reporter expanded
+Browser wrapper: /usr/bin/chromium --no-sandbox --disable-dev-shm-usage
+Result: EXIT 1; no browser tests executed. Executor sandbox blocked Chromium startup.
+
+00:00 +0 -1: loading test/quds_portable_mime_test.dart [E]
+Failed to run Chrome: Chrome failed with exit code -6.
+[31:31:1118/195517.258208:FATAL:chrome/browser/process_singleton_posix.cc:297] Check failed: . socket() failed: Operation not permitted (1)
+[1118/195517.259792:ERROR:third_party/crashpad/crashpad/util/linux/scoped_ptrace_attach.cc:27] ptrace: Operation not permitted (1)
+[48:48:0100/000000.304832:ERROR:content/zygote/zygote_linux.cc:662] write: Broken pipe (32)
+[49:49:0100/000000.321856:ERROR:content/zygote/zygote_linux.cc:662] write: Broken pipe (32).
+package:test/src/runner/browser/browser.dart 146:11 new Browser.<fn>
+
+This attempt preceded the CJK import exclusion; no fixture had executed. The
+final source was subsequently compiled to JavaScript and exercised in Node.
+No browser/runtime network-denial qualification is claimed by that substitution.

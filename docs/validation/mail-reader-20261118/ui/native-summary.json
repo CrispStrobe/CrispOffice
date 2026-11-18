@@ -1,0 +1,128 @@
+{
+  "passed": 30,
+  "failed": 0,
+  "skipped": 0,
+  "files": 4,
+  "tests": [
+    {
+      "name": "actual example MIME bytes provide the displayed body, CID and exact attachment",
+      "result": "success"
+    },
+    {
+      "name": "disposing the view invalidates a pending explicit link decision",
+      "result": "success"
+    },
+    {
+      "name": "direct DTO plain/HTML bodies share one cumulative body budget",
+      "result": "success"
+    },
+    {
+      "name": "hostile HTML becomes inert text and explicit absolute link metadata",
+      "result": "success"
+    },
+    {
+      "name": "script raw text cannot smuggle fake nested style or image content",
+      "result": "success"
+    },
+    {
+      "name": "all CSS, event, srcset, SVG and image schemes are inert",
+      "result": "success"
+    },
+    {
+      "name": "link admission refuses encoded active schemes, protocol-relative, user info and controls",
+      "result": "success"
+    },
+    {
+      "name": "node and nesting rejection discards the entire partial projection",
+      "result": "success"
+    },
+    {
+      "name": "oversized text, body, header and input are explicitly rejected",
+      "result": "success"
+    },
+    {
+      "name": "decoded and attachment budgets are cumulative before presentation",
+      "result": "success"
+    },
+    {
+      "name": "CID PNG is admitted by exact identity without touching source snapshots",
+      "result": "success"
+    },
+    {
+      "name": "duplicate and unsupported CID inputs do not decode arbitrary images",
+      "result": "success"
+    },
+    {
+      "name": "PNG pixel bombs and truncated chunks are refused before native decode",
+      "result": "success"
+    },
+    {
+      "name": "cumulative CID pixels count unique images and refuse excess",
+      "result": "success"
+    },
+    {
+      "name": "plain alternative can be selected without changing original data",
+      "result": "success"
+    },
+    {
+      "name": "full and preview modes pass their actual raw budgets into the codec",
+      "result": "success"
+    },
+    {
+      "name": "search, selection and decoded copy include displayed headers and body",
+      "result": "success"
+    },
+    {
+      "name": "selection never splits a surrogate or combined grapheme",
+      "result": "success"
+    },
+    {
+      "name": "match limit is explicit and result replacement clears stale selection",
+      "result": "success"
+    },
+    {
+      "name": "switching body alternative preserves raw bytes and invalidates action revision",
+      "result": "success"
+    },
+    {
+      "name": "find chrome accepts arbitrary query and finds attachment names",
+      "result": "success"
+    },
+    {
+      "name": "runtime network denial is active, independently of the injected policy",
+      "result": "success"
+    },
+    {
+      "name": "hostile saved HTML causes zero policy and runtime outbound requests",
+      "result": "success"
+    },
+    {
+      "name": "link activation is denied until host policy explicitly approves it",
+      "result": "success"
+    },
+    {
+      "name": "late link approval cannot act on a replaced message or disposed view",
+      "result": "success"
+    },
+    {
+      "name": "attachment and source/hex callbacks receive exact immutable snapshots",
+      "result": "success"
+    },
+    {
+      "name": "custom RenderBox supports keyboard select/copy and meaningful semantics",
+      "result": "success"
+    },
+    {
+      "name": "render rejection remains visible with exact source fallback",
+      "result": "success"
+    },
+    {
+      "name": "compact enlarged RTL view preserves actions without overflow",
+      "result": "success"
+    },
+    {
+      "name": "bounded CID PNG decodes locally under runtime network denial",
+      "result": "success"
+    }
+  ]
+}

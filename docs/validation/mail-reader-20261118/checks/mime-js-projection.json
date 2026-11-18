@@ -1,0 +1,1 @@
+{"status":"complete","subject":"Original attachment fixture","plain":"Plain body","html":"<p>HTML body</p>","rawSha256":"54a74c51d3267f3277a8261ca963a8000d2edfa3be04998c45d210bb60b6e36b","attachments":[{"part":"1.2","name":"café.bin","sha256":"ff5d8507b6a72bee2debce2c0054798deaccdc5d8a1b945b6280ce8aa9cba52e","size":5}]}
