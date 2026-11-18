@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "updated_utc": "2026-11-18T06:14:37.567542+00:00",
-  "state": "native-provider-build-in-progress",
+  "updated_utc": "2026-11-18T06:16:54.528484+00:00",
+  "state": "native-sweep-in-progress",
   "branch": "codex/office-local-qualification-20261118",
   "resumed_remote_head": "c9d86b3e543f8ffa7c8114d31c57922f134188ef",
   "execution_checkout": "9d060658ee6be8ec97d73f56b9aec10d346b7952",
@@ -15,7 +15,28 @@
   "saved_canonical": "passed-224-files-4234-substantive-successes",
   "saved_supplemental_and_consumer_gates": "passed-independent-review-complete",
   "saved_native_prepare": "passed",
-  "native_sweep": "pending-prepare-completion",
+  "native_sweep": {
+    "state": "running",
+    "completed_arms": [
+      1
+    ],
+    "full_sweep_acceptance": false,
+    "final_guard_acceptance": false,
+    "summary": [
+      {
+        "threads": 1,
+        "exit_code": 0,
+        "p95_ms": 156.511,
+        "rss_mib": 275.8984375,
+        "engineering_budgets": {
+          "p95_at_most_500_ms": true,
+          "peak_rss_at_most_768_mib": true,
+          "gguf_at_most_160_mib": true,
+          "note": "GGUF size excludes sidecars; target hardware remains unqualified."
+        }
+      }
+    ]
+  },
   "final_acceptance": false,
   "actions_workflow_check_status_endpoint_calls": 0,
   "runtime_restoration": "independently-accepted",
@@ -33,5 +54,5 @@
     "checks": 257,
     "findings": 0
   },
-  "native_prepare": "running-new-workspace-build"
+  "native_prepare": "passed-new-workspace-23-controls-stable-aot-build"
 }
