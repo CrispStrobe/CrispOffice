@@ -18,6 +18,9 @@ import '../proofing/word_proofing.dart';
 import 'office_clipboard.dart';
 import 'office_theme.dart';
 
+/// The persistent review workspace shown beside (or below) a Word document.
+enum WordReviewPaneTab { proofing, changes }
+
 /// Live find/replace cursor shared by every host.
 class OfficeFindSession {
   /// OfficeFindSession API.
@@ -449,6 +452,35 @@ class WordEditorController extends OfficeController {
   final OfficeProofingVocabulary? _initialProofingVocabulary;
   final OfficeProofingService? _initialProofingService;
   String _revisionAuthor;
+  bool _reviewPaneVisible = false;
+  WordReviewPaneTab _reviewPaneTab = WordReviewPaneTab.proofing;
+  WordProofingIssue? _selectedProofingIssue;
+  ({WmlParagraph? paragraph, int offset, int? anchor, int? anchorParagraph})?
+  _proofingSelectionCaret;
+
+  /// Review chrome is session state and never marks the document dirty.
+  bool get reviewPaneVisible => _reviewPaneVisible;
+  WordReviewPaneTab get reviewPaneTab => _reviewPaneTab;
+
+  void openReviewPane({WordReviewPaneTab tab = WordReviewPaneTab.proofing}) {
+    if (isDisposed) return;
+    _reviewPaneVisible = true;
+    _reviewPaneTab = tab;
+    notifyListeners();
+  }
+
+  void closeReviewPane() {
+    if (!_reviewPaneVisible || isDisposed) return;
+    _reviewPaneVisible = false;
+    notifyListeners();
+    onRequestFocus?.call();
+  }
+
+  void setReviewPaneTab(WordReviewPaneTab tab) {
+    if (_reviewPaneTab == tab || isDisposed) return;
+    _reviewPaneTab = tab;
+    notifyListeners();
+  }
 
   /// Attribution for changes recorded from now on. Existing changes retain
   /// their original authors, including across undo and redo.
@@ -469,8 +501,9 @@ class WordEditorController extends OfficeController {
     return author;
   }
 
-  /// Offline German checkers are available immediately. Checking is opt-in;
-  /// hosts can configure additional local providers through the session.
+  /// Offline German checkers are available immediately. The shared editor
+  /// enables background checking unless the host/user has set a preference;
+  /// standalone controllers remain idle until a host requests a check.
   WordProofingSession get proofing {
     _proofing ??= WordProofingSession(
       document: () => document,
@@ -494,6 +527,10 @@ class WordEditorController extends OfficeController {
     _proofing?.refresh();
     super.refresh();
   }
+
+  /// Updates selection/scroll chrome without invalidating checked text. Use
+  /// [refresh] after a direct model edit that bypasses controller commands.
+  void refreshView() => notifyListeners();
 
   @override
   void dispose() {
@@ -7860,6 +7897,74 @@ class WordEditorController extends OfficeController {
   /// coverage. Findings never become document edits without an explicit choice.
   Future<WordProofingSummary> checkDocumentProofing() => proofing.checkNow();
 
+  /// Current review selection, rebound after a check of unchanged text. A
+  /// finding under the caret takes precedence, so the pane follows navigation
+  /// without moving focus or interrupting typing.
+  WordProofingIssue? get selectedProofingIssue {
+    final selected = _selectedProofingIssue;
+    final atCaret = proofingIssuesAtCaret;
+    WordProofingIssue? matching(Iterable<WordProofingIssue> issues) {
+      if (selected == null) return null;
+      for (final issue in issues) {
+        if (identical(issue.paragraph, selected.paragraph) &&
+            issue.sourceText == selected.sourceText &&
+            issue.language == selected.language &&
+            issue.finding.providerId == selected.finding.providerId &&
+            issue.finding.ruleId == selected.finding.ruleId &&
+            issue.finding.start == selected.finding.start &&
+            issue.finding.end == selected.finding.end) {
+          return issue;
+        }
+      }
+      return null;
+    }
+
+    final explicit = matching(proofing.summary.issues);
+    if (explicit != null && _proofingSelectionCaret == _proofingCaretPosition) {
+      return explicit;
+    }
+    return matching(atCaret) ??
+        atCaret.firstOrNull ??
+        explicit;
+  }
+
+  ({WmlParagraph? paragraph, int offset, int? anchor, int? anchorParagraph})
+  get _proofingCaretPosition {
+    final paragraphs = _paragraphs;
+    final current = caret;
+    final index = current.paragraphIndex;
+    return (
+      paragraph: index >= 0 && index < paragraphs.length ? paragraphs[index] : null,
+      offset: current.logicalIndex,
+      anchor: current.selectionAnchor,
+      anchorParagraph: current.selectionAnchorParagraph,
+    );
+  }
+
+  /// Selects a current finding. Unsupported canvas stories stay selected in
+  /// the pane; false means that no source range could be revealed.
+  bool selectProofingIssue(WordProofingIssue issue, {bool reveal = true}) {
+    if (isDisposed || !proofing.isCurrent(issue)) return false;
+    _selectedProofingIssue = issue;
+    final shown = reveal && revealProofingIssue(issue);
+    _proofingSelectionCaret = _proofingCaretPosition;
+    if (!shown) notifyListeners();
+    return shown;
+  }
+
+  /// Advances through the current findings, wrapping at either end.
+  void stepProofingIssue(int delta) {
+    if (delta == 0 || isDisposed) return;
+    final issues = proofing.summary.issues;
+    if (issues.isEmpty) return;
+    final selected = selectedProofingIssue;
+    final current = selected == null ? -1 : issues.indexOf(selected);
+    final next = current < 0
+        ? (delta > 0 ? delta - 1 : delta) % issues.length
+        : (current + delta) % issues.length;
+    selectProofingIssue(issues[next]);
+  }
+
   /// Changes the default language; explicit span languages remain authoritative.
   void setProofingLanguage(String value) {
     if (!config.allowsMutation) return;
@@ -8161,16 +8266,19 @@ class WordEditorController extends OfficeController {
   }
 
   /// Selects findings in supported canvas stories. Notes and alternate page
-  /// headers remain fully reviewable and correctable in the proofing dialog.
+  /// headers remain fully reviewable and correctable in the review pane.
   bool revealProofingIssue(WordProofingIssue issue) {
     if (!config.allowsSelection || !proofing.isCurrent(issue)) return false;
     commitPendingEdits();
     if (!proofing.isCurrent(issue)) return false;
-    return _revealParagraphRange(
+    _selectedProofingIssue = issue;
+    final revealed = _revealParagraphRange(
       issue.paragraph,
       issue.finding.start,
       issue.finding.end,
     );
+    _proofingSelectionCaret = _proofingCaretPosition;
+    return revealed;
   }
 
   bool _revealParagraphRange(WmlParagraph paragraph, int start, int end) {

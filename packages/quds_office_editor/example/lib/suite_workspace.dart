@@ -2728,6 +2728,118 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   List<StudioRibbonGroup> _wordReview() {
     return <StudioRibbonGroup>[
       StudioRibbonGroup(
+        title: _arabic ? 'التدقيق' : 'Proofing',
+        children: <Widget>[
+          _cmd(
+            Icons.spellcheck,
+            _arabic ? 'تدقيق' : 'Spelling',
+            _showSpelling,
+            selected:
+                _word.reviewPaneVisible &&
+                _word.reviewPaneTab == WordReviewPaneTab.proofing,
+          ),
+          _cmd(
+            Icons.edit_note,
+            _arabic ? 'تدقيق أثناء الكتابة' : 'Check as you type',
+            () => _word.proofing.enabled = !_word.proofing.enabled,
+            selected: _word.proofing.enabled,
+          ),
+        ],
+      ),
+      StudioRibbonGroup(
+        title: _arabic ? 'تغييرات' : 'Changes',
+        children: <Widget>[
+          _cmd(
+            Icons.rate_review_outlined,
+            _arabic ? 'مراجعة التغييرات' : 'Review changes',
+            () => _word.openReviewPane(tab: WordReviewPaneTab.changes),
+            selected:
+                _word.reviewPaneVisible &&
+                _word.reviewPaneTab == WordReviewPaneTab.changes,
+          ),
+          _cmd(
+            Icons.track_changes,
+            _arabic ? 'تعقب' : 'Track',
+            _canMutate
+                ? () => _word.setTrackRevisions(!_word.document.trackRevisions)
+                : null,
+            selected: _word.document.trackRevisions,
+          ),
+          _cmd(
+            Icons.done_all,
+            _arabic ? 'قبول' : 'Accept',
+            !_canMutate || _word.selectedRevision == null
+                ? null
+                : () => _word.acceptRevision(_word.selectedRevision!),
+          ),
+          _cmd(
+            Icons.remove_done,
+            _arabic ? 'رفض' : 'Reject',
+            !_canMutate || _word.selectedRevision == null
+                ? null
+                : () => _word.rejectRevision(_word.selectedRevision!),
+          ),
+          _cmd(
+            Icons.keyboard_arrow_up,
+            _arabic ? 'تغيير سابق' : 'Prev change',
+            _word.document.revisions.isEmpty
+                ? null
+                : () => _word.stepRevision(-1),
+          ),
+          _cmd(
+            Icons.keyboard_arrow_down,
+            _arabic ? 'تغيير تالٍ' : 'Next change',
+            _word.document.revisions.isEmpty
+                ? null
+                : () => _word.stepRevision(1),
+          ),
+          _cmd(
+            Icons.done_outline,
+            _arabic ? 'قبول الكل' : 'Accept all',
+            !_canMutate || _word.document.revisions.isEmpty
+                ? null
+                : _word.acceptAllRevisions,
+          ),
+          _cmd(
+            Icons.remove_circle_outline,
+            _arabic ? 'رفض الكل' : 'Reject all',
+            !_canMutate || _word.document.revisions.isEmpty
+                ? null
+                : _word.rejectAllRevisions,
+          ),
+          _cmd(
+            Icons.sync,
+            _arabic ? 'تحديث حقول' : 'Update fields',
+            _canMutate ? _word.updateFields : null,
+          ),
+          _cmd(
+            Icons.lock_outline,
+            _arabic ? 'تقييد' : 'Restrict',
+            _canMutate
+                ? () =>
+                      _word.setRestrictEditing(!_word.document.restrictEditing)
+                : null,
+            selected: _word.document.restrictEditing,
+          ),
+          _cmd(
+            Icons.compare_arrows,
+            _arabic ? 'مقارنة' : 'Compare',
+            _studioCompareDocument,
+          ),
+          _cmd(
+            Icons.print,
+            _arabic ? 'معاينة طباعة' : 'Print preview',
+            () => setState(() => _printPreview = !_printPreview),
+            selected: _printPreview,
+          ),
+          _cmd(
+            Icons.preview,
+            _arabic ? 'سجل دمج' : 'Merge record',
+            _canMutate ? _studioMergePreview : null,
+          ),
+        ],
+      ),
+      StudioRibbonGroup(
         title: _arabic ? 'تحليل لغوي' : 'Language analysis',
         children: <Widget>[
           _cmd(
@@ -2830,7 +2942,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         ],
       ),
       StudioRibbonGroup(
-        title: _arabic ? 'تحرير المستند' : 'Proofing',
+        title: _arabic ? 'تحرير المستند' : 'Document',
         children: <Widget>[
           _cmd(Icons.search, _arabic ? 'بحث' : 'Find', _openFind),
           _cmd(
@@ -2838,93 +2950,10 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
             _arabic ? 'استبدال' : 'Replace',
             _canMutate ? _openReplace : null,
           ),
-          _cmd(Icons.spellcheck, _arabic ? 'تدقيق' : 'Spelling', _showSpelling),
           _cmd(
             Icons.info_outline,
             _arabic ? 'خصائص' : 'Properties',
             _showProperties,
-          ),
-          _cmd(
-            Icons.rate_review_outlined,
-            _arabic ? 'مراجعة التغييرات' : 'Review changes',
-            () => _showDocumentReview(WordReviewTab.changes),
-          ),
-          _cmd(
-            Icons.track_changes,
-            _arabic ? 'تعقب' : 'Track',
-            _canMutate
-                ? () => _word.setTrackRevisions(!_word.document.trackRevisions)
-                : null,
-            selected: _word.document.trackRevisions,
-          ),
-          _cmd(
-            Icons.done_all,
-            _arabic ? 'قبول' : 'Accept',
-            !_canMutate || _word.selectedRevision == null
-                ? null
-                : () => _word.acceptRevision(_word.selectedRevision!),
-          ),
-          _cmd(
-            Icons.remove_done,
-            _arabic ? 'رفض' : 'Reject',
-            !_canMutate || _word.selectedRevision == null
-                ? null
-                : () => _word.rejectRevision(_word.selectedRevision!),
-          ),
-          _cmd(
-            Icons.keyboard_arrow_up,
-            _arabic ? 'تغيير سابق' : 'Prev change',
-            _word.document.revisions.isEmpty
-                ? null
-                : () => _word.stepRevision(-1),
-          ),
-          _cmd(
-            Icons.keyboard_arrow_down,
-            _arabic ? 'تغيير تالٍ' : 'Next change',
-            _word.document.revisions.isEmpty
-                ? null
-                : () => _word.stepRevision(1),
-          ),
-          _cmd(
-            Icons.done_outline,
-            _arabic ? 'قبول الكل' : 'Accept all',
-            !_canMutate || _word.document.revisions.isEmpty
-                ? null
-                : _word.acceptAllRevisions,
-          ),
-          _cmd(
-            Icons.remove_circle_outline,
-            _arabic ? 'رفض الكل' : 'Reject all',
-            !_canMutate || _word.document.revisions.isEmpty
-                ? null
-                : _word.rejectAllRevisions,
-          ),
-          _cmd(
-            Icons.sync,
-            _arabic ? 'تحديث حقول' : 'Update fields',
-            _canMutate ? _word.updateFields : null,
-          ),
-          _cmd(
-            Icons.lock_outline,
-            _arabic ? 'تقييد' : 'Restrict',
-            () => _word.setRestrictEditing(!_word.document.restrictEditing),
-            selected: _word.document.restrictEditing,
-          ),
-          _cmd(
-            Icons.compare_arrows,
-            _arabic ? 'مقارنة' : 'Compare',
-            _studioCompareDocument,
-          ),
-          _cmd(
-            Icons.print,
-            _arabic ? 'معاينة طباعة' : 'Print preview',
-            () => setState(() => _printPreview = !_printPreview),
-            selected: _printPreview,
-          ),
-          _cmd(
-            Icons.preview,
-            _arabic ? 'سجل دمج' : 'Merge record',
-            _canMutate ? _studioMergePreview : null,
           ),
         ],
       ),
@@ -4355,8 +4384,13 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       setState(() {});
       return;
     }
-    _active.viewport.setScale(value);
-    _active.refresh();
+    final controller = _active;
+    controller.viewport.setScale(value);
+    if (controller is WordEditorController) {
+      controller.refreshView();
+    } else {
+      controller.refresh();
+    }
   }
 
   void _shortcutZoomIn() {
@@ -4812,6 +4846,9 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
           ],
         ),
       );
+      // Set the Studio session's initial preference once. Rebuilding the editor
+      // or returning from another app must preserve a later user opt-out.
+      controller.proofing.enabled = true;
     }
     controller.onFindRequested = () {
       if (!mounted) {
@@ -4904,15 +4941,32 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       _closeFind();
       return;
     }
+    if (_app == SuiteApp.word && _word.reviewPaneVisible) {
+      _word.closeReviewPane();
+      _wordFocus.requestFocus();
+      return;
+    }
     _slideShowEscape();
   }
 
-  void _showSpelling() {
-    if (_active is WordEditorController) {
-      unawaited(showWordProofingDialog(context, controller: _word));
+  Future<void> _showSpelling() async {
+    if (_app != SuiteApp.word) {
+      _toast(_arabic ? 'التدقيق للمستندات' : 'Spelling is available in Word');
       return;
     }
-    _toast(_arabic ? 'التدقيق للمستندات' : 'Spelling is available in Word');
+    if (_word.config.allowsMutation) _word.commitPendingEdits();
+    _word.openReviewPane();
+    try {
+      // An explicit F7/ribbon check may use opted-in manual grammar providers;
+      // ordinary editing remains on the lightweight background service.
+      await _word.checkDocumentProofing();
+    } catch (_) {
+      _toast(
+        _arabic
+            ? 'تعذر إكمال تدقيق المستند. حاول مجددًا.'
+            : 'The document check could not finish. Try again.',
+      );
+    }
   }
 
   Future<void> _showSpacySetup() async {
@@ -6992,7 +7046,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       _word.viewport.origin.dx,
       _word.documentLaidOut.pageStackTop(page, scale),
     );
-    _word.refresh();
+    _word.refreshView();
   }
 
   Widget _body(bool dark) {

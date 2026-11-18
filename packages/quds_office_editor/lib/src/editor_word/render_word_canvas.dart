@@ -63,6 +63,7 @@ class WordCanvas extends LeafRenderObjectWidget {
     this.selectedCommentId,
     this.onSelectComment,
     this.onContextMenu,
+    this.onReviewTap,
     this.onInsertTableRowAt,
     this.onInsertTableColumnAt,
     this.onBeginTableResize,
@@ -213,6 +214,9 @@ class WordCanvas extends LeafRenderObjectWidget {
   /// onContextMenu API.
   final ValueChanged<OfficeContextHit>? onContextMenu;
 
+  /// A completed primary tap on checked text or a tracked change.
+  final ValueChanged<OfficeContextHit>? onReviewTap;
+
   /// Function API.
   final void Function(WmlTable table, int index)? onInsertTableRowAt;
 
@@ -332,6 +336,7 @@ class WordCanvas extends LeafRenderObjectWidget {
       selectedCommentId: selectedCommentId,
       onSelectComment: onSelectComment,
       onContextMenu: onContextMenu,
+      onReviewTap: onReviewTap,
       onInsertTableRowAt: onInsertTableRowAt,
       onInsertTableColumnAt: onInsertTableColumnAt,
       onBeginTableResize: onBeginTableResize,
@@ -401,6 +406,7 @@ class WordCanvas extends LeafRenderObjectWidget {
       ..selectedCommentId = selectedCommentId
       ..onSelectComment = onSelectComment
       ..onContextMenu = onContextMenu
+      ..onReviewTap = onReviewTap
       ..onInsertTableRowAt = onInsertTableRowAt
       ..onInsertTableColumnAt = onInsertTableColumnAt
       ..onBeginTableResize = onBeginTableResize
@@ -480,6 +486,7 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
     this.selectedCommentId,
     this.onSelectComment,
     this.onContextMenu,
+    this.onReviewTap,
     this.onInsertTableRowAt,
     this.onInsertTableColumnAt,
     this.onBeginTableResize,
@@ -627,6 +634,9 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
 
   /// onContextMenu API.
   ValueChanged<OfficeContextHit>? onContextMenu;
+
+  /// A completed primary tap on checked text or a tracked change.
+  ValueChanged<OfficeContextHit>? onReviewTap;
 
   /// Function API.
   void Function(WmlTable table, int index)? onInsertTableRowAt;
@@ -1212,7 +1222,14 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
   }
 
   void _ensureRecognizers() {
-    _tap ??= TapGestureRecognizer(debugOwner: this);
+    _tap ??= TapGestureRecognizer(debugOwner: this)
+      ..onTapUp = (details) {
+        if (_tapCount == 1 &&
+            !HardwareKeyboard.instance.isShiftPressed &&
+            !_ctrlFollow) {
+          _handleReviewTap(details.localPosition, details.globalPosition);
+        }
+      };
     _pan ??= PanGestureRecognizer(debugOwner: this)
       ..onUpdate = (DragUpdateDetails details) {
         if (_scrollDrag) {
@@ -2524,6 +2541,60 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
       if (local.dy >= line.y && local.dy <= line.y + line.height) return line;
     }
     return _lineAt(page, local);
+  }
+
+  void _handleReviewTap(Offset window, Offset globalPosition) {
+    if (onReviewTap == null || !config.allowsSelection) return;
+    final (pageIndex, local) = _hitPage(window);
+    if (pageIndex < 0 || pageIndex >= laidOut.pages.length) return;
+    final page = laidOut.pages[pageIndex];
+    if (_visualAt(page, local) != null || _equationAt(page, local) != null) {
+      return;
+    }
+    final line = page.headerBand.contains(local.dx, local.dy)
+        ? _nearestChromeLine(page.header, local)
+        : page.footerBand.contains(local.dx, local.dy)
+        ? _nearestChromeLine(page.footer, local)
+        : _proofingLineAt(page, local);
+    if (line == null ||
+        local.dx < line.x ||
+        local.dx > line.x + line.width ||
+        local.dy < line.y ||
+        local.dy > line.y + line.height) {
+      return;
+    }
+    final paragraph = line.sourceParagraph;
+    if (paragraph == null) return;
+    final offset = line.proofingOffsetAt(_hitOffsetOnLine(line, local));
+    if (offset == null) return;
+    final hasIssue =
+        proofingFindings[paragraph]?.any(
+          (finding) =>
+              offset >= finding.start &&
+              (finding.start == finding.end
+                  ? offset == finding.end
+                  : offset < finding.end),
+        ) ??
+        false;
+    final hasRevision = document.revisions.any(
+      (revision) =>
+          revision.accepted == null &&
+          identical(
+            WordRevisions.resolveParagraph(document, revision),
+            paragraph,
+          ) &&
+          offset >= revision.start &&
+          offset < revision.end,
+    );
+    if (!hasIssue && !hasRevision) return;
+    onReviewTap!(
+      OfficeContextHit(
+        kind: OfficeContextKind.document,
+        globalPosition: globalPosition,
+        paragraph: paragraph,
+        proofingOffset: offset,
+      ),
+    );
   }
 
   void _handleContext(PointerDownEvent event) {

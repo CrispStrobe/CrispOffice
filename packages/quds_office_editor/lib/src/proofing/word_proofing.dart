@@ -27,6 +27,7 @@ final class WordProofingSummary {
     List<WordProofingIssue> issues = const [],
     List<OfficeProofingReport> reports = const [],
     this.checking = false,
+    this.scheduled = false,
     this.manualProvidersSkipped = false,
   }) : issues = List.unmodifiable(issues),
        reports = List.unmodifiable(reports);
@@ -36,6 +37,9 @@ final class WordProofingSummary {
   final int skippedContentCount;
   final bool hasResults;
   final bool checking;
+
+  /// A background pass is waiting for the typing debounce, not checking yet.
+  final bool scheduled;
   final bool manualProvidersSkipped;
   final List<WordProofingIssue> issues;
   final List<OfficeProofingReport> reports;
@@ -43,6 +47,7 @@ final class WordProofingSummary {
   bool get complete =>
       hasResults &&
       !checking &&
+      !scheduled &&
       !manualProvidersSkipped &&
       skippedContentCount == 0 &&
       reports.isNotEmpty &&
@@ -50,6 +55,7 @@ final class WordProofingSummary {
 
   String get statusMessage {
     if (checking) return 'Checking document…';
+    if (scheduled) return 'Waiting for a pause in typing…';
     if (!hasResults) return 'Document has not been checked.';
     final problems = <String>{};
     for (final report in reports) {
@@ -124,6 +130,7 @@ final class WordProofingSession extends ChangeNotifier {
   int _configuration = 0;
   bool _disposed = false;
   bool _enabled = false;
+  bool _enabledPreferenceSet = false;
   Timer? _timer;
   WmlDocument? _observedDocument;
   int? _observedRevision;
@@ -142,8 +149,20 @@ final class WordProofingSession extends ChangeNotifier {
       UnmodifiableMapView(_findings);
 
   set enabled(bool value) {
-    if (_enabled == value || _disposed) return;
+    if (_disposed) return;
+    _enabledPreferenceSet = true;
+    if (_enabled == value) return;
     _enabled = value;
+    refresh();
+  }
+
+  /// Enables the editor's default background checking until a host or user
+  /// explicitly chooses [enabled]. Reattaching a view preserves that choice,
+  /// including an explicit `false` set before the first attachment.
+  /// Standalone sessions remain disabled until this method is called.
+  void enableBackgroundByDefault() {
+    if (_disposed || _enabledPreferenceSet || _enabled) return;
+    _enabled = true;
     refresh();
   }
 
@@ -252,7 +271,8 @@ final class WordProofingSession extends ChangeNotifier {
   void _invalidate() {
     _generation++;
     _timer?.cancel();
-    _summary = WordProofingSummary();
+    _timer = null;
+    _summary = WordProofingSummary(scheduled: _enabled);
     _findings = HashMap.identity();
     if (_enabled) {
       _timer = Timer(
@@ -439,6 +459,7 @@ final class WordProofingSession extends ChangeNotifier {
   }) async {
     if (_disposed) return _summary;
     _timer?.cancel();
+    _timer = null;
     final generation = ++_generation;
     final document = _document();
     final revision = _revision();
