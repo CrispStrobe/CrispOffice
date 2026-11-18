@@ -1,0 +1,221 @@
+{
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 7798,
+      "sha256": "e5ae70d97133a373c3637d30e9c2e88b477360c88dc8d0f75d48899518ed2c42"
+    },
+    {
+      "path": "attempts/browser-launch-blocked.json",
+      "bytes": 5366,
+      "sha256": "8f9ed90dd7bb2f076eaee3a167b582ec03ad9dceda155b833c1d18c609c3244e"
+    },
+    {
+      "path": "attempts/cache32-initial-native-pack-report.json",
+      "bytes": 145122,
+      "sha256": "441c8f43a4f8e5ed6d4a81181c103898093e12d055ff8611e87c8f703dd05482"
+    },
+    {
+      "path": "attempts/cache32-initial-receipt.json",
+      "bytes": 3099,
+      "sha256": "eea523e1b33110fa4c71243bada812fa3797a8e1450ad8380001664359d33d96"
+    },
+    {
+      "path": "attempts/concurrent-bundle-before-sequential-run.jsonl.gz",
+      "bytes": 1090,
+      "sha256": "0c58d4f2cfaf5dce61aabcc571db2ee6c909919d44780848b28c0871b2f184a3"
+    },
+    {
+      "path": "attempts/contrast-animation-probe.log",
+      "bytes": 245,
+      "sha256": "3a32f02bc67f6e1e5171baedd1cefc23c1cc274ac847e57ab9c7106c0220efd1"
+    },
+    {
+      "path": "attempts/initial-missing-import.jsonl.gz",
+      "bytes": 1106,
+      "sha256": "aeef0b9e4f7e784c98e7de6b35dad4d1f5e72250eba9a5f72f9058098e744cf5"
+    },
+    {
+      "path": "attempts/ui-lazy-first-finder-before-fix.jsonl.gz",
+      "bytes": 3625,
+      "sha256": "7da94e3c5eb155060d93945493395ace0afb03403f07fa0eba27cec57cb8817d"
+    },
+    {
+      "path": "attempts/ui-scroll-and-clock-before-fixes.jsonl.gz",
+      "bytes": 5064,
+      "sha256": "fce93963abcf00249d29a1bc36e22c29892349101d593527c587ef223e48c230"
+    },
+    {
+      "path": "browser-build-files.json.gz",
+      "bytes": 56331,
+      "sha256": "6fbaab56b0ddc629811f449c47399366fe4689a3aab9556bf370dcf7b496101a"
+    },
+    {
+      "path": "fixtures/install_offline.py",
+      "bytes": 2851,
+      "sha256": "7bd3ea7dc899a20818688fee198b947466e8bc02a9133274b31b4b74b7f77be5"
+    },
+    {
+      "path": "fixtures/lib/main.dart",
+      "bytes": 7133,
+      "sha256": "40e3d5438c516ac1a9a3da58cbe94ea40f9033dcc419d872d9b090a273313126"
+    },
+    {
+      "path": "fixtures/native_pack_test.dart",
+      "bytes": 5204,
+      "sha256": "2c12b51deabbc6fc407d390b51570538e12f1aa61d113afafd698aab17054891"
+    },
+    {
+      "path": "fixtures/native_visual_test.dart",
+      "bytes": 5577,
+      "sha256": "99e41ba060c8f35f2677b968dbaad0679868190a50f2e4debe57bc296ea34c7c"
+    },
+    {
+      "path": "fixtures/run_browser.py",
+      "bytes": 8939,
+      "sha256": "29dadc7e1ad7e634eb4a020623a193c14feed79e7fb538a20e5dd651517d1ab3"
+    },
+    {
+      "path": "fixtures/run_final_validation.py",
+      "bytes": 6808,
+      "sha256": "78a00b0cb9f92b3c8aa4f17fd3e39c4d0af33187c623f095d5dc8ed1445f0b42"
+    },
+    {
+      "path": "logs/browser-build.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "logs/browser-build.stdout",
+      "bytes": 824,
+      "sha256": "eaafb1caa7479a3e80acbe3a21599feda5435546567ed9edc4ba4b316a592805"
+    },
+    {
+      "path": "logs/native-acceptance.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "logs/native-acceptance.stdout",
+      "bytes": 66707,
+      "sha256": "e302c76fbb45fcbe95d5cbdf5bba4376bfc4b34b44fe694b8be477d3ce0bd43c"
+    },
+    {
+      "path": "native-pack-report.json",
+      "bytes": 145127,
+      "sha256": "ad06bbd1974ab351c1646ef039a9611ecce9c0f96366cf1b8f51509dd3f59f4c"
+    },
+    {
+      "path": "native-test-audit.json",
+      "bytes": 2097,
+      "sha256": "9328e8286954e796430d7ca82baf457a033a8c31b05bfc85ddc6b0b207ad4fb0"
+    },
+    {
+      "path": "receipt.json",
+      "bytes": 3099,
+      "sha256": "c5aa8fbcc0d42f25ea7abbd80fecedb97d19f918d34d6e7bfdd0252aab81286d"
+    },
+    {
+      "path": "runtime/dart-version.log",
+      "bytes": 82,
+      "sha256": "945e6a359e53647f8fd753347245ed78bc06c2808919b2d7749817181d010ff4"
+    },
+    {
+      "path": "runtime/env.sh",
+      "bytes": 667,
+      "sha256": "17a7897a9b6f2ae10bbd80501356dfc105b29f15095124bca5f63a5a4c770b42"
+    },
+    {
+      "path": "runtime/final-workspace.json",
+      "bytes": 726,
+      "sha256": "33e902290a3f84e09809e73b733996a22c136b8c454e3ed49604deea3cf7e35b"
+    },
+    {
+      "path": "runtime/finish_runtime.py",
+      "bytes": 3227,
+      "sha256": "90d1df8230460886cb36919d62f016fb3043a0b7fe8b829b4745c6e75969782f"
+    },
+    {
+      "path": "runtime/flutter-recovery.json",
+      "bytes": 542,
+      "sha256": "2dc17b1ea68715f81d91066995db64b948650398887c9200be7a7b2118d10f34"
+    },
+    {
+      "path": "runtime/flutter-tools-pub-get.log",
+      "bytes": 1016,
+      "sha256": "9f349fca172146e2595a50ccbe19f4d21b8845690372a19239884f3b932864c3"
+    },
+    {
+      "path": "runtime/flutter-version.json",
+      "bytes": 641,
+      "sha256": "9de2fd008579b2a0428b51672df2db57e80118a8d4cb0760a73197a39a8a45e4"
+    },
+    {
+      "path": "runtime/host-reference.json",
+      "bytes": 174,
+      "sha256": "1f916756b85c881709f780394f5eabb7fe56ada2be0dfc3a8c4fa81e4d4dfe7e"
+    },
+    {
+      "path": "runtime/official-release-current.json",
+      "bytes": 512,
+      "sha256": "87dcfaaec32adfb3b4043b3bc8086179ee1a793071a5b1f4b64c49fb46695b61"
+    },
+    {
+      "path": "runtime/package-downloads.json.gz",
+      "bytes": 13252,
+      "sha256": "f752d600efdf443ea810f15c35be895aacf10989836d53e3417ac5eb734d201c"
+    },
+    {
+      "path": "runtime/prefetch_recorded_packages.py",
+      "bytes": 2885,
+      "sha256": "7f2eb1c464fae683d21f137ca2cc44f3b5f1d6ff95451261b78fff996b81608b"
+    },
+    {
+      "path": "runtime/prepare_workspace.py",
+      "bytes": 2400,
+      "sha256": "e7569cce66711ddcf5d3f32e4db2041d46f68ba051c0e821ef7accb696500f99"
+    },
+    {
+      "path": "runtime/restore_flutter.py",
+      "bytes": 1937,
+      "sha256": "a98696b5a1f7bb3543afcb7ae9638a5b74b50b2d6e71fc9e02b3401366b401e3"
+    },
+    {
+      "path": "runtime/runtime-ready.json",
+      "bytes": 4156,
+      "sha256": "ca46c9f03aaadd7b47ea76b7833fcce773184f3ba6102a276825bcdb6b2f175e"
+    },
+    {
+      "path": "runtime/workspace-pub-get-current.log",
+      "bytes": 68,
+      "sha256": "d4cb7a3c68b4133b4f6e58c67ff5bfd13725d8021e930388cdc98da8a575919d"
+    },
+    {
+      "path": "runtime/workspace-pubspec.lock",
+      "bytes": 22686,
+      "sha256": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130"
+    },
+    {
+      "path": "source-inputs.json.gz",
+      "bytes": 138297,
+      "sha256": "88506a0ec9e679bbbe94f2c17020bf33948ca60f5a447c38eaf90dfa3dac2814"
+    },
+    {
+      "path": "visuals/english-desktop.png",
+      "bytes": 91862,
+      "sha256": "bb8bfffd7eb94d90d10a0c22ff90e8b27c6d71b4dcd384cc85776ab5282dcf64"
+    },
+    {
+      "path": "visuals/german-desktop.png",
+      "bytes": 94052,
+      "sha256": "292b6374f059acd7891b2c00631f871ae28f22ad66cf22b292b4297600d2a740"
+    },
+    {
+      "path": "visuals/german-narrow-large-text.png",
+      "bytes": 66054,
+      "sha256": "30650102e5607c5eed9bfd04838d332323960dfb51db6adc4ae037c3ccb41955"
+    }
+  ],
+  "count": 43,
+  "bytes": 928448
+}
