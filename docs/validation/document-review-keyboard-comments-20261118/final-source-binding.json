@@ -30,5 +30,34 @@
   ],
   "all_integrated_parents_ancestors_of_tested_source": true,
   "github_actions_queried_or_awaited": false,
-  "note": "Verified after final documentation/evidence assembly. Subsequent publication updates are constrained to documentation/evidence; all recorded source/test/manifest/font/runner hashes are rechecked before delivery."
+  "note": "Verified after final documentation/evidence assembly. Subsequent publication updates are constrained to documentation/evidence; all recorded source/test/manifest/font/runner hashes are rechecked before delivery.",
+  "verified_at_utc": "2026-11-18T17:24:44.381410+00:00",
+  "verified_saved_checkpoint": "9dba5a90ae377be594e705119c20698a0f509d2b",
+  "verified_saved_tree": "278c09330e11807235328e92e9dc2ed5ca7e1542",
+  "source_files_verified_again_after_publication": 629,
+  "changes_since_tested_source": [
+    "docs/document-review.md",
+    "docs/validation/document-review-keyboard-comments-20261118/README.md",
+    "docs/validation/document-review-keyboard-comments-20261118/accepted/environment-after.json",
+    "docs/validation/document-review-keyboard-comments-20261118/accepted/evidence.tar.xz",
+    "docs/validation/document-review-keyboard-comments-20261118/accepted/index.json",
+    "docs/validation/document-review-keyboard-comments-20261118/accepted/source-after.json",
+    "docs/validation/document-review-keyboard-comments-20261118/accepted/verification.json",
+    "docs/validation/document-review-keyboard-comments-20261118/final-source-binding.json",
+    "docs/validation/document-review-keyboard-comments-20261118/publication.json"
+  ],
+  "changes_since_tested_source_are_documentation_only": true,
+  "archive_integrity": [
+    {
+      "path": "accepted/evidence.tar.xz",
+      "files_verified": 16,
+      "mismatches": []
+    },
+    {
+      "path": "attempts/pre-integration/evidence.tar.xz",
+      "files_verified": 16,
+      "mismatches": []
+    }
+  ],
+  "tracked_worktree_was_clean_before_final_receipt": true
 }

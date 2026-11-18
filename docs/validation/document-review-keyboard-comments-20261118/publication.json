@@ -50,6 +50,19 @@
       ],
       "scope": "late-integration-and-fixed-frozen-source",
       "local_tree": "d1425163a0560ec60ad7481d5c0efb51d2103b85"
+    },
+    {
+      "sha": "9dba5a90ae377be594e705119c20698a0f509d2b",
+      "previous": "6c88efed8de24951ef640f79af64b8df6097b248",
+      "tree": "278c09330e11807235328e92e9dc2ed5ca7e1542",
+      "scope": "accepted-validation-and-final-guide",
+      "local_tree": "278c09330e11807235328e92e9dc2ed5ca7e1542"
     }
-  ]
+  ],
+  "closing_checkpoint": {
+    "expected_previous_head": "9dba5a90ae377be594e705119c20698a0f509d2b",
+    "scope": "final publication and source-binding receipt",
+    "identity": "The commit that first adds this closing_checkpoint record; its SHA is linked from PR #162 and the delivery response.",
+    "application_source_changed": false
+  }
 }
