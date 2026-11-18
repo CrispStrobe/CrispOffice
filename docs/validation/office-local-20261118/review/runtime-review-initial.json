@@ -1,0 +1,1776 @@
+{
+  "schema_version": 1,
+  "kind": "independent-runtime-archive-readback",
+  "created_utc": "2026-11-18T05:09:27.867019+00:00",
+  "reviewer": "remote_review independent agent",
+  "source_commit_context": "401d012657881a54727d58bc35e537faa45d5fbe",
+  "source_head_unchanged_and_clean": true,
+  "archive": {
+    "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/runtime-recovery.tar.xz",
+    "sha256": "2afcb3bdcff2a88032521f9c660b9eb75a857b07e974254d2b69cecb5809f9b9",
+    "bytes": 222156,
+    "index_sha256": "7be685df59f8c6e5aab63b7833fcea31b93d197a14e155d8f64a819bcaee0c27",
+    "member_count": 72,
+    "all_members_read_and_verified": true,
+    "members": [
+      {
+        "path": "compiled-cache-release.json",
+        "bytes": 26316,
+        "sha256": "c85de9dc45400216466a6d99706b82b48fef5ae16c6921ac3497e86699ac962c",
+        "matches": true
+      },
+      {
+        "path": "consumer/env.sh",
+        "bytes": 724,
+        "sha256": "81877e8f606cd667d568c1836c749827dc0ca5c7f0c122548d56c186904f9a4e",
+        "matches": true
+      },
+      {
+        "path": "consumer/font-prerequisites.json",
+        "bytes": 2413,
+        "sha256": "60b95dffe5e435c759069cca9e2f4f6122ed9d2453ff9107fd0cd897a4ba55dc",
+        "matches": true
+      },
+      {
+        "path": "consumer/logs/java-version.stderr",
+        "bytes": 181,
+        "sha256": "0fc83381287ccbc8623d257bce2b0d03997ba0e85ff4492d38b409aea37a8aa9",
+        "matches": true
+      },
+      {
+        "path": "consumer/logs/java-version.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "matches": true
+      },
+      {
+        "path": "consumer/logs/pdfinfo-version.stderr",
+        "bytes": 143,
+        "sha256": "56221b4464aa8299b97e80d0fc7efcdb23d7a4146aa304611ec9e5c9c7984001",
+        "matches": true
+      },
+      {
+        "path": "consumer/logs/pdfinfo-version.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "matches": true
+      },
+      {
+        "path": "consumer/logs/pdftoppm-version.stderr",
+        "bytes": 144,
+        "sha256": "9b3b47703da9f8e397c209c07869aa7d92c2c25a63b48f42425934902df3c286",
+        "matches": true
+      },
+      {
+        "path": "consumer/logs/pdftoppm-version.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "matches": true
+      },
+      {
+        "path": "consumer/logs/pdftotext-version.stderr",
+        "bytes": 145,
+        "sha256": "0f2ff359cb556fedcd7be481e9a06c6f25d46789094b702bd84ab4cf09ce49b0",
+        "matches": true
+      },
+      {
+        "path": "consumer/logs/pdftotext-version.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "matches": true
+      },
+      {
+        "path": "consumer/logs/soffice-version.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "matches": true
+      },
+      {
+        "path": "consumer/logs/soffice-version.stdout",
+        "bytes": 73,
+        "sha256": "6d49d29516f9fb3b3f02bf33238f0beae9980c1743128ce831deddcfb69bce89",
+        "matches": true
+      },
+      {
+        "path": "consumer/recovery.json",
+        "bytes": 1276217,
+        "sha256": "ee81d57901d1c71cb7b979e3435e8b881701995dae41a629be03d127d6c3172c",
+        "matches": true
+      },
+      {
+        "path": "consumer/scripts/restore_runtime.py",
+        "bytes": 6478,
+        "sha256": "98d93e6281920cf5aa71f4446e31338d1785a6f4230b0c1e32b7efc1044256fa",
+        "matches": true
+      },
+      {
+        "path": "consumer/scripts/verify_runtime.py",
+        "bytes": 3027,
+        "sha256": "11e7442bb47aaf634236109c1bc849ddebf552ea837954c9da39397a9e3940c3",
+        "matches": true
+      },
+      {
+        "path": "consumer/smoke/historical-extraction.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "matches": true
+      },
+      {
+        "path": "consumer/smoke/historical-extraction.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "matches": true
+      },
+      {
+        "path": "consumer/smoke/historical-render.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "matches": true
+      },
+      {
+        "path": "consumer/smoke/historical-render.stdout",
+        "bytes": 266,
+        "sha256": "ce3fc83576b5cfc3c41a175887bf567cb3aa7c25c80e33620b4e138a49175f49",
+        "matches": true
+      },
+      {
+        "path": "consumer/smoke/invalid-field-attribute.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "matches": true
+      },
+      {
+        "path": "consumer/smoke/invalid-field-attribute.stdout",
+        "bytes": 266,
+        "sha256": "789533f65f60e32f13c6c6fdbaee388b012c3038e1fc064472972e925f33e5e5",
+        "matches": true
+      },
+      {
+        "path": "consumer/smoke/invalid-field-child-span.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "matches": true
+      },
+      {
+        "path": "consumer/smoke/invalid-field-child-span.stdout",
+        "bytes": 220,
+        "sha256": "0c231bcb964662e99b69be38361e855210da1b632bb53bdbda77015a91db3933",
+        "matches": true
+      },
+      {
+        "path": "consumer/smoke/linked-styled-page-count.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "matches": true
+      },
+      {
+        "path": "consumer/smoke/linked-styled-page-count.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "matches": true
+      },
+      {
+        "path": "consumer/smoke/receipt.json",
+        "bytes": 4665,
+        "sha256": "c48bf4b3dc44730b88e295a9eb055160fc418ca27060c9b0cda1dead5913a6c6",
+        "matches": true
+      },
+      {
+        "path": "consumer/smoke/toc-fields.bbox.xhtml",
+        "bytes": 3784,
+        "sha256": "96c5fc1370ebb63470b848dacd11636d2a9bb12716696abdc29d24172ee88609",
+        "matches": true
+      },
+      {
+        "path": "consumer/smoke/toc-fields.pdf",
+        "bytes": 22000,
+        "sha256": "70cff70d860ce7ac9d1e013c44ad24e0f6009f5a6a2048fa01650771fc713004",
+        "matches": true
+      },
+      {
+        "path": "consumer/smoke/unchanged-styled-page-count.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "matches": true
+      },
+      {
+        "path": "consumer/smoke/unchanged-styled-page-count.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "matches": true
+      },
+      {
+        "path": "duplicate-build-tools-release.json",
+        "bytes": 446,
+        "sha256": "d7358e312008458137dbfd777843d32cd106d6bb81744026be1f64ca06d44dea",
+        "matches": true
+      },
+      {
+        "path": "finish_native_runtime.py",
+        "bytes": 3611,
+        "sha256": "19a08be0cf23b8f5c8bf96b62a70e24452c65462d4f1693ce1cd0db7ec94e81d",
+        "matches": true
+      },
+      {
+        "path": "native-binary-recovery/build/CMakeCache.txt",
+        "bytes": 31243,
+        "sha256": "84fc8e5378983ec0db3d2745618aef4a492a8b9b7c9faf6eaa01664185c0c458",
+        "matches": true
+      },
+      {
+        "path": "native-binary-recovery/build/compile_commands.json",
+        "bytes": 42383,
+        "sha256": "f1f543457fbb10dd29ade5da349dffa3cd4ee47a2e42f0cf9f29da488b48ccaf",
+        "matches": true
+      },
+      {
+        "path": "native-binary-recovery/recovery.json",
+        "bytes": 39839,
+        "sha256": "344e5d3410620d9c402d1208f281124fdf34649463980a35e49c6d3f555ae907",
+        "matches": true
+      },
+      {
+        "path": "native-binary-recovery/tool-install.json",
+        "bytes": 14891,
+        "sha256": "f4dbe3281d52a91c15f77ef72301d7a9d9fac1f76894cd83f1b9589a976bafa7",
+        "matches": true
+      },
+      {
+        "path": "native-binary/logs/01-compiler.log",
+        "bytes": 231,
+        "sha256": "78fc11ae2c3ff7c235eb18ed90989d18f6cc864fb27027f839368cd0888deebc",
+        "matches": true
+      },
+      {
+        "path": "native-binary/logs/02-cxx.log",
+        "bytes": 232,
+        "sha256": "00f7e3c3e6a0308d7b60cc02429720ef6000d84c0add523f7dc030058d19961b",
+        "matches": true
+      },
+      {
+        "path": "native-binary/logs/03-venv.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "matches": true
+      },
+      {
+        "path": "native-binary/logs/04-tool-install.log",
+        "bytes": 681,
+        "sha256": "735baa0a59ca54954afd4b37ad95640eabc0ce070d46c3b737c93db5d3e373d5",
+        "matches": true
+      },
+      {
+        "path": "native-binary/logs/05-CrispEmbed-init.log",
+        "bytes": 711,
+        "sha256": "893e7051332b5160ac0bc1ba6fbf4f49c1f437e1646c0a6c31649c86e3d4777b",
+        "matches": true
+      },
+      {
+        "path": "native-binary/logs/06-CrispEmbed-remote.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "matches": true
+      },
+      {
+        "path": "native-binary/logs/07-CrispEmbed-abbrev.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "matches": true
+      },
+      {
+        "path": "native-binary/logs/08-sparse-source.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "matches": true
+      },
+      {
+        "path": "native-binary/logs/09-CrispEmbed-fetch.log",
+        "bytes": 123,
+        "sha256": "35a51495c2473636671965a79d223e284286643e1d16ee16dba035e1695799cf",
+        "matches": true
+      },
+      {
+        "path": "native-binary/logs/10-CrispEmbed-checkout.log",
+        "bytes": 102,
+        "sha256": "66a6568895c1a1e5a3b2617e11240f0973777d50d7581feaa549efeb284e6186",
+        "matches": true
+      },
+      {
+        "path": "native-binary/logs/11-CrispEmbed-head.log",
+        "bytes": 41,
+        "sha256": "52af8327eb47eecf3d8bc2493623a3aa19992cc119b41486df59c023bb1c064e",
+        "matches": true
+      },
+      {
+        "path": "native-binary/logs/12-CrispEmbed-ggml-init.log",
+        "bytes": 716,
+        "sha256": "cf327775ed58441e0c378f1495934678984349c41d1aa3d631e3e707b7c38366",
+        "matches": true
+      },
+      {
+        "path": "native-binary/logs/13-CrispEmbed-ggml-remote.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "matches": true
+      },
+      {
+        "path": "native-binary/logs/14-CrispEmbed-ggml-abbrev.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "matches": true
+      },
+      {
+        "path": "native-binary/logs/15-CrispEmbed-ggml-fetch.log",
+        "bytes": 117,
+        "sha256": "9803a8ea2765f838e947ecaabcfa1619e591f7adb3e2e7555866748c40970ac0",
+        "matches": true
+      },
+      {
+        "path": "native-binary/logs/16-CrispEmbed-ggml-checkout.log",
+        "bytes": 107,
+        "sha256": "9830338d860fae5b1563496e673cad511101f1c850a0dd303c9463dae5960c44",
+        "matches": true
+      },
+      {
+        "path": "native-binary/logs/17-CrispEmbed-ggml-head.log",
+        "bytes": 41,
+        "sha256": "e601323d793ee4e885b083f65101988246e42a4e9dd3aa1aec32f0124f3b45cc",
+        "matches": true
+      },
+      {
+        "path": "native-binary/logs/18-configure.log",
+        "bytes": 1278,
+        "sha256": "f685319e979ee117525fc8d4563e7c15e5d0affe956b22c4b8fcbe153ef4997c",
+        "matches": true
+      },
+      {
+        "path": "native-binary/logs/19-build.log",
+        "bytes": 3231,
+        "sha256": "8ade2e7b575ecabd659227215279e132a94d0c18aa2d899c7997bceba88bc6b1",
+        "matches": true
+      },
+      {
+        "path": "native-binary/logs/20-native-contract.log",
+        "bytes": 254,
+        "sha256": "a93a24b2386a90627fd50f6dac0717a5eb5d614f85802bc13fce1aa0140aeaad",
+        "matches": true
+      },
+      {
+        "path": "native-binary/logs/21-install.log",
+        "bytes": 555,
+        "sha256": "210a10ad1417c41df2e79f6000ec56e3f139e4233dee2e2ce228820c5b68ac1f",
+        "matches": true
+      },
+      {
+        "path": "native-binary/recover_native_exact.py",
+        "bytes": 9027,
+        "sha256": "48e3ad87a8285e4a449b831ed637e54d90e3255c476587b87880949fe0f65d18",
+        "matches": true
+      },
+      {
+        "path": "native-model-and-python/convert-f32.log",
+        "bytes": 256,
+        "sha256": "e725c77c171ed5c212c10f7a61641e46638d194366b3467e34410c769ccfbc97",
+        "matches": true
+      },
+      {
+        "path": "native-model-and-python/download-python-ready.json",
+        "bytes": 129,
+        "sha256": "91f0d784308a036fafb1c71d2a054e3a3e24e52f0bd698278e5e400112a9bb34",
+        "matches": true
+      },
+      {
+        "path": "native-model-and-python/finish-commands.json",
+        "bytes": 2593,
+        "sha256": "c45aa0d0e14b3ca275c6b00472c8f960b6913809fa0a192f0f120d54f81b64ad",
+        "matches": true
+      },
+      {
+        "path": "native-model-and-python/gector-de-f32.gguf.manifest.json",
+        "bytes": 132371,
+        "sha256": "9c01e05a10ba6f57b30e29476ddf83823dc2170ab478e8435cb1ea7b06c36cf4",
+        "matches": true
+      },
+      {
+        "path": "native-model-and-python/model-download-verification.json",
+        "bytes": 3662,
+        "sha256": "d27bc7c1bf3e4b6e0734c4d1b1dbf86c1cd171211d82452bd544fdc735ad9c7d",
+        "matches": true
+      },
+      {
+        "path": "native-model-and-python/native-env.sh",
+        "bytes": 794,
+        "sha256": "c31531e885cee7e977b6a60610d09aace48475a0f90370b87a6615425915535d",
+        "matches": true
+      },
+      {
+        "path": "native-model-and-python/pack-build.log",
+        "bytes": 1903,
+        "sha256": "0dfdd4f906c1607fda61f362e9fabe01b0e9b6e785178a7e4196eab6f7898916",
+        "matches": true
+      },
+      {
+        "path": "native-model-and-python/python-freeze.txt",
+        "bytes": 459,
+        "sha256": "e224cc3c1a40e66221e2e9b805db802e8b5a28186aa4a6cb0d74e1ce97489c32",
+        "matches": true
+      },
+      {
+        "path": "native-model-and-python/python-install.log",
+        "bytes": 11030,
+        "sha256": "0ddab9255d77c3566f14b22c830d7db110f0ade73ac716069dc173d3f2c97aff",
+        "matches": true
+      },
+      {
+        "path": "native-model-and-python/quantize.log",
+        "bytes": 18119,
+        "sha256": "8016fad768716cfca5f2f98486a963a4c05fa56c996be05d42322937ee21bee2",
+        "matches": true
+      },
+      {
+        "path": "native-model-and-python/ready.json",
+        "bytes": 2423,
+        "sha256": "f9eba8a12fe4c1221bfae32e727cd41623d99880a805228d824c8b47b88d072e",
+        "matches": true
+      },
+      {
+        "path": "native-model-and-python/reference-f32.json",
+        "bytes": 256295,
+        "sha256": "9d33a0be66e68284277bd3d9e0e0fe404936cf804e2e715a8999b7ece14155d8",
+        "matches": true
+      },
+      {
+        "path": "restore_model_runtime.py",
+        "bytes": 2579,
+        "sha256": "261ed26e8769592c99e4d9a67acce3430e70f9da82cae1f007f85b177006e287",
+        "matches": true
+      }
+    ]
+  },
+  "native": {
+    "source_revision": "853a1ce6089e5d5486e37307f37051ad6a928745",
+    "ggml_revision": "3a27b6c665b191cb230be367db5c52d81dd3e2ac",
+    "baseline_receipt_sha256": "48996f283c24dbbf57590cf0314f4ec51d7e4076f4e14b9f99172e36f542dddf",
+    "original_source_files_independently_rehashed": 112,
+    "compiled_source_entries": 31,
+    "semantic_flags_equal_baseline": true,
+    "declared_relocation_flag": "-ffile-prefix-map=/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed=/home/agent/.codex/skills/remote-skills/.quds-gector-work/worktrees/CrispEmbed",
+    "binaries": [
+      {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/build/libcrispembed-gector.so",
+        "expected_sha256": "9b0b7bcc0a5f19288d5ec3772594c6e64339becb56204276530d48e45c512604",
+        "exists": true,
+        "actual_sha256": "9b0b7bcc0a5f19288d5ec3772594c6e64339becb56204276530d48e45c512604",
+        "bytes": 2064104,
+        "matches": true
+      },
+      {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/build/crispembed-gector-quantize",
+        "expected_sha256": "8d38bcb36ed82e6ebae6c320ea07ff3a97343feafbc0f7c024b6c1d4c5373a46",
+        "exists": true,
+        "actual_sha256": "8d38bcb36ed82e6ebae6c320ea07ff3a97343feafbc0f7c024b6c1d4c5373a46",
+        "bytes": 915904,
+        "matches": true
+      }
+    ],
+    "command_logs": [
+      {
+        "label": "compiler",
+        "matches": true
+      },
+      {
+        "label": "cxx",
+        "matches": true
+      },
+      {
+        "label": "venv",
+        "matches": true
+      },
+      {
+        "label": "tool-install",
+        "matches": true
+      },
+      {
+        "label": "CrispEmbed-init",
+        "matches": true
+      },
+      {
+        "label": "CrispEmbed-remote",
+        "matches": true
+      },
+      {
+        "label": "CrispEmbed-abbrev",
+        "matches": true
+      },
+      {
+        "label": "sparse-source",
+        "matches": true
+      },
+      {
+        "label": "CrispEmbed-fetch",
+        "matches": true
+      },
+      {
+        "label": "CrispEmbed-checkout",
+        "matches": true
+      },
+      {
+        "label": "CrispEmbed-head",
+        "matches": true
+      },
+      {
+        "label": "CrispEmbed-ggml-init",
+        "matches": true
+      },
+      {
+        "label": "CrispEmbed-ggml-remote",
+        "matches": true
+      },
+      {
+        "label": "CrispEmbed-ggml-abbrev",
+        "matches": true
+      },
+      {
+        "label": "CrispEmbed-ggml-fetch",
+        "matches": true
+      },
+      {
+        "label": "CrispEmbed-ggml-checkout",
+        "matches": true
+      },
+      {
+        "label": "CrispEmbed-ggml-head",
+        "matches": true
+      },
+      {
+        "label": "configure",
+        "matches": true
+      },
+      {
+        "label": "build",
+        "matches": true
+      },
+      {
+        "label": "native-contract",
+        "matches": true
+      },
+      {
+        "label": "install",
+        "matches": true
+      }
+    ],
+    "contract_raw_result": "1/1 passed, 100% tests passed"
+  },
+  "model": {
+    "pack_manifest_sha256": "70187da9248c829ab511f566ba4db9093a0ec5a9c922ad4438d63db372880841",
+    "pack_files_independently_rehashed": 22,
+    "mixed_model_sha256": "549ee3a5272726d48608cebdb435aaea6a984f3f53508b20b3194a7175a5ef5b",
+    "live_bundle_assets_independently_rehashed": 12,
+    "source_manifest_equals_historical": true,
+    "f32_output_pin": {
+      "file": "gector-de-f32.gguf",
+      "sha256": "497657528f3a660b85b807a7da0db663abb5964ada81f819e26ed48b6e96b6c1",
+      "size_bytes": 453355328
+    },
+    "f32_manifest_tensor_count": 201,
+    "released_inputs": [
+      {
+        "file": "model.onnx",
+        "sha256": "6d7b43b4bd95c7a00c02c8babc7569d28558df894afe4874d96c202e6ab9a464",
+        "status": "released after recorded verification; not freshly rehashed"
+      },
+      {
+        "file": "gector-de-f32.gguf",
+        "sha256": "497657528f3a660b85b807a7da0db663abb5964ada81f819e26ed48b6e96b6c1",
+        "status": "released after recorded verification; not freshly rehashed"
+      }
+    ],
+    "finish_commands": [
+      {
+        "label": "convert-f32",
+        "matches": true
+      },
+      {
+        "label": "quantize",
+        "matches": true
+      },
+      {
+        "label": "pack-build",
+        "matches": true
+      }
+    ],
+    "reference_sha256": "9d33a0be66e68284277bd3d9e0e0fe404936cf804e2e715a8999b7ece14155d8"
+  },
+  "python": {
+    "expected_and_installed_packages": [
+      "certifi==2026.10.23",
+      "charset-normalizer==3.5.2",
+      "cmake==4.4.5",
+      "coloredlogs==15.0.1",
+      "filelock==4.2.11",
+      "flatbuffers==25.12.19",
+      "fsspec==2026.9.0",
+      "gguf==0.19.0",
+      "hf-xet==1.8.0",
+      "huggingface-hub==0.36.0",
+      "humanfriendly==10.0",
+      "idna==3.20",
+      "ml_dtypes==0.7.0",
+      "mpmath==1.3.0",
+      "ninja==1.13.2",
+      "numpy==2.3.5",
+      "onnx==1.19.1",
+      "onnxruntime==1.23.2",
+      "packaging==26.3",
+      "protobuf==7.36.2",
+      "PyYAML==6.0.3",
+      "requests==2.34.2",
+      "sympy==1.14.0",
+      "tokenizers==0.22.1",
+      "tqdm==4.70.1",
+      "typing_extensions==4.16.0",
+      "urllib3==2.8.0"
+    ],
+    "package_count": 27,
+    "current_freeze_equals_historical_and_archived": false,
+    "freeze_sha256": "e224cc3c1a40e66221e2e9b805db802e8b5a28186aa4a6cb0d74e1ce97489c32",
+    "retained_build_tools": [
+      {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-qualification-runtime/venv/lib/python3.12/site-packages/cmake/data/bin/cmake",
+        "expected_sha256": "7ea6e681a679e5e635b059765467a9830e142feaea4cd49af01615cf4c11882f",
+        "exists": false,
+        "matches": false
+      },
+      {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-qualification-runtime/venv/bin/ninja",
+        "expected_sha256": "08639e194fffa7f08b259fc4abfa4803aff66b64de52549cee42ec527d55cea6",
+        "exists": false,
+        "matches": false
+      }
+    ],
+    "bytecode_cleanup_scope": "Reproducible caches only; no installed package version changes observed"
+  },
+  "consumer": {
+    "historical_archive_sha256": "49b519e8ef949a3dd6ff6cf1befa7f0264b90dab23da932aaa93879afc2e2951",
+    "historical_members_verified_and_rehashed_live": 710,
+    "runtime_files_independently_rehashed": 3504,
+    "runtime_paths_and_expected_hashes_match_historical_input_map": true,
+    "runtime_live_map_sha256": "01a228de97d2d850bcb033715641cdd8c495ffdecffae92bb3d3e11e33e690cc",
+    "font_checks": [
+      {
+        "path": "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
+        "expected_sha256": "57f73e11f51999432bf7ab22ce55b6f945d5eca1bf824404cfa9ec2e3718c84e",
+        "exists": true,
+        "actual_sha256": "57f73e11f51999432bf7ab22ce55b6f945d5eca1bf824404cfa9ec2e3718c84e",
+        "bytes": 759720,
+        "matches": true
+      },
+      {
+        "path": "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
+        "expected_sha256": "a4c5bc453ca281d90ea079e596da7ae0dfeb5777497c29ec254e76d97ff6f890",
+        "exists": true,
+        "actual_sha256": "a4c5bc453ca281d90ea079e596da7ae0dfeb5777497c29ec254e76d97ff6f890",
+        "bytes": 708920,
+        "matches": true
+      },
+      {
+        "path": "/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf",
+        "expected_sha256": "bade59d822652f76e6941aa87b40a87c13d1cc70db98ededb5011127efafd1d3",
+        "exists": true,
+        "actual_sha256": "bade59d822652f76e6941aa87b40a87c13d1cc70db98ededb5011127efafd1d3",
+        "bytes": 410820,
+        "matches": true
+      },
+      {
+        "path": "/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf",
+        "expected_sha256": "1b5f2da6f4cadce4c05b9ecebe3a6fcd374eb95ae443605e799f4c3287978939",
+        "exists": true,
+        "actual_sha256": "1b5f2da6f4cadce4c05b9ecebe3a6fcd374eb95ae443605e799f4c3287978939",
+        "bytes": 414568,
+        "matches": true
+      },
+      {
+        "path": "/usr/share/fonts/truetype/noto/NotoNaskhArabic-Regular.ttf",
+        "expected_sha256": "8c67eaa2f0086872628fc3f7f760386f83c8be5c5e9a1ba3a38891237b2ac7cb",
+        "exists": true,
+        "actual_sha256": "8c67eaa2f0086872628fc3f7f760386f83c8be5c5e9a1ba3a38891237b2ac7cb",
+        "bytes": 175792,
+        "matches": true
+      },
+      {
+        "path": "/workspace/scratch/5e1b9c2fa60d/quds_office_suite/packages/quds_office_editor/fonts/NotoNaskhArabic-Regular.ttf",
+        "expected_sha256": "8c67eaa2f0086872628fc3f7f760386f83c8be5c5e9a1ba3a38891237b2ac7cb",
+        "exists": true,
+        "actual_sha256": "8c67eaa2f0086872628fc3f7f760386f83c8be5c5e9a1ba3a38891237b2ac7cb",
+        "bytes": 175792,
+        "matches": true
+      },
+      {
+        "path": "/workspace/scratch/5e1b9c2fa60d/quds_office_suite/packages/quds_office_editor/fonts/LiberationSans-Regular.ttf",
+        "expected_sha256": "075e71be4c58beda172ecb574a799308f04c3d054c6a5b7434954d3b0f1b28d8",
+        "exists": true,
+        "actual_sha256": "075e71be4c58beda172ecb574a799308f04c3d054c6a5b7434954d3b0f1b28d8",
+        "bytes": 410820,
+        "matches": true
+      },
+      {
+        "path": "/workspace/scratch/5e1b9c2fa60d/quds_office_suite/packages/quds_office_editor/example/fonts/Cairo-Regular.ttf",
+        "expected_sha256": "ca9f630344d33e7b01abb9998a379465a135d1311430f33bbbfaa1e3eb99fdb5",
+        "exists": true,
+        "actual_sha256": "ca9f630344d33e7b01abb9998a379465a135d1311430f33bbbfaa1e3eb99fdb5",
+        "bytes": 188088,
+        "matches": true
+      }
+    ],
+    "versions": {
+      "soffice": "LibreOfficeDev 26.8.0.0.alpha0 2c87e51eeaa2b413ff4ae097b2705eea1995d8e5",
+      "pdftotext": "pdftotext version 25.03.0\nCopyright 2005-2025 The Poppler Developers - http://poppler.freedesktop.org\nCopyright 1996-2011, 2022 Glyph & Cog, LLC",
+      "pdfinfo": "pdfinfo version 26.05.0\nCopyright 2005-2026 The Poppler Developers - http://poppler.freedesktop.org\nCopyright 1996-2011, 2022 Glyph & Cog, LLC",
+      "pdftoppm": "pdftoppm version 26.05.0\nCopyright 2005-2026 The Poppler Developers - http://poppler.freedesktop.org\nCopyright 1996-2011, 2022 Glyph & Cog, LLC",
+      "java": "openjdk version \"21.0.13\" 2026-10-20\nOpenJDK Runtime Environment (build 21.0.13+9-1-deb13u2-Debian)\nOpenJDK 64-Bit Server VM (build 21.0.13+9-1-deb13u2-Debian, mixed mode, sharing)"
+    },
+    "smoke_commands": 6,
+    "schema_controls": "2 valid accepted, 2 invalid rejected; unchanged historical render/extraction succeeded",
+    "current_product_qualification_claimed": false
+  },
+  "findings": [
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/LICENSE",
+        "expected_sha256": "a70d0ab5fb2dbab83d1a63071776891e6dfc7ba6e3063b3940c21274c1225a3e",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/CMakeLists.txt",
+        "expected_sha256": "fecc434678bf426735cf1e9f23dd69ba82cf550c56370f3d40c3ff85e6595ed1",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/LICENSE",
+        "expected_sha256": "94f29bbed6a22c35b992c5c6ebf0e7c92f13b836b90f36f461c9cf2f0f1d010d",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/cmake/FindNCCL.cmake",
+        "expected_sha256": "496ad9fbb75ce307f8142ed2dc8fa1ea1baaaef70e51b8d0b153ebd191b650f8",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/cmake/GitVars.cmake",
+        "expected_sha256": "411507be4e991f2afc0007905a95bbf848176a282189d0e27d7df1d48974290d",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/cmake/common.cmake",
+        "expected_sha256": "438c57ef81c63b3b7b7a3078965ba081d53c3c2e9f9986c512e6f11b4937e816",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/examples/CMakeLists.txt",
+        "expected_sha256": "7ee60534b0586e511b0a2a5a34d3b382c89c36bc7b5d009fd5c0e2c3825c1ceb",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/examples/gpt-2/CMakeLists.txt",
+        "expected_sha256": "093364ed8ac4bc98da1521c685fa8578fa08962cf4736c25bf66055dcb8b5fdc",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/examples/gpt-j/CMakeLists.txt",
+        "expected_sha256": "0af941003409f7a428cf7167828d1a0ba231cd2921f4f5e909ee3f1d49e2b300",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/examples/magika/CMakeLists.txt",
+        "expected_sha256": "32ba98167b7a74d6bb586fd92a3286c67d3516d353b9f976beb4829f0bce322d",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/examples/mnist/CMakeLists.txt",
+        "expected_sha256": "83223e4cb70524d105a4d441fa8b9c4ee669f482a11ffcd484d96839fc1a1d26",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/examples/perf-metal/CMakeLists.txt",
+        "expected_sha256": "188312552fb6a0b79ab4931f91336052f3e071497c0373a14cc383f2e824c5bc",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/examples/sam/CMakeLists.txt",
+        "expected_sha256": "4dd2fffd5b158d3e895e76f5a224e0e282b2573da0990b392a2a9a506efb02d6",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/examples/simple/CMakeLists.txt",
+        "expected_sha256": "1af51ab46c5ab3da258d96b5da80232313dbaa60d3ede9b810a6ce024b7b0156",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/examples/test-cmake/CMakeLists.txt",
+        "expected_sha256": "4a203a94ec58f6cd8ef12350547b3aa2e31932209fb28095f6d1355c2124e7f0",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/examples/yolo/CMakeLists.txt",
+        "expected_sha256": "b71e96baf18098464de76d891c32d50ce5fd09b09c17197cced3cc0406a0402f",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/include/ggml-alloc.h",
+        "expected_sha256": "94e4cd069b9313b2ceb35dacec901981e0bb478d8bb31035b7126be091998c23",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/include/ggml-backend.h",
+        "expected_sha256": "a620e815b43a44cc72d5f216629a3a91980335b61bc37eb6b2d0813368c3704f",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/include/ggml-cpp.h",
+        "expected_sha256": "bc15ba002c68685df23faae42df0d2b3d58032011f88b649021ab92485862c72",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/include/ggml-cpu.h",
+        "expected_sha256": "1b1ca04306c854187e6d7cb1f5edaf804c63a29a3b9909d563380343ecc25bae",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/include/ggml-opt.h",
+        "expected_sha256": "3586de1bc8a934b5c72339e2b6937b0641e8f149b512231e666f67de0736eea2",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/include/ggml.h",
+        "expected_sha256": "0e3d9d7c97b78e8287fb3651416f6e9793ca70e95b51602d259075713e6645bb",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/include/gguf.h",
+        "expected_sha256": "e56714aab702e5ce62ee587a409643c08f7e93e8fbb77f48ef7cc85075f96fa4",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/src/CMakeLists.txt",
+        "expected_sha256": "4bc9d1741b7f145c3ffb9fe50b9f52f0dfb404e170d282f0ddd2d23aa6d6880b",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/src/ggml-alloc.c",
+        "expected_sha256": "1274169634584af70c7492a63ed0c53dca63b759b6885f0d8839d7d4831b82c4",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/src/ggml-backend-dl.cpp",
+        "expected_sha256": "acd76df8b83bcdef6807bc7b0520f57b379d61b4ff1027c04aa4d140d16ad07f",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/src/ggml-backend-dl.h",
+        "expected_sha256": "225bd83a197c4e8b5f985717176824d1144e2b74a79f04838f51b84115c14dc5",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/src/ggml-backend-impl.h",
+        "expected_sha256": "d9c62d72b13bff67ef7ada8feccf90c9cd1b6d176eae85df3ed1d4f3d2240e52",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/src/ggml-backend-meta.cpp",
+        "expected_sha256": "e1482bddfdac4fe22a99c8397bb0572f7d1b4c5ac16c9abccd395d6691a79ab9",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/src/ggml-backend-reg.cpp",
+        "expected_sha256": "c0a61f47e7af0359cfff41317ae8e68717960483d141983bba914733b1f68906",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/src/ggml-backend.cpp",
+        "expected_sha256": "f3795438348aef30ddc8f72c41ffa47cc13828675df25b958d4a3e8145501203",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/src/ggml-blas/CMakeLists.txt",
+        "expected_sha256": "dc7028c2c7207e8c334fd61ea4556599a326710cd9b33050bace38833529df71",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/src/ggml-cann/CMakeLists.txt",
+        "expected_sha256": "a61c05231e4ae8748c76febb4dfc214f856789caba5e0edd7d0c802bba3b172a",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/src/ggml-common.h",
+        "expected_sha256": "af255601767325f087313fa84b9435cb77aeec37df6b61b98d9ecc65f29fb4a0",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/src/ggml-cpu/CMakeLists.txt",
+        "expected_sha256": "8f540fdf899f1de3e9b08b2768c8546a9416794a9b290615d50bbec80f5fc84c",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/src/ggml-cpu/amx/amx.cpp",
+        "expected_sha256": "636d1e4b858a86ad6568100bbdb4bf9715d9dfb25d3831415d55e04e39acad86",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/src/ggml-cpu/amx/amx.h",
+        "expected_sha256": "9d098ceee6a8114d4a660ff269064a27aa25b8a4f205d1e6984d17bec5104f0d",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/src/ggml-cpu/amx/common.h",
+        "expected_sha256": "c694f6bb066a820b717f986914b0d112dca0d8d3a1e239e958fce30c864751c3",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/src/ggml-cpu/amx/mmq.cpp",
+        "expected_sha256": "0f95c80e0300eca3b3a3df07272042fee708425e19cd5f2c4cba7b253b26d226",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/src/ggml-cpu/amx/mmq.h",
+        "expected_sha256": "bd33d0713b12daf9eedea1619dd715619baaa36b98c44ec754d532909d80933a",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/src/ggml-cpu/arch-fallback.h",
+        "expected_sha256": "2dc6b116f732329effe45d3f9384d5ebae628f3c19e2f2ac69551fd2e3721917",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/src/ggml-cpu/arch/x86/quants.c",
+        "expected_sha256": "2909f2c8d2aca218244fa6a816061647f8073fb8d1b07759779cc40240be85a6",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/src/ggml-cpu/arch/x86/repack.cpp",
+        "expected_sha256": "c69735f83caf854172cac78eed2cbc022ef81c077e5f6aca55a49d3404a02331",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/src/ggml-cpu/binary-ops.cpp",
+        "expected_sha256": "2df261aadce36a20f5e3bf6961d4ca27b8c2d461afc41488361ee6ad09c1730d",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/src/ggml-cpu/binary-ops.h",
+        "expected_sha256": "5915519c4e2227db28239b2a5d3b8a5f9022730cc0ddb7880b24748ee78cd1f9",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/src/ggml-cpu/common.h",
+        "expected_sha256": "db7c19747a28c819d18922aa43b91b224df3730e424e6d8a4cf4fd16bfb1db14",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/src/ggml-cpu/ggml-cpu-impl.h",
+        "expected_sha256": "0a2fc96b34833c1a952d17b8232f3f714f8391e7b78f0be507c92e257fd525d0",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/src/ggml-cpu/ggml-cpu.c",
+        "expected_sha256": "9a85d2bf58f99e885106cac024d7585f079f16ba7df9a68ef0bb03d9bc860f14",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/src/ggml-cpu/ggml-cpu.cpp",
+        "expected_sha256": "898063fa671f65e5cee7b9a6520e7fedf2125765015f5c16eb3675be2c79af7e",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/src/ggml-cpu/hbm.cpp",
+        "expected_sha256": "3c75b5aaf9b51d17060ecfb93cb5f8b22ce3974d7eff3d76dec2156d2f194b80",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/src/ggml-cpu/llamafile/sgemm.cpp",
+        "expected_sha256": "11b4860f7368015e69fbf4fe01f41756c72acb37b992d7dd549060811f6949b8",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/src/ggml-cpu/llamafile/sgemm.h",
+        "expected_sha256": "6ec12aa9244a8ffb13ae56b2e391f905b1d152ae25ff45da6a66e18daf650b3b",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/src/ggml-cpu/ops.cpp",
+        "expected_sha256": "60687e87a0fbf5a43ff5376e96c4bde5f4efcc281fcdba55382e36a552cb418e",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/src/ggml-cpu/ops.h",
+        "expected_sha256": "657190fcf1ac47869df9e5b3f57316467a3658cc7d31f52cfff8837f8ede9f56",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/src/ggml-cpu/quants.c",
+        "expected_sha256": "a61f1011e49d05b5f99d352b158d5b8e36cf008294bb0db309f72bdd7f1d4e35",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/src/ggml-cpu/quants.h",
+        "expected_sha256": "02457a2e34ffb102ad046868f2087d1f07e744b36cbb6ffee9ad5295e78a6781",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/src/ggml-cpu/repack.cpp",
+        "expected_sha256": "b3a1d6953fc61f2a4088337384166fb5102db617afe37a4b92f7cf07992a9f8a",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/src/ggml-cpu/repack.h",
+        "expected_sha256": "fe472315b4106400d7890fca308659c74bcdedad1b011a9ba60c02dcd5bef57b",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/src/ggml-cpu/simd-gemm.h",
+        "expected_sha256": "ce613195325cea048ede4c7a86c382ac6abf4c701c91eee640bd3cc78b39ce5e",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/src/ggml-cpu/simd-mappings.h",
+        "expected_sha256": "ea11dc9440293d440b7f3549ee2009711aa745a7382711bcf0851f7e96cf22f3",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/src/ggml-cpu/traits.cpp",
+        "expected_sha256": "a85bd3ff50c91cb67d14221988544664dfe5975db0811b330dc4a2f385239de4",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/src/ggml-cpu/traits.h",
+        "expected_sha256": "26e1b41879091a663325848aa82a4023b459fd1e688b3b0e2a9bde3e72a3a764",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/src/ggml-cpu/unary-ops.cpp",
+        "expected_sha256": "e63b382766f1b8c5ded1577be9704e85cb4e9cd24584f3e1474911a40146df33",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/src/ggml-cpu/unary-ops.h",
+        "expected_sha256": "280b7979055079d43bdde7790a7290bf04f75640481c59abc2364c46d6ac6d8e",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/src/ggml-cpu/vec.cpp",
+        "expected_sha256": "1fe783225503cca1b27e21c6b7b7b9d479cea2daf8d6e14ae854637a8657b7c4",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/src/ggml-cpu/vec.h",
+        "expected_sha256": "ae7a719ee00d09ba5f2c321882e9c0504aad1738ba1880628c182a9a57b857ba",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/src/ggml-cuda/CMakeLists.txt",
+        "expected_sha256": "3116fef2d75722c9bcf4533cf69212a4ac7f583c9be405e2c8c85aa58feb97c4",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/src/ggml-et/CMakeLists.txt",
+        "expected_sha256": "8df0d876d60d0b1194c513ceb9f8d1e4302dbf5e26c59bef9fa7756bd704098d",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/src/ggml-et/et-kernels/CMakeLists.txt",
+        "expected_sha256": "5f4a62be4a0f7ba40a1005a16eaa5e13fb9dbb94ce793a0eef1d235a64d0a1c3",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/src/ggml-hexagon/CMakeLists.txt",
+        "expected_sha256": "00d8487f4ebdc088304e59d4ef08987077323c8c4f8a3c1bfe58e10538ea0f83",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/src/ggml-hexagon/htp/CMakeLists.txt",
+        "expected_sha256": "13142b4668f1c9381b244e8760b7923778b08b43a937e44d01e64185a851c685",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/src/ggml-hip/CMakeLists.txt",
+        "expected_sha256": "f9a23189d29811f8d6b6a8d17b80173b4cd02abdad8a8e16cc61e3e2d4b3b28f",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/src/ggml-impl.h",
+        "expected_sha256": "2ed56e264202906d107e26d08eabb242d3107b026ebfb78096fa1e5f94bdbbb8",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/src/ggml-metal/CMakeLists.txt",
+        "expected_sha256": "e0caad0073256a0cf9f445eb440cf935c569de81fac1af2127b6af5786b1c80d",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/src/ggml-musa/CMakeLists.txt",
+        "expected_sha256": "66600e820763f5b1a60b4ec3d4a30b0495fe7cf10c715780d499a9991b0468e3",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/src/ggml-opencl/CMakeLists.txt",
+        "expected_sha256": "0f63f4554548af4b97f9d2f506e9ab30b0a53e656043d5ea70db4e371e0cbd8e",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/src/ggml-openvino/CMakeLists.txt",
+        "expected_sha256": "b3bdc6e3ad18e07ec42256a8a0192cf1a249f035b3876c5d6a45c09a0760476a",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/src/ggml-opt.cpp",
+        "expected_sha256": "e35fd27856e37f3611d3bc6f17ee963be51bfe92bec96fad0a9fa2c7ebbe9c46",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/src/ggml-quants.c",
+        "expected_sha256": "07143d7068936ae46b3c528b2f3d4bbb666e74d88992165716174d243573965d",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/src/ggml-quants.h",
+        "expected_sha256": "28ae5fca1f3be636b36cd6c4fa2ca74fd42d229bfbd5352eaf66f3727bb8a6da",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/src/ggml-rpc/CMakeLists.txt",
+        "expected_sha256": "a8ceaa0037d241fca3b9a274b144991a0930c352a70e8a4083379037c4b085df",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/src/ggml-sycl/CMakeLists.txt",
+        "expected_sha256": "f31068a8ac59e7862fb649ce549eeaa914541ee42804df7cb1b530576a3cd428",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/src/ggml-threading.cpp",
+        "expected_sha256": "13a18d885393722b7c9f42d4cf8575a4d41699926d656f78a867fa4fac9dad20",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/src/ggml-threading.h",
+        "expected_sha256": "9652729043ed91482392c1aa08af5d813190d0ace2e7982d2539d28240ab8d8b",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/src/ggml-virtgpu/CMakeLists.txt",
+        "expected_sha256": "2c5ca62a55f452d9ea95ef3ba276abdfe40738d7beedcc845956a971125d7d2a",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/src/ggml-virtgpu/backend/CMakeLists.txt",
+        "expected_sha256": "9b3ca0ffe5db26a210d43faa7c89879dddf47bf69ea1a1a9ef175b39d1324636",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/src/ggml-vulkan/CMakeLists.txt",
+        "expected_sha256": "95b77526cbede60b669abf1bc13657956284d0b20835096e64f24682a5a1a0e2",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/src/ggml-vulkan/vulkan-shaders/CMakeLists.txt",
+        "expected_sha256": "0cb2c1fd49730793094cbaca4a46d0e0fc56c8f279aa9712a4e7a53535400d64",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/src/ggml-webgpu/CMakeLists.txt",
+        "expected_sha256": "dd99b4af03e2bb80464edcac3476c19464a149a608243b17286226c4791a4b99",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/src/ggml-zdnn/CMakeLists.txt",
+        "expected_sha256": "50e5b114c2268fb5df1f308a0953d6437991b98a5fe9b2998c8a448d4e9f9fc8",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/src/ggml-zendnn/CMakeLists.txt",
+        "expected_sha256": "aea8c2d7f1ba59bb9cbfef597ac1d2cb2853f032f3b0e2b912a1db20813f7bb0",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/src/ggml.c",
+        "expected_sha256": "e6f2c92680bf5d2765ba5cfa1886a6cb2dd3ee32998bd786df00017813be934e",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/src/ggml.cpp",
+        "expected_sha256": "64e6b5c8d716ae8697e45481a7153540be01f721be2dc7e753aa47b36a69c753",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/src/gguf.cpp",
+        "expected_sha256": "73108c5b716dd8340d7e2422456f461a68088f1b4241c8b2d09e7cd7450b9cfd",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/tests/CMakeLists.txt",
+        "expected_sha256": "d1fa6b81c518eb0b2c08d641905f9539b9c33ea7eca0c820a45e8c1678e1ef9f",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/ggml/tests/wasm-q8-rounding/CMakeLists.txt",
+        "expected_sha256": "e3cd46be12d5607b1e0aee31a6e118e06de64f6b4597fb4b97442670008353e6",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/src/core/clean_exit.h",
+        "expected_sha256": "2528210865cfc6aa8f2a389526aebae46e836f6bca88c00e4eabaedf6c83fdd6",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/src/core/env_gate.h",
+        "expected_sha256": "2370e31636ea25bc1e5ca63e1e606f4cd3c07c65e0f4d1347b2ec6daf57eaa0e",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/src/core/gguf_file_type.h",
+        "expected_sha256": "29b79e4fdf9c23cda158972ed989f04de380efb8a2bdf514fa434619dfd205b7",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/src/core/gguf_loader.cpp",
+        "expected_sha256": "04b2c87b90f80fef04713c0572f3a7e823ba1c22e7c89ebc925a3d1ea56a6a8a",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/src/core/gguf_loader.h",
+        "expected_sha256": "d191f61843db3aaf4a9a653c29debb70fbd8f1e2f2d47d63e85966e737a08936",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/src/core/imatrix_alias.h",
+        "expected_sha256": "0f25d7cebdcad616cf3d03843e2f15c6e04b188c2fede81222db1ca3d11c941c",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/src/core/json.h",
+        "expected_sha256": "7e72a6359897e9397e5bee3edf7563476fc4bd41516bf5245a16df50dc54c589",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/src/core/lighton4b_imatrix.h",
+        "expected_sha256": "376411b463c70a13730d68f8aebc21013281396a022a96dacd66823d6dd379f0",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/src/core/lighton4b_imatrix_q4km.h",
+        "expected_sha256": "5f3ee60cb111c60df2549a59cba93ff3574fc68aad9b1ab45a0877c3f671badb",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/src/core/sha256.h",
+        "expected_sha256": "409ab494061b042d4a84698b7bf2caf6dd68f6639cbeb532cb47a2f2337d9a6f",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/src/gector.cpp",
+        "expected_sha256": "0e38c16578af870de9bf2649309230d65e47c482848c68181fa0d880b944c288",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/src/gector.h",
+        "expected_sha256": "3794ff7e9b228df757f502679f42a4784b9a6d89ae32d7198ee79d621f8c4bda",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/tests/test_gector.cpp",
+        "expected_sha256": "dc81b6cb6374e71897713cb0b99e60c30f1b94fa98700af158547881c0035266",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/tools/gector/CMakeLists.txt",
+        "expected_sha256": "dd0a8248534ab0fd6c781949af2c390f8c994114023c4c4391cb61926fe7ac9d",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/tools/gector/main.cpp",
+        "expected_sha256": "2f82edf90ba65e725d9c0b12f701b4c5cdd93fb6b4629a545947a01b3257ada9",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-binary-recovery/CrispEmbed/tools/quantize.cpp",
+        "expected_sha256": "12e1f1e958226a40628af46d80660b02d09cade63c40849cef0e4006aa762f47",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "installed-python-freeze",
+      "detail": null
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-qualification-runtime/venv/lib/python3.12/site-packages/cmake/data/bin/cmake",
+        "expected_sha256": "7ea6e681a679e5e635b059765467a9830e142feaea4cd49af01615cf4c11882f",
+        "exists": false,
+        "matches": false
+      }
+    },
+    {
+      "check": "live-file",
+      "detail": {
+        "path": "/workspace/scratch/5e1b9c2fa60d/native-consumers/native-qualification-runtime/venv/bin/ninja",
+        "expected_sha256": "08639e194fffa7f08b259fc4abfa4803aff66b64de52549cee42ec527d55cea6",
+        "exists": false,
+        "matches": false
+      }
+    }
+  ],
+  "runtime_archive_accepted": false,
+  "product_qualification_accepted": false,
+  "github_actions_queried_or_awaited": false,
+  "limitations": [
+    "The ONNX and F32 conversion intermediates were deliberately released before this independent review. Their historical pins, archived conversion manifest and executable recovery assertions were checked; their removed bytes could not be freshly rehashed.",
+    "Runtime recovery and historical smoke controls do not establish current product correctness, model quality, performance acceptance, or release readiness.",
+    "This review reads a local archive. Remote Git blob/tree readback is a separate later publication check."
+  ]
+}
