@@ -298,10 +298,17 @@ is rejected and the workspace explains how to reopen it.
 
 Choose an existing field's **Reference actions → Edit citation**, or review a
 new selection. Move sources up or down, remove them, inspect stored details,
-or choose **Add sources**. The local chooser searches references already cited
-in the document, references selected in Library, and loaded CSL imports.
-Select new Library sources or load another CSL export before opening the
-composer when the desired reference is not yet available.
+or choose **Add stored sources**. The local chooser searches references already
+cited in the document, references selected in Library, and loaded CSL imports.
+With a connected library, **Search Zotero…** also searches Zotero directly
+*while the citation editor stays open*. Enter a title, creator or year and
+submit Search. Results are fetched in pages of 25; **Load more** keeps the
+submitted query, and selections survive new searches and page changes. Open
+stored details before adding a result. Typing alone makes no network request.
+Only citable results with CSL metadata can be selected; Zotero items that do
+not supply CSL data are excluded. Unsynced desktop items without a durable
+Zotero URI enter as standalone embedded references. Without a connection,
+select Library sources or import CSL JSON to make other references available.
 
 Source changes remain staged until **Update citation** or **Insert citation**.
 Cancelling the composer discards them. Reordering preserves each occurrence's
@@ -311,10 +318,12 @@ source is required. Adding is limited to 20 sources; an imported citation that
 already exceeds that count keeps all its sources available for editing,
 reordering or removal.
 
-Basic author–year text updates with the current source list. In custom-text
-mode, changing membership or order requires editing the visible text or
-explicitly confirming that it matches the revised sources. A changed source
-sequence does not retain its old processor-specific formatted cache. For full
+Basic author–year text updates with the current source list and per-source
+options. In custom-text mode, changing membership, order, locator, label,
+prefix, suffix, or author-only/suppress-author options requires editing the
+visible text or explicitly confirming that it matches the revision. These
+changes discard the previous processor-specific formatted cache; restoring
+the original options without other changes preserves it. For full
 CSL numbering, disambiguation and bibliography updates, use **Edit in Zotero…**
 and the native refresh tools. A connected single-source preview always uses
 the current source after edits; preview errors keep the citation draft.
