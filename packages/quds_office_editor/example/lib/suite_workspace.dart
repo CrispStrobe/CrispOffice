@@ -138,6 +138,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   var _slideshowFullscreen = false;
   var _findOpen = false;
   var _pdfSideTab = 0; // 0 thumbs, 1 outline
+  final ValueNotifier<int> _navigationRevision = ValueNotifier<int>(0);
   final ScrollController _pdfThumbScroll = ScrollController();
   int _pdfThumbSyncedPage = -1;
   final Set<String> _pdfOutlineExpanded = <String>{};
@@ -307,6 +308,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     _pdfFindDebounce?.cancel();
     _pdfFind.dispose();
     _pdfThumbScroll.dispose();
+    _navigationRevision.dispose();
     _slideNotesEdit.dispose();
     _commentContextKeyboard = false;
     _wordFocus.dispose();
@@ -581,7 +583,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       child: Directionality(
         textDirection: TextDirection.ltr,
         child: SizedBox(
-          height: 36,
+          height: 36 + _extraChromeTextHeight(13),
           width: double.infinity,
           child: Stack(
             fit: StackFit.expand,
@@ -593,62 +595,73 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
               Row(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
-                  const Padding(
-                    padding: EdgeInsets.only(left: 10, right: 4),
-                    child: Row(
-                      children: <Widget>[
-                        Icon(
-                          Icons.auto_awesome_mosaic,
-                          color: Colors.white,
-                          size: 16,
-                        ),
-                        SizedBox(width: 8),
-                        Text(
-                          'Quds Office Studio',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w600,
-                            fontSize: 12,
-                            letterSpacing: 0.2,
+                  Flexible(
+                    flex: 5,
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: <Widget>[
+                          const Padding(
+                            padding: EdgeInsets.only(left: 10, right: 4),
+                            child: Row(
+                              children: <Widget>[
+                                Icon(
+                                  Icons.auto_awesome_mosaic,
+                                  color: Colors.white,
+                                  size: 16,
+                                ),
+                                SizedBox(width: 8),
+                                Text(
+                                  'Quds Office Studio',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 12,
+                                    letterSpacing: 0.2,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  _titleQuickAccess(),
-                  FittedBox(
-                    fit: BoxFit.scaleDown,
-                    alignment: Alignment.centerLeft,
-                    child: Row(
-                      children: <Widget>[
-                        StudioAppSwitcher(
-                          label: 'Word',
-                          icon: Icons.description_outlined,
-                          selected: _app == SuiteApp.word,
-                          onTap: () => _switchApp(SuiteApp.word),
-                        ),
-                        StudioAppSwitcher(
-                          label: 'Excel',
-                          icon: Icons.grid_on_outlined,
-                          selected: _app == SuiteApp.excel,
-                          onTap: () => _switchApp(SuiteApp.excel),
-                        ),
-                        StudioAppSwitcher(
-                          label: 'PowerPoint',
-                          icon: Icons.slideshow_outlined,
-                          selected: _app == SuiteApp.powerpoint,
-                          onTap: () => _switchApp(SuiteApp.powerpoint),
-                        ),
-                        StudioAppSwitcher(
-                          label: 'PDF',
-                          icon: Icons.picture_as_pdf_outlined,
-                          selected: _app == SuiteApp.pdf,
-                          onTap: () => _switchApp(SuiteApp.pdf),
-                        ),
-                      ],
+                          _titleQuickAccess(),
+                          FittedBox(
+                            fit: BoxFit.scaleDown,
+                            alignment: Alignment.centerLeft,
+                            child: Row(
+                              children: <Widget>[
+                                StudioAppSwitcher(
+                                  label: 'Word',
+                                  icon: Icons.description_outlined,
+                                  selected: _app == SuiteApp.word,
+                                  onTap: () => _switchApp(SuiteApp.word),
+                                ),
+                                StudioAppSwitcher(
+                                  label: 'Excel',
+                                  icon: Icons.grid_on_outlined,
+                                  selected: _app == SuiteApp.excel,
+                                  onTap: () => _switchApp(SuiteApp.excel),
+                                ),
+                                StudioAppSwitcher(
+                                  label: 'PowerPoint',
+                                  icon: Icons.slideshow_outlined,
+                                  selected: _app == SuiteApp.powerpoint,
+                                  onTap: () => _switchApp(SuiteApp.powerpoint),
+                                ),
+                                StudioAppSwitcher(
+                                  label: 'PDF',
+                                  icon: Icons.picture_as_pdf_outlined,
+                                  selected: _app == SuiteApp.pdf,
+                                  onTap: () => _switchApp(SuiteApp.pdf),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                   Expanded(
+                    flex: 2,
                     child: IgnorePointer(
                       child: Align(
                         child: Padding(
@@ -1020,52 +1033,101 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     return Material(
       color: dark ? const Color(0xFF2A2A2A) : Colors.white,
       child: SizedBox(
-        height: 36,
-        child: Row(
-          children: <Widget>[
-            const SizedBox(width: 4),
-            for (final _RibbonTab tab in _tabsForApp)
-              StudioTabChip(
-                label: _tabLabel(tab),
-                selected: _tab == tab,
-                accent: _accent,
-                onTap: () => setState(() => _tab = tab),
+        height: 36 + _extraChromeTextHeight(13),
+        child: LayoutBuilder(
+          builder: (context, constraints) => Row(
+            children: <Widget>[
+              if (constraints.maxWidth < 700)
+                StudioIconCmd(
+                  icon: Icons.menu,
+                  tooltip: _arabic ? 'التنقل' : 'Navigation',
+                  accent: _accent,
+                  foreground: _officeTheme.chromeText,
+                  onPressed: () => _openCompactNavigation(dark),
+                ),
+              Expanded(
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: <Widget>[
+                      const SizedBox(width: 4),
+                      for (final _RibbonTab tab in _tabsForApp)
+                        StudioTabChip(
+                          label: _tabLabel(tab),
+                          selected: _tab == tab,
+                          accent: _accent,
+                          onTap: () => setState(() => _tab = tab),
+                        ),
+                    ],
+                  ),
+                ),
               ),
-            const Spacer(),
-            StudioIconCmd(
-              icon: Icons.undo,
-              tooltip: _arabic ? 'تراجع' : 'Undo',
-              accent: _accent,
-              foreground: _officeTheme.chromeText,
-              onPressed:
-                  _canMutate &&
-                      (_app == SuiteApp.pdf ? _pdf.canUndo : _active.canUndo)
-                  ? (_app == SuiteApp.pdf ? _pdf.undo : _active.undo)
-                  : null,
-            ),
-            StudioIconCmd(
-              icon: Icons.redo,
-              tooltip: _arabic ? 'إعادة' : 'Redo',
-              accent: _accent,
-              foreground: _officeTheme.chromeText,
-              onPressed:
-                  _canMutate &&
-                      (_app == SuiteApp.pdf ? _pdf.canRedo : _active.canRedo)
-                  ? (_app == SuiteApp.pdf ? _pdf.redo : _active.redo)
-                  : null,
-            ),
-            StudioIconCmd(
-              icon: Icons.translate,
-              tooltip: _arabic ? 'English' : 'العربية',
-              accent: _accent,
-              foreground: _officeTheme.chromeText,
-              onPressed: _toggleArabic,
-            ),
-            const SizedBox(width: 8),
-          ],
+              StudioIconCmd(
+                icon: Icons.undo,
+                tooltip: _arabic ? 'تراجع' : 'Undo',
+                accent: _accent,
+                foreground: _officeTheme.chromeText,
+                onPressed:
+                    _canMutate &&
+                        (_app == SuiteApp.pdf ? _pdf.canUndo : _active.canUndo)
+                    ? (_app == SuiteApp.pdf ? _pdf.undo : _active.undo)
+                    : null,
+              ),
+              StudioIconCmd(
+                icon: Icons.redo,
+                tooltip: _arabic ? 'إعادة' : 'Redo',
+                accent: _accent,
+                foreground: _officeTheme.chromeText,
+                onPressed:
+                    _canMutate &&
+                        (_app == SuiteApp.pdf ? _pdf.canRedo : _active.canRedo)
+                    ? (_app == SuiteApp.pdf ? _pdf.redo : _active.redo)
+                    : null,
+              ),
+              StudioIconCmd(
+                icon: Icons.translate,
+                tooltip: _arabic ? 'English' : 'العربية',
+                accent: _accent,
+                foreground: _officeTheme.chromeText,
+                onPressed: _toggleArabic,
+              ),
+              const SizedBox(width: 8),
+            ],
+          ),
         ),
       ),
     );
+  }
+
+  double _extraChromeTextHeight(double fontSize) =>
+      math.max(0, MediaQuery.textScalerOf(context).scale(fontSize) - fontSize) *
+      1.6;
+
+  Future<void> _openCompactNavigation(bool dark) => showModalBottomSheet<void>(
+    context: context,
+    isScrollControlled: true,
+    useSafeArea: true,
+    showDragHandle: true,
+    builder: (context) => AnimatedBuilder(
+      animation: Listenable.merge([
+        _app == SuiteApp.pdf ? _pdf : _active,
+        _navigationRevision,
+      ]),
+      builder: (context, _) => Directionality(
+        textDirection: _arabic ? TextDirection.rtl : TextDirection.ltr,
+        child: SizedBox(
+          height: MediaQuery.sizeOf(context).height * 0.65,
+          child: _sidePane(dark),
+        ),
+      ),
+    ),
+  );
+
+  void _updateNavigationState(VoidCallback update) {
+    setState(update);
+    // The compact sheet is a separate route. Its local tabs and expansion
+    // state must rebuild alongside the inline desktop navigation pane.
+    _navigationRevision.value++;
   }
 
   Widget _ribbon(bool dark) {
@@ -1081,7 +1143,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
           ),
         ),
         child: SizedBox(
-          height: 72,
+          height: 72 + 2 * _extraChromeTextHeight(12),
           child: StudioRibbonStrip(groups: _ribbonGroups()),
         ),
       ),
@@ -7477,7 +7539,8 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
               constraints.maxWidth < 1040;
           final stage = Row(
             children: <Widget>[
-              if (!(_app == SuiteApp.powerpoint && _slides.isPresenting))
+              if (constraints.maxWidth >= 700 &&
+                  !(_app == SuiteApp.powerpoint && _slides.isPresenting))
                 _sidePane(dark),
               Expanded(child: _stage(dark)),
               if (_app == SuiteApp.word && _showComments && !commentsBelow)
@@ -9063,7 +9126,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     if (!hasOutline && _pdfSideTab != 0) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         if (mounted) {
-          setState(() => _pdfSideTab = 0);
+          _updateNavigationState(() => _pdfSideTab = 0);
         }
       });
     }
@@ -9089,7 +9152,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         message: tip,
         child: InkWell(
           borderRadius: BorderRadius.circular(8),
-          onTap: () => setState(() => _pdfSideTab = index),
+          onTap: () => _updateNavigationState(() => _pdfSideTab = index),
           child: AnimatedContainer(
             duration: const Duration(milliseconds: 120),
             width: 40,
@@ -9271,7 +9334,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         page != null && page == _pdf.pageIndex && node.pageIndex == page;
 
     void toggleExpand() {
-      setState(() {
+      _updateNavigationState(() {
         final String key = 'c$path';
         if (_pdfOutlineExpanded.contains(key)) {
           _pdfOutlineExpanded.remove(key);
@@ -9615,7 +9678,9 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     return Material(
       color: _accent,
       child: SizedBox(
-        height: _savePhase == _SavePhase.saving || _opening ? 34 : 26,
+        height:
+            (_savePhase == _SavePhase.saving || _opening ? 34 : 26) +
+            _extraChromeTextHeight(11),
         child: Column(
           children: <Widget>[
             Expanded(
@@ -9665,11 +9730,18 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                       ),
                     ),
                     const SizedBox(width: 16),
-                    Text(
-                      _app == SuiteApp.pdf
-                          ? (_arabic ? 'مستند PDF' : 'PDF document')
-                          : _active.semanticsLabel,
-                      style: const TextStyle(color: Colors.white, fontSize: 11),
+                    Flexible(
+                      child: Text(
+                        _app == SuiteApp.pdf
+                            ? (_arabic ? 'مستند PDF' : 'PDF document')
+                            : _active.semanticsLabel,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 11,
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
                     ),
                   ],
                 ),
@@ -10006,11 +10078,18 @@ class _CommentReplyComposerState extends State<_CommentReplyComposer> {
     final finding = findings.isEmpty
         ? null
         : findings[_findingIndex.clamp(0, findings.length - 1)];
-    final problems = result?.report.results
-        .where((provider) => provider.status != OfficeProofingStatus.success)
-        .map((provider) => provider.message ?? provider.status.name)
-        .toSet()
-        .join(' ');
+    final overLimit = _text.text.length > WordProofingSession.maxDraftLength;
+    final problems = overLimit
+        ? (widget.arabic
+              ? 'يتجاوز هذا الرد حد التدقيق المباشر (${WordProofingSession.maxDraftLength}). يمكن تدقيقه بعد النشر.'
+              : 'This reply exceeds the live checking limit (${WordProofingSession.maxDraftLength}). Check it after posting.')
+        : result?.report.results
+              .where(
+                (provider) => provider.status != OfficeProofingStatus.success,
+              )
+              .map((provider) => provider.message ?? provider.status.name)
+              .toSet()
+              .join(' ');
     return Padding(
       padding: const EdgeInsets.only(top: 4),
       child: Column(

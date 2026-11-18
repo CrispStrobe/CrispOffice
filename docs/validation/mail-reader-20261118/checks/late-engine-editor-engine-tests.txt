@@ -1,0 +1,76 @@
+00:00 +0: loading test/word_zotero_caret_test.dart
+00:00 +0: test/word_zotero_caret_test.dart: native add/edit finds the existing footnote citation at its caret
+00:00 +1: test/word_zotero_note_insertion_test.dart: footnote insertion with request type 0 preserves prose and rich text through DOCX
+00:00 +2: test/word_zotero_note_insertion_test.dart: footnote insertion with request type 0 preserves prose and rich text through DOCX
+00:00 +3: test/word_zotero_note_insertion_test.dart: footnote insertion with request type 0 preserves prose and rich text through DOCX
+00:00 +4: test/word_zotero_note_insertion_test.dart: footnote insertion with request type 0 preserves prose and rich text through DOCX
+00:00 +5: test/word_zotero_note_insertion_test.dart: footnote insertion with request type 0 preserves prose and rich text through DOCX
+00:00 +6: test/word_zotero_note_insertion_test.dart: footnote insertion with request type 0 preserves prose and rich text through DOCX
+00:00 +7: test/word_zotero_note_insertion_test.dart: footnote insertion with request type 0 preserves prose and rich text through DOCX
+00:00 +8: test/word_zotero_note_insertion_test.dart: footnote insertion with request type 0 preserves prose and rich text through DOCX
+00:00 +9: test/word_zotero_note_insertion_test.dart: footnote insertion with request type 0 preserves prose and rich text through DOCX
+00:00 +10: test/word_zotero_note_insertion_test.dart: footnote insertion with request type 1 preserves prose and rich text through DOCX
+00:00 +11: test/word_zotero_note_insertion_test.dart: footnote insertion before keeps processor order and note numbers
+00:00 +12: test/word_zotero_note_insertion_test.dart: footnote insertion between keeps processor order and note numbers
+00:00 +13: test/word_zotero_note_insertion_test.dart: footnote insertion after keeps processor order and note numbers
+00:00 +14: test/word_zotero_note_insertion_test.dart: footnote insertion later paragraph keeps processor order and note numbers
+00:00 +15: test/word_zotero_note_insertion_test.dart: footnote catalog seed with preference 0 cancels atomically
+00:00 +16: test/word_zotero_note_insertion_test.dart: footnote catalog seed with preference 0 applies atomically
+00:00 +17: test/word_zotero_note_insertion_test.dart: footnote catalog seed with preference 1 cancels atomically
+00:00 +18: test/word_zotero_note_insertion_test.dart: footnote catalog seed with preference 1 applies atomically
+00:00 +19: test/word_zotero_note_insertion_test.dart: footnote preferences can be chosen before seeding in the same transaction
+00:00 +20: test/word_zotero_note_insertion_test.dart: footnote insertion refuses an incompatible note kind and bibliography
+00:00 +21: test/word_zotero_note_insertion_test.dart: footnote seed refuses a later incompatible preference without applying
+00:00 +22: test/word_zotero_note_insertion_test.dart: footnote deletion of an old sole citation keeps the newly inserted citation and note
+00:00 +23: test/office_thesaurus_test.dart: UTF-8 shard vectors match the compiler on VM and JavaScript
+00:00 +24: test/word_zotero_note_insertion_test.dart: endnote insertion with request type 0 preserves prose and rich text through DOCX
+00:00 +25: test/office_thesaurus_test.dart: unsupported language and missing pack are distinct
+00:00 +26: test/word_zotero_note_insertion_test.dart: endnote insertion with request type 2 preserves prose and rich text through DOCX
+00:00 +27: test/office_thesaurus_test.dart: source meanings, labels and relations remain separate
+00:00 +28: test/office_thesaurus_test.dart: source meanings, labels and relations remain separate
+00:00 +29: test/office_thesaurus_test.dart: source meanings, labels and relations remain separate
+00:00 +30: test/office_thesaurus_test.dart: source meanings, labels and relations remain separate
+00:00 +31: test/office_thesaurus_test.dart: source meanings, labels and relations remain separate
+00:00 +32: test/office_thesaurus_test.dart: source meanings, labels and relations remain separate
+00:00 +33: test/office_thesaurus_test.dart: source meanings, labels and relations remain separate
+00:00 +34: test/office_thesaurus_test.dart: source meanings, labels and relations remain separate
+00:00 +35: test/word_zotero_note_insertion_test.dart: endnote catalog seed with preference 2 applies atomically
+00:00 +36: test/office_thesaurus_test.dart: normalization keeps original source query and phrase spellings
+00:00 +37: test/office_thesaurus_test.dart: normalization keeps original source query and phrase spellings
+00:00 +38: test/office_thesaurus_test.dart: normalization keeps original source query and phrase spellings
+00:00 +39: test/office_thesaurus_test.dart: normalization keeps original source query and phrase spellings
+00:00 +40: test/office_thesaurus_test.dart: normalization keeps original source query and phrase spellings
+00:00 +41: test/office_thesaurus_test.dart: normalization keeps original source query and phrase spellings
+00:00 +42: test/office_thesaurus_test.dart: normalization keeps original source query and phrase spellings
+00:00 +43: test/word_zotero_note_insertion_test.dart: a note table cell is an anchored insertion location
+00:00 +44: test/word_zotero_note_insertion_test.dart: a note table cell is an anchored insertion location
+00:00 +45: test/office_thesaurus_test.dart: source aliases preserve ambiguity and compatible POS
+00:00 +46: test/office_thesaurus_test.dart: source aliases preserve ambiguity and compatible POS
+00:00 +47: test/office_thesaurus_test.dart: source aliases preserve ambiguity and compatible POS
+00:00 +48: test/office_thesaurus_test.dart: source aliases preserve ambiguity and compatible POS
+00:00 +49: test/office_thesaurus_test.dart: source aliases preserve ambiguity and compatible POS
+00:00 +50: test/word_zotero_note_insertion_test.dart: remove note after staging rejects stale note insertion
+00:00 +51: test/office_thesaurus_test.dart: German noun fallback normalizes lookup whitespace and soft hyphens
+00:00 +52: test/office_thesaurus_test.dart: German noun fallback normalizes lookup whitespace and soft hyphens
+00:00 +53: test/office_thesaurus_test.dart: German noun fallback normalizes lookup whitespace and soft hyphens
+00:00 +54: test/office_thesaurus_test.dart: German noun fallback normalizes lookup whitespace and soft hyphens
+00:00 +55: test/office_thesaurus_test.dart: German noun fallback normalizes lookup whitespace and soft hyphens
+00:00 +56: test/office_thesaurus_test.dart: German noun fallback normalizes lookup whitespace and soft hyphens
+00:00 +57: test/office_thesaurus_test.dart: detachment fallback cannot import an incompatible POS
+00:00 +58: test/office_thesaurus_test.dart: no entry remains separate from malformed index
+00:00 +59: test/office_thesaurus_test.dart: null index record is a damaged pack
+00:00 +60: test/office_thesaurus_test.dart: a missing referenced meaning is a damaged pack
+00:00 +61: test/office_thesaurus_test.dart: source identity mismatch fails closed
+00:00 +62: test/office_thesaurus_test.dart: control characters in literal replacement terms are rejected
+00:00 +63: test/office_thesaurus_test.dart: pinned manifest rejects modification
+00:00 +64: test/office_thesaurus_test.dart: logical digest detects damaged shard bytes
+00:00 +65: test/office_thesaurus_test.dart: compressed shards verify both forms and load on demand
+00:01 +66: test/office_thesaurus_test.dart: compressed digest detects damage before decompression
+00:01 +67: test/office_thesaurus_test.dart: decompression cannot exceed declared logical size
+00:01 +68: test/office_thesaurus_test.dart: compressed packs require an explicit byte loader
+00:01 +69: test/office_thesaurus_test.dart: missing shard is a failed pack, not missing corpus or no entry
+00:01 +70: test/office_thesaurus_test.dart: pack clear rejects an in-flight result without restoring old caches
+00:01 +71: test/office_thesaurus_test.dart: cache limits remain bounded and repeated results retain candidate identity
+00:01 +72: test/office_thesaurus_test.dart: pack notices are read through integrity checks
+00:01 +73: test/office_thesaurus_test.dart: default cache retains high-polysemy meanings across equivalent queries
+00:01 +74: All tests passed!

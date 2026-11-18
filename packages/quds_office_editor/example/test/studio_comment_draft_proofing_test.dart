@@ -109,10 +109,15 @@ Future<WordEditorController> _studio(
   WidgetTester tester,
   _DraftProvider provider, {
   bool enabled = true,
+  GlobalKey? captureKey,
 }) async {
   await tester.binding.setSurfaceSize(const Size(1440, 1000));
   addTearDown(() => tester.binding.setSurfaceSize(null));
-  await tester.pumpWidget(const QudsOfficeStudioApp());
+  await tester.pumpWidget(
+    captureKey == null
+        ? const QudsOfficeStudioApp()
+        : RepaintBoundary(key: captureKey, child: const QudsOfficeStudioApp()),
+  );
   await _pump(tester);
   await tester.tap(find.byTooltip('English'));
   await _pump(tester);
@@ -486,25 +491,56 @@ void main() {
     await _close(tester, provider);
   });
 
-  testWidgets(
-    'narrow Arabic reply suggestions remain usable with larger text',
-    (tester) async {
-      final provider = _DraftProvider();
-      await _studio(tester, provider);
-      await tester.tap(find.byTooltip('العربية'));
-      await _pump(tester);
-      await tester.binding.setSurfaceSize(const Size(650, 1000));
-      tester.platformDispatcher.textScaleFactorTestValue = 1.4;
-      addTearDown(tester.platformDispatcher.clearTextScaleFactorTestValue);
-      await _pump(tester);
-      await _enter(tester, 'Draft Commet are is very very useful.');
-      await _finishCheck(tester);
-      await tester.ensureVisible(_suggestion());
-      await tester.tap(_suggestion());
-      await _pump(tester);
-      expect(_text(tester).text, 'Draft Comment are is very very useful.');
-      expect(tester.takeException(), isNull);
-      await _close(tester, provider);
-    },
-  );
+  testWidgets('narrow Arabic reply suggestions remain usable with larger text', (
+    tester,
+  ) async {
+    final provider = _DraftProvider();
+    const capture = bool.fromEnvironment('STUDIO_CAPTURE_DRAFT');
+    final captureKey = capture ? GlobalKey() : null;
+    if (capture) {
+      await tester.runAsync(() async {
+        await OfficeHostFonts.ensureRegistered();
+        await (FontLoader(
+          'MaterialIcons',
+        )..addFont(rootBundle.load('fonts/MaterialIcons-Regular.otf'))).load();
+      });
+    }
+    await _studio(tester, provider, captureKey: captureKey);
+    await tester.tap(find.byTooltip('العربية'));
+    await _pump(tester);
+    await tester.binding.setSurfaceSize(const Size(390, 1000));
+    tester.platformDispatcher.textScaleFactorTestValue = 1.4;
+    addTearDown(tester.platformDispatcher.clearTextScaleFactorTestValue);
+    await _pump(tester);
+    expect(find.byTooltip('التنقل'), findsOneWidget);
+    await tester.tap(find.byTooltip('التنقل'));
+    await _pump(tester);
+    // The editor caret keeps scheduling frames. Advance the modal transition
+    // explicitly rather than waiting for an otherwise idle application.
+    await tester.pump(const Duration(milliseconds: 350));
+    await _pump(tester);
+    expect(find.byType(BottomSheet), findsOneWidget);
+    Navigator.of(tester.element(find.byType(BottomSheet))).pop();
+    await _pump(tester);
+    await tester.pump(const Duration(milliseconds: 350));
+    await _pump(tester);
+    await _enter(tester, 'Draft Commet are is very very useful.');
+    await _finishCheck(tester);
+    await tester.ensureVisible(_suggestion());
+    await _pump(tester);
+    expect(_suggestion().hitTestable(), findsOneWidget);
+    await tester.tap(_suggestion());
+    await _pump(tester);
+    expect(_text(tester).text, 'Draft Comment are is very very useful.');
+    expect(tester.takeException(), isNull);
+    if (capture) {
+      await expectLater(
+        find.byKey(captureKey!),
+        matchesGoldenFile(
+          '../../../../docs/validation/mail-reader-20261118/checks/late-studio-arabic-draft.png',
+        ),
+      );
+    }
+    await _close(tester, provider);
+  });
 }

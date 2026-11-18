@@ -392,15 +392,17 @@ class StudioAppSwitcher extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 6),
+      padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 2),
       child: Material(
-        color: selected ? Colors.white.withValues(alpha: 0.22) : Colors.transparent,
+        color: selected
+            ? Colors.white.withValues(alpha: 0.22)
+            : Colors.transparent,
         borderRadius: BorderRadius.circular(6),
         child: InkWell(
           onTap: onTap,
           borderRadius: BorderRadius.circular(6),
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
             child: Row(
               children: <Widget>[
                 Icon(icon, size: 15, color: Colors.white),

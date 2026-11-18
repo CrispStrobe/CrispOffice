@@ -1,0 +1,242 @@
+{
+  "status": "FAIL",
+  "started_utc": "2026-11-18T19:42:16.950482+00:00",
+  "git_head_at_start": "e727204c6fe0fc0d66d604c0c467bdbb69b864cc",
+  "incoming_merge": "c473a25f",
+  "source_hashes_file": "late-engine-editor-source-hashes.json",
+  "source_hashes_file_sha256": "24977f80a5214985173aba7cdcbe12c3239a711ac12ee5f76a78066b36381e1a",
+  "source_unchanged": true,
+  "sdk": {
+    "flutter": "3.47.8",
+    "dart": "3.13.7",
+    "root": "/workspace/scratch/ab53c04e2d5e/toolchains/flutter"
+  },
+  "github_actions": "NOT USED",
+  "checks": [
+    {
+      "name": "late-engine-editor-engine-tests",
+      "command": [
+        "/workspace/scratch/ab53c04e2d5e/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+        "test",
+        "--reporter",
+        "expanded",
+        "--concurrency=2",
+        "test/word_zotero_caret_test.dart",
+        "test/word_zotero_note_insertion_test.dart",
+        "test/office_thesaurus_test.dart"
+      ],
+      "cwd": "/workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_engine",
+      "status": "PASS",
+      "started_utc": "2026-11-18T19:42:16.951768+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 26.53,
+      "finished_utc": "2026-11-18T19:42:43.482031+00:00",
+      "log": "late-engine-editor-engine-tests.txt",
+      "log_sha256": "1347e44aae63e2e28dcc0993e50b77c1128f7837dedb85bbd0aa0c33aed0d7d1",
+      "passed_test_count": 74
+    },
+    {
+      "name": "late-engine-editor-editor-tests",
+      "command": [
+        "/workspace/scratch/ab53c04e2d5e/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+        "/workspace/scratch/ab53c04e2d5e/toolchains/flutter/bin/cache/flutter_tools.snapshot",
+        "--no-version-check",
+        "--suppress-analytics",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "expanded",
+        "--concurrency=1",
+        "test/word_zotero_note_target_test.dart",
+        "test/word_zotero_notes_pane_test.dart",
+        "test/word_draft_proofing_test.dart",
+        "test/word_proofing_priority_test.dart",
+        "test/word_thesaurus_controller_test.dart",
+        "test/word_thesaurus_dialog_test.dart",
+        "test/word_thesaurus_review_integration_test.dart"
+      ],
+      "cwd": "/workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor",
+      "status": "FAIL",
+      "started_utc": "2026-11-18T19:42:16.952849+00:00",
+      "exit_code": 1,
+      "elapsed_seconds": 45.83,
+      "finished_utc": "2026-11-18T19:43:02.780930+00:00",
+      "log": "late-engine-editor-editor-tests.txt",
+      "log_sha256": "65cabdf6fc47047b6311587ebf67c84872520a92376421c63e3d723abaf4721a"
+    },
+    {
+      "name": "late-engine-editor-analysis-word_zotero_citing",
+      "command": [
+        "/workspace/scratch/ab53c04e2d5e/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart"
+      ],
+      "cwd": "/workspace/scratch/ab53c04e2d5e/quds_office_suite",
+      "status": "PASS",
+      "started_utc": "2026-11-18T19:42:16.953370+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 3.11,
+      "finished_utc": "2026-11-18T19:42:20.065907+00:00",
+      "log": "late-engine-editor-analysis-word_zotero_citing.txt",
+      "log_sha256": "e57ed0a0273afe2ef90512a08006d7a1c996f671c83dd2818c2484176d758ef2"
+    },
+    {
+      "name": "late-engine-editor-analysis-office_thesaurus",
+      "command": [
+        "/workspace/scratch/ab53c04e2d5e/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "packages/quds_office_engine/lib/src/thesaurus/office_thesaurus.dart"
+      ],
+      "cwd": "/workspace/scratch/ab53c04e2d5e/quds_office_suite",
+      "status": "PASS",
+      "started_utc": "2026-11-18T19:42:20.078561+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 2.57,
+      "finished_utc": "2026-11-18T19:42:22.648376+00:00",
+      "log": "late-engine-editor-analysis-office_thesaurus.txt",
+      "log_sha256": "6027edfbec51da3371240842f551fc642368528f66b6903e490d86a4e10bd931"
+    },
+    {
+      "name": "late-engine-editor-analysis-office_controller",
+      "command": [
+        "/workspace/scratch/ab53c04e2d5e/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "packages/quds_office_editor/lib/src/embed/office_controller.dart"
+      ],
+      "cwd": "/workspace/scratch/ab53c04e2d5e/quds_office_suite",
+      "status": "PASS",
+      "started_utc": "2026-11-18T19:42:22.650122+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 6.49,
+      "finished_utc": "2026-11-18T19:42:29.135764+00:00",
+      "log": "late-engine-editor-analysis-office_controller.txt",
+      "log_sha256": "b3f9cc4a9c4f5e0d4a2a81cc95d5460c7cf070c7da2a40c48b026ebc40a7cea6"
+    },
+    {
+      "name": "late-engine-editor-analysis-office_editors",
+      "command": [
+        "/workspace/scratch/ab53c04e2d5e/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "packages/quds_office_editor/lib/src/embed/office_editors.dart"
+      ],
+      "cwd": "/workspace/scratch/ab53c04e2d5e/quds_office_suite",
+      "status": "PASS",
+      "started_utc": "2026-11-18T19:42:29.137124+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 12.44,
+      "finished_utc": "2026-11-18T19:42:41.573441+00:00",
+      "log": "late-engine-editor-analysis-office_editors.txt",
+      "log_sha256": "523d29e73bcceb5a14352e8f4b516f61dad024ee38da1506161fcdba36522e2c"
+    },
+    {
+      "name": "late-engine-editor-analysis-word_notes_pane",
+      "command": [
+        "/workspace/scratch/ab53c04e2d5e/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "packages/quds_office_editor/lib/src/embed/word_notes_pane.dart"
+      ],
+      "cwd": "/workspace/scratch/ab53c04e2d5e/quds_office_suite",
+      "status": "PASS",
+      "started_utc": "2026-11-18T19:42:41.574178+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 13.12,
+      "finished_utc": "2026-11-18T19:42:54.693997+00:00",
+      "log": "late-engine-editor-analysis-word_notes_pane.txt",
+      "log_sha256": "7e7989807a880e8c5f64fbcb428d835bdb95323fbd08a0f7cf983455703f0ff0"
+    },
+    {
+      "name": "late-engine-editor-analysis-word_review_pane",
+      "command": [
+        "/workspace/scratch/ab53c04e2d5e/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "packages/quds_office_editor/lib/src/embed/word_review_pane.dart"
+      ],
+      "cwd": "/workspace/scratch/ab53c04e2d5e/quds_office_suite",
+      "status": "PASS",
+      "started_utc": "2026-11-18T19:42:54.695245+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 10.6,
+      "finished_utc": "2026-11-18T19:43:05.297475+00:00",
+      "log": "late-engine-editor-analysis-word_review_pane.txt",
+      "log_sha256": "88213e064c53f757a2e8dd7eaf424c2f8d080340db4607b19dac87cc1a929360"
+    },
+    {
+      "name": "late-engine-editor-analysis-word_review_status",
+      "command": [
+        "/workspace/scratch/ab53c04e2d5e/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "packages/quds_office_editor/lib/src/embed/word_review_status.dart"
+      ],
+      "cwd": "/workspace/scratch/ab53c04e2d5e/quds_office_suite",
+      "status": "PASS",
+      "started_utc": "2026-11-18T19:43:05.298842+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 9.92,
+      "finished_utc": "2026-11-18T19:43:15.214974+00:00",
+      "log": "late-engine-editor-analysis-word_review_status.txt",
+      "log_sha256": "54aa535fcb6e441c2b3fefa141e5607c2ade1a455d13746a961cadf15dba3db3"
+    },
+    {
+      "name": "late-engine-editor-analysis-word_thesaurus_dialog",
+      "command": [
+        "/workspace/scratch/ab53c04e2d5e/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "packages/quds_office_editor/lib/src/embed/word_thesaurus_dialog.dart"
+      ],
+      "cwd": "/workspace/scratch/ab53c04e2d5e/quds_office_suite",
+      "status": "PASS",
+      "started_utc": "2026-11-18T19:43:15.216107+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 9.45,
+      "finished_utc": "2026-11-18T19:43:24.668581+00:00",
+      "log": "late-engine-editor-analysis-word_thesaurus_dialog.txt",
+      "log_sha256": "01cae938540176a456696025ab3ff6366d37f11245c34e3d426a7abf6e4bb403"
+    },
+    {
+      "name": "late-engine-editor-analysis-word_zotero_dialog",
+      "command": [
+        "/workspace/scratch/ab53c04e2d5e/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart"
+      ],
+      "cwd": "/workspace/scratch/ab53c04e2d5e/quds_office_suite",
+      "status": "PASS",
+      "started_utc": "2026-11-18T19:43:24.669858+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 8.99,
+      "finished_utc": "2026-11-18T19:43:33.659780+00:00",
+      "log": "late-engine-editor-analysis-word_zotero_dialog.txt",
+      "log_sha256": "6a47162c20f278ad123ad1ac59faef7d31c17051725177fffae4f5e82e4732ee"
+    },
+    {
+      "name": "late-engine-editor-analysis-word_proofing",
+      "command": [
+        "/workspace/scratch/ab53c04e2d5e/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "packages/quds_office_editor/lib/src/proofing/word_proofing.dart"
+      ],
+      "cwd": "/workspace/scratch/ab53c04e2d5e/quds_office_suite",
+      "status": "FAIL",
+      "started_utc": "2026-11-18T19:43:33.660856+00:00",
+      "exit_code": 1,
+      "elapsed_seconds": 2.56,
+      "finished_utc": "2026-11-18T19:43:36.225897+00:00",
+      "log": "late-engine-editor-analysis-word_proofing.txt",
+      "log_sha256": "0e90814482b62f57389a46ab79b4b3947eade227b1d8fbd7677f84e10d913cc7"
+    }
+  ],
+  "historical_190_receipts": "Preserved unchanged; this receipt only qualifies the later engine/editor cohort.",
+  "passed_test_count": 74,
+  "finished_utc": "2026-11-18T19:43:36.272617+00:00",
+  "git_head_at_finish": "e727204c6fe0fc0d66d604c0c467bdbb69b864cc"
+}

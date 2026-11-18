@@ -161,12 +161,11 @@ final class WordProofingSession extends ChangeNotifier {
   WordProofingSession({
     required this._document,
     required this._revision,
-    WmlParagraph? Function()? priorityParagraph,
+    this._priorityParagraph,
     OfficeProofingService? service,
     OfficeProofingVocabulary? vocabulary,
     this.debounce = const Duration(milliseconds: 400),
-  }) : _priorityParagraph = priorityParagraph,
-       vocabulary = vocabulary ?? OfficeProofingVocabulary() {
+  }) : vocabulary = vocabulary ?? OfficeProofingVocabulary() {
     _service =
         service ??
         OfficeProofingService(
@@ -875,7 +874,7 @@ final class WordProofingSession extends ChangeNotifier {
         .where((snapshot) => identical(snapshot.paragraph, priorityParagraph))
         .firstOrNull;
     final checkOrder = [
-      if (priority != null) priority,
+      ?priority,
       for (final snapshot in captured.paragraphs)
         if (!identical(snapshot, priority)) snapshot,
     ];
