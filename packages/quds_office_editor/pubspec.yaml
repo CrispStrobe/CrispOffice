@@ -69,3 +69,11 @@ flutter:
   assets:
     - fonts/
     - templates/
+    - assets/thesaurus/en/
+    - assets/thesaurus/en/index/
+    - assets/thesaurus/en/senses/
+    - assets/thesaurus/en/notices/
+    - assets/thesaurus/de/
+    - assets/thesaurus/de/index/
+    - assets/thesaurus/de/senses/
+    - assets/thesaurus/de/notices/

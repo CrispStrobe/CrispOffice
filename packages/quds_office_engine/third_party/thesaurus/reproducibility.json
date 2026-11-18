@@ -1,0 +1,14 @@
+{
+  "status": "passed",
+  "comparedFiles": 1037,
+  "changedFiles": 0,
+  "generatedConstantsIdentical": true,
+  "python": "3.12.14",
+  "zlib": "1.3.2",
+  "manifestSha256": {
+    "en": "13ae58da2a20c0eb74ccf20acc3fade665e12e48daf783351f90b3073fd28e23",
+    "de": "8788f9af67186b40f963f948aeceed01c012f3e9653ddab68947e16213cb0453"
+  },
+  "treeSha256": "057a6bb3f3ae079cdc79ca488db664bd1bd209c84136358881f9ef512d5fd3e8",
+  "command": "python tools/thesaurus/build_packs.py --output tmp/thesaurus-rebuild --constants tmp/thesaurus-rebuild-manifest.dart"
+}
