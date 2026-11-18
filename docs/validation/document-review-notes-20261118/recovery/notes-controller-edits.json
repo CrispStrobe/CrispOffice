@@ -1,0 +1,106 @@
+[
+  {
+    "old": "  WordProofingIssue? _selectedProofingIssue;\n",
+    "new": "  WordProofingIssue? _selectedProofingIssue;\n  final Map<WordProofingIssue, WordProofingIssue> _noteProofingCommitAliases =\n      Map.identity();\n"
+  },
+  {
+    "old": "  void closeReviewPane() {\n    if (!_reviewPaneVisible || isDisposed) return;\n    _reviewPaneVisible = false;\n    notifyListeners();\n    onRequestFocus?.call();\n  }",
+    "new": "  void closeReviewPane() {\n    if (!_reviewPaneVisible || isDisposed) return;\n    _reviewPaneVisible = false;\n    notifyListeners();\n    requestEditingFocus();\n  }"
+  },
+  {
+    "old": "    commands.clear();\n    _noteEditStart.clear();\n",
+    "new": "    commands.clear();\n    _noteEditStart.clear();\n    _noteProofingCommitAliases.clear();\n"
+  },
+  {
+    "old": "  /// Selects and reveals the actual tracked span. Returns false for stale or\n  /// conflicted ranges, disabled selection, and stories without a supported\n  /// canvas (notes and first/even headers/footers). Those changes remain\n  /// available in the review list; they never redirect to a body paragraph.",
+    "new": "  /// Selects and reveals the actual tracked span in its editing surface.\n  /// Stale or conflicted ranges, active composition, disabled selection and\n  /// unsupported/unrendered stories remain available in the review list;\n  /// they never redirect to a matching body paragraph."
+  },
+  {
+    "old": "    selectedRevisionIndex = index;\n    if (!config.allowsSelection) {",
+    "new": "    selectedRevisionIndex = index;\n    if (!config.allowsSelection || _hasProofingComposition) {"
+  },
+  {
+    "old": "  String noteEditText(WmlNote note) => WordNotes.editableText(note);\n",
+    "new": "  String noteEditText(WmlNote note) => WordNotes.editableText(note);\n\n  /// Current findings in exactly the UTF-16 text displayed by the Notes pane.\n  /// Hidden reference spacing, inter-paragraph newlines and note ownership are\n  /// accounted for; findings in tables or other non-editable note blocks are\n  /// deliberately absent from this simple text surface.\n  List<({WordProofingIssue issue, TextRange range})> proofingIssuesForNote(\n    WmlNote note,\n  ) {\n    if (_disposed || !_ownsNote(note)) return const [];\n    final session = _proofing;\n    if (session == null) return const [];\n    final result = <({WordProofingIssue issue, TextRange range})>[];\n    for (final segment in _noteTextSegments(note)) {\n      for (final issue in session.summary.issues) {\n        final finding = issue.finding;\n        if (!identical(issue.paragraph, segment.paragraph) ||\n            finding.start < segment.hidden ||\n            finding.end < finding.start ||\n            finding.end > segment.paragraph.text.length ||\n            !session.isCurrent(issue)) {\n          continue;\n        }\n        result.add((\n          issue: issue,\n          range: TextRange(\n            start: segment.start + finding.start - segment.hidden,\n            end: segment.start + finding.end - segment.hidden,\n          ),\n        ));\n      }\n    }\n    return List.unmodifiable(result);\n  }\n\n  /// Resolves a captured Notes finding across an unchanged note-history\n  /// commit. Real edits, undo/redo, detached notes and provider changes retire\n  /// the handle. The finding must still map to this note's editable text.\n  WordProofingIssue? currentNoteProofingIssue(\n    WmlNote note,\n    WordProofingIssue issue,\n  ) {\n    if (_disposed || !_ownsNote(note)) return null;\n    final current = _currentProofingIssue(issue);\n    if (current == null) return null;\n    return proofingIssuesForNote(note).any(\n          (entry) => identical(entry.issue, current),\n        )\n        ? current\n        : null;\n  }\n\n  WordProofingIssue? _currentProofingIssue(WordProofingIssue issue) {\n    final session = _proofing;\n    if (_disposed || session == null) return null;\n    if (session.isCurrent(issue)) return issue;\n    final alias = _noteProofingCommitAliases[issue];\n    return alias != null && session.isCurrent(alias) ? alias : null;\n  }\n"
+  },
+  {
+    "old": "    commands.commit(\n      _CallbackCommand(\n        executeFn: () => after.restore(note, document),\n        undoFn: () => before.restore(note, document),\n      ),\n    );\n  }\n\n  /// Deletes [note]",
+    "new": "    final session = _proofing;\n    final checked = session == null\n        ? const <WordProofingIssue>[]\n        : session.summary.issues.where(session.isCurrent).toList();\n    final previousAliases = Map<WordProofingIssue, WordProofingIssue>.of(\n      _noteProofingCommitAliases,\n    );\n    final previousDocument = document;\n    final previousRevision = contentRevision;\n    commands.commit(\n      _CallbackCommand(\n        executeFn: () => after.restore(note, document),\n        undoFn: () => before.restore(note, document),\n      ),\n    );\n    // A focus-loss history commit records text that was already applied and\n    // checked while typing. Keep only capabilities validated immediately\n    // before this exact boundary, never handles from an earlier source edit.\n    _noteProofingCommitAliases.clear();\n    if (session != null &&\n        identical(session, _proofing) &&\n        identical(previousDocument, document) &&\n        contentRevision == previousRevision + 1) {\n      final rebound = <WordProofingIssue, WordProofingIssue>{};\n      for (final issue in checked) {\n        final current = session.rebindUnchangedIssue(issue);\n        if (current != null) rebound[issue] = current;\n      }\n      for (final entry in previousAliases.entries) {\n        final current = rebound[entry.value];\n        if (current != null) _noteProofingCommitAliases[entry.key] = current;\n      }\n      _noteProofingCommitAliases.addAll(rebound);\n    }\n  }\n\n  /// Deletes [note]"
+  },
+  {
+    "old": "  get _proofingCaretPosition {\n    final paragraphs = _paragraphs;",
+    "new": "  get _proofingCaretPosition {\n    final note = noteEditingTarget;\n    if (note != null) {\n      final extent = _noteSelectionRange((\n        note: note.note,\n        selection: TextSelection.collapsed(offset: note.selection.extentOffset),\n        composing: note.composing,\n      ));\n      final anchor = _noteSelectionRange((\n        note: note.note,\n        selection: TextSelection.collapsed(offset: note.selection.baseOffset),\n        composing: note.composing,\n      ));\n      return (\n        paragraph: extent?.paragraph,\n        offset: extent?.start ?? 0,\n        anchor: anchor?.start,\n        anchorParagraph: anchor == null\n            ? null\n            : WordNotes.editableParagraphs(note.note).indexOf(anchor.paragraph),\n      );\n    }\n    return _canvasCaretPosition;\n  }\n\n  // Thesaurus and other canvas commands still use their canvas caret; a Notes\n  // proofing selection must never combine note text with body caret offsets.\n  ({WmlParagraph? paragraph, int offset, int? anchor, int? anchorParagraph})\n  get _canvasCaretPosition {\n    final paragraphs = _paragraphs;"
+  },
+  {
+    "old": "    if (isDisposed || !proofing.isCurrent(issue)) return false;\n    _selectedProofingIssue = issue;\n    final shown = reveal && revealProofingIssue(issue);",
+    "new": "    final current = _currentProofingIssue(issue);\n    if (current == null) return false;\n    _selectedProofingIssue = current;\n    final shown = reveal && revealProofingIssue(current);"
+  },
+  {
+    "old": "  bool get canApplyProofingSuggestions =>\n      !isDisposed &&\n      config.allowsMutation &&\n      !(document.restrictEditing &&\n          (document.restrictMode != WmlRestrictMode.none ||\n              document.protectionFormattingRestricted)) &&\n      !(input.composing.isValid && !input.composing.isCollapsed);\n\n  bool canApplyProofingIssue(WordProofingIssue issue) =>\n      canApplyProofingSuggestions && proofing.canCorrect(issue);",
+    "new": "  bool get _hasProofingComposition {\n    final composing = noteEditingTarget?.composing;\n    return (input.composing.isValid && !input.composing.isCollapsed) ||\n        (composing != null && composing.isValid && !composing.isCollapsed);\n  }\n\n  bool get canApplyProofingSuggestions =>\n      !isDisposed &&\n      config.allowsMutation &&\n      !(document.restrictEditing &&\n          (document.restrictMode != WmlRestrictMode.none ||\n              document.protectionFormattingRestricted)) &&\n      !_hasProofingComposition;\n\n  bool canApplyProofingIssue(WordProofingIssue issue) {\n    final current = _currentProofingIssue(issue);\n    return current != null &&\n        canApplyProofingSuggestions &&\n        proofing.canCorrect(current);\n  }"
+  },
+  {
+    "old": "    if (isDisposed ||\n        !config.allowsSelection ||\n        selectedVisual != null ||\n        selectedFrame != null ||\n        selectedEquation != null) {",
+    "new": "    if (isDisposed ||\n        !config.allowsSelection ||\n        noteEditingTarget != null ||\n        selectedVisual != null ||\n        selectedFrame != null ||\n        selectedEquation != null) {"
+  },
+  {
+    "old": "    final selection = _proofingCaretPosition;\n",
+    "new": "    final selection = _canvasCaretPosition;\n"
+  },
+  {
+    "old": "  bool _matchesThesaurusSelection(WordThesaurusTarget target) =>\n      !isDisposed &&\n      config.allowsSelection &&",
+    "new": "  bool _matchesThesaurusSelection(WordThesaurusTarget target) =>\n      !isDisposed &&\n      config.allowsSelection &&\n      noteEditingTarget == null &&"
+  },
+  {
+    "old": "      _proofingCaretPosition == target._selection &&",
+    "new": "      _canvasCaretPosition == target._selection &&"
+  },
+  {
+    "old": "  bool applyProofingSuggestion(WordProofingIssue issue, String replacement) {\n    if (!canApplyProofingIssue(issue) ||",
+    "new": "  bool applyProofingSuggestion(WordProofingIssue issue, String replacement) {\n    var current = _currentProofingIssue(issue);\n    if (current == null ||\n        !canApplyProofingIssue(current) ||"
+  },
+  {
+    "old": "    // Committing a changed note draft changes the revision, so reacquire a\n    // finding rather than letting the correction overwrite that draft.\n    if (!canApplyProofingIssue(issue)) return false;\n    final paragraph = issue.paragraph;\n    final finding = issue.finding;",
+    "new": "    current = _currentProofingIssue(current);\n    if (current == null || !canApplyProofingIssue(current)) return false;\n    final paragraph = current.paragraph;\n    final finding = current.finding;"
+  },
+  {
+    "old": "    final activeCaret = caret;\n    final activeParagraphs = _paragraphs;\n    final activeComment = isEditingComment ? selectedComment : null;",
+    "new": "    final activeCaret = caret;\n    final activeParagraphs = _paragraphs;\n    final activeNote = noteEditingTarget;\n    final activeNoteAffected = activeNote != null &&\n        _noteTextSegments(activeNote.note).any(\n          (segment) => identical(segment.paragraph, paragraph),\n        );\n    final activeComment = isEditingComment ? selectedComment : null;"
+  },
+  {
+    "old": "    bool sameCaretStory() =>\n        identical(caret, activeCaret) &&",
+    "new": "    bool sameCaretStory() =>\n        noteEditingTarget == null &&\n        identical(caret, activeCaret) &&"
+  },
+  {
+    "old": "    final activeAffected =\n        activeCaret.paragraphIndex >= 0 &&",
+    "new": "    final activeAffected =\n        activeNote == null &&\n        activeCaret.paragraphIndex >= 0 &&"
+  },
+  {
+    "old": "    void correctedCaret() {\n      // Comments",
+    "new": "    void correctedCaret() {\n      if (activeNoteAffected && activeNote != null) {\n        if (identical(noteEditingTarget?.note, activeNote.note)) {\n          _restoreNoteEditingTarget(\n            _noteTargetAt(\n              paragraph,\n              tracked ? end + insertedLength : start + replacement.length,\n            ),\n          );\n        }\n        _historyRestoredSelection = true;\n        return;\n      }\n      // Comments"
+  },
+  {
+    "old": "    void originalCaret() {\n      if (!activeAffected || !sameCaretStory()) {",
+    "new": "    void originalCaret() {\n      if (activeNoteAffected && activeNote != null) {\n        if (identical(noteEditingTarget?.note, activeNote.note)) {\n          _restoreNoteEditingTarget(_clampNoteEditingTarget(activeNote));\n        }\n        _historyRestoredSelection = true;\n        return;\n      }\n      if (!activeAffected || !sameCaretStory()) {"
+  },
+  {
+    "old": "  bool revealProofingIssue(WordProofingIssue issue) {\n    if (!config.allowsSelection || !proofing.isCurrent(issue)) return false;\n    commitPendingEdits();\n    if (!proofing.isCurrent(issue)) return false;\n    _selectedProofingIssue = issue;\n    final revealed = _revealParagraphRange(\n      issue.paragraph,\n      issue.finding.start,\n      issue.finding.end,",
+    "new": "  bool revealProofingIssue(WordProofingIssue issue) {\n    var current = _currentProofingIssue(issue);\n    if (!config.allowsSelection ||\n        current == null ||\n        _hasProofingComposition) {\n      return false;\n    }\n    commitPendingEdits();\n    current = _currentProofingIssue(current);\n    if (current == null) return false;\n    _selectedProofingIssue = current;\n    final revealed = _revealParagraphRange(\n      current.paragraph,\n      current.finding.start,\n      current.finding.end,"
+  },
+  {
+    "old": "  bool _revealParagraphRange(WmlParagraph paragraph, int start, int end) {\n",
+    "new": "  bool _revealParagraphRange(WmlParagraph paragraph, int start, int end) {\n    if (_disposed ||\n        !config.allowsSelection ||\n        _hasProofingComposition ||\n        start < 0 ||\n        end < start ||\n        end > paragraph.text.length) {\n      return false;\n    }\n"
+  },
+  {
+    "old": "    final index = document.paragraphs.toList().indexOf(paragraph);\n    if (index < 0) return false;\n    endCommentEdit();",
+    "new": "    for (final note in [...document.footnotes, ...document.endnotes]) {\n      for (final segment in _noteTextSegments(note)) {\n        if (!identical(segment.paragraph, paragraph)) continue;\n        if (start < segment.hidden) return false;\n        detachInput();\n        setNoteEditingTarget(\n          note,\n          TextSelection(\n            baseOffset: segment.start + start - segment.hidden,\n            extentOffset: segment.start + end - segment.hidden,\n          ),\n        );\n        requestEditingFocus();\n        return true;\n      }\n    }\n    final index = document.paragraphs.toList().indexOf(paragraph);\n    if (index < 0) return false;\n    clearNoteEditingTarget(notify: false);\n    endCommentEdit();"
+  },
+  {
+    "old": "  List<WordProofingIssue> get proofingIssuesAtCaret {\n    final paragraphs = _paragraphs;\n    final index = caret.paragraphIndex;\n    if (index < 0 || index >= paragraphs.length) {\n      return const <WordProofingIssue>[];\n    }\n    return proofing.issuesAt(paragraphs[index], caret.logicalIndex);\n  }",
+    "new": "  List<WordProofingIssue> get proofingIssuesAtCaret {\n    final position = _proofingCaretPosition;\n    final paragraph = position.paragraph;\n    if (paragraph == null) {\n      return const <WordProofingIssue>[];\n    }\n    return proofing.issuesAt(paragraph, position.offset).where(\n      proofing.isCurrent,\n    ).toList();\n  }"
+  },
+  {
+    "old": "        before.revisions.matches(document)) {\n      return;\n    }\n\n    final session = _proofing;",
+    "new": "        before.revisions.matches(document)) {\n      return;\n    }\n    final session = _proofing;"
+  }
+]

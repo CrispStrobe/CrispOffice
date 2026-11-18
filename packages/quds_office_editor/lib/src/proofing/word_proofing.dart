@@ -618,6 +618,40 @@ final class WordProofingSession extends ChangeNotifier {
             issue.finding.originalText;
   }
 
+  /// Finds the equivalent current result after a host records already-applied
+  /// text in history. This is not permission to reuse an arbitrary stale UI
+  /// handle: the host must first validate the old handle before that boundary.
+  /// Configuration, story, complete source snapshot and finding contents must
+  /// remain identical; only the document revision may have advanced.
+  WordProofingIssue? rebindUnchangedIssue(WordProofingIssue issue) {
+    if (_disposed ||
+        issue.finding.documentId != _documentIds[_document()] ||
+        issue._snapshot.configuration != _configurationKey) {
+      return null;
+    }
+    final old = issue.finding;
+    for (final candidate in _summary.issues) {
+      final finding = candidate.finding;
+      if (identical(candidate.paragraph, issue.paragraph) &&
+          candidate._snapshot.key == issue._snapshot.key &&
+          candidate.language == issue.language &&
+          finding.documentId == old.documentId &&
+          finding.blockId == old.blockId &&
+          finding.providerId == old.providerId &&
+          finding.ruleId == old.ruleId &&
+          finding.start == old.start &&
+          finding.end == old.end &&
+          finding.originalText == old.originalText &&
+          finding.message == old.message &&
+          finding.category == old.category &&
+          listEquals(finding.replacements, old.replacements) &&
+          isCurrent(candidate)) {
+        return candidate;
+      }
+    }
+    return null;
+  }
+
   bool canCorrect(WordProofingIssue issue) {
     if (!isCurrent(issue)) return false;
     return _canEditSnapshotRange(

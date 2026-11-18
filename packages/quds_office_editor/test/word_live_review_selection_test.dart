@@ -71,7 +71,7 @@ WordEditorController _controller(
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  for (final story in ['footnote', 'first header', 'even footer']) {
+  for (final story in ['first header', 'even footer']) {
     test(
       'explicit $story selection survives an unchanged body caret',
       () async {
