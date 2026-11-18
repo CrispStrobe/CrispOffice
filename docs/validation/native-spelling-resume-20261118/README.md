@@ -1,4 +1,39 @@
-# Native spelling resume — 18 November 2026
+# Native spelling resume — recovered qualification
+
+The spelling implementation is preserved at `f482b06f`. On resumption, the
+spelling branch was fast-forwarded to the qualified Zotero continuation
+`fb1fd4dc3edda824c3e043c035dbfad1f0fe0869`. All seven spelling production,
+regression and smoke-runner blobs are unchanged by that integration.
+
+Fresh full local regression execution has completed: **1,303 registered tests
+passed** across 44 files, with zero failures or skips. Eight pre-existing
+grammar fixture rows are repeated, so this is **1,295 distinct suite/name
+cases**; all 41 new spelling cases are distinct. The first report treated
+duplicate names as a bookkeeping failure; the exact original receipt and
+executed runner are retained beside a transparent reparse of the same raw
+events. No product tests were repeated for that correction.
+
+The final isolated-baseline, portable/static and remote evidence audits are
+still being completed at this incremental checkpoint. Current machine-readable
+state is [status.json](status.json). Do not treat this checkpoint as final
+qualification.
+
+The [current incoming reconciliation](reconciliation-current.md) accounts for
+all 376 observed references and 242 distinct heads. The recovered
+[evidence archive](evidence.tar.xz) is indexed by size and SHA-256 in
+[evidence-index.json](evidence-index.json). It currently preserves the complete
+reconciliation, independent review, runtime restoration and fresh full
+regression results.
+
+No GitHub Actions, workflow, check or CI-status endpoint has been queried,
+awaited, dispatched or rerun. Remote saves use non-forced expected-head updates.
+
+## Earlier implementation checkpoint
+
+The text below records the earlier checkpoint, before the interruption; its
+focused run counts are historical and excluded from current totals.
+
+### Implementation checkpoint — 18 November 2026
 
 Work continues on `codex/native-spelling-resume-20261118` after reconciling
 all captured incoming branches and pull requests. The integrated baseline is
