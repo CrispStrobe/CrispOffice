@@ -42,6 +42,58 @@ final class OfficePlatformSpellingProvider extends OfficeProofingProvider {
   static final _language = RegExp(r'^[a-z]{2,8}$');
   static final _script = RegExp(r'^[a-z]{4}$');
   static final _region = RegExp(r'^(?:[A-Z]{2}|[0-9]{3})$');
+  static final _identifierLeading = RegExp(r'[\p{N}\p{Pc}]', unicode: true);
+  static final _visibleSuggestionText = RegExp(
+    r'[^\p{M}\p{Cf}\p{Z}]',
+    unicode: true,
+  );
+
+  /// Preserve backend order while keeping the review list useful and bounded.
+  /// A spelling suggestion must not become an empty Delete action or insert
+  /// malformed text/control characters. Internal spaces and script joiners are
+  /// legitimate in spelling corrections and are kept verbatim.
+  static List<String> _suggestionsFor(
+    String original,
+    List<String> suggestions,
+  ) {
+    final accepted = <String>{};
+    for (final suggestion in suggestions.take(64)) {
+      if (suggestion.isEmpty ||
+          suggestion.length > 256 ||
+          suggestion == original ||
+          suggestion.trim().isEmpty ||
+          !_visibleSuggestionText.hasMatch(suggestion) ||
+          accepted.contains(suggestion) ||
+          !_isPlainText(suggestion)) {
+        continue;
+      }
+      accepted.add(suggestion);
+      if (accepted.length == 8) break;
+    }
+    return accepted.toList(growable: false);
+  }
+
+  static bool _isPlainText(String value) {
+    for (var at = 0; at < value.length; at++) {
+      final unit = value.codeUnitAt(at);
+      if (unit <= 0x1f ||
+          unit >= 0x7f && unit <= 0x9f ||
+          unit == 0x2028 ||
+          unit == 0x2029 ||
+          unit >= 0x202a && unit <= 0x202e ||
+          unit >= 0x2066 && unit <= 0x2069) {
+        return false;
+      }
+      if (unit >= 0xd800 && unit <= 0xdbff) {
+        if (++at == value.length) return false;
+        final low = value.codeUnitAt(at);
+        if (low < 0xdc00 || low > 0xdfff) return false;
+      } else if (unit >= 0xdc00 && unit <= 0xdfff) {
+        return false;
+      }
+    }
+    return true;
+  }
 
   /// Flutter Locale can represent language, script and region, not variants or
   /// arbitrary extensions. Never silently discard an unrepresentable part and
@@ -138,11 +190,20 @@ final class OfficePlatformSpellingProvider extends OfficeProofingProvider {
       }
       final findings = <OfficeProofingFinding>[];
       final protected = OfficeProofingTextRanges(request.text);
-      final boundaries = <int>{
-        0,
-        for (final cluster in GraphemeClusters.segment(request.text))
-          cluster.end,
-      };
+      final boundaries = <int>{0};
+      final identifierStarts = <int>{};
+      final identifierEnds = <int>{};
+      for (final cluster in GraphemeClusters.segment(request.text)) {
+        boundaries.add(cluster.end);
+        // A digit/connector and its combining marks form one identifier edge.
+        // Reuse grapheme segmentation so an arbitrarily long marked edge does
+        // not require copying or rescanning a prefix for each native finding.
+        if (_identifierLeading.matchAsPrefix(request.text, cluster.start) !=
+            null) {
+          identifierStarts.add(cluster.start);
+          identifierEnds.add(cluster.end);
+        }
+      }
       if (!request.ignoredRuleIds.contains('platform.spelling')) {
         for (final span in spans) {
           if (span.range.start < 0 ||
@@ -152,7 +213,19 @@ final class OfficePlatformSpellingProvider extends OfficeProofingProvider {
               !boundaries.contains(span.range.end)) {
             throw const FormatException('Invalid platform spelling range.');
           }
-          if (protected.overlaps(span.range.start, span.range.end)) continue;
+          // An OS dictionary may report only the letter portion of foo42 or
+          // snake_case. Do not turn that into a partial identifier edit. Letter
+          // adjacency is deliberately allowed: CJK dictionaries can return a
+          // valid word from a continuous passage, and hyphen parts are words.
+          if (protected.overlaps(span.range.start, span.range.end) ||
+              identifierEnds.contains(span.range.start) ||
+              identifierStarts.contains(span.range.end)) {
+            continue;
+          }
+          final original = request.text.substring(
+            span.range.start,
+            span.range.end,
+          );
           findings.add(
             OfficeProofingFinding.forRequest(
               request,
@@ -162,7 +235,7 @@ final class OfficePlatformSpellingProvider extends OfficeProofingProvider {
               ruleId: 'platform.spelling',
               message: 'The system dictionary does not recognize this word.',
               category: OfficeProofingCategory.spelling,
-              replacements: span.suggestions.take(8).toList(),
+              replacements: _suggestionsFor(original, span.suggestions),
             ),
           );
         }
