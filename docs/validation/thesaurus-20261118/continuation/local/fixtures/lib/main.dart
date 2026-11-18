@@ -177,7 +177,9 @@ class _FixtureState extends State<_Fixture> {
       for (var iteration = 0; iteration < 5; iteration++) {
         for (final (word, locale) in queries) {
           final clock = Stopwatch()..start();
-          await service.lookup(OfficeThesaurusQuery(text: word, language: locale));
+          await service.lookup(
+            OfficeThesaurusQuery(text: word, language: locale),
+          );
           clock.stop();
           warmMs.add(clock.elapsedMicroseconds / 1000);
         }
@@ -217,7 +219,10 @@ class _FixtureState extends State<_Fixture> {
   @override
   Widget build(BuildContext context) => MaterialApp(
     title: 'Quds thesaurus acceptance fixture',
-    theme: ThemeData(fontFamily: 'Liberation Sans', colorSchemeSeed: Colors.teal),
+    theme: ThemeData(
+      fontFamily: 'Liberation Sans',
+      colorSchemeSeed: Colors.teal,
+    ),
     home: Scaffold(
       appBar: AppBar(title: const Text('Quds offline thesaurus')),
       body: Column(
@@ -237,8 +242,14 @@ class _FixtureState extends State<_Fixture> {
                   onPressed: () => _select('Bank', 'de-DE'),
                   child: const Text('German sample'),
                 ),
-                TextButton(onPressed: controller.undo, child: const Text('Undo')),
-                TextButton(onPressed: controller.redo, child: const Text('Redo')),
+                TextButton(
+                  onPressed: controller.undo,
+                  child: const Text('Undo'),
+                ),
+                TextButton(
+                  onPressed: controller.redo,
+                  child: const Text('Redo'),
+                ),
                 OutlinedButton(
                   onPressed: querying ? null : _queryPanel,
                   child: Text(querying ? 'Querying…' : 'Run query panel'),
