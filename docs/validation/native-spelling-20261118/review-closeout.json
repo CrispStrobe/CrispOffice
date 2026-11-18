@@ -1,0 +1,137 @@
+{
+  "schema": "quds.native_spelling.review_closeout.v1",
+  "recorded_at_utc": "2026-11-18T09:50:53.840320+00:00",
+  "baseline_commit": "98a2a15056e55699b8ba5651fc79b26f94e5efd3",
+  "platform_late_error": {
+    "outcome": "passed",
+    "cases": "Timed-out and explicitly disposed owner; late underlying error; another queued owner waits until physical completion and then succeeds.",
+    "platform_substantive_successes": 21,
+    "cohort_final_event": {
+      "success": true,
+      "type": "done",
+      "time": 14820
+    },
+    "event_log_sha256": "e09bb13e62f024adb276ee1d37010a2f139262c6932d3263cc9938eaf8f88d76",
+    "event_log_source": "platform-validation/editor-cohort/events.jsonl",
+    "test": {
+      "test": {
+        "id": 15,
+        "name": "late native errors release the channel only after actual completion",
+        "suiteID": 0,
+        "groupIDs": [
+          4
+        ],
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "line": 376,
+        "column": 3,
+        "url": "file:///workspace/scratch/a43ef7a44754/quds_office_suite/packages/quds_office_editor/test/platform_spelling_provider_test.dart"
+      },
+      "completion": {
+        "testID": 15,
+        "result": "success",
+        "skipped": false,
+        "hidden": false,
+        "type": "testDone",
+        "time": 4565
+      }
+    }
+  },
+  "inherited_spacy_analysis": {
+    "command": [
+      "dart",
+      "analyze",
+      "--fatal-infos"
+    ],
+    "scope": "Complete packages/quds_proofing_spacy including tool/consume_distribution.dart",
+    "baseline_exit_code": 1,
+    "exact_logs_equal": true,
+    "baseline_log": "review-spacy-baseline.log",
+    "baseline_log_sha256": "3a59315acea650ac7edb3640846dee9b906545a373b5d89134f0cf4ef4cb5546",
+    "current_log_source": "spelling-results/spacy-analysis.log",
+    "current_log_sha256": "3a59315acea650ac7edb3640846dee9b906545a373b5d89134f0cf4ef4cb5546",
+    "source_path": "packages/quds_proofing_spacy/tool/consume_distribution.dart",
+    "source_sha256": "cecbc3a4c52dc8880c9eae7add5a925b0c74660e9d1ba1aee7aaae0ffe02cdf6",
+    "baseline_and_current_git_blob": "644c0e686fc47e328eebb5b7705b2ee84827cf80",
+    "infos": [
+      {
+        "path": "tool/consume_distribution.dart",
+        "line": 65,
+        "column": 17,
+        "message": "Use of an async 'dart:io' method. Try using the synchronous version of the method.",
+        "code": "avoid_slow_async_io"
+      },
+      {
+        "path": "tool/consume_distribution.dart",
+        "line": 67,
+        "column": 24,
+        "message": "Use of an async 'dart:io' method. Try using the synchronous version of the method.",
+        "code": "avoid_slow_async_io"
+      },
+      {
+        "path": "tool/consume_distribution.dart",
+        "line": 72,
+        "column": 23,
+        "message": "Use of an async 'dart:io' method. Try using the synchronous version of the method.",
+        "code": "avoid_slow_async_io"
+      },
+      {
+        "path": "tool/consume_distribution.dart",
+        "line": 82,
+        "column": 19,
+        "message": "Use of an async 'dart:io' method. Try using the synchronous version of the method.",
+        "code": "avoid_slow_async_io"
+      },
+      {
+        "path": "tool/consume_distribution.dart",
+        "line": 94,
+        "column": 18,
+        "message": "Use of an async 'dart:io' method. Try using the synchronous version of the method.",
+        "code": "avoid_slow_async_io"
+      },
+      {
+        "path": "tool/consume_distribution.dart",
+        "line": 105,
+        "column": 44,
+        "message": "Statements in a for should be enclosed in a block. Try wrapping the statement in a block.",
+        "code": "curly_braces_in_flow_control_structures"
+      },
+      {
+        "path": "tool/consume_distribution.dart",
+        "line": 114,
+        "column": 24,
+        "message": "Use of an async 'dart:io' method. Try using the synchronous version of the method.",
+        "code": "avoid_slow_async_io"
+      },
+      {
+        "path": "tool/consume_distribution.dart",
+        "line": 117,
+        "column": 18,
+        "message": "Use of an async 'dart:io' method. Try using the synchronous version of the method.",
+        "code": "avoid_slow_async_io"
+      },
+      {
+        "path": "tool/consume_distribution.dart",
+        "line": 283,
+        "column": 15,
+        "message": "Use of an async 'dart:io' method. Try using the synchronous version of the method.",
+        "code": "avoid_slow_async_io"
+      }
+    ],
+    "disposition": "Preexisting in baseline98a2 and unchanged source. Sealed W7 consumer is retained. This full-package strict analysis is not reported as clean; final acceptance may separately identify clean lib/test and changed-code analysis."
+  },
+  "later_remote_observation": {
+    "method": "One read-only git ls-remote of four named refs; no CI/status calls.",
+    "main": "c8eca37d1639ac1d20efb83ba2e9da51981a3ad4",
+    "native_spacy_reference": "6df76a0dff0051312faa04317af41d479dd94162",
+    "native_spacy_w7": "2e013f26c7d4db54ecabe2c955117cbce5379408",
+    "unchanged_captured_integration_roots": true,
+    "zotero_branch": "codex/zotero-capabilities-20261118",
+    "zotero_captured_sha": "c8eca37d1639ac1d20efb83ba2e9da51981a3ad4",
+    "zotero_later_sha": "1180537c95309fc23bd971b087720d2c66b201b1",
+    "disposition": "Concurrent later arrival, outside the fixed incoming snapshot. Not integrated into or qualified by this spelling work; original reconciliation snapshot remains unchanged."
+  },
+  "production_files_modified_by_closeout": false
+}

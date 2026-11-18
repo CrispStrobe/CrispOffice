@@ -1,0 +1,155 @@
+{
+  "schema": "quds.native_spelling.independent_review_comparison.v1",
+  "baseline_commit": "98a2a15056e55699b8ba5651fc79b26f94e5efd3",
+  "revised_engine_sha256": "2a1aeb6d651361418cb1be7f3b3751e60f038cc06f9c435093740fa687157f43",
+  "reviewed_platform_sha256": "abd68bc42b835838330c119f8f306d82b32b181ae57e0312f0a3f2b300d1ad26",
+  "runtime": "Authenticated Flutter 3.47.8 distribution's Dart 3.13.7 executable",
+  "method": "Identical stdin Dart driver with each checkout's own successful offline package configuration. GermanSpellingProvider defaults; OfficeProofingRequest(documentId: audit, blockId: p, revision: 1, text: input).",
+  "baseline": [
+    {
+      "word": "Make-up",
+      "status": "success",
+      "suggestions": [
+        [
+          "Makeup"
+        ]
+      ]
+    },
+    {
+      "word": "Make‑up",
+      "status": "success",
+      "suggestions": [
+        [
+          "Makeup"
+        ]
+      ]
+    },
+    {
+      "word": "Arbeits-zimmer",
+      "status": "success",
+      "suggestions": [
+        [
+          "Arbeitszimmer",
+          "Arbeitszimmern",
+          "Arbeitszimmers"
+        ]
+      ]
+    },
+    {
+      "word": "Regierungs-zeit",
+      "status": "success",
+      "suggestions": [
+        [
+          "Regierungszeit"
+        ]
+      ]
+    },
+    {
+      "word": "Bür-ger",
+      "status": "success",
+      "suggestions": [
+        [
+          "Bürger",
+          "Bürgern",
+          "Bürgers",
+          "Übriger",
+          "Berger"
+        ]
+      ]
+    },
+    {
+      "word": "On-line",
+      "status": "success",
+      "suggestions": [
+        [
+          "Online",
+          "Outline",
+          "Offline"
+        ]
+      ]
+    }
+  ],
+  "revised": [
+    {
+      "word": "Make-up",
+      "status": "success",
+      "suggestions": [
+        [
+          "Makeup",
+          "Hake-um",
+          "Sake-um",
+          "Mike-um",
+          "Macke-um"
+        ]
+      ]
+    },
+    {
+      "word": "Make‑up",
+      "status": "success",
+      "suggestions": [
+        [
+          "Makeup",
+          "Hake‑um",
+          "Sake‑um",
+          "Mike‑um",
+          "Macke‑um"
+        ]
+      ]
+    },
+    {
+      "word": "Arbeits-zimmer",
+      "status": "success",
+      "suggestions": [
+        [
+          "Arbeitszimmer",
+          "Arbeit-Zimmer",
+          "Arbeite-Zimmer",
+          "Arbeit-zimmre",
+          "Alberts-Zimmer"
+        ]
+      ]
+    },
+    {
+      "word": "Regierungs-zeit",
+      "status": "success",
+      "suggestions": [
+        [
+          "Regierungszeit",
+          "Regierung-Zeit",
+          "Legierung-Zeit",
+          "Regierung-reit",
+          "Negierung-Zeit"
+        ]
+      ]
+    },
+    {
+      "word": "Bür-ger",
+      "status": "success",
+      "suggestions": [
+        [
+          "Bürger",
+          "Bürgern",
+          "Bürgers",
+          "Berger",
+          "Burger"
+        ]
+      ]
+    },
+    {
+      "word": "On-line",
+      "status": "success",
+      "suggestions": [
+        [
+          "Online",
+          "An-eine",
+          "In-eine",
+          "An-fine",
+          "Ton-eine"
+        ]
+      ]
+    }
+  ],
+  "revised_exit_code": 0,
+  "baseline_exit_code": 0,
+  "scope": "Six engineering regressions, including ASCII and nonbreaking hyphens. Principal baseline correction is retained first in each; additional suggestion alternatives are allowed to differ. No quality-population or native-device inference."
+}
