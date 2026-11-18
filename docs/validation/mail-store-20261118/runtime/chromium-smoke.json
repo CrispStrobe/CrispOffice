@@ -1,0 +1,20 @@
+{
+  "started_at": "2026-11-18T20:34:52.493859+00:00",
+  "command": [
+    "/usr/bin/chromium",
+    "--headless=new",
+    "--no-sandbox",
+    "--disable-dev-shm-usage",
+    "--disable-background-networking",
+    "--no-first-run",
+    "--no-default-browser-check",
+    "--user-data-dir=/workspace/scratch/28080c14894b/toolchain/chromium-smoke",
+    "--dump-dom",
+    "data:text/html,<html><body>MAIL_BROWSER_SMOKE</body></html>"
+  ],
+  "returncode": -6,
+  "stdout": "",
+  "stderr": "[7:7:1118/213452.734874:FATAL:chrome/browser/process_singleton_posix.cc:297] Check failed: . socket() failed: Operation not permitted (1)\n[1118/213452.735748:ERROR:third_party/crashpad/crashpad/util/linux/scoped_ptrace_attach.cc:27] ptrace: Operation not permitted (1)\n[24:24:0100/000000.824855:ERROR:content/zygote/zygote_linux.cc:662] write: Broken pipe (32)\n[25:25:0100/000000.855474:ERROR:content/zygote/zygote_linux.cc:662] write: Broken pipe (32)\n",
+  "smoke_passed": false,
+  "version": "Chromium 156.0.8078.79 built on Debian GNU/Linux 13 (trixie)"
+}

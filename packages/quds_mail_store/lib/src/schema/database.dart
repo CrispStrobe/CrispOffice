@@ -5,7 +5,8 @@ import '../errors.dart';
 import '../models.dart';
 
 /// Explicit SQL schema; public access is through typed repository DTOs.
-/// Drift owns query execution, transaction zones and post-commit notifications.
+/// Drift owns query execution and transaction zones. The repository publishes
+/// domain notifications only after successful commit, outside the transaction.
 final class MailStoreDatabase extends GeneratedDatabase {
   MailStoreDatabase(super.executor, {this.faultInjector});
 
@@ -46,7 +47,7 @@ final class MailStoreDatabase extends GeneratedDatabase {
       await customStatement('PRAGMA foreign_keys = ON');
       await customStatement('PRAGMA busy_timeout = 5000');
       // Fail explicitly when an injected/host SQLite lacks the required FTS5.
-      await customSelect('SELECT count(*) AS n FROM mail_fts').getSingle();
+      await customSelect('SELECT rowid FROM mail_fts LIMIT 1').get();
     },
   );
 

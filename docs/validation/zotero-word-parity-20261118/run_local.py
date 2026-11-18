@@ -66,7 +66,7 @@ def main():
     parser.add_argument('--plan', type=Path, default=Path(__file__).with_name('plan.json'))
     args = parser.parse_args()
     repo, out = args.repo.resolve(), args.output.resolve()
-    out.mkdir(parents=True, exist_ok=True)
+    out.mkdir(parents=True, exist_ok=False)
     plan = json.loads(args.plan.read_text())
     runtime = Path(os.environ['FLUTTER_ROOT'])
     dart = runtime / 'bin/cache/dart-sdk/bin/dart'
@@ -92,6 +92,7 @@ def main():
             'lock_sha256': digest(repo / 'pubspec.lock'),
             'package_config_sha256': digest(repo / '.dart_tool/package_config.json'),
             'dart_sha256': digest(dart),
+            'flutter_tools_sha256': digest(flutter),
             'flutter_tester_sha256': digest(runtime / 'bin/cache/artifacts/engine/linux-x64/flutter_tester'),
         }
 
@@ -139,6 +140,7 @@ def main():
     results['passed'] = sum(g.get('passed', 0) for g in results['gates'].values())
     results['success'] = before == after and all(
         g.get('exit_code') == 0 and g.get('failed', 0) == 0 and g.get('errors', 0) == 0
+        and g.get('skipped', 0) == 0
         and g.get('done_success', True) is True and not g.get('unfinished', [])
         for g in results['gates'].values())
     results['finished_utc'] = time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime())

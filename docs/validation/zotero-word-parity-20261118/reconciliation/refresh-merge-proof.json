@@ -1,0 +1,846 @@
+{
+  "mail_base_tree": "5751be46b0f8e3387ef25712017eb351b362c6e0",
+  "mail": "8a6105a7ec217b48105d171703c8d0294c7d2dc6",
+  "review": "840809bbe23f95815a5ddcd2a7ee76c250b9fb8c",
+  "thesaurus": "7c4f8bfa67b69e6fa4d8809724ae036cdcde492f",
+  "review_merge_base": "35b3052f988c232f461df4168b3e619b1c129210",
+  "thesaurus_merge_base": "7530f83a5503987dbee5b9678af56116ca98621f",
+  "review_matches": [
+    {
+      "path": "docs/roadmaps/thesaurus/README.md",
+      "review": "031d0953abb4245d33fcc1f676a8eeeae933e380",
+      "mail": "031d0953abb4245d33fcc1f676a8eeeae933e380",
+      "equal": true
+    },
+    {
+      "path": "docs/roadmaps/thesaurus/release-acceptance.md",
+      "review": "e6ce52a5e1e09d416ab60e7d383c58865a8c8e0e",
+      "mail": "e6ce52a5e1e09d416ab60e7d383c58865a8c8e0e",
+      "equal": true
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/continuation/local/README.md",
+      "review": "c7e8f193b279fd83ffd151f3f10888ea7117597d",
+      "mail": "c7e8f193b279fd83ffd151f3f10888ea7117597d",
+      "equal": true
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/continuation/local/fixtures/build_binding.py",
+      "review": "51b7ce1d254da7b766d2ba952b78e5a0bee5bc6e",
+      "mail": "51b7ce1d254da7b766d2ba952b78e5a0bee5bc6e",
+      "equal": true
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/continuation/local/fixtures/install_offline.py",
+      "review": "b221fe59103d248fa21bd2ab7c87d542648fddf7",
+      "mail": "b221fe59103d248fa21bd2ab7c87d542648fddf7",
+      "equal": true
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/continuation/local/fixtures/lib/main.dart",
+      "review": "2e5e2105d4bbb37cdd95ca55bbcd6e6bea776dfa",
+      "mail": "2e5e2105d4bbb37cdd95ca55bbcd6e6bea776dfa",
+      "equal": true
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/continuation/local/fixtures/run_browser.py",
+      "review": "b74c1542360347dd32acdd0f40773138a1de6192",
+      "mail": "b74c1542360347dd32acdd0f40773138a1de6192",
+      "equal": true
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/continuation/local/fixtures/run_final_validation.py",
+      "review": "f564797a675c6c6d39c300092164b02ce6e5d651",
+      "mail": "f564797a675c6c6d39c300092164b02ce6e5d651",
+      "equal": true
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/continuation/local/fixtures/test_browser_harness.py",
+      "review": "b4039c172516a77a25db9dfbbd7836fa9c7e65af",
+      "mail": "b4039c172516a77a25db9dfbbd7836fa9c7e65af",
+      "equal": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/suite_workspace.dart",
+      "review": "fffcd935e4cd09b472e6d8345a6473e0be86b0d2",
+      "mail": "fffcd935e4cd09b472e6d8345a6473e0be86b0d2",
+      "equal": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart",
+      "review": "2d3849dd91e956442c5dee3b29f2a846d1a57aea",
+      "mail": "2d3849dd91e956442c5dee3b29f2a846d1a57aea",
+      "equal": true
+    },
+    {
+      "path": "tools/thesaurus/README.md",
+      "review": "713357cb9a2feb20030ecaecff4e309faf51905b",
+      "mail": "713357cb9a2feb20030ecaecff4e309faf51905b",
+      "equal": true
+    },
+    {
+      "path": "tools/thesaurus/export_review_packet.py",
+      "review": "6248ed3701d568759f43fa091b8920eb65c9d4a2",
+      "mail": "6248ed3701d568759f43fa091b8920eb65c9d4a2",
+      "equal": true
+    },
+    {
+      "path": "tools/thesaurus/test_export_review_packet.py",
+      "review": "f30730fc057540de3c523346265745528d01db6c",
+      "mail": "f30730fc057540de3c523346265745528d01db6c",
+      "equal": true
+    }
+  ],
+  "incoming_path_overlap": [],
+  "thesaurus_files": [
+    {
+      "path": "docs/roadmaps/thesaurus/README.md",
+      "sha": "5dc2a8bfd66ebf8d9f2143b6b3bf1825a25916ad",
+      "status": "modified"
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/README.md",
+      "sha": "05bb4d2526b112757404fdcce22d40e37c04397e",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/audit_final_validation.py",
+      "sha": "fc0d84574991b6b592ed1f8c4b4935c9d2b7779f",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/browser/browser-report.json",
+      "sha": "20cc78ab7b0acf90641d42335efd18fa33249ef1",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/controls/harness/harness.stderr",
+      "sha": "0dbecb019efe69096f7e6c193aea5550c2bd3857",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/controls/harness/harness.stdout",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/controls/harness/receipt.json",
+      "sha": "2494c93d66846b3baa96677b6118680d5004d3e3",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/controls/review-packet/receipt.json",
+      "sha": "afe2cbbcf8d7d76756a878b049b38f736774a0fc",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/evidence-index.json",
+      "sha": "5d1101d83f177120b590cde1ceb83b14510d7d03",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/evidence.tar.gz",
+      "sha": "3b3a9cf76afc63130d31c357d6c52f2e717a4dc8",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/incoming/README.md",
+      "sha": "720451d7117492c16acd58051011e1bc0a520302",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/incoming/audit_incoming_current.py",
+      "sha": "25648c4103b8a0db8b090573d0ef44e048671413",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/incoming/incoming_audit_result.json",
+      "sha": "c40b35d3af1d3f0345da43e8e2398f302368a26f",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/incoming/incoming_audit_snapshot.json",
+      "sha": "68e05b0054442cd196b53e63c75ea8dd04bc5610",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/incoming/incoming_merged_ancestry.json",
+      "sha": "92d0269c6dc86a39c0a9edf396f638b1d6291e14",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/incoming/incoming_upstream_snapshot.json",
+      "sha": "c81257b5efde0dd29f9cfb66f7bf986284217dbb",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/integration/summary.json",
+      "sha": "19205fe386265ca626580ebba24fc79443c1b1f1",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/linguistic/de/notices/CC_BY_SA_4.0.txt",
+      "sha": "2d58298e6eda10e7204abb52722efbc840db2390",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/linguistic/de/notices/DE_ATTRIBUTION.txt",
+      "sha": "9027f315a1d3de224613c029f23859fac4dd719b",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/linguistic/de/notices/OPENTHESAURUS_COPYING.txt",
+      "sha": "e9a5cbe37f5fa0726cc9283ecfdc099b764e1a46",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/linguistic/de/notices/OPENTHESAURUS_DATABASE_README.txt",
+      "sha": "f94e2a1a057171474321a6d55e081ee552dcf3e4",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/linguistic/de/notices/UNICODE_INFLECTION_LICENSE",
+      "sha": "f6fe7b9e1bcceae1ec0a98676181384f3b1d3d91",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/linguistic/de/notices/UNICODE_INFLECTION_NOTICE",
+      "sha": "c153af4006e223a00071957bdde4ad6c36685581",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/linguistic/en/notices/CC_BY_4.0.txt",
+      "sha": "da6ab6cc8f333d7e89a99812866df8f24374d47c",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/linguistic/en/notices/EN_ATTRIBUTION.txt",
+      "sha": "4f3bcfcee0be290911d9a4f40ea4fbd3a931ecb3",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/linguistic/en/notices/OEWN_LICENSE.md",
+      "sha": "fe4d1dce8109caa7016fca97f48e49a9ced36ad4",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/linguistic/en/notices/WNDB_License.txt",
+      "sha": "cecbc6cf2dcb20ffbcba84319affc1ed0c6dca6f",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/linguistic/linguistic-review.json",
+      "sha": "0254676e3b50c051d1b9ed6e365a16a230e93014",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/linguistic/linguistic-review.md",
+      "sha": "c6c1ed30eb82ecdf49f4f0c1120a6932733d822f",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/native/browser-build-files.json.gz",
+      "sha": "b898c3f8b66e1aec920cf8bc0ad83fe56d1e89de",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/native/native-pack-report.json",
+      "sha": "93396e186ad28d1ba53824d43ddfbb079bd53b43",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/native/native-test-audit.json",
+      "sha": "9a22d1fcfb95c5abfd64d71459be2c6ce0b3ef74",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/native/offline-installation.json",
+      "sha": "44771cb97cbee9d66a039ef51821933074b6ecc5",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/native/receipt.json",
+      "sha": "3de1634278abe3c6a70db5bfced319e0357bf1d0",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/native/source-inputs.json.gz",
+      "sha": "93fe67a5b73b9a8c40543eb5378cdbcc0ecd374c",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/native/visuals/english-desktop.png",
+      "sha": "dc324591d51de0a34cb0ed91d6ffdfc0963b0b2a",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/native/visuals/german-desktop.png",
+      "sha": "ccc3daecf72e2bf4f7475b15cea6d9d35dca730e",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/native/visuals/german-narrow-large-text.png",
+      "sha": "e4b3a6ff26a761038c2bf55c6c24ac8e2c74acc8",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/pack-continuity.json",
+      "sha": "80df8b1913578a4f4179201d2a63e9a275a8b284",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/peer-audit.json",
+      "sha": "c79d993206bff9d726a3936c3884e9c10c7961d9",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/runtime/index.json",
+      "sha": "9dd783917077e3347ce8c8597255e847681c4e85",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/runtime/readiness-audit.json",
+      "sha": "4034f181e26e68f933c52720f7feb768c95d0951",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/runtime/runtime-probe.json",
+      "sha": "e5494b4bc85bce88105ab6bc062a8bd69c90f4df",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/runtime/runtime-ready.json",
+      "sha": "fe4e65312400afe2d9d414b9b8fa3b8450859953",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/runtime/setup.tar.gz",
+      "sha": "9f8690cf15af4afdf35ca6536ec69e71331524ec",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/substantive-cases.json.gz",
+      "sha": "ef30db0ffe3412c8e6b57e0879bf18102e9733af",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/validation-summary.json",
+      "sha": "981b8237a706296a93db15941130b90eb7a45980",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/resume/README.md",
+      "sha": "e45c42a21ef5c2298e8afed90214d121fd088633",
+      "status": "modified"
+    },
+    {
+      "path": "tools/thesaurus/export_review_packet.py",
+      "sha": "3453dc9626ef8d0b52d20bc802558a95deedf6f5",
+      "status": "modified"
+    },
+    {
+      "path": "tools/thesaurus/test_export_review_packet.py",
+      "sha": "38c088b8e7e96ae4631629e8ba7a26c61bb78687",
+      "status": "modified"
+    }
+  ],
+  "mail_files": [
+    {
+      "path": "docs/roadmaps/mail/README.md",
+      "sha": "bd7ae0af2c499d5437df09ed7accf6ee8ef60c11",
+      "status": "modified"
+    },
+    {
+      "path": "docs/roadmaps/mail/implementation-plan.md",
+      "sha": "5b235619a25bf1a43b8f33f43afb0578e188fe28",
+      "status": "modified"
+    },
+    {
+      "path": "docs/validation/mail-store-20261118/incoming/README.md",
+      "sha": "acd13a11ca2e67b449cd57701975d514bb21ff49",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/mail-store-20261118/incoming/checks/editor-analysis-receipt.json",
+      "sha": "9555430ab4bcb92d0d005f94dfa0b81b236645be",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/mail-store-20261118/incoming/checks/editor-analysis.stderr",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/mail-store-20261118/incoming/checks/editor-analysis.stdout",
+      "sha": "db1297f0a0092b39794c40966e3fbac0402aa964",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/mail-store-20261118/incoming/checks/editor-tests-cases.json",
+      "sha": "118caf4889d5c2259f05a560b31a0ac2b8389ac2",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/mail-store-20261118/incoming/checks/editor-tests-errors.json",
+      "sha": "fe51488c7066f6687ef680d6bfaa4f7768ef205c",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/mail-store-20261118/incoming/checks/editor-tests-receipt.json",
+      "sha": "b878ce172e85859b30cbbe33669033ce969d9659",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/mail-store-20261118/incoming/checks/editor-tests.stderr",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/mail-store-20261118/incoming/checks/editor-tests.stdout",
+      "sha": "69ebf972d2e3dfa1d67b3ea7f3f58610404bbdcf",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/mail-store-20261118/incoming/checks/receipt.json",
+      "sha": "2b5220af661edae1a0e1ba1b169b661b27ba8451",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/mail-store-20261118/incoming/checks/source-after.json",
+      "sha": "65ceb8f06987a121657ef254564b603feaf706b0",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/mail-store-20261118/incoming/checks/source-before.json",
+      "sha": "65ceb8f06987a121657ef254564b603feaf706b0",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/mail-store-20261118/incoming/checks/studio-analysis-receipt.json",
+      "sha": "483019772670b754742ad729811f5378d7b5cb1b",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/mail-store-20261118/incoming/checks/studio-analysis.stderr",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/mail-store-20261118/incoming/checks/studio-analysis.stdout",
+      "sha": "c0c67a76f9479d70de227edbb16fffcc2b34ebe0",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/mail-store-20261118/incoming/checks/studio-tests-cases.json",
+      "sha": "7df87b57d5548bef33127abbb9701b4bfef4070d",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/mail-store-20261118/incoming/checks/studio-tests-errors.json",
+      "sha": "fe51488c7066f6687ef680d6bfaa4f7768ef205c",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/mail-store-20261118/incoming/checks/studio-tests-receipt.json",
+      "sha": "435c25eae6902dc3bf38e88d854a4738ae727171",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/mail-store-20261118/incoming/checks/studio-tests.stderr",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/mail-store-20261118/incoming/checks/studio-tests.stdout",
+      "sha": "cf3a0a5a6ee9e2e2c5d8c8466d170493b80a2c71",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/mail-store-20261118/incoming/initial-audit.json",
+      "sha": "6ccfbb2fa1586fdb084d4c55f9d4a2545ca3635a",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/mail-store-20261118/incoming/merge-tree.txt",
+      "sha": "45feb91902d42b6dbf50bbaca7e81e67913c0a91",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/mail-store-20261118/runtime/README.md",
+      "sha": "a8f648a80b8484786fec292328858b6485bc4274",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/mail-store-20261118/runtime/chromium-smoke.json",
+      "sha": "a00a57b62226e1a028964db3f43d66dff9d11eeb",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/mail-store-20261118/runtime/dependency-diff.json",
+      "sha": "4ca119cdc8aafd0a7a724058c06f5e323f379933",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/mail-store-20261118/runtime/platform-validation.json",
+      "sha": "69932e5cb00c5761c3fa87312e1e12e00f7e6c2a",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/mail-store-20261118/runtime/receipt.json",
+      "sha": "a762d77f4130dd3c9694c7065cf25365931d6784",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/zotero-word-parity-20261118/plan.json",
+      "sha": "cc38aebaafd49b6770a4a624a84d02c7a3ce6444",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/zotero-word-parity-20261118/reconciliation/README.md",
+      "sha": "7a0aac683502cd05d0b2b3dcdcd73a0b3d5b5dc9",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/zotero-word-parity-20261118/reconciliation/audit.json",
+      "sha": "592cc5817638b1134fd51f9d2e244b8ccee0c006",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/zotero-word-parity-20261118/reconciliation/audit_refs.py",
+      "sha": "005ccea98ac522eacd6a75aead8f9c0e7d7a0e97",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/zotero-word-parity-20261118/reconciliation/captured-refs.json",
+      "sha": "bbff0676eeb3afdfe9f97cf4e89c42b9c4bf0ef7",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/zotero-word-parity-20261118/reconciliation/pre-integration-audit.json",
+      "sha": "5a6c93689deaefa1b62e1cad73844425a2a0f854",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/zotero-word-parity-20261118/reconciliation/published-baseline-audit.json",
+      "sha": "4bf006b57c1ff92bcb0703acce9a84d18aeba296",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/zotero-word-parity-20261118/run_local.py",
+      "sha": "cf7bcf4f07c9f64f0829092ffc63fad5f3c142f7",
+      "status": "added"
+    },
+    {
+      "path": "docs/zotero-support.md",
+      "sha": "88da94bbc88f351b6567e200064296a1bd5fb969",
+      "status": "modified"
+    },
+    {
+      "path": "packages/quds_mail_core/CHANGELOG.md",
+      "sha": "0e9a482138c7b2aa7f4bf45cabd098be47104de0",
+      "status": "modified"
+    },
+    {
+      "path": "packages/quds_mail_core/lib/src/ports/repository.dart",
+      "sha": "b47c4616ac74da1143a85c3239dfe6cf81cdbb13",
+      "status": "modified"
+    },
+    {
+      "path": "packages/quds_mail_core/lib/src/sync/coordinator.dart",
+      "sha": "8fd17fee6fc05b0784ed9fd748c52e526972e94a",
+      "status": "modified"
+    },
+    {
+      "path": "packages/quds_mail_core/test/sync_coordinator_test.dart",
+      "sha": "621492c6e8d086a873f1ea2aa50422a2d8d21db0",
+      "status": "modified"
+    },
+    {
+      "path": "packages/quds_mail_store/CHANGELOG.md",
+      "sha": "785b7b7edc6cf4f67e0289c55388b82628282ade",
+      "status": "added"
+    },
+    {
+      "path": "packages/quds_mail_store/DEPENDENCIES.json",
+      "sha": "5c135eea6cedff31623310fcb8ab32982f6879b4",
+      "status": "added"
+    },
+    {
+      "path": "packages/quds_mail_store/LICENSE",
+      "sha": "d2c25674e883f1006ac85cf45912f851a2b5ef0e",
+      "status": "added"
+    },
+    {
+      "path": "packages/quds_mail_store/README.md",
+      "sha": "f7976e8811e950292d0d8a7899160a51e9d24ffd",
+      "status": "added"
+    },
+    {
+      "path": "packages/quds_mail_store/THIRD_PARTY_NOTICES.md",
+      "sha": "733fc3981cd3ef88fd197e899fa980538ec5853d",
+      "status": "added"
+    },
+    {
+      "path": "packages/quds_mail_store/lib/quds_mail_store.dart",
+      "sha": "7d900fd59f42e218b4b24b71339120c3d581e76a",
+      "status": "added"
+    },
+    {
+      "path": "packages/quds_mail_store/lib/quds_mail_store_native.dart",
+      "sha": "a7f9c24dcf4adfe6111b58096120f03ace9aa17b",
+      "status": "added"
+    },
+    {
+      "path": "packages/quds_mail_store/lib/quds_mail_store_web.dart",
+      "sha": "9c84f65ab52620ac9dca50112a6c21be62a9d795",
+      "status": "added"
+    },
+    {
+      "path": "packages/quds_mail_store/lib/src/browser_problem.dart",
+      "sha": "f192b41c685851592c86d0ac1d30fc66deaa8550",
+      "status": "added"
+    },
+    {
+      "path": "packages/quds_mail_store/lib/src/browser_setup.dart",
+      "sha": "2301833c4e0eea985562bb79e5425847d4a1e048",
+      "status": "added"
+    },
+    {
+      "path": "packages/quds_mail_store/lib/src/codec.dart",
+      "sha": "f98d318a77fd0047c347ae5ce96d205c70107d54",
+      "status": "added"
+    },
+    {
+      "path": "packages/quds_mail_store/lib/src/errors.dart",
+      "sha": "f5e2745bcbf6d8b085930ec179a19b4a0b23a347",
+      "status": "added"
+    },
+    {
+      "path": "packages/quds_mail_store/lib/src/models.dart",
+      "sha": "cbc8a35aa2aeea43af4fbaf9814468ded8c203e9",
+      "status": "added"
+    },
+    {
+      "path": "packages/quds_mail_store/lib/src/owner_locked_executor.dart",
+      "sha": "4ea4ab0830adb3caa058958076c456acaf26f43e",
+      "status": "added"
+    },
+    {
+      "path": "packages/quds_mail_store/lib/src/platform_configuration.dart",
+      "sha": "670f9890720312dac75bed48ded93a2da76c1bc0",
+      "status": "added"
+    },
+    {
+      "path": "packages/quds_mail_store/lib/src/repository.dart",
+      "sha": "ca335b03fa708cd1f9363fb602b7ab453b93a584",
+      "status": "added"
+    },
+    {
+      "path": "packages/quds_mail_store/lib/src/schema/database.dart",
+      "sha": "6d58a906a60bef66048dded3adfa8a07ba859e9f",
+      "status": "added"
+    },
+    {
+      "path": "packages/quds_mail_store/lib/src/search_journal.dart",
+      "sha": "df0b0501bcf6d2af11326b3ca71f459d689f7a6d",
+      "status": "added"
+    },
+    {
+      "path": "packages/quds_mail_store/pubspec.yaml",
+      "sha": "4529099ff0aa052d780d77fd1b9f35b9ae80ea94",
+      "status": "added"
+    },
+    {
+      "path": "packages/quds_mail_store/test/adversarial_store_test.dart",
+      "sha": "02acbe90f575dcd413303095df226e68ba266cdb",
+      "status": "added"
+    },
+    {
+      "path": "packages/quds_mail_store/test/browser_problem_test.dart",
+      "sha": "0e3d9f8611482157b93b1636050808d7b59ae95d",
+      "status": "added"
+    },
+    {
+      "path": "packages/quds_mail_store/test/codec_test.dart",
+      "sha": "72bc8c7d12a4bd643ed5710a2378dab8b7c6688a",
+      "status": "added"
+    },
+    {
+      "path": "packages/quds_mail_store/test/crash_recovery_test.dart",
+      "sha": "afd4997169f6d3329d7ce9cbb13925fcdcf3e68c",
+      "status": "added"
+    },
+    {
+      "path": "packages/quds_mail_store/test/migration_test.dart",
+      "sha": "aef040ae1af918ec822962823f656cda741779a3",
+      "status": "added"
+    },
+    {
+      "path": "packages/quds_mail_store/test/native_platform_test.dart",
+      "sha": "8dfd8cf86581e1894049767ac18ca74c7ac37844",
+      "status": "added"
+    },
+    {
+      "path": "packages/quds_mail_store/test/platform_configuration_test.dart",
+      "sha": "30fadd8f1569935d44efa9e539c3c34a10e1e5de",
+      "status": "added"
+    },
+    {
+      "path": "packages/quds_mail_store/test/repository_test.dart",
+      "sha": "eb1f5ddc6eb07589fd6742b1f6253ae54ac3d6c5",
+      "status": "added"
+    },
+    {
+      "path": "packages/quds_mail_store/tool/browser_compile_probe.dart",
+      "sha": "3b629f2b40ec7ba2c248b9a42e9a02f41fe7acfd",
+      "status": "added"
+    },
+    {
+      "path": "packages/quds_mail_store/tool/mail_store_worker.dart",
+      "sha": "4aa84891c0e5848c1438571f4605d89a0318380d",
+      "status": "added"
+    },
+    {
+      "path": "packages/quds_mail_store/tool/native_crash_fixture.dart",
+      "sha": "51d48fa746a82603b20120a2c0ccaf39de77c247",
+      "status": "added"
+    },
+    {
+      "path": "packages/quds_mail_store/tool/transaction_crash_fixture.dart",
+      "sha": "9516719281f98b2f4dfb912c2722fa33f1f65cf9",
+      "status": "added"
+    },
+    {
+      "path": "packages/quds_office_editor/CHANGELOG.md",
+      "sha": "33e14ea61ffb1504aa5c84a2acb3999da258cebc",
+      "status": "modified"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/suite_workspace.dart",
+      "sha": "fffcd935e4cd09b472e6d8345a6473e0be86b0d2",
+      "status": "modified"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+      "sha": "b2be5958c0249610a680c3847ed7625ca946a38d",
+      "status": "modified"
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+      "sha": "c1a98b7960950393878e0589e95c2520bcae48de",
+      "status": "modified"
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/word_notes_pane.dart",
+      "sha": "df229eab17ba508f377945340df9b9e6d283e3b0",
+      "status": "modified"
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart",
+      "sha": "48dbc76ce06229d56d95d149e2148f828e74000f",
+      "status": "modified"
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+      "sha": "a93db5a5852dd645829074bd752006468a50464e",
+      "status": "added"
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_zotero_direct_command_test.dart",
+      "sha": "ee609960f8306a54145cdf6ce420af0211a38809",
+      "status": "added"
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_zotero_navigation_dialog_test.dart",
+      "sha": "6b8791ae9ab2ecf2b2324d62ae46a4c2adac1a70",
+      "status": "added"
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_zotero_navigation_pane_test.dart",
+      "sha": "2bc1f135db0b0967742ecaacc9741ed62b722773",
+      "status": "added"
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_zotero_navigation_test.dart",
+      "sha": "133754f4ad99b39a767314bb47f79847b2155998",
+      "status": "added"
+    },
+    {
+      "path": "packages/quds_office_engine/CHANGELOG.md",
+      "sha": "9b9574c7bb08fd8ad873cdfa17f23d2afb74a9d4",
+      "status": "modified"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart",
+      "sha": "151a0e6452b9c13ffd1c524f31ab55b22ff9fa82",
+      "status": "modified"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/model/word_zotero_note.dart",
+      "sha": "4d0dba5e5d893651a1d5006506aa202051eba399",
+      "status": "added"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/zotero/zotero_citing.dart",
+      "sha": "1e9f66be950e8ca09dff6faf5fb20d35294390d7",
+      "status": "modified"
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_zotero_add_note_test.dart",
+      "sha": "01116060b857c0f3e991bb384610029a226ae3ff",
+      "status": "added"
+    },
+    {
+      "path": "packages/quds_office_engine/test/zotero_add_note_protocol_test.dart",
+      "sha": "8ce85a9a5d0c92adfd8a22941d12b2ff7d08f9ca",
+      "status": "added"
+    },
+    {
+      "path": "packages/quds_office_engine/test/zotero_citing_test.dart",
+      "sha": "50bd70dbd93ee129cff5a1d2a4c4c300f0667d47",
+      "status": "modified"
+    },
+    {
+      "path": "pubspec.lock",
+      "sha": "13f6b3ddf846de813c4d19893c05919b67c8cd12",
+      "status": "modified"
+    },
+    {
+      "path": "pubspec.yaml",
+      "sha": "cb6f8b349ca6c00625f3e3c176eee352c12a6e5e",
+      "status": "modified"
+    },
+    {
+      "path": "tools/mail/check_store.py",
+      "sha": "e5780e6e5aea751131cd2b112f824f3dca616353",
+      "status": "added"
+    }
+  ],
+  "source_endpoints": [
+    "https://api.github.com/repos/CrispStrobe/quds_office_suite/compare/35b3052f988c232f461df4168b3e619b1c129210...8a6105a7ec217b48105d171703c8d0294c7d2dc6?per_page=1",
+    "https://api.github.com/repos/CrispStrobe/quds_office_suite/compare/8a6105a7ec217b48105d171703c8d0294c7d2dc6...840809bbe23f95815a5ddcd2a7ee76c250b9fb8c?per_page=1",
+    "https://api.github.com/repos/CrispStrobe/quds_office_suite/compare/7530f83a5503987dbee5b9678af56116ca98621f...8a6105a7ec217b48105d171703c8d0294c7d2dc6?per_page=1",
+    "https://api.github.com/repos/CrispStrobe/quds_office_suite/compare/8a6105a7ec217b48105d171703c8d0294c7d2dc6...7c4f8bfa67b69e6fa4d8809724ae036cdcde492f?per_page=1"
+  ],
+  "acceptance_subtree": {
+    "sha": "e8a37bcd4643b4a84a09df6e44f2bf2e5af6f5d3",
+    "entries": 60,
+    "blobs": 46,
+    "truncated": false,
+    "all_blob_hashes_match_comparison": true,
+    "modes": "100644"
+  },
+  "own_overlay_parent": "55c02534868b13e1eb0b5c9391d133e9bac57ecb",
+  "overlap_resolution": {
+    "path": "packages/quds_office_editor/example/lib/suite_workspace.dart",
+    "incoming_change": "Add mainAxisSize: MainAxisSize.min to studio-ribbon-tabs-scroll Row.",
+    "decision": "Retain the incoming line alongside current Zotero commands and IME guards.",
+    "other_incoming_zotero_overlap": []
+  },
+  "intended_parents": [
+    "55c02534868b13e1eb0b5c9391d133e9bac57ecb",
+    "8a6105a7ec217b48105d171703c8d0294c7d2dc6",
+    "840809bbe23f95815a5ddcd2a7ee76c250b9fb8c",
+    "7c4f8bfa67b69e6fa4d8809724ae036cdcde492f"
+  ]
+}

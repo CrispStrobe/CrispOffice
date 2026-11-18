@@ -1,0 +1,157 @@
+{
+  "status": "BLOCKED",
+  "document_kind": "Recovered observation summary; not the original raw qualification receipt",
+  "recorded_utc": "2026-11-18 20:50:55 UTC",
+  "source_commit_exercised": "8a6105a7ec217b48105d171703c8d0294c7d2dc6",
+  "original_run": {
+    "status": "FAIL",
+    "command": [
+      "python3",
+      "tools/mail/check_store.py",
+      "--flutter-sdk",
+      "/workspace/scratch/28080c14894b/toolchain/flutter",
+      "--output",
+      "build/mail-store-qualification/attempt-1"
+    ],
+    "cwd": "/workspace/scratch/28080c14894b/quds_office_suite",
+    "raw_receipt_local": "build/mail-store-qualification/attempt-1/receipt.json",
+    "raw_receipt_uploaded": false,
+    "source_manifest_uploaded": false
+  },
+  "observed_checks": [
+    {
+      "name": "runtime",
+      "status": "PASS",
+      "detail": "Flutter 3.47.8 / Dart 3.13.7, verified official runtime"
+    },
+    {
+      "name": "locked-resolution",
+      "status": "PASS"
+    },
+    {
+      "name": "core-analysis",
+      "status": "PASS"
+    },
+    {
+      "name": "store-analysis",
+      "status": "FAIL",
+      "exit_code": 1,
+      "detail": "Two infos in test/repository_test.dart: unnecessary sqlite3/common.dart import and missing braces around fault-injection if."
+    },
+    {
+      "name": "format",
+      "status": "FAIL",
+      "exit_code": 1,
+      "detail": "native_platform_test.dart requires dart format; --output=none did not modify the source."
+    },
+    {
+      "name": "core-vm",
+      "status": "PASS",
+      "passed": 30,
+      "skipped": 0,
+      "failed": 0,
+      "error_events": 0
+    },
+    {
+      "name": "core-node",
+      "status": "PASS",
+      "passed": 30,
+      "skipped": 0,
+      "failed": 0,
+      "error_events": 0
+    },
+    {
+      "name": "store-vm",
+      "status": "PASS",
+      "passed": 87,
+      "skipped": 0,
+      "failed": 0,
+      "error_events": 0
+    },
+    {
+      "name": "portable-node",
+      "status": "PASS",
+      "passed": 39,
+      "skipped": 0,
+      "failed": 0,
+      "error_events": 0
+    },
+    {
+      "name": "browser-entry",
+      "status": "PASS",
+      "scope": "JavaScript compilation only"
+    },
+    {
+      "name": "browser-worker",
+      "status": "PASS",
+      "scope": "JavaScript compilation only"
+    },
+    {
+      "name": "whitespace",
+      "status": "PASS"
+    }
+  ],
+  "store_vm_breakdown": {
+    "codec": 32,
+    "repository": 16,
+    "adversarial": 16,
+    "native_platform": 7,
+    "configuration": 4,
+    "migration": 7,
+    "transaction_crash": 5
+  },
+  "portable_node_breakdown": {
+    "codec": 32,
+    "configuration": 4,
+    "browser_error_policy": 3
+  },
+  "recovery_edits": {
+    "repository_test_lint_repairs": "Prepared from immutable remote source and saved through GitHub; NOT RERUN",
+    "event_parser": "Reject malformed JSON-shaped records, unmatched/duplicate/incomplete test IDs, missing or duplicate start/terminal events, post-terminal events and invalid field types; NOT RUN",
+    "parser_regressions": {
+      "count": 18,
+      "status": "NOT RUN",
+      "path": "tools/mail/test_check_store.py"
+    },
+    "pending_format": "packages/quds_mail_store/test/native_platform_test.dart"
+  },
+  "blocker": {
+    "category": "workspace_disk_exhaustion",
+    "observed_error": "bwrap: Can't create file /workspace/scratch/28080c14894b/.git: No space left on device",
+    "effects": [
+      "New exec and apply_patch commands cannot launch, including deletion of the already-published temporary worktree.",
+      "Available UI runtime could not start.",
+      "Environment approval policy rejected an escalated cleanup command; no escalation occurred.",
+      "Existing unuploaded raw results cannot be read or transferred with the remaining tools."
+    ],
+    "safe_cleanup_target": "/workspace/scratch/28080c14894b/late-integration",
+    "cleanup_target_tree_saved_in": "8a6105a7ec217b48105d171703c8d0294c7d2dc6"
+  },
+  "preservation": {
+    "source_and_test_fixtures": "Saved incrementally to remote branch",
+    "runtime_and_initial_office_raw_evidence": "Already saved in runtime/ and incoming/checks/",
+    "additional_review_raw_evidence": "24 files plus copy manifest remain local in docs/validation/mail-store-20261118/review/; not uploaded",
+    "aggregate_mail_raw_evidence": "Remains local in build/mail-store-qualification/attempt-1/; not uploaded",
+    "late_office_failure_raw_evidence": "Remains local under docs/validation/mail-store-20261118/incoming/late-checks/; not uploaded",
+    "working_tree_matches_final_remote": "NOT VERIFIED after filesystem exhaustion"
+  },
+  "browser_runtime": {
+    "status": "NOT RUN",
+    "reason": "Chromium aborted before rendering because its singleton socket was denied; Node/compilation does not qualify browser persistence, quota, reload or Web Locks."
+  },
+  "github_actions": {
+    "queried": false,
+    "awaited": false,
+    "rerun": false
+  },
+  "next_actions": [
+    "Free space by removing only the disposable already-published late-integration worktree.",
+    "Recover and upload local raw evidence before removing build or temporary directories.",
+    "Reconcile the local documentation drafts with the new remote continuation checkpoint.",
+    "Format native_platform_test.dart and run the 18 runner regressions.",
+    "Run check_store.py again into a fresh output directory and retain its complete source-bound receipt.",
+    "Rerun the incoming Office cohorts interrupted by ENOSPC.",
+    "Refresh and reconcile newer refs, then verify the final remote tree and clean local worktree.",
+    "Proceed to M06 native accounts and synchronization after these local qualification gaps are closed."
+  ]
+}

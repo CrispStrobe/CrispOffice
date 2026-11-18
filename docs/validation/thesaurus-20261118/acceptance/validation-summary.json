@@ -1,0 +1,161 @@
+{
+  "recorded_at_utc": "2026-11-18T20:34:37.262685+00:00",
+  "status": "targeted_checks_passed_release_acceptance_open",
+  "application_source": "813a7cdd7d55f2028e377393ae6bbc7388f5db73",
+  "browser_fixture_source": "7530f83a5503987dbee5b9678af56116ca98621f",
+  "exporter_source_binding": "controls/review-packet/receipt.json",
+  "cases": 421,
+  "dart_flutter_cases": 399,
+  "dart_flutter_suites": 34,
+  "python_node_controls": 22,
+  "cohorts": [
+    {
+      "name": "native-thesaurus-review",
+      "cases": 208,
+      "suites": 14,
+      "receipt": "native/receipt.json"
+    },
+    {
+      "name": "studio",
+      "cases": 36,
+      "suites": 4,
+      "receipt": "integration/summary.json"
+    },
+    {
+      "name": "mail-ui",
+      "cases": 30,
+      "suites": 4,
+      "receipt": "integration/summary.json"
+    },
+    {
+      "name": "mail-core",
+      "cases": 28,
+      "suites": 4,
+      "receipt": "integration/summary.json"
+    },
+    {
+      "name": "mail-mime",
+      "cases": 32,
+      "suites": 6,
+      "receipt": "integration/summary.json"
+    },
+    {
+      "name": "engine",
+      "cases": 65,
+      "suites": 2,
+      "receipt": "integration/summary.json"
+    },
+    {
+      "name": "browser-harness",
+      "cases": 15,
+      "suites": null,
+      "receipt": "controls/harness/receipt.json"
+    },
+    {
+      "name": "review-packet",
+      "cases": 7,
+      "suites": null,
+      "receipt": "controls/review-packet/receipt.json"
+    }
+  ],
+  "failed": 0,
+  "skipped": 0,
+  "scope": "Targeted current-source checks. Historical 606 cases and repeated control executions are not added. Not the entire repository suite.",
+  "strict_analysis": {
+    "status": "passed",
+    "fatal_infos": true,
+    "selected_files": 5,
+    "receipt": "integration/summary.json"
+  },
+  "source_binding": {
+    "native_inputs": 2878,
+    "integration_inputs": 2195,
+    "unchanged": true,
+    "peer_audit": "peer-audit.json",
+    "peer_audit_sha256": "14c856bcfed8a252217c1c67eff68f4a999cd31916895decaf98c22b1476dbde"
+  },
+  "web_compile": {
+    "status": "passed",
+    "files": 1155,
+    "bytes": 87397428,
+    "receipt": "native/receipt.json",
+    "inventory": "native/browser-build-files.json.gz",
+    "settings": [
+      "--release",
+      "--csp",
+      "--no-web-resources-cdn",
+      "--pwa-strategy=none"
+    ]
+  },
+  "offline_installation": {
+    "status": "inventory_and_provenance_verified",
+    "inventory_files": 1156,
+    "inventory_bytes": 87398019,
+    "excluded_generated_files": [
+      "offline-test-worker.js",
+      "offline-files.json"
+    ],
+    "receipt": "native/offline-installation.json"
+  },
+  "actual_browser": {
+    "status": "blocked_at_launch",
+    "raw_attempt_status": "failed",
+    "completed_steps": 0,
+    "recorded_requests": 0,
+    "reason": "Chromium AF_UNIX socket creation failed with EPERM before application startup.",
+    "receipt": "browser/browser-report.json"
+  },
+  "linguistic_packet": {
+    "queries": 15,
+    "source_records": 109,
+    "original_notices": 10,
+    "review_status": "not_reviewed",
+    "human_decisions_completed": 0,
+    "report_sha256": "a85d212a9545309f546335fac5e8ef40222a8b1c3d808d87a8c9fcfbcd13ced7",
+    "markdown": "linguistic/linguistic-review.md",
+    "json": "linguistic/linguistic-review.json"
+  },
+  "runtime": {
+    "flutter": "3.47.8",
+    "dart": "3.13.7",
+    "hosted_archives_verified": 170,
+    "workspace_manifests_unchanged": 15,
+    "receipt": "runtime/runtime-ready.json",
+    "setup_archive": "runtime/setup.tar.gz"
+  },
+  "incoming_capture": {
+    "fork_branches": 210,
+    "pr_heads": 172,
+    "upstream_branches": 4,
+    "refs": 386,
+    "unique_heads": 251,
+    "unaccounted": 0,
+    "report": "incoming/README.md"
+  },
+  "pack_continuity": "pack-continuity.json",
+  "archive": {
+    "path": "evidence.tar.gz",
+    "sha256": "9cc24a6bb36160400cc73b0401d04a5bf9298ed5ac54971b3faee438c5d11988",
+    "members": 50,
+    "index": "evidence-index.json",
+    "readback_verified": true
+  },
+  "open_release_checks": [
+    "Actual offline-browser acceptance",
+    "Installed native Studio and real OS/IME acceptance",
+    "Independent human linguistic review"
+  ],
+  "github_actions": {
+    "queried": false,
+    "dispatched": false,
+    "waited": false
+  },
+  "late_main_reconciliation": "incoming/late-main-reconciliation.json",
+  "prior_pr": {
+    "number": 169,
+    "merged": true,
+    "merged_at_utc": "2026-11-18T20:17:10Z",
+    "recorded_head": "4600c0ebc9ac5e6acabd92935821d1c15315f2c1",
+    "merge_commit": "690e6ac8a1f7d8f5c8d4bea69d989a6728f3b27e"
+  }
+}

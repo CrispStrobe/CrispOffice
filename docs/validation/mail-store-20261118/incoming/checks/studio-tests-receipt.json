@@ -1,0 +1,32 @@
+{
+  "name": "studio-tests",
+  "argv": [
+    "/workspace/scratch/28080c14894b/toolchain/flutter/bin/cache/dart-sdk/bin/dart",
+    "/workspace/scratch/28080c14894b/toolchain/flutter/bin/cache/flutter_tools.snapshot",
+    "--no-version-check",
+    "--suppress-analytics",
+    "test",
+    "--no-pub",
+    "--reporter",
+    "json",
+    "test/studio_comment_draft_proofing_test.dart",
+    "test/studio_compact_navigation_test.dart",
+    "test/studio_comment_keyboard_review_test.dart"
+  ],
+  "cwd": "packages/quds_office_editor/example",
+  "started_at_utc": "2026-11-18T20:27:12.871982+00:00",
+  "status": "PASS",
+  "exit_code": 0,
+  "finished_at_utc": "2026-11-18T20:29:23.539669+00:00",
+  "stdout": "studio-tests.stdout",
+  "stderr": "studio-tests.stderr",
+  "passed": 25,
+  "failed": 0,
+  "skipped": 0,
+  "error_event_count": 0,
+  "runner_done": {
+    "success": true,
+    "type": "done",
+    "time": 96621
+  }
+}

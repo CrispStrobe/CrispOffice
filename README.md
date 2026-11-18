@@ -508,14 +508,30 @@ The plan preserves CrispCloud's existing EML/MSG/MBOX workflows without
 importing its AGPL implementation into Quds. Standalone and CrispCloud
 distribution/App Store gates are tracked separately.
 
-The first implementation now provides [typed Mail core](packages/quds_mail_core),
-[bounded EML parsing](packages/quds_mail_mime), and an
+The implementation now provides [typed Mail core](packages/quds_mail_core),
+[bounded EML parsing](packages/quds_mail_mime), an
 [account-free Flutter reader](packages/quds_mail_ui) with a real MIME preview
-harness. Original message and attachment bytes remain immutable. The reviewed
+harness, and [Drift/SQLite storage and recovery](packages/quds_mail_store).
+Original message and attachment bytes remain immutable. The reviewed
 MPL fork exposes a portable public MIME entry without socket/filesystem imports.
+The native store persists drafts, frozen outgoing payloads, mailbox changes and
+cursors transactionally, with local full-text search and explicit interrupted-send
+recovery. File-backed migration and Linux process-crash tests exercise data
+preservation. Its separately configured browser entry compiles, but actual
+browser storage, quota and reload behavior remain unqualified. The database is
+unencrypted, and process-crash tests do not establish power-loss durability.
+
+**Final M05 qualification is BLOCKED.** The combined run's test cohorts passed,
+but the overall run failed analysis/format gates. Disk exhaustion then prevented
+the corrected runner, new parser regressions and lint repairs from being rerun.
+The saved [qualification summary](docs/validation/mail-store-20261118/checks/receipt.json)
+is a recovered observation record; the original aggregate raw logs and source
+manifest were not uploaded.
 See the [implementation status and local checks](docs/roadmaps/mail/status.md).
-The connected mailbox, standalone Office host and CrispCloud migration remain
-subsequent tasks; this reader increment does not qualify an application release.
+Native accounts and IMAP synchronization are the next product milestone after
+the local qualification gaps are closed, followed by composition/sending and
+the shared mailbox workspace. The standalone Office host and CrispCloud
+migration remain later tasks; these packages do not qualify an application release.
 
 ---
 

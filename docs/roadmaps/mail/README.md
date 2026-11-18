@@ -1,7 +1,7 @@
 # Quds Mail and standalone Office — implementation scope
 
-**Status:** accepted product scope; the core, MIME codec and account-free reader
-now have an initial implementation. See [status.md](status.md) for demonstrated
+**Status:** accepted product scope; the core, MIME codec, account-free reader and
+durable Mail store now have an initial implementation. See [status.md](status.md) for demonstrated
 checks and open gates. The wider product scope remains unchanged.
 **Decision date:** 2026-11-18 (Europe/Berlin).
 **Canonical repository:** CrispStrobe/quds_office_suite, branch main.
@@ -59,7 +59,7 @@ Relevant controller APIs observed in the baseline: OfficeController.commitPendin
 
 ## 3. Architecture and package ownership
 
-Core, MIME, the MPL fork and the saved-reader portion of UI now exist. Other
+Core, MIME, the MPL fork, durable store and the saved-reader portion of UI now exist. Other
 paths below remain planned implementation paths; consult [status.md](status.md).
 
 | Package / app | Responsibility and dependency boundary |

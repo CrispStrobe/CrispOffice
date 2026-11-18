@@ -1,0 +1,39 @@
+{
+  "cache_identity": "2b023299f0dc1befe2fdf88db341ebb43e73a57d6f37e0d65a8f77e1cb1ab354",
+  "files": 1156,
+  "bytes": 87398019,
+  "compile_provenance": {
+    "schema": "quds-thesaurus-browser-build-v1",
+    "receipt_path": "/workspace/scratch/50c979e0f188/thesaurus-acceptance-validation/receipt.json",
+    "receipt_sha256": "6ca0a575cadc2680c26d763c985d5b843b8e83465156b36ad2f550956325ef4d",
+    "source_commit": "7530f83a5503987dbee5b9678af56116ca98621f",
+    "source_input_digest": "8b2c182ed905d042f417e51a23a8b01df64722ebbffa274afa69fbb286229819",
+    "source_inventory_sha256": "0bae40960f20a45f3edb0a339cdeeebdf3b7383399c2d06bdf7fe6f514e4e13a",
+    "compiled_inventory_sha256": "ad8c047fa99891ee56785f409f311f269e00b4e856a5d0962ac8802fac10a4aa",
+    "compiled_files": 1155,
+    "compiled_bytes": 87397428,
+    "fixture_inputs": {
+      "lib/main.dart": "9caff2312188c3fd1b668055495bc1e6b37b897ddebfe85b2c32b9e8d75485a4",
+      "native_pack_test.dart": "2c12b51deabbc6fc407d390b51570538e12f1aa61d113afafd698aab17054891",
+      "native_visual_test.dart": "99e41ba060c8f35f2677b968dbaad0679868190a50f2e4debe57bc296ea34c7c",
+      "install_offline.py": "174329331c5e363afcb4dd58d8182aa14b4f86b405e0ec84be5179414fc968aa",
+      "run_browser.py": "ac79690ad9d54d8bb62258b2418e8219fd306f56afd51740448e4979730a81db",
+      "run_final_validation.py": "d034b1ea82a61dafd41117c2ce67bb053acc2aaab27ffce39281bd7c69e2c9f0",
+      "test_browser_harness.py": "29626b0d738377e498b99af9be502974db8cc652cbf4695d21f4a6e81474bd0c",
+      "build_binding.py": "e57dd9a57a2ccf9e4657aae04d8d63e2159e079512cb9645b0f6b948d576ae2a"
+    },
+    "build_command": [
+      "/workspace/scratch/50c979e0f188/zotero-toolchain/flutter-sdk/bin/flutter",
+      "build",
+      "web",
+      "--no-pub",
+      "--release",
+      "--csp",
+      "--no-web-resources-cdn",
+      "--no-wasm-dry-run",
+      "--pwa-strategy=none",
+      "--target=/workspace/scratch/50c979e0f188/quds_office_suite/docs/validation/thesaurus-20261118/continuation/local/fixtures/lib/main.dart",
+      "--output=/workspace/scratch/50c979e0f188/thesaurus-acceptance-validation/browser-build"
+    ]
+  }
+}

@@ -230,14 +230,27 @@ inspection receipt, not a complete dependency or runtime certification.
 
 **Depends on:** M02. **Files:** quds_mail_store.
 
-- [ ] Implement Drift/SQLite schema and transactional repository streams using independently resolved approved dependencies.
-- [ ] Native app-container store and separately configured browser store; explicit quota/storage-unavailable results.
-- [ ] Durable drafts and immutable outbox/blob references, atomic page+cursor commits, tombstones and migration versioning.
-- [ ] FTS indexing of supported decoded content and metadata; cap indexing work, avoid remote fetch as a side effect of local search.
-- [ ] Account deletion, cache eviction, logout and pending-operation policies.
-- [ ] Simulate crash/restart at transaction boundaries and preserve unsent work.
+- [x] Implement Drift/SQLite schema and transactional repository streams using independently resolved approved dependencies.
+- [x] Native app-container store and separately configured browser store; explicit quota/storage-unavailable results. The browser opener compiles; actual browser persistence remains unqualified.
+- [x] Durable drafts and immutable outbox/blob references, atomic page+cursor commits with expected-cursor comparison, tombstones and transactional migration versioning.
+- [x] FTS indexing of supported plain text and metadata; cap indexing work, avoid remote fetch as a side effect of local search. HTML-only bodies are not interpreted by search.
+- [x] Account deletion, cache eviction, logout and pending-operation policies, including durable host-vault cleanup and retired local identities.
+- [x] Simulate crash/restart at transaction boundaries and preserve unsent work. Native process-kill and file-backed migration/recovery evidence is retained separately from injected rollback cases.
 
 **Acceptance:** reopen offline and recover drafts/queue; half-applied sync page cannot advance cursor; cache eviction does not lose outgoing attachments; account/profile isolation; browser quota failure is explicit. No secrets or body data in diagnostics.
+
+**Implementation/evidence:** [quds_mail_store](../../../packages/quds_mail_store/README.md)
+and [local store qualification](../../validation/mail-store-20261118/README.md).
+Native persistence and recovery have passing focused Linux x64 tests. The first
+combined local run passed its test cohorts but failed the full gate on two test
+lint infos and one formatting mismatch; the stricter runner and lint repairs
+still require execution after workspace disk exhaustion. See the qualification
+report for the BLOCKED state and exact continuation steps. Browser entry/worker
+compilation and Node error-policy tests do not close actual browser storage,
+Web Locks, reload or quota acceptance. Chromium again failed before
+startup under this executor's socket restriction. Database contents are not
+encrypted; native/container protection and credential-vault separation are
+distinct from encryption. M06/M07 and M04W remain the next functional work.
 
 ### M06 — native accounts, authentication and IMAP synchronization
 

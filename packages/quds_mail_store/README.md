@@ -1,8 +1,13 @@
 # Quds Mail store
 
 Profile-scoped Drift/SQLite persistence for the shared Mail contracts. Original
-source is MIT. Exact dependencies and retained notices are in
-`DEPENDENCIES.json` and `THIRD_PARTY_NOTICES.md`.
+source is MIT. The native M05 store is implemented; final local qualification is
+**BLOCKED** as detailed below. Live mail transport and the account-aware UI remain
+subsequent milestones. Exact dependencies and retained notices are in
+[DEPENDENCIES.json](DEPENDENCIES.json) and
+[THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+
+## Opening a store
 
 The portable `quds_mail_store.dart` entry accepts a `QueryExecutor` owned
 exclusively by its host. Use `quds_mail_store_native.dart` for a database below
@@ -12,10 +17,30 @@ platform openers enforce a single live profile owner. Browser storage fails
 explicitly if durable safe storage or Web Locks are unavailable; it never
 silently falls back to memory or unsafe concurrent IndexedDB.
 
+| Public entry | Host responsibility | Qualification boundary |
+| --- | --- | --- |
+| `quds_mail_store.dart` | Inject an exclusively owned Drift `QueryExecutor`, `MailProfileId` and optional limits/clock | Common repository behavior is exercised using real SQLite; the host owns executor lifetime and exclusivity |
+| `quds_mail_store_native.dart` | Call `openNativeMailStore` with the host's absolute application-support `Directory` | Linux x64 file storage, exclusive ownership, restart and process-crash cases are exercised; Apple packaging is separate |
+| `quds_mail_store_web.dart` | Call `openBrowserMailStore` with a namespace and explicitly supplied same-origin SQLite Wasm/worker URIs | Entry and worker compile; actual browser persistence, quotas, Web Locks and reloads remain unqualified |
+
+Use distinct host/profile identities for independently owned application data.
+The native opener derives a path-safe namespace beneath the supplied container;
+it does not choose a global storage location. The browser opener requires Web
+Locks and refuses a conflicting existing database location. Hosts must verify
+the pinned SQLite Wasm hash recorded in the dependency inventory and serve that
+artifact with the compiled `tool/mail_store_worker.dart` from their origin.
+No Wasm artifact or CDN fallback is bundled by this package.
+
+Close the repository when its owning host session ends. A second live owner
+through a platform opener returns a conflict. An injected executor must provide
+the same exclusivity as the platform openers; bypassing that contract invalidates
+startup-recovery assumptions.
+
 ## Implemented behavior
 
 - Atomic sync page, membership, tombstone and cursor transactions. A page must
   present the cursor it read, and its account lease is checked before commit.
+  A stale page returns `conflict`; domain streams publish successful commits.
 - Compare-and-set draft revisions with immutable attachment blobs; frozen
   outbox wire bytes/envelope, validated state transitions and attempt history.
 - Reopening captures interrupted attempts. Recovery makes them `uncertain`,
@@ -42,15 +67,124 @@ and blob references; actual SQLite/browser storage errors remain authoritative
 for physical capacity. The database is **not encrypted**. App-container access
 and vault storage do not constitute database encryption or secure erasure.
 
+## Repository use and lifecycle
+
+Register an account explicitly with `createAccount`; ordinary account metadata
+contains an opaque host-vault reference, never a password or token. Mailbox
+memberships remain separate from messages and their provider identities. IMAP
+keys retain mailbox, UIDVALIDITY and UID. `listHeaders` supports bounded pages;
+`watchHeaders` supplies a bounded first-page stream.
+
+When saving a draft, supply its expected prior revision. A new row uses
+`expectedRevision: null`; an existing row advances its revision by one. Queue
+prepared immutable wire bytes and an explicit submission envelope separately
+from the editable draft. Persist the `submitting` attempt before invoking a
+future transport adapter. Outbox saves compare prior state/attempt identity,
+reject replacement payloads and illegal transitions, and prevent historical
+attempt-ID reuse.
+
+Call `recoverOutbox` after reopening and before coordinating new submissions.
+An interrupted `submitting` entry becomes durably `uncertain`; this cannot prove
+server rejection and does not authorize automatic resend. The repository does
+not contact an SMTP server, mark recipients delivered or reconcile a real Sent
+folder. Those behaviors belong to the later provider/submission milestones.
+
+`enqueueOperation` records local provider intent before execution. A reset,
+tombstone or interrupted applying operation leaves an explicit reconciliation
+state. Acknowledgement/cancellation is separate from issuing a fresh intent.
+Cache deletion cannot remove blobs referenced by drafts, outbox payloads or
+editor pins. Release pins explicitly when the owning editor no longer needs
+the snapshot.
+
+Logout invalidates the supplied account session, preserves local work and queues
+credential cleanup. The host deletes the referenced credential in its own vault
+and acknowledges that exact cleanup item. `resumeAccount` requires fresh host
+authorization and a usable credential reference. Explicit account/profile
+removal deletes local data without contacting a provider; retired identifiers
+cannot be used to recreate content. Cleanup acknowledgements remain available
+after profile retirement.
+
+## Resource bounds and schema behavior
+
+`MailStoreLimits` supplies configurable work and logical-capacity bounds. Defaults
+include 32 MiB per blob, 64 MiB per transaction's blobs, 2,097,152 UTF-16 code
+units of metadata input, 256 MiB of logical data per account, 100,000 messages per
+account, 1,000 rows per page, 65,536 indexed code units per message, 256 query code
+units/16 query terms and at most 200 search results. JSON escaping is accounted
+for separately from input metadata, and physical SQLite/index overhead is subject
+to actual platform quota errors. These limits are not a measured mobile memory
+budget.
+
+Before reading a stored payload, the repository checks blob length metadata and
+aggregate size before transferring BLOB bytes. It then checks content hashes.
+Reopening under tighter limits can return `quotaExceeded` while retaining the
+stored content. Local indexing decodes metadata without loading original or
+attachment bytes, and it does not interpret HTML or fetch remote content.
+
+The current schema is version 2. The retained v1 definition supports reproducible
+upgrade fixtures. Version upgrades preserve existing rows and advance schema
+state transactionally. Version 1 content enters the new FTS index only through
+bounded explicit `reindex` calls. A failed migration rolls back, and an unknown
+future version returns `unsupported` instead of resetting the database.
+
 ## Qualification boundary
 
-The implementation is being qualified locally as the M05 increment. Evidence is
-retained under `docs/validation/mail-store-20261118` in the repository. Native
-tests and JavaScript compilation do not establish browser persistence or actual
-browser quota behavior. Live accounts, providers, composition, the mailbox UI,
-and product-specific Apple packaging remain later milestones.
+**Final local qualification is BLOCKED.** The combined attempt on source
+`8a6105a7ec217b48105d171703c8d0294c7d2dc6` observed 30 passing core VM tests,
+30 passing core Node tests, 87 passing store VM tests and 39 passing portable
+store Node tests. These are separate runtime cohorts. The overall runner result
+was **FAIL**, caused by two test lint infos and a formatting mismatch in
+`native_platform_test.dart`.
+
+Disk exhaustion then prevented command execution. The two lint repairs and a
+stricter event parser with 18 new parser regressions were saved in recovery
+checkpoint `7848eca0eec8e291cd88ed6e353151508b77784e`; those changes remain
+**NOT RUN**, and the native-platform formatting repair remains open. The
+[qualification summary](../../docs/validation/mail-store-20261118/checks/receipt.json)
+is a recovered observation record, not the original raw qualification receipt.
+Original aggregate logs/source manifests and additional review/late Office raw
+evidence remain local and were not uploaded. See the
+[M05 report](../../docs/validation/mail-store-20261118/README.md) for recovery
+steps and preserved evidence boundaries.
+
+The accepted individual native runs include seven file-backed migration cases
+and five Linux SIGKILL transaction scenarios. The latter cover interruption
+after sync-record writes, before cursor write, after draft-blob writes, after an
+outbox write and after a submitting attempt has committed. They verify
+reopen/recovery of the tested process failures; they do not establish power-loss
+durability or qualify later unexecuted edits.
+
+Portable serialization, configuration and browser-error mapping can run in
+Node. They do not execute a browser SQLite filesystem. Browser entry/worker
+compilation also does not establish storage persistence, actual browser quota
+errors, reloads or Web Locks behavior. Those runtime gates remain **NOT RUN**.
+Live accounts, IMAP/SMTP, composition, the mailbox UI and product-specific Apple
+packaging remain later milestones.
 
 The host must finish acknowledged vault cleanup, supply its own application
 container and browser assets, and obtain new provider authorization before
 resuming a logged-out account. No credentials, provider endpoints, real mail or
 external services are required by the test fixtures.
+
+## Local qualification
+
+Resolve the committed workspace lockfile using the pinned Flutter/Dart
+toolchain. With Node available, first execute the new runner regressions and
+resolve the remaining formatting gate, then run from the repository root:
+
+```bash
+python tools/mail/check_store.py --flutter-sdk /path/to/flutter
+```
+
+The runner performs analysis, formatting, core/store VM checks, the selected
+portable Node suites and browser entry/worker compilation. It records raw test
+events, substantive case counts, source hashes before/after execution and the
+browser runtime gap in `build/mail-store-qualification/receipt.json`. Failed or
+interrupted runs replace an earlier PASS receipt. The stricter event accounting
+saved during recovery still requires validation with its 18 new tests and a
+fresh complete run. Recover the original raw evidence before removing local
+build outputs.
+
+The native crash cases start child processes and send SIGKILL to the process
+that owns SQLite; run them in an environment that permits those operations.
+The runner uses no hosted CI status.

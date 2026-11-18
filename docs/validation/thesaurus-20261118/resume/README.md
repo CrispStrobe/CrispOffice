@@ -1,5 +1,9 @@
 # Offline thesaurus — reconciled continuation, 18 November 2026
 
+This is the historical 606-case qualification. The later
+[acceptance continuation](../acceptance/README.md) records the next captured
+review/Mail integration, browser build/cache corrections and fresh checks.
+
 The thesaurus branch now contains the observed current main and the latest
 document-review/Zotero work. Incremental remote checkpoints preserve the work.
 GitHub Actions, check-run and CI-status endpoints are not queried or awaited.
@@ -275,9 +279,12 @@ for cohort in static engine editor-zotero spacy studio web-import; do
     --output "$PWD/thesaurus-supplemental-replay/$cohort" || exit
 done
 python quds_office_suite/docs/validation/thesaurus-20261118/continuation/local/fixtures/install_offline.py \
-  thesaurus-resume-validation/browser-build
+  thesaurus-resume-validation/browser-build \
+  --compile-receipt thesaurus-resume-validation/receipt.json
 python quds_office_suite/docs/validation/thesaurus-20261118/continuation/local/fixtures/run_browser.py \
-  thesaurus-resume-validation/browser-build --output thesaurus-browser-acceptance
+  thesaurus-resume-validation/browser-build \
+  --compile-receipt thesaurus-resume-validation/receipt.json \
+  --output thesaurus-browser-acceptance
 ```
 
 The runner selects the original thesaurus/controller/correction/review suites,
@@ -288,6 +295,9 @@ cohorts run serially. The default web build destination is `<output>/browser-bui
 The browser step needs a host that permits Chromium startup; pass
 `--browser-executable` when its binary is elsewhere. Its output must be outside
 the compiled build and contain no existing browser receipt.
+The current fixture also requires a fresh compile with its exact source/build
+binding and `--pwa-strategy=none`. The historical receipts above remain evidence
+for their recorded source, rather than qualification of the later fixture.
 
 Local harness controls can run independently of Flutter:
 

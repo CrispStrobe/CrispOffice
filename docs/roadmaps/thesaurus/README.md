@@ -13,6 +13,9 @@ records the newer review/Zotero reconciliation, IME refusal fix and strengthened
 offline replay checks; its results are separate from the earlier qualification.
 Use the [release acceptance guide](release-acceptance.md) for the remaining
 actual-browser, installed-desktop/IME and independent linguistic review steps.
+The [acceptance continuation](../../validation/thesaurus-20261118/acceptance/README.md)
+records the later review/Mail integration, stronger build/cache binding, fresh
+421-case qualification and uncompleted linguistic review packet.
 The original integration assessment used the CrispStrobe fork at
 [`f383c826205e321eda3ed3bdbcd584e9a2d4da14`](https://github.com/CrispStrobe/quds_office_suite/tree/f383c826205e321eda3ed3bdbcd584e9a2d4da14);
 earlier findings about the much smaller public upstream are not the fork's

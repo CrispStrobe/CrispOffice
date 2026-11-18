@@ -5,7 +5,6 @@ import 'package:drift/drift.dart' show driftRuntimeOptions;
 import 'package:drift/native.dart';
 import 'package:quds_mail_core/quds_mail_core.dart';
 import 'package:quds_mail_store/quds_mail_store.dart';
-import 'package:sqlite3/common.dart';
 import 'package:test/test.dart';
 
 T value<T>(MailResult<T> result) {
@@ -106,9 +105,10 @@ void main() {
         profile: profile,
         faultInjector: (point) async {
           await callback?.call(point);
-          if (failAt == point)
+          if (failAt == point) {
             throw injectedFailure ??
                 const MailStoreStorageException(MailProblemCode.storageFailure);
+          }
         },
       ),
     );

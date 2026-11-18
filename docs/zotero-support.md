@@ -43,6 +43,11 @@ The normal **Zotero** references workspace stays open for browsing and repeated
 operations. It is available in Studio's viewing and selecting modes too;
 commands that change the document still require editing mode.
 
+Finish active input-method composition before opening Zotero. Body and Notes
+composition prevent direct commands from starting; composition beginning during
+native work invalidates its result. Returning to the document preserves an
+unchanged composing draft.
+
 ### Insert a Zotero research note
 
 Place a collapsed caret in the document body, outside existing fields, and
@@ -939,6 +944,12 @@ Custom hosts that replace online clients can pass the same `ZoteroBackoffState`
 to each new client. Clients sharing that state must use the same clock.
 
 ## Previous continuation evidence and current qualification
+
+The research-note insertion, reference-navigation and direct-command continuation
+has a [separate status report](validation/zotero-word-parity-20261118/README.md).
+Its implementation and incoming branch integration are saved remotely. The report
+separates completed development checks from the final exact-source run that was
+blocked by shared executor disk exhaustion; it has no final passing total yet.
 
 The previous continuation started from Quds
 `dc5f93b673e6087cccc6d66b33dfbfd099668f77` and CrispCloud
