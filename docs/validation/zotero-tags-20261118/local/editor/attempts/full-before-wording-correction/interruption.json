@@ -1,0 +1,11 @@
+{
+  "schema": "quds.zotero.tags.interrupted_development.v1",
+  "accepted_final_cohort": false,
+  "reason": "Parent requested interruption before correcting misleading product wording and renaming one test to describe capitalization preservation. Complete editor/Studio acceptance will be rerun after the corrected source is saved.",
+  "interrupted_at_utc": "2026-11-18T10:34:42.613370+00:00",
+  "exec_session_exit": 130,
+  "flutter_child_exit": null,
+  "child_exit_reason_unknown": "Interrupt ended the shell and evidence runner before its child-exit receipt was written. No completed success inferred.",
+  "source_after_snapshot_present": false,
+  "counts_added_to_final": 0
+}

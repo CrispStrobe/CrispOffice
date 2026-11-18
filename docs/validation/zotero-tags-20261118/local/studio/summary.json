@@ -1,0 +1,196 @@
+{
+  "status": "passed",
+  "started_at_utc": "2026-11-18T10:36:12.514350+00:00",
+  "command": [
+    "/workspace/scratch/e06533a127f6/zotero-toolchain/flutter-sdk/bin/flutter",
+    "test",
+    "--no-pub",
+    "--machine",
+    "--concurrency",
+    "4",
+    "test/studio_zotero_citing_transport_test.dart"
+  ],
+  "cwd": "/workspace/scratch/e06533a127f6/zotero-validation/packages/quds_office_editor/example",
+  "package": "packages/quds_office_editor/example",
+  "package_name": "quds_office_studio",
+  "shared_lock": "/workspace/scratch/e06533a127f6/zotero-toolchain/flutter-cli.lock",
+  "source_head_at_start": "270a38adf97b9a027b79a00e2654acac6ebb1df6",
+  "selected_test_files": [
+    "packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart"
+  ],
+  "reachable_packages": [
+    "archive",
+    "args",
+    "async",
+    "boolean_selector",
+    "characters",
+    "clock",
+    "collection",
+    "cross_file",
+    "crypto",
+    "dbus",
+    "fake_async",
+    "ffi",
+    "file_picker",
+    "flutter",
+    "flutter_lints",
+    "flutter_plugin_android_lifecycle",
+    "flutter_test",
+    "flutter_web_plugins",
+    "http",
+    "http_parser",
+    "json_annotation",
+    "leak_tracker",
+    "leak_tracker_flutter_testing",
+    "leak_tracker_testing",
+    "legacy_doc_parser",
+    "lints",
+    "matcher",
+    "material_color_utilities",
+    "meta",
+    "path",
+    "petitparser",
+    "plugin_platform_interface",
+    "posix",
+    "quds_office_editor",
+    "quds_office_engine",
+    "quds_office_studio",
+    "quds_proofing_harper",
+    "quds_reports",
+    "screen_retriever",
+    "screen_retriever_linux",
+    "screen_retriever_macos",
+    "screen_retriever_platform_interface",
+    "screen_retriever_windows",
+    "sky_engine",
+    "source_span",
+    "stack_trace",
+    "stream_channel",
+    "string_scanner",
+    "term_glyph",
+    "test_api",
+    "typed_data",
+    "url_launcher",
+    "url_launcher_android",
+    "url_launcher_ios",
+    "url_launcher_linux",
+    "url_launcher_macos",
+    "url_launcher_platform_interface",
+    "url_launcher_web",
+    "url_launcher_windows",
+    "vector_math",
+    "vm_service",
+    "web",
+    "win32",
+    "window_manager",
+    "xml"
+  ],
+  "canonical_source_packages": {
+    "legacy_doc_parser": "packages/legacy_doc_parser",
+    "quds_office_editor": "packages/quds_office_editor",
+    "quds_office_engine": "packages/quds_office_engine",
+    "quds_office_studio": "packages/quds_office_editor/example",
+    "quds_proofing_harper": "packages/quds_proofing_harper",
+    "quds_reports": "packages/quds_reports"
+  },
+  "runner_sha256": "b97cc79a6297b4601f98a48bc91594b4d1d4e85018df9d74953d4f9f3d2ad94b",
+  "finished_at_utc": "2026-11-18T10:36:30.044389+00:00",
+  "elapsed_seconds": 14.252975784998853,
+  "exit_code": 0,
+  "source_head_at_end": "270a38adf97b9a027b79a00e2654acac6ebb1df6",
+  "suite_count": 1,
+  "substantive_test_count": 18,
+  "substantive_results": {
+    "success": 18
+  },
+  "substantive_skips": 0,
+  "hidden_test_count": 1,
+  "hidden_results": {
+    "success": 1
+  },
+  "test_done_event_count": 19,
+  "error_events": [],
+  "json_parse_errors": [],
+  "machine_envelope_count": 1,
+  "final_events": [
+    {
+      "success": true,
+      "type": "done",
+      "time": 13329
+    }
+  ],
+  "guards": {
+    "source_unchanged": true,
+    "dependencies_unchanged": true,
+    "runtime_unchanged": true,
+    "workspace_inputs_unchanged": true,
+    "selected_tests_unchanged": true
+  },
+  "source_file_count": 596,
+  "dependency_file_count": 2738,
+  "runtime_file_count": 1142,
+  "workspace_file_count": 16,
+  "scope": "All current selected package test/*zotero*_test.dart suites. Earlier setup and focused smokes excluded. Genuine Flutter engine with synthetic documents/transport doubles; no live-account or external Word/LibreOffice acceptance claimed.",
+  "artifacts": {
+    "cases.json.gz": {
+      "bytes": 805,
+      "sha256": "559c7c52bd8aa578b2ff75f5ed95277ed74f370a810460315f76f163e80121b8"
+    },
+    "dependencies-after.json.gz": {
+      "bytes": 142140,
+      "sha256": "9fa04bbab9ea1a4b673eae787c60ac67a1ef19e497cda8f512e663d86b2f396b"
+    },
+    "dependencies-before.json.gz": {
+      "bytes": 142140,
+      "sha256": "9fa04bbab9ea1a4b673eae787c60ac67a1ef19e497cda8f512e663d86b2f396b"
+    },
+    "events.jsonl.gz": {
+      "bytes": 1386,
+      "sha256": "87654905543f3562f0feedf69e4b5254700009f974984e5b62a250efe502f9b8"
+    },
+    "machine-envelopes.json.gz": {
+      "bytes": 124,
+      "sha256": "3b4498c3f086a533ca86921112a9201ddb498dfd5f106720a40aa29ede89c1c0"
+    },
+    "process-exit.json": {
+      "bytes": 531,
+      "sha256": "b469305c2c130c5db80ca7d759db8eda107bbc12c024441b98446734c4af7b7e"
+    },
+    "run.json": {
+      "bytes": 2655,
+      "sha256": "212b5ef38507dba269cce837cb0524695f267acea1c6c949dffcf1d4d13dbe13"
+    },
+    "runtime-after.json.gz": {
+      "bytes": 58892,
+      "sha256": "8c2f3c1921e98f383def90d78b8c1768ec13d590c308f35544109109722cc105"
+    },
+    "runtime-before.json.gz": {
+      "bytes": 58892,
+      "sha256": "8c2f3c1921e98f383def90d78b8c1768ec13d590c308f35544109109722cc105"
+    },
+    "source-after.json.gz": {
+      "bytes": 32066,
+      "sha256": "7b0ff99068d59fca7db74d517e5178b713f01fa2509bae6dab6e4a917d862d03"
+    },
+    "source-before.json.gz": {
+      "bytes": 32066,
+      "sha256": "7b0ff99068d59fca7db74d517e5178b713f01fa2509bae6dab6e4a917d862d03"
+    },
+    "stderr.log.gz": {
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    "workspace-after.json.gz": {
+      "bytes": 893,
+      "sha256": "c3144c0d1972ab4a41ca213eaeb40a0b7bb3ec5f347f1982cf80e19baaea0de3"
+    },
+    "workspace-before.json.gz": {
+      "bytes": 893,
+      "sha256": "c3144c0d1972ab4a41ca213eaeb40a0b7bb3ec5f347f1982cf80e19baaea0de3"
+    },
+    "workspace-inputs.json.gz": {
+      "bytes": 13773,
+      "sha256": "60cf282ed91a0b98e754efc9fdb4f2b3bf5735a0823037cc1525d8541f70d9a4"
+    }
+  }
+}

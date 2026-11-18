@@ -1,0 +1,54 @@
+{
+  "schema": "quds.spacy.hub_install_readback.v1",
+  "passed": true,
+  "repository": "cstr/crispembed-spacy-de-core-news-sm-3.8.0",
+  "native_library_loaded": false,
+  "analysis_run": false,
+  "platform": "macos",
+  "packages": [
+    {
+      "platform": "linux-x86_64",
+      "url": "https://huggingface.co/cstr/crispembed-spacy-de-core-news-sm-3.8.0/resolve/659dae33997d00296ae12b76510fa4dfe26540e0/spacy-de_core_news_sm-3.8.0-linux-x86_64-avx2-f32.tar.gz",
+      "archive_sha256": "4e3b627a614cd21851e6e354335e2e08adeb4cedd4d7778df0cc68c1ce2edf01",
+      "archive_bytes": 7808129,
+      "manifest_sha256": "e043af51e247368931f23fa0d9b931453e174f105b021fe2053e8e3029fd3d8d",
+      "library_sha256": "ea89842ebf22c08508aff1cfbf18d78a107118af320523009616ff62b6e42977",
+      "installed_directory_name": "4e3b627a614cd21851e6e354335e2e08adeb4cedd4d7778df0cc68c1ce2edf01",
+      "closed_tree_reverified": true,
+      "grammar_qualified_build": true,
+      "seconds": 1.609
+    }
+  ],
+  "bundle_only": {
+    "revision": "659dae33997d00296ae12b76510fa4dfe26540e0",
+    "files": [
+      {
+        "url": "https://huggingface.co/cstr/crispembed-spacy-de-core-news-sm-3.8.0/resolve/659dae33997d00296ae12b76510fa4dfe26540e0/bundle/model.gguf",
+        "sha256": "fae2e6ab8d6c611d7a9dddd4b3259a871a1d2f95cacc8259f49c1e4ff31ff6cd",
+        "bytes": 7383104
+      },
+      {
+        "url": "https://huggingface.co/cstr/crispembed-spacy-de-core-news-sm-3.8.0/resolve/659dae33997d00296ae12b76510fa4dfe26540e0/bundle/resources.json",
+        "sha256": "b42496cc373ada57a67ed2f4c2c25f8d22f80c08db5841a7cdb91c8a6e18562a",
+        "bytes": 1404948
+      },
+      {
+        "url": "https://huggingface.co/cstr/crispembed-spacy-de-core-news-sm-3.8.0/resolve/659dae33997d00296ae12b76510fa4dfe26540e0/bundle/LICENSE",
+        "sha256": "3933c176979b68bc6d0bcc902c7d6c130f1d127f476f17ba5cdba8d99cfd0012",
+        "bytes": 1056
+      },
+      {
+        "url": "https://huggingface.co/cstr/crispembed-spacy-de-core-news-sm-3.8.0/resolve/659dae33997d00296ae12b76510fa4dfe26540e0/bundle/LICENSES_SOURCES",
+        "sha256": "0c3ab78745569d848b7c83a486183bce42b9643561084d6d6f67eb0229c79869",
+        "bytes": 13470
+      },
+      {
+        "url": "https://huggingface.co/cstr/crispembed-spacy-de-core-news-sm-3.8.0/resolve/659dae33997d00296ae12b76510fa4dfe26540e0/bundle/manifest.json",
+        "sha256": "d599768375de3dc56abcca5cf1d49da0015857f9d3a10640aebb5317ef5d427e",
+        "bytes": 23762
+      }
+    ],
+    "closed_tree_reverified": true,
+    "seconds": 2.118
+  }
+}

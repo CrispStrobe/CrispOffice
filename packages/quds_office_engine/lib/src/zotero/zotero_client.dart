@@ -279,9 +279,11 @@ class ZoteroClient {
   }
 
   /// Executes an existing saved search in Zotero, with an optional additional
-  /// quick-search and single item-type filter. Pagination and sorting happen
-  /// in Zotero before results are returned. Notes/attachments may be returned by the saved
-  /// search; callers should use [ZoteroItem.isCitable] for citation selection.
+  /// quick-search, single item-type filter and literal [tags]. Every tag must
+  /// match. Pagination and sorting happen in Zotero before results are returned.
+  /// Notes/attachments may be returned by the saved search; callers should use
+  /// [ZoteroItem.isCitable] for citation selection. See [normalizeZoteroTags] for
+  /// tag input limits and names that Zotero cannot represent literally.
   Future<ZoteroPage<ZoteroItem>> savedSearchItems(
     ZoteroLibrary library,
     String searchKey, {
@@ -292,6 +294,7 @@ class ZoteroClient {
     ZoteroItemSort sort = ZoteroItemSort.dateModified,
     ZoteroSortDirection direction = ZoteroSortDirection.descending,
     String? itemType,
+    List<String> tags = const [],
   }) async {
     _requireLocalSearches();
     validateZoteroKey(searchKey);
@@ -306,6 +309,7 @@ class ZoteroClient {
         sort: sort,
         direction: direction,
         itemType: itemType,
+        tags: tags,
       );
     } on ZoteroApiException catch (error) {
       if (error.kind != ZoteroApiErrorKind.notFound) rethrow;
@@ -329,6 +333,8 @@ class ZoteroClient {
   /// Filters and ordering apply to the whole library or collection, before
   /// pagination. [itemType] accepts one Zotero type name, such as `book` or
   /// `journalArticle`; it does not accept Boolean search expressions.
+  /// Every literal [tags] value must match. See [normalizeZoteroTags] for input
+  /// limits and names that Zotero cannot represent literally.
   Future<ZoteroPage<ZoteroItem>> items(
     ZoteroLibrary library, {
     String? collectionKey,
@@ -339,6 +345,7 @@ class ZoteroClient {
     ZoteroItemSort sort = ZoteroItemSort.dateModified,
     ZoteroSortDirection direction = ZoteroSortDirection.descending,
     String? itemType,
+    List<String> tags = const [],
   }) async {
     if (collectionKey != null) validateZoteroKey(collectionKey);
     final path = collectionKey == null
@@ -354,6 +361,7 @@ class ZoteroClient {
       sort: sort,
       direction: direction,
       itemType: itemType,
+      tags: tags,
     );
   }
 
@@ -367,6 +375,7 @@ class ZoteroClient {
     required ZoteroItemSort sort,
     required ZoteroSortDirection direction,
     required String? itemType,
+    required List<String> tags,
   }) async {
     if (query.length > 1024 || RegExp(r'[\x00-\x1f\x7f]').hasMatch(query)) {
       throw ArgumentError('Use a Zotero search of at most 1024 characters.');
@@ -376,7 +385,8 @@ class ZoteroClient {
       throw ArgumentError('Use a single Zotero item type, such as book.');
     }
     final text = query.trim();
-    final parameters = {
+    final tagFilters = normalizeZoteroTags(tags);
+    final parameters = <String, Object>{
       ..._pagination(start, limit),
       'include': 'data,csljson',
       'sort': sort.name,
@@ -384,6 +394,13 @@ class ZoteroClient {
       'itemType': ?itemType,
       if (text.isNotEmpty) 'q': text,
       if (text.isNotEmpty) 'qmode': searchMode.name,
+      if (tagFilters.isNotEmpty)
+        'tag': [
+          for (final tag in tagFilters)
+            // Repeated parameters mean AND. Escape an initial hyphen so a
+            // literal name never becomes Zotero's exclusion operator.
+            tag.startsWith('-') ? '\\$tag' : tag,
+        ],
     };
     final uri = _uri(path, parameters);
     final response = await _request(uri);
@@ -706,7 +723,7 @@ class ZoteroClient {
     return library.apiPath;
   }
 
-  Uri _uri(String path, [Map<String, String> parameters = const {}]) => isLocal
+  Uri _uri(String path, [Map<String, Object> parameters = const {}]) => isLocal
       ? Uri.http(
           'localhost:23119',
           '/api$path',

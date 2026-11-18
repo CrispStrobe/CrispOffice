@@ -1,0 +1,89 @@
+{
+  "status": "ready",
+  "recorded_at_utc": "2026-11-18T10:31:19.202719+00:00",
+  "sdk": "/workspace/scratch/e06533a127f6/zotero-toolchain/flutter-sdk",
+  "workspace": "/workspace/scratch/e06533a127f6/zotero-validation",
+  "source": "/workspace/scratch/e06533a127f6/quds_office_suite",
+  "environment_script": "/workspace/scratch/e06533a127f6/zotero-toolchain/env.sh",
+  "runtime": {
+    "frameworkVersion": "3.47.8",
+    "channel": "[user-branch]",
+    "repositoryUrl": "https://github.com/flutter/flutter.git",
+    "frameworkRevision": "737ba8f885dc774b53b442759999a312c9461e4e",
+    "frameworkCommitDate": "2026-10-22 21:37:31 -0700",
+    "engineRevision": "cf636b1dfb818dd6a3ff16e390e93b1a036969c8",
+    "engineCommitDate": "2026-10-23 02:13:38.000Z",
+    "engineContentHash": "dfd2e6cb7d319db05e3bf1503f3e2ac60f6288a2",
+    "engineBuildDate": "2026-10-23 05:34:48.330",
+    "dartSdkVersion": "3.13.7",
+    "devToolsVersion": "2.60.0",
+    "flutterVersion": "3.47.8",
+    "flutterRoot": "/workspace/scratch/e06533a127f6/zotero-toolchain/flutter-sdk"
+  },
+  "dart_sha256": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb",
+  "flutter_tester_sha256": "800f4ca182df7dd2fb46a42dea5d76277b9dbc5e8cd2915e02bcbc978681b45f",
+  "framework_tracked_changes": [],
+  "flutter_tools_lock_sha256": "6a98afb61c0cc72f31631ab444932f072fd275aa04d56cde2bf6831ba02fc8f8",
+  "flutter_tools_recorded_lock_sha256": "6a98afb61c0cc72f31631ab444932f072fd275aa04d56cde2bf6831ba02fc8f8",
+  "workspace_lock_sha256": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130",
+  "workspace_recorded_lock_sha256": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130",
+  "workspace_package_count": 109,
+  "workspace_manifest_matches": {
+    "pubspec.yaml": true,
+    "packages/legacy_doc_parser/pubspec.yaml": true,
+    "packages/quds_office_engine/pubspec.yaml": true,
+    "packages/quds_proofing_harper/pubspec.yaml": true,
+    "packages/quds_proofing_gector/pubspec.yaml": true,
+    "packages/quds_office_engine/example/pubspec.yaml": true,
+    "packages/quds_reports/pubspec.yaml": true,
+    "packages/quds_office_editor/pubspec.yaml": true,
+    "packages/quds_office_editor/example/pubspec.yaml": true,
+    "apps/quds_report_studio/pubspec.yaml": true
+  },
+  "live_source_links": {
+    "packages/quds_office_engine/lib": "/workspace/scratch/e06533a127f6/quds_office_suite/packages/quds_office_engine/lib",
+    "packages/quds_office_engine/test": "/workspace/scratch/e06533a127f6/quds_office_suite/packages/quds_office_engine/test",
+    "packages/quds_office_editor/lib": "/workspace/scratch/e06533a127f6/quds_office_suite/packages/quds_office_editor/lib",
+    "packages/quds_office_editor/test": "/workspace/scratch/e06533a127f6/quds_office_suite/packages/quds_office_editor/test",
+    "packages/legacy_doc_parser/lib": "/workspace/scratch/e06533a127f6/quds_office_suite/packages/legacy_doc_parser/lib",
+    "packages/legacy_doc_parser/test": "/workspace/scratch/e06533a127f6/quds_office_suite/packages/legacy_doc_parser/test",
+    "packages/quds_reports/lib": "/workspace/scratch/e06533a127f6/quds_office_suite/packages/quds_reports/lib",
+    "packages/quds_reports/test": "/workspace/scratch/e06533a127f6/quds_office_suite/packages/quds_reports/test"
+  },
+  "source_graph_link": "/workspace/scratch/e06533a127f6/quds_office_suite/.dart_tool",
+  "source_graph_target": "/workspace/scratch/e06533a127f6/zotero-validation/.dart_tool",
+  "pub_archive_count": 162,
+  "pub_archive_receipt": "/workspace/scratch/e06533a127f6/zotero-toolchain/logs/pub-cache-receipt.json",
+  "setup_smoke_tests": [
+    {
+      "command": "flutter test --no-pub test/word_zotero_format_test.dart --reporter expanded",
+      "cwd": "/workspace/scratch/e06533a127f6/zotero-validation/packages/quds_office_editor",
+      "passed": 31,
+      "exit_code": 0,
+      "log": "/workspace/scratch/e06533a127f6/zotero-toolchain/logs/setup-editor-format-smoke.log",
+      "counted_as_final_acceptance": false
+    }
+  ],
+  "setup_notes": [
+    "Official Flutter 3.47.8 source cloned at tag commit 737ba8f885dc774b53b442759999a312c9461e4e; no framework source edits.",
+    "Dart SDK downloaded from official matching engine cf636b1dfb818dd6a3ff16e390e93b1a036969c8 archive and installed through unmodified Flutter bootstrap.",
+    "Flutter tools packages resolved offline with the prior exact lock and --enforce-lockfile. Tool snapshot compiled from actual source using SDK; source-identifying bootstrap stamp written only after successful compilation.",
+    "Hosted archives downloaded from pub.dev and SHA256-verified against recorded exact lock hashes before extraction.",
+    "Official flutter precache --universal completed successfully; genuine Dart and Flutter tester hashes equal prior PR156 provenance.",
+    "External workspace copies current manifests verbatim and live-links current source, tests and assets; exact recorded lock unchanged after --offline --enforce-lockfile resolution.",
+    "Source .dart_tool link is locally excluded in .git/info/exclude; tracked .gitignore and manifests unchanged.",
+    "Setup smoke overlaps later product validation and must not be added to final acceptance totals.",
+    "No GitHub Actions, CI check, status, rerun or waiting operations used."
+  ],
+  "logs_sha256": {
+    "dart-bootstrap.log": "c9a50471765a16d303f4359548a72cfc029e551ec31d0f72d6270ce787ba8168",
+    "flutter-precache.log": "bbaab9c2ee1878d932281aaaae8da6565bb778c10596e1c74ea606dc05217c28",
+    "flutter-tools-compile.log": "2a08637a00dbaa73da044a346a20d841dbdfdd59ccac10ed8f52478763824b26",
+    "flutter-tools-pub-get.log": "9f349fca172146e2595a50ccbe19f4d21b8845690372a19239884f3b932864c3",
+    "flutter-version.json": "2a08637a00dbaa73da044a346a20d841dbdfdd59ccac10ed8f52478763824b26",
+    "pub-cache-receipt.json": "7741a99efbd02b6d0a09aebb867ffc4db6187a5b2ac18f6e5c84caa4943fa02c",
+    "pub-cache-restore.log": "1347d7f39dac6de76bc7d150b19d45953c2e4ad6ac2bc0373c20c7a2adf7ea3c",
+    "setup-editor-format-smoke.log": "66971d52e44ed360677762794e3d006561897b9b08a8a1b629c18c306eaff615",
+    "workspace-prepare.log": "2987e96b14f83f9fb7ccc58e020680badfe10a2782c2a4e91e7decdf3352f02b"
+  }
+}

@@ -865,6 +865,23 @@ class GermanSpellingProvider extends OfficeProofingProvider {
     }
     final Set<String> found = <String>{};
     final Set<String> checked = <String>{};
+    final String lower = word.toLowerCase();
+    final bool upper = word == _upper(word) && word != lower;
+    final bool title = word[0] == word[0].toUpperCase();
+    void offer(String value) {
+      // Count the choices the user will actually see. Distinct lexical forms
+      // such as Lernen/lernen share one slot in LERNEN or sentence-initial
+      // Lernen, while explicitly declared personal spelling remains exact.
+      final String replacement = personal.contains(value)
+          ? value
+          : upper
+          ? _upper(value)
+          : sentenceInitial && title
+          ? _title(value)
+          : value;
+      if (replacement != word) found.add(replacement);
+    }
+
     int examined = 0;
     bool canSearch() =>
         examined < limit &&
@@ -878,13 +895,10 @@ class GermanSpellingProvider extends OfficeProofingProvider {
       budget.remaining--;
       if (!dictionaryOnly && personal.contains(value) ||
           lexicon.exact(value, swiss: swiss)) {
-        found.add(value);
+        offer(value);
       }
     }
 
-    final String lower = word.toLowerCase();
-    final bool upper = word == _upper(word) && word != lower;
-    final bool title = word[0] == word[0].toUpperCase();
     void candidateCase(String value) {
       if (title || upper) candidate(_title(value));
       candidate(value);
@@ -990,7 +1004,7 @@ class GermanSpellingProvider extends OfficeProofingProvider {
     });
     for (final (String value, int _) in personalMatches) {
       if (found.length >= maximumSuggestions) break;
-      found.add(value);
+      offer(value);
     }
 
     // Two independent mistakes are common in longer words. Prefix, middle and
@@ -1022,16 +1036,10 @@ class GermanSpellingProvider extends OfficeProofingProvider {
       });
       for (final (String value, int _) in matches) {
         if (found.length >= maximumSuggestions) break;
-        found.add(value);
+        offer(value);
       }
     }
-    return List<String>.unmodifiable(
-      found.map((String value) {
-        if (personal.contains(value)) return value;
-        if (upper) return _upper(value);
-        return sentenceInitial && title ? _title(value) : value;
-      }).toSet(),
-    );
+    return List<String>.unmodifiable(found);
   }
 
   List<String> _personalCompoundSuggestions(

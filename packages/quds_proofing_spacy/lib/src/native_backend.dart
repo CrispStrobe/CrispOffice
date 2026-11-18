@@ -117,9 +117,11 @@ final class _TokenView extends Struct {
 /// verifies and native copies them. All five bundle files, including notices,
 /// are authenticated before native code loads. No download or subprocess runs.
 ///
-/// The host explicitly sets CRISPEMBED_SPACY=1 before process start. This
-/// adapter never changes the process environment. Current qualification covers
-/// Linux x86-64 only; mobile, other desktops and Wasm remain unavailable here.
+/// The host explicitly sets CRISPEMBED_SPACY=1 before process start, or calls
+/// [enableSpacyNativeGateForProcess] after an explicit user opt-in. Opening
+/// never changes the process environment itself. Recorded qualification is
+/// per exact library digest (see the distribution catalog); mobile, Windows
+/// and Wasm remain unavailable here.
 final class SpacyNativeBackendFactory implements SpacyBackendFactory {
   SpacyNativeBackendFactory({
     required this.bundleDirectory,
@@ -140,9 +142,13 @@ final class SpacyNativeBackendFactory implements SpacyBackendFactory {
 
   @override
   Future<SpacyBackend> open(SpacyBundle bundle) async {
-    if (Abi.current() != Abi.linuxX64) {
+    // Loading is limited to targets with a built library. What an exact
+    // build is qualified for is recorded per library digest in the
+    // distribution catalog, never inferred from the ABI.
+    if (!_loadableAbis.contains(Abi.current())) {
       throw const SpacyUnavailableException(
-        'This native spaCy installation is qualified only for Linux x86-64.',
+        'Native spaCy analysis is available only for Linux x86-64 and '
+        'macOS arm64 libraries.',
       );
     }
     final String directory;
@@ -221,6 +227,33 @@ final class SpacyNativeBackendFactory implements SpacyBackendFactory {
       await backend.dispose();
       rethrow;
     }
+  }
+}
+
+const _loadableAbis = {Abi.linuxX64, Abi.macosArm64};
+
+typedef _SetEnvNative = Int32 Function(Pointer<Utf8>, Pointer<Utf8>, Int32);
+typedef _SetEnvDart = int Function(Pointer<Utf8>, Pointer<Utf8>, int);
+
+/// Sets `CRISPEMBED_SPACY=1` for this process so the native library admits
+/// work. Hosts call this only after the user explicitly enabled local German
+/// analysis, before starting a worker. Returns false where unsupported.
+///
+/// `Platform.environment` is a startup snapshot and does not reflect this.
+bool enableSpacyNativeGateForProcess() {
+  if (!_loadableAbis.contains(Abi.current())) return false;
+  final setenv = DynamicLibrary.process()
+      .lookupFunction<_SetEnvNative, _SetEnvDart>('setenv');
+  final allocations = Arena();
+  try {
+    return setenv(
+          'CRISPEMBED_SPACY'.toNativeUtf8(allocator: allocations),
+          '1'.toNativeUtf8(allocator: allocations),
+          1,
+        ) ==
+        0;
+  } finally {
+    allocations.releaseAll();
   }
 }
 

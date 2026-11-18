@@ -1,0 +1,17 @@
+{
+  "scope": "Exact unchanged-lock workspace refresh for merged main1ffcf91a,110 packages; no test executions included",
+  "files": {
+    "refresh_workspace_postmerge.py": {
+      "bytes": 6082,
+      "sha256": "b1f45ba539fa6bcbfacb7449c5e95a7a1d30dd87f022ce178ff72e1b6cb18d75"
+    },
+    "workspace-pub-get.log": {
+      "bytes": 68,
+      "sha256": "d4cb7a3c68b4133b4f6e58c67ff5bfd13725d8021e930388cdc98da8a575919d"
+    },
+    "runtime-ready.json": {
+      "bytes": 7004,
+      "sha256": "6ed684f6d1addfe03409fb3a3c33e1cf08ea4bcb9988ee6810026512e9f1d577"
+    }
+  }
+}

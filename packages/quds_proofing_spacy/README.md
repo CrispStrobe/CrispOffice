@@ -33,6 +33,32 @@ The package is not yet hosted; [continuation instructions](../../docs/validation
 separate completed local gates from publication/download and target-device work.
 This result does not establish Flutter UI behavior or native compute interruption.
 
+## Hugging Face distribution and in-app installation
+
+`quds_proofing_spacy_install.dart` (dart:io hosts only) downloads the published
+artifacts from the immutable revision of
+[`cstr/crispembed-spacy-de-core-news-sm-3.8.0`](https://huggingface.co/cstr/crispembed-spacy-de-core-news-sm-3.8.0)
+only when the user explicitly asks. `distribution.dart` compiles in every pin:
+the capsule SHA-256/length, its internal `distribution.json` digest and the
+exact native library digest. The installer authenticates the complete archive
+before decompressing, accepts only the closed canonical USTAR tree written by
+CrispEmbed `tools/spacy/distribution.py`, verifies every member against the
+authenticated manifest and the fixed bundle pins, stages privately, publishes
+`packages/<archive sha256>` with one rename and re-verifies the closed tree.
+`installBundle()` fetches only the five model files for hosts that ship a signed
+native library inside the app (App Store, iOS, Android); downloading executable
+code is never offered there. A `mirror` can redirect transport but cannot change
+what is accepted.
+
+Claims are recorded per exact library digest (`spacyQualificationFor`). The
+grammar planner independently refuses any build other than
+`spacyGrammarNativeSha256`, and a test keeps the catalog consistent with it.
+Platform status: Linux x86-64/AVX2 published and qualified (analysis and manual
+grammar); macOS arm64 and Linux arm64 await packages built from the updated
+CrispEmbed runtime; Windows, Intel macOS, iOS, Android and web are unavailable
+with stated reasons. `tool/install_from_hub.dart` performs a fresh-cache Hub
+readback through the same installer.
+
 ## Explicit local installation
 
 For the qualified Linux candidate, use the [W7 immutable package and installation
@@ -48,8 +74,9 @@ original wheel/model/resource/manifest and notice hashes remain fixed in
 `bundle.dart`; an adjacent manifest cannot change the trusted pins. Build and
 conversion details remain in [CrispEmbed tools/spacy](https://github.com/CrispStrobe/CrispEmbed/blob/feat/native-spacy-w7-20261118/tools/spacy/README.md).
 
-The host must set `CRISPEMBED_SPACY=1` before starting its process. This adapter
-does not change environment variables, download files, start subprocesses,
+The host must set `CRISPEMBED_SPACY=1` before starting its process, or call
+`enableSpacyNativeGateForProcess()` after the user explicitly enabled local
+analysis. Opening a backend does not change environment variables, download files, start subprocesses,
 embed Python or provide a network fallback. The bundle and runtime are verified
 before the worker becomes ready. Missing files, changed bytes, missing notices,
 unsupported ABI and disabled gates fail explicitly.
@@ -102,6 +129,16 @@ caret is collapsed. It shows token, lemma, POS/tag, morphology and dependency
 annotations and can select a current token in the original document. It does
 not edit text or add grammar findings.
 
+Ordinary users use **Review → Analysis setup** (or **Setup…** in the analysis
+dialog). It shows the immutable source URL, size, SHA-256 and licenses, and
+downloads only after **Download and install**. Installation enables the analysis
+view; **Manual German grammar suggestions** stays off until switched on and is
+offered only for a build with recorded grammar qualification. When on, the
+provider is registered with `configureManual`, so it runs for **Check document**
+and never while typing; switching it off releases its worker. Settings and the
+verified installation live in the app's private data directory.
+
+For development, the environment variables below keep precedence.
 Before starting the Linux host, explicitly configure `CRISPEMBED_SPACY=1`,
 `QUDS_SPACY_BUNDLE`, `QUDS_SPACY_LIBRARY` and
 `QUDS_SPACY_LIBRARY_SHA256` with the verified immutable installation described

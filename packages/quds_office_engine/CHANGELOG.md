@@ -4,6 +4,15 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Count distinct displayed German corrections after applying source casing,
+  so uppercase and sentence-initial variants do not consume duplicate shortlist
+  slots. Preserve exact personal spelling and the existing candidate budget.
+
+- Add bounded literal tag filters to library, collection and desktop saved-search
+  requests. Multiple tags use repeated parameters to require all tags before
+  pagination. Preserve Unicode and reserved characters, escape initial hyphens,
+  and reject names that Zotero cannot represent literally.
+
 - Recognize internal typographic apostrophes in German dictionary and personal
   vocabulary lookups while preserving each source apostrophe, hyphen and UTF-16
   range in corrections. Keep quotation punctuation and noun casing distinct.

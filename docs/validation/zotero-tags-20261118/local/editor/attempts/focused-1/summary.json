@@ -1,0 +1,64 @@
+{
+  "schema": "quds.zotero.tags.focused_development.v1",
+  "accepted_final_cohort": false,
+  "reason_excluded": "Focused development run overlaps the final complete editor cohort; never add its successes to acceptance totals.",
+  "actual_process_exit": 1,
+  "substantive_test_count": 20,
+  "substantive_results": {
+    "success": 18,
+    "error": 2
+  },
+  "substantive_skips": 0,
+  "hidden_test_count": 1,
+  "error_events": [
+    {
+      "testID": 5,
+      "error": "Test failed. See exception logs above.\nThe test description was: removing and clearing tags restart the last submitted search",
+      "stackTrace": "",
+      "isFailure": false,
+      "type": "error",
+      "time": 9571
+    },
+    {
+      "testID": 14,
+      "error": "Test failed. See exception logs above.\nThe test description was: invalid \"two\\nlines\" keeps the catalog and selection intact",
+      "stackTrace": "",
+      "isFailure": false,
+      "type": "error",
+      "time": 15431
+    }
+  ],
+  "final_events": [
+    {
+      "success": false,
+      "type": "done",
+      "time": 23810
+    }
+  ],
+  "missed_tap_warning_count": 1,
+  "command": [
+    "flutter",
+    "test",
+    "--no-pub",
+    "test/word_zotero_tag_filter_test.dart",
+    "--reporter=json"
+  ],
+  "cwd": "/workspace/scratch/e06533a127f6/zotero-validation/packages/quds_office_editor",
+  "source_before_after_guards": false,
+  "diagnosis": "The tap helper did not finish a caret-reveal scroll before revealing the delete control. A newline test value was removed by Flutter single-line input formatting before application validation. Tests corrected to settle caret scrolling and submit a TAB control value. No product code changed for these two failures.",
+  "artifacts": {
+    "cases.json.gz": {
+      "bytes": 599,
+      "sha256": "74394ea0baa7641cc55fccf83290214d17506b49893a58521ed7a69c1ac15e86"
+    },
+    "events.jsonl.gz": {
+      "bytes": 3353,
+      "sha256": "21abbc1cbf57f95beefc55b4e0d159b8b77074c8a1dbe1e7dad46711a1953e96"
+    },
+    "stderr.log.gz": {
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    }
+  },
+  "capitalization_scope": "The historical duplicate-tag test name used case-sensitive wording, but its assertions only verify preserving case-distinct input tags in the outgoing request. It does not assert Zotero server matching rules. The final product wording and test name were corrected before the complete accepted cohort."
+}

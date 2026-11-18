@@ -17,3 +17,6 @@ final class SpacyNativeBackendFactory implements SpacyBackendFactory {
         'Native spaCy is unavailable on this platform.',
       );
 }
+
+/// No native library can be enabled on this platform.
+bool enableSpacyNativeGateForProcess() => false;

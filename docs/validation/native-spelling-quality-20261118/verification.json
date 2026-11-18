@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "qualified_product_commit": "a8075778e2d1136b4e62e14eb42bcfd426e2a2b6",
+  "baseline_commit": "1ffcf91a3443caf9a6e8b45a3e6cab3f041831ae",
+  "merged_pr": {
+    "number": 155,
+    "merge_commit": "1ffcf91a3443caf9a6e8b45a3e6cab3f041831ae",
+    "resolved_head": "536ee2086ce46ab629d4d77144d1ca22a43e3c19"
+  },
+  "remote_checkpoints": [
+    "86b8b7a394759a72540b05d2ec40f412c1902485",
+    "deb6b06975db80ee7eb1e6a762edfa20fba80654",
+    "a8075778e2d1136b4e62e14eb42bcfd426e2a2b6"
+  ],
+  "cohorts": {
+    "engine_final": {
+      "passed": 1078,
+      "failed": 0,
+      "skipped": 0,
+      "complete": true
+    },
+    "editor_final": {
+      "passed": 151,
+      "failed": 0,
+      "skipped": 0,
+      "complete": true
+    },
+    "platform_baseline": {
+      "passed": 23,
+      "failed": 7,
+      "skipped": 0,
+      "complete": true
+    },
+    "shortlist_baseline": {
+      "passed": 8,
+      "failed": 6,
+      "skipped": 0,
+      "complete": true
+    },
+    "dialog_baseline": {
+      "passed": 0,
+      "failed": 2,
+      "skipped": 0,
+      "complete": true
+    }
+  },
+  "accepted_total": 1229,
+  "new_regression_tests": 25,
+  "reproduced_baseline_failures": 15,
+  "smoke": {
+    "cases_per_target": 25,
+    "targets": [
+      "Dart VM",
+      "native AOT",
+      "compiled JavaScript"
+    ],
+    "executions": 75,
+    "identical_complete_outputs": true,
+    "output_sha256": "1ff7a2777f42e09da6919024f3e915b13b0519a740a71221f4c5d457b193bf9e"
+  },
+  "analysis": {
+    "engine": "proofing library, proofing tests and portable runner; --fatal-infos passed",
+    "editor": {
+      "scope": "entire editor lib and all nine selected test files",
+      "command": "dart analyze --fatal-infos lib test/platform_spelling_provider_test.dart test/platform_spelling_dialog_test.dart test/word_manual_proofing_test.dart test/word_proofing_context_test.dart test/word_proofing_correction_test.dart test/word_proofing_dialog_test.dart test/word_proofing_geometry_test.dart test/word_proofing_navigation_test.dart test/word_proofing_session_test.dart",
+      "exit_code": 0,
+      "result": "No issues found!",
+      "log": "editor-final.analysis.log"
+    },
+    "format": "six changed Dart files, zero changes",
+    "whitespace": "passed"
+  },
+  "source_binding": {
+    "engine_inputs": 354,
+    "editor_inputs": 413,
+    "unique_inputs": 442,
+    "all_match_delivery": true
+  },
+  "runtime": {
+    "flutter": "3.47.8",
+    "dart": "3.13.7",
+    "verified_hosted_archives": 162,
+    "sdk_archive_sha256": "baf7dcc5a3dbba60fe863bf493a6cf203195621f7786eaa5a1bba02cd0d87dd2"
+  },
+  "evidence": {
+    "archive": "evidence.tar.gz",
+    "sha256": "69268f3a69367b9ff53891d062f024db423b849c1b58e49d90f990c1bfa020db",
+    "members": 73,
+    "verified_after_creation": true
+  },
+  "boundaries": [
+    "Native service/channel responses are controlled; physical Android/iOS dictionary acceptance is not newly qualified.",
+    "Finite German examples are regression/parity checks, not a general accuracy or performance estimate.",
+    "No new full application build or external native/model qualification.",
+    "Focused, prior and failed fixture runs are preserved but not added to final cohort totals.",
+    "No GitHub Actions, check or CI-status endpoints queried or awaited."
+  ],
+  "verified_at": "2026-11-18T10:41:42.594399+00:00"
+}

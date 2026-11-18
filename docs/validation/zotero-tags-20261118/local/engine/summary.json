@@ -1,0 +1,235 @@
+{
+  "artifacts": {
+    "cases.json.gz": {
+      "bytes": 10977,
+      "git_blob_sha1": "9fe0d26c13a551f69276c216ac491685cf9694c4",
+      "sha256": "a6fe464370b7acef3160027ca1c1810fcd4f2905b0609c8cae6677c6dd6c4744"
+    },
+    "dependencies-after.json.gz": {
+      "bytes": 134644,
+      "git_blob_sha1": "68da3ef46a38967ee99bc88548e278f47655341f",
+      "sha256": "1f35efa0bbcab3f8a1f55029918eaccc12927bcecbceecd85299a98b8981dad6"
+    },
+    "dependencies-before.json.gz": {
+      "bytes": 134644,
+      "git_blob_sha1": "68da3ef46a38967ee99bc88548e278f47655341f",
+      "sha256": "1f35efa0bbcab3f8a1f55029918eaccc12927bcecbceecd85299a98b8981dad6"
+    },
+    "events.jsonl.gz": {
+      "bytes": 19528,
+      "git_blob_sha1": "d7ae98e600a28d25066f0e28a9b37b17de25a7ac",
+      "sha256": "846d47bb609173abdbd182cca6f06e49a7ffb68517128551dc148c3b2baa1725"
+    },
+    "excluded-events.json.gz": {
+      "bytes": 497,
+      "git_blob_sha1": "cb09c1b83b1091e9cb911eeef5284c98aa949a37",
+      "sha256": "14e5494ec7ea5f712d13e1ecfe8231fcccbbdcfe13e5a831efa7bc77468155a2"
+    },
+    "run.json": {
+      "bytes": 4455,
+      "git_blob_sha1": "d57977328107baa193ed5ee23aefe72dff191120",
+      "sha256": "f56ce54eb551a9c4d874201e6025e3116a753fe999e3e2709be1001fd18ae352"
+    },
+    "run_engine.py": {
+      "bytes": 11013,
+      "git_blob_sha1": "0c68f6c70b04fc11323f82d7d43200523bf4ea96",
+      "sha256": "3cc52d80f2d385804f5ef8532c30e6bb925af5206e947f3c973618ef2bbd6492"
+    },
+    "runtime-after.json.gz": {
+      "bytes": 80972,
+      "git_blob_sha1": "eae2781f8bc088ce750c39a2583dab17752a14cc",
+      "sha256": "08658d67b3033f0a616c1d8499a8e57c432797d0684811422f5cba06afdbee5b"
+    },
+    "runtime-before.json.gz": {
+      "bytes": 80972,
+      "git_blob_sha1": "eae2781f8bc088ce750c39a2583dab17752a14cc",
+      "sha256": "08658d67b3033f0a616c1d8499a8e57c432797d0684811422f5cba06afdbee5b"
+    },
+    "source-after.json.gz": {
+      "bytes": 33326,
+      "git_blob_sha1": "4ff8c37f0d03bfa97375afae89e0f40a024594ae",
+      "sha256": "c068d62519ed46ebc7061170150f7dfc1490f527f2cfe1e71b8e071142a5b38f"
+    },
+    "source-before.json.gz": {
+      "bytes": 33326,
+      "git_blob_sha1": "4ff8c37f0d03bfa97375afae89e0f40a024594ae",
+      "sha256": "c068d62519ed46ebc7061170150f7dfc1490f527f2cfe1e71b8e071142a5b38f"
+    },
+    "stderr.log.gz": {
+      "bytes": 20,
+      "git_blob_sha1": "d4b9926df0b7defceb6caf0b474c4a190c5ca8f0",
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    "workspace-after.json.gz": {
+      "bytes": 681,
+      "git_blob_sha1": "c970bc129808e17cd7c5130bb7a9b53a158a5abf",
+      "sha256": "a10f551a092aa9b594f912ec8302685b9e72ad2cff7caf4455e3fe40ab61c73b"
+    },
+    "workspace-before.json.gz": {
+      "bytes": 681,
+      "git_blob_sha1": "c970bc129808e17cd7c5130bb7a9b53a158a5abf",
+      "sha256": "a10f551a092aa9b594f912ec8302685b9e72ad2cff7caf4455e3fe40ab61c73b"
+    },
+    "workspace-inputs.json.gz": {
+      "bytes": 11255,
+      "git_blob_sha1": "a875473d7ff5c08bb2d2de2eed3db6d6a9c1438c",
+      "sha256": "0bcdcba3cae60b49ea4ba92ff42e2e2dad3fa517e9132808215bac22b218ef4b"
+    }
+  },
+  "command": [
+    "/workspace/scratch/e06533a127f6/zotero-toolchain/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+    "--packages=/workspace/scratch/e06533a127f6/zotero-validation/.dart_tool/package_config.json",
+    "/workspace/scratch/e06533a127f6/zotero-toolchain/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+    "--reporter",
+    "json",
+    "--concurrency",
+    "4",
+    "test/word_zotero_bibliography_layout_test.dart",
+    "test/word_zotero_citing_test.dart",
+    "test/word_zotero_document_data_test.dart",
+    "test/word_zotero_formatted_bibliography_test.dart",
+    "test/word_zotero_preference_flow_test.dart",
+    "test/word_zotero_rich_edit_test.dart",
+    "test/word_zotero_scaling_test.dart",
+    "test/word_zotero_simple_field_test.dart",
+    "test/word_zotero_source_identity_test.dart",
+    "test/word_zotero_style_preferences_review_test.dart",
+    "test/word_zotero_test.dart",
+    "test/zotero_backoff_state_test.dart",
+    "test/zotero_catalog_query_test.dart",
+    "test/zotero_citing_test.dart",
+    "test/zotero_client_test.dart",
+    "test/zotero_formatted_text_test.dart",
+    "test/zotero_identity_client_test.dart",
+    "test/zotero_metadata_batch_test.dart",
+    "test/zotero_paragraph_runs_test.dart",
+    "test/zotero_saved_search_test.dart",
+    "test/zotero_tag_filter_test.dart"
+  ],
+  "completion_events": [
+    {
+      "success": true,
+      "time": 11070,
+      "type": "done"
+    }
+  ],
+  "cwd": "/workspace/scratch/e06533a127f6/zotero-validation/packages/quds_office_engine",
+  "elapsed_seconds": 21.917019928998343,
+  "error_events": [],
+  "excluded_event_count": 21,
+  "exit_code": 0,
+  "finished_at_utc": "2026-11-18T10:34:02.889784+00:00",
+  "guards": {
+    "all_21_suites_executed": true,
+    "dependencies_unchanged": true,
+    "every_started_test_finished_once": true,
+    "runtime_unchanged": true,
+    "selection_unchanged": true,
+    "source_matches_qualified_commit": true,
+    "source_unchanged": true,
+    "workspace_unchanged": true
+  },
+  "input_file_counts": {
+    "dependencies": 1714,
+    "runtime": 1047,
+    "source": 417,
+    "workspace": 7
+  },
+  "json_parse_errors": [],
+  "package_graph_package_count": 109,
+  "qualified_product_commit": "ccb8135bac72818ad2a037e940f1cdf1b3c6b63c",
+  "reachable_packages": [
+    "_fe_analyzer_shared",
+    "analyzer",
+    "archive",
+    "args",
+    "async",
+    "boolean_selector",
+    "characters",
+    "cli_config",
+    "cli_util",
+    "collection",
+    "convert",
+    "coverage",
+    "crypto",
+    "ffi",
+    "file",
+    "frontend_server_client",
+    "glob",
+    "http_multi_server",
+    "http_parser",
+    "io",
+    "legacy_doc_parser",
+    "lints",
+    "logging",
+    "matcher",
+    "meta",
+    "mime",
+    "node_preamble",
+    "package_config",
+    "path",
+    "pool",
+    "posix",
+    "pub_semver",
+    "quds_office_engine",
+    "shelf",
+    "shelf_packages_handler",
+    "shelf_static",
+    "shelf_web_socket",
+    "source_map_stack_trace",
+    "source_maps",
+    "source_span",
+    "stack_trace",
+    "stream_channel",
+    "string_scanner",
+    "term_glyph",
+    "test",
+    "test_api",
+    "test_core",
+    "typed_data",
+    "vm_service",
+    "watcher",
+    "web",
+    "web_socket",
+    "web_socket_channel",
+    "webkit_inspection_protocol",
+    "yaml"
+  ],
+  "runner_sha256": "3cc52d80f2d385804f5ef8532c30e6bb925af5206e947f3c973618ef2bbd6492",
+  "runtime_version": "Dart SDK version: 3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\"",
+  "scope": "Current engine Zotero tests with synthetic documents, fixtures and controlled transports. Earlier focused tests overlap and are not added. No GitHub CI, live Zotero account, full application build, or Word/LibreOffice acceptance.",
+  "selected_test_files": [
+    "packages/quds_office_engine/test/word_zotero_bibliography_layout_test.dart",
+    "packages/quds_office_engine/test/word_zotero_citing_test.dart",
+    "packages/quds_office_engine/test/word_zotero_document_data_test.dart",
+    "packages/quds_office_engine/test/word_zotero_formatted_bibliography_test.dart",
+    "packages/quds_office_engine/test/word_zotero_preference_flow_test.dart",
+    "packages/quds_office_engine/test/word_zotero_rich_edit_test.dart",
+    "packages/quds_office_engine/test/word_zotero_scaling_test.dart",
+    "packages/quds_office_engine/test/word_zotero_simple_field_test.dart",
+    "packages/quds_office_engine/test/word_zotero_source_identity_test.dart",
+    "packages/quds_office_engine/test/word_zotero_style_preferences_review_test.dart",
+    "packages/quds_office_engine/test/word_zotero_test.dart",
+    "packages/quds_office_engine/test/zotero_backoff_state_test.dart",
+    "packages/quds_office_engine/test/zotero_catalog_query_test.dart",
+    "packages/quds_office_engine/test/zotero_citing_test.dart",
+    "packages/quds_office_engine/test/zotero_client_test.dart",
+    "packages/quds_office_engine/test/zotero_formatted_text_test.dart",
+    "packages/quds_office_engine/test/zotero_identity_client_test.dart",
+    "packages/quds_office_engine/test/zotero_metadata_batch_test.dart",
+    "packages/quds_office_engine/test/zotero_paragraph_runs_test.dart",
+    "packages/quds_office_engine/test/zotero_saved_search_test.dart",
+    "packages/quds_office_engine/test/zotero_tag_filter_test.dart"
+  ],
+  "source_head_at_end": "ccb8135bac72818ad2a037e940f1cdf1b3c6b63c",
+  "source_head_at_start": "ccb8135bac72818ad2a037e940f1cdf1b3c6b63c",
+  "started_at_utc": "2026-11-18T10:33:39.052228+00:00",
+  "status": "passed",
+  "substantive_results": {
+    "success": 422
+  },
+  "substantive_skips": 0,
+  "substantive_test_count": 422,
+  "suite_count": 21,
+  "timeout_error": null
+}

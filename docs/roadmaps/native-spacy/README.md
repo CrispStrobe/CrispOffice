@@ -28,6 +28,11 @@ This finite authored panel does not establish general German grammar quality.
 Continue at W7 packaging/device qualification and release/distribution gates.
 The historical roadmap below retains its original source/evidence boundaries.
 
+**Distribution and Studio wiring, 18 November 2026:** the
+[distribution record](../../validation/native-spacy-distribution-20261118/README.md)
+adds explicit, verified in-app installation from the immutable Hugging Face
+revision, the Studio setup flow and the per-build qualification catalog.
+
 ## Start here
 
 Build an optional, offline German linguistic-analysis backend for Quds using

@@ -10,6 +10,7 @@ final class _SpellingCase {
     this.id,
     this.text, {
     this.language = 'de-DE',
+    this.maximumSuggestions = 5,
     this.personal = const <String>[],
     this.expected = const <(String, String?)>[],
   });
@@ -17,6 +18,7 @@ final class _SpellingCase {
   final String id;
   final String text;
   final String language;
+  final int maximumSuggestions;
   final List<String> personal;
   final List<(String, String?)> expected;
 }
@@ -99,13 +101,37 @@ const _cases = <_SpellingCase>[
     'Make-up',
     expected: <(String, String?)>[('Make-up', 'Makeup')],
   ),
+  _SpellingCase(
+    'uppercase-distinct-shortlist',
+    'LERNNEN',
+    maximumSuggestions: 2,
+    expected: <(String, String?)>[('LERNNEN', 'LERNTEN')],
+  ),
+  _SpellingCase(
+    'sentence-initial-distinct-shortlist',
+    'Lernnen',
+    maximumSuggestions: 2,
+    expected: <(String, String?)>[('Lernnen', 'Lernten')],
+  ),
+  _SpellingCase(
+    'uppercase-full-shortlist',
+    'LERNNEN',
+    expected: <(String, String?)>[('LERNNEN', 'LEHNTEN')],
+  ),
+  _SpellingCase(
+    'sentence-initial-full-shortlist',
+    'Lernnen',
+    expected: <(String, String?)>[('Lernnen', 'Lehnten')],
+  ),
 ];
 
 Future<void> main() async {
   const origin = 17;
   final results = <Map<String, Object?>>[];
   for (final sample in _cases) {
-    final provider = GermanSpellingProvider();
+    final provider = GermanSpellingProvider(
+      maximumSuggestions: sample.maximumSuggestions,
+    );
     try {
       for (final word in sample.personal) {
         provider.vocabulary.addWord(word, language: sample.language);
@@ -146,6 +172,7 @@ Future<void> main() async {
         'id': sample.id,
         'text': sample.text,
         'language': sample.language,
+        'maximumSuggestions': sample.maximumSuggestions,
         'status': report.status.name,
         'accepted': accepted,
         'findings': <Map<String, Object?>>[

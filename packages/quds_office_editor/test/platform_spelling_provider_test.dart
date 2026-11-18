@@ -533,6 +533,327 @@ void main() {
     ]);
   });
 
+  test(
+    'native suggestions discard unusable entries before the display cap',
+    () async {
+      final provider = OfficePlatformSpellingProvider(
+        supportedLanguages: ['de-DE'],
+        service: _Service(
+          (_, _) async => [
+            const SuggestionSpan(TextRange(start: 0, end: 5), [
+              '',
+              ' ',
+              '\u00a0\u2003',
+              'Feler',
+              'Fehler',
+              'Fehler',
+              'Feh\nler',
+              'Feh\rler',
+              'Feh\tler',
+              'Feh\u0000ler',
+              'Feh\u007fler',
+              'Feh\u0085ler',
+              'Feh\u2028ler',
+              'Feh\u2029ler',
+              'Feh\ud800ler',
+              'Feh\udc00ler',
+              'Fehler\ud800',
+              'fehlte',
+              'Felder',
+              'Feier',
+              'Feger',
+              'Feder',
+              'Feile',
+              'Falter',
+              'Filler',
+            ]),
+          ],
+        ),
+        isAvailable: () => true,
+      );
+      addTearDown(provider.dispose);
+      final result = await provider.check(
+        _request(text: 'Feler', startOffset: 17),
+      );
+      expect(result.status, OfficeProofingStatus.success);
+      final finding = result.findings.single;
+      expect(
+        (finding.start, finding.end, finding.originalText),
+        (17, 22, 'Feler'),
+      );
+      expect(finding.replacements, [
+        'Fehler',
+        'fehlte',
+        'Felder',
+        'Feier',
+        'Feger',
+        'Feder',
+        'Feile',
+        'Falter',
+      ]);
+    },
+  );
+
+  test('native suggestions preserve multiword and Unicode spelling', () async {
+    const suggestions = [
+      'a lot',
+      'café',
+      'cafe\u0301',
+      'darf’s',
+      'Haus‑Tür',
+      '𐐀𐐨',
+      'क्ष\u200dत्र',
+      'می\u200cشود',
+    ];
+    final provider = OfficePlatformSpellingProvider(
+      supportedLanguages: ['en-US'],
+      service: _Service(
+        (_, _) async => [
+          const SuggestionSpan(TextRange(start: 0, end: 4), suggestions),
+        ],
+      ),
+      isAvailable: () => true,
+    );
+    addTearDown(provider.dispose);
+    final result = await provider.check(
+      _request(text: 'alot', language: 'en-US'),
+    );
+    expect(result.status, OfficeProofingStatus.success);
+    expect(result.findings.single.replacements, suggestions);
+  });
+
+  test(
+    'native suggestions reject invisible and bidi-control replacements',
+    () async {
+      const accepted = [
+        'Fehler',
+        'مرحبا',
+        'שלום',
+        'می\u200cشود',
+        'क्ष\u200dत्र',
+      ];
+      final provider = OfficePlatformSpellingProvider(
+        supportedLanguages: ['de-DE'],
+        service: _Service(
+          (_, _) async => [
+            SuggestionSpan(const TextRange(start: 0, end: 5), [
+              '\u200b',
+              '\u200e',
+              '\u202e',
+              '\u2066',
+              '\u0301',
+              '\ufe0f',
+              ' \u200b\u0301\u00a0',
+              for (final control in [
+                '\u202a',
+                '\u202b',
+                '\u202c',
+                '\u202d',
+                '\u202e',
+                '\u2066',
+                '\u2067',
+                '\u2068',
+                '\u2069',
+              ])
+                'Feh${control}ler',
+              ...accepted,
+            ]),
+          ],
+        ),
+        isAvailable: () => true,
+      );
+      addTearDown(provider.dispose);
+      final result = await provider.check(_request(text: 'Feler'));
+      expect(result.status, OfficeProofingStatus.success);
+      expect(result.findings.single.replacements, accepted);
+    },
+  );
+
+  test(
+    'only invisible native suggestions leave an issue without blank actions',
+    () async {
+      final provider = OfficePlatformSpellingProvider(
+        supportedLanguages: ['de-DE'],
+        service: _Service(
+          (_, _) async => [
+            const SuggestionSpan(TextRange(start: 0, end: 5), [
+              '\u200b',
+              '\u200e',
+              '\u202e',
+              '\u2066',
+              '\u0301',
+              '\ufe0f',
+            ]),
+          ],
+        ),
+        isAvailable: () => true,
+      );
+      addTearDown(provider.dispose);
+      final result = await provider.check(_request(text: 'Feler'));
+      expect(result.status, OfficeProofingStatus.success);
+      expect(result.findings.single.originalText, 'Feler');
+      expect(result.findings.single.replacements, isEmpty);
+    },
+  );
+
+  test(
+    'native suggestion inspection and replacement sizes are bounded',
+    () async {
+      final provider = OfficePlatformSpellingProvider(
+        supportedLanguages: ['de-DE'],
+        service: _Service(
+          (_, _) async => [
+            SuggestionSpan(const TextRange(start: 0, end: 5), [
+              'x' * 257,
+              'y' * 256,
+              ...List.filled(62, 'Feler'),
+              'Fehler',
+            ]),
+          ],
+        ),
+        isAvailable: () => true,
+      );
+      addTearDown(provider.dispose);
+      final result = await provider.check(_request(text: 'Feler'));
+      expect(result.status, OfficeProofingStatus.success);
+      expect(result.findings.single.replacements, ['y' * 256]);
+    },
+  );
+
+  test(
+    'an unknown word stays reviewable when no native suggestion is usable',
+    () async {
+      final provider = OfficePlatformSpellingProvider(
+        supportedLanguages: ['de-DE'],
+        service: _Service(
+          (_, _) async => [
+            const SuggestionSpan(TextRange(start: 0, end: 5), [
+              '',
+              'Feler',
+              '\n',
+            ]),
+          ],
+        ),
+        isAvailable: () => true,
+      );
+      addTearDown(provider.dispose);
+      final request = _request(text: 'Feler');
+      final result = await provider.check(request);
+      expect(result.status, OfficeProofingStatus.success);
+      expect(result.findings.single.originalText, 'Feler');
+      expect(result.findings.single.replacements, isEmpty);
+      expect(
+        OfficeProofingReport(request: request, results: [result]).isClean,
+        isFalse,
+      );
+    },
+  );
+
+  test(
+    'native spelling leaves numeric and connector identifier fragments alone',
+    () async {
+      const text =
+          'Feler42 42Feler Feler_name Feler\u203fname Feler𝟘 𝟘Feler 30 Feler 20';
+      final provider = OfficePlatformSpellingProvider(
+        supportedLanguages: ['de-DE'],
+        service: _Service(
+          (_, source) async => [
+            for (final match in RegExp('Feler').allMatches(source))
+              SuggestionSpan(TextRange(start: match.start, end: match.end), [
+                'Fehler',
+              ]),
+          ],
+        ),
+        isAvailable: () => true,
+      );
+      addTearDown(provider.dispose);
+      final result = await provider.check(
+        _request(text: text, startOffset: 11),
+      );
+      expect(result.status, OfficeProofingStatus.success);
+      final finding = result.findings.single;
+      expect(finding.originalText, 'Feler');
+      expect(finding.start, 11 + text.lastIndexOf('Feler'));
+      expect(finding.replacements, ['Fehler']);
+    },
+  );
+
+  test('native spelling protects marked identifier grapheme edges', () async {
+    final text =
+        '42\u0301Feler _\u0301Feler 𝟘\u0301Feler '
+        '𝟘${'\u0301' * 128}Feler Feler𝟘\u0301 Feler_\u0301 42\u0301 Feler';
+    final provider = OfficePlatformSpellingProvider(
+      supportedLanguages: ['de-DE'],
+      service: _Service(
+        (_, source) async => [
+          for (final match in RegExp('Feler').allMatches(source))
+            SuggestionSpan(TextRange(start: match.start, end: match.end), [
+              'Fehler',
+            ]),
+        ],
+      ),
+      isAvailable: () => true,
+    );
+    addTearDown(provider.dispose);
+    final result = await provider.check(_request(text: text, startOffset: 7));
+    expect(result.status, OfficeProofingStatus.success);
+    final finding = result.findings.single;
+    expect(finding.originalText, 'Feler');
+    expect(finding.start, 7 + text.lastIndexOf('Feler'));
+    expect(finding.replacements, ['Fehler']);
+  });
+
+  test(
+    'native word boundaries retain hyphen parts and CJK dictionary spans',
+    () async {
+      for (final sample in [
+        (
+          text: 'Feler-Tür',
+          language: 'de-DE',
+          start: 0,
+          end: 5,
+          replacement: 'Fehler',
+        ),
+        (
+          text: 'Tür‑Feler',
+          language: 'de-DE',
+          start: 4,
+          end: 9,
+          replacement: 'Fehler',
+        ),
+        (
+          text: '这是错子测试',
+          language: 'zh-CN',
+          start: 2,
+          end: 4,
+          replacement: '错字',
+        ),
+      ]) {
+        final provider = OfficePlatformSpellingProvider(
+          supportedLanguages: [sample.language],
+          service: _Service(
+            (_, _) async => [
+              SuggestionSpan(TextRange(start: sample.start, end: sample.end), [
+                sample.replacement,
+              ]),
+            ],
+          ),
+          isAvailable: () => true,
+        );
+        addTearDown(provider.dispose);
+        final result = await provider.check(
+          _request(text: sample.text, language: sample.language),
+        );
+        expect(result.status, OfficeProofingStatus.success);
+        expect(
+          result.findings.single.originalText,
+          sample.text.substring(sample.start, sample.end),
+        );
+        expect(result.findings.single.replacements, [sample.replacement]);
+      }
+    },
+  );
+
   test('malformed grapheme boundaries fail direct provider checks', () async {
     for (final sample in [
       (text: '😀 Feler', start: 1, end: 2),
