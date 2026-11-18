@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "repository": "CrispStrobe/quds_office_suite",
+  "branch": "codex/native-spelling-20261118",
+  "pull_request": "https://github.com/CrispStrobe/quds_office_suite/pull/155",
+  "pull_request_state": "draft; spelling implementation complete; inherited draft spaCy integration remains explicit",
+  "implementation_commit": "01e4b7223bf41ab589cbeeaada82cf2d6faee97d",
+  "evidence_commit": "72dcbfcf93b78d573e709f29f6086e81099a7657",
+  "remote_readback": {
+    "ref": "72dcbfcf93b78d573e709f29f6086e81099a7657",
+    "path": "docs/validation/native-spelling-20261118/evidence.tar.gz",
+    "bytes": 347839,
+    "git_blob": "2adfdb3aa01a138e790f9973545aa394fcccf8c4",
+    "sha256": "ae6104bfa40c95078c633f8846a2ce1777e21962b834a80467461767620b930e",
+    "exact_byte_equality": true,
+    "method": "GitHub fetch_file base64 response compared to exact locally validated archive"
+  },
+  "completed_local_validation": {
+    "substantive_tests": 1554,
+    "skips": 0,
+    "smoke_cases_per_target": 21,
+    "smoke_targets": [
+      "Dart VM",
+      "native AOT",
+      "JavaScript"
+    ],
+    "smoke_outputs_identical": true
+  },
+  "new_checkpoint_commits": [
+    "98a2a15056e55699b8ba5651fc79b26f94e5efd3",
+    "64f5868f2299215d553ec153c27ba8df1fa0322f",
+    "419b8ed239ba0fb0bab0e09218196f0de037cff9",
+    "9b655bbf0094afc8b17caf313d14bd235398e3dd",
+    "21a7e26a8066d3fa44c5dc9ccd6f0c62b48e1cc4",
+    "01e4b7223bf41ab589cbeeaada82cf2d6faee97d",
+    "72dcbfcf93b78d573e709f29f6086e81099a7657"
+  ],
+  "ci": {
+    "queried": false,
+    "waited": false,
+    "dispatched": false,
+    "rerun": false
+  }
+}
