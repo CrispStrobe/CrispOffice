@@ -1,0 +1,162 @@
+{
+  "schema": "quds.office.final_report_consistency_review.v1",
+  "reviewed_utc": "2026-11-18T06:24:23.944919+00:00",
+  "accepted": true,
+  "material_corrections": [],
+  "reviewed_files": {
+    "readme": {
+      "path": "continuation/final-content/office-completion-20261118/README.md",
+      "sha256": "38d4375023aa59d9968f1ecc2bbc653c5d1b27abdc265f5483a43ff80e9ebfab"
+    },
+    "status": {
+      "path": "continuation/final-content/office-completion-20261118/status.json",
+      "sha256": "5b82dc2cde570482a5c88cfa001bd3c194a5276152d696e9e50be2ba8e3439f2"
+    },
+    "saved_evidence": {
+      "path": "continuation/evidence-audit/saved-evidence-audit.json",
+      "sha256": "1a6ce7725091ccb45c6e6abd73f68e0558642e76ef65cfe9006a4d8b99d9ef48"
+    },
+    "consumer_replay": {
+      "path": "continuation/evidence-audit/document-contract-replay.json",
+      "sha256": "faa204499ed46e82b7ce509513c99eccc4cd719ee8f6c69f5ff3bfc6009de9e6"
+    },
+    "native_completion": {
+      "path": "continuation/native-final-review/native-completion-review.json",
+      "sha256": "1bdff32d41e7e91f1cbef30382c7da02d1361fceaa661e41352eb57fef14b9c5"
+    },
+    "runtime_linkage": {
+      "path": "continuation/final-content/office-completion-20261118/review/preparation-runtime-linkage.json",
+      "sha256": "18502177323d4b7e6ba1fe18ce46bc843b747137d15e47e8d7acac214dd869c8"
+    },
+    "frontier": {
+      "path": "continuation/final-frontier/remote-frontier.json",
+      "sha256": "c00b7a7d2d6abaf5e6b14756688a1089b8fa432d980d0979b4fbff35420c5db4"
+    },
+    "frontier_assessment": {
+      "path": "continuation/final-frontier/assessment.json",
+      "sha256": "fb2c0c7222da486281f8b6aae67e98d2a1e3f6be173eb596fa8acb48c23f3d41"
+    }
+  },
+  "checks": [
+    {
+      "check": "local_acceptance_distinct_from_release",
+      "passed": true
+    },
+    {
+      "check": "execution_source_binding",
+      "passed": true
+    },
+    {
+      "check": "implementation_and_tree_binding",
+      "passed": true
+    },
+    {
+      "check": "final_frontier_counts_and_main",
+      "passed": true
+    },
+    {
+      "check": "w7_ownership_and_docs_only_arrival",
+      "passed": true
+    },
+    {
+      "check": "unchanged_office_source_to_reviewed_head",
+      "passed": true
+    },
+    {
+      "check": "saved_evidence_audit_counts",
+      "passed": true
+    },
+    {
+      "check": "consumer_replay_counts",
+      "passed": true
+    },
+    {
+      "check": "canonical_success_accounting",
+      "passed": true
+    },
+    {
+      "check": "python_control_count",
+      "passed": true
+    },
+    {
+      "check": "portable_and_example_counts",
+      "passed": true
+    },
+    {
+      "check": "timezone_overlap_accounting",
+      "passed": true
+    },
+    {
+      "check": "native_final_review_acceptance",
+      "passed": true
+    },
+    {
+      "check": "native_arm_order",
+      "passed": true
+    },
+    {
+      "check": "native_metrics_threads_1",
+      "passed": true
+    },
+    {
+      "check": "native_bounded_panel_threads_1",
+      "passed": true
+    },
+    {
+      "check": "native_metrics_threads_2",
+      "passed": true
+    },
+    {
+      "check": "native_bounded_panel_threads_2",
+      "passed": true
+    },
+    {
+      "check": "native_metrics_threads_4",
+      "passed": true
+    },
+    {
+      "check": "native_bounded_panel_threads_4",
+      "passed": true
+    },
+    {
+      "check": "native_metrics_threads_8",
+      "passed": true
+    },
+    {
+      "check": "native_bounded_panel_threads_8",
+      "passed": true
+    },
+    {
+      "check": "native_decoder_audit_counts",
+      "passed": true
+    },
+    {
+      "check": "preparation_runtime_rehash_linkage",
+      "passed": true
+    },
+    {
+      "check": "native_historical_and_cross_arm_nonregression",
+      "passed": true
+    },
+    {
+      "check": "readme_preserves_material_limits_and_counts",
+      "passed": true
+    },
+    {
+      "check": "planned_gates_complete_failed_attempt_preserved",
+      "passed": true
+    }
+  ],
+  "checks_performed": 27,
+  "scope": "Report consistency only; no test, compilation, inference, rendering or remote mutation.",
+  "conclusions": [
+    "Scoped planned local qualification acceptance is supported; release/deployment acceptance remains false.",
+    "Counts and exact source/tree bindings agree with accepted saved-run and native audits.",
+    "Native claims are bounded nonregression; performance is exploratory local host measurement; full timed-output stability remains a producer claim.",
+    "Final remote frontier is point-in-time and separately owned W7 work is not imported."
+  ],
+  "publication_precondition": "Complete the planned final remote tree/archive/member readback and retain the closure receipt before reporting final publication as complete.",
+  "product_gates_rerun": false,
+  "remote_mutations": 0,
+  "github_actions_endpoints_queried": 0
+}
