@@ -945,6 +945,12 @@ to each new client. Clients sharing that state must use the same clock.
 
 ## Previous continuation evidence and current qualification
 
+The research-note insertion, reference-navigation and direct-command continuation
+has a [separate status report](validation/zotero-word-parity-20261118/README.md).
+Its implementation and incoming branch integration are saved remotely. The report
+separates completed development checks from the final exact-source run that was
+blocked by shared executor disk exhaustion; it has no final passing total yet.
+
 The previous continuation started from Quds
 `dc5f93b673e6087cccc6d66b33dfbfd099668f77` and CrispCloud
 `45ed126a6d7da0ecd80f3a765155f54008b278f3`, after the prior Zotero PRs #47
