@@ -6,8 +6,7 @@ either document or generates revision spans in the active file.
 
 ## Use the workspace
 
-In Office Studio, open **Review → Review changes** or **Review → Compare
-documents**. The shared editor's Notes pane also has a **Review changes** button.
+In Office Studio, open **Review → Review changes** or **Review → Compare**. The shared editor's Notes pane also has a **Review changes** button.
 Embedded applications can open the same dialog with `showWordReviewDialog`.
 
 ### Review tracked changes
@@ -41,6 +40,8 @@ model. Comparison can report supported formatting and structure differences
 without representing them as tracked edits.
 
 ### Compare two documents
+
+![Side-by-side Word document comparison](validation/document-review-20261118/screenshots/comparison-side-by-side.png)
 
 Choose the **Original** and **Revised** inputs independently. Either side can use
 the current editor document; **Choose file** can select two files without loading

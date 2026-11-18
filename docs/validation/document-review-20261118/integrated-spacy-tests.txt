@@ -1,0 +1,88 @@
+00:00 +0: loading test/grammar_planner_test.dart
+00:00 +0: test/grammar_planner_test.dart: a quotation blocks its middle sentence even without local quote tokens
+00:00 +1: test/grammar_planner_test.dart: a single parsed quotation remains excluded
+00:00 +2: test/grammar_planner_test.dart: protected source ranges include the whole governing context
+00:00 +3: test/grammar_planner_test.dart: PP subject modifier proposes one reviewed edit at original origin
+00:00 +4: test/grammar_planner_test.dart: PP subject modifier proposes one reviewed edit at original origin
+00:00 +5: test/grammar_planner_test.dart: PP subject modifier proposes one reviewed edit at original origin
+00:00 +6: test/grammar_planner_test.dart: PP subject modifier proposes one reviewed edit at original origin
+00:00 +7: test/grammar_planner_test.dart: PP subject modifier proposes one reviewed edit at original origin
+00:00 +8: test/grammar_planner_test.dart: PP subject modifier proposes one reviewed edit at original origin
+00:00 +9: test/grammar_planner_test.dart: PP subject modifier proposes one reviewed edit at original origin
+00:00 +10: test/distribution_test.dart: download failures leave no installation HTTP error
+00:00 +11: test/distribution_test.dart: download failures leave no installation HTTP error
+00:00 +12: test/distribution_test.dart: download failures leave no installation HTTP error
+00:00 +13: test/grammar_planner_test.dart: valid source is preserved and correctly rechecked
+00:00 +14: test/distribution_test.dart: download failures leave no installation same length but wrong bytes fail SHA-256
+00:00 +15: test/distribution_test.dart: download failures leave no installation same length but wrong bytes fail SHA-256
+00:00 +16: test/distribution_test.dart: download failures leave no installation same length but wrong bytes fail SHA-256
+00:00 +17: test/grammar_planner_test.dart: model-selected number cannot override licensed subject number
+00:00 +18: test/distribution_test.dart: download failures leave no installation declared length mismatch
+00:00 +19: test/grammar_planner_test.dart: unknown and personal words cause explicit abstention
+00:00 +20: test/distribution_test.dart: download failures leave no installation undeclared oversized body is cut off
+00:00 +21: test/distribution_test.dart: download failures leave no installation undeclared oversized body is cut off
+00:00 +22: test/grammar_planner_test.dart: wrong lemma, mood, person and root shape never generate forms
+00:00 +23: test/distribution_test.dart: download failures leave no installation caller cancellation aborts the transfer
+00:00 +24: test/distribution_test.dart: download failures leave no installation caller cancellation aborts the transfer
+00:00 +25: test/distribution_test.dart: download failures leave no installation caller cancellation aborts the transfer
+00:00 +26: test/grammar_planner_test.dart: source identity and exact accepted native identity are mandatory
+00:00 +27: test/distribution_test.dart: download failures leave no installation authentic bytes that are not a closed capsule are rejected
+00:00 +28: test/distribution_test.dart: download failures leave no installation authentic bytes that are not a closed capsule are rejected
+00:00 +29: test/distribution_test.dart: download failures leave no installation authentic bytes that are not a closed capsule are rejected
+00:00 +30: test/distribution_test.dart: download failures leave no installation authentic bytes that are not a closed capsule are rejected
+00:00 +31: test/distribution_test.dart: optional entities are validated against whole tokens
+00:00 +32: test/grammar_provider_test.dart: default disabled provider makes zero analysis calls
+00:00 +33: test/grammar_provider_test.dart: disabled load refuses before any backend can open
+00:00 +34: test/grammar_provider_test.dart: unsupported locales and ignored rules make zero analysis calls
+00:00 +35: test/grammar_provider_test.dart: admitted check preserves the exact request and nonzero source origin
+00:00 +36: test/grammar_provider_test.dart: personal and ignored words are captured before inference
+00:00 +37: test/grammar_provider_test.dart: a vocabulary change during inference invalidates the returned snapshot
+00:00 +38: test/grammar_provider_test.dart: a vocabulary change while lexical planning yields invalidates completion
+00:00 +39: test/grammar_provider_test.dart: all exact analysis snapshot fields are authenticated before planning
+00:00 +40: test/grammar_provider_test.dart: reply runtime and grammar-qualified runtime identities are both enforced
+00:00 +41: test/grammar_provider_test.dart: obsolete request cancellation and completion cannot invalidate its successor
+00:00 +42: test/grammar_provider_test.dart: current cancellation invalidates even a late successful reply
+00:00 +43: test/grammar_provider_test.dart: a new ignored request cancels an older pending check without inference
+00:00 +44: test/grammar_provider_test.dart: independent blocks retain independent cancellation ownership
+00:00 +45: test/grammar_provider_test.dart: dispose invalidates pending work and joins transport cleanup once
+00:00 +46: test/grammar_provider_test.dart: native failures and timeouts remain explicit operational outcomes
+00:00 +47: test/grammar_provider_test.dart: transport exceptions stay failed or unavailable without findings
+00:00 +48: test/analysis_test.dart: source map keeps UTF8, scalars, UTF16, NUL and decomposed text distinct
+00:00 +49: test/analysis_test.dart: unpaired UTF16 never silently becomes replacement UTF8
+00:00 +50: test/analysis_test.dart: byte admission checks multibyte input without truncation
+00:01 +51: test/analysis_test.dart: empty is explicit and nonempty cannot masquerade as empty success
+00:01 +52: test/analysis_test.dart: result owns immutable lists and preserves original nonzero offsets
+00:01 +53: test/analysis_test.dart: repeated strings must match exact coordinates and source coverage
+00:01 +54: test/analysis_test.dart: coordinate drift and scalar splits fail rather than clamp
+00:01 +55: test/analysis_test.dart: sentence flags, roots and cross-sentence dependencies are checked
+00:01 +56: test/analysis_test.dart: a cycle disconnected from the one root is rejected
+00:01 +57: test/analysis_test.dart: coalescing keys are unambiguous and snapshot identity is complete
+00:01 +58: test/analysis_test.dart: failed results cannot carry a successful partial document
+00:01 +59: test/analysis_test.dart: success is scoped to the exact declared locale and runtime profile
+00:01 +60: test/bundle_test.dart: closed bundle includes exact source notices and never accepts path input
+00:01 +61: test/bundle_test.dart: native configuration rejects ambiguous hashes and NUL paths
+00:01 +62: test/bundle_test.dart: missing explicit assets fail startup rather than produce empty success
+00:01 +63: test/worker_test.dart: persistent native ownership serializes calls and recovers after failure
+00:01 +64: test/worker_test.dart: 200 superseding snapshots retain one physical slot and other-key order
+00:01 +65: test/worker_test.dart: invalid replacement does not cancel valid in-flight source
+00:01 +66: test/worker_test.dart: cancel releases caller but preserves slot until native acknowledgement
+00:01 +67: test/worker_test.dart: timeout retains physical slot and never publishes a late result
+00:01 +68: test/worker_test.dart: dispose rejects callers immediately and joins the active context safely
+00:01 +69: test/worker_test.dart: snapshot and runtime mismatch cannot become success
+00:01 +70: test/worker_test.dart: unexpected isolate exit rejects all callers
+00:01 +71: test/worker_test.dart: startup failure returns explicit unavailable
+00:01 +72: test/worker_test.dart: cleanup failure is explicit and repeated disposal preserves the error
+00:01 +73: test/worker_test.dart: spawn failure has no unhandled readiness error
+00:01 +74: test/worker_test.dart: startup timeout returns promptly then releases late initialized context
+00:01 +75: test/worker_test.dart: web worker boundary reports unavailable without opening backend
+00:01 +76: test/worker_test.dart: worker limit admission is explicit
+00:01 +77: test/grammar_evaluation_harness_test.dart: existing receipt rejects admission before reading missing assets
+00:01 +78: test/grammar_evaluation_harness_test.dart: checkpoint replacement preserves last complete report on pending collision
+00:01 +79: test/grammar_evaluation_harness_test.dart: baseline closure permits additive API but rejects lexical data and ZIP drift
+00:01 +80: test/grammar_evaluation_harness_test.dart: consumed synthetic seal blocks a new receipt before native entry
+00:01 +81: test/grammar_evaluation_harness_test.dart: exact scorer maps nonzero UTF-16 origin after an emoji
+00:01 +82: test/grammar_evaluation_harness_test.dart: multiple choices and overlapping proposals cannot score exact
+00:01 +83: test/grammar_evaluation_harness_test.dart: partial graphemes and wrong original text fail source mapping
+00:01 +84: test/grammar_evaluation_harness_test.dart: unsupported and failed arms are never exact clean successes
+00:01 +85: test/grammar_evaluation_harness_test.dart: summary counts raw native false positives despite merge suppression
+00:01 +86: All tests passed!

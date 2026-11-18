@@ -1,0 +1,7 @@
+00:00 +0: loading /workspace/scratch/3b6b8cfdb224/doc-review-toolchain/screenshots/capture_review_test.dart
+00:00 +0: (setUpAll)
+00:00 +0: capture desktop tracked review
+00:02 +1: capture file comparison in both layouts
+00:03 +2: capture narrow Arabic tracked review
+00:03 +3: (tearDownAll)
+00:03 +3: All tests passed!
