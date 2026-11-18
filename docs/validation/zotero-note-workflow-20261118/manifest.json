@@ -6,8 +6,8 @@
   ],
   "files": {
     "README.md": {
-      "sha256": "4918ae9e2a991c11b6740d42293e3b100df70631979ac6e751a9e1a070d9ed9a",
-      "bytes": 14370
+      "sha256": "2904a51f777d6f2fa4ec1aeb35d7a8bd8e2be0c25a381aacc6e205b6f10c159a",
+      "bytes": 14613
     },
     "analysis-targets.json": {
       "sha256": "235aa2ff4929cb55fcc789f5cf07134b3f2e602fa309fe95c0f6585581c58e40",
@@ -80,6 +80,14 @@
     "results/format.log": {
       "sha256": "1ceff113df718aad17d725a28e6c056e4862ffe80574b44f133e14fe427c4c20",
       "bytes": 48
+    },
+    "results/independent-evidence-review.json": {
+      "sha256": "03cea0b91c98a6a4013780da7e11b4eb7ceffaee0c9d49e7729db26fea0c1c2a",
+      "bytes": 4946
+    },
+    "results/independent-evidence-review.md": {
+      "sha256": "ae2764ab4f656bff8248ae47105a432cb8928230e20cb515576882361f82b13f",
+      "bytes": 3103
     },
     "results/last-commit-whitespace.log": {
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",

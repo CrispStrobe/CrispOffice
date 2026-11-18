@@ -125,6 +125,9 @@ counted as test cases.
 times and outcomes. The complete engine/editor/Studio JSON event streams are
 gzip-compressed; source inventories are compressed without changing their
 contents. `manifest.json` hashes every evidence file except itself.
+The independent [raw-result and source audit](results/independent-evidence-review.md)
+confirms the case counts, disjoint file selections and exact Git-blob matches
+for the 2,472 distinct inputs represented by the overlapping source manifests.
 
 ### Failures found and corrected during development
 
