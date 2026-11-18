@@ -1,0 +1,53 @@
+{
+  "repository": "CrispStrobe/quds_office_suite",
+  "main": "1e07cb852766f8651815138785be74c64a09ddc0",
+  "pull_requests": [
+    {
+      "number": 157,
+      "state": "closed",
+      "merged": true,
+      "merged_at": "2026-11-18T12:02:57Z",
+      "head": "9fc211f6c72be9495767bd7cacfd8df51abf2fad",
+      "base": "1ffcf91a3443caf9a6e8b45a3e6cab3f041831ae",
+      "merge_commit_sha": "3813f79e04b177d0cfce3755b77b209a58be528a",
+      "updated": "2026-11-18T12:02:57Z"
+    },
+    {
+      "number": 158,
+      "state": "closed",
+      "merged": true,
+      "merged_at": "2026-11-18T12:02:57Z",
+      "head": "5dd3eb7c1434f0c1063290d5698fa5c760c201e2",
+      "base": "1ffcf91a3443caf9a6e8b45a3e6cab3f041831ae",
+      "merge_commit_sha": "841714fed1efbad2927048b0e2c8deaf06872ab8",
+      "updated": "2026-11-18T12:02:57Z"
+    },
+    {
+      "number": 159,
+      "state": "closed",
+      "merged": true,
+      "merged_at": "2026-11-18T12:02:55Z",
+      "head": "2292548eb69de2dbb5240ab9da59256f362137c6",
+      "base": "1ffcf91a3443caf9a6e8b45a3e6cab3f041831ae",
+      "merge_commit_sha": "1e07cb852766f8651815138785be74c64a09ddc0",
+      "updated": "2026-11-18T12:02:55Z"
+    }
+  ],
+  "comparison": {
+    "base": "2292548eb69de2dbb5240ab9da59256f362137c6",
+    "head": "1e07cb852766f8651815138785be74c64a09ddc0",
+    "status": "ahead",
+    "ahead_by": 1,
+    "behind_by": 0,
+    "files": []
+  },
+  "open_pull_requests": [
+    {
+      "number": 153,
+      "head": "2e013f26c7d4db54ecabe2c955117cbce5379408",
+      "state": "open",
+      "draft": true
+    }
+  ],
+  "actions_queried": false
+}

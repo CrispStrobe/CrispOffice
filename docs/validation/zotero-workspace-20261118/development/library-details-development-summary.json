@@ -1,0 +1,58 @@
+{
+  "kind": "development-only, overlapping qualification",
+  "final_test_file_case_count": 22,
+  "attempts": [
+    {
+      "attempt": "library-details-attempt-1",
+      "exit_code": 1,
+      "passes": 18,
+      "skips": 0,
+      "errors_or_failures": 1,
+      "missed_tap_warnings": 0,
+      "source_unchanged": null,
+      "raw_events": "library-details-attempt-1.events.jsonl",
+      "stderr": "library-details-attempt-1.stderr.log",
+      "command": "library-details-attempt-1.command.json",
+      "qualification_note": "Excluded development attempt. One genuine product layout failure: SelectedReferencesDialog overflowed by 8 pixels at 320x480 with doubled text. Root corrected the dialog title/content scrolling. The other 18 passes overlap later validation; no source hash binding was captured for this first attempt."
+    },
+    {
+      "attempt": "library-details-attempt-2-short",
+      "exit_code": 0,
+      "passes": 1,
+      "skips": 0,
+      "errors_or_failures": 0,
+      "missed_tap_warnings": 0,
+      "source_unchanged": true,
+      "raw_events": "library-details-attempt-2-short.events.jsonl",
+      "stderr": "library-details-attempt-2-short.stderr.log",
+      "command": "library-details-attempt-2-short.command.json",
+      "qualification_note": "Diagnostic rerun of the formerly failing selected-reference layout only. This one pass is included again in attempt 3 and must not be added to its total."
+    },
+    {
+      "attempt": "library-details-attempt-3-full",
+      "exit_code": 0,
+      "passes": 21,
+      "skips": 0,
+      "errors_or_failures": 0,
+      "missed_tap_warnings": 0,
+      "source_unchanged": true,
+      "raw_events": "library-details-attempt-3-full.events.jsonl",
+      "stderr": "library-details-attempt-3-full.stderr.log",
+      "command": "library-details-attempt-3-full.command.json",
+      "qualification_note": "All 21 then-current focused widget cases passed with unchanged source hashes. This precedes addition of the final short-window Details copy-feedback regression and overlaps the final full-editor cohort."
+    },
+    {
+      "attempt": "library-details-attempt-4-short-details",
+      "exit_code": 0,
+      "passes": 1,
+      "skips": 0,
+      "errors_or_failures": 0,
+      "missed_tap_warnings": 0,
+      "source_unchanged": true,
+      "raw_events": "library-details-attempt-4-short-details.events.jsonl",
+      "stderr": "library-details-attempt-4-short-details.stderr.log",
+      "command": "library-details-attempt-4-short-details.command.json",
+      "qualification_note": "Only the subsequently added Details dialog regression at 320x480 with doubled text and copy feedback. This one pass is expected to be included again in the final 22-case suite and full-editor cohort. Do not add it to final qualification totals."
+    }
+  ]
+}

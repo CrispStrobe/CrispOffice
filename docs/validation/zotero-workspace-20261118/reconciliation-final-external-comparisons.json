@@ -1,0 +1,372 @@
+[
+  {
+    "repository_full_name": "CrispStrobe/quds_office_suite",
+    "base": "1e07cb852766f8651815138785be74c64a09ddc0",
+    "head": "8cd413c1e0454278abd703264bdda589a90f2d48",
+    "status": "diverged",
+    "ahead_by": 1,
+    "behind_by": 1,
+    "total_commits": 1,
+    "too_large": null,
+    "base_commit": {
+      "sha": "1e07cb852766f8651815138785be74c64a09ddc0",
+      "url": "https://api.github.com/repos/CrispStrobe/quds_office_suite/commits/1e07cb852766f8651815138785be74c64a09ddc0",
+      "html_url": "https://github.com/CrispStrobe/quds_office_suite/commit/1e07cb852766f8651815138785be74c64a09ddc0"
+    },
+    "merge_base_commit": {
+      "sha": "2292548eb69de2dbb5240ab9da59256f362137c6",
+      "url": "https://api.github.com/repos/CrispStrobe/quds_office_suite/commits/2292548eb69de2dbb5240ab9da59256f362137c6",
+      "html_url": "https://github.com/CrispStrobe/quds_office_suite/commit/2292548eb69de2dbb5240ab9da59256f362137c6"
+    },
+    "files": [
+      {
+        "filename": "packages/quds_office_editor/example/lib/studio_linguistic_analysis.dart",
+        "status": "modified",
+        "additions": 9,
+        "deletions": 0,
+        "changes": 9,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_editor/example/lib/studio_spacy_host.dart",
+        "status": "modified",
+        "additions": 13,
+        "deletions": 0,
+        "changes": 13,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_editor/example/lib/studio_spacy_host_native.dart",
+        "status": "modified",
+        "additions": 51,
+        "deletions": 10,
+        "changes": 61,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_editor/example/lib/studio_spacy_setup.dart",
+        "status": "modified",
+        "additions": 14,
+        "deletions": 0,
+        "changes": 14,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_editor/example/test/studio_linguistic_analysis_test.dart",
+        "status": "modified",
+        "additions": 31,
+        "deletions": 0,
+        "changes": 31,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_proofing_spacy/lib/src/backend.dart",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 1,
+        "changes": 2,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_proofing_spacy/lib/src/distribution.dart",
+        "status": "modified",
+        "additions": 21,
+        "deletions": 0,
+        "changes": 21,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_proofing_spacy/lib/src/installer_io.dart",
+        "status": "modified",
+        "additions": 51,
+        "deletions": 0,
+        "changes": 51,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_proofing_spacy/lib/src/native_backend.dart",
+        "status": "modified",
+        "additions": 151,
+        "deletions": 5,
+        "changes": 156,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_proofing_spacy/lib/src/native_backend_unsupported.dart",
+        "status": "modified",
+        "additions": 5,
+        "deletions": 1,
+        "changes": 6,
+        "previous_filename": null
+      }
+    ]
+  },
+  {
+    "repository_full_name": "CrispStrobe/quds_office_suite",
+    "base": "1e07cb852766f8651815138785be74c64a09ddc0",
+    "head": "b0044f5a04ba71e58468a7a22297b56f926e4d39",
+    "status": "ahead",
+    "ahead_by": 3,
+    "behind_by": 0,
+    "total_commits": 3,
+    "too_large": null,
+    "base_commit": {
+      "sha": "1e07cb852766f8651815138785be74c64a09ddc0",
+      "url": "https://api.github.com/repos/CrispStrobe/quds_office_suite/commits/1e07cb852766f8651815138785be74c64a09ddc0",
+      "html_url": "https://github.com/CrispStrobe/quds_office_suite/commit/1e07cb852766f8651815138785be74c64a09ddc0"
+    },
+    "merge_base_commit": {
+      "sha": "1e07cb852766f8651815138785be74c64a09ddc0",
+      "url": "https://api.github.com/repos/CrispStrobe/quds_office_suite/commits/1e07cb852766f8651815138785be74c64a09ddc0",
+      "html_url": "https://github.com/CrispStrobe/quds_office_suite/commit/1e07cb852766f8651815138785be74c64a09ddc0"
+    },
+    "files": [
+      {
+        "filename": "docs/validation/document-review-20261118/incoming-audit.json",
+        "status": "added",
+        "additions": 1919,
+        "deletions": 0,
+        "changes": 1919,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/document-review-20261118/runtime-ready.json",
+        "status": "added",
+        "additions": 53,
+        "deletions": 0,
+        "changes": 53,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/zotero-workspace-20261118/RECONCILIATION.md",
+        "status": "added",
+        "additions": 51,
+        "deletions": 0,
+        "changes": 51,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/zotero-workspace-20261118/reconciliation-initial.json",
+        "status": "added",
+        "additions": 4060,
+        "deletions": 0,
+        "changes": 4060,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_editor/example/lib/studio_files.dart",
+        "status": "modified",
+        "additions": 20,
+        "deletions": 0,
+        "changes": 20,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_editor/example/lib/suite_workspace.dart",
+        "status": "modified",
+        "additions": 33,
+        "deletions": 4,
+        "changes": 37,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_editor/lib/quds_office_editor.dart",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 0,
+        "changes": 1,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+        "status": "modified",
+        "additions": 158,
+        "deletions": 39,
+        "changes": 197,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_editor/lib/src/embed/word_review_dialog.dart",
+        "status": "added",
+        "additions": 741,
+        "deletions": 0,
+        "changes": 741,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_editor/test/word_review_controller_test.dart",
+        "status": "added",
+        "additions": 536,
+        "deletions": 0,
+        "changes": 536,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_engine/lib/quds_office_engine.dart",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 0,
+        "changes": 1,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_engine/lib/src/word/model/word_compare.dart",
+        "status": "modified",
+        "additions": 22,
+        "deletions": 77,
+        "changes": 99,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_engine/lib/src/word/model/word_comparison.dart",
+        "status": "added",
+        "additions": 1379,
+        "deletions": 0,
+        "changes": 1379,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_engine/test/office_features_test.dart",
+        "status": "modified",
+        "additions": 6,
+        "deletions": 7,
+        "changes": 13,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_engine/test/word_comparison_test.dart",
+        "status": "added",
+        "additions": 577,
+        "deletions": 0,
+        "changes": 577,
+        "previous_filename": null
+      }
+    ]
+  },
+  {
+    "repository_full_name": "CrispStrobe/quds_office_suite",
+    "base": "1e07cb852766f8651815138785be74c64a09ddc0",
+    "head": "d6a9ca51b16daa9d3d54e163bc723b76659d70ac",
+    "status": "ahead",
+    "ahead_by": 2,
+    "behind_by": 0,
+    "total_commits": 2,
+    "too_large": null,
+    "base_commit": {
+      "sha": "1e07cb852766f8651815138785be74c64a09ddc0",
+      "url": "https://api.github.com/repos/CrispStrobe/quds_office_suite/commits/1e07cb852766f8651815138785be74c64a09ddc0",
+      "html_url": "https://github.com/CrispStrobe/quds_office_suite/commit/1e07cb852766f8651815138785be74c64a09ddc0"
+    },
+    "merge_base_commit": {
+      "sha": "1e07cb852766f8651815138785be74c64a09ddc0",
+      "url": "https://api.github.com/repos/CrispStrobe/quds_office_suite/commits/1e07cb852766f8651815138785be74c64a09ddc0",
+      "html_url": "https://github.com/CrispStrobe/quds_office_suite/commit/1e07cb852766f8651815138785be74c64a09ddc0"
+    },
+    "files": [
+      {
+        "filename": "docs/PROOFING.md",
+        "status": "modified",
+        "additions": 40,
+        "deletions": 11,
+        "changes": 51,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/native-spelling-continuation-20261118/README.md",
+        "status": "added",
+        "additions": 30,
+        "deletions": 0,
+        "changes": 30,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/native-spelling-continuation-20261118/reconciliation.md",
+        "status": "added",
+        "additions": 61,
+        "deletions": 0,
+        "changes": 61,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/native-spelling-continuation-20261118/refs.json",
+        "status": "added",
+        "additions": 3219,
+        "deletions": 0,
+        "changes": 3219,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_editor/CHANGELOG.md",
+        "status": "modified",
+        "additions": 5,
+        "deletions": 0,
+        "changes": 5,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_editor/lib/src/proofing/platform_spelling_provider.dart",
+        "status": "modified",
+        "additions": 94,
+        "deletions": 34,
+        "changes": 128,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_editor/test/platform_spelling_dialog_test.dart",
+        "status": "modified",
+        "additions": 108,
+        "deletions": 0,
+        "changes": 108,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_editor/test/platform_spelling_projection_review_test.dart",
+        "status": "added",
+        "additions": 134,
+        "deletions": 0,
+        "changes": 134,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_editor/test/platform_spelling_projection_test.dart",
+        "status": "added",
+        "additions": 252,
+        "deletions": 0,
+        "changes": 252,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_engine/CHANGELOG.md",
+        "status": "modified",
+        "additions": 6,
+        "deletions": 0,
+        "changes": 6,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_engine/lib/src/proofing/german_spelling.dart",
+        "status": "modified",
+        "additions": 44,
+        "deletions": 42,
+        "changes": 86,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_engine/test/proofing/german_spelling_continuation_test.dart",
+        "status": "added",
+        "additions": 183,
+        "deletions": 0,
+        "changes": 183,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_engine/tool/check_native_spelling.dart",
+        "status": "modified",
+        "additions": 43,
+        "deletions": 0,
+        "changes": 43,
+        "previous_filename": null
+      }
+    ]
+  }
+]

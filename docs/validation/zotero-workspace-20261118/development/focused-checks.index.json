@@ -1,0 +1,176 @@
+{
+  "archive": "focused-checks.tar.xz",
+  "archive_sha256": "1d177b30b221fb5f8ef26c9923ef345de8340d2b049f64e5db0ea4fda889053c",
+  "files": [
+    {
+      "path": "library-details-attempt-1.command.json",
+      "bytes": 400,
+      "sha256": "cb3e043bfc1960526e0559e49a318c067483501bffd11ecf375dda0e5e0d70e4"
+    },
+    {
+      "path": "library-details-attempt-1.events.jsonl",
+      "bytes": 13234,
+      "sha256": "0743fccfd9b66ce6c1a148b29f101e5a0b0c97eae73f7d3e7c1e114a013733e1"
+    },
+    {
+      "path": "library-details-attempt-1.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "library-details-attempt-2-short.command.json",
+      "bytes": 1964,
+      "sha256": "f9d1e92e77390d9da64d72c0347d14935ab54bae5e02787dc7f45bedbaafb512"
+    },
+    {
+      "path": "library-details-attempt-2-short.events.jsonl",
+      "bytes": 1442,
+      "sha256": "789b494d9cb2320799b88e596490d3040e4de335dcc4aab212ffb390e0dbe75a"
+    },
+    {
+      "path": "library-details-attempt-2-short.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "library-details-attempt-3-full.command.json",
+      "bytes": 1883,
+      "sha256": "0445444ab8e82ab6228570d5b84c695db627010b22c2561b62f0b3927c1a3fe4"
+    },
+    {
+      "path": "library-details-attempt-3-full.events.jsonl",
+      "bytes": 12180,
+      "sha256": "43a001ecb067fddf22cc24966b1c883e9d30f72172e0ce02252bf45aec214acf"
+    },
+    {
+      "path": "library-details-attempt-3-full.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "library-details-attempt-4-short-details.command.json",
+      "bytes": 1969,
+      "sha256": "c6fa8948ee26fabb6d791570ea2ca2a8bd10d7b9eb89401f8f997383e6966e07"
+    },
+    {
+      "path": "library-details-attempt-4-short-details.events.jsonl",
+      "bytes": 1448,
+      "sha256": "c5506f461bf28b48f16ef4342df2b953b397ea4dfb68bba48d713c9a85aaed08"
+    },
+    {
+      "path": "library-details-attempt-4-short-details.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "library-details-development-summary.json",
+      "bytes": 2801,
+      "sha256": "170d659b89ff06bd09707ef8c32c7a278ce8326c4d0792c254fd69eddadbd0eb"
+    },
+    {
+      "path": "narrow-wrap-fix/README.md",
+      "bytes": 378,
+      "sha256": "3cff7651804d8249bed4e47d4325a5d1d24d2900a862f67139cafc77d2aedee0"
+    },
+    {
+      "path": "narrow-wrap-fix/cases.json.gz",
+      "bytes": 365,
+      "sha256": "e85ef9694365f83689950e4fe4e9783fb7f62fa29bc8e1e2886e74d7a0c1f7cd"
+    },
+    {
+      "path": "narrow-wrap-fix/dependencies-after.json.gz",
+      "bytes": 153971,
+      "sha256": "ad839b47afaaa3b516ef0921152c752f2b9be89d58aa3970a0a04c6262c792c8"
+    },
+    {
+      "path": "narrow-wrap-fix/dependencies-before.json.gz",
+      "bytes": 153971,
+      "sha256": "ad839b47afaaa3b516ef0921152c752f2b9be89d58aa3970a0a04c6262c792c8"
+    },
+    {
+      "path": "narrow-wrap-fix/events.jsonl.gz",
+      "bytes": 962,
+      "sha256": "3807b2c0430bfd68bd6b25938a7c91b8374c9b7470cc8cafc12aaf850765925b"
+    },
+    {
+      "path": "narrow-wrap-fix/excluded-events.json.gz",
+      "bytes": 149,
+      "sha256": "6fcb30988990e8f415123811cedf4cd117ac4becdf610892c6edc6e4ff002b09"
+    },
+    {
+      "path": "narrow-wrap-fix/index.json",
+      "bytes": 2642,
+      "sha256": "ab25301d2a06583eb687f8dbda8d86af8a1043d40b5eb3ca0ad4ed0b8212ff0d"
+    },
+    {
+      "path": "narrow-wrap-fix/launcher.log",
+      "bytes": 537,
+      "sha256": "9dd40a6e6d6a342d5488c96a42b059ea2ac0f8c30459ae5ddd3d38fbef0747cf"
+    },
+    {
+      "path": "narrow-wrap-fix/machine-envelopes.json.gz",
+      "bytes": 141,
+      "sha256": "88e6fb189f98affbc3288a6b7922827d4c6dbb7f2fc3b35a5fdb07c9ac29e1ca"
+    },
+    {
+      "path": "narrow-wrap-fix/process-exit.json",
+      "bytes": 1046,
+      "sha256": "fa9536d1fc4e6428afe6d77fde5c7fa528e1c202f3ed45ab9f47d185afa587c0"
+    },
+    {
+      "path": "narrow-wrap-fix/run.json",
+      "bytes": 2917,
+      "sha256": "9a3717fa9b88872ee6fe673b589f44f49e098163be19f55da7c747296405f2f1"
+    },
+    {
+      "path": "narrow-wrap-fix/run_flutter_focused.py",
+      "bytes": 13405,
+      "sha256": "61c8ae5981174e6ffe02c98d41ed547367b2d208b699d4d2080d900f311377da"
+    },
+    {
+      "path": "narrow-wrap-fix/runtime-after.json.gz",
+      "bytes": 91103,
+      "sha256": "fbea0d7c61d56470f13e3e828ea84d533f4b6519018b9e98cbd85d1637c37bee"
+    },
+    {
+      "path": "narrow-wrap-fix/runtime-before.json.gz",
+      "bytes": 91103,
+      "sha256": "fbea0d7c61d56470f13e3e828ea84d533f4b6519018b9e98cbd85d1637c37bee"
+    },
+    {
+      "path": "narrow-wrap-fix/source-after.json.gz",
+      "bytes": 41939,
+      "sha256": "12e04af597fb8dd62b2e54fd0ab1a9dd26f3181e5f55e77c89d1769ca5041166"
+    },
+    {
+      "path": "narrow-wrap-fix/source-before.json.gz",
+      "bytes": 41939,
+      "sha256": "12e04af597fb8dd62b2e54fd0ab1a9dd26f3181e5f55e77c89d1769ca5041166"
+    },
+    {
+      "path": "narrow-wrap-fix/stderr.log.gz",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "path": "narrow-wrap-fix/summary.json",
+      "bytes": 7876,
+      "sha256": "1c31cf54b4e789562a72dae17f8e64d93556aa1289555da797591695adcd0bc6"
+    },
+    {
+      "path": "narrow-wrap-fix/workspace-after.json.gz",
+      "bytes": 1059,
+      "sha256": "5af0addcb755664cea67655dc05225ff8a3f4ae6d6b13e45bc0195ba1c9ced75"
+    },
+    {
+      "path": "narrow-wrap-fix/workspace-before.json.gz",
+      "bytes": 1059,
+      "sha256": "5af0addcb755664cea67655dc05225ff8a3f4ae6d6b13e45bc0195ba1c9ced75"
+    },
+    {
+      "path": "narrow-wrap-fix/workspace-inputs.json.gz",
+      "bytes": 13197,
+      "sha256": "08c413eec1f52af5f2a72d33a9e72b2e31df9e41ebc4b9928b21ca9a234e6e57"
+    }
+  ]
+}
