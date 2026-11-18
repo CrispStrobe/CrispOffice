@@ -1,0 +1,29 @@
+{
+  "command": [
+    "flutter",
+    "analyze",
+    "--no-pub",
+    "--fatal-infos",
+    "--fatal-warnings",
+    "packages/quds_office_editor/example/lib/suite_workspace.dart",
+    "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+    "packages/quds_office_editor/lib/src/editor_word/render_word_canvas.dart",
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+    "packages/quds_office_editor/lib/src/embed/word_notes_pane.dart",
+    "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart",
+    "packages/quds_office_editor/lib/src/proofing/word_proofing.dart",
+    "packages/quds_office_editor/test/word_header_footer_navigation_test.dart",
+    "packages/quds_office_editor/test/word_live_review_selection_test.dart",
+    "packages/quds_office_editor/test/word_notes_proofing_controller_test.dart",
+    "packages/quds_office_editor/test/word_notes_proofing_pane_test.dart",
+    "packages/quds_office_editor/test/word_review_controller_test.dart",
+    "packages/quds_office_editor/test/word_zotero_direct_command_test.dart",
+    "packages/quds_office_editor/test/word_zotero_navigation_test.dart",
+    "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart",
+    "packages/quds_office_engine/test/word_zotero_add_note_test.dart"
+  ],
+  "cwd": "/workspace/scratch/be1908103559/quds_office_suite",
+  "exit_code": 1,
+  "elapsed_seconds": 0.24422669410705566,
+  "log": "analysis-attempt-2.log"
+}

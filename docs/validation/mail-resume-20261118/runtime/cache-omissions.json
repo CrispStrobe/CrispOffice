@@ -1,0 +1,16 @@
+{
+  "reason": "Mutable generated caches and Git metadata are not source inputs; verified original archive and selected runtime inputs are retained separately.",
+  "excluded_directories": [
+    ".git",
+    ".dart_tool",
+    ".cache",
+    "build",
+    "_temp"
+  ],
+  "excluded_names": [
+    "lockfile",
+    "flutter_tools.stamp",
+    "flutter_tools.snapshot"
+  ],
+  "symlinks": "Symlink targets are represented by their regular-file paths."
+}

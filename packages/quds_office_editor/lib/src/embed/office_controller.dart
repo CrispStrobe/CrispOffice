@@ -10190,7 +10190,7 @@ class WordEditorController extends OfficeController {
       anchor: activeCaret.selectionAnchor,
     );
     void correctedCaret() {
-      if (activeNoteAffected && activeNote != null) {
+      if (activeNoteAffected) {
         if (identical(noteEditingTarget?.note, activeNote.note)) {
           _restoreNoteEditingTarget(
             _noteTargetAt(
@@ -10217,7 +10217,7 @@ class WordEditorController extends OfficeController {
     }
 
     void originalCaret() {
-      if (activeNoteAffected && activeNote != null) {
+      if (activeNoteAffected) {
         if (identical(noteEditingTarget?.note, activeNote.note)) {
           _restoreNoteEditingTarget(_clampNoteEditingTarget(activeNote));
         }

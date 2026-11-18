@@ -42,8 +42,8 @@ class _NotesProvider extends OfficeProofingProvider {
               providerId: id,
               start: match.start,
               end: match.end,
-              ruleId: 'notes.' + category.name,
-              message: 'Review ' + needle + '.',
+              ruleId: 'notes.${category.name}',
+              message: 'Review $needle.',
               category: category,
               replacements: [replacement],
             ),
@@ -69,11 +69,11 @@ typedef _Fixture = ({
   _NotesProvider provider,
 });
 
-String _id(WmlNote note) => (note.endnote ? 'E' : '') + note.id.toString();
+String _id(WmlNote note) => '${note.endnote ? 'E' : ''}${note.id}';
 Finder _field(WmlNote note) =>
-    find.byKey(ValueKey<String>('notes-edit-' + _id(note)));
+    find.byKey(ValueKey<String>('notes-edit-${_id(note)}'));
 Finder _replacement(WmlNote note) =>
-    find.byKey(ValueKey<String>('notes-replacement-' + _id(note) + '-0'));
+    find.byKey(ValueKey<String>('notes-replacement-${_id(note)}-0'));
 
 Future<void> _pump(WidgetTester tester, {int frames = 6}) async {
   for (var index = 0; index < frames; index++) {
@@ -95,8 +95,9 @@ Future<void> _historyKey(
   bool useY = false,
 }) async {
   await tester.sendKeyDownEvent(LogicalKeyboardKey.controlLeft);
-  if (redo && !useY)
+  if (redo && !useY) {
     await tester.sendKeyDownEvent(LogicalKeyboardKey.shiftLeft);
+  }
   await tester.sendKeyEvent(
     useY ? LogicalKeyboardKey.keyY : LogicalKeyboardKey.keyZ,
   );
@@ -202,7 +203,7 @@ Future<void> _capture(WidgetTester tester, String name) async {
       final data = await image.toByteData(format: ui.ImageByteFormat.png);
       expect(data, isNotNull);
       await Directory(directory).create(recursive: true);
-      await File(directory + '/' + name + '.png').writeAsBytes(
+      await File('$directory/$name.png').writeAsBytes(
         data!.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes),
       );
     } finally {
@@ -241,55 +242,52 @@ void main() {
   });
 
   for (final endnote in [false, true]) {
-    testWidgets(
-      'live note correction retains focus and separates typing Undo: ' +
-          (endnote ? 'endnote' : 'footnote'),
-      (tester) async {
-        final (:controller, :note, :provider) = await _mount(
-          tester,
-          endnote: endnote,
-          text: 'Original note',
-        );
-        final manual = _NotesProvider(providerId: 'manual-notes');
-        controller.proofing.configureManual(
-          OfficeProofingService(providers: [manual]),
-        );
-        await tester.enterText(_field(note), 'Lead\nFeler note');
-        await _pump(tester, frames: 10);
-        expect(
-          provider.requests.any((request) => request.text.contains('Feler')),
-          isTrue,
-        );
-        expect(manual.requests, isEmpty);
-        expect(_underlines(tester, note)['Feler'], const Color(0xFFC62828));
+    testWidgets('live note correction retains focus and separates typing Undo: '
+        '${endnote ? 'endnote' : 'footnote'}', (tester) async {
+      final (:controller, :note, :provider) = await _mount(
+        tester,
+        endnote: endnote,
+        text: 'Original note',
+      );
+      final manual = _NotesProvider(providerId: 'manual-notes');
+      controller.proofing.configureManual(
+        OfficeProofingService(providers: [manual]),
+      );
+      await tester.enterText(_field(note), 'Lead\nFeler note');
+      await _pump(tester, frames: 10);
+      expect(
+        provider.requests.any((request) => request.text.contains('Feler')),
+        isTrue,
+      );
+      expect(manual.requests, isEmpty);
+      expect(_underlines(tester, note)['Feler'], const Color(0xFFC62828));
 
-        await tester.ensureVisible(_replacement(note));
-        await tester.tap(_replacement(note));
-        await _pump(tester);
-        expect(controller.noteEditText(note), 'Lead\nFehler note');
-        final field = tester.widget<TextField>(_field(note));
-        expect(field.focusNode!.hasFocus, isTrue);
-        expect(
-          field.controller!.selection,
-          const TextSelection.collapsed(offset: 11),
-        );
+      await tester.ensureVisible(_replacement(note));
+      await tester.tap(_replacement(note));
+      await _pump(tester);
+      expect(controller.noteEditText(note), 'Lead\nFehler note');
+      final field = tester.widget<TextField>(_field(note));
+      expect(field.focusNode!.hasFocus, isTrue);
+      expect(
+        field.controller!.selection,
+        const TextSelection.collapsed(offset: 11),
+      );
 
-        await _historyKey(tester);
-        expect(controller.noteEditText(note), 'Lead\nFeler note');
-        await _historyKey(tester);
-        expect(controller.noteEditText(note), 'Original note');
-        expect(controller.canUndo, isFalse);
-        await _historyKey(tester, redo: true);
-        expect(controller.noteEditText(note), 'Lead\nFeler note');
-        await _historyKey(tester, redo: true, useY: true);
-        expect(controller.noteEditText(note), 'Lead\nFehler note');
-        expect(
-          tester.widget<TextField>(_field(note)).focusNode!.hasFocus,
-          isTrue,
-        );
-        await _finish(tester, controller);
-      },
-    );
+      await _historyKey(tester);
+      expect(controller.noteEditText(note), 'Lead\nFeler note');
+      await _historyKey(tester);
+      expect(controller.noteEditText(note), 'Original note');
+      expect(controller.canUndo, isFalse);
+      await _historyKey(tester, redo: true);
+      expect(controller.noteEditText(note), 'Lead\nFeler note');
+      await _historyKey(tester, redo: true, useY: true);
+      expect(controller.noteEditText(note), 'Lead\nFehler note');
+      expect(
+        tester.widget<TextField>(_field(note)).focusNode!.hasFocus,
+        isTrue,
+      );
+      await _finish(tester, controller);
+    });
   }
 
   testWidgets('Notes keyboard undo restores tracked correction revisions', (

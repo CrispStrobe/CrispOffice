@@ -19,7 +19,7 @@ class TextLog:
         self.events = events
 
     def read_text(self, **_):
-        return "ordinary build output\n" + "\n".join(
+        return "Running build hooks...\n" + "\n".join(
             event if isinstance(event, str) else json.dumps(event) for event in self.events
         )
 
@@ -27,7 +27,8 @@ class TextLog:
 def case(ident, name, **result):
     return [
         {"type": "testStart", "test": {"id": ident, "suiteID": 0, "name": name}},
-        {"type": "testDone", "testID": ident, "result": "success", "skipped": False, **result},
+        {"type": "testDone", "testID": ident, "result": "success", "skipped": False,
+         "hidden": False, **result},
     ]
 
 

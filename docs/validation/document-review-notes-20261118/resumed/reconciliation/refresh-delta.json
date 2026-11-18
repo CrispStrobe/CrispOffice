@@ -1,0 +1,137 @@
+{
+  "schema": 1,
+  "repository": "CrispStrobe/quds_office_suite",
+  "initial_captured_at_utc": "2026-11-18T21:19:35.382Z",
+  "refresh_started_at_utc": "2026-11-18T21:29:41.784Z",
+  "refresh_captured_at_utc": "2026-11-18T21:29:43.176Z",
+  "initial_snapshot_sha256": "032a267b8c8d3603994497a02b599c6bad079b62ef06061ebc68747c0127873f",
+  "refresh_snapshot_sha256": "7ca489451db68571229ad7ef5621d09c93954a9926c4e74d178679673a280a97",
+  "counts": {
+    "fork_branches": 212,
+    "pull_request_heads": 175,
+    "upstream_branches": 4,
+    "total_references": 391,
+    "distinct_heads": 253
+  },
+  "changed_references": [
+    {
+      "kind": "fork_branch",
+      "ref": "refs/heads/codex/document-review-notes-20261118",
+      "before": "c9f8cd8e213b0d5ed3edc31546dd19db553048f2",
+      "after": "e92f875e5a30147770680829dfe1e9bf7bc1262a",
+      "change": "head_changed",
+      "own_task_progress": true
+    },
+    {
+      "kind": "fork_branch",
+      "ref": "refs/heads/codex/mail-reader-20261118",
+      "before": "514c341d985e01bbc38f8ec4a1f5708e2b7fc8f3",
+      "after": "8440b518dea2c39ce110098441c4aedff3cf4ed3",
+      "change": "head_changed",
+      "own_task_progress": false
+    },
+    {
+      "kind": "fork_branch",
+      "ref": "refs/heads/codex/offline-thesaurus-20261118",
+      "before": "5535d2eb8ed153b937f372912d3279c7794090ed",
+      "after": "0ea205e0ee35bb43635960a0edafd42dc4c16e8d",
+      "change": "head_changed",
+      "own_task_progress": false
+    },
+    {
+      "kind": "fork_branch",
+      "ref": "refs/heads/codex/zotero-word-parity-20261118",
+      "before": "2d31df46d9aa684c60b75053671b0f45016388d2",
+      "after": "8fa115e8358e305872fd14e757f9133fa9c1540d",
+      "change": "head_changed",
+      "own_task_progress": false
+    },
+    {
+      "kind": "pull_request",
+      "ref": "172",
+      "before": "514c341d985e01bbc38f8ec4a1f5708e2b7fc8f3",
+      "after": "8440b518dea2c39ce110098441c4aedff3cf4ed3",
+      "change": "head_changed",
+      "own_task_progress": false
+    },
+    {
+      "kind": "pull_request",
+      "ref": "173",
+      "before": "2d31df46d9aa684c60b75053671b0f45016388d2",
+      "after": "8fa115e8358e305872fd14e757f9133fa9c1540d",
+      "change": "head_changed",
+      "own_task_progress": false
+    },
+    {
+      "kind": "pull_request",
+      "ref": "174",
+      "before": "5535d2eb8ed153b937f372912d3279c7794090ed",
+      "after": "0ea205e0ee35bb43635960a0edafd42dc4c16e8d",
+      "change": "head_changed",
+      "own_task_progress": false
+    },
+    {
+      "kind": "pull_request",
+      "ref": "175",
+      "before": "c9f8cd8e213b0d5ed3edc31546dd19db553048f2",
+      "after": "e92f875e5a30147770680829dfe1e9bf7bc1262a",
+      "change": "head_changed",
+      "own_task_progress": true
+    }
+  ],
+  "external_changes": [
+    {
+      "kind": "fork_branch",
+      "ref": "refs/heads/codex/mail-reader-20261118",
+      "before": "514c341d985e01bbc38f8ec4a1f5708e2b7fc8f3",
+      "after": "8440b518dea2c39ce110098441c4aedff3cf4ed3",
+      "change": "head_changed",
+      "own_task_progress": false
+    },
+    {
+      "kind": "fork_branch",
+      "ref": "refs/heads/codex/offline-thesaurus-20261118",
+      "before": "5535d2eb8ed153b937f372912d3279c7794090ed",
+      "after": "0ea205e0ee35bb43635960a0edafd42dc4c16e8d",
+      "change": "head_changed",
+      "own_task_progress": false
+    },
+    {
+      "kind": "fork_branch",
+      "ref": "refs/heads/codex/zotero-word-parity-20261118",
+      "before": "2d31df46d9aa684c60b75053671b0f45016388d2",
+      "after": "8fa115e8358e305872fd14e757f9133fa9c1540d",
+      "change": "head_changed",
+      "own_task_progress": false
+    },
+    {
+      "kind": "pull_request",
+      "ref": "172",
+      "before": "514c341d985e01bbc38f8ec4a1f5708e2b7fc8f3",
+      "after": "8440b518dea2c39ce110098441c4aedff3cf4ed3",
+      "change": "head_changed",
+      "own_task_progress": false
+    },
+    {
+      "kind": "pull_request",
+      "ref": "173",
+      "before": "2d31df46d9aa684c60b75053671b0f45016388d2",
+      "after": "8fa115e8358e305872fd14e757f9133fa9c1540d",
+      "change": "head_changed",
+      "own_task_progress": false
+    },
+    {
+      "kind": "pull_request",
+      "ref": "174",
+      "before": "5535d2eb8ed153b937f372912d3279c7794090ed",
+      "after": "0ea205e0ee35bb43635960a0edafd42dc4c16e8d",
+      "change": "head_changed",
+      "own_task_progress": false
+    }
+  ],
+  "external_incoming_work_advanced": true,
+  "all_external_captured_heads_unchanged": false,
+  "github_actions_or_status_calls": 0,
+  "single_refresh_only": true,
+  "scope": "One bounded read-only refresh of all fork branch heads, all PR heads and four upstream branch heads. Own #175 and its continuation branch are separately identified."
+}

@@ -1,0 +1,14 @@
+Running build hooks...Running build hooks...Unhandled exception:
+Converting object to an encodable object failed: Instance of 'Version'
+#0      _JsonStringifier.writeObject (dart:convert/json.dart:826:7)
+#1      _JsonStringifier.writeMap (dart:convert/json.dart:910:7)
+#2      _JsonStringifier.writeJsonValue (dart:convert/json.dart:865:21)
+#3      _JsonStringifier.writeObject (dart:convert/json.dart:817:9)
+#4      _JsonStringStringifier.printOn (dart:convert/json.dart:1026:17)
+#5      _JsonStringStringifier.stringify (dart:convert/json.dart:1007:5)
+#6      JsonEncoder.convert (dart:convert/json.dart:352:30)
+#7      JsonCodec.encode (dart:convert/json.dart:237:45)
+#8      jsonEncode (dart:convert/json.dart:118:12)
+#9      main (file:///workspace/scratch/be1908103559/runtime/sqlite-smoke/bin/smoke.dart:10:11)
+#10     _delayEntrypointInvocation.<anonymous closure> (dart:isolate-patch/isolate_patch.dart:313:19)
+#11     _RawReceivePort._handleMessage (dart:isolate-patch/isolate_patch.dart:192:12)

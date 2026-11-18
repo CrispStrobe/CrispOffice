@@ -1,0 +1,9 @@
+Formatted packages/quds_office_editor/lib/src/editor_word/render_word_canvas.dart
+Formatted packages/quds_office_editor/lib/src/embed/office_controller.dart
+Formatted packages/quds_office_editor/lib/src/embed/word_notes_pane.dart
+Formatted packages/quds_office_editor/test/word_header_footer_navigation_test.dart
+Formatted packages/quds_office_editor/test/word_notes_proofing_controller_test.dart
+Formatted packages/quds_office_editor/test/word_notes_proofing_pane_test.dart
+Formatted packages/quds_office_editor/test/word_zotero_direct_command_test.dart
+Formatted packages/quds_office_editor/test/word_zotero_navigation_test.dart
+Formatted 16 files (8 changed) in 1.17 seconds.

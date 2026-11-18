@@ -130,7 +130,10 @@
     }
   ],
   "extra_inputs": [
-    "docs/validation/document-review-notes-20261118/test_run_checks.py"
+    "docs/validation/document-review-notes-20261118/test_run_checks.py",
+    "tools/mail/check_store.py",
+    "tools/mail/check_reader.py",
+    "tools/mail/test_check_store.py"
   ],
   "analysis": "changed",
   "format": "changed"
