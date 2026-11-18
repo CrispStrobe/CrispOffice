@@ -11,6 +11,8 @@ from pathlib import Path
 import subprocess
 import time
 
+from build_binding import FIXTURE_FILES, binding_metadata
+
 parser = argparse.ArgumentParser()
 parser.add_argument('--root', type=Path, required=True,
                     help='Task root containing the checkout, zotero-validation and zotero-toolchain.')
@@ -49,13 +51,11 @@ def snapshot():
         for name in ['lib', 'test', 'assets']:
             directory = package / name
             if directory.exists(): files.update(p for p in directory.rglob('*') if p.is_file())
-    result = {str(p.relative_to(repo)): {'sha256': sha(p), 'bytes': p.stat().st_size}
+    result = {p.relative_to(repo).as_posix(): {'sha256': sha(p), 'bytes': p.stat().st_size}
               for p in sorted(files)}
     result['__workspace_lock__'] = {'sha256': sha(workspace / 'pubspec.lock')}
     result['__workspace_package_config__'] = {'sha256': sha(workspace / '.dart_tool/package_config.json')}
-    for name in ['lib/main.dart', 'native_pack_test.dart', 'native_visual_test.dart',
-                 'install_offline.py', 'run_browser.py', 'run_final_validation.py',
-                 'test_browser_harness.py']:
+    for name in FIXTURE_FILES:
         result['__fixture__/' + name] = {'sha256': sha(fixture / name)}
     return result
 
@@ -134,6 +134,7 @@ try:
     if after_tests != before: raise RuntimeError('source changed during native test run')
     build_command = [flutter, 'build', 'web', '--no-pub', '--release', '--csp',
                      '--no-web-resources-cdn', '--no-wasm-dry-run',
+                     '--pwa-strategy=none',
                      '--target=' + str(fixture / 'lib/main.dart'),
                      '--output=' + str(compiled)]
     build_exit = run('browser-build', build_command, workspace / 'packages/quds_office_editor/example')
@@ -141,17 +142,20 @@ try:
     after = snapshot()
     receipt['source_unchanged_during_build'] = after == before
     if after != before: raise RuntimeError('source changed during browser compile')
-    inventory = [{'path': str(p.relative_to(compiled)), 'bytes': p.stat().st_size, 'sha256': sha(p)}
+    inventory = [{'path': p.relative_to(compiled).as_posix(), 'bytes': p.stat().st_size, 'sha256': sha(p)}
                  for p in sorted(compiled.rglob('*')) if p.is_file()]
     with gzip.open(output / 'browser-build-files.json.gz', 'wt') as stream:
         json.dump(inventory, stream, indent=2)
     receipt['compiled_browser_files'] = len(inventory)
     receipt['compiled_browser_bytes'] = sum(p['bytes'] for p in inventory)
+    receipt['browser_build_binding'] = binding_metadata(output)
     receipt['browser_execution'] = {
         'status': 'not_run',
         'offline_gate': 'pending; this runner compiles but does not launch a browser',
-        'install_command': ['python', str(fixture / 'install_offline.py'), str(compiled)],
+        'install_command': ['python', str(fixture / 'install_offline.py'), str(compiled),
+                            '--compile-receipt', str(output / 'receipt.json')],
         'acceptance_command': ['python', str(fixture / 'run_browser.py'), str(compiled),
+                               '--compile-receipt', str(output / 'receipt.json'),
                                '--output', str(output / 'browser-acceptance')],
     }
     receipt['status'] = 'native_passed_web_compiled_browser_not_run'

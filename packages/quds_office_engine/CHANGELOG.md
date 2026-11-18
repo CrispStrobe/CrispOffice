@@ -4,6 +4,12 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Add native Zotero research-note insertion through the HTTP Citing Protocol,
+  retaining paragraph/heading structure, supported character formatting,
+  hyperlinks and active citation placeholders. Stage complete note operations,
+  respect document citation order and note placement, and refuse unsupported or
+  incomplete fragments before applying them.
+
 - Recognize decomposed accented forms of all shipped German dictionary letters,
   including Joël and Škoda, and normalize accents separated by soft hyphens.
   Personal and ignored words share the same case-sensitive comparison.

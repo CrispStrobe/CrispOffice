@@ -192,23 +192,15 @@ VoidCallback _binding(WidgetTester tester, LogicalKeyboardKey key) {
 }
 
 Future<void> _finishCommand(WidgetTester tester, _Desktop desktop) async {
-  final completion = find.textContaining('without changing the document');
-  for (var tick = 0; tick < 30 && completion.evaluate().isEmpty; tick++) {
-    await tester.pump(const Duration(milliseconds: 1));
+  for (
+    var tick = 0;
+    tick < 60 && desktop.disposals < desktop.connections;
+    tick++
+  ) {
+    await tester.pump(const Duration(milliseconds: 10));
   }
-  expect(
-    completion,
-    findsOneWidget,
-    reason:
-        '${desktop.requests}\n${find.descendant(of: find.byType(Dialog), matching: find.byType(Text)).evaluate().map((element) => (element.widget as Text).data).join('\n')}',
-  );
-}
-
-Future<void> _closeZotero(WidgetTester tester) async {
-  final dialog = find.byType(Dialog);
-  expect(dialog, findsOneWidget);
-  Navigator.of(tester.element(dialog)).pop();
   await _frames(tester);
+  expect(desktop.disposals, desktop.connections);
   expect(find.byType(Dialog), findsNothing);
 }
 
@@ -247,18 +239,74 @@ void main() {
           await _shortcut(tester, action.key, meta: meta);
           expect(desktop.commands, [action.command]);
           expect(desktop.connections, 1);
-          expect(find.byType(Dialog), findsOneWidget);
           await _finishCommand(tester, desktop);
           expect(controller.document, same(document));
           expect(controller.canUndo, isFalse);
           expect(clipboardCalls, isEmpty);
-          await _closeZotero(tester);
+          expect(
+            tester
+                .widget<QudsWordEditor>(find.byType(QudsWordEditor))
+                .focusNode!
+                .hasPrimaryFocus,
+            isTrue,
+          );
           expect(desktop.disposals, 1);
           expect(tester.takeException(), isNull);
         },
       );
     }
   }
+
+  testWidgets('successive shortcuts return directly to the writing caret', (
+    tester,
+  ) async {
+    final desktop = _Desktop();
+    final controller = await _studio(tester, desktop);
+    controller.caret.logicalIndex = 3;
+    controller.caret.collapseSelection();
+    for (final key in [LogicalKeyboardKey.keyC, LogicalKeyboardKey.keyR]) {
+      await _shortcut(tester, key);
+      await _finishCommand(tester, desktop);
+      expect(controller.caret.logicalIndex, 3);
+      expect(
+        tester
+            .widget<QudsWordEditor>(find.byType(QudsWordEditor))
+            .focusNode!
+            .hasPrimaryFocus,
+        isTrue,
+      );
+    }
+    expect(desktop.commands, ['addEditCitation', 'refresh']);
+    expect(desktop.connections, 2);
+    expect(desktop.disposals, 2);
+    expect(controller.canUndo, isFalse);
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('Add Zotero note ribbon invokes the native note picker', (
+    tester,
+  ) async {
+    final desktop = _Desktop();
+    final controller = await _studio(tester, desktop);
+    await tester.tap(find.text('Insert').first);
+    await _frames(tester);
+    await _tapCommand(tester, 'Add Zotero note');
+    await _finishCommand(tester, desktop);
+    expect(desktop.commands, ['addNote']);
+    expect(controller.canUndo, isFalse);
+    expect(
+      controller.document.paragraphs.single.text,
+      'A citation belongs here.',
+    );
+    expect(
+      tester
+          .widget<QudsWordEditor>(find.byType(QudsWordEditor))
+          .focusNode!
+          .hasPrimaryFocus,
+      isTrue,
+    );
+    expect(tester.takeException(), isNull);
+  });
 
   testWidgets('Ctrl Alt C finds the citation in the focused Notes editor', (
     tester,
@@ -305,7 +353,7 @@ void main() {
     expect(controller.document.paragraphs.single.text, body);
     expect(controller.zoteroFields.single.cachedText, '(Old)');
     expect(controller.canUndo, isFalse);
-    await _closeZotero(tester);
+    expect(field.focusNode!.hasPrimaryFocus, isTrue);
     expect(desktop.disposals, 1);
     expect(tester.takeException(), isNull);
   });
@@ -338,11 +386,22 @@ void main() {
       expect(controller.canUndo, isFalse);
       await tester.tap(find.text('Insert').first);
       await _frames(tester);
-      expect(tester.widget<StudioCmd>(_command('Zotero')).onPressed, isNull);
+      expect(tester.widget<StudioCmd>(_command('Zotero')).onPressed, isNotNull);
       expect(
         tester.widget<StudioCmd>(_command('Add/Edit citation')).onPressed,
         isNull,
       );
+      await _tapCommand(tester, 'Zotero');
+      expect(find.text('Zotero references'), findsOneWidget);
+      expect(
+        find.text(
+          'This document is read-only. You can browse and export reference data.',
+        ),
+        findsOneWidget,
+      );
+      expect(desktop.commands, isEmpty);
+      Navigator.of(tester.element(find.byType(Dialog))).pop();
+      await _frames(tester);
       expect(tester.takeException(), isNull);
     },
   );
@@ -427,14 +486,12 @@ void main() {
       desktop.firstResponse!.complete();
       await _frames(tester);
       await _finishCommand(tester, desktop);
-      await _closeZotero(tester);
       expect(desktop.disposals, 1);
       refresh();
       await _frames(tester);
       expect(desktop.connections, 2);
       expect(desktop.commands, ['addEditCitation', 'refresh']);
       await _finishCommand(tester, desktop);
-      await _closeZotero(tester);
       expect(desktop.disposals, 2);
       expect(tester.takeException(), isNull);
     },
