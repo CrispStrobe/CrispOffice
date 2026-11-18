@@ -20,6 +20,7 @@ def hashes(root: Path) -> dict[str, str]:
     paths = [root / name for name in (
         '.fvmrc', 'analysis_options.yaml', 'pubspec.yaml', 'pubspec.lock',
         'tools/mail/check_store.py', 'tools/mail/check_reader.py',
+        'tools/mail/test_check_store.py',
     )]
     for package in ('quds_mail_core', 'quds_mail_store'):
         base = root / 'packages' / package
@@ -35,8 +36,12 @@ def hashes(root: Path) -> dict[str, str]:
 def test_summary(log: Path) -> dict[str, object]:
     cases: dict[int, dict[str, object]] = {}
     errors: list[dict[str, object]] = []
+    protocol_issues: list[str] = []
+    completed: set[int] = set()
+    starts = 0
+    terminals = 0
     terminal = None
-    for line in log.read_text(errors='replace').splitlines():
+    for number, line in enumerate(log.read_text(errors='replace').splitlines(), 1):
         # Dart build-hook progress may precede the first JSON event on a line.
         brace = line.find('{')
         if brace < 0:
@@ -44,29 +49,73 @@ def test_summary(log: Path) -> dict[str, object]:
         try:
             event = json.loads(line[brace:])
         except json.JSONDecodeError:
+            protocol_issues.append(f'Line {number}: malformed JSON event')
             continue
         if not isinstance(event, dict):
+            protocol_issues.append(f'Line {number}: event is not an object')
             continue
         kind = event.get('type')
+        if not isinstance(kind, str):
+            protocol_issues.append(f'Line {number}: missing event type')
+            continue
+        if terminals:
+            protocol_issues.append(f'Line {number}: event after terminal result')
+        if kind == 'start':
+            starts += 1
+            if starts != 1:
+                protocol_issues.append(f'Line {number}: duplicate start event')
+        elif starts != 1:
+            protocol_issues.append(f'Line {number}: event without one start')
         if kind == 'testStart':
-            case = event['test']
-            cases[case['id']] = {'name': case['name'], 'suite_id': case['suiteID']}
+            case = event.get('test')
+            if (not isinstance(case, dict) or type(case.get('id')) is not int
+                    or not isinstance(case.get('name'), str)
+                    or type(case.get('suiteID')) is not int):
+                protocol_issues.append(f'Line {number}: invalid test start')
+                continue
+            identifier = case['id']
+            if identifier in cases:
+                protocol_issues.append(f'Line {number}: duplicate test identifier')
+                continue
+            cases[identifier] = {'name': case['name'], 'suite_id': case['suiteID']}
         elif kind == 'testDone':
-            case = cases.setdefault(event['testID'], {})
-            case.update(result=event.get('result'), skipped=event.get('skipped'),
+            identifier = event.get('testID')
+            if type(identifier) is not int or identifier not in cases:
+                protocol_issues.append(f'Line {number}: unmatched test completion')
+                continue
+            if identifier in completed:
+                protocol_issues.append(f'Line {number}: duplicate test completion')
+                continue
+            completed.add(identifier)
+            result = event.get('result')
+            if (not isinstance(result, str)
+                    or result not in {'success', 'failure', 'error'}
+                    or type(event.get('skipped')) is not bool
+                    or type(event.get('hidden')) is not bool):
+                protocol_issues.append(f'Line {number}: invalid test completion')
+            case = cases[identifier]
+            case.update(result=result, skipped=event.get('skipped'),
                         hidden=event.get('hidden'))
         elif kind == 'error':
             errors.append(event)
         elif kind == 'done':
+            terminals += 1
             terminal = event.get('success')
+            if type(terminal) is not bool:
+                protocol_issues.append(f'Line {number}: invalid terminal result')
     substantive = [case for case in cases.values()
                    if not case.get('hidden') and not str(case.get('name', '')).startswith('loading ')]
     passed = sum(case.get('result') == 'success' and not case.get('skipped') for case in substantive)
     skipped = sum(bool(case.get('skipped')) for case in substantive)
     failed = [case for case in substantive if case.get('result') != 'success' and not case.get('skipped')]
+    incomplete = len(set(cases) - completed)
     return dict(passed=passed, skipped=skipped, failed=len(failed), errors=len(errors),
-                terminal_success=terminal, cases=substantive,
-                valid=terminal is True and passed > 0 and skipped == 0 and not failed and not errors)
+                terminal_success=terminal, start_events=starts, terminal_events=terminals,
+                incomplete=incomplete, protocol_errors=len(protocol_issues),
+                protocol_issues=protocol_issues, cases=substantive,
+                valid=(terminal is True and starts == 1 and terminals == 1
+                       and passed > 0 and skipped == 0 and not failed and not errors
+                       and not incomplete and not protocol_issues))
 
 
 def main() -> int:
@@ -142,6 +191,9 @@ def main() -> int:
 
         cmd = [str(dart)]
         ok = run('runtime', cmd + ['--version'])
+        ok &= run('runner-regressions', [sys.executable, '-m', 'unittest',
+                                         'discover', '-s', 'tools/mail',
+                                         '-p', 'test_check_store.py', '-v'])
         ok &= run('locked-resolution', cmd + ['pub', 'get', '--enforce-lockfile'])
         if ok:
             core = root / 'packages/quds_mail_core'
@@ -165,7 +217,7 @@ def main() -> int:
                 target = output / (name + '.js')
                 target.unlink(missing_ok=True)
                 ok &= run(name, cmd + ['compile', 'js', source, '-o', str(target)], store)
-            ok &= run('whitespace', ['git', 'diff', '--check'])
+            ok &= run('whitespace', ['git', 'diff', '--check', 'HEAD'])
         receipt['status'] = 'PASS' if ok else 'FAIL'
         code = 0 if ok else 1
     except KeyboardInterrupt:

@@ -27,6 +27,14 @@ head `2fef06f5fe9aefb07a48c75c0e762eee3edf26e1`. The exact two parents and
 main/handoff ancestry are preserved in the [merge receipt](incoming/incoming_merged_ancestry.json).
 This is a bounded capture, not a claim about publications after that inventory.
 
+During final publication, GitHub reported PR #169 merged at the captured review
+head. Main `690e6ac8a1f7d8f5c8d4bea69d989a6728f3b27e` has exactly that review
+tree. It was reconciled into this branch with **no application content change**;
+the remaining edits document the ancestry and review destination.
+The [late-main receipt](incoming/late-main-reconciliation.json) records this
+comparison. The newer work in this report belongs to a separate draft follow-up,
+rather than the already-merged PR #169.
+
 Four source conflicts were reviewed. The result preserves measured title/ribbon
 sizes and protected-document inspection from review, and adds Mail's compact
 navigation, separate compact PDF scrolling, flexible status text and explicit
@@ -210,4 +218,5 @@ python quds_office_suite/docs/validation/thesaurus-20261118/continuation/local/f
 
 Literal replacements, bounded morphology, the shared German regional corpus,
 and the absence of automatic agreement, reinflection or contextual sense
-selection remain explicit product boundaries. PR #169 stays a draft.
+selection remain explicit product boundaries. The follow-up remains draft work
+until its outstanding release acceptance is completed.

@@ -1,0 +1,235 @@
+{
+  "schema_version": 1,
+  "status": "BLOCKED_AFTER_FAILED_LOCAL_ATTEMPT",
+  "repository": "CrispStrobe/quds_office_suite",
+  "integrated_code_commit": "8a6105a7ec217b48105d171703c8d0294c7d2dc6",
+  "salvage_created_utc": "2026-11-18 20:51:08 UTC",
+  "saved_from": "Observed exec stdout plus exact runner command definition and earlier metadata; not a replacement for inaccessible raw logs.",
+  "qualification_accepted": false,
+  "local_attempt_process_exit": 1,
+  "observed_executor_failure": "bwrap: Can't create file /workspace/scratch/28080c14894b/.git: No space left on device",
+  "limitation": "After the tests reported their results, every new executor command failed before launching. Raw logs, source digest, individual process return codes, and final source comparison could not be read back. The failure cause of each individual test command is not independently established from its log. Filesystem exhaustion is directly observed, and the overall attempt is not accepted.",
+  "local_artifacts": {
+    "receipt": "/workspace/scratch/28080c14894b/quds_office_suite/docs/validation/mail-store-20261118/incoming/late-checks/receipt.json",
+    "source_manifest": "/workspace/scratch/28080c14894b/quds_office_suite/docs/validation/mail-store-20261118/incoming/late-checks/source-before.json.gz",
+    "runner": "/workspace/scratch/28080c14894b/toolchain/qualify_late_incoming.py",
+    "plan": "/workspace/scratch/28080c14894b/toolchain/late-incoming-plan.json",
+    "access": "Currently blocked by executor initialization failure; present artifacts are not claimed saved remotely."
+  },
+  "source_binding": {
+    "intended_manifest": "All tracked Dart source/tests, package manifests, relevant assets of engine/editor/reports/legacy parser/proofing dependencies; root pinned SDK/lock/options; thesaurus tools, offline fixtures and source native report.",
+    "start_input_diff_check": "Runner passed the check that selected input files had no modifications against HEAD before entering engine tests.",
+    "source_input_digest": null,
+    "final_source_comparison": null,
+    "reason": "Not recovered from local receipt."
+  },
+  "environment": {
+    "flutter_version": "3.47.8",
+    "dart_version": "3.13.7",
+    "sdk_path": "/workspace/scratch/28080c14894b/toolchain/flutter",
+    "env_helper": "/workspace/scratch/28080c14894b/toolchain/env.sh",
+    "pub_cache": "/workspace/scratch/28080c14894b/pub-cache",
+    "tmpdir": "/workspace/scratch/28080c14894b/tmp",
+    "ci_environment_flag": "true for local deterministic command behavior only; no GitHub CI used",
+    "dart_suppress_analytics": true,
+    "flutter_suppress_analytics": true
+  },
+  "runner_invocation": [
+    "python",
+    "/workspace/scratch/28080c14894b/toolchain/qualify_late_incoming.py",
+    "--repo",
+    "/workspace/scratch/28080c14894b/quds_office_suite",
+    "--sdk",
+    "/workspace/scratch/28080c14894b/toolchain/flutter",
+    "--plan",
+    "/workspace/scratch/28080c14894b/toolchain/late-incoming-plan.json",
+    "--output",
+    "/workspace/scratch/28080c14894b/quds_office_suite/docs/validation/mail-store-20261118/incoming/late-checks"
+  ],
+  "checks": [
+    {
+      "name": "engine",
+      "command": [
+        "/workspace/scratch/28080c14894b/toolchain/flutter/bin/cache/dart-sdk/bin/dart",
+        "test",
+        "--reporter",
+        "json",
+        "--concurrency=2",
+        "test/word_zotero_add_note_test.dart",
+        "test/zotero_add_note_protocol_test.dart",
+        "test/zotero_citing_test.dart"
+      ],
+      "cwd": "/workspace/scratch/28080c14894b/quds_office_suite/packages/quds_office_engine",
+      "status": "FAIL",
+      "process_exit": "nonzero, exact code not recovered",
+      "observed_report": {
+        "passed": 87,
+        "skipped": 0,
+        "failed": 0,
+        "errors": 0,
+        "terminal_success": true,
+        "valid": true
+      },
+      "acceptance": "NOT ACCEPTED: passing test events do not override a failed process."
+    },
+    {
+      "name": "editor",
+      "command": [
+        "/workspace/scratch/28080c14894b/toolchain/flutter/bin/cache/dart-sdk/bin/dart",
+        "/workspace/scratch/28080c14894b/toolchain/flutter/bin/cache/flutter_tools.snapshot",
+        "--no-version-check",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "json",
+        "--concurrency=2",
+        "test/word_zotero_add_note_controller_test.dart",
+        "test/word_zotero_direct_command_test.dart",
+        "test/word_zotero_navigation_dialog_test.dart",
+        "test/word_zotero_navigation_pane_test.dart",
+        "test/word_zotero_navigation_test.dart"
+      ],
+      "cwd": "/workspace/scratch/28080c14894b/quds_office_suite/packages/quds_office_editor",
+      "status": "FAIL",
+      "process_exit": null,
+      "observed_report": {
+        "passed": 0,
+        "skipped": 0,
+        "failed": 0,
+        "errors": 0,
+        "terminal_success": null,
+        "valid": false
+      }
+    },
+    {
+      "name": "studio",
+      "command": [
+        "/workspace/scratch/28080c14894b/toolchain/flutter/bin/cache/dart-sdk/bin/dart",
+        "/workspace/scratch/28080c14894b/toolchain/flutter/bin/cache/flutter_tools.snapshot",
+        "--no-version-check",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "json",
+        "--concurrency=2",
+        "test/studio_zotero_shortcuts_test.dart"
+      ],
+      "cwd": "/workspace/scratch/28080c14894b/quds_office_suite/packages/quds_office_editor/example",
+      "status": "FAIL",
+      "process_exit": null,
+      "observed_report": {
+        "passed": 0,
+        "skipped": 0,
+        "failed": 0,
+        "errors": 0,
+        "terminal_success": null,
+        "valid": false
+      }
+    },
+    {
+      "name": "studio_layout",
+      "command": [
+        "/workspace/scratch/28080c14894b/toolchain/flutter/bin/cache/dart-sdk/bin/dart",
+        "/workspace/scratch/28080c14894b/toolchain/flutter/bin/cache/flutter_tools.snapshot",
+        "--no-version-check",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "json",
+        "--concurrency=2",
+        "--name",
+        "over-limit drafts explain the limit without provider work|narrow Arabic reply suggestions remain usable with larger text",
+        "test/studio_comment_draft_proofing_test.dart"
+      ],
+      "cwd": "/workspace/scratch/28080c14894b/quds_office_suite/packages/quds_office_editor/example",
+      "status": "FAIL",
+      "process_exit": null,
+      "observed_report": {
+        "passed": 0,
+        "skipped": 0,
+        "failed": 0,
+        "errors": 0,
+        "terminal_success": null,
+        "valid": false
+      }
+    },
+    {
+      "name": "thesaurus_export",
+      "command": [
+        "python",
+        "-m",
+        "unittest",
+        "-v",
+        "test_export_review_packet.py"
+      ],
+      "cwd": "/workspace/scratch/28080c14894b/quds_office_suite/tools/thesaurus",
+      "status": "FAIL",
+      "process_exit": null,
+      "observed_report": {
+        "passed": 2,
+        "skipped": 0,
+        "failed": 4,
+        "reported": 6,
+        "valid": false
+      },
+      "command_note": "The runner uses sys.executable for the Python executable; that absolute spelling is in the local log and cannot currently be read."
+    },
+    {
+      "name": "thesaurus_harness",
+      "command": [
+        "python",
+        "-m",
+        "unittest",
+        "-v",
+        "test_browser_harness.py"
+      ],
+      "cwd": "/workspace/scratch/28080c14894b/quds_office_suite/docs/validation/thesaurus-20261118/continuation/local/fixtures",
+      "status": "FAIL",
+      "process_exit": null,
+      "observed_report": {
+        "passed": 4,
+        "skipped": 0,
+        "failed": 11,
+        "reported": 15,
+        "valid": false
+      },
+      "command_note": "The runner uses sys.executable for the Python executable; that absolute spelling is in the local log and cannot currently be read."
+    },
+    {
+      "name": "analysis",
+      "command": [
+        "/workspace/scratch/28080c14894b/toolchain/flutter/bin/cache/dart-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "packages/quds_office_editor/example/lib/suite_workspace.dart",
+        "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+        "packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart",
+        "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+        "packages/quds_office_editor/lib/src/embed/word_notes_pane.dart",
+        "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart",
+        "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart",
+        "packages/quds_office_engine/lib/src/word/model/word_zotero_note.dart",
+        "packages/quds_office_engine/lib/src/zotero/zotero_citing.dart"
+      ],
+      "cwd": "/workspace/scratch/28080c14894b/quds_office_suite",
+      "status": "PASS_OBSERVED",
+      "process_exit": 0,
+      "qualification_note": "Runner stdout reported analysis: PASS. Its raw log and final source comparison are currently unavailable; this does not make the failed overall attempt a pass."
+    }
+  ],
+  "next_actions": [
+    "Recover a writable local runtime or resume in a fresh workspace from the saved GitHub branch.",
+    "Preserve and inspect this attempt's raw logs and receipt if the current workspace can be recovered.",
+    "Repeat the six failed test groups against the saved integrated product tree. Do not add the 87 observed engine test events to accepted totals until its command exits successfully.",
+    "Use JSON terminal success, zero skipped/error/failed events and nonzero substantive test count plus exit zero for Dart/Flutter. Require all Python tests and zero skips with exit zero.",
+    "Run targeted analysis again only if the original passing analysis evidence cannot be recovered or its relevant source changed.",
+    "Record before/after source hashes, exact commands, logs and a final receipt, and save that evidence incrementally to the remote branch."
+  ],
+  "scope": "Only new or modified incoming functionality and affected integration cases. The prior 56-test cohort is not rerun wholesale. Exporter/harness tests do not establish lexical review or actual browser execution.",
+  "browser_runtime": "NOT RUN; Node mocks and Python harness tests do not qualify a browser",
+  "ci": {
+    "queried": false,
+    "awaited": false,
+    "rerun": false
+  }
+}

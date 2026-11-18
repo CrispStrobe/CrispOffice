@@ -1,0 +1,25 @@
+{
+  "recorded_at_utc": "2026-11-18 20:48:06 UTC",
+  "prior_branch_head": "7c4f8bfa67b69e6fa4d8809724ae036cdcde492f",
+  "main_head": "690e6ac8a1f7d8f5c8d4bea69d989a6728f3b27e",
+  "main_parents": [
+    "4fbc8741f314af67592517595c760ba3036dedba",
+    "4600c0ebc9ac5e6acabd92935821d1c15315f2c1"
+  ],
+  "main_tree": "a2b4838f217c31e6428a849d55516d740ac0a825",
+  "captured_review_head": "4600c0ebc9ac5e6acabd92935821d1c15315f2c1",
+  "main_content_identical_to_captured_review": true,
+  "validated_branch_tree": "ca9032b40686f3083a6bb3621c6d9dcb94d86aef",
+  "observed_merge_index_diff_empty": true,
+  "application_content_changed_by_merge": false,
+  "application_retest_required": false,
+  "reason": "Main concurrently merged the captured review head. Its content is identical to the already integrated review tree; the merge changes ancestry only. The final remote checkpoint edits three documentation/metadata paths.",
+  "previous_pr": {
+    "number": 169,
+    "merged": true,
+    "merged_at_utc": "2026-11-18T20:17:10Z",
+    "recorded_head": "4600c0ebc9ac5e6acabd92935821d1c15315f2c1",
+    "merge_commit": "690e6ac8a1f7d8f5c8d4bea69d989a6728f3b27e"
+  },
+  "github_actions_queried": false
+}

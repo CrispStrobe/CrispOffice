@@ -149,5 +149,13 @@
     "queried": false,
     "dispatched": false,
     "waited": false
+  },
+  "late_main_reconciliation": "incoming/late-main-reconciliation.json",
+  "prior_pr": {
+    "number": 169,
+    "merged": true,
+    "merged_at_utc": "2026-11-18T20:17:10Z",
+    "recorded_head": "4600c0ebc9ac5e6acabd92935821d1c15315f2c1",
+    "merge_commit": "690e6ac8a1f7d8f5c8d4bea69d989a6728f3b27e"
   }
 }

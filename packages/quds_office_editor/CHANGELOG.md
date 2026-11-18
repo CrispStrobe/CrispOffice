@@ -4,6 +4,17 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Add inline Notes spelling, grammar and style underlines with nearby
+  correction, ignore/dictionary and finding-navigation controls. Keep live-check
+  status and explicit checking in the pane; F7 checks and Alt+F7 /
+  Alt+Shift+F7 navigate the active note's findings.
+- Route Notes review to the persistent Changes pane. Reveal findings and
+  supported revisions at the actual footnote/endnote text selection, preserving
+  hidden reference offsets, composition guards and correction Undo ownership.
+- Edit and reveal the exact rendered default, first-page or even-page
+  header/footer story. Keep its caret, selection, IME, language controls and
+  proofing priority together; paint selection and chrome below readable text.
+
 - Add **Add Zotero note** to the native references tools and Studio ribbon,
   with complete insertion/undo and DOCX persistence of active citation fields.
 - Return direct Zotero ribbon/keyboard commands to the body or Notes caret after

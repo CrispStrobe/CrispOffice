@@ -23,6 +23,9 @@ import 'office_theme.dart';
 /// The persistent review workspace shown beside (or below) a Word document.
 enum WordReviewPaneTab { proofing, changes }
 
+/// The page variant of the header or footer currently being edited.
+enum WordHeaderFooterVariant { standard, firstPage, evenPage }
+
 /// Selection in a Notes pane, measured in [WordNotes.editableText] offsets.
 /// The automatic note marker and its hidden separator are not editable text.
 typedef WordNoteEditingTarget = ({
@@ -603,6 +606,8 @@ class WordEditorController extends OfficeController {
   int _textProofingOptionsRequest = 0;
   WordReviewPaneTab _reviewPaneTab = WordReviewPaneTab.proofing;
   WordProofingIssue? _selectedProofingIssue;
+  final Map<WordProofingIssue, WordProofingIssue> _noteProofingCommitAliases =
+      Map.identity();
   Future<WordProofingSummary>? _explicitProofingCheck;
   int? _explicitProofingGeneration;
   ({WmlParagraph? paragraph, int offset, int? anchor, int? anchorParagraph})?
@@ -654,7 +659,7 @@ class WordEditorController extends OfficeController {
     if (!_reviewPaneVisible || isDisposed) return;
     _reviewPaneVisible = false;
     notifyListeners();
-    onRequestFocus?.call();
+    requestEditingFocus();
   }
 
   void setReviewPaneTab(WordReviewPaneTab tab) {
@@ -716,7 +721,7 @@ class WordEditorController extends OfficeController {
         return null;
       }
       final section = document.sections[_editingSectionIndex];
-      paragraphs = _editingFooter ? section.footer : section.header;
+      paragraphs = _headerFooterStory(section);
     } else {
       paragraphs = document.paragraphs;
     }
@@ -908,6 +913,7 @@ class WordEditorController extends OfficeController {
   var _editingComment = false;
   var _editingHeaderFooter = false;
   var _editingFooter = false;
+  var _editingHeaderFooterVariant = WordHeaderFooterVariant.standard;
   var _editingSectionIndex = 0;
 
   /// commentSurfaceWidth API.
@@ -1002,6 +1008,10 @@ class WordEditorController extends OfficeController {
   /// editingSectionIndex API.
   int get editingSectionIndex => _editingSectionIndex;
 
+  /// The exact header/footer variant selected on the rendered page.
+  WordHeaderFooterVariant get editingHeaderFooterVariant =>
+      _editingHeaderFooterVariant;
+
   /// headerFooterParagraphs API.
   List<WmlParagraph> get headerFooterParagraphs =>
       _ensureHeaderFooterParagraphs();
@@ -1094,6 +1104,16 @@ class WordEditorController extends OfficeController {
     return (bottom + 10).clamp(56.0, 320.0);
   }
 
+  List<WmlParagraph> _headerFooterStory(WmlSection section) =>
+      switch (_editingHeaderFooterVariant) {
+        WordHeaderFooterVariant.standard =>
+          _editingFooter ? section.footer : section.header,
+        WordHeaderFooterVariant.firstPage =>
+          _editingFooter ? section.firstFooter : section.firstHeader,
+        WordHeaderFooterVariant.evenPage =>
+          _editingFooter ? section.evenFooter : section.evenHeader,
+      };
+
   List<WmlParagraph> _ensureHeaderFooterParagraphs() {
     final WmlSection section = document.sections.isEmpty
         ? WmlSection()
@@ -1101,11 +1121,16 @@ class WordEditorController extends OfficeController {
             0,
             document.sections.length - 1,
           )];
-    final List<WmlParagraph> story = _editingFooter
-        ? section.footer
-        : section.header;
+    final List<WmlParagraph> story = _headerFooterStory(section);
     if (story.isEmpty) {
-      story.add(WmlParagraph(inlines: <WmlInline>[WmlRun(text: '')]));
+      final placeholder = WmlParagraph(inlines: <WmlInline>[WmlRun(text: '')]);
+      // Selecting or inspecting an empty protected story must not add content.
+      if (!config.allowsMutation ||
+          (document.restrictEditing &&
+              document.restrictMode != WmlRestrictMode.none)) {
+        return <WmlParagraph>[placeholder];
+      }
+      story.add(placeholder);
     }
     return story;
   }
@@ -1126,6 +1151,27 @@ class WordEditorController extends OfficeController {
       document.sections.isEmpty ? 0 : document.sections.length - 1,
     );
     _editingFooter = footer;
+    final section = document.sections.isEmpty
+        ? WmlSection()
+        : document.sections[_editingSectionIndex];
+    final firstPage = documentLaidOut.pages.indexWhere(
+      (page) => page.sectionIndex == _editingSectionIndex,
+    );
+    final story = footer
+        ? section.footerForPage(
+            pageIndex + 1,
+            firstInSection: pageIndex == firstPage,
+          )
+        : section.headerForPage(
+            pageIndex + 1,
+            firstInSection: pageIndex == firstPage,
+          );
+    _editingHeaderFooterVariant =
+        identical(story, footer ? section.firstFooter : section.firstHeader)
+        ? WordHeaderFooterVariant.firstPage
+        : identical(story, footer ? section.evenFooter : section.evenHeader)
+        ? WordHeaderFooterVariant.evenPage
+        : WordHeaderFooterVariant.standard;
     _editingHeaderFooter = true;
     selectedVisual = null;
     selectedFrame = null;
@@ -1263,10 +1309,13 @@ class WordEditorController extends OfficeController {
     document = opened;
     commands.clear();
     _noteEditStart.clear();
+    _noteProofingCommitAliases.clear();
     _noteEditingTarget = null;
     _noteBodyTarget = null;
     _syncProtectionMode();
     _editingComment = false;
+    _editingHeaderFooter = false;
+    _editingHeaderFooterVariant = WordHeaderFooterVariant.standard;
     documentCaret.paragraphIndex = 0;
     documentCaret.logicalIndex = 0;
     documentCaret.collapseSelection();
@@ -8478,15 +8527,15 @@ class WordEditorController extends OfficeController {
     selectRevision(pending[next]);
   }
 
-  /// Selects and reveals the actual tracked span. Returns false for stale or
-  /// conflicted ranges, disabled selection, and stories without a supported
-  /// canvas (notes and first/even headers/footers). Those changes remain
-  /// available in the review list; they never redirect to a body paragraph.
+  /// Selects and reveals the actual tracked span in its editing surface.
+  /// Stale or conflicted ranges, active composition, disabled selection and
+  /// unsupported/unrendered stories remain available in the review list;
+  /// they never redirect to a matching body paragraph.
   bool revealRevision(WmlRevision revision) {
     final index = document.revisions.indexOf(revision);
     if (index < 0 || revision.accepted != null) return false;
     selectedRevisionIndex = index;
-    if (!config.allowsSelection) {
+    if (!config.allowsSelection || _hasProofingComposition) {
       notifyListeners();
       return false;
     }
@@ -8515,6 +8564,64 @@ class WordEditorController extends OfficeController {
 
   /// The text a notes editor shows for [note]: one line per paragraph.
   String noteEditText(WmlNote note) => WordNotes.editableText(note);
+
+  /// Current findings in exactly the UTF-16 text displayed by the Notes pane.
+  /// Hidden reference spacing, inter-paragraph newlines and note ownership are
+  /// accounted for; findings in tables or other non-editable note blocks are
+  /// deliberately absent from this simple text surface.
+  List<({WordProofingIssue issue, TextRange range})> proofingIssuesForNote(
+    WmlNote note,
+  ) {
+    if (_disposed || !_ownsNote(note)) return const [];
+    final session = _proofing;
+    if (session == null) return const [];
+    final result = <({WordProofingIssue issue, TextRange range})>[];
+    for (final segment in _noteTextSegments(note)) {
+      for (final issue in session.summary.issues) {
+        final finding = issue.finding;
+        if (!identical(issue.paragraph, segment.paragraph) ||
+            finding.start < segment.hidden ||
+            finding.end < finding.start ||
+            finding.end > segment.paragraph.text.length ||
+            !session.isCurrent(issue)) {
+          continue;
+        }
+        result.add((
+          issue: issue,
+          range: TextRange(
+            start: segment.start + finding.start - segment.hidden,
+            end: segment.start + finding.end - segment.hidden,
+          ),
+        ));
+      }
+    }
+    return List.unmodifiable(result);
+  }
+
+  /// Resolves a captured Notes finding across an unchanged note-history
+  /// commit. Real edits, undo/redo, detached notes and provider changes retire
+  /// the handle. The finding must still map to this note's editable text.
+  WordProofingIssue? currentNoteProofingIssue(
+    WmlNote note,
+    WordProofingIssue issue,
+  ) {
+    if (_disposed || !_ownsNote(note)) return null;
+    final current = _currentProofingIssue(issue);
+    if (current == null) return null;
+    return proofingIssuesForNote(note).any(
+          (entry) => identical(entry.issue, current),
+        )
+        ? current
+        : null;
+  }
+
+  WordProofingIssue? _currentProofingIssue(WordProofingIssue issue) {
+    final session = _proofing;
+    if (_disposed || session == null) return null;
+    if (session.isCurrent(issue)) return issue;
+    final alias = _noteProofingCommitAliases[issue];
+    return alias != null && session.isCurrent(alias) ? alias : null;
+  }
 
   WordNoteEditingTarget? _noteEditingTarget;
   Object? _noteBodyTarget;
@@ -8829,13 +8936,40 @@ class WordEditorController extends OfficeController {
         before.revisions.matches(document)) {
       return;
     }
-
+    final session = _proofing;
+    final checked = session == null
+        ? const <WordProofingIssue>[]
+        : session.summary.issues.where(session.isCurrent).toList();
+    final previousAliases = Map<WordProofingIssue, WordProofingIssue>.of(
+      _noteProofingCommitAliases,
+    );
+    final previousDocument = document;
+    final previousRevision = contentRevision;
     commands.commit(
       _CallbackCommand(
         executeFn: () => after.restore(note, document),
         undoFn: () => before.restore(note, document),
       ),
     );
+    // A focus-loss history commit records text that was already applied and
+    // checked while typing. Keep only capabilities validated immediately
+    // before this exact boundary, never handles from an earlier source edit.
+    _noteProofingCommitAliases.clear();
+    if (session != null &&
+        identical(session, _proofing) &&
+        identical(previousDocument, document) &&
+        contentRevision == previousRevision + 1) {
+      final rebound = <WordProofingIssue, WordProofingIssue>{};
+      for (final issue in checked) {
+        final current = session.rebindUnchangedIssue(issue);
+        if (current != null) rebound[issue] = current;
+      }
+      for (final entry in previousAliases.entries) {
+        final current = rebound[entry.value];
+        if (current != null) _noteProofingCommitAliases[entry.key] = current;
+      }
+      _noteProofingCommitAliases.addAll(rebound);
+    }
   }
 
   /// Deletes [note] and its reference mark in the body, as one undo step.
@@ -8971,6 +9105,34 @@ class WordEditorController extends OfficeController {
 
   ({WmlParagraph? paragraph, int offset, int? anchor, int? anchorParagraph})
   get _proofingCaretPosition {
+    final note = noteEditingTarget;
+    if (note != null) {
+      final extent = _noteSelectionRange((
+        note: note.note,
+        selection: TextSelection.collapsed(offset: note.selection.extentOffset),
+        composing: note.composing,
+      ));
+      final anchor = _noteSelectionRange((
+        note: note.note,
+        selection: TextSelection.collapsed(offset: note.selection.baseOffset),
+        composing: note.composing,
+      ));
+      return (
+        paragraph: extent?.paragraph,
+        offset: extent?.start ?? 0,
+        anchor: anchor?.start,
+        anchorParagraph: anchor == null
+            ? null
+            : WordNotes.editableParagraphs(note.note).indexOf(anchor.paragraph),
+      );
+    }
+    return _canvasCaretPosition;
+  }
+
+  // Thesaurus and other canvas commands still use their canvas caret; a Notes
+  // proofing selection must never combine note text with body caret offsets.
+  ({WmlParagraph? paragraph, int offset, int? anchor, int? anchorParagraph})
+  get _canvasCaretPosition {
     final paragraphs = _paragraphs;
     final current = caret;
     final index = current.paragraphIndex;
@@ -8987,9 +9149,10 @@ class WordEditorController extends OfficeController {
   /// Selects a current finding. Unsupported canvas stories stay selected in
   /// the pane; false means that no source range could be revealed.
   bool selectProofingIssue(WordProofingIssue issue, {bool reveal = true}) {
-    if (isDisposed || !proofing.isCurrent(issue)) return false;
-    _selectedProofingIssue = issue;
-    final shown = reveal && revealProofingIssue(issue);
+    final current = _currentProofingIssue(issue);
+    if (current == null) return false;
+    _selectedProofingIssue = current;
+    final shown = reveal && revealProofingIssue(current);
     _proofingSelectionCaret = _proofingCaretPosition;
     if (!shown) notifyListeners();
     return shown;
@@ -9182,6 +9345,7 @@ class WordEditorController extends OfficeController {
             ? document.sections[_editingSectionIndex]
             : null,
         footer: _editingFooter,
+        headerFooterVariant: _editingHeaderFooterVariant,
         documentLanguage: document.proofingLanguage,
         styles: _textProofingStylesToken,
         tracking: document.trackRevisions,
@@ -9222,7 +9386,7 @@ class WordEditorController extends OfficeController {
         return;
       }
       final section = document.sections[_editingSectionIndex];
-      yield* plain(_editingFooter ? section.footer : section.header);
+      yield* plain(_headerFooterStory(section));
       return;
     }
     Iterable<_WordTextProofingParagraph> visit(
@@ -9582,16 +9746,26 @@ class WordEditorController extends OfficeController {
     notifyListeners();
   }
 
+  bool get _hasProofingComposition {
+    final composing = noteEditingTarget?.composing;
+    return (input.composing.isValid && !input.composing.isCollapsed) ||
+        (composing != null && composing.isValid && !composing.isCollapsed);
+  }
+
   bool get canApplyProofingSuggestions =>
       !isDisposed &&
       config.allowsMutation &&
       !(document.restrictEditing &&
           (document.restrictMode != WmlRestrictMode.none ||
               document.protectionFormattingRestricted)) &&
-      !(input.composing.isValid && !input.composing.isCollapsed);
+      !_hasProofingComposition;
 
-  bool canApplyProofingIssue(WordProofingIssue issue) =>
-      canApplyProofingSuggestions && proofing.canCorrect(issue);
+  bool canApplyProofingIssue(WordProofingIssue issue) {
+    final current = _currentProofingIssue(issue);
+    return current != null &&
+        canApplyProofingSuggestions &&
+        proofing.canCorrect(current);
+  }
 
   /// Captures the selected word/phrase, or the complete word at a caret. The
   /// operation neither changes selection nor commits an active IME composition.
@@ -9601,6 +9775,7 @@ class WordEditorController extends OfficeController {
     _thesaurusLookup = null;
     if (isDisposed ||
         !config.allowsSelection ||
+        noteEditingTarget != null ||
         selectedVisual != null ||
         selectedFrame != null ||
         selectedEquation != null) {
@@ -9616,7 +9791,7 @@ class WordEditorController extends OfficeController {
       );
     }
     final currentCaret = caret;
-    final selection = _proofingCaretPosition;
+    final selection = _canvasCaretPosition;
     final paragraph = selection.paragraph;
     if (paragraph == null) {
       return const WordThesaurusCapture._(
@@ -9744,12 +9919,13 @@ class WordEditorController extends OfficeController {
   bool _matchesThesaurusSelection(WordThesaurusTarget target) =>
       !isDisposed &&
       config.allowsSelection &&
+      noteEditingTarget == null &&
       selectedVisual == null &&
       selectedFrame == null &&
       selectedEquation == null &&
       identical(target._owner, this) &&
       identical(caret, target._caret) &&
-      _proofingCaretPosition == target._selection &&
+      _canvasCaretPosition == target._selection &&
       document.trackRevisions == target._trackRevisions &&
       !(input.composing.isValid && !input.composing.isCollapsed);
 
@@ -9887,18 +10063,19 @@ class WordEditorController extends OfficeController {
   /// Replaces one current, editable source span through normal undo history.
   /// Tracked corrections retain deleted text and a separate inserted revision.
   bool applyProofingSuggestion(WordProofingIssue issue, String replacement) {
-    if (!canApplyProofingIssue(issue) ||
+    var current = _currentProofingIssue(issue);
+    if (current == null ||
+        !canApplyProofingIssue(current) ||
         !issue.finding.replacements.contains(replacement) ||
         replacement == issue.finding.originalText ||
         RegExp(r'[\r\n\u2028\u2029]').hasMatch(replacement)) {
       return false;
     }
     commitNoteEdits();
-    // Committing a changed note draft changes the revision, so reacquire a
-    // finding rather than letting the correction overwrite that draft.
-    if (!canApplyProofingIssue(issue)) return false;
-    final paragraph = issue.paragraph;
-    final finding = issue.finding;
+    current = _currentProofingIssue(current);
+    if (current == null || !canApplyProofingIssue(current)) return false;
+    final paragraph = current.paragraph;
+    final finding = current.finding;
     final start = finding.start;
     final end = finding.end;
     final edits = finding.ruleId == 'de.grammar.phrase-agreement'
@@ -9936,9 +10113,15 @@ class WordEditorController extends OfficeController {
     final previousText = paragraph.text;
     final activeCaret = caret;
     final activeParagraphs = _paragraphs;
+    final activeNote = noteEditingTarget;
+    final activeNoteAffected = activeNote != null &&
+        _noteTextSegments(activeNote.note).any(
+          (segment) => identical(segment.paragraph, paragraph),
+        );
     final activeComment = isEditingComment ? selectedComment : null;
     final activeHeaderFooter = isEditingHeaderFooter ? activeParagraphs : null;
     bool sameCaretStory() =>
+        noteEditingTarget == null &&
         identical(caret, activeCaret) &&
         (activeComment != null
             ? isEditingComment && identical(selectedComment, activeComment)
@@ -9947,6 +10130,7 @@ class WordEditorController extends OfficeController {
                   identical(_paragraphs, activeHeaderFooter)
             : !isEditingComment && !isEditingHeaderFooter);
     final activeAffected =
+        activeNote == null &&
         activeCaret.paragraphIndex >= 0 &&
         activeCaret.paragraphIndex < activeParagraphs.length &&
         identical(activeParagraphs[activeCaret.paragraphIndex], paragraph);
@@ -9957,6 +10141,18 @@ class WordEditorController extends OfficeController {
       anchor: activeCaret.selectionAnchor,
     );
     void correctedCaret() {
+      if (activeNoteAffected && activeNote != null) {
+        if (identical(noteEditingTarget?.note, activeNote.note)) {
+          _restoreNoteEditingTarget(
+            _noteTargetAt(
+              paragraph,
+              tracked ? end + insertedLength : start + replacement.length,
+            ),
+          );
+        }
+        _historyRestoredSelection = true;
+        return;
+      }
       // Comments and headers/footers share a caret across distinct stories.
       // Undo/redo must not apply one story's offsets to another story.
       if (!activeAffected || !sameCaretStory()) {
@@ -9972,6 +10168,13 @@ class WordEditorController extends OfficeController {
     }
 
     void originalCaret() {
+      if (activeNoteAffected && activeNote != null) {
+        if (identical(noteEditingTarget?.note, activeNote.note)) {
+          _restoreNoteEditingTarget(_clampNoteEditingTarget(activeNote));
+        }
+        _historyRestoredSelection = true;
+        return;
+      }
       if (!activeAffected || !sameCaretStory()) {
         _historyRestoredSelection = true;
         return;
@@ -10168,23 +10371,37 @@ class WordEditorController extends OfficeController {
     WmlRunEdit.coalesce(paragraph);
   }
 
-  /// Selects findings in supported canvas stories. Notes and alternate page
-  /// headers remain fully reviewable and correctable in the review pane.
+  /// Selects a finding in its actual rendered story. Header/footer variants
+  /// that do not occur on a laid-out page remain available in the review pane.
   bool revealProofingIssue(WordProofingIssue issue) {
-    if (!config.allowsSelection || !proofing.isCurrent(issue)) return false;
+    var current = _currentProofingIssue(issue);
+    if (!config.allowsSelection ||
+        current == null ||
+        _hasProofingComposition) {
+      return false;
+    }
     commitPendingEdits();
-    if (!proofing.isCurrent(issue)) return false;
-    _selectedProofingIssue = issue;
+    current = _currentProofingIssue(current);
+    if (current == null) return false;
+    _selectedProofingIssue = current;
     final revealed = _revealParagraphRange(
-      issue.paragraph,
-      issue.finding.start,
-      issue.finding.end,
+      current.paragraph,
+      current.finding.start,
+      current.finding.end,
     );
     _proofingSelectionCaret = _proofingCaretPosition;
     return revealed;
   }
 
   bool _revealParagraphRange(WmlParagraph paragraph, int start, int end) {
+    if (_disposed ||
+        !config.allowsSelection ||
+        _hasProofingComposition ||
+        start < 0 ||
+        end < start ||
+        end > paragraph.text.length) {
+      return false;
+    }
     for (final comment in document.comments) {
       if (comment.paragraphs.contains(paragraph)) {
         beginCommentEdit(comment.id);
@@ -10205,30 +10422,50 @@ class WordEditorController extends OfficeController {
     ) {
       final section = document.sections[sectionIndex];
       for (final footer in [false, true]) {
-        final paragraphs = footer ? section.footer : section.header;
-        final index = paragraphs.indexOf(paragraph);
-        if (index < 0) continue;
-        // A default header/footer may be absent on the first or even page.
-        // Navigate only to a page that actually renders this source paragraph.
-        final page = documentLaidOut.pages.indexWhere((page) {
-          final lines = footer ? page.footer : page.header;
-          return page.sectionIndex == sectionIndex &&
-              lines.any((line) => identical(line.sourceParagraph, paragraph));
-        });
-        if (page < 0) return false;
-        beginHeaderFooterEdit(page, footer: footer);
-        headerFooterCaret
-          ..paragraphIndex = index
-          ..logicalIndex = end
-          ..selectionAnchorParagraph = index
-          ..selectionAnchor = start;
-        _syncImeSelection();
-        notifyListeners();
+        for (final paragraphs in footer
+            ? [section.footer, section.firstFooter, section.evenFooter]
+            : [section.header, section.firstHeader, section.evenHeader]) {
+          final index = paragraphs.indexOf(paragraph);
+          if (index < 0) continue;
+          // Navigate only to a page that renders this exact source story.
+          // Do not silently edit the default variant or change page settings.
+          final page = documentLaidOut.pages.indexWhere((page) {
+            final lines = footer ? page.footer : page.header;
+            return page.sectionIndex == sectionIndex &&
+                lines.any((line) => identical(line.sourceParagraph, paragraph));
+          });
+          if (page < 0) return false;
+          beginHeaderFooterEdit(page, footer: footer);
+          headerFooterCaret
+            ..paragraphIndex = index
+            ..logicalIndex = end
+            ..selectionAnchorParagraph = index
+            ..selectionAnchor = start;
+          _syncImeSelection();
+          notifyListeners();
+          return true;
+        }
+      }
+    }
+    for (final note in [...document.footnotes, ...document.endnotes]) {
+      for (final segment in _noteTextSegments(note)) {
+        if (!identical(segment.paragraph, paragraph)) continue;
+        if (start < segment.hidden) return false;
+        detachInput();
+        setNoteEditingTarget(
+          note,
+          TextSelection(
+            baseOffset: segment.start + start - segment.hidden,
+            extentOffset: segment.start + end - segment.hidden,
+          ),
+        );
+        requestEditingFocus();
         return true;
       }
     }
     final index = document.paragraphs.toList().indexOf(paragraph);
     if (index < 0) return false;
+    clearNoteEditingTarget(notify: false);
     endCommentEdit();
     endHeaderFooterEdit();
     // Showing a text finding leaves object editing. Otherwise the equation
@@ -10257,12 +10494,14 @@ class WordEditorController extends OfficeController {
   /// Reading findings must not create a paragraph in an empty document.
   /// Use the session's half-open hit ranges, including exact insertion points.
   List<WordProofingIssue> get proofingIssuesAtCaret {
-    final paragraphs = _paragraphs;
-    final index = caret.paragraphIndex;
-    if (index < 0 || index >= paragraphs.length) {
+    final position = _proofingCaretPosition;
+    final paragraph = position.paragraph;
+    if (paragraph == null) {
       return const <WordProofingIssue>[];
     }
-    return proofing.issuesAt(paragraphs[index], caret.logicalIndex);
+    return proofing.issuesAt(paragraph, position.offset).where(
+      proofing.isCurrent,
+    ).toList();
   }
 
   /// Legacy caller-supplied spelling callback. New hosts should use
@@ -15037,6 +15276,7 @@ final class WordZoteroTransaction {
     note: controller.noteEditingTarget,
     headerFooter: controller.isEditingHeaderFooter,
     footer: controller.isEditingFooter,
+    headerFooterVariant: controller.editingHeaderFooterVariant,
     section: controller.isEditingHeaderFooter
         ? controller.editingSectionIndex
         : null,
