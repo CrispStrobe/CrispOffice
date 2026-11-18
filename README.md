@@ -18,6 +18,15 @@
 
 The core suite has an engine, reports library, Flutter editor and desktop app. This fork also carries the maintained standalone legacy DOC parser.
 
+Word now includes an [offline English/German thesaurus](docs/roadmaps/thesaurus/README.md)
+with full OEWN 2025 and OpenThesaurus packs, alternatives grouped by meaning,
+language override and source notices. Use Review, the context menu or Shift+F7;
+select an alternative and choose Replace for one undoable, source-validated
+change. The [data notices](docs/roadmaps/thesaurus/licensing-and-notices.md)
+retain each corpus's license. Local native qualification and the outstanding
+installed-desktop/offline-browser release checks are recorded in the
+[continuation report](docs/validation/thesaurus-20261118/continuation/README.md).
+
 The current fork imports supported BIFF8 `.xls` files and Excel HTML tables into
 editable XLSX workbooks, including shared-formula groups, palettes, font families
 and HTML captions/header emphasis. Worksheet navigation commits valid drafts

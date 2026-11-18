@@ -297,6 +297,15 @@ class _WordReviewPaneState extends State<WordReviewPane> {
                             overflow: TextOverflow.ellipsis,
                           ),
                         ),
+                        IconButton(
+                          key: const ValueKey<String>('live-review-thesaurus'),
+                          tooltip: _s(
+                            'Thesaurus (Shift+F7)',
+                            'قاموس المرادفات (Shift+F7)',
+                          ),
+                          onPressed: widget.controller.requestThesaurus,
+                          icon: const Icon(Icons.menu_book_outlined),
+                        ),
                         if (widget.onMoreOptions != null)
                           IconButton(
                             key: const ValueKey<String>('live-review-more'),

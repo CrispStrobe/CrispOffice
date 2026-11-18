@@ -1,0 +1,13 @@
+{
+  "url": "https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.47.8-stable.tar.xz",
+  "archive_sha256": "baf7dcc5a3dbba60fe863bf493a6cf203195621f7786eaa5a1bba02cd0d87dd2",
+  "archive_bytes": 1581444364,
+  "sdk_root": "/workspace/scratch/51a3f3361ce7/zotero-toolchain/flutter-sdk",
+  "elapsed_seconds": 99.34459860199968,
+  "telemetry_environment_required": {
+    "DASH__SUPPRESS_ANALYTICS": "true",
+    "FLUTTER_SUPPRESS_ANALYTICS": "true",
+    "CI": "true"
+  },
+  "telemetry_consent_changed": false
+}

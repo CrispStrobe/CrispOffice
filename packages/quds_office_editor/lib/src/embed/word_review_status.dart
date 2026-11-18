@@ -131,6 +131,14 @@ class WordReviewStatusBar extends StatelessWidget {
                     label: Text(arabic ? '$pending تغييرات' : changesLabel),
                   ),
                 ),
+                IconButton(
+                  key: const ValueKey('word-review-thesaurus'),
+                  tooltip: arabic
+                      ? 'قاموس المرادفات (Shift+F7)'
+                      : 'Thesaurus (Shift+F7)',
+                  onPressed: controller.requestThesaurus,
+                  icon: const Icon(Icons.menu_book_outlined, size: 20),
+                ),
               ],
             ),
           ),

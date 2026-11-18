@@ -1,0 +1,75 @@
+{
+  "started_at_utc": "2026-11-18T18:07:54.590221+00:00",
+  "base_commit": "decde7792890bf4724c91403fbb6528d8423b01e",
+  "runs": [
+    {
+      "name": "native-acceptance",
+      "command": [
+        "/workspace/scratch/51a3f3361ce7/zotero-toolchain/flutter-sdk/bin/flutter",
+        "test",
+        "--no-pub",
+        "--concurrency=1",
+        "--reporter",
+        "json",
+        "test/word_thesaurus_dialog_test.dart",
+        "test/word_thesaurus_controller_test.dart",
+        "test/word_proofing_correction_test.dart",
+        "test/word_proofing_capture_cache_test.dart",
+        "test/word_proofing_context_test.dart",
+        "test/word_review_pane_test.dart",
+        "/workspace/scratch/51a3f3361ce7/thesaurus-browser-fixture/native_pack_test.dart",
+        "/workspace/scratch/51a3f3361ce7/thesaurus-browser-fixture/native_visual_test.dart"
+      ],
+      "cwd": "/workspace/scratch/51a3f3361ce7/zotero-validation/packages/quds_office_editor",
+      "exit_code": 0,
+      "seconds": 40.29616650099888,
+      "stdout": "logs/native-acceptance.stdout",
+      "stderr": "logs/native-acceptance.stderr",
+      "stdout_sha256": "7727696f229152b678f9319d7ae4f160dcc00e6f730026932425d6cdfaca1b26",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "browser-build",
+      "command": [
+        "/workspace/scratch/51a3f3361ce7/zotero-toolchain/flutter-sdk/bin/flutter",
+        "build",
+        "web",
+        "--no-pub",
+        "--release",
+        "--csp",
+        "--no-web-resources-cdn",
+        "--no-wasm-dry-run",
+        "--target=/workspace/scratch/51a3f3361ce7/thesaurus-browser-fixture/lib/main.dart",
+        "--output=/workspace/scratch/51a3f3361ce7/thesaurus-browser-build-final"
+      ],
+      "cwd": "/workspace/scratch/51a3f3361ce7/zotero-validation/packages/quds_office_editor/example",
+      "exit_code": 0,
+      "seconds": 58.15543035399969,
+      "stdout": "logs/browser-build.stdout",
+      "stderr": "logs/browser-build.stderr",
+      "stdout_sha256": "a3c55e031b46e8d9865e929cc823a88d0757bf9cbf571ed938c615c9306619b8",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "status": "native_passed_web_compiled_browser_execution_blocked",
+  "input_digest": "dde3705b12f212cedde3196cd11221f5fe9c708f92087991739276d5cd04a461",
+  "test_audit": {
+    "passed": 126,
+    "failed": 0,
+    "skipped": 0,
+    "suite_count": 8,
+    "every_started_test_finished_once": true,
+    "layout_or_tap_diagnostics": []
+  },
+  "source_unchanged_during_tests": true,
+  "source_unchanged_during_build": true,
+  "compiled_browser_files": 1155,
+  "compiled_browser_bytes": 87288627,
+  "browser_execution": {
+    "status": "blocked_by_environment",
+    "local_chromium": "Sandbox denied Unix socket creation before application startup.",
+    "supported_cloud_browser": "Could not connect to the local origin (ERR_CONNECTION_REFUSED).",
+    "offline_gate": "pending; compilation is not actual-browser acceptance"
+  },
+  "finished_at_utc": "2026-11-18T18:09:34.826240+00:00"
+}

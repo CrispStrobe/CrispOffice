@@ -1,0 +1,383 @@
+{
+  "status": "passed",
+  "dartVersion": "3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\"",
+  "operatingSystem": "linux",
+  "processors": 9,
+  "baselineRssBytes": 277065728,
+  "finalRssBytes": 323915776,
+  "peakProcessRssBytes": 482615296,
+  "network": "No network loader; all assets and notices read from local files.",
+  "method": "First query per term is measured separately; 10 normalized-equivalent whitespace variants bypass result caching, each immediately repeated for cached-result timing. Max 32 parsed shards and 64 result entries.",
+  "languages": {
+    "en-US": {
+      "queries": {
+        "bank": {
+          "firstQueryMs": 902.27,
+          "senseIds": [
+            "oewn-00170126-n",
+            "oewn-00714537-v",
+            "oewn-01237357-v",
+            "oewn-01590626-v",
+            "oewn-02043258-v",
+            "oewn-02315835-v",
+            "oewn-02348052-v",
+            "oewn-02348248-v",
+            "oewn-02348370-v",
+            "oewn-02790795-n",
+            "oewn-04146942-n",
+            "oewn-08437235-n",
+            "oewn-08479077-n",
+            "oewn-09236341-n",
+            "oewn-09236472-n",
+            "oewn-09236735-n",
+            "oewn-13377435-n",
+            "oewn-13389491-n"
+          ],
+          "matchedTerms": [
+            {
+              "text": "bank",
+              "reason": "lexical"
+            }
+          ]
+        },
+        "ice cream": {
+          "firstQueryMs": 21.46,
+          "senseIds": [
+            "oewn-07630109-n"
+          ],
+          "matchedTerms": [
+            {
+              "text": "ice cream",
+              "reason": "lexical"
+            }
+          ]
+        },
+        "mice": {
+          "firstQueryMs": 199.348,
+          "senseIds": [
+            "oewn-02332897-n",
+            "oewn-03799022-n",
+            "oewn-10355276-n",
+            "oewn-14312889-n"
+          ],
+          "matchedTerms": [
+            {
+              "text": "mouse",
+              "reason": "oewn-source-form"
+            }
+          ]
+        },
+        "walked": {
+          "firstQueryMs": 428.204,
+          "senseIds": [
+            "oewn-01115898-v",
+            "oewn-01143080-v",
+            "oewn-01886163-v",
+            "oewn-01908923-v",
+            "oewn-01910816-v",
+            "oewn-01911069-v",
+            "oewn-01916886-v",
+            "oewn-01963635-v",
+            "oewn-02475941-v",
+            "oewn-02524505-v"
+          ],
+          "matchedTerms": [
+            {
+              "text": "walk",
+              "reason": "wordnet-detachment"
+            }
+          ]
+        },
+        "colour": {
+          "firstQueryMs": 477.911,
+          "senseIds": [
+            "oewn-00281861-v",
+            "oewn-00284671-v",
+            "oewn-00395196-a",
+            "oewn-00838605-v",
+            "oewn-00838812-v",
+            "oewn-01700543-v",
+            "oewn-02542758-v",
+            "oewn-04682325-n",
+            "oewn-04685309-n",
+            "oewn-04963771-n",
+            "oewn-04995727-n",
+            "oewn-05200606-n",
+            "oewn-05853190-n",
+            "oewn-15009532-n"
+          ],
+          "matchedTerms": [
+            {
+              "text": "colour",
+              "reason": "lexical"
+            }
+          ]
+        },
+        "good": {
+          "firstQueryMs": 901.751,
+          "senseIds": [
+            "oewn-00011555-r",
+            "oewn-00057926-r",
+            "oewn-00065107-s",
+            "oewn-00106819-s",
+            "oewn-00454916-s",
+            "oewn-00525453-s",
+            "oewn-00779170-s",
+            "oewn-00836323-s",
+            "oewn-01052461-s",
+            "oewn-01072013-s",
+            "oewn-01119768-s",
+            "oewn-01126910-a",
+            "oewn-01133477-a",
+            "oewn-01169957-s",
+            "oewn-01174757-s",
+            "oewn-01336429-s",
+            "oewn-01591160-s",
+            "oewn-01665754-s",
+            "oewn-01813594-s",
+            "oewn-01990227-s",
+            "oewn-02044341-s",
+            "oewn-02234002-s",
+            "oewn-02281393-s",
+            "oewn-03080712-n",
+            "oewn-04856472-n",
+            "oewn-05149427-n",
+            "oewn-05167108-n"
+          ],
+          "matchedTerms": [
+            {
+              "text": "good",
+              "reason": "lexical"
+            }
+          ]
+        },
+        "run": {
+          "firstQueryMs": 1473.349,
+          "senseIds": [
+            "oewn-00190414-n",
+            "oewn-00294760-n",
+            "oewn-00309697-n",
+            "oewn-00309837-n",
+            "oewn-00333482-v",
+            "oewn-00335613-v",
+            "oewn-00445584-v",
+            "oewn-00518609-v",
+            "oewn-00540190-v",
+            "oewn-00550143-v",
+            "oewn-00559920-n",
+            "oewn-00792739-n",
+            "oewn-01088514-v",
+            "oewn-01096497-v",
+            "oewn-01146304-v",
+            "oewn-01214794-v",
+            "oewn-01528454-v",
+            "oewn-01529078-v",
+            "oewn-01645087-v",
+            "oewn-01721028-v",
+            "oewn-01750167-v",
+            "oewn-01868024-v",
+            "oewn-01918940-v",
+            "oewn-01930264-v",
+            "oewn-01930937-v",
+            "oewn-01931400-v",
+            "oewn-01931700-v",
+            "oewn-01931856-v",
+            "oewn-02064720-v",
+            "oewn-02070867-v",
+            "oewn-02079296-v",
+            "oewn-02096576-v",
+            "oewn-02104107-v",
+            "oewn-02247038-v",
+            "oewn-02427021-v",
+            "oewn-02448714-v",
+            "oewn-02530978-v",
+            "oewn-02569242-v",
+            "oewn-02618269-v",
+            "oewn-02653599-v",
+            "oewn-02654212-v",
+            "oewn-02691775-v",
+            "oewn-02692467-v",
+            "oewn-02725274-v",
+            "oewn-02726779-v",
+            "oewn-02727159-v",
+            "oewn-02732914-v",
+            "oewn-05052992-n",
+            "oewn-07422377-n",
+            "oewn-07457610-n",
+            "oewn-07475061-n",
+            "oewn-07488069-n",
+            "oewn-08477596-n",
+            "oewn-09438816-n",
+            "oewn-13782269-n",
+            "oewn-14019420-n",
+            "oewn-15286931-n"
+          ],
+          "matchedTerms": [
+            {
+              "text": "run",
+              "reason": "lexical"
+            }
+          ]
+        }
+      },
+      "manifestSha256": "13ae58da2a20c0eb74ccf20acc3fade665e12e48daf783351f90b3073fd28e23",
+      "bytesReadIncludingReloads": 29747714,
+      "filesReadIncludingReloads": 646,
+      "cachedShards": 32,
+      "cachedResults": 64,
+      "verifiedNotices": [
+        "notices/EN_ATTRIBUTION.txt",
+        "notices/OEWN_LICENSE.md",
+        "notices/WNDB_License.txt",
+        "notices/CC_BY_4.0.txt"
+      ],
+      "normalizedEquivalentUncachedResult": {
+        "samples": 70,
+        "p50Ms": 1.088,
+        "p95Ms": 1290.842,
+        "maxMs": 1537.417
+      },
+      "cachedResult": {
+        "samples": 70,
+        "p50Ms": 0.044,
+        "p95Ms": 0.123,
+        "maxMs": 0.207
+      }
+    },
+    "de-DE": {
+      "queries": {
+        "Bank": {
+          "firstQueryMs": 36.776,
+          "senseIds": [
+            "ot-10147",
+            "ot-305"
+          ],
+          "matchedTerms": [
+            {
+              "text": "Bank",
+              "reason": "lexical"
+            }
+          ]
+        },
+        "Häusern": {
+          "firstQueryMs": 103.109,
+          "senseIds": [
+            "ot-10677",
+            "ot-11637",
+            "ot-11833"
+          ],
+          "matchedTerms": [
+            {
+              "text": "Haus",
+              "reason": "unicode-noun-form"
+            }
+          ]
+        },
+        "Maße": {
+          "firstQueryMs": 38.149,
+          "senseIds": [
+            "ot-1275",
+            "ot-39754"
+          ],
+          "matchedTerms": [
+            {
+              "text": "Maße",
+              "reason": "lexical"
+            }
+          ]
+        },
+        "Masse": {
+          "firstQueryMs": 54.326,
+          "senseIds": [
+            "ot-10151",
+            "ot-17012",
+            "ot-17013",
+            "ot-1824",
+            "ot-31711"
+          ],
+          "matchedTerms": [
+            {
+              "text": "Masse",
+              "reason": "lexical"
+            }
+          ]
+        },
+        "sich freuen": {
+          "firstQueryMs": 57.923,
+          "senseIds": [
+            "ot-38103",
+            "ot-49053",
+            "ot-52295"
+          ],
+          "matchedTerms": [
+            {
+              "text": "sich (für jemanden) freuen",
+              "reason": "openthesaurus-parenthetical"
+            },
+            {
+              "text": "sich (über etwas) freuen (dürfen)",
+              "reason": "openthesaurus-parenthetical"
+            },
+            {
+              "text": "sich freuen (über)",
+              "reason": "openthesaurus-parenthetical"
+            }
+          ]
+        },
+        "Jänner": {
+          "firstQueryMs": 6.394,
+          "senseIds": [
+            "ot-12476"
+          ],
+          "matchedTerms": [
+            {
+              "text": "Jänner",
+              "reason": "lexical"
+            }
+          ]
+        },
+        "Oheim": {
+          "firstQueryMs": 46.825,
+          "senseIds": [
+            "ot-13017"
+          ],
+          "matchedTerms": [
+            {
+              "text": "Oheim (mütterliche Linie)",
+              "reason": "openthesaurus-parenthetical"
+            }
+          ]
+        }
+      },
+      "manifestSha256": "8788f9af67186b40f963f948aeceed01c012f3e9653ddab68947e16213cb0453",
+      "bytesReadIncludingReloads": 794731,
+      "filesReadIncludingReloads": 36,
+      "cachedShards": 29,
+      "cachedResults": 64,
+      "verifiedNotices": [
+        "notices/DE_ATTRIBUTION.txt",
+        "notices/OPENTHESAURUS_COPYING.txt",
+        "notices/OPENTHESAURUS_DATABASE_README.txt",
+        "notices/CC_BY_SA_4.0.txt",
+        "notices/UNICODE_INFLECTION_LICENSE",
+        "notices/UNICODE_INFLECTION_NOTICE"
+      ],
+      "normalizedEquivalentUncachedResult": {
+        "samples": 70,
+        "p50Ms": 0.074,
+        "p95Ms": 0.322,
+        "maxMs": 2.898
+      },
+      "cachedResult": {
+        "samples": 70,
+        "p50Ms": 0.011,
+        "p95Ms": 0.035,
+        "maxMs": 0.127
+      }
+    }
+  },
+  "providerSha256": "8713f26f39e9e7551efd3176af2ccbd03ff9df2a3faa53fbe88cf7bcf30ed28a",
+  "benchmarkSha256": "b7e2bab537b68d7ac59b3b52bc38a01ea75f02cdb1a2a62d5c06ad0d8619dbf2",
+  "attempt": "Initial 32-shard default; English high-polysemy warm-result-cache-bypassed p95 missed provisional 50 ms target.",
+  "cpuModel": "INTEL(R) XEON(R) PLATINUM 8573C"
+}

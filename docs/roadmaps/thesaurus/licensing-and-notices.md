@@ -1,135 +1,110 @@
-# Planned thesaurus data licensing and notices
+# Thesaurus data licensing and notices
 
-Recorded: 18 November 2026.
-Status: planned-source record; no thesaurus data is added or shipped by this
-documentation change.
+Updated: 18 November 2026. This record now describes the actual English/German
+packs on the offline-thesaurus branch. The original scope commit contained
+planned sources only; the implementation adds the pinned inputs, notices,
+independent compiler and generated assets listed here.
 
-The [English/German thesaurus scope](README.md) selects the intended source
-families. Exact artifact review, immutable pins, attribution text and packaged
-license files must be completed in TH1 before incorporating a pack. This file
-is not a substitute for the notices accompanying the actual downloaded data.
+## Distribution boundary
 
-## Policy and distribution boundary
+Independently written Quds code, including the compiler, provider and editor
+integration, retains the repository's MIT license. Each lexical pack retains
+its own data terms. The German derived pack uses the selected CC BY-SA 4.0
+option; storing it separately does not remove ShareAlike from adapted data or
+covered database rights. No noncommercial, research-only, school-vocabulary,
+frequency-list, contextual-model or generated-candidate input is introduced.
 
-Prefer MIT, Apache, BSD, CC0 and similarly permissive grants. Noncommercial
-restrictions are unacceptable. Check code, data, morphology, ranking material,
-models and transitive sources independently.
+The authoritative machine-readable inventory is
+[`sources.json`](../../../packages/quds_office_engine/third_party/thesaurus/sources.json).
+It pins source URL, release/export identity, retrieval timestamp, byte length,
+SHA-256, original notices and the existing German morphology manifest. The
+[redistribution record](../../../packages/quds_office_engine/third_party/thesaurus/README.md)
+and [compiler documentation](../../../tools/thesaurus/README.md) describe the
+transformations and exact regeneration commands.
 
-The existing Quds implementation remains under its existing license. An
-independently written importer or lookup module does not relicense the data
-it reads. Keep each pack's notices and source manifest with that pack and
-make attribution accessible in the application and distributed documentation.
+| Distributed data | Exact selected source | Terms and attribution |
+| --- | --- | --- |
+| English lexical pack | Regular OEWN 2025 WN-LMF, `english-wordnet-2025.xml.gz` | OEWN CC BY 4.0 plus inherited Princeton WordNet terms; credit both projects |
+| German lexical pack | OpenThesaurus SQL archive, export 2026-11-17 23:15:01 UTC | CC BY-SA 4.0 selected from the archive's offered options; credit OpenThesaurus, Daniel Naber and contributors |
+| German noun lookup support | Existing qualified Unicode Inflection-derived resource in this fork | Existing Unicode-3.0 license, notice, manifest and finite noun coverage remain authoritative |
 
-OpenThesaurus's CC BY-SA option is an explicit scoped data choice for this
-feature. It does not change the license of independently written Quds code.
-Separate packaging clarifies obligations; it is not a way to remove
-ShareAlike from covered data or an adapted/combined database.
+## English pack
 
-## Intended English default: Open English WordNet
+The input is the regular lexical edition from
+[OEWN's official download](https://en-word.net/static/english-wordnet-2025.xml.gz),
+not the combined Grundwortschatz output. Its SHA-256 is
+`9ca6d1dcb75f822fdd66617f7d9da48142ace38dd544d6ad5e2feca1674ad3fe`.
+The 2025 source tag is pinned at `dc343f2683279ecbb13fab4e2fd778d7b162d287`.
 
-- Project: [Open English WordNet](https://en-word.net/).
-- Target family: regular lexical edition; current planning target is 2025.
-- [Downloads](https://en-word.net/downloads).
-- [License record](https://github.com/globalwordnet/english-wordnet/blob/main/LICENSE.md).
-- Treatment: CC BY 4.0 for OEWN development, with the original Princeton
-  WordNet license applying to underlying data.
+The source archive and tag-specific `LICENSE.md` and `WNDB_License.txt` are
+retained. The installed pack includes the original OEWN/Princeton notices,
+the CC BY 4.0 legal text and a Quds attribution/change notice. It preserves
+all 107,519 meaning groups and 185,129 source terms/senses, with lexical and
+synset IDs, POS, definitions, examples, typed relations and source Form aliases.
+The compiler does not relabel this data as MIT or solely Princeton-licensed.
 
-Before distribution, retain the exact release's applicable license files,
-including its Princeton notice, attribute both the OEWN team and Princeton
-WordNet, identify our changes and preserve supplied attribution information.
-Record the original archive digest and the generated pack digest. Do not
-describe OEWN as solely MIT/BSD or solely the Princeton license.
+English word-form fallback uses source aliases and an independent
+implementation of the documented WordNet suffix rules. It only accepts
+resulting lemmas present in the selected corpus with compatible POS. It does
+not include an extra unqualified morphology database or claim every English
+inflection is covered.
 
-No OEWN archive, compiled index or final attribution notice is included by
-this planning change.
+Princeton-only WordNet remains an alternative for a future explicit choice;
+there is no second default English corpus in this distribution.
 
-## English alternative: Princeton WordNet
+## German pack
 
-- Project: [Princeton WordNet](https://wordnet.princeton.edu/).
-- [License and commercial use](https://wordnet.princeton.edu/license-and-commercial-use).
-- Treatment: the custom permissive WordNet license, not literally MIT or
-  BSD-3-Clause.
+The input is the
+[official OpenThesaurus SQL archive](https://www.openthesaurus.de/export/openthesaurus_dump.tar.bz2).
+Its SHA-256 is
+`80873823310f2dec7618e9a171fd375d786bb3007d6de51b58cde54db55bfd38`.
+The exact bytes are checked in because this download URL is mutable.
 
-Use this as an explicitly selected alternative to OEWN if the permissive
-license preference takes priority over ongoing lexical maintenance. Retain
-the actual release's copyright, permission statements and disclaimer, and
-observe the restriction on using Princeton's name in distribution publicity.
-Do not bundle both corpora merely to duplicate the same inherited entries.
+The archive's `COPYING` and `DATABASE-README.txt` are retained verbatim. The
+installed pack also contains the CC BY-SA 4.0 legal text and a Quds change and
+attribution notice. Quds selects CC BY-SA 4.0 for the adapted lexical pack;
+it does not replace the original dual-license notice or infer a different
+LGPL version from a website summary.
 
-No Princeton release or derived pack is imported by this change.
+The independent parser reads the SQL dump as data and never executes it.
+It exports visible German synonym groups and terms with original IDs,
+category/usage/tag labels, available term notes and typed relations. Empty
+visible groups and hidden/non-German source records are counted and excluded
+as documented by the compiler. All 50,264 accepted groups and 203,767 terms
+are retained without transitive synonym flattening or a spelling allowlist.
+Parenthetical lookup aliases retain their reason and never replace literal
+source display forms. The source's folded aliases and `word_mapping` table
+are not imported; umlauts and ß are not globally stripped or folded to ss.
 
-## Intended German source: OpenThesaurus
+The existing finite German noun resource supplies qualified lookup lemmas.
+Its [documentation](../../../packages/quds_office_engine/third_party/proofing/MORPHOLOGY.md),
+[license](../../../packages/quds_office_engine/third_party/proofing/UNICODE_INFLECTION_LICENSE)
+and [notice](../../../packages/quds_office_engine/third_party/proofing/UNICODE_INFLECTION_NOTICE)
+continue to apply; copies of the latter two are included in the pack's
+accessible notice view. This is noun lookup support, not general German
+morphology, contextual disambiguation or automatic replacement inflection.
 
-- Project: [OpenThesaurus](https://www.openthesaurus.de/).
-- [Official download and license choice](https://www.openthesaurus.de/about/download).
-- Selected option for this plan: [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
+## Packaging and verification
 
-The official site offers CC BY-SA 4.0 or LGPL at the recipient's choice.
-This plan selects CC BY-SA 4.0; it does not infer an exact LGPL version from
-the generic page.
+Both packs live under the editor package's `assets/thesaurus/{en,de}/` tree.
+Each manifest lists notice paths and the size/SHA-256 of every logical file,
+plus compressed size/SHA-256 for raw-deflate shards. The manifest itself is
+pinned in generated Dart constants. It also records source-manifest and
+compiler digests and the zlib version used for the deterministic build.
 
-For an incorporated pack, credit OpenThesaurus with a normal source link,
-include the license information and supplied notices, and identify our
-transformations. Preserve the applicable ShareAlike terms for distributed
-adaptations and database rights; do not impose additional restrictions on
-covered material. Conversion to an index does not turn the source data into
-MIT data.
+`BundledOfficeThesaurus` loads package assets on demand. `Sources and licenses`
+in the dialog loads and verifies the actual bundled notice files through the
+same manifest-bound service. Release packaging must retain those asset paths;
+the source archive notices alone are not a substitute for installed notices.
+Native Flutter bundle verification and web compilation are recorded in the
+[continuation evidence](../../validation/thesaurus-20261118/continuation/README.md).
+Installed-desktop and actual offline-browser interaction remain release gates
+where the present environment cannot execute them.
 
-Pin the actual export and inspect its embedded notice before acceptance.
-No German thesaurus export or compiled pack is included by this change.
+## Inputs outside this scope
 
-## Morphology and optional inputs
-
-The initial reuse candidate is the fork's existing Unicode Inflection-derived
-German noun resource. Its
-[documentation](../../../packages/quds_office_engine/third_party/proofing/MORPHOLOGY.md),
-[original license](../../../packages/quds_office_engine/third_party/proofing/UNICODE_INFLECTION_LICENSE),
-[notice](../../../packages/quds_office_engine/third_party/proofing/UNICODE_INFLECTION_NOTICE)
-and manifest remain authoritative. Reuse does not imply complete German
-morphology or license additional sources.
-
-English morphology rules/exceptions must be tracked with the selected
-WordNet release. Any added German verb/adjective forms, external frequency
-lists, contextual models or generated candidates need their own source
-record and qualification.
-
-Original Moby data, OdeNet, Wiktionary/Kaikki and the user's Hugging Face
-`cstr/grundwortschatz*` outputs remain candidates for later review. Their
-presence in a permissively licensed code repository is not evidence that
-every input or output has the same license. Do not infer commercial
-redistribution rights from a model card badge or wrapper license alone.
-
-If MyThes implementation code is copied or linked, retain its actual
-[COPYING](https://github.com/hunspell/mythes/blob/master/COPYING) terms, including
-its modification-marking condition. Do not label that text as standard
-BSD-3-Clause without verifying the exact grant. An independent format
-reader and its input dictionaries have separate licensing records.
-
-## Required manifest and packaging record
-
-For each accepted input, record:
-
-1. Project, original source/download URL and immutable revision or release.
-2. Retrieval timestamp, exact input filename and SHA-256.
-3. Actual data license, selected option where applicable, copyright holders,
-   attribution parties and original license/notice file paths.
-4. Any inherited or separately licensed input and its own provenance.
-5. Converter revision, documented transformations, schema version and output
-   filename/SHA-256.
-6. Applicable locale/coverage, source and output counts, and validation receipt.
-7. The final notice location in each desktop/web/download distribution.
-
-Preserve original notices verbatim when the artifact is accepted. Keep the
-source manifest and regeneration procedure reviewable. Reject unresolved or
-NC/research-only inputs from distribution. A pack must not silently lose its
-notice when copied from a development build into a release bundle.
-
-## Current inventory
-
-| Item | State in this change |
-| --- | --- |
-| Implementation scope and licensing decision | Documented |
-| Exact EN/DE thesaurus artifacts and SHA-256 pins | Pending TH1; none imported |
-| Original thesaurus archive notices | Pending artifact review; none represented as bundled |
-| Generated language packs and final redistribution notices | Not produced |
-| HF `cstr/grundwortschatz*` pipeline/output audit | [Source/metadata review completed](hf-pipeline-review.md); binary/input qualification pending, no reuse approved |
+The [HF pipeline review](hf-pipeline-review.md) remains a source/metadata audit;
+it grants no reuse of the combined `cstr/grundwortschatz*` databases. Their
+mixed provenance and output qualification questions remain separate. No Moby,
+OdeNet, Wiktionary/Kaikki, external ranking data, optional model or MyThes
+implementation code is copied into this feature.

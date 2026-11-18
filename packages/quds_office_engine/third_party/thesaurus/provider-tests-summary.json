@@ -1,0 +1,9 @@
+{
+  "status": "passed",
+  "tests": 24,
+  "providerSha256": "46dfabc0c202276ac7a1ede0a8bab255e19f4a68ad9cc367a2d7ee3749b9117a",
+  "testSha256": "7dd6db9170f8a26fad60b232cc5fcaf2f36d6e6871cd6969126cab9804497cc0",
+  "jsonlSha256": "d35d559eef45950684503394d211f9b1b9b2ddab18d6bf89d1caddee93f0e142",
+  "command": "dart --packages=QUALIFIED_WORKSPACE/.dart_tool/package_config.json PUB_CACHE/hosted/pub.dev/test-1.31.1/bin/test.dart --reporter json test/office_thesaurus_test.dart",
+  "analyzer": "No issues found for provider, provider tests and native benchmark tool."
+}

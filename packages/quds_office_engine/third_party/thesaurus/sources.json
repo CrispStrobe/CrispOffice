@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 1,
+  "retrievedAtUtc": "2026-11-18T17:55:54.725953+00:00",
+  "inputs": {
+    "english-wordnet-2025.xml.gz": {
+      "sha256": "9ca6d1dcb75f822fdd66617f7d9da48142ace38dd544d6ad5e2feca1674ad3fe",
+      "size": 11363503,
+      "url": "https://en-word.net/static/english-wordnet-2025.xml.gz",
+      "revision": "2025-edition; Git tag dc343f2683279ecbb13fab4e2fd778d7b162d287",
+      "license": "CC-BY-4.0 AND WordNet"
+    },
+    "openthesaurus_dump.tar.bz2": {
+      "sha256": "80873823310f2dec7618e9a171fd375d786bb3007d6de51b58cde54db55bfd38",
+      "size": 6408367,
+      "url": "https://www.openthesaurus.de/export/openthesaurus_dump.tar.bz2",
+      "revision": "export 2026-11-17T23:15:01Z",
+      "license": "CC-BY-SA-4.0"
+    }
+  },
+  "noticeFiles": {
+    "CC_BY_4.0.txt": {
+      "sha256": "9ba9550ad48438d0836ddab3da480b3b69ffa0aac7b7878b5a0039e7ab429411",
+      "size": 18657,
+      "source": "https://creativecommons.org/licenses/by/4.0/legalcode.txt"
+    },
+    "CC_BY_SA_4.0.txt": {
+      "sha256": "28a9529c7d0bb4dc51f4bf5c116a3d16ef247a052f7591466768ddf563fd1cf5",
+      "size": 20138,
+      "source": "https://creativecommons.org/licenses/by-sa/4.0/legalcode.txt"
+    },
+    "DE_ATTRIBUTION.txt": {
+      "sha256": "9ff2b7a1c04a116e90b55a113cc9319c709b0ee94c1d3059bfc168e776dbcdc2",
+      "size": 1619,
+      "source": "Independent Quds attribution/changes notice"
+    },
+    "EN_ATTRIBUTION.txt": {
+      "sha256": "38a7701501e765140d399263fb088b94ea79815a0873063ecb6273862afd587a",
+      "size": 1347,
+      "source": "Independent Quds attribution/changes notice"
+    },
+    "OEWN_LICENSE.md": {
+      "sha256": "672cc8b5663e8dc74c4b07a9dcf477193853575b119908fd3dc0aeeb60a9dbbb",
+      "size": 19863,
+      "source": "https://raw.githubusercontent.com/globalwordnet/english-wordnet/dc343f2683279ecbb13fab4e2fd778d7b162d287/LICENSE.md"
+    },
+    "OPENTHESAURUS_COPYING.txt": {
+      "sha256": "c7181695c616a3ae009ce422be265f7ec15ba0390889012fcff5aa077b28a7ac",
+      "size": 46448,
+      "source": "openthesaurus_dump.tar.bz2!/COPYING"
+    },
+    "OPENTHESAURUS_DATABASE_README.txt": {
+      "sha256": "6f19da2ebe7dc92cf6583c8a04ef1f4d9ba5f72df2bc779672ad6d07d969df22",
+      "size": 1488,
+      "source": "openthesaurus_dump.tar.bz2!/DATABASE-README.txt"
+    },
+    "UNICODE_INFLECTION_LICENSE": {
+      "sha256": "b2d3b5d59972767d52997d9f47e67cd30661bcfc3eeb6e3e1ada1ee06634be52",
+      "size": 2033,
+      "source": "../proofing/UNICODE_INFLECTION_LICENSE"
+    },
+    "UNICODE_INFLECTION_NOTICE": {
+      "sha256": "6c3b259b688a278e42f70c8b1b99ac0729111bec980c487e4f3245cd08899e22",
+      "size": 2198,
+      "source": "../proofing/UNICODE_INFLECTION_NOTICE"
+    },
+    "WNDB_License.txt": {
+      "sha256": "df30ec18fbabcdaf031b79ea026d3e6b959010cffe6dd7be9ac137822175b904",
+      "size": 1740,
+      "source": "https://raw.githubusercontent.com/globalwordnet/english-wordnet/dc343f2683279ecbb13fab4e2fd778d7b162d287/WNDB_License.txt"
+    }
+  },
+  "packs": {
+    "en": {
+      "packId": "quds-oewn-en-2025",
+      "version": "2025-q1",
+      "source": "oewn",
+      "name": "Open English WordNet 2025",
+      "license": "CC-BY-4.0 AND WordNet",
+      "sourceUrl": "https://en-word.net/",
+      "attribution": "Open English WordNet team and Princeton WordNet; indexed by Quds.",
+      "notices": [
+        "EN_ATTRIBUTION.txt",
+        "OEWN_LICENSE.md",
+        "WNDB_License.txt",
+        "CC_BY_4.0.txt"
+      ]
+    },
+    "de": {
+      "packId": "quds-openthesaurus-de-20261117",
+      "version": "2026-11-17-q1",
+      "source": "openthesaurus",
+      "name": "OpenThesaurus 17 November 2026",
+      "license": "CC-BY-SA-4.0",
+      "sourceUrl": "https://www.openthesaurus.de/",
+      "attribution": "OpenThesaurus, Daniel Naber and contributors; indexed by Quds.",
+      "notices": [
+        "DE_ATTRIBUTION.txt",
+        "OPENTHESAURUS_COPYING.txt",
+        "OPENTHESAURUS_DATABASE_README.txt",
+        "CC_BY_SA_4.0.txt",
+        "UNICODE_INFLECTION_LICENSE",
+        "UNICODE_INFLECTION_NOTICE"
+      ]
+    }
+  },
+  "germanMorphology": {
+    "manifest": "../proofing/morphology_manifest.json",
+    "sha256": "acd8c9c8f6cacd8ec92e8f6c197fb4b779bcbc8d25556ad3b205e07655f7ed35",
+    "size": 9304,
+    "license": "Unicode-3.0",
+    "scope": "Existing finite noun resource, not imported from OpenThesaurus word_mapping."
+  },
+  "englishMorphology": {
+    "forms": "4,473 source Form records from the pinned OEWN WN-LMF input",
+    "suffixRules": "Independent implementation of the documented WordNet morphy algorithm; functional suffix substitutions require attested lexical candidates of matching POS.",
+    "referenceUrl": "https://wordnet.princeton.edu/documentation/morphy7wn",
+    "referencePageSha256": "e8e6d55e620273323fe8c8075033d252dfa7ea83d7f2ee03c1866f128fdbd3a7",
+    "referencePageRedistributed": false,
+    "reinflection": false
+  }
+}
