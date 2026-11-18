@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:crypto/crypto.dart';
+import 'package:quds_proofing_spacy/quds_proofing_spacy_grammar.dart';
 import 'package:quds_proofing_spacy/quds_proofing_spacy_install.dart';
 import 'package:test/test.dart';
 
@@ -85,6 +86,16 @@ void main() {
     )!;
     expect(mac.grammarQualified, isFalse);
     expect(spacyQualificationFor('e' * 64), isNull);
+  });
+
+  test('catalog grammar claims match the planner\'s enforced build pin', () {
+    final claimed = {
+      for (final package in spacyCatalogPackages)
+        if (package.qualification.grammarQualified) package.librarySha256,
+      for (final build in spacyRecordedBuilds)
+        if (build.grammarQualified) build.librarySha256,
+    };
+    expect(claimed, {spacyGrammarNativeSha256});
   });
 
   test('unpublished platforms are unavailable with a stated reason', () {

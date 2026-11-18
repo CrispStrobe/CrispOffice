@@ -1,0 +1,49 @@
+{
+ "schema": "quds.spacy.macos_candidate_smoke.v1",
+ "scope": "Developer-run Dart worker on a local Apple-silicon Mac using the unsigned CrispEmbed macOS arm64 development candidate (HF revision a0455e70, archive f2b7cbc9...). Component smoke only: not a signed app, not a qualification, not a grammar claim.",
+ "library_archive_sha256": "f2b7cbc9d9d127459964fcefb510378c390c0991ad3e0595876034355eca149f",
+ "bundle": "installed through installBundle() from revision 659dae33 (hub-install-readback.json)",
+ "process_gate": "enableSpacyNativeGateForProcess() (setenv) after explicit opt-in",
+ "abi_gate_enabled": true,
+ "identity": {
+  "library_sha256": "5cb67f0092f3659653773b8687fe7448dc3c235144b01c80a6fae54c103ca4e5",
+  "bundle_sha256": "d599768375de3dc56abcca5cf1d49da0015857f9d3a10640aebb5317ef5d427e",
+  "model_sha256": "fae2e6ab8d6c611d7a9dddd4b3259a871a1d2f95cacc8259f49c1e4ff31ff6cd",
+  "resources_sha256": "b42496cc373ada57a67ed2f4c2c25f8d22f80c08db5841a7cdb91c8a6e18562a",
+  "abi_version": 1,
+  "text_abi_version": 1,
+  "capability_mask": 15
+ },
+ "results": [
+  {
+   "status": "success",
+   "tokens": [
+    "Die/der/DET/nk->1",
+    "Katzen/Katze/NOUN/sb->4",
+    "im/in/ADP/mnr->1",
+    "Garten/Garten/NOUN/nk->2",
+    "schläft/schlafen/VERB/ROOT->4",
+    "./--/PUNCT/punct->4"
+   ],
+   "sentences": 1
+  },
+  {
+   "status": "success",
+   "tokens": [
+    "Eine/ein/DET/nk->2",
+    "ruhige/ruhig/ADJ/nk->2",
+    "Schildkröte/Schildkröte/NOUN/oa->3",
+    "wartet/warten/VERB/ROOT->3",
+    "./--/PUNCT/punct->3",
+    "😀/😀/SCONJ/sb->7",
+    "Sie/sie/PRON/sb->7",
+    "schläft/schlafen/VERB/ROOT->7",
+    "./--/PUNCT/punct->7"
+   ],
+   "sentences": 2
+  }
+ ],
+ "grammar_status": "failed",
+ "grammar_findings": [],
+ "grammar_note": "The grammar planner refuses this build (runtime-mismatch) because only library ea89842e is grammar-qualified. This is the intended per-build binding."
+}
