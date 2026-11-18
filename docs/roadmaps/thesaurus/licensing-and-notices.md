@@ -132,4 +132,4 @@ notice when copied from a development build into a release bundle.
 | Exact EN/DE thesaurus artifacts and SHA-256 pins | Pending TH1; none imported |
 | Original thesaurus archive notices | Pending artifact review; none represented as bundled |
 | Generated language packs and final redistribution notices | Not produced |
-| HF `cstr/grundwortschatz*` pipeline/output audit | Follow-up inspection; no reuse approved by this record |
+| HF `cstr/grundwortschatz*` pipeline/output audit | [Source/metadata review completed](hf-pipeline-review.md); binary/input qualification pending, no reuse approved |

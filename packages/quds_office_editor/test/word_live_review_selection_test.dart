@@ -202,6 +202,9 @@ void main() {
       expect(retained, isNotNull);
       expect(retained, isNot(same(selected)));
       expect(retained!.paragraph, same(selectedParagraph));
+      expect(retained.finding.originalText, selected.finding.originalText);
+      expect(retained.finding.start, selected.finding.start);
+      expect(retained.finding.end, selected.finding.end);
       expect(retained.finding.revision, controller.contentRevision);
       expect(controller.proofing.isCurrent(retained), isTrue);
       expect(controller.proofing.isCurrent(selected), isFalse);
@@ -213,6 +216,9 @@ void main() {
         anchor: controller.caret.selectionAnchor,
         anchorParagraph: controller.caret.selectionAnchorParagraph,
       ), selectedCaret);
+      expect(controller.caret.paragraphIndex, 0);
+      expect(controller.caret.selectionAnchor, 0);
+      expect(controller.caret.logicalIndex, 5);
 
       final checked = await controller.checkDocumentProofing();
       final rebound = checked.issues.single;

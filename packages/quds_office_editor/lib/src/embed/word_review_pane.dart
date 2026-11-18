@@ -36,6 +36,17 @@ class WordReviewPane extends StatefulWidget {
 enum _ProofingFilter { all, spelling, grammar, style }
 
 class _WordReviewPaneState extends State<WordReviewPane> {
+  static const Map<String, String> _languages = <String, String>{
+    'de-DE': 'Deutsch (Deutschland)',
+    'de-AT': 'Deutsch (Österreich)',
+    'de-CH': 'Deutsch (Schweiz)',
+    'en-US': 'English (United States)',
+    'en-GB': 'English (United Kingdom)',
+    'en-CA': 'English (Canada)',
+    'en-AU': 'English (Australia)',
+    'en-IN': 'English (India)',
+  };
+
   late WordReviewPaneTab _tab;
   late final TextEditingController _author;
   final TextEditingController _changeSearch = TextEditingController();
@@ -283,24 +294,29 @@ class _WordReviewPaneState extends State<WordReviewPane> {
                   ),
                 ),
                 const Divider(height: 8),
+                if (_notice != null)
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(12, 0, 12, 8),
+                    child: Semantics(
+                      liveRegion: true,
+                      child: Tooltip(
+                        message: _notice!,
+                        child: Text(
+                          _notice!,
+                          key: const ValueKey<String>('live-review-notice'),
+                          style: theme.textTheme.bodySmall,
+                          maxLines: 3,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ),
+                  ),
                 Expanded(
                   child: ListView(
                     key: ValueKey<String>('live-review-${_tab.name}-content'),
                     controller: _scroll,
                     padding: const EdgeInsets.fromLTRB(12, 4, 12, 16),
                     children: <Widget>[
-                      if (_notice != null)
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 8),
-                          child: Semantics(
-                            liveRegion: true,
-                            child: Text(
-                              _notice!,
-                              key: const ValueKey<String>('live-review-notice'),
-                              style: theme.textTheme.bodySmall,
-                            ),
-                          ),
-                        ),
                       if (_tab == WordReviewPaneTab.proofing)
                         ..._proofingContent()
                       else
@@ -376,11 +392,36 @@ class _WordReviewPaneState extends State<WordReviewPane> {
             icon: const Icon(Icons.spellcheck, size: 18),
             label: Text(_s('Check document', 'تدقيق المستند')),
           ),
-          Text(
-            session.language,
-            style: Theme.of(context).textTheme.labelMedium,
-          ),
         ],
+      ),
+      const SizedBox(height: 8),
+      _changeDropdown<String>(
+        key: const ValueKey<String>('live-proofing-language'),
+        label: _s('Document language', 'لغة المستند'),
+        value: session.language,
+        items: <DropdownMenuItem<String>>[
+          for (final entry in _languages.entries)
+            DropdownMenuItem(
+              value: entry.key,
+              child: Text(
+                entry.value,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+          if (!_languages.containsKey(session.language))
+            DropdownMenuItem(
+              value: session.language,
+              child: Text(session.language),
+            ),
+        ],
+        onChanged: !_c.config.allowsMutation
+            ? null
+            : (value) {
+                if (value == null) return;
+                _c.setProofingLanguage(value);
+                _refreshAfterChoice();
+              },
       ),
       const Divider(height: 20),
       DropdownButtonFormField<_ProofingFilter>(
@@ -477,8 +518,64 @@ class _WordReviewPaneState extends State<WordReviewPane> {
             key: const ValueKey<String>('live-proofing-empty'),
           ),
         ),
+      if (session.hasIgnoredOccurrences ||
+          session.ignoredRuleIds.isNotEmpty ||
+          _ignoredWords(session).isNotEmpty)
+        Padding(
+          padding: const EdgeInsets.only(top: 8),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              OutlinedButton.icon(
+                key: const ValueKey<String>('live-proofing-review-ignored'),
+                onPressed: _restoreIgnoredFindings,
+                icon: const Icon(Icons.restore, size: 18),
+                label: Text(
+                  _s(
+                    'Review ignored findings again',
+                    'مراجعة النتائج المتجاهلة مجدداً',
+                  ),
+                ),
+              ),
+              Text(
+                _s(
+                  'Restore ignored occurrences, words, and rules. Personal dictionary entries stay unchanged.',
+                  'استعادة المواضع والكلمات والقواعد المتجاهلة. تبقى كلمات القاموس الشخصي كما هي.',
+                ),
+                style: Theme.of(context).textTheme.bodySmall,
+              ),
+            ],
+          ),
+        ),
       _historyActions(),
     ];
+  }
+
+  List<({String language, String word})> _ignoredWords(
+    WordProofingSession session,
+  ) {
+    final ignored =
+        session.vocabulary.toJson()['ignoredWords']! as Map<String, Object?>;
+    return <({String language, String word})>[
+      for (final entry in ignored.entries)
+        for (final word in entry.value! as List<String>)
+          (language: entry.key, word: word),
+    ];
+  }
+
+  void _restoreIgnoredFindings() {
+    final session = _c.proofing;
+    final words = _ignoredWords(session);
+    final rules = session.ignoredRuleIds.toList();
+    session.clearIgnoredOnce();
+    for (final entry in words) {
+      session.unignoreWord(entry.word, language: entry.language);
+    }
+    for (final rule in rules) {
+      session.restoreRule(rule);
+    }
+    setState(() => _notice = null);
+    _refreshAfterChoice();
   }
 
   Widget _issueDetail(WordProofingIssue issue, bool current) {
@@ -491,7 +588,7 @@ class _WordReviewPaneState extends State<WordReviewPane> {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
         Text(
-          '${_categoryLabel(finding.category)} · ${issue.story}',
+          '${_categoryLabel(finding.category)} · ${issue.story} · ${issue.language}',
           style: Theme.of(context).textTheme.labelMedium,
         ),
         const SizedBox(height: 6),
@@ -609,20 +706,22 @@ class _WordReviewPaneState extends State<WordReviewPane> {
     // once across every supported story before using it for controls/previews.
     final document = _c.document;
     final body = document.paragraphs.toList();
-    final attached = <WmlParagraph>{
-      ...body,
-      for (final section in document.sections) ...<WmlParagraph>[
-        ...section.header,
-        ...section.footer,
-        ...section.firstHeader,
-        ...section.firstFooter,
-        ...section.evenHeader,
-        ...section.evenFooter,
-      ],
-      for (final note in <WmlNote>[...document.footnotes, ...document.endnotes])
-        ...note.allParagraphs,
-      for (final comment in document.comments) ...comment.paragraphs,
-    };
+    final attached = Set<WmlParagraph>.identity()..addAll(body);
+    for (final section in document.sections) {
+      attached
+        ..addAll(section.header)
+        ..addAll(section.footer)
+        ..addAll(section.firstHeader)
+        ..addAll(section.firstFooter)
+        ..addAll(section.evenHeader)
+        ..addAll(section.evenFooter);
+    }
+    for (final note in <WmlNote>[...document.footnotes, ...document.endnotes]) {
+      attached.addAll(note.allParagraphs);
+    }
+    for (final comment in document.comments) {
+      attached.addAll(comment.paragraphs);
+    }
     WmlParagraph? target(WmlRevision revision) {
       final paragraph =
           revision.targetParagraph ??
@@ -957,7 +1056,7 @@ class _WordReviewPaneState extends State<WordReviewPane> {
     required T value,
     String? hint,
     required List<DropdownMenuItem<T>> items,
-    required ValueChanged<T?> onChanged,
+    required ValueChanged<T?>? onChanged,
   }) => InputDecorator(
     decoration: InputDecoration(
       labelText: label,
@@ -1124,13 +1223,16 @@ class _WordReviewPaneState extends State<WordReviewPane> {
     var at = 0;
     try {
       for (final revision in revisions) {
-        WordRevisions.validateRevision(
-          _c.document,
-          revision,
-          resolved: targets,
-        );
-        if (revision.start < at) {
-          throw StateError('Tracked changes overlap.');
+        // A read-only text projection does not require permission to resolve
+        // the change across native field/control boundaries. Validate its
+        // attached source text and non-overlap; decision controls separately
+        // enforce the complete editing guards.
+        if (revision.conflict != null ||
+            revision.start < at ||
+            revision.end < revision.start ||
+            revision.end > text.length ||
+            text.substring(revision.start, revision.end) != revision.text) {
+          throw StateError('The tracked source text is stale or conflicted.');
         }
         if (revision.start > at) {
           spans.add(TextSpan(text: text.substring(at, revision.start)));

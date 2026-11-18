@@ -4,6 +4,17 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Preserve verified findings in unchanged paragraphs during typing and checking,
+  publish new findings progressively, and keep current inline suggestions usable
+  during unrelated progress. Reject stale sources and preserve explicit/manual
+  checking boundaries and request coalescing.
+- Add author/type/text filters, exact filtered batch Accept/Reject, and
+  markup/final/original paragraph previews to the persistent Changes pane.
+  Keep filters collapsible, verify source attachment, support protected text
+  inspection, and advance to the next pending change with Undo/Redo.
+- Add document-language selection and restoring ignored findings directly to the
+  Writing pane, preserving personal dictionary entries and run languages.
+  F7 works from pane controls as well as the document.
 - Search and reuse cited Zotero document references offline, with stored details,
   occurrence counts, shared selection review and fresh citation options. Preserve
   mixed-library identities, explicit URI aliases and distinct offline snapshots.
@@ -18,7 +29,7 @@ All notable changes to `quds_office_editor` are documented here.
 - Keep Writing and Changes review panes open while editing, with responsive
   placement, finding/category navigation, suggestions, dictionary/ignore actions,
   reviewer attribution and undoable tracked-change decisions. Preserve advanced
-  dialogs for detailed settings, batch review and two-document comparison.
+  dialogs for detailed settings and two-document comparison.
 - Offer suggestions directly from marked text and tracked-change actions from
   its context menu. Preserve input focus, double-click/drag selection and checked
   results during caret/viewport movement; reject stale source actions.

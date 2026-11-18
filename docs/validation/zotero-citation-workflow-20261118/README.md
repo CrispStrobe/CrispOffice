@@ -1,9 +1,22 @@
 # Reuse cited Zotero references and edit citation source lists
 
-[PR #166](https://github.com/CrispStrobe/quds_office_suite/pull/166) continues the
+[PR #166](https://github.com/CrispStrobe/quds_office_suite/pull/166) added the
 Word/LibreOffice-style citation workflow on
-`codex/zotero-citation-workflow-20261118`. The PR is stacked on #162, whose
-history already contains the earlier Zotero increments #164 and #165.
+`codex/zotero-citation-workflow-20261118`. Its implementation was merged into
+the active document-review branch in `40790cb2` while local validation was
+running. That branch is reviewed in #162 and already contains #164 and #165.
+
+## Delivery update — combined source validation pending
+
+The complete pre-merge qualification below is saved at `82224f23`, bound to
+source `40e92e52`. A targeted delivery check found that the document-review
+base had advanced to `ecbb1e0bd8129a5c8737496d1877863dd0eea3f2`, with additional
+review/proofing code and tests. This follow-up integrates that fixed head and
+resolves one selection-test conflict while retaining both sets of assertions.
+Fresh complete Zotero and expanded incoming-cohort qualification will be saved
+before the follow-up is marked ready. The original fixed incoming-ref audit
+and every earlier result remain available; this targeted base check does not
+claim a new repository-wide ref inventory.
 
 ## Implemented behavior
 
@@ -43,9 +56,9 @@ for the complete flow and its distinction from native document-wide CSL
 formatting. These additions complement the existing Zotero desktop picker,
 style, bibliography and refresh integration.
 
-## Completed local validation
+## Completed pre-merge local validation
 
-Qualified final source: **`40e92e5222a26db132f8be05126df285b4227a86`**.
+Qualified pre-merge source: **`40e92e5222a26db132f8be05126df285b4227a86`**.
 The [independent evidence audit](qualification-audit.md) verifies the two
 completed local runs against this source and independently recounts their raw
 events. Their suite sets are disjoint.

@@ -1,0 +1,117 @@
+{
+  "scope": "Diagnostic time spent synchronously inside WordProofingSession.observeDocument; excludes editing, layout, providers, and full app responsiveness. No performance pass threshold.",
+  "runtime_mode": "Flutter-test JIT; one host, not a release-build performance guarantee",
+  "method": {
+    "paragraphs": 500,
+    "characters_per_paragraph": 80,
+    "warmup_edits": 30,
+    "measured_edits": 100,
+    "primed_cache": true,
+    "variants": "0 findings and 1 finding per paragraph; edit only first paragraph, retaining up to499 findings",
+    "percentile": "Sorted microsecond samples: median mean of50th+51st; p95=95th; max=100th",
+    "raw_output": "The fixture emits statistics as Dart test JSONL print events; individual per-edit values were not emitted."
+  },
+  "before": {
+    "source_commit": "8146b3eb439f847b29ebba7ccbcc777001a5109f",
+    "proofing_blob": "db9c566c2d7076d28b054bc3e90d3c116ca0629b",
+    "results": [
+      {
+        "kind": "synchronous-observeDocument",
+        "paragraphs": 500,
+        "characters_per_paragraph": 80,
+        "warmup_edits": 30,
+        "measured_edits": 100,
+        "primed_cache": true,
+        "initial_findings_per_paragraph": 0,
+        "retained_issues": 0,
+        "unit": "microseconds",
+        "median": 5880.0,
+        "p95": 9067,
+        "max": 22306,
+        "min": 4430,
+        "mean": 6398.16,
+        "runtime_mode": "flutter-test JIT on this host; diagnostic only"
+      },
+      {
+        "kind": "synchronous-observeDocument",
+        "paragraphs": 500,
+        "characters_per_paragraph": 80,
+        "warmup_edits": 30,
+        "measured_edits": 100,
+        "primed_cache": true,
+        "initial_findings_per_paragraph": 1,
+        "retained_issues": 499,
+        "unit": "microseconds",
+        "median": 9766.0,
+        "p95": 14426,
+        "max": 23028,
+        "min": 7618,
+        "mean": 10335.52,
+        "runtime_mode": "flutter-test JIT on this host; diagnostic only"
+      }
+    ]
+  },
+  "after": {
+    "source_base_commit": "3a36ae46ea99ceaa1c212ae5cfe08bc501bb0229",
+    "proofing_blob": "ce69d5447eb50391690f29d6806a97ecd58ae084",
+    "formatting_only_after_commit": true,
+    "results": [
+      {
+        "kind": "synchronous-observeDocument",
+        "paragraphs": 500,
+        "characters_per_paragraph": 80,
+        "warmup_edits": 30,
+        "measured_edits": 100,
+        "primed_cache": true,
+        "initial_findings_per_paragraph": 0,
+        "retained_issues": 0,
+        "unit": "microseconds",
+        "median": 1844.5,
+        "p95": 2804,
+        "max": 3529,
+        "min": 1256,
+        "mean": 1866.79,
+        "runtime_mode": "flutter-test JIT on this host; diagnostic only"
+      },
+      {
+        "kind": "synchronous-observeDocument",
+        "paragraphs": 500,
+        "characters_per_paragraph": 80,
+        "warmup_edits": 30,
+        "measured_edits": 100,
+        "primed_cache": true,
+        "initial_findings_per_paragraph": 1,
+        "retained_issues": 499,
+        "unit": "microseconds",
+        "median": 5089.5,
+        "p95": 6707,
+        "max": 8702,
+        "min": 3923,
+        "mean": 5302.8,
+        "runtime_mode": "flutter-test JIT on this host; diagnostic only"
+      }
+    ]
+  },
+  "command": [
+    "flutter",
+    "test",
+    "--no-pub",
+    "--reporter",
+    "json",
+    "/workspace/scratch/d322553a8b9d/review-toolchain/invalidate_timing_test.dart"
+  ],
+  "working_directory": "packages/quds_office_editor",
+  "counts_as_product_acceptance": false,
+  "github_actions_queried_or_awaited": false,
+  "sha256": {
+    "invalidate_timing_test.dart": "9ecdff5b582a7cbb57fc07f6663fa9e5e373f6ca04c8329ad948c71982c29818",
+    "before.jsonl": "aed3a6609b06e8b2631ad5a75fc7a6a518f40be2ebe71512992179b92e21fb46",
+    "after.jsonl": "b390649cba24b513096e1a946405f7716848e77b0ce52e96e90d5c401a236a8e"
+  },
+  "median_reduction_percent": [
+    68.63,
+    47.89
+  ],
+  "executed_fixture_sha256": "feb8c83127f3234454b85ebb3bdf1075a56429cdb86a58518100ac2e8129307e",
+  "fixture_publication_note": "Removed one surplus final blank line after execution; Dart tokens are unchanged. The executed fixture hash is retained separately."
+}

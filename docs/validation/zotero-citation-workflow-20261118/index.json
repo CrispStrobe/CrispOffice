@@ -1,17 +1,18 @@
 {
-  "schema_version": 1,
-  "created_at_utc": "2026-11-18T16:35:38.666982+00:00",
-  "qualified_source_commit": "40e92e5222a26db132f8be05126df285b4227a86",
+  "schema_version": 2,
+  "created_at_utc": "2026-11-18T16:45:00.173891+00:00",
+  "status": "post-merge-validation-pending",
+  "previous_qualified_source_commit": "40e92e5222a26db132f8be05126df285b4227a86",
   "scope": "All tracked files under this validation directory except index.json itself; caches and unrelated workspace files are excluded.",
-  "evidence_anchor": "The Git commit containing this index binds the index and every listed blob.",
-  "file_count": 50,
-  "total_bytes": 1232652,
+  "evidence_anchor": "The Git commit containing this index binds every listed blob.",
+  "file_count": 54,
+  "total_bytes": 1269889,
   "files": [
     {
       "path": "README.md",
-      "bytes": 10603,
-      "sha256": "510bff25650e37b600204dc52c32875c3c8482f90a7d5f36f2fdf543b1c5a7cb",
-      "git_blob_sha1": "f92eba25636ba0bd0900120c6897462213133dc1"
+      "bytes": 11421,
+      "sha256": "f607664b706a73b62e8f79a5ed2ec826372284c20a9ab66c75f55afa583ee74c",
+      "git_blob_sha1": "78995512feb6019e4724ecdc04e40585f0268305"
     },
     {
       "path": "development/README.md",
@@ -230,6 +231,30 @@
       "git_blob_sha1": "eea6f864ad6e3968e13568f12c52a847e669f5ad"
     },
     {
+      "path": "post-merge/merge-review.md",
+      "bytes": 1843,
+      "sha256": "5c537ea9a71b63c06e76963fe2e68ed6d13882f53dbaa3787e9653b59cdf0489",
+      "git_blob_sha1": "9b7f8529aad0a8019a99d4bde7e79e5216c81c2b"
+    },
+    {
+      "path": "post-merge/plan.md",
+      "bytes": 4597,
+      "sha256": "5d7cfb2281b87409c9ff9492842dc52546b7866456ac63413d0b94b77d99d6eb",
+      "git_blob_sha1": "7aff407f2948e2c1810827b737f251a8a2152214"
+    },
+    {
+      "path": "post-merge/run_incoming_editor.py",
+      "bytes": 21018,
+      "sha256": "34445592d84e76bce1aaae3ad2ecff22cebaaa6c56277450e424a22ac31e9336",
+      "git_blob_sha1": "982068f4862a8f8036916aa99ea76fb5b319d62d"
+    },
+    {
+      "path": "post-merge/static-preflight.json",
+      "bytes": 9388,
+      "sha256": "747808c9f8bb2b9fbae5a1e9c2e525e09c85930ef6d74f70c991a2728a55cabd",
+      "git_blob_sha1": "10a9ed4ac43446a50e12263b9e409dd73fc921b6"
+    },
+    {
       "path": "qualification-audit.json",
       "bytes": 20178,
       "sha256": "9215ef30268e56385e045febc3cd1143036fddad6ab885f1a825cfe97dcf6d57",
@@ -303,9 +328,9 @@
     },
     {
       "path": "status.json",
-      "bytes": 3242,
-      "sha256": "11fe4309514654bb0125db4d22e7f681f4026bcb10eb2a6dff5ba099ef2cc03c",
-      "git_blob_sha1": "aa5216cf471fe1ff9f7d3e3e3dd635a25edd47a8"
+      "bytes": 2815,
+      "sha256": "5e8d8f25c84283f38b4c12b063994d4210fc5cfcf924e441550f6e72b7b7bd5d",
+      "git_blob_sha1": "f9ccc0ddd7af2c6f27dda3a8e8578011730ec4d8"
     }
   ]
 }

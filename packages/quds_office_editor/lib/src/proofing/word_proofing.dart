@@ -124,6 +124,8 @@ final class WordProofingSession extends ChangeNotifier {
   final Set<String> _ignoredOnce = {};
   final Expando<String> _ids = Expando<String>('proofing paragraph id');
   final Expando<String> _documentIds = Expando<String>('proofing document id');
+  final Expando<_CachedParagraphSnapshot> _snapshotCache =
+      Expando<_CachedParagraphSnapshot>('proofing paragraph snapshot');
   final Map<WmlParagraph, _CachedParagraph> _cache = HashMap.identity();
   Map<WmlParagraph, List<OfficeProofingFinding>> _findings = HashMap.identity();
   int _nextId = 0;
@@ -277,15 +279,22 @@ final class WordProofingSession extends ChangeNotifier {
     _generation++;
     _timer?.cancel();
     _timer = null;
-    final document = _document();
-    final captured = _capture(document);
-    _publishCached(
-      captured,
-      documentId: _documentIds[document] ??= 'document-${++_nextId}',
-      revision: _revision(),
-      useManual: false,
-      scheduled: _enabled,
-    );
+    if (_cache.isEmpty) {
+      // No verified findings exist yet. Leave the first full capture behind
+      // the typing debounce instead of scanning a document on every keystroke.
+      _summary = WordProofingSummary(scheduled: _enabled);
+      _findings = HashMap.identity();
+    } else {
+      final document = _document();
+      final captured = _capture(document);
+      _publishCached(
+        captured,
+        documentId: _documentIds[document] ??= 'document-${++_nextId}',
+        revision: _revision(),
+        useManual: false,
+        scheduled: _enabled,
+      );
+    }
     if (_enabled) {
       _timer = Timer(
         debounce,
@@ -877,6 +886,39 @@ final class WordProofingSession extends ChangeNotifier {
         guards.addAll(exclusions);
         // Existing insert revisions are not rewritten by a second command.
         guards.addAll(pending[paragraph] ?? const []);
+        // Scan current structure first: fields can start in a previous
+        // paragraph, and a parent or inline control can change protection
+        // without changing text. Only grapheme segmentation is memoized.
+        final inputKey = jsonEncode([
+          configuration,
+          name,
+          locked,
+          paragraph.properties.fieldInstruction,
+          paragraph.properties.pageNumberField,
+          paragraph.properties.proofingLanguage,
+          generated,
+          emptyField,
+          structure,
+          [
+            for (final range in exclusions) [range.start, range.end],
+          ],
+          [
+            for (final range in guards) [range.start, range.end],
+          ],
+          barriers.toList(growable: false),
+          insertionBarriers.toList(growable: false),
+          [
+            for (final run in languageRuns) [run.start, run.end, run.language],
+          ],
+        ]);
+        final previous = _snapshotCache[paragraph];
+        if (previous != null &&
+            previous.inputKey == inputKey &&
+            previous.snapshot.text == text) {
+          if (previous.paragraphSkipped) skipped++;
+          snapshots.add(previous.snapshot);
+          continue;
+        }
         final ranges = <({int start, int end, String language})>[];
         var paragraphSkipped = generated || emptyField;
         var languageIndex = 0;
@@ -940,19 +982,23 @@ final class WordProofingSession extends ChangeNotifier {
           for (final segment in segments)
             [segment.start, segment.end, segment.language],
         ]);
-        snapshots.add(
-          _ParagraphSnapshot(
-            paragraph,
-            name,
-            text,
-            key,
-            configuration,
-            locked,
-            guards,
-            segments,
-            insertionBarriers,
-          ),
+        final snapshot = _ParagraphSnapshot(
+          paragraph,
+          name,
+          text,
+          key,
+          configuration,
+          locked,
+          guards,
+          segments,
+          insertionBarriers,
         );
+        _snapshotCache[paragraph] = _CachedParagraphSnapshot(
+          inputKey,
+          snapshot,
+          paragraphSkipped,
+        );
+        snapshots.add(snapshot);
       }
     }
 
@@ -1129,6 +1175,18 @@ final class _ParagraphSnapshot {
   final List<({int start, int end})> guards;
   final List<_Segment> segments;
   final Set<int> insertionBarriers;
+}
+
+final class _CachedParagraphSnapshot {
+  const _CachedParagraphSnapshot(
+    this.inputKey,
+    this.snapshot,
+    this.paragraphSkipped,
+  );
+
+  final String inputKey;
+  final _ParagraphSnapshot snapshot;
+  final bool paragraphSkipped;
 }
 
 final class _DocumentSnapshot {
