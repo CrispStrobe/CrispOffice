@@ -1,0 +1,23 @@
+{
+  "schema": "quds.spacy.v2_capsule_cross_check.v1",
+  "scope": "Local compatibility check only. A v2 capsule was built with CrispEmbed tools/spacy/platform_distribution.py (PR #239) from the unsigned macOS arm64 development candidate (library 5cb67f00) and the five pinned bundle files, served from a loopback mirror, installed with the Quds SpacyPackageInstaller and opened with the Dart worker on Apple silicon. Not a publication and not a qualification.",
+  "capsule": {
+    "archive_sha256": "3a2cfd8a948755b08770aaae571c5bcd15c1efab826190fb5a4aca7a55a7f34a",
+    "archive_bytes": 7810133,
+    "manifest_sha256": "ec9a1898af38dfe50cf8573986f103919adeee2955e16fb442944655490119cb",
+    "manifest_bytes": 4997,
+    "library_entrypoint": "native/5cb67f0092f3659653773b8687fe7448dc3c235144b01c80a6fae54c103ca4e5/libcrispembed-spacy.dylib",
+    "payload_files": 20
+  },
+  "dart_install": {"closed_tree_reverified": true, "directory": "3a2cfd8a948755b08770aaae571c5bcd15c1efab826190fb5a4aca7a55a7f34a"},
+  "dart_worker": {
+    "status": "success",
+    "tokens": ["Die/der/DET", "Kinder/Kind/NOUN", "spielen/spielen/VERB", "im/in/ADP", "Garten/Garten/NOUN", "./--/PUNCT"]
+  },
+  "grammar_qualified_build": false,
+  "hosted_dry_runs": {
+    "macos-arm64": {"run": 44298183722, "library_sha256": "5cb67f0092f3659653773b8687fe7448dc3c235144b01c80a6fae54c103ca4e5", "note": "Rebuilt from CrispEmbed main+tooling; byte-identical library; ctest, 21 text-API controls, prepared and text development parity exact from the installed capsule. Nothing uploaded."},
+    "linux-x86_64-shared": {"run": 44298170762, "library_sha256": "0a7ce2ecacf9fce5c8f962aecc7edf31dad696f8de6c2e9619883f68a6538984", "note": "All controls pass; GLIBC 2.43 symbol floor (ubuntu-latest)."},
+    "linux-x86_64-static-runtime": {"run": 44298176999, "note": "Text parity SIGSEGV in context open; static libstdc++ linkage is not used."}
+  }
+}

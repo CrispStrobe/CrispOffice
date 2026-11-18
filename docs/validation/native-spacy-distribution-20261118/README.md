@@ -57,12 +57,31 @@ the app. The provider remains default OFF.
 | Studio `studio_sheet_navigation_test` | 1 failure, **pre-existing** on the merged base without these changes |
 | Fresh-cache Hub install through the app installer | [Passed](hub-install-readback.json): capsule and bundle-only, closed trees re-verified; no native load |
 | Real macOS arm64 Dart worker with the dev candidate | [Smoke](macos-arm64-candidate-smoke.json): analysis succeeded for two texts; grammar correctly refused the unqualified build |
+| CrispEmbed v2 capsule -> Quds installer -> Dart worker (macOS arm64, loopback mirror) | [Passed](v2-capsule-cross-check.json): closed tree installed and re-verified; analysis succeeded. Confirms the Python builder and Dart reader share one contract |
 
 Local toolchain: Flutter 3.44.4 / Dart 3.12.2 (the repository's recorded
 qualification toolchain is Flutter 3.47.8 / Dart 3.13.7). Formatting was not
 applied to unrelated files.
 
-## 5. Platform status
+## 5. Remaining steps after the CrispEmbed runtime update merges
+
+1. Dispatch `tools/ci-heavy/spacy_w7_platform_package.py --platform macos-arm64 --publish`
+   from CrispEmbed `main` (PR #239 tooling). Success requires its two immutable
+   commits, exact trees, fresh-cache readback and reinstall from downloaded bytes.
+2. Add a `SpacyPlatformPackage` for `macos-arm64` to `distribution.dart` using the
+   receipt's revision, archive/manifest/library digests and lengths, with the
+   receipt's analysis claim and `grammar: null`.
+3. Manual grammar on that build needs its own evaluation on the exact library and
+   an explicit extension of the planner's build pin; it is not inherited.
+4. Opt-in NER/senter: render `LinguisticEntity` spans in the analysis view only
+   once the runtime reports them.
+
+Hosted dry runs from CrispEmbed `main`+tooling (nothing uploaded) are recorded in
+[v2-capsule-cross-check.json](v2-capsule-cross-check.json): macOS arm64 reproduced
+library `5cb67f00…` byte for byte and passed all controls from the installed
+capsule; a Linux build with static libstdc++ crashed (not used).
+
+## 6. Platform status
 
 - **Linux x86-64**: downloadable, verified install, analysis + qualified manual grammar.
 - **macOS arm64**: code path ready and smoke-tested; no package offered until a
