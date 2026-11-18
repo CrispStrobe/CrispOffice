@@ -1,5 +1,32 @@
 # Zotero validation
 
+## 18 November 2026 — stored-reference details throughout the workspace
+
+Qualified integration: **`02da86d9ba82f5d14dc04a3759c247064bcd6a25`**, on
+`codex/zotero-offline-workflow-20261118` ([PR #165](https://github.com/CrispStrobe/quds_office_suite/pull/165),
+stacked on #164). Imported results and selection review now expose full stored
+metadata with plain-text copying, including offline, hidden and mixed-library
+sources. Nested inspection preserves staged reordering/removals. A refused 21st
+imported selection explains the shared 20-source limit.
+
+The complete editor Zotero cohort passes **299 tests across 22 suites**, including
+all **21 new cases counted once**, with zero skips/errors. All five changed Dart
+targets pass strict analysis and formatting. The full details workflow passes at
+320 × 480 with doubled text in LTR and RTL layouts. All before/after guards pass;
+554 source input identities match the saved integration commit.
+
+The final fixed inventory accounts for **375 incoming refs / 241 distinct heads**,
+with no observed head unaccounted for. The latest document-review audit-only
+commit is preserved through an ordinary two-parent merge. Remote checkpoints use
+`[skip ci]`; no Actions, workflow or CI-status endpoint was queried or awaited.
+
+The [complete report and compact raw evidence](validation/zotero-offline-workflow-20261118/README.md)
+include exact-source bindings, final reconciliation and reproducible commands.
+Engine, Studio and other incoming cohorts were unchanged and were not rerun or
+added to this increment's test count. This editor qualification uses real Flutter
+widgets and controlled channels; it does not claim new installed-app, live-account
+or Word/LibreOffice acceptance.
+
 ## 18 November 2026 — imported-reference search and offline selection copying
 
 Qualified product: **`b2bcfc23e692476d16d9a7a534ea95a93ae94cd3`**, on
