@@ -246,13 +246,16 @@ claim Dart, Flutter, pack-generation or product acceptance tests have run.
 - Cross-paragraph replacement and additional editor surfaces beyond the
   qualified Word targets.
 
-The requested inspection of the Hugging Face `cstr/grundwortschatz*`
-repositories follows this scope commit. Assess their pipeline definitions,
-input licenses, generated-output provenance, validation and publishing behavior
-before proposing any reuse for vocabulary coverage, ranking, morphology or
-sense data. A vocabulary list alone does not establish synonym relationships,
-and a pipeline's code license does not license every upstream input or output.
-This paragraph records a follow-up task, not completed inspection evidence.
+The [HF pipeline review](hf-pipeline-review.md) records the completed
+source/metadata inspection of `cstr/grundwortschatz-voc-en` and
+`cstr/grundwortschatz-voc-de`, with their build code pinned in
+`CrispStrobe/WordUniverse`. Both pipelines already extract real meaning groups.
+Reuse qualified importer code or concepts for a dedicated thesaurus export;
+do not inherit the combined school-vocabulary databases or their coverage
+policy by default. Binary artifact qualification and input-license resolution
+remain pending. The review identifies source-ID/label preservation work,
+publication-path differences, release-gate defects and provenance discrepancies.
+It approves no data import and does not complete TH1.
 
 ## References
 

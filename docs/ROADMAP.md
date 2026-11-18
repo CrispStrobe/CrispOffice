@@ -22,8 +22,10 @@ editor integration and qualified distribution. The
 [planned notices](roadmaps/thesaurus/licensing-and-notices.md) distinguish
 future data from shipped assets. This is scope documentation only: no
 thesaurus corpus, provider, UI or model is implemented or bundled here.
-The requested HF `cstr/grundwortschatz*` pipeline review follows the scope
-commit and must establish provenance before any reuse.
+The [HF pipeline review](roadmaps/thesaurus/hf-pipeline-review.md) records
+existing EN/DE sense extraction, reuse opportunities and concrete provenance
+and publication gaps. Source/metadata inspection is complete; binary and
+input-license qualification remain pending before any reuse.
 
 ## Proofing and German hyphenation — 16 November 2026
 
