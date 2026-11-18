@@ -92,3 +92,20 @@ capsule; a Linux build with static libstdc++ crashed (not used).
 - **iOS / Android**: the library must ship inside the signed app; only
   `installBundle()` (model files) may be downloaded. Not built or qualified.
 - **Web**: unavailable by design.
+
+## 7. After the runtime update (CrispEmbed PR #240) — published and wired
+
+| Item | Result |
+| --- | --- |
+| CrispEmbed PR #239 (distribution tooling) | Merged at `28d8ce0e` after 53 green checks on head `d3dd4680` |
+| `ner/ner.gguf` | Canonical CPython 3.12.14 conversion, run 44302008411; reproduces `1b65fce5…` (6,135,456 B); immutable revision `8b5d7084…`; exact tree and fresh-cache readback passed; card/catalog revision `4a7c43b8…` |
+| macOS arm64 capsule | Built from main `28d8ce0e` on macos-15, run 44302625032: archive `492c8bfb…` (7,879,182 B), manifest `aa28595a…`, library `918a069e…`; ctest, 21 text-API controls and development parity exact on the installed capsule library; immutable revision `24e607cb…`, exact tree, fresh readback and reinstall from downloaded bytes passed; card/catalog revision `1dc84fd6…` |
+| Quds catalog | `spacyMacosArm64Package` (analysis component evidence, **no grammar claim**) and `spacyNerDownload` pinned |
+| Real Hub install on Apple silicon via the app installer | [Passed](hub-macos-arm64-ner-e2e.json): analysis success, NER entities `Angela Merkel/PER`, `Siemens AG/ORG`, `München/LOC` (capability 31); grammar refused (`runtime-mismatch`) as intended |
+| Fresh-cache readback incl. NER | [Passed](hub-install-readback-with-ner.json) |
+
+Linux x86-64 stays on the frozen, grammar-qualified W7 capsule. A Linux build
+from main passed all dry-run controls (library `e7050e8f…`) but has a GLIBC 2.43
+symbol floor on `ubuntu-latest`, so it is not published. Windows has no hosted
+lane. The Studio NER switch appears only when a published NER model exists and
+never feeds grammar.
