@@ -120,6 +120,27 @@ final class SpacyBundleDownload {
   int get totalBytes => files.fold(0, (sum, file) => sum + file.bytes);
 }
 
+/// The optional, separately downloaded named-entity model (`ner.gguf`).
+/// Used only with a native build that exports the NER ABI (runtime after
+/// CrispEmbed PR #240); never required for analysis or grammar.
+final class SpacyNerDownload {
+  const SpacyNerDownload({
+    required this.revision,
+    required this.path,
+    required this.sha256,
+    required this.bytes,
+  });
+  final String revision;
+  final String path;
+  final String sha256;
+  final int bytes;
+  Uri get url => spacyResolveUrl(revision, path);
+}
+
+/// Null until the canonically converted `ner.gguf` is published and
+/// read back from its immutable revision.
+const SpacyNerDownload? spacyNerDownload = null;
+
 /// Availability of a platform in this catalog, with a user-facing reason.
 final class SpacyPlatformStatus {
   const SpacyPlatformStatus._(this.platform, this.package, this.reason);

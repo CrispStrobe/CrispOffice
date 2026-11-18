@@ -1,0 +1,8 @@
+{
+  "commit": "045c307d0ea53b9d777cbf7fa3daa8f74b587117",
+  "source_files": 419,
+  "all_source_blobs_match": true,
+  "mismatches": {},
+  "method": "Compared every recorded engine source Git blob SHA-1 with git ls-tree -r of the saved commit.",
+  "checked_at_utc": "2026-11-18T12:13:25.306615+00:00"
+}

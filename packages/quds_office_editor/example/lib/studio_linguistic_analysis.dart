@@ -542,6 +542,15 @@ class _StudioLinguisticAnalysisDialogState
                 '${result.sentences.length} ${result.sentences.length == 1 ? 'sentence' : 'sentences'} '
                 '· de_core_news_sm 3.8.0',
               ),
+              if (result.entitiesAvailable) ...[
+                const SizedBox(height: 4),
+                Text(
+                  result.entities.isEmpty
+                      ? 'Named entities: none found'
+                      : 'Named entities: ${result.entities.map((entity) => '${entity.text} (${entity.label})').join(' · ')}',
+                  key: const Key('analysis-entities'),
+                ),
+              ],
               const SizedBox(height: 8),
               if (result.tokens.isEmpty) const Text('The input is empty.'),
               Expanded(

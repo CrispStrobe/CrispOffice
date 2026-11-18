@@ -1,0 +1,85 @@
+{
+  "targets": [
+    "packages/quds_office_engine/lib/src/zotero/zotero_models.dart",
+    "packages/quds_office_engine/lib/src/zotero/zotero_client.dart",
+    "packages/quds_office_engine/test/zotero_item_details_test.dart",
+    "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart",
+    "packages/quds_office_editor/lib/src/embed/word_zotero_library.dart",
+    "packages/quds_office_editor/test/word_zotero_library_details_test.dart"
+  ],
+  "checks": [
+    {
+      "name": "analyze",
+      "command": [
+        "/workspace/scratch/1f524e1234f3/zotero-toolchain/flutter-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "packages/quds_office_engine/lib/src/zotero/zotero_models.dart",
+        "packages/quds_office_engine/lib/src/zotero/zotero_client.dart",
+        "packages/quds_office_engine/test/zotero_item_details_test.dart",
+        "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart",
+        "packages/quds_office_editor/lib/src/embed/word_zotero_library.dart",
+        "packages/quds_office_editor/test/word_zotero_library_details_test.dart"
+      ],
+      "cwd": "/workspace/scratch/1f524e1234f3/quds_office_suite",
+      "exit_code": 0
+    },
+    {
+      "name": "format",
+      "command": [
+        "/workspace/scratch/1f524e1234f3/zotero-toolchain/flutter-sdk/bin/dart",
+        "format",
+        "--language-version=3.12",
+        "--output=none",
+        "--set-exit-if-changed",
+        "packages/quds_office_engine/lib/src/zotero/zotero_models.dart",
+        "packages/quds_office_engine/lib/src/zotero/zotero_client.dart",
+        "packages/quds_office_engine/test/zotero_item_details_test.dart",
+        "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart",
+        "packages/quds_office_editor/lib/src/embed/word_zotero_library.dart",
+        "packages/quds_office_editor/test/word_zotero_library_details_test.dart"
+      ],
+      "cwd": "/workspace/scratch/1f524e1234f3/quds_office_suite",
+      "exit_code": 0
+    },
+    {
+      "name": "whitespace",
+      "command": [
+        "git",
+        "diff",
+        "--check",
+        "2292548eb69de2dbb5240ab9da59256f362137c6"
+      ],
+      "cwd": "/workspace/scratch/1f524e1234f3/quds_office_suite",
+      "exit_code": 0
+    }
+  ],
+  "source_unchanged": true,
+  "source": {
+    "packages/quds_office_engine/lib/src/zotero/zotero_models.dart": {
+      "sha256": "6fd982a56c1c30316d24d44c36820dc71ebd0aee1e3ed96f638b1883b8a5611b",
+      "git_blob_sha1": "0b014ac068548fecc57694d318d3c6929b558de1"
+    },
+    "packages/quds_office_engine/lib/src/zotero/zotero_client.dart": {
+      "sha256": "de76599335f53bceb979e99898c0bd6f44bfd7741531e8dbb2b90fb730a92395",
+      "git_blob_sha1": "7a271ac4cfee0f18346ca886d0ef35a06f382235"
+    },
+    "packages/quds_office_engine/test/zotero_item_details_test.dart": {
+      "sha256": "72cff57f090d9a23a63d07fd66cfa241e1e5b80e408dfac5ba650b49b9066388",
+      "git_blob_sha1": "82dfbc364ac66784132deba3369c669c79149777"
+    },
+    "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart": {
+      "sha256": "17e411b9f9be1743335503c62acd8a6e035042e1daffdf4c90ea591bc6101d2d",
+      "git_blob_sha1": "7464843b2ba50d16343730e8eb28fec27299d80f"
+    },
+    "packages/quds_office_editor/lib/src/embed/word_zotero_library.dart": {
+      "sha256": "3bdbc522824e013e7cd4e55749ecd6e59d141f4666638a10be2eefceb774e8c7",
+      "git_blob_sha1": "1d1c66eb047f8f1951701725e068f9167941dd98"
+    },
+    "packages/quds_office_editor/test/word_zotero_library_details_test.dart": {
+      "sha256": "787fe7867f3d35b9c5db0d60fe3ca46ef92e80b3203c61c5029d04a906b2c1e9",
+      "git_blob_sha1": "cd7079fd6ffcb5a5cba0e9bdd4a9ab5b2973d088"
+    }
+  },
+  "all_passed": true
+}

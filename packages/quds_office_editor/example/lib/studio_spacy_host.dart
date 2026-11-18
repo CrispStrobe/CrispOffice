@@ -32,6 +32,8 @@ class StudioSpacyStatus {
     this.problem,
     this.analysisEnabled = false,
     this.grammarEnabled = false,
+    this.nerOffered = false,
+    this.nerEnabled = false,
   });
 
   /// e.g. `macos-arm64`.
@@ -56,6 +58,12 @@ class StudioSpacyStatus {
   final bool analysisEnabled;
   final bool grammarEnabled;
 
+  /// A published NER model exists for this catalog (optional, opt-in).
+  final bool nerOffered;
+
+  /// The user downloaded and enabled named entities.
+  final bool nerEnabled;
+
   bool get configured => source != StudioSpacySource.none;
 
   /// The manual grammar provider may be offered only for an exact build with
@@ -72,6 +80,7 @@ class StudioSpacyStatus {
     installedDirectory ?? '',
     analysisEnabled,
     grammarEnabled,
+    nerEnabled,
   ].join('|');
 }
 
@@ -97,6 +106,10 @@ abstract class StudioSpacyHost extends ChangeNotifier {
   Future<void> remove();
   Future<void> setAnalysisEnabled(bool enabled);
   Future<void> setGrammarEnabled(bool enabled);
+
+  /// Downloads (when enabling) the optional verified NER model and toggles it.
+  Future<void> setNerEnabled(bool enabled) async =>
+      throw UnsupportedError('Named entities are unavailable here.');
 
   /// Opens a new owned worker for the current verified configuration.
   Future<SpacyTransport> openTransport();

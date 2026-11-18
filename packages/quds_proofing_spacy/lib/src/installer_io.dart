@@ -217,6 +217,57 @@ final class SpacyPackageInstaller {
     }
   }
 
+  File _nerFile(SpacyNerDownload ner) =>
+      File('${root.path}/ner/${ner.sha256}/ner.gguf');
+
+  /// The verified optional NER model, or null when absent.
+  Future<String?> installedNer(SpacyNerDownload ner) async {
+    final file = _nerFile(ner);
+    if (FileSystemEntity.typeSync(file.path, followLinks: false) ==
+        FileSystemEntityType.notFound) {
+      return null;
+    }
+    await _verifyClosedTree(file.parent, {
+      'ner.gguf': (sha256: ner.sha256, bytes: ner.bytes),
+    });
+    return file.path;
+  }
+
+  /// Downloads the optional NER model (no executable code).
+  Future<String> installNer(
+    SpacyNerDownload ner, {
+    SpacyDownloadProgress? onProgress,
+    SpacyInstallCancellation? cancellation,
+  }) async {
+    final existing = await installedNer(ner);
+    if (existing != null) return existing;
+    final staging = _createStaging();
+    try {
+      final tree = Directory('${staging.path}/${ner.sha256}')..createSync();
+      await _download(
+        ner.url,
+        File('${tree.path}/ner.gguf'),
+        ner.sha256,
+        ner.bytes,
+        onProgress: onProgress,
+        totalBytes: ner.bytes,
+        offsetBytes: 0,
+        cancellation: cancellation,
+      );
+      final destination = _nerFile(ner).parent;
+      await _publish(
+        tree,
+        destination,
+        () => _verifyClosedTree(destination, {
+          'ner.gguf': (sha256: ner.sha256, bytes: ner.bytes),
+        }),
+      );
+      return _nerFile(ner).path;
+    } finally {
+      _removeStaging(staging);
+    }
+  }
+
   /// Removes an installation. Callers must dispose workers using it first.
   Future<void> remove(SpacyPlatformPackage package) async {
     final directory = _packageDirectory(package);
