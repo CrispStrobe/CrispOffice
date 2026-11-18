@@ -1,0 +1,304 @@
+{
+  "schema": "quds.native_spelling_continuation.final_frontier.v1",
+  "captured_at_utc": "2026-11-18T12:16:57.045057+00:00",
+  "comparison_snapshot": "2026-11-18T12:03:43.437107+00:00",
+  "integrated_main": "1e07cb852766f8651815138785be74c64a09ddc0",
+  "counts": {
+    "refs": 366,
+    "distinct_heads": 239,
+    "by_repository": {
+      "CrispStrobe/quds_office_suite": {
+        "branch": 199,
+        "pull_request": 159
+      },
+      "MohammedAsaadAsaad/quds_office_suite": {
+        "branch": 4,
+        "pull_request": 4
+      }
+    },
+    "dispositions": {
+      "ancestor_of_integrated_main": 334,
+      "concurrent_document_review_checkpoint": 1,
+      "current_task_continuation": 1,
+      "patch_equivalent_on_main": 22,
+      "concurrent_zotero_workspace_checkpoint": 1,
+      "concurrent_spacy_ner_checkpoint": 1,
+      "tree_equivalent_on_main": 6
+    }
+  },
+  "changes_since_initial_snapshot": [
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/codex/document-review-20261118",
+      "initial_sha": null,
+      "current_sha": "b0044f5a04ba71e58468a7a22297b56f926e4d39",
+      "disposition": "concurrent_document_review_checkpoint"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/codex/native-spelling-continuation-20261118",
+      "initial_sha": "1e07cb852766f8651815138785be74c64a09ddc0",
+      "current_sha": "d6a9ca51b16daa9d3d54e163bc723b76659d70ac",
+      "disposition": "current_task_continuation"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/codex/zotero-workspace-20261118",
+      "initial_sha": "2292548eb69de2dbb5240ab9da59256f362137c6",
+      "current_sha": "b292ee94f8792df19e3758a2a271d40230e638ca",
+      "disposition": "concurrent_zotero_workspace_checkpoint"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/integrate/native-spacy-distribution-20261118",
+      "initial_sha": "2292548eb69de2dbb5240ab9da59256f362137c6",
+      "current_sha": "8cd413c1e0454278abd703264bdda589a90f2d48",
+      "disposition": "concurrent_spacy_ner_checkpoint"
+    }
+  ],
+  "removed_refs": [],
+  "missing_commit_objects": [],
+  "unresolved_refs": [],
+  "github_actions_workflow_checks_or_status_endpoints_used": false,
+  "concurrent_work": [
+    {
+      "ref": "refs/heads/codex/document-review-20261118",
+      "sha": "b0044f5a04ba71e58468a7a22297b56f926e4d39",
+      "disposition": "concurrent_document_review_checkpoint",
+      "reason": "Adds a document comparison engine, review dialog/controller and regression tests; latest commit explicitly checkpoint. No open PR at observation.",
+      "not_in_qualified_continuation_at_snapshot": true,
+      "changes": [
+        "A\tdocs/validation/document-review-20261118/incoming-audit.json",
+        "A\tdocs/validation/document-review-20261118/runtime-ready.json",
+        "A\tdocs/validation/zotero-workspace-20261118/RECONCILIATION.md",
+        "A\tdocs/validation/zotero-workspace-20261118/reconciliation-initial.json",
+        "M\tpackages/quds_office_editor/example/lib/studio_files.dart",
+        "M\tpackages/quds_office_editor/example/lib/suite_workspace.dart",
+        "M\tpackages/quds_office_editor/lib/quds_office_editor.dart",
+        "M\tpackages/quds_office_editor/lib/src/embed/office_controller.dart",
+        "A\tpackages/quds_office_editor/lib/src/embed/word_review_dialog.dart",
+        "A\tpackages/quds_office_editor/test/word_review_controller_test.dart",
+        "M\tpackages/quds_office_engine/lib/quds_office_engine.dart",
+        "M\tpackages/quds_office_engine/lib/src/word/model/word_compare.dart",
+        "A\tpackages/quds_office_engine/lib/src/word/model/word_comparison.dart",
+        "M\tpackages/quds_office_engine/test/office_features_test.dart",
+        "A\tpackages/quds_office_engine/test/word_comparison_test.dart"
+      ],
+      "commits_since_initial_main": [
+        {
+          "sha": "b0044f5a04ba71e58468a7a22297b56f926e4d39",
+          "committed_at": "2026-11-18T13:15:18+01:00",
+          "committed_at_utc": "2026-11-18T12:15:18+00:00",
+          "subject": "Checkpoint document comparison engine and review workspace [skip ci]"
+        },
+        {
+          "sha": "32e10e242625a106e6269acf3d4f09d955cf5860",
+          "committed_at": "2026-11-18T13:07:57+01:00",
+          "committed_at_utc": "2026-11-18T12:07:57+00:00",
+          "subject": "Integrate latest fork branches before document review work [skip ci]"
+        },
+        {
+          "sha": "146cdead007dd47bc8e7da8f9f249703fd29ca2e",
+          "committed_at": "2026-11-18T13:05:05+01:00",
+          "committed_at_utc": "2026-11-18T12:05:05+00:00",
+          "subject": "Preserve incoming Quds branches and PR reconciliation [skip ci]"
+        }
+      ],
+      "product_path_count": 11,
+      "spelling_files": [
+        {
+          "path": "packages/quds_office_editor/lib/src/proofing/platform_spelling_provider.dart",
+          "unchanged_from_baseline": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/proofing/german_spelling.dart",
+          "unchanged_from_baseline": true
+        }
+      ],
+      "contains_initial_integrated_main": true,
+      "contains_pr159_head": true,
+      "validation_status": {
+        "status": "checkpoint; dialog and comparison qualification explicitly continues",
+        "evidence": "Head commit body: Preserve implementation, branch reconciliation audit, and locally tested controller review operations. Dialog and comparison qualification continues in subsequent commits.",
+        "runtime_receipt_path": "docs/validation/document-review-20261118/runtime-ready.json",
+        "independently_reexecuted_in_spelling_task": false
+      }
+    },
+    {
+      "ref": "refs/heads/codex/zotero-workspace-20261118",
+      "sha": "b292ee94f8792df19e3758a2a271d40230e638ca",
+      "disposition": "concurrent_zotero_workspace_checkpoint",
+      "reason": "Adds reference inspection, details and staged selection; commits preserve engine qualification, while broader work is ongoing. No open PR at observation.",
+      "not_in_qualified_continuation_at_snapshot": true,
+      "changes": [
+        "A\tdocs/validation/zotero-workspace-20261118/RECONCILIATION.md",
+        "A\tdocs/validation/zotero-workspace-20261118/engine-binding.json",
+        "A\tdocs/validation/zotero-workspace-20261118/engine/README.md",
+        "A\tdocs/validation/zotero-workspace-20261118/engine/cases.json.gz",
+        "A\tdocs/validation/zotero-workspace-20261118/engine/dependencies-after.json.gz",
+        "A\tdocs/validation/zotero-workspace-20261118/engine/dependencies-before.json.gz",
+        "A\tdocs/validation/zotero-workspace-20261118/engine/events.jsonl.gz",
+        "A\tdocs/validation/zotero-workspace-20261118/engine/excluded-events.json.gz",
+        "A\tdocs/validation/zotero-workspace-20261118/engine/index.json",
+        "A\tdocs/validation/zotero-workspace-20261118/engine/launcher.log",
+        "A\tdocs/validation/zotero-workspace-20261118/engine/run.json",
+        "A\tdocs/validation/zotero-workspace-20261118/engine/run_engine.py",
+        "A\tdocs/validation/zotero-workspace-20261118/engine/runtime-after.json.gz",
+        "A\tdocs/validation/zotero-workspace-20261118/engine/runtime-before.json.gz",
+        "A\tdocs/validation/zotero-workspace-20261118/engine/setup/env.sh",
+        "A\tdocs/validation/zotero-workspace-20261118/engine/setup/flutter-recovery.json",
+        "A\tdocs/validation/zotero-workspace-20261118/engine/setup/logs/dart-version.log",
+        "A\tdocs/validation/zotero-workspace-20261118/engine/setup/logs/flutter-tools-pub-get.log",
+        "A\tdocs/validation/zotero-workspace-20261118/engine/setup/logs/flutter-version.json",
+        "A\tdocs/validation/zotero-workspace-20261118/engine/setup/logs/flutter-version.stderr",
+        "A\tdocs/validation/zotero-workspace-20261118/engine/setup/logs/pub-prefetch-tools.log",
+        "A\tdocs/validation/zotero-workspace-20261118/engine/setup/logs/pub-prefetch.log",
+        "A\tdocs/validation/zotero-workspace-20261118/engine/setup/logs/restore_flutter.log",
+        "A\tdocs/validation/zotero-workspace-20261118/engine/setup/logs/setup-editor-format-smoke-accepted.log",
+        "A\tdocs/validation/zotero-workspace-20261118/engine/setup/logs/setup-editor-format-smoke-verbose.log",
+        "A\tdocs/validation/zotero-workspace-20261118/engine/setup/logs/setup-editor-format-smoke.log",
+        "A\tdocs/validation/zotero-workspace-20261118/engine/setup/logs/workspace-pub-get.log",
+        "A\tdocs/validation/zotero-workspace-20261118/engine/setup/prepare_workspace.py",
+        "A\tdocs/validation/zotero-workspace-20261118/engine/setup/restore_flutter.py",
+        "A\tdocs/validation/zotero-workspace-20261118/engine/setup/runtime-ready.json",
+        "A\tdocs/validation/zotero-workspace-20261118/engine/setup/scripts/prefetch_pub.py",
+        "A\tdocs/validation/zotero-workspace-20261118/engine/setup/setup/prefetch-162.json",
+        "A\tdocs/validation/zotero-workspace-20261118/engine/setup/setup/workspace-prepared.json",
+        "A\tdocs/validation/zotero-workspace-20261118/engine/source-after.json.gz",
+        "A\tdocs/validation/zotero-workspace-20261118/engine/source-before.json.gz",
+        "A\tdocs/validation/zotero-workspace-20261118/engine/stderr.log.gz",
+        "A\tdocs/validation/zotero-workspace-20261118/engine/summary.json",
+        "A\tdocs/validation/zotero-workspace-20261118/engine/workspace-after.json.gz",
+        "A\tdocs/validation/zotero-workspace-20261118/engine/workspace-before.json.gz",
+        "A\tdocs/validation/zotero-workspace-20261118/engine/workspace-inputs.json.gz",
+        "A\tdocs/validation/zotero-workspace-20261118/reconciliation-initial.json",
+        "M\tdocs/zotero-support.md",
+        "M\tpackages/quds_office_editor/CHANGELOG.md",
+        "M\tpackages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart",
+        "A\tpackages/quds_office_editor/lib/src/embed/word_zotero_library.dart",
+        "A\tpackages/quds_office_editor/test/word_zotero_library_details_test.dart",
+        "M\tpackages/quds_office_engine/CHANGELOG.md",
+        "M\tpackages/quds_office_engine/lib/src/zotero/zotero_client.dart",
+        "M\tpackages/quds_office_engine/lib/src/zotero/zotero_models.dart",
+        "A\tpackages/quds_office_engine/test/zotero_item_details_test.dart"
+      ],
+      "commits_since_initial_main": [
+        {
+          "sha": "b292ee94f8792df19e3758a2a271d40230e638ca",
+          "committed_at": "2026-11-18T13:14:13+01:00",
+          "committed_at_utc": "2026-11-18T12:14:13+00:00",
+          "subject": "Save Zotero workflow regressions and verified engine qualification [skip ci]"
+        },
+        {
+          "sha": "919122e7bca53fb1c42c6aac5eaf548dd338d158",
+          "committed_at": "2026-11-18T13:10:56+01:00",
+          "committed_at_utc": "2026-11-18T12:10:56+00:00",
+          "subject": "Add Zotero reference inspection and staged selection review [skip ci]"
+        },
+        {
+          "sha": "045c307d0ea53b9d777cbf7fa3daa8f74b587117",
+          "committed_at": "2026-11-18T13:08:41+01:00",
+          "committed_at_utc": "2026-11-18T12:08:41+00:00",
+          "subject": "Expose Zotero reference metadata and exact display tags [skip ci]"
+        },
+        {
+          "sha": "146cdead007dd47bc8e7da8f9f249703fd29ca2e",
+          "committed_at": "2026-11-18T13:05:05+01:00",
+          "committed_at_utc": "2026-11-18T12:05:05+00:00",
+          "subject": "Preserve incoming Quds branches and PR reconciliation [skip ci]"
+        }
+      ],
+      "product_path_count": 8,
+      "spelling_files": [
+        {
+          "path": "packages/quds_office_editor/lib/src/proofing/platform_spelling_provider.dart",
+          "unchanged_from_baseline": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/proofing/german_spelling.dart",
+          "unchanged_from_baseline": true
+        }
+      ],
+      "contains_initial_integrated_main": false,
+      "contains_pr159_head": true,
+      "validation_status": {
+        "status": "engine qualification retained; no current complete editor/Studio qualification record in this head",
+        "engine_substantive_passes_reported": 445,
+        "engine_suites_reported": 22,
+        "engine_skips_errors_reported": 0,
+        "engine_binding_commit": "045c307d0ea53b9d777cbf7fa3daa8f74b587117",
+        "evidence_paths": [
+          "docs/validation/zotero-workspace-20261118/engine/README.md",
+          "docs/validation/zotero-workspace-20261118/engine-binding.json"
+        ],
+        "independently_reexecuted_in_spelling_task": false
+      }
+    },
+    {
+      "ref": "refs/heads/integrate/native-spacy-distribution-20261118",
+      "sha": "8cd413c1e0454278abd703264bdda589a90f2d48",
+      "disposition": "concurrent_spacy_ner_checkpoint",
+      "reason": "Adds opt-in NER ABI, installation and Studio display after the integrated PR159 head. No open PR at observation; this is new source beyond the merged distribution baseline.",
+      "not_in_qualified_continuation_at_snapshot": true,
+      "changes": [
+        "M\tpackages/quds_office_editor/example/lib/studio_linguistic_analysis.dart",
+        "M\tpackages/quds_office_editor/example/lib/studio_spacy_host.dart",
+        "M\tpackages/quds_office_editor/example/lib/studio_spacy_host_native.dart",
+        "M\tpackages/quds_office_editor/example/lib/studio_spacy_setup.dart",
+        "M\tpackages/quds_office_editor/example/test/studio_linguistic_analysis_test.dart",
+        "M\tpackages/quds_proofing_spacy/lib/src/backend.dart",
+        "M\tpackages/quds_proofing_spacy/lib/src/distribution.dart",
+        "M\tpackages/quds_proofing_spacy/lib/src/installer_io.dart",
+        "M\tpackages/quds_proofing_spacy/lib/src/native_backend.dart",
+        "M\tpackages/quds_proofing_spacy/lib/src/native_backend_unsupported.dart"
+      ],
+      "commits_since_initial_main": [
+        {
+          "sha": "8cd413c1e0454278abd703264bdda589a90f2d48",
+          "committed_at": "2026-11-18T13:05:40+01:00",
+          "committed_at_utc": "2026-11-18T12:05:40+00:00",
+          "subject": "Support the opt-in NER runtime: entity ABI, optional ner.gguf install and Studio display [skip ci]"
+        }
+      ],
+      "product_path_count": 10,
+      "spelling_files": [
+        {
+          "path": "packages/quds_office_editor/lib/src/proofing/platform_spelling_provider.dart",
+          "unchanged_from_baseline": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/proofing/german_spelling.dart",
+          "unchanged_from_baseline": true
+        }
+      ],
+      "contains_initial_integrated_main": false,
+      "contains_pr159_head": true,
+      "validation_status": {
+        "status": "new NER implementation plus one Studio test addition; no new qualification receipt added by the observed commit",
+        "offered_ner_model": null,
+        "note": "Commit states SpacyNerDownload is null until the canonical ner.gguf is published; new native-build/model acceptance is not established by the earlier distribution receipts.",
+        "independently_reexecuted_in_spelling_task": false
+      }
+    }
+  ],
+  "open_pull_requests": [
+    {
+      "number": 153,
+      "title": "Continue W7 spaCy packaging from the completed grammar qualification",
+      "base": "feat/native-spacy-reference-20261117",
+      "head": "feat/native-spacy-w7-20261118",
+      "head_sha": "2e013f26c7d4db54ecabe2c955117cbce5379408",
+      "state": "open",
+      "merged": false,
+      "draft": true
+    }
+  ],
+  "notes": [
+    "Initial requested integration is frozen separately in refs.json and reconciliation.md.",
+    "The final refresh detects three active concurrent branches with product changes after initial integration. They are retained remotely and explicitly not asserted to belong to the tested continuation at this snapshot.",
+    "The root agent decides whether a later integration is appropriate; if integrated later, append a separate integration receipt rather than rewriting this observed source frontier."
+  ],
+  "captured_at_europe_berlin": "2026-11-18T13:16:57.045057+01:00",
+  "disposition_decision": "Keep the three active unfinished concurrent checkpoints separate from the locally qualified spelling continuation. All initial incoming work was integrated before spelling edits; fetched later objects are inspected and retained but their product source is not merged into this tested set.",
+  "complete_snapshot_in_archive": "integration/final-frontier.json"
+}

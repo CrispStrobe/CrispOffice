@@ -4,6 +4,12 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Offer existing accented dictionary forms for short German misspellings such
+  as `Cafè` and `Joêl` through a bounded one-edit shortlist. Keep direct choices
+  first, prefer matching lexical case within that fallback, and preserve the
+  shared candidate limit. Protect identifier prefixes with supplementary digits,
+  connectors and combining marks without copying or rescanning source prefixes.
+
 - Count distinct displayed German corrections after applying source casing,
   so uppercase and sentence-initial variants do not consume duplicate shortlist
   slots. Preserve exact personal spelling and the existing candidate budget.
