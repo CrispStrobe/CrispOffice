@@ -8,6 +8,7 @@ import 'proofing_text_ranges.dart';
 
 part 'german_grammar.dart';
 part 'german_context_grammar.dart';
+part 'german_agreement_facts.dart';
 
 Set<int> _sourceGraphemeBoundaries(String text) {
   final Set<int> boundaries = <int>{0};
@@ -971,7 +972,7 @@ class GermanWritingRulesProvider extends OfficeProofingProvider {
         issue.end,
         issue.message,
         category: OfficeProofingCategory.grammar,
-        replacements: <String>[issue.replacement],
+        replacements: <String>[issue.replacement, ...issue.alternatives],
       );
     }
     final List<(String, int)> delimiters = <(String, int)>[];

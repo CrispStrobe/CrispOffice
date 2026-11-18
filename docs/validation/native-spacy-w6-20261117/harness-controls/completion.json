@@ -1,0 +1,84 @@
+{
+  "schema": "quds.spacy.grammar.harness-controls.v1",
+  "completed_at": "2026-11-17T22:21:57.420488+00:00",
+  "native_execution": false,
+  "real_qualification_panel_or_outputs_read": false,
+  "fixtures": "Locally authored empty synthetic panel and temporary three-file Git baseline only.",
+  "test_source": "packages/quds_proofing_spacy/test/grammar_evaluation_harness_test.dart",
+  "test_source_sha256": "dc65cc7b01024412c18bd45d4266e3b68feb38f4650f1f701400d05421fdae57",
+  "harness_source_sha256": "ae2ef1b2c81b4bba313ca7e9245d691b7e2d30d43b1b81c3736cfb654e47ffc2",
+  "final_tests": {
+    "command": [
+      "DART",
+      "--packages=QUDS_REPOSITORY/.dart_tool/package_config.json",
+      "PUB_CACHE/hosted/pub.dev/test-1.31.1/bin/test.dart",
+      "test/grammar_evaluation_harness_test.dart",
+      "-r",
+      "expanded"
+    ],
+    "cwd": "packages/quds_proofing_spacy",
+    "environment": {
+      "TMPDIR": "TASK_TEMP_DIRECTORY",
+      "PUB_CACHE": "RUNTIME_PUB_CACHE"
+    },
+    "exit_code": 0,
+    "passed": 9,
+    "failed": 0,
+    "log": "final-test.log"
+  },
+  "final_analysis": {
+    "command": [
+      "dart",
+      "analyze",
+      "test/grammar_evaluation_harness_test.dart"
+    ],
+    "exit_code": 0,
+    "issues": 0,
+    "log": "final-analyze.log"
+  },
+  "retained_initial_attempts": [
+    {
+      "attempt": 1,
+      "kind": "analysis",
+      "exit_code": 0,
+      "issues": 1,
+      "classification": "Test-only brace-style warning; fixed without changing product or harness source.",
+      "log": "attempt-1-analyze.log",
+      "source": "attempt-1-test-source.dart.txt"
+    },
+    {
+      "attempt": 1,
+      "kind": "test-start",
+      "exit_code": 130,
+      "classification": "Stopped after silent standard command startup; no test output.",
+      "receipt": "attempt-1-test-start.json"
+    },
+    {
+      "attempt": 2,
+      "kind": "test",
+      "exit_code": 255,
+      "classification": "Runner could not create /tmp directory before loading tests; resolved with task-local TMPDIR.",
+      "log": "attempt-2-test.log"
+    }
+  ],
+  "covered_behaviors": [
+    "Existing output refuses admission before missing assets are read.",
+    "Exclusive pending checkpoint collision leaves prior complete JSON and interrupted .next bytes unchanged.",
+    "Pinned baseline permits only additive facts part directive and detects generated-data, decompression and ordinary-provider changes.",
+    "Preexisting consumed synthetic seal blocks a fresh receipt before native entry and remains byte-identical.",
+    "Exact edits use nonzero UTF-16 origin after emoji.",
+    "Multiple replacement choices and overlapping edits do not count as exact.",
+    "Partial grapheme and wrong-original-text edits fail mapping.",
+    "Unsupported and failed results never count as clean exact success.",
+    "Raw native false-positive counts survive merge suppression; incremental benefit, baseline loss, guard findings and operational failures remain distinct."
+  ],
+  "artifacts_sha256": {
+    "attempt-1-analyze.json": "78fbbe1c73e8388a29f606a516a2e27ce3e9cb92ac3b2eb036297a7dd5872d76",
+    "attempt-1-analyze.log": "4a2afe77acc7b949e1a9e31d2f8eb1ea98a336ca7b8fa5e4113f7132372bc485",
+    "attempt-1-test-source.dart.txt": "4818d4951b35f22fda7aae22bcb2a28d46b8ae40b633248e6f58e5d0b12ac61a",
+    "attempt-1-test-start.json": "e61fef8d676646a2c6bde2f7c572759ae65626967c59125dc186ea2e06e789dd",
+    "attempt-2-test.log": "9057293672a6f288f0c1e50b6a6ae86b9d4089b77630e28df6f455a1b53cac28",
+    "final-analyze.log": "c99e0df8b803080cc0f37d3c75f35c1146661a0c5411f6920518775c63f88f10",
+    "final-test.log": "4ea415d8f78f4cf31f6730445ae02db5c35ef6c493c04b671ebc02de783fa067"
+  }
+}

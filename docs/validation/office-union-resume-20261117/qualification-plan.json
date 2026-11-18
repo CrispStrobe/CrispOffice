@@ -1,0 +1,95 @@
+{
+  "branch": "codex/office-union-resume-20261118",
+  "constraints": [
+    "No GitHub Actions/check/status query, wait or rerun",
+    "Never overwrite concurrent branch work or force-push",
+    "Retain AOT/RML product removal; native-thread qualification executable is isolated tooling",
+    "Historical outcomes remain historical",
+    "Independent archive readback and receipt review required before final acceptance"
+  ],
+  "frozen_source_commit": "5c66e629758cacda91d67fa216fe24bfa664bf35",
+  "gates": {
+    "boundary_consumers": {
+      "bounded_precedence_control": 1,
+      "docx_reopens": 10,
+      "external_exact_source_guard": true,
+      "fixtures": 5,
+      "pdf_variants": 15,
+      "strict_layouts": 4
+    },
+    "canonical": {
+      "allowed_skips": 0,
+      "cohorts": {
+        "editor-integration": 37,
+        "editor-zotero": 13,
+        "engine-integration": 136,
+        "engine-zotero": 19,
+        "gector-contract": 14,
+        "harper-contract": 3
+      },
+      "format_and_python_controls": true,
+      "private_fixture_exclusions": 2,
+      "runner": "../office-reconciled-20261117/qualification/run_qualification.py",
+      "strict_analysis_commands": 5,
+      "unique_files": 222
+    },
+    "example_smoke": {
+      "runner": "../gector-office-resume-20261117/run_editor_example.py",
+      "separate_from_canonical": true,
+      "tests": 2
+    },
+    "focused_frame_consumers": {
+      "external_exact_source_guard": true,
+      "fixtures": 5,
+      "purpose": "Retain incoming independent LibreOffice FrameMark conversion coverage",
+      "runner": "../gector-office-resume-20261117/office-consumer/run_consumers.py"
+    },
+    "independent_review": {
+      "all_receipts_bound_to_one_source": true,
+      "full_archive_member_readback": true,
+      "required_gate_kinds": [
+        "canonical",
+        "portable",
+        "example_smoke",
+        "retained_consumers",
+        "boundary_consumers",
+        "native_thread_sweep",
+        "focused_frame_consumers"
+      ]
+    },
+    "native_thread_sweep": {
+      "after_other_model_jobs": true,
+      "performance_flags_reported_separately": true,
+      "serial": true,
+      "threads": [
+        1,
+        2,
+        4,
+        8
+      ]
+    },
+    "portable": {
+      "allowed_skips": 0,
+      "platform": "Node",
+      "runner": "../gector-office-resume-20261117/run_portable.py",
+      "unique_files": 17
+    },
+    "retained_consumers": {
+      "fixtures": 40,
+      "schema_parts": 160,
+      "unchanged_harness": true
+    }
+  },
+  "gector_cutoff": "205e913ec1525b5e5157a6f6d7ff84c883217e48",
+  "incoming_frame_resolution": "Retain union common-parent writer unchanged; adapt both incoming frame regression cases to actual style inheritance. Remove new unsupported header/footer WmlFrame construction caught by compile check; do not expand product API. Move six whitespace-cache assertions from complex suite to inline suite for Node.",
+  "main_cutoff": "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4",
+  "new_repairs": {
+    "frame_local_source_commit": "877fe3bdaec0afd6ed82dff3aa10d728d6df759e",
+    "sheet": "14bd9c810691352e5b8c29005eb8d5af57bfa905"
+  },
+  "pr144_cutoff": "a1e026b496f91b54bbd3017aae54717bf25a5586",
+  "pr_number": 150,
+  "qualification_accepted": false,
+  "schema_version": 1,
+  "source_policy": "Freeze the published clean source commit after this checkpoint. Keep source/tests/harness/HEAD fixed; publish each completed evidence archive from a separate checkout. Historical outcomes remain historical."
+}

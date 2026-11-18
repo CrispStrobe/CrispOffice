@@ -1,0 +1,910 @@
+{
+  "schema": "quds.spacy.grammar.panel.v1",
+  "split": "qualification",
+  "authorship": "Independently authored by the coordinating assistant before native or planner outputs; no external corpus or human gold claim. Implementing agent is not given this panel.",
+  "cases": [
+    {
+      "id": "subject-pp-error-01",
+      "kind": "error",
+      "family": "subject-pp",
+      "locale": "de-DE",
+      "text": "Die Katzen auf dem Sofa schläft.",
+      "expected": "Die Katzen auf dem Sofa schlafen.",
+      "start_offset": 23,
+      "target": {
+        "original": "schläft",
+        "replacement": "schlafen"
+      }
+    },
+    {
+      "id": "subject-pp-valid-01",
+      "kind": "valid",
+      "family": "subject-pp",
+      "locale": "de-DE",
+      "text": "Die Katzen auf dem Sofa schlafen.",
+      "expected": "Die Katzen auf dem Sofa schlafen.",
+      "start_offset": 23
+    },
+    {
+      "id": "subject-pp-error-02",
+      "kind": "error",
+      "family": "subject-pp",
+      "locale": "de-DE",
+      "text": "Der Schüler aus dem Dorf lernen heute.",
+      "expected": "Der Schüler aus dem Dorf lernt heute.",
+      "start_offset": 23,
+      "target": {
+        "original": "lernen",
+        "replacement": "lernt"
+      }
+    },
+    {
+      "id": "subject-pp-valid-02",
+      "kind": "valid",
+      "family": "subject-pp",
+      "locale": "de-DE",
+      "text": "Der Schüler aus dem Dorf lernt heute.",
+      "expected": "Der Schüler aus dem Dorf lernt heute.",
+      "start_offset": 23
+    },
+    {
+      "id": "subject-pp-error-03",
+      "kind": "error",
+      "family": "subject-pp",
+      "locale": "de-DE",
+      "text": "Die Gäste vor dem Haus wartet.",
+      "expected": "Die Gäste vor dem Haus warten.",
+      "start_offset": 23,
+      "target": {
+        "original": "wartet",
+        "replacement": "warten"
+      }
+    },
+    {
+      "id": "subject-pp-valid-03",
+      "kind": "valid",
+      "family": "subject-pp",
+      "locale": "de-DE",
+      "text": "Die Gäste vor dem Haus warten.",
+      "expected": "Die Gäste vor dem Haus warten.",
+      "start_offset": 23
+    },
+    {
+      "id": "subject-pp-error-04",
+      "kind": "error",
+      "family": "subject-pp",
+      "locale": "de-DE",
+      "text": "Das Fahrrad neben den Autos stehen draußen.",
+      "expected": "Das Fahrrad neben den Autos steht draußen.",
+      "start_offset": 23,
+      "target": {
+        "original": "stehen",
+        "replacement": "steht"
+      }
+    },
+    {
+      "id": "subject-pp-valid-04",
+      "kind": "valid",
+      "family": "subject-pp",
+      "locale": "de-DE",
+      "text": "Das Fahrrad neben den Autos steht draußen.",
+      "expected": "Das Fahrrad neben den Autos steht draußen.",
+      "start_offset": 23
+    },
+    {
+      "id": "subject-pp-error-05",
+      "kind": "error",
+      "family": "subject-pp",
+      "locale": "de-DE",
+      "text": "Die Hunde hinter der Hecke läuft.",
+      "expected": "Die Hunde hinter der Hecke laufen.",
+      "start_offset": 23,
+      "target": {
+        "original": "läuft",
+        "replacement": "laufen"
+      }
+    },
+    {
+      "id": "subject-pp-valid-05",
+      "kind": "valid",
+      "family": "subject-pp",
+      "locale": "de-DE",
+      "text": "Die Hunde hinter der Hecke laufen.",
+      "expected": "Die Hunde hinter der Hecke laufen.",
+      "start_offset": 23
+    },
+    {
+      "id": "subject-pp-error-06",
+      "kind": "error",
+      "family": "subject-pp",
+      "locale": "de-DE",
+      "text": "Die Bücher auf dem Tisch liegt hier.",
+      "expected": "Die Bücher auf dem Tisch liegen hier.",
+      "start_offset": 23,
+      "target": {
+        "original": "liegt",
+        "replacement": "liegen"
+      }
+    },
+    {
+      "id": "subject-pp-valid-06",
+      "kind": "valid",
+      "family": "subject-pp",
+      "locale": "de-DE",
+      "text": "Die Bücher auf dem Tisch liegen hier.",
+      "expected": "Die Bücher auf dem Tisch liegen hier.",
+      "start_offset": 23
+    },
+    {
+      "id": "subject-pp-error-07",
+      "kind": "error",
+      "family": "subject-pp",
+      "locale": "de-DE",
+      "text": "Die Frau mit den Taschen arbeiten heute.",
+      "expected": "Die Frau mit den Taschen arbeitet heute.",
+      "start_offset": 23,
+      "target": {
+        "original": "arbeiten",
+        "replacement": "arbeitet"
+      }
+    },
+    {
+      "id": "subject-pp-valid-07",
+      "kind": "valid",
+      "family": "subject-pp",
+      "locale": "de-DE",
+      "text": "Die Frau mit den Taschen arbeitet heute.",
+      "expected": "Die Frau mit den Taschen arbeitet heute.",
+      "start_offset": 23
+    },
+    {
+      "id": "subject-pp-error-08",
+      "kind": "error",
+      "family": "subject-pp",
+      "locale": "de-DE",
+      "text": "Die Kinder aus dem Dorf kommt morgen.",
+      "expected": "Die Kinder aus dem Dorf kommen morgen.",
+      "start_offset": 23,
+      "target": {
+        "original": "kommt",
+        "replacement": "kommen"
+      }
+    },
+    {
+      "id": "subject-pp-valid-08",
+      "kind": "valid",
+      "family": "subject-pp",
+      "locale": "de-DE",
+      "text": "Die Kinder aus dem Dorf kommen morgen.",
+      "expected": "Die Kinder aus dem Dorf kommen morgen.",
+      "start_offset": 23
+    },
+    {
+      "id": "subject-pp-error-09",
+      "kind": "error",
+      "family": "subject-pp",
+      "locale": "de-DE",
+      "text": "Die Männer in der Küche arbeitet.",
+      "expected": "Die Männer in der Küche arbeiten.",
+      "start_offset": 23,
+      "target": {
+        "original": "arbeitet",
+        "replacement": "arbeiten"
+      }
+    },
+    {
+      "id": "subject-pp-valid-09",
+      "kind": "valid",
+      "family": "subject-pp",
+      "locale": "de-DE",
+      "text": "Die Männer in der Küche arbeiten.",
+      "expected": "Die Männer in der Küche arbeiten.",
+      "start_offset": 23
+    },
+    {
+      "id": "subject-pp-error-10",
+      "kind": "error",
+      "family": "subject-pp",
+      "locale": "de-DE",
+      "text": "Der Arzt neben den Schwestern helfen heute.",
+      "expected": "Der Arzt neben den Schwestern hilft heute.",
+      "start_offset": 23,
+      "target": {
+        "original": "helfen",
+        "replacement": "hilft"
+      }
+    },
+    {
+      "id": "subject-pp-valid-10",
+      "kind": "valid",
+      "family": "subject-pp",
+      "locale": "de-DE",
+      "text": "Der Arzt neben den Schwestern hilft heute.",
+      "expected": "Der Arzt neben den Schwestern hilft heute.",
+      "start_offset": 23
+    },
+    {
+      "id": "subject-pp-error-11",
+      "kind": "error",
+      "family": "subject-pp",
+      "locale": "de-DE",
+      "text": "Die Fenster im Flur bleibt offen.",
+      "expected": "Die Fenster im Flur bleiben offen.",
+      "start_offset": 23,
+      "target": {
+        "original": "bleibt",
+        "replacement": "bleiben"
+      }
+    },
+    {
+      "id": "subject-pp-valid-11",
+      "kind": "valid",
+      "family": "subject-pp",
+      "locale": "de-DE",
+      "text": "Die Fenster im Flur bleiben offen.",
+      "expected": "Die Fenster im Flur bleiben offen.",
+      "start_offset": 23
+    },
+    {
+      "id": "subject-pp-error-12",
+      "kind": "error",
+      "family": "subject-pp",
+      "locale": "de-DE",
+      "text": "Das Pferd auf der Wiese laufen langsam.",
+      "expected": "Das Pferd auf der Wiese läuft langsam.",
+      "start_offset": 23,
+      "target": {
+        "original": "laufen",
+        "replacement": "läuft"
+      }
+    },
+    {
+      "id": "subject-pp-valid-12",
+      "kind": "valid",
+      "family": "subject-pp",
+      "locale": "de-DE",
+      "text": "Das Pferd auf der Wiese läuft langsam.",
+      "expected": "Das Pferd auf der Wiese läuft langsam.",
+      "start_offset": 23
+    },
+    {
+      "id": "inversion-error-01",
+      "kind": "error",
+      "family": "inversion",
+      "locale": "de-DE",
+      "text": "Heute schlafen das Baby.",
+      "expected": "Heute schläft das Baby.",
+      "start_offset": 23,
+      "target": {
+        "original": "schlafen",
+        "replacement": "schläft"
+      }
+    },
+    {
+      "id": "inversion-valid-01",
+      "kind": "valid",
+      "family": "inversion",
+      "locale": "de-DE",
+      "text": "Heute schläft das Baby.",
+      "expected": "Heute schläft das Baby.",
+      "start_offset": 23
+    },
+    {
+      "id": "inversion-error-02",
+      "kind": "error",
+      "family": "inversion",
+      "locale": "de-DE",
+      "text": "Morgen arbeitet die Kollegen.",
+      "expected": "Morgen arbeiten die Kollegen.",
+      "start_offset": 23,
+      "target": {
+        "original": "arbeitet",
+        "replacement": "arbeiten"
+      }
+    },
+    {
+      "id": "inversion-valid-02",
+      "kind": "valid",
+      "family": "inversion",
+      "locale": "de-DE",
+      "text": "Morgen arbeiten die Kollegen.",
+      "expected": "Morgen arbeiten die Kollegen.",
+      "start_offset": 23
+    },
+    {
+      "id": "inversion-error-03",
+      "kind": "error",
+      "family": "inversion",
+      "locale": "de-DE",
+      "text": "Draußen wartet die Gäste.",
+      "expected": "Draußen warten die Gäste.",
+      "start_offset": 23,
+      "target": {
+        "original": "wartet",
+        "replacement": "warten"
+      }
+    },
+    {
+      "id": "inversion-valid-03",
+      "kind": "valid",
+      "family": "inversion",
+      "locale": "de-DE",
+      "text": "Draußen warten die Gäste.",
+      "expected": "Draußen warten die Gäste.",
+      "start_offset": 23
+    },
+    {
+      "id": "inversion-error-04",
+      "kind": "error",
+      "family": "inversion",
+      "locale": "de-DE",
+      "text": "Hier liegt die Schlüssel.",
+      "expected": "Hier liegen die Schlüssel.",
+      "start_offset": 23,
+      "target": {
+        "original": "liegt",
+        "replacement": "liegen"
+      }
+    },
+    {
+      "id": "inversion-valid-04",
+      "kind": "valid",
+      "family": "inversion",
+      "locale": "de-DE",
+      "text": "Hier liegen die Schlüssel.",
+      "expected": "Hier liegen die Schlüssel.",
+      "start_offset": 23
+    },
+    {
+      "id": "inversion-error-05",
+      "kind": "error",
+      "family": "inversion",
+      "locale": "de-DE",
+      "text": "Jetzt kommen die Mutter.",
+      "expected": "Jetzt kommt die Mutter.",
+      "start_offset": 23,
+      "target": {
+        "original": "kommen",
+        "replacement": "kommt"
+      }
+    },
+    {
+      "id": "inversion-valid-05",
+      "kind": "valid",
+      "family": "inversion",
+      "locale": "de-DE",
+      "text": "Jetzt kommt die Mutter.",
+      "expected": "Jetzt kommt die Mutter.",
+      "start_offset": 23
+    },
+    {
+      "id": "inversion-error-06",
+      "kind": "error",
+      "family": "inversion",
+      "locale": "de-DE",
+      "text": "Oft spielen das Mädchen.",
+      "expected": "Oft spielt das Mädchen.",
+      "start_offset": 23,
+      "target": {
+        "original": "spielen",
+        "replacement": "spielt"
+      }
+    },
+    {
+      "id": "inversion-valid-06",
+      "kind": "valid",
+      "family": "inversion",
+      "locale": "de-DE",
+      "text": "Oft spielt das Mädchen.",
+      "expected": "Oft spielt das Mädchen.",
+      "start_offset": 23
+    },
+    {
+      "id": "inversion-error-07",
+      "kind": "error",
+      "family": "inversion",
+      "locale": "de-DE",
+      "text": "Bald kommen die Lehrerin.",
+      "expected": "Bald kommt die Lehrerin.",
+      "start_offset": 23,
+      "target": {
+        "original": "kommen",
+        "replacement": "kommt"
+      }
+    },
+    {
+      "id": "inversion-valid-07",
+      "kind": "valid",
+      "family": "inversion",
+      "locale": "de-DE",
+      "text": "Bald kommt die Lehrerin.",
+      "expected": "Bald kommt die Lehrerin.",
+      "start_offset": 23
+    },
+    {
+      "id": "inversion-error-08",
+      "kind": "error",
+      "family": "inversion",
+      "locale": "de-DE",
+      "text": "Drinnen sitzt die Hunde.",
+      "expected": "Drinnen sitzen die Hunde.",
+      "start_offset": 23,
+      "target": {
+        "original": "sitzt",
+        "replacement": "sitzen"
+      }
+    },
+    {
+      "id": "inversion-valid-08",
+      "kind": "valid",
+      "family": "inversion",
+      "locale": "de-DE",
+      "text": "Drinnen sitzen die Hunde.",
+      "expected": "Drinnen sitzen die Hunde.",
+      "start_offset": 23
+    },
+    {
+      "id": "inversion-error-09",
+      "kind": "error",
+      "family": "inversion",
+      "locale": "de-DE",
+      "text": "Heute trinken der Mann.",
+      "expected": "Heute trinkt der Mann.",
+      "start_offset": 23,
+      "target": {
+        "original": "trinken",
+        "replacement": "trinkt"
+      }
+    },
+    {
+      "id": "inversion-valid-09",
+      "kind": "valid",
+      "family": "inversion",
+      "locale": "de-DE",
+      "text": "Heute trinkt der Mann.",
+      "expected": "Heute trinkt der Mann.",
+      "start_offset": 23
+    },
+    {
+      "id": "inversion-error-10",
+      "kind": "error",
+      "family": "inversion",
+      "locale": "de-DE",
+      "text": "Dort stehen das Auto.",
+      "expected": "Dort steht das Auto.",
+      "start_offset": 23,
+      "target": {
+        "original": "stehen",
+        "replacement": "steht"
+      }
+    },
+    {
+      "id": "inversion-valid-10",
+      "kind": "valid",
+      "family": "inversion",
+      "locale": "de-DE",
+      "text": "Dort steht das Auto.",
+      "expected": "Dort steht das Auto.",
+      "start_offset": 23
+    },
+    {
+      "id": "inversion-error-11",
+      "kind": "error",
+      "family": "inversion",
+      "locale": "de-DE",
+      "text": "Morgen fährt die Züge.",
+      "expected": "Morgen fahren die Züge.",
+      "start_offset": 23,
+      "target": {
+        "original": "fährt",
+        "replacement": "fahren"
+      }
+    },
+    {
+      "id": "inversion-valid-11",
+      "kind": "valid",
+      "family": "inversion",
+      "locale": "de-DE",
+      "text": "Morgen fahren die Züge.",
+      "expected": "Morgen fahren die Züge.",
+      "start_offset": 23
+    },
+    {
+      "id": "inversion-error-12",
+      "kind": "error",
+      "family": "inversion",
+      "locale": "de-DE",
+      "text": "Gern liest die Kinder.",
+      "expected": "Gern lesen die Kinder.",
+      "start_offset": 23,
+      "target": {
+        "original": "liest",
+        "replacement": "lesen"
+      }
+    },
+    {
+      "id": "inversion-valid-12",
+      "kind": "valid",
+      "family": "inversion",
+      "locale": "de-DE",
+      "text": "Gern lesen die Kinder.",
+      "expected": "Gern lesen die Kinder.",
+      "start_offset": 23
+    },
+    {
+      "id": "baseline-overlap-error-01",
+      "kind": "error",
+      "family": "baseline-overlap",
+      "locale": "de-DE",
+      "text": "Die Pferde läuft langsam.",
+      "expected": "Die Pferde laufen langsam.",
+      "start_offset": 23,
+      "target": {
+        "original": "läuft",
+        "replacement": "laufen"
+      }
+    },
+    {
+      "id": "baseline-overlap-error-02",
+      "kind": "error",
+      "family": "baseline-overlap",
+      "locale": "de-DE",
+      "text": "Das Fenster bleiben offen.",
+      "expected": "Das Fenster bleibt offen.",
+      "start_offset": 23,
+      "target": {
+        "original": "bleiben",
+        "replacement": "bleibt"
+      }
+    },
+    {
+      "id": "baseline-overlap-error-03",
+      "kind": "error",
+      "family": "baseline-overlap",
+      "locale": "de-DE",
+      "text": "Meine Schwestern kommt morgen.",
+      "expected": "Meine Schwestern kommen morgen.",
+      "start_offset": 23,
+      "target": {
+        "original": "kommt",
+        "replacement": "kommen"
+      }
+    },
+    {
+      "id": "baseline-overlap-error-04",
+      "kind": "error",
+      "family": "baseline-overlap",
+      "locale": "de-DE",
+      "text": "Dieser Arzt arbeiten heute.",
+      "expected": "Dieser Arzt arbeitet heute.",
+      "start_offset": 23,
+      "target": {
+        "original": "arbeiten",
+        "replacement": "arbeitet"
+      }
+    },
+    {
+      "id": "baseline-overlap-error-05",
+      "kind": "error",
+      "family": "baseline-overlap",
+      "locale": "de-DE",
+      "text": "Die Babys schläft drinnen.",
+      "expected": "Die Babys schlafen drinnen.",
+      "start_offset": 23,
+      "target": {
+        "original": "schläft",
+        "replacement": "schlafen"
+      }
+    },
+    {
+      "id": "baseline-overlap-error-06",
+      "kind": "error",
+      "family": "baseline-overlap",
+      "locale": "de-DE",
+      "text": "Die Blumen steht hier.",
+      "expected": "Die Blumen stehen hier.",
+      "start_offset": 23,
+      "target": {
+        "original": "steht",
+        "replacement": "stehen"
+      }
+    },
+    {
+      "id": "valid-leiter-singular",
+      "kind": "valid",
+      "family": "ambiguity",
+      "locale": "de-DE",
+      "text": "Die Leiter neben dem Tor steht sicher.",
+      "expected": "Die Leiter neben dem Tor steht sicher.",
+      "start_offset": 23
+    },
+    {
+      "id": "valid-leiter-plural",
+      "kind": "valid",
+      "family": "ambiguity",
+      "locale": "de-DE",
+      "text": "Die Leiter aus den Abteilungen arbeiten gemeinsam.",
+      "expected": "Die Leiter aus den Abteilungen arbeiten gemeinsam.",
+      "start_offset": 23
+    },
+    {
+      "id": "valid-band-singular",
+      "kind": "valid",
+      "family": "ambiguity",
+      "locale": "de-DE",
+      "text": "Die Band hinter den Kulissen spielt heute.",
+      "expected": "Die Band hinter den Kulissen spielt heute.",
+      "start_offset": 23
+    },
+    {
+      "id": "valid-expletive-es",
+      "kind": "valid",
+      "family": "expletive",
+      "locale": "de-DE",
+      "text": "Es stehen drei Fahrräder vor dem Haus.",
+      "expected": "Es stehen drei Fahrräder vor dem Haus.",
+      "start_offset": 23
+    },
+    {
+      "id": "valid-fronted-object-plural",
+      "kind": "valid",
+      "family": "fronted-object",
+      "locale": "de-DE",
+      "text": "Die Katzen sieht der Junge heute.",
+      "expected": "Die Katzen sieht der Junge heute.",
+      "start_offset": 23
+    },
+    {
+      "id": "valid-fronted-object-singular",
+      "kind": "valid",
+      "family": "fronted-object",
+      "locale": "de-DE",
+      "text": "Das Fahrrad sehen die Mädchen dort.",
+      "expected": "Das Fahrrad sehen die Mädchen dort.",
+      "start_offset": 23
+    },
+    {
+      "id": "valid-coordination",
+      "kind": "valid",
+      "family": "coordination",
+      "locale": "de-DE",
+      "text": "Der Lehrer und die Ärztin arbeiten draußen.",
+      "expected": "Der Lehrer und die Ärztin arbeiten draußen.",
+      "start_offset": 23
+    },
+    {
+      "id": "valid-relative-clause",
+      "kind": "valid",
+      "family": "relative-clause",
+      "locale": "de-DE",
+      "text": "Die Katze, die wir kennen, schläft drinnen.",
+      "expected": "Die Katze, die wir kennen, schläft drinnen.",
+      "start_offset": 23
+    },
+    {
+      "id": "valid-proper-name",
+      "kind": "valid",
+      "family": "proper-name",
+      "locale": "de-DE",
+      "text": "Marlene arbeitet heute im Garten.",
+      "expected": "Marlene arbeitet heute im Garten.",
+      "start_offset": 23
+    },
+    {
+      "id": "valid-unknown-noun",
+      "kind": "valid",
+      "family": "unknown-noun",
+      "locale": "de-DE",
+      "text": "Die Qudsblume neben dem Tor steht dort.",
+      "expected": "Die Qudsblume neben dem Tor steht dort.",
+      "start_offset": 23
+    },
+    {
+      "id": "valid-verb-competing",
+      "kind": "valid",
+      "family": "verb-reading",
+      "locale": "de-DE",
+      "text": "Heute weiß die Lehrerin die Antwort.",
+      "expected": "Heute weiß die Lehrerin die Antwort.",
+      "start_offset": 23
+    },
+    {
+      "id": "valid-subjunctive",
+      "kind": "valid",
+      "family": "verb-reading",
+      "locale": "de-DE",
+      "text": "Der Arzt helfe den Kindern, sagte sie.",
+      "expected": "Der Arzt helfe den Kindern, sagte sie.",
+      "start_offset": 23
+    },
+    {
+      "id": "valid-imperative",
+      "kind": "valid",
+      "family": "imperative",
+      "locale": "de-DE",
+      "text": "Helft den Gästen vor dem Haus!",
+      "expected": "Helft den Gästen vor dem Haus!",
+      "start_offset": 23
+    },
+    {
+      "id": "valid-predicate-nominative",
+      "kind": "valid",
+      "family": "copular",
+      "locale": "de-DE",
+      "text": "Mein ganzer Stolz sind diese Bücher.",
+      "expected": "Mein ganzer Stolz sind diese Bücher.",
+      "start_offset": 23
+    },
+    {
+      "id": "valid-plural-quantity",
+      "kind": "valid",
+      "family": "quantity",
+      "locale": "de-DE",
+      "text": "Ein paar Katzen schlafen draußen.",
+      "expected": "Ein paar Katzen schlafen draußen.",
+      "start_offset": 23
+    },
+    {
+      "id": "valid-genitive-modifier",
+      "kind": "valid",
+      "family": "genitive",
+      "locale": "de-DE",
+      "text": "Die Stimme der Kinder klingt leise.",
+      "expected": "Die Stimme der Kinder klingt leise.",
+      "start_offset": 23
+    },
+    {
+      "id": "valid-fronted-pp",
+      "kind": "valid",
+      "family": "fronted-preposition",
+      "locale": "de-DE",
+      "text": "Vor dem Haus stehen die Fahrräder.",
+      "expected": "Vor dem Haus stehen die Fahrräder.",
+      "start_offset": 23
+    },
+    {
+      "id": "valid-multiple-sentences",
+      "kind": "valid",
+      "family": "multiple-sentences",
+      "locale": "de-DE",
+      "text": "Die Katze schläft. Die Gäste warten.",
+      "expected": "Die Katze schläft. Die Gäste warten.",
+      "start_offset": 23
+    },
+    {
+      "id": "guard-quoted-error",
+      "kind": "guard",
+      "family": "quotation",
+      "locale": "de-DE",
+      "text": "„Die Katzen auf dem Sofa schläft.“ ist unser Beispielsatz.",
+      "expected": "„Die Katzen auf dem Sofa schläft.“ ist unser Beispielsatz.",
+      "start_offset": 23
+    },
+    {
+      "id": "guard-code-error",
+      "kind": "guard",
+      "family": "code",
+      "locale": "de-DE",
+      "text": "`Die Hunde hinter der Hecke läuft.`",
+      "expected": "`Die Hunde hinter der Hecke läuft.`",
+      "start_offset": 23
+    },
+    {
+      "id": "guard-url-error",
+      "kind": "guard",
+      "family": "url",
+      "locale": "de-DE",
+      "text": "https://example.org/Die-Katzen-schlaeft",
+      "expected": "https://example.org/Die-Katzen-schlaeft",
+      "start_offset": 23
+    },
+    {
+      "id": "guard-unknown-error",
+      "kind": "guard",
+      "family": "unknown-noun",
+      "locale": "de-DE",
+      "text": "Die Qudsmurks im Garten läuft.",
+      "expected": "Die Qudsmurks im Garten läuft.",
+      "start_offset": 23
+    },
+    {
+      "id": "guard-sentence-fragment",
+      "kind": "guard",
+      "family": "incomplete",
+      "locale": "de-DE",
+      "text": "Die Katzen auf dem Sofa",
+      "expected": "Die Katzen auf dem Sofa",
+      "start_offset": 23
+    },
+    {
+      "id": "guard-ignored-native",
+      "kind": "guard",
+      "family": "ignored-rule",
+      "locale": "de-DE",
+      "text": "Heute schläft die Katzen.",
+      "expected": "Heute schläft die Katzen.",
+      "start_offset": 23,
+      "ignored_rule_ids": [
+        "de.spacy.noun-verb"
+      ]
+    },
+    {
+      "id": "guard-ignored-existing",
+      "kind": "guard",
+      "family": "ignored-rule",
+      "locale": "de-DE",
+      "text": "Morgen arbeitet die Frauen.",
+      "expected": "Morgen arbeitet die Frauen.",
+      "start_offset": 23,
+      "ignored_rule_ids": [
+        "de.grammar.noun-verb"
+      ]
+    },
+    {
+      "id": "guard-personal-word",
+      "kind": "guard",
+      "family": "personal-vocabulary",
+      "locale": "de-DE",
+      "text": "Hier läuft die Hunde.",
+      "expected": "Hier läuft die Hunde.",
+      "start_offset": 23,
+      "personal_words": [
+        "Hunde"
+      ]
+    },
+    {
+      "id": "guard-marked-word",
+      "kind": "guard",
+      "family": "unicode",
+      "locale": "de-DE",
+      "text": "Die Katzen auf dem Sofa schläft́.",
+      "expected": "Die Katzen auf dem Sofa schläft́.",
+      "start_offset": 23
+    },
+    {
+      "id": "guard-multi-error-sentences",
+      "kind": "guard",
+      "family": "multiple-sentences",
+      "locale": "de-DE",
+      "text": "Die Hunde hinter der Hecke läuft. Die Gäste wartet.",
+      "expected": "Die Hunde hinter der Hecke läuft. Die Gäste wartet.",
+      "start_offset": 23
+    },
+    {
+      "id": "unsupported-01",
+      "kind": "unsupported",
+      "family": "locale",
+      "locale": "de-AT",
+      "text": "Die Katzen auf dem Sofa schläft.",
+      "expected": "Die Katzen auf dem Sofa schläft.",
+      "start_offset": 23
+    },
+    {
+      "id": "unsupported-02",
+      "kind": "unsupported",
+      "family": "locale",
+      "locale": "de-CH",
+      "text": "Hier läuft die Hunde.",
+      "expected": "Hier läuft die Hunde.",
+      "start_offset": 23
+    },
+    {
+      "id": "unsupported-03",
+      "kind": "unsupported",
+      "family": "locale",
+      "locale": "en-US",
+      "text": "The cats sleeps near the window.",
+      "expected": "The cats sleeps near the window.",
+      "start_offset": 23
+    },
+    {
+      "id": "unsupported-04",
+      "kind": "unsupported",
+      "family": "locale",
+      "locale": "de-1901",
+      "text": "Die Pferde läuft langsam.",
+      "expected": "Die Pferde läuft langsam.",
+      "start_offset": 23
+    }
+  ]
+}

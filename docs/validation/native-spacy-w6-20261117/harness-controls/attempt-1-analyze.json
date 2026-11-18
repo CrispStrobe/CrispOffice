@@ -1,0 +1,12 @@
+{
+  "test_source_sha256": "4818d4951b35f22fda7aae22bcb2a28d46b8ae40b633248e6f58e5d0b12ac61a",
+  "command": [
+    "dart",
+    "analyze",
+    "test/grammar_evaluation_harness_test.dart"
+  ],
+  "exit_code": 0,
+  "issues": 1,
+  "classification": "authored test style warning only; no product source changed",
+  "native_execution": false
+}

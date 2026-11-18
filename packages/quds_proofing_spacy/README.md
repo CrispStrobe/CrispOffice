@@ -1,10 +1,12 @@
-# Optional local German analysis
+# Optional local German analysis and guarded grammar
 
 This package connects Quds to the separately installed, default-off CrispEmbed
 spaCy text ABI. It exposes tokens, original spans, tags, POS, morphology, lemmas,
 dependencies and sentences for the pinned `de_core_news_sm` 3.8.0 F32 profile.
-It does not register a grammar provider or generate corrections. Existing
-deterministic proofing remains independent.
+The analysis API returns annotations. A separate, default-disabled grammar API
+can turn a narrowly reviewed subset into manual correction suggestions. The
+package registers neither API automatically; existing deterministic proofing
+keeps its precedence.
 
 The initial adapter supports **Linux x86-64/AVX2, de-DE, CPU/F32**, using the
 qualified PCRE2 10.46 dependency. Other platforms,
@@ -85,6 +87,66 @@ footer, comment, frame and generated TOC text, multi-paragraph selections,
 mixed locales and non-de-DE units are outside this view. Edits, language,
 document or configuration changes invalidate visible results. Cancellation,
 closing and retry after a failed worker preserve native resource ownership.
+
+## Optional manual grammar API
+
+`quds_proofing_spacy_grammar.dart` exports `SpacyGermanGrammarPlanner` and
+`SpacyGrammarProvider`. The [W6 evidence and scope](../../docs/validation/native-spacy-w6-20261117/README.md)
+describe the separate development panel, predeclared qualification protocol and
+real editor controls. This is a bounded experiment for noun/finite-verb number
+agreement in `de-DE`, using the exact accepted native library. It is not a
+general German grammar checker or a released model/runtime distribution.
+
+After an explicit user action, a host with a verified installation may load a
+dedicated provider and attach it to the editor's **manual** proofing service:
+
+```dart
+import 'package:quds_office_engine/quds_office_engine.dart';
+import 'package:quds_proofing_spacy/quds_proofing_spacy_grammar.dart';
+import 'package:quds_proofing_spacy/quds_proofing_spacy_native.dart';
+
+final provider = await SpacyGrammarProvider.load(
+  backendFactory: factory, // Verified factory configured as above.
+  enabled: true,           // The default is false and opens no worker.
+  vocabulary: controller.proofing.vocabulary,
+);
+try {
+  controller.proofing.configureManual(
+    OfficeProofingService(providers: [provider]),
+  );
+} catch (_) {
+  await provider.dispose();
+  rethrow;
+}
+
+// Explicit checking/F7 includes this manual service. Typing does not.
+final summary = await controller.checkDocumentProofing();
+```
+
+`configureManual` replaces the session's previous manual service. The session
+owns and disposes the installed service; do not share the provider's transport
+with another provider or the Studio analysis view. Hosts that need a shutdown
+barrier should await the provider's idempotent `dispose()` future after session
+disposal or detachment. An active native call retains its context until it
+finishes safely. The stock Studio analysis dialog remains an annotation view;
+this change does not add a grammar toggle or register a grammar provider there.
+
+The planner accepts one bounded sentence with a reviewed common-noun subject
+and third-person present-indicative finite verb, including selected intervening
+prepositional phrases and initial-adverb inversion. It checks original spans
+and all licensed noun/verb readings against the existing reviewed lexical
+facts. Unknown words, compatible alternative readings, quantity/partitive
+constructions, quotations, literals, multiple sentences and unsupported syntax
+abstain. Native parses cannot override lexical ambiguity. Every edit is a
+single reviewed replacement with exact original UTF-16/grapheme boundaries.
+
+Use the stable rule ID `de.spacy.noun-verb` to ignore the optional rule; the
+existing `de.grammar.noun-verb` ignore also suppresses it. Personal/ignored words
+are captured with their vocabulary revision. Changed documents, requests,
+configuration and vocabulary invalidate pending results. Unsupported locales
+and missing/failed native execution remain explicit outcomes. Suggestions use
+the existing review, protection, correction, recheck and undo paths, with
+deterministic findings taking precedence when proposals overlap.
 
 ## Local validation
 

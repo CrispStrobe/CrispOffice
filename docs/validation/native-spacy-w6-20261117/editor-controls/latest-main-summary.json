@@ -1,0 +1,47 @@
+{
+  "acceptance_rerun": false,
+  "bundle_manifest_sha256": "d599768375de3dc56abcca5cf1d49da0015857f9d3a10640aebb5317ef5d427e",
+  "captured_source_paths_changed_since_original_final_editor_run": [
+    "packages/quds_office_editor/lib/src/editor_sheet/render_sheet_grid.dart",
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+    "packages/quds_office_engine/lib/src/proofing/german_context_grammar.dart",
+    "packages/quds_office_engine/lib/src/proofing/german_grammar.dart",
+    "packages/quds_office_engine/lib/src/proofing/german_literal_ranges.dart",
+    "packages/quds_office_engine/lib/src/proofing/german_writing_rules.dart",
+    "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_reader.dart",
+    "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart",
+    "packages/quds_office_engine/lib/src/sheet/model/sml_analysis.dart",
+    "packages/quds_office_engine/lib/src/sheet/model/sml_conditional_format.dart",
+    "packages/quds_office_engine/lib/src/sheet/serial/sheet_serial.dart",
+    "packages/quds_office_engine/lib/src/word/model/wml_run_edit.dart"
+  ],
+  "ci_queried_or_waited": false,
+  "editor": {
+    "captured_source_count": 422,
+    "gate_sha256": "9ed4e1cb628f348ed0e73cfb8738aa35b55f50e67bd7ac4472d18ab5dfb2bf75",
+    "native_and_bundle_unchanged": true,
+    "passed_tests": 10,
+    "receipt": "latest-grammar-main.json",
+    "receipt_sha256": "b644dc8d77b5ffdce4fdf5efd1f331887b3db5f50a75b2034b9f57eac3bc1d13",
+    "source_manifest_sha256": "48d21e5f0d690df11a97eac662987c74da300e34dcf72b8298726037292ee799",
+    "source_unchanged": true
+  },
+  "icons": {
+    "captured_source_count": 400,
+    "passed_tests": 9,
+    "receipt": "../main-refresh-controls/latest-icon-controls.json",
+    "receipt_sha256": "00ce4c535003fe6c9c8e4f8f785c291849f0f957391587cd04d7b84a5e76e1ca",
+    "source_unchanged": true
+  },
+  "implicit_pub": false,
+  "incoming_main": "6245a6956a76a38f925e1eb18851c0086730112d",
+  "native_library_sha256": "ea89842ebf22c08508aff1cfbf18d78a107118af320523009616ff62b6e42977",
+  "native_or_planner_tuning": false,
+  "observed_merged_head": "ac9ea09c377184f22f1c9b1a76610b9314c5a79a",
+  "qualification_panel_read": false,
+  "reason": "Incoming German grammar and correction-history source changes required a new actual-native editor integration run. The incoming sheet icon renderer received its focused rendering suite.",
+  "schema": "quds.spacy.w6.latest_main_editor_summary.v1",
+  "scope": "The ten editor controls reuse one authored development error and its corrected form. Repeated executions and lifecycle variants are not additional independent linguistic cases. The original attempt receipts and source snapshots remain intact.",
+  "source_edits_for_latest_run": false,
+  "status": "passed"
+}

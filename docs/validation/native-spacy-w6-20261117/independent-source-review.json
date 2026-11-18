@@ -1,0 +1,98 @@
+{
+  "schema": "quds.spacy.grammar.independent-source-review.v1",
+  "reviewer": "crisp_inventory",
+  "created_at": "2026-11-17T22:13:58.537664+00:00",
+  "review_type": "pre-qualification source review; synthetic annotations are implementation controls only",
+  "qualification_panel_or_outputs_read": false,
+  "native_or_development_grammar_execution_by_reviewer": false,
+  "github_actions_queried_or_waited": false,
+  "reviewed_source_sha256": {
+    "packages/quds_proofing_spacy/lib/src/grammar_planner.dart": "898ff9f67a4acc20e825968f422c9fd1ae1def654ce63ef2942ba0e0cf317314",
+    "packages/quds_office_engine/lib/src/proofing/german_agreement_facts.dart": "4370c5c7d848e123f4059765e19e3c8e284480fe66203e17f2b9d9cc2e9d02b1",
+    "packages/quds_office_engine/lib/src/proofing/german_writing_rules.dart": "292a896d981cb5049f110d4e2b798d6224c10d672a10f53896b5d1b50bb1b565",
+    "packages/quds_proofing_spacy/lib/src/grammar_provider.dart": "892f2a06a7964834dd9c4752f7250ca25da72b5c6fb698b5f266bcb5542eddc3",
+    "packages/quds_proofing_spacy/lib/quds_proofing_spacy_grammar.dart": "7fda24553f7af314f7e0d3af862c1460c73c0cd8726b4b86021da1044238fa9d",
+    "packages/quds_proofing_spacy/pubspec.yaml": "eaa01aa5b7410e785ed9171b1cfd5073cb619663a900403119e3bb02f93d57f5",
+    "packages/quds_proofing_spacy/tool/evaluate_grammar.dart": "ae2ef1b2c81b4bba313ca7e9245d691b7e2d30d43b1b81c3736cfb654e47ffc2"
+  },
+  "findings": [
+    {
+      "id": "quote-context",
+      "status": "resolved_in_reviewed_source",
+      "issue": "Per-sentence punctuation could admit a middle sentence of a quotation without delimiter tokens.",
+      "resolution": "The entire request is limited to one parsed sentence and all source quote characters veto planning."
+    },
+    {
+      "id": "obsolete-request-cancellation",
+      "status": "resolved_in_reviewed_source",
+      "issue": "Delayed cancel(A) could cancel newer B sharing a unit key.",
+      "resolution": "The latest request object is retained with generation; cancellation requires identical current request."
+    },
+    {
+      "id": "semantic-quantity-agreement",
+      "status": "resolved_in_reviewed_source",
+      "issue": "Singular quantity heads with partitive modifiers can permit plural verb agreement, so lexical noun number alone is not decisive.",
+      "resolution": "Reviewed quantity heads veto; all von/vom prepositional phrases abstain to exclude productive unenumerated partitives.",
+      "sources": [
+        "https://grammis.ids-mannheim.de/fragen/3150",
+        "https://www.duden.de/rechtschreibung/Haufen",
+        "https://www.germ.univie.ac.at/schrodt/grammatik/uebersicht_zweifelsfaelle.htm"
+      ]
+    },
+    {
+      "id": "report-admission-and-durability",
+      "status": "resolved_in_reviewed_source",
+      "issue": "Non-atomic existsSync admission allows concurrent same-path starts; direct rewriting can leave torn JSON on interruption, and receipt begins only after native work.",
+      "resolution": "The report destination is exclusively created and an initial pending receipt saved before native loading. Each update uses an exclusively created .next file, flushed write, and rename to preserve the previous complete JSON until replacement."
+    },
+    {
+      "id": "baseline-transitive-closure",
+      "status": "resolved_in_reviewed_source",
+      "issue": "Top-level provider source hashes alone did not protect generated lexical data and decompression implementation.",
+      "resolution": "verifyBaseline enumerates all proofing and zip blobs from the frozen main commit and compares their exact Git blob IDs against current bytes after only the additive part directive removal."
+    }
+  ],
+  "baseline_check": {
+    "reference_commit": "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4",
+    "existing_files_checked": 47,
+    "prefixes": [
+      "packages/quds_office_engine/lib/src/proofing",
+      "packages/quds_office_engine/lib/src/opc/zip",
+      "packages/quds_office_engine/pubspec.yaml",
+      "pubspec.lock"
+    ],
+    "permitted_exact_removal": "part 'german_agreement_facts.dart';\n",
+    "differences": [],
+    "note": "Includes generated morphology data and decompression implementation. Candidate source seal separately hashes the complete engine and spaCy library trees."
+  },
+  "checked_contracts": [
+    "All accepting reviewed verb paradigms retained; lexical noun alternatives retained; no model-selected number erases a compatible lexical reading.",
+    "Nominalized adjectives, unknown/unresolved nouns, competing verb readings, source-boundary defects, protected source context and unsupported structural shapes abstain.",
+    "Exact accepted native identity and full source snapshot checks precede proposals.",
+    "Provider defaults disabled, no registration side effects, snapshot/configuration revalidation after every asynchronous phase, owned bounded transport cleanup.",
+    "Host service validates request/provider/offset/original-text/grapheme contracts and deterministic findings have merge precedence.",
+    "Scorer requires exact full-string correction, all findings single-choice, nonoverlapping edits, unchanged original-text mapping, separate raw native valid/guard findings, baseline exact loss counts, corrected rechecks and explicit unsupported/operational states.",
+    "Qualification atomically creates a consumed-seal sidecar before native entry, so concurrent/repeated invocations using that seal path fail closed.",
+    "Overall passed requires both successful execution and linguistic gates; source drift or cleanup failure also prevents success."
+  ],
+  "limitations": [
+    "Review is not linguistic qualification and does not estimate precision or recall.",
+    "The planner remains dependent on authenticated parser role/tag predictions inside the bounded source shape.",
+    "Synthetic annotations establish policy behavior only; actual accepted-native comparison and editor controls remain separate qualification gates."
+  ],
+  "previous_review_receipt_sha256": "bfc2f6ffbf507120ec0a42085a150b085e3f766a5ad86fef90a6a2b6d6d29a59",
+  "updated_at": "2026-11-17T22:21:57.421901+00:00",
+  "reported_remote_checkpoint": "54faf4a1",
+  "harness_controls": {
+    "status": "passed",
+    "passed": 9,
+    "failed": 0,
+    "static_analysis_issues": 0,
+    "native_execution_required": false,
+    "real_qualification_data_used": false,
+    "completion": "docs/validation/native-spacy-w6-20261117/harness-controls/completion.json",
+    "completion_sha256": "979c95c70ae6b327f5b9a89a741d8be51d3981b530b72cec75bede2393f31533",
+    "test_source_sha256": "dc65cc7b01024412c18bd45d4266e3b68feb38f4650f1f701400d05421fdae57"
+  },
+  "source_changes_since_review": []
+}

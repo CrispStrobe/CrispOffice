@@ -1,0 +1,75 @@
+00:00 +0: loading packages/quds_proofing_spacy/test/analysis_test.dart
+00:00 +0: packages/quds_proofing_spacy/test/analysis_test.dart: source map keeps UTF8, scalars, UTF16, NUL and decomposed text distinct
+00:00 +1: packages/quds_proofing_spacy/test/analysis_test.dart: unpaired UTF16 never silently becomes replacement UTF8
+00:00 +2: packages/quds_proofing_spacy/test/analysis_test.dart: byte admission checks multibyte input without truncation
+00:00 +3: packages/quds_proofing_spacy/test/analysis_test.dart: empty is explicit and nonempty cannot masquerade as empty success
+00:00 +4: packages/quds_proofing_spacy/test/analysis_test.dart: result owns immutable lists and preserves original nonzero offsets
+00:00 +5: packages/quds_proofing_spacy/test/analysis_test.dart: repeated strings must match exact coordinates and source coverage
+00:00 +6: packages/quds_proofing_spacy/test/analysis_test.dart: coordinate drift and scalar splits fail rather than clamp
+00:00 +7: packages/quds_proofing_spacy/test/analysis_test.dart: sentence flags, roots and cross-sentence dependencies are checked
+00:00 +8: packages/quds_proofing_spacy/test/analysis_test.dart: a cycle disconnected from the one root is rejected
+00:00 +9: packages/quds_proofing_spacy/test/analysis_test.dart: coalescing keys are unambiguous and snapshot identity is complete
+00:00 +10: packages/quds_proofing_spacy/test/analysis_test.dart: failed results cannot carry a successful partial document
+00:00 +11: packages/quds_proofing_spacy/test/analysis_test.dart: success is scoped to the exact declared locale and runtime profile
+00:01 +12: packages/quds_proofing_spacy/test/grammar_evaluation_harness_test.dart: existing receipt rejects admission before reading missing assets
+00:01 +13: packages/quds_proofing_spacy/test/grammar_evaluation_harness_test.dart: checkpoint replacement preserves last complete report on pending collision
+00:01 +14: packages/quds_proofing_spacy/test/grammar_evaluation_harness_test.dart: baseline closure permits additive API but rejects lexical data and ZIP drift
+00:01 +15: packages/quds_proofing_spacy/test/grammar_evaluation_harness_test.dart: baseline closure permits additive API but rejects lexical data and ZIP drift
+00:01 +16: packages/quds_proofing_spacy/test/grammar_evaluation_harness_test.dart: baseline closure permits additive API but rejects lexical data and ZIP drift
+00:01 +17: packages/quds_proofing_spacy/test/grammar_evaluation_harness_test.dart: baseline closure permits additive API but rejects lexical data and ZIP drift
+00:01 +18: packages/quds_proofing_spacy/test/grammar_evaluation_harness_test.dart: baseline closure permits additive API but rejects lexical data and ZIP drift
+00:01 +19: packages/quds_proofing_spacy/test/grammar_evaluation_harness_test.dart: baseline closure permits additive API but rejects lexical data and ZIP drift
+00:01 +20: packages/quds_proofing_spacy/test/grammar_evaluation_harness_test.dart: baseline closure permits additive API but rejects lexical data and ZIP drift
+00:01 +21: packages/quds_proofing_spacy/test/bundle_test.dart: missing explicit assets fail startup rather than produce empty success
+00:01 +22: packages/quds_proofing_spacy/test/worker_test.dart: timeout retains physical slot and never publishes a late result
+00:01 +23: packages/quds_proofing_spacy/test/grammar_evaluation_harness_test.dart: consumed synthetic seal blocks a new receipt before native entry
+00:01 +24: packages/quds_proofing_spacy/test/grammar_evaluation_harness_test.dart: consumed synthetic seal blocks a new receipt before native entry
+00:01 +25: packages/quds_proofing_spacy/test/grammar_evaluation_harness_test.dart: consumed synthetic seal blocks a new receipt before native entry
+00:01 +26: packages/quds_proofing_spacy/test/grammar_evaluation_harness_test.dart: consumed synthetic seal blocks a new receipt before native entry
+00:01 +27: packages/quds_proofing_spacy/test/grammar_evaluation_harness_test.dart: consumed synthetic seal blocks a new receipt before native entry
+00:01 +28: packages/quds_proofing_spacy/test/worker_test.dart: cleanup failure is explicit and repeated disposal preserves the error
+00:01 +29: packages/quds_proofing_spacy/test/grammar_evaluation_harness_test.dart: exact scorer maps nonzero UTF-16 origin after an emoji
+00:01 +30: packages/quds_proofing_spacy/test/worker_test.dart: spawn failure has no unhandled readiness error
+00:01 +31: packages/quds_proofing_spacy/test/grammar_evaluation_harness_test.dart: multiple choices and overlapping proposals cannot score exact
+00:01 +32: packages/quds_proofing_spacy/test/worker_test.dart: startup timeout returns promptly then releases late initialized context
+00:01 +33: packages/quds_proofing_spacy/test/worker_test.dart: startup timeout returns promptly then releases late initialized context
+00:01 +34: packages/quds_proofing_spacy/test/worker_test.dart: startup timeout returns promptly then releases late initialized context
+00:01 +35: packages/quds_proofing_spacy/test/worker_test.dart: startup timeout returns promptly then releases late initialized context
+00:01 +36: packages/quds_proofing_spacy/test/worker_test.dart: startup timeout returns promptly then releases late initialized context
+00:01 +37: packages/quds_proofing_spacy/test/worker_test.dart: startup timeout returns promptly then releases late initialized context
+00:02 +38: packages/quds_proofing_spacy/test/worker_test.dart: startup timeout returns promptly then releases late initialized context
+00:02 +39: packages/quds_proofing_spacy/test/grammar_planner_test.dart: PP subject modifier proposes one reviewed edit at original origin
+00:02 +40: packages/quds_proofing_spacy/test/grammar_planner_test.dart: PP subject modifier proposes one reviewed edit at original origin
+00:02 +41: packages/quds_proofing_spacy/test/grammar_planner_test.dart: PP subject modifier proposes one reviewed edit at original origin
+00:02 +42: packages/quds_proofing_spacy/test/grammar_planner_test.dart: PP subject modifier proposes one reviewed edit at original origin
+00:02 +43: packages/quds_proofing_spacy/test/grammar_planner_test.dart: PP subject modifier proposes one reviewed edit at original origin
+00:02 +44: packages/quds_proofing_spacy/test/grammar_planner_test.dart: PP subject modifier proposes one reviewed edit at original origin
+00:02 +45: packages/quds_proofing_spacy/test/grammar_provider_test.dart: admitted check preserves the exact request and nonzero source origin
+00:02 +46: packages/quds_proofing_spacy/test/grammar_provider_test.dart: admitted check preserves the exact request and nonzero source origin
+00:02 +47: packages/quds_proofing_spacy/test/grammar_provider_test.dart: admitted check preserves the exact request and nonzero source origin
+00:02 +48: packages/quds_proofing_spacy/test/grammar_provider_test.dart: admitted check preserves the exact request and nonzero source origin
+00:02 +49: packages/quds_proofing_spacy/test/grammar_provider_test.dart: admitted check preserves the exact request and nonzero source origin
+00:02 +50: packages/quds_proofing_spacy/test/grammar_provider_test.dart: admitted check preserves the exact request and nonzero source origin
+00:02 +51: packages/quds_proofing_spacy/test/grammar_provider_test.dart: admitted check preserves the exact request and nonzero source origin
+00:02 +52: packages/quds_proofing_spacy/test/grammar_provider_test.dart: admitted check preserves the exact request and nonzero source origin
+00:02 +53: packages/quds_proofing_spacy/test/grammar_provider_test.dart: admitted check preserves the exact request and nonzero source origin
+00:02 +54: packages/quds_proofing_spacy/test/grammar_provider_test.dart: admitted check preserves the exact request and nonzero source origin
+00:02 +55: packages/quds_proofing_spacy/test/grammar_provider_test.dart: admitted check preserves the exact request and nonzero source origin
+00:02 +56: packages/quds_proofing_spacy/test/grammar_provider_test.dart: admitted check preserves the exact request and nonzero source origin
+00:02 +57: packages/quds_proofing_spacy/test/grammar_provider_test.dart: admitted check preserves the exact request and nonzero source origin
+00:02 +58: packages/quds_proofing_spacy/test/grammar_provider_test.dart: admitted check preserves the exact request and nonzero source origin
+00:02 +59: packages/quds_proofing_spacy/test/grammar_provider_test.dart: admitted check preserves the exact request and nonzero source origin
+00:02 +60: packages/quds_proofing_spacy/test/grammar_provider_test.dart: admitted check preserves the exact request and nonzero source origin
+00:02 +61: packages/quds_proofing_spacy/test/grammar_provider_test.dart: personal and ignored words are captured before inference
+00:02 +62: packages/quds_proofing_spacy/test/grammar_provider_test.dart: a vocabulary change during inference invalidates the returned snapshot
+00:02 +63: packages/quds_proofing_spacy/test/grammar_provider_test.dart: a vocabulary change while lexical planning yields invalidates completion
+00:02 +64: packages/quds_proofing_spacy/test/grammar_provider_test.dart: all exact analysis snapshot fields are authenticated before planning
+00:02 +65: packages/quds_proofing_spacy/test/grammar_provider_test.dart: reply runtime and grammar-qualified runtime identities are both enforced
+00:02 +66: packages/quds_proofing_spacy/test/grammar_provider_test.dart: obsolete request cancellation and completion cannot invalidate its successor
+00:02 +67: packages/quds_proofing_spacy/test/grammar_provider_test.dart: current cancellation invalidates even a late successful reply
+00:02 +68: packages/quds_proofing_spacy/test/grammar_provider_test.dart: a new ignored request cancels an older pending check without inference
+00:02 +69: packages/quds_proofing_spacy/test/grammar_provider_test.dart: independent blocks retain independent cancellation ownership
+00:02 +70: packages/quds_proofing_spacy/test/grammar_provider_test.dart: dispose invalidates pending work and joins transport cleanup once
+00:02 +71: packages/quds_proofing_spacy/test/grammar_provider_test.dart: native failures and timeouts remain explicit operational outcomes
+00:02 +72: packages/quds_proofing_spacy/test/grammar_provider_test.dart: transport exceptions stay failed or unavailable without findings
+00:02 +73: All tests passed!

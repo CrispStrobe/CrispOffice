@@ -1,0 +1,206 @@
+{
+  "schema": "quds.spacy.w6.completion.v1",
+  "completed_at": "2026-11-17T22:57:43.018562+00:00",
+  "status": "passed",
+  "completed_milestone": "W6 bounded manual grammar benefit and actual editor ownership",
+  "current_deterministic_main": "6245a6956a76a38f925e1eb18851c0086730112d",
+  "crisp_native_main": "04e8445823d82591120203e953365582d7ba33be",
+  "publication": {
+    "initial_protocol": "846fc0371b23bf4a84542db7a3f24eee2d8609dd",
+    "baseline_amendment": "ac9ea09c377184f22f1c9b1a76610b9314c5a79a",
+    "source_candidate": "da18e29c20e2d42036cee911e85ff8bb22c328ae",
+    "candidate_seal": "84b4120ca29715d9b6f6555d1393f5fcb97e47cf",
+    "first_raw_result": "3a8bca4f8f8744bbb0fbd6809a700b5768d5ceba"
+  },
+  "qualification_summary": {
+    "completed_cases": 86,
+    "error_cases": 30,
+    "valid_cases": 42,
+    "guard_cases": 10,
+    "unsupported_cases": 4,
+    "baseline_exact_errors": 5,
+    "model_exact_errors": 22,
+    "combined_exact_errors": 22,
+    "combined_missed_errors": 8,
+    "additional_exact_errors": 17,
+    "baseline_exact_lost": 0,
+    "baseline_valid_flagged": 0,
+    "model_valid_flagged": 0,
+    "combined_valid_flagged": 0,
+    "model_guard_flagged": 0,
+    "baseline_changed_valid": 0,
+    "model_changed_valid": 0,
+    "combined_changed_valid": 0,
+    "added_changed_valid": 0,
+    "operational_failures": 0,
+    "model_proposals": 22,
+    "merge_suppressed_proposals": 5,
+    "model_abstentions_or_compatible_cases": 60,
+    "recheck_executions": 22,
+    "recheck_model_findings": 0
+  },
+  "predeclared_linguistic_gates": {
+    "minimum_incremental_exact": true,
+    "no_baseline_exact_loss": true,
+    "no_native_valid_findings": true,
+    "no_native_guard_findings": true,
+    "no_added_changed_valid": true,
+    "no_operational_failures": true,
+    "clean_corrected_recheck": true
+  },
+  "actual_editor_gate_passed": true,
+  "predeclared_editor_gate_controls": 10,
+  "independent_audit_passed": true,
+  "independent_audit_unresolved_errors": [],
+  "qualification_process_count": 1,
+  "native_acceptance_executions": 0,
+  "native_or_grammar_tuning_after_qualification": false,
+  "all_342_source_hashes_still_match_seal": true,
+  "native_model_dependencies_and_package_config_unchanged": true,
+  "source_restoration": {
+    "direct_candidate_tree_paths": 341,
+    "prepublished_w5_lock_artifact_paths": 1,
+    "mapping": "source-restoration.json"
+  },
+  "local_checks": {
+    "spacy_package_tests": 73,
+    "german_and_shared_facts_tests": 869,
+    "existing_editor_safety_tests": 75,
+    "german_editor_integration_tests": 36,
+    "word_run_edit_regression": 1,
+    "actual_native_editor_controls": 10,
+    "incoming_icon_rendering_tests": 9,
+    "earlier_portable_browser_gates": 3,
+    "static_analysis_issues_in_checked_scopes": 0,
+    "counts_are_scoped_runs_not_a_unique_linguistic_sample": true
+  },
+  "qualification_interpretation": {
+    "new_exact_by_family": {
+      "subject_prepositional_modifier": 11,
+      "initial_adverb_inversion": 6
+    },
+    "unchanged_baseline_exact": 5,
+    "missed_errors_retained": 8,
+    "valid_controls_preserved": 16,
+    "valid_controls_abstained": 26,
+    "corrected_rechecks_preserved": 18,
+    "corrected_rechecks_abstained": 4,
+    "baseline_unresolved_choices_in_this_panel": 0,
+    "authorship": "assistant-authored finite panel with 24 paired error/valid controls",
+    "no_population_precision_recall_claim": true
+  },
+  "scope": {
+    "platform": "Linux x86-64/AVX2",
+    "locale": "de-DE",
+    "precision": "CPU/F32",
+    "native_library_sha256": "ea89842ebf22c08508aff1cfbf18d78a107118af320523009616ff62b6e42977",
+    "model_and_bundle": "exact original de_core_news_sm 3.8.0 F32 profile",
+    "invocation": "explicit manual provider API, default disabled; no automatic Studio registration",
+    "construction": "bounded one-sentence common-noun third-person present agreement",
+    "cancellation": "caller settles promptly; active native compute retains its context until completion and cleanup"
+  },
+  "remaining_work": [
+    "W7 target packaging/native dependency inventory and immutable model/runtime distribution",
+    "Actual target-device/toolchain qualification",
+    "Broader grammar coverage requires new development and a new independently frozen qualification panel; current panel is consumed",
+    "Production/default/background activation remains outside this finite gate"
+  ],
+  "github_actions_queries_waits_reruns": 0,
+  "primary_artifacts": [
+    {
+      "path": "protocol-initial.json",
+      "bytes": 6234,
+      "sha256": "5fa7ff99f43020fd6506ecf832fc264fa97834ce838733a8d395ba57e6c6978e"
+    },
+    {
+      "path": "protocol.json",
+      "bytes": 7022,
+      "sha256": "099bbb7de42c0317a0e21c685aa707e1c0c17ba8a33f832c1b7ad38b18dbbf54"
+    },
+    {
+      "path": "baseline-amendment.json",
+      "bytes": 61710,
+      "sha256": "914eac5728b68d01b592b13f4ff731f63d4512401caf4723b910ee8776897253"
+    },
+    {
+      "path": "qualification-panel.json",
+      "bytes": 25230,
+      "sha256": "52bede2f915db66489b45657d9b605f357d000b2024c8c734b57c10b3457a826"
+    },
+    {
+      "path": "candidate-seal.json",
+      "bytes": 53767,
+      "sha256": "b4b3370548ac6ea09a7943d93dcf140f09378bbdd242030147104dd276a11494"
+    },
+    {
+      "path": "candidate-seal.json.consumed.json",
+      "bytes": 355,
+      "sha256": "97c706e76f8e4731cfec6968f0a3af48cc90bfeec281736b2e94b8ff8c4870fe"
+    },
+    {
+      "path": "qualification-first.json",
+      "bytes": 1037647,
+      "sha256": "2e85b9721368e9e69b7fbeba0ec05105190374d757068706b90f2d7e2f615d58"
+    },
+    {
+      "path": "qualification-first.json.runner.json",
+      "bytes": 8790,
+      "sha256": "a151dbee9dae822447344364121a9fb1825e0083f864f04cb5e73e2f5131aed1"
+    },
+    {
+      "path": "qualification-audit.json",
+      "bytes": 13491,
+      "sha256": "4e52a154a47d9984966df33090a3681fe63f18ace10a42e46bf7d4d5a488347d"
+    },
+    {
+      "path": "qualification-audit-initial.json",
+      "bytes": 11893,
+      "sha256": "303aac0ad5622da6cbcb399308eacc9e8ce7a3f4fc8c20f344b10e0788153bea"
+    },
+    {
+      "path": "qualification-case-review.json",
+      "bytes": 145729,
+      "sha256": "998a336b7cf7e59d32baff173f5a81ddc8b748d82607ddcaa0d0fde03f6d819e"
+    },
+    {
+      "path": "source-restoration.json",
+      "bytes": 1216,
+      "sha256": "0a1026599c4603ba3bbd2ae7760ac53392246b882ec99e5a4d1bfd32b709de05"
+    },
+    {
+      "path": "final-source-integrity.json",
+      "bytes": 14798,
+      "sha256": "c1ae28eaec8c4420b44f584dbe3c305c7d35cb078198036a1d1054882f0d2128"
+    },
+    {
+      "path": "latest-baseline-controls/receipt.json",
+      "bytes": 4889,
+      "sha256": "75f7027ca4c0e04d39e2c466cf821468c5f96b893e5b549b32f702530c4e6b75"
+    },
+    {
+      "path": "latest-package-controls/completion.json",
+      "bytes": 110304,
+      "sha256": "6a3a057df164ea8528e15fb1fb14aad7f1749c265573ed25e68c418a8e5131f3"
+    },
+    {
+      "path": "editor-controls/latest-grammar-main.json",
+      "bytes": 2110,
+      "sha256": "b644dc8d77b5ffdce4fdf5efd1f331887b3db5f50a75b2034b9f57eac3bc1d13"
+    },
+    {
+      "path": "package-refresh-controls/completion.json",
+      "bytes": 114074,
+      "sha256": "9b7004a43ecc0d24f1be7b93f17535a8a3417b966903b62f2c4732173b20dae1"
+    },
+    {
+      "path": "calendar-repair/final.json",
+      "bytes": 22857,
+      "sha256": "1509c71ad28dc8125a4c78923ec3a1a7b54a79966b2771440485aafda2e86a6a"
+    },
+    {
+      "path": "main-refresh-controls/latest-icon-controls.json",
+      "bytes": 114483,
+      "sha256": "00ce4c535003fe6c9c8e4f8f785c291849f0f957391587cd04d7b84a5e76e1ca"
+    }
+  ]
+}

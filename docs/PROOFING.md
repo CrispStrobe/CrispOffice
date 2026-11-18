@@ -28,9 +28,15 @@ parity and quality checks, and target-device/distribution evidence. The native
 Linux CPU/F32 backend now passes the frozen first acceptance; the
 [W5 continuation](validation/native-spacy-w5-20261117/README.md) qualifies the
 optional Dart analysis worker and manual Studio analysis view on Linux
-x86-64/AVX2. The latest main through `4b2b4e78` is merged at `8d89e4f7`; local
-package, UI, actual-native widget and existing proofing checks pass on that
-combined source. Model grammar remains disabled and the native gate stays off.
+x86-64/AVX2. The [W6 continuation](validation/native-spacy-w6-20261117/README.md)
+now qualifies a guarded manual agreement provider against main `6245a695`:
+22/30 exact error corrections versus the updated deterministic baseline's 5/30,
+zero native findings on 42 valid and ten guard controls, four explicit unsupported
+locales and 22 rechecks with no further finding. The panel and thresholds were
+frozen before outputs; its finite authored result is not general German quality.
+All ten real native editor controls and the latest-baseline/package regressions
+pass. The optional manual API defaults off; the Studio analysis view displays
+annotations. Platform/device packaging and release/distribution remain separate.
 Existing Python syntax experiments retain their original evaluation limits.
 
 Main's current Office integration excludes AOT; the handoff retains the earlier

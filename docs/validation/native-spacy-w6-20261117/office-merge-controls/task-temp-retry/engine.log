@@ -1,0 +1,219 @@
+00:00 +0: loading QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_fidelity_test.dart
+00:00 +0: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_fidelity_test.dart: edits to imported conditional rules persist rank-only edit survives repeated top saves
+00:00 +1: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_fidelity_test.dart: edits to imported conditional rules persist rank-only edit survives repeated bottom saves
+00:00 +2: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_fidelity_test.dart: edits to imported conditional rules persist rank-only edit survives repeated topPercent saves
+00:00 +3: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_fidelity_test.dart: edits to imported conditional rules persist rank-only edit survives repeated bottomPercent saves
+00:00 +4: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_fidelity_test.dart: edits to imported conditional rules persist rank-only edit retains native DXF metadata through two saves
+00:00 +5: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_fidelity_test.dart: edits to imported conditional rules persist upper-bound-only between edit survives isolate save
+00:00 +6: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_fidelity_test.dart: edits to imported conditional rules persist upper-bound-only notBetween edit survives isolate save
+00:00 +7: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_fidelity_test.dart: graphic conditional rules use native threshold and color structure colorScale writes ordered schema children
+00:00 +8: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_fidelity_test.dart: graphic conditional rules use native threshold and color structure dataBar writes ordered schema children
+00:00 +9: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_fidelity_test.dart: graphic conditional rules use native threshold and color structure iconSet writes ordered schema children
+00:00 +10: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_fidelity_test.dart: graphic conditional rules use native threshold and color structure native color-scale colors map by ordinal after all thresholds
+00:00 +11: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_fidelity_test.dart: graphic conditional rules use native threshold and color structure icon-set-only edits survive repeated saves (isolate=false)
+00:00 +12: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_fidelity_test.dart: graphic conditional rules use native threshold and color structure icon-set-only edits survive repeated saves (isolate=true)
+00:00 +13: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_fidelity_test.dart: graphic conditional rules use native threshold and color structure icon threshold value edit is retained
+00:00 +14: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_fidelity_test.dart: graphic conditional rules use native threshold and color structure icon threshold type edit is retained
+00:00 +15: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_fidelity_test.dart: graphic conditional rules use native threshold and color structure graphic color-only edits invalidate preserved native XML
+00:00 +16: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_fidelity_test.dart: graphic conditional rules use native threshold and color structure no-edit icon saves retain unmodeled native options
+00:00 +17: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_fidelity_test.dart: conditional rule priorities and stopping semantics every fresh rule receives a deterministic positive priority
+00:00 +18: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_fidelity_test.dart: conditional rule priorities and stopping semantics authored precedence survives edits and an earlier unnumbered rule
+00:00 +19: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_fidelity_test.dart: conditional rule priorities and stopping semantics invalid and duplicate priorities receive unique Int32 replacements
+00:00 +20: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_fidelity_test.dart: conditional rule priorities and stopping semantics editing only priority replaces the native rule snapshot
+00:00 +21: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_fidelity_test.dart: conditional rule priorities and stopping semantics editing only stopIfTrue replaces the native rule snapshot
+00:00 +22: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_fidelity_test.dart: SpreadsheetML boolean spellings top10 defaults
+00:00 +23: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_fidelity_test.dart: SpreadsheetML boolean spellings top10 bottom="0" percent="0"
+00:00 +24: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_fidelity_test.dart: SpreadsheetML boolean spellings top10 bottom="false" percent="false"
+00:00 +25: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_fidelity_test.dart: SpreadsheetML boolean spellings top10 bottom="1" percent="0"
+00:00 +26: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_fidelity_test.dart: SpreadsheetML boolean spellings top10 bottom="true" percent="false"
+00:00 +27: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_fidelity_test.dart: SpreadsheetML boolean spellings top10 bottom="0" percent="1"
+00:00 +28: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_fidelity_test.dart: SpreadsheetML boolean spellings top10 bottom="false" percent="true"
+00:00 +29: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_fidelity_test.dart: SpreadsheetML boolean spellings top10 bottom="1" percent="1"
+00:00 +30: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_fidelity_test.dart: SpreadsheetML boolean spellings top10 bottom="true" percent="true"
+00:00 +31: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_fidelity_test.dart: SpreadsheetML boolean spellings aboveAverage default
+00:00 +32: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_fidelity_test.dart: SpreadsheetML boolean spellings aboveAverage aboveAverage="1"
+00:00 +33: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_fidelity_test.dart: SpreadsheetML boolean spellings aboveAverage aboveAverage="true"
+00:00 +34: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_fidelity_test.dart: SpreadsheetML boolean spellings aboveAverage aboveAverage="0"
+00:00 +35: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_fidelity_test.dart: SpreadsheetML boolean spellings aboveAverage aboveAverage="false"
+00:00 +36: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_fidelity_test.dart: conditional bounds follow reversible worksheet renames between keeps both modeled and native bounds through saves
+00:00 +37: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_fidelity_test.dart: conditional bounds follow reversible worksheet renames notBetween keeps both modeled and native bounds through saves
+00:00 +38: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_fidelity_test.dart: conditional bounds follow reversible worksheet renames a reference only in the upper bound follows the rename
+00:00 +39: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_fidelity_test.dart: conditional bounds follow reversible worksheet renames apply rejects a newer rank edit
+00:00 +40: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_fidelity_test.dart: conditional bounds follow reversible worksheet renames apply rejects a newer formula2 edit
+00:00 +41: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_fidelity_test.dart: conditional bounds follow reversible worksheet renames apply rejects a newer priority edit
+00:00 +42: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_fidelity_test.dart: conditional bounds follow reversible worksheet renames apply rejects a newer stopIfTrue edit
+00:00 +43: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_fidelity_test.dart: conditional bounds follow reversible worksheet renames undo rejects a newer rank edit
+00:00 +44: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_fidelity_test.dart: conditional bounds follow reversible worksheet renames undo rejects a newer formula2 edit
+00:00 +45: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_fidelity_test.dart: conditional bounds follow reversible worksheet renames undo rejects a newer priority edit
+00:00 +46: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_fidelity_test.dart: conditional bounds follow reversible worksheet renames undo rejects a newer stopIfTrue edit
+00:00 +47: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_fidelity_test.dart: native expression predicates remain distinct rename retains expression type and native rule metadata
+00:00 +48: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_fidelity_test.dart: native expression predicates remain distinct editing an expression saves its type without numeric fallback
+00:00 +49: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_fidelity_test.dart: native expression predicates remain distinct ODS formula-is uses the existing reference and string translator
+00:00 +50: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_fidelity_test.dart: rename ownership excludes modeled page layout undo preserves newer page settings through serialization
+00:00 +51: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_fidelity_test.dart: rename ownership excludes modeled page layout first apply still rejects a newer native page edit
+00:00 +52: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_fidelity_test.dart: rename ownership excludes modeled page layout undo still rejects newer native conditional metadata
+00:00 +53: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_fidelity_test.dart: no-edit saves preserve native rule attributes and disjoint ranges
+00:00 +54: loading QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart
+00:01 +54: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: graphic thresholds use the numeric range distribution icon sets resolve percent thresholds above the raw percentage
+00:01 +55: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: graphic thresholds use the numeric range distribution icon sets resolve percentile thresholds above the raw percentage
+00:01 +56: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: graphic thresholds use the numeric range distribution icon sets retain absolute number thresholds
+00:01 +57: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: graphic thresholds use the numeric range distribution icon sets retain absolute num thresholds
+00:01 +58: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: graphic thresholds use the numeric range distribution invalid icon percentile bounds do not match or throw
+00:01 +59: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: graphic thresholds use the numeric range distribution data-bar percent bounds use the same unmodified min/max interval
+00:01 +60: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: graphic thresholds use the numeric range distribution color-scale percentiles interpolate between numeric observations
+00:01 +61: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: numeric evaluation stays finite and bounded ROUND rejects 1000000000 precision (reference=false)
+00:01 +62: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: numeric evaluation stays finite and bounded ROUND rejects 1000000000 precision (reference=true)
+00:01 +63: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: numeric evaluation stays finite and bounded ROUND rejects -1000000000 precision (reference=false)
+00:01 +64: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: numeric evaluation stays finite and bounded ROUND rejects -1000000000 precision (reference=true)
+00:01 +65: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: numeric evaluation stays finite and bounded ROUND rejects 1e308 precision (reference=false)
+00:01 +66: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: numeric evaluation stays finite and bounded ROUND rejects 1e308 precision (reference=true)
+00:01 +67: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: numeric evaluation stays finite and bounded ROUNDUP rejects 1000000000 precision (reference=false)
+00:01 +68: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: numeric evaluation stays finite and bounded ROUNDUP rejects 1000000000 precision (reference=true)
+00:01 +69: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: numeric evaluation stays finite and bounded ROUNDUP rejects -1000000000 precision (reference=false)
+00:01 +70: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: numeric evaluation stays finite and bounded ROUNDUP rejects -1000000000 precision (reference=true)
+00:01 +71: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: numeric evaluation stays finite and bounded ROUNDUP rejects 1e308 precision (reference=false)
+00:01 +72: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: numeric evaluation stays finite and bounded ROUNDUP rejects 1e308 precision (reference=true)
+00:01 +73: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: numeric evaluation stays finite and bounded ROUNDDOWN rejects 1000000000 precision (reference=false)
+00:01 +74: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: numeric evaluation stays finite and bounded ROUNDDOWN rejects 1000000000 precision (reference=true)
+00:01 +75: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: numeric evaluation stays finite and bounded ROUNDDOWN rejects -1000000000 precision (reference=false)
+00:01 +76: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: numeric evaluation stays finite and bounded ROUNDDOWN rejects -1000000000 precision (reference=true)
+00:01 +77: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: numeric evaluation stays finite and bounded ROUNDDOWN rejects 1e308 precision (reference=false)
+00:01 +78: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: numeric evaluation stays finite and bounded ROUNDDOWN rejects 1e308 precision (reference=true)
+00:01 +79: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: numeric evaluation stays finite and bounded numeric overflow cannot become a matching Boolean: (1e308*1e308)>0
+00:01 +80: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: numeric evaluation stays finite and bounded numeric overflow cannot become a matching Boolean: SUM(1e308,1e308)>0
+00:01 +81: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: numeric evaluation stays finite and bounded numeric overflow cannot become a matching Boolean: IF(1e308*1e308,TRUE,FALSE)
+00:01 +82: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: numeric evaluation stays finite and bounded numeric overflow cannot become a matching Boolean: (1e308*1e308)^2>0
+00:01 +83: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: numeric evaluation stays finite and bounded numeric overflow cannot become a matching Boolean: 2^1000000000>0
+00:01 +84: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: numeric evaluation stays finite and bounded numeric overflow cannot become a matching Boolean: 1e999>0
+00:01 +85: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: numeric evaluation stays finite and bounded numeric overflow cannot become a matching Boolean: ROUND(1,1e999)>0
+00:01 +86: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: numeric evaluation stays finite and bounded numeric overflow cannot become a matching Boolean: ROUNDUP(1,1e999)>0
+00:01 +87: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: numeric evaluation stays finite and bounded numeric overflow cannot become a matching Boolean: ROUNDDOWN(1,1e999)>0
+00:01 +88: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: numeric evaluation stays finite and bounded nonfinite referenced caches and uncached intermediates stay errors
+00:01 +89: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: numeric evaluation stays finite and bounded ordinary rounding and powers retain finite scalar results
+00:01 +90: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: numeric evaluation stays finite and bounded explicit error handlers can handle numeric failures
+00:01 +91: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: numeric evaluation stays finite and bounded shared power and logarithm functions reject nonfinite input promptly
+00:01 +92: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: authored priority wins independently for fill and font
+00:01 +93: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: matching stop rule blocks lower properties (style=false)
+00:01 +94: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: matching stop rule blocks lower properties (style=true)
+00:01 +95: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: a false stopping rule permits the lower rule
+00:01 +96: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: generated priorities agree before and after XLSX serialization
+00:01 +97: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: native font-only and no-style rules do not synthesize a fill
+00:02 +98: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: relative expression rules follow the range anchor
+00:02 +99: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: ODS retains an unstyled expression and does not invent a fill
+00:02 +100: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: legacy equality accepts Unicode text: تم
+00:02 +101: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: legacy equality accepts Unicode text: größer
+00:02 +102: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: legacy equality accepts Unicode text: größer
+00:02 +103: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: legacy equality accepts Unicode text: 完成 ✓
+00:02 +104: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: equality text with formula syntax must be quoted explicitly
+00:02 +105: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: unsupported defined-name formulas cannot bypass the formula subset
+00:02 +106: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: numeric bounds can reference an absolute source cell
+00:02 +107: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: mixed references and ROW/COLUMN use the evaluated cell origin
+00:02 +108: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: cross-sheet and local names use the supplied workbook scope
+00:02 +109: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: between rules shift both formula bounds
+00:02 +110: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: numeric equality compares values and legacy bare text remains usable
+00:02 +111: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: read-only formulas use absent and uncached cells without changing them
+00:02 +112: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: new resolver observes edits without persisting a stale style cache
+00:02 +113: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: unsupported or erroneous predicate safely declines: 1/0
+00:02 +114: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: unsupported or erroneous predicate safely declines: UNKNOWN(A1)
+00:02 +115: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: unsupported or erroneous predicate safely declines: "arbitrary text"
+00:02 +116: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: unsupported or erroneous predicate safely declines: SUM(A1:XFD1048576)>0
+00:02 +117: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: unsupported or erroneous predicate safely declines: SEQUENCE(1000000000)
+00:02 +118: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: unsupported or erroneous predicate safely declines: REPT("a",1000000000)
+00:02 +119: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: unsupported or erroneous predicate safely declines: INDIRECT("A1")
+00:02 +120: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: unsupported or erroneous predicate safely declines: SUM(
+00:02 +121: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: unsupported or erroneous predicate safely declines: A0=0
+00:02 +122: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: unsupported or erroneous predicate safely declines: A1048577=0
+00:02 +123: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: cyclic referenced formulas and typed native errors do not match
+00:02 +124: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: large named ranges are rejected before materializing cells
+00:02 +125: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: Boolean error predicate cannot stop valid lower rules: AND(1/0,TRUE)
+00:02 +126: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: Boolean error predicate cannot stop valid lower rules: OR(1/0,FALSE)
+00:02 +127: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: Boolean error predicate cannot stop valid lower rules: XOR(1/0,FALSE)
+00:02 +128: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: Boolean error predicate cannot stop valid lower rules: NOT(NOT(1/0))
+00:02 +129: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: explicit error handling and Boolean constant calls remain supported
+00:02 +130: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: AND evaluates each Boolean range value
+00:02 +131: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: OR evaluates each Boolean range value
+00:02 +132: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: XOR evaluates each Boolean range value
+00:02 +133: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: NOT declines a range instead of coercing its container to true
+00:02 +134: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: logical ranges ignore text and blanks instead of treating them as true
+00:02 +135: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: sparse duplicate scans stored cells across a whole worksheet
+00:02 +136: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: sparse top scans stored cells across a whole worksheet
+00:02 +137: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: sparse bottom scans stored cells across a whole worksheet
+00:02 +138: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: sparse aboveAverage scans stored cells across a whole worksheet
+00:02 +139: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: sparse belowAverage scans stored cells across a whole worksheet
+00:02 +140: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: sparse topPercent scans stored cells across a whole worksheet
+00:02 +141: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: sparse bottomPercent scans stored cells across a whole worksheet
+00:02 +142: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: worksheet PDF uses conditional fill and font colors
+00:02 +143: QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart: worksheet PDF colors blank cells in the selected print area
+00:02 +144: loading QUDS_REPOSITORY/packages/quds_office_engine/test/odt_complex_field_fidelity_test.dart
+00:02 +144: QUDS_REPOSITORY/packages/quds_office_engine/test/odt_complex_field_fidelity_test.dart: reused empty runs keep native field content local to its occurrence
+00:03 +145: QUDS_REPOSITORY/packages/quds_office_engine/test/odt_complex_field_fidelity_test.dart: PAGE cache retains significant spaces through fallback
+00:03 +146: QUDS_REPOSITORY/packages/quds_office_engine/test/odt_complex_field_fidelity_test.dart: PAGE cache retains significant tab through fallback
+00:03 +147: QUDS_REPOSITORY/packages/quds_office_engine/test/odt_complex_field_fidelity_test.dart: PAGE cache retains significant line break through fallback
+00:03 +148: QUDS_REPOSITORY/packages/quds_office_engine/test/odt_complex_field_fidelity_test.dart: NUMPAGES cache retains significant spaces through fallback
+00:03 +149: QUDS_REPOSITORY/packages/quds_office_engine/test/odt_complex_field_fidelity_test.dart: NUMPAGES cache retains significant tab through fallback
+00:03 +150: QUDS_REPOSITORY/packages/quds_office_engine/test/odt_complex_field_fidelity_test.dart: NUMPAGES cache retains significant line break through fallback
+00:03 +151: QUDS_REPOSITORY/packages/quds_office_engine/test/odt_complex_field_fidelity_test.dart: uncached PAGE has no invented display before a column boundary
+00:03 +152: QUDS_REPOSITORY/packages/quds_office_engine/test/odt_complex_field_fidelity_test.dart: uncached NUMPAGES has no invented display before a column boundary
+00:03 +153: QUDS_REPOSITORY/packages/quds_office_engine/test/odt_complex_field_fidelity_test.dart: empty native PAGE cache keeps a following column break after the field
+00:03 +154: QUDS_REPOSITORY/packages/quds_office_engine/test/odt_complex_field_fidelity_test.dart: empty native NUMPAGES cache keeps a following column break after the field
+00:03 +155: QUDS_REPOSITORY/packages/quds_office_engine/test/odt_complex_field_fidelity_test.dart: plain NUMPAGES imported from actual DOCX remains a native field
+00:03 +156: QUDS_REPOSITORY/packages/quds_office_engine/test/odt_complex_field_fidelity_test.dart: PAGE preserves its display and styling without changing the model cache
+00:03 +157: QUDS_REPOSITORY/packages/quds_office_engine/test/odt_complex_field_fidelity_test.dart: DATE preserves its display and styling without changing the model cache
+00:03 +158: QUDS_REPOSITORY/packages/quds_office_engine/test/odt_complex_field_fidelity_test.dart: TIME preserves its display and styling without changing the model cache
+00:03 +159: QUDS_REPOSITORY/packages/quds_office_engine/test/odt_complex_field_fidelity_test.dart: TITLE preserves its display and styling without changing the model cache
+00:03 +160: QUDS_REPOSITORY/packages/quds_office_engine/test/odt_complex_field_fidelity_test.dart: plain NUMPAGES emits one native field with one cached display
+00:03 +161: QUDS_REPOSITORY/packages/quds_office_engine/test/odt_complex_field_fidelity_test.dart: styled NUMPAGES keeps its single cache and native field style
+00:03 +162: QUDS_REPOSITORY/packages/quds_office_engine/test/odt_complex_field_fidelity_test.dart: hyperlinked NUMPAGES preserves its source link around its native field
+00:03 +163: QUDS_REPOSITORY/packages/quds_office_engine/test/odt_complex_field_fidelity_test.dart: split instruction fragments are joined before recognizing PAGE
+00:03 +164: QUDS_REPOSITORY/packages/quds_office_engine/test/odt_complex_field_fidelity_test.dart: native cache keeps its source bookmark and comment ownership
+00:03 +165: QUDS_REPOSITORY/packages/quds_office_engine/test/odt_complex_field_fidelity_test.dart: nested PAGE retains all cached text without suppression leak
+00:03 +166: QUDS_REPOSITORY/packages/quds_office_engine/test/odt_complex_field_fidelity_test.dart: nested IF condition retains all cached text without suppression leak
+00:03 +167: QUDS_REPOSITORY/packages/quds_office_engine/test/odt_complex_field_fidelity_test.dart: unclosed field cannot suppress a later paragraph or header story
+00:03 +168: QUDS_REPOSITORY/packages/quds_office_engine/test/odt_complex_field_fidelity_test.dart: stray instruction cannot suppress ordinary text
+00:03 +169: QUDS_REPOSITORY/packages/quds_office_engine/test/odt_complex_field_fidelity_test.dart: authored cache whitespace falls back without unsupported field children
+00:03 +170: QUDS_REPOSITORY/packages/quds_office_engine/test/odt_complex_field_fidelity_test.dart: heterogeneous cached runs retain their text and separate styles
+00:03 +171: QUDS_REPOSITORY/packages/quds_office_engine/test/odt_complex_field_fidelity_test.dart: inline column boundary inside a cached field remains source owned
+00:03 +172: QUDS_REPOSITORY/packages/quds_office_engine/test/odt_complex_field_fidelity_test.dart: note reference in a cached field retains its separately owned story
+00:03 +173: QUDS_REPOSITORY/packages/quds_office_engine/test/odt_complex_field_fidelity_test.dart: locked source field retains its cached result
+00:03 +174: QUDS_REPOSITORY/packages/quds_office_engine/test/odt_complex_field_fidelity_test.dart: unknown field retains exact cached text and following ordinary content
+00:03 +175: loading QUDS_REPOSITORY/packages/quds_office_engine/test/odt_section_fidelity_test.dart
+00:04 +175: QUDS_REPOSITORY/packages/quds_office_engine/test/odt_section_fidelity_test.dart: leading TOC inherits section once: titled=true cached=true
+00:04 +176: QUDS_REPOSITORY/packages/quds_office_engine/test/odt_section_fidelity_test.dart: leading TOC inherits section once: titled=true cached=false
+00:04 +177: QUDS_REPOSITORY/packages/quds_office_engine/test/odt_section_fidelity_test.dart: leading TOC inherits section once: titled=false cached=true
+00:04 +178: QUDS_REPOSITORY/packages/quds_office_engine/test/odt_section_fidelity_test.dart: leading TOC inherits section once: titled=false cached=false
+00:04 +179: QUDS_REPOSITORY/packages/quds_office_engine/test/odt_section_fidelity_test.dart: TOC-only section has no trailing synthetic page anchor
+00:04 +180: QUDS_REPOSITORY/packages/quds_office_engine/test/odt_section_fidelity_test.dart: title-only TOC carries its section activation
+00:04 +181: QUDS_REPOSITORY/packages/quds_office_engine/test/odt_section_fidelity_test.dart: empty titleless TOC leaves the next visible section anchor intact
+00:04 +182: QUDS_REPOSITORY/packages/quds_office_engine/test/odt_section_fidelity_test.dart: TOC inside a content control receives the pending section
+00:04 +183: QUDS_REPOSITORY/packages/quds_office_engine/test/odt_section_fidelity_test.dart: leading TOC selects the correct parity master for WmlSectionBreakKind.oddPage
+00:04 +184: QUDS_REPOSITORY/packages/quds_office_engine/test/odt_section_fidelity_test.dart: leading TOC selects the correct parity master for WmlSectionBreakKind.evenPage
+00:04 +185: QUDS_REPOSITORY/packages/quds_office_engine/test/odt_section_fidelity_test.dart: continuous TOC does not append a blank paragraph or force a master
+00:04 +186: QUDS_REPOSITORY/packages/quds_office_engine/test/odt_section_fidelity_test.dart: a first list item selects the section while its siblings do not
+00:04 +187: QUDS_REPOSITORY/packages/quds_office_engine/test/odt_section_fidelity_test.dart: table-only sections activate the table without inserting a paragraph
+00:04 +188: QUDS_REPOSITORY/packages/quds_office_engine/test/odt_section_fidelity_test.dart: nested controls and empty wrappers preserve a leading list activation
+00:04 +189: QUDS_REPOSITORY/packages/quds_office_engine/test/odt_section_fidelity_test.dart: nested controls pass section activation to a leading table
+00:04 +190: QUDS_REPOSITORY/packages/quds_office_engine/test/odt_section_fidelity_test.dart: ignored blocks do not consume the next visible section anchor
+00:04 +191: QUDS_REPOSITORY/packages/quds_office_engine/test/odt_section_fidelity_test.dart: a first picture is anchored inside the section paragraph
+00:04 +192: QUDS_REPOSITORY/packages/quds_office_engine/test/odt_section_fidelity_test.dart: a visual fallback stays in one paragraph carrying its section
+00:04 +193: QUDS_REPOSITORY/packages/quds_office_engine/test/odt_section_fidelity_test.dart: a first frame anchors on the current page with physical page coordinates
+00:04 +194: QUDS_REPOSITORY/packages/quds_office_engine/test/odt_section_fidelity_test.dart: floating frame ranges use a common graphic parent in styles.xml
+00:04 +195: QUDS_REPOSITORY/packages/quds_office_engine/test/odt_section_fidelity_test.dart: a later frame retains its page-relative paragraph anchor
+00:04 +196: QUDS_REPOSITORY/packages/quds_office_engine/test/odt_section_fidelity_test.dart: empty sections keep their own boundary and do not steal the next one
+00:04 +197: QUDS_REPOSITORY/packages/quds_office_engine/test/odt_section_fidelity_test.dart: an empty document has a usable default master without changing the model
+00:04 +198: QUDS_REPOSITORY/packages/quds_office_engine/test/odt_section_fidelity_test.dart: section headings retain resolved spacing, direction and indents directly
+00:04 +199: QUDS_REPOSITORY/packages/quds_office_engine/test/odt_section_fidelity_test.dart: continuous equal page styles do not select a new master or add a break
+00:04 +200: QUDS_REPOSITORY/packages/quds_office_engine/test/odt_section_fidelity_test.dart: continuous equal normal header and footer content can reuse a master
+00:04 +201: QUDS_REPOSITORY/packages/quds_office_engine/test/odt_section_fidelity_test.dart: continuous changed geometry still selects the authored page style
+00:04 +202: QUDS_REPOSITORY/packages/quds_office_engine/test/odt_section_fidelity_test.dart: continuous changed header keeps a distinct section master
+00:04 +203: QUDS_REPOSITORY/packages/quds_office_engine/test/odt_section_fidelity_test.dart: authored paragraph page breaks survive a continuous section
+00:04 +204: QUDS_REPOSITORY/packages/quds_office_engine/test/odt_section_fidelity_test.dart: WmlSectionBreakKind.oddPage selects a parity entry master that returns to normal pages
+00:04 +205: QUDS_REPOSITORY/packages/quds_office_engine/test/odt_section_fidelity_test.dart: WmlSectionBreakKind.evenPage selects a parity entry master that returns to normal pages
+00:04 +206: QUDS_REPOSITORY/packages/quds_office_engine/test/odt_section_fidelity_test.dart: a first section does not inject a page break from its boundary kind
+00:04 +207: QUDS_REPOSITORY/packages/quds_office_engine/test/odt_section_fidelity_test.dart: explicit numbering removal remains an ordinary section paragraph
+00:04 +208: QUDS_REPOSITORY/packages/quds_office_engine/test/odt_section_fidelity_test.dart: parity masters repeat visible headers but emit each comment only once
+00:04 +209: QUDS_REPOSITORY/packages/quds_office_engine/test/odt_section_fidelity_test.dart: empty unchanged continuous sections add no paragraph or vertical gap
+00:04 +210: QUDS_REPOSITORY/packages/quds_office_engine/test/odt_section_fidelity_test.dart: equal header image bytes do not turn a continuous section into a new page
+00:04 +211: QUDS_REPOSITORY/packages/quds_office_engine/test/odt_section_fidelity_test.dart: repeated header comments do not force a continuous section break
+00:04 +212: QUDS_REPOSITORY/packages/quds_office_engine/test/odt_section_fidelity_test.dart: different authored header comment references retain distinct masters
+00:04 +213: QUDS_REPOSITORY/packages/quds_office_engine/test/odt_section_fidelity_test.dart: header and footer list stories restart independently and compare equally
+00:04 +214: All tests passed!
