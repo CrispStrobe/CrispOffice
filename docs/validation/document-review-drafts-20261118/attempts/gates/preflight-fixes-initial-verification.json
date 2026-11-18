@@ -1,0 +1,32 @@
+{
+  "started_at_utc": "2026-11-18T19:38:51.320406+00:00",
+  "classification": "development preflight after failed integrated gate; excluded from acceptance",
+  "before": {
+    "workspace_lock": "43261dbd4acce9c423c8f19f5c86841a9f05aff3b3b968c94a7b48f94c9f8239",
+    "package_configuration": "43c7e9c5100096d3874a57a2c8ff8cb7d16820e5894ecf63c63af9c73eaf42f0",
+    "runtime_receipt": "832ca49151c4b20d1a32732d3461d93329085a4cab9ecf121ff6d672c4deab18"
+  },
+  "runs": [
+    {
+      "name": "offline-lock",
+      "command": [
+        "/workspace/scratch/4a0b7fce84dc/toolchains/bin/dart",
+        "pub",
+        "get",
+        "--offline",
+        "--enforce-lockfile"
+      ],
+      "cwd": ".",
+      "exit_code": 69,
+      "log": "offline-lock.log",
+      "log_sha256": "676cb9d98bbd52a78349baaf7bf282b5b11bb4503d4d2ad67e98ba1a355819e0"
+    }
+  ],
+  "after": {
+    "workspace_lock": "43261dbd4acce9c423c8f19f5c86841a9f05aff3b3b968c94a7b48f94c9f8239",
+    "package_configuration": "43c7e9c5100096d3874a57a2c8ff8cb7d16820e5894ecf63c63af9c73eaf42f0",
+    "runtime_receipt": "832ca49151c4b20d1a32732d3461d93329085a4cab9ecf121ff6d672c4deab18"
+  },
+  "finished_at_utc": "2026-11-18T19:38:51.471937+00:00",
+  "success": false
+}

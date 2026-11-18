@@ -1,0 +1,200 @@
+{
+  "repository": "CrispStrobe/quds_office_suite",
+  "branch": "codex/document-review-20261118",
+  "previous_turn_head": "b5d4df516db210a6f8ea566b290988dab5652630",
+  "source_checkpoint": "66919cf857fe2439a3512a821817f35981760a75",
+  "github_actions_queried_or_awaited": false,
+  "checkpoints": [
+    {
+      "local": "51beea31639b74733cad6639f8f6097b2b178a31",
+      "remote": "d1dc3416319891cf26346bd0ff81012ac1a58cf8",
+      "tree": "9a2014756626b256509df78d5ca0efedcd3c967a",
+      "parent": "b5d4df516db210a6f8ea566b290988dab5652630",
+      "incoming": "ff1518517dd9f67e214ff56fe7eef06349f5223a",
+      "sha": "d1dc3416319891cf26346bd0ff81012ac1a58cf8",
+      "parents": [
+        "b5d4df516db210a6f8ea566b290988dab5652630",
+        "ff1518517dd9f67e214ff56fe7eef06349f5223a"
+      ],
+      "message": "Reconcile latest Zotero notes and integrated review work [skip ci]",
+      "committed_at": "2026-11-18T20:08:34+01:00",
+      "expected_previous_head": "b5d4df516db210a6f8ea566b290988dab5652630",
+      "force": false,
+      "published_tree_and_parents_verified": true,
+      "ancestor_of_checked_head": true
+    },
+    {
+      "local": "bf8ea7dbfb008cf8fa4eaf88b6c031ea91a551c4",
+      "remote": "2bdd66dd80ce1c53a13f7028e8251efbe2f5624d",
+      "tree": "ffb775a893b54e8f5759be40157bc63d91697399",
+      "parent": "d1dc3416319891cf26346bd0ff81012ac1a58cf8",
+      "incoming": "b9e8c159cea315aa0a044c4b0a6fc2cd35d11055",
+      "sha": "2bdd66dd80ce1c53a13f7028e8251efbe2f5624d",
+      "parents": [
+        "d1dc3416319891cf26346bd0ff81012ac1a58cf8",
+        "b9e8c159cea315aa0a044c4b0a6fc2cd35d11055"
+      ],
+      "message": "Bring in qualified offline thesaurus continuation [skip ci]",
+      "committed_at": "2026-11-18T20:08:48+01:00",
+      "expected_previous_head": "d1dc3416319891cf26346bd0ff81012ac1a58cf8",
+      "force": false,
+      "published_tree_and_parents_verified": true,
+      "ancestor_of_checked_head": true
+    },
+    {
+      "local": "25ec3ec525328c7b3ec1806f74a5b1e4f14fc2db",
+      "remote": "34c585e2573ec2733283068a05a6c138f5197f41",
+      "tree": "1093bdac0bf4401ca921b032b07c020d75036e78",
+      "parent": "2bdd66dd80ce1c53a13f7028e8251efbe2f5624d",
+      "incoming": "17fe8db8755a5ab55a677fc7f95aa103c3e2ddc6",
+      "sha": "34c585e2573ec2733283068a05a6c138f5197f41",
+      "parents": [
+        "2bdd66dd80ce1c53a13f7028e8251efbe2f5624d",
+        "17fe8db8755a5ab55a677fc7f95aa103c3e2ddc6"
+      ],
+      "message": "Bring in English French analysis and pinned native runtime [skip ci]",
+      "committed_at": "2026-11-18T20:08:51+01:00",
+      "expected_previous_head": "2bdd66dd80ce1c53a13f7028e8251efbe2f5624d",
+      "force": false,
+      "published_tree_and_parents_verified": true,
+      "ancestor_of_checked_head": true
+    },
+    {
+      "local": "bbf0f39ab82cd097303a592856fb4dcf82f78e93",
+      "remote": "39eada31155dd85d971bab71d26cda6e67cb6844",
+      "tree": "f24b1e0885f81c96a2ef875f7d0441527775f340",
+      "parent": "34c585e2573ec2733283068a05a6c138f5197f41",
+      "incoming": "9232b0560525c089d7bf73a55a8e561fdf41b5b1",
+      "sha": "39eada31155dd85d971bab71d26cda6e67cb6844",
+      "parents": [
+        "34c585e2573ec2733283068a05a6c138f5197f41",
+        "9232b0560525c089d7bf73a55a8e561fdf41b5b1"
+      ],
+      "message": "Bring in current Mail core and recovery contracts [skip ci]",
+      "committed_at": "2026-11-18T20:08:55+01:00",
+      "expected_previous_head": "34c585e2573ec2733283068a05a6c138f5197f41",
+      "force": false,
+      "published_tree_and_parents_verified": true,
+      "ancestor_of_checked_head": true
+    },
+    {
+      "sha": "b9728ea1ec835cb589b266cfe9fc98507eb7acfa",
+      "parent": "39eada31155dd85d971bab71d26cda6e67cb6844",
+      "tree": "b098fb4f447261c42a7207d0d7820dfaa6bc15bd",
+      "message": "Check reply drafts inline and prioritize active review text [skip ci]",
+      "parents": [
+        "39eada31155dd85d971bab71d26cda6e67cb6844"
+      ],
+      "committed_at": "2026-11-18T20:17:28+01:00",
+      "expected_previous_head": "39eada31155dd85d971bab71d26cda6e67cb6844",
+      "force": false,
+      "published_tree_and_parents_verified": true,
+      "ancestor_of_checked_head": true
+    },
+    {
+      "sha": "c914be7aa827ff7e5694fe0d638aaefdad8a4b80",
+      "parent": "b9728ea1ec835cb589b266cfe9fc98507eb7acfa",
+      "tree": "e822e721124f5961e6b4291c25f3e5bfa3c15107",
+      "message": "Keep live review usable in narrow scaled layouts and record reconciliation [skip ci]",
+      "parents": [
+        "b9728ea1ec835cb589b266cfe9fc98507eb7acfa"
+      ],
+      "committed_at": "2026-11-18T20:24:35+01:00",
+      "expected_previous_head": "b9728ea1ec835cb589b266cfe9fc98507eb7acfa",
+      "force": false,
+      "published_tree_and_parents_verified": true,
+      "ancestor_of_checked_head": true
+    },
+    {
+      "local": "2424477e465caeafc02397a4ba54f31b5cb4adbb",
+      "remote": "078f373387b9987fa2b13505602d5744508c6d91",
+      "tree": "13044a8e1c455c2edf22e337e08d669385e6e623",
+      "parent": "c914be7aa827ff7e5694fe0d638aaefdad8a4b80",
+      "incoming": "46d7422d5ac356c327759872ff28adcd154b75ad",
+      "message": "Reconcile captured Mail reader and MIME improvements [skip ci]",
+      "sha": "078f373387b9987fa2b13505602d5744508c6d91",
+      "parents": [
+        "c914be7aa827ff7e5694fe0d638aaefdad8a4b80",
+        "46d7422d5ac356c327759872ff28adcd154b75ad"
+      ],
+      "committed_at": "2026-11-18T20:25:26+01:00",
+      "expected_previous_head": "c914be7aa827ff7e5694fe0d638aaefdad8a4b80",
+      "force": false,
+      "published_tree_and_parents_verified": true,
+      "ancestor_of_checked_head": true
+    },
+    {
+      "local": "1e56ee3b27d0ee0aa90d7f0201de17e1b8244e5b",
+      "remote": "fc65ed55db95631da629a0f7b6b1f7829b6faedd",
+      "tree": "6c308aa9ac042895f7c6bed354546ce92b894a4a",
+      "parent": "078f373387b9987fa2b13505602d5744508c6d91",
+      "incoming": "0e84dc951e7a9e923107d7895fa457cf29a7af71",
+      "message": "Bring in captured thesaurus qualification evidence [skip ci]",
+      "sha": "fc65ed55db95631da629a0f7b6b1f7829b6faedd",
+      "parents": [
+        "078f373387b9987fa2b13505602d5744508c6d91",
+        "0e84dc951e7a9e923107d7895fa457cf29a7af71"
+      ],
+      "committed_at": "2026-11-18T20:25:28+01:00",
+      "expected_previous_head": "078f373387b9987fa2b13505602d5744508c6d91",
+      "force": false,
+      "published_tree_and_parents_verified": true,
+      "ancestor_of_checked_head": true
+    },
+    {
+      "local": "3132c46e3fd6067fe307cb381779848972223cc1",
+      "remote": "46191bd86d0fc4cf82d85e0c9aa3006500198841",
+      "tree": "c953df172a5af02b75e038d65356bac87f9225af",
+      "parent": "fc65ed55db95631da629a0f7b6b1f7829b6faedd",
+      "incoming": "c93fc23b388a053f0b4742b771adb511aaf3578a",
+      "message": "Bring in captured Zotero Notes qualification evidence [skip ci]",
+      "sha": "46191bd86d0fc4cf82d85e0c9aa3006500198841",
+      "parents": [
+        "fc65ed55db95631da629a0f7b6b1f7829b6faedd",
+        "c93fc23b388a053f0b4742b771adb511aaf3578a"
+      ],
+      "committed_at": "2026-11-18T20:25:31+01:00",
+      "expected_previous_head": "fc65ed55db95631da629a0f7b6b1f7829b6faedd",
+      "force": false,
+      "published_tree_and_parents_verified": true,
+      "ancestor_of_checked_head": true
+    },
+    {
+      "local": "20090caada5d8309e30ec0065c5ce1853aaaf72d",
+      "remote": "bfa88aab88a74028285619dfa07f3a81868fe59b",
+      "tree": "3418afd634efcaaa14c4712103f69ae5e817bffd",
+      "parent": "46191bd86d0fc4cf82d85e0c9aa3006500198841",
+      "incoming": "637b67c58482e40a3244c590ce77c08b9fc2740e",
+      "message": "Bring in captured published analysis runtime evidence [skip ci]",
+      "sha": "bfa88aab88a74028285619dfa07f3a81868fe59b",
+      "parents": [
+        "46191bd86d0fc4cf82d85e0c9aa3006500198841",
+        "637b67c58482e40a3244c590ce77c08b9fc2740e"
+      ],
+      "committed_at": "2026-11-18T20:25:33+01:00",
+      "expected_previous_head": "46191bd86d0fc4cf82d85e0c9aa3006500198841",
+      "force": false,
+      "published_tree_and_parents_verified": true,
+      "ancestor_of_checked_head": true
+    },
+    {
+      "sha": "66919cf857fe2439a3512a821817f35981760a75",
+      "parent": "bfa88aab88a74028285619dfa07f3a81868fe59b",
+      "tree": "33faed80ab06c0d5aa3e8b9faa73ceff27892246",
+      "message": "Preserve protected review inspection and verify integrated source cleanly [skip ci]",
+      "expected_previous_head_verified": true,
+      "force": false,
+      "parents": [
+        "bfa88aab88a74028285619dfa07f3a81868fe59b"
+      ],
+      "committed_at": "2026-11-18T20:40:37+01:00",
+      "expected_previous_head": "bfa88aab88a74028285619dfa07f3a81868fe59b",
+      "published_tree_and_parents_verified": true,
+      "ancestor_of_checked_head": true
+    }
+  ],
+  "checkpoint_count": 11,
+  "receipt_through_commit": "66919cf857fe2439a3512a821817f35981760a75",
+  "checked_head": "66919cf857fe2439a3512a821817f35981760a75",
+  "receipt_scope": "Verified preceding source/evidence checkpoints; this receipt is stored in a subsequent documentation-only commit."
+}

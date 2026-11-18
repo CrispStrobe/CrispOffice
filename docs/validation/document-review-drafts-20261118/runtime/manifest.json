@@ -1,0 +1,230 @@
+{
+  "hash_algorithm": "SHA-256",
+  "manifest_excludes_itself": true,
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 6164,
+      "sha256": "8dc9d2ea529608636ce700cb83026e47f860152e9bf2f862ab17ef7a30f813db"
+    },
+    {
+      "path": "archive-members.json.gz",
+      "bytes": 46309,
+      "sha256": "1953312e89d1065243236a15f92cdb5eb612f0f671dc2af428e57b7fa4f821ac",
+      "compression": "gzip",
+      "uncompressed_bytes": 493700,
+      "uncompressed_sha256": "8799648215251c6cee363cd1573275efe5389a18fe7878dc9523b7129130438d",
+      "source_path": "toolchains/archive-members.json"
+    },
+    {
+      "path": "enough-mail-DEPENDENCIES.json",
+      "bytes": 22141,
+      "sha256": "285d067c0cb99e64d7a9bbe772468b555c65d07382384ed4eaa17789f8a7385c",
+      "source_path": "quds_office_suite/third_party/enough_mail/DEPENDENCIES.json"
+    },
+    {
+      "path": "environment/dart-wrapper.sh",
+      "bytes": 101,
+      "sha256": "ff7465dc4cf6b94d61b74fe3708613200bdb2e36a711335c8f3378f530805588",
+      "source_path": "toolchains/bin/dart"
+    },
+    {
+      "path": "environment/env.sh",
+      "bytes": 609,
+      "sha256": "217081a041e7932eea34415c9a353cc75b7e161fbfc5866746036722a930ea06",
+      "source_path": "toolchains/env.sh"
+    },
+    {
+      "path": "environment/flutter-wrapper.sh",
+      "bytes": 206,
+      "sha256": "6ee91c25ed35efc315109b93917b5c7b3def0629fc8f637536636d9e5c44d5f0",
+      "source_path": "toolchains/bin/flutter"
+    },
+    {
+      "path": "flutter-tools-pubspec.lock",
+      "bytes": 23779,
+      "sha256": "6a98afb61c0cc72f31631ab444932f072fd275aa04d56cde2bf6831ba02fc8f8",
+      "source_path": "toolchains/flutter/packages/flutter_tools/pubspec.lock"
+    },
+    {
+      "path": "history/bfa88aab-binding/README.md",
+      "bytes": 4961,
+      "sha256": "5aab6467ed9cc16062b831760b2a8f7445a066632b4f795bf612d2bb89727053"
+    },
+    {
+      "path": "history/bfa88aab-binding/manifest.json",
+      "bytes": 8186,
+      "sha256": "2197ddd2c39c2dc4aa51bf86dd40a3bf17c1de71fa0c096bcdf10316f0cb5aae"
+    },
+    {
+      "path": "history/bfa88aab-binding/provenance.json",
+      "bytes": 2517,
+      "sha256": "554d39be2a36136bde919b7f5ae55548c443cd0ee62177f8fc80c27821ac0151"
+    },
+    {
+      "path": "history/bfa88aab-binding/restore_runtime.py",
+      "bytes": 3362,
+      "sha256": "e0950de40a4fc94fa975d1fff1e17e5a0542144b43f7b7b39410a676fe07f58e"
+    },
+    {
+      "path": "logs/bootstrap.log.gz",
+      "bytes": 294,
+      "sha256": "90013ebdbcc920036f7e8ca199019b187e25f4c8f095a622cb89487aa0e1edb7",
+      "compression": "gzip",
+      "uncompressed_bytes": 564,
+      "uncompressed_sha256": "43ae6abc46a390dd1fa8011dea771c4111b2d99bf3265574d70ca4f5992558bd",
+      "source_path": "toolchains/bootstrap.log"
+    },
+    {
+      "path": "logs/flutter-tools-pub-get.log.gz",
+      "bytes": 465,
+      "sha256": "2033f6478b18522c40b154a9910fa5b300d87205dea3e2cc5b68d477688716eb",
+      "compression": "gzip",
+      "uncompressed_bytes": 1016,
+      "uncompressed_sha256": "9f349fca172146e2595a50ccbe19f4d21b8845690372a19239884f3b932864c3",
+      "source_path": "toolchains/logs/flutter-tools-pub-get.log"
+    },
+    {
+      "path": "logs/flutter-version.log.gz",
+      "bytes": 366,
+      "sha256": "9102505b759a74bde46ad92214dff603ecb744126d2a1b3ff978b63ebd4505e0",
+      "compression": "gzip",
+      "uncompressed_bytes": 631,
+      "uncompressed_sha256": "9dccf0059b3619ff845acfc327517c9fb1389405fcdf5e1cc8257df3a7d540eb",
+      "source_path": "toolchains/logs/flutter-version.log"
+    },
+    {
+      "path": "logs/workspace-mail-pub-enforce.log.gz",
+      "bytes": 71,
+      "sha256": "33e704fc20f0db5a9a37ee8f146d3084685cdb8c352aaa2fd21f09a54fab7cf4",
+      "compression": "gzip",
+      "uncompressed_bytes": 68,
+      "uncompressed_sha256": "d4cb7a3c68b4133b4f6e58c67ff5bfd13725d8021e930388cdc98da8a575919d",
+      "source_path": "toolchains/logs/workspace-mail-pub-enforce.log"
+    },
+    {
+      "path": "logs/workspace-mail-pub-get.log.gz",
+      "bytes": 197,
+      "sha256": "9a328c68a38fdc4fa051181caf2edb543884c6e9e02f3ec54009d63dfbbc021d",
+      "compression": "gzip",
+      "uncompressed_bytes": 254,
+      "uncompressed_sha256": "c776c6d7bfd2cc409cb9a9c838df45735108b141a12f86ced39884c132e974c5",
+      "source_path": "toolchains/logs/workspace-mail-pub-get.log"
+    },
+    {
+      "path": "logs/workspace-pub-get.log.gz",
+      "bytes": 71,
+      "sha256": "33e704fc20f0db5a9a37ee8f146d3084685cdb8c352aaa2fd21f09a54fab7cf4",
+      "compression": "gzip",
+      "uncompressed_bytes": 68,
+      "uncompressed_sha256": "d4cb7a3c68b4133b4f6e58c67ff5bfd13725d8021e930388cdc98da8a575919d",
+      "source_path": "toolchains/logs/workspace-pub-get.log"
+    },
+    {
+      "path": "mail-dependency-plan.json",
+      "bytes": 1468,
+      "sha256": "be9e3f35812c49cb8dc7ac471a54cef0d76824cc21ffe13e29bfe7e352379c06",
+      "source_path": "toolchains/mail-dependency-plan.json"
+    },
+    {
+      "path": "mail-dependency-update.json",
+      "bytes": 5829,
+      "sha256": "bfbf178dc964c81b0bfb00815359a67556715266f99ccfd7a1a70a655c9757a2",
+      "source_path": "toolchains/mail-dependency-update.json"
+    },
+    {
+      "path": "mail-pub-cache-additions.json",
+      "bytes": 1525,
+      "sha256": "8c4833366bd146fe6faf5c457d7ecdc8dc3ee85ef8b8e97577fdae667080321a",
+      "source_path": "toolchains/mail-pub-cache-additions.json"
+    },
+    {
+      "path": "original/package-config.json.gz",
+      "bytes": 1923,
+      "sha256": "17c5d9320d0f71c847b1a5604c09684aff9aa5654fbe50af6d7ba5d631c16ef5",
+      "compression": "gzip",
+      "uncompressed_bytes": 23541,
+      "uncompressed_sha256": "b3536759dbb6121f4511c058c88ca545244664c75322f5cc24655f363142c2d9",
+      "source_path": "toolchains/before-mail/package_config.json"
+    },
+    {
+      "path": "original/pub-cache-receipt.json.gz",
+      "bytes": 10368,
+      "sha256": "3748951de970e0556cb275d66cac389eb9de79eeee835e8d810eb47416b81f57",
+      "compression": "gzip",
+      "uncompressed_bytes": 40844,
+      "uncompressed_sha256": "591b64e6ecc94f418fc129064caf1fcac66090911db8e7e25bff0d45ae4ee7a2",
+      "source_path": "toolchains/before-mail/pub-cache-receipt.json"
+    },
+    {
+      "path": "original/runtime.json",
+      "bytes": 3350,
+      "sha256": "90460cbc3d8e4a54cf6d0851b05e2539f7ac73010ac7299d48e04ceddbcdc7be",
+      "source_path": "toolchains/before-mail/runtime.json"
+    },
+    {
+      "path": "original/workspace-pubspec.lock",
+      "bytes": 22686,
+      "sha256": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130",
+      "source_path": "toolchains/before-mail/pubspec.lock"
+    },
+    {
+      "path": "package-config.json.gz",
+      "bytes": 2085,
+      "sha256": "552114726e8f5b6c2c4e902c806e8e0c5926874369ec5d7ccf6af328e69971a8",
+      "compression": "gzip",
+      "uncompressed_bytes": 25455,
+      "uncompressed_sha256": "43c7e9c5100096d3874a57a2c8ff8cb7d16820e5894ecf63c63af9c73eaf42f0",
+      "source_path": "quds_office_suite/.dart_tool/package_config.json"
+    },
+    {
+      "path": "provenance.json",
+      "bytes": 4048,
+      "sha256": "7d8148e77ff319b104c11e9dce1bfc1e4762ca71283f7542b282e203fa7afafb"
+    },
+    {
+      "path": "pub-cache-receipt.json.gz",
+      "bytes": 10771,
+      "sha256": "d64a9835adeb474cd2b03b26e57c919b3d6fab5b1e9a5c5757cbd1fc55629d49",
+      "compression": "gzip",
+      "uncompressed_bytes": 42366,
+      "uncompressed_sha256": "7305d6205ef578b7058e2eecc8a9f6cf9edf6cb20ca9e0ca6ef98b7797191ba0",
+      "source_path": "toolchains/pub-cache-receipt.json"
+    },
+    {
+      "path": "restore_runtime.py",
+      "bytes": 3362,
+      "sha256": "8f837614ef1dd8fb79388fa1818c15f396e31001fdea60dbdd7462ce36d3e691"
+    },
+    {
+      "path": "runtime.json",
+      "bytes": 10971,
+      "sha256": "832ca49151c4b20d1a32732d3461d93329085a4cab9ecf121ff6d672c4deab18",
+      "source_path": "toolchains/runtime.json"
+    },
+    {
+      "path": "scripts/bootstrap_runtime.py.gz",
+      "bytes": 3757,
+      "sha256": "f8b9eae9e44bca315cdc53aac0ef252bfbc23bd29db2f2972a0ec46e6b11022f",
+      "compression": "gzip",
+      "uncompressed_bytes": 9470,
+      "uncompressed_sha256": "a4522dae18494605646330bb1d099344166c80c9f54252c97889549692a9754e",
+      "source_path": "toolchains/bootstrap_runtime.py"
+    },
+    {
+      "path": "scripts/refresh_mail_runtime.py.gz",
+      "bytes": 1893,
+      "sha256": "24a7b6a6f6f21a8793dca9874ebebc72dd0469c300c11da61b22d5ed4c74606c",
+      "compression": "gzip",
+      "uncompressed_bytes": 5585,
+      "uncompressed_sha256": "ca9217af24392e056ed7142d4dd5ef6e1c2ca0f24961562f7ead5648e7c1a123",
+      "source_path": "toolchains/refresh_mail_runtime.py"
+    },
+    {
+      "path": "workspace-pubspec.lock",
+      "bytes": 24246,
+      "sha256": "43261dbd4acce9c423c8f19f5c86841a9f05aff3b3b968c94a7b48f94c9f8239",
+      "source_path": "quds_office_suite/pubspec.lock"
+    }
+  ]
+}

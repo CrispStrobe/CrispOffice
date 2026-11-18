@@ -1,0 +1,706 @@
+{
+  "started_at_utc": "2026-11-18T19:27:17.905396+00:00",
+  "source_commit": "bfa88aab88a74028285619dfa07f3a81868fe59b",
+  "source_tree": "3418afd634efcaaa14c4712103f69ae5e817bffd",
+  "source_base": "39eada31155dd85d971bab71d26cda6e67cb6844",
+  "source_file_count": 4946,
+  "source_before_manifest": "source-before.json",
+  "source_after_manifest": "source-after.json",
+  "environment_before_manifest": "environment-before.json",
+  "environment_after_manifest": "environment-after.json",
+  "engine_suites": [
+    "word_zotero_note_insertion_test.dart",
+    "office_thesaurus_test.dart",
+    "word_zotero_caret_test.dart",
+    "word_proofing_inheritance_test.dart",
+    "word_comment_proofing_styles_test.dart",
+    "word_style_introduction_test.dart"
+  ],
+  "visual_fixture_definitions": [
+    "render_comments.dart"
+  ],
+  "editor_suites": [
+    "word_draft_proofing_test.dart",
+    "word_proofing_priority_test.dart",
+    "word_thesaurus_review_integration_test.dart",
+    "word_thesaurus_controller_test.dart",
+    "word_thesaurus_dialog_test.dart",
+    "word_zotero_note_target_test.dart",
+    "word_zotero_notes_pane_test.dart",
+    "word_text_proofing_controls_test.dart",
+    "word_text_proofing_pane_test.dart",
+    "word_zotero_composer_test.dart",
+    "word_zotero_dialog_test.dart",
+    "word_zotero_citing_dialog_test.dart",
+    "word_zotero_document_actions_test.dart",
+    "word_zotero_field_at_caret_test.dart",
+    "word_zotero_unlink_all_test.dart",
+    "word_note_numbering_test.dart",
+    "word_notes_editing_test.dart",
+    "word_keyboard_review_test.dart",
+    "word_keyboard_context_geometry_test.dart",
+    "word_keyboard_review_identity_test.dart",
+    "word_live_proofing_session_test.dart",
+    "word_live_review_selection_test.dart",
+    "word_live_review_surface_test.dart",
+    "word_review_pane_test.dart",
+    "word_live_review_changes_test.dart",
+    "word_incremental_proofing_test.dart",
+    "word_incremental_proofing_menu_test.dart",
+    "word_proofing_session_test.dart",
+    "word_manual_proofing_test.dart",
+    "word_proofing_dialog_test.dart",
+    "word_proofing_context_test.dart",
+    "word_proofing_geometry_test.dart",
+    "word_proofing_navigation_test.dart",
+    "word_review_dialog_test.dart",
+    "word_revision_story_test.dart",
+    "word_review_controller_test.dart",
+    "word_input_focus_test.dart",
+    "office_input_ownership_test.dart",
+    "office_direction_chord_test.dart",
+    "editor_test.dart",
+    "report_designer_test.dart"
+  ],
+  "studio_suites": [
+    "studio_comment_draft_proofing_test.dart",
+    "studio_comment_keyboard_review_test.dart",
+    "studio_zotero_shortcuts_test.dart",
+    "studio_comment_review_test.dart",
+    "studio_review_pane_test.dart",
+    "studio_document_comparison_test.dart",
+    "widget_test.dart",
+    "studio_sheet_navigation_test.dart"
+  ],
+  "analyzed_files": [
+    "packages/quds_mail_mime/lib/quds_mail_mime.dart",
+    "packages/quds_mail_mime/lib/src/codec.dart",
+    "packages/quds_mail_mime/lib/src/scan.dart",
+    "packages/quds_mail_mime/lib/src/transfer.dart",
+    "packages/quds_mail_mime/test/compile/memory_probe.dart",
+    "packages/quds_mail_mime/test/compile/portable_import.dart",
+    "packages/quds_mail_mime/test/eml_bytes_test.dart",
+    "packages/quds_mail_mime/test/fixtures/messages.dart",
+    "packages/quds_mail_mime/test/mime_encodings_test.dart",
+    "packages/quds_mail_mime/test/mime_limits_test.dart",
+    "packages/quds_mail_mime/test/mime_parts_test.dart",
+    "packages/quds_mail_mime/test/mime_review_regressions_test.dart",
+    "packages/quds_mail_mime/test/portable_import_test.dart",
+    "packages/quds_mail_ui/example/lib/main.dart",
+    "packages/quds_mail_ui/lib/quds_mail_ui.dart",
+    "packages/quds_mail_ui/lib/src/reader/controller.dart",
+    "packages/quds_mail_ui/lib/src/reader/message_view.dart",
+    "packages/quds_mail_ui/lib/src/reader/presentation.dart",
+    "packages/quds_mail_ui/lib/src/reader/selection_surface.dart",
+    "packages/quds_mail_ui/test/controller_test.dart",
+    "packages/quds_mail_ui/test/example_test.dart",
+    "packages/quds_mail_ui/test/fixtures/mail_fixture.dart",
+    "packages/quds_mail_ui/test/message_view_test.dart",
+    "packages/quds_mail_ui/test/presentation_test.dart",
+    "packages/quds_mail_ui/test/support/runtime_network_guard.dart",
+    "packages/quds_mail_ui/test/support/runtime_network_guard_native.dart",
+    "packages/quds_mail_ui/test/support/runtime_network_guard_web.dart",
+    "packages/quds_mail_ui/tool/reader_visual_test.dart",
+    "packages/quds_mail_ui/tool/web_guard_compile.dart",
+    "packages/quds_office_editor/example/lib/studio_chrome.dart",
+    "packages/quds_office_editor/example/lib/suite_workspace.dart",
+    "packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart",
+    "packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart",
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+    "packages/quds_office_editor/lib/src/embed/office_editors.dart",
+    "packages/quds_office_editor/lib/src/proofing/word_proofing.dart",
+    "packages/quds_office_editor/test/word_draft_proofing_test.dart",
+    "packages/quds_office_editor/test/word_proofing_priority_test.dart",
+    "packages/quds_proofing_spacy/lib/src/distribution.dart"
+  ],
+  "workspace_lock_sha256": "43261dbd4acce9c423c8f19f5c86841a9f05aff3b3b968c94a7b48f94c9f8239",
+  "runtime_receipt_sha256": "832ca49151c4b20d1a32732d3461d93329085a4cab9ecf121ff6d672c4deab18",
+  "runtime": {
+    "frameworkVersion": "3.47.8",
+    "channel": "stable",
+    "repositoryUrl": "https://github.com/flutter/flutter.git",
+    "frameworkRevision": "737ba8f885dc774b53b442759999a312c9461e4e",
+    "frameworkCommitDate": "2026-10-22 21:37:31 -0700",
+    "engineRevision": "cf636b1dfb818dd6a3ff16e390e93b1a036969c8",
+    "engineCommitDate": "2026-10-23 02:13:38.000Z",
+    "engineContentHash": "dfd2e6cb7d319db05e3bf1503f3e2ac60f6288a2",
+    "engineBuildDate": "2026-10-22 20:34:48.330",
+    "dartSdkVersion": "3.13.7",
+    "devToolsVersion": "2.60.0",
+    "flutterVersion": "3.47.8",
+    "flutterRoot": "/workspace/scratch/4a0b7fce84dc/toolchains/flutter"
+  },
+  "source_index_unchanged": true,
+  "tracked_worktree_clean_before": true,
+  "runs": [
+    {
+      "name": "engine",
+      "command": [
+        "/workspace/scratch/4a0b7fce84dc/toolchains/bin/dart",
+        "test",
+        "--concurrency=1",
+        "--reporter",
+        "json",
+        "test/word_zotero_note_insertion_test.dart",
+        "test/office_thesaurus_test.dart",
+        "test/word_zotero_caret_test.dart",
+        "test/word_proofing_inheritance_test.dart",
+        "test/word_comment_proofing_styles_test.dart",
+        "test/word_style_introduction_test.dart"
+      ],
+      "cwd": "packages/quds_office_engine",
+      "exit_code": 0,
+      "elapsed_seconds": 19.209,
+      "log": "checks/engine.jsonl",
+      "log_sha256": "f342a2f5ccfb2c7e42409fb43228334b86659a75c7010843c94de91628b0c9da",
+      "passed": 95,
+      "failed": 0,
+      "skipped": 0,
+      "hidden_events_excluded": 6,
+      "reporter_success": true,
+      "reporter_error_count": 0,
+      "per_suite": {
+        "word_zotero_note_insertion_test.dart": {
+          "passed": 41,
+          "failed": 0,
+          "skipped": 0
+        },
+        "office_thesaurus_test.dart": {
+          "passed": 24,
+          "failed": 0,
+          "skipped": 0
+        },
+        "word_zotero_caret_test.dart": {
+          "passed": 9,
+          "failed": 0,
+          "skipped": 0
+        },
+        "word_proofing_inheritance_test.dart": {
+          "passed": 13,
+          "failed": 0,
+          "skipped": 0
+        },
+        "word_comment_proofing_styles_test.dart": {
+          "passed": 4,
+          "failed": 0,
+          "skipped": 0
+        },
+        "word_style_introduction_test.dart": {
+          "passed": 4,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      "missing_requested_suites": [],
+      "empty_requested_suites": [],
+      "unfinished_reporter_events": [],
+      "case_results": "checks/engine-cases.json",
+      "case_results_sha256": "e2db3ec9f429403f2d9f258a186106bd7d66642ba97a175d07452e2abe012370",
+      "errors": "checks/engine-errors.json",
+      "errors_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "compressed_log": "checks/engine.jsonl.gz",
+      "compressed_log_sha256": "763320a28b5758a7ec6cd86573aa2a5d6dd7a57be3dc9708c6c9e85e0de39774"
+    },
+    {
+      "name": "editor",
+      "command": [
+        "/workspace/scratch/4a0b7fce84dc/toolchains/bin/flutter",
+        "test",
+        "--no-pub",
+        "--concurrency=1",
+        "--reporter",
+        "json",
+        "test/word_draft_proofing_test.dart",
+        "test/word_proofing_priority_test.dart",
+        "test/word_thesaurus_review_integration_test.dart",
+        "test/word_thesaurus_controller_test.dart",
+        "test/word_thesaurus_dialog_test.dart",
+        "test/word_zotero_note_target_test.dart",
+        "test/word_zotero_notes_pane_test.dart",
+        "test/word_text_proofing_controls_test.dart",
+        "test/word_text_proofing_pane_test.dart",
+        "test/word_zotero_composer_test.dart",
+        "test/word_zotero_dialog_test.dart",
+        "test/word_zotero_citing_dialog_test.dart",
+        "test/word_zotero_document_actions_test.dart",
+        "test/word_zotero_field_at_caret_test.dart",
+        "test/word_zotero_unlink_all_test.dart",
+        "test/word_note_numbering_test.dart",
+        "test/word_notes_editing_test.dart",
+        "test/word_keyboard_review_test.dart",
+        "test/word_keyboard_context_geometry_test.dart",
+        "test/word_keyboard_review_identity_test.dart",
+        "test/word_live_proofing_session_test.dart",
+        "test/word_live_review_selection_test.dart",
+        "test/word_live_review_surface_test.dart",
+        "test/word_review_pane_test.dart",
+        "test/word_live_review_changes_test.dart",
+        "test/word_incremental_proofing_test.dart",
+        "test/word_incremental_proofing_menu_test.dart",
+        "test/word_proofing_session_test.dart",
+        "test/word_manual_proofing_test.dart",
+        "test/word_proofing_dialog_test.dart",
+        "test/word_proofing_context_test.dart",
+        "test/word_proofing_geometry_test.dart",
+        "test/word_proofing_navigation_test.dart",
+        "test/word_review_dialog_test.dart",
+        "test/word_revision_story_test.dart",
+        "test/word_review_controller_test.dart",
+        "test/word_input_focus_test.dart",
+        "test/office_input_ownership_test.dart",
+        "test/office_direction_chord_test.dart",
+        "test/editor_test.dart",
+        "test/report_designer_test.dart"
+      ],
+      "cwd": "packages/quds_office_editor",
+      "exit_code": 1,
+      "elapsed_seconds": 257.005,
+      "log": "checks/editor.jsonl",
+      "log_sha256": "7f09611b4db992359a1ed04a2f6bcbff1d69e9f8801e1fbabf9bddd3f334209b",
+      "passed": 690,
+      "failed": 2,
+      "skipped": 0,
+      "hidden_events_excluded": 63,
+      "reporter_success": false,
+      "reporter_error_count": 2,
+      "per_suite": {
+        "word_draft_proofing_test.dart": {
+          "passed": 19,
+          "failed": 0,
+          "skipped": 0
+        },
+        "word_proofing_priority_test.dart": {
+          "passed": 7,
+          "failed": 0,
+          "skipped": 0
+        },
+        "word_thesaurus_review_integration_test.dart": {
+          "passed": 3,
+          "failed": 0,
+          "skipped": 0
+        },
+        "word_thesaurus_controller_test.dart": {
+          "passed": 52,
+          "failed": 0,
+          "skipped": 0
+        },
+        "word_thesaurus_dialog_test.dart": {
+          "passed": 21,
+          "failed": 0,
+          "skipped": 0
+        },
+        "word_zotero_note_target_test.dart": {
+          "passed": 33,
+          "failed": 0,
+          "skipped": 0
+        },
+        "word_zotero_notes_pane_test.dart": {
+          "passed": 13,
+          "failed": 0,
+          "skipped": 0
+        },
+        "word_text_proofing_controls_test.dart": {
+          "passed": 31,
+          "failed": 0,
+          "skipped": 0
+        },
+        "word_text_proofing_pane_test.dart": {
+          "passed": 13,
+          "failed": 0,
+          "skipped": 0
+        },
+        "word_zotero_composer_test.dart": {
+          "passed": 28,
+          "failed": 0,
+          "skipped": 0
+        },
+        "word_zotero_dialog_test.dart": {
+          "passed": 49,
+          "failed": 0,
+          "skipped": 0
+        },
+        "word_zotero_citing_dialog_test.dart": {
+          "passed": 22,
+          "failed": 0,
+          "skipped": 0
+        },
+        "word_zotero_document_actions_test.dart": {
+          "passed": 9,
+          "failed": 0,
+          "skipped": 0
+        },
+        "word_zotero_field_at_caret_test.dart": {
+          "passed": 4,
+          "failed": 0,
+          "skipped": 0
+        },
+        "word_zotero_unlink_all_test.dart": {
+          "passed": 14,
+          "failed": 0,
+          "skipped": 0
+        },
+        "word_note_numbering_test.dart": {
+          "passed": 7,
+          "failed": 0,
+          "skipped": 0
+        },
+        "word_notes_editing_test.dart": {
+          "passed": 4,
+          "failed": 0,
+          "skipped": 0
+        },
+        "word_keyboard_review_test.dart": {
+          "passed": 14,
+          "failed": 2,
+          "skipped": 0
+        },
+        "word_keyboard_context_geometry_test.dart": {
+          "passed": 11,
+          "failed": 0,
+          "skipped": 0
+        },
+        "word_keyboard_review_identity_test.dart": {
+          "passed": 4,
+          "failed": 0,
+          "skipped": 0
+        },
+        "word_live_proofing_session_test.dart": {
+          "passed": 9,
+          "failed": 0,
+          "skipped": 0
+        },
+        "word_live_review_selection_test.dart": {
+          "passed": 9,
+          "failed": 0,
+          "skipped": 0
+        },
+        "word_live_review_surface_test.dart": {
+          "passed": 14,
+          "failed": 0,
+          "skipped": 0
+        },
+        "word_review_pane_test.dart": {
+          "passed": 11,
+          "failed": 0,
+          "skipped": 0
+        },
+        "word_live_review_changes_test.dart": {
+          "passed": 17,
+          "failed": 0,
+          "skipped": 0
+        },
+        "word_incremental_proofing_test.dart": {
+          "passed": 15,
+          "failed": 0,
+          "skipped": 0
+        },
+        "word_incremental_proofing_menu_test.dart": {
+          "passed": 1,
+          "failed": 0,
+          "skipped": 0
+        },
+        "word_proofing_session_test.dart": {
+          "passed": 31,
+          "failed": 0,
+          "skipped": 0
+        },
+        "word_manual_proofing_test.dart": {
+          "passed": 11,
+          "failed": 0,
+          "skipped": 0
+        },
+        "word_proofing_dialog_test.dart": {
+          "passed": 23,
+          "failed": 0,
+          "skipped": 0
+        },
+        "word_proofing_context_test.dart": {
+          "passed": 5,
+          "failed": 0,
+          "skipped": 0
+        },
+        "word_proofing_geometry_test.dart": {
+          "passed": 13,
+          "failed": 0,
+          "skipped": 0
+        },
+        "word_proofing_navigation_test.dart": {
+          "passed": 6,
+          "failed": 0,
+          "skipped": 0
+        },
+        "word_review_dialog_test.dart": {
+          "passed": 13,
+          "failed": 0,
+          "skipped": 0
+        },
+        "word_revision_story_test.dart": {
+          "passed": 14,
+          "failed": 0,
+          "skipped": 0
+        },
+        "word_review_controller_test.dart": {
+          "passed": 21,
+          "failed": 0,
+          "skipped": 0
+        },
+        "word_input_focus_test.dart": {
+          "passed": 5,
+          "failed": 0,
+          "skipped": 0
+        },
+        "office_input_ownership_test.dart": {
+          "passed": 2,
+          "failed": 0,
+          "skipped": 0
+        },
+        "office_direction_chord_test.dart": {
+          "passed": 3,
+          "failed": 0,
+          "skipped": 0
+        },
+        "editor_test.dart": {
+          "passed": 57,
+          "failed": 0,
+          "skipped": 0
+        },
+        "report_designer_test.dart": {
+          "passed": 52,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      "missing_requested_suites": [],
+      "empty_requested_suites": [],
+      "unfinished_reporter_events": [],
+      "case_results": "checks/editor-cases.json",
+      "case_results_sha256": "48af7244a9e539f34b8b9133d23da7ea851c1c912daa50a5b46ed24d3747b2fd",
+      "errors": "checks/editor-errors.json",
+      "errors_sha256": "0776dcf9400120a0f62e240c784aa186c5156b3fba104e88f9f0d528b95206e3",
+      "compressed_log": "checks/editor.jsonl.gz",
+      "compressed_log_sha256": "0f8fca756c7b43a50d6fcf02d1ff4a8dc481ba169dbda8e6a6076359b39337c3"
+    },
+    {
+      "name": "studio",
+      "command": [
+        "/workspace/scratch/4a0b7fce84dc/toolchains/bin/flutter",
+        "test",
+        "--no-pub",
+        "--concurrency=1",
+        "--reporter",
+        "json",
+        "test/studio_comment_draft_proofing_test.dart",
+        "test/studio_comment_keyboard_review_test.dart",
+        "test/studio_zotero_shortcuts_test.dart",
+        "test/studio_comment_review_test.dart",
+        "test/studio_review_pane_test.dart",
+        "test/studio_document_comparison_test.dart",
+        "test/widget_test.dart",
+        "test/studio_sheet_navigation_test.dart"
+      ],
+      "cwd": "packages/quds_office_editor/example",
+      "exit_code": 0,
+      "elapsed_seconds": 265.694,
+      "log": "checks/studio.jsonl",
+      "log_sha256": "b4152bfc325b12f960e9f851663d61ab545fdd3939cb43b8c415fdd78eb72c50",
+      "passed": 94,
+      "failed": 0,
+      "skipped": 0,
+      "hidden_events_excluded": 8,
+      "reporter_success": true,
+      "reporter_error_count": 0,
+      "per_suite": {
+        "studio_comment_draft_proofing_test.dart": {
+          "passed": 15,
+          "failed": 0,
+          "skipped": 0
+        },
+        "studio_comment_keyboard_review_test.dart": {
+          "passed": 9,
+          "failed": 0,
+          "skipped": 0
+        },
+        "studio_zotero_shortcuts_test.dart": {
+          "passed": 11,
+          "failed": 0,
+          "skipped": 0
+        },
+        "studio_comment_review_test.dart": {
+          "passed": 38,
+          "failed": 0,
+          "skipped": 0
+        },
+        "studio_review_pane_test.dart": {
+          "passed": 3,
+          "failed": 0,
+          "skipped": 0
+        },
+        "studio_document_comparison_test.dart": {
+          "passed": 8,
+          "failed": 0,
+          "skipped": 0
+        },
+        "widget_test.dart": {
+          "passed": 2,
+          "failed": 0,
+          "skipped": 0
+        },
+        "studio_sheet_navigation_test.dart": {
+          "passed": 8,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      "missing_requested_suites": [],
+      "empty_requested_suites": [],
+      "unfinished_reporter_events": [],
+      "case_results": "checks/studio-cases.json",
+      "case_results_sha256": "feef773b329ff9724b408cbd5e447f1d0d1b776801cd1fe6ca70e6143d69d016",
+      "errors": "checks/studio-errors.json",
+      "errors_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "compressed_log": "checks/studio.jsonl.gz",
+      "compressed_log_sha256": "74826b4cd56331394f94adf0dd4d2d6d0fb0a48d94126fd236feb92862feea42"
+    },
+    {
+      "name": "analysis",
+      "command": [
+        "/workspace/scratch/4a0b7fce84dc/toolchains/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "--fatal-warnings",
+        "packages/quds_mail_mime/lib/quds_mail_mime.dart",
+        "packages/quds_mail_mime/lib/src/codec.dart",
+        "packages/quds_mail_mime/lib/src/scan.dart",
+        "packages/quds_mail_mime/lib/src/transfer.dart",
+        "packages/quds_mail_mime/test/compile/memory_probe.dart",
+        "packages/quds_mail_mime/test/compile/portable_import.dart",
+        "packages/quds_mail_mime/test/eml_bytes_test.dart",
+        "packages/quds_mail_mime/test/fixtures/messages.dart",
+        "packages/quds_mail_mime/test/mime_encodings_test.dart",
+        "packages/quds_mail_mime/test/mime_limits_test.dart",
+        "packages/quds_mail_mime/test/mime_parts_test.dart",
+        "packages/quds_mail_mime/test/mime_review_regressions_test.dart",
+        "packages/quds_mail_mime/test/portable_import_test.dart",
+        "packages/quds_mail_ui/example/lib/main.dart",
+        "packages/quds_mail_ui/lib/quds_mail_ui.dart",
+        "packages/quds_mail_ui/lib/src/reader/controller.dart",
+        "packages/quds_mail_ui/lib/src/reader/message_view.dart",
+        "packages/quds_mail_ui/lib/src/reader/presentation.dart",
+        "packages/quds_mail_ui/lib/src/reader/selection_surface.dart",
+        "packages/quds_mail_ui/test/controller_test.dart",
+        "packages/quds_mail_ui/test/example_test.dart",
+        "packages/quds_mail_ui/test/fixtures/mail_fixture.dart",
+        "packages/quds_mail_ui/test/message_view_test.dart",
+        "packages/quds_mail_ui/test/presentation_test.dart",
+        "packages/quds_mail_ui/test/support/runtime_network_guard.dart",
+        "packages/quds_mail_ui/test/support/runtime_network_guard_native.dart",
+        "packages/quds_mail_ui/test/support/runtime_network_guard_web.dart",
+        "packages/quds_mail_ui/tool/reader_visual_test.dart",
+        "packages/quds_mail_ui/tool/web_guard_compile.dart",
+        "packages/quds_office_editor/example/lib/studio_chrome.dart",
+        "packages/quds_office_editor/example/lib/suite_workspace.dart",
+        "packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart",
+        "packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart",
+        "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+        "packages/quds_office_editor/lib/src/embed/office_editors.dart",
+        "packages/quds_office_editor/lib/src/proofing/word_proofing.dart",
+        "packages/quds_office_editor/test/word_draft_proofing_test.dart",
+        "packages/quds_office_editor/test/word_proofing_priority_test.dart",
+        "packages/quds_proofing_spacy/lib/src/distribution.dart"
+      ],
+      "cwd": ".",
+      "exit_code": 1,
+      "elapsed_seconds": 21.551,
+      "log": "checks/analysis.log",
+      "log_sha256": "8d64c3775707e07555ae4539b720a43f88ab38a04cdfbe89b7b02276b974921f"
+    },
+    {
+      "name": "format",
+      "command": [
+        "/workspace/scratch/4a0b7fce84dc/toolchains/bin/dart",
+        "format",
+        "--output=none",
+        "--set-exit-if-changed",
+        "packages/quds_mail_mime/lib/quds_mail_mime.dart",
+        "packages/quds_mail_mime/lib/src/codec.dart",
+        "packages/quds_mail_mime/lib/src/scan.dart",
+        "packages/quds_mail_mime/lib/src/transfer.dart",
+        "packages/quds_mail_mime/test/compile/memory_probe.dart",
+        "packages/quds_mail_mime/test/compile/portable_import.dart",
+        "packages/quds_mail_mime/test/eml_bytes_test.dart",
+        "packages/quds_mail_mime/test/fixtures/messages.dart",
+        "packages/quds_mail_mime/test/mime_encodings_test.dart",
+        "packages/quds_mail_mime/test/mime_limits_test.dart",
+        "packages/quds_mail_mime/test/mime_parts_test.dart",
+        "packages/quds_mail_mime/test/mime_review_regressions_test.dart",
+        "packages/quds_mail_mime/test/portable_import_test.dart",
+        "packages/quds_mail_ui/example/lib/main.dart",
+        "packages/quds_mail_ui/lib/quds_mail_ui.dart",
+        "packages/quds_mail_ui/lib/src/reader/controller.dart",
+        "packages/quds_mail_ui/lib/src/reader/message_view.dart",
+        "packages/quds_mail_ui/lib/src/reader/presentation.dart",
+        "packages/quds_mail_ui/lib/src/reader/selection_surface.dart",
+        "packages/quds_mail_ui/test/controller_test.dart",
+        "packages/quds_mail_ui/test/example_test.dart",
+        "packages/quds_mail_ui/test/fixtures/mail_fixture.dart",
+        "packages/quds_mail_ui/test/message_view_test.dart",
+        "packages/quds_mail_ui/test/presentation_test.dart",
+        "packages/quds_mail_ui/test/support/runtime_network_guard.dart",
+        "packages/quds_mail_ui/test/support/runtime_network_guard_native.dart",
+        "packages/quds_mail_ui/test/support/runtime_network_guard_web.dart",
+        "packages/quds_mail_ui/tool/reader_visual_test.dart",
+        "packages/quds_mail_ui/tool/web_guard_compile.dart",
+        "packages/quds_office_editor/example/lib/studio_chrome.dart",
+        "packages/quds_office_editor/example/lib/suite_workspace.dart",
+        "packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart",
+        "packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart",
+        "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+        "packages/quds_office_editor/lib/src/embed/office_editors.dart",
+        "packages/quds_office_editor/lib/src/proofing/word_proofing.dart",
+        "packages/quds_office_editor/test/word_draft_proofing_test.dart",
+        "packages/quds_office_editor/test/word_proofing_priority_test.dart",
+        "packages/quds_proofing_spacy/lib/src/distribution.dart"
+      ],
+      "cwd": ".",
+      "exit_code": 1,
+      "elapsed_seconds": 0.967,
+      "log": "checks/format.log",
+      "log_sha256": "1b6e411b8993932b475523ba2c7422351eb273e7405246d4483e5641adbf0594"
+    },
+    {
+      "name": "whitespace",
+      "command": [
+        "git",
+        "diff",
+        "--check",
+        "39eada31155dd85d971bab71d26cda6e67cb6844",
+        "bfa88aab88a74028285619dfa07f3a81868fe59b"
+      ],
+      "cwd": ".",
+      "exit_code": 2,
+      "elapsed_seconds": 0.122,
+      "log": "checks/whitespace.log",
+      "log_sha256": "adacd1b9cc420b220f0375a81d7d95c04b66aa006b80c6cde7a5ea32a4fd8f82"
+    }
+  ],
+  "github_actions_queried_or_awaited": false,
+  "source_unchanged_during_checks": true,
+  "source_mismatches": [],
+  "environment_unchanged_during_checks": true,
+  "environment_mismatches": [],
+  "source_head_unchanged": true,
+  "tracked_worktree_clean_after": true,
+  "source_manifest_sha256": {
+    "before": "48cb60704cc1fc4b7b8d1029fe4f3a7c73cb1390225bde1db646f94bb702e273",
+    "after": "48cb60704cc1fc4b7b8d1029fe4f3a7c73cb1390225bde1db646f94bb702e273"
+  },
+  "environment_manifest_sha256": {
+    "before": "9142ba0759484a200127fa12b337a31d12ed455de784e8e80cfbd74c7e4ab720",
+    "after": "9142ba0759484a200127fa12b337a31d12ed455de784e8e80cfbd74c7e4ab720"
+  },
+  "passed": 879,
+  "failed": 2,
+  "skipped": 0,
+  "finished_at_utc": "2026-11-18T19:36:44.580826+00:00",
+  "success": false
+}

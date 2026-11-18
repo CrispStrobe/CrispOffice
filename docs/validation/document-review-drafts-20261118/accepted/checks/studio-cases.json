@@ -1,0 +1,754 @@
+[
+  {
+    "id": 3,
+    "name": "draft checks after the pause and corrects without posting",
+    "suite_id": 0,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 4,
+    "name": "grammar and style marks stay distinct and suggestions navigate",
+    "suite_id": 0,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 5,
+    "name": "typing invalidates underlines and captured correction handlers",
+    "suite_id": 0,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 6,
+    "name": "slow requests coalesce and never publish obsolete draft text",
+    "suite_id": 0,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 7,
+    "name": "composition pauses checks and resumes without a text change",
+    "suite_id": 0,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 8,
+    "name": "disabled checking stays paused and never invokes manual providers",
+    "suite_id": 0,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 9,
+    "name": "language changes invalidate existing draft suggestions",
+    "suite_id": 0,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 10,
+    "name": "thread switches preserve draft text and reject old actions",
+    "suite_id": 0,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 11,
+    "name": "replacement documents cannot receive late draft results",
+    "suite_id": 0,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 12,
+    "name": "covering dialogs block captured draft correction and posting",
+    "suite_id": 0,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 13,
+    "name": "OfficeProofingStatus.unavailable is shown as incomplete rather than a clean reply",
+    "suite_id": 0,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 14,
+    "name": "OfficeProofingStatus.unsupported is shown as incomplete rather than a clean reply",
+    "suite_id": 0,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 15,
+    "name": "over-limit drafts explain the limit without provider work",
+    "suite_id": 0,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 16,
+    "name": "corrected draft posts explicitly as one undoable reply",
+    "suite_id": 0,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 17,
+    "name": "narrow Arabic reply suggestions remain usable with larger text",
+    "suite_id": 0,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 21,
+    "name": "comment Shift+F10 opens in place and Escape restores focus",
+    "suite_id": 18,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 22,
+    "name": "comment Shift+F10 opens in place and Tab restores focus",
+    "suite_id": 18,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 23,
+    "name": "Menu key keeps the explicitly selected overlapping comment finding",
+    "suite_id": 18,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 24,
+    "name": "keyboard context uses the selected comment paragraph",
+    "suite_id": 18,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 25,
+    "name": "Select mode offers keyboard Copy without enabling comment edits",
+    "suite_id": 18,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 26,
+    "name": "IME composition blocks keyboard comment menus without changing composition",
+    "suite_id": 18,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 27,
+    "name": "covered modal blocks a captured keyboard comment correction",
+    "suite_id": 18,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 28,
+    "name": "stale keyboard comment menu cannot mutate a replaced document with reused ids",
+    "suite_id": 18,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 29,
+    "name": "comment keyboard context rejects a canvas from the prior thread before rebuild",
+    "suite_id": 18,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 33,
+    "name": "Ctrl Alt C dispatches addEditCitation from the Word caret",
+    "suite_id": 30,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 34,
+    "name": "Ctrl Alt R dispatches refresh from the Word caret",
+    "suite_id": 30,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 35,
+    "name": "Cmd Alt C dispatches addEditCitation from the Word caret",
+    "suite_id": 30,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 36,
+    "name": "Cmd Alt R dispatches refresh from the Word caret",
+    "suite_id": 30,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 37,
+    "name": "Ctrl Alt C finds the citation in the focused Notes editor",
+    "suite_id": 30,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 38,
+    "name": "citation shortcuts and saved ribbon callbacks respect viewing mode",
+    "suite_id": 30,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 39,
+    "name": "citation commands stay inactive in other Studio applications",
+    "suite_id": 30,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 40,
+    "name": "a covering modal blocks Zotero even when Word retains focus",
+    "suite_id": 30,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 41,
+    "name": "rapid ribbon and shortcut activation opens one Zotero workspace",
+    "suite_id": 30,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 42,
+    "name": "citation ribbon shows shortcuts for linux",
+    "suite_id": 30,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 43,
+    "name": "citation ribbon shows shortcuts for macOS",
+    "suite_id": 30,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 47,
+    "name": "Reply focuses the inline draft without posting or a dialog",
+    "suite_id": 44,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 48,
+    "name": "thread drafts survive switching and explicit posts are undoable",
+    "suite_id": 44,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 49,
+    "name": "hiding comments preserves drafts and Reply restores inline focus",
+    "suite_id": 44,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 50,
+    "name": "a replaced thread cannot inherit a draft through its reused ID",
+    "suite_id": 44,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 51,
+    "name": "a stale post callback cannot send into another document",
+    "suite_id": 44,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 52,
+    "name": "posting waits until IME composition is complete",
+    "suite_id": 44,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 53,
+    "name": "viewing mode keeps comments inspectable without reply controls",
+    "suite_id": 44,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 54,
+    "name": "comment writing marks offer focused inline corrections",
+    "suite_id": 44,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 55,
+    "name": "comment marks follow the existing Writing pane",
+    "suite_id": 44,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 56,
+    "name": "comment context menus combine corrections and thread actions",
+    "suite_id": 44,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 57,
+    "name": "comment context Cut owns the comment rather than a body selection",
+    "suite_id": 44,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 58,
+    "name": "comment context Cut leaves a previously selected body table intact",
+    "suite_id": 44,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 59,
+    "name": "comment context Paste leaves a previously selected body table intact",
+    "suite_id": 44,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 60,
+    "name": "comment context Cut leaves a previously selected body frame intact",
+    "suite_id": 44,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 61,
+    "name": "comment context Paste leaves a previously selected body frame intact",
+    "suite_id": 44,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 62,
+    "name": "Select mode exposes real pointer comment selection and Copy",
+    "suite_id": 44,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 63,
+    "name": "read-only comment Copy and Select all own the comment selection",
+    "suite_id": 44,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 64,
+    "name": "read-only empty comments never materialize stored paragraphs",
+    "suite_id": 44,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 65,
+    "name": "delayed comment Cut validates its context after none change",
+    "suite_id": 44,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 66,
+    "name": "delayed comment Cut validates its context after source change",
+    "suite_id": 44,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 67,
+    "name": "delayed comment Cut validates its context after caret change",
+    "suite_id": 44,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 68,
+    "name": "delayed comment Cut validates its context after document change",
+    "suite_id": 44,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 69,
+    "name": "delayed comment Paste validates its context after none change",
+    "suite_id": 44,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 70,
+    "name": "delayed comment Paste validates its context after source change",
+    "suite_id": 44,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 71,
+    "name": "delayed comment Paste validates its context after caret change",
+    "suite_id": 44,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 72,
+    "name": "delayed comment Paste validates its context after document change",
+    "suite_id": 44,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 73,
+    "name": "invalid clipboard guards stop before system clipboard access",
+    "suite_id": 44,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 74,
+    "name": "comment menu Ignore once respects the current finding",
+    "suite_id": 44,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 75,
+    "name": "comment menu Ignore this word respects the current finding",
+    "suite_id": 44,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 76,
+    "name": "comment menu Add to personal words respects the current finding",
+    "suite_id": 44,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 77,
+    "name": "comment suggestions survive unrelated in-flight check progress",
+    "suite_id": 44,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 78,
+    "name": "stale comment menus cannot act on another document or reused ID",
+    "suite_id": 44,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 79,
+    "name": "comment menus dismiss on changed source or selected thread",
+    "suite_id": 44,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 80,
+    "name": "comment menus preserve IME and cannot act through a modal",
+    "suite_id": 44,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 81,
+    "name": "resolved reply context offers Reopen for its whole thread",
+    "suite_id": 44,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 82,
+    "name": "narrow English comments stay below the editor",
+    "suite_id": 44,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 83,
+    "name": "narrow Arabic comments stay below the editor",
+    "suite_id": 44,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 84,
+    "name": "comment menu mutations respect a later viewing-mode change",
+    "suite_id": 44,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 88,
+    "name": "F7 opens live review and only explicit checks run manual grammar",
+    "suite_id": 85,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_review_pane_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 89,
+    "name": "typing check preference survives switching Studio applications",
+    "suite_id": 85,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_review_pane_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 90,
+    "name": "review commands remain nonmodal and read-only in viewing mode",
+    "suite_id": 85,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_review_pane_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 94,
+    "name": "two real DOCX inputs retain tracking and compare final text safely",
+    "suite_id": 91,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_document_comparison_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 95,
+    "name": "spreadsheet bytes cannot masquerade as an empty comparison document",
+    "suite_id": 91,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_document_comparison_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 96,
+    "name": "missing main content is rejected before comparison",
+    "suite_id": 91,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_document_comparison_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 97,
+    "name": "wrong XML root, foreign namespace and missing body are rejected",
+    "suite_id": 91,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_document_comparison_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 98,
+    "name": "comparison requires exactly one direct Word body",
+    "suite_id": 91,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_document_comparison_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 99,
+    "name": "truncated and malformed XML cannot become an empty comparison",
+    "suite_id": 91,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_document_comparison_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 100,
+    "name": "valid namespace prefixes and default namespace retain document text",
+    "suite_id": 91,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_document_comparison_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 101,
+    "name": "a valid empty Word document remains a legitimate comparison source",
+    "suite_id": 91,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_document_comparison_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 105,
+    "name": "Review keeps spelling available without the retired AOT action",
+    "suite_id": 102,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/widget_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 106,
+    "name": "studio hosts Word, Excel, and PowerPoint workspaces",
+    "suite_id": 102,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/widget_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 110,
+    "name": "find pane retains a rejected first search and shows correction",
+    "suite_id": 107,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_sheet_navigation_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 111,
+    "name": "result click changes its cursor only after draft acceptance",
+    "suite_id": 107,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_sheet_navigation_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 112,
+    "name": "find pane Next handles rejected navigation",
+    "suite_id": 107,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_sheet_navigation_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 113,
+    "name": "find pane Previous handles rejected navigation",
+    "suite_id": 107,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_sheet_navigation_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 114,
+    "name": "find pane F3 handles rejected navigation",
+    "suite_id": 107,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_sheet_navigation_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 115,
+    "name": "studio worksheet tab keeps a rejected draft available",
+    "suite_id": 107,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_sheet_navigation_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 116,
+    "name": "studio New explicitly resets a same-index worksheet",
+    "suite_id": 107,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_sheet_navigation_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 117,
+    "name": "studio Reload sample explicitly resets a same-index worksheet",
+    "suite_id": 107,
+    "suite": "/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/studio_sheet_navigation_test.dart",
+    "result": "success",
+    "skipped": false
+  }
+]

@@ -1,0 +1,16 @@
+{"protocolVersion":"0.1.1","runnerVersion":"1.31.1","pid":64,"type":"start","time":0}
+{"suite":{"id":0,"platform":"vm","path":"/workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/review_drafts_visual_fixture_test.dart"},"type":"suite","time":1}
+{"test":{"id":1,"name":"loading /workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/review_drafts_visual_fixture_test.dart","suiteID":0,"groupIDs":[],"metadata":{"skip":false,"skipReason":null},"line":null,"column":null,"url":null},"type":"testStart","time":2}
+{"count":1,"time":19,"type":"allSuites"}
+{"testID":1,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":15877}
+{"group":{"id":2,"suiteID":0,"parentID":null,"name":"","metadata":{"skip":false,"skipReason":null},"testCount":3,"line":null,"column":null,"url":null},"type":"group","time":15884}
+{"test":{"id":3,"name":"render desktop draft checks and an unposted correction","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":174,"column":5,"url":"package:flutter_test/src/widget_tester.dart","root_line":258,"root_column":5,"root_url":"file:///workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/review_drafts_visual_fixture_test.dart"},"type":"testStart","time":15885}
+{"testID":3,"messageType":"print","message":"QUDS_VISUAL comment-draft-desktop 1440x1000","type":"print","time":28041}
+{"testID":3,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":28370}
+{"test":{"id":4,"name":"render Arabic narrow draft checks beside reply text","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":174,"column":5,"url":"package:flutter_test/src/widget_tester.dart","root_line":258,"root_column":5,"root_url":"file:///workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/review_drafts_visual_fixture_test.dart"},"type":"testStart","time":28371}
+{"testID":4,"messageType":"print","message":"QUDS_VISUAL comment-draft-arabic-narrow 780x1000","type":"print","time":33382}
+{"testID":4,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":33579}
+{"test":{"id":5,"name":"render keyboard correction menu at the comment caret","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":174,"column":5,"url":"package:flutter_test/src/widget_tester.dart","root_line":328,"root_column":3,"root_url":"file:///workspace/scratch/4a0b7fce84dc/quds_office_suite/packages/quds_office_editor/example/test/review_drafts_visual_fixture_test.dart"},"type":"testStart","time":33581}
+{"testID":5,"messageType":"print","message":"QUDS_VISUAL comment-keyboard-menu-desktop 1440x1000","type":"print","time":38887}
+{"testID":5,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":39536}
+{"success":true,"type":"done","time":39674}

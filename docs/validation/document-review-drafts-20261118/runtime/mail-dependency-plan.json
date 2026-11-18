@@ -1,0 +1,42 @@
+{
+  "source_commit": "86d6f507",
+  "manifest": "third_party/enough_mail/DEPENDENCIES.json",
+  "missing": [
+    {
+      "package": "asn1lib",
+      "version": "1.6.8",
+      "sha256": "cfb3cf6a53158918d52dda61bc26f0cc8612a0d3b9dc29e87eaa3423902ca636",
+      "url": "https://pub.dev/api/archives/asn1lib-1.6.8.tar.gz"
+    },
+    {
+      "package": "basic_utils",
+      "version": "5.8.2",
+      "sha256": "548047bef0b3b697be19fa62f46de54d99c9019a69fb7db92c69e19d87f633c7",
+      "url": "https://pub.dev/api/archives/basic_utils-5.8.2.tar.gz"
+    },
+    {
+      "package": "encrypter_plus",
+      "version": "5.1.0",
+      "sha256": "6f6f3c73e26058af4fd138369a928ccae667e45d254cf6ded6301a2d99551a67",
+      "url": "https://pub.dev/api/archives/encrypter_plus-5.1.0.tar.gz"
+    },
+    {
+      "package": "enough_convert",
+      "version": "1.7.1",
+      "sha256": "65bff24436f4da878435e80ba24a6f762870751a6f5fd4ea51cdec232d90a936",
+      "url": "https://pub.dev/api/archives/enough_convert-1.7.1.tar.gz"
+    },
+    {
+      "package": "pointycastle",
+      "version": "4.0.0",
+      "sha256": "92aa3841d083cc4b0f4709b5c74fd6409a3e6ba833ffc7dc6a8fee096366acf5",
+      "url": "https://pub.dev/api/archives/pointycastle-4.0.0.tar.gz"
+    },
+    {
+      "package": "synchronized",
+      "version": "3.6.1+1",
+      "sha256": "a77637ebe1460f3b48cac89a790d2eb634f0a8593cab0d3f340c6db174ba9b94",
+      "url": "https://pub.dev/api/archives/synchronized-3.6.1+1.tar.gz"
+    }
+  ]
+}

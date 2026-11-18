@@ -1,0 +1,1113 @@
+{
+  "schema_version": 1,
+  "recorded_at_utc": "2026-11-18T19:33:32.173024+00:00",
+  "repository": "CrispStrobe/quds_office_suite",
+  "branch": "codex/document-review-20261118",
+  "previous_turn_head": "b5d4df516db210a6f8ea566b290988dab5652630",
+  "frozen_verified_source": "bfa88aab88a74028285619dfa07f3a81868fe59b",
+  "audit_scope": "Read-only local Git ancestry, commit/tree/blob and saved evidence verification. No remote observation, GitHub Actions query, Dart process or tracked edit.",
+  "input_evidence": [
+    {
+      "path": "final-frontier-classified.json",
+      "sha256": "3d9786f0546cdb1e4686de4b19a8c7f06b359dbe7c1bf77538732ac47d49a103",
+      "scope": "scratch evidence as read during this audit; filename may be relocated during publication"
+    },
+    {
+      "path": "docs/validation/document-review-drafts-20261118/final-frontier.json",
+      "sha256": "50e9a16596a952e53515606d670bd605afdbba33483e6d09f336400ab54ee5e3",
+      "git_ref": "bfa88aab88a74028285619dfa07f3a81868fe59b"
+    },
+    {
+      "path": "docs/validation/document-review-drafts-20261118/incoming-inventory.json",
+      "sha256": "d7c40ffda656d9cdbcdfb1604f2ab0e0a6f3cad9a93a86892c1af9033eed55a1",
+      "git_ref": "bfa88aab88a74028285619dfa07f3a81868fe59b"
+    },
+    {
+      "path": "docs/validation/document-review-drafts-20261118/historical-equivalence.json",
+      "sha256": "c269e6e10970ee22887404f8079636f7a42d9b20cb229ff014150e3470b3c076",
+      "git_ref": "bfa88aab88a74028285619dfa07f3a81868fe59b"
+    },
+    {
+      "path": "publication-checkpoints-in-progress.json",
+      "sha256": "e680957c58d8aae7abc2910620520e500d2437176dd3ffee28ffdd5d276841b0",
+      "scope": "scratch evidence as read during this audit; filename may be relocated during publication"
+    }
+  ],
+  "bounded_observations": {
+    "initial_recorded_at_utc": "2026-11-18T19:06:09.143Z",
+    "initial_local_ref_refresh_at_utc": "2026-11-18T19:07:20.455662+00:00",
+    "initial_counts": {
+      "fork_branches": 210,
+      "pull_request_heads": 170,
+      "upstream_branches": 4,
+      "total_refs": 384,
+      "unique_heads": 250
+    },
+    "initial_method": "GitHub REST branches pages 1-3 and PRs state=all pages 1-2, per_page=100; upstream branches page 1. Snapshot is bounded observation; all page counts below final-page limit.",
+    "final_recorded_cutoff_utc": "2026-11-18T19:23:15.181640+00:00",
+    "final_method": "One bounded git ls-remote observation of fork branches, actual PR head refs and upstream branches; no CI endpoints",
+    "atomic_remote_snapshot_claimed": false,
+    "no_observation_after_cutoff_in_this_audit": true,
+    "counts": {
+      "fork_branch": 210,
+      "pull_request": 171,
+      "upstream_branch": 4,
+      "total_refs": 385,
+      "unique_heads": 251
+    }
+  },
+  "classification_counts": {
+    "included_in_ancestry": 357,
+    "verified_historical_equivalent": 28
+  },
+  "unique_head_classification_counts": {
+    "included_in_ancestry": 237,
+    "verified_historical_equivalent": 14
+  },
+  "all_classifications_reverified": true,
+  "historical_equivalence_methods": {
+    "all_commits_patch_equivalent": 10,
+    "identical_tree_already_integrated": 3,
+    "all_changed_files_identical_in_merged_pr_140": 1
+  },
+  "historical_equivalence_verification": [
+    {
+      "sha": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
+      "branch": "feat/ods-icon-sets",
+      "method": "all_commits_patch_equivalent",
+      "in_final_ancestry": false,
+      "command": [
+        "git",
+        "cherry",
+        "bfa88aab88a74028285619dfa07f3a81868fe59b",
+        "005c708e9f747cb46cf02e12c869b0a2f85ac824"
+      ],
+      "comparison_rows": [
+        "- 005c708e9f747cb46cf02e12c869b0a2f85ac824"
+      ],
+      "all_comparison_rows_negative": true,
+      "verified": true
+    },
+    {
+      "sha": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+      "branch": "feat/ods-data-bar",
+      "method": "all_commits_patch_equivalent",
+      "in_final_ancestry": false,
+      "command": [
+        "git",
+        "cherry",
+        "bfa88aab88a74028285619dfa07f3a81868fe59b",
+        "0a53b8a70128870f3e1df6d18cdb177bb64290ee"
+      ],
+      "comparison_rows": [
+        "- b8ddaaeb581e010467de304c828764d353149102",
+        "- 0a53b8a70128870f3e1df6d18cdb177bb64290ee"
+      ],
+      "all_comparison_rows_negative": true,
+      "verified": true
+    },
+    {
+      "sha": "128a187d69555db80890c2a1945a442b951f9c74",
+      "branch": "docs/aot-removal",
+      "method": "all_commits_patch_equivalent",
+      "in_final_ancestry": false,
+      "command": [
+        "git",
+        "cherry",
+        "bfa88aab88a74028285619dfa07f3a81868fe59b",
+        "128a187d69555db80890c2a1945a442b951f9c74"
+      ],
+      "comparison_rows": [
+        "- 128a187d69555db80890c2a1945a442b951f9c74"
+      ],
+      "all_comparison_rows_negative": true,
+      "verified": true
+    },
+    {
+      "sha": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+      "branch": "integrate/office-union-148",
+      "method": "identical_tree_already_integrated",
+      "in_final_ancestry": false,
+      "equivalent_commit": "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4",
+      "source_tree": "e3adc9e259c6120b4b1e3e03177391f880243e13",
+      "equivalent_tree": "e3adc9e259c6120b4b1e3e03177391f880243e13",
+      "equivalent_commit_is_ancestor": true,
+      "verified": true
+    },
+    {
+      "sha": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+      "branch": "docs/ods-color-scale",
+      "method": "all_commits_patch_equivalent",
+      "in_final_ancestry": false,
+      "command": [
+        "git",
+        "cherry",
+        "bfa88aab88a74028285619dfa07f3a81868fe59b",
+        "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283"
+      ],
+      "comparison_rows": [
+        "- 58fdddfbcf198a8c0e38e32f6fcc9d6604e95283"
+      ],
+      "all_comparison_rows_negative": true,
+      "verified": true
+    },
+    {
+      "sha": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+      "branch": "feat/ods-dynamic-validation-links",
+      "method": "all_commits_patch_equivalent",
+      "in_final_ancestry": false,
+      "command": [
+        "git",
+        "cherry",
+        "bfa88aab88a74028285619dfa07f3a81868fe59b",
+        "68a0db23408e4c95d6d283219504c79aea33a6fe"
+      ],
+      "comparison_rows": [
+        "- 68a0db23408e4c95d6d283219504c79aea33a6fe"
+      ],
+      "all_comparison_rows_negative": true,
+      "verified": true
+    },
+    {
+      "sha": "69d14f84cabd3931b7640c1654b401c89faba766",
+      "branch": "docs/ods-data-bar",
+      "method": "all_commits_patch_equivalent",
+      "in_final_ancestry": false,
+      "command": [
+        "git",
+        "cherry",
+        "bfa88aab88a74028285619dfa07f3a81868fe59b",
+        "69d14f84cabd3931b7640c1654b401c89faba766"
+      ],
+      "comparison_rows": [
+        "- 69d14f84cabd3931b7640c1654b401c89faba766"
+      ],
+      "all_comparison_rows_negative": true,
+      "verified": true
+    },
+    {
+      "sha": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+      "branch": "feat/ods-color-scale",
+      "method": "all_commits_patch_equivalent",
+      "in_final_ancestry": false,
+      "command": [
+        "git",
+        "cherry",
+        "bfa88aab88a74028285619dfa07f3a81868fe59b",
+        "74ce9ffb816c70c0d2ae50b91ec52a614f26d688"
+      ],
+      "comparison_rows": [
+        "- 74ce9ffb816c70c0d2ae50b91ec52a614f26d688"
+      ],
+      "all_comparison_rows_negative": true,
+      "verified": true
+    },
+    {
+      "sha": "7ef09f2408f467c65427700e65907531ecb26acb",
+      "branch": "feat/ods-time-period-conditions",
+      "method": "all_commits_patch_equivalent",
+      "in_final_ancestry": false,
+      "command": [
+        "git",
+        "cherry",
+        "bfa88aab88a74028285619dfa07f3a81868fe59b",
+        "7ef09f2408f467c65427700e65907531ecb26acb"
+      ],
+      "comparison_rows": [
+        "- 7ef09f2408f467c65427700e65907531ecb26acb"
+      ],
+      "all_comparison_rows_negative": true,
+      "verified": true
+    },
+    {
+      "sha": "a7f144cc983f2df7c16d88f8644ad67a9254c3d0",
+      "branch": "docs/ods-icon-sets",
+      "method": "all_commits_patch_equivalent",
+      "in_final_ancestry": false,
+      "command": [
+        "git",
+        "cherry",
+        "bfa88aab88a74028285619dfa07f3a81868fe59b",
+        "a7f144cc983f2df7c16d88f8644ad67a9254c3d0"
+      ],
+      "comparison_rows": [
+        "- a7f144cc983f2df7c16d88f8644ad67a9254c3d0"
+      ],
+      "all_comparison_rows_negative": true,
+      "verified": true
+    },
+    {
+      "sha": "b8ddaaeb581e010467de304c828764d353149102",
+      "branch": "docs/ods-dynamic-validation",
+      "method": "all_commits_patch_equivalent",
+      "in_final_ancestry": false,
+      "command": [
+        "git",
+        "cherry",
+        "bfa88aab88a74028285619dfa07f3a81868fe59b",
+        "b8ddaaeb581e010467de304c828764d353149102"
+      ],
+      "comparison_rows": [
+        "- b8ddaaeb581e010467de304c828764d353149102"
+      ],
+      "all_comparison_rows_negative": true,
+      "verified": true
+    },
+    {
+      "sha": "c34945761e7991f5fe49037d79529acdd260b31c",
+      "branch": "codex/odt-field-continuation-20261117",
+      "method": "all_changed_files_identical_in_merged_pr_140",
+      "in_final_ancestry": false,
+      "equivalent_commit": "2c47165d01d01cc883135a434ac9f6591ce6e770",
+      "merge_base": "e3a38789359adaa33b2da1345c952fa1c2d8aebb",
+      "changed_paths_count": 37,
+      "recorded_paths_match": true,
+      "file_checks": [
+        {
+          "path": "docs/odf-export-fidelity.md",
+          "source_entry": "100644 blob e0ec6e28f094f9be3101a165bb2f8aba52f10ce7",
+          "equivalent_entry": "100644 blob e0ec6e28f094f9be3101a165bb2f8aba52f10ce7",
+          "identical": true
+        },
+        {
+          "path": "docs/validation/german-proofing-recovery-20261117/README.md",
+          "source_entry": "100644 blob c645d21a4fecd134bf6a24cd13fa703579846e1c",
+          "equivalent_entry": "100644 blob c645d21a4fecd134bf6a24cd13fa703579846e1c",
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/README.md",
+          "source_entry": "100644 blob 8146c83246daf3599e662b1dd683cb97300803d6",
+          "equivalent_entry": "100644 blob 8146c83246daf3599e662b1dd683cb97300803d6",
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/audit-portability.json",
+          "source_entry": "100644 blob ef170d72cf34c4b3687b5c1e419edb6fc38224c8",
+          "equivalent_entry": "100644 blob ef170d72cf34c4b3687b5c1e419edb6fc38224c8",
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/audit_recovery.py",
+          "source_entry": "100644 blob a94f21fd4168af21c1fa98032f8de3e22a69fcc6",
+          "equivalent_entry": "100644 blob a94f21fd4168af21c1fa98032f8de3e22a69fcc6",
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence-index.json",
+          "source_entry": "100644 blob acb5422a76561ecf87b900c2b6b5e544d2eb75ca",
+          "equivalent_entry": "100644 blob acb5422a76561ecf87b900c2b6b5e544d2eb75ca",
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.inputs.json.gz",
+          "source_entry": "100644 blob 33fbc0410ec5a7337be6caa033f949b1cd9267aa",
+          "equivalent_entry": "100644 blob 33fbc0410ec5a7337be6caa033f949b1cd9267aa",
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.json",
+          "source_entry": "100644 blob 689f4d104e14eaf48b8e2db6b8168a5966e8e3a5",
+          "equivalent_entry": "100644 blob 689f4d104e14eaf48b8e2db6b8168a5966e8e3a5",
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.stderr.gz",
+          "source_entry": "100644 blob 86e43ea3218b5890302b754bbf8927f94e79f7ee",
+          "equivalent_entry": "100644 blob 86e43ea3218b5890302b754bbf8927f94e79f7ee",
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.stdout.gz",
+          "source_entry": "100644 blob d3ebc28122aea1ac61bf9583af637de490436639",
+          "equivalent_entry": "100644 blob d3ebc28122aea1ac61bf9583af637de490436639",
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.inputs.json.gz",
+          "source_entry": "100644 blob 7e230ee642d2775c8fedc35ebfacee2007174b8e",
+          "equivalent_entry": "100644 blob 7e230ee642d2775c8fedc35ebfacee2007174b8e",
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.json",
+          "source_entry": "100644 blob a8f70f98dfe30e6acc0b16f55430c3ac3e4aa12c",
+          "equivalent_entry": "100644 blob a8f70f98dfe30e6acc0b16f55430c3ac3e4aa12c",
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.stderr.gz",
+          "source_entry": "100644 blob 86e43ea3218b5890302b754bbf8927f94e79f7ee",
+          "equivalent_entry": "100644 blob 86e43ea3218b5890302b754bbf8927f94e79f7ee",
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.stdout.gz",
+          "source_entry": "100644 blob 532fe3f24fec0cdee150019cd8f9797ecc623b95",
+          "equivalent_entry": "100644 blob 532fe3f24fec0cdee150019cd8f9797ecc623b95",
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-node.inputs.json.gz",
+          "source_entry": "100644 blob 8cc251232eada488fff92cd62468bb351f459a7a",
+          "equivalent_entry": "100644 blob 8cc251232eada488fff92cd62468bb351f459a7a",
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-node.json",
+          "source_entry": "100644 blob f121265eeb266c2305a6be1262071259a3091049",
+          "equivalent_entry": "100644 blob f121265eeb266c2305a6be1262071259a3091049",
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-node.stderr.gz",
+          "source_entry": "100644 blob 86e43ea3218b5890302b754bbf8927f94e79f7ee",
+          "equivalent_entry": "100644 blob 86e43ea3218b5890302b754bbf8927f94e79f7ee",
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-node.stdout.gz",
+          "source_entry": "100644 blob f4280f38fe5539ca4d1696b199be3e000a000bea",
+          "equivalent_entry": "100644 blob f4280f38fe5539ca4d1696b199be3e000a000bea",
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-vm.inputs.json.gz",
+          "source_entry": "100644 blob bbf6b28978a480d2503ce1b9262a1df67a7f6366",
+          "equivalent_entry": "100644 blob bbf6b28978a480d2503ce1b9262a1df67a7f6366",
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-vm.json",
+          "source_entry": "100644 blob e9d41011c0f51400af3bb805c770bddb81593627",
+          "equivalent_entry": "100644 blob e9d41011c0f51400af3bb805c770bddb81593627",
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-vm.stderr.gz",
+          "source_entry": "100644 blob 86e43ea3218b5890302b754bbf8927f94e79f7ee",
+          "equivalent_entry": "100644 blob 86e43ea3218b5890302b754bbf8927f94e79f7ee",
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-vm.stdout.gz",
+          "source_entry": "100644 blob 9094d230bd90d63ae770fff1879b6a6396691a19",
+          "equivalent_entry": "100644 blob 9094d230bd90d63ae770fff1879b6a6396691a19",
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/package-config.json",
+          "source_entry": "100644 blob 4cd8acc7a9b9090400d8ddb7e1d64dcd604a3235",
+          "equivalent_entry": "100644 blob 4cd8acc7a9b9090400d8ddb7e1d64dcd604a3235",
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/pull-request-draft.md",
+          "source_entry": "100644 blob 01acc165985da7b712c2698679483a74c1f1fd73",
+          "equivalent_entry": "100644 blob 01acc165985da7b712c2698679483a74c1f1fd73",
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/recovered-original-source.commit",
+          "source_entry": "100644 blob 416b76ae102bf364ac37e7dca4361e09f5ff008c",
+          "equivalent_entry": "100644 blob 416b76ae102bf364ac37e7dca4361e09f5ff008c",
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/recovery-audit.json",
+          "source_entry": "100644 blob e3b618b38616277085a71ba3ff11c787f2d1028c",
+          "equivalent_entry": "100644 blob e3b618b38616277085a71ba3ff11c787f2d1028c",
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/resolved-pubspec.lock",
+          "source_entry": "100644 blob 1d3ea1eada7ee8eecf7732a1fc2bcaedc03a76f7",
+          "equivalent_entry": "100644 blob 1d3ea1eada7ee8eecf7732a1fc2bcaedc03a76f7",
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/run_logged.py",
+          "source_entry": "100644 blob b762a1f0cd19c2dac856ec1a8736354492b7d12e",
+          "equivalent_entry": "100644 blob b762a1f0cd19c2dac856ec1a8736354492b7d12e",
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/runtime.json",
+          "source_entry": "100644 blob 6067874fc355b418f55b0ca05d7c9e4b5a1cf4cf",
+          "equivalent_entry": "100644 blob 6067874fc355b418f55b0ca05d7c9e4b5a1cf4cf",
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/source-recovery.json",
+          "source_entry": "100644 blob 745160d6bad6db04ee2dc13a8808e5109d0cde18",
+          "equivalent_entry": "100644 blob 745160d6bad6db04ee2dc13a8808e5109d0cde18",
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/test-workspace-pubspec.yaml",
+          "source_entry": "100644 blob b3237978f2f20b516ea19d47d418c2d9b8c39322",
+          "equivalent_entry": "100644 blob b3237978f2f20b516ea19d47d418c2d9b8c39322",
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/verification.json",
+          "source_entry": "100644 blob b2bed5a868f78d74bfb2ed171afc94da88e880ea",
+          "equivalent_entry": "100644 blob b2bed5a868f78d74bfb2ed171afc94da88e880ea",
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/verify_evidence.py",
+          "source_entry": "100644 blob 041838e2cf114134d270d427ae3bc2f7f34bcb5e",
+          "equivalent_entry": "100644 blob 041838e2cf114134d270d427ae3bc2f7f34bcb5e",
+          "identical": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+          "source_entry": "100644 blob 06e7d40ce0758a7df17700b94a31e0d184534f18",
+          "equivalent_entry": "100644 blob 06e7d40ce0758a7df17700b94a31e0d184534f18",
+          "identical": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+          "source_entry": "100644 blob 4e30fa0fef45350b6d0ad53ebf6e6a75bded48d8",
+          "equivalent_entry": "100644 blob 4e30fa0fef45350b6d0ad53ebf6e6a75bded48d8",
+          "identical": true
+        },
+        {
+          "path": "packages/quds_office_engine/test/odt_imported_field_fidelity_test.dart",
+          "source_entry": "100644 blob c1082c3340f375425d11a6b5944a46b8f1751484",
+          "equivalent_entry": "100644 blob c1082c3340f375425d11a6b5944a46b8f1751484",
+          "identical": true
+        },
+        {
+          "path": "packages/quds_office_engine/test/odt_page_field_fidelity_test.dart",
+          "source_entry": "100644 blob 0a4331683f037aa8a23e70b043bc6a7b8af2de62",
+          "equivalent_entry": "100644 blob 0a4331683f037aa8a23e70b043bc6a7b8af2de62",
+          "identical": true
+        }
+      ],
+      "equivalent_commit_is_ancestor": true,
+      "verified": true
+    },
+    {
+      "sha": "cee6e2632f891a3fe21c5c02d6bf508805973051",
+      "branch": "integrate/odt-column-boundary-144",
+      "method": "identical_tree_already_integrated",
+      "in_final_ancestry": false,
+      "equivalent_commit": "bb5556e8cc4cb73e2c668b5319a2844a20c6c50c",
+      "source_tree": "a30201059a62b8034ac747367c1af8de054a2afb",
+      "equivalent_tree": "a30201059a62b8034ac747367c1af8de054a2afb",
+      "equivalent_commit_is_ancestor": true,
+      "verified": true
+    },
+    {
+      "sha": "da9c956ec5d65c0e5a9f9ea84c2b0bca98e824a0",
+      "branch": "integrate/office-union-150",
+      "method": "identical_tree_already_integrated",
+      "in_final_ancestry": false,
+      "equivalent_commit": "23f3b4204fce45d38a103e3159bdc7f1e8d37c4e",
+      "source_tree": "b73ebcc6f72c49a2883c5749f6450d497c647324",
+      "equivalent_tree": "b73ebcc6f72c49a2883c5749f6450d497c647324",
+      "equivalent_commit_is_ancestor": true,
+      "verified": true
+    }
+  ],
+  "initial_reconciliation": {
+    "completed_published_checkpoint": "39eada31155dd85d971bab71d26cda6e67cb6844",
+    "first_application_checkpoint": "b9728ea1ec835cb589b266cfe9fc98507eb7acfa",
+    "merge_checkpoint_precedes_first_application_checkpoint": true,
+    "merges": [
+      {
+        "sequence_in_phase": 1,
+        "published_merge_commit": "d1dc3416319891cf26346bd0ff81012ac1a58cf8",
+        "local_merge_commit": "51beea31639b74733cad6639f8f6097b2b178a31",
+        "first_parent": "b5d4df516db210a6f8ea566b290988dab5652630",
+        "incoming_parent": "ff1518517dd9f67e214ff56fe7eef06349f5223a",
+        "tree": "9a2014756626b256509df78d5ca0efedcd3c967a",
+        "committed_at_utc": "2026-11-18T19:08:34+00:00",
+        "subject": "Reconcile latest Zotero notes and integrated review work [skip ci]",
+        "merge_bases": [
+          "b5d4df516db210a6f8ea566b290988dab5652630"
+        ],
+        "incoming_changed_paths_since_merge_base": 1168,
+        "merged_changed_paths_against_first_parent": 1168,
+        "paths_changed_on_both_sides": [],
+        "tree_verified_against_publication": true,
+        "both_parents_preserved": true,
+        "conflict_observation_source": "Root execution record supplied during reconciliation audit; Git commit records alone do not preserve the original unmerged index.",
+        "conflicts": []
+      },
+      {
+        "sequence_in_phase": 2,
+        "published_merge_commit": "2bdd66dd80ce1c53a13f7028e8251efbe2f5624d",
+        "local_merge_commit": "bf8ea7dbfb008cf8fa4eaf88b6c031ea91a551c4",
+        "first_parent": "d1dc3416319891cf26346bd0ff81012ac1a58cf8",
+        "incoming_parent": "b9e8c159cea315aa0a044c4b0a6fc2cd35d11055",
+        "tree": "ffb775a893b54e8f5759be40157bc63d91697399",
+        "committed_at_utc": "2026-11-18T19:08:48+00:00",
+        "subject": "Bring in qualified offline thesaurus continuation [skip ci]",
+        "merge_bases": [
+          "eb1ff4dddbf65384bc61e2e7a0973360f76729ce",
+          "9a90262da555705758fa233f7d4e339ff453a0dc"
+        ],
+        "incoming_changed_paths_since_merge_base": 78,
+        "merged_changed_paths_against_first_parent": 24,
+        "paths_changed_on_both_sides": [
+          "docs/validation/document-review-inflight-20261118/README.md",
+          "docs/validation/document-review-inflight-20261118/accepted/checks/analysis.log",
+          "docs/validation/document-review-inflight-20261118/accepted/checks/editor-cases.json",
+          "docs/validation/document-review-inflight-20261118/accepted/checks/editor-errors.json",
+          "docs/validation/document-review-inflight-20261118/accepted/checks/editor.jsonl",
+          "docs/validation/document-review-inflight-20261118/accepted/checks/editor.jsonl.gz",
+          "docs/validation/document-review-inflight-20261118/accepted/checks/engine-cases.json",
+          "docs/validation/document-review-inflight-20261118/accepted/checks/engine-errors.json",
+          "docs/validation/document-review-inflight-20261118/accepted/checks/engine.jsonl",
+          "docs/validation/document-review-inflight-20261118/accepted/checks/engine.jsonl.gz",
+          "docs/validation/document-review-inflight-20261118/accepted/checks/format.log",
+          "docs/validation/document-review-inflight-20261118/accepted/checks/studio-cases.json",
+          "docs/validation/document-review-inflight-20261118/accepted/checks/studio-errors.json",
+          "docs/validation/document-review-inflight-20261118/accepted/checks/studio.jsonl",
+          "docs/validation/document-review-inflight-20261118/accepted/checks/studio.jsonl.gz",
+          "docs/validation/document-review-inflight-20261118/accepted/checks/whitespace.log",
+          "docs/validation/document-review-inflight-20261118/accepted/environment-after.json",
+          "docs/validation/document-review-inflight-20261118/accepted/environment-before.json",
+          "docs/validation/document-review-inflight-20261118/accepted/files.json",
+          "docs/validation/document-review-inflight-20261118/accepted/source-after.json",
+          "docs/validation/document-review-inflight-20261118/accepted/source-before.json",
+          "docs/validation/document-review-inflight-20261118/accepted/verification.json",
+          "docs/validation/document-review-inflight-20261118/accepted/visuals/checks/comments.jsonl",
+          "docs/validation/document-review-inflight-20261118/accepted/visuals/checks/comments.jsonl.gz",
+          "docs/validation/document-review-inflight-20261118/accepted/visuals/checks/text-options.jsonl",
+          "docs/validation/document-review-inflight-20261118/accepted/visuals/checks/text-options.jsonl.gz",
+          "docs/validation/document-review-inflight-20261118/accepted/visuals/preflight.json",
+          "docs/validation/document-review-inflight-20261118/accepted/visuals/verification.json",
+          "docs/validation/document-review-inflight-20261118/final-source-binding.json",
+          "docs/validation/document-review-inflight-20261118/publication.json",
+          "docs/validation/document-review-inflight-20261118/screenshots/comments-context-suggestions-desktop.png",
+          "packages/quds_office_editor/example/lib/studio_linguistic_analysis.dart",
+          "packages/quds_office_editor/example/lib/studio_spacy_config.dart",
+          "packages/quds_office_editor/example/lib/studio_spacy_config_native.dart",
+          "packages/quds_office_editor/example/lib/studio_spacy_config_unsupported.dart",
+          "packages/quds_office_editor/example/lib/studio_spacy_host.dart",
+          "packages/quds_office_editor/example/lib/studio_spacy_host_native.dart",
+          "packages/quds_office_editor/example/lib/studio_spacy_setup.dart",
+          "packages/quds_office_editor/example/test/studio_linguistic_analysis_test.dart",
+          "packages/quds_office_editor/example/test/studio_spacy_setup_test.dart",
+          "packages/quds_office_editor/test/word_thesaurus_dialog_test.dart",
+          "packages/quds_office_editor/test/word_thesaurus_review_integration_test.dart",
+          "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart",
+          "packages/quds_office_engine/test/word_zotero_caret_test.dart",
+          "packages/quds_office_engine/test/word_zotero_note_insertion_test.dart",
+          "packages/quds_proofing_spacy/lib/src/analysis.dart",
+          "packages/quds_proofing_spacy/lib/src/backend.dart",
+          "packages/quds_proofing_spacy/lib/src/bundle.dart",
+          "packages/quds_proofing_spacy/lib/src/distribution.dart",
+          "packages/quds_proofing_spacy/lib/src/installer_io.dart",
+          "packages/quds_proofing_spacy/lib/src/native_backend.dart",
+          "packages/quds_proofing_spacy/lib/src/worker_native.dart",
+          "packages/quds_proofing_spacy/test/language_catalog_test.dart",
+          "packages/quds_proofing_spacy/tool/language_worker_smoke.dart"
+        ],
+        "tree_verified_against_publication": true,
+        "both_parents_preserved": true,
+        "conflict_observation_source": "Root execution record supplied during reconciliation audit; Git commit records alone do not preserve the original unmerged index.",
+        "conflicts": [
+          {
+            "path": "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+            "resolution": "Retained current declarations and shortcut ordering once, preserving already-integrated thesaurus behavior and newer Zotero note targeting.",
+            "result_blob": "7b67e1a062a5a8582bcb8b30b1e7667121153488",
+            "first_parent_blob": "7b67e1a062a5a8582bcb8b30b1e7667121153488",
+            "incoming_blob": "9c802f158e3adcf454f11edb5ccbda1b7e7475fd",
+            "result_identical_to_first_parent": true,
+            "incoming_only_commits_touching_path": []
+          },
+          {
+            "path": "packages/quds_office_editor/lib/src/embed/office_editors.dart",
+            "resolution": "Retained current declarations and shortcut ordering once, preserving already-integrated thesaurus behavior and newer Zotero note targeting.",
+            "result_blob": "bb5a5e8978e0ff52af38cc332cd4d993381b3a50",
+            "first_parent_blob": "bb5a5e8978e0ff52af38cc332cd4d993381b3a50",
+            "incoming_blob": "97d1c6aaa5a715cb8e3588d7966b300a399cf3ca",
+            "result_identical_to_first_parent": true,
+            "incoming_only_commits_touching_path": []
+          }
+        ],
+        "conflict_detail": "Relocated duplicate WordTextProofingTarget declarations in office_controller.dart and differing shortcut order in office_editors.dart; no incoming-only commits touched either resolved path.",
+        "retained_single_WordTextProofingTarget_declaration": true
+      },
+      {
+        "sequence_in_phase": 3,
+        "published_merge_commit": "34c585e2573ec2733283068a05a6c138f5197f41",
+        "local_merge_commit": "25ec3ec525328c7b3ec1806f74a5b1e4f14fc2db",
+        "first_parent": "2bdd66dd80ce1c53a13f7028e8251efbe2f5624d",
+        "incoming_parent": "17fe8db8755a5ab55a677fc7f95aa103c3e2ddc6",
+        "tree": "1093bdac0bf4401ca921b032b07c020d75036e78",
+        "committed_at_utc": "2026-11-18T19:08:51+00:00",
+        "subject": "Bring in English French analysis and pinned native runtime [skip ci]",
+        "merge_bases": [
+          "9a90262da555705758fa233f7d4e339ff453a0dc"
+        ],
+        "incoming_changed_paths_since_merge_base": 5,
+        "merged_changed_paths_against_first_parent": 5,
+        "paths_changed_on_both_sides": [],
+        "tree_verified_against_publication": true,
+        "both_parents_preserved": true,
+        "conflict_observation_source": "Root execution record supplied during reconciliation audit; Git commit records alone do not preserve the original unmerged index.",
+        "conflicts": []
+      },
+      {
+        "sequence_in_phase": 4,
+        "published_merge_commit": "39eada31155dd85d971bab71d26cda6e67cb6844",
+        "local_merge_commit": "bbf0f39ab82cd097303a592856fb4dcf82f78e93",
+        "first_parent": "34c585e2573ec2733283068a05a6c138f5197f41",
+        "incoming_parent": "9232b0560525c089d7bf73a55a8e561fdf41b5b1",
+        "tree": "f24b1e0885f81c96a2ef875f7d0441527775f340",
+        "committed_at_utc": "2026-11-18T19:08:55+00:00",
+        "subject": "Bring in current Mail core and recovery contracts [skip ci]",
+        "merge_bases": [
+          "0e07d24714e6261123fcb835c36a592d6827982d"
+        ],
+        "incoming_changed_paths_since_merge_base": 44,
+        "merged_changed_paths_against_first_parent": 44,
+        "paths_changed_on_both_sides": [],
+        "tree_verified_against_publication": true,
+        "both_parents_preserved": true,
+        "conflict_observation_source": "Root execution record supplied during reconciliation audit; Git commit records alone do not preserve the original unmerged index.",
+        "conflicts": []
+      }
+    ]
+  },
+  "final_reconciliation": {
+    "pre_merge_source": "c914be7aa827ff7e5694fe0d638aaefdad8a4b80",
+    "bounded_heads_integrated": [
+      "46d7422d5ac356c327759872ff28adcd154b75ad",
+      "0e84dc951e7a9e923107d7895fa457cf29a7af71",
+      "c93fc23b388a053f0b4742b771adb511aaf3578a",
+      "637b67c58482e40a3244c590ce77c08b9fc2740e"
+    ],
+    "merges": [
+      {
+        "sequence_in_phase": 1,
+        "published_merge_commit": "078f373387b9987fa2b13505602d5744508c6d91",
+        "local_merge_commit": "2424477e465caeafc02397a4ba54f31b5cb4adbb",
+        "first_parent": "c914be7aa827ff7e5694fe0d638aaefdad8a4b80",
+        "incoming_parent": "46d7422d5ac356c327759872ff28adcd154b75ad",
+        "tree": "13044a8e1c455c2edf22e337e08d669385e6e623",
+        "committed_at_utc": "2026-11-18T19:25:26+00:00",
+        "subject": "Reconcile captured Mail reader and MIME improvements [skip ci]",
+        "merge_bases": [
+          "9232b0560525c089d7bf73a55a8e561fdf41b5b1"
+        ],
+        "incoming_changed_paths_since_merge_base": 317,
+        "merged_changed_paths_against_first_parent": 317,
+        "paths_changed_on_both_sides": [],
+        "tree_verified_against_publication": true,
+        "both_parents_preserved": true,
+        "conflict_observation_source": "Root execution record supplied during reconciliation audit; Git commit records alone do not preserve the original unmerged index.",
+        "conflicts": [],
+        "incoming_delta_matches_merge": true,
+        "clean_merge_verification": true
+      },
+      {
+        "sequence_in_phase": 2,
+        "published_merge_commit": "fc65ed55db95631da629a0f7b6b1f7829b6faedd",
+        "local_merge_commit": "1e56ee3b27d0ee0aa90d7f0201de17e1b8244e5b",
+        "first_parent": "078f373387b9987fa2b13505602d5744508c6d91",
+        "incoming_parent": "0e84dc951e7a9e923107d7895fa457cf29a7af71",
+        "tree": "6c308aa9ac042895f7c6bed354546ce92b894a4a",
+        "committed_at_utc": "2026-11-18T19:25:28+00:00",
+        "subject": "Bring in captured thesaurus qualification evidence [skip ci]",
+        "merge_bases": [
+          "b9e8c159cea315aa0a044c4b0a6fc2cd35d11055"
+        ],
+        "incoming_changed_paths_since_merge_base": 26,
+        "merged_changed_paths_against_first_parent": 26,
+        "paths_changed_on_both_sides": [],
+        "tree_verified_against_publication": true,
+        "both_parents_preserved": true,
+        "conflict_observation_source": "Root execution record supplied during reconciliation audit; Git commit records alone do not preserve the original unmerged index.",
+        "conflicts": [],
+        "incoming_delta_matches_merge": true,
+        "clean_merge_verification": true
+      },
+      {
+        "sequence_in_phase": 3,
+        "published_merge_commit": "46191bd86d0fc4cf82d85e0c9aa3006500198841",
+        "local_merge_commit": "3132c46e3fd6067fe307cb381779848972223cc1",
+        "first_parent": "fc65ed55db95631da629a0f7b6b1f7829b6faedd",
+        "incoming_parent": "c93fc23b388a053f0b4742b771adb511aaf3578a",
+        "tree": "c953df172a5af02b75e038d65356bac87f9225af",
+        "committed_at_utc": "2026-11-18T19:25:31+00:00",
+        "subject": "Bring in captured Zotero Notes qualification evidence [skip ci]",
+        "merge_bases": [
+          "ff1518517dd9f67e214ff56fe7eef06349f5223a"
+        ],
+        "incoming_changed_paths_since_merge_base": 47,
+        "merged_changed_paths_against_first_parent": 47,
+        "paths_changed_on_both_sides": [],
+        "tree_verified_against_publication": true,
+        "both_parents_preserved": true,
+        "conflict_observation_source": "Root execution record supplied during reconciliation audit; Git commit records alone do not preserve the original unmerged index.",
+        "conflicts": [],
+        "incoming_delta_matches_merge": true,
+        "clean_merge_verification": true
+      },
+      {
+        "sequence_in_phase": 4,
+        "published_merge_commit": "bfa88aab88a74028285619dfa07f3a81868fe59b",
+        "local_merge_commit": "20090caada5d8309e30ec0065c5ce1853aaaf72d",
+        "first_parent": "46191bd86d0fc4cf82d85e0c9aa3006500198841",
+        "incoming_parent": "637b67c58482e40a3244c590ce77c08b9fc2740e",
+        "tree": "3418afd634efcaaa14c4712103f69ae5e817bffd",
+        "committed_at_utc": "2026-11-18T19:25:33+00:00",
+        "subject": "Bring in captured published analysis runtime evidence [skip ci]",
+        "merge_bases": [
+          "17fe8db8755a5ab55a677fc7f95aa103c3e2ddc6"
+        ],
+        "incoming_changed_paths_since_merge_base": 2,
+        "merged_changed_paths_against_first_parent": 2,
+        "paths_changed_on_both_sides": [],
+        "tree_verified_against_publication": true,
+        "both_parents_preserved": true,
+        "conflict_observation_source": "Root execution record supplied during reconciliation audit; Git commit records alone do not preserve the original unmerged index.",
+        "conflicts": [],
+        "incoming_delta_matches_merge": true,
+        "clean_merge_verification": true
+      }
+    ],
+    "all_four_merges_verified_clean": true,
+    "workspace_effect": "Mail adds three workspace members and a local enough_mail path dependency; package resolution must be refreshed before tests. The late spaCy production change is a consumer-run identifier only. Thesaurus and Zotero late deltas are documentation/evidence."
+  },
+  "publication_tree_and_parent_checks": [
+    {
+      "commit": "d1dc3416319891cf26346bd0ff81012ac1a58cf8",
+      "expected_tree": "9a2014756626b256509df78d5ca0efedcd3c967a",
+      "actual_tree": "9a2014756626b256509df78d5ca0efedcd3c967a",
+      "tree_matches": true,
+      "expected_first_parent": "b5d4df516db210a6f8ea566b290988dab5652630",
+      "actual_parents": [
+        "b5d4df516db210a6f8ea566b290988dab5652630",
+        "ff1518517dd9f67e214ff56fe7eef06349f5223a"
+      ],
+      "first_parent_matches": true,
+      "skip_ci_message": true,
+      "local_commit": "51beea31639b74733cad6639f8f6097b2b178a31",
+      "local_tree": "9a2014756626b256509df78d5ca0efedcd3c967a",
+      "local_and_remote_trees_identical": true,
+      "incoming_parent_matches": true
+    },
+    {
+      "commit": "2bdd66dd80ce1c53a13f7028e8251efbe2f5624d",
+      "expected_tree": "ffb775a893b54e8f5759be40157bc63d91697399",
+      "actual_tree": "ffb775a893b54e8f5759be40157bc63d91697399",
+      "tree_matches": true,
+      "expected_first_parent": "d1dc3416319891cf26346bd0ff81012ac1a58cf8",
+      "actual_parents": [
+        "d1dc3416319891cf26346bd0ff81012ac1a58cf8",
+        "b9e8c159cea315aa0a044c4b0a6fc2cd35d11055"
+      ],
+      "first_parent_matches": true,
+      "skip_ci_message": true,
+      "local_commit": "bf8ea7dbfb008cf8fa4eaf88b6c031ea91a551c4",
+      "local_tree": "ffb775a893b54e8f5759be40157bc63d91697399",
+      "local_and_remote_trees_identical": true,
+      "incoming_parent_matches": true
+    },
+    {
+      "commit": "34c585e2573ec2733283068a05a6c138f5197f41",
+      "expected_tree": "1093bdac0bf4401ca921b032b07c020d75036e78",
+      "actual_tree": "1093bdac0bf4401ca921b032b07c020d75036e78",
+      "tree_matches": true,
+      "expected_first_parent": "2bdd66dd80ce1c53a13f7028e8251efbe2f5624d",
+      "actual_parents": [
+        "2bdd66dd80ce1c53a13f7028e8251efbe2f5624d",
+        "17fe8db8755a5ab55a677fc7f95aa103c3e2ddc6"
+      ],
+      "first_parent_matches": true,
+      "skip_ci_message": true,
+      "local_commit": "25ec3ec525328c7b3ec1806f74a5b1e4f14fc2db",
+      "local_tree": "1093bdac0bf4401ca921b032b07c020d75036e78",
+      "local_and_remote_trees_identical": true,
+      "incoming_parent_matches": true
+    },
+    {
+      "commit": "39eada31155dd85d971bab71d26cda6e67cb6844",
+      "expected_tree": "f24b1e0885f81c96a2ef875f7d0441527775f340",
+      "actual_tree": "f24b1e0885f81c96a2ef875f7d0441527775f340",
+      "tree_matches": true,
+      "expected_first_parent": "34c585e2573ec2733283068a05a6c138f5197f41",
+      "actual_parents": [
+        "34c585e2573ec2733283068a05a6c138f5197f41",
+        "9232b0560525c089d7bf73a55a8e561fdf41b5b1"
+      ],
+      "first_parent_matches": true,
+      "skip_ci_message": true,
+      "local_commit": "bbf0f39ab82cd097303a592856fb4dcf82f78e93",
+      "local_tree": "f24b1e0885f81c96a2ef875f7d0441527775f340",
+      "local_and_remote_trees_identical": true,
+      "incoming_parent_matches": true
+    },
+    {
+      "commit": "b9728ea1ec835cb589b266cfe9fc98507eb7acfa",
+      "expected_tree": "b098fb4f447261c42a7207d0d7820dfaa6bc15bd",
+      "actual_tree": "b098fb4f447261c42a7207d0d7820dfaa6bc15bd",
+      "tree_matches": true,
+      "expected_first_parent": "39eada31155dd85d971bab71d26cda6e67cb6844",
+      "actual_parents": [
+        "39eada31155dd85d971bab71d26cda6e67cb6844"
+      ],
+      "first_parent_matches": true,
+      "skip_ci_message": true
+    },
+    {
+      "commit": "c914be7aa827ff7e5694fe0d638aaefdad8a4b80",
+      "expected_tree": "e822e721124f5961e6b4291c25f3e5bfa3c15107",
+      "actual_tree": "e822e721124f5961e6b4291c25f3e5bfa3c15107",
+      "tree_matches": true,
+      "expected_first_parent": "b9728ea1ec835cb589b266cfe9fc98507eb7acfa",
+      "actual_parents": [
+        "b9728ea1ec835cb589b266cfe9fc98507eb7acfa"
+      ],
+      "first_parent_matches": true,
+      "skip_ci_message": true
+    },
+    {
+      "commit": "078f373387b9987fa2b13505602d5744508c6d91",
+      "expected_tree": "13044a8e1c455c2edf22e337e08d669385e6e623",
+      "actual_tree": "13044a8e1c455c2edf22e337e08d669385e6e623",
+      "tree_matches": true,
+      "expected_first_parent": "c914be7aa827ff7e5694fe0d638aaefdad8a4b80",
+      "actual_parents": [
+        "c914be7aa827ff7e5694fe0d638aaefdad8a4b80",
+        "46d7422d5ac356c327759872ff28adcd154b75ad"
+      ],
+      "first_parent_matches": true,
+      "skip_ci_message": true,
+      "local_commit": "2424477e465caeafc02397a4ba54f31b5cb4adbb",
+      "local_tree": "13044a8e1c455c2edf22e337e08d669385e6e623",
+      "local_and_remote_trees_identical": true,
+      "incoming_parent_matches": true
+    },
+    {
+      "commit": "fc65ed55db95631da629a0f7b6b1f7829b6faedd",
+      "expected_tree": "6c308aa9ac042895f7c6bed354546ce92b894a4a",
+      "actual_tree": "6c308aa9ac042895f7c6bed354546ce92b894a4a",
+      "tree_matches": true,
+      "expected_first_parent": "078f373387b9987fa2b13505602d5744508c6d91",
+      "actual_parents": [
+        "078f373387b9987fa2b13505602d5744508c6d91",
+        "0e84dc951e7a9e923107d7895fa457cf29a7af71"
+      ],
+      "first_parent_matches": true,
+      "skip_ci_message": true,
+      "local_commit": "1e56ee3b27d0ee0aa90d7f0201de17e1b8244e5b",
+      "local_tree": "6c308aa9ac042895f7c6bed354546ce92b894a4a",
+      "local_and_remote_trees_identical": true,
+      "incoming_parent_matches": true
+    },
+    {
+      "commit": "46191bd86d0fc4cf82d85e0c9aa3006500198841",
+      "expected_tree": "c953df172a5af02b75e038d65356bac87f9225af",
+      "actual_tree": "c953df172a5af02b75e038d65356bac87f9225af",
+      "tree_matches": true,
+      "expected_first_parent": "fc65ed55db95631da629a0f7b6b1f7829b6faedd",
+      "actual_parents": [
+        "fc65ed55db95631da629a0f7b6b1f7829b6faedd",
+        "c93fc23b388a053f0b4742b771adb511aaf3578a"
+      ],
+      "first_parent_matches": true,
+      "skip_ci_message": true,
+      "local_commit": "3132c46e3fd6067fe307cb381779848972223cc1",
+      "local_tree": "c953df172a5af02b75e038d65356bac87f9225af",
+      "local_and_remote_trees_identical": true,
+      "incoming_parent_matches": true
+    },
+    {
+      "commit": "bfa88aab88a74028285619dfa07f3a81868fe59b",
+      "expected_tree": "3418afd634efcaaa14c4712103f69ae5e817bffd",
+      "actual_tree": "3418afd634efcaaa14c4712103f69ae5e817bffd",
+      "tree_matches": true,
+      "expected_first_parent": "46191bd86d0fc4cf82d85e0c9aa3006500198841",
+      "actual_parents": [
+        "46191bd86d0fc4cf82d85e0c9aa3006500198841",
+        "637b67c58482e40a3244c590ce77c08b9fc2740e"
+      ],
+      "first_parent_matches": true,
+      "skip_ci_message": true,
+      "local_commit": "20090caada5d8309e30ec0065c5ce1853aaaf72d",
+      "local_tree": "3418afd634efcaaa14c4712103f69ae5e817bffd",
+      "local_and_remote_trees_identical": true,
+      "incoming_parent_matches": true
+    }
+  ],
+  "provenance_notes": [
+    "The bounded final snapshot records review branch and PR162 at b9728ea1. Later self-checkpoints c914be7a and the final merges are descendants and intentionally do not trigger another moving-frontier observation.",
+    "historical-equivalence.json retains inherited evidence_record=\"incoming-reconciliation.json\" labels from the prior turn. That provenance resolves to docs/validation/document-review-inflight-20261118/incoming-reconciliation.json; all equivalence methods were independently rechecked against the final source in this report."
+  ],
+  "inconsistencies": [],
+  "repository_unchanged_during_audit": true,
+  "github_actions_queried_or_awaited": false,
+  "latest_candidate_verification": {
+    "recorded_at_utc": "2026-11-18T19:41:57.685490+00:00",
+    "candidate": "66919cf857fe2439a3512a821817f35981760a75",
+    "expected_tree": "33faed80ab06c0d5aa3e8b9faa73ceff27892246",
+    "actual_tree": "33faed80ab06c0d5aa3e8b9faa73ceff27892246",
+    "tree_matches": true,
+    "prior_verified_source": "bfa88aab88a74028285619dfa07f3a81868fe59b",
+    "prior_source_is_ancestor": true,
+    "frontier_cutoff_unchanged": "2026-11-18T19:23:15.181640+00:00",
+    "saved_reference_count": 385,
+    "saved_unique_heads": 251,
+    "classification_counts": {
+      "included_in_ancestry": 357,
+      "verified_historical_equivalent": 28
+    },
+    "unique_head_classification_counts": {
+      "included_in_ancestry": 237,
+      "verified_historical_equivalent": 14
+    },
+    "all_saved_classifications_valid": true,
+    "classification_mismatches": [],
+    "historical_equivalence_reverification": [
+      {
+        "sha": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
+        "classification": "verified_historical_equivalent",
+        "verified": true,
+        "method": "all_commits_patch_equivalent",
+        "comparison_rows": [
+          "- 005c708e9f747cb46cf02e12c869b0a2f85ac824"
+        ]
+      },
+      {
+        "sha": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+        "classification": "verified_historical_equivalent",
+        "verified": true,
+        "method": "all_commits_patch_equivalent",
+        "comparison_rows": [
+          "- b8ddaaeb581e010467de304c828764d353149102",
+          "- 0a53b8a70128870f3e1df6d18cdb177bb64290ee"
+        ]
+      },
+      {
+        "sha": "128a187d69555db80890c2a1945a442b951f9c74",
+        "classification": "verified_historical_equivalent",
+        "verified": true,
+        "method": "all_commits_patch_equivalent",
+        "comparison_rows": [
+          "- 128a187d69555db80890c2a1945a442b951f9c74"
+        ]
+      },
+      {
+        "sha": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+        "classification": "verified_historical_equivalent",
+        "verified": true,
+        "method": "identical_tree_already_integrated",
+        "equivalent_commit": "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4",
+        "equivalent_commit_is_ancestor": true
+      },
+      {
+        "sha": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+        "classification": "verified_historical_equivalent",
+        "verified": true,
+        "method": "all_commits_patch_equivalent",
+        "comparison_rows": [
+          "- 58fdddfbcf198a8c0e38e32f6fcc9d6604e95283"
+        ]
+      },
+      {
+        "sha": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+        "classification": "verified_historical_equivalent",
+        "verified": true,
+        "method": "all_commits_patch_equivalent",
+        "comparison_rows": [
+          "- 68a0db23408e4c95d6d283219504c79aea33a6fe"
+        ]
+      },
+      {
+        "sha": "69d14f84cabd3931b7640c1654b401c89faba766",
+        "classification": "verified_historical_equivalent",
+        "verified": true,
+        "method": "all_commits_patch_equivalent",
+        "comparison_rows": [
+          "- 69d14f84cabd3931b7640c1654b401c89faba766"
+        ]
+      },
+      {
+        "sha": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+        "classification": "verified_historical_equivalent",
+        "verified": true,
+        "method": "all_commits_patch_equivalent",
+        "comparison_rows": [
+          "- 74ce9ffb816c70c0d2ae50b91ec52a614f26d688"
+        ]
+      },
+      {
+        "sha": "7ef09f2408f467c65427700e65907531ecb26acb",
+        "classification": "verified_historical_equivalent",
+        "verified": true,
+        "method": "all_commits_patch_equivalent",
+        "comparison_rows": [
+          "- 7ef09f2408f467c65427700e65907531ecb26acb"
+        ]
+      },
+      {
+        "sha": "a7f144cc983f2df7c16d88f8644ad67a9254c3d0",
+        "classification": "verified_historical_equivalent",
+        "verified": true,
+        "method": "all_commits_patch_equivalent",
+        "comparison_rows": [
+          "- a7f144cc983f2df7c16d88f8644ad67a9254c3d0"
+        ]
+      },
+      {
+        "sha": "b8ddaaeb581e010467de304c828764d353149102",
+        "classification": "verified_historical_equivalent",
+        "verified": true,
+        "method": "all_commits_patch_equivalent",
+        "comparison_rows": [
+          "- b8ddaaeb581e010467de304c828764d353149102"
+        ]
+      },
+      {
+        "sha": "c34945761e7991f5fe49037d79529acdd260b31c",
+        "classification": "verified_historical_equivalent",
+        "verified": true,
+        "method": "all_changed_files_identical_in_merged_pr_140",
+        "equivalent_commit": "2c47165d01d01cc883135a434ac9f6591ce6e770",
+        "equivalent_commit_is_ancestor": true,
+        "identical_file_entries": 37
+      },
+      {
+        "sha": "cee6e2632f891a3fe21c5c02d6bf508805973051",
+        "classification": "verified_historical_equivalent",
+        "verified": true,
+        "method": "identical_tree_already_integrated",
+        "equivalent_commit": "bb5556e8cc4cb73e2c668b5319a2844a20c6c50c",
+        "equivalent_commit_is_ancestor": true
+      },
+      {
+        "sha": "da9c956ec5d65c0e5a9f9ea84c2b0bca98e824a0",
+        "classification": "verified_historical_equivalent",
+        "verified": true,
+        "method": "identical_tree_already_integrated",
+        "equivalent_commit": "23f3b4204fce45d38a103e3159bdc7f1e8d37c4e",
+        "equivalent_commit_is_ancestor": true
+      }
+    ],
+    "vendor_preservation": {
+      "path": "third_party/enough_mail",
+      "candidate_tree": "e9bc3047922df465b29806b47ea0b06858345169",
+      "incoming_commit": "46d7422d5ac356c327759872ff28adcd154b75ad",
+      "incoming_tree": "e9bc3047922df465b29806b47ea0b06858345169",
+      "exact_tree_match": true
+    },
+    "lock_and_runtime_status": {
+      "source": "Root verification message supplied for this follow-up; not independently rerun by this audit",
+      "mail_changes_passed_offline_lock_enforcement_and_strict_analysis": true,
+      "lock_package_config_and_runtime_hashes_unchanged": true
+    },
+    "no_remote_frontier_refresh": true,
+    "no_dart_flutter_or_ci_invocation": true,
+    "repository_unchanged_during_followup": true,
+    "head_at_followup": "66919cf857fe2439a3512a821817f35981760a75"
+  }
+}
