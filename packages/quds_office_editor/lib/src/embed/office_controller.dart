@@ -456,7 +456,7 @@ class WordEditorController extends OfficeController {
   WordReviewPaneTab _reviewPaneTab = WordReviewPaneTab.proofing;
   WordProofingIssue? _selectedProofingIssue;
   Future<WordProofingSummary>? _explicitProofingCheck;
-  WordProofingSummary? _explicitProofingSnapshot;
+  int? _explicitProofingGeneration;
   ({WmlParagraph? paragraph, int offset, int? anchor, int? anchorParagraph})?
   _proofingSelectionCaret;
 
@@ -6815,6 +6815,32 @@ class WordEditorController extends OfficeController {
     }
     final WmlRevisionSnapshot before = WordRevisions.capture(document);
     final int? selected = selectedRevisionIndex;
+    final pending = document.revisions
+        .where((revision) => revision.accepted == null)
+        .toList();
+    final current = selectedRevision;
+    final currentIndex = current == null ? -1 : pending.indexOf(current);
+    WmlRevision? successor;
+    if (current != null && !targets.contains(current)) {
+      successor = current;
+    } else {
+      // Keep review moving forward from the decision. At the end, stay with
+      // the nearest earlier change instead of jumping to the document start.
+      for (var index = currentIndex + 1; index < pending.length; index++) {
+        if (!targets.contains(pending[index])) {
+          successor = pending[index];
+          break;
+        }
+      }
+      if (successor == null) {
+        for (var index = currentIndex - 1; index >= 0; index--) {
+          if (!targets.contains(pending[index])) {
+            successor = pending[index];
+            break;
+          }
+        }
+      }
+    }
     void restore() {
       for (final entry in inlines.entries) {
         entry.key.inlines
@@ -6837,7 +6863,10 @@ class WordEditorController extends OfficeController {
                 WordRevisions.reject(document, revision);
               }
             }
-            selectedRevisionIndex = null;
+            final next = successor == null
+                ? -1
+                : document.revisions.indexOf(successor!);
+            selectedRevisionIndex = next < 0 ? null : next;
           } on Object {
             restore();
             rethrow;
@@ -7900,18 +7929,18 @@ class WordEditorController extends OfficeController {
   Future<WordProofingSummary> checkDocumentProofing() {
     final current = _explicitProofingCheck;
     if (current != null &&
-        identical(_explicitProofingSnapshot, proofing.summary)) {
+        _explicitProofingGeneration == proofing.checkGeneration) {
       return current;
     }
     late final Future<WordProofingSummary> check;
     check = proofing.checkNow().whenComplete(() {
       if (identical(_explicitProofingCheck, check)) {
         _explicitProofingCheck = null;
-        _explicitProofingSnapshot = null;
+        _explicitProofingGeneration = null;
       }
     });
     _explicitProofingCheck = check;
-    _explicitProofingSnapshot = proofing.summary;
+    _explicitProofingGeneration = proofing.checkGeneration;
     return check;
   }
 

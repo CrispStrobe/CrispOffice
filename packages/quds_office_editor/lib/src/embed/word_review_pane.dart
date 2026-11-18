@@ -38,8 +38,13 @@ enum _ProofingFilter { all, spelling, grammar, style }
 class _WordReviewPaneState extends State<WordReviewPane> {
   late WordReviewPaneTab _tab;
   late final TextEditingController _author;
+  final TextEditingController _changeSearch = TextEditingController();
   final ScrollController _scroll = ScrollController();
   _ProofingFilter _filter = _ProofingFilter.all;
+  String? _changeAuthor;
+  WmlRevisionKind? _changeKind;
+  String _changeQuery = '';
+  WordComparisonRevisionView _preview = WordComparisonRevisionView.markup;
   String? _notice;
 
   WordEditorController get _c => widget.controller;
@@ -60,6 +65,11 @@ class _WordReviewPaneState extends State<WordReviewPane> {
     if (!identical(oldWidget.controller, _c)) {
       _author.text = _c.revisionAuthor;
       _filter = _ProofingFilter.all;
+      _changeSearch.clear();
+      _changeAuthor = null;
+      _changeKind = null;
+      _changeQuery = '';
+      _preview = WordComparisonRevisionView.markup;
       _notice = null;
       _scheduleInitialCheck();
     }
@@ -73,6 +83,7 @@ class _WordReviewPaneState extends State<WordReviewPane> {
   @override
   void dispose() {
     _author.dispose();
+    _changeSearch.dispose();
     _scroll.dispose();
     super.dispose();
   }
@@ -198,6 +209,10 @@ class _WordReviewPaneState extends State<WordReviewPane> {
           color: theme.colorScheme.surface,
           child: CallbackShortcuts(
             bindings: <ShortcutActivator, VoidCallback>{
+              const SingleActivator(LogicalKeyboardKey.f7): () {
+                _setTab(WordReviewPaneTab.proofing);
+                unawaited(_check(includeManualProviders: true));
+              },
               if (widget.onClose != null)
                 const SingleActivator(LogicalKeyboardKey.escape):
                     widget.onClose!,
@@ -403,7 +418,7 @@ class _WordReviewPaneState extends State<WordReviewPane> {
             : () => _selectIssue(issues[(selectedIndex + 1) % issues.length]),
       ),
       if (selected != null) ...<Widget>[
-        _issueDetail(selected, actionable && !summary.checking),
+        _issueDetail(selected, actionable),
         if (issues.length > 1)
           ExpansionTile(
             key: const ValueKey<String>('live-proofing-list'),
@@ -559,24 +574,115 @@ class _WordReviewPaneState extends State<WordReviewPane> {
     );
   }
 
+  bool get _hasChangeFilters =>
+      _changeAuthor != null ||
+      _changeKind != null ||
+      _changeQuery.trim().isNotEmpty;
+
+  List<WmlRevision> _filteredChanges(List<WmlRevision> pending) {
+    final query = _changeQuery.trim().toLowerCase();
+    return pending.where((revision) {
+      return (_changeAuthor == null || revision.author == _changeAuthor) &&
+          (_changeKind == null || revision.kind == _changeKind) &&
+          (query.isEmpty ||
+              revision.text.toLowerCase().contains(query) ||
+              revision.author.toLowerCase().contains(query));
+    }).toList();
+  }
+
+  WmlRevision? _selectedShownChange(List<WmlRevision> shown) {
+    if (shown.isEmpty) return null;
+    final selected = _c.selectedRevision;
+    if (shown.contains(selected)) return selected;
+    if (selected != null) {
+      final current = _c.document.revisions.indexOf(selected);
+      for (final revision in shown) {
+        if (_c.document.revisions.indexOf(revision) >= current) return revision;
+      }
+      return shown.last;
+    }
+    return shown.first;
+  }
+
+  Map<WmlRevision, WmlParagraph?> _reviewTargets(List<WmlRevision> pending) {
+    final body = pending.any((revision) => !revision.hasCapturedTarget)
+        ? _c.document.paragraphs.toList()
+        : const <WmlParagraph>[];
+    return <WmlRevision, WmlParagraph?>{
+      for (final revision in pending)
+        revision:
+            revision.targetParagraph ??
+            (!revision.hasCapturedTarget &&
+                    revision.paragraphIndex >= 0 &&
+                    revision.paragraphIndex < body.length
+                ? body[revision.paragraphIndex]
+                : null),
+    };
+  }
+
+  void _clearChangeFilters() {
+    setState(() {
+      _changeAuthor = null;
+      _changeKind = null;
+      _changeQuery = '';
+      _changeSearch.clear();
+      _notice = null;
+    });
+  }
+
+  void _resolveChanges(
+    List<WmlRevision> revisions, {
+    required bool accept,
+    required WmlRevision? selected,
+  }) {
+    if (!_c.config.allowsMutation) return;
+    try {
+      // The displayed filtered selection must be the one restored by Undo,
+      // even if the canvas previously selected a change outside these filters.
+      if (selected != null && _c.document.revisions.contains(selected)) {
+        _c.selectedRevisionIndex = _c.document.revisions.indexOf(selected);
+      }
+      if (accept) {
+        _c.acceptRevisions(revisions);
+      } else {
+        _c.rejectRevisions(revisions);
+      }
+      setState(() {
+        _notice = _s(
+          'Review updated. Undo restores the previous changes.',
+          'تم تحديث المراجعة. التراجع يعيد التغييرات السابقة.',
+        );
+      });
+    } on Object catch (error) {
+      setState(() => _notice = '$error');
+    }
+  }
+
   List<Widget> _changesContent() {
     final pending = _c.document.revisions
         .where((revision) => revision.accepted == null)
         .toList();
-    final selected = _c.selectedRevision;
-    final selectedIndex = selected == null ? -1 : pending.indexOf(selected);
+    final shown = _filteredChanges(pending);
+    final selected = _selectedShownChange(shown);
+    final selectedIndex = selected == null ? -1 : shown.indexOf(selected);
+    final authors = <String>{
+      ...pending.map((revision) => revision.author),
+      ?_changeAuthor,
+    }.toList()..sort();
+    final targets = _reviewTargets(pending);
+    final editable = _c.config.allowsMutation;
     return <Widget>[
       SwitchListTile.adaptive(
         key: const ValueKey<String>('live-review-track'),
         contentPadding: EdgeInsets.zero,
         title: Text(_s('Track text changes', 'تعقب تغييرات النص')),
         value: _c.document.trackRevisions,
-        onChanged: _c.config.allowsMutation ? _c.setTrackRevisions : null,
+        onChanged: editable ? _c.setTrackRevisions : null,
       ),
       TextField(
         key: const ValueKey<String>('live-review-author'),
         controller: _author,
-        enabled: _c.config.allowsMutation,
+        enabled: editable,
         textInputAction: TextInputAction.done,
         decoration: InputDecoration(
           labelText: _s('Reviewer for new changes', 'مراجع التغييرات الجديدة'),
@@ -585,54 +691,207 @@ class _WordReviewPaneState extends State<WordReviewPane> {
           suffixIcon: IconButton(
             key: const ValueKey<String>('live-review-set-author'),
             tooltip: _s('Set reviewer', 'تعيين المراجع'),
-            onPressed: _c.config.allowsMutation ? _setAuthor : null,
+            onPressed: editable ? _setAuthor : null,
             icon: const Icon(Icons.check, size: 20),
           ),
         ),
         onSubmitted: (_) => _setAuthor(),
       ),
+      const SizedBox(height: 12),
+      TextField(
+        key: const ValueKey<String>('live-review-search'),
+        controller: _changeSearch,
+        decoration: InputDecoration(
+          labelText: _s('Search changes', 'بحث في التغييرات'),
+          border: const OutlineInputBorder(),
+          isDense: true,
+          prefixIcon: const Icon(Icons.search, size: 18),
+          suffixIcon: _changeQuery.isEmpty
+              ? null
+              : IconButton(
+                  key: const ValueKey<String>('live-review-clear-search'),
+                  tooltip: _s('Clear search', 'مسح البحث'),
+                  onPressed: () => setState(() {
+                    _changeSearch.clear();
+                    _changeQuery = '';
+                  }),
+                  icon: const Icon(Icons.clear, size: 18),
+                ),
+        ),
+        onChanged: (value) => setState(() {
+          _changeQuery = value;
+          _notice = null;
+        }),
+      ),
+      const SizedBox(height: 8),
+      _changeDropdown<String?>(
+        key: const ValueKey<String>('live-review-author-filter'),
+        label: _s('Author', 'المراجع'),
+        value: _changeAuthor,
+        hint: _s('All authors', 'كل المراجعين'),
+        items: <DropdownMenuItem<String?>>[
+          DropdownMenuItem(
+            value: null,
+            child: Text(
+              _s('All authors', 'كل المراجعين'),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+          for (final author in authors)
+            DropdownMenuItem(
+              value: author,
+              child: Text(
+                author.isEmpty
+                    ? _s('Unknown author', 'مراجع غير معروف')
+                    : author,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+        ],
+        onChanged: (value) => setState(() {
+          _changeAuthor = value;
+          _notice = null;
+        }),
+      ),
+      const SizedBox(height: 8),
+      _changeDropdown<WmlRevisionKind?>(
+        key: const ValueKey<String>('live-review-kind-filter'),
+        label: _s('Change type', 'نوع التغيير'),
+        value: _changeKind,
+        hint: _s('All change types', 'كل أنواع التغييرات'),
+        items: <DropdownMenuItem<WmlRevisionKind?>>[
+          DropdownMenuItem(
+            value: null,
+            child: Text(
+              _s('All change types', 'كل أنواع التغييرات'),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+          DropdownMenuItem(
+            value: WmlRevisionKind.insert,
+            child: Text(_s('Insertions', 'إدراج')),
+          ),
+          DropdownMenuItem(
+            value: WmlRevisionKind.delete,
+            child: Text(_s('Deletions', 'حذف')),
+          ),
+        ],
+        onChanged: (value) => setState(() {
+          _changeKind = value;
+          _notice = null;
+        }),
+      ),
       const SizedBox(height: 6),
+      Wrap(
+        spacing: 8,
+        crossAxisAlignment: WrapCrossAlignment.center,
+        children: <Widget>[
+          Text(
+            _s(
+              '${shown.length} of ${pending.length} pending changes',
+              '${shown.length} من ${pending.length} تغييرات معلقة',
+            ),
+            key: const ValueKey<String>('live-review-filter-count'),
+          ),
+          if (_hasChangeFilters)
+            TextButton(
+              key: const ValueKey<String>('live-review-clear-filters'),
+              onPressed: _clearChangeFilters,
+              child: Text(_s('Clear filters', 'مسح المرشحات')),
+            ),
+        ],
+      ),
       _navigation(
-        label: pending.isEmpty
-            ? _s('0 pending changes', 'لا توجد تغييرات معلقة')
+        label: shown.isEmpty
+            ? _s('0 shown changes', 'لا توجد تغييرات معروضة')
             : _s(
-                '${selectedIndex + 1} of ${pending.length} changes',
-                '${selectedIndex + 1} من ${pending.length} تغييرات',
+                '${selectedIndex + 1} of ${shown.length} changes',
+                '${selectedIndex + 1} من ${shown.length} تغييرات',
               ),
         previousKey: 'live-review-previous',
         nextKey: 'live-review-next',
-        onPrevious: pending.isEmpty
+        onPrevious: shown.isEmpty
             ? null
             : () => _selectRevision(
-                pending[(selectedIndex - 1) % pending.length],
+                shown[(selectedIndex - 1) % shown.length],
               ),
-        onNext: pending.isEmpty
+        onNext: shown.isEmpty
             ? null
             : () => _selectRevision(
-                pending[(selectedIndex + 1) % pending.length],
+                shown[(selectedIndex + 1) % shown.length],
               ),
       ),
       if (selected != null)
-        _revisionDetail(selected)
+        _revisionDetail(selected, targets)
       else
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 12),
           child: Text(
-            _s(
-              'No pending tracked changes. Turn on tracking to review future text edits.',
-              'لا توجد تغييرات متعقبة معلقة. فعّل التعقب لمراجعة تعديلات النص القادمة.',
-            ),
+            pending.isEmpty
+                ? _s(
+                    'No pending tracked changes. Turn on tracking to review future text edits.',
+                    'لا توجد تغييرات متعقبة معلقة. فعّل التعقب لمراجعة تعديلات النص القادمة.',
+                  )
+                : _s(
+                    'No changes match these filters.',
+                    'لا توجد تغييرات تطابق عوامل التصفية.',
+                  ),
             key: const ValueKey<String>('live-review-empty'),
           ),
         ),
       _historyActions(),
-      if (pending.length > 1)
+      if (pending.isNotEmpty) ...<Widget>[
+        const Divider(height: 20),
+        Wrap(
+          spacing: 8,
+          runSpacing: 4,
+          children: <Widget>[
+            TextButton(
+              key: const ValueKey<String>('live-review-accept-shown'),
+              onPressed: editable && shown.isNotEmpty
+                  ? () => _resolveChanges(
+                      shown,
+                      accept: true,
+                      selected: selected,
+                    )
+                  : null,
+              child: Text(
+                _s('Accept ${shown.length} shown', 'قبول ${shown.length} المعروضة'),
+              ),
+            ),
+            TextButton(
+              key: const ValueKey<String>('live-review-reject-shown'),
+              onPressed: editable && shown.isNotEmpty
+                  ? () => _resolveChanges(
+                      shown,
+                      accept: false,
+                      selected: selected,
+                    )
+                  : null,
+              child: Text(
+                _s('Reject ${shown.length} shown', 'رفض ${shown.length} المعروضة'),
+              ),
+            ),
+          ],
+        ),
+        Text(
+          _s(
+            'Only the changes matching these filters are included. Undo restores the whole batch.',
+            'تشمل العملية التغييرات المطابقة لهذه المرشحات فقط. التراجع يعيد المجموعة كاملة.',
+          ),
+          style: Theme.of(context).textTheme.bodySmall,
+        ),
+      ],
+      if (shown.length > 1)
         ExpansionTile(
           key: const ValueKey<String>('live-review-change-list'),
           tilePadding: EdgeInsets.zero,
-          title: Text(_s('All pending changes', 'كل التغييرات المعلقة')),
+          title: Text(_s('All shown changes', 'كل التغييرات المعروضة')),
           children: <Widget>[
-            for (final revision in pending)
+            for (final revision in shown)
               ListTile(
                 key: ValueKey<String>('live-review-change-${revision.id}'),
                 contentPadding: EdgeInsets.zero,
@@ -663,6 +922,33 @@ class _WordReviewPaneState extends State<WordReviewPane> {
     ];
   }
 
+  Widget _changeDropdown<T>({
+    required Key key,
+    required String label,
+    required T value,
+    String? hint,
+    required List<DropdownMenuItem<T>> items,
+    required ValueChanged<T?> onChanged,
+  }) => InputDecorator(
+    decoration: InputDecoration(
+      labelText: label,
+      border: const OutlineInputBorder(),
+      isDense: true,
+      contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+    ),
+    child: DropdownButton<T>(
+      key: key,
+      value: value,
+      isExpanded: true,
+      hint: hint == null
+          ? null
+          : Text(hint, maxLines: 1, overflow: TextOverflow.ellipsis),
+      underline: const SizedBox.shrink(),
+      items: items,
+      onChanged: onChanged,
+    ),
+  );
+
   void _setAuthor() {
     if (!_c.config.allowsMutation) return;
     _changeAction(() {
@@ -671,10 +957,13 @@ class _WordReviewPaneState extends State<WordReviewPane> {
     });
   }
 
-  Widget _revisionDetail(WmlRevision revision) {
+  Widget _revisionDetail(
+    WmlRevision revision,
+    Map<WmlRevision, WmlParagraph?> targets,
+  ) {
     String? problem;
     try {
-      WordRevisions.validateRevision(_c.document, revision);
+      WordRevisions.validateRevision(_c.document, revision, resolved: targets);
     } on Object catch (error) {
       problem = '$error';
     }
@@ -714,14 +1003,22 @@ class _WordReviewPaneState extends State<WordReviewPane> {
             FilledButton.tonal(
               key: const ValueKey<String>('live-review-accept'),
               onPressed: editable
-                  ? () => _changeAction(() => _c.acceptRevision(revision))
+                  ? () => _resolveChanges(
+                      <WmlRevision>[revision],
+                      accept: true,
+                      selected: revision,
+                    )
                   : null,
               child: Text(_s('Accept', 'قبول')),
             ),
             OutlinedButton(
               key: const ValueKey<String>('live-review-reject'),
               onPressed: editable
-                  ? () => _changeAction(() => _c.rejectRevision(revision))
+                  ? () => _resolveChanges(
+                      <WmlRevision>[revision],
+                      accept: false,
+                      selected: revision,
+                    )
                   : null,
               child: Text(_s('Reject', 'رفض')),
             ),
@@ -734,16 +1031,120 @@ class _WordReviewPaneState extends State<WordReviewPane> {
             ),
           ],
         ),
-        if (paragraph != null && problem == null) ...<Widget>[
+        if (paragraph != null) ...<Widget>[
           const Divider(height: 20),
-          Text(
-            _s('In context', 'السياق'),
-            style: Theme.of(context).textTheme.labelMedium,
+          _changeDropdown<WordComparisonRevisionView>(
+            key: const ValueKey<String>('live-review-preview-mode'),
+            label: _s('Paragraph preview', 'معاينة الفقرة'),
+            value: _preview,
+            items: <DropdownMenuItem<WordComparisonRevisionView>>[
+              for (final view in WordComparisonRevisionView.values)
+                DropdownMenuItem(
+                  value: view,
+                  child: Text(
+                    _previewLabel(view),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+            ],
+            onChanged: (value) {
+              if (value != null) setState(() => _preview = value);
+            },
           ),
+          const SizedBox(height: 8),
+          _paragraphPreview(paragraph, targets),
           const SizedBox(height: 6),
-          _excerpt(paragraph.text, revision.start, revision.end),
+          Text(
+            _s(
+              'Preview only. Changing this view does not accept or reject changes.',
+              'هذه معاينة فقط. تغيير العرض لا يقبل التغييرات أو يرفضها.',
+            ),
+            style: Theme.of(context).textTheme.bodySmall,
+          ),
         ],
       ],
+    );
+  }
+
+  String _previewLabel(WordComparisonRevisionView view) => switch (view) {
+    WordComparisonRevisionView.finalText => _s('Final text', 'النص النهائي'),
+    WordComparisonRevisionView.originalText => _s('Original text', 'النص الأصلي'),
+    WordComparisonRevisionView.markup => _s('All markup text', 'كل النص مع التغييرات'),
+  };
+
+  Widget _paragraphPreview(
+    WmlParagraph paragraph,
+    Map<WmlRevision, WmlParagraph?> targets,
+  ) {
+    final revisions = targets.entries
+        .where((entry) => identical(entry.value, paragraph))
+        .map((entry) => entry.key)
+        .toList()
+      ..sort((a, b) => a.start.compareTo(b.start));
+    final text = paragraph.text;
+    final spans = <TextSpan>[];
+    var at = 0;
+    try {
+      for (final revision in revisions) {
+        WordRevisions.validateRevision(_c.document, revision, resolved: targets);
+        if (revision.start < at) {
+          throw StateError('Tracked changes overlap.');
+        }
+        if (revision.start > at) {
+          spans.add(TextSpan(text: text.substring(at, revision.start)));
+        }
+        final inserted = revision.kind == WmlRevisionKind.insert;
+        final show = _preview == WordComparisonRevisionView.markup ||
+            (_preview == WordComparisonRevisionView.finalText && inserted) ||
+            (_preview == WordComparisonRevisionView.originalText && !inserted);
+        if (show) {
+          spans.add(
+            TextSpan(
+              text: revision.text,
+              style: _preview == WordComparisonRevisionView.markup
+                  ? TextStyle(
+                      color: inserted
+                          ? (Theme.of(context).brightness == Brightness.dark
+                                ? Colors.greenAccent.shade100
+                                : Colors.green.shade800)
+                          : (Theme.of(context).brightness == Brightness.dark
+                                ? Colors.redAccent.shade100
+                                : Colors.red.shade800),
+                      decoration: inserted
+                          ? TextDecoration.underline
+                          : TextDecoration.lineThrough,
+                    )
+                  : null,
+            ),
+          );
+        }
+        at = revision.end;
+      }
+    } on Object {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
+          Text(
+            _s(
+              'A change in this paragraph is stale or conflicted. The stored text is shown; final and original previews are unavailable.',
+              'يوجد تغيير قديم أو متعارض في هذه الفقرة. يُعرض النص المخزّن؛ معاينتا النص النهائي والأصلي غير متاحتين.',
+            ),
+            key: const ValueKey<String>('live-review-preview-unavailable'),
+            style: TextStyle(color: Theme.of(context).colorScheme.error),
+          ),
+          const SizedBox(height: 6),
+          SelectableText(
+            text,
+            key: const ValueKey<String>('live-review-preview-text'),
+          ),
+        ],
+      );
+    }
+    if (at < text.length) spans.add(TextSpan(text: text.substring(at)));
+    return SelectableText.rich(
+      TextSpan(children: spans),
+      key: const ValueKey<String>('live-review-preview-text'),
     );
   }
 
