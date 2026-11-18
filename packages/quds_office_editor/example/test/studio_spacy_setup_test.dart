@@ -258,7 +258,7 @@ void main() {
       final host = NativeStudioSpacyHost(
         root: root,
         environment: const {},
-        platform: SpacyPlatform.macosArm64,
+        platform: SpacyPlatform.windowsX64,
       );
       await host.refresh();
       expect(host.status.package, isNull);
