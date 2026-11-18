@@ -94,8 +94,12 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   final TextEditingController _slideNotesEdit = TextEditingController();
   int _notesSlideIndex = -1;
   final VirtualViewport _commentViewport = VirtualViewport();
+  final GlobalKey _commentCanvasKey = GlobalKey(
+    debugLabel: 'studio-comment-caret-context',
+  );
   OverlayEntry? _commentContextMenu;
   bool Function()? _commentContextIsCurrent;
+  bool _commentContextKeyboard = false;
   OverlayEntry? _slideSorterMenu;
   var _savePhase = _SavePhase.idle;
   var _saveHeavy = false;
@@ -304,6 +308,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     _pdfFind.dispose();
     _pdfThumbScroll.dispose();
     _slideNotesEdit.dispose();
+    _commentContextKeyboard = false;
     _wordFocus.dispose();
     _sheetFocus.dispose();
     _slideFocus.dispose();
@@ -5975,7 +5980,15 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     _commentReviewTimer?.cancel();
     OfficeContextMenu.dismiss(_commentContextMenu);
     _commentContextMenu = null;
+    _restoreCommentContextFocus();
     _commentContextIsCurrent = null;
+  }
+
+  void _restoreCommentContextFocus() {
+    final restore =
+        _commentContextKeyboard && (_commentContextIsCurrent?.call() ?? false);
+    _commentContextKeyboard = false;
+    if (restore && mounted && _wordRouteIsCurrent) _wordFocus.requestFocus();
   }
 
   void _syncCommentReplyDrafts() {
@@ -6075,10 +6088,57 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
 
   bool get _wordRouteIsCurrent => ModalRoute.of(context)?.isCurrent ?? true;
 
+  void _showCommentCaretContext() {
+    if (!mounted ||
+        _app != SuiteApp.word ||
+        !_showComments ||
+        !_wordFocus.hasPrimaryFocus ||
+        !_wordRouteIsCurrent ||
+        !_word.config.allowsSelection ||
+        !_word.isEditingComment ||
+        (_word.input.composing.isValid && !_word.input.composing.isCollapsed)) {
+      return;
+    }
+    final comment = _word.selectedComment;
+    final canvas = _commentCanvasKey.currentContext?.findRenderObject();
+    if (comment == null ||
+        canvas is! RenderWordCanvas ||
+        canvas.selectedCommentId != comment.id ||
+        !identical(canvas.caret, _word.commentCaret)) {
+      return;
+    }
+    var hit = canvas.contextHitForCaret();
+    if (hit == null || !comment.paragraphs.contains(hit.paragraph)) return;
+    // The selected finding's caret can sit just past its underline. Preserve
+    // both the source offset and the identity of overlapping findings.
+    final selected = _word.selectedProofingIssue;
+    final caret = _word.commentCaret;
+    WordProofingIssue? preferredIssue;
+    if (selected != null &&
+        identical(selected.paragraph, hit.paragraph) &&
+        caret.selectionAnchorParagraph == caret.paragraphIndex &&
+        ((caret.selectionAnchor == selected.finding.start &&
+                caret.logicalIndex == selected.finding.end) ||
+            (caret.selectionAnchor == selected.finding.end &&
+                caret.logicalIndex == selected.finding.start))) {
+      preferredIssue = selected;
+      hit = canvas.contextHitForCaret(proofingOffset: selected.finding.start);
+      if (hit == null) return;
+    }
+    _showCommentContext(
+      comment,
+      hit,
+      keyboardNavigation: true,
+      preferredIssue: preferredIssue,
+    );
+  }
+
   void _showCommentContext(
     WmlComment comment,
     OfficeContextHit hit, {
     bool reviewOnly = false,
+    bool keyboardNavigation = false,
+    WordProofingIssue? preferredIssue,
   }) {
     _dismissCommentContext();
     if (!_wordRouteIsCurrent ||
@@ -6104,12 +6164,15 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     final revision = _word.contentRevision;
     final paragraph = hit.paragraph;
     final offset = hit.proofingOffset;
-    final issue =
+    final issues =
         paragraph != null &&
             offset != null &&
             comment.paragraphs.contains(paragraph)
-        ? _word.proofing.issuesAt(paragraph, offset).firstOrNull
-        : null;
+        ? _word.proofing.issuesAt(paragraph, offset)
+        : const <WordProofingIssue>[];
+    final issue = preferredIssue != null && issues.contains(preferredIssue)
+        ? preferredIssue
+        : issues.firstOrNull;
     final editing = _word.isEditingComment;
     final caret = (
       paragraph: _word.commentCaret.paragraphIndex,
@@ -6187,13 +6250,16 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         ),
     ];
     _commentContextIsCurrent = current;
+    _commentContextKeyboard = keyboardNavigation;
     _commentContextMenu = OfficeContextMenu.show(
       context: context,
       globalPosition: hit.globalPosition,
       actions: actions,
       enableFiltering: !reviewOnly,
+      keyboardNavigation: keyboardNavigation,
       onDismiss: () {
         _commentContextMenu = null;
+        _restoreCommentContextFocus();
         _commentContextIsCurrent = null;
       },
       onSelect: (id) {
@@ -6443,9 +6509,25 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
 
   Widget _commentReplyBox(WmlComment root, bool dark) {
     final draft = _commentReplyDraft(root);
+    final document = _word.document;
     return _CommentReplyComposer(
       key: draft.key,
       draft: draft,
+      proofing: _word.proofing,
+      isCurrent: () =>
+          mounted &&
+          _app == SuiteApp.word &&
+          _showComments &&
+          !_opening &&
+          _canMutate &&
+          _word.config.allowsMutation &&
+          _wordRouteIsCurrent &&
+          identical(document, _word.document) &&
+          identical(_commentReplyDrafts[root.id], draft) &&
+          identical(WordComment.byId(document, root.id), root) &&
+          _word.selectedCommentId != null &&
+          WordComment.threadRootId(document, _word.selectedCommentId!) ==
+              root.id,
       arabic: _arabic,
       dark: dark,
       textColor: _officeTheme.chromeText,
@@ -6635,30 +6717,34 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         }
         return SizedBox(
           height: _word.commentSurfaceHeight,
-          child: WordCanvas(
-            key: ValueKey<String>('studio-comment-canvas-${comment.id}'),
-            compact: true,
-            document: _word.commentDocument,
-            laidOut: laid,
-            caret: _word.commentCaret,
-            viewport: _commentViewport,
-            hasFocus:
-                _word.isEditingComment && _word.selectedCommentId == comment.id,
-            config: _word.config.copyWith(showRulers: false),
-            selectedCommentId: comment.id,
-            proofingFindings: _word.proofing.findingsByParagraph,
-            onReviewTap: _showCommentReview,
-            onContextMenu: (hit) => _showCommentContext(comment, hit),
-            onChanged: () {
-              if (!_word.isEditingComment ||
-                  _word.selectedCommentId != comment.id) {
-                _word.beginCommentEdit(comment.id);
-              } else {
-                // Selection, dragging, and repeated clicks must cancel a
-                // pending review tap without invalidating checked text.
-                _word.refreshView();
-              }
-            },
+          child: Builder(
+            key: _commentCanvasKey,
+            builder: (_) => WordCanvas(
+              key: ValueKey<String>('studio-comment-canvas-${comment.id}'),
+              compact: true,
+              document: _word.commentDocument,
+              laidOut: laid,
+              caret: _word.commentCaret,
+              viewport: _commentViewport,
+              hasFocus:
+                  _word.isEditingComment &&
+                  _word.selectedCommentId == comment.id,
+              config: _word.config.copyWith(showRulers: false),
+              selectedCommentId: comment.id,
+              proofingFindings: _word.proofing.findingsByParagraph,
+              onReviewTap: _showCommentReview,
+              onContextMenu: (hit) => _showCommentContext(comment, hit),
+              onChanged: () {
+                if (!_word.isEditingComment ||
+                    _word.selectedCommentId != comment.id) {
+                  _word.beginCommentEdit(comment.id);
+                } else {
+                  // Selection, dragging, and repeated clicks must cancel a
+                  // pending review tap without invalidating checked text.
+                  _word.refreshView();
+                }
+              },
+            ),
           ),
         );
       },
@@ -7441,6 +7527,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                   QudsWordEditor(
                     controller: _word,
                     focusNode: _wordFocus,
+                    onCommentContextMenuRequested: _showCommentCaretContext,
                     config: _printPreview
                         ? _config.copyWith(mode: OfficeInteractionMode.viewing)
                         : _config,
@@ -9622,6 +9709,8 @@ class _CommentReplyComposer extends StatefulWidget {
   const _CommentReplyComposer({
     super.key,
     required this.draft,
+    required this.proofing,
+    required this.isCurrent,
     required this.arabic,
     required this.dark,
     required this.textColor,
@@ -9630,6 +9719,8 @@ class _CommentReplyComposer extends StatefulWidget {
   });
 
   final _CommentReplyDraft draft;
+  final WordProofingSession proofing;
+  final bool Function() isCurrent;
   final bool arabic;
   final bool dark;
   final Color textColor;
@@ -9641,13 +9732,426 @@ class _CommentReplyComposer extends StatefulWidget {
 }
 
 class _CommentReplyComposerState extends State<_CommentReplyComposer> {
-  late final TextEditingController _text;
+  late final _DraftProofingTextController _text;
   final FocusNode _focus = FocusNode(debugLabel: 'studio-comment-reply');
+  late TextEditingValue _observedValue;
+  late Object _configuration;
+  Timer? _checkTimer;
+  WordDraftProofingResult? _result;
+  int _generation = 0;
+  int _findingIndex = 0;
+  bool _checking = false;
+  bool _checkError = false;
+  bool _wasCurrent = false;
+  bool _requestActive = false;
+  bool _pendingCheck = false;
+
+  bool get _composing =>
+      _text.value.composing.isValid && !_text.value.composing.isCollapsed;
+
+  bool get _canCheck =>
+      mounted &&
+      widget.isCurrent() &&
+      widget.proofing.enabled &&
+      !_composing &&
+      _text.text.trim().isNotEmpty;
+
+  List<OfficeProofingFinding> get _findings =>
+      _result?.report.findings ?? const <OfficeProofingFinding>[];
 
   @override
   void initState() {
     super.initState();
-    _text = TextEditingController(text: widget.draft.text);
+    _text = _DraftProofingTextController(text: widget.draft.text);
+    _observedValue = _text.value;
+    _configuration = widget.proofing.draftConfigurationKey;
+    _text.addListener(_onTextChanged);
+    _focus.addListener(_onFocusChanged);
+    widget.proofing.addListener(_onProofingChanged);
+    _scheduleCheck(rebuild: false);
+  }
+
+  @override
+  void didUpdateWidget(covariant _CommentReplyComposer oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (!identical(oldWidget.proofing, widget.proofing)) {
+      oldWidget.proofing.removeListener(_onProofingChanged);
+      widget.proofing.addListener(_onProofingChanged);
+    }
+    final configuration = widget.proofing.draftConfigurationKey;
+    if (configuration != _configuration || _wasCurrent != widget.isCurrent()) {
+      _configuration = configuration;
+      _scheduleCheck(rebuild: false);
+    }
+  }
+
+  void _onTextChanged() {
+    final previous = _observedValue;
+    _observedValue = _text.value;
+    widget.draft.text = _text.text;
+    if (previous.text != _text.text ||
+        previous.composing != _text.value.composing) {
+      _scheduleCheck();
+      return;
+    }
+    if (previous.selection != _text.selection && _findings.isNotEmpty) {
+      final index = _findingAtCaret(_findings);
+      if (index != null && index != _findingIndex) {
+        setState(() => _findingIndex = index);
+      }
+    }
+  }
+
+  int? _findingAtCaret(List<OfficeProofingFinding> findings) {
+    final offset = _text.selection.extentOffset;
+    if (offset < 0) return null;
+    final index = findings.indexWhere(
+      (finding) => offset >= finding.start && offset <= finding.end,
+    );
+    return index < 0 ? null : index;
+  }
+
+  void _onFocusChanged() {
+    if (_focus.hasFocus &&
+        _result == null &&
+        !_checking &&
+        _checkTimer == null &&
+        _canCheck) {
+      _scheduleCheck();
+    }
+  }
+
+  void _onProofingChanged() {
+    final configuration = widget.proofing.draftConfigurationKey;
+    if (configuration == _configuration) return;
+    _configuration = configuration;
+    _scheduleCheck();
+  }
+
+  void _scheduleCheck({bool rebuild = true}) {
+    void update() {
+      _checkTimer?.cancel();
+      _checkTimer = null;
+      _generation++;
+      _checking = false;
+      _checkError = false;
+      _pendingCheck = false;
+      _result = null;
+      _findingIndex = 0;
+      _text.findings = const [];
+      _wasCurrent = widget.isCurrent();
+      if (_canCheck) {
+        _checkTimer = Timer(widget.proofing.debounce, _checkDraft);
+      }
+    }
+
+    if (rebuild) {
+      setState(update);
+    } else {
+      update();
+    }
+  }
+
+  Future<void> _checkDraft() async {
+    if (!_canCheck) {
+      _scheduleCheck();
+      return;
+    }
+    // Configured native providers are also serving the document. Keep only
+    // one request in flight and check the latest debounced draft afterward.
+    if (_requestActive) {
+      setState(() {
+        _checkTimer?.cancel();
+        _checkTimer = null;
+        _pendingCheck = true;
+      });
+      return;
+    }
+    _requestActive = true;
+    _pendingCheck = false;
+    final generation = ++_generation;
+    final source = _text.text;
+    final proofing = widget.proofing;
+    final configuration = proofing.draftConfigurationKey;
+    final draft = widget.draft;
+    setState(() {
+      _checkTimer?.cancel();
+      _checkTimer = null;
+      _checking = true;
+      _checkError = false;
+    });
+    bool current() =>
+        mounted &&
+        generation == _generation &&
+        identical(proofing, widget.proofing) &&
+        identical(draft, widget.draft) &&
+        source == _text.text &&
+        configuration == proofing.draftConfigurationKey;
+    try {
+      final result = await proofing.checkDraft(source);
+      if (!current()) return;
+      if (!_canCheck) {
+        _scheduleCheck();
+        return;
+      }
+      setState(() {
+        _checking = false;
+        _checkError = result == null;
+        if (result != null &&
+            proofing.isDraftResultCurrent(result, text: source)) {
+          _result = result;
+          _text.findings = result.report.findings;
+          _findingIndex = _findingAtCaret(result.report.findings) ?? 0;
+        }
+      });
+    } on Object {
+      if (!current()) return;
+      setState(() {
+        _checking = false;
+        _checkError = true;
+      });
+    } finally {
+      _requestActive = false;
+      if (mounted && _pendingCheck) {
+        _pendingCheck = false;
+        unawaited(_checkDraft());
+      }
+    }
+  }
+
+  void _applySuggestion(
+    WordDraftProofingResult result,
+    OfficeProofingFinding finding,
+    String replacement,
+  ) {
+    if (!_canCheck ||
+        !identical(result, _result) ||
+        !result.report.findings.contains(finding) ||
+        !finding.replacements.contains(replacement) ||
+        !widget.proofing.isDraftResultCurrent(result, text: _text.text) ||
+        finding.start < 0 ||
+        finding.end < finding.start ||
+        finding.end > _text.text.length ||
+        _text.text.substring(finding.start, finding.end) !=
+            finding.originalText) {
+      return;
+    }
+    _text.value = TextEditingValue(
+      text: _text.text.replaceRange(finding.start, finding.end, replacement),
+      selection: TextSelection.collapsed(
+        offset: finding.start + replacement.length,
+      ),
+    );
+    _focus.requestFocus();
+  }
+
+  void _stepFinding(int delta) {
+    if (!mounted || _findings.isEmpty || !widget.isCurrent() || _composing) {
+      return;
+    }
+    setState(() {
+      _findingIndex = (_findingIndex + delta) % _findings.length;
+    });
+  }
+
+  String get _checkStatus {
+    if (!widget.proofing.enabled) {
+      return widget.arabic
+          ? 'تدقيق الرد متوقف مؤقتًا.'
+          : 'Reply checking paused.';
+    }
+    if (_composing) {
+      return widget.arabic
+          ? 'أكمل الكتابة لتدقيق الرد.'
+          : 'Finish typing to check this reply.';
+    }
+    if (_checkTimer != null) {
+      return widget.arabic ? 'بانتظار توقف الكتابة…' : 'Waiting for a pause…';
+    }
+    if (_checking) {
+      return widget.arabic ? 'جارٍ تدقيق الرد…' : 'Checking reply…';
+    }
+    if (_pendingCheck) {
+      return widget.arabic ? 'بانتظار تدقيق الرد…' : 'Waiting to check reply…';
+    }
+    if (_checkError) {
+      return widget.arabic
+          ? 'تعذر إكمال تدقيق الرد. حاول مجددًا.'
+          : 'The reply check could not finish. Try again.';
+    }
+    final report = _result?.report;
+    if (report == null) {
+      return widget.arabic
+          ? 'لم يُدقّق الرد بعد.'
+          : 'Reply has not been checked.';
+    }
+    if (!report.complete) {
+      return widget.arabic
+          ? '${_findings.length} اقتراحات؛ تدقيق الرد غير مكتمل.'
+          : '${_findings.length} suggestions; reply check incomplete.';
+    }
+    if (_findings.isEmpty) {
+      return widget.arabic
+          ? 'لم يُعثر على أخطاء في الرد.'
+          : 'No issues found in this reply.';
+    }
+    return widget.arabic
+        ? '${_findings.length} اقتراحات في الرد.'
+        : '${_findings.length} ${_findings.length == 1 ? 'suggestion' : 'suggestions'} in reply.';
+  }
+
+  Widget _proofingStatus() {
+    final result = _result;
+    final findings = _findings;
+    final finding = findings.isEmpty
+        ? null
+        : findings[_findingIndex.clamp(0, findings.length - 1)];
+    final problems = result?.report.results
+        .where((provider) => provider.status != OfficeProofingStatus.success)
+        .map((provider) => provider.message ?? provider.status.name)
+        .toSet()
+        .join(' ');
+    return Padding(
+      padding: const EdgeInsets.only(top: 4),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Row(
+            children: [
+              Expanded(
+                child: Semantics(
+                  liveRegion: true,
+                  child: Text(
+                    _checkStatus,
+                    key: ValueKey<String>(
+                      'studio-comment-draft-status-${widget.draft.root.id}',
+                    ),
+                    style: TextStyle(fontSize: 11, color: widget.textColor),
+                  ),
+                ),
+              ),
+              if (_checkError || (result != null && !result.report.complete))
+                IconButton(
+                  tooltip: widget.arabic ? 'تدقيق الرد' : 'Check reply',
+                  onPressed: _canCheck ? _checkDraft : null,
+                  visualDensity: VisualDensity.compact,
+                  icon: const Icon(Icons.refresh, size: 16),
+                ),
+            ],
+          ),
+          if (result != null &&
+              !result.report.complete &&
+              problems != null &&
+              problems.isNotEmpty)
+            Padding(
+              padding: const EdgeInsets.only(top: 3),
+              child: Text(
+                problems,
+                style: TextStyle(
+                  fontSize: 10,
+                  color: widget.textColor.withValues(alpha: 0.75),
+                ),
+              ),
+            ),
+          if (result != null && finding != null)
+            Container(
+              key: ValueKey<String>(
+                'studio-comment-draft-suggestions-${widget.draft.root.id}',
+              ),
+              margin: const EdgeInsets.only(top: 4),
+              padding: const EdgeInsets.all(6),
+              decoration: BoxDecoration(
+                color: widget.accent.withValues(alpha: 0.06),
+                borderRadius: BorderRadius.circular(4),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          finding.message,
+                          style: TextStyle(
+                            fontSize: 11,
+                            color: widget.textColor,
+                          ),
+                        ),
+                      ),
+                      if (findings.length > 1) ...[
+                        IconButton(
+                          key: ValueKey<String>(
+                            'studio-comment-draft-previous-${widget.draft.root.id}',
+                          ),
+                          tooltip: widget.arabic
+                              ? 'الاقتراح السابق'
+                              : 'Previous reply suggestion',
+                          onPressed: () => _stepFinding(-1),
+                          visualDensity: VisualDensity.compact,
+                          icon: const Icon(Icons.chevron_left, size: 16),
+                        ),
+                        Text(
+                          '${_findingIndex + 1}/${findings.length}',
+                          style: TextStyle(
+                            fontSize: 10,
+                            color: widget.textColor,
+                          ),
+                        ),
+                        IconButton(
+                          key: ValueKey<String>(
+                            'studio-comment-draft-next-${widget.draft.root.id}',
+                          ),
+                          tooltip: widget.arabic
+                              ? 'الاقتراح التالي'
+                              : 'Next reply suggestion',
+                          onPressed: () => _stepFinding(1),
+                          visualDensity: VisualDensity.compact,
+                          icon: const Icon(Icons.chevron_right, size: 16),
+                        ),
+                      ],
+                    ],
+                  ),
+                  Wrap(
+                    spacing: 4,
+                    runSpacing: 2,
+                    children: [
+                      for (
+                        var index = 0;
+                        index < finding.replacements.length && index < 5;
+                        index++
+                      )
+                        ActionChip(
+                          key: ValueKey<String>(
+                            'studio-comment-draft-replace-${widget.draft.root.id}-$index',
+                          ),
+                          tooltip: finding.replacements[index].isEmpty
+                              ? (widget.arabic ? 'حذف' : 'Delete')
+                              : finding.replacements[index],
+                          label: ConstrainedBox(
+                            constraints: const BoxConstraints(maxWidth: 170),
+                            child: Text(
+                              finding.replacements[index].isEmpty
+                                  ? (widget.arabic ? 'حذف' : 'Delete')
+                                  : finding.replacements[index],
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                          visualDensity: VisualDensity.compact,
+                          onPressed: () => _applySuggestion(
+                            result,
+                            finding,
+                            finding.replacements[index],
+                          ),
+                        ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+        ],
+      ),
+    );
   }
 
   void focusReply() {
@@ -9660,7 +10164,7 @@ class _CommentReplyComposerState extends State<_CommentReplyComposer> {
   }
 
   void _post() {
-    if (_text.value.composing.isValid && !_text.value.composing.isCollapsed) {
+    if (!mounted || !widget.isCurrent() || _composing) {
       return;
     }
     widget.draft.text = _text.text;
@@ -9672,6 +10176,11 @@ class _CommentReplyComposerState extends State<_CommentReplyComposer> {
 
   @override
   void dispose() {
+    _generation++;
+    _checkTimer?.cancel();
+    widget.proofing.removeListener(_onProofingChanged);
+    _text.removeListener(_onTextChanged);
+    _focus.removeListener(_onFocusChanged);
     _text.dispose();
     _focus.dispose();
     super.dispose();
@@ -9718,10 +10227,6 @@ class _CommentReplyComposerState extends State<_CommentReplyComposer> {
                         : Colors.white,
                     border: const OutlineInputBorder(),
                   ),
-                  onChanged: (value) {
-                    widget.draft.text = value;
-                    setState(() {});
-                  },
                 ),
               ),
               IconButton(
@@ -9736,8 +10241,78 @@ class _CommentReplyComposerState extends State<_CommentReplyComposer> {
               ),
             ],
           ),
+          if (_text.text.trim().isNotEmpty) _proofingStatus(),
         ],
       ),
     ),
   );
+}
+
+/// Presents validated draft findings without changing the TextField's text,
+/// selection, composition, or undo history.
+class _DraftProofingTextController extends TextEditingController {
+  _DraftProofingTextController({super.text});
+
+  List<OfficeProofingFinding> findings = const [];
+
+  @override
+  TextSpan buildTextSpan({
+    required BuildContext context,
+    TextStyle? style,
+    required bool withComposing,
+  }) {
+    if (findings.isEmpty ||
+        (value.composing.isValid && !value.composing.isCollapsed)) {
+      return super.buildTextSpan(
+        context: context,
+        style: style,
+        withComposing: withComposing,
+      );
+    }
+    final valid = findings
+        .where(
+          (finding) =>
+              finding.start >= 0 &&
+              finding.end > finding.start &&
+              finding.end <= text.length &&
+              text.substring(finding.start, finding.end) ==
+                  finding.originalText,
+        )
+        .toList();
+    final boundaries = <int>{0, text.length};
+    for (final finding in valid) {
+      boundaries.addAll([finding.start, finding.end]);
+    }
+    final sorted = boundaries.toList()..sort();
+    return TextSpan(
+      style: style,
+      children: [
+        for (var index = 0; index < sorted.length - 1; index++)
+          TextSpan(
+            text: text.substring(sorted[index], sorted[index + 1]),
+            style: _findingStyle(
+              valid
+                  .where(
+                    (finding) =>
+                        finding.start <= sorted[index] &&
+                        finding.end >= sorted[index + 1],
+                  )
+                  .firstOrNull,
+            ),
+          ),
+      ],
+    );
+  }
+
+  TextStyle? _findingStyle(OfficeProofingFinding? finding) => finding == null
+      ? null
+      : TextStyle(
+          decoration: TextDecoration.underline,
+          decorationStyle: TextDecorationStyle.wavy,
+          decorationColor: switch (finding.category) {
+            OfficeProofingCategory.spelling => const Color(0xFFC62828),
+            OfficeProofingCategory.grammar => const Color(0xFF1565C0),
+            OfficeProofingCategory.style => const Color(0xFFAD6800),
+          },
+        );
 }

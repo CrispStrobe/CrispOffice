@@ -17,6 +17,27 @@ final class WordProofingIssue {
   String get sourceText => _snapshot.text;
 }
 
+/// A checked, detached reply draft. Its findings never enter document coverage
+/// or the document's Undo history. The host still owns the draft and must verify
+/// its thread, source and composition state before using a suggestion.
+final class WordDraftProofingResult {
+  WordDraftProofingResult._(this._owner, this._configuration, this.report);
+
+  final WordProofingSession _owner;
+  final Object _configuration;
+  final OfficeProofingReport report;
+  String get sourceText => report.request.text;
+  String get language => report.request.language;
+}
+
+final class _DraftProofingRequest {
+  _DraftProofingRequest(this.text, this.configuration);
+
+  final String text;
+  final Object configuration;
+  final completer = Completer<WordDraftProofingResult?>();
+}
+
 /// A source capability independent of a spelling or grammar finding. Only the
 /// capturing session can issue one, and its range remains in original UTF-16.
 final class WordTextRangeTarget {
@@ -140,10 +161,12 @@ final class WordProofingSession extends ChangeNotifier {
   WordProofingSession({
     required this._document,
     required this._revision,
+    WmlParagraph? Function()? priorityParagraph,
     OfficeProofingService? service,
     OfficeProofingVocabulary? vocabulary,
     this.debounce = const Duration(milliseconds: 400),
-  }) : vocabulary = vocabulary ?? OfficeProofingVocabulary() {
+  }) : _priorityParagraph = priorityParagraph,
+       vocabulary = vocabulary ?? OfficeProofingVocabulary() {
     _service =
         service ??
         OfficeProofingService(
@@ -156,7 +179,11 @@ final class WordProofingSession extends ChangeNotifier {
 
   final WmlDocument Function() _document;
   final int Function() _revision;
+  final WmlParagraph? Function()? _priorityParagraph;
   final OfficeProofingVocabulary vocabulary;
+
+  /// Live draft checks are bounded independently of the document's paragraphs.
+  static const int maxDraftLength = 16384;
 
   /// Hosts may persist this owner-scoped snapshot in their own storage.
   void Function(Map<String, Object?> snapshot)? onVocabularyChanged;
@@ -177,6 +204,9 @@ final class WordProofingSession extends ChangeNotifier {
   bool _disposed = false;
   bool _enabled = false;
   bool _enabledPreferenceSet = false;
+  int _draftEnabledRevision = 0;
+  bool _draftCheckRunning = false;
+  _DraftProofingRequest? _pendingDraftCheck;
   Timer? _timer;
   WmlDocument? _observedDocument;
   int? _observedRevision;
@@ -191,6 +221,17 @@ final class WordProofingSession extends ChangeNotifier {
   int get checkGeneration => _generation;
   bool get enabled => _enabled;
   bool get hasManualProviders => _manualService?.providers.isNotEmpty ?? false;
+
+  /// Stable across document edits and proofing progress, but changes whenever
+  /// the document identity or draft checking configuration becomes obsolete.
+  Object get draftConfigurationKey => (
+    _document(),
+    _disposed,
+    _enabled,
+    _draftEnabledRevision,
+    _configurationKey,
+  );
+
   String get language =>
       normalizeProofingLanguage(_document().proofingLanguage ?? 'de-DE');
   Set<String> get ignoredRuleIds => Set.unmodifiable(_ignoredRules);
@@ -203,6 +244,7 @@ final class WordProofingSession extends ChangeNotifier {
     _enabledPreferenceSet = true;
     if (_enabled == value) return;
     _enabled = value;
+    _draftEnabledRevision++;
     refresh();
   }
 
@@ -213,8 +255,115 @@ final class WordProofingSession extends ChangeNotifier {
   void enableBackgroundByDefault() {
     if (_disposed || _enabledPreferenceSet || _enabled) return;
     _enabled = true;
+    _draftEnabledRevision++;
     refresh();
   }
+
+  /// Checks detached reply text with the existing ordinary providers. Manual
+  /// providers are never invoked here, and the service remains session-owned.
+  /// Hosts debounce requests and discard obsolete draft identities. Across all
+  /// composers the session runs at most one draft check and queues only the
+  /// latest request, resolving superseded pending requests with null.
+  /// No document summary, finding cache or document check generation changes.
+  Future<WordDraftProofingResult?> checkDraft(String text) {
+    if (_disposed || !_enabled) return Future.value();
+    final request = _DraftProofingRequest(text, draftConfigurationKey);
+    if (_draftCheckRunning) {
+      _pendingDraftCheck?.completer.complete();
+      _pendingDraftCheck = request;
+    } else {
+      unawaited(_runDraftCheck(request));
+    }
+    return request.completer.future;
+  }
+
+  Future<void> _runDraftCheck(_DraftProofingRequest request) async {
+    _draftCheckRunning = true;
+    try {
+      final result = request.configuration == draftConfigurationKey
+          ? await _checkDraftSnapshot(request.text, request.configuration)
+          : null;
+      request.completer.complete(result);
+    } catch (error, stack) {
+      request.completer.completeError(error, stack);
+    } finally {
+      _draftCheckRunning = false;
+      final next = _pendingDraftCheck;
+      _pendingDraftCheck = null;
+      if (next != null) unawaited(_runDraftCheck(next));
+    }
+  }
+
+  Future<WordDraftProofingResult?> _checkDraftSnapshot(
+    String text,
+    Object configuration,
+  ) async {
+    if (_disposed || !_enabled) return null;
+    final document = _document();
+    final request = OfficeProofingRequest(
+      documentId: _documentIds[document] ??= 'document-${++_nextId}',
+      blockId: 'draft-${++_nextId}',
+      revision: 0,
+      text: text,
+      language: language,
+      ignoredRuleIds: _ignoredRules,
+    );
+    final OfficeProofingReport checked;
+    if (text.length > maxDraftLength || text.trim().isEmpty) {
+      checked = OfficeProofingReport(
+        request: request,
+        results: [
+          OfficeProofingResult(
+            request: request,
+            providerId: 'draft-checking',
+            status: OfficeProofingStatus.unavailable,
+            message: text.length > maxDraftLength
+                ? 'This reply is too long for live checking. Check it after posting.'
+                : 'Write a reply to check it.',
+          ),
+        ],
+      );
+    } else {
+      checked = await _service.check(request);
+    }
+    if (_disposed || configuration != draftConfigurationKey) return null;
+    // Some host providers do not consult the shared vocabulary themselves.
+    // Apply exactly the document session's language-scoped spelling filter.
+    final report = OfficeProofingReport(
+      request: request,
+      results: [
+        for (final result in checked.results)
+          OfficeProofingResult(
+            request: request,
+            providerId: result.providerId,
+            status: result.status,
+            message: result.message,
+            findings: [
+              for (final finding in result.findings)
+                if (finding.category != OfficeProofingCategory.spelling ||
+                    !vocabulary.contains(
+                      finding.originalText,
+                      language: request.language,
+                    ))
+                  finding,
+            ],
+          ),
+      ],
+    );
+    return WordDraftProofingResult._(this, configuration, report);
+  }
+
+  /// A draft result remains valid through unrelated body edits and progress.
+  /// The host must additionally retain the exact draft/thread identity.
+  bool isDraftResultCurrent(
+    WordDraftProofingResult result, {
+    required String text,
+  }) =>
+      !_disposed &&
+      _enabled &&
+      identical(result._owner, this) &&
+      result._configuration == draftConfigurationKey &&
+      result.sourceText == text;
 
   String get _configurationKey =>
       '$_configuration|${_service.configurationKey}|'
@@ -716,11 +865,22 @@ final class WordProofingSession extends ChangeNotifier {
         revision == _revision() &&
         configuration == _configurationKey;
 
-    // At most twenty progress publications keep long documents responsive
-    // without repeatedly rebuilding every paragraph for each short result.
+    // About twenty progress publications, plus early active-paragraph feedback,
+    // avoid rebuilding every paragraph for each short result in long documents.
     final progressStride = (captured.paragraphs.length + 19) ~/ 20;
+    // Visit the text being edited first without changing navigation/report
+    // order. A caret move affects the next pass, never cancels the current one.
+    final priorityParagraph = _priorityParagraph?.call();
+    final priority = captured.paragraphs
+        .where((snapshot) => identical(snapshot.paragraph, priorityParagraph))
+        .firstOrNull;
+    final checkOrder = [
+      if (priority != null) priority,
+      for (final snapshot in captured.paragraphs)
+        if (!identical(snapshot, priority)) snapshot,
+    ];
     var processed = 0;
-    for (final snapshot in captured.paragraphs) {
+    for (final snapshot in checkOrder) {
       // Yield even when a cached/provider Future completes synchronously.
       await Future<void>.delayed(Duration.zero);
       if (!current()) return _summary;
@@ -758,7 +918,7 @@ final class WordProofingSession extends ChangeNotifier {
       );
       processed++;
       if (processed < captured.paragraphs.length &&
-          processed % progressStride == 0) {
+          (identical(snapshot, priority) || processed % progressStride == 0)) {
         // Direct host edits can bypass the revision counter. Validate the
         // complete story/field/guard snapshot before exposing partial results.
         if (captured.key != _capture(document).key) {
@@ -1342,6 +1502,8 @@ final class WordProofingSession extends ChangeNotifier {
     _disposed = true;
     _generation++;
     _timer?.cancel();
+    _pendingDraftCheck?.completer.complete();
+    _pendingDraftCheck = null;
     _cache.clear();
     _findings.clear();
     unawaited(_service.dispose());

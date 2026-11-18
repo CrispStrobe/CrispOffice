@@ -689,10 +689,39 @@ class WordEditorController extends OfficeController {
     _proofing ??= WordProofingSession(
       document: () => document,
       revision: () => contentRevision,
+      priorityParagraph: () => _proofingPriorityParagraph,
       vocabulary: _initialProofingVocabulary,
       service: _initialProofingService,
     )..addListener(_onProofingChanged);
     return _proofing!;
+  }
+
+  // Inspect existing text only: checking must not materialize empty comment,
+  // header or body paragraphs merely to choose the first item in a pass.
+  WmlParagraph? get _proofingPriorityParagraph {
+    final note = noteEditingTarget;
+    if (note != null) {
+      return _noteSelectionRange((
+        note: note.note,
+        selection: TextSelection.collapsed(offset: note.selection.extentOffset),
+        composing: note.composing,
+      ))?.paragraph;
+    }
+    final Iterable<WmlParagraph> paragraphs;
+    if (_editingComment) {
+      paragraphs = selectedComment?.paragraphs ?? const <WmlParagraph>[];
+    } else if (_editingHeaderFooter) {
+      if (_editingSectionIndex < 0 ||
+          _editingSectionIndex >= document.sections.length) {
+        return null;
+      }
+      final section = document.sections[_editingSectionIndex];
+      paragraphs = _editingFooter ? section.footer : section.header;
+    } else {
+      paragraphs = document.paragraphs;
+    }
+    final index = caret.paragraphIndex;
+    return index < 0 ? null : paragraphs.skip(index).firstOrNull;
   }
 
   void _onProofingChanged() => super.notifyListeners();

@@ -211,6 +211,7 @@ class QudsWordEditor extends StatefulWidget {
     this.navigationBuilder,
     this.notesPaneBuilder,
     this.onSelectionChanged,
+    this.onCommentContextMenuRequested,
     this.enableLiveProofing = true,
     this.showReviewStatus = true,
     this.thesaurusService,
@@ -252,6 +253,11 @@ class QudsWordEditor extends StatefulWidget {
 
   /// onSelectionChanged API.
   final VoidCallback? onSelectionChanged;
+
+  /// Opens the host's context menu at the active comment caret when the user
+  /// presses the Menu key or Shift+F10. The host owns the comment canvas and
+  /// must validate its current source and restore focus after dismissal.
+  final VoidCallback? onCommentContextMenuRequested;
 
   /// Enables background checks on first attachment unless the session already
   /// has an explicit preference. Optional manual providers remain explicit.
@@ -539,8 +545,14 @@ class _QudsWordEditorState extends State<QudsWordEditor>
   }
 
   void _showCaretContext() {
-    if (_c.isEditingComment ||
+    if (!mounted ||
+        !(_inputRoute?.isCurrent ?? true) ||
+        !_c.config.allowsSelection ||
         (_c.input.composing.isValid && !_c.input.composing.isCollapsed)) {
+      return;
+    }
+    if (_c.isEditingComment) {
+      widget.onCommentContextMenuRequested?.call();
       return;
     }
     final canvas = _canvasKey.currentContext?.findRenderObject();
