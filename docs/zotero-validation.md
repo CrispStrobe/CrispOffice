@@ -1,17 +1,18 @@
 # Zotero validation
 
-## 18 November 2026 — literal tag filtering, initial qualification
+## 18 November 2026 — literal tag filtering on current main
 
-PR #156 was merged into `main` as `c60fce9c37ca960eb64dd06c7ffc55b2fdbb2ed7`.
-The next qualified product is **`270a38adf97b9a027b79a00e2654acac6ebb1df6`** on
-`codex/zotero-tags-20261118`.
+PR #156 was merged into main as `c60fce9c37ca960eb64dd06c7ffc55b2fdbb2ed7`.
+The current qualified product is **`4e06d42d20521f56164303aa6c135d5580ea0948`**
+on `codex/zotero-tags-20261118`. It incorporates main `1ffcf91a`, including
+concurrent PR #155 and the native spaCy histories.
 
-The catalog now supports bounded literal tag filters across libraries,
-collections and desktop saved searches. Multiple tags require all tags before
-pagination. Applied filters retain selected sources, survive scope changes and
-reconnection, and keep draft query/tag text separate from paging and removal.
+The catalog supports bounded literal tag filters across libraries, collections
+and desktop saved searches. Multiple tags require all tags before pagination.
+Applied filters retain selected sources, survive scope changes and reconnection,
+and keep draft query/tag text separate from paging and tag removal.
 
-| Accepted local cohort | Substantive passes |
+| Accepted current local cohort | Substantive passes |
 | --- | ---: |
 | Engine Zotero — 21 suites | 422 |
 | Editor Zotero — 17 suites | 235 |
@@ -21,19 +22,19 @@ reconnection, and keep draft query/tag text separate from paging and removal.
 All tests pass with zero skips/errors, including 34 new regressions counted once.
 Strict analysis, declared-language formatting and whitespace checks pass for
 the five changed Dart files. Source/dependency/runtime/workspace guards pass;
-every consumed source input matches the final product. The matching-wording
-correction was independently reviewed before final editor acceptance.
+all source inputs match the qualified merge commit. The refreshed workspace has
+110 packages and 11 current manifests, with the hosted lock unchanged.
 
-All 357 incoming fork/upstream branch and PR refs were fetched and reconciled;
-the late re-fetch then found concurrent PR #155 merged into main. The results
-above retain their exact pre-merge source identity; qualification after the
-shared-source/workspace merge is pending. Changes and evidence were saved
-incrementally with `[skip ci]` and verified remote readback.
-No GitHub Actions, check or status endpoint was queried or awaited.
+All 357 initial fork/upstream branch and PR refs were fetched and reconciled.
+A late re-fetch found concurrent PR #155; the continuation merged it, preserved
+both changelog additions, refreshed the actual graph and reran all Zotero cohorts.
+Source and evidence were saved incrementally with `[skip ci]` and verified remote
+readback. No GitHub Actions, check or status endpoint was queried or awaited.
 
 See the [complete report and retained raw evidence](validation/zotero-tags-20261118/README.md).
-Setup, overlapping development runs, a rejected widget-harness attempt and an
-interrupted editor run are excluded. This qualification covers controlled
+The earlier 675-pass pre-merge baseline, setup and focused runs, rejected
+widget-harness attempt and interrupted editor attempt are retained separately
+and excluded from current totals. This qualification covers controlled
 responses, synthetic documents, widgets and local HTTP transport; new live
 account/desktop-picker, full-build and Word/LibreOffice acceptance is outside
 this increment.

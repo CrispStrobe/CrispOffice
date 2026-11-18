@@ -1,0 +1,5 @@
+{
+  "actual_exit_code": 0,
+  "source": "/workspace/scratch/e06533a127f6/zotero-studio-postmerge-runner.exit",
+  "scope": "Shell captured evidence-runner exit immediately after completion. Flutter child exit is separately recorded in process-exit.json."
+}

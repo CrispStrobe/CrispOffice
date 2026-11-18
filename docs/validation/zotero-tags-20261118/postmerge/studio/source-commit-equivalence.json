@@ -1,0 +1,8 @@
+{
+  "commit": "4e06d42d20521f56164303aa6c135d5580ea0948",
+  "checked_source_files": 616,
+  "missing": [],
+  "mismatched": [],
+  "all_match": true,
+  "method": "Every source-before record independently compared by byte length and SHA-256 with its blob at the recorded start commit using git cat-file --batch."
+}

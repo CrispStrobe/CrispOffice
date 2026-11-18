@@ -1,18 +1,39 @@
 {
-  "status": "passed-pre-main-155-baseline",
-  "qualified_product_commit": "270a38adf97b9a027b79a00e2654acac6ebb1df6",
+  "status": "passed",
+  "qualified_product_commit": "4e06d42d20521f56164303aa6c135d5580ea0948",
+  "included_main": "1ffcf91a3443caf9a6e8b45a3e6cab3f041831ae",
+  "branch": "codex/zotero-tags-20261118",
+  "requested_pr_156_merge": "c60fce9c37ca960eb64dd06c7ffc55b2fdbb2ed7",
   "cohorts": {
     "engine": {
       "suites": 21,
-      "passes": 422
+      "substantive_passes": 422,
+      "source_files": 418,
+      "summary": "postmerge/engine/summary.json",
+      "summary_sha256": "54c5623d86a2fc4d73bafe14dcb3944b2ffcbd1c8864185f794b96c0938c5f63",
+      "exit_code": 0,
+      "skips": 0,
+      "errors": 0
     },
     "editor": {
       "suites": 17,
-      "passes": 235
+      "substantive_passes": 235,
+      "source_files": 536,
+      "summary": "postmerge/editor/summary.json",
+      "summary_sha256": "25e07737fbd2a05a7228f908320c88fa04c68fdccdea2831af5eb37a664b3004",
+      "exit_code": 0,
+      "skips": 0,
+      "errors": 0
     },
     "studio": {
       "suites": 1,
-      "passes": 18
+      "substantive_passes": 18,
+      "source_files": 616,
+      "summary": "postmerge/studio/summary.json",
+      "summary_sha256": "676f8d32d72d1cfd120a7342cebd9844b6ca9b1081cbaf7f2988c84428cfabbc",
+      "exit_code": 0,
+      "skips": 0,
+      "errors": 0
     }
   },
   "total": {
@@ -22,6 +43,20 @@
     "errors": 0
   },
   "new_regressions": 34,
-  "new_main_pending_integration": "1ffcf91a3443caf9a6e8b45a3e6cab3f041831ae",
-  "github_ci_used": false
+  "runtime": {
+    "flutter": "3.47.8",
+    "dart": "3.13.7",
+    "workspace_packages": 110,
+    "workspace_manifests": 11
+  },
+  "checks": "postmerge/checks/summary.json",
+  "previous_complete_qualification": {
+    "source": "270a38adf97b9a027b79a00e2654acac6ebb1df6",
+    "remote_evidence_commit": "3ff671531ae657763fa648a10979c68e710a56ea",
+    "passes": 675,
+    "counted_in_current_total": false,
+    "evidence_directory": "local"
+  },
+  "github_ci_used": false,
+  "scope": "Controlled Zotero responses, synthetic documents, real Flutter widgets, local HTTP transport. No new live account/desktop picker, full application build or Word/LibreOffice acceptance."
 }

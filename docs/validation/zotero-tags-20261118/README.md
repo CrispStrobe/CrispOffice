@@ -1,14 +1,14 @@
 # Zotero tag filtering — 18 November 2026
 
-## Initial qualification before the late main merge
+## Delivered product
 
-Qualified product and tests: **`270a38adf97b9a027b79a00e2654acac6ebb1df6`**.
+Qualified product and tests: **`4e06d42d20521f56164303aa6c135d5580ea0948`**.
 All **675 substantive tests across 39 suites** pass, with zero skips or errors.
-These results are the complete pre-merge baseline. A concurrent PR #155 merge
-advanced main to `1ffcf91a3443caf9a6e8b45a3e6cab3f041831ae` after these tests.
-Its shared source and workspace changes require a new qualification after
-integration. This checkpoint preserves the completed baseline before that work.
-Machine-readable acceptance is in [status.json](status.json).
+This product includes current main `1ffcf91a3443caf9a6e8b45a3e6cab3f041831ae`,
+including the concurrent PR #155 merge and its native spaCy histories. The full
+Zotero cohorts were rerun after the merge and exact workspace refresh. Earlier
+qualification is preserved as a separate baseline and is not added to these
+totals. Machine-readable acceptance is in [status.json](status.json).
 
 ## Starting point and preservation
 
@@ -32,7 +32,12 @@ No incoming branch was rewritten or deleted.
 A [late re-fetch](final-frontier.json) found concurrent PR #155 merged into main,
 including the spaCy histories previously kept separate. It changes no Zotero
 path, but changes shared spelling sources and adds a workspace package. The
-continuation will incorporate that main and requalify against its actual graph.
+continuation incorporated that main in the qualified merge commit and passed
+new qualification against its actual 110-package graph. The
+[integration record](integration.json) and [merge review](postmerge/merge-review.json)
+retain the ancestry and conflict decisions. Both sets of changelog additions
+were kept; no product source conflict occurred. Current main contains the heads
+of PRs #139, #153, #155 and #156, regardless of historical PR draft labels.
 
 Changes are saved incrementally to the remote continuation branch with
 `[skip ci]` and non-forced updates requiring the observed branch head.
@@ -58,13 +63,13 @@ current dialog, and never change the document or remote library.
 
 See the [user guide](../../zotero-support.md#filter-by-tags) for behavior and limits.
 
-## Accepted initial local validation
+## Accepted current local validation
 
 | Cohort | Suites | Substantive passes | Skips / errors |
 | --- | ---: | ---: | ---: |
-| [Engine Zotero](local/engine/README.md) | 21 | 422 | 0 |
-| [Editor Zotero](local/editor/README.md) | 17 | 235 | 0 |
-| [Studio transport](local/studio/README.md) | 1 | 18 | 0 |
+| [Engine Zotero](postmerge/engine/README.md) | 21 | 422 | 0 |
+| [Editor Zotero](postmerge/editor/README.md) | 17 | 235 | 0 |
+| [Studio transport](postmerge/studio/README.md) | 1 | 18 | 0 |
 | **Disjoint total** | **39** | **675** | **0** |
 
 The total includes **34 new cases** once: 14 engine and 20 widget regressions.
@@ -72,18 +77,18 @@ They cover literal syntax, Unicode, bounds, pre-request rejection, complete-scop
 routing, pagination, selection, retry, reconnecting, late responses and twenty
 tags at 320, 360 and 420 pixels. There are no missed-tap warnings in accepted runs.
 
-[Strict analysis, Dart 3.12 formatting and whitespace checks](local/checks/summary.json)
+[Strict analysis, Dart 3.12 formatting and whitespace checks](postmerge/checks/summary.json)
 pass for all five changed Dart targets. The [independent source review](local/review.md)
 confirmed literal semantics against both upstream implementations and caught the
 matching-wording correction applied before final editor qualification.
 
-The genuine [runtime](local/runtime/README.md) is pinned Flutter 3.47.8 / Dart
-3.13.7 with unchanged manifests and the exact dependency graph. Every cohort has
-before/after source, dependency, runtime, workspace and test-selection guards.
-All 417 engine, 535 editor and 596 Studio source inputs match the qualified
-product exactly; these overlapping source counts are not test totals. The engine
-ran at `ccb8135b`; [byte-for-byte equivalence](local/engine/final-source-equivalence.json)
-binds all of its inputs to the final product after the UI-only wording correction.
+The genuine [runtime](postmerge/runtime/README.md) is pinned Flutter 3.47.8 / Dart
+3.13.7 with all 11 manifests matching the current source. The incoming spaCy
+package brings the graph to 110 packages while preserving all 109 prior package
+entries and the exact hosted lock. Every cohort has before/after source,
+dependency, runtime, workspace and test-selection guards. All 418 engine,
+536 editor and 616 Studio source inputs match the qualified merge commit
+exactly; these overlapping source counts are not test totals.
 
 Each cohort retains exact commands, actual exits, raw compressed events,
 per-case outcomes and inventories. Hidden suite-loading events are excluded.
@@ -100,7 +105,10 @@ exit is explicitly unknown, and it is not accepted. The later full run passes.
 These attempts and the overlapping focused runs are retained under
 `local/editor/attempts` and excluded from the totals above. The runtime's
 31-test setup smoke and an earlier stopped, silent engine launcher are also
-excluded. The preceding PR's counts keep their original source attribution.
+excluded. The complete 675-pass pre-merge baseline remains under `local/`,
+qualified at `270a38ad` and saved remotely in `3ff67153`; it is not added to
+the new 675-pass result. The preceding PR's counts keep their original source
+attribution. Baseline artifact bytes remain unchanged.
 
 ## Scope
 
