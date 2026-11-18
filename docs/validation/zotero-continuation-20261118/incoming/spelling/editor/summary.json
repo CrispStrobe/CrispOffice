@@ -1,0 +1,114 @@
+{
+  "actual_process_exit_code": 0,
+  "artifacts": {
+    "cases.json": {
+      "bytes": 18343,
+      "git_blob_sha1": "c9b4a17eb6b265a068df1bd59b185a49c9555a7a",
+      "sha256": "a2d6ba332f7658b2f412d3d699ca49773beef9d81f535801282a406ac7e2ac45"
+    },
+    "events.jsonl": {
+      "bytes": 34652,
+      "git_blob_sha1": "8c233fbdbbee566ee228f4602d5d9c2651970f0f",
+      "sha256": "ae118fabd213041f28245d4dd511f66aff2620267c989fae6b4456678b861939"
+    },
+    "excluded-events.json": {
+      "bytes": 2499,
+      "git_blob_sha1": "e45cfe2901b482ed488e8898e5d796a5b3e4779e",
+      "sha256": "d9e8026d6e249518056f09d7d2fc78e95cd6434e72f2c9fb4b05987c6a17df49"
+    },
+    "run.json": {
+      "bytes": 1874,
+      "git_blob_sha1": "cbded3211b1090430a5e0b7365c878d009c3cec9",
+      "sha256": "ff5a118e46902bfd60ac988dbbb3af53db85a2ef925ed4fdc22f055a170ea425"
+    },
+    "runtime-binding-after.json": {
+      "bytes": 1862,
+      "git_blob_sha1": "2ad670fdadf08621aa5b09f5cb638dc41b28a6f8",
+      "sha256": "8c9a5c17867ca2190abad5371f0df276e340f831ad183a6426e1a4552ef1230a"
+    },
+    "runtime-binding-before.json": {
+      "bytes": 1862,
+      "git_blob_sha1": "2ad670fdadf08621aa5b09f5cb638dc41b28a6f8",
+      "sha256": "8c9a5c17867ca2190abad5371f0df276e340f831ad183a6426e1a4552ef1230a"
+    },
+    "source-after.json": {
+      "bytes": 116638,
+      "git_blob_sha1": "d885c7f94c87aa7e113c7b8cbb7c994c79baa959",
+      "sha256": "3808f68e9f7c914576d20712889a007ae1164735df25c616c7471bc64735a1a8"
+    },
+    "source-before.json": {
+      "bytes": 116638,
+      "git_blob_sha1": "d885c7f94c87aa7e113c7b8cbb7c994c79baa959",
+      "sha256": "3808f68e9f7c914576d20712889a007ae1164735df25c616c7471bc64735a1a8"
+    },
+    "stderr.log": {
+      "bytes": 0,
+      "git_blob_sha1": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "cohort": "editor",
+  "command": [
+    "/workspace/scratch/11b2f453fe98/zotero-toolchain/flutter-sdk/bin/flutter",
+    "test",
+    "--no-pub",
+    "--reporter",
+    "json",
+    "--concurrency",
+    "2",
+    "test/platform_spelling_provider_test.dart",
+    "test/platform_spelling_projection_test.dart",
+    "test/platform_spelling_projection_review_test.dart",
+    "test/platform_spelling_dialog_test.dart",
+    "test/platform_spelling_identifiers_test.dart",
+    "test/platform_spelling_identifier_review_test.dart",
+    "test/platform_spelling_vocabulary_unicode_test.dart"
+  ],
+  "completion_events": [
+    {
+      "success": true,
+      "time": 6555,
+      "type": "done"
+    }
+  ],
+  "cwd": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor",
+  "dart_version": "Dart SDK version: 3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\"",
+  "diagnostic_events": [],
+  "elapsed_seconds": 8.210599007998098,
+  "error_events": [],
+  "finished_at_utc": "2026-11-18T13:16:55.497557+00:00",
+  "flutter_lock_path": "/workspace/scratch/11b2f453fe98/zotero-toolchain/flutter-cli.lock",
+  "guards": {
+    "all_selected_suites_executed": true,
+    "every_started_event_finished_once": true,
+    "runtime_graph_locks_unchanged": true,
+    "source_matches_end_commit": true,
+    "source_matches_start_commit": true,
+    "source_unchanged": true,
+    "workspace_matches_source": true
+  },
+  "head_at_end": "b2bcfc23e692476d16d9a7a534ea95a93ae94cd3",
+  "head_at_start": "b2bcfc23e692476d16d9a7a534ea95a93ae94cd3",
+  "parse_errors": [],
+  "runner_sha256": "a010493802093f1c76fa401a14f2567257f98bfe71591ca784b890c89565d381",
+  "scope": "Current merged incoming spelling dependency. Controlled providers and local Dart VM; no installed-OS spelling, desktop-device, AOT or JavaScript acceptance.",
+  "selected_files": [
+    "packages/quds_office_editor/test/platform_spelling_provider_test.dart",
+    "packages/quds_office_editor/test/platform_spelling_projection_test.dart",
+    "packages/quds_office_editor/test/platform_spelling_projection_review_test.dart",
+    "packages/quds_office_editor/test/platform_spelling_dialog_test.dart",
+    "packages/quds_office_editor/test/platform_spelling_identifiers_test.dart",
+    "packages/quds_office_editor/test/platform_spelling_identifier_review_test.dart",
+    "packages/quds_office_editor/test/platform_spelling_vocabulary_unicode_test.dart"
+  ],
+  "skipped": 0,
+  "source_file_count": 477,
+  "started_at_utc": "2026-11-18T13:16:47.064041+00:00",
+  "status": "passed",
+  "substantive_results": {
+    "success": 64
+  },
+  "substantive_test_count": 64,
+  "suite_count": 7,
+  "timed_out": false
+}

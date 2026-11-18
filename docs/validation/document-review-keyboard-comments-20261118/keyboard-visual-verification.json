@@ -1,0 +1,49 @@
+{
+  "recorded_at": "2026-11-18T17:09:30.507445+00:00",
+  "fixture": "render_keyboard.dart",
+  "fixture_sha256": "11f109a166e73f2bc2bdaa4c0a21e8e60d1d313fab500d72218314ca04a0a292",
+  "working_directory": "packages/quds_office_editor/example",
+  "command": "QUDS_REVIEW_VISUAL_OUTPUT=<absolute screenshot directory> flutter test --no-pub ../../../docs/validation/document-review-keyboard-comments-20261118/render_keyboard.dart --reporter expanded",
+  "exit_code": 0,
+  "fixture_cases_passed": 2,
+  "fixture_cases_failed": 0,
+  "fixture_cases_skipped": 0,
+  "included_in_regression_count": false,
+  "source_sha256": {
+    "packages/quds_office_editor/lib/src/embed/office_editors.dart": "7059572f46d8457e1ec33b0f68a9507e374d36bd7d1535f325e0d52d82a77843",
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart": "4f1041a63596eff52e8e7cf480e8177517dd4ecaaa4a1df7786526fc59048227",
+    "packages/quds_office_editor/lib/src/embed/office_context_menu.dart": "6cace9c7f1d067101679657b42f242b0e0b645af09d83aa82098c829ec84055b",
+    "packages/quds_office_editor/lib/src/embed/word_review_pane.dart": "06c871439652695cf074ab0009129bc149f38c67677359e09d0d166bd9ac9eae",
+    "packages/quds_office_editor/lib/src/embed/word_review_status.dart": "bef96dcda3d1432f2c3f6defbbc8c493292cd9ad8674cabe14809dd96232921b",
+    "packages/quds_office_editor/lib/src/editor_word/render_word_canvas.dart": "5cd7efeadbf8b744edaf7304a6982d7310aa50a122dbb438c37e9446b5425718",
+    "packages/quds_office_editor/lib/src/proofing/word_proofing.dart": "3f70a533f302db59c06623645c06777eafeacf43a8cd153cb5711bda0fcaa68b"
+  },
+  "events": {
+    "path": "keyboard-visual-events.json",
+    "sha256": "ef5def4279dbf38ca52cd77e38db742e68e851b42f85b6c8340cfb814bfd2644"
+  },
+  "log": "checks/keyboard-visuals.log",
+  "screenshots": [
+    {
+      "path": "docs/validation/document-review-keyboard-comments-20261118/screenshots/keyboard-suggestions-desktop.png",
+      "sha256": "73f58571a3d087a7dfb83716550f5ffd77c4f0aa2a6aa160ad2785aad8742198",
+      "width": 1280,
+      "height": 1000,
+      "inspected": true
+    },
+    {
+      "path": "docs/validation/document-review-keyboard-comments-20261118/screenshots/keyboard-inflight-writing-desktop.png",
+      "sha256": "5c8005da6a4e29b9437497b355c36c4896c146d2255b6923026b91b7424620df",
+      "width": 1280,
+      "height": 1000,
+      "inspected": true
+    }
+  ],
+  "observations": [
+    "The first fixture delivered Alt+F7, Shift+F10 and ArrowDown through Flutter keyboard events; the second suggestion, timetable, is highlighted and the menu owns focus. No correction was applied.",
+    "The second fixture held a later paragraph behind a deterministic provider gate. Earlier findings remained actionable, with both Check document and the first correction enabled while Checking document was displayed.",
+    "Both captures use the real QudsWordEditor, shared review pane, context menu, bundled Liberation/Noto fonts, and actual MaterialIcons.",
+    "The proofing provider and sample text are deterministic demonstration inputs. These captures do not test live optional-model inference or a native application build.",
+    "Both final PNGs were visually inspected for readable labels, highlighted action, available controls, and absence of dialogs."
+  ]
+}

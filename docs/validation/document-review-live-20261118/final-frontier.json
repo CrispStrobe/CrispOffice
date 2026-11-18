@@ -1,0 +1,121 @@
+{
+  "recorded_at_utc": "2026-11-18T15:07:32.745Z",
+  "repository": "CrispStrobe/quds_office_suite",
+  "compared_to": "incoming-recheck.json",
+  "counts": {
+    "fork_branches": 204,
+    "pull_request_heads": 165,
+    "upstream_branches": 4
+  },
+  "observed_heads": {
+    "review": "bfd3df1596dd77d10d68f7909d5a3da2166135c4",
+    "main": "f383c826205e321eda3ed3bdbcd584e9a2d4da14",
+    "zotero_offline": "8d74db5da2992e60c7f17b58cd354b874a1ce33a",
+    "native_spelling_resume": "04be224b4a7f469476416ee86dc780cb6a1c0990"
+  },
+  "branch_delta": [
+    {
+      "branch": "codex/document-review-20261118",
+      "sha": "bfd3df1596dd77d10d68f7909d5a3da2166135c4",
+      "previous_sha": "f96162ebd34ed2b0bbee8a43a5a808448f18a989"
+    },
+    {
+      "branch": "codex/native-spelling-resume-20261118",
+      "sha": "04be224b4a7f469476416ee86dc780cb6a1c0990",
+      "previous_sha": "fb1fd4dc3edda824c3e043c035dbfad1f0fe0869"
+    }
+  ],
+  "pr_head_delta": [
+    {
+      "number": 162,
+      "head": "bfd3df1596dd77d10d68f7909d5a3da2166135c4",
+      "branch": "codex/document-review-20261118",
+      "previous_sha": "f96162ebd34ed2b0bbee8a43a5a808448f18a989",
+      "state": "open"
+    }
+  ],
+  "removed_fork_branches": [],
+  "removed_pr_numbers": [],
+  "upstream_heads": [
+    {
+      "branch": "ci/flutter-workspace",
+      "sha": "aca2f66941832bd0b19b436baeab1656a1b7de98"
+    },
+    {
+      "branch": "cursor/class-certificates-2db8",
+      "sha": "f45099688e7a3f67a1302efdb442830d052f2240"
+    },
+    {
+      "branch": "cursor/cloud-agent-1790580069020-0rk1h",
+      "sha": "9930be8df44ffe117fb22778c514eea0ee73ce21"
+    },
+    {
+      "branch": "main",
+      "sha": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba"
+    }
+  ],
+  "unchanged": {
+    "fork_branches": 202,
+    "pr_heads": 164,
+    "upstream_branches": 4,
+    "main": true
+  },
+  "newly_observed_work": {
+    "branch": "codex/native-spelling-resume-20261118",
+    "head": "04be224b4a7f469476416ee86dc780cb6a1c0990",
+    "unique_commits": [
+      "e0ebc536ea18b99ed8489e6cd2d187c613ebafb2",
+      "04be224b4a7f469476416ee86dc780cb6a1c0990"
+    ],
+    "common_ancestor": "8d74db5da2992e60c7f17b58cd354b874a1ce33a",
+    "ahead_by": 2,
+    "behind_by": 4,
+    "scope": "Native-spelling validation recovery and evidence, plus a merge of already included PR165.",
+    "changed_path_prefix": "docs/validation/native-spelling-resume-20261118/",
+    "changed_files": 12,
+    "production_test_or_manifest_changes": false,
+    "recommended_merge_parents": [
+      "bfd3df1596dd77d10d68f7909d5a3da2166135c4",
+      "04be224b4a7f469476416ee86dc780cb6a1c0990"
+    ],
+    "merge_tree": "c4986b7c6eb9de3105b6beca1ed3451642a91c4b",
+    "merge_conflicts": [],
+    "integration_status": "Integrated and saved with both parents preserved.",
+    "remaining_known_missing_work_after_recommended_merge": [],
+    "exact_changed_paths": [
+      "docs/validation/native-spelling-resume-20261118/README.md",
+      "docs/validation/native-spelling-resume-20261118/correct_regression_accounting.py",
+      "docs/validation/native-spelling-resume-20261118/dictionary-audit-recovery.json",
+      "docs/validation/native-spelling-resume-20261118/evidence-index.json",
+      "docs/validation/native-spelling-resume-20261118/evidence.tar.xz",
+      "docs/validation/native-spelling-resume-20261118/reconciliation-current.md",
+      "docs/validation/native-spelling-resume-20261118/review.md",
+      "docs/validation/native-spelling-resume-20261118/run_baseline.py",
+      "docs/validation/native-spelling-resume-20261118/run_portable.py",
+      "docs/validation/native-spelling-resume-20261118/run_regressions.py",
+      "docs/validation/native-spelling-resume-20261118/seal_evidence.py",
+      "docs/validation/native-spelling-resume-20261118/status.json"
+    ],
+    "merged_production_and_test_tree_unchanged": true,
+    "integration_commit": "5137304cbb577094352bd33701397d93190615a6"
+  },
+  "methods": [
+    "GitHub plugin REST enumeration of all fork branches (100/100/4), PR heads in all states (100/65), and four upstream branches.",
+    "Exact head comparison with the prior recheck; unchanged legacy ancestry/equivalence evidence reused without repeating broad audit.",
+    "Fetched the changed native-spelling branch and verified local ancestry, unique commits, exact changed paths, and git merge-tree result.",
+    "No tracked working-tree edits or remote mutations by audit agent."
+  ],
+  "github_actions": {
+    "queried": false,
+    "waited": false,
+    "dispatched": false
+  },
+  "all_branch_heads_sha256": "a9963c1edb33de4cd30284f4775880d3c1e35844cc577b79406a1bddb355aa3a",
+  "all_pr_heads_sha256": "98844e9b3ccc7ffb836c37161446ec1dc03344878525de9308f54a2b2e9ee8dd",
+  "previous_recheck_sha256": "891d73c628f942df10494a45f0aa0cd6814114fc3ddd39480448ccb2d7de0148",
+  "inventory_order": {
+    "branches": "lexicographically ascending branch name",
+    "pull_requests": "ascending number"
+  },
+  "prior_zotero_head_already_ancestral_to_review": true
+}

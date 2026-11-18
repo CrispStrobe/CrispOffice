@@ -1,0 +1,51 @@
+{
+  "date": "2026-11-18",
+  "tested_commit": "15eb4bf1ca0fdc65375038de9031c00edd78e961",
+  "tested_tree": "5516a02d0d22b415d003361eb8728bf2bcc33755",
+  "incoming_main": "5588726c705700ab8ab08c34472e0f88d059cf29",
+  "baseline_verification": "verification.json",
+  "baseline_dart_manifest_matches": 39,
+  "production_lib_delta_from_baseline": [
+    "packages/quds_office_engine/lib/src/builders/docx_builder.dart"
+  ],
+  "test_run": {
+    "passed": 47,
+    "skipped": 0,
+    "exit_code": 0,
+    "working_directory": "packages/quds_office_engine",
+    "command": "dart test test/word_fidelity_test.dart test/builders_io_test.dart test/word_field_span_test.dart test/inline_field_fidelity_test.dart --reporter expanded",
+    "log": "latest-main-engine-tests.txt",
+    "sha256": "6841d4cf12aa9c3705dd53abee1e5b318fbd9b07d91247920de871423d47bc88"
+  },
+  "analysis_run": {
+    "exit_code": 0,
+    "issues": 0,
+    "working_directory": "packages/quds_office_engine",
+    "command": "dart analyze --fatal-infos lib/src/builders/docx_builder.dart test/word_fidelity_test.dart",
+    "log": "latest-main-engine-analysis.txt",
+    "sha256": "1a3b9bae3f67ccfdb99ec8f3a5774dd9b7ae29c56e7842ac2aae5bf10ece3a28"
+  },
+  "reviewed_dart_files": [
+    {
+      "path": "packages/quds_office_engine/lib/src/builders/docx_builder.dart",
+      "sha256": "6897166f6b134d8da1db92d095ad61829f74f898c741aeb0e8994e6d1f36aa62",
+      "git_blob": "3af0f4dfcd94f2c73c7b45ece9fba8366a3e02eb"
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_fidelity_test.dart",
+      "sha256": "b40e05da6a47cdf4cacf609f29b05bc328538b4a72aad6cdf554b1fb3c97fd1b",
+      "git_blob": "b1a5727712cb63ae5d53aca953a25acec9f4f4e2"
+    },
+    {
+      "path": "packages/quds_office_editor/test/support/office_golden.dart",
+      "sha256": "f82adfbb49fe038ad988c9e4f236736508a2f0734adeb3c68b2460e182cb6ca8",
+      "git_blob": "00b8b0e12ae212c2c869cb7e9d06780c42254986"
+    }
+  ],
+  "mac_golden_note": "Incoming reviewed macOS references and platform-specific routing preserved. No golden updates or native macOS visual run performed in this Linux session.",
+  "github_actions": {
+    "workflow_status_queried": false,
+    "waited": false,
+    "manual_dispatch": false
+  }
+}

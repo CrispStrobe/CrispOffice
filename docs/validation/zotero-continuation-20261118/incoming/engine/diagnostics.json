@@ -1,0 +1,14 @@
+{
+  "source_file_count": 391,
+  "head_at_start": "b2bcfc23e692476d16d9a7a534ea95a93ae94cd3",
+  "head_at_end": "b2bcfc23e692476d16d9a7a534ea95a93ae94cd3",
+  "by_suite": {
+    "word_comparison_test.dart": 24,
+    "word_comparison_adversarial_test.dart": 15
+  },
+  "print_event_count": 0,
+  "stderr_bytes": 0,
+  "matched_diagnostics": [],
+  "events_sha256": "4c72963d33304ed9227417bec3f478a743a427e772434ff9d6b9852573164e48",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

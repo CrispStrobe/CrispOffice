@@ -1,0 +1,13 @@
+{"protocolVersion":"0.1.1","runnerVersion":"1.31.1","pid":600,"type":"start","time":0}
+{"suite":{"id":0,"platform":"vm","path":"/workspace/scratch/d322553a8b9d/review-toolchain/invalidate_timing_test.dart"},"type":"suite","time":0}
+{"test":{"id":1,"name":"loading /workspace/scratch/d322553a8b9d/review-toolchain/invalidate_timing_test.dart","suiteID":0,"groupIDs":[],"metadata":{"skip":false,"skipReason":null},"line":null,"column":null,"url":null},"type":"testStart","time":2}
+{"count":1,"time":9,"type":"allSuites"}
+{"testID":1,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":7035}
+{"group":{"id":2,"suiteID":0,"parentID":null,"name":"","metadata":{"skip":false,"skipReason":null},"testCount":2,"line":null,"column":null,"url":null},"type":"group","time":7040}
+{"test":{"id":3,"name":"synchronous invalidate timing findings=false","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":28,"column":5,"url":"file:///workspace/scratch/d322553a8b9d/review-toolchain/invalidate_timing_test.dart"},"type":"testStart","time":7041}
+{"testID":3,"messageType":"print","message":"{\"kind\":\"synchronous-observeDocument\",\"paragraphs\":500,\"characters_per_paragraph\":80,\"warmup_edits\":30,\"measured_edits\":100,\"primed_cache\":true,\"initial_findings_per_paragraph\":0,\"retained_issues\":0,\"unit\":\"microseconds\",\"median\":5880.0,\"p95\":9067,\"max\":22306,\"min\":4430,\"mean\":6398.16,\"runtime_mode\":\"flutter-test JIT on this host; diagnostic only\"}","type":"print","time":8564}
+{"testID":3,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":8574}
+{"test":{"id":4,"name":"synchronous invalidate timing findings=true","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":28,"column":5,"url":"file:///workspace/scratch/d322553a8b9d/review-toolchain/invalidate_timing_test.dart"},"type":"testStart","time":8574}
+{"testID":4,"messageType":"print","message":"{\"kind\":\"synchronous-observeDocument\",\"paragraphs\":500,\"characters_per_paragraph\":80,\"warmup_edits\":30,\"measured_edits\":100,\"primed_cache\":true,\"initial_findings_per_paragraph\":1,\"retained_issues\":499,\"unit\":\"microseconds\",\"median\":9766.0,\"p95\":14426,\"max\":23028,\"min\":7618,\"mean\":10335.52,\"runtime_mode\":\"flutter-test JIT on this host; diagnostic only\"}","type":"print","time":10370}
+{"testID":4,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":10372}
+{"success":true,"type":"done","time":10399}

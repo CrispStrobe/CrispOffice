@@ -14,6 +14,19 @@ CrispCloud, and choose **Insert → Zotero → Document**. Native desktop hosts 
 They need the local transport and a running Zotero application, without an API
 key. Zotero's own windows may open behind the office application.
 
+In Quds Studio, **Insert → References** also offers **Add/Edit citation**,
+**Bibliography**, **Refresh citations**, and **Citation style** on native desktop
+platforms. These open the Document workspace and immediately start the selected
+Zotero command. **Add/Edit citation** edits the citation at the body caret, or
+one enclosing the selection within a paragraph; otherwise it uses the insertion
+point. Opening **Zotero** normally also selects Document when a citation or
+bibliography is at the caret, with a direct **Edit current citation…** action
+for offline editing and an **Edit current reference in Zotero…** action when
+desktop transport is available. A caret immediately after a field belongs to
+the following text. For citations in notes, use the Document field list's
+**Edit in Zotero…** action; the separate Notes text editor does not dispatch
+these ribbon commands from its own caret.
+
 | Control | Result |
 | --- | --- |
 | **Citation in Zotero…** | Opens Zotero's native picker at the document caret; edit locators, prefixes, suffixes and citation items there |
@@ -192,21 +205,25 @@ group in Quds Studio and CrispCloud). The workspace has three tabs:
   public user/group library ID; desktop connections need no API key. Browse personal/group libraries, collections,
   desktop saved searches, and paged search results. Select up to 20 sources for a citation, then review
   its text and per-source locator, label, prefix, suffix and author options.
-- **Document:** inspect existing Zotero citations and bibliographies; edit safe
-  fields; generate or update a bibliography; refresh basic citations; copy the
+- **Document:** search and reuse already cited references; inspect existing
+  Zotero citations and bibliographies; edit safe fields; generate or update a bibliography; refresh basic citations; copy the
   embedded CSL JSON; or explicitly convert a field to ordinary text. Each
   document operation is undoable and advances the editor's save revision.
 - **Import CSL JSON:** paste a Zotero CSL JSON export for offline work. A single
   item, a CSL array, and Zotero's `{"items": [...]}` envelope are accepted.
   Import is bounded to 1 MB and 500 records. Linked Zotero URIs are retained;
-  records without them remain offline embedded references.
+  records without them remain offline embedded references. Search the loaded
+  references by title, creators, year or DOI, then select sources across filters.
 
 The selected references can also be copied as BibTeX, BibLaTeX, RIS, or CSL JSON
 from the Library tab. Source exports are copied as reference data, not inserted
 as document text. Library exports accept numeric user/group identities or unsynced local identities
 from one matching connected library. Desktop exports need Zotero 10 or later
 with database and library-version headers. Use **Document → Copy embedded CSL
-JSON** for mixed-library or offline documents, or with an older desktop client.
+JSON** for sources already in mixed-library or offline documents. Use
+**Copy stored CSL JSON** in Import, or under **Library → Export selected**, to
+copy the current selection without a connection, including with an older
+desktop client. This copies stored metadata; it does not fetch updates.
 Set the preview/export style ID and locale in Document (defaults: `apa` and `en-US`) before
 requesting a bibliography or individual citation preview. In the citation
 composer, expand a source's title to edit its locator and affixes.
@@ -232,7 +249,7 @@ The existing count and length limits apply; disabled tags make no request.
 Manual and automatic Zotero tags are both available, with exact duplicates
 shown once.
 
-Use **Review selected** in either **Library** or **Import CSL JSON** to see all
+Use **Review selected** in **Library**, **Document** or **Import CSL JSON** to see all
 selected sources, including references on another result page or hidden by a
 filter. Move a source up or down to arrange the order passed to the citation
 composer or Zotero's native picker, or remove one source without clearing the
@@ -241,6 +258,156 @@ keeps the revised selection; **Cancel** or dismissing the dialog discards those
 changes. Reordering and removal preserve each source's identity and embedded
 metadata and do not add document history. Inserting a citation remains a
 separate, undoable operation. The selection limit remains 20 sources.
+
+The information button beside an imported result, or within **Review selected**,
+opens **Stored reference details**. Inspect the complete title, creator roles,
+publication and date, publisher, identifiers, source links and abstract supplied
+with that reference. **Copy details** copies the same readable summary, and each
+field can also be selected. This view works offline and in a read-only document.
+It uses the stored metadata without fetching updates; imported records do not
+need a connected Zotero library. Links remain selectable text.
+
+Opening details within selection review keeps any staged reordering and removals.
+Closing details returns to that review; **Apply selection** or **Cancel** still
+decides whether to keep the staged selection. Duplicate imported IDs remain
+separate references. Unknown CSL fields remain available through **Copy stored
+CSL JSON**. If selecting another imported reference would exceed the 20-source
+limit, the workspace explains the limit; use **Review selected** to remove a
+source even when it is hidden by the current search.
+
+### Cite a stored document reference again
+
+Choose **Document → Cited references…** to search the sources already cited in
+the document by title, creator, year or DOI. The list shows the number of
+citation occurrences and offers **Stored reference details**. It uses embedded
+metadata without connecting to a library or fetching updates, including in
+read-only documents and while Track changes is enabled.
+
+Select references across searches and choose **Use selected sources**. The
+selection joins sources chosen in Library or Import and shares their 20-source
+limit. **Cancel** discards the selection changes. Back in Document, use
+**Review selected** to arrange or remove sources, **Copy stored CSL JSON** to
+copy their stored metadata, or **Review and insert citation…** to create a new
+citation at the original caret. Native desktop hosts also offer **Insert with
+Zotero…** for selections with retained Zotero links. Insertion still requires
+an editable document with Track changes off.
+
+References appear in first-cited order. Repeated linked sources are grouped
+only through their declared, validated Zotero URI aliases; equal IDs or item
+keys in unrelated libraries remain separate. The first available stored
+snapshot supplies the details and all declared aliases remain attached.
+Offline records with the same ID and different stored metadata stay separate.
+A source without a stored snapshot is identified explicitly; its retained
+identity can still be inspected and selected.
+
+Reusing a source starts a new citation occurrence: the earlier page number,
+locator label, prefix, suffix and author-only/suppress-author options do not
+carry over. Original citations remain unchanged. Selection, inspection and
+copying add no document history; applying a citation is one undoable change.
+If the document or caret changes while the review is open, the staged result
+is rejected and the workspace explains how to reopen it.
+
+### Change the sources in a citation
+
+Choose an existing field's **Reference actions → Edit citation**, or review a
+new selection. Move sources up or down, remove them, inspect stored details,
+or choose **Add stored sources**. The local chooser searches references already
+cited in the document, references selected in Library, and loaded CSL imports.
+With a connected library, **Search Zotero…** also searches Zotero directly
+*while the citation editor stays open*. Enter a title, creator or year and
+submit Search. Results are fetched in pages of 25; **Load more** keeps the
+submitted query, and selections survive new searches and page changes. Open
+stored details before adding a result. Typing alone makes no network request.
+The search box receives keyboard focus when the chooser opens. **Review selected**
+shows every staged search selection, including sources hidden on other pages or
+by a later search. Reorder, inspect or remove these sources, then choose
+**Apply selection**; **Cancel** leaves the staged selection unchanged. Removing
+a hidden source frees capacity for another result. Use **Down** from the search
+box to focus the first result, **Up/Down** to move between results, and **Enter**
+or **Space** to toggle a source. **Up** from the first result returns to the
+search box. Keyboard movement scrolls results into view, including long result
+lists and enlarged text. This review changes only the chooser's selection;
+adding the selected sources and the citation editor's final apply remain
+separate steps.
+Only citable results with CSL metadata can be selected; Zotero items that do
+not supply CSL data are excluded. Unsynced desktop items without a durable
+Zotero URI enter as standalone embedded references. Without a connection,
+select Library sources or import CSL JSON to make other references available.
+
+Source changes remain staged until **Update citation** or **Insert citation**.
+Cancelling the composer discards them. Reordering preserves each occurrence's
+locator, affixes and author options, even when two occurrences have the same
+source ID. Newly added sources start with fresh citation options. At least one
+source is required. Adding is limited to 20 sources; an imported citation that
+already exceeds that count keeps all its sources available for editing,
+reordering or removal.
+
+Basic author–year text updates with the current source list and per-source
+options. In custom-text mode, changing membership, order, locator, label,
+prefix, suffix, or author-only/suppress-author options requires editing the
+visible text or explicitly confirming that it matches the revision. These
+changes discard the previous processor-specific formatted cache; restoring
+the original options without other changes preserves it. For full
+CSL numbering, disambiguation and bibliography updates, use **Edit in Zotero…**
+and the native refresh tools. A connected single-source preview always uses
+the current source after edits; preview errors keep the citation draft.
+
+### Convert all citations to ordinary text
+
+Choose **Document → Unlink all citations…** to convert the document's linked
+citations and bibliography fields together. The confirmation shows the number
+of each kind and explains that Zotero can no longer update the converted text.
+Keep a linked copy if you will need later citation updates. **Cancel** keeps
+the fields and does not add undo history.
+
+The complete conversion is one undoable change. It retains the visible text,
+character and paragraph formatting, notes, and reusable document style
+preferences, including multi-paragraph bibliographies. It covers fields in
+modeled document stories, rather than only the visible page. If a locked,
+nested, malformed or unsupported Zotero field prevents a complete conversion,
+the operation refuses before unlinking any fields. Protected content and
+unresolved tracked changes are also checked. Zotero instructions retained in
+unmodeled native content prevent a partial conversion.
+
+Read-only documents and active Track changes disable this action. Changing the
+document or insertion point while the confirmation is open invalidates the
+confirmation. Undo restores all field links together; after closing and
+reopening the unlinked file, it contains ordinary text. The existing per-field
+**Convert to text (undoable)** action remains available for a single reference.
+
+### Search imported references and copy stored data
+
+After **Load references**, use **Search imported references** to filter the
+loaded CSL records immediately. Each whitespace-separated search term must
+appear in the title, a creator name, publication year or DOI. Matching ignores
+case and treats punctuation literally. All supplied author/editor names are
+searchable, including names beyond the visible label. Creator and year labels
+help distinguish records with the same title.
+
+The result count shows how many loaded references match and how many selected
+sources are outside those results. Filtering and clearing the search keep all
+selections and their order, including sources selected in Library. **Review
+selected** still lets you reorder or remove them. Duplicate CSL IDs or titles
+retain their separate original import positions. Loading a new valid export
+clears the search and replaces only imported selections; an invalid export
+keeps the previous list, filter and selection intact.
+
+Choose **Copy stored CSL JSON** to copy the entire current selection in its
+reviewed order, including hidden sources and references from different
+libraries. The copied array retains embedded metadata, unknown CSL fields and
+Zotero URI aliases. It can be pasted back into **Import CSL JSON**. Repeated
+records and IDs are retained; this action does not deduplicate them or refresh
+their metadata. Citation-specific locators and affixes remain in the citation
+and are not part of the reference export. The copied JSON must fit the existing
+1 MB import limit; a missing or malformed snapshot stops the copy with an
+explanation instead of silently leaving out a selected source.
+
+Searching, reviewing and copying stored references work in a read-only document
+and make no network requests or document-history changes. The connected
+BibTeX/BibLaTeX/RIS/CSL JSON export choices continue to use the selected library.
+The import view scrolls vertically in smaller windows. Status and error
+messages have their own scroll area when space is limited, so their complete
+text remains available with enlarged text.
 
 ### Find and sort references
 
@@ -574,7 +741,14 @@ The engine exports `ZoteroClient`, `ZoteroLibrary`, `ZoteroItem`, `ZoteroSavedSe
 `ZoteroCitation`, `ZoteroCitationItem`, and `WordZotero`. The editor adds
 `WordEditorController.insertZoteroCitation`, `updateZoteroCitation`,
 `refreshZoteroCitations`, `insertZoteroBibliography`,
-`updateZoteroBibliography`, and `unlinkZoteroField`. Live field handles must be
+`updateZoteroBibliography`, `unlinkZoteroField`, and `unlinkZoteroFields`.
+The latter returns the converted field count and performs an atomic,
+document-wide conversion. `zoteroFieldAtCaret` returns a fresh field handle
+for the body caret or a selection confined to one paragraph. Hosts can pass
+`initialTab: WordZoteroTab.document` to `showWordZoteroDialog`, or an explicit
+`initialCommand: ZoteroCitingCommand.addEditCitation` (and the other native
+commands) to begin that command immediately with their local transport.
+Live field handles must be
 re-inspected after a mutation or history operation.
 
 For native transactions, use `ZoteroCitingClient`, `ZoteroCitingCancellation`,

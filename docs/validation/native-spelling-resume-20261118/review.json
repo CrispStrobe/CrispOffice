@@ -1,0 +1,83 @@
+{
+  "schema": "quds.native_spelling_resume.independent_review.v1",
+  "reviewed_at_utc": "2026-11-18T12:54:20.159537+00:00",
+  "baseline": "4dceb86e9fae51877bb5b7dc01e7a8bc721cb6ea",
+  "scope": "Independent review of native numeric/connector span protection, German comparison projection and limited canonical composition. No product source changes made by reviewer.",
+  "files_sha256": {
+    "packages/quds_office_editor/lib/src/proofing/platform_spelling_provider.dart": "26987523c1148309ebfa2b694eb6e5e2fd55834001975052637c5f1ad3d463f4",
+    "packages/quds_office_engine/lib/src/proofing/german_spelling.dart": "f178d019d17b8f05137affae177f3b3dc78b329aabec6366423324f264fa9ca4",
+    "packages/quds_office_editor/test/platform_spelling_identifiers_test.dart": "18a345673620035dd972c5d0a5d3d58a7e6c20c991b79551b49c2f12b079b6d5",
+    "packages/quds_office_editor/test/platform_spelling_identifier_review_test.dart": "9d380ee63452a8b728a7f9dedb7169e3c5345f676208d94edb629a623fd02791",
+    "packages/quds_office_engine/test/proofing/german_spelling_projection_test.dart": "ffe595b2cbc3d02030a43a4edc6bc84ed5e5c31cd6797d5351b077552d364370"
+  },
+  "issues": [
+    {
+      "id": "prepend-numeric-connector-graphemes",
+      "severity": "correctness",
+      "status": "fixed_and_native_controls_reexecuted",
+      "description": "Prefix-only marker lookup misses numeric or connector characters when Unicode Prepend characters begin the same grapheme. This exposed whole native identifier findings and adjacent lexical fragments. The same assumption appeared in the German projected boundary collection.",
+      "reproduction": [
+        "Fe\\u06004\\u0301ler",
+        "\\u06004\\u0301Feler",
+        "Fe\\u00ad\\u06004\\u0301ler"
+      ],
+      "resolution": "Both providers search the complete grapheme for Unicode N/Pc markers while retaining the grapheme start/end. Native sorted interval lookup remains unchanged.",
+      "before_observation": {
+        "tests_passed": 2,
+        "tests_failed": 3,
+        "log": "identifier-review-before.txt",
+        "limitation": "Observed on the first native interval implementation before the Prepend fix; not presented as an isolated unchanged-main control."
+      }
+    }
+  ],
+  "native_independent_rerun": {
+    "receipt": "identifier-review-receipt.json",
+    "events": "identifier-review-after.jsonl",
+    "returncode": 0,
+    "stable_inputs": true,
+    "tests_passed": 5,
+    "tests_failed": 0,
+    "tests_skipped": 0,
+    "cases": [
+      {
+        "name": "whole identifiers retain markers inside prepended graphemes",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "prepended markers protect adjacent native letter fragments",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "prepended marker protection survives soft-hyphen projection",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "numeric symbols and connector punctuation stay intact",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "marked separators and numeral words retain prose findings",
+        "result": "success",
+        "skipped": false
+      }
+    ]
+  },
+  "review_conclusions": [
+    "The native lower-bound search includes identifiers inside a returned range and immediately after its end, while retaining preceding-cluster adjacency protection. Sorting is established by the single grapheme traversal, so arbitrary native span order is supported.",
+    "Searching each complete grapheme remains linear in total source length. Supplementary markers, combining marks and Prepend characters preserve whole-cluster boundaries.",
+    "German source-to-comparison offsets remove only soft hyphens. Tokens and published ranges retain source offsets; both original and comparison grapheme boundaries and protected text ranges are checked.",
+    "Canonical comparison adds e/E diaeresis and s/S caron and removes soft hyphens before composition. It remains an explicit limited normalization map rather than general Unicode normalization.",
+    "Separated prose, explicit hyphen parts and CJK spans remain admitted by the inspected guards and independent native controls."
+  ],
+  "blocking_findings": [],
+  "limitations": [
+    "Native responses are controlled SpellCheckService data, not physical Android/iOS dictionary acceptance.",
+    "German focused tests are owned by the implementation agent and are not counted as this reviewer's independent execution.",
+    "This review does not certify target-device performance, every browser, full application builds or inherited native models."
+  ],
+  "github_actions_workflow_checks_or_status_endpoints_used": false
+}

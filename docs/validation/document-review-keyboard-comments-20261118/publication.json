@@ -1,0 +1,68 @@
+{
+  "branch": "codex/document-review-20261118",
+  "repository": "CrispStrobe/quds_office_suite",
+  "updates_use_expected_head": true,
+  "force_push": false,
+  "messages_skip_ci": true,
+  "github_actions_queried_or_awaited": false,
+  "checkpoints": [
+    {
+      "sha": "9ae76b5b7fdc010b187a52c67067474263b6f52b",
+      "previous": "ec28480130786cb923d0447ee92a1d3de19f35c0",
+      "tree": "7f4146370aac99094c91b7ea0830dcdc14e33147",
+      "parents": [
+        "ec28480130786cb923d0447ee92a1d3de19f35c0",
+        "8002b6748deec2be7b7527d2bab8810d8ec54d05"
+      ],
+      "scope": "incoming-reconciliation",
+      "local_tree": "7f4146370aac99094c91b7ea0830dcdc14e33147"
+    },
+    {
+      "sha": "c32efc44a082ccc55249561f2e7e07b406b0ad74",
+      "previous": "9ae76b5b7fdc010b187a52c67067474263b6f52b",
+      "tree": "b1f13db91a6381a20d085422bc53afb30b1943cb",
+      "scope": "inline-comment-implementation",
+      "local_tree": "b1f13db91a6381a20d085422bc53afb30b1943cb"
+    },
+    {
+      "sha": "7638c5eeab66fe8aa74513e2bb5d28fd39034560",
+      "previous": "c32efc44a082ccc55249561f2e7e07b406b0ad74",
+      "tree": "a6f8d97786921cf187c0b74eccd33fe32cca1e72",
+      "scope": "keyboard-and-comment-workflows",
+      "local_tree": "a6f8d97786921cf187c0b74eccd33fe32cca1e72"
+    },
+    {
+      "sha": "785f4694b6afb9904ed496b7b50ef05cc099c32b",
+      "previous": "7638c5eeab66fe8aa74513e2bb5d28fd39034560",
+      "tree": "87ce791e7ba894104b2af1588daca9a9703d2aa8",
+      "scope": "frozen-validation-source",
+      "local_tree": "87ce791e7ba894104b2af1588daca9a9703d2aa8"
+    },
+    {
+      "sha": "6c88efed8de24951ef640f79af64b8df6097b248",
+      "previous": "785f4694b6afb9904ed496b7b50ef05cc099c32b",
+      "tree": "d1425163a0560ec60ad7481d5c0efb51d2103b85",
+      "parents": [
+        "785f4694b6afb9904ed496b7b50ef05cc099c32b",
+        "1cdedeebcae9c4fd1a50a7bfea6f487af5bb688c",
+        "a40a26663f7a2c6b7fb8de91540fd04b9875ed9c",
+        "decde7792890bf4724c91403fbb6528d8423b01e"
+      ],
+      "scope": "late-integration-and-fixed-frozen-source",
+      "local_tree": "d1425163a0560ec60ad7481d5c0efb51d2103b85"
+    },
+    {
+      "sha": "9dba5a90ae377be594e705119c20698a0f509d2b",
+      "previous": "6c88efed8de24951ef640f79af64b8df6097b248",
+      "tree": "278c09330e11807235328e92e9dc2ed5ca7e1542",
+      "scope": "accepted-validation-and-final-guide",
+      "local_tree": "278c09330e11807235328e92e9dc2ed5ca7e1542"
+    }
+  ],
+  "closing_checkpoint": {
+    "expected_previous_head": "9dba5a90ae377be594e705119c20698a0f509d2b",
+    "scope": "final publication and source-binding receipt",
+    "identity": "The commit that first adds this closing_checkpoint record; its SHA is linked from PR #162 and the delivery response.",
+    "application_source_changed": false
+  }
+}

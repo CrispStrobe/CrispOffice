@@ -1,0 +1,109 @@
+{
+  "purpose": "Exact restored local runtime setup evidence; separate from application validation.",
+  "runtime": {
+    "frameworkVersion": "3.47.8",
+    "channel": "stable",
+    "repositoryUrl": "https://github.com/flutter/flutter.git",
+    "frameworkRevision": "737ba8f885dc774b53b442759999a312c9461e4e",
+    "frameworkCommitDate": "2026-10-22 21:37:31 -0700",
+    "engineRevision": "cf636b1dfb818dd6a3ff16e390e93b1a036969c8",
+    "engineCommitDate": "2026-10-23 02:13:38.000Z",
+    "engineContentHash": "dfd2e6cb7d319db05e3bf1503f3e2ac60f6288a2",
+    "engineBuildDate": "2026-10-22 20:34:48.330",
+    "dartSdkVersion": "3.13.7",
+    "devToolsVersion": "2.60.0",
+    "flutterVersion": "3.47.8",
+    "flutterRoot": "/workspace/scratch/887f66647834/toolchains/flutter"
+  },
+  "archive": {
+    "url": "https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.47.8-stable.tar.xz",
+    "sha256": "baf7dcc5a3dbba60fe863bf493a6cf203195621f7786eaa5a1bba02cd0d87dd2",
+    "bytes": 1581444364,
+    "verified": true,
+    "extracted_bytes": 1363358854
+  },
+  "workspace_lock_sha256": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130",
+  "runtime_receipt_sha256": "931ef7cd553174a0fb80810e24a581a053ad7edddcab2e26158d341e3f11a7f5",
+  "hosted_archives_verified": 162,
+  "workspace_package_count": 110,
+  "bootstrap_changes_from_previous_record": [
+    "Output directory updated to this conversation workspace.",
+    "Official SDK archive downloaded and hash checked as a stream instead of reading an already downloaded archive."
+  ],
+  "files": [
+    {
+      "source_relative_to_runtime": "runtime.json",
+      "saved_file": "runtime.json",
+      "source_bytes": 3350,
+      "source_sha256": "931ef7cd553174a0fb80810e24a581a053ad7edddcab2e26158d341e3f11a7f5",
+      "saved_bytes": 3350,
+      "saved_sha256": "931ef7cd553174a0fb80810e24a581a053ad7edddcab2e26158d341e3f11a7f5",
+      "compression": null
+    },
+    {
+      "source_relative_to_runtime": "bootstrap_runtime.py",
+      "saved_file": "bootstrap_runtime.py.gz",
+      "source_bytes": 9470,
+      "source_sha256": "b61c855c009de3b001e69e3ae96481b13387089bad29ddfe1c0ff98c67187137",
+      "saved_bytes": 3758,
+      "saved_sha256": "7bf115fa91d6eae6ce211d518fbb6e7150de0dd1ded7c912c4737d695854a2dc",
+      "compression": "gzip"
+    },
+    {
+      "source_relative_to_runtime": "bootstrap.log",
+      "saved_file": "bootstrap.txt",
+      "source_bytes": 564,
+      "source_sha256": "f9201de287bd2266f8031a1e9e819d7e45179398559e5a31b23d03bdc42c3ea4",
+      "saved_bytes": 564,
+      "saved_sha256": "f9201de287bd2266f8031a1e9e819d7e45179398559e5a31b23d03bdc42c3ea4",
+      "compression": null
+    },
+    {
+      "source_relative_to_runtime": "pub-cache-receipt.json",
+      "saved_file": "pub-cache-receipt.json.gz",
+      "source_bytes": 40844,
+      "source_sha256": "591b64e6ecc94f418fc129064caf1fcac66090911db8e7e25bff0d45ae4ee7a2",
+      "saved_bytes": 10368,
+      "saved_sha256": "3748951de970e0556cb275d66cac389eb9de79eeee835e8d810eb47416b81f57",
+      "compression": "gzip"
+    },
+    {
+      "source_relative_to_runtime": "archive-members.json",
+      "saved_file": "archive-members.json.gz",
+      "source_bytes": 493700,
+      "source_sha256": "8799648215251c6cee363cd1573275efe5389a18fe7878dc9523b7129130438d",
+      "saved_bytes": 46309,
+      "saved_sha256": "1953312e89d1065243236a15f92cdb5eb612f0f671dc2af428e57b7fa4f821ac",
+      "compression": "gzip"
+    },
+    {
+      "source_relative_to_runtime": "logs/flutter-tools-pub-get.log",
+      "saved_file": "flutter-tools-pub-get.txt",
+      "source_bytes": 1016,
+      "source_sha256": "9f349fca172146e2595a50ccbe19f4d21b8845690372a19239884f3b932864c3",
+      "saved_bytes": 1016,
+      "saved_sha256": "9f349fca172146e2595a50ccbe19f4d21b8845690372a19239884f3b932864c3",
+      "compression": null
+    },
+    {
+      "source_relative_to_runtime": "logs/workspace-pub-get.log",
+      "saved_file": "workspace-pub-get.txt",
+      "source_bytes": 68,
+      "source_sha256": "d4cb7a3c68b4133b4f6e58c67ff5bfd13725d8021e930388cdc98da8a575919d",
+      "saved_bytes": 68,
+      "saved_sha256": "d4cb7a3c68b4133b4f6e58c67ff5bfd13725d8021e930388cdc98da8a575919d",
+      "compression": null
+    },
+    {
+      "source_relative_to_runtime": "logs/flutter-version.log",
+      "saved_file": "flutter-version.txt",
+      "source_bytes": 631,
+      "source_sha256": "d8988753e246b8aa0fc5b6c7b5e99970750e591e93c4a1714b931be32a7b9cc2",
+      "saved_bytes": 631,
+      "saved_sha256": "d8988753e246b8aa0fc5b6c7b5e99970750e591e93c4a1714b931be32a7b9cc2",
+      "compression": null
+    }
+  ],
+  "github_actions_queried_or_awaited": false,
+  "application_tests_run_during_setup": false
+}

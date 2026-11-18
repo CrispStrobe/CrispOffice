@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:quds_office_engine/quds_office_engine.dart';
@@ -17,6 +19,74 @@ import '../editor_word/word_run_metrics.dart';
 import '../proofing/word_proofing.dart';
 import 'office_clipboard.dart';
 import 'office_theme.dart';
+
+/// The persistent review workspace shown beside (or below) a Word document.
+enum WordReviewPaneTab { proofing, changes }
+
+/// An immutable view of the selected text, or the whole current paragraph.
+///
+/// Keep this handle with a displayed control and supply it when applying an
+/// option. The controller refuses a handle whose document, caret, source or
+/// proofing settings have changed, including model edits made by a host.
+@immutable
+final class WordTextProofingTarget {
+  const WordTextProofingTarget._(
+    this._context,
+    this._ranges, {
+    required this.isSelection,
+    required this.language,
+    required this.checkingEnabled,
+    required this.unavailableReason,
+  });
+
+  final bool isSelection;
+
+  /// Effective language, or null when the target contains several languages.
+  final String? language;
+
+  /// Whether this text permits proofing; null denotes a mixed selection.
+  /// This is independent of the session's Check as you type preference.
+  final bool? checkingEnabled;
+  final String? unavailableReason;
+  bool get canEdit => unavailableReason == null;
+
+  final Object _context;
+  final List<_WordTextProofingRange> _ranges;
+
+  bool _matches(WordTextProofingTarget other) =>
+      _context == other._context &&
+      _ranges.length == other._ranges.length &&
+      _ranges.indexed.every((entry) {
+        final before = entry.$2;
+        final after = other._ranges[entry.$1];
+        return identical(before.paragraph, after.paragraph) &&
+            before.start == after.start &&
+            before.end == after.end &&
+            before.source == after.source &&
+            listEquals(before.inlines, after.inlines);
+      });
+}
+
+final class _WordTextProofingRange {
+  _WordTextProofingRange({
+    required this.paragraph,
+    required this.start,
+    required this.end,
+    required this.source,
+  }) : inlines = List.unmodifiable(paragraph.inlines);
+
+  final WmlParagraph paragraph;
+  final int start;
+  final int end;
+  final String source;
+  final List<WmlInline> inlines;
+}
+
+typedef _WordTextProofingParagraph = ({
+  WmlParagraph paragraph,
+  List<WmlContentControlData> controls,
+  bool generated,
+});
 
 /// Live find/replace cursor shared by every host.
 class OfficeFindSession {
@@ -449,6 +519,60 @@ class WordEditorController extends OfficeController {
   final OfficeProofingVocabulary? _initialProofingVocabulary;
   final OfficeProofingService? _initialProofingService;
   String _revisionAuthor;
+  bool _reviewPaneVisible = false;
+  bool _reviewTextProofingOptionsVisible = false;
+  int _textProofingOptionsRequest = 0;
+  WordReviewPaneTab _reviewPaneTab = WordReviewPaneTab.proofing;
+  WordProofingIssue? _selectedProofingIssue;
+  Future<WordProofingSummary>? _explicitProofingCheck;
+  int? _explicitProofingGeneration;
+  ({WmlParagraph? paragraph, int offset, int? anchor, int? anchorParagraph})?
+  _proofingSelectionCaret;
+
+  /// Review chrome is session state and never marks the document dirty.
+  bool get reviewPaneVisible => _reviewPaneVisible;
+  WordReviewPaneTab get reviewPaneTab => _reviewPaneTab;
+
+  bool get reviewTextProofingOptionsVisible =>
+      _reviewTextProofingOptionsVisible;
+
+  /// Advances even when already open, so hosts can reveal the controls again.
+  int get textProofingOptionsRequest => _textProofingOptionsRequest;
+
+  /// Expanding or collapsing text options is session state only.
+  void setTextProofingOptionsVisible(bool visible) {
+    if (isDisposed || _reviewTextProofingOptionsVisible == visible) return;
+    _reviewTextProofingOptionsVisible = visible;
+    notifyListeners();
+  }
+
+  /// Opens the current text's language and proofing controls in Writing.
+  void showTextProofingOptions() {
+    if (isDisposed) return;
+    _reviewTextProofingOptionsVisible = true;
+    _textProofingOptionsRequest++;
+    openReviewPane();
+  }
+
+  void openReviewPane({WordReviewPaneTab tab = WordReviewPaneTab.proofing}) {
+    if (isDisposed) return;
+    _reviewPaneVisible = true;
+    _reviewPaneTab = tab;
+    notifyListeners();
+  }
+
+  void closeReviewPane() {
+    if (!_reviewPaneVisible || isDisposed) return;
+    _reviewPaneVisible = false;
+    notifyListeners();
+    onRequestFocus?.call();
+  }
+
+  void setReviewPaneTab(WordReviewPaneTab tab) {
+    if (_reviewPaneTab == tab || isDisposed) return;
+    _reviewPaneTab = tab;
+    notifyListeners();
+  }
 
   /// Attribution for changes recorded from now on. Existing changes retain
   /// their original authors, including across undo and redo.
@@ -469,8 +593,9 @@ class WordEditorController extends OfficeController {
     return author;
   }
 
-  /// Offline German checkers are available immediately. Checking is opt-in;
-  /// hosts can configure additional local providers through the session.
+  /// Offline German checkers are available immediately. The shared editor
+  /// enables background checking unless the host/user has set a preference;
+  /// standalone controllers remain idle until a host requests a check.
   WordProofingSession get proofing {
     _proofing ??= WordProofingSession(
       document: () => document,
@@ -494,6 +619,10 @@ class WordEditorController extends OfficeController {
     _proofing?.refresh();
     super.refresh();
   }
+
+  /// Updates selection/scroll chrome without invalidating checked text. Use
+  /// [refresh] after a direct model edit that bypasses controller commands.
+  void refreshView() => notifyListeners();
 
   @override
   void dispose() {
@@ -6776,6 +6905,32 @@ class WordEditorController extends OfficeController {
     }
     final WmlRevisionSnapshot before = WordRevisions.capture(document);
     final int? selected = selectedRevisionIndex;
+    final pending = document.revisions
+        .where((revision) => revision.accepted == null)
+        .toList();
+    final current = selectedRevision;
+    final currentIndex = current == null ? -1 : pending.indexOf(current);
+    WmlRevision? successor;
+    if (current != null && !targets.contains(current)) {
+      successor = current;
+    } else {
+      // Keep review moving forward from the decision. At the end, stay with
+      // the nearest earlier change instead of jumping to the document start.
+      for (var index = currentIndex + 1; index < pending.length; index++) {
+        if (!targets.contains(pending[index])) {
+          successor = pending[index];
+          break;
+        }
+      }
+      if (successor == null) {
+        for (var index = currentIndex - 1; index >= 0; index--) {
+          if (!targets.contains(pending[index])) {
+            successor = pending[index];
+            break;
+          }
+        }
+      }
+    }
     void restore() {
       for (final entry in inlines.entries) {
         entry.key.inlines
@@ -6798,7 +6953,10 @@ class WordEditorController extends OfficeController {
                 WordRevisions.reject(document, revision);
               }
             }
-            selectedRevisionIndex = null;
+            final next = successor == null
+                ? -1
+                : document.revisions.indexOf(successor);
+            selectedRevisionIndex = next < 0 ? null : next;
           } on Object {
             restore();
             rethrow;
@@ -6918,6 +7076,44 @@ class WordEditorController extends OfficeController {
   /// Zotero fields in every modeled story, including imported citations.
   /// Reinspect after mutations or undo/redo: field handles are short-lived.
   List<WmlZoteroField> get zoteroFields => WordZotero.fields(document);
+
+  /// A fresh field handle at the body caret or enclosing a selection in one
+  /// paragraph. A collapsed caret at a field's end belongs to the following
+  /// text. Other editor stories retain their explicit field-list actions.
+  WmlZoteroField? get zoteroFieldAtCaret => findZoteroFieldAtCaret();
+
+  /// Resolves the current body caret using a fresh field inventory when the
+  /// caller already inspected this document during the same synchronous build.
+  /// Omit [fields] to inspect the document here. Do not retain supplied handles
+  /// across document changes or undo/redo.
+  WmlZoteroField? findZoteroFieldAtCaret({Iterable<WmlZoteroField>? fields}) {
+    if (_disposed ||
+        isEditingHeaderFooter ||
+        isEditingComment ||
+        editingFrame ||
+        selectedFrame != null) {
+      return null;
+    }
+    final paragraphs = document.paragraphs.toList();
+    final range = caret.normalizedRange;
+    if (range.startPara != range.endPara ||
+        range.startPara < 0 ||
+        range.startPara >= paragraphs.length) {
+      return null;
+    }
+    final paragraph = paragraphs[range.startPara];
+    if (range.startIdx < 0 || range.endIdx > paragraph.text.length) return null;
+    return (fields ?? zoteroFields).where((field) {
+      final index = field.paragraphs.indexOf(paragraph);
+      if (index < 0) return false;
+      final start = index == 0 ? field.start : 0;
+      final end = index == field.paragraphs.length - 1
+          ? field.end
+          : paragraph.text.length;
+      return range.startIdx >= start &&
+          (caret.isCollapsed ? range.startIdx < end : range.endIdx <= end);
+    }).firstOrNull;
+  }
 
   /// Starts a detached Zotero desktop transaction tied to this exact editing
   /// target. The host drives its protocol and calls [WordZoteroTransaction.apply]
@@ -7145,6 +7341,214 @@ class WordEditorController extends OfficeController {
     _commitZoteroChange(field.paragraphs, () => WordZotero.unlink(field));
   }
 
+  /// Converts all modeled Zotero citations and bibliographies to ordinary
+  /// text in one undo step. Cached character/paragraph formatting, notes,
+  /// other fields and document style preferences stay intact. A single unsafe
+  /// field prevents the entire operation; no partial conversion is committed.
+  /// Returns the number of converted fields, or zero for an uneditable or
+  /// citation-free document.
+  int unlinkZoteroFields() {
+    if (_disposed || !config.allowsMutation) return 0;
+    _assertNoUnmodeledZoteroFields();
+    final fields = zoteroFields;
+    if (fields.isEmpty) return 0;
+    _assertZoteroTrackingMode();
+    if (document.restrictEditing) {
+      throw UnsupportedError(
+        'Use an editable document before unlinking citations.',
+      );
+    }
+    if (fields.any(
+      (field) =>
+          field.locked ||
+          field.nested ||
+          field.opaqueMetadata ||
+          !field.isValid,
+    )) {
+      throw UnsupportedError(
+        'Resolve locked, nested, malformed or unsupported Zotero fields before unlinking citations. No fields were changed.',
+      );
+    }
+    final paragraphs = Set<WmlParagraph>.identity()
+      ..addAll(fields.expand((field) => field.paragraphs));
+    for (final paragraph in paragraphs) {
+      WordContentControls.assertCanEdit(paragraph, 0, paragraph.text.length);
+    }
+    _commitZoteroChange(paragraphs.toList(), () {
+      for (final field in fields.reversed) {
+        WordZotero.unlink(field);
+      }
+    }, commitNoteDrafts: true);
+    return fields.length;
+  }
+
+  void _assertNoUnmodeledZoteroFields() {
+    final opaque = <WmlOpaqueBlock>[];
+    _assertCompleteZoteroFieldPackets(document.paragraphs);
+    void inspectParagraph(WmlParagraph paragraph) {
+      opaque.addAll(
+        paragraph.inlines.whereType<WmlOpaqueInline>().map(
+          (inline) => inline.content,
+        ),
+      );
+    }
+
+    void inspectBlocks(Iterable<WmlBlock> blocks) {
+      for (final block in WordTree.descendants(blocks)) {
+        if (block is WmlOpaqueBlock) opaque.add(block);
+        if (block is WmlParagraph) inspectParagraph(block);
+      }
+    }
+
+    for (final section in document.sections) {
+      inspectBlocks(section.blocks);
+      final stories = <String, List<WmlParagraph>>{
+        'header': section.header,
+        'footer': section.footer,
+        'firstHeader': section.firstHeader,
+        'firstFooter': section.firstFooter,
+        'evenHeader': section.evenHeader,
+        'evenFooter': section.evenFooter,
+      };
+      for (final entry in stories.entries) {
+        _assertCompleteZoteroFieldPackets(entry.value);
+        for (final paragraph in entry.value) {
+          inspectParagraph(paragraph);
+        }
+        // A modeled replacement supersedes the preserved original story.
+        final preserved = section.preservedStories[entry.key];
+        if (entry.value.isEmpty && preserved != null) opaque.add(preserved);
+      }
+    }
+    for (final note in [...document.footnotes, ...document.endnotes]) {
+      _assertCompleteZoteroFieldPackets(note.allParagraphs);
+      inspectBlocks(note.blocks);
+    }
+    for (final comment in document.comments) {
+      _assertCompleteZoteroFieldPackets(comment.paragraphs);
+      for (final paragraph in comment.paragraphs) {
+        inspectParagraph(paragraph);
+      }
+    }
+    if (opaque.any(_opaqueContainsZoteroField)) {
+      throw UnsupportedError(
+        'This document contains Zotero fields in preserved content that cannot be unlinked here. Resolve those fields in the original word processor first. No fields were changed.',
+      );
+    }
+  }
+
+  static void _assertCompleteZoteroFieldPackets(
+    Iterable<WmlParagraph> paragraphs,
+  ) {
+    final open = <({StringBuffer code, bool separated})>[];
+    final detached = StringBuffer();
+    void rejectZotero(StringBuffer code) {
+      if (WordZotero.kindOfInstruction(code.toString()) != null) {
+        throw UnsupportedError(
+          'Resolve incomplete Zotero field boundaries before unlinking citations. No fields were changed.',
+        );
+      }
+    }
+
+    void flushDetached() {
+      rejectZotero(detached);
+      detached.clear();
+    }
+
+    // Field enumeration intentionally exposes only complete complex packets.
+    // Check incomplete or detached instructions separately, otherwise a batch
+    // could unlink the valid fields while leaving an unreported citation.
+    for (final paragraph in paragraphs) {
+      for (final inline in paragraph.inlines) {
+        if (inline is! WmlFieldBoundary) {
+          flushDetached();
+          continue;
+        }
+        if (inline.kind != WmlFieldBoundaryKind.instruction) flushDetached();
+        switch (inline.kind) {
+          case WmlFieldBoundaryKind.begin:
+            open.add((code: StringBuffer(), separated: false));
+          case WmlFieldBoundaryKind.instruction:
+            (open.isEmpty ? detached : open.last.code).write(inline.text);
+          case WmlFieldBoundaryKind.separate:
+            if (open.isNotEmpty) {
+              final field = open.removeLast();
+              open.add((code: field.code, separated: true));
+            }
+          case WmlFieldBoundaryKind.end:
+            if (open.isNotEmpty) {
+              final field = open.removeLast();
+              if (!field.separated) rejectZotero(field.code);
+            }
+        }
+      }
+    }
+    flushDetached();
+    for (final field in open) {
+      rejectZotero(field.code);
+    }
+  }
+
+  static bool _opaqueContainsZoteroField(WmlOpaqueBlock content) {
+    // Inspect native field instructions, never visible prose or unrelated
+    // fields that merely quote the word Zotero. Complex instructions can be
+    // split across several runs and may contain nested field packets.
+    final root = XmlDocument.parse(content.xml).root;
+    if (root == null) return false;
+    final instructions = <StringBuffer>[];
+    final detached = StringBuffer();
+    var found = false;
+    bool isWord(XmlElement element) =>
+        element.namespaceUri == OfficeNamespaces.w ||
+        (element.namespaceUri.isEmpty && element.prefix == 'w');
+    String? attribute(XmlElement element, String name) => element.attributes
+        .where(
+          (value) =>
+              value.localName == name &&
+              (value.namespaceUri == OfficeNamespaces.w ||
+                  (value.namespaceUri.isEmpty && value.prefix == 'w')),
+        )
+        .firstOrNull
+        ?.value;
+    void finish(StringBuffer instruction) {
+      if (WordZotero.kindOfInstruction(instruction.toString()) != null) {
+        found = true;
+      }
+    }
+
+    void visit(XmlElement element) {
+      if (isWord(element)) {
+        if (element.localName == 'fldSimple' &&
+            WordZotero.kindOfInstruction(attribute(element, 'instr')) != null) {
+          found = true;
+        } else if (element.localName == 'fldChar') {
+          switch (attribute(element, 'fldCharType')) {
+            case 'begin':
+              instructions.add(StringBuffer());
+            case 'separate':
+              if (instructions.isNotEmpty) finish(instructions.last);
+            case 'end':
+              if (instructions.isNotEmpty) finish(instructions.removeLast());
+          }
+        } else if (element.localName == 'instrText') {
+          (instructions.isEmpty ? detached : instructions.last).write(
+            element.text,
+          );
+        }
+      }
+      for (final child in element.childElements) {
+        visit(child);
+      }
+    }
+
+    visit(root);
+    finish(detached);
+    for (final instruction in instructions) {
+      finish(instruction);
+    }
+    return found;
+  }
+
   void _assertZoteroFieldOwner(WmlZoteroField field) {
     if (!zoteroFields.any(
       (current) =>
@@ -7160,7 +7564,11 @@ class WordEditorController extends OfficeController {
     }
   }
 
-  void _commitZoteroChange(List<WmlParagraph> paragraphs, VoidCallback mutate) {
+  void _commitZoteroChange(
+    List<WmlParagraph> paragraphs,
+    VoidCallback mutate, {
+    bool commitNoteDrafts = false,
+  }) {
     _assertZoteroTrackingMode();
     final touched = Set<WmlParagraph>.identity()..addAll(paragraphs);
     if (document.revisions.any(
@@ -7218,6 +7626,11 @@ class WordEditorController extends OfficeController {
     } finally {
       restore(before);
     }
+    // Finish existing note drafts only after the complete operation has been
+    // staged successfully. A failed preflight must preserve pending history,
+    // while undo of a successful bulk conversion must restore its field links
+    // before undoing an older note edit.
+    if (commitNoteDrafts) commitNoteEdits();
     commands.commit(
       _CallbackCommand(
         executeFn: () => restore(after),
@@ -7858,11 +8271,496 @@ class WordEditorController extends OfficeController {
 
   /// Checks all modeled document stories, preserving provider availability and
   /// coverage. Findings never become document edits without an explicit choice.
-  Future<WordProofingSummary> checkDocumentProofing() => proofing.checkNow();
+  Future<WordProofingSummary> checkDocumentProofing() {
+    final current = _explicitProofingCheck;
+    if (current != null &&
+        _explicitProofingGeneration == proofing.checkGeneration) {
+      return current;
+    }
+    late final Future<WordProofingSummary> check;
+    check = proofing.checkNow().whenComplete(() {
+      if (identical(_explicitProofingCheck, check)) {
+        _explicitProofingCheck = null;
+        _explicitProofingGeneration = null;
+      }
+    });
+    _explicitProofingCheck = check;
+    _explicitProofingGeneration = proofing.checkGeneration;
+    return check;
+  }
+
+  /// Current review selection, rebound after a check of unchanged text. A
+  /// finding under the caret takes precedence, so the pane follows navigation
+  /// without moving focus or interrupting typing.
+  WordProofingIssue? get selectedProofingIssue {
+    final selected = _selectedProofingIssue;
+    final atCaret = proofingIssuesAtCaret;
+    WordProofingIssue? matching(Iterable<WordProofingIssue> issues) {
+      if (selected == null) return null;
+      for (final issue in issues) {
+        if (identical(issue.paragraph, selected.paragraph) &&
+            issue.sourceText == selected.sourceText &&
+            issue.language == selected.language &&
+            issue.finding.providerId == selected.finding.providerId &&
+            issue.finding.ruleId == selected.finding.ruleId &&
+            issue.finding.start == selected.finding.start &&
+            issue.finding.end == selected.finding.end) {
+          return issue;
+        }
+      }
+      return null;
+    }
+
+    final explicit = matching(proofing.summary.issues);
+    if (explicit != null && _proofingSelectionCaret == _proofingCaretPosition) {
+      return explicit;
+    }
+    return matching(atCaret) ?? atCaret.firstOrNull ?? explicit;
+  }
+
+  ({WmlParagraph? paragraph, int offset, int? anchor, int? anchorParagraph})
+  get _proofingCaretPosition {
+    final paragraphs = _paragraphs;
+    final current = caret;
+    final index = current.paragraphIndex;
+    return (
+      paragraph: index >= 0 && index < paragraphs.length
+          ? paragraphs[index]
+          : null,
+      offset: current.logicalIndex,
+      anchor: current.selectionAnchor,
+      anchorParagraph: current.selectionAnchorParagraph,
+    );
+  }
+
+  /// Selects a current finding. Unsupported canvas stories stay selected in
+  /// the pane; false means that no source range could be revealed.
+  bool selectProofingIssue(WordProofingIssue issue, {bool reveal = true}) {
+    if (isDisposed || !proofing.isCurrent(issue)) return false;
+    _selectedProofingIssue = issue;
+    final shown = reveal && revealProofingIssue(issue);
+    _proofingSelectionCaret = _proofingCaretPosition;
+    if (!shown) notifyListeners();
+    return shown;
+  }
+
+  /// Advances through the current findings, wrapping at either end.
+  void stepProofingIssue(int delta) {
+    if (delta == 0 || isDisposed) return;
+    final issues = proofing.summary.issues;
+    if (issues.isEmpty) return;
+    final selected = selectedProofingIssue;
+    final current = selected == null ? -1 : issues.indexOf(selected);
+    final next = current < 0
+        ? (delta > 0 ? delta - 1 : delta) % issues.length
+        : (current + delta) % issues.length;
+    selectProofingIssue(issues[next]);
+  }
+
+  /// The selected text, or the whole paragraph when the caret is collapsed.
+  ///
+  /// This inspection never creates a paragraph or changes selection/history.
+  /// Object selections, empty text and unsupported stories return null.
+  WordTextProofingTarget? get textProofingTarget {
+    if (isDisposed ||
+        selectedVisual != null ||
+        selectedEquation != null ||
+        (selectedFrame != null && !editingFrame) ||
+        selectedTable != null ||
+        selectedTableBand != null ||
+        _noteEditStart.isNotEmpty) {
+      return null;
+    }
+    final current = caret;
+    final selection = current.normalizedRange;
+    final startParagraph = current.isCollapsed
+        ? current.paragraphIndex
+        : selection.startPara;
+    final endParagraph = current.isCollapsed
+        ? current.paragraphIndex
+        : selection.endPara;
+    if (startParagraph < 0) return null;
+    final entries = _textProofingStory.take(endParagraph + 1).toList();
+    if (endParagraph >= entries.length) return null;
+    if (current.isCollapsed &&
+        (current.logicalIndex < 0 ||
+            current.logicalIndex >
+                entries[startParagraph].paragraph.text.length)) {
+      return null;
+    }
+    final ranges = <_WordTextProofingRange>[];
+    final languages = <String>{};
+    final enabledValues = <bool>{};
+    String? unavailable;
+    if (!config.allowsMutation ||
+        (document.restrictEditing &&
+            (document.restrictMode != WmlRestrictMode.none ||
+                document.protectionFormattingRestricted))) {
+      unavailable = 'This document is read-only or protected.';
+    } else if (input.composing.isValid && !input.composing.isCollapsed) {
+      unavailable = 'Finish composing text before changing its options.';
+    }
+    var fieldDepth = 0;
+    for (var index = 0; index <= endParagraph; index++) {
+      final entry = entries[index];
+      final paragraph = entry.paragraph;
+      if (index < startParagraph) {
+        // Earlier text is irrelevant except for complex fields that remain
+        // open. Do not allocate its strings, properties or grapheme lists.
+        for (final boundary
+            in paragraph.inlines.whereType<WmlFieldBoundary>()) {
+          if (boundary.kind == WmlFieldBoundaryKind.begin) fieldDepth++;
+          if (boundary.kind == WmlFieldBoundaryKind.end && fieldDepth > 0) {
+            fieldDepth--;
+          }
+        }
+        continue;
+      }
+      final text = paragraph.text;
+      final selected = index >= startParagraph;
+      var from = current.isCollapsed || index != startParagraph
+          ? 0
+          : selection.startIdx;
+      var to = current.isCollapsed || index != endParagraph
+          ? text.length
+          : selection.endIdx;
+      if (selected && (from < 0 || to > text.length || from > to)) return null;
+      if (selected && from < to) {
+        // An external host can supply a selection inside a UTF-16 grapheme.
+        // Include the complete visible character instead of splitting it.
+        for (final cluster in GraphemeClusters.segment(text)) {
+          if (from > cluster.start && from < cluster.end) from = cluster.start;
+          if (to > cluster.start && to < cluster.end) to = cluster.end;
+        }
+        if (entry.generated ||
+            paragraph.properties.fieldInstruction != null ||
+            paragraph.properties.pageNumberField) {
+          unavailable ??=
+              'Generated text does not have editable proofing options.';
+        }
+        if ([
+          ...entry.controls,
+          ...paragraph.contentControlWrappers,
+        ].any(_textProofingControlLocked)) {
+          unavailable ??= 'This text belongs to a protected content control.';
+        }
+        try {
+          for (final span in WordContentControls.spans(paragraph)) {
+            if (_textProofingControlLocked(span.control) &&
+                from < span.end &&
+                to > span.start) {
+              unavailable ??=
+                  'This text belongs to a protected content control.';
+            }
+          }
+          final normalized = WmlRunEdit.normalizeRange(paragraph, from, to);
+          if (normalized.start != from || normalized.end != to) {
+            unavailable ??=
+                'Select ordinary text outside fields and note marks.';
+          }
+        } on Object {
+          unavailable ??= 'This text contains unsupported native content.';
+        }
+        ranges.add(
+          _WordTextProofingRange(
+            paragraph: paragraph,
+            start: from,
+            end: to,
+            source: _textProofingSource(paragraph, entry.controls),
+          ),
+        );
+      }
+      var offset = 0;
+      for (final inline in paragraph.inlines) {
+        if (inline is WmlFieldBoundary) {
+          if (selected && from < to && offset > from && offset < to) {
+            unavailable ??=
+                'Select ordinary text outside fields and note marks.';
+          }
+          if (inline.kind == WmlFieldBoundaryKind.begin) fieldDepth++;
+          if (inline.kind == WmlFieldBoundaryKind.end && fieldDepth > 0) {
+            fieldDepth--;
+          }
+        } else if (inline is WmlRun) {
+          final end = offset + inline.text.length;
+          if (selected && from < end && to > offset) {
+            languages.add(
+              normalizeProofingLanguage(
+                inline.properties.proofingLanguage ??
+                    paragraph.properties.proofingLanguage ??
+                    document.proofingLanguage ??
+                    'de-DE',
+              ),
+            );
+            enabledValues.add(inline.properties.noProof != true);
+            if (inline.isAtomic || fieldDepth > 0) {
+              unavailable ??=
+                  'Select ordinary text outside fields and note marks.';
+            }
+          }
+          offset = end;
+        } else if (selected &&
+            from < to &&
+            offset > from &&
+            offset < to &&
+            (inline is WmlOpaqueInline || inline is WmlObject)) {
+          unavailable ??= 'This text contains unsupported native content.';
+        }
+      }
+    }
+    if (ranges.isEmpty) return null;
+    return WordTextProofingTarget._(
+      (
+        controller: this,
+        document: document,
+        revision: contentRevision,
+        caret: current,
+        paragraph: current.paragraphIndex,
+        offset: current.logicalIndex,
+        anchorParagraph: current.selectionAnchorParagraph,
+        anchor: current.selectionAnchor,
+        comment: _editingComment ? selectedComment : null,
+        section:
+            _editingHeaderFooter &&
+                _editingSectionIndex >= 0 &&
+                _editingSectionIndex < document.sections.length
+            ? document.sections[_editingSectionIndex]
+            : null,
+        footer: _editingFooter,
+        documentLanguage: document.proofingLanguage,
+        tracking: document.trackRevisions,
+        restricted: document.restrictEditing,
+        restriction: document.restrictMode,
+        formattingRestricted: document.protectionFormattingRestricted,
+      ),
+      List.unmodifiable(ranges),
+      isSelection: !current.isCollapsed,
+      language: languages.length == 1 ? languages.single : null,
+      checkingEnabled: enabledValues.length == 1 ? enabledValues.single : null,
+      unavailableReason: unavailable,
+    );
+  }
+
+  Iterable<_WordTextProofingParagraph> get _textProofingStory sync* {
+    Iterable<_WordTextProofingParagraph> plain(
+      Iterable<WmlParagraph> paragraphs,
+    ) sync* {
+      for (final paragraph in paragraphs) {
+        yield (paragraph: paragraph, controls: const [], generated: false);
+      }
+    }
+
+    if (_editingComment) {
+      final comment = selectedComment;
+      if (comment != null) yield* plain(comment.paragraphs);
+      return;
+    }
+    if (_editingHeaderFooter) {
+      if (_editingSectionIndex < 0 ||
+          _editingSectionIndex >= document.sections.length) {
+        return;
+      }
+      final section = document.sections[_editingSectionIndex];
+      yield* plain(_editingFooter ? section.footer : section.header);
+      return;
+    }
+    Iterable<_WordTextProofingParagraph> visit(
+      Iterable<WmlBlock> blocks,
+      List<WmlContentControlData> controls,
+    ) sync* {
+      for (final block in blocks) {
+        if (block is WmlParagraph) {
+          yield (paragraph: block, controls: controls, generated: false);
+        } else if (block is WmlContentControlBlock) {
+          yield* visit(block.blocks, [...controls, block.control]);
+        } else if (block is WmlToc) {
+          for (final paragraph in [
+            block.titleParagraph,
+            ...block.itemParagraphs,
+          ]) {
+            yield (paragraph: paragraph, controls: controls, generated: true);
+          }
+        } else {
+          for (final children in WordTree.childLists(block)) {
+            yield* visit(children, controls);
+          }
+        }
+      }
+    }
+
+    yield* visit(
+      document.sections.expand((section) => section.blocks),
+      const [],
+    );
+  }
+
+  static bool _textProofingControlLocked(WmlContentControlData control) {
+    try {
+      final properties = WordContentControls.template(
+        control,
+      ).firstChild('sdtPr', namespaceUri: OfficeNamespaces.w);
+      final lock = properties?.firstChild(
+        'lock',
+        namespaceUri: OfficeNamespaces.w,
+      );
+      final value = lock?.getAttribute('val', namespaceUri: OfficeNamespaces.w);
+      return (lock != null && value != 'unlocked' && value != 'sdtLocked') ||
+          properties?.firstChild(
+                'dataBinding',
+                namespaceUri: OfficeNamespaces.w,
+              ) !=
+              null;
+    } on Object {
+      return true;
+    }
+  }
+
+  static String _textProofingSource(
+    WmlParagraph paragraph,
+    List<WmlContentControlData> controls,
+  ) => jsonEncode([
+    paragraph.properties.proofingLanguage,
+    paragraph.properties.fieldInstruction,
+    paragraph.properties.pageNumberField,
+    for (final control in [...controls, ...paragraph.contentControlWrappers])
+      control.xml,
+    for (final run in paragraph.inlines.whereType<WmlRun>())
+      [
+        run.text,
+        run.properties.proofingLanguage,
+        run.properties.noProof,
+        run.properties.styleId,
+        run.properties.bold,
+        run.properties.italic,
+        run.properties.underline.name,
+        run.properties.strike,
+        run.properties.smallCaps,
+        run.properties.color,
+        run.properties.highlight,
+        run.properties.fontSizeHalfPoints,
+        run.properties.asciiFont,
+        run.properties.csFont,
+        run.properties.vertAlign.name,
+        run.properties.sourcePropertiesXml,
+        run.properties.importedValues,
+        run.properties.explicitProperties.toList(),
+        run.hyperlink?.anchor,
+        run.hyperlink?.url,
+        run.hyperlink?.file,
+        run.commentIds,
+        run.noteRefId,
+        run.noteRefEndnote,
+        run.noteRefCustomMark,
+        run.fieldInstruction,
+        run.fieldLocked,
+        run.fieldDirty,
+        run.inlineVisual != null,
+      ],
+  ]);
+
+  /// Changes the language of exactly [target]. Null removes run overrides so
+  /// the text inherits its paragraph/document language. Returns false if the
+  /// displayed target became stale or cannot be changed safely.
+  bool setTextProofingLanguage(
+    String? language, {
+    required WordTextProofingTarget target,
+  }) {
+    final normalized = language == null
+        ? null
+        : normalizeProofingLanguage(language);
+    if (normalized != null && normalized.isEmpty) return false;
+    return _setTextProofingOption(
+      target,
+      needsChange: (properties) => properties.proofingLanguage != normalized,
+      update: (properties) => properties.proofingLanguage = normalized,
+    );
+  }
+
+  /// Includes or excludes exactly [target] in document proofing. One history
+  /// command covers the complete selection, without changing its text.
+  bool setTextProofingEnabled(
+    bool enabled, {
+    required WordTextProofingTarget target,
+  }) => _setTextProofingOption(
+    target,
+    needsChange: (properties) => (properties.noProof != true) != enabled,
+    update: (properties) => properties.noProof = !enabled,
+  );
+
+  bool _setTextProofingOption(
+    WordTextProofingTarget target, {
+    required bool Function(WmlRunProps) needsChange,
+    required void Function(WmlRunProps) update,
+  }) {
+    if (!target.canEdit) return false;
+    final current = textProofingTarget;
+    if (current == null || !current.canEdit || !target._matches(current)) {
+      return false;
+    }
+    final changes =
+        <
+          ({
+            WmlParagraph paragraph,
+            List<WmlInline> before,
+            List<WmlInline> after,
+          })
+        >[];
+    try {
+      // Complete every preflight and detached edit before changing any source.
+      for (final range in current._ranges) {
+        var offset = 0;
+        var changed = false;
+        for (final run in range.paragraph.inlines.whereType<WmlRun>()) {
+          final end = offset + run.text.length;
+          if (offset < range.end &&
+              end > range.start &&
+              needsChange(run.properties)) {
+            changed = true;
+          }
+          offset = end;
+        }
+        if (!changed) continue;
+        final preview = WmlClone.paragraph(range.paragraph);
+        WmlRunEdit.applyRange(preview, range.start, range.end, (properties) {
+          if (needsChange(properties)) update(properties);
+        });
+        if (preview.text != range.paragraph.text) return false;
+        changes.add((
+          paragraph: range.paragraph,
+          before: _cloneInlines(range.paragraph),
+          after: _cloneInlines(preview),
+        ));
+      }
+    } on Object {
+      return false;
+    }
+    if (changes.isEmpty) return true;
+    void restore({required bool after}) {
+      for (final change in changes) {
+        change.paragraph.inlines
+          ..clear()
+          ..addAll(_cloneInlinesFrom(after ? change.after : change.before));
+      }
+      // Formatting does not move text; history must not collapse a selection,
+      // including a selection made in another story since this command.
+      _historyRestoredSelection = true;
+    }
+
+    commands.commit(
+      _CallbackCommand(
+        executeFn: () => restore(after: true),
+        undoFn: () => restore(after: false),
+      ),
+    );
+    relayout();
+    _syncImeSelection();
+    notifyListeners();
+    return true;
+  }
 
   /// Changes the default language; explicit span languages remain authoritative.
   void setProofingLanguage(String value) {
-    if (!config.allowsMutation) return;
+    if (!canApplyProofingSuggestions) return;
     final language = normalizeProofingLanguage(value);
     if (language.isEmpty || document.proofingLanguage == language) return;
     final before = document.proofingLanguage;
@@ -8161,16 +9059,19 @@ class WordEditorController extends OfficeController {
   }
 
   /// Selects findings in supported canvas stories. Notes and alternate page
-  /// headers remain fully reviewable and correctable in the proofing dialog.
+  /// headers remain fully reviewable and correctable in the review pane.
   bool revealProofingIssue(WordProofingIssue issue) {
     if (!config.allowsSelection || !proofing.isCurrent(issue)) return false;
     commitPendingEdits();
     if (!proofing.isCurrent(issue)) return false;
-    return _revealParagraphRange(
+    _selectedProofingIssue = issue;
+    final revealed = _revealParagraphRange(
       issue.paragraph,
       issue.finding.start,
       issue.finding.end,
     );
+    _proofingSelectionCaret = _proofingCaretPosition;
+    return revealed;
   }
 
   bool _revealParagraphRange(WmlParagraph paragraph, int start, int end) {

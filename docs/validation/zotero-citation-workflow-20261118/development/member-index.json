@@ -1,0 +1,273 @@
+{
+  "schema": 1,
+  "created_utc": "2026-11-18T16:08:59.633254+00:00",
+  "purpose": "Development and debugging evidence from this continuation only; excluded from final qualification totals.",
+  "source_freeze_following_development": "3668ed92829dfa012ec5b129943a86738ebb7992",
+  "source_identity_note": "The final source freeze is contextual. These earlier attempts are not asserted to have run against that exact integration. Only source hashes explicitly present in captured receipts are claimed.",
+  "archive": {
+    "path": "development-evidence.tar.gz",
+    "bytes": 7612,
+    "sha256": "0bdede53e5abfd195e63f299702d580a838f2f8bef9a39a2fac138996b7c77b3"
+  },
+  "member_count": 20,
+  "uncompressed_bytes": 91768,
+  "members": [
+    {
+      "path": "document-source-tests/attempt-1-exit.json",
+      "bytes": 175,
+      "sha256": "d5baa8edace244eca63e6b57505db086607c3923c3a14ca163ef6dc7a94e601a"
+    },
+    {
+      "path": "document-source-tests/attempt-1.jsonl",
+      "bytes": 28309,
+      "sha256": "1d92614509a635b0173d3d4e4ddd45d68f8d6694ead9da6eae17e84a16794cdc"
+    },
+    {
+      "path": "document-source-tests/attempt-2-exit.json",
+      "bytes": 175,
+      "sha256": "b1426e3248399924d89c428111678a7f1c0812b18e82b7b5de2875ba6205302d"
+    },
+    {
+      "path": "document-source-tests/attempt-2.jsonl",
+      "bytes": 11030,
+      "sha256": "fd6d979975a59249f86ec0fb6fb65cd6125726ff286de1f84dd20412688a6562"
+    },
+    {
+      "path": "document-source-tests/prevalidation-fetch-0.log",
+      "bytes": 260,
+      "sha256": "0d6254b709c97ba0487b5a9a2904ab2aaf0e13d17e8a133d33c3adea8fafc6f4"
+    },
+    {
+      "path": "document-source-tests/prevalidation-fetch-1.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "zotero-composer-evidence/analyze.log",
+      "bytes": 88,
+      "sha256": "9ee85b4e71fd1b63df6fe997c5c41d6841fb840c18ea71b582888340d833304b"
+    },
+    {
+      "path": "zotero-composer-evidence/events.jsonl",
+      "bytes": 11483,
+      "sha256": "c78cbf9e1cfc993d768f3d640e59d8a5ec7cd2f5181204eb6be9e8d4a56ae3df"
+    },
+    {
+      "path": "zotero-composer-evidence/format.log",
+      "bytes": 47,
+      "sha256": "765654741b75312ac70562a7546c4e485cf0fa165edf3d825d007c539761a877"
+    },
+    {
+      "path": "zotero-composer-evidence/static-checks.json",
+      "bytes": 502,
+      "sha256": "c09917e923e5d42b70e16598ad0c1c5358adb3a2e0306fc54da44e08c2391371"
+    },
+    {
+      "path": "zotero-composer-evidence/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "zotero-composer-evidence/summary.json",
+      "bytes": 2638,
+      "sha256": "fd2e521b4a95308ee1df2dbd3a7bb379e889d207e8a6f405d4717500310341ac"
+    },
+    {
+      "path": "zotero-integration-development/reuse-first.jsonl",
+      "bytes": 10613,
+      "sha256": "d6a6d2b3c2c821fe4166c6336828dc0c9c0faa2367da8549df20569bacfdae5b"
+    },
+    {
+      "path": "zotero-integration-development/reuse-first.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "zotero-integration-development/reuse-second-exit.json",
+      "bytes": 17,
+      "sha256": "5cc319f54b05a38799195a491c303aa686eab7caccfdbbf1e8b8c07405cb7392"
+    },
+    {
+      "path": "zotero-integration-development/reuse-second.jsonl",
+      "bytes": 19540,
+      "sha256": "bc09f38e51271591a2ad7d0d05b00f8c307b91ca35ff64f7e47cbb57e76893db"
+    },
+    {
+      "path": "zotero-integration-development/reuse-second.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "zotero-integration-development/reuse-third-exit.json",
+      "bytes": 17,
+      "sha256": "e89df0eae5ec7db81135aed16463968955c578bcc4f2ec43172eff351f080c17"
+    },
+    {
+      "path": "zotero-integration-development/reuse-third.jsonl",
+      "bytes": 6874,
+      "sha256": "582e4a8fbc941b1035db59caad92598b60c847b92b3fccdc62ea97a46376adff"
+    },
+    {
+      "path": "zotero-integration-development/reuse-third.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "runs": [
+    {
+      "events_member": "zotero-composer-evidence/events.jsonl",
+      "test_process_exit_code": 0,
+      "exit_receipt": "zotero-composer-evidence/summary.json: exit_code",
+      "completed_cases_excluding_loading": 20,
+      "passed": 20,
+      "failed": 0,
+      "skipped": 0,
+      "error_events": 0,
+      "test_stream_done": {
+        "success": true,
+        "type": "done",
+        "time": 16657
+      },
+      "failed_case_names": [],
+      "non_event_lines_preserved_verbatim": [],
+      "counted_in_final_qualification_total": false
+    },
+    {
+      "events_member": "document-source-tests/attempt-1.jsonl",
+      "test_process_exit_code": 1,
+      "exit_receipt": "document-source-tests/attempt-1-exit.json: exit",
+      "completed_cases_excluding_loading": 18,
+      "passed": 9,
+      "failed": 9,
+      "skipped": 0,
+      "error_events": 9,
+      "test_stream_done": {
+        "success": false,
+        "type": "done",
+        "time": 21294
+      },
+      "failed_case_names": [
+        "reusable document sources offline duplicate IDs retain different stored records",
+        "reusable document sources missing metadata retains identity without inventing a snapshot",
+        "stages selection changes and returns their selection order",
+        "search keeps hidden selections and retains original source keys",
+        "global limit includes other tabs and still permits deselection",
+        "nested details preserve filtered draft and cancellation",
+        "missing metadata and occurrence count remain explicit",
+        "narrow doubled-text picker and details remain usable in TextDirection.rtl",
+        "narrow doubled-text picker and details remain usable in TextDirection.ltr"
+      ],
+      "non_event_lines_preserved_verbatim": [],
+      "counted_in_final_qualification_total": false
+    },
+    {
+      "events_member": "document-source-tests/attempt-2.jsonl",
+      "test_process_exit_code": 0,
+      "exit_receipt": "document-source-tests/attempt-2-exit.json: exit",
+      "completed_cases_excluding_loading": 18,
+      "passed": 18,
+      "failed": 0,
+      "skipped": 0,
+      "error_events": 0,
+      "test_stream_done": {
+        "success": true,
+        "type": "done",
+        "time": 8943
+      },
+      "failed_case_names": [],
+      "non_event_lines_preserved_verbatim": [],
+      "counted_in_final_qualification_total": false
+    },
+    {
+      "events_member": "zotero-integration-development/reuse-first.jsonl",
+      "test_process_exit_code": null,
+      "exit_receipt": "Not captured. The enclosing shell continued with a summary command; its exit status is not the test process status. The raw test stream ends with success=false.",
+      "completed_cases_excluding_loading": 10,
+      "passed": 8,
+      "failed": 2,
+      "skipped": 0,
+      "error_events": 2,
+      "test_stream_done": {
+        "success": false,
+        "type": "done",
+        "time": 16197
+      },
+      "failed_case_names": [
+        "cited-source insertion works at 320x480 doubled text rtl",
+        "cited-source insertion works at 320x480 doubled text ltr"
+      ],
+      "non_event_lines_preserved_verbatim": [
+        {
+          "line": 5,
+          "kind": "not-json"
+        },
+        {
+          "line": 6,
+          "kind": "list"
+        }
+      ],
+      "counted_in_final_qualification_total": false
+    },
+    {
+      "events_member": "zotero-integration-development/reuse-second.jsonl",
+      "test_process_exit_code": 1,
+      "exit_receipt": "zotero-integration-development/reuse-second-exit.json: exit_code",
+      "completed_cases_excluding_loading": 10,
+      "passed": 4,
+      "failed": 6,
+      "skipped": 0,
+      "error_events": 6,
+      "test_stream_done": {
+        "success": false,
+        "type": "done",
+        "time": 16097
+      },
+      "failed_case_names": [
+        "reuses stored source offline with fresh options and one undo step",
+        "document and imported selections retain chosen order across tabs",
+        "selection and citation cancellation leave document and undo untouched",
+        "changed caret rejects the staged composer without mutation",
+        "cited-source insertion works at 320x480 doubled text rtl",
+        "cited-source insertion works at 320x480 doubled text ltr"
+      ],
+      "non_event_lines_preserved_verbatim": [
+        {
+          "line": 5,
+          "kind": "not-json"
+        },
+        {
+          "line": 6,
+          "kind": "list"
+        }
+      ],
+      "counted_in_final_qualification_total": false
+    },
+    {
+      "events_member": "zotero-integration-development/reuse-third.jsonl",
+      "test_process_exit_code": 0,
+      "exit_receipt": "zotero-integration-development/reuse-third-exit.json: exit_code",
+      "completed_cases_excluding_loading": 11,
+      "passed": 11,
+      "failed": 0,
+      "skipped": 0,
+      "error_events": 0,
+      "test_stream_done": {
+        "success": true,
+        "type": "done",
+        "time": 17826
+      },
+      "failed_case_names": [],
+      "non_event_lines_preserved_verbatim": [
+        {
+          "line": 5,
+          "kind": "not-json"
+        },
+        {
+          "line": 6,
+          "kind": "list"
+        }
+      ],
+      "counted_in_final_qualification_total": false
+    }
+  ]
+}

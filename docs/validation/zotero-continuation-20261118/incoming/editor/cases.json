@@ -1,0 +1,219 @@
+[
+  {
+    "id": 5,
+    "name": "author configuration trims names and rejects empty attribution",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/word_review_controller_test.dart"
+  },
+  {
+    "id": 6,
+    "name": "typing and deletion keep their original authors through history",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/word_review_controller_test.dart"
+  },
+  {
+    "id": 7,
+    "name": "hyperlink changes and fromBytes use the configured future author",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/word_review_controller_test.dart"
+  },
+  {
+    "id": 8,
+    "name": "proofing replacements attribute both tracked halves and redo",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/word_review_controller_test.dart"
+  },
+  {
+    "id": 9,
+    "name": "accept filtered changes is one undo step and rebases the remainder",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/word_review_controller_test.dart"
+  },
+  {
+    "id": 10,
+    "name": "reject batch deduplicates targets and preserves a different author",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/word_review_controller_test.dart"
+  },
+  {
+    "id": 11,
+    "name": "accept batch prevalidates every span",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/word_review_controller_test.dart"
+  },
+  {
+    "id": 12,
+    "name": "reject batch prevalidates every span",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/word_review_controller_test.dart"
+  },
+  {
+    "id": 13,
+    "name": "navigation starts at first or last pending and wraps exact spans",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/word_review_controller_test.dart"
+  },
+  {
+    "id": 14,
+    "name": "header revision selects the actual source and synchronizes IME",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/word_review_controller_test.dart"
+  },
+  {
+    "id": 15,
+    "name": "footer revision selects the actual source and synchronizes IME",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/word_review_controller_test.dart"
+  },
+  {
+    "id": 16,
+    "name": "comment revision selects the actual source and synchronizes IME",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/word_review_controller_test.dart"
+  },
+  {
+    "id": 17,
+    "name": "notes and alternate headers never fall back to a matching body span",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/word_review_controller_test.dart"
+  },
+  {
+    "id": 18,
+    "name": "stale and detached targets do not move the body caret",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/word_review_controller_test.dart"
+  },
+  {
+    "id": 19,
+    "name": "body revision navigation leaves object editing and another story",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/word_review_controller_test.dart"
+  },
+  {
+    "id": 20,
+    "name": "OfficeInteractionMode.viewing prevents review mutations and honors selection capability",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/word_review_controller_test.dart"
+  },
+  {
+    "id": 21,
+    "name": "OfficeInteractionMode.selecting prevents review mutations and honors selection capability",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/word_review_controller_test.dart"
+  },
+  {
+    "id": 22,
+    "name": "comparison in viewing mode changes neither document nor controller state",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/word_review_controller_test.dart"
+  },
+  {
+    "id": 24,
+    "name": "tracking and reviewer controls affect future edits with undo",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/word_review_dialog_test.dart"
+  },
+  {
+    "id": 25,
+    "name": "author, kind and text filters intersect without changing sources",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/word_review_dialog_test.dart"
+  },
+  {
+    "id": 26,
+    "name": "accept shown is a filtered undoable batch",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/word_review_dialog_test.dart"
+  },
+  {
+    "id": 27,
+    "name": "reject shown is a filtered undoable batch",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/word_review_dialog_test.dart"
+  },
+  {
+    "id": 28,
+    "name": "final and original previews leave tracked changes untouched",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/word_review_dialog_test.dart"
+  },
+  {
+    "id": 29,
+    "name": "viewing mode exposes review but disables document mutations",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/word_review_dialog_test.dart"
+  },
+  {
+    "id": 30,
+    "name": "two picked documents compare, display redlines and export without edits",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/word_review_dialog_test.dart"
+  },
+  {
+    "id": 31,
+    "name": "export cancellation and errors preserve the report for retry",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/word_review_dialog_test.dart"
+  },
+  {
+    "id": 32,
+    "name": "current-document edits mark comparison stale and disable export",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/word_review_dialog_test.dart"
+  },
+  {
+    "id": 33,
+    "name": "picker cancellation and errors preserve selections and recover",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/word_review_dialog_test.dart"
+  },
+  {
+    "id": 34,
+    "name": "closing during a pending picker ignores its later completion",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/word_review_dialog_test.dart"
+  },
+  {
+    "id": 35,
+    "name": "narrow LTR dialog keeps both workflows usable",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/word_review_dialog_test.dart"
+  },
+  {
+    "id": 36,
+    "name": "narrow RTL dialog keeps both workflows usable",
+    "result": "success",
+    "skipped": false,
+    "suite": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/test/word_review_dialog_test.dart"
+  }
+]

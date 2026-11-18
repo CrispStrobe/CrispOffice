@@ -1,0 +1,188 @@
+{
+  "after": {
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart": {
+      "bytes": 385205,
+      "git_blob_sha1": "551a77ef8d8302342c5623fe5369529dfa6e3bb2",
+      "sha256": "4f1041a63596eff52e8e7cf480e8177517dd4ecaaa4a1df7786526fc59048227"
+    },
+    "packages/quds_office_editor/lib/src/embed/word_review_pane.dart": {
+      "bytes": 52223,
+      "git_blob_sha1": "7c09425607303231040217b51f13d3163d4b9f7f",
+      "sha256": "f31f0a80121f913e34f203f0df0fa2f7678ca77f7ea152e33251c4b1be81bbae"
+    },
+    "packages/quds_office_editor/lib/src/proofing/word_proofing.dart": {
+      "bytes": 41122,
+      "git_blob_sha1": "ce69d5447eb50391690f29d6806a97ecd58ae084",
+      "sha256": "3f70a533f302db59c06623645c06777eafeacf43a8cd153cb5711bda0fcaa68b"
+    },
+    "packages/quds_office_editor/test/word_incremental_proofing_menu_test.dart": {
+      "bytes": 7521,
+      "git_blob_sha1": "ec992d5bce7e739c4cae08323d5d5ad101819c09",
+      "sha256": "a1a075f3a02c5fd47571ab8b3cace45284ac3c55115ab7c80d017ecc2d0ee0fa"
+    },
+    "packages/quds_office_editor/test/word_incremental_proofing_test.dart": {
+      "bytes": 16589,
+      "git_blob_sha1": "f70f2a041cec5d7f7438bf06c16662c06c3660fd",
+      "sha256": "b9c914bf11ddf0f5756795a49b2c62cf22c1b2b2f61b636a3a56b5c3d1aff214"
+    },
+    "packages/quds_office_editor/test/word_live_review_changes_test.dart": {
+      "bytes": 23173,
+      "git_blob_sha1": "e7a6daaad91054b7ba9e78eac0e8c7c03696bfff",
+      "sha256": "08fcb7ad855dc9312227231c879b3f7b7a5996abdc3789217d1f8e9cfdd3dea4"
+    },
+    "packages/quds_office_editor/test/word_live_review_selection_test.dart": {
+      "bytes": 11904,
+      "git_blob_sha1": "6ebbf4a5d2ef193604d415c841989535e8c871b9",
+      "sha256": "314bc4637d4e4c2adafb154165538c4fc861fddae9c427326c24b5babe06151f"
+    },
+    "packages/quds_office_editor/test/word_proofing_capture_cache_test.dart": {
+      "bytes": 10551,
+      "git_blob_sha1": "5ac79043e7a1fe58d10909e65d6868fe3b5e4e82",
+      "sha256": "46303c8b63734b68a2c3f75dcb18325e8d859c2baae8622d350119b206c68374"
+    },
+    "packages/quds_office_editor/test/word_review_controller_test.dart": {
+      "bytes": 22375,
+      "git_blob_sha1": "1583b033350009f570b5bec2e9cd7d6c4d015c4f",
+      "sha256": "a1e880360be2f42a9ce30781e573a4dad5a73aeb9ba9de2f76b5e67fd4093a14"
+    }
+  },
+  "before": {
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart": {
+      "bytes": 385205,
+      "git_blob_sha1": "551a77ef8d8302342c5623fe5369529dfa6e3bb2",
+      "sha256": "4f1041a63596eff52e8e7cf480e8177517dd4ecaaa4a1df7786526fc59048227"
+    },
+    "packages/quds_office_editor/lib/src/embed/word_review_pane.dart": {
+      "bytes": 52223,
+      "git_blob_sha1": "7c09425607303231040217b51f13d3163d4b9f7f",
+      "sha256": "f31f0a80121f913e34f203f0df0fa2f7678ca77f7ea152e33251c4b1be81bbae"
+    },
+    "packages/quds_office_editor/lib/src/proofing/word_proofing.dart": {
+      "bytes": 41122,
+      "git_blob_sha1": "ce69d5447eb50391690f29d6806a97ecd58ae084",
+      "sha256": "3f70a533f302db59c06623645c06777eafeacf43a8cd153cb5711bda0fcaa68b"
+    },
+    "packages/quds_office_editor/test/word_incremental_proofing_menu_test.dart": {
+      "bytes": 7521,
+      "git_blob_sha1": "ec992d5bce7e739c4cae08323d5d5ad101819c09",
+      "sha256": "a1a075f3a02c5fd47571ab8b3cace45284ac3c55115ab7c80d017ecc2d0ee0fa"
+    },
+    "packages/quds_office_editor/test/word_incremental_proofing_test.dart": {
+      "bytes": 16589,
+      "git_blob_sha1": "f70f2a041cec5d7f7438bf06c16662c06c3660fd",
+      "sha256": "b9c914bf11ddf0f5756795a49b2c62cf22c1b2b2f61b636a3a56b5c3d1aff214"
+    },
+    "packages/quds_office_editor/test/word_live_review_changes_test.dart": {
+      "bytes": 23173,
+      "git_blob_sha1": "e7a6daaad91054b7ba9e78eac0e8c7c03696bfff",
+      "sha256": "08fcb7ad855dc9312227231c879b3f7b7a5996abdc3789217d1f8e9cfdd3dea4"
+    },
+    "packages/quds_office_editor/test/word_live_review_selection_test.dart": {
+      "bytes": 11904,
+      "git_blob_sha1": "6ebbf4a5d2ef193604d415c841989535e8c871b9",
+      "sha256": "314bc4637d4e4c2adafb154165538c4fc861fddae9c427326c24b5babe06151f"
+    },
+    "packages/quds_office_editor/test/word_proofing_capture_cache_test.dart": {
+      "bytes": 10551,
+      "git_blob_sha1": "5ac79043e7a1fe58d10909e65d6868fe3b5e4e82",
+      "sha256": "46303c8b63734b68a2c3f75dcb18325e8d859c2baae8622d350119b206c68374"
+    },
+    "packages/quds_office_editor/test/word_review_controller_test.dart": {
+      "bytes": 22375,
+      "git_blob_sha1": "1583b033350009f570b5bec2e9cd7d6c4d015c4f",
+      "sha256": "a1e880360be2f42a9ce30781e573a4dad5a73aeb9ba9de2f76b5e67fd4093a14"
+    }
+  },
+  "checks": [
+    {
+      "command": [
+        "/workspace/scratch/ba0874ba8ec5/zotero-toolchain/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+        "format",
+        "--output=none",
+        "--set-exit-if-changed",
+        "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+        "packages/quds_office_editor/lib/src/embed/word_review_pane.dart",
+        "packages/quds_office_editor/lib/src/proofing/word_proofing.dart",
+        "packages/quds_office_editor/test/word_incremental_proofing_test.dart",
+        "packages/quds_office_editor/test/word_live_review_changes_test.dart",
+        "packages/quds_office_editor/test/word_review_controller_test.dart",
+        "packages/quds_office_editor/test/word_live_review_selection_test.dart",
+        "packages/quds_office_editor/test/word_incremental_proofing_menu_test.dart",
+        "packages/quds_office_editor/test/word_proofing_capture_cache_test.dart"
+      ],
+      "cwd": "/workspace/scratch/ba0874ba8ec5/zotero-validation",
+      "exit_code": 0,
+      "name": "format",
+      "stderr": "",
+      "stdout": "Formatted 9 files (0 changed) in 0.67 seconds.\n"
+    },
+    {
+      "command": [
+        "/workspace/scratch/ba0874ba8ec5/zotero-toolchain/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "--fatal-warnings",
+        "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+        "packages/quds_office_editor/lib/src/embed/word_review_pane.dart",
+        "packages/quds_office_editor/lib/src/proofing/word_proofing.dart",
+        "packages/quds_office_editor/test/word_incremental_proofing_test.dart",
+        "packages/quds_office_editor/test/word_live_review_changes_test.dart",
+        "packages/quds_office_editor/test/word_review_controller_test.dart",
+        "packages/quds_office_editor/test/word_live_review_selection_test.dart",
+        "packages/quds_office_editor/test/word_incremental_proofing_menu_test.dart",
+        "packages/quds_office_editor/test/word_proofing_capture_cache_test.dart"
+      ],
+      "cwd": "/workspace/scratch/ba0874ba8ec5/zotero-validation",
+      "exit_code": 0,
+      "name": "analyze",
+      "stderr": "",
+      "stdout": "Analyzing office_controller.dart, word_review_pane.dart, word_proofing.dart, word_incremental_proofing_test.dart, word_live_review_changes_test.dart, word_review_controller_test.dart, word_live_review_selection_test.dart, word_incremental_proofing_menu_test.dart, word_proofing_capture_cache_test.dart...\nNo issues found!\n"
+    }
+  ],
+  "head": "82224f2369572b4f249c67ba70d950ef06d45856",
+  "incoming_head": "ecbb1e0bd8129a5c8737496d1877863dd0eea3f2",
+  "product_tests_run": 0,
+  "products_match_incoming": {
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart": true,
+    "packages/quds_office_editor/lib/src/embed/word_review_pane.dart": true,
+    "packages/quds_office_editor/lib/src/proofing/word_proofing.dart": true
+  },
+  "recorded_at_utc": "2026-11-18T16:43:31.175245+00:00",
+  "runner_sha256": "34445592d84e76bce1aaae3ad2ecff22cebaaa6c56277450e424a22ac31e9336",
+  "scope": "Static preflight before merge checkpoint; no product tests executed.",
+  "selected_suites": [
+    "word_live_proofing_session_test.dart",
+    "word_live_review_selection_test.dart",
+    "word_live_review_surface_test.dart",
+    "word_review_pane_test.dart",
+    "word_proofing_session_test.dart",
+    "word_manual_proofing_test.dart",
+    "word_proofing_dialog_test.dart",
+    "word_proofing_context_test.dart",
+    "word_proofing_geometry_test.dart",
+    "word_proofing_navigation_test.dart",
+    "word_review_dialog_test.dart",
+    "word_revision_story_test.dart",
+    "word_input_focus_test.dart",
+    "office_input_ownership_test.dart",
+    "editor_test.dart",
+    "word_incremental_proofing_test.dart",
+    "word_live_review_changes_test.dart",
+    "word_review_controller_test.dart",
+    "word_incremental_proofing_menu_test.dart",
+    "word_proofing_capture_cache_test.dart"
+  ],
+  "source_unchanged": true,
+  "status": "passed",
+  "strict_targets": [
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+    "packages/quds_office_editor/lib/src/embed/word_review_pane.dart",
+    "packages/quds_office_editor/lib/src/proofing/word_proofing.dart",
+    "packages/quds_office_editor/test/word_incremental_proofing_test.dart",
+    "packages/quds_office_editor/test/word_live_review_changes_test.dart",
+    "packages/quds_office_editor/test/word_review_controller_test.dart",
+    "packages/quds_office_editor/test/word_live_review_selection_test.dart",
+    "packages/quds_office_editor/test/word_incremental_proofing_menu_test.dart",
+    "packages/quds_office_editor/test/word_proofing_capture_cache_test.dart"
+  ]
+}

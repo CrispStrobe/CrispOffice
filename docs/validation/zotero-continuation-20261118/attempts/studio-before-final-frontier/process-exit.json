@@ -1,0 +1,16 @@
+{
+  "exit_code": 0,
+  "elapsed_seconds": 15.423571405000985,
+  "finished_at_utc": "2026-11-18T13:03:35.896684+00:00",
+  "command": [
+    "/workspace/scratch/11b2f453fe98/zotero-toolchain/flutter-sdk/bin/flutter",
+    "test",
+    "--no-pub",
+    "--machine",
+    "--concurrency",
+    "4",
+    "test/studio_zotero_citing_transport_test.dart"
+  ],
+  "cwd": "/workspace/scratch/11b2f453fe98/zotero-validation/packages/quds_office_editor/example",
+  "runner_sha256": "17d61107e964fc4f778ccea1d005595ade12f03c6cee97355d5fb0087b25211f"
+}
