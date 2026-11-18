@@ -1,0 +1,30 @@
+00:00 +0: loading test/models_test.dart
+00:00 +0: test/models_test.dart: snapshots own bytes, including buffer views and export copies
+00:00 +1: test/models_test.dart: message headers and attachments do not alias mutable input lists
+00:00 +2: test/models_test.dart: parse result cannot claim success without a message
+00:00 +3: test/models_test.dart: full and preview budgets preserve planned resource bounds
+00:00 +4: test/models_test.dart: profile and account identities cannot alias between products
+00:00 +5: test/models_test.dart: UIDVALIDITY, mailbox and account form the IMAP persistent identity
+00:00 +6: test/cancellation_test.dart: invalidate rejects old callbacks but allows a new generation
+00:00 +7: test/cancellation_test.dart: invalidate rejects old callbacks but allows a new generation
+00:00 +8: test/cancellation_test.dart: invalidate rejects old callbacks but allows a new generation
+00:00 +9: test/outbox_test.dart: queued revision, wire and envelope remain frozen through submission
+00:00 +10: test/outbox_test.dart: queued revision, wire and envelope remain frozen through submission
+00:00 +11: test/outbox_test.dart: queued revision, wire and envelope remain frozen through submission
+00:00 +12: test/outbox_test.dart: mixed 250/550 RCPT responses abort every recipient before DATA
+00:00 +13: test/outbox_test.dart: aggregate response does not fabricate recipient-level acceptance
+00:00 +14: test/outbox_test.dart: missing recipient responses stay unknown on aggregate failure
+00:00 +15: test/outbox_test.dart: connection loss after possible acceptance is uncertain and cannot retry
+00:00 +16: test/sync_coordinator_test.dart: fixture pages apply real upserts/tombstones and advance cursor atomically
+00:00 +17: test/sync_coordinator_test.dart: fixture pages apply real upserts/tombstones and advance cursor atomically
+00:00 +18: test/sync_coordinator_test.dart: fixture pages apply real upserts/tombstones and advance cursor atomically
+00:00 +19: test/sync_coordinator_test.dart: fixture pages apply real upserts/tombstones and advance cursor atomically
+00:00 +20: test/sync_coordinator_test.dart: fixture pages apply real upserts/tombstones and advance cursor atomically
+00:00 +21: test/sync_coordinator_test.dart: fixture pages apply real upserts/tombstones and advance cursor atomically
+00:00 +22: test/sync_coordinator_test.dart: transaction failure leaves both old content and cursor unchanged
+00:00 +23: test/sync_coordinator_test.dart: account disposal while provider awaits prevents any commit
+00:00 +24: test/sync_coordinator_test.dart: transaction rechecks the lease when disposal happens during persistence
+00:00 +25: test/sync_coordinator_test.dart: cooperative user cancellation differs from stale account work
+00:00 +26: test/sync_coordinator_test.dart: wrong account and oversized provider page fail before persistence
+00:00 +27: test/sync_coordinator_test.dart: unsupported provider operations are failures rather than empty success
+00:00 +28: All tests passed!

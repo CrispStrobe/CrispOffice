@@ -1,0 +1,30 @@
+00:00 +0: loading test/models_test.dart
+00:00 +0: test/cancellation_test.dart: invalidate rejects old callbacks but allows a new generation
+00:00 +1: test/outbox_test.dart: queued revision, wire and envelope remain frozen through submission
+00:00 +2: test/models_test.dart: snapshots own bytes, including buffer views and export copies
+00:00 +3: test/models_test.dart: snapshots own bytes, including buffer views and export copies
+00:00 +4: test/models_test.dart: snapshots own bytes, including buffer views and export copies
+00:00 +5: test/models_test.dart: snapshots own bytes, including buffer views and export copies
+00:00 +6: test/models_test.dart: snapshots own bytes, including buffer views and export copies
+00:00 +7: test/models_test.dart: snapshots own bytes, including buffer views and export copies
+00:00 +8: test/models_test.dart: snapshots own bytes, including buffer views and export copies
+00:00 +9: test/models_test.dart: snapshots own bytes, including buffer views and export copies
+00:00 +10: test/models_test.dart: snapshots own bytes, including buffer views and export copies
+00:00 +11: test/models_test.dart: snapshots own bytes, including buffer views and export copies
+00:00 +12: test/models_test.dart: snapshots own bytes, including buffer views and export copies
+00:00 +13: test/models_test.dart: snapshots own bytes, including buffer views and export copies
+00:00 +14: test/sync_coordinator_test.dart: fixture pages apply real upserts/tombstones and advance cursor atomically
+00:00 +15: test/sync_coordinator_test.dart: fixture pages apply real upserts/tombstones and advance cursor atomically
+00:00 +16: test/sync_coordinator_test.dart: fixture pages apply real upserts/tombstones and advance cursor atomically
+00:00 +17: test/models_test.dart: full and preview budgets preserve planned resource bounds
+00:00 +18: test/models_test.dart: full and preview budgets preserve planned resource bounds
+00:00 +19: test/sync_coordinator_test.dart: account disposal while provider awaits prevents any commit
+00:00 +20: test/models_test.dart: profile and account identities cannot alias between products
+00:00 +21: test/models_test.dart: profile and account identities cannot alias between products
+00:00 +22: test/models_test.dart: profile and account identities cannot alias between products
+00:00 +23: test/models_test.dart: profile and account identities cannot alias between products
+00:00 +24: test/sync_coordinator_test.dart: unsupported provider operations are failures rather than empty success
+00:00 +25: test/models_test.dart: UIDVALIDITY, mailbox and account form the IMAP persistent identity
+00:00 +26: test/models_test.dart: move and sync cursor enforce account and mailbox scopes
+00:00 +27: test/models_test.dart: mail capability does not imply Calendar, People or sending
+00:00 +28: All tests passed!
