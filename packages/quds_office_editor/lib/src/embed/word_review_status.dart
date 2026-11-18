@@ -20,6 +20,16 @@ class WordReviewStatusBar extends StatelessWidget {
           .where((revision) => revision.accepted == null)
           .length;
       final issueCount = summary.issues.length;
+      final textTarget = controller.textProofingTarget;
+      final languageLabel = textTarget == null
+          ? (arabic ? 'اللغة' : 'Language')
+          : textTarget.language ?? (arabic ? 'لغات متعددة' : 'Mixed');
+      final textScope = textTarget?.isSelection == true
+          ? (arabic ? 'النص المحدد' : 'Selected text')
+          : (arabic ? 'الفقرة الحالية' : 'Current paragraph');
+      final languageTooltip = arabic
+          ? '$textScope · $languageLabel\nاللغة والتدقيق'
+          : '$textScope · $languageLabel\nLanguage and checking';
       final issuesLabel = issueCount == 1 ? '1 issue' : '$issueCount issues';
       final changesLabel = pending == 1 ? '1 change' : '$pending changes';
       final String label;
@@ -58,44 +68,71 @@ class WordReviewStatusBar extends StatelessWidget {
         color: Theme.of(context).colorScheme.surface,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 6),
-          child: Row(
-            children: [
-              Expanded(
-                child: Tooltip(
-                  message: summary.statusMessage,
+          child: LayoutBuilder(
+            builder: (context, constraints) => Row(
+              children: [
+                Expanded(
+                  child: Tooltip(
+                    message: summary.statusMessage,
+                    child: TextButton.icon(
+                      key: const ValueKey('word-review-writing-status'),
+                      onPressed: () => controller.openReviewPane(),
+                      icon: Icon(icon, size: 17),
+                      label: Text(
+                        label,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      style: TextButton.styleFrom(
+                        alignment: AlignmentDirectional.centerStart,
+                      ),
+                    ),
+                  ),
+                ),
+                Tooltip(
+                  message: languageTooltip,
+                  child: constraints.maxWidth >= 560
+                      ? ConstrainedBox(
+                          constraints: BoxConstraints(
+                            maxWidth: constraints.maxWidth * .26,
+                          ),
+                          child: TextButton.icon(
+                            key: const ValueKey('word-review-language-status'),
+                            onPressed: controller.showTextProofingOptions,
+                            icon: const Icon(Icons.language, size: 17),
+                            label: Text(
+                              languageLabel,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        )
+                      : IconButton(
+                          key: const ValueKey('word-review-language-status'),
+                          onPressed: controller.showTextProofingOptions,
+                          icon: const Icon(Icons.language, size: 18),
+                        ),
+                ),
+                Tooltip(
+                  message: arabic
+                      ? 'مراجعة التغييرات المتعقبة'
+                      : 'Review tracked changes',
                   child: TextButton.icon(
-                    key: const ValueKey('word-review-writing-status'),
-                    onPressed: () => controller.openReviewPane(),
-                    icon: Icon(icon, size: 17),
-                    label: Text(
-                      label,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
+                    key: const ValueKey('word-review-changes-status'),
+                    onPressed: () => controller.openReviewPane(
+                      tab: WordReviewPaneTab.changes,
                     ),
-                    style: TextButton.styleFrom(
-                      alignment: AlignmentDirectional.centerStart,
+                    icon: Icon(
+                      controller.document.trackRevisions
+                          ? Icons.track_changes
+                          : Icons.rate_review_outlined,
+                      size: 17,
                     ),
+                    label: Text(arabic ? '$pending تغييرات' : changesLabel),
                   ),
                 ),
-              ),
-              Tooltip(
-                message: arabic
-                    ? 'مراجعة التغييرات المتعقبة'
-                    : 'Review tracked changes',
-                child: TextButton.icon(
-                  key: const ValueKey('word-review-changes-status'),
-                  onPressed: () =>
-                      controller.openReviewPane(tab: WordReviewPaneTab.changes),
-                  icon: Icon(
-                    controller.document.trackRevisions
-                        ? Icons.track_changes
-                        : Icons.rate_review_outlined,
-                    size: 17,
-                  ),
-                  label: Text(arabic ? '$pending تغييرات' : changesLabel),
-                ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       );

@@ -90,6 +90,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   int _notesSlideIndex = -1;
   final VirtualViewport _commentViewport = VirtualViewport();
   OverlayEntry? _commentContextMenu;
+  bool Function()? _commentContextIsCurrent;
   OverlayEntry? _slideSorterMenu;
   var _savePhase = _SavePhase.idle;
   var _saveHeavy = false;
@@ -175,6 +176,10 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
 
   void _rebuild() {
     _commentReviewTimer?.cancel();
+    if (_commentContextMenu != null &&
+        !(_commentContextIsCurrent?.call() ?? false)) {
+      _dismissCommentContext();
+    }
     _syncCommentReplyDrafts();
     if (!mounted || _rebuildScheduled) {
       return;
@@ -299,8 +304,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     _slideFocus.dispose();
     _saveTicker?.cancel();
     _openTicker?.cancel();
-    OfficeContextMenu.dismiss(_commentContextMenu);
-    _commentContextMenu = null;
+    _dismissCommentContext();
     OfficeContextMenu.dismiss(_slideSorterMenu);
     _slideSorterMenu = null;
     if (_slideshowFullscreen) {
@@ -808,6 +812,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   }
 
   void _switchApp(SuiteApp app) {
+    _dismissCommentContext();
     setState(() {
       _app = app;
       _tab = app == SuiteApp.pdf ? _RibbonTab.view : _RibbonTab.home;
@@ -2898,7 +2903,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
           _cmd(
             Icons.view_sidebar_outlined,
             _arabic ? 'اللوحة' : 'Pane',
-            () => setState(() => _showComments = !_showComments),
+            () => _setShowComments(!_showComments),
             selected: _showComments,
           ),
           _cmd(
@@ -4944,6 +4949,10 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   }
 
   void _workspaceEscape() {
+    if (_commentContextMenu != null) {
+      _dismissCommentContext();
+      return;
+    }
     if (_findOpen) {
       _closeFind();
       return;
@@ -5865,6 +5874,18 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     _word.insertComment(author: 'Quds Office', initials: 'QO');
   }
 
+  void _setShowComments(bool show) {
+    if (!show) _dismissCommentContext();
+    setState(() => _showComments = show);
+  }
+
+  void _dismissCommentContext() {
+    _commentReviewTimer?.cancel();
+    OfficeContextMenu.dismiss(_commentContextMenu);
+    _commentContextMenu = null;
+    _commentContextIsCurrent = null;
+  }
+
   void _syncCommentReplyDrafts() {
     final document = _word.document;
     if (!identical(_commentDraftDocument, document)) {
@@ -5938,6 +5959,10 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     final comment = _word.selectedComment;
     _commentReviewTimer = Timer(kDoubleTapTimeout, () {
       if (!mounted ||
+          comment == null ||
+          !_wordRouteIsCurrent ||
+          (_word.input.composing.isValid &&
+              !_word.input.composing.isCollapsed) ||
           !identical(document, _word.document) ||
           !identical(comment, _word.selectedComment)) {
         return;
@@ -5948,8 +5973,189 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       final issue = _word.proofing.issuesAt(paragraph, offset).firstOrNull;
       if (issue == null) return;
       _word.selectProofingIssue(issue, reveal: false);
-      _word.openReviewPane();
+      if (_word.reviewPaneVisible) {
+        _word.setReviewPaneTab(WordReviewPaneTab.proofing);
+      } else {
+        _showCommentContext(comment, hit, reviewOnly: true);
+      }
     });
+  }
+
+  bool get _wordRouteIsCurrent => ModalRoute.of(context)?.isCurrent ?? true;
+
+  void _showCommentContext(
+    WmlComment comment,
+    OfficeContextHit hit, {
+    bool reviewOnly = false,
+  }) {
+    _dismissCommentContext();
+    if (!_wordRouteIsCurrent ||
+        (_word.input.composing.isValid && !_word.input.composing.isCollapsed)) {
+      return;
+    }
+    final document = _word.document;
+    final root = WordComment.byId(
+      document,
+      WordComment.threadRootId(document, comment.id),
+    );
+    final revision = _word.contentRevision;
+    final paragraph = hit.paragraph;
+    final offset = hit.proofingOffset;
+    final issue =
+        paragraph != null &&
+            offset != null &&
+            comment.paragraphs.contains(paragraph)
+        ? _word.proofing.issuesAt(paragraph, offset).firstOrNull
+        : null;
+    final editing = _word.isEditingComment;
+    final caret = (
+      paragraph: _word.commentCaret.paragraphIndex,
+      index: _word.commentCaret.logicalIndex,
+      anchorParagraph: _word.commentCaret.selectionAnchorParagraph,
+      anchor: _word.commentCaret.selectionAnchor,
+    );
+    bool current() =>
+        mounted &&
+        _app == SuiteApp.word &&
+        _showComments &&
+        identical(document, _word.document) &&
+        identical(comment, _word.selectedComment) &&
+        identical(WordComment.byId(document, comment.id), comment) &&
+        root != null &&
+        identical(WordComment.byId(document, root.id), root) &&
+        _word.contentRevision == revision &&
+        _word.isEditingComment == editing &&
+        _word.commentCaret.paragraphIndex == caret.paragraph &&
+        _word.commentCaret.logicalIndex == caret.index &&
+        _word.commentCaret.selectionAnchorParagraph == caret.anchorParagraph &&
+        _word.commentCaret.selectionAnchor == caret.anchor &&
+        (issue == null || _word.proofing.isCurrent(issue));
+    if (!current()) return;
+    final actions = <OfficeContextAction>[
+      if (issue != null) ...[
+        OfficeContextAction.caption(issue.finding.message),
+        for (var i = 0; i < issue.finding.replacements.length && i < 8; i++)
+          OfficeContextAction(
+            id: 'proofing:replace:$i',
+            label: issue.finding.replacements[i].isEmpty
+                ? (_arabic ? 'حذف' : 'Delete')
+                : issue.finding.replacements[i],
+            enabled: _canMutate && _word.canApplyProofingIssue(issue),
+          ),
+        OfficeContextAction(
+          id: 'proofing:ignore',
+          label: _arabic ? 'تجاهل مرة واحدة' : 'Ignore once',
+        ),
+        if (issue.finding.category == OfficeProofingCategory.spelling) ...[
+          OfficeContextAction(
+            id: 'proofing:ignoreWord',
+            label: _arabic ? 'تجاهل هذه الكلمة' : 'Ignore this word',
+          ),
+          OfficeContextAction(
+            id: 'proofing:add',
+            label: _arabic
+                ? 'إضافة إلى الكلمات الشخصية'
+                : 'Add to personal words',
+          ),
+        ],
+      ],
+      OfficeContextAction(
+        id: 'proofing:review',
+        label: _arabic ? 'فتح لوحة الكتابة' : 'Open writing pane',
+        shortcut: 'F7',
+        separatorBefore: issue != null,
+      ),
+      if (!reviewOnly)
+        ...OfficeContextMenu.word(
+          hit: OfficeContextHit(
+            kind: OfficeContextKind.comment,
+            globalPosition: hit.globalPosition,
+            commentId: comment.id,
+            paragraph: paragraph,
+            proofingOffset: offset,
+          ),
+          controller: _word,
+        ),
+    ];
+    _commentContextIsCurrent = current;
+    _commentContextMenu = OfficeContextMenu.show(
+      context: context,
+      globalPosition: hit.globalPosition,
+      actions: actions,
+      enableFiltering: !reviewOnly,
+      onDismiss: () {
+        _commentContextMenu = null;
+        _commentContextIsCurrent = null;
+      },
+      onSelect: (id) {
+        if (!current() || !_wordRouteIsCurrent) return;
+        if (id == 'proofing:review') {
+          if (issue != null) _word.selectProofingIssue(issue, reveal: false);
+          _word.openReviewPane();
+          return;
+        }
+        if (_word.input.composing.isValid &&
+            !_word.input.composing.isCollapsed) {
+          return;
+        }
+        if (issue != null && id.startsWith('proofing:')) {
+          if (id == 'proofing:ignore') {
+            _word.proofing.ignoreOnce(issue);
+          } else if (id == 'proofing:ignoreWord') {
+            _word.proofing.ignoreWord(issue);
+          } else if (id == 'proofing:add') {
+            _word.proofing.addWord(issue);
+          } else if (id.startsWith('proofing:replace:') && _canMutate) {
+            final index = int.tryParse(id.split(':').last);
+            if (index != null &&
+                index >= 0 &&
+                index < issue.finding.replacements.length) {
+              _word.applyProofingSuggestion(
+                issue,
+                issue.finding.replacements[index],
+              );
+            }
+          }
+          if (!_word.proofing.enabled) {
+            unawaited(_checkCommentProofing());
+          }
+          return;
+        }
+        if (id == 'copy') {
+          _word.copyToClipboard();
+        } else if (id == 'selectAll') {
+          _word.selectAll();
+        } else if (_canMutate && _word.config.allowsMutation) {
+          switch (id) {
+            case 'cut':
+              _word.cutToClipboard();
+            case 'paste':
+              _word.pasteFromClipboard();
+            case 'replyComment':
+              _replyWordComment(comment.id);
+            case 'resolveComment':
+              _word.setCommentResolved(comment.id, true);
+            case 'reopenComment':
+              _word.setCommentResolved(comment.id, false);
+            case 'deleteComment':
+              _word.deleteComment(comment.id);
+          }
+        }
+      },
+    );
+  }
+
+  Future<void> _checkCommentProofing() async {
+    try {
+      await _word.proofing.checkNow(includeManualProviders: false);
+    } on Object {
+      if (!mounted) return;
+      _toast(
+        _arabic
+            ? 'تعذر إكمال تدقيق المستند. حاول مجددًا.'
+            : 'The document check could not finish. Try again.',
+      );
+    }
   }
 
   Future<void> _insertCommentPicture() async {
@@ -6068,7 +6274,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                   IconButton(
                     tooltip: _arabic ? 'إخفاء' : 'Hide',
                     visualDensity: VisualDensity.compact,
-                    onPressed: () => setState(() => _showComments = false),
+                    onPressed: () => _setShowComments(false),
                     icon: const Icon(Icons.close, size: 16),
                   ),
                 ],
@@ -6327,42 +6533,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
             selectedCommentId: comment.id,
             proofingFindings: _word.proofing.findingsByParagraph,
             onReviewTap: _showCommentReview,
-            onContextMenu: (OfficeContextHit hit) {
-              OfficeContextMenu.dismiss(_commentContextMenu);
-              _commentContextMenu = OfficeContextMenu.show(
-                context: context,
-                globalPosition: hit.globalPosition,
-                actions: OfficeContextMenu.word(
-                  hit: OfficeContextHit(
-                    kind: OfficeContextKind.comment,
-                    globalPosition: hit.globalPosition,
-                    commentId: comment.id,
-                  ),
-                  controller: _word,
-                ),
-                onSelect: (String id) {
-                  _commentContextMenu = null;
-                  switch (id) {
-                    case 'cut':
-                      _word.cutToClipboard();
-                    case 'copy':
-                      _word.copyToClipboard();
-                    case 'paste':
-                      _word.pasteFromClipboard();
-                    case 'selectAll':
-                      _word.selectAll();
-                    case 'replyComment':
-                      _replyWordComment(comment.id);
-                    case 'resolveComment':
-                      _word.setCommentResolved(comment.id, true);
-                    case 'reopenComment':
-                      _word.setCommentResolved(comment.id, false);
-                    case 'deleteComment':
-                      _word.deleteComment(comment.id);
-                  }
-                },
-              );
-            },
+            onContextMenu: (hit) => _showCommentContext(comment, hit),
             onChanged: () {
               if (!_word.isEditingComment ||
                   _word.selectedCommentId != comment.id) {

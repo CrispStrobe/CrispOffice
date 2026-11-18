@@ -379,7 +379,7 @@ abstract final class OfficeContextMenu {
     if (hit.kind == OfficeContextKind.comment && hit.commentId != null) {
       final WmlComment? comment = WordComment.byId(
         controller.document,
-        hit.commentId!,
+        WordComment.threadRootId(controller.document, hit.commentId!),
       );
       final bool resolved = comment?.resolved ?? false;
       items.addAll(<OfficeContextAction>[
