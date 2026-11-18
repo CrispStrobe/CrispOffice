@@ -136,7 +136,7 @@ def main() -> None:
     after = source_hashes()
     result = {
         'source_commit': source_commit,
-        'source_tree': git('rev-parse', 'HEAD^{tree}'),
+        'source_tree': git('rev-parse', f'{source_commit}^{{tree}}'),
         'source_file_count': len(before),
         'source_manifest': 'source-sha256.json',
         'source_unchanged_during_checks': before == after,
