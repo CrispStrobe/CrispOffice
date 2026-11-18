@@ -46,6 +46,10 @@ enum WordZoteroTab { library, document, importCslJson }
 /// An existing field at the caret opens [WordZoteroTab.document] by default.
 /// Hosts can set [initialTab] explicitly, or pass [initialCommand] to open the
 /// Document page and immediately start an explicitly requested desktop action.
+/// With [closeAfterCommand], a compact progress dialog returns to the editor
+/// after success, cancellation or an unchanged result. Errors remain visible.
+/// The ordinary references workspace stays open unless the user closes it or
+/// chooses a reference to reveal in the document.
 Future<void> showWordZoteroDialog(
   BuildContext context, {
   required WordEditorController controller,
@@ -55,9 +59,14 @@ Future<void> showWordZoteroDialog(
   Future<void> Function(String? apiKey)? persistApiKey,
   WordZoteroTab? initialTab,
   ZoteroCitingCommand? initialCommand,
-}) {
+  bool closeAfterCommand = false,
+}) async {
+  if (closeAfterCommand && initialCommand == null) {
+    throw ArgumentError('A direct Zotero command is required.');
+  }
   controller.commitPendingEdits();
-  return showDialog<void>(
+  final document = controller.document;
+  final destination = await showDialog<WmlZoteroField>(
     context: context,
     builder: (_) => _WordZoteroDialog(
       controller: controller,
@@ -67,8 +76,20 @@ Future<void> showWordZoteroDialog(
       persistApiKey: persistApiKey,
       initialTab: initialTab,
       initialCommand: initialCommand,
+      closeAfterCommand: closeAfterCommand,
     ),
   );
+  if (!context.mounted ||
+      controller.isDisposed ||
+      !identical(document, controller.document) ||
+      ModalRoute.of(context)?.isCurrent == false) {
+    return;
+  }
+  if (destination != null) {
+    controller.revealZoteroField(destination);
+  } else if (closeAfterCommand) {
+    controller.requestEditingFocus();
+  }
 }
 
 Object _editTarget(WordEditorController controller) => (
@@ -103,6 +124,7 @@ class _WordZoteroDialog extends StatefulWidget {
     this.persistApiKey,
     required this.initialTab,
     this.initialCommand,
+    required this.closeAfterCommand,
   });
   final WordEditorController controller;
   final ZoteroTransport? transport;
@@ -111,6 +133,7 @@ class _WordZoteroDialog extends StatefulWidget {
   final Future<void> Function(String? apiKey)? persistApiKey;
   final WordZoteroTab? initialTab;
   final ZoteroCitingCommand? initialCommand;
+  final bool closeAfterCommand;
   @override
   State<_WordZoteroDialog> createState() => _WordZoteroDialogState();
 }
@@ -227,16 +250,27 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
     super.dispose();
   }
 
-  Future<void> _run(Future<void> Function() action) async {
+  Future<void> _run(
+    Future<void> Function() action, {
+    bool closeOnSuccess = false,
+  }) async {
     if (_busy) return;
     setState(() {
       _busy = true;
       _error = null;
       _notice = null;
     });
+    var returnToDocument = false;
     try {
       await action();
+      returnToDocument = closeOnSuccess;
     } catch (error) {
+      if (closeOnSuccess &&
+          error is ZoteroCitingException &&
+          error.kind == ZoteroCitingErrorKind.cancelled &&
+          !error.desktopMayNeedRestart) {
+        returnToDocument = true;
+      }
       if (mounted) {
         setState(() {
           _error = switch (error) {
@@ -258,6 +292,11 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
       }
     } finally {
       if (mounted) setState(() => _busy = false);
+    }
+    if (mounted &&
+        returnToDocument &&
+        ModalRoute.of(context)?.isCurrent == true) {
+      Navigator.of(context).pop();
     }
   }
 
@@ -1004,6 +1043,7 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
       documentId: id,
       selectedField: selectedField,
       seedCitation: chooseStyle ? null : seed,
+      command: command,
     );
     final cancellation = ZoteroCitingCancellation();
     setState(() => _citingCancellation = cancellation);
@@ -1087,6 +1127,13 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
       _checkTarget();
       transaction.assertCurrent();
       final result = transaction.session;
+      if (command == ZoteroCitingCommand.addNote &&
+          !result.hasInsertedNoteText) {
+        setState(
+          () => _notice = 'No Zotero note was inserted. The document was kept.',
+        );
+        return;
+      }
       result.prepareReview();
       if (seed != null && !result.hasAcceptedSeedCitation) {
         setState(
@@ -1167,7 +1214,7 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
     } finally {
       if (mounted) setState(() => _citingCancellation = null);
     }
-  });
+  }, closeOnSuccess: widget.closeAfterCommand);
 
   Widget _desktopTools() => Card(
     key: const ValueKey('zotero-desktop-tools'),
@@ -1197,6 +1244,13 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
                     : () =>
                           _citeWithDesktop(ZoteroCitingCommand.addEditCitation),
                 child: const Text('Citation in Zotero…'),
+              ),
+              OutlinedButton(
+                key: const ValueKey('zotero-add-note'),
+                onPressed: _busy || !_canEdit
+                    ? null
+                    : () => _citeWithDesktop(ZoteroCitingCommand.addNote),
+                child: const Text('Add note from Zotero…'),
               ),
               OutlinedButton(
                 onPressed: _busy || !_canEdit
@@ -1537,6 +1591,7 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
 
   @override
   Widget build(BuildContext context) {
+    if (widget.closeAfterCommand) return _commandDialog();
     final size = MediaQuery.sizeOf(context);
     return PopScope(
       canPop: _citingCancellation == null,
@@ -1651,6 +1706,64 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _commandDialog() {
+    final command = widget.initialCommand!;
+    final title = switch (command) {
+      ZoteroCitingCommand.addEditCitation => 'Zotero citation',
+      ZoteroCitingCommand.addEditBibliography => 'Zotero bibliography',
+      ZoteroCitingCommand.addNote => 'Add note from Zotero',
+      ZoteroCitingCommand.refresh => 'Refresh Zotero citations',
+      ZoteroCitingCommand.setDocPrefs => 'Zotero document style',
+      ZoteroCitingCommand.removeCodes => 'Unlink Zotero citations',
+    };
+    final cancellation = _citingCancellation;
+    return PopScope(
+      canPop: !_busy && !_reviewing,
+      child: AlertDialog(
+        key: const ValueKey('zotero-direct-command'),
+        title: Text(title),
+        scrollable: true,
+        content: SizedBox(
+          width: 460,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              if (_busy && !_reviewing) ...[
+                const LinearProgressIndicator(),
+                const SizedBox(height: 16),
+              ],
+              Text(
+                _error ??
+                    _notice ??
+                    'Finish or cancel the open dialog in Zotero. You will return to your document when Zotero finishes.',
+                key: const ValueKey('zotero-command-status'),
+              ),
+            ],
+          ),
+        ),
+        actions: [
+          if (cancellation != null)
+            TextButton(
+              onPressed: cancellation.isCancelled
+                  ? null
+                  : () => setState(cancellation.cancel),
+              child: Text(
+                cancellation.isCancelled ? 'Cancelling…' : 'Cancel operation',
+              ),
+            )
+          else
+            TextButton(
+              onPressed: _busy || _reviewing
+                  ? null
+                  : () => Navigator.of(context).pop(),
+              child: const Text('Return to document'),
+            ),
+        ],
       ),
     );
   }
@@ -2706,9 +2819,13 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
                     '${field.kind.name}${field.canEdit ? '' : ' · preserved, read-only structure'}${citation == null ? '' : ' · ${citation.items.length} source(s)'}',
                   ),
                   trailing: PopupMenuButton<String>(
-                    enabled: !_busy && _canEdit && field.isValid,
+                    key: ValueKey('zotero-reference-actions-$index'),
+                    enabled: !_busy && !_controller.isDisposed && field.isValid,
                     tooltip: 'Reference actions',
                     onSelected: (action) {
+                      if (action == 'reveal') {
+                        Navigator.of(context).pop(field);
+                      }
                       if (action == 'native') {
                         _citeWithDesktop(
                           field.kind == ZoteroFieldKind.citation
@@ -2733,17 +2850,25 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
                       }
                     },
                     itemBuilder: (_) => [
-                      if (widget.localTransport != null && field.canEdit)
+                      PopupMenuItem(
+                        value: 'reveal',
+                        enabled: _controller.canRevealZoteroField(field),
+                        child: const Text('Go to reference'),
+                      ),
+                      if (_canEdit &&
+                          widget.localTransport != null &&
+                          field.canEdit)
                         const PopupMenuItem(
                           value: 'native',
                           child: Text('Edit in Zotero…'),
                         ),
-                      if (citation != null && field.canEdit)
+                      if (_canEdit && citation != null && field.canEdit)
                         const PopupMenuItem(
                           value: 'edit',
                           child: Text('Edit citation'),
                         ),
-                      if (field.kind == ZoteroFieldKind.bibliography &&
+                      if (_canEdit &&
+                          field.kind == ZoteroFieldKind.bibliography &&
                           field.canEdit) ...[
                         const PopupMenuItem(
                           value: 'basic',
@@ -2755,7 +2880,7 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
                             child: Text('Update Zotero bibliography'),
                           ),
                       ],
-                      if (!field.locked && !field.nested)
+                      if (_canEdit && !field.locked && !field.nested)
                         const PopupMenuItem(
                           value: 'unlink',
                           child: Text('Convert to text (undoable)'),
