@@ -267,12 +267,12 @@ class _WordNotesPaneState extends State<WordNotesPane> {
   Widget _writingStatus(OfficeTheme theme) {
     final session = _c.proofing;
     final summary = session.summary;
-    final status = !session.enabled
-        ? _s('Check as you type is paused.', 'التدقيق أثناء الكتابة متوقف مؤقتًا.')
-        : summary.checking
+    final status = summary.checking
         ? _s('Checking document…', 'جارٍ تدقيق المستند…')
         : summary.scheduled
         ? _s('Waiting for a pause in typing…', 'في انتظار توقف قصير عن الكتابة…')
+        : !session.enabled
+        ? _s('Check as you type is paused.', 'التدقيق أثناء الكتابة متوقف مؤقتًا.')
         : summary.statusMessage;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,

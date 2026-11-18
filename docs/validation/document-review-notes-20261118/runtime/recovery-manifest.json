@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "purpose": "Remote recovery checkpoint after host filesystem exhaustion",
+  "publication_scope": "Runtime recovery files attached with this manifest to codex/document-review-notes-20261118; source reconstruction and pending validation are described in the parent README.",
+  "files": [
+    {
+      "path": "docs/validation/document-review-notes-20261118/run_checks.py",
+      "blob_sha": "92ea4161c06a786bed4fbcfbe2a057429a48107b",
+      "provenance": "Complete authored apply_patch text recovered from this turn. Local file could not be re-read or checksummed after filesystem block.",
+      "executed": false
+    },
+    {
+      "path": "docs/validation/document-review-notes-20261118/runtime/restore_runtime.py",
+      "blob_sha": "5d9da1b33657da9dd74c1fb6b276ddb719faa960",
+      "provenance": "New portable recovery implementation reconstructed from observed setup, not the byte-identical original executed scripts.",
+      "executed": false
+    },
+    {
+      "path": "docs/validation/document-review-notes-20261118/runtime/recovery-summary.json",
+      "blob_sha": "646a48d583f53803177a68103a7646b59ccb3853",
+      "provenance": "Observed setup outcomes and known hashes reconstructed from completed tool outputs. Not a replacement for missing complete logs/manifests."
+    },
+    {
+      "path": "docs/validation/document-review-notes-20261118/runtime/README.md",
+      "blob_sha": "8b245e2d179516f28243b23b4a311701994a0f85",
+      "provenance": "Recovery and reproduction instructions updated to reference the committed 74-suite pending plan, with explicit validation boundaries."
+    }
+  ],
+  "known_completed_before_block": {
+    "exact_official_sdk_archive_verified": true,
+    "dart_and_flutter_tester_hashes_verified": true,
+    "both_offline_enforced_dependency_resolutions_passed": true,
+    "flutter_version_machine_passed": true,
+    "existing_editor_runtime_smoke_actual_cases_passed": 2,
+    "original_runtime_receipt_sha256": "b9bcda607be6822efb1af9d3be5c812dd3128f96d5ab85efd63b43d701722e62"
+  },
+  "remaining": {
+    "syntax_and_contract_tests_for_recovered_runner": "not performed",
+    "executing_new_portable_recovery_restorer": "not performed",
+    "exact_compressed_original_evidence_publication": "blocked; original bytes unavailable to tools after disk exhaustion",
+    "imported_mail_store_and_final_review_cohorts": "not run by runtime agent"
+  },
+  "github_actions_queried_or_awaited": false
+}
