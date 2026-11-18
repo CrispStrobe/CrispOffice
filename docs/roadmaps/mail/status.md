@@ -46,8 +46,19 @@ are separate from original Quds tests.
   target and browser guard compile; neither is an actual browser runtime pass.
 - Initial incoming integration: 190 targeted engine/editor/Studio regressions
   and scoped analysis passed on the initial review/thesaurus merge. The later
-  captured head has its own `checks/late-*` results and source hashes. Earlier
-  test totals are not presented as a new run on the later source.
+  captured head passed a separate 344-test cohort: 74 engine, 148 editor,
+  71 Studio and 51 spaCy tests. Its `checks/late-*` receipts retain source
+  hashes, initial failures, narrow repairs and final passing results. The
+  Studio coverage includes an explicit Linux modal/desktop resize with real
+  Material scrollbars. Earlier test totals are not presented as a new run on
+  the later source.
+
+See the [consolidated verification receipt](../../validation/mail-reader-20261118/verification.json)
+for final source identity and links to each completed cohort. The imported
+draft-proofing flow received numeric limit feedback and responsive chrome;
+the navigation sheet keeps its state current and uses separate PDF thumbnail
+controllers across resize. A stale test label and two proofing lints were
+corrected without changing the established comment-label or priority contract.
 
 No GitHub Actions status was queried, awaited or rerun. Source checkpoints use
 `[skip ci]` and are written incrementally to the remote implementation branch.

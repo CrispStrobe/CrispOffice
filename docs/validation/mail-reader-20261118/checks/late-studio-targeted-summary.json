@@ -1,0 +1,46 @@
+{
+  "success": true,
+  "exit_code": 0,
+  "passed": 3,
+  "failed": 0,
+  "skipped": 0,
+  "file_count": 2,
+  "by_file": {
+    "packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart": {
+      "passed": 2,
+      "failed": 0,
+      "skipped": 0
+    },
+    "packages/quds_office_editor/example/test/studio_compact_navigation_test.dart": {
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0
+    }
+  },
+  "elapsed_ms": 23976,
+  "tests": [
+    {
+      "file": "packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart",
+      "name": "over-limit drafts explain the limit without provider work",
+      "result": "success",
+      "skipped": false,
+      "runtime": "vm"
+    },
+    {
+      "file": "packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart",
+      "name": "narrow Arabic reply suggestions remain usable with larger text",
+      "result": "success",
+      "skipped": false,
+      "runtime": "vm"
+    },
+    {
+      "file": "packages/quds_office_editor/example/test/studio_compact_navigation_test.dart",
+      "name": "compact PDF navigation updates tabs and controller selection (variant: TargetPlatform.linux)",
+      "result": "success",
+      "skipped": false,
+      "runtime": "vm"
+    }
+  ],
+  "raw_report": "late-studio-targeted-final.txt",
+  "source_hashes": "late-studio-repaired-source-hashes.json"
+}

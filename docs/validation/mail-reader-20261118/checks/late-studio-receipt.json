@@ -1,0 +1,144 @@
+{
+  "recorded_at_utc": "2026-11-18T20:04:31Z",
+  "validation_observed_complete_at_utc": "2026-11-18T20:02:13Z",
+  "baseline_integrated_head": "35a472a5998a7e965f4bf37fcd3caa34a889b910",
+  "incoming_tip": "b9728ea1",
+  "published_source_commit": "0d1f699b5c891f8ceee34daf812a27c17a2aaffd",
+  "published_source_tree": "e7ddbfe07e5e25f2c5cf9087831c5ea7a782b098",
+  "equivalent_local_commit_reported_by_root": "4f93213d",
+  "local_head_at_receipt": "0d1f699b5c891f8ceee34daf812a27c17a2aaffd",
+  "source_integrity": {
+    "file_count": 151,
+    "algorithm": "sha256",
+    "manifest": "late-studio-repaired-source-hashes.json",
+    "mismatches_after_validation": [],
+    "initial_manifest": "late-studio-source-hashes.json"
+  },
+  "working_directory": "/workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/example",
+  "environment": {
+    "PUB_CACHE": "/workspace/scratch/ab53c04e2d5e/toolchains/pub-cache",
+    "TMPDIR": "/workspace/scratch/ab53c04e2d5e/toolchains/tmp",
+    "FLUTTER_ROOT": "/workspace/scratch/ab53c04e2d5e/toolchains/flutter",
+    "DASH__SUPPRESS_ANALYTICS": "true",
+    "FLUTTER_SUPPRESS_ANALYTICS": "true",
+    "CI": "true"
+  },
+  "results": {
+    "initial": {
+      "passed": 68,
+      "failed": 2,
+      "skipped": 0,
+      "raw_report": "late-studio-tests.txt",
+      "summary": "late-studio-initial-summary.json",
+      "failure_detail": "late-studio-initial-failures.txt"
+    },
+    "targeted_final": {
+      "passed": 3,
+      "failed": 0,
+      "skipped": 0,
+      "exit_code": 0,
+      "argv": [
+        "/workspace/scratch/ab53c04e2d5e/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+        "/workspace/scratch/ab53c04e2d5e/toolchains/flutter/bin/cache/flutter_tools.snapshot",
+        "--no-version-check",
+        "--suppress-analytics",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "json",
+        "--dart-define=STUDIO_CAPTURE_DRAFT=true",
+        "--update-goldens",
+        "test/studio_comment_draft_proofing_test.dart",
+        "test/studio_compact_navigation_test.dart",
+        "--name",
+        "over-limit drafts|narrow Arabic reply suggestions|compact PDF navigation"
+      ],
+      "raw_report": "late-studio-targeted-final.txt",
+      "stderr": "late-studio-targeted-final-stderr.txt",
+      "summary": "late-studio-targeted-summary.json"
+    },
+    "full_final": {
+      "passed": 71,
+      "original_five_file_tests": 70,
+      "additional_navigation_regressions": 1,
+      "failed": 0,
+      "skipped": 0,
+      "exit_code": 0,
+      "argv": [
+        "/workspace/scratch/ab53c04e2d5e/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+        "/workspace/scratch/ab53c04e2d5e/toolchains/flutter/bin/cache/flutter_tools.snapshot",
+        "--no-version-check",
+        "--suppress-analytics",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "json",
+        "test/studio_zotero_shortcuts_test.dart",
+        "test/studio_comment_draft_proofing_test.dart",
+        "test/studio_comment_keyboard_review_test.dart",
+        "test/studio_linguistic_analysis_test.dart",
+        "test/studio_spacy_setup_test.dart",
+        "test/studio_compact_navigation_test.dart"
+      ],
+      "raw_report": "late-studio-tests-final.txt",
+      "stderr": "late-studio-stderr-final.txt",
+      "summary": "late-studio-final-summary.json"
+    },
+    "analysis": {
+      "exit_code": 0,
+      "issues": 0,
+      "argv": [
+        "/workspace/scratch/ab53c04e2d5e/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+        "analyze",
+        "lib/suite_workspace.dart",
+        "lib/studio_chrome.dart",
+        "test/studio_comment_draft_proofing_test.dart",
+        "test/studio_compact_navigation_test.dart"
+      ],
+      "output": "late-studio-analysis-final.txt"
+    }
+  },
+  "repairs": [
+    "Localized Studio reply feedback includes the actual 16384 live-check limit; provider rejection semantics are unchanged.",
+    "Title/tab controls scroll within available width and chrome height follows enlarged text without capping the text scale.",
+    "Below 700 logical pixels, navigation opens the existing navigation content in a directional modal instead of consuming 268 pixels inline.",
+    "The modal listens to the actual active controller and local navigation revisions, including PDF tabs and outline expansion.",
+    "Inline and compact PDF thumbnails own separate scroll controllers and separate selected-page sync state; both are disposed by the workspace.",
+    "The narrow test now uses 390 pixels, opens/closes navigation, pumps after ensureVisible, checks pointer hit testing, and verifies the actual correction."
+  ],
+  "navigation_qualification": {
+    "target_platform": "linux",
+    "variant": "TargetPlatformVariant.only(TargetPlatform.linux)",
+    "normal_material_scrollbars_asserted": true,
+    "covered": [
+      "Pages to Outline and back",
+      "outline action changes controller page",
+      "external controller page update refreshes the open modal",
+      "resize from compact to desktop with modal still open",
+      "normal desktop scrollbars remain valid with separate controllers",
+      "close and return to compact navigation"
+    ],
+    "prior_reproductions": [
+      "late-studio-navigation-resize-before.txt",
+      "late-studio-navigation-linux-before.txt"
+    ]
+  },
+  "capture": {
+    "path": "late-studio-arabic-draft.png",
+    "width": 390,
+    "height": 1000,
+    "direction": "rtl",
+    "text_scale": 1.4,
+    "sha256": "3857dd4fb43dab97646c919d184d47d7f5aae71d0e646124eda4654639996900",
+    "method": "Existing draft regression uses Flutter matchesGoldenFile with --update-goldens, a RepaintBoundary, bundled local Latin/Arabic fonts and MaterialIcons. This generates a native capture; it is not a comparison against an independently approved golden.",
+    "state": "After applying the visible reply correction; next live check is waiting for typing to pause.",
+    "inspection": "Corrected reply and controls are readable without overflow bands; the existing Notes/review pane remains visible above."
+  },
+  "limits": [
+    "Widget tests and native rendered capture; no installed-application or browser-runtime certification.",
+    "No browser or GitHub Actions gate was run or awaited.",
+    "No network model installation; spaCy and Zotero test operations use fake providers/transports or explicit no-download host paths.",
+    "The 3 focused passes and prior passing runs are repeated subsets, not additional tests to add to the final 71.",
+    "Original UI reader receipts and source were not changed by this late Studio repair."
+  ]
+}

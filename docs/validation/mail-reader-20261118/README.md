@@ -44,6 +44,9 @@ contributors have stopped publishing.
 | `46d7422d` | Independently reviewed MIME/date/charset corrections |
 | `6c728e1a` | Native/web qualification, visual evidence and workspace lock |
 | `c473a25f` | Captured late review, Zotero, thesaurus and EN/FR integration |
+| `e727204c` | Captured-head accounting, pinned local runner and language checks |
+| `67a6efd2` | Draft-feedback, compact-navigation and proofing regression repairs |
+| `0d1f699b` | Independent compact/inline PDF scroll state with explicit Linux resize coverage |
 
 Each remote write used the expected previous branch head and preserved normal
 history. The corresponding local and fetched remote trees were verified equal.
@@ -93,8 +96,39 @@ not added to the final functional counts.
 The initial incoming Office merge passed 190 focused local executions:
 24 engine, 128 editor and 38 Studio cases. Those results are bound to the
 earlier source in [their receipt](checks/core-integration-summary.json).
-The late merge is checked separately under `checks/late-*`; the final
-verification receipt identifies its completed cohorts and any repairs.
+The late merge is checked separately under `checks/late-*`:
+
+| Late-source cohort | Result | Evidence |
+| --- | --- | --- |
+| Engine: Zotero caret/note insertion and thesaurus | 74 passed | [initial late receipt](checks/late-engine-editor-receipt.json), whose engine cohort passed without changes |
+| Editor: notes, draft proofing, priority and thesaurus | 148 passed | [final engine/editor receipt](checks/late-engine-editor-final-receipt.json) |
+| Studio: draft replies, keyboard review, Zotero, analysis/setup and compact PDF navigation | 71 passed | [final Studio receipt](checks/late-studio-receipt.json) |
+| Engine/editor touched-source analysis | 10 paths clean with fatal infos | [final engine/editor receipt](checks/late-engine-editor-final-receipt.json) |
+| spaCy language/catalog/install/worker contracts | 51 passed; library analysis clean | [spaCy summary](checks/late-spacy-summary.json) |
+
+The initial late editor run exposed one stale test expectation: the fixture
+expected lowercase `comment`, while the existing production label was
+`Comment 8`. The repaired test asserts that exact existing label. Two
+mechanically equivalent proofing syntax changes resolve fatal-info lint
+findings without changing the priority order. The targeted case was repeated
+separately and is not added to the 148-test count.
+
+The initial Studio run passed 68 cases and exposed two real problems: missing
+numeric feedback for an oversized reply and overflow in enlarged narrow
+Arabic chrome. Those failures and subsequent targeted runs are preserved.
+The final Studio receipt records the repaired cohort and compact PDF navigation
+interaction, including a desktop resize while its modal sheet remains open.
+These results are separate from the earlier 190-case integration receipt.
+The late-source cohorts total **344 distinct tests**. Targeted reruns and
+the earlier 190 cases are not added to that total. The final compact-PDF
+regression explicitly uses Linux with normal Material scrollbars; separate
+workspace-owned thumbnail controllers avoid attaching two desktop views to
+one scrollbar controller during a resize.
+
+The [consolidated verification receipt](verification.json) binds these results
+to the saved source checkpoint and evidence digests. Source hashes establish
+identity, not a claim that every file in a package was exercised by these
+focused tests.
 
 ## Visuals and runtime limits
 
@@ -159,6 +193,12 @@ On a host that permits Chromium, supply `--chrome /path/to/chrome` to execute
 the additional real-browser gates. Without that option the receipt reports
 browser execution as NOT RUN. The runner retains command output and source
 hashes under `build/mail-qualification`; it uses no GitHub Actions service.
+Its receipt handling was separately exercised for stale PASS replacement,
+missing SDK, spawn failure, interruption and failed compilation with an old JS
+artifact present. Those [synthetic control-flow checks](checks/late-engine-editor-runner-checks.json)
+are distinct from the actual component qualification commands above; a full
+invocation of the new orchestration script was not added as another duplicate
+Mail test run.
 
 Resume from the remote implementation branch and the
 [status page](../../roadmaps/mail/status.md). The next functional milestone is

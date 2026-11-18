@@ -2,7 +2,7 @@
   "checked_at_utc": "2026-11-18T19:25:38.496532+00:00",
   "repository": "CrispStrobe/quds_office_suite",
   "method": "Local comparison of already fetched origin branch and PR-head refs against baseline receipts; no network requests, Actions polling, merge, index change, or ref mutation.",
-  "integration_status": "integrated_pending_local_regression_receipts",
+  "integration_status": "integrated_and_focused_local_regressions_passed",
   "checked_local_head": "46d7422d5ac356c327759872ff28adcd154b75ad",
   "excluded_current_work_branch": {
     "ref": "refs/heads/codex/mail-reader-20261118",
@@ -334,8 +334,8 @@
     "spacy_catalog": "Adds pinned v2 native runtime catalog and separate English/French model downloads. Incoming catalog labels English MIT and French LGPL-LR; these are source-declared model terms, not a new license audit."
   },
   "suggested_next_steps": [
-    "Complete focused local tests for the changed engine/editor/Studio/spaCy source, retaining separate source hashes.",
-    "Continue Mail plan from the implemented reader foundation; browser runtime and later product milestones remain open."
+    "Continue Mail with M05 durable store/recovery, followed by M06/M07 and M04W.",
+    "Close actual browser and low-memory target gates before host migration/release; retain the separate LIC/CC gates."
   ],
   "fork_frozen": {
     "unchanged_since_agent_handoff": true,
@@ -375,7 +375,26 @@
     "mail_source_changed_by_merge": false,
     "local_and_remote_trees_verified_equal": true,
     "workspace_resolution": "checks/late-workspace-resolution.txt",
-    "regression_evidence": "checks/late-*; final validation summary records completed checks",
+    "regression_evidence": {
+      "engine": {
+        "passed": 74,
+        "receipt": "checks/late-engine-editor-receipt.json"
+      },
+      "editor": {
+        "passed": 148,
+        "receipt": "checks/late-engine-editor-final-receipt.json"
+      },
+      "studio": {
+        "passed": 71,
+        "receipt": "checks/late-studio-receipt.json"
+      },
+      "spacy": {
+        "passed": 51,
+        "receipt": "checks/late-spacy-summary.json"
+      },
+      "distinct_tests": 344,
+      "scope": "Focused local cohorts only; earlier190 and targeted repeats are excluded."
+    },
     "github_actions_used": false,
     "all_captured_ref_accounting": {
       "branches": {
@@ -534,6 +553,8 @@
           }
         ]
       }
-    }
+    },
+    "qualified_source_commit": "0d1f699b5c891f8ceee34daf812a27c17a2aaffd",
+    "qualified_source_tree": "e7ddbfe07e5e25f2c5cf9087831c5ea7a782b098"
   }
 }
