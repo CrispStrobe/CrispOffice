@@ -12,6 +12,7 @@ environment:
 
 workspace:
   - packages/quds_mail_core
+  - packages/quds_mail_mime
   - packages/legacy_doc_parser
   - packages/quds_office_engine
   - packages/quds_proofing_harper

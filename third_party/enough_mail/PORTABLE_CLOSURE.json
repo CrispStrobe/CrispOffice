@@ -1,0 +1,464 @@
+{
+  "entry": "lib/mime_core.dart",
+  "local_source_count": 21,
+  "total_source_count": 87,
+  "dart_imports": [
+    "dart:async",
+    "dart:collection",
+    "dart:convert",
+    "dart:math",
+    "dart:typed_data"
+  ],
+  "external_imports": [
+    "package:collection/collection.dart",
+    "package:enough_convert/koi8.dart",
+    "package:enough_convert/latin.dart",
+    "package:enough_convert/windows.dart",
+    "package:json_annotation/json_annotation.dart",
+    "package:meta/meta_meta.dart"
+  ],
+  "excluded_enough_convert_modules": [
+    "GBK",
+    "GB18030 aliases",
+    "Big5",
+    "DOS (not used)"
+  ],
+  "files": [
+    {
+      "package": "collection",
+      "path": "lib/collection.dart",
+      "sha256": "c3ff78be4f875a5a4c73bb9725ddc0ada1047b7d236327ce44e3872d5e2c6ac7"
+    },
+    {
+      "package": "collection",
+      "path": "lib/src/algorithms.dart",
+      "sha256": "4fd89497360fa35c92160b7a936e6fdf953278bb14473b15803013a671fcbf6c"
+    },
+    {
+      "package": "collection",
+      "path": "lib/src/boollist.dart",
+      "sha256": "673c2f300822f573b182c6a222c445d9ef5090a6dc6efdb7d1a32319bd874e96"
+    },
+    {
+      "package": "collection",
+      "path": "lib/src/canonicalized_map.dart",
+      "sha256": "73922d659823fd3a3af583b402edada966577131e0478df3d0b752c471b9a6d7"
+    },
+    {
+      "package": "collection",
+      "path": "lib/src/combined_wrappers/combined_iterable.dart",
+      "sha256": "9b9544ab3b6ac22876205d0af9ff4f83e204337a16ea27e69eabe80fb9100a11"
+    },
+    {
+      "package": "collection",
+      "path": "lib/src/combined_wrappers/combined_iterator.dart",
+      "sha256": "8205cf365184783a0035a403698e37451d3768d2189e40e8ca0db16e33998e0f"
+    },
+    {
+      "package": "collection",
+      "path": "lib/src/combined_wrappers/combined_list.dart",
+      "sha256": "1f00032ee6c4cfeee054218c9295d15f4b22a1c688cbcf4bed05ab7df41645a0"
+    },
+    {
+      "package": "collection",
+      "path": "lib/src/combined_wrappers/combined_map.dart",
+      "sha256": "256fa6024cec549ce5ac30016f6d0be9ddc0a40f31e0001b75becef7d5307034"
+    },
+    {
+      "package": "collection",
+      "path": "lib/src/comparators.dart",
+      "sha256": "100fb08a3bbb242f3e4a72eb0ac6e21bb3b609d56c5e47aaef07af4c7e37b862"
+    },
+    {
+      "package": "collection",
+      "path": "lib/src/empty_unmodifiable_set.dart",
+      "sha256": "5ce991e62d44b70e22ad847144e3160ccae91894ec53fb52cb7d084e015d0e4d"
+    },
+    {
+      "package": "collection",
+      "path": "lib/src/equality.dart",
+      "sha256": "2538528180ddb2af6ae6f9e2219f8512c91af3a3d03cf77368216892f6a5cc5e"
+    },
+    {
+      "package": "collection",
+      "path": "lib/src/equality_map.dart",
+      "sha256": "64c1982d883236aeac1b53a22b2cf389d97de29a3cb970af083524837174b810"
+    },
+    {
+      "package": "collection",
+      "path": "lib/src/equality_set.dart",
+      "sha256": "40e7bd18832039b82c7036de90d9610d4346f309c596226749d35f8ddf3f908b"
+    },
+    {
+      "package": "collection",
+      "path": "lib/src/functions.dart",
+      "sha256": "b1bfc356e1f33ad184a650f650743c92a4faeb4369ae05f2ee364e4d194eda8a"
+    },
+    {
+      "package": "collection",
+      "path": "lib/src/iterable_extensions.dart",
+      "sha256": "8ea68880f336beb62f144fe42315329ca5a5ec04367e4c4ff2660a7aa58a8f0a"
+    },
+    {
+      "package": "collection",
+      "path": "lib/src/iterable_zip.dart",
+      "sha256": "4db41599c8dc991a17a071b4995ff4a247e8fb7ac544a619fed6574db4039dd7"
+    },
+    {
+      "package": "collection",
+      "path": "lib/src/list_extensions.dart",
+      "sha256": "5b653255a53822d8936c58598b0d82b10c69ae672f8598b38531d6b0cc790214"
+    },
+    {
+      "package": "collection",
+      "path": "lib/src/priority_queue.dart",
+      "sha256": "be7cad5178599b3d439b594ebf9bd9f558a61160ff39b7d7c0910e40891a4426"
+    },
+    {
+      "package": "collection",
+      "path": "lib/src/queue_list.dart",
+      "sha256": "c0864a4a42c5d5c397aae3b04ab3796e9c413cdc2fbdd40d8cc3ec7a8be7df94"
+    },
+    {
+      "package": "collection",
+      "path": "lib/src/union_set.dart",
+      "sha256": "5cbaaee17fb13a19481464db16769b02dae1859ab96ab79c4f9f183b492c826d"
+    },
+    {
+      "package": "collection",
+      "path": "lib/src/union_set_controller.dart",
+      "sha256": "f6047a5a3ad9ab5fa612bf1e4dcc5b4fb2f78965ad6ab828a4f0af7030754b1b"
+    },
+    {
+      "package": "collection",
+      "path": "lib/src/unmodifiable_wrappers.dart",
+      "sha256": "2883cefc2b550c909961d5eff7759062ab9569d5598b978df1f1aac0e1ee3114"
+    },
+    {
+      "package": "collection",
+      "path": "lib/src/utils.dart",
+      "sha256": "3103ae95cf8ad7ee0433f75e3aaf3c5d53714db411ffce44db24f609e7718cb9"
+    },
+    {
+      "package": "collection",
+      "path": "lib/src/wrappers.dart",
+      "sha256": "98d3a14ec8ca76b0c77998f518eef40f1c0579ffefda713a5e670299c1a28363"
+    },
+    {
+      "package": "enough_convert",
+      "path": "lib/koi8.dart",
+      "sha256": "fc67d8991adb74c1c6debe587aaf01621cae9fc78f8e6b55ac6faa6fab3c8e49"
+    },
+    {
+      "package": "enough_convert",
+      "path": "lib/latin.dart",
+      "sha256": "84dcf06366e37fbcb0740dcb070d854c177d0889adf49f32358b18d35b738449"
+    },
+    {
+      "package": "enough_convert",
+      "path": "lib/src/base.dart",
+      "sha256": "c61b544b1ab3b732602c681703db0b4f5a03ba30cbc9f0ec6ceb9e89bb890ce1"
+    },
+    {
+      "package": "enough_convert",
+      "path": "lib/src/koi8/koi8.dart",
+      "sha256": "c43cb8f07fb3489f9f447a568f62f9b0eed6d1be68c3147cf118af669a60bf86"
+    },
+    {
+      "package": "enough_convert",
+      "path": "lib/src/koi8/koi8_r.dart",
+      "sha256": "9c74b60b983466cc1cdf83db93675389475863586570b8cebc5f8d6f4248fd7f"
+    },
+    {
+      "package": "enough_convert",
+      "path": "lib/src/koi8/koi8_u.dart",
+      "sha256": "1b800f0c1bf8274ef323a2691a3b5a8383284cb383785a82f9ab5f5c73960193"
+    },
+    {
+      "package": "enough_convert",
+      "path": "lib/src/latin/latin.dart",
+      "sha256": "888bc7965863b740b45bbfc2b2995db39629295c49712ff01f7218068756b92e"
+    },
+    {
+      "package": "enough_convert",
+      "path": "lib/src/latin/latin10.dart",
+      "sha256": "3e9af3c8e364e98f29447fbcb8b0df1f1578ac430051f8882c2f427a2836d7d2"
+    },
+    {
+      "package": "enough_convert",
+      "path": "lib/src/latin/latin11.dart",
+      "sha256": "2ac6290709962345ed64489ef5aea41db67df5af87e51b83ece833a3c154fea4"
+    },
+    {
+      "package": "enough_convert",
+      "path": "lib/src/latin/latin13.dart",
+      "sha256": "9d221b5743b4feb9ee30e51d3bf0a8cce981d056b262485de43e8337ec1f6ee8"
+    },
+    {
+      "package": "enough_convert",
+      "path": "lib/src/latin/latin14.dart",
+      "sha256": "4ea3ca210c121a744fb96456e0820e200b07799a27dd6baf9191c2aa530329b9"
+    },
+    {
+      "package": "enough_convert",
+      "path": "lib/src/latin/latin15.dart",
+      "sha256": "e89f5f1059ed848d88a2af800a52911707d2a99b014b87d3135968ade3f6b3ef"
+    },
+    {
+      "package": "enough_convert",
+      "path": "lib/src/latin/latin16.dart",
+      "sha256": "f113ddbb2ea3e97a84eca94004b55081fd168cb72854c682d884ed2c39e3e7ed"
+    },
+    {
+      "package": "enough_convert",
+      "path": "lib/src/latin/latin2.dart",
+      "sha256": "62ed780bd4cb9ffb79cdc8df0a12096cceb6a35248d77966a7326cfda2470c5f"
+    },
+    {
+      "package": "enough_convert",
+      "path": "lib/src/latin/latin3.dart",
+      "sha256": "ce08cf56949f54cb424d2a54045545995569bb0b770d5fbeba6737b3d39abf22"
+    },
+    {
+      "package": "enough_convert",
+      "path": "lib/src/latin/latin4.dart",
+      "sha256": "38a0ae597ec3bc79374dadc9d81c8e3d05eee010ec5827e41d984a185945dce8"
+    },
+    {
+      "package": "enough_convert",
+      "path": "lib/src/latin/latin5.dart",
+      "sha256": "707ffcda08f3a154ba42b5582a131d1f9b2d3bdfdcba959d9833243a044de684"
+    },
+    {
+      "package": "enough_convert",
+      "path": "lib/src/latin/latin6.dart",
+      "sha256": "17957bf857ca6e229d80b1b0273d9d6b87d1900b41e3eb55c2335b69b4a5eb87"
+    },
+    {
+      "package": "enough_convert",
+      "path": "lib/src/latin/latin7.dart",
+      "sha256": "a02f396a2ef7a9527e3b787b74b3bfb3dd50a150e900cf017453d9b361f23e48"
+    },
+    {
+      "package": "enough_convert",
+      "path": "lib/src/latin/latin8.dart",
+      "sha256": "c6ec61025ba12875d1694b50be1da49b91f357ba8ed2c90b008196d5ef354dc6"
+    },
+    {
+      "package": "enough_convert",
+      "path": "lib/src/latin/latin9.dart",
+      "sha256": "c6729bad7384dbb3a39a1bb2705a57ed0fe5f68852f48157d8e390625a162127"
+    },
+    {
+      "package": "enough_convert",
+      "path": "lib/src/windows/windows.dart",
+      "sha256": "f5fa98d420c3e581f96f4affb779eebdeb8f451e99dd3c4c4149e0f159ef1b55"
+    },
+    {
+      "package": "enough_convert",
+      "path": "lib/src/windows/windows1250.dart",
+      "sha256": "22816126c44f16d308a4c856feb223c0d6e3d097014a364cc975109c201a6f12"
+    },
+    {
+      "package": "enough_convert",
+      "path": "lib/src/windows/windows1251.dart",
+      "sha256": "7ebd586e21e2a07c9c2820784d98071748c92d8d8a7352ab18fe8388afd767b2"
+    },
+    {
+      "package": "enough_convert",
+      "path": "lib/src/windows/windows1252.dart",
+      "sha256": "b04fbd0ac1a494801623dbf7037cf4925ce2ac58a8c574aaee0ceb9eb298d157"
+    },
+    {
+      "package": "enough_convert",
+      "path": "lib/src/windows/windows1253.dart",
+      "sha256": "dba83237352acdfd894200ed343e967cac75772fc7c6c288dc77b0fe19eaf5a4"
+    },
+    {
+      "package": "enough_convert",
+      "path": "lib/src/windows/windows1254.dart",
+      "sha256": "89164dc0b49343c67138fd45eae5e132e731a0bc1ec0c6b666479a8d4ea7f7fc"
+    },
+    {
+      "package": "enough_convert",
+      "path": "lib/src/windows/windows1255.dart",
+      "sha256": "17314c4aa3038e44af43cf523ce141c13ac754694b994dca2bf34cfbfe9f895a"
+    },
+    {
+      "package": "enough_convert",
+      "path": "lib/src/windows/windows1256.dart",
+      "sha256": "0ec4c4ac173448d7414428c22bab5f8b33945052dd898c2cd960a6442bb81601"
+    },
+    {
+      "package": "enough_convert",
+      "path": "lib/windows.dart",
+      "sha256": "09301f5bdca4099a6cf595d9165f8b245908bef83e7f74646d537f04691c372c"
+    },
+    {
+      "package": "enough_mail",
+      "path": "lib/mime_core.dart",
+      "sha256": "60148aceb2f472a268eb5798365c8c68d9bd5fd013d169c4d5128ddd7360a332"
+    },
+    {
+      "package": "enough_mail",
+      "path": "lib/src/codecs/base64_mail_codec.dart",
+      "sha256": "00735e26d11d9d898a9a75fc432c9055e9ede091f48347ac84da7c2da3959bf2"
+    },
+    {
+      "package": "enough_mail",
+      "path": "lib/src/codecs/date_codec.dart",
+      "sha256": "0651b8018d0cafb009ede9b01362780d3d681e8ea6aaf17f932bfb457d6a45ac"
+    },
+    {
+      "package": "enough_mail",
+      "path": "lib/src/codecs/mail_codec.dart",
+      "sha256": "2c12603e1fa1ad9ca1754a0a9654369e5c371a6624bb9c76dd7c228bb4cd8649"
+    },
+    {
+      "package": "enough_mail",
+      "path": "lib/src/codecs/quoted_printable_mail_codec.dart",
+      "sha256": "d6edd941345b2a51500182b06b80013f3337662c1d5f5259983fc58f41c6a130"
+    },
+    {
+      "package": "enough_mail",
+      "path": "lib/src/exception.dart",
+      "sha256": "9d302e1a61fe9e067543f5c457d7b479cf2903eacd0a930af3f985e57765d27d"
+    },
+    {
+      "package": "enough_mail",
+      "path": "lib/src/imap/message_sequence.dart",
+      "sha256": "d31880648a67a60a42b0b7d19f83f836416dfacf9109611dc4f03ea4d843a0ac"
+    },
+    {
+      "package": "enough_mail",
+      "path": "lib/src/imap/message_sequence.g.dart",
+      "sha256": "814907c12dd8ba1d22bb8dfa62e97c4e697fc6e4cd77f04dd3ee0274368c5043"
+    },
+    {
+      "package": "enough_mail",
+      "path": "lib/src/mail_address.dart",
+      "sha256": "ac60bef5c178c025b0ff2356545f686190fea582b9e9f4f4e13b7c2c07d78ee9"
+    },
+    {
+      "package": "enough_mail",
+      "path": "lib/src/mail_address.g.dart",
+      "sha256": "9c0d571bbf85b971c8a9d7f904dfe29055ea478b1f96f41185d15811b7b12eeb"
+    },
+    {
+      "package": "enough_mail",
+      "path": "lib/src/mail_conventions.dart",
+      "sha256": "e17abbd1654e650aaae89c4729dcb9da7de74b123eab61b29582ff08942574b5"
+    },
+    {
+      "package": "enough_mail",
+      "path": "lib/src/media_type.dart",
+      "sha256": "a3217f742fa8a658617bbf070d9037f8f477dcf37bf41df85ed414c500d403bf"
+    },
+    {
+      "package": "enough_mail",
+      "path": "lib/src/message_flags.dart",
+      "sha256": "ed84ab72ec823cb23be9ea2df363a1848d6a3186e149d5984d5b8a34737066d0"
+    },
+    {
+      "package": "enough_mail",
+      "path": "lib/src/mime_data.dart",
+      "sha256": "99f8b076ae93ce692f1319e542b8ddd86d2dedccc935842e1dbd9159fd05d42f"
+    },
+    {
+      "package": "enough_mail",
+      "path": "lib/src/mime_diagnostics.dart",
+      "sha256": "a16072b7a242a1c338e89a33f8f900419968685c09f34c6ce808c71c547b06ca"
+    },
+    {
+      "package": "enough_mail",
+      "path": "lib/src/mime_message.dart",
+      "sha256": "0a687232552e031d6265e6bb14a0d26d90a7cbf07b0843a808caaa3f5d03fdf3"
+    },
+    {
+      "package": "enough_mail",
+      "path": "lib/src/private/imap/parser_helper.dart",
+      "sha256": "2de130370bd0f53c9bdabd8f549a32292e34de39be3f105f476a09f84185d5e8"
+    },
+    {
+      "package": "enough_mail",
+      "path": "lib/src/private/util/ascii_runes.dart",
+      "sha256": "c33343ccf8ebc9b9560ba99567093f25db60a9a073b8c4acb689e3bb083cab9e"
+    },
+    {
+      "package": "enough_mail",
+      "path": "lib/src/private/util/byte_utils.dart",
+      "sha256": "0567286bb985963a3d5779c212a0ca7591e1e09f8269747963d818a942f62afc"
+    },
+    {
+      "package": "enough_mail",
+      "path": "lib/src/private/util/mail_address_parser.dart",
+      "sha256": "91b9db98ff30967b635a69d99dd01ca69ce5dda1ce05bfbceaa6f8b785bd5e64"
+    },
+    {
+      "package": "enough_mail",
+      "path": "lib/src/private/util/word.dart",
+      "sha256": "4f468dcee5b196f9c744a60eae8d720050da7f268faa36f57de4c71d2df7be63"
+    },
+    {
+      "package": "json_annotation",
+      "path": "lib/json_annotation.dart",
+      "sha256": "438a2687290a5045503f795b6f38f7c5380e5dc060e4907f9f64b75442010e69"
+    },
+    {
+      "package": "json_annotation",
+      "path": "lib/src/allowed_keys_helpers.dart",
+      "sha256": "5950f31cbdd4b2b3739d1cfaed76094d1e383da57953b08ef477edbe76a38fb7"
+    },
+    {
+      "package": "json_annotation",
+      "path": "lib/src/checked_helpers.dart",
+      "sha256": "3e44908a46d34c4aa704069a2eb5fba451ade740b4527518003a9e199ae4e7ab"
+    },
+    {
+      "package": "json_annotation",
+      "path": "lib/src/enum_helpers.dart",
+      "sha256": "1f9f3b87ae358356701c97f86668ed7a047111f27b80c4ac055e2bfe6522bb4a"
+    },
+    {
+      "package": "json_annotation",
+      "path": "lib/src/json_converter.dart",
+      "sha256": "0fa622cde557574888d56691b89de5c9afd63e2caa71c1c59dd99c50b71c5619"
+    },
+    {
+      "package": "json_annotation",
+      "path": "lib/src/json_enum.dart",
+      "sha256": "3462ee1eb29047c74ed032a6e3a79d8fbb8beca9c0cd264d1574614b16822656"
+    },
+    {
+      "package": "json_annotation",
+      "path": "lib/src/json_key.dart",
+      "sha256": "c307237f73c78320b0ac924165ed8a38e6af171ecd0b3f104c9aeefb8547bc4e"
+    },
+    {
+      "package": "json_annotation",
+      "path": "lib/src/json_literal.dart",
+      "sha256": "786661989e021e5798d230ef08025d231f05c4dac62c6dcb83522faffa3f4587"
+    },
+    {
+      "package": "json_annotation",
+      "path": "lib/src/json_serializable.dart",
+      "sha256": "811da1137c5638bc9bace0ade865af9e9b319edcd233f6fb046816c938f92888"
+    },
+    {
+      "package": "json_annotation",
+      "path": "lib/src/json_serializable.g.dart",
+      "sha256": "f18f2fc0a753128db66f09e7455376ae04ccf22fcde96b7e85684cac4a6000ba"
+    },
+    {
+      "package": "json_annotation",
+      "path": "lib/src/json_value.dart",
+      "sha256": "e1ae5623202a74a76b04c40ffbac4630eec819c481dabcf34b753088a82a26b3"
+    },
+    {
+      "package": "meta",
+      "path": "lib/meta_meta.dart",
+      "sha256": "a0bc9324c61f02762f801c8aa8fea561c969e3567f010b0ea1897fe9b1eefb03"
+    }
+  ],
+  "note": "Includes actual selected external package source import/part/export closure, not the entire downloaded package archives. No CJK table module is imported. This static receipt is supplemented by compilation/runtime evidence."
+}

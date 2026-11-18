@@ -1,0 +1,47 @@
+{
+  "flutter_version": "3.47.8",
+  "dart_version": "3.13.7",
+  "framework_revision": "737ba8f885dc774b53b442759999a312c9461e4e",
+  "engine_revision": "cf636b1dfb818dd6a3ff16e390e93b1a036969c8",
+  "flutter_archive_sha256": "baf7dcc5a3dbba60fe863bf493a6cf203195621f7786eaa5a1bba02cd0d87dd2",
+  "host": "Linux x64",
+  "dependency_source": "root workspace pubspec.lock",
+  "test_package_version": "1.31.1",
+  "native_analyze": "PASS: lib, --fatal-infos",
+  "native_tests": {
+    "status": "PASS",
+    "tests": 168,
+    "files": 14
+  },
+  "javascript_compile": "PASS",
+  "native_node_projection": "PASS: identical JSON",
+  "chromium_tests": "BLOCKED before execution: executor sandbox denied process singleton socket",
+  "portable_closure_sha256": "a8ab04bad558bf891b12ac5307eab4f1729fcf521abff8258f08c0870d93f424",
+  "dependency_inventory_sha256": "285d067c0cb99e64d7a9bbe772468b555c65d07382384ed4eaa17789f8a7385c",
+  "logs": [
+    {
+      "path": "verification/browser_attempt.log",
+      "sha256": "39f575b6f7aacd1b5151cf3614aec75b34d096a84c6ab3457cd8bfce9fde9cd6"
+    },
+    {
+      "path": "verification/native_analysis.log",
+      "sha256": "6b7a8871da280b2b7725a31509a42d0e66de8a6281e319414cfeb7d46b48d2ed"
+    },
+    {
+      "path": "verification/native_tests.log",
+      "sha256": "f1558295f844417f319e03a5b2e2d987cd369ca0c4c1c89b143bb164908cc301"
+    },
+    {
+      "path": "verification/portable_js_compile.log",
+      "sha256": "e735417aa3fa320c79aa458049afe2592144de35c67f57594996da8e4505bc72"
+    },
+    {
+      "path": "verification/portable_native.json",
+      "sha256": "9c2b06c6b38d5028e610831fc186c3d2f8db6dccaf8d0d21c5f3c5c73607bfcc"
+    },
+    {
+      "path": "verification/portable_node.json",
+      "sha256": "9c2b06c6b38d5028e610831fc186c3d2f8db6dccaf8d0d21c5f3c5c73607bfcc"
+    }
+  ]
+}
