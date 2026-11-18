@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "kind": "independent-current-failed-attempt-review",
+  "reviewer": "remote_review independent agent",
+  "source_commit": "9a7c80be00258def2dcae3bb288c28558c83aa72",
+  "review_status": "partially_completed_before_environment_loss",
+  "local_report_written": false,
+  "archive": {
+    "bytes_independently_verified": 638988,
+    "sha256_independently_verified": "14a2e5d6d0ae73501eb6e240d67896a3936482188a3344c1eee44c877e161e42",
+    "index_sha256_independently_verified": "8a018da23c0ed0fca075f256dd48646f9e7e1fd7cf0ba8c9c4b84efaee643f07",
+    "indexed_members": 42,
+    "all_members_individually_rehashed_by_reviewer": false
+  },
+  "recorded_attempt": {
+    "started_utc": "2026-11-18T05:20:22.076834+00:00",
+    "finished_utc": "2026-11-18T05:22:39.999617+00:00",
+    "status": "failed",
+    "all_passed": false,
+    "checkpoint_complete": true,
+    "source_matches_frozen_commit": true,
+    "historical_qualifications_counted": false
+  },
+  "preflight": {
+    "passed_commands": [
+      "engine-strict-analysis",
+      "editor-strict-analysis",
+      "harper-strict-analysis",
+      "gector-strict-analysis",
+      "proofing-tools-strict-analysis",
+      "format",
+      "python-controls"
+    ],
+    "format_stdout": "Formatted 145 files (0 changed) in 1.43 seconds.",
+    "format_stderr_bytes": 0,
+    "python_tests": 117,
+    "python_successes": 117,
+    "python_skips": 0,
+    "python_failures": 0,
+    "python_errors": 0,
+    "python_modules": 7,
+    "all_command_stream_hashes_independently_recomputed": false
+  },
+  "engine_zotero": {
+    "selected_suites": 19,
+    "visible_success_events": 390,
+    "hidden_loader_events": 19,
+    "test_start_events": 409,
+    "test_done_events": 409,
+    "suite_events": 19,
+    "done_event_success": true,
+    "skipped_cases": 0,
+    "missing_suites": 0,
+    "unexpected_suites": 0,
+    "exit_code": 255,
+    "duration_seconds": 108.947,
+    "timed_out": false,
+    "qualified": false,
+    "stderr_failure": "FileSystemException: Creation failed in workspace/packages/quds_office_engine/.dart_tool/test; OS Error: No space left on device, errno = 28.",
+    "stack_location": "_TestCompilerForLanguageVersion.dispose",
+    "interpretation": "Successful test events do not override the failing process exit or rejected overall qualification."
+  },
+  "integrity": {
+    "receipt_flags": {
+      "dependencies_unchanged": true,
+      "harness_unchanged": true,
+      "runtime_unchanged": true,
+      "source_unchanged": true,
+      "system_unchanged": true,
+      "workspace_unchanged": false
+    },
+    "workspace_maps_independently_compared": true,
+    "workspace_changed_files": 1,
+    "workspace_changed_file": ".dart_tool/package_config.json",
+    "before_sha256": "5cb1855e6f1b1b05fb0ff43347a2adaee7755d861dc8f13aae0b836652e3292b",
+    "after_sha256": "abcc19f74f1237fac97ccc920e4df402d49fd974ada14ca75f6a187fc7d6eb0b",
+    "live_after_sha256_independently_verified": true,
+    "old_and_new_package_counts": 109,
+    "old_flutterRoot": "file:///workspace/scratch/5e1b9c2fa60d/toolchains/flutter-sdk",
+    "new_flutterRoot": "file:///workspace/scratch/5e1b9c2fa60d/toolchains/flutter",
+    "all_109_normalized_entries_independently_compared": false,
+    "normalized_equality_reported_by": "flutter_qualification runner author, read-only audit; independent loop did not execute",
+    "post_attempt_config_raw_bytes_saved": false,
+    "original_workspace_unchanged_flag_must_remain_false": true
+  },
+  "scope": {
+    "planned_files": 224,
+    "canonical_cohorts": 6,
+    "started_cohorts": [
+      "engine-zotero"
+    ],
+    "other_gate_results": "No remaining canonical, portable, example, timezone, consumer or native-sweep acceptance established."
+  },
+  "qualification_accepted": false,
+  "independent_archive_member_audit_complete": false,
+  "github_actions_queried_or_awaited": false,
+  "required_resume_checks": [
+    "Rehash all 42 archive members",
+    "Preserve old live post-attempt package config if the workspace survives; independent semantic comparison remains incomplete",
+    "Stabilize the exact package-config bytes before fresh snapshots",
+    "Rerun all required gates on one explicit frozen source; retain original failed receipts"
+  ]
+}
