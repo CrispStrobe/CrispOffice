@@ -58,7 +58,9 @@ final class _Harness {
               right: 48,
             ),
             blocks: <WmlBlock>[
-              WmlParagraph(inlines: <WmlInline>[WmlRun(text: 'bank bank bank')]),
+              WmlParagraph(
+                inlines: <WmlInline>[WmlRun(text: 'bank bank bank')],
+              ),
             ],
           ),
         ],
@@ -149,7 +151,11 @@ Future<void> _flush(WidgetTester tester) async {
 
 void _expectReachable(WidgetTester tester, String key, Rect bounds) {
   final finder = _key(key);
-  expect(finder.hitTestable(), findsOneWidget, reason: '$key must be reachable');
+  expect(
+    finder.hitTestable(),
+    findsOneWidget,
+    reason: '$key must be reachable',
+  );
   final rect = tester.getRect(finder);
   expect(rect.left, greaterThanOrEqualTo(bounds.left - 0.01));
   expect(rect.right, lessThanOrEqualTo(bounds.right + 0.01));
@@ -199,10 +205,7 @@ Future<void> _tap(WidgetTester tester, String key) async {
 
 void _expectLookup(WidgetTester tester, String language) {
   expect(find.byType(WordThesaurusDialog), findsOneWidget);
-  expect(
-    tester.widget<SelectableText>(_key('thesaurus-query')).data,
-    'bank',
-  );
+  expect(tester.widget<SelectableText>(_key('thesaurus-query')).data, 'bank');
   expect(
     tester.widget<DropdownButton<String>>(_key('thesaurus-language')).value,
     language,
@@ -265,7 +268,10 @@ void main() {
 
         await _tap(tester, 'word-review-language-status');
         expect(h.controller.reviewTextProofingOptionsVisible, isTrue);
-        expect(_key('live-proofing-text-language').hitTestable(), findsOneWidget);
+        expect(
+          _key('live-proofing-text-language').hitTestable(),
+          findsOneWidget,
+        );
         _expectStatusActions(tester);
         _expectPaneActions(tester);
         await _tap(tester, 'live-proofing-text-language');
