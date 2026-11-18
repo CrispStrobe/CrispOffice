@@ -142,7 +142,10 @@ void main() {
     (tester) async {
       final controller = await _studio(tester);
       await _enter(tester, 1, 'For Alice');
+      final staleAlicePost = tester.widget<IconButton>(_post(1)).onPressed!;
       controller.selectComment(2);
+      staleAlicePost();
+      expect(controller.document.comments, hasLength(2));
       await _pump(tester);
       expect(_draft(tester, 2), isEmpty);
       await _enter(tester, 2, 'For Bob');

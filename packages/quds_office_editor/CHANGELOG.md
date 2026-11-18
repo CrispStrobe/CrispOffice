@@ -4,6 +4,18 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Review current writing findings with Alt+F7 / Alt+Shift+F7 and use
+  Shift+F10 / Menu for keyboard-operated suggestions at the caret. Preserve
+  selections, adjacent finding boundaries, IME composition, and document focus
+  on dismissal; repeated navigation from the pane respects its category filter.
+- Keep Check document available during background checking, while repeated
+  explicit requests share their existing pass and retain manual-provider rules.
+- Keep Studio comment replies inline with separate thread drafts and explicit
+  undoable posting. Prevent stale drafts from being attached to another thread
+  or replacement document; show comments below the editor in narrow windows.
+  Display live findings in the active comment body and open its Writing review
+  from marked text without disrupting selection gestures.
+
 - Preserve verified findings in unchanged paragraphs during typing and checking,
   publish new findings progressively, and keep current inline suggestions usable
   during unrelated progress. Reject stale sources and preserve explicit/manual

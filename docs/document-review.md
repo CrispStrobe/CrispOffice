@@ -54,8 +54,9 @@ retains detailed proofing settings and the advanced comparison workspace.
   Typing, opening the pane, and making a correction do not implicitly run manual
   grammar inference. Repeated requests for the same active explicit check share
   its result, including after partial results appear. F7 also works while a
-  review-pane control has focus. After editing, run Check document again for
-  fresh manual coverage.
+  review-pane control has focus. **Check document** remains available during an
+  ordinary background pass, so you can request manual coverage immediately.
+  After editing, run Check document again for fresh manual coverage.
 - **Document language** in the Writing pane changes the default language with
   Undo support. Explicit run and paragraph languages remain authoritative;
   each finding displays its actual language. Changing the language schedules
@@ -69,6 +70,58 @@ providers. The standalone controller supplies the offline German checkers;
 Studio also configures its English provider. Optional/native providers retain
 their existing installation and availability requirements. The live UI does
 not install models, send text to a new service, or apply corrections on its own.
+
+### Review with the keyboard
+
+| Shortcut | Action |
+| --- | --- |
+| **F7** | Open Writing and explicitly check the document, including configured manual providers. |
+| **Alt+F7** | Open Writing and select the next available finding, wrapping at the end. |
+| **Alt+Shift+F7** | Select the previous available finding, wrapping at the beginning. |
+| **Shift+F10** or the **Menu** key | Open the document context menu at the text caret, including current suggestions and tracked-change actions. |
+| **Up / Down**, **Home / End** | Move between enabled commands in a keyboard-opened menu. |
+| **Enter** or **numpad Enter** | Apply the highlighted command. |
+| **Escape** | Clear a context-menu search, or close the menu when its search is empty; close the review pane when reviewing from the pane. |
+| **Tab** in the context menu | Close the menu and return to the document. |
+
+Finding navigation uses the available checked results and does not start manual
+inference. From a Writing-pane control, repeated navigation stays in the pane
+and respects its category filter. From the document, it navigates all current
+findings. An unavailable or incomplete check remains visible in the status.
+
+Keyboard context menus take focus for command selection and return focus to the
+document when closed. Pointer-opened inline suggestions continue to preserve
+typing focus. Opening a keyboard menu does not move the caret, change a selection,
+scroll the document, or create an undo entry. A selected finding ending at the
+next finding's start still targets the selected finding. Source changes dismiss
+an obsolete menu. Navigation and context-menu shortcuts do not interrupt an
+active IME composition.
+
+### Keep comment replies inline in Studio
+
+Studio's Comments pane keeps each thread beside the document in a wide window
+and below it in a narrower window. **Reply** in the ribbon, on a comment card, or
+in a comment's context menu selects the thread and focuses its inline composer.
+It never posts a draft just because another Reply command was chosen.
+
+- Each thread has its own draft. Switching threads, hiding and reopening the
+  pane, or resizing the window preserves the current document's drafts.
+- **Post reply** or **Ctrl+Enter / Command+Enter** explicitly posts the draft to
+  its selected thread. Ordinary Enter adds a line break. An active IME
+  composition is not submitted.
+- Draft typing does not change the document or its undo history. Posting uses
+  the normal undoable comment command. A stale action cannot post to a different
+  thread or a replacement document, even if a comment ID is reused.
+- Drafts for removed threads and replaced documents are discarded. These are
+  session drafts; they are not saved into the document before posting.
+- The active existing comment body uses the document's live proofing findings.
+  Click an underlined passage to select its current finding in the Writing pane,
+  where corrections remain undoable. Double-click selection and dragging keep
+  their normal behavior. Unposted reply text joins document proofing after it
+  is posted.
+
+The shared `QudsWordEditor` retains its Writing and Changes panes. The Comments
+pane described here is supplied by Studio's host interface.
 
 ### Resolve changes while editing
 
@@ -330,5 +383,7 @@ The [live-review record](validation/document-review-live-20261118/README.md)
 records the first in-editor implementation. The
 [incremental review record](validation/document-review-continuation-20261118/README.md)
 records retained findings, progressive checks, expanded pane controls, and the
-subsequent local regression and interaction checks.
+subsequent local regression and interaction checks. The
+[keyboard and comment review record](validation/document-review-keyboard-comments-20261118/README.md)
+records the subsequent keyboard menus, inline replies, and local verification.
 GitHub Actions are not required for the local verification workflow.

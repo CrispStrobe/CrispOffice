@@ -51,6 +51,10 @@ class _WordReviewPaneState extends State<WordReviewPane> {
   late final TextEditingController _author;
   final TextEditingController _changeSearch = TextEditingController();
   final ScrollController _scroll = ScrollController();
+  final FocusNode _keyboardFocus = FocusNode(
+    debugLabel: 'word-review-navigation',
+    skipTraversal: true,
+  );
   _ProofingFilter _filter = _ProofingFilter.all;
   String? _changeAuthor;
   WmlRevisionKind? _changeKind;
@@ -96,6 +100,7 @@ class _WordReviewPaneState extends State<WordReviewPane> {
     _author.dispose();
     _changeSearch.dispose();
     _scroll.dispose();
+    _keyboardFocus.dispose();
     super.dispose();
   }
 
@@ -164,6 +169,22 @@ class _WordReviewPaneState extends State<WordReviewPane> {
     });
   }
 
+  void _stepWritingFinding(int delta) {
+    if (_c.input.composing.isValid && !_c.input.composing.isCollapsed) return;
+    _setTab(WordReviewPaneTab.proofing);
+    final issues = _c.proofing.summary.issues.where(_matchesFilter).toList();
+    if (issues.isEmpty) return;
+    final selected = _c.selectedProofingIssue;
+    final current = selected == null ? -1 : issues.indexOf(selected);
+    final next = current < 0
+        ? (delta > 0 ? 0 : issues.length - 1)
+        : (current + delta) % issues.length;
+    _selectIssue(issues[next]);
+    // Revealing text normally focuses the canvas. Keep keyboard review in
+    // this pane so the next shortcut still respects its active category filter.
+    _keyboardFocus.requestFocus();
+  }
+
   void _apply(WordProofingIssue issue, String replacement) {
     final applied = _c.applyProofingSuggestion(issue, replacement);
     setState(() {
@@ -224,107 +245,121 @@ class _WordReviewPaneState extends State<WordReviewPane> {
                 _setTab(WordReviewPaneTab.proofing);
                 unawaited(_check(includeManualProviders: true));
               },
+              const SingleActivator(LogicalKeyboardKey.f7, alt: true): () =>
+                  _stepWritingFinding(1),
+              const SingleActivator(
+                LogicalKeyboardKey.f7,
+                alt: true,
+                shift: true,
+              ): () =>
+                  _stepWritingFinding(-1),
               if (widget.onClose != null)
                 const SingleActivator(LogicalKeyboardKey.escape):
                     widget.onClose!,
             },
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsetsDirectional.only(start: 12, end: 4),
-                  child: Row(
-                    children: <Widget>[
-                      Expanded(
-                        child: Text(
-                          _s('Review', 'مراجعة'),
-                          style: theme.textTheme.titleMedium,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                      if (widget.onMoreOptions != null)
-                        IconButton(
-                          key: const ValueKey<String>('live-review-more'),
-                          tooltip: _s(
-                            'More review options',
-                            'خيارات مراجعة إضافية',
-                          ),
-                          onPressed: widget.onMoreOptions,
-                          icon: const Icon(Icons.more_horiz),
-                        ),
-                      if (widget.onClose != null)
-                        IconButton(
-                          key: const ValueKey<String>('live-review-close'),
-                          tooltip: _s(
-                            'Close review pane',
-                            'إغلاق لوحة المراجعة',
-                          ),
-                          onPressed: widget.onClose,
-                          icon: const Icon(Icons.close),
-                        ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8),
-                  child: Row(
-                    children: <Widget>[
-                      for (final tab in WordReviewPaneTab.values)
-                        Expanded(
-                          child: TextButton(
-                            key: ValueKey<String>(
-                              'live-review-${tab.name}-tab',
-                            ),
-                            style: TextButton.styleFrom(
-                              backgroundColor: _tab == tab
-                                  ? theme.colorScheme.secondaryContainer
-                                  : null,
-                            ),
-                            onPressed: () => _setTab(tab),
-                            child: Text(
-                              tab == WordReviewPaneTab.proofing
-                                  ? _s('Writing', 'الكتابة')
-                                  : _s('Changes', 'التغييرات'),
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                        ),
-                    ],
-                  ),
-                ),
-                const Divider(height: 8),
-                if (_notice != null)
+            child: Focus(
+              focusNode: _keyboardFocus,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: <Widget>[
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(12, 0, 12, 8),
-                    child: Semantics(
-                      liveRegion: true,
-                      child: Tooltip(
-                        message: _notice!,
-                        child: Text(
-                          _notice!,
-                          key: const ValueKey<String>('live-review-notice'),
-                          style: theme.textTheme.bodySmall,
-                          maxLines: 3,
-                          overflow: TextOverflow.ellipsis,
+                    padding: const EdgeInsetsDirectional.only(
+                      start: 12,
+                      end: 4,
+                    ),
+                    child: Row(
+                      children: <Widget>[
+                        Expanded(
+                          child: Text(
+                            _s('Review', 'مراجعة'),
+                            style: theme.textTheme.titleMedium,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                        if (widget.onMoreOptions != null)
+                          IconButton(
+                            key: const ValueKey<String>('live-review-more'),
+                            tooltip: _s(
+                              'More review options',
+                              'خيارات مراجعة إضافية',
+                            ),
+                            onPressed: widget.onMoreOptions,
+                            icon: const Icon(Icons.more_horiz),
+                          ),
+                        if (widget.onClose != null)
+                          IconButton(
+                            key: const ValueKey<String>('live-review-close'),
+                            tooltip: _s(
+                              'Close review pane',
+                              'إغلاق لوحة المراجعة',
+                            ),
+                            onPressed: widget.onClose,
+                            icon: const Icon(Icons.close),
+                          ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    child: Row(
+                      children: <Widget>[
+                        for (final tab in WordReviewPaneTab.values)
+                          Expanded(
+                            child: TextButton(
+                              key: ValueKey<String>(
+                                'live-review-${tab.name}-tab',
+                              ),
+                              style: TextButton.styleFrom(
+                                backgroundColor: _tab == tab
+                                    ? theme.colorScheme.secondaryContainer
+                                    : null,
+                              ),
+                              onPressed: () => _setTab(tab),
+                              child: Text(
+                                tab == WordReviewPaneTab.proofing
+                                    ? _s('Writing', 'الكتابة')
+                                    : _s('Changes', 'التغييرات'),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          ),
+                      ],
+                    ),
+                  ),
+                  const Divider(height: 8),
+                  if (_notice != null)
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(12, 0, 12, 8),
+                      child: Semantics(
+                        liveRegion: true,
+                        child: Tooltip(
+                          message: _notice!,
+                          child: Text(
+                            _notice!,
+                            key: const ValueKey<String>('live-review-notice'),
+                            style: theme.textTheme.bodySmall,
+                            maxLines: 3,
+                            overflow: TextOverflow.ellipsis,
+                          ),
                         ),
                       ),
                     ),
+                  Expanded(
+                    child: ListView(
+                      key: ValueKey<String>('live-review-${_tab.name}-content'),
+                      controller: _scroll,
+                      padding: const EdgeInsets.fromLTRB(12, 4, 12, 16),
+                      children: <Widget>[
+                        if (_tab == WordReviewPaneTab.proofing)
+                          ..._proofingContent()
+                        else
+                          ..._changesContent(),
+                      ],
+                    ),
                   ),
-                Expanded(
-                  child: ListView(
-                    key: ValueKey<String>('live-review-${_tab.name}-content'),
-                    controller: _scroll,
-                    padding: const EdgeInsets.fromLTRB(12, 4, 12, 16),
-                    children: <Widget>[
-                      if (_tab == WordReviewPaneTab.proofing)
-                        ..._proofingContent()
-                      else
-                        ..._changesContent(),
-                    ],
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
@@ -386,9 +421,7 @@ class _WordReviewPaneState extends State<WordReviewPane> {
         children: <Widget>[
           OutlinedButton.icon(
             key: const ValueKey<String>('live-proofing-check'),
-            onPressed: summary.checking
-                ? null
-                : () => unawaited(_check(includeManualProviders: true)),
+            onPressed: () => unawaited(_check(includeManualProviders: true)),
             icon: const Icon(Icons.spellcheck, size: 18),
             label: Text(_s('Check document', 'تدقيق المستند')),
           ),

@@ -7125,7 +7125,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
             children: <Widget>[
               Expanded(child: stage),
               SizedBox(
-                height: math.min(280, constraints.maxHeight * 0.45),
+                height: math.min(340, constraints.maxHeight * 0.45),
                 child: _wordCommentsPane(dark, expanded: true),
               ),
             ],
@@ -9365,7 +9365,11 @@ class _CommentReplyComposerState extends State<_CommentReplyComposer> {
   }
 
   void focusReply() {
-    Scrollable.ensureVisible(context, alignment: 0.85);
+    Scrollable.ensureVisible(
+      context,
+      alignment: 1,
+      alignmentPolicy: ScrollPositionAlignmentPolicy.keepVisibleAtEnd,
+    );
     _focus.requestFocus();
   }
 
