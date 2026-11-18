@@ -99,6 +99,37 @@ Future<void> _start(WidgetTester tester) async {
 }
 
 void main() {
+  testWidgets('optional named entities are shown only when reported', (
+    tester,
+  ) async {
+    final controller = _controller('Anna');
+    final transport = _Transport();
+    await _dialog(tester, controller, () async => transport);
+    await _start(tester);
+    final request = transport.requests.single;
+    final plain = _result(request);
+    transport.replies.single.complete(
+      LinguisticAnalysisResult.success(
+        request: request,
+        identity: _identity,
+        tokens: plain.tokens,
+        entities: [
+          LinguisticEntity(
+            startToken: 0,
+            endToken: 1,
+            start: 0,
+            end: request.text.length,
+            label: 'PER',
+            text: request.text,
+          ),
+        ],
+      ),
+    );
+    await tester.pump();
+    expect(find.byKey(const Key('analysis-entities')), findsOneWidget);
+    expect(find.textContaining('(PER)'), findsOneWidget);
+  });
+
   test('snapshot and navigation add the nonzero origin once', () {
     final controller = _controller('😀 Katze Katze');
     controller.documentCaret

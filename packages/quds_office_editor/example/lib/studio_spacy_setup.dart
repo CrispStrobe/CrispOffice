@@ -191,6 +191,20 @@ class _StudioSpacySetupDialogState extends State<StudioSpacySetupDialog> {
               ? null
               : (value) => _run(() => widget.host.setGrammarEnabled(value)),
         ),
+        if (status.nerOffered)
+          SwitchListTile(
+            key: const Key('spacy-setup-ner'),
+            contentPadding: EdgeInsets.zero,
+            title: const Text('Named entities (optional download)'),
+            subtitle: const Text(
+              'Shows people, places and organizations in the analysis view. '
+              'Not used for grammar suggestions.',
+            ),
+            value: status.nerEnabled,
+            onChanged: _working
+                ? null
+                : (value) => _run(() => widget.host.setNerEnabled(value)),
+          ),
         ExpansionTile(
           tilePadding: EdgeInsets.zero,
           title: const Text('What this build is qualified for'),
