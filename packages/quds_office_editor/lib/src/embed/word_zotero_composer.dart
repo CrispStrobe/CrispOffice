@@ -32,7 +32,10 @@ class ZoteroCitationComposer extends StatefulWidget {
 
   /// Searches the currently connected library without changing the workspace
   /// selection. The caller pins the connection and returns citable CSL data.
-  final Future<ZoteroPage<ZoteroCitationItem>> Function(String query, int start)?
+  final Future<ZoteroPage<ZoteroCitationItem>> Function(
+    String query,
+    int start,
+  )?
   searchZoteroSources;
   final String style;
 
@@ -901,6 +904,22 @@ class _ConnectedZoteroSourceChooserState
     });
   }
 
+  Future<void> _reviewSelection() async {
+    if (_loading || _selected.isEmpty) return;
+    final selection = Map<String, ZoteroCitationItem>.of(_selected);
+    final keys = await showDialog<List<String>>(
+      context: context,
+      builder: (_) => ZoteroSelectedReferencesDialog(selection: selection),
+    );
+    if (!mounted || keys == null) return;
+    setState(() {
+      _selected
+        ..clear()
+        ..addAll({for (final key in keys) key: selection[key]!});
+      _error = null;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final visibleKeys = {for (final item in _results) _key(item)};
@@ -926,6 +945,7 @@ class _ConnectedZoteroSourceChooserState
             TextField(
               key: const ValueKey('zotero-connected-source-query'),
               controller: _query,
+              autofocus: true,
               enabled: !_loading,
               maxLength: 1024,
               textInputAction: TextInputAction.search,
@@ -961,9 +981,23 @@ class _ConnectedZoteroSourceChooserState
               '${hiddenCount == 0 ? '' : ' · $hiddenCount hidden'}',
               key: const ValueKey('zotero-connected-source-count'),
             ),
+            Align(
+              alignment: AlignmentDirectional.centerStart,
+              child: TextButton.icon(
+                key: const ValueKey('zotero-connected-source-review'),
+                onPressed: _loading || _selected.isEmpty
+                    ? null
+                    : _reviewSelection,
+                icon: const Icon(Icons.checklist),
+                label: const Text('Review selected'),
+              ),
+            ),
             const SizedBox(height: 6),
             SizedBox(
-              height: max(120, min(310, MediaQuery.sizeOf(context).height - 310)),
+              height: max(
+                120,
+                min(310, MediaQuery.sizeOf(context).height - 310),
+              ),
               child: _results.isEmpty
                   ? Center(
                       child: Text(
