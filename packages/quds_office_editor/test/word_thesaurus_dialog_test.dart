@@ -393,8 +393,7 @@ void main() {
       '${scenario.name} refuses thesaurus without interrupting active IME',
       (tester) async {
         final controller = WordEditorController(
-          document: WmlDocument.empty(text: 'bank')
-            ..proofingLanguage = 'en-US',
+          document: WmlDocument.empty(text: 'bank')..proofingLanguage = 'en-US',
         );
         final focus = FocusNode();
         final editorKey = GlobalKey();
@@ -473,15 +472,12 @@ void main() {
           expect(controller.input.isAttached, isTrue);
           expect(focus.hasPrimaryFocus, isTrue);
           expect(focusChanges, 0);
-          expect(
-            (
-              controller.caret.paragraphIndex,
-              controller.caret.logicalIndex,
-              controller.caret.selectionAnchorParagraph,
-              controller.caret.selectionAnchor,
-            ),
-            selection,
-          );
+          expect((
+            controller.caret.paragraphIndex,
+            controller.caret.logicalIndex,
+            controller.caret.selectionAnchorParagraph,
+            controller.caret.selectionAnchor,
+          ), selection);
           expect(controller.document.paragraphs.single.text, 'bank');
           expect(controller.contentRevision, revision);
           expect(controller.canUndo, isFalse);
