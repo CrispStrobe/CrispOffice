@@ -4,6 +4,12 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Add removable Zotero tag filters with an active-count indicator, inline input
+  validation and a bounded chip list for narrow windows. Adding, removing and
+  clearing tags preserve the last submitted query and selected sources; draft
+  query/tag text never changes pagination. Retain filters across catalog scopes
+  and reconnecting within the current dialog.
+
 - Add reference-browser controls for full-text search, reference type, sort field
   and direction. Keep paging bound to the submitted search while a new query is
   being typed, preserve selected sources, and keep controls usable in narrow

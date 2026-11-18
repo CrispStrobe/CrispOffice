@@ -1566,7 +1566,7 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
           const Padding(
             padding: EdgeInsets.only(top: 6, bottom: 8),
             child: Text(
-              'Match every added tag. Press Enter or + to add one. Tag names are case-sensitive.',
+              'Match every added tag. Press Enter or + to add one. Capitalization is kept as entered.',
               style: TextStyle(fontSize: 12),
             ),
           ),

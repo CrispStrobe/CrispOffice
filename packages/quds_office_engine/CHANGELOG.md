@@ -4,6 +4,11 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Add bounded literal tag filters to library, collection and desktop saved-search
+  requests. Multiple tags use repeated parameters to require all tags before
+  pagination. Preserve Unicode and reserved characters, escape initial hyphens,
+  and reject names that Zotero cannot represent literally.
+
 - Add typed Zotero catalog search scope, sort field and direction options, plus
   single item-type filtering, across library, collection and desktop saved-search
   requests. Existing query defaults are preserved; Zotero applies the options

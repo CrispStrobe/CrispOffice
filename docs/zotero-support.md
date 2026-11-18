@@ -236,6 +236,35 @@ continue using the last submitted search, so an unfinished edit cannot skip to
 the middle of a different result set. Expanded options and chosen filters remain
 available when reconnecting within the same references workspace.
 
+#### Filter by tags
+
+In **Search options**, enter an exact tag name in **Filter by tag**, then press
+Enter or **+**. Add another tag to require **every added tag**. For example,
+`reviewed` and `primary sources` show references that have both tags. Zotero
+applies these filters across the complete library, collection or desktop saved
+search before pagination; the editor does not filter just the current page.
+
+Applied tags appear as removable chips. Use a chip's **Remove tag** button or
+**Clear tags** to broaden the results. Adding, removing or clearing tags returns
+to the first page of the last submitted search and retains selected sources.
+Draft text in either input does not change paging or tag-removal requests.
+Submit the main search separately to use a new query. The count on the sliders
+icon shows that tag filters remain active when options are collapsed. Filters
+also remain available when changing catalog scope or reconnecting in this
+workspace; they are not written into the document or persisted across dialogs.
+
+Surrounding whitespace is trimmed and identical tags are added only once;
+capitalization and spaces within a name are retained. An initial hyphen is
+treated as part of a tag name. Literal names containing `||` or beginning with
+`\-` cannot be represented consistently by Zotero's online and desktop search
+syntax and show an inline error. No search request is made for invalid input.
+
+The filter accepts at most 20 tags, 256 UTF-16 code units per name and 2,048
+in total. Empty names, control characters and malformed Unicode are rejected.
+Long labels are shortened visually, with the full tag available in their
+tooltip, and the chip list scrolls within narrow windows. Filtering is read-only
+and does not add, remove or rename tags in Zotero.
+
 ### Connection and credentials
 
 Create a dedicated key at <https://www.zotero.org/settings/keys/new> with library

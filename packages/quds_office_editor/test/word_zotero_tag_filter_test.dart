@@ -140,8 +140,11 @@ Finder _query() => find.byWidgetPredicate(
 );
 
 Future<void> _tap(WidgetTester tester, Finder finder) async {
+  // Text entry can schedule a caret reveal in the outer catalog scroll view.
+  // Finish it before revealing the next target, including nested chip controls.
+  await tester.pumpAndSettle();
   await tester.ensureVisible(finder);
-  await tester.pump();
+  await tester.pumpAndSettle();
   await tester.tap(finder);
   await tester.pumpAndSettle();
   expect(tester.takeException(), isNull, reason: 'After $finder');
@@ -407,7 +410,7 @@ void main() {
   );
 
   testWidgets(
-    'duplicate tags are trimmed, not resent, and remain case sensitive',
+    'duplicate tags are trimmed, not resent, and preserve capitalization',
     (tester) async {
       final catalog = _TagCatalog();
       await _open(tester, catalog);
@@ -429,7 +432,7 @@ void main() {
     '   ',
     'one || two',
     r'\-literal',
-    'two\nlines',
+    'two\tparts',
     'x' * 257,
   ]) {
     final label = invalid.length > 40
