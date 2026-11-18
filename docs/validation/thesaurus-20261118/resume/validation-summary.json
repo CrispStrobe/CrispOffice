@@ -1,0 +1,157 @@
+{
+  "recorded_at_utc": "2026-11-18T19:16:14.253595+00:00",
+  "status": "targeted_validation_passed_release_acceptance_open",
+  "repository": "CrispStrobe/quds_office_suite",
+  "branch": "codex/offline-thesaurus-20261118",
+  "pull_request": 169,
+  "frozen_application_source": "af4971352fa14247e2de7be8c9b5733921e2ff30",
+  "supplemental_execution_head": "b9e8c159cea315aa0a044c4b0a6fc2cd35d11055",
+  "scope": "Targeted local checks only. The historical 155 thesaurus and incoming 633 review cases are not added to these fresh counts.",
+  "cohorts": [
+    {
+      "name": "native-thesaurus-review",
+      "passed": 208,
+      "suites": 14,
+      "receipt": "native/receipt.json",
+      "audit": "native/native-test-audit.json"
+    },
+    {
+      "name": "engine",
+      "passed": 171,
+      "suites": 8,
+      "receipt": "checks/engine/receipt.json",
+      "audit": "checks/engine/test-audit.json"
+    },
+    {
+      "name": "editor-zotero",
+      "passed": 51,
+      "suites": 4,
+      "receipt": "checks/editor-zotero/receipt.json",
+      "audit": "checks/editor-zotero/test-audit.json"
+    },
+    {
+      "name": "spacy",
+      "passed": 67,
+      "suites": 6,
+      "receipt": "checks/spacy/receipt.json",
+      "audit": "checks/spacy/test-audit.json"
+    },
+    {
+      "name": "studio",
+      "passed": 94,
+      "suites": 5,
+      "receipt": "checks/studio/receipt.json",
+      "audit": "checks/studio/test-audit.json"
+    }
+  ],
+  "python_cases": [
+    {
+      "name": "compiler-parser",
+      "passed": 5,
+      "log": "compiler-tests.log"
+    },
+    {
+      "name": "browser-harness-controls",
+      "passed": 10,
+      "log": "harness-controls.log"
+    }
+  ],
+  "totals": {
+    "dart_flutter_passed": 591,
+    "dart_flutter_distinct_suites": 37,
+    "python_passed": 15,
+    "all_passed": 606,
+    "failed": 0,
+    "skipped": 0
+  },
+  "static_checks": {
+    "status": "passed",
+    "dart_targets": 58,
+    "format_changes": 0,
+    "fatal_infos": true,
+    "receipt": "checks/static/receipt.json"
+  },
+  "pack_checks": {
+    "status": "passed",
+    "files": 1037,
+    "deterministic_files": 1037,
+    "generated_dart_constants_byte_identical": true,
+    "verification": "pack-verification.json",
+    "rebuild": "pack-rebuild.json",
+    "source_note": "These unchanged pack inputs were rebuilt earlier in this continuation and remain hash-identical in the frozen source inventories."
+  },
+  "web_fixture": {
+    "compile_status": "passed",
+    "compiled_files": 1155,
+    "compiled_bytes": 87384043,
+    "installed_files": 1156,
+    "flags": [
+      "--release",
+      "--csp",
+      "--no-web-resources-cdn"
+    ],
+    "receipt": "native/receipt.json",
+    "compile_inventory": "native/browser-build-files.json.gz",
+    "installer_receipt": "native/offline-installation.json",
+    "installed_inventory": "browser-attempt/installed-build-files.json.gz",
+    "compile_notice": "Build reports a missing CupertinoIcons font family in the wider library. This is retained in the stdout log; the thesaurus uses Material icons."
+  },
+  "javascript_import": {
+    "status": "passed",
+    "browser_executed": false,
+    "receipt": "checks/web-import/receipt.json",
+    "compiler": "dart compile js",
+    "execution_runtime": "Node"
+  },
+  "actual_browser": {
+    "status": "blocked_at_launch",
+    "completed_steps": 0,
+    "recorded_requests": 0,
+    "reason": "Chromium could not create its required Unix socket: Operation not permitted (EPERM).",
+    "receipt": "browser-attempt/browser-report.json",
+    "launcher_log": "browser-attempt/launcher.log.gz"
+  },
+  "source_binding": {
+    "peer_audit": "peer-audit.json",
+    "native_inventory_files": 2825,
+    "supplemental_inventory_files": 3308,
+    "execution_workspace_files_checked": 3292,
+    "changed_inputs": [],
+    "new_regression_cases_executed": 7,
+    "all_selected_cases_completed_once": true,
+    "layout_or_tap_diagnostics": []
+  },
+  "runtime": {
+    "flutter": "3.47.8",
+    "dart": "3.13.7",
+    "official_archive_sha256": "baf7dcc5a3dbba60fe863bf493a6cf203195621f7786eaa5a1bba02cd0d87dd2",
+    "hosted_archives_verified": 162,
+    "receipt": "runtime/runtime-ready.json",
+    "evidence_archive": "runtime/setup.tar.gz"
+  },
+  "incoming_frontier": {
+    "fork_branches": 210,
+    "pull_request_heads": 170,
+    "upstream_branches": 4,
+    "total_refs": 384,
+    "unique_heads": 250,
+    "record": "incoming-final-frontier.json",
+    "note": "Captured frontier only; later remote publications are outside this inventory."
+  },
+  "open_release_checks": [
+    "Actual offline-browser acceptance after origin shutdown and a fresh offline reload.",
+    "Installed native desktop packaging and OS/IME acceptance.",
+    "Independent human linguistic review."
+  ],
+  "incoming_scope_limits": [
+    "spaCy EN/FR support here is annotations/entities; real model-download/runtime acceptance and Windows qualification were not performed.",
+    "Zotero existing-note insertion is the incoming engine work; this does not establish finished Notes-pane/ribbon routing or live Zotero acceptance."
+  ],
+  "github_actions": {
+    "queried": false,
+    "waited": false,
+    "dispatched": false
+  },
+  "supplemental_archive_index": "checks/index.json",
+  "peer_audit_sha256": "ec6627ec0402d82ad194437e65d2c27aeb906cb5aaf818b3d45809e6c36b23c4"
+}
