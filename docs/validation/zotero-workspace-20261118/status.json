@@ -1,0 +1,66 @@
+{
+  "status": "passed",
+  "qualified_product_commit": "d36413a2cc8e1de9fd7493b5d1baf2900e63f04b",
+  "integrated_main": "1e07cb852766f8651815138785be74c64a09ddc0",
+  "branch": "codex/zotero-workspace-20261118",
+  "cohorts": [
+    {
+      "name": "engine-current",
+      "path": "engine",
+      "suites": 22,
+      "passed": 445,
+      "skips": 0,
+      "errors": 0,
+      "exit_code": 0,
+      "all_guards_passed": true
+    },
+    {
+      "name": "editor-current",
+      "path": "editor",
+      "suites": 18,
+      "passed": 257,
+      "skips": 0,
+      "errors": 0,
+      "exit_code": 0,
+      "all_guards_passed": true
+    },
+    {
+      "name": "studio-current",
+      "path": "studio",
+      "suites": 1,
+      "passed": 18,
+      "skips": 0,
+      "errors": 0,
+      "exit_code": 0,
+      "all_guards_passed": true
+    }
+  ],
+  "totals": {
+    "suites": 41,
+    "passed": 720,
+    "skips": 0,
+    "errors": 0,
+    "new_cases_included_once": 45
+  },
+  "strict_checks_passed": true,
+  "source_bindings_passed": true,
+  "no_github_actions_queried_awaited_or_rerun": true,
+  "excluded": [
+    "31-test setup smoke",
+    "All focused development/diagnostic runs",
+    "Initial editor run:252passes/5errors",
+    "Interrupted editor run:child exit unknown",
+    "Initial strict analysis before two test-only brace fixes"
+  ],
+  "scope": [
+    "Controlled online and desktop Zotero responses",
+    "Real Flutter widgets",
+    "Local HTTP transport"
+  ],
+  "not_newly_qualified": [
+    "Live Zotero account/desktop session",
+    "Full application build",
+    "Word/LibreOffice interoperability",
+    "Three concurrent external work branches recorded in reconciliation-final-review.md"
+  ]
+}

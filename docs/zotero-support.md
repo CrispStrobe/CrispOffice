@@ -211,6 +211,37 @@ Set the preview/export style ID and locale in Document (defaults: `apa` and `en-
 requesting a bibliography or individual citation preview. In the citation
 composer, expand a source's title to edit its locator and affixes.
 
+### Inspect references and manage a selection
+
+Choose the **Reference details** information button beside a catalog result to
+inspect its full title, creators and roles, publication, date, publisher, DOI,
+URL, Zotero identity, tags and abstract when available. The view uses metadata
+already loaded for that result and makes no extra request. **Copy details**
+copies a plain-text summary; the individual metadata fields are also selectable.
+URLs remain text, and scientific comparisons such as `A < B` in abstracts are
+preserved. Opening or copying details does not select the item or change the
+document.
+
+Choose a tag in the details view to add it to the current tag filters. This
+returns to page one of the last submitted search in the current library,
+collection or saved search, while retaining selected references and unfinished
+text in both search inputs. Tags already applied are marked with a check.
+Names that cannot be filtered exactly, including surrounding whitespace or
+reserved search syntax, remain visible with an explanation in their tooltip.
+The existing count and length limits apply; disabled tags make no request.
+Manual and automatic Zotero tags are both available, with exact duplicates
+shown once.
+
+Use **Review selected** in either **Library** or **Import CSL JSON** to see all
+selected sources, including references on another result page or hidden by a
+filter. Move a source up or down to arrange the order passed to the citation
+composer or Zotero's native picker, or remove one source without clearing the
+others. A Zotero style may apply its own citation order. **Apply selection**
+keeps the revised selection; **Cancel** or dismissing the dialog discards those
+changes. Reordering and removal preserve each source's identity and embedded
+metadata and do not add document history. Inserting a citation remains a
+separate, undoable operation. The selection limit remains 20 sources.
+
 ### Find and sort references
 
 Choose **Search options** (the sliders icon beside the search box) in the Library

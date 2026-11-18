@@ -1,5 +1,42 @@
 # Zotero validation
 
+## 18 November 2026 — reference details and selection review
+
+Qualified product: **`d36413a2cc8e1de9fd7493b5d1baf2900e63f04b`** on
+`codex/zotero-workspace-20261118`, including merged main `1e07cb85` and PRs
+#157–#159. Reference details now expose loaded metadata and exact tags, with
+plain-text copying and tag-to-filter actions that preserve search drafts and
+selection. A staged selection review supports cross-page inspection, individual
+removal and citation ordering from both Library and CSL import.
+
+| Accepted current local cohort | Suites | Substantive passes |
+| --- | ---: | ---: |
+| Engine Zotero | 22 | 445 |
+| Editor Zotero | 18 | 257 |
+| Studio transport | 1 | 18 |
+| **Disjoint total** | **41** | **720** |
+
+Zero skips/errors; all 45 new regression cases are counted once. Strict analysis,
+declared-language formatting and whitespace checks pass for all six changed Dart
+targets. Actual source, dependency, runtime and workspace guards pass; every
+tested source blob matches the saved qualified product. Genuine Flutter 3.47.8 /
+Dart 3.13.7, 11 unchanged manifests and the exact 110-package graph were used.
+
+All 363 initial fork/upstream branch and PR refs were reconciled first. The later
+merged main was incorporated without changing its original #159 product tree.
+Three subsequently active independent work branches are fetched and recorded
+separately, without claiming they were integrated or qualified. Changes and raw
+evidence were saved incrementally with `[skip ci]`. No Actions/status endpoints
+were queried, awaited or rerun.
+
+The [complete report](validation/zotero-workspace-20261118/README.md) includes
+exact commands, remote history, source bindings, independent review and preserved
+earlier attempts. Initial narrow-layout failures were fixed and followed by a
+complete accepted rerun. Overlapping development/setup checks and an interrupted
+run are excluded. Acceptance covers controlled responses, real Flutter widgets
+and local HTTP transport; fresh live-account/desktop, full application-build and
+Word/LibreOffice acceptance remain outside this increment.
+
 ## 18 November 2026 — literal tag filtering on current main
 
 PR #156 was merged into main as `c60fce9c37ca960eb64dd06c7ffc55b2fdbb2ed7`.

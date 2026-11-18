@@ -1,0 +1,8 @@
+{
+  "warning_markers": {
+    "would not hit test": 0,
+    "hitTestWarningShouldBeFatal": 0,
+    "A RenderFlex overflowed by": 0
+  },
+  "no_missed_tap_or_overflow_messages": true
+}

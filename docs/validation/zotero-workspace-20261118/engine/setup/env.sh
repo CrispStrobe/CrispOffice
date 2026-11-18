@@ -1,0 +1,11 @@
+export FLUTTER_ROOT=/workspace/scratch/1f524e1234f3/zotero-toolchain/flutter-sdk
+export PUB_CACHE=/workspace/scratch/1f524e1234f3/zotero-toolchain/pub-cache
+export TMPDIR=/workspace/scratch/1f524e1234f3/zotero-toolchain/tmp
+export XDG_CONFIG_HOME=/workspace/scratch/1f524e1234f3/zotero-toolchain/config
+export XDG_CACHE_HOME=/workspace/scratch/1f524e1234f3/zotero-toolchain/cache
+export XDG_DATA_HOME=/workspace/scratch/1f524e1234f3/zotero-toolchain/data
+export CI=true
+export DART_SUPPRESS_ANALYTICS=true
+export DASH__SUPPRESS_ANALYTICS=true
+export FLUTTER_SUPPRESS_ANALYTICS=true
+export PATH=/workspace/scratch/1f524e1234f3/zotero-toolchain/flutter-sdk/bin:"$PATH"

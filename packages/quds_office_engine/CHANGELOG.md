@@ -9,6 +9,9 @@ All notable changes to `quds_office_engine` are documented here.
   first, prefer matching lexical case within that fallback, and preserve the
   shared candidate limit. Protect identifier prefixes with supplementary digits,
   connectors and combining marks without copying or rescanning source prefixes.
+- Expose loaded Zotero abstracts, item-specific publication titles, publishers
+  and immutable exact tag names for reference inspection. Preserve optional
+  metadata without changing source identities, embedded CSL or request routes.
 
 - Count distinct displayed German corrections after applying source casing,
   so uppercase and sentence-initial variants do not consume duplicate shortlist
