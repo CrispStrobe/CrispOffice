@@ -211,6 +211,30 @@ Set the preview/export style ID and locale in Document (defaults: `apa` and `en-
 requesting a bibliography or individual citation preview. In the citation
 composer, expand a source's title to edit its locator and affixes.
 
+### Find and sort references
+
+Expand **Search options** in the Library tab to choose:
+
+- **Search in:** the default title/creator/year search, or **Include full text**
+  to include content indexed by Zotero. Results depend on that library's indexed
+  content, and local and online quick searches can differ.
+- **Reference type:** all types, books, book sections, journal articles,
+  conference papers, theses, reports or web pages.
+- **Sort by:** date modified, date added, title, creator, publication date or
+  reference type, in ascending or descending order.
+
+These controls apply to the whole library, selected collection, or desktop
+saved-search result before Zotero divides it into pages. The default remains
+most recently modified first. Changing an option submits the current search and
+starts at its first page; selected sources stay selected. Choosing **All types**
+removes the type filter.
+
+Typing in the search box does not change the result set until you submit the
+search or change an option or catalog scope. **Next page** and **Previous page**
+continue using the last submitted search, so an unfinished edit cannot skip to
+the middle of a different result set. Expanded options and chosen filters remain
+available when reconnecting within the same references workspace.
+
 ### Connection and credentials
 
 Create a dedicated key at <https://www.zotero.org/settings/keys/new> with library
@@ -309,6 +333,24 @@ A changed document or insertion point, a failed batch, or a requested API pause
 stops the operation without applying earlier results. Closing the dialog also
 discards staged results and prevents subsequent batches. More than 1,000
 distinct sources are rejected before any metadata request.
+
+Connected basic refresh and the **Zotero bibliography** API workflow resolve
+source aliases declared anywhere in the document before requesting metadata.
+For example, an older citation may contain only an unsynced local URI, while a
+later citation explicitly records that local URI and its synced user-library
+URI. Online refresh can then use the declared synced identity for both citations.
+Late and transitive alias declarations work, including declarations in custom or
+native citations that have no embedded snapshot of their own.
+
+Only basic citations are rewritten by basic refresh. Original citation and item
+IDs, URI arrays, locators, labels, prefixes, suffixes and unknown metadata remain
+intact; custom/native citation caches remain intact. Equal item keys in unrelated
+libraries or local profiles do not establish an alias. Each alias group uses one
+deterministic request identity: the first numeric identity online, or the first
+declared identity on desktop. A failed request stops the operation without
+trying other identities. The 1,000-source refresh and 50-source API bibliography
+limits count resolved sources; resolving more than 10,000 distinct validated
+URI aliases across the document is refused before metadata requests.
 
 Collection pages merge by collection key. If a collection moves between pages
 or is renamed, its latest metadata replaces the earlier entry while its order,

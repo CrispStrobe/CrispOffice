@@ -1286,17 +1286,7 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
                     children: [
                       _scrollableTab(
                         _libraryTab(),
-                        minHeight:
-                            (size.width < 600
-                                ? (widget.localTransport == null ? 820 : 960)
-                                : (widget.localTransport == null ? 660 : 800)) +
-                            (_searchOptionsExpanded
-                                ? (size.width < 380
-                                      ? 600
-                                      : size.width < 600
-                                      ? 340
-                                      : 180)
-                                : 0),
+                        minHeight: _catalogMinHeight(size),
                       ),
                       _documentTab(),
                       _scrollableTab(_importTab(), minHeight: 600),
@@ -1320,6 +1310,19 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
           ),
         ),
       );
+
+  double _catalogMinHeight(Size size) {
+    final narrow = size.width < 600;
+    final base = narrow
+        ? (widget.localTransport == null ? 820.0 : 960.0)
+        : (widget.localTransport == null ? 660.0 : 800.0);
+    if (_session.library == null) return base;
+    // Reserve room for the options header even while collapsed. At the
+    // narrowest widths, wrapped host controls also need a usable results list.
+    return base +
+        (size.width < 380 ? 200 : 64) +
+        (_searchOptionsExpanded ? (narrow ? 340 : 180) : 0);
+  }
 
   Widget _banner(String text, {bool error = false}) => Container(
     width: double.infinity,

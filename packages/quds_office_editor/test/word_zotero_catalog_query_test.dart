@@ -127,6 +127,7 @@ Future<void> _tap(WidgetTester tester, Finder finder) async {
   await tester.pump();
   await tester.tap(finder);
   await tester.pumpAndSettle();
+  expect(tester.takeException(), isNull, reason: 'After ${finder.description}');
 }
 
 Finder _query() => find.byWidgetPredicate(
