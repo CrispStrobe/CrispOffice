@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "updated_utc": "2026-11-18T06:09:32.097278+00:00",
-  "state": "restoring-runtime-for-final-native-sweep",
+  "updated_utc": "2026-11-18T06:14:37.567542+00:00",
+  "state": "native-provider-build-in-progress",
   "branch": "codex/office-local-qualification-20261118",
   "resumed_remote_head": "c9d86b3e543f8ffa7c8114d31c57922f134188ef",
   "execution_checkout": "9d060658ee6be8ec97d73f56b9aec10d346b7952",
@@ -13,9 +13,25 @@
   "new_office_source_to_integrate": false,
   "non_documentation_source_delta": [],
   "saved_canonical": "passed-224-files-4234-substantive-successes",
-  "saved_supplemental_and_consumer_gates": "passed-awaiting-final-independent-review",
+  "saved_supplemental_and_consumer_gates": "passed-independent-review-complete",
   "saved_native_prepare": "passed",
-  "native_sweep": "pending-new-workspace-run",
+  "native_sweep": "pending-prepare-completion",
   "final_acceptance": false,
-  "actions_workflow_check_status_endpoint_calls": 0
+  "actions_workflow_check_status_endpoint_calls": 0,
+  "runtime_restoration": "independently-accepted",
+  "saved_evidence_audit": {
+    "accepted": true,
+    "checks": 8381,
+    "archives": 14,
+    "members": 1145,
+    "findings": 0
+  },
+  "saved_consumer_replay": {
+    "accepted": true,
+    "fixtures": 50,
+    "schema_parts": 220,
+    "checks": 257,
+    "findings": 0
+  },
+  "native_prepare": "running-new-workspace-build"
 }

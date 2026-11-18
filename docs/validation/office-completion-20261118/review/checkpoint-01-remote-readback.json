@@ -1,0 +1,49 @@
+{
+  "commit": "eb628b66d82b809495d1391bbe36f2073fe2e772",
+  "tree": "4e951f106fd2a466a9b4d764a392663f1cccdb71",
+  "all_files_verified": true,
+  "files": [
+    {
+      "path": "docs/validation/office-completion-20261118/README.md",
+      "bytes": 1639,
+      "sha256": "a56c6866ae5232caf64cac2a283d30cdc6a33db3bf6da9dda66569863c00d107",
+      "git_blob": "7e4a98b35eb115474d4ac21c9d3a4a996e885962",
+      "verified": true
+    },
+    {
+      "path": "docs/validation/office-completion-20261118/flutter-path-adaptation.json",
+      "bytes": 701,
+      "sha256": "2403b4bb0d6641bdc085369a12ce715eb043d8c5bdeef8ddf33c67bd303f3ebb",
+      "git_blob": "e8f0376418ff1f318a220d39b5ad4867304b682e",
+      "verified": true
+    },
+    {
+      "path": "docs/validation/office-completion-20261118/reconciliation/branch-delta-review.json",
+      "bytes": 2324,
+      "sha256": "790b5375d142a332d7fa9d2e322e9f0e7c209789f2a32f496e0c0f7b0fcd247b",
+      "git_blob": "db1a2ca0eb47d38f83870ae6cfee5cbebbab0b8c",
+      "verified": true
+    },
+    {
+      "path": "docs/validation/office-completion-20261118/reconciliation/fetched-refs.txt",
+      "bytes": 26409,
+      "sha256": "f5c056948824377186408b707c8a56b54419c6bbeafa770bfcc839037c67818e",
+      "git_blob": "b90bcc45effed76a1558a0bfd40f8931dae08a5f",
+      "verified": true
+    },
+    {
+      "path": "docs/validation/office-completion-20261118/reconciliation/pr-reconciliation-api.json",
+      "bytes": 47894,
+      "sha256": "5a88045e064662b67edf281db14f337e23df5b2a0f70316518c9cf942d1ac96b",
+      "git_blob": "c98e8eaad2c650d3100b89ca33990928e7d5ef20",
+      "verified": true
+    },
+    {
+      "path": "docs/validation/office-completion-20261118/status.json",
+      "bytes": 983,
+      "sha256": "2c09bb6cd41fc347326b718e1023f460e489fc35acde1a9ea89238d23a701923",
+      "git_blob": "9c43b654995fdd4ca255d4538230b08e28257099",
+      "verified": true
+    }
+  ]
+}
