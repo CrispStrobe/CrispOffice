@@ -8,6 +8,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import 'office_controller.dart';
 import 'word_zotero_format.dart';
+import 'word_zotero_sources.dart';
 
 /// Connection preferences belong to the host session, never to a document.
 class ZoteroSession {
@@ -952,9 +953,13 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
     String text;
     ZoteroFormattedText? formattedText;
     if (online) {
+      final resolver = ZoteroSourceResolver(
+        items,
+        local: _client?.isLocal ?? _useLocal,
+      );
       final addresses = <String, ZoteroSourceAddress>{};
       for (final item in items) {
-        final address = _addressOf(item);
+        final address = resolver.addressOf(item);
         if (address == null) {
           throw const FormatException(
             'Some sources cannot be resolved through this library connection. Use the basic bibliography or copy embedded CSL JSON.',
@@ -1012,7 +1017,8 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
   Future<void> _refresh() => _run(() async {
     _checkTarget();
     if (_client == null) throw StateError('Connect a Zotero library first.');
-    final fields = _controller.zoteroFields
+    final allFields = _controller.zoteroFields;
+    final fields = allFields
         .where(
           (field) =>
               field.citation != null &&
@@ -1031,10 +1037,18 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
     }
     // Validate the whole operation before making a request. In particular, an
     // online connection must not partially fetch a document with local sources.
+    // Custom/native citations may declare aliases for a basic source without
+    // being eligible for replacement themselves.
+    final resolver = ZoteroSourceResolver(
+      allFields.expand(
+        (field) => field.citation?.items ?? const <ZoteroCitationItem>[],
+      ),
+      local: _client!.isLocal,
+    );
     final addresses = <String, ZoteroSourceAddress>{};
     for (final field in fields) {
       for (final item in field.citation!.items) {
-        final address = _addressOf(item);
+        final address = resolver.addressOf(item);
         if (address == null) continue;
         _connectedClient(address);
         addresses[address.canonicalUri.toString()] = address;
@@ -1094,7 +1108,7 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
       final citation = field.citation!;
       final items = <ZoteroCitationItem>[];
       for (final item in citation.items) {
-        final address = _addressOf(item);
+        final address = resolver.addressOf(item);
         final data = address == null
             ? null
             : fetched[address.canonicalUri.toString()];
