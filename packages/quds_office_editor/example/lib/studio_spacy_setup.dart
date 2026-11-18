@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:quds_proofing_spacy/quds_proofing_spacy.dart';
 
 import 'studio_spacy_host.dart';
 
@@ -87,6 +88,114 @@ class _StudioSpacySetupDialogState extends State<StudioSpacySetupDialog> {
         },
       ),
     );
+  }
+
+  Future<void> _installLanguage(SpacyLanguage language) async {
+    final cancellation = StudioSpacyInstallCancellation();
+    setState(() {
+      _cancellation = cancellation;
+      _progress = 0;
+    });
+    await _run(
+      () => widget.host.installLanguage(
+        language,
+        cancellation: cancellation,
+        onProgress: (received, total) {
+          if (mounted) setState(() => _progress = received / total);
+        },
+      ),
+    );
+  }
+
+  /// English and French: separately downloaded bundles opened by a
+  /// v2-capable native package. Analysis only; no grammar is offered.
+  List<Widget> _languageSection(StudioSpacyStatus status, ThemeData theme) {
+    if (status.languages.isEmpty) return const [];
+    final widgets = <Widget>[
+      const SizedBox(height: 16),
+      Text('More analysis languages', style: theme.textTheme.titleSmall),
+      const Text(
+        'Tokens, lemmas, part of speech, morphology, dependencies, sentences '
+        'and named entities. Analysis only: no grammar suggestions are '
+        'offered for these languages.',
+      ),
+    ];
+    for (final item in status.languages) {
+      final download = item.download;
+      final runtime = item.runtime;
+      final name = item.language.displayName;
+      widgets.add(const SizedBox(height: 8));
+      if (!item.offered || download == null || runtime == null) {
+        widgets.add(
+          Text(
+            '$name: ${item.unavailableReason ?? 'not available here.'}',
+            key: Key('spacy-language-${item.language.code}-unavailable'),
+          ),
+        );
+        continue;
+      }
+      final files = download.files
+          .map(
+            (file) =>
+                '${file.file} ${_megabytes(file.bytes)} · SHA-256 ${file.sha256}',
+          )
+          .join('\n');
+      widgets.addAll([
+        Text(
+          '$name (${download.bundle.modelName} ${download.bundle.modelVersion})'
+          '${item.installed ? ' · installed and verified' : ''}',
+          style: theme.textTheme.labelLarge,
+        ),
+        if (item.problem != null)
+          Text(item.problem!, style: TextStyle(color: theme.colorScheme.error)),
+        ExpansionTile(
+          key: Key('spacy-language-${item.language.code}-details'),
+          tilePadding: EdgeInsets.zero,
+          title: Text(
+            'Source, files and license (${_megabytes(download.totalBytes)})',
+          ),
+          children: [
+            Align(
+              alignment: Alignment.centerLeft,
+              child: SelectableText(
+                'Source: https://huggingface.co/${download.repository} at '
+                'revision ${download.revision}\n$files\n'
+                '${item.runtimeInstalled ? 'Native package already installed' : 'Also downloads the native package ${runtime.url} (${_megabytes(runtime.archiveBytes)} · SHA-256 ${runtime.archiveSha256})'}.\n'
+                'Every file is checked against its compiled-in digest before use.\n\n'
+                'License: ${download.license}\n\n'
+                'Qualification: ${download.qualification}',
+                key: Key('spacy-language-${item.language.code}-source'),
+              ),
+            ),
+          ],
+        ),
+        Wrap(
+          spacing: 8,
+          children: [
+            if (!item.installed)
+              FilledButton.tonal(
+                key: Key('spacy-language-${item.language.code}-install'),
+                onPressed: _working
+                    ? null
+                    : () => _installLanguage(item.language),
+                child: Text(
+                  'Download $name (${_megabytes(item.downloadBytes)})',
+                ),
+              ),
+            if (item.installed || item.problem != null)
+              TextButton(
+                key: Key('spacy-language-${item.language.code}-remove'),
+                onPressed: _working
+                    ? null
+                    : () =>
+                          _run(() => widget.host.removeLanguage(item.language)),
+                child: Text('Remove $name'),
+              ),
+          ],
+        ),
+      ]);
+    }
+    return widgets;
   }
 
   @override
@@ -224,6 +333,7 @@ class _StudioSpacySetupDialogState extends State<StudioSpacySetupDialog> {
         ),
       ]);
     }
+    if (!_loading) children.addAll(_languageSection(status, theme));
     if (_progress != null) {
       children.addAll([
         const SizedBox(height: 12),
@@ -241,7 +351,7 @@ class _StudioSpacySetupDialogState extends State<StudioSpacySetupDialog> {
       ]);
     }
     return AlertDialog(
-      title: const Text('Local German analysis'),
+      title: const Text('Local text analysis'),
       content: SizedBox(
         width: 620,
         child: SingleChildScrollView(

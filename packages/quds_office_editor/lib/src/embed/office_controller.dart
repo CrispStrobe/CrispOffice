@@ -23,6 +23,14 @@ import 'office_theme.dart';
 /// The persistent review workspace shown beside (or below) a Word document.
 enum WordReviewPaneTab { proofing, changes }
 
+/// Selection in a Notes pane, measured in [WordNotes.editableText] offsets.
+/// The automatic note marker and its hidden separator are not editable text.
+typedef WordNoteEditingTarget = ({
+  WmlNote note,
+  TextSelection selection,
+  TextRange composing,
+});
+
 /// An immutable view of the selected text, or the whole current paragraph.
 ///
 /// Keep this handle with a displayed control and supply it when applying an
@@ -681,10 +689,39 @@ class WordEditorController extends OfficeController {
     _proofing ??= WordProofingSession(
       document: () => document,
       revision: () => contentRevision,
+      priorityParagraph: () => _proofingPriorityParagraph,
       vocabulary: _initialProofingVocabulary,
       service: _initialProofingService,
     )..addListener(_onProofingChanged);
     return _proofing!;
+  }
+
+  // Inspect existing text only: checking must not materialize empty comment,
+  // header or body paragraphs merely to choose the first item in a pass.
+  WmlParagraph? get _proofingPriorityParagraph {
+    final note = noteEditingTarget;
+    if (note != null) {
+      return _noteSelectionRange((
+        note: note.note,
+        selection: TextSelection.collapsed(offset: note.selection.extentOffset),
+        composing: note.composing,
+      ))?.paragraph;
+    }
+    final Iterable<WmlParagraph> paragraphs;
+    if (_editingComment) {
+      paragraphs = selectedComment?.paragraphs ?? const <WmlParagraph>[];
+    } else if (_editingHeaderFooter) {
+      if (_editingSectionIndex < 0 ||
+          _editingSectionIndex >= document.sections.length) {
+        return null;
+      }
+      final section = document.sections[_editingSectionIndex];
+      paragraphs = _editingFooter ? section.footer : section.header;
+    } else {
+      paragraphs = document.paragraphs;
+    }
+    final index = caret.paragraphIndex;
+    return index < 0 ? null : paragraphs.skip(index).firstOrNull;
   }
 
   void _onProofingChanged() => super.notifyListeners();
@@ -1077,6 +1114,7 @@ class WordEditorController extends OfficeController {
     if (!config.allowsMutation && !config.allowsSelection) {
       return;
     }
+    clearNoteEditingTarget();
     endCommentEdit();
     final int sectionIndex =
         pageIndex >= 0 && pageIndex < documentLaidOut.pages.length
@@ -1140,6 +1178,7 @@ class WordEditorController extends OfficeController {
     if (selectedComment == null) {
       return;
     }
+    clearNoteEditingTarget();
     endHeaderFooterEdit();
     _editingComment = true;
     selectedVisual = null;
@@ -1223,6 +1262,8 @@ class WordEditorController extends OfficeController {
     document = opened;
     commands.clear();
     _noteEditStart.clear();
+    _noteEditingTarget = null;
+    _noteBodyTarget = null;
     _syncProtectionMode();
     _editingComment = false;
     documentCaret.paragraphIndex = 0;
@@ -1917,6 +1958,7 @@ class WordEditorController extends OfficeController {
 
   /// jumpToParagraph API.
   void jumpToParagraph(int index) {
+    clearNoteEditingTarget();
     _editingComment = false;
     selectedVisual = null;
     selectedEquation = null;
@@ -4111,8 +4153,9 @@ class WordEditorController extends OfficeController {
           WmlRunEdit.replaceRange(last, 0, to, '');
           WordRevisions.joinParagraphs(document, first, last);
           first.inlines.addAll(
-            _cloneInlinesFrom(last.inlines)
-                .where((inline) => inline is! WmlRun || inline.text.isNotEmpty),
+            _cloneInlinesFrom(
+              last.inlines,
+            ).where((inline) => inline is! WmlRun || inline.text.isNotEmpty),
           );
           WmlRunEdit.coalesce(first);
           parent.removeRange(range.startPara + 1, range.endPara + 1);
@@ -4451,6 +4494,7 @@ class WordEditorController extends OfficeController {
   @override
   /// afterHistoryChange API.
   void afterHistoryChange() {
+    final noteTarget = noteEditingTarget;
     final List<WmlParagraph> paragraphs = _paragraphs;
     caret.paragraphIndex = paragraphs.isEmpty
         ? 0
@@ -4461,6 +4505,12 @@ class WordEditorController extends OfficeController {
       _activeParagraph.text.length,
     );
     if (!_historyRestoredSelection) caret.collapseSelection();
+    if (noteTarget != null) {
+      // Ordinary Notes typing has its own history commands. Keep the visible
+      // note caret current when undo shortens that text, and when collapsing
+      // the unrelated body selection would otherwise discard the note target.
+      _restoreNoteEditingTarget(_clampNoteEditingTarget(noteTarget));
+    }
     _historyRestoredSelection = false;
     _markLocalEdit(previousText: _textBeforeLocalEdit);
     _syncImeSelection();
@@ -4731,8 +4781,9 @@ class WordEditorController extends OfficeController {
             ..addAll(_cloneInlinesFrom(keepInlines));
           WordRevisions.joinParagraphs(document, keep, drop);
           keep.inlines.addAll(
-            _cloneInlinesFrom(dropInlines)
-                .where((inline) => inline is! WmlRun || inline.text.isNotEmpty),
+            _cloneInlinesFrom(
+              dropInlines,
+            ).where((inline) => inline is! WmlRun || inline.text.isNotEmpty),
           );
           WmlRunEdit.coalesce(keep);
           parent.remove(drop);
@@ -4838,8 +4889,9 @@ class WordEditorController extends OfficeController {
             ..addAll(_cloneInlinesFrom(keepInlines));
           WordRevisions.joinParagraphs(document, keep, drop);
           keep.inlines.addAll(
-            _cloneInlinesFrom(dropInlines)
-                .where((inline) => inline is! WmlRun || inline.text.isNotEmpty),
+            _cloneInlinesFrom(
+              dropInlines,
+            ).where((inline) => inline is! WmlRun || inline.text.isNotEmpty),
           );
           WmlRunEdit.coalesce(keep);
           parent.remove(drop);
@@ -7178,12 +7230,12 @@ class WordEditorController extends OfficeController {
   /// Reinspect after mutations or undo/redo: field handles are short-lived.
   List<WmlZoteroField> get zoteroFields => WordZotero.fields(document);
 
-  /// A fresh field handle at the body caret or enclosing a selection in one
-  /// paragraph. A collapsed caret at a field's end belongs to the following
-  /// text. Other editor stories retain their explicit field-list actions.
+  /// A fresh field handle at the body or Notes caret, or enclosing a selection
+  /// in one paragraph. A collapsed caret at a field's end belongs to the
+  /// following text. Other stories retain their explicit field-list actions.
   WmlZoteroField? get zoteroFieldAtCaret => findZoteroFieldAtCaret();
 
-  /// Resolves the current body caret using a fresh field inventory when the
+  /// Resolves the current editing caret using a fresh field inventory when the
   /// caller already inspected this document during the same synchronous build.
   /// Omit [fields] to inspect the document here. Do not retain supplied handles
   /// across document changes or undo/redo.
@@ -7195,15 +7247,32 @@ class WordEditorController extends OfficeController {
         selectedFrame != null) {
       return null;
     }
-    final paragraphs = document.paragraphs.toList();
-    final range = caret.normalizedRange;
-    if (range.startPara != range.endPara ||
-        range.startPara < 0 ||
-        range.startPara >= paragraphs.length) {
-      return null;
+    final noteTarget = noteEditingTarget;
+    final WmlParagraph paragraph;
+    final int rangeStart;
+    final int rangeEnd;
+    final bool collapsed;
+    if (noteTarget != null) {
+      final range = _noteSelectionRange(noteTarget);
+      if (range == null) return null;
+      paragraph = range.paragraph;
+      rangeStart = range.start;
+      rangeEnd = range.end;
+      collapsed = noteTarget.selection.isCollapsed;
+    } else {
+      final paragraphs = document.paragraphs.toList();
+      final range = caret.normalizedRange;
+      if (range.startPara != range.endPara ||
+          range.startPara < 0 ||
+          range.startPara >= paragraphs.length) {
+        return null;
+      }
+      paragraph = paragraphs[range.startPara];
+      rangeStart = range.startIdx;
+      rangeEnd = range.endIdx;
+      collapsed = caret.isCollapsed;
     }
-    final paragraph = paragraphs[range.startPara];
-    if (range.startIdx < 0 || range.endIdx > paragraph.text.length) return null;
+    if (rangeStart < 0 || rangeEnd > paragraph.text.length) return null;
     return (fields ?? zoteroFields).where((field) {
       final index = field.paragraphs.indexOf(paragraph);
       if (index < 0) return false;
@@ -7211,8 +7280,8 @@ class WordEditorController extends OfficeController {
       final end = index == field.paragraphs.length - 1
           ? field.end
           : paragraph.text.length;
-      return range.startIdx >= start &&
-          (caret.isCollapsed ? range.startIdx < end : range.endIdx <= end);
+      return rangeStart >= start &&
+          (collapsed ? rangeStart < end : rangeEnd <= end);
     }).firstOrNull;
   }
 
@@ -7227,24 +7296,36 @@ class WordEditorController extends OfficeController {
     if (_disposed || !config.allowsMutation) {
       throw StateError('This document is not editable.');
     }
+    final noteTarget = noteEditingTarget;
+    _assertNoteTargetReady(noteTarget);
+    commitNoteEdits();
     _assertZoteroTrackingMode();
     if (isEditingHeaderFooter ||
         isEditingComment ||
         editingFrame ||
         selectedFrame != null) {
       throw UnsupportedError(
-        'Open Zotero from the document body to use its desktop citation tools.',
+        'Open Zotero from the document body or an anchored note to use its desktop citation tools.',
       );
     }
     if (selectedField != null) _assertZoteroFieldOwner(selectedField);
+    final noteRange = noteTarget == null
+        ? null
+        : _noteSelectionRange(noteTarget);
+    final resolvedField =
+        selectedField ?? (noteTarget != null ? findZoteroFieldAtCaret() : null);
     return WordZoteroTransaction._(
       this,
       WordZoteroCitingSession(
         document: document,
         documentId: documentId,
-        insertionParagraph: caret.isCollapsed ? _activeParagraph : null,
-        insertionOffset: caret.logicalIndex,
-        selectedField: selectedField,
+        insertionParagraph: noteTarget != null
+            ? (noteTarget.selection.isCollapsed ? noteRange?.paragraph : null)
+            : (caret.isCollapsed ? _activeParagraph : null),
+        insertionOffset: noteTarget != null
+            ? (noteRange?.start ?? 0)
+            : caret.logicalIndex,
+        selectedField: resolvedField,
         seedCitation: seedCitation,
       ),
     );
@@ -7271,6 +7352,7 @@ class WordEditorController extends OfficeController {
     final beforeParagraph = caret.paragraphIndex;
     final beforeAnchor = caret.selectionAnchor;
     final beforeAnchorParagraph = caret.selectionAnchorParagraph;
+    final beforeNoteTarget = noteEditingTarget;
     commands.commit(
       _CallbackCommand(
         executeFn: () {
@@ -7291,6 +7373,11 @@ class WordEditorController extends OfficeController {
                 paragraphs[caret.paragraphIndex].text.length,
               );
           caret.collapseSelection();
+          _restoreNoteEditingTarget(
+            destination == null
+                ? _clampNoteEditingTarget(beforeNoteTarget)
+                : _noteTargetAt(destination.paragraph, destination.offset),
+          );
         },
         undoFn: () {
           before.restore(document);
@@ -7298,6 +7385,7 @@ class WordEditorController extends OfficeController {
           caret.logicalIndex = beforeCaret;
           caret.selectionAnchor = beforeAnchor;
           caret.selectionAnchorParagraph = beforeAnchorParagraph;
+          _restoreNoteEditingTarget(beforeNoteTarget);
           // The generic history hook normally collapses a selection. This
           // command restores an exact selection snapshot instead.
           _historyRestoredSelection = true;
@@ -7312,7 +7400,9 @@ class WordEditorController extends OfficeController {
   /// Display text is supplied explicitly; this does not run a CSL processor.
   void insertZoteroCitation(ZoteroCitation citation) {
     if (_disposed || !config.allowsMutation) return;
-    if (!caret.isCollapsed) {
+    final noteTarget = noteEditingTarget;
+    _assertNoteTargetReady(noteTarget);
+    if (!(noteTarget?.selection.isCollapsed ?? caret.isCollapsed)) {
       throw UnsupportedError('Place the caret where the citation should go.');
     }
     if (zoteroFields.any(
@@ -7320,7 +7410,13 @@ class WordEditorController extends OfficeController {
     )) {
       throw ArgumentError('A citation with this identity already exists.');
     }
-    final paragraph = _activeParagraph;
+    final noteRange = noteTarget == null
+        ? null
+        : _noteSelectionRange(noteTarget);
+    if (noteTarget != null && noteRange == null) {
+      throw UnsupportedError('Place the caret in an editable note paragraph.');
+    }
+    final paragraph = noteRange?.paragraph ?? _activeParagraph;
     if (zoteroFields.any(
       (field) =>
           field.paragraphs.length > 1 && field.paragraphs.contains(paragraph),
@@ -7331,15 +7427,25 @@ class WordEditorController extends OfficeController {
     }
     final at = WmlRunEdit.normalizeRange(
       paragraph,
-      caret.logicalIndex,
-      caret.logicalIndex,
+      noteRange?.start ?? caret.logicalIndex,
+      noteRange?.start ?? caret.logicalIndex,
     ).start;
     final beforeLength = paragraph.text.length;
-    _commitZoteroChange(<WmlParagraph>[paragraph], () {
-      WordZotero.insertCitation(paragraph, citation, index: at);
-    });
-    caret.logicalIndex = at + paragraph.text.length - beforeLength;
-    caret.collapseSelection();
+    _commitZoteroChange(
+      <WmlParagraph>[paragraph],
+      () => WordZotero.insertCitation(paragraph, citation, index: at),
+      commitNoteDrafts: noteTarget != null,
+      noteTargetAfter: noteTarget == null
+          ? null
+          : () => _noteTargetAt(
+              paragraph,
+              at + paragraph.text.length - beforeLength,
+            ),
+    );
+    if (noteTarget == null) {
+      caret.logicalIndex = at + paragraph.text.length - beforeLength;
+      caret.collapseSelection();
+    }
     relayout();
     notifyListeners();
   }
@@ -7398,7 +7504,8 @@ class WordEditorController extends OfficeController {
   }) {
     if (_disposed || !config.allowsMutation) return;
     _assertZoteroTrackingMode();
-    if (!caret.isCollapsed ||
+    if (noteEditingTarget != null ||
+        !caret.isCollapsed ||
         isEditingHeaderFooter ||
         isEditingComment ||
         editingFrame ||
@@ -7669,8 +7776,11 @@ class WordEditorController extends OfficeController {
     List<WmlParagraph> paragraphs,
     VoidCallback mutate, {
     bool commitNoteDrafts = false,
+    WordNoteEditingTarget? Function()? noteTargetAfter,
   }) {
     _assertZoteroTrackingMode();
+    final beforeNoteTarget = noteEditingTarget;
+    _assertNoteTargetReady(beforeNoteTarget);
     final touched = Set<WmlParagraph>.identity()..addAll(paragraphs);
     if (document.revisions.any(
       (revision) =>
@@ -7715,8 +7825,12 @@ class WordEditorController extends OfficeController {
       ({List<WmlInline> inlines, WmlParagraphProps properties})
     >
     after;
+    WordNoteEditingTarget? afterNoteTarget;
     try {
       mutate();
+      afterNoteTarget = noteTargetAfter != null
+          ? noteTargetAfter()
+          : _clampNoteEditingTarget(beforeNoteTarget);
       after = {
         for (final paragraph in paragraphs)
           paragraph: (
@@ -7731,11 +7845,23 @@ class WordEditorController extends OfficeController {
     // staged successfully. A failed preflight must preserve pending history,
     // while undo of a successful bulk conversion must restore its field links
     // before undoing an older note edit.
-    if (commitNoteDrafts) commitNoteEdits();
+    if (commitNoteDrafts || beforeNoteTarget != null) commitNoteEdits();
     commands.commit(
       _CallbackCommand(
-        executeFn: () => restore(after),
-        undoFn: () => restore(before),
+        executeFn: () {
+          restore(after);
+          if (beforeNoteTarget != null) {
+            _restoreNoteEditingTarget(afterNoteTarget);
+            _historyRestoredSelection = true;
+          }
+        },
+        undoFn: () {
+          restore(before);
+          if (beforeNoteTarget != null) {
+            _restoreNoteEditingTarget(beforeNoteTarget);
+            _historyRestoredSelection = true;
+          }
+        },
       ),
     );
     relayout();
@@ -8156,6 +8282,162 @@ class WordEditorController extends OfficeController {
   /// The text a notes editor shows for [note]: one line per paragraph.
   String noteEditText(WmlNote note) => WordNotes.editableText(note);
 
+  WordNoteEditingTarget? _noteEditingTarget;
+  Object? _noteBodyTarget;
+
+  Object get _bodyEditingPosition => (
+    document: document,
+    caret: documentCaret,
+    paragraph: documentCaret.paragraphIndex,
+    offset: documentCaret.logicalIndex,
+    anchorParagraph: documentCaret.selectionAnchorParagraph,
+    anchorOffset: documentCaret.selectionAnchor,
+  );
+
+  /// The last active Notes selection, retained when focus moves to chrome or
+  /// a citation dialog. Moving the body caret invalidates this target as well
+  /// as calling [clearNoteEditingTarget] when the canvas receives input.
+  WordNoteEditingTarget? get noteEditingTarget =>
+      _noteBodyTarget == _bodyEditingPosition ? _noteEditingTarget : null;
+
+  bool _ownsNote(WmlNote note) =>
+      (note.endnote ? document.endnotes : document.footnotes).any(
+        (candidate) => identical(candidate, note),
+      );
+
+  /// Publishes the Notes pane's actual selection without moving the body caret
+  /// or changing document history. Hosts should update this on focus, selection
+  /// and composition changes, and retain it while a ribbon command is running.
+  void setNoteEditingTarget(
+    WmlNote note,
+    TextSelection selection, {
+    TextRange composing = TextRange.empty,
+  }) {
+    if (_disposed) return;
+    if (!_ownsNote(note)) {
+      throw StateError('This note no longer belongs to the document.');
+    }
+    final length = noteEditText(note).length;
+    if (!selection.isValid ||
+        selection.end > length ||
+        (composing.isValid && composing.end > length)) {
+      throw ArgumentError('The note selection is outside its editable text.');
+    }
+    final next = (note: note, selection: selection, composing: composing);
+    if (next == noteEditingTarget) return;
+    _editingComment = false;
+    _editingHeaderFooter = false;
+    selectedVisual = null;
+    selectedFrame = null;
+    editingFrame = false;
+    selectedEquation = null;
+    selectedTable = null;
+    selectedTableBand = null;
+    _restoreNoteEditingTarget(next);
+    notifyListeners();
+  }
+
+  /// Returns citation commands to the document canvas. Losing note focus to a
+  /// toolbar or modal is deliberately not a reason to clear its selection.
+  void clearNoteEditingTarget({bool notify = true}) {
+    if (_noteEditingTarget == null) return;
+    _noteEditingTarget = null;
+    _noteBodyTarget = null;
+    if (notify && !_disposed) notifyListeners();
+  }
+
+  void _restoreNoteEditingTarget(WordNoteEditingTarget? target) {
+    _noteEditingTarget = target;
+    _noteBodyTarget = target == null ? null : _bodyEditingPosition;
+  }
+
+  WordNoteEditingTarget? _clampNoteEditingTarget(
+    WordNoteEditingTarget? target,
+  ) {
+    if (target == null || !_ownsNote(target.note)) return null;
+    final length = noteEditText(target.note).length;
+    return (
+      note: target.note,
+      selection: target.selection.copyWith(
+        baseOffset: target.selection.baseOffset.clamp(0, length),
+        extentOffset: target.selection.extentOffset.clamp(0, length),
+      ),
+      composing: TextRange.empty,
+    );
+  }
+
+  /// Paragraph positions in exactly the text exposed by the Notes pane.
+  /// WordNotes may omit one leading reference-space from the first paragraph.
+  Iterable<({WmlParagraph paragraph, int start, int hidden})> _noteTextSegments(
+    WmlNote note,
+  ) sync* {
+    final paragraphs = WordNotes.editableParagraphs(note);
+    if (paragraphs.isEmpty) return;
+    final hidden =
+        paragraphs.map((p) => p.text).join('\n').length -
+        noteEditText(note).length;
+    var start = 0;
+    for (var index = 0; index < paragraphs.length; index++) {
+      final paragraph = paragraphs[index];
+      final prefix = index == 0 ? hidden : 0;
+      yield (paragraph: paragraph, start: start, hidden: prefix);
+      start += paragraph.text.length - prefix + 1;
+    }
+  }
+
+  ({WmlParagraph paragraph, int start, int end})? _noteSelectionRange(
+    WordNoteEditingTarget target,
+  ) {
+    if (!_ownsNote(target.note) ||
+        !target.selection.isValid ||
+        target.selection.end > noteEditText(target.note).length) {
+      return null;
+    }
+    for (final segment in _noteTextSegments(target.note)) {
+      final end =
+          segment.start + segment.paragraph.text.length - segment.hidden;
+      if (target.selection.start >= segment.start &&
+          target.selection.end <= end) {
+        return (
+          paragraph: segment.paragraph,
+          start: target.selection.start - segment.start + segment.hidden,
+          end: target.selection.end - segment.start + segment.hidden,
+        );
+      }
+    }
+    return null;
+  }
+
+  WordNoteEditingTarget? _noteTargetAt(WmlParagraph paragraph, int offset) {
+    for (final note in [...document.footnotes, ...document.endnotes]) {
+      for (final segment in _noteTextSegments(note)) {
+        if (!identical(segment.paragraph, paragraph)) continue;
+        final position =
+            segment.start +
+            offset.clamp(segment.hidden, paragraph.text.length) -
+            segment.hidden;
+        return (
+          note: note,
+          selection: TextSelection.collapsed(offset: position),
+          composing: TextRange.empty,
+        );
+      }
+    }
+    return null;
+  }
+
+  void _assertNoteTargetReady(WordNoteEditingTarget? target) {
+    if (target == null) return;
+    if (!_ownsNote(target.note) ||
+        !target.selection.isValid ||
+        target.selection.end > noteEditText(target.note).length) {
+      throw StateError('The note or its selection changed. Select it again.');
+    }
+    if (target.composing.isValid && !target.composing.isCollapsed) {
+      throw StateError('Finish composing the note text before citing.');
+    }
+  }
+
   final Map<WmlNote, _WordNoteEditSnapshot> _noteEditStart =
       <WmlNote, _WordNoteEditSnapshot>{};
 
@@ -8170,9 +8452,9 @@ class WordEditorController extends OfficeController {
     if (!config.allowsMutation || WordNotes.editableText(note) == text) {
       return;
     }
-    final beforeText = WordNotes.editableParagraphs(note)
-        .map((paragraph) => paragraph.text)
-        .toList();
+    final beforeText = WordNotes.editableParagraphs(
+      note,
+    ).map((paragraph) => paragraph.text).toList();
     final paragraphs = note.allParagraphs.toList();
     final hasInlineControls = paragraphs.any(
       WordContentControls.hasInlineControls,
@@ -8221,9 +8503,9 @@ class WordEditorController extends OfficeController {
     WordNotes.editText(note, text);
     if (listEquals(
       beforeText,
-      WordNotes.editableParagraphs(note)
-          .map((paragraph) => paragraph.text)
-          .toList(),
+      WordNotes.editableParagraphs(
+        note,
+      ).map((paragraph) => paragraph.text).toList(),
     )) {
       return;
     }
@@ -8329,6 +8611,7 @@ class WordEditorController extends OfficeController {
 
   /// jumpToNote API.
   void jumpToNote(WmlNote note) {
+    clearNoteEditingTarget();
     final List<WmlParagraph> paras = document.paragraphs.toList();
     for (int i = 0; i < paras.length; i++) {
       final WmlParagraph paragraph = paras[i];
@@ -8757,8 +9040,9 @@ class WordEditorController extends OfficeController {
 
   static bool _textProofingControlLocked(WmlContentControlData control) {
     try {
-      final properties = WordContentControls.template(control)
-          .firstChild('sdtPr', namespaceUri: OfficeNamespaces.w);
+      final properties = WordContentControls.template(
+        control,
+      ).firstChild('sdtPr', namespaceUri: OfficeNamespaces.w);
       final lock = properties?.firstChild(
         'lock',
         namespaceUri: OfficeNamespaces.w,
@@ -9112,11 +9396,13 @@ class WordEditorController extends OfficeController {
       return switch (capture.status) {
         WordTextRangeStatus.mixedLanguage => const WordThesaurusCapture._(
           WordThesaurusTargetStatus.mixedLanguage,
-          message: 'The selection contains more than one language. Select a single-language word or phrase.',
+          message:
+              'The selection contains more than one language. Select a single-language word or phrase.',
         ),
         WordTextRangeStatus.protectedContent => const WordThesaurusCapture._(
           WordThesaurusTargetStatus.protectedContent,
-          message: 'This range contains protected, generated, or pending tracked content. Select ordinary text.',
+          message:
+              'This range contains protected, generated, or pending tracked content. Select ordinary text.',
         ),
         WordTextRangeStatus.invalidRange => const WordThesaurusCapture._(
           WordThesaurusTargetStatus.invalidRange,
@@ -14480,6 +14766,7 @@ final class WordZoteroTransaction {
     offset: controller.caret.logicalIndex,
     anchorParagraph: controller.caret.selectionAnchorParagraph,
     anchorOffset: controller.caret.selectionAnchor,
+    note: controller.noteEditingTarget,
     headerFooter: controller.isEditingHeaderFooter,
     footer: controller.isEditingFooter,
     section: controller.isEditingHeaderFooter

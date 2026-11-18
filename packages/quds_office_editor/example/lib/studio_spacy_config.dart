@@ -9,4 +9,6 @@ String studioSpacyConfigurationId() => platform.configurationId();
 
 /// Called only by the user's analysis action. There is no download/fallback;
 /// acquisition is the separate explicit setup flow ([studioSpacyHost]).
-Future<SpacyTransport> openStudioSpacyTransport() => platform.openTransport();
+Future<SpacyTransport> openStudioSpacyTransport({
+  SpacyLanguage language = SpacyLanguage.german,
+}) => platform.openTransport(language);

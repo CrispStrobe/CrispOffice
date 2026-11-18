@@ -129,15 +129,24 @@ The runner captures sources before and after, runs all native suites
 To replay the pending browser gate on a host that permits Chromium startup:
 
 ```bash
-python quds_office_suite/docs/validation/thesaurus-20261118/continuation/local/fixtures/install_offline.py thesaurus-browser-build-final
-python quds_office_suite/docs/validation/thesaurus-20261118/continuation/local/fixtures/run_browser.py thesaurus-browser-build-final --output browser-replay
+python quds_office_suite/docs/validation/thesaurus-20261118/continuation/local/fixtures/install_offline.py thesaurus-final-validation/browser-build
+python quds_office_suite/docs/validation/thesaurus-20261118/continuation/local/fixtures/run_browser.py thesaurus-final-validation/browser-build --output browser-replay
 ```
 
-The browser script uses Python Playwright and `/usr/bin/chromium`; adjust the
-explicit executable path for the qualified host as needed. It serves only the
-local build, blocks other origins during installation and then sets the
-browser context offline. The service worker is test infrastructure, not a
-production deployment change.
+The current runner accepts `--output` and `--browser-build-output` and refuses
+to overwrite an existing receipt. Its default compiled build is now
+`<output>/browser-build`; the historical build above used a different path.
+Keep the native/build receipt and its compiled-file inventory with the later
+browser receipt to bind the executable artifact to its source.
+
+The browser script uses Python Playwright and `/usr/bin/chromium`; pass
+`--browser-executable` for a different qualified host. It verifies the local
+installation, disables network, stops the HTTP origin, reloads the application
+and repeats the query panel in a fresh tab. English and German replacement,
+one-step undo/redo and verified source notices are required. These strengthened
+checks are described in the [resumed report](../../resume/README.md) and do not
+retroactively turn the historical compile result into browser acceptance. The
+service worker is test infrastructure, not a production deployment change.
 
 ## Earlier attempts retained
 

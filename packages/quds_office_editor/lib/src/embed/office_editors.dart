@@ -211,6 +211,7 @@ class QudsWordEditor extends StatefulWidget {
     this.navigationBuilder,
     this.notesPaneBuilder,
     this.onSelectionChanged,
+    this.onCommentContextMenuRequested,
     this.enableLiveProofing = true,
     this.showReviewStatus = true,
     this.thesaurusService,
@@ -252,6 +253,11 @@ class QudsWordEditor extends StatefulWidget {
 
   /// onSelectionChanged API.
   final VoidCallback? onSelectionChanged;
+
+  /// Opens the host's context menu at the active comment caret when the user
+  /// presses the Menu key or Shift+F10. The host owns the comment canvas and
+  /// must validate its current source and restore focus after dismissal.
+  final VoidCallback? onCommentContextMenuRequested;
 
   /// Enables background checks on first attachment unless the session already
   /// has an explicit preference. Optional manual providers remain explicit.
@@ -412,14 +418,28 @@ class _QudsWordEditorState extends State<QudsWordEditor>
 
   Future<void> _presentThesaurus({WordThesaurusCapture? capture}) async {
     if (!mounted || _thesaurusOpen || _proofingOpen) return;
-    _thesaurusOpen = true;
     final controller = _c;
+    final target = capture ?? controller.captureThesaurusTarget();
+    if (target.status == WordThesaurusTargetStatus.composing ||
+        (controller.input.composing.isValid &&
+            !controller.input.composing.isCollapsed)) {
+      // The helper reports the refusal without opening a route. Do not run
+      // modal focus restoration: attaching the editor would clear its IME.
+      await showWordThesaurusDialog(
+        context,
+        controller: controller,
+        service: widget.thesaurusService,
+        capture: target,
+      );
+      return;
+    }
+    _thesaurusOpen = true;
     try {
       await showWordThesaurusDialog(
         context,
         controller: controller,
         service: widget.thesaurusService,
-        capture: capture,
+        capture: target,
       );
     } finally {
       _thesaurusOpen = false;
@@ -525,8 +545,14 @@ class _QudsWordEditorState extends State<QudsWordEditor>
   }
 
   void _showCaretContext() {
-    if (_c.isEditingComment ||
+    if (!mounted ||
+        !(_inputRoute?.isCurrent ?? true) ||
+        !_c.config.allowsSelection ||
         (_c.input.composing.isValid && !_c.input.composing.isCollapsed)) {
+      return;
+    }
+    if (_c.isEditingComment) {
+      widget.onCommentContextMenuRequested?.call();
       return;
     }
     final canvas = _canvasKey.currentContext?.findRenderObject();
@@ -842,6 +868,7 @@ class _QudsWordEditorState extends State<QudsWordEditor>
 
   void _onFocus() {
     if (_inputGuard()) {
+      _c.clearNoteEditingTarget();
       _c.attachInput();
     } else {
       _directionKeys.reset();
@@ -1006,6 +1033,14 @@ class _QudsWordEditorState extends State<QudsWordEditor>
     final bool ctrl =
         HardwareKeyboard.instance.isControlPressed ||
         HardwareKeyboard.instance.isMetaPressed;
+    if (ctrl &&
+        HardwareKeyboard.instance.isAltPressed &&
+        (event.logicalKey == LogicalKeyboardKey.keyC ||
+            event.logicalKey == LogicalKeyboardKey.keyR)) {
+      // These combinations belong to the host's Zotero commands. In
+      // particular, Alt+C must not be consumed as ordinary Copy here.
+      return KeyEventResult.ignored;
+    }
     if (ctrl && event.logicalKey == LogicalKeyboardKey.keyA) {
       _c.selectAll();
       return KeyEventResult.handled;
@@ -1392,6 +1427,7 @@ class _QudsWordEditorState extends State<QudsWordEditor>
                                 onPreviewRulerEdit: _c.previewRulerEdit,
                                 onCommitRulerEdit: _c.commitRulerEdit,
                                 onChanged: () {
+                                  _c.clearNoteEditingTarget();
                                   _focus.requestFocus();
                                   if (config.allowsMutation) {
                                     _c.attachInput();

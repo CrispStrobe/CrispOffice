@@ -28,53 +28,127 @@ class _WordNotesPaneState extends State<WordNotesPane> {
   final Map<WmlNote, TextEditingController> _noteEdits =
       <WmlNote, TextEditingController>{};
   final Map<WmlNote, FocusNode> _noteFocus = <WmlNote, FocusNode>{};
+  bool _syncing = false;
 
   WordEditorController get _c => widget.controller;
 
   @override
+  void initState() {
+    super.initState();
+    _c.addListener(_controllerChanged);
+  }
+
+  @override
+  void didUpdateWidget(WordNotesPane oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (!identical(oldWidget.controller, _c)) {
+      oldWidget.controller.removeListener(_controllerChanged);
+      oldWidget.controller.clearNoteEditingTarget(notify: false);
+      _disposeEdits();
+      _c.addListener(_controllerChanged);
+    }
+  }
+
+  void _controllerChanged() {
+    if (mounted && !_syncing) setState(() {});
+  }
+
+  @override
   void dispose() {
+    _c.removeListener(_controllerChanged);
+    if (_noteEdits.containsKey(_c.noteEditingTarget?.note)) {
+      _c.clearNoteEditingTarget(notify: false);
+    }
+    _disposeEdits();
+    super.dispose();
+  }
+
+  void _disposeEdits() {
+    _syncing = true;
     for (final TextEditingController edit in _noteEdits.values) {
       edit.dispose();
     }
     for (final FocusNode focus in _noteFocus.values) {
       focus.dispose();
     }
-    super.dispose();
+    _noteEdits.clear();
+    _noteFocus.clear();
+    _syncing = false;
   }
 
   FocusNode _focusFor(WmlNote note) => _noteFocus.putIfAbsent(note, () {
     final FocusNode focus = FocusNode();
     focus.addListener(() {
-      if (!focus.hasFocus) {
+      if (_syncing || _c.isDisposed) return;
+      if (focus.hasFocus) {
+        _publishSelection(note);
+      } else {
         _c.commitNoteEdit(note);
       }
     });
     return focus;
   });
 
-  /// One controller per note object. Text changed elsewhere (undo, another
-  /// view) is pulled in while the field is not being typed in.
+  void _publishSelection(WmlNote note) {
+    final edit = _noteEdits[note];
+    if (_syncing ||
+        edit == null ||
+        !(_noteFocus[note]?.hasFocus ?? false) ||
+        edit.text != _c.noteEditText(note) ||
+        !edit.selection.isValid) {
+      return;
+    }
+    _c.setNoteEditingTarget(
+      note,
+      edit.selection,
+      composing: edit.value.composing,
+    );
+  }
+
+  /// One controller per note object. Native replacements and undo update this
+  /// view even if it retained focus while a keyboard command was running.
   TextEditingController _editFor(WmlNote note) {
     final String current = _c.noteEditText(note);
-    final TextEditingController edit = _noteEdits.putIfAbsent(
-      note,
-      () => TextEditingController(text: current),
-    );
-    if (edit.text != current && !(_noteFocus[note]?.hasFocus ?? false)) {
-      edit.value = TextEditingValue(
-        text: current,
-        selection: TextSelection.collapsed(offset: current.length),
-      );
+    final TextEditingController edit = _noteEdits.putIfAbsent(note, () {
+      final edit = TextEditingController(text: current);
+      edit.addListener(() => _publishSelection(note));
+      return edit;
+    });
+    final target = _c.noteEditingTarget;
+    final selection = identical(target?.note, note)
+        ? target!.selection
+        : edit.selection;
+    final safeSelection = selection.isValid
+        ? selection.copyWith(
+            baseOffset: selection.baseOffset.clamp(0, current.length),
+            extentOffset: selection.extentOffset.clamp(0, current.length),
+          )
+        : TextSelection.collapsed(offset: current.length);
+    if (edit.text != current || edit.selection != safeSelection) {
+      _syncing = true;
+      try {
+        edit.value = TextEditingValue(
+          text: current,
+          selection: safeSelection,
+          composing: edit.text == current
+              ? edit.value.composing
+              : TextRange.empty,
+        );
+      } finally {
+        _syncing = false;
+      }
     }
     return edit;
   }
 
   void _dropStale(List<WmlNote> notes) {
+    _syncing = true;
     for (final WmlNote gone
         in _noteEdits.keys.where((WmlNote n) => !notes.contains(n)).toList()) {
       _noteEdits.remove(gone)?.dispose();
       _noteFocus.remove(gone)?.dispose();
     }
+    _syncing = false;
   }
 
   @override
@@ -199,8 +273,10 @@ class _WordNotesPaneState extends State<WordNotesPane> {
                             isDense: true,
                             border: InputBorder.none,
                           ),
-                          onChanged: (String value) =>
-                              _c.setNoteText(note, value),
+                          onChanged: (String value) {
+                            _c.setNoteText(note, value);
+                            _publishSelection(note);
+                          },
                           onTapOutside: (_) => _focusFor(note).unfocus(),
                         ),
                       ],

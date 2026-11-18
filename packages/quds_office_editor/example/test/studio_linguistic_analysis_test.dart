@@ -289,6 +289,55 @@ void main() {
     );
   });
 
+  test('English and French text select their language; a choice overrides', () {
+    final controller = _controller('The cat sat.')
+      ..document.proofingLanguage = 'en-GB';
+    final english = StudioAnalysisSnapshot.capture(
+      controller,
+      generation: 0,
+      configurationId: 'v1',
+    );
+    expect(english.request.locale, 'en-GB');
+    expect(english.language, SpacyLanguage.english);
+    expect(
+      StudioAnalysisSnapshot.capture(
+        controller,
+        generation: 0,
+        configurationId: 'v1',
+        analyzeAs: SpacyLanguage.english,
+      ).request.locale,
+      'en-GB',
+      reason: 'an explicit choice keeps the marked region of that language',
+    );
+    final french = StudioAnalysisSnapshot.capture(
+      controller,
+      generation: 0,
+      configurationId: 'v1',
+      analyzeAs: SpacyLanguage.french,
+    );
+    expect(french.request.locale, 'fr-FR');
+    expect(french.language, SpacyLanguage.french);
+    controller.document.proofingLanguage = 'fr-CA';
+    expect(
+      StudioAnalysisSnapshot.capture(
+        controller,
+        generation: 0,
+        configurationId: 'v1',
+      ).language,
+      SpacyLanguage.french,
+    );
+    controller.document.proofingLanguage = 'es-ES';
+    expect(
+      StudioAnalysisSnapshot.capture(
+        controller,
+        generation: 0,
+        configurationId: 'v1',
+        analyzeAs: SpacyLanguage.german,
+      ).request.locale,
+      'de-DE',
+    );
+  });
+
   test(
     'silent source replacement, language and configuration invalidate identity',
     () {
@@ -574,7 +623,7 @@ void main() {
   testWidgets('unsupported locale is rejected before loading the worker', (
     tester,
   ) async {
-    final controller = _controller('cat')..document.proofingLanguage = 'en-US';
+    final controller = _controller('gato')..document.proofingLanguage = 'es-ES';
     var opened = false;
     await _dialog(tester, controller, () async {
       opened = true;
@@ -584,7 +633,8 @@ void main() {
     expect(opened, isFalse);
     expect(
       find.text(
-        'This analysis supports German (Germany). Choose text marked de-DE.',
+        'This analysis supports German (Germany), English and French. Choose '
+        'text marked de-DE, en or fr, or pick a language under “Analyze as”.',
       ),
       findsOneWidget,
     );

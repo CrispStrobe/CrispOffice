@@ -25,10 +25,12 @@ class _Fixture extends StatefulWidget {
 }
 
 class _FixtureState extends State<_Fixture> {
+  final session = DateTime.now().microsecondsSinceEpoch.toString();
   late WordEditorController controller;
   final focus = FocusNode();
   String language = 'en-US';
   String sample = 'bank';
+  int sampleRevision = 0;
   bool querying = false;
   Map<String, Object?>? panel;
   String? failure;
@@ -57,6 +59,8 @@ class _FixtureState extends State<_Fixture> {
   void _publish() {
     _browserState = jsonEncode(<String, Object?>{
       'ready': true,
+      'session': session,
+      'sampleRevision': sampleRevision,
       'language': language,
       'sample': sample,
       'document': controller.document.paragraphs.first.text,
@@ -70,6 +74,10 @@ class _FixtureState extends State<_Fixture> {
       'panel': panel,
       'failure': failure,
       'semanticsEnabled': _semantics != null,
+      'sharedCache': <String, int>{
+        'shards': BundledOfficeThesaurus.shared.cachedShardCount,
+        'results': BundledOfficeThesaurus.shared.cachedResultCount,
+      },
     }).toJS;
   }
 
@@ -77,6 +85,7 @@ class _FixtureState extends State<_Fixture> {
     final old = controller;
     old.removeListener(_publish);
     setState(() {
+      sampleRevision++;
       language = locale;
       sample = text;
       controller = _create(text, locale);
@@ -89,7 +98,11 @@ class _FixtureState extends State<_Fixture> {
   }
 
   Future<void> _queryPanel() async {
-    setState(() => querying = true);
+    setState(() {
+      querying = true;
+      panel = null;
+      failure = null;
+    });
     _publish();
     try {
       final service = BundledOfficeThesaurus.create();
@@ -111,6 +124,7 @@ class _FixtureState extends State<_Fixture> {
         ('banque', 'fr-FR'),
       ];
       final results = <Map<String, Object?>>[];
+      final noticeRecords = <Map<String, Object?>>[];
       for (final (word, locale) in queries) {
         final clock = Stopwatch()..start();
         final result = await service.lookup(
@@ -147,12 +161,25 @@ class _FixtureState extends State<_Fixture> {
               },
           ],
         });
+        if (word == 'bank' || word == 'Bank') {
+          final notices = await service.notices(result);
+          noticeRecords.add(<String, Object?>{
+            'locale': result.pack?.locale,
+            'pack': result.packIdentity,
+            'notices': <Map<String, String>>[
+              for (final notice in notices)
+                {'path': notice.path, 'text': notice.text},
+            ],
+          });
+        }
       }
       final warmMs = <double>[];
       for (var iteration = 0; iteration < 5; iteration++) {
         for (final (word, locale) in queries) {
           final clock = Stopwatch()..start();
-          await service.lookup(OfficeThesaurusQuery(text: word, language: locale));
+          await service.lookup(
+            OfficeThesaurusQuery(text: word, language: locale),
+          );
           clock.stop();
           warmMs.add(clock.elapsedMicroseconds / 1000);
         }
@@ -160,11 +187,17 @@ class _FixtureState extends State<_Fixture> {
       final sorted = List<double>.of(warmMs)..sort();
       panel = <String, Object?>{
         'queries': results,
+        'notices': noticeRecords,
+        'warm_mode': 'result-cache',
         'warm_ms': warmMs,
         'warm_p50_ms': sorted[(sorted.length * .5).floor()],
         'warm_p95_ms': sorted[(sorted.length * .95).floor()],
         'cached_shards': service.cachedShardCount,
         'cached_results': service.cachedResultCount,
+        'cache_limits': <String, int>{
+          'shards': service.maxCachedShards,
+          'results': service.maxCachedResults,
+        },
       };
     } catch (error, stack) {
       failure = '$error\n$stack';
@@ -186,7 +219,10 @@ class _FixtureState extends State<_Fixture> {
   @override
   Widget build(BuildContext context) => MaterialApp(
     title: 'Quds thesaurus acceptance fixture',
-    theme: ThemeData(fontFamily: 'Liberation Sans', colorSchemeSeed: Colors.teal),
+    theme: ThemeData(
+      fontFamily: 'Liberation Sans',
+      colorSchemeSeed: Colors.teal,
+    ),
     home: Scaffold(
       appBar: AppBar(title: const Text('Quds offline thesaurus')),
       body: Column(
@@ -206,8 +242,14 @@ class _FixtureState extends State<_Fixture> {
                   onPressed: () => _select('Bank', 'de-DE'),
                   child: const Text('German sample'),
                 ),
-                TextButton(onPressed: controller.undo, child: const Text('Undo')),
-                TextButton(onPressed: controller.redo, child: const Text('Redo')),
+                TextButton(
+                  onPressed: controller.undo,
+                  child: const Text('Undo'),
+                ),
+                TextButton(
+                  onPressed: controller.redo,
+                  child: const Text('Redo'),
+                ),
                 OutlinedButton(
                   onPressed: querying ? null : _queryPanel,
                   child: Text(querying ? 'Querying…' : 'Run query panel'),

@@ -4,6 +4,13 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Keep Shift+F7 available from both the document and the Review pane alongside
+  Alt+F7 / Alt+Shift+F7 writing navigation. Keep language, changes and thesaurus
+  actions within the narrow review status bar.
+- Refuse thesaurus presentation during active IME composition before opening a
+  modal or restoring focus, including when a menu supplies an earlier capture.
+  Show a non-focus-taking notice when the host provides a Scaffold.
+
 - Review current writing findings with Alt+F7 / Alt+Shift+F7 and use
   Shift+F10 / Menu for keyboard-operated suggestions at the caret. Preserve
   selections, adjacent finding boundaries, IME composition, and document focus

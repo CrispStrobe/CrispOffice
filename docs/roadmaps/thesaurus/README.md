@@ -8,6 +8,9 @@ service, guarded Word replacement, and a Flutter dialog. The original scope
 and acceptance requirements below remain the release contract. Current local
 evidence and environment limitations are recorded in the
 [continuation report](../../validation/thesaurus-20261118/continuation/README.md).
+The [resumed integration report](../../validation/thesaurus-20261118/resume/README.md)
+records the newer review/Zotero reconciliation, IME refusal fix and strengthened
+offline replay checks; its results are separate from the earlier qualification.
 The original integration assessment used the CrispStrobe fork at
 [`f383c826205e321eda3ed3bdbcd584e9a2d4da14`](https://github.com/CrispStrobe/quds_office_suite/tree/f383c826205e321eda3ed3bdbcd584e9a2d4da14);
 earlier findings about the much smaller public upstream are not the fork's
@@ -17,8 +20,9 @@ implementation baseline.
 
 Select a word or phrase in a single Word paragraph, or place the caret in a
 word. Open **Review → Thesaurus**, the book action in the review status/pane,
-the **Thesaurus…** context-menu action, or **Shift+F7**. Plain F7 retains writing
-review. A host using `QudsWordEditor` gets the bundled service by default and
+the **Thesaurus…** context-menu action, or **Shift+F7** from the document or
+Review pane. Plain F7 retains writing review, and Alt+F7 / Alt+Shift+F7 navigate
+writing findings. A host using `QudsWordEditor` gets the bundled service by default and
 can inject a different `thesaurusService`.
 
 The dialog inherits the text's effective language. **Look up in** changes only
@@ -28,6 +32,10 @@ replacement is one undo unit. **Sources and licenses** displays verified
 bundled notices. A stale selection, changed language or pack, active IME,
 mixed-language selection, protected/generated content or unsupported target
 cannot be silently replaced.
+
+Finish an active IME composition before opening the thesaurus. The dialog
+helper refuses the request before transferring focus; hosts with a Scaffold
+show an inline notice. A supplied earlier target does not bypass this check.
 
 | Installed pack | Meaning groups | Source terms | Shipped size, including manifest/notices |
 | --- | ---: | ---: | ---: |

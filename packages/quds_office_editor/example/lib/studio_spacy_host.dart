@@ -34,6 +34,7 @@ class StudioSpacyStatus {
     this.grammarEnabled = false,
     this.nerOffered = false,
     this.nerEnabled = false,
+    this.languages = const [],
   });
 
   /// e.g. `macos-arm64`.
@@ -64,6 +65,16 @@ class StudioSpacyStatus {
   /// The user downloaded and enabled named entities.
   final bool nerEnabled;
 
+  /// Additional analysis languages (English, French) on this platform.
+  final List<StudioSpacyLanguageStatus> languages;
+
+  StudioSpacyLanguageStatus? language(SpacyLanguage language) {
+    for (final item in languages) {
+      if (item.language == language) return item;
+    }
+    return null;
+  }
+
   bool get configured => source != StudioSpacySource.none;
 
   /// The manual grammar provider may be offered only for an exact build with
@@ -81,7 +92,51 @@ class StudioSpacyStatus {
     analysisEnabled,
     grammarEnabled,
     nerEnabled,
+    for (final item in languages) item.configurationKey,
   ].join('|');
+}
+
+/// One separately downloadable analysis language (English or French): its
+/// pinned bundle, the v2-capable native package that opens it, and whether
+/// both are installed and verified. Analysis only; never grammar.
+@immutable
+class StudioSpacyLanguageStatus {
+  const StudioSpacyLanguageStatus({
+    required this.language,
+    this.download,
+    this.runtime,
+    this.unavailableReason,
+    this.installed = false,
+    this.runtimeInstalled = false,
+    this.problem,
+  });
+
+  final SpacyLanguage language;
+  final SpacyLanguageDownload? download;
+
+  /// The native package whose library opens [download] on this platform.
+  final SpacyPlatformPackage? runtime;
+  final String? unavailableReason;
+
+  /// Bundle and runtime installed and verified.
+  final bool installed;
+  final bool runtimeInstalled;
+  final String? problem;
+
+  bool get offered => download != null && runtime != null;
+
+  /// Bytes an install would download now (bundle, plus the runtime package
+  /// when it is not installed yet).
+  int get downloadBytes =>
+      (download?.totalBytes ?? 0) +
+      (runtimeInstalled ? 0 : (runtime?.archiveBytes ?? 0));
+
+  String get configurationKey => [
+    language.code,
+    installed,
+    runtime?.librarySha256 ?? '',
+    download?.revision ?? '',
+  ].join(':');
 }
 
 /// Owns acquisition and opt-in state for optional local German analysis.
@@ -113,6 +168,27 @@ abstract class StudioSpacyHost extends ChangeNotifier {
 
   /// Opens a new owned worker for the current verified configuration.
   Future<SpacyTransport> openTransport();
+
+  /// Downloads (explicit user action) and verifies an additional analysis
+  /// language and, when needed, the native package that opens it.
+  Future<void> installLanguage(
+    SpacyLanguage language, {
+    void Function(int received, int total)? onProgress,
+    StudioSpacyInstallCancellation? cancellation,
+  }) async => throw UnsupportedError(
+    '${language.displayName} analysis is unavailable here.',
+  );
+
+  /// Removes an additional language bundle (the shared package stays).
+  Future<void> removeLanguage(SpacyLanguage language) async {}
+
+  /// Opens a worker for [language]; German is [openTransport].
+  Future<SpacyTransport> openLanguageTransport(SpacyLanguage language) async {
+    if (language == SpacyLanguage.german) return openTransport();
+    throw SpacyUnavailableException(
+      'Local ${language.displayName} analysis is not available here.',
+    );
+  }
 }
 
 /// Host-neutral cancellation handle for [StudioSpacyHost.install].

@@ -384,6 +384,116 @@ void main() {
     },
   );
 
+  for (final scenario in [
+    (name: 'Shift F7', shortcut: true, scaffold: true),
+    (name: 'an earlier ready capture', shortcut: false, scaffold: true),
+    (name: 'a host without Scaffold', shortcut: false, scaffold: false),
+  ]) {
+    testWidgets(
+      '${scenario.name} refuses thesaurus without interrupting active IME',
+      (tester) async {
+        final controller = WordEditorController(
+          document: WmlDocument.empty(text: 'bank')..proofingLanguage = 'en-US',
+        );
+        final focus = FocusNode();
+        final editorKey = GlobalKey();
+        final reads = <String>[];
+        final service = testThesaurusService(onRead: reads.add);
+        controller.caret
+          ..selectionAnchor = 2
+          ..logicalIndex = 2;
+        final editor = QudsWordEditor(
+          key: editorKey,
+          controller: controller,
+          focusNode: focus,
+          enableLiveProofing: false,
+          thesaurusService: service,
+        );
+        try {
+          await tester.pumpWidget(
+            MaterialApp(
+              home: scenario.scaffold
+                  ? Scaffold(body: editor)
+                  : Material(child: editor),
+            ),
+          );
+          focus.requestFocus();
+          await _pumpSurface(tester);
+          expect(focus.hasPrimaryFocus, isTrue);
+          expect(controller.input.isAttached, isTrue);
+          // The helper must recheck live composition even when a menu captured
+          // a valid selection before the IME started.
+          final capture = controller.captureThesaurusTarget();
+          expect(capture.status, WordThesaurusTargetStatus.ready);
+          const composing = TextEditingValue(
+            text: 'bank',
+            selection: TextSelection.collapsed(offset: 2),
+            composing: TextRange(start: 0, end: 4),
+          );
+          controller.input.setValue(composing);
+          final selection = (
+            controller.caret.paragraphIndex,
+            controller.caret.logicalIndex,
+            controller.caret.selectionAnchorParagraph,
+            controller.caret.selectionAnchor,
+          );
+          final revision = controller.contentRevision;
+          var focusChanges = 0;
+          void recordFocusChange() => focusChanges++;
+          focus.addListener(recordFocusChange);
+          if (scenario.shortcut) {
+            await tester.sendKeyDownEvent(LogicalKeyboardKey.shiftLeft);
+            await tester.sendKeyEvent(LogicalKeyboardKey.f7);
+            await tester.sendKeyUpEvent(LogicalKeyboardKey.shiftLeft);
+          } else {
+            await showWordThesaurusDialog(
+              editorKey.currentContext!,
+              controller: controller,
+              service: service,
+              capture: capture,
+            );
+          }
+          await _pumpSurface(tester);
+          expect(find.byType(WordThesaurusDialog), findsNothing);
+          expect(
+            find.text(
+              'Finish the current text composition before using Thesaurus.',
+            ),
+            scenario.scaffold ? findsOneWidget : findsNothing,
+          );
+          if (scenario.scaffold) {
+            ScaffoldMessenger.of(
+              editorKey.currentContext!,
+            ).removeCurrentSnackBar();
+            await _pumpSurface(tester);
+          }
+          expect(controller.input.value, composing);
+          expect(controller.input.composing, composing.composing);
+          expect(controller.input.isAttached, isTrue);
+          expect(focus.hasPrimaryFocus, isTrue);
+          expect(focusChanges, 0);
+          expect((
+            controller.caret.paragraphIndex,
+            controller.caret.logicalIndex,
+            controller.caret.selectionAnchorParagraph,
+            controller.caret.selectionAnchor,
+          ), selection);
+          expect(controller.document.paragraphs.single.text, 'bank');
+          expect(controller.contentRevision, revision);
+          expect(controller.canUndo, isFalse);
+          expect(controller.reviewPaneVisible, isFalse);
+          expect(reads, isEmpty);
+          expect(tester.takeException(), isNull);
+          focus.removeListener(recordFocusChange);
+        } finally {
+          await tester.pumpWidget(const SizedBox.shrink());
+          controller.dispose();
+          focus.dispose();
+        }
+      },
+    );
+  }
+
   testWidgets('review status action opens the selected text', (tester) async {
     final controller = WordEditorController(
       document: WmlDocument.empty(text: 'bank')..proofingLanguage = 'en-US',

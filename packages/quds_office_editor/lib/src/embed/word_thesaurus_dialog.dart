@@ -9,6 +9,8 @@ import 'office_controller.dart';
 
 /// Captures the selection before focus leaves the document. Active composition
 /// is reported to the user rather than committed as a side effect of lookup.
+/// No modal route is opened during composition: a non-focus-taking notice is
+/// shown when a Scaffold is available; otherwise this returns without opening.
 Future<void> showWordThesaurusDialog(
   BuildContext context, {
   required WordEditorController controller,
@@ -16,6 +18,22 @@ Future<void> showWordThesaurusDialog(
   WordThesaurusCapture? capture,
 }) {
   final target = capture ?? controller.captureThesaurusTarget();
+  // A menu may supply an earlier capture. Recheck the live IME before opening
+  // a route, because returning focus to the editor would reset its composition.
+  if (target.status == WordThesaurusTargetStatus.composing ||
+      (controller.input.composing.isValid &&
+          !controller.input.composing.isCollapsed)) {
+    if (Scaffold.maybeOf(context) != null) {
+      ScaffoldMessenger.maybeOf(context)?.showSnackBar(
+        const SnackBar(
+          content: Text(
+            'Finish the current text composition before using Thesaurus.',
+          ),
+        ),
+      );
+    }
+    return Future<void>.value();
+  }
   return showDialog<void>(
     context: context,
     builder: (context) => WordThesaurusDialog(

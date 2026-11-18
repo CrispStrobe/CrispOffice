@@ -262,6 +262,10 @@ class _WordReviewPaneState extends State<WordReviewPane> {
                 _setTab(WordReviewPaneTab.proofing);
                 unawaited(_check(includeManualProviders: true));
               },
+              const SingleActivator(LogicalKeyboardKey.f7, shift: true): () {
+                if (!(ModalRoute.of(context)?.isCurrent ?? true)) return;
+                _c.requestThesaurus();
+              },
               const SingleActivator(LogicalKeyboardKey.f7, alt: true): () =>
                   _stepWritingFinding(1),
               const SingleActivator(
