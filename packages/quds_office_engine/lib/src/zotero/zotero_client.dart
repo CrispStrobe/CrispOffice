@@ -279,8 +279,8 @@ class ZoteroClient {
   }
 
   /// Executes an existing saved search in Zotero, with an optional additional
-  /// quick-search and single item-type filter. Pagination and sorting happen in Zotero before
-  /// results are returned. Notes/attachments may be returned by the saved
+  /// quick-search and single item-type filter. Pagination and sorting happen
+  /// in Zotero before results are returned. Notes/attachments may be returned by the saved
   /// search; callers should use [ZoteroItem.isCitable] for citation selection.
   Future<ZoteroPage<ZoteroItem>> savedSearchItems(
     ZoteroLibrary library,
@@ -381,7 +381,7 @@ class ZoteroClient {
       'include': 'data,csljson',
       'sort': sort.name,
       'direction': direction.apiValue,
-      if (itemType != null) 'itemType': itemType,
+      'itemType': ?itemType,
       if (text.isNotEmpty) 'q': text,
       if (text.isNotEmpty) 'qmode': searchMode.name,
     };
