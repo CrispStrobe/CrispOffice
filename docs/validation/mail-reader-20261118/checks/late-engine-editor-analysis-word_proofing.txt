@@ -1,0 +1,6 @@
+Analyzing word_proofing.dart...
+
+   info - word_proofing.dart:168:8 - Use an initializing formal to assign a parameter to a field. Try using an initialing formal ('this._priorityParagraph') to initialize the field. - prefer_initializing_formals
+   info - word_proofing.dart:878:7 - Use the null-aware marker '?' rather than a null check via an 'if'. Try using '?'. - use_null_aware_elements
+
+2 issues found.

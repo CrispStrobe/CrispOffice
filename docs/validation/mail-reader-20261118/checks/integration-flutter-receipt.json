@@ -1,0 +1,50 @@
+{
+  "scope": "Focused local checks for conflicts/overlaps in integrated recent Office branches. No GitHub Actions used.",
+  "sdk": "Official Flutter 3.47.8 / Dart 3.13.7; original SDK, actual pinned flutter_tools pub get completed. Optional online version check disabled with supported flag.",
+  "source_head": "58d88dbc8847734110eaf63d4109ca2f8ba94cff",
+  "checks": [
+    {
+      "check": "integration-editor-overlaps",
+      "command": [
+        "/workspace/scratch/ab53c04e2d5e/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+        "/workspace/scratch/ab53c04e2d5e/toolchains/flutter/bin/cache/flutter_tools.snapshot",
+        "--no-version-check",
+        "--suppress-analytics",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "expanded",
+        "--concurrency=1",
+        "test/word_thesaurus_controller_test.dart",
+        "test/word_thesaurus_dialog_test.dart",
+        "test/word_text_proofing_controls_test.dart",
+        "test/word_text_proofing_pane_test.dart",
+        "test/word_review_pane_test.dart",
+        "test/word_keyboard_review_identity_test.dart"
+      ],
+      "cwd": "/workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor",
+      "started_utc": "2026-11-18T19:11:24.735761+00:00",
+      "exit_code": 0,
+      "seconds": 74.512
+    },
+    {
+      "check": "integration-studio-comment-review",
+      "command": [
+        "/workspace/scratch/ab53c04e2d5e/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+        "/workspace/scratch/ab53c04e2d5e/toolchains/flutter/bin/cache/flutter_tools.snapshot",
+        "--no-version-check",
+        "--suppress-analytics",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "expanded",
+        "--concurrency=1",
+        "test/studio_comment_review_test.dart"
+      ],
+      "cwd": "/workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/example",
+      "started_utc": "2026-11-18T19:12:39.262006+00:00",
+      "exit_code": 0,
+      "seconds": 303.176
+    }
+  ]
+}

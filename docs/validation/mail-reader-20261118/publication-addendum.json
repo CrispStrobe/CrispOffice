@@ -1,0 +1,31 @@
+{
+  "recorded_at_utc": "2026-11-18T20:14:10.951350+00:00",
+  "repository": "CrispStrobe/quds_office_suite",
+  "qualified_implementation_and_evidence_commit": "26d837f1abb2d54a296e5ec83c514f206ccb40a7",
+  "qualified_source_checkpoint": "0d1f699b5c891f8ceee34daf812a27c17a2aaffd",
+  "additional_observed_pull_request": 171,
+  "incoming_branch": "integrate/spacy-en-fr-20261118",
+  "incoming_commit": "637b67c58482e40a3244c590ce77c08b9fc2740e",
+  "incoming_parent": "17fe8db8755a5ab55a677fc7f95aa103c3e2ddc6",
+  "reason": "PR171 was published after the full ref capture. Its sole additional commit updates the upstream published-bundle consumer-run provenance reference and associated documentation.",
+  "changed_files": [
+    "packages/quds_proofing_spacy/lib/src/distribution.dart",
+    "docs/validation/native-spacy-en-fr-20261118/README.md"
+  ],
+  "source_change": {
+    "kind": "nonfunctional provenance constant",
+    "symbol": "spacyLanguageConsumerRun",
+    "before": "44372635419",
+    "after": "44377019364",
+    "before_file_sha256": "c28fd861a88f4d832dda25481caaaf7dcc1e4e954461cbcf355d768be78afbe1",
+    "after_file_sha256": "c0d0149e5c6745f6cd585010af8393215badec510a99c2ade1b7ee8653e14c60",
+    "exact_one_line_replacement_verified": true
+  },
+  "validation_scope": "Existing local test/source receipts remain bound to their recorded qualified checkpoint. This later provenance-only update changes no runtime logic, pins, assets, install behavior, Mail source or tests. No suites were redundantly rerun for this metadata update.",
+  "upstream_run_claims": "Preserved as incoming metadata; no claim that this task executed or independently inspected that hosted run.",
+  "github_actions": {
+    "queried": false,
+    "awaited": false,
+    "rerun": false
+  }
+}

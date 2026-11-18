@@ -1,0 +1,46 @@
+{
+  "status": "PASS",
+  "scope": "Portable Mail core plus focused incoming-branch Office regression checks; no claim of the complete Office suite or browser GUI runtime.",
+  "mail_core": {
+    "actual_workspace_analyze_fatal_infos": "PASS",
+    "native_vm_tests": 28,
+    "javascript_node_tests": 28,
+    "public_entry_native_executable_compile_and_run": "PASS",
+    "public_entry_javascript_compile_and_run": "PASS",
+    "byte_fixture_sha256": "2b32c10408a8c9c7bcf0c050e6da00385fcefb18b81d221df04e88ce9f1b6c7a",
+    "command_receipt": "core-workspace-receipt.json",
+    "source_hashes": "core-source-hashes.json"
+  },
+  "incoming_office_regressions": {
+    "engine_thesaurus_tests": 24,
+    "editor_overlap_tests": 128,
+    "studio_comment_review_parameterized_tests": 38,
+    "total_test_executions": 190,
+    "targeted_source_analyzers": 6,
+    "command_receipts": [
+      "core-workspace-receipt.json",
+      "integration-flutter-receipt.json",
+      "integration-overlap-analysis.json"
+    ],
+    "source_hashes": "integration-source-hashes.json",
+    "production_code_repairs_needed": false
+  },
+  "runtime": {
+    "flutter": "3.47.8",
+    "dart": "3.13.7",
+    "tool_bootstrap": "Actual direct Dart pub get --example against original Flutter SDK tool manifest; exact pinned dependencies resolved without manifest edits.",
+    "flutter_test_flags": [
+      "--no-version-check",
+      "--suppress-analytics",
+      "--no-pub",
+      "--concurrency=1"
+    ],
+    "cache_locks_bypassed": false,
+    "github_actions_used": false
+  },
+  "recorded_attempts": [
+    "integration-startup-lock-blocked.json",
+    "integration-version-probe-blocked.json"
+  ],
+  "test_log_note": "The repository ignores .log by default; these evidence logs must be explicitly staged when committing."
+}

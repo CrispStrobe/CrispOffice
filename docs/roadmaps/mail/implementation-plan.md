@@ -1,6 +1,6 @@
 # Quds Mail — coding plan and ordered TODO
 
-**Scope authority:** [README.md](README.md). **Status:** every task below is planned, not implemented or tested by this documentation change.
+**Scope authority:** [README.md](README.md). **Current implementation and evidence:** [status.md](status.md). Checked items below have a demonstrated implementation; a task acceptance gate can remain open even when its source checklist is checked.
 **Target:** one reusable Dart/Flutter Mail implementation, a full standalone Office app, and a CrispCloud integration that preserves its saved-message workflows.
 **License decision:** MIT for new independent Quds source; approved permissive dependencies plus MPL-2.0 are allowed. No GPL/AGPL/LGPL/NC imports into shared Quds or standalone source.
 
@@ -132,10 +132,10 @@ Keep envelope acceptance separate from message submission and final delivery. Th
 
 **Depends on:** none.
 
-- [ ] Record current Quds commit and relevant source paths; preserve unrelated changes.
-- [ ] Inspect .fvmrc, root/package manifests and current commands; use Dart ^3.12.0 / Flutter >=3.44.0 or the repository's updated compatible pins.
-- [ ] Create a mail evidence directory containing a source/toolchain receipt, intended targets and initial dependency decisions.
-- [ ] Confirm no existing mail implementation has arrived since this planning snapshot before adding competing packages.
+- [x] Record current Quds commit and relevant source paths; preserve unrelated changes.
+- [x] Inspect .fvmrc, root/package manifests and current commands; use Dart ^3.12.0 / Flutter >=3.44.0 or the repository's updated compatible pins.
+- [x] Create a mail evidence directory containing a source/toolchain receipt, intended targets and initial dependency decisions.
+- [x] Confirm no existing mail implementation has arrived since this planning snapshot before adding competing packages.
 
 **Done when:** the agent can run the current workspace commands and identify new versus existing paths. Existing Office tests are recorded only if actually run.
 
@@ -143,13 +143,13 @@ Keep envelope acceptance separate from message submission and final delivery. Th
 
 **Depends on:** M00. **Files:** third_party/enough_mail; provenance and license inventory.
 
-- [ ] Retrieve reviewed upstream fc69f17e24e9d03ce813bbf613c07a2ce94e5e9a, whose manifest is 3.0.0; record source checksum and relationship to any chosen release archive.
-- [ ] Keep MPL LICENSE and notices; document local patches and source-release location. Do not relabel upstream files MIT.
-- [ ] Resolve exact dependencies and check transitive licenses, generated code and bundled assets against LIC-01/LIC-02.
-- [ ] Add public lib/mime_core.dart with portable parser/model/codec exports. Do not export lib/mime.dart, lib/codecs.dart, native clients or File-based MessageBuilder through this entry.
-- [ ] Give quds_mail_mime a supported public import; do not import another package's lib/src.
-- [ ] Keep native APIs compiling. Split filesystem composition helpers into a native-only layer when shared composition is added.
-- [ ] Do not depend on enough_mail_flutter/html 2.x or force old wrappers through dependency_overrides.
+- [x] Retrieve reviewed upstream fc69f17e24e9d03ce813bbf613c07a2ce94e5e9a, whose manifest is 3.0.0; record source checksum and relationship to any chosen release archive.
+- [x] Keep MPL LICENSE and notices; document local patches and source-release location. Do not relabel upstream files MIT.
+- [x] Resolve exact dependencies and review the selected runtime source closure and notices; excluded CJK mapping modules remain unsupported. Product-specific LIC-02 artifact review is still open.
+- [x] Add public lib/mime_core.dart with portable parser/model/codec exports. Do not export lib/mime.dart, lib/codecs.dart, native clients or File-based MessageBuilder through this entry.
+- [x] Give quds_mail_mime a supported public import; do not import another package's lib/src.
+- [x] Keep native APIs compiling. Split filesystem composition helpers into a native-only layer when shared composition is added.
+- [x] Do not depend on enough_mail_flutter/html 2.x or force old wrappers through dependency_overrides.
 
 **Acceptance:** actual native and JavaScript compilation of a tiny public-entry parser; original RFC fixture parsed in both runtimes; old native entry still analyzes. Static import review alone is not completion.
 
@@ -164,15 +164,17 @@ private/util/word.dart. Paths are relative to upstream lib/src. External imports
 in this closure are collection, json_annotation and enough_convert. This is a static
 inspection receipt, not a complete dependency or runtime certification.
 
+**Open qualification:** actual browser execution is blocked in this executor; see [status.md](status.md). Native/Node checks do not close that gate. M03 additionally requires the intended low-memory-device measurement.
+
 ### M02 — portable domain and host contracts
 
 **Depends on:** M00. **Files:** quds_mail_core.
 
-- [ ] Implement the minimal typed models and ports from section 3, with explicit parse/provider error variants.
-- [ ] Define raw-message ownership, immutable attachment references, profile/account scoping and cancellation.
-- [ ] Define capability negotiation and native/web unsupported behavior.
-- [ ] Add provider-independent state-machine tests for account disposal, stale operations and recipient-level outcomes.
-- [ ] Keep mail, calendar and contact capabilities separate; do not imply IMAP implements all three.
+- [x] Implement the minimal typed models and ports from section 3, with explicit parse/provider error variants.
+- [x] Define raw-message ownership, immutable attachment references, profile/account scoping and cancellation.
+- [x] Define portable capability negotiation and typed unsupported results. Native/web transport dispatch remains M06.
+- [x] Add provider-independent state-machine tests for account disposal, stale operations and recipient-level outcomes.
+- [x] Keep mail, calendar and contact capabilities separate; do not imply IMAP implements all three.
 
 **Acceptance:** pure-Dart analysis and JS compilation; no Flutter/dart:ui/dart:io import in core; fixture provider demonstrates real state transitions without successful stub implementations.
 
@@ -180,32 +182,36 @@ inspection receipt, not a complete dependency or runtime certification.
 
 **Depends on:** M01, M02. **Files:** quds_mail_mime.
 
-- [ ] Parse immutable bytes through the portable upstream surface and project into Quds DTOs.
-- [ ] Preserve original raw bytes/hash for source view and export; display decoding never overwrites originals.
-- [ ] Implement defaults: full input 32 MiB; preview input 20 MiB; cumulative decoded payload 32 MiB; body 8 MiB; attachment 16 MiB; 128 attachments; 512 parts; nesting 20; header block 256 KiB; logical header field 64 KiB.
-- [ ] Enforce budgets before unbounded allocation and during traversal/decode. Where the upstream whole-message parser cannot enforce a limit early, add a bounded pre-scan and/or a reviewed fork fix. An after-the-fact output-size check is insufficient.
-- [ ] Implement deterministic plain/HTML alternative selection, CID mapping, encoded headers/filenames, truncated/malformed diagnostics and supported charset tests.
-- [ ] Unsupported charset or syntax produces a diagnostic and source fallback, not silent replacement presented as exact text.
-- [ ] Add strict validation or reviewed decoder hooks for unknown charsets, malformed bytes and undecodable encoded words before lossy fallback. Replace uncontrolled upstream parser/codec print output with structured content-redacted diagnostics. Merely wrapping a permissive decoded string does not establish this contract.
-- [ ] Define bounded HTML/image work and limit handling, including cancellation on browser workers/native isolates where used.
+- [x] Parse immutable bytes through the portable upstream surface and project into Quds DTOs.
+- [x] Preserve original raw bytes/hash for source view and export; display decoding never overwrites originals.
+- [x] Implement defaults: full input 32 MiB; preview input 20 MiB; cumulative decoded payload 32 MiB; body 8 MiB; attachment 16 MiB; 128 attachments; 512 parts; nesting 20; header block 256 KiB; logical header field 64 KiB.
+- [x] Enforce budgets before unbounded allocation and during traversal/decode. Where the upstream whole-message parser cannot enforce a limit early, add a bounded pre-scan and/or a reviewed fork fix. An after-the-fact output-size check is insufficient.
+- [x] Implement deterministic plain/HTML alternative selection, CID mapping, encoded headers/filenames, truncated/malformed diagnostics and supported charset tests.
+- [x] Unsupported charset or syntax produces a diagnostic and source fallback, not silent replacement presented as exact text.
+- [x] Add strict validation or reviewed decoder hooks for unknown charsets, malformed bytes and undecodable encoded words before lossy fallback. Replace uncontrolled upstream parser/codec print output with structured content-redacted diagnostics. Merely wrapping a permissive decoded string does not establish this contract.
+- [x] Define bounded HTML/image work and limit handling, including cancellation on browser workers/native isolates where used.
 
 **Tests to add:** test/eml_bytes_test.dart, mime_limits_test.dart, mime_encodings_test.dart, mime_parts_test.dart, portable_import_test.dart; independently authored fixtures under test/fixtures.
 
 **Acceptance:** non-UTF-8/line-ending/signed-message original export has identical hash; malformed nesting/count/decode cases stop within limits; unknown header/body charsets, malformed UTF-8 and invalid encoded words produce explicit diagnostics without leaking source headers/body to console or logs; equivalent native/browser projection for supported fixtures; measured low-memory-target peak usage is retained. No streaming-parser claim.
 
+**Open qualification:** actual browser execution is blocked in this executor; see [status.md](status.md). Native/Node checks do not close that gate. M03 additionally requires the intended low-memory-device measurement.
+
 ### M04 — shared account-free message reader
 
 **Depends on:** M02, M03. **Files:** quds_mail_ui reader plus fixture harness.
 
-- [ ] Implement MailMessageView and an explicit decoded-message selection/search/copy interface usable in full and compact host views.
-- [ ] Headers, plain text, supported static HTML, attachment list, CID resources and diagnostic states.
-- [ ] Sanitize before rendering; block script/forms/active URLs, remote images, CSS url/import/background/srcset/font and equivalent resource routes.
-- [ ] Link/remote-content actions go through host policy. Use no WebView by default.
-- [ ] Keep Raw Source/Hex and attachment-open callbacks available to host routing.
-- [ ] Render RTL/mixed-direction addresses safely; preserve accessible labels and keyboard traversal.
-- [ ] Provide an in-memory preview harness that needs no account, credentials, database or network.
+- [x] Implement MailMessageView and an explicit decoded-message selection/search/copy interface usable in full and compact host views.
+- [x] Headers, plain text, supported static HTML, attachment list, CID resources and diagnostic states.
+- [x] Sanitize before rendering; block script/forms/active URLs, remote images, CSS url/import/background/srcset/font and equivalent resource routes.
+- [x] Link/remote-content actions go through host policy. Use no WebView by default.
+- [x] Keep Raw Source/Hex and attachment-open callbacks available to host routing.
+- [x] Render RTL/mixed-direction addresses safely; preserve accessible labels and keyboard traversal.
+- [x] Provide an in-memory preview harness that needs no account, credentials, database or network.
 
 **Acceptance:** the injected resource/network port observes zero requests, and native/browser harnesses also monitor or deny outbound traffic at the runtime boundary after app bootstrap. Exercise ordinary remote images, CSS resources, srcset, protocol-relative/encoded URLs and redirects. Test explicit user-approved loading separately. Exact attachment bytes reach the read-only callback; no writable source path is fabricated; full/preview modes use their proper budgets. This enables CC-01 through CC-04, but migration waits for host parity tests.
+
+**Open qualification:** actual browser execution is blocked in this executor; see [status.md](status.md). Native/Node checks do not close that gate. M03 additionally requires the intended low-memory-device measurement.
 
 ### M04W — reusable account-aware mailbox workspace
 
