@@ -1,0 +1,68 @@
+{
+  "status": "passed",
+  "recorded_at_utc": "2026-11-18T10:08:08.192068+00:00",
+  "repository": "CrispStrobe/quds_office_suite",
+  "branch": "codex/zotero-capabilities-20261118",
+  "product_commit": "1ccf329da190d47720962bd9d8c65c90acf562db",
+  "base_main": "c8eca37d1639ac1d20efb83ba2e9da51981a3ad4",
+  "cohorts": {
+    "engine": {
+      "suites": 20,
+      "substantive_passes": 408,
+      "skips": 0,
+      "errors": 0,
+      "exit_code": 0,
+      "summary": "local/engine/summary.json"
+    },
+    "editor": {
+      "suites": 16,
+      "substantive_passes": 215,
+      "skips": 0,
+      "errors": 0,
+      "exit_code": 0,
+      "summary": "local/editor/summary.json"
+    },
+    "studio": {
+      "suites": 1,
+      "substantive_passes": 18,
+      "skips": 0,
+      "errors": 0,
+      "exit_code": 0,
+      "summary": "local/studio/summary.json"
+    }
+  },
+  "substantive_passes": 641,
+  "test_suites": 37,
+  "selected_test_paths_disjoint": true,
+  "new_regression_cases": 47,
+  "changed_dart_targets": 8,
+  "strict_analysis": "passed",
+  "declared_language_format": "passed",
+  "diff_whitespace": "passed",
+  "engine_final_source_binding": "local/engine/final-source-equivalence.json",
+  "independent_review": "local/review/review.json",
+  "initial_reconciliation": "reconciliation.json",
+  "final_frontier": "local/review/final-frontier.json",
+  "initial_incoming_refs": 353,
+  "excluded_from_totals": [
+    "setup smokes",
+    "overlapping development tests",
+    "hidden suite-loading events",
+    "rejected editor attempt at f57fde45"
+  ],
+  "github_actions_or_status_endpoints_used": false,
+  "scope": [
+    "synthetic document and DOCX round-trip regressions",
+    "controlled Zotero response and client routing tests",
+    "genuine Flutter widgets and Studio loopback transport tests"
+  ],
+  "not_claimed": [
+    "new live Zotero account or desktop-picker acceptance",
+    "live query relevance or server ordering acceptance",
+    "full compiled application acceptance",
+    "new Microsoft Word or LibreOffice consumer acceptance"
+  ],
+  "final_incoming_refs": 355,
+  "final_distinct_incoming_heads": 231,
+  "independent_review_checks": 148
+}
