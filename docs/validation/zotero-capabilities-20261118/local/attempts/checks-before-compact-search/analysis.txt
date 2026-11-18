@@ -1,0 +1,5 @@
+Analyzing word_zotero_dialog.dart, word_zotero_sources.dart, word_zotero_catalog_query_test.dart, word_zotero_connected_alias_test.dart, word_zotero_source_resolver_test.dart, zotero_client.dart, zotero_models.dart, zotero_catalog_query_test.dart...
+
+   info - packages/quds_office_editor/test/word_zotero_catalog_query_test.dart:130:66 - 'description' is deprecated and shouldn't be used. Use FinderBase.describeMatch instead. FinderBase.describeMatch allows for more readable descriptions and removes ambiguity about pluralization. This feature was deprecated after v3.13.0-0.2.pre. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+
+1 issue found.

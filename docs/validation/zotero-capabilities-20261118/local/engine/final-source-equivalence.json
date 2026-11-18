@@ -1,0 +1,11 @@
+{
+  "status": "passed",
+  "checked_at_utc": "2026-11-18T10:00:11.631160+00:00",
+  "qualified_source_head": "6f44d2b901d81f1ab7a5817e37f24da9e4bb79fe",
+  "current_head": "1ccf329da190d47720962bd9d8c65c90acf562db",
+  "frozen_product_commit": "1ccf329da190d47720962bd9d8c65c90acf562db",
+  "file_count": 416,
+  "source_map_sha256": "334956fce4608c6ee05ec8868fc6d5077ed6e4674c867b056f8b84fbb7f1b49d",
+  "differences": [],
+  "scope": "Rehashed all 416 accepted engine source/test/fixture/manifest inputs against final product after editor-only changes. This is source-equivalence verification, not an additional test execution."
+}
