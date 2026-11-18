@@ -1,0 +1,160 @@
+{
+  "status": "ready",
+  "recorded_at_utc": "2026-11-18T12:06:59.992138+00:00",
+  "source_head_at_setup": "2292548eb69de2dbb5240ab9da59256f362137c6",
+  "source": "/workspace/scratch/1f524e1234f3/quds_office_suite",
+  "workspace": "/workspace/scratch/1f524e1234f3/zotero-validation",
+  "sdk": "/workspace/scratch/1f524e1234f3/zotero-toolchain/flutter-sdk",
+  "environment_script": "/workspace/scratch/1f524e1234f3/zotero-toolchain/env.sh",
+  "runtime": {
+    "frameworkVersion": "3.47.8",
+    "channel": "stable",
+    "repositoryUrl": "https://github.com/flutter/flutter.git",
+    "frameworkRevision": "737ba8f885dc774b53b442759999a312c9461e4e",
+    "frameworkCommitDate": "2026-10-22 21:37:31 -0700",
+    "engineRevision": "cf636b1dfb818dd6a3ff16e390e93b1a036969c8",
+    "engineCommitDate": "2026-10-23 02:13:38.000Z",
+    "engineContentHash": "dfd2e6cb7d319db05e3bf1503f3e2ac60f6288a2",
+    "engineBuildDate": "2026-10-22 20:34:48.330",
+    "dartSdkVersion": "3.13.7",
+    "devToolsVersion": "2.60.0",
+    "flutterVersion": "3.47.8",
+    "flutterRoot": "/workspace/scratch/1f524e1234f3/zotero-toolchain/flutter-sdk"
+  },
+  "archive": {
+    "url": "https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.47.8-stable.tar.xz",
+    "archive_sha256": "baf7dcc5a3dbba60fe863bf493a6cf203195621f7786eaa5a1bba02cd0d87dd2",
+    "archive_bytes": 1581444364,
+    "sdk_root": "/workspace/scratch/1f524e1234f3/zotero-toolchain/flutter-sdk",
+    "elapsed_seconds": 77.88464355700125,
+    "telemetry_environment_required": {
+      "DASH__SUPPRESS_ANALYTICS": "true",
+      "FLUTTER_SUPPRESS_ANALYTICS": "true",
+      "CI": "true"
+    },
+    "telemetry_consent_changed": false
+  },
+  "executable_sha256": {
+    "dart": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb",
+    "flutter_tester": "800f4ca182df7dd2fb46a42dea5d76277b9dbc5e8cd2915e02bcbc978681b45f"
+  },
+  "framework_tracked_changes": [],
+  "workspace_package_count": 110,
+  "workspace_lock_sha256": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130",
+  "workspace_manifest_matches": {
+    "pubspec.yaml": true,
+    "packages/legacy_doc_parser/pubspec.yaml": true,
+    "packages/quds_office_engine/pubspec.yaml": true,
+    "packages/quds_proofing_harper/pubspec.yaml": true,
+    "packages/quds_proofing_gector/pubspec.yaml": true,
+    "packages/quds_proofing_spacy/pubspec.yaml": true,
+    "packages/quds_office_engine/example/pubspec.yaml": true,
+    "packages/quds_reports/pubspec.yaml": true,
+    "packages/quds_office_editor/pubspec.yaml": true,
+    "packages/quds_office_editor/example/pubspec.yaml": true,
+    "apps/quds_report_studio/pubspec.yaml": true
+  },
+  "source_manifest_sha256": {
+    "pubspec.yaml": "f0115daba20b901e543f242861092c69d0486a2135e0d11c862b0015d1e82f30",
+    "packages/legacy_doc_parser/pubspec.yaml": "150af8d89562635bf5a876c0a539c20ae48b58ea3666db071b5e4ebd3addf153",
+    "packages/quds_office_engine/pubspec.yaml": "049a5c838d0d1b8c482f984c27b66c5235411d93b5d06ff1c254dca4c6274408",
+    "packages/quds_proofing_harper/pubspec.yaml": "e94200003c36cc9047685b145f16b85915e8ca80fe347d3e3733c38a9ad5f63e",
+    "packages/quds_proofing_gector/pubspec.yaml": "26074a4688212904b95e3cb24fa934ffb94a1881c41d8d98074e38d586ea63b1",
+    "packages/quds_proofing_spacy/pubspec.yaml": "eaa01aa5b7410e785ed9171b1cfd5073cb619663a900403119e3bb02f93d57f5",
+    "packages/quds_office_engine/example/pubspec.yaml": "9f1b07bb8665c2125d92074aef74f2892963e34171ab0ea381df7a1cf798fb6c",
+    "packages/quds_reports/pubspec.yaml": "5e4bc0d98b2ed07463fede914e41d6536a985ede6746741df85a0bc743dbb98a",
+    "packages/quds_office_editor/pubspec.yaml": "f3cbfae1226252ba650d206e9f58eb0792d0cec6e8518355f47a8a9fc970b03d",
+    "packages/quds_office_editor/example/pubspec.yaml": "ccd93525f92813df224a3691d45f30d1c99482a1168844568841721487f0945f",
+    "apps/quds_report_studio/pubspec.yaml": "4a6624ee8d31222409dca9cea01daa28231ae477ac81369a2226540837a8179a"
+  },
+  "source_graph_link": "/workspace/scratch/1f524e1234f3/quds_office_suite/.dart_tool",
+  "source_graph_target": "/workspace/scratch/1f524e1234f3/zotero-validation/.dart_tool",
+  "hosted_archive_count": 162,
+  "prefetch_receipt": "setup/prefetch-162.json",
+  "commands": [
+    {
+      "command": "python zotero-toolchain/restore_flutter.py",
+      "exit_code": 0,
+      "log": "logs/restore_flutter.log"
+    },
+    {
+      "command": "python zotero-toolchain/scripts/prefetch_pub.py quds_office_suite/docs/validation/proofing-20261116/integration-resume/workspace-pubspec.lock",
+      "exit_code": 0,
+      "log": "logs/pub-prefetch.log"
+    },
+    {
+      "command": "flutter --version --machine",
+      "exit_code": 0,
+      "log": "logs/flutter-version.json"
+    },
+    {
+      "command": "dart --version",
+      "exit_code": 0,
+      "log": "logs/dart-version.log"
+    },
+    {
+      "command": "dart pub get --offline --enforce-lockfile",
+      "cwd": "/workspace/scratch/1f524e1234f3/zotero-validation",
+      "exit_code": 0,
+      "log": "logs/workspace-pub-get.log"
+    },
+    {
+      "command": "python zotero-toolchain/scripts/prefetch_pub.py zotero-toolchain/flutter-sdk/packages/flutter_tools/pubspec.lock quds_office_suite/docs/validation/proofing-20261116/integration-resume/workspace-pubspec.lock",
+      "exit_code": 0,
+      "log": "logs/pub-prefetch-tools.log"
+    },
+    {
+      "command": "dart pub get --offline --enforce-lockfile",
+      "cwd": "/workspace/scratch/1f524e1234f3/zotero-toolchain/flutter-sdk/packages/flutter_tools",
+      "exit_code": 0,
+      "log": "logs/flutter-tools-pub-get.log"
+    }
+  ],
+  "product_tests_run": 0,
+  "no_ci_actions_used": true,
+  "notes": [
+    "Official Flutter release archive verified using preserved SHA-256 before extraction; SDK and binary identities equal previous qualified runtime.",
+    "94 genuine hosted package archives SHA-256 verified against exact saved workspace lock.",
+    "All 11 current source manifests copied unchanged; lib/test/assets live-linked to current source.",
+    "Source .dart_tool link added with root authorization; no source/package/SDK dependency changes.",
+    "Flutter tools package graph resolved through genuine dart pub get --offline --enforce-lockfile after restoring its exact official package archives; SDK lock and source unchanged."
+  ],
+  "setup_attempts": [
+    {
+      "command": "flutter test --no-pub test/word_zotero_format_test.dart --reporter expanded",
+      "exit_code": 130,
+      "result": "Interrupted during implicit flutter_tools dependency resolution; no tests ran.",
+      "log": "logs/setup-editor-format-smoke.log",
+      "accepted": false
+    },
+    {
+      "command": "flutter -v test --no-pub test/word_zotero_format_test.dart --reporter expanded",
+      "exit_code": 130,
+      "result": "Confirmed implicit flutter_tools pub get startup; interrupted before any test.",
+      "log": "logs/setup-editor-format-smoke-verbose.log",
+      "accepted": false
+    }
+  ],
+  "flutter_tools_lock_sha256": "6a98afb61c0cc72f31631ab444932f072fd275aa04d56cde2bf6831ba02fc8f8",
+  "setup_smoke": {
+    "command": "flutter test --no-pub test/word_zotero_format_test.dart --reporter expanded",
+    "cwd": "/workspace/scratch/1f524e1234f3/zotero-validation/packages/quds_office_editor",
+    "exit_code": 0,
+    "passed": 31,
+    "log": "logs/setup-editor-format-smoke-accepted.log",
+    "counted_as_product_acceptance": false
+  },
+  "log_sha256": {
+    "logs/dart-version.log": "945e6a359e53647f8fd753347245ed78bc06c2808919b2d7749817181d010ff4",
+    "logs/flutter-tools-pub-get.log": "e16a62f9005c169d9e2f1a9504171a77a2106b841a81ae046530ced1ced89127",
+    "logs/flutter-version.json": "d34300e8182172d273e4bf696ca83e2cccc069e71a211a792c1982087c8ec301",
+    "logs/flutter-version.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/pub-prefetch-tools.log": "2ec34c0c67e0aa50c7365c167e43c39c9dece58d6087f771a8c3115b7d9d2fd4",
+    "logs/pub-prefetch.log": "81a05be0c5951be7d673a0907f695dde37a307dc2aaed32e2a02382bf81db14f",
+    "logs/restore_flutter.log": "ac45c0b3671ddef7e760558f0372f7f84a42b6bebe8fc5b66e884f1a3147f757",
+    "logs/setup-editor-format-smoke-accepted.log": "3653bd5850a8e7f2ae14379ef24e7c51ce51e639c218e142053a13b95f934318",
+    "logs/setup-editor-format-smoke-verbose.log": "500a939d57d278834c189b0bf5ded3af762e0ef76688979c536a3bfd8e222a28",
+    "logs/setup-editor-format-smoke.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/workspace-pub-get.log": "d4cb7a3c68b4133b4f6e58c67ff5bfd13725d8021e930388cdc98da8a575919d"
+  }
+}
