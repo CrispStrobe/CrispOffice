@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "recorded_at_utc": "2026-11-18T18:29:05.480236+00:00",
+  "recorded_at_utc": "2026-11-18T18:39:23.808284+00:00",
   "purpose": "Preserved development attempts, including actual failures; these are not the final frozen gate and are not included in its counts.",
   "source_binding": "These logs came from evolving working-tree attempts. Their exact per-attempt product tree was not frozen by the final runner. File names containing final are original development names, not an acceptance claim.",
   "collection_scope": "Only task-generated text controls/pane/visual, engine inheritance, and comment/menu/clipboard/pointer/geometry/analysis development logs. Runtime and dependency caches are excluded.",
@@ -413,6 +413,48 @@
         "format": "json-reporter",
         "complete": true,
         "success": false
+      }
+    },
+    {
+      "source_basename": "comment-review-select-pointer.log",
+      "source_relative_to_workspace": "comment-review-select-pointer.log",
+      "source_bytes": 2368,
+      "source_sha256": "aa70962228dfb32eac5e1c0bc9ab4f2758593cfbba9b85143a5dc6dd53f453e5",
+      "archive": "comment-review-select-pointer.log.gz",
+      "archive_bytes": 742,
+      "archive_sha256": "636dbe7eb0cd1ff7782f0a95bffcdf15b53c09b9ce4184917e70b5c1a198961c",
+      "observed_reporter_result": {
+        "format": "expanded-reporter",
+        "complete": true,
+        "success": false
+      }
+    },
+    {
+      "source_basename": "comment-review-select-pointer-fixed.log",
+      "source_relative_to_workspace": "comment-review-select-pointer-fixed.log",
+      "source_bytes": 239,
+      "source_sha256": "c08d37dde58ebd0268eac11181c7da44ae0ad36b1babe0183fb5e4e7b71472c2",
+      "archive": "comment-review-select-pointer-fixed.log.gz",
+      "archive_bytes": 192,
+      "archive_sha256": "147eaab4d5f239f4cbeaa0e000398bb1963b64140505b2a7c4a73653755b0573",
+      "observed_reporter_result": {
+        "format": "expanded-reporter",
+        "complete": true,
+        "success": true
+      }
+    },
+    {
+      "source_basename": "comment-review-select-pointer-fixed-analysis.log",
+      "source_relative_to_workspace": "comment-review-select-pointer-fixed-analysis.log",
+      "source_bytes": 84,
+      "source_sha256": "060dc71f9a00a11da2945ab613731cc2b24a764f2e6a39dec5637e7e38394d87",
+      "archive": "comment-review-select-pointer-fixed-analysis.log.gz",
+      "archive_bytes": 97,
+      "archive_sha256": "c2439be1d57b8f7274ec957a8623a77d0dd9473c70ab845dafdc569f2fe7fe80",
+      "observed_reporter_result": {
+        "format": "analysis",
+        "complete": true,
+        "success": true
       }
     }
   ]

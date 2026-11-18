@@ -672,6 +672,124 @@ void main() {
     }
   }
 
+  testWidgets('Select mode exposes real pointer comment selection and Copy', (
+    tester,
+  ) async {
+    tester.view.devicePixelRatio = 1;
+    tester.view.physicalSize = const Size(1440, 1000);
+    addTearDown(tester.view.resetPhysicalSize);
+    addTearDown(tester.view.resetDevicePixelRatio);
+    final controller = await _studio(tester);
+    final clipboard = OfficeClipboard.instance;
+    final useSystem = clipboard.useSystem;
+    clipboard
+      ..clear()
+      ..useSystem = false;
+    addTearDown(() {
+      clipboard
+        ..useSystem = useSystem
+        ..clear();
+    });
+    await tester.tap(find.text('File').first);
+    await _pump(tester);
+    await _tapCommand(tester, 'Select');
+    final finder = find.byKey(const ValueKey('studio-comment-canvas-1'));
+    expect(finder, findsOneWidget);
+    final canvas = tester.widget<WordCanvas>(finder);
+    expect(canvas.config.allowsSelection, isTrue);
+    expect(canvas.config.allowsMutation, isFalse);
+    expect(canvas.config.showsCaret, isFalse);
+    expect(_field(1), findsNothing);
+    controller.documentCaret
+      ..paragraphIndex = 0
+      ..logicalIndex = 5
+      ..selectionAnchorParagraph = 0
+      ..selectionAnchor = 0;
+    final revision = controller.contentRevision;
+    final render = tester.renderObject<RenderWordCanvas>(finder);
+    final line = controller.commentLaidOut!.pages
+        .expand((page) => page.lines)
+        .firstWhere(
+          (line) => line.paragraphIndex == 0 && line.glyphs.isNotEmpty,
+        );
+    Offset pointAt(int index) {
+      final glyph = line.glyphs.firstWhere(
+        (glyph) =>
+            glyph.glyph.logicalIndex <= index && index < glyph.logicalEnd,
+      );
+      return render.localToGlobal(
+        render.windowForPagePoint(
+          line.pageIndex,
+          Offset(glyph.x + glyph.advance * .15, line.y + line.height * .5),
+        ),
+      );
+    }
+
+    final drag = await tester.startGesture(
+      pointAt(0),
+      kind: PointerDeviceKind.mouse,
+    );
+    await drag.moveTo(pointAt(6));
+    await tester.pump();
+    await drag.moveTo(pointAt(6) + const Offset(.1, 0));
+    await drag.up();
+    await _pump(tester);
+    expect(controller.isEditingComment, isTrue);
+    expect(controller.commentCaret.normalizedRange, (
+      startPara: 0,
+      startIdx: 0,
+      endPara: 0,
+      endIdx: 6,
+    ));
+    final contextClick = await tester.startGesture(
+      pointAt(1),
+      kind: PointerDeviceKind.mouse,
+      buttons: kSecondaryMouseButton,
+    );
+    await contextClick.up();
+    await _pump(tester);
+    expect(find.byKey(const Key('office-context-menu')), findsOneWidget);
+    expect(_menuAction(tester, 'Cut').onTap, isNull);
+    expect(_menuAction(tester, 'Paste').onTap, isNull);
+    expect(_menuAction(tester, 'Resolve').onTap, isNull);
+    expect(_menuAction(tester, 'Delete comment').onTap, isNull);
+    expect(_menuAction(tester, 'Copy').onTap, isNotNull);
+    await tester.tap(
+      find.descendant(
+        of: find.byKey(const Key('office-context-menu')),
+        matching: find.text('Copy'),
+      ),
+    );
+    await _pump(tester);
+    expect(clipboard.local?.plain, 'Commet');
+    expect(controller.input.isAttached, isFalse);
+    await tester.sendKeyEvent(LogicalKeyboardKey.delete);
+    await _pump(tester);
+    expect(controller.documentCaret.logicalIndex, 5);
+    expect(controller.documentCaret.selectionAnchor, 0);
+    expect(controller.document.comments.first.text, 'Commet one.');
+    expect(controller.document.paragraphs.single.text, 'Alpha beta gamma.');
+    expect(controller.contentRevision, revision);
+    expect(controller.canUndo, isFalse);
+    await _tapCommand(tester, 'View');
+    expect(finder, findsNothing);
+    final card = find.byKey(const ValueKey('studio-comment-1'));
+    expect(card, findsOneWidget);
+    final viewClick = await tester.startGesture(
+      tester.getCenter(card),
+      kind: PointerDeviceKind.mouse,
+      buttons: kSecondaryMouseButton,
+    );
+    await viewClick.up();
+    await _pump(tester);
+    expect(find.byKey(const Key('office-context-menu')), findsNothing);
+    expect(controller.contentRevision, revision);
+    await _tapCommand(tester, 'Select');
+    expect(finder, findsOneWidget);
+    expect(tester.widget<WordCanvas>(finder).config.allowsMutation, isFalse);
+    await _close(tester);
+  });
+
   testWidgets(
     'read-only comment Copy and Select all own the comment selection',
     (tester) async {

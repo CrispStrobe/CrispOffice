@@ -6289,6 +6289,12 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   }
 
   Widget _wordCommentsPane(bool dark, {bool expanded = false}) {
+    // Match the Word surface's current mode before its child rebuilds.
+    _word.syncConfig(
+      _printPreview
+          ? _config.copyWith(mode: OfficeInteractionMode.viewing)
+          : _config,
+    );
     _syncCommentReplyDrafts();
     final Color bg = dark ? const Color(0xFF242424) : const Color(0xFFF3F3F3);
     final List<WmlComment> roots = WordComment.roots(_word.document);
@@ -6482,7 +6488,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                   ),
                 ),
                 const SizedBox(height: 6),
-                if (selected && _canMutate)
+                if (selected && !_opening && _word.config.allowsSelection)
                   _commentBodySurface(comment)
                 else
                   Text.rich(
@@ -6579,7 +6585,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
             viewport: _commentViewport,
             hasFocus:
                 _word.isEditingComment && _word.selectedCommentId == comment.id,
-            config: _config.copyWith(showRulers: false),
+            config: _word.config.copyWith(showRulers: false),
             selectedCommentId: comment.id,
             proofingFindings: _word.proofing.findingsByParagraph,
             onReviewTap: _showCommentReview,

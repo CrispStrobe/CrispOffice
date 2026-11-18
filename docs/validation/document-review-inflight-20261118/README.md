@@ -217,8 +217,15 @@ fixture initially chose View rather than Select: Studio Select permits
 read-only selection and Copy, while View disables selection but keeps comments
 visible. The behavioral assertions were retained, the fixture mode was
 corrected, and coverage now also rejects stale View-mode handlers. The later
-selection-ownership clearing and read-only empty-placeholder changes require
-the pending focused rerun and final integrated gate.
+selection-ownership clearing and read-only empty-placeholder changes passed
+their six focused cases. A subsequent real-pointer case exposed that Select
+mode did not render an interactive comment canvas and that the parent pane
+could see the previous controller mode during a rebuild. The pane now uses
+the build-safe configuration sync before rendering the effective selection
+mode. The actual drag/right-click/Copy and Select → View → Select case passed,
+with editing and IME input disabled. Its initial failure and passing rerun are
+preserved. The final Studio suite contains 38 cases; the integrated gate is
+still pending.
 
 The [development attempt index](attempts/development/index.json) maps each
 original source basename to an unchanged compressed log and records both raw
