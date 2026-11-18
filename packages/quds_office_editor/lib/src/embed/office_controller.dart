@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:quds_office_engine/quds_office_engine.dart';
@@ -20,6 +22,71 @@ import 'office_theme.dart';
 
 /// The persistent review workspace shown beside (or below) a Word document.
 enum WordReviewPaneTab { proofing, changes }
+
+/// An immutable view of the selected text, or the whole current paragraph.
+///
+/// Keep this handle with a displayed control and supply it when applying an
+/// option. The controller refuses a handle whose document, caret, source or
+/// proofing settings have changed, including model edits made by a host.
+@immutable
+final class WordTextProofingTarget {
+  const WordTextProofingTarget._(
+    this._context,
+    this._ranges, {
+    required this.isSelection,
+    required this.language,
+    required this.checkingEnabled,
+    required this.unavailableReason,
+  });
+
+  final bool isSelection;
+
+  /// Effective language, or null when the target contains several languages.
+  final String? language;
+
+  /// Whether this text permits proofing; null denotes a mixed selection.
+  /// This is independent of the session's Check as you type preference.
+  final bool? checkingEnabled;
+  final String? unavailableReason;
+  bool get canEdit => unavailableReason == null;
+
+  final Object _context;
+  final List<_WordTextProofingRange> _ranges;
+
+  bool _matches(WordTextProofingTarget other) =>
+      _context == other._context &&
+      _ranges.length == other._ranges.length &&
+      _ranges.indexed.every((entry) {
+        final before = entry.$2;
+        final after = other._ranges[entry.$1];
+        return identical(before.paragraph, after.paragraph) &&
+            before.start == after.start &&
+            before.end == after.end &&
+            before.source == after.source &&
+            listEquals(before.inlines, after.inlines);
+      });
+}
+
+final class _WordTextProofingRange {
+  _WordTextProofingRange({
+    required this.paragraph,
+    required this.start,
+    required this.end,
+    required this.source,
+  }) : inlines = List.unmodifiable(paragraph.inlines);
+
+  final WmlParagraph paragraph;
+  final int start;
+  final int end;
+  final String source;
+  final List<WmlInline> inlines;
+}
+
+typedef _WordTextProofingParagraph = ({
+  WmlParagraph paragraph,
+  List<WmlContentControlData> controls,
+  bool generated,
+});
 
 /// Live find/replace cursor shared by every host.
 class OfficeFindSession {
@@ -453,6 +520,8 @@ class WordEditorController extends OfficeController {
   final OfficeProofingService? _initialProofingService;
   String _revisionAuthor;
   bool _reviewPaneVisible = false;
+  bool _reviewTextProofingOptionsVisible = false;
+  int _textProofingOptionsRequest = 0;
   WordReviewPaneTab _reviewPaneTab = WordReviewPaneTab.proofing;
   WordProofingIssue? _selectedProofingIssue;
   Future<WordProofingSummary>? _explicitProofingCheck;
@@ -463,6 +532,27 @@ class WordEditorController extends OfficeController {
   /// Review chrome is session state and never marks the document dirty.
   bool get reviewPaneVisible => _reviewPaneVisible;
   WordReviewPaneTab get reviewPaneTab => _reviewPaneTab;
+
+  bool get reviewTextProofingOptionsVisible =>
+      _reviewTextProofingOptionsVisible;
+
+  /// Advances even when already open, so hosts can reveal the controls again.
+  int get textProofingOptionsRequest => _textProofingOptionsRequest;
+
+  /// Expanding or collapsing text options is session state only.
+  void setTextProofingOptionsVisible(bool visible) {
+    if (isDisposed || _reviewTextProofingOptionsVisible == visible) return;
+    _reviewTextProofingOptionsVisible = visible;
+    notifyListeners();
+  }
+
+  /// Opens the current text's language and proofing controls in Writing.
+  void showTextProofingOptions() {
+    if (isDisposed) return;
+    _reviewTextProofingOptionsVisible = true;
+    _textProofingOptionsRequest++;
+    openReviewPane();
+  }
 
   void openReviewPane({WordReviewPaneTab tab = WordReviewPaneTab.proofing}) {
     if (isDisposed) return;
@@ -8267,9 +8357,410 @@ class WordEditorController extends OfficeController {
     selectProofingIssue(issues[next]);
   }
 
+  /// The selected text, or the whole paragraph when the caret is collapsed.
+  ///
+  /// This inspection never creates a paragraph or changes selection/history.
+  /// Object selections, empty text and unsupported stories return null.
+  WordTextProofingTarget? get textProofingTarget {
+    if (isDisposed ||
+        selectedVisual != null ||
+        selectedEquation != null ||
+        (selectedFrame != null && !editingFrame) ||
+        selectedTable != null ||
+        selectedTableBand != null ||
+        _noteEditStart.isNotEmpty) {
+      return null;
+    }
+    final current = caret;
+    final selection = current.normalizedRange;
+    final startParagraph = current.isCollapsed
+        ? current.paragraphIndex
+        : selection.startPara;
+    final endParagraph = current.isCollapsed
+        ? current.paragraphIndex
+        : selection.endPara;
+    if (startParagraph < 0) return null;
+    final entries = _textProofingStory.take(endParagraph + 1).toList();
+    if (endParagraph >= entries.length) return null;
+    if (current.isCollapsed &&
+        (current.logicalIndex < 0 ||
+            current.logicalIndex >
+                entries[startParagraph].paragraph.text.length)) {
+      return null;
+    }
+    final ranges = <_WordTextProofingRange>[];
+    final languages = <String>{};
+    final enabledValues = <bool>{};
+    String? unavailable;
+    if (!config.allowsMutation ||
+        (document.restrictEditing &&
+            (document.restrictMode != WmlRestrictMode.none ||
+                document.protectionFormattingRestricted))) {
+      unavailable = 'This document is read-only or protected.';
+    } else if (input.composing.isValid && !input.composing.isCollapsed) {
+      unavailable = 'Finish composing text before changing its options.';
+    }
+    var fieldDepth = 0;
+    for (var index = 0; index <= endParagraph; index++) {
+      final entry = entries[index];
+      final paragraph = entry.paragraph;
+      if (index < startParagraph) {
+        // Earlier text is irrelevant except for complex fields that remain
+        // open. Do not allocate its strings, properties or grapheme lists.
+        for (final boundary
+            in paragraph.inlines.whereType<WmlFieldBoundary>()) {
+          if (boundary.kind == WmlFieldBoundaryKind.begin) fieldDepth++;
+          if (boundary.kind == WmlFieldBoundaryKind.end && fieldDepth > 0) {
+            fieldDepth--;
+          }
+        }
+        continue;
+      }
+      final text = paragraph.text;
+      final selected = index >= startParagraph;
+      var from = current.isCollapsed || index != startParagraph
+          ? 0
+          : selection.startIdx;
+      var to = current.isCollapsed || index != endParagraph
+          ? text.length
+          : selection.endIdx;
+      if (selected && (from < 0 || to > text.length || from > to)) return null;
+      if (selected && from < to) {
+        // An external host can supply a selection inside a UTF-16 grapheme.
+        // Include the complete visible character instead of splitting it.
+        for (final cluster in GraphemeClusters.segment(text)) {
+          if (from > cluster.start && from < cluster.end) from = cluster.start;
+          if (to > cluster.start && to < cluster.end) to = cluster.end;
+        }
+        if (entry.generated ||
+            paragraph.properties.fieldInstruction != null ||
+            paragraph.properties.pageNumberField) {
+          unavailable ??=
+              'Generated text does not have editable proofing options.';
+        }
+        if ([
+          ...entry.controls,
+          ...paragraph.contentControlWrappers,
+        ].any(_textProofingControlLocked)) {
+          unavailable ??= 'This text belongs to a protected content control.';
+        }
+        try {
+          for (final span in WordContentControls.spans(paragraph)) {
+            if (_textProofingControlLocked(span.control) &&
+                from < span.end &&
+                to > span.start) {
+              unavailable ??=
+                  'This text belongs to a protected content control.';
+            }
+          }
+          final normalized = WmlRunEdit.normalizeRange(paragraph, from, to);
+          if (normalized.start != from || normalized.end != to) {
+            unavailable ??=
+                'Select ordinary text outside fields and note marks.';
+          }
+        } on Object {
+          unavailable ??= 'This text contains unsupported native content.';
+        }
+        ranges.add(
+          _WordTextProofingRange(
+            paragraph: paragraph,
+            start: from,
+            end: to,
+            source: _textProofingSource(paragraph, entry.controls),
+          ),
+        );
+      }
+      var offset = 0;
+      for (final inline in paragraph.inlines) {
+        if (inline is WmlFieldBoundary) {
+          if (selected && from < to && offset > from && offset < to) {
+            unavailable ??=
+                'Select ordinary text outside fields and note marks.';
+          }
+          if (inline.kind == WmlFieldBoundaryKind.begin) fieldDepth++;
+          if (inline.kind == WmlFieldBoundaryKind.end && fieldDepth > 0) {
+            fieldDepth--;
+          }
+        } else if (inline is WmlRun) {
+          final end = offset + inline.text.length;
+          if (selected && from < end && to > offset) {
+            languages.add(
+              normalizeProofingLanguage(
+                inline.properties.proofingLanguage ??
+                    paragraph.properties.proofingLanguage ??
+                    document.proofingLanguage ??
+                    'de-DE',
+              ),
+            );
+            enabledValues.add(inline.properties.noProof != true);
+            if (inline.isAtomic || fieldDepth > 0) {
+              unavailable ??=
+                  'Select ordinary text outside fields and note marks.';
+            }
+          }
+          offset = end;
+        } else if (selected &&
+            from < to &&
+            offset > from &&
+            offset < to &&
+            (inline is WmlOpaqueInline || inline is WmlObject)) {
+          unavailable ??= 'This text contains unsupported native content.';
+        }
+      }
+    }
+    if (ranges.isEmpty) return null;
+    return WordTextProofingTarget._(
+      (
+        controller: this,
+        document: document,
+        revision: contentRevision,
+        caret: current,
+        paragraph: current.paragraphIndex,
+        offset: current.logicalIndex,
+        anchorParagraph: current.selectionAnchorParagraph,
+        anchor: current.selectionAnchor,
+        comment: _editingComment ? selectedComment : null,
+        section:
+            _editingHeaderFooter &&
+                _editingSectionIndex >= 0 &&
+                _editingSectionIndex < document.sections.length
+            ? document.sections[_editingSectionIndex]
+            : null,
+        footer: _editingFooter,
+        documentLanguage: document.proofingLanguage,
+        tracking: document.trackRevisions,
+        restricted: document.restrictEditing,
+        restriction: document.restrictMode,
+        formattingRestricted: document.protectionFormattingRestricted,
+      ),
+      List.unmodifiable(ranges),
+      isSelection: !current.isCollapsed,
+      language: languages.length == 1 ? languages.single : null,
+      checkingEnabled: enabledValues.length == 1 ? enabledValues.single : null,
+      unavailableReason: unavailable,
+    );
+  }
+
+  Iterable<_WordTextProofingParagraph> get _textProofingStory sync* {
+    Iterable<_WordTextProofingParagraph> plain(
+      Iterable<WmlParagraph> paragraphs,
+    ) sync* {
+      for (final paragraph in paragraphs) {
+        yield (paragraph: paragraph, controls: const [], generated: false);
+      }
+    }
+
+    if (_editingComment) {
+      final comment = selectedComment;
+      if (comment != null) yield* plain(comment.paragraphs);
+      return;
+    }
+    if (_editingHeaderFooter) {
+      if (_editingSectionIndex < 0 ||
+          _editingSectionIndex >= document.sections.length) {
+        return;
+      }
+      final section = document.sections[_editingSectionIndex];
+      yield* plain(_editingFooter ? section.footer : section.header);
+      return;
+    }
+    Iterable<_WordTextProofingParagraph> visit(
+      Iterable<WmlBlock> blocks,
+      List<WmlContentControlData> controls,
+    ) sync* {
+      for (final block in blocks) {
+        if (block is WmlParagraph) {
+          yield (paragraph: block, controls: controls, generated: false);
+        } else if (block is WmlContentControlBlock) {
+          yield* visit(block.blocks, [...controls, block.control]);
+        } else if (block is WmlToc) {
+          for (final paragraph in [
+            block.titleParagraph,
+            ...block.itemParagraphs,
+          ]) {
+            yield (paragraph: paragraph, controls: controls, generated: true);
+          }
+        } else {
+          for (final children in WordTree.childLists(block)) {
+            yield* visit(children, controls);
+          }
+        }
+      }
+    }
+
+    yield* visit(
+      document.sections.expand((section) => section.blocks),
+      const [],
+    );
+  }
+
+  static bool _textProofingControlLocked(WmlContentControlData control) {
+    try {
+      final properties = WordContentControls.template(
+        control,
+      ).firstChild('sdtPr', namespaceUri: OfficeNamespaces.w);
+      final lock = properties?.firstChild(
+        'lock',
+        namespaceUri: OfficeNamespaces.w,
+      );
+      final value = lock?.getAttribute('val', namespaceUri: OfficeNamespaces.w);
+      return (lock != null && value != 'unlocked' && value != 'sdtLocked') ||
+          properties?.firstChild(
+                'dataBinding',
+                namespaceUri: OfficeNamespaces.w,
+              ) !=
+              null;
+    } on Object {
+      return true;
+    }
+  }
+
+  static String _textProofingSource(
+    WmlParagraph paragraph,
+    List<WmlContentControlData> controls,
+  ) => jsonEncode([
+    paragraph.properties.proofingLanguage,
+    paragraph.properties.fieldInstruction,
+    paragraph.properties.pageNumberField,
+    for (final control in [...controls, ...paragraph.contentControlWrappers])
+      control.xml,
+    for (final run in paragraph.inlines.whereType<WmlRun>())
+      [
+        run.text,
+        run.properties.proofingLanguage,
+        run.properties.noProof,
+        run.properties.styleId,
+        run.properties.bold,
+        run.properties.italic,
+        run.properties.underline.name,
+        run.properties.strike,
+        run.properties.smallCaps,
+        run.properties.color,
+        run.properties.highlight,
+        run.properties.fontSizeHalfPoints,
+        run.properties.asciiFont,
+        run.properties.csFont,
+        run.properties.vertAlign.name,
+        run.properties.sourcePropertiesXml,
+        run.properties.importedValues,
+        run.properties.explicitProperties.toList(),
+        run.hyperlink?.anchor,
+        run.hyperlink?.url,
+        run.hyperlink?.file,
+        run.commentIds,
+        run.noteRefId,
+        run.noteRefEndnote,
+        run.noteRefCustomMark,
+        run.fieldInstruction,
+        run.fieldLocked,
+        run.fieldDirty,
+        run.inlineVisual != null,
+      ],
+  ]);
+
+  /// Changes the language of exactly [target]. Null removes run overrides so
+  /// the text inherits its paragraph/document language. Returns false if the
+  /// displayed target became stale or cannot be changed safely.
+  bool setTextProofingLanguage(
+    String? language, {
+    required WordTextProofingTarget target,
+  }) {
+    final normalized = language == null
+        ? null
+        : normalizeProofingLanguage(language);
+    if (normalized != null && normalized.isEmpty) return false;
+    return _setTextProofingOption(
+      target,
+      needsChange: (properties) => properties.proofingLanguage != normalized,
+      update: (properties) => properties.proofingLanguage = normalized,
+    );
+  }
+
+  /// Includes or excludes exactly [target] in document proofing. One history
+  /// command covers the complete selection, without changing its text.
+  bool setTextProofingEnabled(
+    bool enabled, {
+    required WordTextProofingTarget target,
+  }) => _setTextProofingOption(
+    target,
+    needsChange: (properties) => (properties.noProof != true) != enabled,
+    update: (properties) => properties.noProof = !enabled,
+  );
+
+  bool _setTextProofingOption(
+    WordTextProofingTarget target, {
+    required bool Function(WmlRunProps) needsChange,
+    required void Function(WmlRunProps) update,
+  }) {
+    if (!target.canEdit) return false;
+    final current = textProofingTarget;
+    if (current == null || !current.canEdit || !target._matches(current)) {
+      return false;
+    }
+    final changes =
+        <
+          ({
+            WmlParagraph paragraph,
+            List<WmlInline> before,
+            List<WmlInline> after,
+          })
+        >[];
+    try {
+      // Complete every preflight and detached edit before changing any source.
+      for (final range in current._ranges) {
+        var offset = 0;
+        var changed = false;
+        for (final run in range.paragraph.inlines.whereType<WmlRun>()) {
+          final end = offset + run.text.length;
+          if (offset < range.end &&
+              end > range.start &&
+              needsChange(run.properties)) {
+            changed = true;
+          }
+          offset = end;
+        }
+        if (!changed) continue;
+        final preview = WmlClone.paragraph(range.paragraph);
+        WmlRunEdit.applyRange(preview, range.start, range.end, (properties) {
+          if (needsChange(properties)) update(properties);
+        });
+        if (preview.text != range.paragraph.text) return false;
+        changes.add((
+          paragraph: range.paragraph,
+          before: _cloneInlines(range.paragraph),
+          after: _cloneInlines(preview),
+        ));
+      }
+    } on Object {
+      return false;
+    }
+    if (changes.isEmpty) return true;
+    void restore({required bool after}) {
+      for (final change in changes) {
+        change.paragraph.inlines
+          ..clear()
+          ..addAll(_cloneInlinesFrom(after ? change.after : change.before));
+      }
+      // Formatting does not move text; history must not collapse a selection,
+      // including a selection made in another story since this command.
+      _historyRestoredSelection = true;
+    }
+
+    commands.commit(
+      _CallbackCommand(
+        executeFn: () => restore(after: true),
+        undoFn: () => restore(after: false),
+      ),
+    );
+    relayout();
+    _syncImeSelection();
+    notifyListeners();
+    return true;
+  }
+
   /// Changes the default language; explicit span languages remain authoritative.
   void setProofingLanguage(String value) {
-    if (!config.allowsMutation) return;
+    if (!canApplyProofingSuggestions) return;
     final language = normalizeProofingLanguage(value);
     if (language.isEmpty || document.proofingLanguage == language) return;
     final before = document.proofingLanguage;

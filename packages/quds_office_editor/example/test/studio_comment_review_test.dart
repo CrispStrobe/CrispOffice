@@ -9,6 +9,11 @@ import 'package:quds_office_studio/main.dart';
 import 'package:quds_office_studio/studio_chrome.dart';
 
 class _CommentProofing extends OfficeProofingProvider {
+  _CommentProofing({this.gates = const {}});
+
+  final Map<String, Completer<void>> gates;
+  final requests = <OfficeProofingRequest>[];
+
   @override
   String get id => 'comment-review-test';
 
@@ -16,25 +21,34 @@ class _CommentProofing extends OfficeProofingProvider {
   bool supportsLanguage(String language) => true;
 
   @override
-  Future<OfficeProofingResult> check(OfficeProofingRequest request) async =>
-      OfficeProofingResult(
-        request: request,
-        providerId: id,
-        status: OfficeProofingStatus.success,
-        findings: [
-          for (final match in RegExp('Commet').allMatches(request.text))
-            OfficeProofingFinding.forRequest(
-              request,
-              providerId: id,
-              ruleId: 'comment.spelling',
-              start: match.start,
-              end: match.end,
-              message: 'Use Comment.',
-              category: OfficeProofingCategory.spelling,
-              replacements: const ['Comment'],
-            ),
-        ],
-      );
+  Future<OfficeProofingResult> check(OfficeProofingRequest request) async {
+    requests.add(request);
+    await gates[request.text]?.future;
+    return OfficeProofingResult(
+      request: request,
+      providerId: id,
+      status: OfficeProofingStatus.success,
+      findings: [
+        for (final match in RegExp('Commet').allMatches(request.text))
+          OfficeProofingFinding.forRequest(
+            request,
+            providerId: id,
+            ruleId: 'comment.spelling',
+            start: match.start,
+            end: match.end,
+            message: 'Use Comment.',
+            category: OfficeProofingCategory.spelling,
+            replacements: const ['Comment'],
+          ),
+      ],
+    );
+  }
+
+  void release() {
+    for (final gate in gates.values) {
+      if (!gate.isCompleted) gate.complete();
+    }
+  }
 }
 
 WmlDocument _document() {
@@ -111,9 +125,85 @@ String _draft(WidgetTester tester, int id) =>
 
 Future<void> _close(WidgetTester tester) async {
   await tester.pumpWidget(const SizedBox.shrink());
-  await tester.pump();
+  // An in-flight check yields between paragraphs. Let its already scheduled
+  // continuation observe disposal rather than leaving a fake timer behind.
+  await tester.pump(const Duration(milliseconds: 1));
   expect(tester.takeException(), isNull);
 }
+
+Future<void> _checkComments(
+  WidgetTester tester,
+  WordEditorController controller, {
+  _CommentProofing? provider,
+}) async {
+  controller.proofing.configure(
+    OfficeProofingService(providers: [provider ?? _CommentProofing()]),
+  );
+  var done = false;
+  unawaited(
+    controller.proofing
+        .checkNow(includeManualProviders: false)
+        .then((_) => done = true),
+  );
+  for (var i = 0; i < 40 && !done; i++) {
+    await tester.pump(const Duration(milliseconds: 1));
+  }
+  expect(done, isTrue);
+  await _pump(tester);
+}
+
+WordCanvas _commentCanvas(WidgetTester tester, int id) =>
+    tester.widget<WordCanvas>(
+      find.byKey(ValueKey<String>('studio-comment-canvas-$id')),
+    );
+
+OfficeContextHit _commentHit(
+  WidgetTester tester,
+  WordEditorController controller,
+  int id,
+) => OfficeContextHit(
+  kind: OfficeContextKind.comment,
+  globalPosition:
+      tester.getTopLeft(
+        find.byKey(ValueKey<String>('studio-comment-canvas-$id')),
+      ) +
+      const Offset(16, 12),
+  commentId: id,
+  paragraph: WordComment.byId(controller.document, id)!.paragraphs.first,
+  proofingOffset: 1,
+);
+
+Future<void> _openCommentMenu(
+  WidgetTester tester,
+  WordEditorController controller, {
+  int id = 1,
+  bool primary = false,
+}) async {
+  controller.beginCommentEdit(id);
+  await _pump(tester);
+  final canvas = _commentCanvas(tester, id);
+  final hit = _commentHit(tester, controller, id);
+  if (primary) {
+    canvas.onReviewTap!(hit);
+    await tester.pump(kDoubleTapTimeout);
+  } else {
+    canvas.onContextMenu!(hit);
+  }
+  await _pump(tester);
+}
+
+GestureDetector _menuAction(WidgetTester tester, String label) =>
+    tester.widget<GestureDetector>(
+      find
+          .ancestor(
+            of: find.descendant(
+              of: find.byKey(const Key('office-context-menu')),
+              matching: find.text(label),
+            ),
+            matching: find.byType(GestureDetector),
+          )
+          .first,
+    );
 
 void main() {
   testWidgets('Reply focuses the inline draft without posting or a dialog', (
@@ -287,7 +377,7 @@ void main() {
     },
   );
 
-  testWidgets('comment writing marks open the current finding in live review', (
+  testWidgets('comment writing marks offer focused inline corrections', (
     tester,
   ) async {
     final controller = await _studio(tester);
@@ -309,15 +399,22 @@ void main() {
     );
     expect(canvas.proofingFindings[paragraph], hasLength(1));
     controller.beginCommentEdit(1);
-    canvas.onReviewTap!(
-      OfficeContextHit(
-        kind: OfficeContextKind.comment,
-        globalPosition: Offset.zero,
-        commentId: 1,
-        paragraph: paragraph,
-        proofingOffset: 1,
-      ),
+    final render = tester.renderObject<RenderWordCanvas>(
+      find.byKey(const ValueKey('studio-comment-canvas-1')),
     );
+    final line = controller.commentLaidOut!.pages
+        .expand((page) => page.lines)
+        .firstWhere((line) => line.paragraphIndex == 0 && line.glyphs.isNotEmpty);
+    final glyph = line.glyphs.firstWhere(
+      (glyph) => glyph.glyph.logicalIndex <= 1 && 1 < glyph.logicalEnd,
+    );
+    final point = render.localToGlobal(render.windowForPagePoint(
+      line.pageIndex,
+      Offset(glyph.x + glyph.advance * .35, line.y + line.height * .5),
+    ));
+    final gesture = await tester.startGesture(point,
+      kind: PointerDeviceKind.mouse, buttons: kPrimaryMouseButton);
+    await gesture.up();
     await tester.pump(const Duration(milliseconds: 20));
     canvas.onChanged!();
     await tester.pump(kDoubleTapTimeout);
@@ -335,16 +432,275 @@ void main() {
     );
     await tester.pump(kDoubleTapTimeout);
     await _pump(tester);
-    expect(controller.reviewPaneVisible, isTrue);
-    expect(controller.reviewPaneTab, WordReviewPaneTab.proofing);
+    expect(controller.reviewPaneVisible, isFalse);
+    expect(find.byKey(const Key('office-context-menu')), findsOneWidget);
+    expect(find.text('Comment'), findsOneWidget);
+    expect(find.text('Ignore once'), findsOneWidget);
+    expect(find.text('Delete comment'), findsNothing);
     expect(controller.selectedProofingIssue!.paragraph, same(paragraph));
+    expect(
+      tester
+          .widget<QudsWordEditor>(find.byType(QudsWordEditor))
+          .focusNode!
+          .hasPrimaryFocus,
+      isTrue,
+    );
+    expect(controller.input.isAttached, isTrue);
     expect(find.byType(Dialog), findsNothing);
-    final issue = controller.selectedProofingIssue!;
-    expect(controller.applyProofingSuggestion(issue, 'Comment'), isTrue);
+    await tester.tap(find.text('Comment'));
+    await _pump(tester);
     expect(comment.text, 'Comment one.');
     expect(controller.document.paragraphs.single.text, 'Alpha beta gamma.');
     controller.undo();
     expect(comment.text, 'Commet one.');
+    await _close(tester);
+  });
+
+  testWidgets('comment marks follow the existing Writing pane', (tester) async {
+    final controller = await _studio(tester);
+    await _checkComments(tester, controller);
+    controller.openReviewPane(tab: WordReviewPaneTab.changes);
+    await _pump(tester);
+    await _openCommentMenu(tester, controller, primary: true);
+    expect(controller.reviewPaneVisible, isTrue);
+    expect(controller.reviewPaneTab, WordReviewPaneTab.proofing);
+    expect(
+      controller.selectedProofingIssue!.paragraph,
+      same(controller.document.comments.first.paragraphs.single),
+    );
+    expect(find.byKey(const Key('office-context-menu')), findsNothing);
+    expect(find.byType(Dialog), findsNothing);
+    await _close(tester);
+  });
+
+  testWidgets('comment context menus combine corrections and thread actions', (
+    tester,
+  ) async {
+    final controller = await _studio(tester);
+    await _checkComments(tester, controller);
+    await _openCommentMenu(tester, controller);
+    expect(find.text('Comment'), findsOneWidget);
+    expect(_menuAction(tester, 'Reply').onTap, isNotNull);
+    expect(_menuAction(tester, 'Resolve').onTap, isNotNull);
+    expect(_menuAction(tester, 'Delete comment').onTap, isNotNull);
+    await tester.tap(find.text('Open writing pane'));
+    await _pump(tester);
+    expect(controller.reviewPaneVisible, isTrue);
+    expect(controller.selectedProofingIssue!.story, 'Comment 1');
+    expect(find.byKey(const Key('office-context-menu')), findsNothing);
+    expect(find.byType(Dialog), findsNothing);
+    await _close(tester);
+  });
+
+  for (final action in [
+    'Ignore once',
+    'Ignore this word',
+    'Add to personal words',
+  ]) {
+    testWidgets('comment menu $action respects the current finding', (
+      tester,
+    ) async {
+      final controller = await _studio(tester);
+      controller.document.comments[1].text = 'Commet two.';
+      controller.refresh();
+      await _checkComments(tester, controller);
+      expect(controller.proofing.summary.issues, hasLength(2));
+      final revision = controller.contentRevision;
+      await _openCommentMenu(tester, controller);
+      await tester.tap(find.text(action));
+      for (var i = 0; i < 20; i++) {
+        await tester.pump(const Duration(milliseconds: 1));
+      }
+      expect(controller.contentRevision, revision);
+      expect(controller.canUndo, isFalse);
+      expect(controller.document.comments.first.text, 'Commet one.');
+      expect(
+        controller.proofing.summary.issues,
+        hasLength(action == 'Ignore once' ? 1 : 0),
+      );
+      if (action == 'Ignore once') {
+        expect(
+          controller.proofing.summary.issues.single.paragraph,
+          same(controller.document.comments[1].paragraphs.single),
+        );
+      } else if (action == 'Ignore this word') {
+        expect(
+          controller.proofing.vocabulary.ignoredWordsFor('en-US'),
+          contains('Commet'),
+        );
+      } else {
+        expect(
+          controller.proofing.vocabulary.wordsFor('en-US'),
+          contains('Commet'),
+        );
+      }
+      await _close(tester);
+    });
+  }
+
+  testWidgets(
+    'comment suggestions survive unrelated in-flight check progress',
+    (tester) async {
+      final controller = await _studio(tester);
+      controller.document.comments.add(
+        WmlComment(id: 3, text: 'Third note.', author: 'Chris'),
+      );
+      controller.refresh();
+      final provider = _CommentProofing(
+        gates: {
+          'Second note.': Completer<void>(),
+          'Third note.': Completer<void>(),
+        },
+      );
+      addTearDown(provider.release);
+      controller.proofing.configure(
+        OfficeProofingService(providers: [provider]),
+      );
+      unawaited(controller.proofing.checkNow(includeManualProviders: false));
+      for (var i = 0; i < 20; i++) {
+        await tester.pump(const Duration(milliseconds: 1));
+      }
+      expect(controller.proofing.checking, isTrue);
+      expect(controller.proofing.summary.issues, hasLength(1));
+      final issue = controller.proofing.summary.issues.single;
+      await _openCommentMenu(tester, controller, primary: true);
+      expect(find.text('Comment'), findsOneWidget);
+      provider.gates['Second note.']!.complete();
+      for (var i = 0; i < 20; i++) {
+        await tester.pump(const Duration(milliseconds: 1));
+      }
+      expect(controller.proofing.checking, isTrue);
+      expect(provider.requests.last.text, 'Third note.');
+      expect(controller.proofing.isCurrent(issue), isTrue);
+      expect(find.byKey(const Key('office-context-menu')), findsOneWidget);
+      await tester.tap(find.text('Comment'));
+      await _pump(tester);
+      expect(controller.document.comments.first.text, 'Comment one.');
+      provider.release();
+      await _pump(tester);
+      expect(controller.document.comments.first.text, 'Comment one.');
+      controller.undo();
+      expect(controller.document.comments.first.text, 'Commet one.');
+      await _close(tester);
+    },
+  );
+
+  testWidgets(
+    'stale comment menus cannot act on another document or reused ID',
+    (tester) async {
+      final controller = await _studio(tester);
+      await _checkComments(tester, controller);
+      await _openCommentMenu(tester, controller);
+      final staleDelete = _menuAction(tester, 'Delete comment').onTap!;
+      final staleResolve = _menuAction(tester, 'Resolve').onTap!;
+      final staleApply = _menuAction(tester, 'Comment').onTap!;
+      final previous = controller.document;
+      controller.document = _document();
+      controller.refresh();
+      staleDelete();
+      staleResolve();
+      staleApply();
+      await _pump(tester);
+      expect(find.byKey(const Key('office-context-menu')), findsNothing);
+      expect(controller.document.comments, hasLength(2));
+      expect(controller.document.comments.first.resolved, isFalse);
+      expect(controller.document.comments.first.text, 'Commet one.');
+      expect(previous.comments, hasLength(2));
+      expect(previous.comments.first.text, 'Commet one.');
+
+      controller.selectComment(1);
+      await _openCommentMenu(tester, controller);
+      final reusedDelete = _menuAction(tester, 'Delete comment').onTap!;
+      controller.document.comments[0] = WmlComment(
+        id: 1,
+        text: 'New identity.',
+        author: 'Chris',
+      );
+      controller.selectComment(1);
+      reusedDelete();
+      await _pump(tester);
+      expect(controller.document.comments, hasLength(2));
+      expect(controller.document.comments.first.text, 'New identity.');
+      expect(find.byKey(const Key('office-context-menu')), findsNothing);
+      await _close(tester);
+    },
+  );
+
+  testWidgets('comment menus dismiss on changed source or selected thread', (
+    tester,
+  ) async {
+    final controller = await _studio(tester);
+    await _checkComments(tester, controller);
+    await _openCommentMenu(tester, controller);
+    final staleApply = _menuAction(tester, 'Comment').onTap!;
+    controller.updateComment(1, text: 'Rewritten comment.');
+    staleApply();
+    await _pump(tester);
+    expect(controller.document.comments.first.text, 'Rewritten comment.');
+    expect(find.byKey(const Key('office-context-menu')), findsNothing);
+    await _openCommentMenu(tester, controller);
+    final staleResolve = _menuAction(tester, 'Resolve').onTap!;
+    controller.selectComment(2);
+    staleResolve();
+    await _pump(tester);
+    expect(controller.document.comments.every((c) => !c.resolved), isTrue);
+    expect(find.byKey(const Key('office-context-menu')), findsNothing);
+    await _close(tester);
+  });
+
+  testWidgets('comment menus preserve IME and cannot act through a modal', (
+    tester,
+  ) async {
+    final controller = await _studio(tester);
+    await _checkComments(tester, controller);
+    controller.beginCommentEdit(1);
+    await _pump(tester);
+      controller.input.composing = const TextRange(start: 0, end: 3);
+    _commentCanvas(tester, 1).onContextMenu!(
+      _commentHit(tester, controller, 1),
+    );
+    _commentCanvas(tester, 1).onReviewTap!(_commentHit(tester, controller, 1));
+    await tester.pump(kDoubleTapTimeout);
+    await _pump(tester);
+    expect(find.byKey(const Key('office-context-menu')), findsNothing);
+    expect(controller.input.composing, const TextRange(start: 0, end: 3));
+    controller.input.composing = TextRange.empty;
+    await _openCommentMenu(tester, controller);
+    final staleApply = _menuAction(tester, 'Comment').onTap!;
+    final context = tester.element(find.byType(QudsWordEditor));
+    unawaited(
+      showDialog<void>(
+        context: context,
+        builder: (_) => const AlertDialog(title: Text('Covering dialog')),
+      ),
+    );
+    await _pump(tester);
+    staleApply();
+    await _pump(tester);
+    expect(controller.document.comments.first.text, 'Commet one.');
+    expect(controller.canUndo, isFalse);
+    Navigator.of(context).pop();
+    await _pump(tester);
+    await _close(tester);
+  });
+
+  testWidgets('resolved reply context offers Reopen for its whole thread', (
+    tester,
+  ) async {
+    final controller = await _studio(tester);
+    controller.document.comments.add(
+      WmlComment(id: 3, text: 'Reply text.', author: 'Chris', parentId: 1),
+    );
+    controller.document.comments.first.resolved = true;
+    controller.refresh();
+    await _openCommentMenu(tester, controller, id: 3);
+    expect(find.text('Reopen'), findsOneWidget);
+    expect(find.text('Resolve'), findsNothing);
+    await tester.tap(find.text('Reopen'));
+    await _pump(tester);
+    expect(controller.document.comments.first.resolved, isFalse);
+    controller.undo();
+    expect(controller.document.comments.first.resolved, isTrue);
     await _close(tester);
   });
 
@@ -379,5 +735,29 @@ void main() {
         await _close(tester);
       },
     );
+
+  testWidgets('comment menu mutations respect a later viewing-mode change', (
+    tester,
+  ) async {
+    final controller = await _studio(tester);
+    await _checkComments(tester, controller);
+    await _openCommentMenu(tester, controller);
+    final apply = _menuAction(tester, 'Comment').onTap!;
+    final resolve = _menuAction(tester, 'Resolve').onTap!;
+    final delete = _menuAction(tester, 'Delete comment').onTap!;
+    await tester.tap(find.text('File').first);
+    await _pump(tester);
+    await _tapCommand(tester, 'View');
+    expect(controller.config.allowsMutation, isFalse);
+    apply();
+    resolve();
+    delete();
+    await _pump(tester);
+    expect(controller.document.comments, hasLength(2));
+    expect(controller.document.comments.first.text, 'Commet one.');
+    expect(controller.document.comments.first.resolved, isFalse);
+    expect(controller.canUndo, isFalse);
+    await _close(tester);
+  });
   }
 }
