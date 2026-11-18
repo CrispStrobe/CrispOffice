@@ -192,8 +192,18 @@ void main() {
       expect(controller.contentRevision, greaterThan(oldRevision));
       expect(selectedParagraph.text, 'Feler selected');
       expect(otherParagraph.text, 'Fehler elsewhere');
-      expect(controller.selectedProofingIssue, isNull);
+      final waiting = controller.selectedProofingIssue!;
+      expect(waiting, isNot(same(selected)));
+      expect(waiting.paragraph, same(selectedParagraph));
+      expect(waiting.finding.originalText, selected.finding.originalText);
+      expect(waiting.finding.start, selected.finding.start);
+      expect(waiting.finding.end, selected.finding.end);
+      expect(waiting.finding.revision, controller.contentRevision);
+      expect(controller.proofing.isCurrent(waiting), isTrue);
       expect(controller.proofing.isCurrent(selected), isFalse);
+      expect(controller.caret.paragraphIndex, 0);
+      expect(controller.caret.selectionAnchor, 0);
+      expect(controller.caret.logicalIndex, 5);
 
       final checked = await controller.checkDocumentProofing();
       final rebound = checked.issues.single;

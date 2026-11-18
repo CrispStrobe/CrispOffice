@@ -72,21 +72,15 @@ Future<void> _frames(WidgetTester tester) async {
   }
 }
 
-Offset _markedPoint(
-  WidgetTester tester,
-  WordEditorController controller,
-) {
-  final canvas = tester.renderObject<RenderWordCanvas>(
-    find.byType(WordCanvas),
-  );
+Offset _markedPoint(WidgetTester tester, WordEditorController controller) {
+  final canvas = tester.renderObject<RenderWordCanvas>(find.byType(WordCanvas));
   final line = controller.documentLaidOut.pages
       .expand((page) => page.lines)
       .firstWhere(
         (line) =>
             line.paragraphIndex == 0 &&
             line.glyphs.any(
-              (glyph) =>
-                  glyph.glyph.logicalIndex <= 6 && 6 < glyph.logicalEnd,
+              (glyph) => glyph.glyph.logicalIndex <= 6 && 6 < glyph.logicalEnd,
             ),
       );
   final glyph = line.glyphs.firstWhere(
@@ -121,10 +115,7 @@ void main() {
           MaterialApp(
             theme: ThemeData(fontFamily: 'Liberation Sans'),
             home: Scaffold(
-              body: QudsWordEditor(
-                controller: controller,
-                focusNode: focus,
-              ),
+              body: QudsWordEditor(controller: controller, focusNode: focus),
             ),
           ),
         );
@@ -179,11 +170,10 @@ void main() {
 
         await tester.tap(find.text('Fehler'));
         await tester.pump();
-        expect(controller.document.paragraphs.map((paragraph) => paragraph.text), [
-          'Ein Fehler bleibt hier.',
-          _secondText,
-          _thirdText,
-        ]);
+        expect(
+          controller.document.paragraphs.map((paragraph) => paragraph.text),
+          ['Ein Fehler bleibt hier.', _secondText, _thirdText],
+        );
         expect(find.byKey(_menuKey), findsNothing);
         expect(controller.canUndo, isTrue);
         expect(session.isCurrent(issue), isFalse);
@@ -192,16 +182,18 @@ void main() {
         provider.thirdGate.complete();
         await _frames(tester);
         expect(session.summary.issues, isEmpty);
-        expect(controller.document.paragraphs.first.text, 'Ein Fehler bleibt hier.');
+        expect(
+          controller.document.paragraphs.first.text,
+          'Ein Fehler bleibt hier.',
+        );
 
         controller.undo();
         await tester.pump(controller.proofing.debounce);
         await _frames(tester);
-        expect(controller.document.paragraphs.map((paragraph) => paragraph.text), [
-          _firstText,
-          _secondText,
-          _thirdText,
-        ]);
+        expect(
+          controller.document.paragraphs.map((paragraph) => paragraph.text),
+          [_firstText, _secondText, _thirdText],
+        );
         expect(session.summary.complete, isTrue);
         expect(session.summary.issues, hasLength(1));
         expect(session.isCurrent(session.summary.issues.single), isTrue);
