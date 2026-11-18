@@ -1384,14 +1384,7 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
                 if (_notice != null) _banner(_notice!),
                 Expanded(
                   child: TabBarView(
-                    children: [
-                      _scrollableTab(
-                        _libraryTab(),
-                        minHeight: _catalogMinHeight(size),
-                      ),
-                      _documentTab(),
-                      _scrollableTab(_importTab(), minHeight: 600),
-                    ],
+                    children: [_libraryTab(), _documentTab(), _importTab()],
                   ),
                 ),
               ],
@@ -1400,30 +1393,6 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
         ),
       ),
     );
-  }
-
-  Widget _scrollableTab(Widget child, {required double minHeight}) =>
-      LayoutBuilder(
-        builder: (context, constraints) => SingleChildScrollView(
-          child: SizedBox(
-            height: max(minHeight, constraints.maxHeight),
-            child: child,
-          ),
-        ),
-      );
-
-  double _catalogMinHeight(Size size) {
-    final narrow = size.width < 600;
-    final base = narrow
-        ? (widget.localTransport == null ? 820.0 : 960.0)
-        : (widget.localTransport == null ? 660.0 : 800.0);
-    if (_session.library == null || !_searchOptionsExpanded) return base;
-    // Expanded options wrap at narrow widths. Preserve a usable results list
-    // while keeping the default catalog and its paging controls compact.
-    return base +
-        (size.width < 380 ? 520 : (narrow ? 340 : 180)) +
-        140 +
-        (_tags.isEmpty ? 0 : 220);
   }
 
   Widget _banner(String text, {bool error = false}) => Container(
@@ -1731,519 +1700,537 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
     ],
   );
 
-  Widget _libraryTab() => Padding(
-    padding: const EdgeInsets.all(16),
-    child: Column(
-      children: [
-        if (widget.localTransport != null) ...[
-          DropdownButtonFormField<bool>(
-            key: const ValueKey('zotero-library-source'),
-            initialValue: _useLocal,
-            isExpanded: true,
-            decoration: const InputDecoration(
-              labelText: 'Reference library source',
-              isDense: true,
+  Widget _libraryTab() => SingleChildScrollView(
+    child: Padding(
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          if (widget.localTransport != null) ...[
+            DropdownButtonFormField<bool>(
+              key: const ValueKey('zotero-library-source'),
+              initialValue: _useLocal,
+              isExpanded: true,
+              decoration: const InputDecoration(
+                labelText: 'Reference library source',
+                isDense: true,
+              ),
+              items: const [
+                DropdownMenuItem(
+                  value: false,
+                  child: Text('Online Zotero library'),
+                ),
+                DropdownMenuItem(
+                  value: true,
+                  child: Text('Zotero desktop (this computer)'),
+                ),
+              ],
+              onChanged: _busy
+                  ? null
+                  : (local) {
+                      if (local != null) _switchSource(local);
+                    },
             ),
-            items: const [
-              DropdownMenuItem(
-                value: false,
-                child: Text('Online Zotero library'),
-              ),
-              DropdownMenuItem(
-                value: true,
-                child: Text('Zotero desktop (this computer)'),
-              ),
-            ],
-            onChanged: _busy
-                ? null
-                : (local) {
-                    if (local != null) _switchSource(local);
-                  },
-          ),
-          const SizedBox(height: 12),
-        ],
-        if (_useLocal) ...[
-          const Text(
-            'Open Zotero on this computer. In Settings → Advanced, enable “Allow other applications on this computer to communicate with Zotero”. No API key is needed.',
-          ),
-          const SizedBox(height: 8),
-          Wrap(
-            spacing: 8,
-            children: [
-              FilledButton(
-                key: const ValueKey('zotero-connect-desktop'),
-                onPressed: _busy ? null : _connectLocal,
-                child: const Text('Connect desktop'),
-              ),
-              if (_client != null)
-                TextButton(
-                  onPressed: _busy ? null : _disconnectLocal,
-                  child: const Text('Disconnect desktop'),
-                ),
-            ],
-          ),
-          const SizedBox(height: 8),
-        ] else ...[
-          Row(
-            children: [
-              Expanded(
-                child: TextField(
-                  key: const ValueKey('zotero-api-key'),
-                  controller: _key,
-                  enabled: !_busy && widget.transport != null,
-                  obscureText: true,
-                  autocorrect: false,
-                  enableSuggestions: false,
-                  decoration: const InputDecoration(
-                    labelText: 'Read-only Zotero API key',
-                    border: OutlineInputBorder(),
-                    isDense: true,
-                  ),
-                  onSubmitted: (_) {
-                    if (!_busy && widget.transport != null) _connect();
-                  },
-                ),
-              ),
-              const SizedBox(width: 8),
-              FilledButton(
-                onPressed: _busy || widget.transport == null ? null : _connect,
-                child: const Text('Connect'),
-              ),
-            ],
-          ),
-          Wrap(
-            spacing: 10,
-            crossAxisAlignment: WrapCrossAlignment.center,
-            children: [
-              TextButton(
-                onPressed: () => launchUrl(
-                  Uri.parse('https://www.zotero.org/settings/keys/new'),
-                  mode: LaunchMode.externalApplication,
-                ),
-                child: const Text('Create a read-only key'),
-              ),
-              if (widget.persistApiKey != null)
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Checkbox(
-                      value: _session.rememberKey,
-                      onChanged: _busy
-                          ? null
-                          : (value) => _remember(value ?? false),
-                    ),
-                    const Text('Remember key when connecting'),
-                  ],
-                ),
-              if (_session.apiKey != null)
-                TextButton(
-                  onPressed: _busy ? null : _disconnect,
-                  child: const Text('Disconnect & forget'),
-                ),
-            ],
-          ),
-        ],
-        if (!_useLocal && widget.transport == null)
-          const Text(
-            'Online access is unavailable in this host. Import CSL JSON to work offline.',
-          ),
-        if ((_useLocal && _client != null) ||
-            _identity != null ||
-            _groups.isNotEmpty)
-          Row(
-            children: [
-              Expanded(
-                child: DropdownButtonFormField<ZoteroLibrary>(
-                  key: ValueKey('library-${_session.library}'),
-                  initialValue: _libraryOptions().containsKey(_session.library)
-                      ? _session.library
-                      : null,
-                  isExpanded: true,
-                  decoration: const InputDecoration(
-                    labelText: 'Library',
-                    isDense: true,
-                  ),
-                  items: _libraryOptions().entries
-                      .map(
-                        (entry) => DropdownMenuItem(
-                          value: entry.key,
-                          child: Text(
-                            entry.value,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                      )
-                      .toList(),
-                  onChanged: _busy
-                      ? null
-                      : (library) {
-                          if (library != null) {
-                            _run(() async {
-                              _session.library = library;
-                              await _loadLibrary();
-                            });
-                          }
-                        },
-                ),
-              ),
-              if (_moreGroups != null)
-                TextButton(
-                  onPressed: _busy
-                      ? null
-                      : () => _run(() async {
-                          final page = await _client!.groups(
-                            _useLocal ? 0 : _identity!.userId,
-                            start: _moreGroups!,
-                          );
-                          if (mounted) {
-                            setState(() {
-                              _groups.addAll(page.items);
-                              _moreGroups = page.nextStart;
-                            });
-                          }
-                        }),
-                  child: const Text('More groups'),
-                ),
-            ],
-          ),
-        if (!_useLocal)
-          ExpansionTile(
-            tilePadding: EdgeInsets.zero,
-            title: const Text(
-              'Open a library by ID',
-              style: TextStyle(fontSize: 13),
-            ),
-            children: [
-              Wrap(
-                spacing: 10,
-                runSpacing: 6,
-                crossAxisAlignment: WrapCrossAlignment.center,
-                children: [
-                  DropdownButton<bool>(
-                    value: _publicGroup,
-                    items: const [
-                      DropdownMenuItem(value: true, child: Text('Group')),
-                      DropdownMenuItem(value: false, child: Text('User')),
-                    ],
-                    onChanged: _busy
-                        ? null
-                        : (value) => setState(() => _publicGroup = value!),
-                  ),
-                  SizedBox(
-                    width: 160,
-                    child: TextField(
-                      controller: _libraryId,
-                      enabled: !_busy,
-                      keyboardType: TextInputType.number,
-                      decoration: const InputDecoration(
-                        labelText: 'Numeric library ID',
-                        isDense: true,
-                      ),
-                    ),
-                  ),
-                  OutlinedButton(
-                    onPressed: _busy || widget.transport == null
-                        ? null
-                        : _openPublic,
-                    child: const Text('Open library'),
-                  ),
-                ],
-              ),
-              const Padding(
-                padding: EdgeInsets.only(bottom: 8),
-                child: Text(
-                  'Public libraries work without a key. Private libraries need read access.',
-                  style: TextStyle(fontSize: 12),
-                ),
-              ),
-            ],
-          ),
-        if (_session.library != null) ...[
-          if (_useLocal) ...[
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Wrap(
-                spacing: 8,
-                children: [
-                  ChoiceChip(
-                    label: const Text('Collections'),
-                    selected: !_savedSearchMode,
-                    onSelected: _busy ? null : (_) => _showSavedSearches(false),
-                  ),
-                  ChoiceChip(
-                    label: const Text('Saved searches'),
-                    selected: _savedSearchMode,
-                    onSelected: _busy ? null : (_) => _showSavedSearches(true),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 4),
+            const SizedBox(height: 12),
           ],
-          if (_savedSearchMode)
-            _savedSearchNavigation()
-          else
-            Row(
+          if (_useLocal) ...[
+            const Text(
+              'Open Zotero on this computer. In Settings → Advanced, enable “Allow other applications on this computer to communicate with Zotero”. No API key is needed.',
+            ),
+            const SizedBox(height: 8),
+            Wrap(
+              spacing: 8,
               children: [
-                Expanded(
-                  child: DropdownButtonFormField<String>(
-                    key: ValueKey(
-                      'collections-${_session.library}-$_collectionKey-${_collections.length}',
-                    ),
-                    initialValue: _collectionKey ?? '',
-                    isExpanded: true,
-                    decoration: const InputDecoration(
-                      labelText: 'Collection',
-                      isDense: true,
-                    ),
-                    items: [
-                      const DropdownMenuItem(
-                        value: '',
-                        child: Text('All items'),
-                      ),
-                      ..._collections.map(
-                        (collection) => DropdownMenuItem(
-                          value: collection.key,
-                          child: Text(
-                            collection.name,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                      ),
-                    ],
-                    onChanged: _busy
-                        ? null
-                        : (key) => _run(() async {
-                            _collectionKey = key == '' ? null : key;
-                            await _loadItems();
-                          }),
-                  ),
+                FilledButton(
+                  key: const ValueKey('zotero-connect-desktop'),
+                  onPressed: _busy ? null : _connectLocal,
+                  child: const Text('Connect desktop'),
                 ),
-                if (_moreCollections != null)
+                if (_client != null)
                   TextButton(
-                    onPressed: _busy ? null : () => _run(_loadMoreCollections),
-                    child: const Text('More collections'),
+                    onPressed: _busy ? null : _disconnectLocal,
+                    child: const Text('Disconnect desktop'),
                   ),
               ],
             ),
-          const SizedBox(height: 8),
-          Row(
-            children: [
-              Expanded(
-                child: TextField(
-                  controller: _search,
-                  enabled:
-                      !_busy && (!_savedSearchMode || _savedSearchKey != null),
-                  decoration: InputDecoration(
-                    labelText: _savedSearchMode
-                        ? 'Search within saved search'
-                        : _searchMode == ZoteroSearchMode.everything
-                        ? 'Search references and full text'
-                        : 'Search title, creator, or year',
-                    isDense: true,
-                    prefixIcon: const Icon(Icons.search),
-                    suffixIcon: IconButton(
-                      onPressed:
-                          _busy || (_savedSearchMode && _savedSearchKey == null)
-                          ? null
-                          : () => _run(_loadItems),
-                      tooltip: 'Search',
-                      icon: const Icon(Icons.arrow_forward),
+            const SizedBox(height: 8),
+          ] else ...[
+            Row(
+              children: [
+                Expanded(
+                  child: TextField(
+                    key: const ValueKey('zotero-api-key'),
+                    controller: _key,
+                    enabled: !_busy && widget.transport != null,
+                    obscureText: true,
+                    autocorrect: false,
+                    enableSuggestions: false,
+                    decoration: const InputDecoration(
+                      labelText: 'Read-only Zotero API key',
+                      border: OutlineInputBorder(),
+                      isDense: true,
                     ),
+                    onSubmitted: (_) {
+                      if (!_busy && widget.transport != null) _connect();
+                    },
                   ),
-                  onSubmitted: (_) {
-                    if (!_busy) _run(_loadItems);
-                  },
                 ),
-              ),
-              IconButton(
-                key: const ValueKey('zotero-search-options'),
-                tooltip: 'Search options',
-                isSelected: _searchOptionsExpanded,
-                onPressed: () => setState(
-                  () => _searchOptionsExpanded = !_searchOptionsExpanded,
+                const SizedBox(width: 8),
+                FilledButton(
+                  onPressed: _busy || widget.transport == null
+                      ? null
+                      : _connect,
+                  child: const Text('Connect'),
                 ),
-                icon: Badge(
-                  isLabelVisible: _tags.isNotEmpty,
-                  label: Text('${_tags.length}'),
-                  child: const Icon(Icons.tune),
-                ),
-              ),
-            ],
-          ),
-          if (_searchOptionsExpanded) _catalogSearchOptions(),
-        ],
-        Expanded(
-          child: _page == null
-              ? Center(
-                  child: Text(
-                    _session.library == null
-                        ? 'Connect a Zotero library to browse references.'
-                        : _savedSearchMode && _savedSearchKey == null
-                        ? 'Choose a saved search to browse its references.'
-                        : _busy
-                        ? 'Loading references…'
-                        : 'No references loaded. Choose a view or search again.',
-                  ),
-                )
-              : _page!.items.where((item) => item.isCitable).isEmpty
-              ? const Center(child: Text('No citable references on this page.'))
-              : ListView.builder(
-                  itemCount: _page!.items.length,
-                  itemBuilder: (context, index) {
-                    final item = _page!.items[index];
-                    if (!item.isCitable) return const SizedBox.shrink();
-                    return Row(
-                      children: [
-                        Expanded(
-                          child: CheckboxListTile(
-                            value: _selected.containsKey(item.sourceId),
-                            dense: true,
-                            title: Text(
-                              zoteroHtmlToPlainText(item.title),
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                            subtitle: Text(
-                              [
-                                item.creatorSummary,
-                                item.year,
-                                item.itemType,
-                                if (item.citationUri == null)
-                                  'Embedded source only',
-                              ].where((text) => text.isNotEmpty).join(' · '),
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                            onChanged: _busy
-                                ? null
-                                : (selected) =>
-                                      _selectItem(item, selected ?? false),
-                          ),
-                        ),
-                        IconButton(
-                          key: ValueKey('zotero-details-${item.sourceId}'),
-                          tooltip: 'Reference details',
-                          onPressed: _busy
-                              ? null
-                              : () => _showItemDetails(item),
-                          icon: const Icon(Icons.info_outline),
-                        ),
-                      ],
-                    );
-                  },
-                ),
-        ),
-        if (_page != null)
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Expanded(
-                child: Text(
-                  _page!.items.isEmpty
-                      ? '0 references'
-                      : '${_page!.start + 1}–${_page!.start + _page!.items.length}${_page!.totalResults == null ? '' : ' of ${_page!.totalResults}'}',
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ),
-              Row(
-                children: [
-                  IconButton(
-                    tooltip: 'Previous page',
-                    onPressed: _busy || _page!.start == 0
-                        ? null
-                        : () => _run(
-                            () => _loadItems(
-                              start: max(0, _page!.start - _page!.limit),
-                              useSubmittedQuery: true,
-                            ),
-                          ),
-                    icon: const Icon(Icons.chevron_left),
-                  ),
-                  IconButton(
-                    tooltip: 'Next page',
-                    onPressed: _busy || !_page!.hasMore
-                        ? null
-                        : () => _run(
-                            () => _loadItems(
-                              start: _page!.nextStart!,
-                              useSubmittedQuery: true,
-                            ),
-                          ),
-                    icon: const Icon(Icons.chevron_right),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        Wrap(
-          spacing: 8,
-          runSpacing: 4,
-          crossAxisAlignment: WrapCrossAlignment.center,
-          children: [
-            Text('${_selected.length} selected'),
-            _reviewSelectionButton('zotero-review-library-selection'),
-            TextButton(
-              onPressed: _busy || _selected.isEmpty
-                  ? null
-                  : () => setState(_selected.clear),
-              child: const Text('Clear selection'),
+              ],
             ),
-            if (widget.localTransport != null)
-              FilledButton(
-                onPressed:
-                    _busy ||
-                        !_canEdit ||
-                        _selected.isEmpty ||
-                        _selected.values.any((item) => item.uris.isEmpty)
-                    ? null
-                    : () => _citeWithDesktop(
-                        ZoteroCitingCommand.addEditCitation,
-                        items: _selected.values.toList(),
-                      ),
-                child: const Tooltip(
-                  message:
-                      'Insert selected sources using the document style. Zotero asks for a style when none has been selected.',
-                  child: Text('Insert with Zotero…'),
+            Wrap(
+              spacing: 10,
+              crossAxisAlignment: WrapCrossAlignment.center,
+              children: [
+                TextButton(
+                  onPressed: () => launchUrl(
+                    Uri.parse('https://www.zotero.org/settings/keys/new'),
+                    mode: LaunchMode.externalApplication,
+                  ),
+                  child: const Text('Create a read-only key'),
                 ),
-              ),
-            if (widget.localTransport != null)
-              OutlinedButton.icon(
-                onPressed: _busy || !_canEdit || _selected.isEmpty
-                    ? null
-                    : () => _compose(_selected.values.toList()),
-                icon: const Icon(Icons.format_quote),
-                label: const Text('Insert basic citation'),
-              )
-            else
-              FilledButton.icon(
-                onPressed: _busy || !_canEdit || _selected.isEmpty
-                    ? null
-                    : () => _compose(_selected.values.toList()),
-                icon: const Icon(Icons.format_quote),
-                label: const Text('Insert citation'),
-              ),
-            PopupMenuButton<ZoteroExportFormat>(
-              enabled: !_busy && _selected.isNotEmpty,
-              tooltip: 'Copy selected references',
-              onSelected: (format) => _copySources(format: format),
-              itemBuilder: (_) => ZoteroExportFormat.values
-                  .map(
-                    (format) => PopupMenuItem(
-                      value: format,
-                      child: Text('Copy ${format.name}'),
-                    ),
-                  )
-                  .toList(),
-              child: const Padding(
-                padding: EdgeInsets.all(10),
-                child: Text('Export selected ▾'),
-              ),
+                if (widget.persistApiKey != null)
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Checkbox(
+                        value: _session.rememberKey,
+                        onChanged: _busy
+                            ? null
+                            : (value) => _remember(value ?? false),
+                      ),
+                      const Text('Remember key when connecting'),
+                    ],
+                  ),
+                if (_session.apiKey != null)
+                  TextButton(
+                    onPressed: _busy ? null : _disconnect,
+                    child: const Text('Disconnect & forget'),
+                  ),
+              ],
             ),
           ],
-        ),
-      ],
+          if (!_useLocal && widget.transport == null)
+            const Text(
+              'Online access is unavailable in this host. Import CSL JSON to work offline.',
+            ),
+          if ((_useLocal && _client != null) ||
+              _identity != null ||
+              _groups.isNotEmpty)
+            Row(
+              children: [
+                Expanded(
+                  child: DropdownButtonFormField<ZoteroLibrary>(
+                    key: ValueKey('library-${_session.library}'),
+                    initialValue:
+                        _libraryOptions().containsKey(_session.library)
+                        ? _session.library
+                        : null,
+                    isExpanded: true,
+                    decoration: const InputDecoration(
+                      labelText: 'Library',
+                      isDense: true,
+                    ),
+                    items: _libraryOptions().entries
+                        .map(
+                          (entry) => DropdownMenuItem(
+                            value: entry.key,
+                            child: Text(
+                              entry.value,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        )
+                        .toList(),
+                    onChanged: _busy
+                        ? null
+                        : (library) {
+                            if (library != null) {
+                              _run(() async {
+                                _session.library = library;
+                                await _loadLibrary();
+                              });
+                            }
+                          },
+                  ),
+                ),
+                if (_moreGroups != null)
+                  TextButton(
+                    onPressed: _busy
+                        ? null
+                        : () => _run(() async {
+                            final page = await _client!.groups(
+                              _useLocal ? 0 : _identity!.userId,
+                              start: _moreGroups!,
+                            );
+                            if (mounted) {
+                              setState(() {
+                                _groups.addAll(page.items);
+                                _moreGroups = page.nextStart;
+                              });
+                            }
+                          }),
+                    child: const Text('More groups'),
+                  ),
+              ],
+            ),
+          if (!_useLocal)
+            ExpansionTile(
+              tilePadding: EdgeInsets.zero,
+              title: const Text(
+                'Open a library by ID',
+                style: TextStyle(fontSize: 13),
+              ),
+              children: [
+                Wrap(
+                  spacing: 10,
+                  runSpacing: 6,
+                  crossAxisAlignment: WrapCrossAlignment.center,
+                  children: [
+                    DropdownButton<bool>(
+                      value: _publicGroup,
+                      items: const [
+                        DropdownMenuItem(value: true, child: Text('Group')),
+                        DropdownMenuItem(value: false, child: Text('User')),
+                      ],
+                      onChanged: _busy
+                          ? null
+                          : (value) => setState(() => _publicGroup = value!),
+                    ),
+                    SizedBox(
+                      width: 160,
+                      child: TextField(
+                        controller: _libraryId,
+                        enabled: !_busy,
+                        keyboardType: TextInputType.number,
+                        decoration: const InputDecoration(
+                          labelText: 'Numeric library ID',
+                          isDense: true,
+                        ),
+                      ),
+                    ),
+                    OutlinedButton(
+                      onPressed: _busy || widget.transport == null
+                          ? null
+                          : _openPublic,
+                      child: const Text('Open library'),
+                    ),
+                  ],
+                ),
+                const Padding(
+                  padding: EdgeInsets.only(bottom: 8),
+                  child: Text(
+                    'Public libraries work without a key. Private libraries need read access.',
+                    style: TextStyle(fontSize: 12),
+                  ),
+                ),
+              ],
+            ),
+          if (_session.library != null) ...[
+            if (_useLocal) ...[
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Wrap(
+                  spacing: 8,
+                  children: [
+                    ChoiceChip(
+                      label: const Text('Collections'),
+                      selected: !_savedSearchMode,
+                      onSelected: _busy
+                          ? null
+                          : (_) => _showSavedSearches(false),
+                    ),
+                    ChoiceChip(
+                      label: const Text('Saved searches'),
+                      selected: _savedSearchMode,
+                      onSelected: _busy
+                          ? null
+                          : (_) => _showSavedSearches(true),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 4),
+            ],
+            if (_savedSearchMode)
+              _savedSearchNavigation()
+            else
+              Row(
+                children: [
+                  Expanded(
+                    child: DropdownButtonFormField<String>(
+                      key: ValueKey(
+                        'collections-${_session.library}-$_collectionKey-${_collections.length}',
+                      ),
+                      initialValue: _collectionKey ?? '',
+                      isExpanded: true,
+                      decoration: const InputDecoration(
+                        labelText: 'Collection',
+                        isDense: true,
+                      ),
+                      items: [
+                        const DropdownMenuItem(
+                          value: '',
+                          child: Text('All items'),
+                        ),
+                        ..._collections.map(
+                          (collection) => DropdownMenuItem(
+                            value: collection.key,
+                            child: Text(
+                              collection.name,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        ),
+                      ],
+                      onChanged: _busy
+                          ? null
+                          : (key) => _run(() async {
+                              _collectionKey = key == '' ? null : key;
+                              await _loadItems();
+                            }),
+                    ),
+                  ),
+                  if (_moreCollections != null)
+                    TextButton(
+                      onPressed: _busy
+                          ? null
+                          : () => _run(_loadMoreCollections),
+                      child: const Text('More collections'),
+                    ),
+                ],
+              ),
+            const SizedBox(height: 8),
+            Row(
+              children: [
+                Expanded(
+                  child: TextField(
+                    controller: _search,
+                    enabled:
+                        !_busy &&
+                        (!_savedSearchMode || _savedSearchKey != null),
+                    decoration: InputDecoration(
+                      labelText: _savedSearchMode
+                          ? 'Search within saved search'
+                          : _searchMode == ZoteroSearchMode.everything
+                          ? 'Search references and full text'
+                          : 'Search title, creator, or year',
+                      isDense: true,
+                      prefixIcon: const Icon(Icons.search),
+                      suffixIcon: IconButton(
+                        onPressed:
+                            _busy ||
+                                (_savedSearchMode && _savedSearchKey == null)
+                            ? null
+                            : () => _run(_loadItems),
+                        tooltip: 'Search',
+                        icon: const Icon(Icons.arrow_forward),
+                      ),
+                    ),
+                    onSubmitted: (_) {
+                      if (!_busy) _run(_loadItems);
+                    },
+                  ),
+                ),
+                IconButton(
+                  key: const ValueKey('zotero-search-options'),
+                  tooltip: 'Search options',
+                  isSelected: _searchOptionsExpanded,
+                  onPressed: () => setState(
+                    () => _searchOptionsExpanded = !_searchOptionsExpanded,
+                  ),
+                  icon: Badge(
+                    isLabelVisible: _tags.isNotEmpty,
+                    label: Text('${_tags.length}'),
+                    child: const Icon(Icons.tune),
+                  ),
+                ),
+              ],
+            ),
+            if (_searchOptionsExpanded) _catalogSearchOptions(),
+          ],
+          SizedBox(
+            height: 240,
+            child: _page == null
+                ? Center(
+                    child: Text(
+                      _session.library == null
+                          ? 'Connect a Zotero library to browse references.'
+                          : _savedSearchMode && _savedSearchKey == null
+                          ? 'Choose a saved search to browse its references.'
+                          : _busy
+                          ? 'Loading references…'
+                          : 'No references loaded. Choose a view or search again.',
+                    ),
+                  )
+                : _page!.items.where((item) => item.isCitable).isEmpty
+                ? const Center(
+                    child: Text('No citable references on this page.'),
+                  )
+                : ListView.builder(
+                    itemCount: _page!.items.length,
+                    itemBuilder: (context, index) {
+                      final item = _page!.items[index];
+                      if (!item.isCitable) return const SizedBox.shrink();
+                      return Row(
+                        children: [
+                          Expanded(
+                            child: CheckboxListTile(
+                              value: _selected.containsKey(item.sourceId),
+                              dense: true,
+                              title: Text(
+                                zoteroHtmlToPlainText(item.title),
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                              subtitle: Text(
+                                [
+                                  item.creatorSummary,
+                                  item.year,
+                                  item.itemType,
+                                  if (item.citationUri == null)
+                                    'Embedded source only',
+                                ].where((text) => text.isNotEmpty).join(' · '),
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                              onChanged: _busy
+                                  ? null
+                                  : (selected) =>
+                                        _selectItem(item, selected ?? false),
+                            ),
+                          ),
+                          IconButton(
+                            key: ValueKey('zotero-details-${item.sourceId}'),
+                            tooltip: 'Reference details',
+                            onPressed: _busy
+                                ? null
+                                : () => _showItemDetails(item),
+                            icon: const Icon(Icons.info_outline),
+                          ),
+                        ],
+                      );
+                    },
+                  ),
+          ),
+          if (_page != null)
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: Text(
+                    _page!.items.isEmpty
+                        ? '0 references'
+                        : '${_page!.start + 1}–${_page!.start + _page!.items.length}${_page!.totalResults == null ? '' : ' of ${_page!.totalResults}'}',
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+                Row(
+                  children: [
+                    IconButton(
+                      tooltip: 'Previous page',
+                      onPressed: _busy || _page!.start == 0
+                          ? null
+                          : () => _run(
+                              () => _loadItems(
+                                start: max(0, _page!.start - _page!.limit),
+                                useSubmittedQuery: true,
+                              ),
+                            ),
+                      icon: const Icon(Icons.chevron_left),
+                    ),
+                    IconButton(
+                      tooltip: 'Next page',
+                      onPressed: _busy || !_page!.hasMore
+                          ? null
+                          : () => _run(
+                              () => _loadItems(
+                                start: _page!.nextStart!,
+                                useSubmittedQuery: true,
+                              ),
+                            ),
+                      icon: const Icon(Icons.chevron_right),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          Wrap(
+            spacing: 8,
+            runSpacing: 4,
+            crossAxisAlignment: WrapCrossAlignment.center,
+            children: [
+              Text('${_selected.length} selected'),
+              _reviewSelectionButton('zotero-review-library-selection'),
+              TextButton(
+                onPressed: _busy || _selected.isEmpty
+                    ? null
+                    : () => setState(_selected.clear),
+                child: const Text('Clear selection'),
+              ),
+              if (widget.localTransport != null)
+                FilledButton(
+                  onPressed:
+                      _busy ||
+                          !_canEdit ||
+                          _selected.isEmpty ||
+                          _selected.values.any((item) => item.uris.isEmpty)
+                      ? null
+                      : () => _citeWithDesktop(
+                          ZoteroCitingCommand.addEditCitation,
+                          items: _selected.values.toList(),
+                        ),
+                  child: const Tooltip(
+                    message:
+                        'Insert selected sources using the document style. Zotero asks for a style when none has been selected.',
+                    child: Text('Insert with Zotero…'),
+                  ),
+                ),
+              if (widget.localTransport != null)
+                OutlinedButton.icon(
+                  onPressed: _busy || !_canEdit || _selected.isEmpty
+                      ? null
+                      : () => _compose(_selected.values.toList()),
+                  icon: const Icon(Icons.format_quote),
+                  label: const Text('Insert basic citation'),
+                )
+              else
+                FilledButton.icon(
+                  onPressed: _busy || !_canEdit || _selected.isEmpty
+                      ? null
+                      : () => _compose(_selected.values.toList()),
+                  icon: const Icon(Icons.format_quote),
+                  label: const Text('Insert citation'),
+                ),
+              PopupMenuButton<ZoteroExportFormat>(
+                enabled: !_busy && _selected.isNotEmpty,
+                tooltip: 'Copy selected references',
+                onSelected: (format) => _copySources(format: format),
+                itemBuilder: (_) => ZoteroExportFormat.values
+                    .map(
+                      (format) => PopupMenuItem(
+                        value: format,
+                        child: Text('Copy ${format.name}'),
+                      ),
+                    )
+                    .toList(),
+                child: const Padding(
+                  padding: EdgeInsets.all(10),
+                  child: Text('Export selected ▾'),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
     ),
   );
 
@@ -2437,95 +2424,96 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
     );
   }
 
-  Widget _importTab() => Padding(
-    padding: const EdgeInsets.all(16),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        const Text(
-          'In Zotero, export references as CSL JSON, then paste the file contents here. Sources stay embedded in the document. Records without a Zotero item URI remain offline references.',
-        ),
-        const SizedBox(height: 12),
-        Expanded(
-          child: TextField(
+  Widget _importTab() => SingleChildScrollView(
+    child: Padding(
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          const Text(
+            'In Zotero, export references as CSL JSON, then paste the file contents here. Sources stay embedded in the document. Records without a Zotero item URI remain offline references.',
+          ),
+          const SizedBox(height: 12),
+          TextField(
             key: const ValueKey('zotero-csl-import'),
             controller: _import,
-            expands: true,
-            minLines: null,
-            maxLines: null,
+            minLines: 6,
+            maxLines: 12,
             enabled: !_busy,
             decoration: const InputDecoration(
-              labelText: 'CSL JSON (up to 1 MB / 500 sources)',
+              labelText: 'CSL JSON',
+              helperText: 'Up to 1 MB / 500 sources',
               alignLabelWithHint: true,
               border: OutlineInputBorder(),
             ),
           ),
-        ),
-        const SizedBox(height: 8),
-        Wrap(
-          spacing: 8,
-          crossAxisAlignment: WrapCrossAlignment.center,
-          children: [
-            OutlinedButton(
-              onPressed: _busy
-                  ? null
-                  : () => _run(() async {
-                      final items = zoteroImportCslJson(_import.text);
-                      setState(() {
-                        _selected.removeWhere(
-                          (key, _) => key.startsWith('import:'),
-                        );
-                        _imported
-                          ..clear()
-                          ..addAll(items);
-                        _notice =
-                            '${items.length} references loaded. Choose a citation below.';
-                      });
-                    }),
-              child: const Text('Load references'),
-            ),
-            if (_imported.isNotEmpty) Text('${_imported.length} loaded'),
-            _reviewSelectionButton('zotero-review-import-selection'),
-          ],
-        ),
-        if (_imported.isNotEmpty)
-          SizedBox(
-            height: 160,
-            child: ListView.builder(
-              itemCount: _imported.length,
-              itemBuilder: (context, index) {
-                final item = _imported[index];
-                final key = 'import:$index:${item.id}';
-                return CheckboxListTile(
-                  dense: true,
-                  value: _selected.containsKey(key),
-                  title: Text(
-                    zoteroHtmlToPlainText(
-                      '${item.itemData?['title'] ?? item.id}',
-                    ),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  onChanged: _busy
-                      ? null
-                      : (value) => setState(() {
-                          if (value == false) {
-                            _selected.remove(key);
-                          } else if (_selected.length < 20) {
-                            _selected[key] = item;
-                          }
-                        }),
-                );
-              },
-            ),
+          const SizedBox(height: 8),
+          Wrap(
+            spacing: 8,
+            crossAxisAlignment: WrapCrossAlignment.center,
+            children: [
+              OutlinedButton(
+                onPressed: _busy
+                    ? null
+                    : () => _run(() async {
+                        final items = zoteroImportCslJson(_import.text);
+                        setState(() {
+                          _selected.removeWhere(
+                            (key, _) => key.startsWith('import:'),
+                          );
+                          _imported
+                            ..clear()
+                            ..addAll(items);
+                          _notice =
+                              '${items.length} references loaded. Choose a citation below.';
+                        });
+                      }),
+                child: const Text('Load references'),
+              ),
+              if (_imported.isNotEmpty) Text('${_imported.length} loaded'),
+              _reviewSelectionButton('zotero-review-import-selection'),
+            ],
           ),
-        FilledButton(
-          onPressed: _busy || !_canEdit || _selected.isEmpty
-              ? null
-              : () => _compose(_selected.values.toList()),
-          child: Text('Insert ${_selected.length} selected source(s)'),
-        ),
-      ],
+          if (_imported.isNotEmpty)
+            SizedBox(
+              height: 160,
+              child: ListView.builder(
+                itemCount: _imported.length,
+                itemBuilder: (context, index) {
+                  final item = _imported[index];
+                  final key = 'import:$index:${item.id}';
+                  return CheckboxListTile(
+                    dense: true,
+                    value: _selected.containsKey(key),
+                    title: Text(
+                      zoteroHtmlToPlainText(
+                        '${item.itemData?['title'] ?? item.id}',
+                      ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    onChanged: _busy
+                        ? null
+                        : (value) => setState(() {
+                            if (value == false) {
+                              _selected.remove(key);
+                            } else if (_selected.length < 20) {
+                              _selected[key] = item;
+                            }
+                          }),
+                  );
+                },
+              ),
+            ),
+          FilledButton(
+            onPressed: _busy || !_canEdit || _selected.isEmpty
+                ? null
+                : () => _compose(_selected.values.toList()),
+            child: Text('Insert ${_selected.length} selected source(s)'),
+          ),
+        ],
+      ),
     ),
   );
 }
