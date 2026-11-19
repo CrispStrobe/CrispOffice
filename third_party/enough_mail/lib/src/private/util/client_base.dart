@@ -57,6 +57,8 @@ abstract class ClientBase {
   bool isLogEnabled;
 
   late Socket _socket;
+  bool _hasSocket = false;
+  int _connectionGeneration = 0;
 
   /// `true` when it is expected that the socket is closed
   bool isSocketClosingExpected = false;
@@ -65,6 +67,16 @@ abstract class ClientBase {
   bool isLoggedIn = false;
 
   bool _isServerGreetingDone = false;
+  final BytesBuilder _greetingBytes = BytesBuilder(copy: false);
+
+  /// IMAP greetings end at one CRLF even when TCP fragments or coalesces data.
+  bool get requiresSingleLineGreeting => false;
+
+  /// An optional greeting bound for clients with explicit resource budgets.
+  int? get maxGreetingBytes => null;
+
+  /// Latched input-budget failure; not an authentication or retryable failure.
+  bool responseLimitExceeded = false;
 
   /// Information about the connection
   late ConnectionInfo connectionInfo;
@@ -102,6 +114,21 @@ abstract class ClientBase {
 
   late StreamSubscription _socketStreamSubscription;
 
+  /// Opens a socket using the configured TLS trust policy. Protocol test
+  /// harnesses may override this boundary without binding a network listener.
+  Future<Socket> createConnectionSocket(
+    String host,
+    int port, {
+    required bool isSecure,
+  }) => isSecure
+      ? SecureSocket.connect(
+          host,
+          port,
+          onBadCertificate: onBadCertificate,
+          context: securityContext,
+        )
+      : Socket.connect(host, port);
+
   /// Connects to the specified server.
   ///
   /// Specify [isSecure] if you do not want to connect to a secure service.
@@ -119,17 +146,33 @@ abstract class ClientBase {
       'secure: $isSecure, timeout: $timeout',
     );
     connectionInfo = ConnectionInfo(host, port, isSecure: isSecure);
-    final socket = isSecure
-        ? await SecureSocket.connect(
-            host,
-            port,
-            onBadCertificate: onBadCertificate,
-            context: securityContext,
-          ).timeout(timeout)
-        : await Socket.connect(host, port).timeout(timeout);
+    final generation = ++_connectionGeneration;
+    final opening = createConnectionSocket(host, port, isSecure: isSecure);
+    final socket = await opening
+        .then((socket) {
+          if (generation != _connectionGeneration) {
+            socket.destroy();
+            throw createClientError('connection attempt was abandoned');
+          }
+          return socket;
+        })
+        .timeout(
+          timeout,
+          onTimeout: () {
+            if (generation == _connectionGeneration) {
+              _connectionGeneration++;
+            }
+            throw createClientError('connection attempt timed out');
+          },
+        );
+    if (generation != _connectionGeneration) {
+      socket.destroy();
+      throw createClientError('connection attempt was abandoned');
+    }
     final greetingsCompleter = Completer<ConnectionInfo>();
     _greetingsCompleter = greetingsCompleter;
     _isServerGreetingDone = false;
+    _greetingBytes.clear();
     connect(socket);
 
     // the server greeting has to arrive within the timeout as well,
@@ -171,8 +214,10 @@ abstract class ClientBase {
       connectionInfo = connectionInformation;
       _greetingsCompleter = null;
       _isServerGreetingDone = false;
+      _greetingBytes.clear();
     }
     _socket = socket;
+    _hasSocket = true;
     _writeFuture = null;
     // if (connectionTimeout != null) {
     //   final timeoutStream = socket.timeout(connectionTimeout!);
@@ -213,21 +258,38 @@ abstract class ClientBase {
     }
   }
 
-  /// Upgrades the current connection to a secure socket
+  /// Creates a TLS socket using the requested hostname and trust policy.
+  /// Protocol fixtures may override this seam; production never bypasses trust.
+  Future<Socket> createSecureConnectionSocket(
+    Socket socket, {
+    required String host,
+  }) => SecureSocket.secure(
+    socket,
+    host: host,
+    context: securityContext,
+    onBadCertificate: onBadCertificate,
+  );
+
+  /// Upgrades the current connection without reviving an aborted generation.
   Future<void> upgradeToSslSocket() async {
-    _socketStreamSubscription.pause();
-    final secureSocket = await SecureSocket.secure(
-      _socket,
-      // verify the certificate against the host the user asked for, not
-      // against whatever the resolved socket address reports
+    final generation = _connectionGeneration;
+    final originalSocket = _socket;
+    final originalSubscription = _socketStreamSubscription..pause();
+    final secureSocket = await createSecureConnectionSocket(
+      originalSocket,
       host: connectionInfo.host,
-      context: securityContext,
-      onBadCertificate: onBadCertificate,
     );
-    logApp('now using secure connection.');
-    await _socketStreamSubscription.cancel();
+    if (generation != _connectionGeneration) {
+      secureSocket.destroy();
+      throw createClientError('TLS upgrade was abandoned');
+    }
+    await originalSubscription.cancel();
+    if (generation != _connectionGeneration) {
+      secureSocket.destroy();
+      throw createClientError('TLS upgrade was abandoned');
+    }
     isSocketClosingExpected = true;
-    _socket.destroy();
+    originalSocket.destroy();
     isSocketClosingExpected = false;
     connect(secureSocket);
   }
@@ -235,15 +297,51 @@ abstract class ClientBase {
   Future<void> _onDataReceived(Uint8List data) async {
     if (_isServerGreetingDone) {
       onDataReceived(data);
-    } else {
-      _isServerGreetingDone = true;
-      final serverGreeting = String.fromCharCodes(data);
-      log(serverGreeting, isClient: false);
-      onConnectionEstablished(connectionInfo, serverGreeting);
+      return;
+    }
+    var greeting = data;
+    Uint8List? remaining;
+    if (requiresSingleLineGreeting) {
+      _greetingBytes.add(data);
+      final bytes = _greetingBytes.toBytes();
+      var lineEnd = -1;
+      for (var index = 1; index < bytes.length; index++) {
+        if (bytes[index - 1] == 13 && bytes[index] == 10) {
+          lineEnd = index + 1;
+          break;
+        }
+      }
+      final maximum = maxGreetingBytes;
+      if (maximum != null && (lineEnd < 0 ? bytes.length : lineEnd) > maximum) {
+        _greetingBytes.clear();
+        responseLimitExceeded = true;
+        _failGreeting('server greeting limit exceeded');
+        await abort();
+        return;
+      }
+      if (lineEnd < 0) {
+        return;
+      }
+      greeting = Uint8List.sublistView(bytes, 0, lineEnd);
+      if (lineEnd < bytes.length) {
+        remaining = Uint8List.sublistView(bytes, lineEnd);
+      }
+      _greetingBytes.clear();
+    }
+    _isServerGreetingDone = true;
+    final serverGreeting = String.fromCharCodes(greeting);
+    log(serverGreeting, isClient: false);
+    try {
+      await onConnectionEstablished(connectionInfo, serverGreeting);
       final completer = _greetingsCompleter;
       if (completer != null && !completer.isCompleted) {
         completer.complete(connectionInfo);
       }
+      if (remaining != null) {
+        onDataReceived(remaining);
+      }
+    } catch (error, stack) {
+      await _onConnectionError(error, stack);
     }
   }
 
@@ -256,6 +354,22 @@ abstract class ClientBase {
     if (!isSocketClosingExpected) {
       isSocketClosingExpected = true;
       onConnectionError('onDone not expected');
+    }
+  }
+
+  /// Aborts pending connection attempts and destroys any established socket.
+  /// Late connect completions are discarded by their generation guard.
+  Future<void> abort() async {
+    _connectionGeneration++;
+    _failGreeting('connection aborted');
+    _greetingBytes.clear();
+    isLoggedIn = false;
+    _isConnected = false;
+    isSocketClosingExpected = true;
+    if (_hasSocket) {
+      _hasSocket = false;
+      _socket.destroy();
+      await _socketStreamSubscription.cancel();
     }
   }
 

@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:typed_data';
 
 import 'ascii_runes.dart';
+import 'protocol_resource_limit.dart';
 
 /// Combines several Uin8Lists to read from them sequentially
 class Uint8ListReader {
@@ -25,8 +26,12 @@ class Uint8ListReader {
   bool hasLineBreak() => _builder.findLastLineBreak() != null;
 
   /// Reads the current line until the first line-break
-  String? readLine() {
+  String? readLine({int? maxBytes}) {
     final pos = _builder.findLineBreak();
+    if (maxBytes != null &&
+        (pos == null ? _builder.length : pos + 1) > maxBytes) {
+      throw const ProtocolResourceLimit('Protocol line byte limit exceeded');
+    }
     if (pos == null) {
       return null;
     }
