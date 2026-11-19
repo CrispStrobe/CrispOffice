@@ -78,6 +78,17 @@ The exact refreshed tips are VBA
 `1a99845fe628c9e539d4bca7e7c586c5616da267`; both are ancestors of integration
 checkpoint `2d7360a217b51c34ccf72eb5ed78c82ccd20bae5`.
 
+The final GUI source and twelve visually reviewed screenshots are preserved in
+`2dbd1c58dd724bb2208e06c43a835b220484b1e1`. The publication integration
+`8d9d1fe77284f76e71fbd6cb2718d3f6cfb636af` also preserves VBA tip
+`f6b8638d5c78a2d17e5e1c2fb43620c63a23b90c`, mail resume tip
+`85c8c55186b8eefd242159ee606b2ad1fa61038f`, and published main
+`caf378f40fd5bda50f504a6816404d01d8bbb8f8`. The additional functional changes
+are confined to thirteen mail-specific library files. The GUI product files
+and complete engine library, test and tool trees are unchanged from the
+accepted GUI checkpoint. The one test conflict retained the accepted Slide
+contrast, light-cell raster-equivalence and saved-XML assertions.
+
 [Incoming audits](incoming/README.md) distinguish functional changes from
 formatting and evidence. The retained remote capture covers 231 fork branch/PR
 and upstream branch references. At the integrated checkpoint, 208 are ancestors
@@ -85,6 +96,11 @@ and 23 have verified historical equivalents; all 14 complete historical proofs
 pass, with no unaccounted references. See
 [reconciliation-integrated.json](reconciliation-integrated.json). A publication
 refresh is recorded separately so the original capture remains reproducible.
+Its 233 captured references classify as 210 ancestors and 23 historical
+equivalents, with all fourteen proofs passing and no unaccounted references;
+see [reconciliation-publication.json](reconciliation-publication.json).
+The [publication audit](incoming/publication-audit.json) additionally binds the
+inspected mail resume snapshot and explains its fresh acceptance requirements.
 
 ## Local acceptance
 
@@ -94,6 +110,24 @@ recorded beside this document. Local checks use the repository-pinned Flutter
 SQLite native hook, actual raster captures and Node execution of the web smoke
 programs. Corrected reruns count each behavior case once; development failures
 remain identified separately.
+
+The GUI portion contains **144 distinct accepted behavior cases**, plus one
+separate screenshot-generation case:
+
+| Area | Distinct cases |
+| --- | ---: |
+| Page Layout API, Word/Sheet dark rendering and rulers | 17 |
+| Page Layout and Paragraph dialogs | 27 |
+| Workspace modes, precise presets and other compact menus | 10 |
+| Existing Zotero, comments, keyboard, Review, customization and preferences | 84 |
+| Slide dark rendering and saved color preservation | 6 |
+| **GUI total** | **144** |
+
+The incoming VBA qualification also passed **395 cases** across eleven suites,
+including real CLI subprocesses. Its engine source, tests and tools remain
+byte-identical across the publication integration, so that gate remains bound
+to the integrated code. Incoming mail resume, Studio restore and embedding
+fixtures receive their own final-source qualification.
 
 The full suite and native macOS/AppKit execution are outside this focused Linux
 qualification. The earlier desktop/native-menu wiring and its focused tests are
@@ -106,3 +140,7 @@ screenshots with the bundled fonts. Ruler labels and readouts now use the same
 explicit font resolution as document text, avoiding implicit platform/test
 fonts. No SDK patch or test-font substitution is used. Dialog visibility and
 dark appearance are asserted before capture. The final screenshots are under [screenshots](screenshots/).
+All twelve distinct images were directly reviewed; the
+[visual review](visual-review.json) records their hashes, viewport dimensions,
+reviewer observations and scope. The narrow German and Arabic views use a
+900 × 760 viewport; the desktop and dialog views use 1440 × 960.

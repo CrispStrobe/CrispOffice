@@ -1,0 +1,2795 @@
+{
+  "schema_version": 1,
+  "audited_at_utc": "2026-11-19T18:43:02.871364+00:00",
+  "mode": "Read-only Git/source inspection and virtual merge-tree object generation. Only audit artifacts were written; no product files, index or refs changed, and no compiler, test, merge commit, push or Actions query was run.",
+  "publication_cutoff": {
+    "accepted_base": "2d7360a217b51c34ccf72eb5ed78c82ccd20bae5",
+    "capture_head": "8c6acd04637ef627959fe40f518254ed538ab087",
+    "gui_checkpoint": "2dbd1c58dd724bb2208e06c43a835b220484b1e1",
+    "main": "caf378f40fd5bda50f504a6816404d01d8bbb8f8",
+    "mail_restore": "6275d21246040e03f6264b27171992c88d1474a2",
+    "mail_resume_captured": "9d6cd0504094632825d3a0990a37fffd5c1b2c05",
+    "mail_resume_cutoff": "85c8c55186b8eefd242159ee606b2ad1fa61038f",
+    "vba": "f6b8638d5c78a2d17e5e1c2fb43620c63a23b90c"
+  },
+  "remote_capture": {
+    "path": "docs/validation/crispoffice-layout-theme-20261119/remote-publication-capture.json",
+    "sha256": "ec418ee49c2b42d578eb3579c75b07b079ef0cd9894a4cb3234075526c0a08af",
+    "captured_at_utc": "2026-11-19T18:36:42.469804+00:00",
+    "reference_count": 233,
+    "counts_at_capture": {
+      "ancestor": 203,
+      "unaccounted": 7,
+      "historical_equivalent": 23
+    },
+    "capture_performed_by_this_auditor": false
+  },
+  "supplemental_pr212_tip": {
+    "sha": "85c8c55186b8eefd242159ee606b2ad1fa61038f",
+    "source": "Root observed PR212 metadata after the saved 233-ref capture and supplied this exact cutoff. No subsequent draft heads were queried by this audit.",
+    "parent": "9d6cd0504094632825d3a0990a37fffd5c1b2c05"
+  },
+  "frontiers": {
+    "main": {
+      "from": "1a99845fe628c9e539d4bca7e7c586c5616da267",
+      "to": "caf378f40fd5bda50f504a6816404d01d8bbb8f8",
+      "changed_path_count": 5,
+      "counts": {
+        "documentation_or_validation": 5
+      },
+      "paths": [
+        {
+          "path": "docs/validation/mail-archive-restore-20261119/README.md",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/mail-archive-restore-20261119/publication-check.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/mail-archive-restore-20261119/publication-frontier.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/mail-archive-restore-20261119/publication-remote-refs.txt",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/mail-archive-restore-20261119/verify-publication.py",
+          "category": "documentation_or_validation"
+        }
+      ],
+      "merge_base_with_accepted_gui": "1a99845fe628c9e539d4bca7e7c586c5616da267",
+      "parents": [
+        "cf59efa99232a3fd26cf21ce7f2382402e576f9b",
+        "6275d21246040e03f6264b27171992c88d1474a2"
+      ],
+      "incoming_commits": [
+        "caf378f40fd5bda50f504a6816404d01d8bbb8f8 cf59efa99232a3fd26cf21ce7f2382402e576f9b 6275d21246040e03f6264b27171992c88d1474a2 Merge PR #209: verified mail archive restoration with provenance [skip ci]",
+        "6275d21246040e03f6264b27171992c88d1474a2 1a99845fe628c9e539d4bca7e7c586c5616da267 Bind mail restore publication to accepted source and remote frontier [skip ci]"
+      ]
+    },
+    "mail_restore": {
+      "from": "1a99845fe628c9e539d4bca7e7c586c5616da267",
+      "to": "6275d21246040e03f6264b27171992c88d1474a2",
+      "changed_path_count": 5,
+      "counts": {
+        "documentation_or_validation": 5
+      },
+      "paths": [
+        {
+          "path": "docs/validation/mail-archive-restore-20261119/README.md",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/mail-archive-restore-20261119/publication-check.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/mail-archive-restore-20261119/publication-frontier.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/mail-archive-restore-20261119/publication-remote-refs.txt",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/mail-archive-restore-20261119/verify-publication.py",
+          "category": "documentation_or_validation"
+        }
+      ],
+      "merge_base_with_accepted_gui": "1a99845fe628c9e539d4bca7e7c586c5616da267",
+      "parents": [
+        "1a99845fe628c9e539d4bca7e7c586c5616da267"
+      ],
+      "incoming_commits": [
+        "6275d21246040e03f6264b27171992c88d1474a2 1a99845fe628c9e539d4bca7e7c586c5616da267 Bind mail restore publication to accepted source and remote frontier [skip ci]"
+      ]
+    },
+    "mail_resume_captured": {
+      "from": "2d7360a217b51c34ccf72eb5ed78c82ccd20bae5",
+      "to": "9d6cd0504094632825d3a0990a37fffd5c1b2c05",
+      "changed_path_count": 149,
+      "counts": {
+        "documentation_or_validation": 148,
+        "test": 1
+      },
+      "paths": [
+        {
+          "path": "docs/validation/mail-archive-restore-20261119/README.md",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/mail-archive-restore-20261119/publication-check.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/mail-archive-restore-20261119/publication-frontier.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/mail-archive-restore-20261119/publication-remote-refs.txt",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/mail-archive-restore-20261119/verify-publication.py",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/mail-archive-resume-20261119/README.md",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/mail-archive-resume-20261119/reconciliation-initial.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/artifact-manifest.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/checks-progress.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/dart-version.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/dependencies-after.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/dependencies-before.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/engine-analysis.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/format.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/inputs-after.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/inputs-before.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/dart-version.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/dart-version.stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/engine-analysis.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/engine-analysis.stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/format.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/format.stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/macro-tests.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/macro-tests.stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/node-version.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/node-version.stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/web_smoke-compile.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/web_smoke-compile.stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/web_smoke-run.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/web_smoke-run.stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/web_vba_arrays_smoke-compile.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/web_vba_arrays_smoke-compile.stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/web_vba_arrays_smoke-run.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/web_vba_arrays_smoke-run.stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/web_vba_control_flow_smoke-compile.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/web_vba_control_flow_smoke-compile.stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/web_vba_control_flow_smoke-run.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/web_vba_control_flow_smoke-run.stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/web_vba_procedures_smoke-compile.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/web_vba_procedures_smoke-compile.stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/web_vba_procedures_smoke-run.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/web_vba_procedures_smoke-run.stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/web_vba_smoke-compile.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/web_vba_smoke-compile.stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/web_vba_smoke-run.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/web_vba_smoke-run.stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/whitespace.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/whitespace.stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/macro-tests.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/node-version.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/package-config.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/receipt.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/resolved-pubspec.lock",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/test-summary.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/validation-pubspec.yaml",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/web_smoke-assertions.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/web_smoke-compile.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/web_smoke-run.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/web_vba_arrays_smoke-assertions.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/web_vba_arrays_smoke-compile.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/web_vba_arrays_smoke-run.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/web_vba_control_flow_smoke-assertions.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/web_vba_control_flow_smoke-compile.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/web_vba_control_flow_smoke-run.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/web_vba_procedures_smoke-assertions.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/web_vba_procedures_smoke-compile.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/web_vba_procedures_smoke-run.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/web_vba_smoke-assertions.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/web_vba_smoke-compile.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/web_vba_smoke-run.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/whitespace.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/final-review/gui-layout-theme/README.md",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/final-review/gui-layout-theme/audit.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/README.md",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/artifacts-sha256.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/baseline/baseline-embed-tests-summary.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/baseline/baseline-embed-tests.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/baseline/baseline-embed-tests.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/baseline/baseline-embed-tests.stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/baseline/inputs-after.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/baseline/inputs-before.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/baseline/receipt.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/baseline/run_baseline.py",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/baseline/source-frontier.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/changed-analysis.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/changed-analysis.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/changed-analysis.stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/editor-tests-summary.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/editor-tests.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/editor-tests.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/editor-tests.stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/fixture-change-proof.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/fixture-check-final-summary.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/fixture-check-final.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/fixture-check-final.stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/fixture-check-summary.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/fixture-check.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/fixture-check.stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/fixture-runner-error.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/fixture-runner-error.stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/fixture-teardown-late-summary.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/fixture-teardown-late.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/fixture-teardown-late.stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/input-stability.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/inputs-after.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/inputs-before.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/qualify.py",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/receipt.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/repeated-studio-tests-summary.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/repeated-studio-tests.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/repeated-studio-tests.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/repeated-studio-tests.stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/source-frontier.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-studio/README.md",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-studio/artifacts-sha256.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-studio/engine-snapshot.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-studio/input-stability.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-studio/inputs-after.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-studio/inputs-before.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-studio/native-runtime.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-studio/qualify.py",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-studio/receipt.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-studio/runtime-metadata.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-studio/source-binding.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-studio/source-frontier.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-studio/studio-tests.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-studio/studio-tests.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-studio/studio-tests.stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-studio/suite-counts.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-studio/test-summary.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/independent-review/parser-compatibility/README.md",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/independent-review/parser-compatibility/after-receipt.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/independent-review/parser-compatibility/after-stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/independent-review/parser-compatibility/after-stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/independent-review/parser-compatibility/artifact-manifest.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/independent-review/parser-compatibility/before-probe.dart",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/independent-review/parser-compatibility/before-receipt.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/independent-review/parser-compatibility/before-stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/independent-review/parser-compatibility/before-stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/independent-review/parser-compatibility/core-after.jsonl",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/independent-review/parser-compatibility/core-after.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/independent-review/parser-compatibility/correction-binding.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/independent-review/parser-compatibility/reproduce.py",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/runtime/flutter-tools-offline.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/runtime/flutter-workspace-final-pub.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/runtime/flutter-workspace-offline.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/runtime/package-fetch-receipt.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/runtime/setup.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "packages/quds_office_editor/test/embed_test.dart",
+          "category": "test"
+        }
+      ],
+      "merge_base_with_accepted_gui": "2d7360a217b51c34ccf72eb5ed78c82ccd20bae5",
+      "parents": [
+        "596430dcb816dd418204d62e78f4dc518afdc0e1"
+      ],
+      "incoming_commits": [
+        "9d6cd0504094632825d3a0990a37fffd5c1b2c05 596430dcb816dd418204d62e78f4dc518afdc0e1 Reconcile current fork work and plan durable mail restoration [skip ci]",
+        "596430dcb816dd418204d62e78f4dc518afdc0e1 2aff66a8540beb2015e606e67e46d228d7bf695e 2d7360a217b51c34ccf72eb5ed78c82ccd20bae5 caf378f40fd5bda50f504a6816404d01d8bbb8f8 Integrate current main and Studio layout work; repair editor test hosts [skip ci]",
+        "2aff66a8540beb2015e606e67e46d228d7bf695e ae4c8223d1814df4a500518c8b223831cbb0b51f Publish 614-test macro acceptance and independent Studio evidence [skip ci]",
+        "caf378f40fd5bda50f504a6816404d01d8bbb8f8 cf59efa99232a3fd26cf21ce7f2382402e576f9b 6275d21246040e03f6264b27171992c88d1474a2 Merge PR #209: verified mail archive restoration with provenance [skip ci]",
+        "6275d21246040e03f6264b27171992c88d1474a2 1a99845fe628c9e539d4bca7e7c586c5616da267 Bind mail restore publication to accepted source and remote frontier [skip ci]"
+      ]
+    },
+    "mail_resume_cutoff": {
+      "from": "2d7360a217b51c34ccf72eb5ed78c82ccd20bae5",
+      "to": "85c8c55186b8eefd242159ee606b2ad1fa61038f",
+      "changed_path_count": 171,
+      "counts": {
+        "documentation_or_validation": 150,
+        "product": 13,
+        "test": 8
+      },
+      "paths": [
+        {
+          "path": "docs/roadmaps/mail/archive-search.md",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/mail-archive-restore-20261119/README.md",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/mail-archive-restore-20261119/publication-check.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/mail-archive-restore-20261119/publication-frontier.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/mail-archive-restore-20261119/publication-remote-refs.txt",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/mail-archive-restore-20261119/verify-publication.py",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/mail-archive-resume-20261119/README.md",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/mail-archive-resume-20261119/reconciliation-initial.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/mail-archive-resume-20261119/run-mail-validation.py",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/artifact-manifest.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/checks-progress.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/dart-version.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/dependencies-after.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/dependencies-before.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/engine-analysis.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/format.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/inputs-after.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/inputs-before.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/dart-version.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/dart-version.stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/engine-analysis.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/engine-analysis.stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/format.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/format.stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/macro-tests.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/macro-tests.stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/node-version.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/node-version.stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/web_smoke-compile.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/web_smoke-compile.stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/web_smoke-run.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/web_smoke-run.stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/web_vba_arrays_smoke-compile.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/web_vba_arrays_smoke-compile.stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/web_vba_arrays_smoke-run.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/web_vba_arrays_smoke-run.stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/web_vba_control_flow_smoke-compile.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/web_vba_control_flow_smoke-compile.stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/web_vba_control_flow_smoke-run.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/web_vba_control_flow_smoke-run.stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/web_vba_procedures_smoke-compile.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/web_vba_procedures_smoke-compile.stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/web_vba_procedures_smoke-run.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/web_vba_procedures_smoke-run.stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/web_vba_smoke-compile.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/web_vba_smoke-compile.stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/web_vba_smoke-run.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/web_vba_smoke-run.stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/whitespace.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/whitespace.stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/macro-tests.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/node-version.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/package-config.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/receipt.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/resolved-pubspec.lock",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/test-summary.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/validation-pubspec.yaml",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/web_smoke-assertions.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/web_smoke-compile.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/web_smoke-run.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/web_vba_arrays_smoke-assertions.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/web_vba_arrays_smoke-compile.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/web_vba_arrays_smoke-run.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/web_vba_control_flow_smoke-assertions.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/web_vba_control_flow_smoke-compile.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/web_vba_control_flow_smoke-run.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/web_vba_procedures_smoke-assertions.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/web_vba_procedures_smoke-compile.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/web_vba_procedures_smoke-run.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/web_vba_smoke-assertions.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/web_vba_smoke-compile.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/web_vba_smoke-run.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/whitespace.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/final-review/gui-layout-theme/README.md",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/final-review/gui-layout-theme/audit.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/README.md",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/artifacts-sha256.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/baseline/baseline-embed-tests-summary.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/baseline/baseline-embed-tests.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/baseline/baseline-embed-tests.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/baseline/baseline-embed-tests.stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/baseline/inputs-after.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/baseline/inputs-before.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/baseline/receipt.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/baseline/run_baseline.py",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/baseline/source-frontier.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/changed-analysis.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/changed-analysis.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/changed-analysis.stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/editor-tests-summary.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/editor-tests.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/editor-tests.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/editor-tests.stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/fixture-change-proof.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/fixture-check-final-summary.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/fixture-check-final.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/fixture-check-final.stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/fixture-check-summary.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/fixture-check.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/fixture-check.stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/fixture-runner-error.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/fixture-runner-error.stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/fixture-teardown-late-summary.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/fixture-teardown-late.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/fixture-teardown-late.stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/input-stability.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/inputs-after.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/inputs-before.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/qualify.py",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/receipt.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/repeated-studio-tests-summary.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/repeated-studio-tests.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/repeated-studio-tests.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/repeated-studio-tests.stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/source-frontier.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-studio/README.md",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-studio/artifacts-sha256.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-studio/engine-snapshot.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-studio/input-stability.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-studio/inputs-after.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-studio/inputs-before.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-studio/native-runtime.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-studio/qualify.py",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-studio/receipt.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-studio/runtime-metadata.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-studio/source-binding.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-studio/source-frontier.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-studio/studio-tests.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-studio/studio-tests.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-studio/studio-tests.stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-studio/suite-counts.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-studio/test-summary.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/independent-review/parser-compatibility/README.md",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/independent-review/parser-compatibility/after-receipt.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/independent-review/parser-compatibility/after-stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/independent-review/parser-compatibility/after-stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/independent-review/parser-compatibility/artifact-manifest.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/independent-review/parser-compatibility/before-probe.dart",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/independent-review/parser-compatibility/before-receipt.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/independent-review/parser-compatibility/before-stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/independent-review/parser-compatibility/before-stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/independent-review/parser-compatibility/core-after.jsonl",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/independent-review/parser-compatibility/core-after.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/independent-review/parser-compatibility/correction-binding.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/independent-review/parser-compatibility/reproduce.py",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/runtime/flutter-tools-offline.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/runtime/flutter-workspace-final-pub.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/runtime/flutter-workspace-offline.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/runtime/package-fetch-receipt.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/runtime/setup.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "packages/quds_mail_store/lib/quds_mail_store.dart",
+          "category": "product"
+        },
+        {
+          "path": "packages/quds_mail_store/lib/src/archive_database.dart",
+          "category": "product"
+        },
+        {
+          "path": "packages/quds_mail_store/lib/src/archive_models.dart",
+          "category": "product"
+        },
+        {
+          "path": "packages/quds_mail_store/lib/src/archive_repository.dart",
+          "category": "product"
+        },
+        {
+          "path": "packages/quds_mail_store/lib/src/archive_restore_checkpoint_models.dart",
+          "category": "product"
+        },
+        {
+          "path": "packages/quds_mail_store/lib/src/archive_restore_checkpoints.dart",
+          "category": "product"
+        },
+        {
+          "path": "packages/quds_mail_store/lib/src/archive_restore_models.dart",
+          "category": "product"
+        },
+        {
+          "path": "packages/quds_mail_store/lib/src/archive_restore_native.dart",
+          "category": "product"
+        },
+        {
+          "path": "packages/quds_mail_store/test/archive_native_test.dart",
+          "category": "test"
+        },
+        {
+          "path": "packages/quds_mail_store/test/archive_restore_checkpoint_test.dart",
+          "category": "test"
+        },
+        {
+          "path": "packages/quds_mail_store/test/archive_restore_native_test.dart",
+          "category": "test"
+        },
+        {
+          "path": "packages/quds_mail_store/test/archive_restore_resume_test.dart",
+          "category": "test"
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/studio_mail_archive_host.dart",
+          "category": "product"
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/studio_mail_archive_native.dart",
+          "category": "product"
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/studio_mail_archive_restore.dart",
+          "category": "product"
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/studio_mail_archive_restore_progress.dart",
+          "category": "product"
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/studio_mail_archive_restore_strings.dart",
+          "category": "product"
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_mail_archive_portability_visual_test.dart",
+          "category": "test"
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart",
+          "category": "test"
+        },
+        {
+          "path": "packages/quds_office_editor/test/embed_test.dart",
+          "category": "test"
+        },
+        {
+          "path": "packages/quds_office_editor/test/office_dark_slide_test.dart",
+          "category": "test"
+        }
+      ],
+      "merge_base_with_accepted_gui": "2d7360a217b51c34ccf72eb5ed78c82ccd20bae5",
+      "parents": [
+        "9d6cd0504094632825d3a0990a37fffd5c1b2c05"
+      ],
+      "incoming_commits": [
+        "85c8c55186b8eefd242159ee606b2ad1fa61038f 9d6cd0504094632825d3a0990a37fffd5c1b2c05 Add durable archive restore receipts and Studio resume controls [skip ci]",
+        "9d6cd0504094632825d3a0990a37fffd5c1b2c05 596430dcb816dd418204d62e78f4dc518afdc0e1 Reconcile current fork work and plan durable mail restoration [skip ci]",
+        "596430dcb816dd418204d62e78f4dc518afdc0e1 2aff66a8540beb2015e606e67e46d228d7bf695e 2d7360a217b51c34ccf72eb5ed78c82ccd20bae5 caf378f40fd5bda50f504a6816404d01d8bbb8f8 Integrate current main and Studio layout work; repair editor test hosts [skip ci]",
+        "2aff66a8540beb2015e606e67e46d228d7bf695e ae4c8223d1814df4a500518c8b223831cbb0b51f Publish 614-test macro acceptance and independent Studio evidence [skip ci]",
+        "caf378f40fd5bda50f504a6816404d01d8bbb8f8 cf59efa99232a3fd26cf21ce7f2382402e576f9b 6275d21246040e03f6264b27171992c88d1474a2 Merge PR #209: verified mail archive restoration with provenance [skip ci]",
+        "6275d21246040e03f6264b27171992c88d1474a2 1a99845fe628c9e539d4bca7e7c586c5616da267 Bind mail restore publication to accepted source and remote frontier [skip ci]"
+      ]
+    },
+    "vba": {
+      "from": "2d7360a217b51c34ccf72eb5ed78c82ccd20bae5",
+      "to": "f6b8638d5c78a2d17e5e1c2fb43620c63a23b90c",
+      "changed_path_count": 187,
+      "counts": {
+        "documentation_or_validation": 185,
+        "product": 1,
+        "test": 1
+      },
+      "paths": [
+        {
+          "path": "docs/validation/mail-archive-restore-20261119/README.md",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/mail-archive-restore-20261119/publication-check.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/mail-archive-restore-20261119/publication-frontier.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/mail-archive-restore-20261119/publication-remote-refs.txt",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/mail-archive-restore-20261119/verify-publication.py",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/artifact-manifest.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/checks-progress.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/dart-version.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/dependencies-after.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/dependencies-before.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/engine-analysis.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/format.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/inputs-after.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/inputs-before.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/dart-version.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/dart-version.stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/engine-analysis.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/engine-analysis.stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/format.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/format.stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/macro-tests.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/macro-tests.stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/node-version.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/node-version.stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/web_smoke-compile.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/web_smoke-compile.stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/web_smoke-run.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/web_smoke-run.stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/web_vba_arrays_smoke-compile.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/web_vba_arrays_smoke-compile.stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/web_vba_arrays_smoke-run.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/web_vba_arrays_smoke-run.stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/web_vba_control_flow_smoke-compile.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/web_vba_control_flow_smoke-compile.stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/web_vba_control_flow_smoke-run.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/web_vba_control_flow_smoke-run.stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/web_vba_procedures_smoke-compile.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/web_vba_procedures_smoke-compile.stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/web_vba_procedures_smoke-run.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/web_vba_procedures_smoke-run.stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/web_vba_smoke-compile.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/web_vba_smoke-compile.stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/web_vba_smoke-run.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/web_vba_smoke-run.stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/whitespace.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/whitespace.stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/macro-tests.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/node-version.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/package-config.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/receipt.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/resolved-pubspec.lock",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/test-summary.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/validation-pubspec.yaml",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/web_smoke-assertions.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/web_smoke-compile.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/web_smoke-run.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/web_vba_arrays_smoke-assertions.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/web_vba_arrays_smoke-compile.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/web_vba_arrays_smoke-run.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/web_vba_control_flow_smoke-assertions.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/web_vba_control_flow_smoke-compile.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/web_vba_control_flow_smoke-run.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/web_vba_procedures_smoke-assertions.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/web_vba_procedures_smoke-compile.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/web_vba_procedures_smoke-run.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/web_vba_smoke-assertions.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/web_vba_smoke-compile.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/web_vba_smoke-run.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-final/whitespace.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/final-review/gui-layout-theme/README.md",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/final-review/gui-layout-theme/audit.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/final-review/latest-frontier/audit_mail_evidence.py",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/final-review/latest-frontier/frontier-audit.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/final-review/latest-frontier/mail-evidence-audit.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-final/README.md",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-final/artifacts-sha256.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-final/braces-correction/analysis.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-final/braces-correction/analysis.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-final/braces-correction/analysis.stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-final/braces-correction/correction.diff",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-final/braces-correction/format.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-final/braces-correction/format.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-final/braces-correction/format.stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-final/braces-correction/incoming-context.diff",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-final/braces-correction/receipt.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-final/changed-analysis.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-final/changed-analysis.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-final/changed-analysis.stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-final/editor-tests-summary.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-final/editor-tests.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-final/editor-tests.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-final/editor-tests.stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-final/finalize.py",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-final/input-stability.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-final/inputs-after.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-final/inputs-before.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-final/qualify.py",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-final/receipt.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-final/repeated-studio-tests-summary.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-final/repeated-studio-tests.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-final/repeated-studio-tests.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-final/repeated-studio-tests.stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-final/source-frontier.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-final/studio-analysis.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-final/studio-analysis.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-final/studio-analysis.stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-final/studio-theme-tests-summary.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-final/studio-theme-tests.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-final/studio-theme-tests.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-final/studio-theme-tests.stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/README.md",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/artifacts-sha256.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/baseline/baseline-embed-tests-summary.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/baseline/baseline-embed-tests.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/baseline/baseline-embed-tests.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/baseline/baseline-embed-tests.stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/baseline/inputs-after.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/baseline/inputs-before.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/baseline/receipt.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/baseline/run_baseline.py",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/baseline/source-frontier.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/changed-analysis.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/changed-analysis.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/changed-analysis.stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/editor-tests-summary.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/editor-tests.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/editor-tests.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/editor-tests.stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/fixture-change-proof.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/fixture-check-final-summary.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/fixture-check-final.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/fixture-check-final.stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/fixture-check-summary.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/fixture-check.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/fixture-check.stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/fixture-runner-error.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/fixture-runner-error.stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/fixture-teardown-late-summary.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/fixture-teardown-late.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/fixture-teardown-late.stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/input-stability.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/inputs-after.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/inputs-before.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/qualify.py",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/receipt.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/repeated-studio-tests-summary.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/repeated-studio-tests.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/repeated-studio-tests.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/repeated-studio-tests.stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/source-frontier.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-studio/README.md",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-studio/artifacts-sha256.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-studio/engine-snapshot.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-studio/input-stability.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-studio/inputs-after.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-studio/inputs-before.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-studio/native-runtime.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-studio/qualify.py",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-studio/receipt.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-studio/runtime-metadata.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-studio/source-binding.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-studio/source-frontier.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-studio/studio-tests.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-studio/studio-tests.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-studio/studio-tests.stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-studio/suite-counts.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-studio/test-summary.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/independent-review/parser-compatibility/README.md",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/independent-review/parser-compatibility/after-receipt.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/independent-review/parser-compatibility/after-stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/independent-review/parser-compatibility/after-stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/independent-review/parser-compatibility/artifact-manifest.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/independent-review/parser-compatibility/before-probe.dart",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/independent-review/parser-compatibility/before-receipt.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/independent-review/parser-compatibility/before-stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/independent-review/parser-compatibility/before-stdout.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/independent-review/parser-compatibility/core-after.jsonl",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/independent-review/parser-compatibility/core-after.stderr.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/independent-review/parser-compatibility/correction-binding.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/independent-review/parser-compatibility/reproduce.py",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/runtime/flutter-tools-offline.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/runtime/flutter-workspace-final-pub.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/runtime/flutter-workspace-offline.log",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/runtime/package-fetch-receipt.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/runtime/setup.json",
+          "category": "documentation_or_validation"
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/suite_workspace.dart",
+          "category": "product"
+        },
+        {
+          "path": "packages/quds_office_editor/test/embed_test.dart",
+          "category": "test"
+        }
+      ],
+      "merge_base_with_accepted_gui": "2d7360a217b51c34ccf72eb5ed78c82ccd20bae5",
+      "parents": [
+        "596430dcb816dd418204d62e78f4dc518afdc0e1"
+      ],
+      "incoming_commits": [
+        "f6b8638d5c78a2d17e5e1c2fb43620c63a23b90c 596430dcb816dd418204d62e78f4dc518afdc0e1 Preserve expanded GUI diagnostics and fix Studio analysis info [skip ci]",
+        "596430dcb816dd418204d62e78f4dc518afdc0e1 2aff66a8540beb2015e606e67e46d228d7bf695e 2d7360a217b51c34ccf72eb5ed78c82ccd20bae5 caf378f40fd5bda50f504a6816404d01d8bbb8f8 Integrate current main and Studio layout work; repair editor test hosts [skip ci]",
+        "2aff66a8540beb2015e606e67e46d228d7bf695e ae4c8223d1814df4a500518c8b223831cbb0b51f Publish 614-test macro acceptance and independent Studio evidence [skip ci]",
+        "caf378f40fd5bda50f504a6816404d01d8bbb8f8 cf59efa99232a3fd26cf21ce7f2382402e576f9b 6275d21246040e03f6264b27171992c88d1474a2 Merge PR #209: verified mail archive restoration with provenance [skip ci]",
+        "6275d21246040e03f6264b27171992c88d1474a2 1a99845fe628c9e539d4bca7e7c586c5616da267 Bind mail restore publication to accepted source and remote frontier [skip ci]"
+      ]
+    }
+  },
+  "ancestry_matrix": {
+    "accepted_base": {
+      "accepted_base": true,
+      "capture_head": false,
+      "gui_checkpoint": false,
+      "main": false,
+      "mail_restore": false,
+      "mail_resume_captured": false,
+      "mail_resume_cutoff": false,
+      "vba": false
+    },
+    "capture_head": {
+      "accepted_base": true,
+      "capture_head": true,
+      "gui_checkpoint": false,
+      "main": false,
+      "mail_restore": false,
+      "mail_resume_captured": false,
+      "mail_resume_cutoff": false,
+      "vba": false
+    },
+    "gui_checkpoint": {
+      "accepted_base": true,
+      "capture_head": true,
+      "gui_checkpoint": true,
+      "main": false,
+      "mail_restore": false,
+      "mail_resume_captured": false,
+      "mail_resume_cutoff": false,
+      "vba": false
+    },
+    "main": {
+      "accepted_base": false,
+      "capture_head": false,
+      "gui_checkpoint": false,
+      "main": true,
+      "mail_restore": true,
+      "mail_resume_captured": false,
+      "mail_resume_cutoff": false,
+      "vba": false
+    },
+    "mail_restore": {
+      "accepted_base": false,
+      "capture_head": false,
+      "gui_checkpoint": false,
+      "main": false,
+      "mail_restore": true,
+      "mail_resume_captured": false,
+      "mail_resume_cutoff": false,
+      "vba": false
+    },
+    "mail_resume_captured": {
+      "accepted_base": true,
+      "capture_head": false,
+      "gui_checkpoint": false,
+      "main": true,
+      "mail_restore": true,
+      "mail_resume_captured": true,
+      "mail_resume_cutoff": false,
+      "vba": false
+    },
+    "mail_resume_cutoff": {
+      "accepted_base": true,
+      "capture_head": false,
+      "gui_checkpoint": false,
+      "main": true,
+      "mail_restore": true,
+      "mail_resume_captured": true,
+      "mail_resume_cutoff": true,
+      "vba": false
+    },
+    "vba": {
+      "accepted_base": true,
+      "capture_head": false,
+      "gui_checkpoint": false,
+      "main": true,
+      "mail_restore": true,
+      "mail_resume_captured": false,
+      "mail_resume_cutoff": false,
+      "vba": true
+    }
+  },
+  "main_tree_equals_mail_restore": true,
+  "new_resume_implementation_delta": {
+    "from": "9d6cd0504094632825d3a0990a37fffd5c1b2c05",
+    "to": "85c8c55186b8eefd242159ee606b2ad1fa61038f",
+    "changed_path_count": 23,
+    "counts": {
+      "documentation_or_validation": 3,
+      "product": 13,
+      "test": 7
+    },
+    "paths": [
+      {
+        "path": "docs/roadmaps/mail/archive-search.md",
+        "category": "documentation_or_validation"
+      },
+      {
+        "path": "docs/validation/mail-archive-resume-20261119/README.md",
+        "category": "documentation_or_validation"
+      },
+      {
+        "path": "docs/validation/mail-archive-resume-20261119/run-mail-validation.py",
+        "category": "documentation_or_validation"
+      },
+      {
+        "path": "packages/quds_mail_store/lib/quds_mail_store.dart",
+        "category": "product"
+      },
+      {
+        "path": "packages/quds_mail_store/lib/src/archive_database.dart",
+        "category": "product"
+      },
+      {
+        "path": "packages/quds_mail_store/lib/src/archive_models.dart",
+        "category": "product"
+      },
+      {
+        "path": "packages/quds_mail_store/lib/src/archive_repository.dart",
+        "category": "product"
+      },
+      {
+        "path": "packages/quds_mail_store/lib/src/archive_restore_checkpoint_models.dart",
+        "category": "product"
+      },
+      {
+        "path": "packages/quds_mail_store/lib/src/archive_restore_checkpoints.dart",
+        "category": "product"
+      },
+      {
+        "path": "packages/quds_mail_store/lib/src/archive_restore_models.dart",
+        "category": "product"
+      },
+      {
+        "path": "packages/quds_mail_store/lib/src/archive_restore_native.dart",
+        "category": "product"
+      },
+      {
+        "path": "packages/quds_mail_store/test/archive_native_test.dart",
+        "category": "test"
+      },
+      {
+        "path": "packages/quds_mail_store/test/archive_restore_checkpoint_test.dart",
+        "category": "test"
+      },
+      {
+        "path": "packages/quds_mail_store/test/archive_restore_native_test.dart",
+        "category": "test"
+      },
+      {
+        "path": "packages/quds_mail_store/test/archive_restore_resume_test.dart",
+        "category": "test"
+      },
+      {
+        "path": "packages/quds_office_editor/example/lib/studio_mail_archive_host.dart",
+        "category": "product"
+      },
+      {
+        "path": "packages/quds_office_editor/example/lib/studio_mail_archive_native.dart",
+        "category": "product"
+      },
+      {
+        "path": "packages/quds_office_editor/example/lib/studio_mail_archive_restore.dart",
+        "category": "product"
+      },
+      {
+        "path": "packages/quds_office_editor/example/lib/studio_mail_archive_restore_progress.dart",
+        "category": "product"
+      },
+      {
+        "path": "packages/quds_office_editor/example/lib/studio_mail_archive_restore_strings.dart",
+        "category": "product"
+      },
+      {
+        "path": "packages/quds_office_editor/example/test/studio_mail_archive_portability_visual_test.dart",
+        "category": "test"
+      },
+      {
+        "path": "packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart",
+        "category": "test"
+      },
+      {
+        "path": "packages/quds_office_editor/test/office_dark_slide_test.dart",
+        "category": "test"
+      }
+    ]
+  },
+  "functional_changes": [
+    "Additive SQLite schema 1-to-2 migration adds bounded destination-owned restore jobs and receipts.",
+    "Original bytes, searchable projection, complete provenance and a completion receipt commit within one transaction.",
+    "Explicit resume verifies destination originals, metadata, index and origins before skipping source EML; full source verification remains available.",
+    "Progress listing and deliberate forgetting retain archived content; quota and cancellation boundaries cover receipt metadata.",
+    "Studio adds resume selection, resumed/current-run counts and explicit progress management in English, German and Arabic."
+  ],
+  "implementation_acceptance_state": "Incoming 85c8 README explicitly labels implementation and local qualification in progress. Historical receipts are not fresh acceptance of these new paths.",
+  "virtual_merges": {
+    "mail_resume_cutoff": {
+      "argv": [
+        "git",
+        "merge-tree",
+        "--write-tree",
+        "--name-only",
+        "2dbd1c58dd724bb2208e06c43a835b220484b1e1",
+        "85c8c55186b8eefd242159ee606b2ad1fa61038f"
+      ],
+      "exit_code": 1,
+      "tree": "7c2e3f2a1f461fc3a6c3a31539a93711c9073a5d",
+      "is_resolved": false,
+      "conflicting_paths": [
+        "packages/quds_office_editor/test/office_dark_slide_test.dart"
+      ],
+      "stdout": "7c2e3f2a1f461fc3a6c3a31539a93711c9073a5d\npackages/quds_office_editor/test/office_dark_slide_test.dart\n\nAuto-merging packages/quds_office_editor/test/office_dark_slide_test.dart\nCONFLICT (content): Merge conflict in packages/quds_office_editor/test/office_dark_slide_test.dart\n",
+      "stderr": "",
+      "product_delta_paths": [
+        "packages/quds_mail_store/lib/quds_mail_store.dart",
+        "packages/quds_mail_store/lib/src/archive_database.dart",
+        "packages/quds_mail_store/lib/src/archive_models.dart",
+        "packages/quds_mail_store/lib/src/archive_repository.dart",
+        "packages/quds_mail_store/lib/src/archive_restore_checkpoint_models.dart",
+        "packages/quds_mail_store/lib/src/archive_restore_checkpoints.dart",
+        "packages/quds_mail_store/lib/src/archive_restore_models.dart",
+        "packages/quds_mail_store/lib/src/archive_restore_native.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_archive_host.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_archive_native.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_archive_restore.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_archive_restore_progress.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_archive_restore_strings.dart"
+      ],
+      "test_delta_paths": [
+        "packages/quds_mail_store/test/archive_native_test.dart",
+        "packages/quds_mail_store/test/archive_restore_checkpoint_test.dart",
+        "packages/quds_mail_store/test/archive_restore_native_test.dart",
+        "packages/quds_mail_store/test/archive_restore_resume_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_archive_portability_visual_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart",
+        "packages/quds_office_editor/test/embed_test.dart",
+        "packages/quds_office_editor/test/office_dark_slide_test.dart"
+      ],
+      "worktree_index_or_refs_modified": false
+    },
+    "vba": {
+      "argv": [
+        "git",
+        "merge-tree",
+        "--write-tree",
+        "--name-only",
+        "2dbd1c58dd724bb2208e06c43a835b220484b1e1",
+        "f6b8638d5c78a2d17e5e1c2fb43620c63a23b90c"
+      ],
+      "exit_code": 0,
+      "tree": "9d5faf9db2c5b6e999180b286a06b51a8db0e8bf",
+      "is_resolved": true,
+      "conflicting_paths": [],
+      "stdout": "9d5faf9db2c5b6e999180b286a06b51a8db0e8bf\n",
+      "stderr": "",
+      "product_delta_paths": [],
+      "test_delta_paths": [
+        "packages/quds_office_editor/test/embed_test.dart"
+      ],
+      "worktree_index_or_refs_modified": false
+    }
+  },
+  "conflict_resolution_recommendation": {
+    "path": "packages/quds_office_editor/test/office_dark_slide_test.dart",
+    "keep_exact_revision": "2dbd1c58dd724bb2208e06c43a835b220484b1e1",
+    "keep_sha256": "f376ddbeb95ada50e8af7d29b0ef51284d465f2ae0d5705c7979f94163dfabc8",
+    "incoming_sha256": "ba3e45bb0bd06111b4f59161c8154b2f00540508d631a548927aa276ab3588ce",
+    "reason": "Keep the independently accepted GUI fixture: exact light-cell pixel equivalence, actual contrast coverage and saved-XML color checks. The incoming patch only widens an older black-pixel tolerance. No product conflict exists.",
+    "extra_dark_slide_retest_needed_if_retained_byte_for_byte": false
+  },
+  "gui_preservation": {
+    "accepted_gui_tree": "9528c8545229da7218c6c948777ad95709ba4fe0",
+    "resume_virtual_changes_only_expected_mail_product_paths": true,
+    "vba_virtual_has_no_product_delta": true,
+    "later_tab_height_header_story_ruler_and_dialog_changes_preserved": true,
+    "vba_braces_fix_already_in_gui": "Virtual merge with f6 has no product diff from 2db; its braces-only change is already present."
+  },
+  "engine_subtrees_unchanged": [
+    {
+      "path": "packages/quds_office_engine/lib",
+      "trees": {
+        "gui_checkpoint": "532c3d194bab239c6b1887f7826a117f578beb30",
+        "mail_resume_cutoff": "532c3d194bab239c6b1887f7826a117f578beb30",
+        "vba": "532c3d194bab239c6b1887f7826a117f578beb30"
+      },
+      "identical": true
+    },
+    {
+      "path": "packages/quds_office_engine/test",
+      "trees": {
+        "gui_checkpoint": "fc87d4c17aadbf962fba4c59b719a894c3d2dfba",
+        "mail_resume_cutoff": "fc87d4c17aadbf962fba4c59b719a894c3d2dfba",
+        "vba": "fc87d4c17aadbf962fba4c59b719a894c3d2dfba"
+      },
+      "identical": true
+    },
+    {
+      "path": "packages/quds_office_engine/tool",
+      "trees": {
+        "gui_checkpoint": "376a8172d8571cd9def7a220ba570793bf8f0c1a",
+        "mail_resume_cutoff": "376a8172d8571cd9def7a220ba570793bf8f0c1a",
+        "vba": "376a8172d8571cd9def7a220ba570793bf8f0c1a"
+      },
+      "identical": true
+    }
+  ],
+  "shared_embed_fixture": {
+    "path": "packages/quds_office_editor/test/embed_test.dart",
+    "mail_resume_sha256": "8274bed0a40708ad34f26324d8c05113024005f2ceddc8e566aa5f86f0a11a34",
+    "vba_sha256": "8274bed0a40708ad34f26324d8c05113024005f2ceddc8e566aa5f86f0a11a34",
+    "identical": true,
+    "change": "MaterialApp supplies the review Tooltip Overlay; widget teardown precedes controller disposal. Existing assertions remain."
+  },
+  "integration_recommendation": {
+    "exact_tips_to_integrate": [
+      "85c8c55186b8eefd242159ee606b2ad1fa61038f",
+      "f6b8638d5c78a2d17e5e1c2fb43620c63a23b90c"
+    ],
+    "main_and_mail_restore_already_contained_in_both_tips": true,
+    "one_tip_is_insufficient": "85c8 and f6 are sibling descendants of 596430; neither contains the other.",
+    "keep_current_gui_checkpoint": "2dbd1c58dd724bb2208e06c43a835b220484b1e1"
+  },
+  "additional_local_acceptance": {
+    "performed_by_this_audit": false,
+    "serial_execution_required": true,
+    "gates": [
+      {
+        "id": "resume-scoped-analysis",
+        "cwd": ".",
+        "argv": [
+          "/workspace/scratch/9c3338a48b2c/toolchain/run_dart.sh",
+          "analyze",
+          "--fatal-infos",
+          "--fatal-warnings",
+          "packages/quds_mail_store/lib/quds_mail_store.dart",
+          "packages/quds_mail_store/lib/src/archive_database.dart",
+          "packages/quds_mail_store/lib/src/archive_models.dart",
+          "packages/quds_mail_store/lib/src/archive_repository.dart",
+          "packages/quds_mail_store/lib/src/archive_restore_checkpoint_models.dart",
+          "packages/quds_mail_store/lib/src/archive_restore_checkpoints.dart",
+          "packages/quds_mail_store/lib/src/archive_restore_models.dart",
+          "packages/quds_mail_store/lib/src/archive_restore_native.dart",
+          "packages/quds_office_editor/example/lib/studio_mail_archive_host.dart",
+          "packages/quds_office_editor/example/lib/studio_mail_archive_native.dart",
+          "packages/quds_office_editor/example/lib/studio_mail_archive_restore.dart",
+          "packages/quds_office_editor/example/lib/studio_mail_archive_restore_progress.dart",
+          "packages/quds_office_editor/example/lib/studio_mail_archive_restore_strings.dart",
+          "packages/quds_mail_store/test/archive_native_test.dart",
+          "packages/quds_mail_store/test/archive_restore_checkpoint_test.dart",
+          "packages/quds_mail_store/test/archive_restore_native_test.dart",
+          "packages/quds_mail_store/test/archive_restore_resume_test.dart",
+          "packages/quds_office_editor/example/test/studio_mail_archive_portability_visual_test.dart",
+          "packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart",
+          "packages/quds_office_editor/test/embed_test.dart"
+        ],
+        "purpose": "Thirteen changed mail product files, six mail tests and the repaired embed fixture; exclude the already accepted retained dark-slide file."
+      },
+      {
+        "id": "resume-native",
+        "cwd": "packages/quds_mail_store",
+        "argv": [
+          "/workspace/scratch/9c3338a48b2c/toolchain/run_dart.sh",
+          "--packages=/workspace/scratch/9c3338a48b2c/crispoffice/.dart_tool/package_config.json",
+          "/workspace/scratch/9c3338a48b2c/toolchain/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+          "--platform=vm",
+          "--compiler=kernel",
+          "--concurrency=1",
+          "--reporter=json",
+          "test/archive_restore_checkpoint_test.dart",
+          "test/archive_restore_resume_test.dart",
+          "test/archive_restore_native_test.dart",
+          "test/archive_restore_adversarial_test.dart",
+          "test/archive_native_test.dart",
+          "test/archive_multi_origin_test.dart",
+          "test/archive_repository_test.dart"
+        ],
+        "purpose": "Durable receipts, schema migration, rollback and quota accounting, resume/corruption/interruption, and the existing shared archive write/native contracts."
+      },
+      {
+        "id": "resume-portable",
+        "cwd": "packages/quds_mail_store",
+        "argv": [
+          "/workspace/scratch/9c3338a48b2c/toolchain/run_dart.sh",
+          "--packages=/workspace/scratch/9c3338a48b2c/crispoffice/.dart_tool/package_config.json",
+          "/workspace/scratch/9c3338a48b2c/toolchain/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+          "--platform=node",
+          "--compiler=dart2js",
+          "--concurrency=1",
+          "--reporter=json",
+          "test/archive_export_manifest_test.dart",
+          "test/browser_problem_test.dart"
+        ],
+        "purpose": "Public model/export compilation and the declared browser boundary after new public checkpoint exports. No SQLite test is selected for Node."
+      },
+      {
+        "id": "resume-studio",
+        "cwd": "packages/quds_office_editor/example",
+        "argv": [
+          "/workspace/scratch/9c3338a48b2c/toolchain/run_flutter.sh",
+          "test",
+          "--no-pub",
+          "--concurrency=1",
+          "--reporter=json",
+          "test/studio_mail_archive_restore_test.dart",
+          "test/studio_mail_archive_portability_visual_test.dart",
+          "test/studio_mail_archive_restore_native_test.dart"
+        ],
+        "purpose": "Resume/full-verification choice, progress/forget confirmation, cancellation/disposal, localized narrow layouts, and genuine native host integration."
+      },
+      {
+        "id": "embed-host-fixture",
+        "cwd": "packages/quds_office_editor",
+        "argv": [
+          "/workspace/scratch/9c3338a48b2c/toolchain/run_flutter.sh",
+          "test",
+          "--no-pub",
+          "--concurrency=1",
+          "--reporter=json",
+          "test/embed_test.dart"
+        ],
+        "purpose": "Validate inherited host Overlay and explicit teardown fixture repair without weakening existing embedding assertions."
+      }
+    ],
+    "file_counts": {
+      "store_vm": 7,
+      "store_node": 2,
+      "studio_widgets": 3,
+      "editor_embed": 1,
+      "scoped_analysis": 20
+    },
+    "retain_prior_gui_and_vba_evidence": "No additional VBA compiler/tests/web smoke run is warranted by this cutoff: all engine lib/test/tool subtrees are identical. Retain existing GUI acceptance for source preserved byte-for-byte."
+  },
+  "prior_evidence": [
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/incoming/audit.json",
+      "sha256": "b876c3123838475fc400a73f9e9ffed96d86a90c50b23b3e3a2d46b7fa2803f4",
+      "preserved_without_rewrite": true
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/incoming/audit-refresh.json",
+      "sha256": "c56a48e976008f67a62b9fe0dfa54d2c95ace2f22333f9348396e0ed33b8a82d",
+      "preserved_without_rewrite": true
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/remote-capture.json",
+      "sha256": "3e0d8cfda3bf31bb1113681415aa53d994884ec7c7f9fe03c406753228a0c823",
+      "preserved_without_rewrite": true
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/visual-review.json",
+      "sha256": "bc0a10f4fb9c2d2508283eda3ad4e24038365b787884d2a1e48001d00e4bdb02",
+      "preserved_without_rewrite": true
+    }
+  ],
+  "merged_result_verification": {
+    "verified_at_utc": "2026-11-19T18:44:05.987405+00:00",
+    "head": "8d9d1fe77284f76e71fbd6cb2718d3f6cfb636af",
+    "tree": "86d4b9fa8ed4a04fa73996af69fc6097aacd376e",
+    "parents": [
+      "a2c144beaea7b46218d3b8c4932dcdb5681004aa",
+      "85c8c55186b8eefd242159ee606b2ad1fa61038f"
+    ],
+    "contains_inspected_refs": {
+      "accepted_base": true,
+      "capture_head": true,
+      "gui_checkpoint": true,
+      "main": true,
+      "mail_restore": true,
+      "mail_resume_captured": true,
+      "mail_resume_cutoff": true,
+      "vba": true
+    },
+    "package_delta_paths": [
+      "packages/quds_mail_store/lib/quds_mail_store.dart",
+      "packages/quds_mail_store/lib/src/archive_database.dart",
+      "packages/quds_mail_store/lib/src/archive_models.dart",
+      "packages/quds_mail_store/lib/src/archive_repository.dart",
+      "packages/quds_mail_store/lib/src/archive_restore_checkpoint_models.dart",
+      "packages/quds_mail_store/lib/src/archive_restore_checkpoints.dart",
+      "packages/quds_mail_store/lib/src/archive_restore_models.dart",
+      "packages/quds_mail_store/lib/src/archive_restore_native.dart",
+      "packages/quds_mail_store/test/archive_native_test.dart",
+      "packages/quds_mail_store/test/archive_restore_checkpoint_test.dart",
+      "packages/quds_mail_store/test/archive_restore_native_test.dart",
+      "packages/quds_mail_store/test/archive_restore_resume_test.dart",
+      "packages/quds_office_editor/example/lib/studio_mail_archive_host.dart",
+      "packages/quds_office_editor/example/lib/studio_mail_archive_native.dart",
+      "packages/quds_office_editor/example/lib/studio_mail_archive_restore.dart",
+      "packages/quds_office_editor/example/lib/studio_mail_archive_restore_progress.dart",
+      "packages/quds_office_editor/example/lib/studio_mail_archive_restore_strings.dart",
+      "packages/quds_office_editor/example/test/studio_mail_archive_portability_visual_test.dart",
+      "packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart",
+      "packages/quds_office_editor/test/embed_test.dart"
+    ],
+    "only_expected_mail_product_changes": true,
+    "mail_product_checks": [
+      {
+        "path": "packages/quds_mail_store/lib/quds_mail_store.dart",
+        "sha256": "deb30668472506cbd79de7344dc12dc3d61a444bb5cd1f70db832bfa7a2d1c5c",
+        "matches_inspected_cutoff": true
+      },
+      {
+        "path": "packages/quds_mail_store/lib/src/archive_database.dart",
+        "sha256": "3f029f9394a2f44199aa5afb5458ad2469e55988a4ee2d0eb8e888a7c44dff14",
+        "matches_inspected_cutoff": true
+      },
+      {
+        "path": "packages/quds_mail_store/lib/src/archive_models.dart",
+        "sha256": "289157f231d43a33532d411569bcd6e51c19ba341c7654577511805129ec60b8",
+        "matches_inspected_cutoff": true
+      },
+      {
+        "path": "packages/quds_mail_store/lib/src/archive_repository.dart",
+        "sha256": "a716eba4d9d3a256e2f7db50aa46246bb1ec80800de1f475e5cdab8fe2008e03",
+        "matches_inspected_cutoff": true
+      },
+      {
+        "path": "packages/quds_mail_store/lib/src/archive_restore_checkpoint_models.dart",
+        "sha256": "9c1ce6f5b6604fd4cb1e32d04d0ec85e60221941a78686b40be156a0b9d03d64",
+        "matches_inspected_cutoff": true
+      },
+      {
+        "path": "packages/quds_mail_store/lib/src/archive_restore_checkpoints.dart",
+        "sha256": "f8d92957dd938853fe5d908ff2143c90a65b8254d15c3de9a963a380b5dab70a",
+        "matches_inspected_cutoff": true
+      },
+      {
+        "path": "packages/quds_mail_store/lib/src/archive_restore_models.dart",
+        "sha256": "dbc5917710d786ce8b6627121fa86ab12fd73f091d621b18396b5821dc90eb5d",
+        "matches_inspected_cutoff": true
+      },
+      {
+        "path": "packages/quds_mail_store/lib/src/archive_restore_native.dart",
+        "sha256": "1b32472d4b1111a8724518cd9fd90a5cb6e112622fbd16f171498c75f6fce44c",
+        "matches_inspected_cutoff": true
+      },
+      {
+        "path": "packages/quds_office_editor/example/lib/studio_mail_archive_host.dart",
+        "sha256": "6294640f1f0ed779652940b18d414ad5ea31f6dcdbb9fae11cf64f9a20a833a0",
+        "matches_inspected_cutoff": true
+      },
+      {
+        "path": "packages/quds_office_editor/example/lib/studio_mail_archive_native.dart",
+        "sha256": "d23cf185e51a167e9e0aa31e1195875967a81d697b7c6a9fd61b502d7fde6dce",
+        "matches_inspected_cutoff": true
+      },
+      {
+        "path": "packages/quds_office_editor/example/lib/studio_mail_archive_restore.dart",
+        "sha256": "5edfd33a0a7123b2416262d2f4a65070123261e3207a9c98964a1f38bc383da8",
+        "matches_inspected_cutoff": true
+      },
+      {
+        "path": "packages/quds_office_editor/example/lib/studio_mail_archive_restore_progress.dart",
+        "sha256": "5540933efb25c232139fd81c0464f724780fef9d7bb76621351857df850b89e3",
+        "matches_inspected_cutoff": true
+      },
+      {
+        "path": "packages/quds_office_editor/example/lib/studio_mail_archive_restore_strings.dart",
+        "sha256": "82b479ce094c139375971240c8172b381965e9250e0678a42f986b4fc2c547ae",
+        "matches_inspected_cutoff": true
+      }
+    ],
+    "accepted_slide_test_retained": {
+      "path": "packages/quds_office_editor/test/office_dark_slide_test.dart",
+      "blob": "657d07fb25b32c26b19f8aa60e488d6ee7264a02",
+      "sha256": "f376ddbeb95ada50e8af7d29b0ef51284d465f2ae0d5705c7979f94163dfabc8",
+      "matches_gui_checkpoint": true
+    },
+    "embed_fixture_matches_inspected_cutoff": true,
+    "engine_subtrees": [
+      {
+        "path": "packages/quds_office_engine/lib",
+        "tree": "532c3d194bab239c6b1887f7826a117f578beb30",
+        "matches_accepted_gui": true
+      },
+      {
+        "path": "packages/quds_office_engine/test",
+        "tree": "fc87d4c17aadbf962fba4c59b719a894c3d2dfba",
+        "matches_accepted_gui": true
+      },
+      {
+        "path": "packages/quds_office_engine/tool",
+        "tree": "376a8172d8571cd9def7a220ba570793bf8f0c1a",
+        "matches_accepted_gui": true
+      }
+    ],
+    "fresh_test_acceptance": "Pending runtime gates; this verification checks source integration and identities only."
+  }
+}
