@@ -8,6 +8,7 @@ import 'package:quds_mail_store/quds_mail_store.dart';
 import 'package:quds_mail_ui/quds_mail_ui.dart';
 
 import 'studio_mail_archive_host.dart';
+import 'studio_mail_archive_directory_import.dart';
 import 'studio_mail_archive_strings.dart';
 import 'studio_strings.dart';
 
@@ -65,6 +66,7 @@ class _StudioMailArchiveDialogState extends State<StudioMailArchiveDialog> {
   List<MailArchiveIntegrityIssue> _issues = const [];
   String? _error;
   String? _notice;
+  String? _exportDirectory;
   String? _previewError;
   bool _opening = false;
   bool _searching = false;
@@ -562,6 +564,182 @@ class _StudioMailArchiveDialogState extends State<StudioMailArchiveDialog> {
     }
   }
 
+  Future<void> _importDirectory() async {
+    if (!_ready || _searching) return;
+    final options = await showDialog<_ImportOptions>(
+      context: context,
+      builder: (_) => _ArchiveImportDialog(
+        strings: s,
+        indexAttachments: _indexAttachments,
+        directory: true,
+      ),
+    );
+    if (!mounted || options == null || !_ready) return;
+    setState(() => _indexAttachments = options.indexAttachments);
+    await _work((store, cancellation, generation) async {
+      final path = await _files.pickDirectory();
+      if (!_current(generation, store) ||
+          cancellation.isCancelled ||
+          path == null) {
+        return;
+      }
+      final report = await importStudioMailDirectory(
+        store: store,
+        files: _files,
+        directory: path,
+        source: options.source,
+        folder: options.folder,
+        indexAttachmentText: options.indexAttachments,
+        dialect: options.dialect,
+        recursive: options.recursive,
+        maxMessageBytes: widget.limits.maxMessageBytes,
+        maxMessages: widget.limits.maxMessages,
+        cancellation: cancellation,
+        onProgress: (progress) {
+          if (!_current(generation, store)) return;
+          setState(() => _processed = progress.processed);
+          if (_verbose) {
+            debugPrint(
+              '[mail.archive.directory] ${jsonEncode(progress.toJson())}',
+            );
+          }
+        },
+      );
+      if (!_current(generation, store)) return;
+      setState(() {
+        _notice = s.archiveDirectorySummary(
+          report.status,
+          report.progress.saved,
+          report.progress.duplicates,
+          report.progress.failed,
+          report.progress.skipped,
+          report.progress.scanErrors,
+          report.progress.limited,
+          report.progress.warnings,
+        );
+        if (report.problem != null) {
+          _error = s.archiveProblem(report.problem!.code);
+        }
+      });
+    });
+    if (mounted) {
+      final operationError = _error;
+      await _refresh();
+      if (mounted && _error == null && operationError != null) {
+        setState(() => _error = operationError);
+      }
+    }
+  }
+
+  Future<void> _bulkExport({bool resume = false}) async {
+    if (!_ready || _searching) return;
+    final request = _request;
+    await _work((store, cancellation, generation) async {
+      MailArchiveExportPlan? plan;
+      if (!resume) {
+        final result = await _safe(
+          () => store.planExport(request, cancellation: cancellation),
+        );
+        if (!_current(generation, store) || cancellation.isCancelled) return;
+        if (result case MailFailure(:final problem)) {
+          setState(() => _error = s.archiveProblem(problem.code));
+          return;
+        }
+        plan = (result as MailSuccess<MailArchiveExportPlan>).value;
+      }
+      if (!mounted ||
+          !_current(generation, store) ||
+          cancellation.isCancelled) {
+        return;
+      }
+      final choose = await showDialog<bool>(
+        context: context,
+        builder: (context) => Directionality(
+          textDirection: s.language == StudioLanguage.ar
+              ? TextDirection.rtl
+              : TextDirection.ltr,
+          child: AlertDialog(
+            scrollable: true,
+            title: Text(resume ? s.archiveResumeExport : s.archiveBulkExport),
+            content: Text(
+              resume
+                  ? s.archiveResumeHelp
+                  : s.archiveBulkHelp(plan!.items.length, plan.totalBytes),
+            ),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.of(context).pop(false),
+                child: Text(s.archiveCancel),
+              ),
+              FilledButton(
+                key: const ValueKey('archive-choose-export-directory'),
+                onPressed: () => Navigator.of(context).pop(true),
+                child: Text(s.archiveChooseDirectory),
+              ),
+            ],
+          ),
+        ),
+      );
+      if (!_current(generation, store) ||
+          cancellation.isCancelled ||
+          choose != true) {
+        return;
+      }
+      final path = await _files.pickDirectory();
+      if (!_current(generation, store) ||
+          cancellation.isCancelled ||
+          path == null) {
+        return;
+      }
+      void progress(MailArchiveExportProgress progress) {
+        if (!_current(generation, store)) return;
+        setState(() {
+          _processed = progress.processed;
+          _notice = s.archiveBulkCounts(
+            progress.written,
+            progress.existing,
+            progress.failed,
+            progress.planned,
+          );
+        });
+        if (_verbose) {
+          debugPrint('[mail.archive.export] ${jsonEncode(progress.toJson())}');
+        }
+      }
+
+      final report = resume
+          ? await _files.resumeExport(
+              path,
+              profile: store.profile,
+              loadOriginal: store.loadOriginal,
+              cancellation: cancellation,
+              onProgress: progress,
+            )
+          : await _files.exportPlan(
+              plan!,
+              path,
+              loadOriginal: store.loadOriginal,
+              cancellation: cancellation,
+              onProgress: progress,
+            );
+      if (!_current(generation, store)) return;
+      setState(() {
+        _processed = report.processed;
+        _notice = s.archiveBulkSummary(
+          report.status,
+          report.written,
+          report.existing,
+          report.failed,
+          report.planned,
+        );
+        _exportDirectory = report.directoryPath;
+        if (report.problem != null) {
+          _error = s.archiveProblem(report.problem!.code);
+        }
+      });
+    });
+  }
+
   Future<void> _maintain(bool rebuild) async {
     await _work((store, cancellation, generation) async {
       String? cursor;
@@ -832,6 +1010,26 @@ class _StudioMailArchiveDialogState extends State<StudioMailArchiveDialog> {
               icon: const Icon(Icons.archive_outlined),
               label: Text(s.archiveImport),
             ),
+            OutlinedButton.icon(
+              key: const ValueKey('archive-import-directory'),
+              onPressed: _ready && !_searching ? _importDirectory : null,
+              icon: const Icon(Icons.folder_open),
+              label: Text(s.archiveImportDirectory),
+            ),
+            OutlinedButton.icon(
+              key: const ValueKey('archive-bulk-export'),
+              onPressed: _ready && !_searching ? () => _bulkExport() : null,
+              icon: const Icon(Icons.drive_folder_upload_outlined),
+              label: Text(s.archiveBulkExport),
+            ),
+            TextButton.icon(
+              key: const ValueKey('archive-resume-export'),
+              onPressed: _ready && !_searching
+                  ? () => _bulkExport(resume: true)
+                  : null,
+              icon: const Icon(Icons.play_arrow_outlined),
+              label: Text(s.archiveResumeExport),
+            ),
             TextButton.icon(
               key: const ValueKey('archive-verify'),
               onPressed: _ready && !_searching ? () => _maintain(false) : null,
@@ -985,6 +1183,21 @@ class _StudioMailArchiveDialogState extends State<StudioMailArchiveDialog> {
               _error!,
               key: const ValueKey('archive-error'),
               style: TextStyle(color: Theme.of(context).colorScheme.error),
+            ),
+          ),
+        if (_exportDirectory != null)
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Text(s.archiveExportDestination),
+                SelectableText(
+                  _exportDirectory!,
+                  key: const ValueKey('archive-export-directory'),
+                  textDirection: TextDirection.ltr,
+                ),
+              ],
             ),
           ),
         if (_notice != null)
@@ -1375,21 +1588,25 @@ final class _ImportOptions {
     this.source,
     this.folder,
     this.indexAttachments,
-    this.dialect,
-  );
+    this.dialect, [
+    this.recursive = true,
+  ]);
   final String source;
   final String folder;
   final bool indexAttachments;
   final MailMboxDialect dialect;
+  final bool recursive;
 }
 
 class _ArchiveImportDialog extends StatefulWidget {
   const _ArchiveImportDialog({
     required this.strings,
     required this.indexAttachments,
+    this.directory = false,
   });
   final StudioStrings strings;
   final bool indexAttachments;
+  final bool directory;
   @override
   State<_ArchiveImportDialog> createState() => _ArchiveImportDialogState();
 }
@@ -1399,6 +1616,7 @@ class _ArchiveImportDialogState extends State<_ArchiveImportDialog> {
   final _folder = TextEditingController(text: '/');
   late bool _attachments;
   MailMboxDialect _dialect = MailMboxDialect.mboxrd;
+  bool _recursive = true;
   String? _error;
   @override
   void initState() {
@@ -1417,93 +1635,117 @@ class _ArchiveImportDialogState extends State<_ArchiveImportDialog> {
   @override
   Widget build(BuildContext context) {
     final s = widget.strings;
-    return AlertDialog(
-      scrollable: true,
-      title: Text(s.archiveImport),
-      content: SizedBox(
-        width: 440,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(s.archiveImportHelp),
-            TextField(
-              key: const ValueKey('archive-import-source'),
-              controller: _source,
-              maxLength: 256,
-              decoration: InputDecoration(labelText: s.archiveSource),
-            ),
-            TextField(
-              key: const ValueKey('archive-import-folder'),
-              controller: _folder,
-              maxLength: 256,
-              decoration: InputDecoration(labelText: s.archiveFolder),
-            ),
-            DropdownButtonFormField<MailMboxDialect>(
-              key: const ValueKey('archive-mbox-dialect'),
-              initialValue: _dialect,
-              isExpanded: true,
-              decoration: InputDecoration(labelText: s.archiveMboxFormat),
-              items: [
-                for (final dialect in MailMboxDialect.values)
-                  DropdownMenuItem(value: dialect, child: Text(dialect.name)),
+    return Directionality(
+      textDirection: s.language == StudioLanguage.ar
+          ? TextDirection.rtl
+          : TextDirection.ltr,
+      child: AlertDialog(
+        scrollable: true,
+        title: Text(
+          widget.directory ? s.archiveImportDirectory : s.archiveImport,
+        ),
+        content: SizedBox(
+          width: 440,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(s.archiveImportHelp),
+              if (widget.directory) ...[
+                const SizedBox(height: 8),
+                Text(s.archiveDirectoryHelp),
+                CheckboxListTile(
+                  key: const ValueKey('archive-import-recursive'),
+                  contentPadding: EdgeInsets.zero,
+                  value: _recursive,
+                  title: Text(s.archiveSubfolders),
+                  onChanged: (value) =>
+                      setState(() => _recursive = value ?? true),
+                ),
               ],
-              onChanged: (value) =>
-                  setState(() => _dialect = value ?? MailMboxDialect.mboxrd),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8),
-              child: Text(
-                s.archiveMboxHelp,
-                style: Theme.of(context).textTheme.bodySmall,
+              TextField(
+                key: const ValueKey('archive-import-source'),
+                controller: _source,
+                maxLength: 256,
+                decoration: InputDecoration(labelText: s.archiveSource),
               ),
-            ),
-            CheckboxListTile(
-              key: const ValueKey('archive-import-attachments'),
-              contentPadding: EdgeInsets.zero,
-              value: _attachments,
-              title: Text(s.archiveIndexAttachmentText),
-              subtitle: Text(s.archiveAttachmentHelp),
-              onChanged: (value) =>
-                  setState(() => _attachments = value ?? false),
-            ),
-            if (_error != null)
-              Text(
-                _error!,
-                style: TextStyle(color: Theme.of(context).colorScheme.error),
+              TextField(
+                key: const ValueKey('archive-import-folder'),
+                controller: _folder,
+                maxLength: 256,
+                decoration: InputDecoration(labelText: s.archiveFolder),
               ),
-          ],
+              DropdownButtonFormField<MailMboxDialect>(
+                key: const ValueKey('archive-mbox-dialect'),
+                initialValue: _dialect,
+                isExpanded: true,
+                decoration: InputDecoration(labelText: s.archiveMboxFormat),
+                items: [
+                  for (final dialect in MailMboxDialect.values)
+                    DropdownMenuItem(value: dialect, child: Text(dialect.name)),
+                ],
+                onChanged: (value) =>
+                    setState(() => _dialect = value ?? MailMboxDialect.mboxrd),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8),
+                child: Text(
+                  s.archiveMboxHelp,
+                  style: Theme.of(context).textTheme.bodySmall,
+                ),
+              ),
+              CheckboxListTile(
+                key: const ValueKey('archive-import-attachments'),
+                contentPadding: EdgeInsets.zero,
+                value: _attachments,
+                title: Text(s.archiveIndexAttachmentText),
+                subtitle: Text(s.archiveAttachmentHelp),
+                onChanged: (value) =>
+                    setState(() => _attachments = value ?? false),
+              ),
+              if (_error != null)
+                Text(
+                  _error!,
+                  style: TextStyle(color: Theme.of(context).colorScheme.error),
+                ),
+            ],
+          ),
         ),
-      ),
-      actions: [
-        TextButton(
-          onPressed: () => Navigator.of(context).pop(),
-          child: Text(s.archiveCancel),
-        ),
-        FilledButton(
-          key: const ValueKey('archive-choose-files'),
-          onPressed: () {
-            if (_source.text.trim().isEmpty ||
-                _folder.text.trim().isEmpty ||
-                RegExp(
-                  r'[\x00-\x1f\x7f]',
-                ).hasMatch('${_source.text}${_folder.text}')) {
-              setState(
-                () => _error = s.archiveProblem(MailProblemCode.invalidInput),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: Text(s.archiveCancel),
+          ),
+          FilledButton(
+            key: const ValueKey('archive-choose-files'),
+            onPressed: () {
+              if (_source.text.trim().isEmpty ||
+                  _folder.text.trim().isEmpty ||
+                  RegExp(
+                    r'[\x00-\x1f\x7f]',
+                  ).hasMatch('${_source.text}${_folder.text}')) {
+                setState(
+                  () => _error = s.archiveProblem(MailProblemCode.invalidInput),
+                );
+                return;
+              }
+              Navigator.of(context).pop(
+                _ImportOptions(
+                  _source.text.trim(),
+                  _folder.text.trim(),
+                  _attachments,
+                  _dialect,
+                  _recursive,
+                ),
               );
-              return;
-            }
-            Navigator.of(context).pop(
-              _ImportOptions(
-                _source.text.trim(),
-                _folder.text.trim(),
-                _attachments,
-                _dialect,
-              ),
-            );
-          },
-          child: Text(s.archiveChooseFiles),
-        ),
-      ],
+            },
+            child: Text(
+              widget.directory
+                  ? s.archiveChooseDirectory
+                  : s.archiveChooseFiles,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

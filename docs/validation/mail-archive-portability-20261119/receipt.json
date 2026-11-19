@@ -1,0 +1,87 @@
+{
+  "schema": 1,
+  "status": "passed",
+  "recorded_at_utc": "2026-11-19T17:21:20.520642+00:00",
+  "accepted_source_head": "9bdef4895922ae74f6275e421af5665552d18b4e",
+  "accepted_source_tree": "b537d9f6f2c15657b0fc0b70ae825e347be681cd",
+  "final_run": "final/receipt.json",
+  "final_run_sha256": "5fe060db60ee164af4fcb93c6a55abc2f250fd976827a898b0b01fe308775797",
+  "independent_audit": "independent-audit.json",
+  "independent_audit_sha256": "bdaa7645a9dd80ece3fd1db17d49ef5755b8fadd8a58b8952711a57fa9dff7b0",
+  "test_totals": {
+    "failed": 0,
+    "passed": 1750,
+    "skipped": 0
+  },
+  "selected_test_files": 95,
+  "cohorts": 10,
+  "required_gates": [
+    "build-language-id",
+    "format-changed-dart",
+    "analyze-mail-and-changed-dart",
+    "quds_mail_core-vm",
+    "quds_mail_mime-vm",
+    "quds_mail_store-vm",
+    "quds_mail_store-node",
+    "quds_mail_transport-vm",
+    "quds_mail_transport-node",
+    "language-id-synthetic",
+    "engine-incoming-macros-operations",
+    "mail-ui-widgets",
+    "studio-mail-widgets",
+    "macos-build-script-syntax",
+    "macro-web-compile",
+    "macro-web-node",
+    "vba-web-compile",
+    "vba-web-node",
+    "vba-procedures-web-compile",
+    "vba-procedures-web-node"
+  ],
+  "completed_gates": 20,
+  "format_targets": 26,
+  "analysis_targets": 216,
+  "source_files": 4418,
+  "dependency_files": 9298,
+  "runtime_files": 608,
+  "inputs_stable": true,
+  "github_actions_used": false,
+  "dependency_resolution_performed": false,
+  "retained_original_artifacts_verified": 130,
+  "failed_attempts": [
+    {
+      "path": "attempts/01-analysis/receipt.json",
+      "reason": "One directives_ordering analyzer info; stopped before test execution.",
+      "test_count_contribution": 0
+    }
+  ],
+  "frozen_reconciliation": {
+    "frontier": "remote-frontier.json",
+    "replay": "reconciliation-refresh.json",
+    "references": 234,
+    "counts": {
+      "ancestor": 211,
+      "historical_equivalent": 23
+    },
+    "frontier_captured_at_utc": "2026-11-19T17:03:22.044540+00:00"
+  },
+  "publication_check": "publication-check.json",
+  "acceptance_limits": [
+    "No live IMAP, SMTP, EWS, Gmail or Microsoft 365 credentials or service requests; transport tests use injected fakes or local loopback servers.",
+    "Language-ID synthetic unit and native transport/lifecycle checks do not qualify the real classifier or model-card accuracy; the changed real-model smoke test is explicitly excluded from execution.",
+    "Node tests cover declared JavaScript boundaries and portable macro/VBA execution; no browser interaction, browser archive, or full web build is claimed.",
+    "Linux native SQLite and actual POSIX crash tests only; no installed macOS/Windows/mobile application, signing, Keychain, or OAuth account acceptance.",
+    "The incoming macOS build script receives bash -n syntax validation only; no macOS build, dylib loading, signing, entitlement or installed proofing-data execution is performed.",
+    "The unmodified sqlite3 3.9.1 default Linux x64 packaged library is verified by its pinned SHA-256. Other native platform binaries are not qualified by this run.",
+    "No full-repository test claim, performance benchmark, remote mailbox snapshot guarantee, compliance certification, or GitHub Actions result."
+  ],
+  "excluded_files": [
+    {
+      "path": "packages/quds_language_id/test/language_id_native_test.dart",
+      "reason": "Incoming changes correct the real model smoke expectation. This suite requires the real native CLD3 classifier and verified model, not the allocation-counter fixture. It is formatted and analyzed, but no real-model acceptance is claimed."
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_macos_bundle_native_gate.dart",
+      "reason": "Manual installed-macOS bundle gate. It is formatted and analyzed, but execution requires macOS, the built application with all four native libraries and verified CLD3 model, and installed AyaSpell/CamelMorph data. Linux validation does not qualify that bundle."
+    }
+  ]
+}

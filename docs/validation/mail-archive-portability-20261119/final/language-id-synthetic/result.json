@@ -1,0 +1,54 @@
+{
+  "accepted": true,
+  "argv": [
+    "/workspace/scratch/b1a98f2b2c3b/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+    "--disable-dart-dev",
+    "--packages=/workspace/scratch/b1a98f2b2c3b/quds_office_suite/.dart_tool/package_config.json",
+    "/workspace/scratch/b1a98f2b2c3b/runtime/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+    "--platform=vm",
+    "--compiler=kernel",
+    "--reporter=json",
+    "--concurrency=1",
+    "test/language_id_native_transport_test.dart",
+    "test/language_id_unit_test.dart"
+  ],
+  "cwd": "/workspace/scratch/b1a98f2b2c3b/quds_office_suite/packages/quds_language_id",
+  "elapsed_seconds": 16.439,
+  "environment_overrides": {
+    "CI": "true",
+    "DART_SUPPRESS_ANALYTICS": "true",
+    "DASH__SUPPRESS_ANALYTICS": "true",
+    "FLUTTER_SUPPRESS_ANALYTICS": "true",
+    "QUDS_LANGUAGE_ID_FIXTURE_LIBRARY": "/workspace/scratch/b1a98f2b2c3b/portability-final-evidence-02/fixtures/language-id.so"
+  },
+  "exit_code": 0,
+  "expected_test_files": [
+    "packages/quds_language_id/test/language_id_native_transport_test.dart",
+    "packages/quds_language_id/test/language_id_unit_test.dart"
+  ],
+  "finished_at_utc": "2026-11-19T17:11:08.970659+00:00",
+  "kind": "tests",
+  "missing_test_files": [],
+  "name": "language-id-synthetic",
+  "runtime_environment": {
+    "FLUTTER_ROOT": "/workspace/scratch/b1a98f2b2c3b/runtime/flutter",
+    "PUB_CACHE": "/workspace/scratch/b1a98f2b2c3b/runtime/pub-cache",
+    "TMPDIR": "/workspace/scratch/b1a98f2b2c3b/runtime/tmp",
+    "XDG_CACHE_HOME": "/workspace/scratch/b1a98f2b2c3b/runtime/cache",
+    "XDG_CONFIG_HOME": "/workspace/scratch/b1a98f2b2c3b/runtime/config",
+    "XDG_DATA_HOME": "/workspace/scratch/b1a98f2b2c3b/runtime/data"
+  },
+  "started_at_utc": "2026-11-19T17:10:52.531559+00:00",
+  "stderr_bytes": 0,
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_bytes": 11473,
+  "stdout_sha256": "84c3cb11b7050661c74d59fd734f5eb2d2aa4d78176fddc7c8d224adaa8a5c26",
+  "test_cases_sha256": "65f40eeeee12b69f125d0c69b345bcddbca783250cdd0542f502906ef60d4ded",
+  "test_counts": {
+    "failed": 0,
+    "passed": 22,
+    "skipped": 0
+  },
+  "timeout_seconds": 900,
+  "unexpected_test_files": []
+}

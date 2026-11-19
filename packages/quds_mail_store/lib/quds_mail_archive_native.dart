@@ -15,6 +15,8 @@ import 'src/owner_locked_executor.dart';
 import 'src/platform_configuration.dart';
 
 export 'quds_mail_store.dart';
+export 'src/archive_directory_native.dart';
+export 'src/archive_export_native.dart';
 
 /// A separate archive database under an explicit application-support container.
 /// SQLite FULL/WAL commits and a process-scoped exclusive owner protect writes.

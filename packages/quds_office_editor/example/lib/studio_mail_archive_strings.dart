@@ -197,6 +197,104 @@ extension StudioMailArchiveStrings on StudioStrings {
     'EML / MBOX importieren',
     'استيراد EML / MBOX',
   );
+  String get archiveImportDirectory => _archiveText(
+    'Import mail folder',
+    'Mail-Ordner importieren',
+    'استيراد مجلد بريد',
+  );
+  String get archiveChooseDirectory =>
+      _archiveText('Choose folder', 'Ordner auswählen', 'اختيار مجلد');
+  String get archiveDirectoryHelp => _archiveText(
+    'Read EML and MBOX files from a local folder. Subfolders keep their relative paths under the archive folder above. Links and unsupported files are skipped and reported. Each run is bounded to 10,000 files, 100,000 messages and 32 folder levels.',
+    'EML- und MBOX-Dateien aus einem lokalen Ordner lesen. Unterordner behalten ihre relativen Pfade unter dem angegebenen Archivordner. Verknüpfungen und nicht unterstützte Dateien werden übersprungen und gemeldet. Pro Durchlauf gelten 10.000 Dateien, 100.000 Nachrichten und 32 Ordnerebenen als Grenzen.',
+    'اقرأ ملفات EML وMBOX من مجلد محلي. تحتفظ المجلدات الفرعية بمساراتها النسبية ضمن مجلد الأرشيف المحدد. تُتجاوز الروابط والملفات غير المدعومة مع الإبلاغ عنها. تقتصر كل عملية على 10000 ملف و100000 رسالة و32 مستوى من المجلدات.',
+  );
+  String archiveRunStatusLabel(MailArchiveRunStatus status) => switch (status) {
+    MailArchiveRunStatus.completed => _archiveText(
+      'Completed',
+      'Abgeschlossen',
+      'اكتملت',
+    ),
+    MailArchiveRunStatus.partial => _archiveText(
+      'Partly completed',
+      'Teilweise abgeschlossen',
+      'اكتملت جزئيًا',
+    ),
+    MailArchiveRunStatus.cancelled => _archiveText(
+      'Cancelled',
+      'Abgebrochen',
+      'أُلغيت',
+    ),
+    MailArchiveRunStatus.limited => _archiveText(
+      'Limit reached',
+      'Grenze erreicht',
+      'بُلِغ الحد',
+    ),
+    MailArchiveRunStatus.failed => _archiveText(
+      'Failed',
+      'Fehlgeschlagen',
+      'فشلت',
+    ),
+  };
+  String archiveDirectorySummary(
+    MailArchiveRunStatus status,
+    int saved,
+    int duplicates,
+    int failed,
+    int skipped,
+    int scanErrors,
+    int limited,
+    int warnings,
+  ) =>
+      '${archiveRunStatusLabel(status)}. ${_archiveText('$saved saved · $duplicates already archived · $failed failed records\n$skipped entries skipped · $scanErrors traversal errors · $limited entry limits · $warnings indexing warnings. Saved originals remain available.', '$saved gespeichert · $duplicates bereits archiviert · $failed fehlgeschlagene Einträge\n$skipped Einträge übersprungen · $scanErrors Lesefehler beim Durchsuchen · $limited Eintragsgrenzen · $warnings Indexierungswarnungen. Gespeicherte Originale bleiben verfügbar.', '$saved محفوظة · $duplicates مؤرشفة سابقًا · $failed سجلات تعذرت\n$skipped عناصر متجاوزة · $scanErrors أخطاء في قراءة المجلدات · $limited حدود عناصر · $warnings تنبيهات فهرسة. تبقى النسخ الأصلية المحفوظة متاحة.')}';
+  String get archiveBulkExport => _archiveText(
+    'Export all results',
+    'Alle Treffer exportieren',
+    'تصدير جميع النتائج',
+  );
+  String get archiveResumeExport =>
+      _archiveText('Resume export', 'Export fortsetzen', 'استئناف التصدير');
+  String get archiveExportDestination => _archiveText(
+    'Export folder — select this folder to resume:',
+    'Exportordner — zum Fortsetzen diesen Ordner auswählen:',
+    'مجلد التصدير — اختر هذا المجلد للاستئناف:',
+  );
+  String archiveBulkHelp(int count, int bytes) => _archiveText(
+    'Export $count original messages ($bytes bytes) from the current search results, including every page. A new folder will contain exact EML files and a manifest with their source and folder information. Keep the export folder to resume an interrupted run. Limits: 10,000 messages, 1 GiB of originals and 16 MiB of manifest data.',
+    '$count Originalnachrichten ($bytes Bytes) aus den aktuellen Suchergebnissen über alle Seiten exportieren. Ein neuer Ordner enthält die unveränderten EML-Dateien und ein Manifest mit Quellen- und Ordnerangaben. Den Exportordner zum Fortsetzen unterbrochener Durchläufe aufbewahren. Grenzen: 10.000 Nachrichten, 1 GiB Originaldaten und 16 MiB Manifestdaten.',
+    'صدّر $count رسالة أصلية ($bytes بايت) من نتائج البحث الحالية بجميع صفحاتها. سيحتوي مجلد جديد على ملفات EML المطابقة ومعلومات المصدر والمجلد في ملف بيان. احتفظ بمجلد التصدير لاستئناف العملية بعد انقطاعها. الحدود: 10000 رسالة و1 GiB من الرسائل الأصلية و16 MiB من بيانات البيان.',
+  );
+  String get archiveResumeHelp => _archiveText(
+    'Choose a previous export folder from this archive. The saved selection is used; current search filters do not change it. Existing EML files are verified before they are skipped. Conflicting files are reported and kept unchanged.',
+    'Einen früheren Exportordner dieses Archivs auswählen. Es gilt die gespeicherte Auswahl; aktuelle Suchfilter ändern sie nicht. Vorhandene EML-Dateien werden vor dem Überspringen geprüft. Abweichende Dateien werden gemeldet und bleiben unverändert.',
+    'اختر مجلد تصدير سابقًا من هذا الأرشيف. تُستخدم القائمة المحفوظة ولا تغيرها مرشحات البحث الحالية. يُتحقق من ملفات EML الموجودة قبل تجاوزها. يُبلّغ عن الملفات المتعارضة وتبقى دون تغيير.',
+  );
+  String archiveBulkCounts(
+    int written,
+    int existing,
+    int failed,
+    int planned,
+  ) => _archiveText(
+    '$written written · $existing existing files verified · $failed failed · $planned planned',
+    '$written geschrieben · $existing vorhandene Dateien geprüft · $failed fehlgeschlagen · $planned geplant',
+    '$written مكتوبة · $existing ملفات موجودة تم التحقق منها · $failed تعذرت · $planned مقررة',
+  );
+  String archiveBulkSummary(
+    MailArchiveExportStatus status,
+    int written,
+    int existing,
+    int failed,
+    int planned,
+  ) {
+    final runStatus = switch (status) {
+      MailArchiveExportStatus.completed => MailArchiveRunStatus.completed,
+      MailArchiveExportStatus.partial => MailArchiveRunStatus.partial,
+      MailArchiveExportStatus.cancelled => MailArchiveRunStatus.cancelled,
+      MailArchiveExportStatus.failed => MailArchiveRunStatus.failed,
+    };
+    return '${archiveRunStatusLabel(runStatus)}. ${archiveBulkCounts(written, existing, failed, planned)}';
+  }
+
   String get archiveMboxFormat =>
       _archiveText('MBOX format', 'MBOX-Format', 'تنسيق MBOX');
   String get archiveMboxHelp => _archiveText(

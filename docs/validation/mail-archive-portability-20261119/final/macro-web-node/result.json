@@ -1,0 +1,43 @@
+{
+  "accepted": true,
+  "argv": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+    "-e",
+    "globalThis.self = globalThis; require(process.argv[1])",
+    "/workspace/scratch/b1a98f2b2c3b/portability-final-evidence-02/macro-web-smoke.js"
+  ],
+  "cwd": "/workspace/scratch/b1a98f2b2c3b/quds_office_suite",
+  "elapsed_seconds": 0.215,
+  "environment_overrides": {
+    "CI": "true",
+    "DART_SUPPRESS_ANALYTICS": "true",
+    "DASH__SUPPRESS_ANALYTICS": "true",
+    "FLUTTER_SUPPRESS_ANALYTICS": "true"
+  },
+  "exit_code": 0,
+  "expected_test_files": [],
+  "finished_at_utc": "2026-11-19T17:18:34.137881+00:00",
+  "kind": "macro-smoke",
+  "name": "macro-web-node",
+  "observed": {
+    "A1": 42,
+    "A2": 84,
+    "lateFailurePreservedBytes": true,
+    "mcpInspection": true,
+    "revision": 1
+  },
+  "runtime_environment": {
+    "FLUTTER_ROOT": "/workspace/scratch/b1a98f2b2c3b/runtime/flutter",
+    "PUB_CACHE": "/workspace/scratch/b1a98f2b2c3b/runtime/pub-cache",
+    "TMPDIR": "/workspace/scratch/b1a98f2b2c3b/runtime/tmp",
+    "XDG_CACHE_HOME": "/workspace/scratch/b1a98f2b2c3b/runtime/cache",
+    "XDG_CONFIG_HOME": "/workspace/scratch/b1a98f2b2c3b/runtime/config",
+    "XDG_DATA_HOME": "/workspace/scratch/b1a98f2b2c3b/runtime/data"
+  },
+  "started_at_utc": "2026-11-19T17:18:33.922712+00:00",
+  "stderr_bytes": 0,
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_bytes": 85,
+  "stdout_sha256": "733f79b8c8c236f674a733d3c205f6f46c6a52d4a6da005729755db94d853971",
+  "timeout_seconds": 900
+}

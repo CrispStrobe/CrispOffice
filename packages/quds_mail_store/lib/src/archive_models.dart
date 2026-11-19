@@ -241,6 +241,7 @@ enum MailArchiveOperation {
   open,
   archive,
   search,
+  planExport,
   load,
   origins,
   statistics,
