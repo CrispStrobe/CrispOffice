@@ -2,7 +2,7 @@
   "branch": "codex/mail-archive-resume-20261119",
   "pull_request": 212,
   "through_source_freeze": "71053bf61521e093903d55cba890ef4beee039e1",
-  "checkpoint_count": 15,
+  "checkpoint_count": 17,
   "checkpoints": [
     {
       "checkpoint": 1,
@@ -177,6 +177,29 @@
       "message": "Publish independently audited 2,243-case final acceptance and reconciliation [skip ci]",
       "publication": "non-forced GitHub ref update with exact expected previous head",
       "in_final_source_history": true
+    },
+    {
+      "checkpoint": 16,
+      "commit": "b2c05a0afa0ae606b061b13d5e50937c2a8eb1df",
+      "tree": "93fdf5a60b0db71a77c58dbff5b23f5cb3f8dfef",
+      "parents": [
+        "3d41aa221a2ea58ea9afa571f721b3b1ecacbe76"
+      ],
+      "message": "Bind final publication to verified source and preserve remote acceptance receipt [skip ci]",
+      "publication": "non-forced GitHub ref update with exact expected previous head",
+      "in_final_source_history": true
+    },
+    {
+      "checkpoint": 17,
+      "commit": "d3e90d0fc0a75e2abfc3efb52e495c032e20683f",
+      "tree": "fe79d315058fed411c2fd04e56a92276f285add0",
+      "parents": [
+        "b2c05a0afa0ae606b061b13d5e50937c2a8eb1df",
+        "9ceb994d8edce3989228f1244cda90ecc9884931"
+      ],
+      "message": "Reconcile latest main labels while preserving accepted restore-resume source [skip ci]",
+      "publication": "non-forced GitHub ref update with exact expected previous head",
+      "in_final_source_history": true
     }
   ],
   "publication_method": "GitHub Git Data API; exact local/remote tree match before reference update; local checkout fetched and aligned after publication",
@@ -187,5 +210,7 @@
     }
   ],
   "later_checkpoints": "Acceptance/audit/publication-only descendants are recorded in Git history and the final PR publication receipt.",
-  "product_and_test_freeze": "be93371b680d8e39365a6b356fb727bda81dbed1"
+  "product_and_test_freeze": "be93371b680d8e39365a6b356fb727bda81dbed1",
+  "continuation_source_freeze": "d3e90d0fc0a75e2abfc3efb52e495c032e20683f",
+  "continuation_note": "The original accepted source is retained. Checkpoint 17 reconciles main at 9ceb994d8edce3989228f1244cda90ecc9884931 with exactly three explicitly reviewed product/test paths and requires separate focused local qualification. Later evidence-only checkpoints are recorded by Git ancestry and final publication."
 }
