@@ -30,8 +30,10 @@ incoming historical reports are supporting evidence and are not fresh counts.
 
 ## Evidence whitespace
 
-Two incoming raw `before-source.diff` / `after-source.diff` captures contain a
-literal space on diff context blank lines. Their bytes are preserved unchanged.
-The local whitespace command explicitly excludes only those two raw captures;
+Three incoming raw captures (`before-source.diff`, `after-source.diff`, and
+`incoming-context.diff`) contain a literal space on diff context blank lines.
+Their bytes are preserved unchanged. The first preflight found the third capture
+after formatting and analysis passed; no behavioral tests ran in that attempt.
+The corrected whitespace command explicitly excludes only those three raw captures;
 all product files and all other changed paths remain checked. This exception
 does not alter formatting, analysis or behavioral test selection.
