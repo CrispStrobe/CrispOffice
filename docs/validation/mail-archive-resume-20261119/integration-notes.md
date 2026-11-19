@@ -127,3 +127,7 @@ lints only in unchanged `tool/consume_distribution.dart` (Git blob
 diagnostic is retained as superseded; unrelated distribution-CLI edits are
 outside this integration. All changed installer/backend code and its tests
 remain under the strict final gate.
+
+### Latest main ancestry without product changes
+
+Main `4a4ea1f0d8c990cc74ce8f7233545a8a9dc0887c` merges the already incorporated language-download and app-bundling work. The actual merge against `be93371b` changes exactly three validation documents under `docs/validation/language-downloads-20261119/`; no product, test or executed-harness input changes. Raw historical whitespace-check logs are losslessly compressed with decompressed hashes recorded in `superseded/compressed-raw-diagnostics.json`, preventing source whitespace rules from recursively treating quoted diagnostics as source. The four exact source exemptions remain unchanged.

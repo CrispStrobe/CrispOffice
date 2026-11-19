@@ -1,0 +1,71 @@
+{
+  "schema": "quds.language-downloads.acceptance.v1",
+  "sourceCommit": "9f41e0427734d815b19149eba5eabef202f78ba6",
+  "date": "2026-11-19",
+  "tests": {
+    "combinedPassed": 128,
+    "combinedSkipped": 0,
+    "nativeHarperPassed": 21
+  },
+  "analysis": "No issues",
+  "liveEnglish": {
+    "passed": true,
+    "nativeEnglishLocale": "en-GB",
+    "demoParagraphs": 10,
+    "cases": [
+      {
+        "case": 0,
+        "language": "en-GB",
+        "complete": true,
+        "findings": 0,
+        "providers": {
+          "german-spelling": "unsupported",
+          "german-writing": "unsupported",
+          "arabic-writing": "unsupported",
+          "harper": "success"
+        }
+      },
+      {
+        "case": 1,
+        "language": "en-GB",
+        "complete": true,
+        "findings": 1,
+        "providers": {
+          "german-spelling": "unsupported",
+          "german-writing": "unsupported",
+          "arabic-writing": "unsupported",
+          "harper": "success"
+        }
+      }
+    ]
+  },
+  "preview": {
+    "passed": true,
+    "preview": "CrispOffice Language Preview 9f41e042.app",
+    "bundleId": "com.CrispStrobe.crispoffice.languagepreview20261119",
+    "sourceCommit": "9f41e0427734d815b19149eba5eabef202f78ba6",
+    "startupSeconds": 20,
+    "signatureVerified": true,
+    "architecture": "arm64",
+    "executableSha256": "b729cc5be2d2ee3efbeec1ddea1149cf22b8e36ddf596423d36e8bd8b6d7f225"
+  },
+  "nativeLibraries": {
+    "hunspell": "locally built",
+    "arabicMorphology": "locally built",
+    "languageId": "locally built; 109 labels loaded in sandbox startup",
+    "harper": "reused only after matching all source hashes and all artifact hashes to build receipt"
+  },
+  "ciQueriedOrAwaited": false,
+  "limits": [
+    "Tracked text insertions/deletions are qualified; not all Word revision types.",
+    "Preview is an arm64 local development build, not a store upload.",
+    "Bundled resources are separate from removable downloads."
+  ],
+  "logSha256": {
+    "quds-language-acceptance-tests.log": "d716e4563ccad94890de45ea4646f0bd384f2599c8599c16402ec8671828929b",
+    "quds-language-harper-native-tests.log": "1e3d49b15f4c0ae5f2e4feea58d1f84fdde0c04961c7a94954b6d9f795e3a61d",
+    "quds-language-native-smoke.json": "2e8c2d14af4d362ff20c47689d3e398a7e4c5c2afbfcc93d28c024c59933e002",
+    "quds-language-preview-startup.log": "bef5c3f21daf6c4fd1907dc134f0b827469ce7136eb144ff93513539697cea60",
+    "quds-language-preview-package.log": "18241aebf09f8ffc2d0147e7458825a91149ebc157a53b6b7ba0964147139495"
+  }
+}

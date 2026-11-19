@@ -1,0 +1,48 @@
+{
+  "reviewed_at_utc": "2026-11-19T19:19:06.836245+00:00",
+  "frozen_source": "be93371b680d8e39365a6b356fb727bda81dbed1",
+  "reviewer_scope": "Independent image inspection and pixel/hash replay only; no image or source modification. Target labels are Flutter target-platform simulations running on Linux, not native macOS/Windows qualification.",
+  "passed": true,
+  "images": [
+    {
+      "target": "macOS",
+      "dimensions": [
+        820,
+        560
+      ],
+      "changed_pixels": 1290,
+      "outside_top_or_left_24px_ruler": 0,
+      "inclusive_bounds": [
+        3,
+        4,
+        740,
+        507
+      ],
+      "hashes": {
+        "masterImage": "543a0f9f663158a7027f3f4c2cc3095e539535c7ba6a66ce1ddceb4656fc34c3",
+        "testImage": "128574cf7ddba0b860901a68a4485328e170a4b0d24a5a3b1c6b32b0f70ebaa5"
+      },
+      "visual_review": "Old rulers show square block placeholders; replacement rulers show legible numeric graduations. Selection geometry, paragraph text, table and page body are unchanged."
+    },
+    {
+      "target": "windows",
+      "dimensions": [
+        820,
+        560
+      ],
+      "changed_pixels": 1290,
+      "outside_top_or_left_24px_ruler": 0,
+      "inclusive_bounds": [
+        3,
+        4,
+        740,
+        507
+      ],
+      "hashes": {
+        "masterImage": "db199f9171960e169ce59764948a891210166c03da3c3d2529923ab78bc99643",
+        "testImage": "3d0adafc213e36d073a84e1e1d0b41e5eb1708443a118fffd055b41083994d22"
+      },
+      "visual_review": "Old rulers show square block placeholders; replacement rulers show legible numeric graduations. Selection geometry, paragraph text, table and page body are unchanged."
+    }
+  ]
+}

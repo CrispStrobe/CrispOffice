@@ -1,0 +1,7 @@
+{"started": "format"}
+{"finished": "format", "accepted": true, "counts": null}
+{"started": "analysis"}
+{"finished": "analysis", "accepted": true, "counts": null}
+{"started": "whitespace"}
+{"finished": "whitespace", "accepted": false, "counts": null}
+{"status": "failed", "test_totals": {"passed": 0, "failed": 0, "skipped": 0}, "inputs_stable": true}

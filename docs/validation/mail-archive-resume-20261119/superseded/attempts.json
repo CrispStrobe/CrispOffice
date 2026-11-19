@@ -24,6 +24,12 @@
       "accepted": false,
       "accepted_test_counts": 0,
       "reason": "Mail replay and all recorded images/input identities matched, but the audit ran while incoming CLI tests had transient untracked fixtures. Superseded by idle final combined audit."
+    },
+    {
+      "path": "superseded/mail-resume-evidence-preflight-attempt",
+      "accepted": false,
+      "accepted_test_counts": 0,
+      "reason": "Preflight stopped before tests because retained historical whitespace diagnostics quoted literal trailing spaces. Diagnostic bytes preserved losslessly as gzip; source/harness unchanged."
     }
   ]
 }
