@@ -6817,7 +6817,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       return;
     }
     try {
-      final transport = await studioSpacyHost.openTransport();
+      final transport = await studioSpacyHost.openGrammarTransport();
       if (!mounted || epoch != _spacyGrammarEpoch) {
         await transport.dispose();
         return;
