@@ -1,9 +1,9 @@
 # Quds Office reconciliation and local qualification — 19 November 2026
 
-This report preserves the qualification at `5569c055` and PR #173. The
-[subsequent combined integration](../office-main-integration-20261119/README.md)
-adds the rejected-upgrade cleanup and retains these original counts and evidence
-separately; they are not added to the later run.
+**Historical qualification at `5569c055`.** The later rejected-TLS-upgrade
+cleanup, Arabic tooling reconciliation and fresh 801-execution qualification
+are recorded in the [current reconciliation](../office-current-reconciliation-20261119/README.md).
+The 836-execution results below retain their original source and scope.
 
 ## Qualified source and publication scope
 

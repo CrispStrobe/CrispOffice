@@ -1,0 +1,95 @@
+{
+  "incoming_commit": "b655b8a37fddc874bd42a453c371eed6253e82d8",
+  "scope": "Isolated Hunspell package review and offline native build; no tracked checkout, runtime, remote, or network mutation",
+  "workspace_integration": {
+    "workspace_member_added": true,
+    "new_external_dependency_versions_required": false,
+    "editor_default_provider_registered": false,
+    "download_ui_added": false,
+    "native_packaging_integrated": false
+  },
+  "concrete_defect": {
+    "file": "lib/src/hunspell_transport_native.dart",
+    "finding": "Normal dispose killed the worker without closing its native dictionary handle. Repeated provider cycles retained one additional handle per cycle. Immediate forced termination could also interrupt ownership registration after native open returned.",
+    "initial_counter_observation": [
+      {
+        "after_cycle": 1,
+        "live_handles": 1
+      },
+      {
+        "after_cycle": 2,
+        "live_handles": 2
+      }
+    ],
+    "patch": "native-disposal.patch",
+    "patch_sha256": "4c46b0d740c95d54489d254b9d3fe9d53b9e3704a5ac42c7d004d8527e22d684",
+    "repair": [
+      "Send a serialized close command and await acknowledgement before terminating the worker.",
+      "Settle pending callers immediately; limit waiting for acknowledgement to one second.",
+      "Attach NativeFinalizer ownership to every successful native handle and detach it on explicit close.",
+      "Use Isolate.beforeNextEvent for fallback termination so current native open/check completes its ownership handoff."
+    ],
+    "native_cpp_production_changed": false
+  },
+  "counter_evidence": {
+    "real_adapter_red": {
+      "passed": 1,
+      "failed": 5,
+      "skipped": 0
+    },
+    "real_adapter_green": {
+      "passed": 6,
+      "failed": 0,
+      "skipped": 0
+    },
+    "counter_fixture_green": {
+      "passed": 6,
+      "failed": 0,
+      "skipped": 0
+    },
+    "same_test_bytes_red_green": true,
+    "full_count_review": "test-count-review.json",
+    "forced_exit_exercises": [
+      "Already-owned handle in a delayed native spelling call",
+      "Native handle allocated inside delayed open before returning to Dart",
+      "Provider timeout with the native worker active"
+    ],
+    "scope_note": "Counters and delays are confined to review/test libraries. Real adapter spelling, suggestion logic, and bundled Hunspell sources are otherwise unchanged."
+  },
+  "other_validation": {
+    "provider_vm": 10,
+    "provider_node": 10,
+    "provider_distinct_scenarios": 10,
+    "missing_library_vm": 1,
+    "real_linux_three_word_dictionary_probe": true,
+    "strict_analyze_after_patch_dart_paths": 15,
+    "format_after_patch_dart_paths": 15,
+    "web_transport_js_compile": true
+  },
+  "native_build": {
+    "method": "Direct GCC equivalent of native CMake target, from committed bundled source archive",
+    "compiler": "GCC 14.2.0",
+    "cmake_available": false,
+    "emscripten_available": false,
+    "verified_library_source_files": 28,
+    "verified_notices": 5,
+    "production_shared_library_bytes": 887136,
+    "production_shared_library_sha256": "345e2fab9961e2309d984e527690e3034f3e5095551b3e33fbd01faf2c7ad739",
+    "recipe": "native-build/build-command.json",
+    "receipt": "native-build/build-receipt.json"
+  },
+  "not_established": [
+    "Six AyaSpell/installer cases: pinned dictionary absent locally",
+    "Live Hugging Face download: deliberately not attempted",
+    "Real browser Worker/Wasm, CSP and offline lifecycle",
+    "Emscripten and official CMake packaging commands",
+    "Installed editor registration/download flow or platform packaging",
+    "macOS/Windows/iOS/Android runtime or linguistic quality acceptance"
+  ],
+  "documentation_followup": [
+    "docs/PROOFING.md still has an earlier sentence saying the adapter remains planned, conflicting with its new implementation section.",
+    "docs/roadmaps/arabic-proofing.md has the same stale planned-adapter sentence.",
+    "Linux build status may now describe this offline library/FFI fixture evidence, while keeping real AyaSpell and installed-app acceptance open."
+  ],
+  "final_integrated_gate": "Parent owns the new source freeze and final checkout qualification; these isolated review runs do not substitute for it."
+}

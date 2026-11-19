@@ -88,7 +88,8 @@ final class MailTransportLimits {
   const MailTransportLimits({
     this.maxPageSize = 100,
     this.maxMailboxes = 1000,
-    this.maxUidScan = 10000,
+    this.maxDiscoveredUids = 10000,
+    this.maxUidScan,
     this.maxHeaderBytes = 256 * 1024,
     this.maxProtocolLineBytes = 64 * 1024,
     this.maxResponseBytes = 16 * 1024 * 1024,
@@ -101,8 +102,14 @@ final class MailTransportLimits {
   final int maxPageSize;
   final int maxMailboxes;
 
-  /// Whole UID-window sweep bound. Larger mailboxes report unsupported before IO fetch.
-  final int maxUidScan;
+  /// Maximum existing UIDs admitted by one remaining-sweep SEARCH response.
+  /// Numeric gaps do not consume this budget. Protocol byte limits also apply.
+  final int maxDiscoveredUids;
+
+  /// Optional legacy numeric UID ceiling. Null (the default) imposes no extra
+  /// numeric ceiling beyond SELECT's UIDNEXT. An old setting retains its numeric
+  /// meaning; use [maxDiscoveredUids] to bound discovery by message count.
+  final int? maxUidScan;
   final int maxHeaderBytes;
   final int maxProtocolLineBytes;
   final int maxResponseBytes;
@@ -116,8 +123,9 @@ final class MailTransportLimits {
         maxPageSize > 1000 ||
         maxMailboxes < 1 ||
         maxMailboxes > 10000 ||
-        maxUidScan < 1 ||
-        maxUidScan > 100000 ||
+        maxDiscoveredUids < 1 ||
+        maxDiscoveredUids > 100000 ||
+        (maxUidScan != null && (maxUidScan! < 1 || maxUidScan! > 100000)) ||
         maxHeaderBytes < 1 ||
         maxHeaderBytes > 1024 * 1024 ||
         maxProtocolLineBytes < 128 ||

@@ -1,0 +1,30 @@
+{
+  "captured_main": "55e262ef269634a0d618c0b5102dc9be5430a5f3",
+  "integrated_tree": "4f52dbcc23c917a592eea69d44a369e19c26e490",
+  "actual_ref_count": 411,
+  "classification": {
+    "ancestor": 383,
+    "historical_equivalent": 28
+  },
+  "historical_equivalences": 14,
+  "all_historical_equivalences_reverified": true,
+  "all_captured_refs_accounted": true,
+  "new_incoming_heads": [
+    "700e5a35ce5f96e7abd1dc92d1a00d2110d40649",
+    "ac1e4c8c788ea608402c2260488235c0189efcba",
+    "ca61a188980a327d61b956c6b21dc0a0fec03b18",
+    "b0a9bd3f1b46ac89021d1b7e49c32980ca4d181e",
+    "dd953dcc6ff41022657e03d7158088d0e378783b"
+  ],
+  "changed_product_paths_from_latest_main": [
+    "packages/quds_mail_core/test/models_test.dart",
+    "packages/quds_mail_store/README.md",
+    "packages/quds_mail_transport/test/native_tls_round_trip_test.dart",
+    "third_party/enough_mail/lib/src/private/util/client_base.dart",
+    "tools/proofing/ayaspell/build_bundle.py"
+  ],
+  "scope": "Ancestry/source reconciliation only; no new runtime or feature qualification claimed.",
+  "local_prepublication_head": "4a3953dda19ef9b69a9f237c2114883ca3c44635",
+  "published_baseline": "c1dc63f934f81e22a41bafd98df1abf22ee6a053",
+  "published_tree": "4f52dbcc23c917a592eea69d44a369e19c26e490"
+}

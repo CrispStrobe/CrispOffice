@@ -46,7 +46,8 @@ Arabic language tags; optional resource downloads and model analysis remain plan
    adds the MPL 1.1 text, a manifest and a card, and can publish the bundle to
    Hugging Face. Publishing includes only the manifest-listed files and
    `manifest.json`; unrelated files in a reused output directory are excluded.
-   The Hunspell adapter and in-app Arabic download workflow remain planned.
+   The adapter package is implemented; host registration, the in-app Arabic
+   download workflow and application library/worker packaging remain open.
    The upstream GitHub copy (`linuxscout/ayaspell`
    `36a90abb`) is not used: its `.dic` contains file-concatenation separators
    and its `.aff` differs, and Hunspell 1.7.2 rejects common forms such as
@@ -63,13 +64,20 @@ Arabic language tags; optional resource downloads and model analysis remain plan
    download of `ar.aff`/`ar.dic` from that revision gives the same Hunspell
    results. The Hub's metadata has no `mpl-1.1` identifier, so the card
    declares `license: other` / `license_name: mpl-1.1` and ships the text.
-2. **Hunspell engine in Quds.** An MPL-1.1 Hunspell adapter behind the
-   existing spelling-provider interface: native library for desktop/mobile,
-   WebAssembly for the web build, dictionary bytes from the user's download.
-   Arabic needs right-to-left offsets, tatweel and harakat handling and
-   UTF-16 mapping of findings; the existing provider contract already reports
-   original UTF-16 offsets. Personal vocabulary and ignore controls as for
-   German.
+2. **Hunspell engine in Quds (package implemented, host wiring open).**
+   `packages/quds_proofing_hunspell`: MIT adapter + unmodified Hunspell 1.7.2
+   library files (MPL 1.1 option, tarball SHA-256 `11ddfa39…`, every compiled
+   file hashed in `licenses/manifest.json`, exact sources shipped as
+   `licenses/hunspell-1.7.2-library-sources.tar.gz`); native isolate transport
+   and bundled WebAssembly worker; pinned installer with atomic publish and
+   removal. Incoming implementation evidence reports an identical flagged multiset to the Hunspell CLI on UD
+   Arabic-PUD (795 of 15,676 words) for both native and Wasm; 18 Dart tests
+   with the real library and dictionary; iOS/Android arm64 compile and link.
+   Open: host registration and download UI, packaging the library/worker into
+   the app targets, Windows builds and on-device runs. The Office integration
+   review built the Linux adapter offline and added six native disposal
+   regressions using an instrumented real library and a synthetic dictionary;
+   it did not repeat the incoming AyaSpell or Wasm observations.
 3. **Arabic grammar rules (first set implemented, 19 November 2026).**
    `ArabicWritingRulesProvider` (`arabic-writing`) in `quds_office_engine`
    is independently authored, MIT-licensed and part of the app. It was
@@ -112,6 +120,15 @@ Arabic language tags; optional resource downloads and model analysis remain plan
 
    Interpreting LanguageTool's Arabic rules is assessed
    [below](#languagetool-arabic-assessment-v68).
+3b. **Clean-room extension (19 November 2026).** A separate "dirty-room"
+   agent studied LanguageTool ar v6.8, Fareh, Ghalatawi and the aghlat list and
+   wrote an abstract functional [specification](arabic-rule-spec.md) without
+   any copied lists, messages, examples, IDs or patterns (reviewed: it contains
+   no Arabic script, regexes, rule IDs or tag strings). An independent
+   implementer who has not seen those sources writes the MIT rules from it,
+   tier T1 first (no lexicon); T2 categories wait for the morphology lexicon
+   (Camel Morph MSA, CC BY 4.0, under consideration); T3 categories need a
+   disambiguator and are deferred.
 4. **Model-backed analysis (optional, owner decision).** Either accept the
    CAMeL weights' training-data risk and port them natively like the spaCy
    transformer pipelines, or train our own licence-clean models:

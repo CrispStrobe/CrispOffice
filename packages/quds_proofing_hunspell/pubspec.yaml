@@ -1,0 +1,15 @@
+name: quds_proofing_hunspell
+description: Optional local Hunspell spelling (MPL 1.1 engine) with user-downloaded dictionaries for Quds Office.
+version: 0.1.0
+publish_to: none
+resolution: workspace
+environment:
+  sdk: ^3.12.0
+dependencies:
+  crypto: ^3.0.6
+  quds_office_engine:
+    path: ../quds_office_engine
+  web: ^1.1.1
+dev_dependencies:
+  lints: ^6.0.0
+  test: ^1.26.0

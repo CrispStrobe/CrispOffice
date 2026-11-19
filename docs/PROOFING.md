@@ -40,8 +40,10 @@ resources are published separately and downloaded by the user inside the app
 as data, never as executable code) and the resource assessment. First step:
 the AyaSpell Hunspell dictionary under its MPL 1.1 option, built reproducibly by
 `tools/proofing/ayaspell/build_bundle.py` from a pinned LibreOffice packaging,
-then an MPL Hunspell engine adapter, then independently authored Arabic rules.
-The Hunspell adapter and in-app Arabic download workflow remain planned.
+an optional MPL Hunspell engine adapter package, and independently authored
+Arabic rules. The adapter package is implemented; host registration, the
+in-app Arabic download workflow and application library/worker packaging
+remain open.
 Built-in Arabic writing rules run for supported Arabic language tags; optional
 dictionary/data resources are not downloaded by default.
 
@@ -68,6 +70,36 @@ Scope, exclusions and tests are in the
 records why LanguageTool's Arabic rules can only be a separate download: the
 rules are LGPL-2.1, but the POS dictionary is GPL-derived and one list is
 AGPL. Interpreting them natively is a 3–5 week engine task.
+
+## Optional Hunspell spelling (Arabic) — 19 November 2026
+
+[`quds_proofing_hunspell`](../packages/quds_proofing_hunspell/README.md) adds a
+Hunspell spelling provider and installer for host-managed dictionary downloads,
+first Arabic (AyaSpell, `cstr/ayaspell-ar-hunspell` at `e9ace7cc…`). The engine
+is the MIT adapter plus unmodified Hunspell 1.7.2 library files under their
+MPL 1.1 option, as a native library in a persistent isolate or a bundled
+WebAssembly module in a Web Worker; only dictionary data is downloaded, pinned
+by SHA-256 and installed atomically, with removal. Words keep harakat and
+tatweel inside their original UTF-16 ranges (the dictionary's `IGNORE`
+disregards them); only Arabic-script words are checked; links/e-mail/code
+spans, personal and ignored words are skipped; suggestions are bounded to the
+first 24 distinct misspellings per request.
+
+Incoming implementation evidence reports (macOS arm64, Dart 3.13.7): on UD Arabic-PUD test (1,000
+sentences, 15,676 Arabic-script words) the native provider and the WebAssembly
+worker each flag 795 words (5.07%), the identical word multiset to the Hunspell
+1.7.2 CLI `-l`; 0.57 s native without suggestions, 0.10 s for the Wasm batch,
+about 50 ms per suggested word. 18 Dart tests pass with the real library and
+dictionary (no skips), including first suggestions `الى`→`إلى`,
+`المدرسه`→`المدرسة`, `هاذا`→`هذا`, harakat/tatweel offsets, vocabulary,
+installer tamper/changed-download rejection and a live download from the
+pinned revision. iOS arm64 and Android arm64 libraries compile and link;
+Windows and on-device runs remain open. The Office integration review also
+built the Linux native adapter offline and repaired a dictionary-handle leak
+on isolate disposal, with six lifecycle regressions against an instrumented
+real Hunspell library and a synthetic dictionary. That review does not repeat
+the incoming AyaSpell corpus, installer or Wasm observations. No host app
+registers the provider or offers the download yet.
 
 ## Native spelling continuation — 18 November 2026
 
