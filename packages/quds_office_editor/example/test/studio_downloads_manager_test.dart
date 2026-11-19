@@ -77,12 +77,15 @@ class _Morphology extends StudioArabicMorphHost {
 }
 
 class _Models extends StudioSpacyHost {
+  _Models({this.bundled = false});
+  final bool bundled;
   final calls = <String>[];
   bool ner = true;
   @override
   StudioSpacyStatus get status => StudioSpacyStatus(
     platformLabel: 'fixture',
     source: StudioSpacySource.none,
+    bundledLibrary: bundled,
     nerInstalled: ner,
     languages: const <StudioSpacyLanguageStatus>[
       StudioSpacyLanguageStatus(
@@ -285,5 +288,28 @@ void main() {
     await tester.pumpAndSettle();
     expect(models.calls, <String>['refresh', 'remove-ner']);
     expect(models.ner, isFalse);
+  });
+
+  testWidgets('a bundled library lists only the model download', (
+    tester,
+  ) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: StudioDownloadsManager(
+            hunspell: _Dictionaries(),
+            morphology: _Morphology(),
+            spacy: _Models(bundled: true),
+          ),
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+    expect(find.text('German spaCy analysis model'), findsOneWidget);
+    expect(find.text('German spaCy analysis package'), findsNothing);
+    expect(
+      find.textContaining('model files only (library built into the app)'),
+      findsOneWidget,
+    );
   });
 }

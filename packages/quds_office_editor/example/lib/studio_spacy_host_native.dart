@@ -174,6 +174,7 @@ class NativeStudioSpacyHost extends StudioSpacyHost {
           'The installed analysis files failed verification '
           '(${error.message}). Remove and install them again.';
     }
+    final ner = await _nerState();
     final configured = installation != null || problem != null;
     final qualification = spacyQualificationFor(bundled.sha256);
     _status = StudioSpacyStatus(
@@ -187,8 +188,9 @@ class NativeStudioSpacyHost extends StudioSpacyHost {
       problem: problem,
       analysisEnabled: installation != null && settings.analysis,
       nerOffered: installation != null && spacyNerDownload != null,
-      nerEnabled:
-          installation != null && settings.ner && spacyNerDownload != null,
+      nerInstalled: ner.installed,
+      nerProblem: ner.problem,
+      nerEnabled: installation != null && settings.ner && ner.installed,
       grammarEnabled:
           installation != null &&
           settings.grammar &&
@@ -269,16 +271,7 @@ class NativeStudioSpacyHost extends StudioSpacyHost {
             '(${error.message}). Remove and install them again.';
       }
     }
-    var nerInstalled = false;
-    String? nerProblem;
-    final ner = spacyNerDownload;
-    if (ner != null) {
-      try {
-        nerInstalled = await _installer.installedNer(ner) != null;
-      } on Object catch (error) {
-        nerProblem = '$error';
-      }
-    }
+    final (installed: nerInstalled, problem: nerProblem) = await _nerState();
     final configured = installation != null || problem != null;
     _status = StudioSpacyStatus(
       platformLabel: base.platformLabel,
@@ -301,6 +294,20 @@ class NativeStudioSpacyHost extends StudioSpacyHost {
       languages: languages,
     );
     notifyListeners();
+  }
+
+  /// Whether the optional NER model is installed and verified.
+  Future<({bool installed, String? problem})> _nerState() async {
+    final ner = spacyNerDownload;
+    if (ner == null) return (installed: false, problem: null);
+    try {
+      return (
+        installed: await _installer.installedNer(ner) != null,
+        problem: null,
+      );
+    } on Object catch (error) {
+      return (installed: false, problem: '$error');
+    }
   }
 
   /// English/French availability and verified installation state. Never
