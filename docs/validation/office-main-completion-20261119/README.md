@@ -11,13 +11,9 @@ The completed local qualification is bound to application commit
 **`5569c055a021c893e941fc54d40499ad9d96a5db`**, tree
 `9d2c815eda61378fbc4b234124e8e7c9cfeacb5b`.
 All final Store, native, Node and supplemental Python executions use this exact
-source. Subsequent publication commits add reports and evidence only.
-The [initial publication audit](release/publication-continuity.json) verifies
-unchanged bound inputs at that checkpoint. The final Mail evidence reconciliation
-also updates `packages/quds_mail_store/README.md`; its
-[review](release/mail-tail-review.json) records this one documentation-only
-input change explicitly. Application code, tests, plans and runtime inputs
-remain unchanged.
+source. Subsequent publication commits add reports and evidence only. The final
+[publication audit](release/publication-continuity.json) verifies that every
+bound qualification input is unchanged.
 
 PR [#173](https://github.com/CrispStrobe/quds_office_suite/pull/173) is the normal
 merge vehicle into remote `main`. The user authorized the merge and incremental
@@ -96,16 +92,6 @@ That main merge and its 611-execution historical receipt are also preserved.
 The [post-cutoff main review](release/post-cutoff-main-review.json) records this
 additional reconciliation; the final qualified application inputs remain
 exactly those of `5569c055`.
-
-The final PR-state check also found Mail evidence commit `700e5a35`, a child of
-the already included `71edec2d`. Its 40 paths are reports, evidence and README
-updates, with no executable/test/configuration changes. These records are now
-retained, including the separately attributed 631-case / 66-Python Mail result.
-The Store README is the sole changed documentation file within the recorded
-qualification inventories: 5,032 of the combined 5,033 bound inputs remain
-byte-identical, and every executable, test, plan and dependency input is exact.
-This reviewed documentation update requires no product test rerun and does not
-change the 836-case / 78-Python execution identity.
 
 ## Final local results
 

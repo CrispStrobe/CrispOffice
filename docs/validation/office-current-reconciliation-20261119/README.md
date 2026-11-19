@@ -1,3 +1,8 @@
+> Historical checkpoint from `c268ce3bceb05f92b7868e90ba8ce7b9a5bbbe1e`.
+> Its pending state below is retained as captured. See the
+> [completed synchronization report](../office-main-sync-20261119/README.md)
+> for the later source, local qualification and remote merge.
+
 # Current Office reconciliation — 19 November 2026
 
 This is the captured continuation-plan checkpoint from PR #177/#178. Its
