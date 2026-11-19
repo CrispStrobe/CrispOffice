@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:quds_language_id/quds_language_id.dart';
@@ -15,8 +17,8 @@ abstract class StudioLanguageIdHost extends ChangeNotifier {
   /// The detector once the classifier has loaded, otherwise null.
   ParagraphLanguageDetector? get detector;
 
-  /// Why the classifier could not be loaded (missing library, worker or
-  /// asset), if it could not.
+  /// Fixed public feedback when the classifier could not be loaded. Native
+  /// library paths, asset diagnostics and transport errors are not exposed.
   String? get problem;
 
   /// Loads the model and starts the worker (once).
@@ -36,6 +38,9 @@ class BundledStudioLanguageIdHost extends StudioLanguageIdHost {
   ParagraphLanguageDetector? _detector;
   String? _problem;
   Future<void>? _loading;
+  bool _disposed = false;
+
+  static const _unavailable = 'Automatic language detection is unavailable.';
 
   static Future<Uint8List> _bundledModel() async {
     final data = await rootBundle.load(Cld3Model.assetKey);
@@ -49,29 +54,63 @@ class BundledStudioLanguageIdHost extends StudioLanguageIdHost {
   String? get problem => _problem;
 
   @override
-  Future<void> load() => _loading ??= _load();
+  Future<void> load() =>
+      _disposed ? Future<void>.value() : _loading ??= _load();
 
   Future<void> _load() async {
+    Cld3LanguageIdentifier? identifier;
     try {
-      final identifier = _identifier = createIdentifier(await _loadModel());
+      final model = await _loadModel();
+      if (_disposed) return;
+      identifier = createIdentifier(model);
+      // An embedding factory may synchronously dispose the host.
+      if (_disposed) {
+        await _retire(identifier);
+        return;
+      }
+      _identifier = identifier;
       await identifier.load();
+      if (_disposed || !identical(_identifier, identifier)) {
+        await _retire(identifier);
+        return;
+      }
       if (!identifier.isAvailable) {
-        _problem = '${identifier.failure}';
+        _identifier = null;
+        await _retire(identifier);
+        if (_disposed) return;
+        _problem = _unavailable;
       } else {
         _detector = ParagraphLanguageDetector(identifier);
       }
-    } on Object catch (error) {
-      _problem = '$error';
+    } on Object {
+      if (identifier != null) {
+        if (identical(_identifier, identifier)) _identifier = null;
+        await _retire(identifier);
+      }
+      if (_disposed) return;
+      _detector = null;
+      _problem = _unavailable;
     }
-    notifyListeners();
+    if (!_disposed) notifyListeners();
+  }
+
+  static Future<void> _retire(Cld3LanguageIdentifier identifier) async {
+    try {
+      await identifier.dispose();
+    } on Object {
+      // Teardown cannot publish into a stopped host or expose diagnostics.
+    }
   }
 
   @override
   void dispose() {
+    if (_disposed) return;
+    _disposed = true;
     final identifier = _identifier;
     _identifier = null;
     _detector = null;
-    if (identifier != null) identifier.dispose();
+    _problem = null;
+    if (identifier != null) unawaited(_retire(identifier));
     super.dispose();
   }
 }

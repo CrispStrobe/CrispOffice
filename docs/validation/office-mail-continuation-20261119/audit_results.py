@@ -17,9 +17,12 @@ import os
 import re
 import subprocess
 import sys
+import tarfile
 from datetime import datetime, timezone
 from pathlib import Path, PurePosixPath
 from urllib.parse import unquote, urlparse
+
+import yaml
 
 
 RUNNER = "docs/validation/document-review-notes-20261118/run_checks.py"
@@ -423,13 +426,21 @@ class Audit:
                 stderr_raw = stderr.read_bytes()
                 require(gzip.decompress(stderr_gzip.read_bytes()) == stderr_raw,
                         f"Compressed stderr differs: {label}")
+                # The pinned upstream CLD3 implementation prints this success
+                # message once when the real-model suite's setUpAll opens it.
+                # Keep its exact bytes; do not admit unrelated native output.
+                expected_stderr = (b"lid_cld3: loaded 109 labels, hidden_dim=208, n_features=6 (variant=Google CLD3)\n"
+                                   if label == "NATIVE/language-id-native" else b"")
                 diagnostic = {
                     "label": label, "file": str(stderr), "bytes": len(stderr_raw),
                     "sha256": digest(stderr_raw), "text": stderr_raw.decode("utf-8"),
-                    "policy": "Test stderr must be empty; no broad diagnostic allowlist.",
+                    "policy": ("Exactly one pinned CLD3 successful-load line; all other bytes rejected."
+                               if expected_stderr else "Test stderr must be empty; no broad diagnostic allowlist."),
+                    "expected_bytes": len(expected_stderr), "expected_sha256": digest(expected_stderr),
                 }
                 self.diagnostics.append(diagnostic)
-                require(not stderr_raw, f"Unreviewed test stderr: {label}: {diagnostic['text'][:1500]}")
+                require(stderr_raw == expected_stderr,
+                        f"Test stderr differs from exact reviewed policy: {label}: {diagnostic['text'][:1500]}")
                 result, identities, case_rows = audit_events(
                     raw, self.repo, group["cwd"], suites, label, group.get("platform", "vm"))
                 require(result["passed_executions"] == run["passed"] and run["failed"] == run["skipped"] == 0,
@@ -512,6 +523,286 @@ class Audit:
                     f"Python count differs from raw output: {label}")
         return {"name": label, "passed": count, "skipped": 0, "log_sha256": file_hash(path)}
 
+    def runtime_extension(self, boundary):
+        """Reconstruct the exact archive addition and retained bytes independently."""
+        gate = self.repo / PurePosixPath(AUDITOR).parent
+        profile_path = gate / "runtime-extension-locks.json"
+        profile = read_json(profile_path)
+        binding = self.runtime_receipt.get("runtime_extension", {})
+        require(binding.get("status") == "ready", "Runtime cache extension is not ready")
+        record_path = Path(binding["receipt"])
+        require(record_path.is_absolute(), "Runtime extension receipt must be absolute")
+        local_file(record_path, binding["sha256"])
+        record = read_json(record_path)
+        extra = self.runtime_receipt["additional_inputs"]
+        require(extra.get(str(record_path)) == binding["sha256"], "Extension receipt is not runtime-bound")
+        require(record["status"] == "ready" and record["source"] == str(self.repo)
+                and record["runtime"] == str(self.runtime)
+                and record["profile_sha256"] == binding["profile_sha256"] == file_hash(profile_path)
+                and record["implementation_sha256"] == file_hash(gate / "extend_runtime.py"),
+                "Extension source, implementation or profile differs")
+        require(all(record[key] is True for key in (
+            "new_archive_contents_retained_in_full", "original_sdk_provenance_and_restore_runs_preserved",
+            "dependency_manifests_unchanged", "original_omission_record_unchanged"))
+                and record["github_actions_queried_or_awaited"] is False,
+                "Extension preservation boundary differs")
+        names = {"runtime.json", "retained-inputs.json", "pub-cache-receipt.json", "cache-omissions.json",
+                 "archive-members.json", "env.sh", "workspace-package_config.json",
+                 "workspace-package_graph.json", "workspace-native_assets.yaml"}
+        preserved = {str(record_path.parent / "originals" / name) for name in names}
+        base_lock = record_path.parent / "base-pubspec.lock"
+        preserved.add(str(base_lock))
+        require(set(record["preserved_originals"]) == preserved, "Preserved original receipt inventory differs")
+        for name, expected in record["preserved_originals"].items():
+            require(extra.get(name) == expected, "Preserved original is not runtime-bound: " + name)
+            local_file(Path(name), expected)
+        old = read_json(record_path.parent / "originals/runtime.json")
+        old_retained = read_json(record_path.parent / "originals/retained-inputs.json")
+        mutable = {"status", "workspace_lock_sha256", "hosted_archives_verified", "retained_runtime_input_count",
+                   "workspace_packages", "workspace_package_count", "native_assets", "node_runtime",
+                   "test_input_binding", "additional_inputs", "runtime_extension"}
+        require(old["status"] == "ready" and old["archive"]["verified"] is True
+                and old["workspace_lock_sha256"] == profile["base_lock_sha256"]
+                and old["archive"]["sha256"] == profile["sdk_archive_sha256"]
+                and old["archive"]["bytes"] == profile["sdk_archive_bytes"]
+                and old["runtime"]["frameworkRevision"] == profile["framework_revision"]
+                and old["runtime"]["dartSdkVersion"] == profile["dart_sdk_version"],
+                "Original runtime is not the base profile")
+        for key, value in old.items():
+            if key not in mutable:
+                require(self.runtime_receipt.get(key) == value, "Original restoration provenance changed: " + key)
+        require(record["original_retained_inputs_verified"] == old["retained_runtime_input_count"] == len(old_retained)
+                and all(self.retained.get(name) == row for name, row in old_retained.items()),
+                "Original retained inputs were removed or replaced")
+        for name, expected in old["additional_inputs"].items():
+            if name != str(self.repo / ".dart_tool/native_assets.yaml"):
+                require(extra.get(name) == expected, "Previously bound native input was changed or dropped: " + name)
+        for name in ("cache-omissions.json", "archive-members.json", "env.sh"):
+            require(file_hash(self.runtime / name) == record["preserved_originals"][str(record_path.parent / "originals" / name)],
+                    "Original runtime selection/omission evidence changed: " + name)
+        require(file_hash(base_lock) == profile["base_lock_sha256"]
+                and digest(self.git("show", profile["base_source_commit"] + ":pubspec.lock")) == profile["base_lock_sha256"]
+                and file_hash(self.repo / "pubspec.lock") == profile["target_lock_sha256"]
+                and file_hash(self.runtime / "flutter/packages/flutter_tools/pubspec.lock") == profile["sdk_tools_lock_sha256"],
+                "Extension lock profile differs from exact source/SDK locks")
+
+        def archives(*paths):
+            identities = {}
+            for path in paths:
+                for name, item in yaml.safe_load(path.read_text())["packages"].items():
+                    if item["source"] == "hosted":
+                        description = item["description"]
+                        require(description["url"] == "https://pub.dev" and description["name"] == name,
+                                "Unapproved hosted dependency in extension lock")
+                        key = name + "-" + item["version"]
+                        row = {"name": name, "version": item["version"], "sha256": description["sha256"]}
+                        require(key not in identities or identities[key] == row, "Conflicting locked archive identity")
+                        identities[key] = row
+            return identities
+
+        sdk_lock = self.runtime / "flutter/packages/flutter_tools/pubspec.lock"
+        old_union, new_union = archives(base_lock, sdk_lock), archives(self.repo / "pubspec.lock", sdk_lock)
+        additions = {row["name"] + "-" + row["version"]: row for row in profile["additions"]}
+        require(len(additions) == len(profile["additions"])
+                and len(old_union) == record["base_archives"] == profile["base_archive_count"]
+                and len(new_union) == record["target_archives"] == profile["target_archive_count"]
+                and set(old_union).isdisjoint(additions) and new_union == old_union | additions,
+                "Extension adds/replaces archives outside the exact profile")
+        current_archives = read_json(self.runtime / "pub-cache-receipt.json")
+        old_archives = read_json(record_path.parent / "originals/pub-cache-receipt.json")
+        current_by_key = {row["name"] + "-" + row["version"]: row for row in current_archives}
+        original_by_key = {row["name"] + "-" + row["version"]: row for row in old_archives}
+        downloaded = {row["name"] + "-" + row["version"]: row for row in record["new_archives"]}
+        require(len(current_by_key) == len(current_archives) == len(new_union)
+                and len(original_by_key) == len(old_archives) == len(old_union)
+                and len(downloaded) == len(record["new_archives"]) == len(additions)
+                and set(downloaded) == set(additions)
+                and current_by_key == original_by_key | downloaded,
+                "Original archive receipts changed or new archive inventory differs")
+        for key, row in current_by_key.items():
+            require(row["verified"] is True and {name: row[name] for name in ("name", "version", "sha256")} == new_union[key],
+                    "Archive receipt differs from exact lock: " + key)
+        new_files = {}
+        for key, row in downloaded.items():
+            archive = Path(row["archive"])
+            require(archive == record_path.parent / "archives" / (key + ".tar.gz")
+                    and extra.get(str(archive)) == row["sha256"], "Unbound extension package archive: " + key)
+            local_file(archive, row["sha256"], row["bytes"])
+            with tarfile.open(archive, "r:gz") as stream:
+                for member in stream:
+                    if member.isdir():
+                        continue
+                    require(member.isfile(), "Unexpected nonregular extension archive member")
+                    relative = safe_relative(PurePosixPath(member.name).as_posix())
+                    if ".dart_tool" in PurePosixPath(relative).parts:
+                        continue
+                    name = "pub-cache/hosted/pub.dev/" + key + "/" + relative
+                    expected = {"bytes": member.size, "sha256": digest(stream.extractfile(member).read())}
+                    require(name not in new_files and self.retained.get(name) == expected,
+                            "Retained cache differs from the exact new package archive: " + name)
+                    new_files[name] = expected
+        # Pub may have cached version/advisory JSON during development. These
+        # are separately bound metadata, never represented as package source
+        # extracted from one of the 18 new archives.
+        metadata = {name: row for name, row in self.retained.items()
+                    if name not in old_retained and name not in new_files}
+        package_names = {row["name"] for row in new_union.values()}
+        metadata_outside_lock = set()
+        for name, row in metadata.items():
+            match = re.fullmatch(r"pub-cache/hosted/pub\.dev/\.cache/([A-Za-z0-9_]+)-(versions|advisories)\.json", name)
+            require(match is not None,
+                    "Unexpected runtime addition outside exact archives: " + name)
+            if match.group(1) not in package_names:
+                metadata_outside_lock.add(match.group(1))
+            path = self.runtime / name
+            local_file(path, row["sha256"], row["bytes"])
+            value = read_json(path)
+            require(isinstance(value, dict), "Pub cache metadata must be JSON objects")
+            require((match.group(2) == "versions" and value.get("name") == match.group(1)
+                     and isinstance(value.get("versions"), list))
+                    or (match.group(2) == "advisories" and isinstance(value.get("advisories"), list)),
+                    "Pub cache metadata identity differs: " + name)
+        require(self.retained == old_retained | new_files | metadata
+                and record["retained_runtime_input_count"] == len(self.retained),
+                "Extended retained inventory adds omissions or unexpected files")
+        for name, key in (("retained-inputs.json", "current_retained_manifest_sha256"),
+                          ("pub-cache-receipt.json", "current_pub_cache_receipt_sha256")):
+            require(file_hash(self.runtime / name) == record[key], "Extension final manifest changed: " + name)
+        require([row["name"] for row in record["runs"]] == ["workspace-pub-get", "native-assets-smoke"]
+                and all(row["exit_code"] == 0 for row in record["runs"]), "Extension resolution/smoke failed or changed")
+        dart = str(self.runtime / "flutter/bin/cache/dart-sdk/bin/dart")
+        require(record["runs"][0]["command"] == [dart, "pub", "get", "--offline", "--enforce-lockfile"]
+                and record["runs"][0]["cwd"] == str(self.repo), "Extension did not enforce offline locked resolution")
+        smoke = record["native_smoke"]
+        require(smoke["real_hook_execution"] is True and smoke["owner"] == "quds_mail_store"
+                and smoke["sha256"] == file_hash(self.repo / "docs/validation/document-review-notes-20261118/runtime/native_asset_smoke.dart")
+                and record["runs"][1]["command"] == [dart, "run", smoke["entrypoint"]]
+                and record["runs"][1]["cwd"] == str(self.repo / "packages/quds_mail_store"),
+                "Extension native smoke source or owning package differs")
+        logs = {}
+        for row in record["runs"]:
+            path = Path(row["log"])
+            require(path == record_path.parent / "logs" / (row["name"] + ".log"), "Extension log path differs")
+            local_file(path, row["log_sha256"])
+            logs[str(path)] = row["log_sha256"]
+        expected = {"receipt": str(record_path), "sha256": binding["sha256"], "profile_sha256": file_hash(profile_path),
+                    "base_archives": len(old_union), "target_archives": len(new_union), "logs": logs}
+        require(boundary == expected, "Outer extension boundary differs from independently reconstructed provenance")
+        self.runtime_extension_summary = {**expected, "original_retained_files_unchanged": len(old_retained),
+                                          "new_package_files_reconstructed_from_archives": len(new_files),
+                                          "separately_bound_pub_cache_metadata_files": len(metadata),
+                                          "inactive_cached_metadata_package_names": sorted(metadata_outside_lock),
+                                          "original_archive_receipts_unchanged": True,
+                                          "original_sdk_and_restore_runs_unchanged": True}
+        return logs
+
+    def language_id(self, record, environment):
+        """Verify native classifier provenance independently of the driver."""
+        require(set(record) == {"library", "library_sha256", "build_receipt", "build_receipt_sha256",
+                               "environment", "model_sha256", "adapter_source_files", "fixture"},
+                "Native language identifier binding fields differ")
+        library, receipt = Path(record["library"]), Path(record["build_receipt"])
+        require(library.is_absolute() and library.resolve() == library
+                and receipt == library.parent.parent / "build-receipt.json",
+                "Native language identifier paths differ")
+        for path, key in ((library, "library_sha256"), (receipt, "build_receipt_sha256")):
+            expected = record[key]
+            require(self.runtime_receipt["additional_inputs"].get(str(path)) == expected
+                    and environment.get("additional/" + str(path)) == expected,
+                    "Unbound native language identifier input: " + str(path))
+            local_file(path, expected)
+        fixture = record["fixture"]
+        require(set(fixture) == {"library", "library_sha256", "build_receipt", "build_receipt_sha256",
+                                "source", "source_sha256"}, "Native language identifier fixture fields differ")
+        fixture_library, fixture_receipt = Path(fixture["library"]), Path(fixture["build_receipt"])
+        require(fixture_library.is_absolute() and fixture_library.resolve() == fixture_library
+                and fixture_receipt == fixture_library.with_suffix(".receipt.json"),
+                "Native language identifier fixture paths differ")
+        for path, key in ((fixture_library, "library_sha256"), (fixture_receipt, "build_receipt_sha256")):
+            expected = fixture[key]
+            require(self.runtime_receipt["additional_inputs"].get(str(path)) == expected
+                    and environment.get("additional/" + str(path)) == expected,
+                    "Unbound native language identifier fixture input: " + str(path))
+            local_file(path, expected)
+        require(record["environment"] == {"QUDS_LANGUAGE_ID_TEST_LIBRARY": str(library),
+                                          "QUDS_LANGUAGE_ID_FIXTURE_LIBRARY": str(fixture_library)},
+                "Native language identifier test environment differs")
+        fixture_source = "packages/quds_language_id/test/fixtures/native_transport_fixture.cpp"
+        require(fixture["source"] == fixture_source and fixture_source in self.tracked,
+                "Native language identifier fixture source differs")
+        local_file(self.repo / fixture_source, fixture["source_sha256"])
+        fixture_build = read_json(fixture_receipt)
+        require(fixture_build.get("library") == fixture_library.name
+                and fixture_build.get("library_sha256") == fixture["library_sha256"]
+                and fixture_build.get("source") == fixture_source
+                and fixture_build.get("source_sha256") == fixture["source_sha256"],
+                "Native language identifier fixture build differs from qualified source")
+        build = read_json(receipt)
+        relative = library.relative_to(receipt.parent).as_posix()
+        require(relative.startswith("native/") and build["files"].get(relative) == record["library_sha256"],
+                "Native language identifier artifact differs from its build receipt")
+        package = self.repo / "packages/quds_language_id"
+        adapters = {name.removeprefix("packages/quds_language_id/"): file_hash(self.repo / name)
+                    for name in self.tracked if name.startswith("packages/quds_language_id/native/")
+                    and Path(name).suffix in {".cpp", ".h", ".txt"}}
+        manifest_path = package / "licenses/manifest.json"
+        manifest = read_json(manifest_path)
+        require(build["adapter"] == adapters and record["adapter_source_files"] == len(adapters),
+                "Native language identifier adapter differs from qualified source")
+        require(build["license_manifest_sha256"] == file_hash(manifest_path)
+                and build["crispasr"] == {"repository": manifest["component"]["source"],
+                                          "commit": manifest["component"]["commit"]}
+                and build["model"] == manifest["model"],
+                "Native language identifier provenance differs from qualified source")
+        require(record["model_sha256"] == manifest["model"]["sha256"], "Native language identifier model pin differs")
+        local_file(package / "assets" / safe_relative(manifest["model"]["file"]),
+                   record["model_sha256"], manifest["model"]["bytes"])
+
+    def arabic_morph(self, record, environment):
+        """Independently bind native morphology and the exact proofing data."""
+        require(set(record) == {"library", "library_sha256", "build_receipt", "build_receipt_sha256",
+                               "bundle", "artifacts", "catalog_sha256", "environment", "live_external_download_executed"},
+                "Native morphology binding fields differ")
+        library, receipt, bundle = Path(record["library"]), Path(record["build_receipt"]), Path(record["bundle"])
+        require(library.is_absolute() and library.resolve() == library
+                and receipt == library.parent.parent / "build-receipt.json"
+                and bundle.is_absolute() and bundle.resolve() == bundle,
+                "Native morphology paths differ")
+        package = self.repo / "packages/quds_arabic_morph"
+        catalog = package / "lib/src/morph_catalog.dart"
+        local_file(catalog, record["catalog_sha256"])
+        declaration = re.search(r"const camelMorphMsaProofingBin = MorphBundleDownload\((.*?)\n\);",
+                                catalog.read_text(), re.S)
+        require(declaration is not None, "Missing pinned morphology bundle declaration")
+        entries = re.findall(r"MorphArtifact\(\s*'([^']+)',\s*'([0-9a-f]{64})',\s*(\d+),?\s*\)", declaration[1])
+        pins = {name: {"sha256": value, "bytes": int(size)} for name, value, size in entries}
+        expected_names = {"manifest.json", "camel_morph_msa_v1.0.proofing.cmorph", "NOTICE", "LICENSE"}
+        require(len(entries) == 4 and set(pins) == expected_names and record["artifacts"] == pins
+                and {path.name for path in bundle.iterdir()} == expected_names,
+                "Native morphology bundle inventory differs from its source pins")
+        paths = [(library, record["library_sha256"], None), (receipt, record["build_receipt_sha256"], None)]
+        paths.extend((bundle / name, row["sha256"], row["bytes"]) for name, row in pins.items())
+        for path, value, size in paths:
+            require(self.runtime_receipt["additional_inputs"].get(str(path)) == value
+                    and environment.get("additional/" + str(path)) == value,
+                    "Unbound native morphology input: " + str(path))
+            local_file(path, value, size)
+        require(record["environment"] == {"QUDS_ARABIC_MORPH_TEST_LIBRARY": str(library),
+                                          "QUDS_ARABIC_MORPH_TEST_BUNDLE": str(bundle)}
+                and record["live_external_download_executed"] is False,
+                "Native morphology test environment or external-download boundary differs")
+        build = read_json(receipt)
+        relative = library.relative_to(receipt.parent).as_posix()
+        manifest_path = package / "licenses/manifest.json"
+        manifest = read_json(manifest_path)
+        require(relative.startswith("native/") and build["files"].get(relative) == record["library_sha256"]
+                and build["adapter_sha256"] == file_hash(package / "native/src/quds_arabic_morph.cpp")
+                and build["license_manifest_sha256"] == file_hash(manifest_path)
+                and build["crispembed"] == {"repository": manifest["component"]["source"],
+                                            "commit": manifest["component"]["commit"],
+                                            "pull_request": manifest["component"]["pull_request"]},
+                "Native morphology build provenance differs from qualified source")
+
     def outer(self, phases):
         directory = self.args.result.resolve()
         receipt = read_json(directory / "execution.json")
@@ -578,6 +869,32 @@ class Audit:
         require(receipt["excluded_studio_suites"] == excluded
                 and receipt["excluded_native_backend_suites"] == native["plan"].get("excluded_native_backend_suites", []),
                 "Outer exclusions differ from source plan")
+        native_suites = {group["cwd"] + "/" + suite
+                         for group in native["plan"]["groups"] for suite in group["tests"]}
+        node_suites = {group["cwd"] + "/" + suite
+                       for group in phases[1]["plan"]["groups"] for suite in group["tests"]}
+        node_only = native["plan"].get("node_only_suites", {})
+        require(isinstance(node_only, dict)
+                and all(isinstance(reason, str) and reason.strip() for reason in node_only.values())
+                and set(node_only) <= node_suites and not (set(node_only) & native_suites),
+                "Node-only suites lack a boundary or exact Node-only execution")
+        require(receipt["node_only_test_suites"] == node_only, "Outer Node-only suite selection differs")
+        core_store_suites = {name for name in self.tracked if name.endswith("_test.dart")
+                             and (name.startswith("packages/quds_mail_core/test/")
+                                  or PurePosixPath(name).parent.as_posix() == "packages/quds_mail_store/test")}
+        require(receipt["core_store_test_suites"] == sorted(core_store_suites),
+                "Outer Core/Store suite selection differs from complete launcher coverage")
+        optional = {"packages/quds_office_editor/example/" + name for name in excluded}
+        backend_exclusions = native["plan"].get("excluded_native_backend_suites", [])
+        require(all(isinstance(row.get("reason"), str) and row["reason"].strip() for row in backend_exclusions),
+                "An excluded native backend suite lacks a boundary")
+        optional.update(row["path"] for row in backend_exclusions)
+        changed_suites = {name for name in changed if name.endswith("_test.dart")}
+        require(receipt["changed_test_suites"] == sorted(changed_suites)
+                and receipt["changed_test_suites_explicitly_excluded"] == sorted(changed_suites & optional),
+                "Changed-suite disposition differs")
+        require(changed_suites <= native_suites | set(node_only) | core_store_suites | optional,
+                "A changed test suite escaped aggregate execution or explicit exclusion")
 
         identity = json.loads(self.git("show", self.source + ":" + gate + "/web-sdk.json"))
         web_root = self.args.web_sdk.resolve()
@@ -592,6 +909,8 @@ class Audit:
                      "archive-members.json", "env.sh", "bin/dart", "bin/flutter"):
             paths["runtime/" + name] = self.runtime / name
         paths.update({"additional/" + name: Path(name) for name in self.runtime_receipt["additional_inputs"]})
+        extension_logs = self.runtime_extension(receipt["runtime_extension"])
+        paths.update({"extension-log/" + name: Path(name) for name in extension_logs})
         paths.update({"python/executable": Path(sys.executable).resolve(),
                       "workspace/package_config.json": self.repo / ".dart_tool/package_config.json",
                       "workspace/package_graph.json": self.repo / ".dart_tool/package_graph.json",
@@ -607,6 +926,8 @@ class Audit:
             self.runtime_file(self.runtime / name, row["sha256"], row["bytes"])
         for name, expected in self.runtime_receipt["additional_inputs"].items():
             require(environment["additional/" + name] == expected, "Outer additional input differs: " + name)
+        self.language_id(receipt["language_id_native"], environment)
+        self.arabic_morph(receipt["arabic_morph_native"], environment)
         observed_web = {path.relative_to(web_sdk).as_posix() for path in web_sdk.rglob("*") if path.is_file()}
         require(observed_web == set(identity["files"]), "Web SDK member inventory changed")
         for name, row in identity["files"].items():
@@ -626,13 +947,15 @@ class Audit:
                 else:
                     require(name.startswith("workspace/") and expected is None,
                             "Unexpected nested-only runtime input: " + name)
-        names = ["shared-runner-controls", "runtime-replay-controls", "publisher-offline-controls", "hunspell-packaging-controls",
-                 "core-store", "native", "node", "mail-browser-frontend", "mail-browser-javascript", "mail-browser-javascript-syntax"]
+        names = ["shared-runner-controls", "runtime-replay-controls", "runtime-extension-controls", "publisher-offline-controls", "hunspell-packaging-controls",
+                 "core-store", "native", "node", "mail-browser-frontend", "mail-browser-javascript", "mail-browser-javascript-syntax",
+                 "language-id-browser-frontend", "language-id-browser-javascript", "language-id-browser-javascript-syntax"]
         require([row["name"] for row in receipt["runs"]] == names, "Outer run sequence incomplete or changed")
         controls = []
         control_arguments = {
             "shared-runner-controls": ["-B", str(self.repo / "docs/validation/document-review-notes-20261118/test_run_checks.py")],
             "runtime-replay-controls": ["-B", str(self.repo / "docs/validation/document-review-notes-20261118/runtime/test_restore_runtime.py")],
+            "runtime-extension-controls": ["-B", str(self.repo / gate / "test_extend_runtime.py")],
             "publisher-offline-controls": ["-B", "-m", "unittest", "discover", "-s", "tools/proofing/ayaspell", "-p", "test_build_bundle*.py", "-v"],
             "hunspell-packaging-controls": ["-B", "-m", "unittest", "discover", "-s", "packages/quds_proofing_hunspell/tool", "-p", "test_build.py", "-v"],
         }
@@ -659,6 +982,7 @@ class Audit:
             require(started <= datetime.fromisoformat(value["started_at_utc"])
                     < datetime.fromisoformat(value["finished_at_utc"]) <= finished, "Nested execution is outside outer interval")
         self.browser(directory, receipt, web_sdk)
+        self.language_id_browser(directory, receipt, web_sdk)
         return {"receipt": receipt, "sources": sources, "source_rows": source_rows, "environment": environment,
                 "runtime_paths": paths, "controls": controls, "web_sdk_files": len(identity["files"])}
 
@@ -709,6 +1033,52 @@ class Audit:
         for row in receipt["runs"]:
             if row["name"] in expected:
                 require(row["command"] == expected[row["name"]], "Browser command differs: " + row["name"])
+
+    def language_id_browser(self, directory, receipt, web_sdk):
+        browser = receipt["language_id_browser_compilation"]
+        require(browser["accepted"] is True and browser["browser_session_executed"] is False
+                and browser["worker_executed"] is False and browser["wasm_executed"] is False,
+                "Language identifier browser compilation boundary differs")
+        require(set(browser["artifacts"]) == {"language-id-web.dill", "language-id-web.dill.deps",
+                                             "language-id-web.js", "language-id-web.js.deps"},
+                "Language identifier browser artifact inventory differs")
+        for name, row in browser["artifacts"].items():
+            require(row["bytes"] > 0, "Empty language identifier browser artifact: " + name)
+            local_file(directory / safe_relative(name), row["sha256"], row["bytes"])
+        closure_path = directory / "language-id-browser-import-closure.json"
+        local_file(closure_path, browser["import_closure_sha256"])
+        closure = read_json(closure_path)
+        dependency_file = directory / "language-id-web.dill.deps"
+        entries = set(dependency_file.read_text().splitlines())
+        required = ["packages/quds_language_id/tool/language_id_web_entry.dart",
+                    "packages/quds_language_id/lib/quds_language_id.dart",
+                    "packages/quds_language_id/lib/src/cld3_language_identifier.dart",
+                    "packages/quds_language_id/lib/src/language_id_transport_web.dart"]
+        forbidden = ["packages/quds_language_id/lib/src/language_id_transport_native.dart",
+                     "packages/quds_language_id/lib/src/language_id_transport_stub.dart"]
+        require(closure["required_web_paths"] == required and closure["forbidden_native_paths"] == forbidden,
+                "Language identifier browser closure requirements differ")
+        require(closure["passed"] is True and closure["missing_web_paths"] == closure["present_native_paths"] == [],
+                "Language identifier browser closure did not pass")
+        require(closure["dependency_count"] == len(entries)
+                and closure["dependencies_sha256"] == file_hash(dependency_file),
+                "Language identifier browser dependency log changed")
+        require(all((self.repo / name).as_uri() in entries for name in required)
+                and all((self.repo / name).as_uri() not in entries for name in forbidden),
+                "Language identifier browser import graph differs")
+        common = [str(self.runtime / "bin/dart"), "compile", "js", "--platform-binaries=" + str(web_sdk / "kernel"),
+                  "--invoker=flutter_tool", "-Ddart.vm.product=true", "-O1"]
+        expected = {
+            "language-id-browser-frontend": [*common, "--packages=" + str(self.repo / ".dart_tool/package_config.json"),
+                "--cfe-only", "-o", str(directory / "language-id-web.dill"), str(self.repo / required[0])],
+            "language-id-browser-javascript": [*common, "--no-source-maps", "-o", str(directory / "language-id-web.js"),
+                str(directory / "language-id-web.dill")],
+            "language-id-browser-javascript-syntax": [self.runtime_receipt["node_runtime"]["path"], "--check",
+                str(directory / "language-id-web.js")],
+        }
+        for row in receipt["runs"]:
+            if row["name"] in expected:
+                require(row["command"] == expected[row["name"]], "Language identifier browser command differs: " + row["name"])
 
     def store(self, outer, phases):
         directory = self.args.result.resolve() / "core-store"
@@ -910,11 +1280,17 @@ class Audit:
                                 "retained_inputs": len(self.retained), "web_component_files": outer["web_sdk_files"],
                                 "verified_hosted_archives": len(archives), "package_test_launcher_bound": True,
                                 "scope": "Declared SDK, package cache, native-assets, Node, Python executable and browser component inputs; not an exhaustive operating-system dependency inventory."},
+            "runtime_extension": self.runtime_extension_summary,
             "browser_compilation": outer["receipt"]["browser_compilation"],
+            "language_id_browser_compilation": outer["receipt"]["language_id_browser_compilation"],
+            "language_id_native": outer["receipt"]["language_id_native"],
+            "arabic_morph_native": outer["receipt"]["arabic_morph_native"],
             "runtime_symlinks": self.runtime_symlinks, "stderr_diagnostics": self.diagnostics,
             "validation": {"exact_nonempty_planned_suite_coverage": True, "all_raw_gzip_case_error_and_manifest_hashes_verified": True,
                            "duplicate_or_unfinished_reporter_events": 0, "layout_tap_disposal_diagnostics": 0,
-                           "all_native_node_test_stderr_empty": True, "actual_browser_session": False,
+                           "all_native_node_test_stderr_empty": all(row["bytes"] == 0 for row in self.diagnostics),
+                           "native_node_test_stderr_matches_exact_reviewed_policy": True,
+                           "actual_browser_session": False,
                            "external_mail_provider_session": False, "macos_build_or_installed_application": False,
                            "word_or_libreoffice_reopening": False},
             "outer_execution_sha256": file_hash(self.args.result / "execution.json"),

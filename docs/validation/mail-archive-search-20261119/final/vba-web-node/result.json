@@ -1,0 +1,38 @@
+{
+  "accepted": true,
+  "argv": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+    "-e",
+    "globalThis.self = globalThis; require(process.argv[1])",
+    "/workspace/scratch/77e1c27b6c6f/archive-final-validation-02/vba-web-smoke.js"
+  ],
+  "cwd": "/workspace/scratch/77e1c27b6c6f/crispoffice",
+  "elapsed_seconds": 0.315,
+  "environment_overrides": {
+    "CI": "true",
+    "DART_SUPPRESS_ANALYTICS": "true",
+    "DASH__SUPPRESS_ANALYTICS": "true",
+    "FLUTTER_SUPPRESS_ANALYTICS": "true"
+  },
+  "exit_code": 0,
+  "finished_at_utc": "2026-11-19T16:20:41.732316+00:00",
+  "kind": "vba-smoke",
+  "name": "vba-web-node",
+  "observed": {
+    "A3": 42,
+    "B1": 84,
+    "fill": "0A141E",
+    "language": "vba-excel",
+    "lateFailurePreservedBytes": true,
+    "mcpCompileAndRun": true,
+    "numericBoundsAndPrecedence": true,
+    "revision": 2,
+    "validationPreservedBytes": true
+  },
+  "started_at_utc": "2026-11-19T16:20:41.416600+00:00",
+  "stderr_bytes": 0,
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_bytes": 193,
+  "stdout_sha256": "3a1c1b101e95e74f978cbb811033185b9a34908200d38d509e6a907b746eefc8",
+  "timeout_seconds": 900
+}

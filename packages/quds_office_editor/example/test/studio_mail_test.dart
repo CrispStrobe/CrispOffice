@@ -5,15 +5,59 @@ import 'dart:typed_data';
 import 'package:enough_mail/enough_mail.dart' as mail;
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:quds_mail_core/quds_mail_core.dart';
 import 'package:quds_mail_ui/quds_mail_ui.dart';
+import 'package:quds_mail_store/quds_mail_store.dart';
 import 'package:quds_office_editor/quds_office_editor.dart';
 import 'package:quds_office_studio/studio_mail_message_loader.dart';
 import 'package:quds_office_studio/studio_mail_compose.dart';
+import 'package:quds_office_studio/studio_mail_credentials.dart';
 import 'package:quds_office_studio/studio_mail_strings.dart';
 import 'package:quds_office_studio/studio_mail_native.dart';
 import 'package:quds_office_studio/studio_strings.dart';
+import 'package:quds_office_studio/studio_mail_archive_action.dart';
+import 'package:quds_office_studio/studio_mail_archive_folder_action.dart';
+import 'package:quds_office_studio/studio_mail_archive_strings.dart';
 
 const _strings = StudioStrings(StudioLanguage.en);
+
+const _savedCredentials = StudioMailCredentials(
+  email: 'saved@example.invalid',
+  password: 'saved-fixture-password',
+  imapHost: 'imap.saved.example.invalid',
+  smtpHost: 'smtp.saved.example.invalid',
+  manual: true,
+  startTls: true,
+);
+
+final class _CredentialStore extends Fake implements StudioMailCredentialStore {
+  StudioMailCredentials? saved;
+  Future<StudioMailCredentials?> Function()? onLoad;
+  Future<bool> Function(StudioMailCredentials)? onSave;
+  Future<bool> Function()? onClear;
+  final writes = <StudioMailCredentials>[];
+  int clears = 0;
+
+  @override
+  Future<StudioMailCredentials?> load() async =>
+      onLoad == null ? saved : await onLoad!();
+
+  @override
+  Future<bool> save(StudioMailCredentials credentials) async {
+    writes.add(credentials);
+    final succeeded = await onSave?.call(credentials) ?? true;
+    if (succeeded) saved = credentials;
+    return succeeded;
+  }
+
+  @override
+  Future<bool> clear() async {
+    clears++;
+    final succeeded = await onClear?.call() ?? true;
+    if (succeeded) saved = null;
+    return succeeded;
+  }
+}
 
 mail.Mailbox _box(String name) => mail.Mailbox(
   encodedName: name,
@@ -156,6 +200,20 @@ final class _Loader implements StudioMailMessageLoader {
   void dispose() => disposed = true;
 }
 
+final class _ArchivingLoader extends _Loader
+    implements StudioMailMailboxArchiver {
+  _ArchivingLoader(super.client);
+
+  @override
+  Future<MailArchiveRunReport> archiveMailbox(
+    mail.Mailbox selectedMailbox, {
+    required SqliteMailArchive archive,
+    required MailArchiveProfile profile,
+    MailCancellationToken? cancellation,
+    void Function(MailArchiveRunProgress)? onProgress,
+  }) => throw StateError('Injected folder writer should own the operation.');
+}
+
 Finder _iconButton(String tooltip) => find.byWidgetPredicate(
   (widget) => widget is IconButton && widget.tooltip == tooltip,
 );
@@ -175,6 +233,12 @@ Future<void> _open(
   mail.MailClient Function(mail.MailAccount) clientFactory, {
   StudioStrings strings = _strings,
   StudioMailMessageLoader Function(mail.MailClient)? loaderFactory,
+  StudioMailCredentialStore? credentialStore,
+  Future<mail.ClientConfig?> Function(String)? accountDiscovery,
+  bool fillForm = true,
+  bool nativeLoader = false,
+  StudioMailArchiveWriter? archiveWriter,
+  StudioMailArchiveFolderWriter? archiveFolderWriter,
 }) async {
   await tester.binding.setSurfaceSize(const Size(1440, 1000));
   addTearDown(() => tester.binding.setSurfaceSize(null));
@@ -190,9 +254,15 @@ Future<void> _open(
                 strings: strings,
                 clientFactory: (account) =>
                     createdClient = clientFactory(account),
-                messageLoaderFactory: (_) =>
-                    loaderFactory?.call(createdClient!) ??
-                    _Loader(createdClient!),
+                messageLoaderFactory: nativeLoader
+                    ? null
+                    : (_) =>
+                          loaderFactory?.call(createdClient!) ??
+                          _Loader(createdClient!),
+                credentialStore: credentialStore ?? _CredentialStore(),
+                accountDiscovery: accountDiscovery,
+                archiveWriter: archiveWriter,
+                archiveFolderWriter: archiveFolderWriter,
               ),
             ),
             child: const Text('Launch Mail'),
@@ -203,6 +273,7 @@ Future<void> _open(
   );
   await tester.tap(find.text('Launch Mail'));
   await _pump(tester);
+  if (!fillForm) return;
   await tester.enterText(
     _field(strings.emailAddress),
     'reader@example.invalid',
@@ -254,6 +325,38 @@ Future<void> _compose(
 
 MailReaderController _reader(WidgetTester tester) =>
     tester.widget<MailMessageView>(find.byType(MailMessageView)).controller;
+
+MailResult<MailArchiveImportResult> _archiveSuccess(MailMessage message) =>
+    MailSuccess(
+      MailArchiveImportResult(
+        entry: MailArchiveEntry(
+          id: message.raw.sha256,
+          envelope: message.envelope,
+          archivedAt: DateTime.utc(2026, 11, 19),
+          byteLength: message.raw.length,
+          attachmentCount: message.attachments.length,
+          indexTruncated: false,
+          attachmentTextIndexed: 0,
+          attachmentTextSkipped: 0,
+        ),
+        duplicate: false,
+        originAdded: true,
+      ),
+    );
+
+MailArchiveRunReport _folderReport() => MailArchiveRunReport(
+  status: MailArchiveRunStatus.completed,
+  pages: 2,
+  processed: 4,
+  saved: 3,
+  duplicates: 1,
+  failed: 0,
+  bytes: 300,
+  elapsedMicroseconds: 1000,
+  observerErrors: 0,
+  failures: const [],
+  droppedFailures: 0,
+);
 
 void main() {
   for (final forward in [false, true]) {
@@ -708,7 +811,7 @@ void main() {
       return client;
     });
     expect(client.connects, 0);
-    expect(find.text(_strings.mailSessionNotice), findsOneWidget);
+    expect(find.text(_strings.mailAccountStorageNotice), findsOneWidget);
     await _connect(tester);
     expect(configured!.email, 'reader@example.invalid');
     expect(configured!.incoming.serverConfig.hostname, 'imap.example.invalid');
@@ -722,6 +825,310 @@ void main() {
     expect(client.disconnects, 1);
     expect(find.widgetWithText(FilledButton, _strings.connect), findsOneWidget);
     expect(find.text('First message'), findsNothing);
+    await _close(tester);
+  });
+
+  testWidgets('an untouched form loads the saved account and TLS choice', (
+    tester,
+  ) async {
+    final store = _CredentialStore()..saved = _savedCredentials;
+    await _open(
+      tester,
+      (_) => _Client(),
+      credentialStore: store,
+      fillForm: false,
+    );
+    expect(
+      tester.widget<TextField>(_field(_strings.emailAddress)).controller!.text,
+      _savedCredentials.email,
+    );
+    expect(
+      tester.widget<TextField>(_field(_strings.password)).controller!.text,
+      _savedCredentials.password,
+    );
+    expect(
+      tester.widget<TextField>(_field(_strings.imapHost)).controller!.text,
+      _savedCredentials.imapHost,
+    );
+    expect(
+      tester.widget<TextField>(_field(_strings.smtpHost)).controller!.text,
+      _savedCredentials.smtpHost,
+    );
+    expect(
+      tester
+          .widget<SwitchListTile>(
+            find.widgetWithText(SwitchListTile, _strings.useStartTls),
+          )
+          .value,
+      isTrue,
+    );
+    expect(find.text(_strings.forgetAccount), findsOneWidget);
+    await _close(tester);
+  });
+
+  testWidgets('a delayed saved account never overwrites edited fields', (
+    tester,
+  ) async {
+    final loaded = Completer<StudioMailCredentials?>();
+    final store = _CredentialStore()..onLoad = () => loaded.future;
+    mail.MailAccount? connected;
+    await _open(tester, (account) {
+      connected = account;
+      return _Client();
+    }, credentialStore: store);
+    loaded.complete(_savedCredentials);
+    await _pump(tester);
+    expect(
+      tester.widget<TextField>(_field(_strings.emailAddress)).controller!.text,
+      'reader@example.invalid',
+    );
+    expect(
+      tester.widget<TextField>(_field(_strings.password)).controller!.text,
+      'session-password',
+    );
+    expect(
+      tester.widget<TextField>(_field(_strings.imapHost)).controller!.text,
+      'imap.example.invalid',
+    );
+    expect(
+      tester.widget<TextField>(_field(_strings.smtpHost)).controller!.text,
+      'smtp.example.invalid',
+    );
+    expect(
+      tester
+          .widget<SwitchListTile>(
+            find.widgetWithText(SwitchListTile, _strings.useStartTls),
+          )
+          .value,
+      isFalse,
+    );
+    await _connect(tester);
+    expect(connected!.email, 'reader@example.invalid');
+    expect(connected!.incoming.serverConfig.port, 993);
+    expect(store.writes.single.password, 'session-password');
+    await _close(tester);
+  });
+
+  testWidgets('a delayed saved account cannot enter a started session', (
+    tester,
+  ) async {
+    final loaded = Completer<StudioMailCredentials?>();
+    final store = _CredentialStore()..onLoad = () => loaded.future;
+    final client = _Client();
+    await _open(tester, (_) => client, credentialStore: store);
+    await _connect(tester);
+    loaded.complete(_savedCredentials);
+    await _pump(tester);
+    await tester.tap(find.byTooltip(_strings.disconnect));
+    await _pump(tester);
+    expect(
+      tester.widget<TextField>(_field(_strings.emailAddress)).controller!.text,
+      'reader@example.invalid',
+    );
+    expect(
+      tester.widget<TextField>(_field(_strings.password)).controller!.text,
+      isEmpty,
+    );
+    expect(client.connects, 1);
+    await _close(tester);
+  });
+
+  testWidgets('a failed keychain save keeps Mail connected with fixed feedback', (
+    tester,
+  ) async {
+    final store = _CredentialStore()
+      ..onSave = (_) async =>
+          throw StateError('private-keychain-reply saved-fixture-password');
+    final client = _Client();
+    await _open(tester, (_) => client, credentialStore: store);
+    await _connect(tester);
+    expect(find.text('First message'), findsOneWidget);
+    expect(find.text(_strings.mailAccountSaveFailed), findsOneWidget);
+    expect(find.textContaining('private-keychain-reply'), findsNothing);
+    expect(find.text(_strings.mailConnectionFailed), findsNothing);
+    expect(client.disconnects, 0);
+    await tester.tap(find.byTooltip(_strings.disconnect));
+    await _pump(tester);
+    // Forget remains available for unreadable or still-pending keychain records.
+    expect(find.text(_strings.forgetAccount), findsOneWidget);
+    await _close(tester);
+  });
+
+  testWidgets('a failed keychain deletion remains visible and can be retried', (
+    tester,
+  ) async {
+    final store = _CredentialStore()
+      ..saved = _savedCredentials
+      ..onClear = () async => false;
+    await _open(
+      tester,
+      (_) => _Client(),
+      credentialStore: store,
+      fillForm: false,
+    );
+    await tester.ensureVisible(find.text(_strings.forgetAccount));
+    await tester.tap(find.text(_strings.forgetAccount));
+    await _pump(tester);
+    expect(find.text(_strings.mailAccountForgetFailed), findsOneWidget);
+    expect(find.text(_strings.forgetAccount), findsOneWidget);
+    expect(store.saved, same(_savedCredentials));
+    store.onClear = () async => true;
+    await tester.ensureVisible(find.text(_strings.forgetAccount));
+    await tester.tap(find.text(_strings.forgetAccount));
+    await _pump(tester);
+    expect(store.clears, 2);
+    expect(store.saved, isNull);
+    // Forget remains available for unreadable or still-pending keychain records.
+    expect(find.text(_strings.forgetAccount), findsOneWidget);
+    expect(find.text(_strings.mailAccountForgetFailed), findsNothing);
+    await _close(tester);
+  });
+
+  testWidgets('remember-off reports a failed deletion without losing Mail', (
+    tester,
+  ) async {
+    final store = _CredentialStore()
+      ..saved = _savedCredentials
+      ..onClear = () async => false;
+    final client = _Client();
+    await _open(tester, (_) => client, credentialStore: store, fillForm: false);
+    await tester.ensureVisible(find.text(_strings.rememberAccount));
+    await tester.tap(find.text(_strings.rememberAccount));
+    await _pump(tester);
+    await _connect(tester);
+    expect(store.writes, isEmpty);
+    expect(store.clears, 1);
+    expect(store.saved, same(_savedCredentials));
+    expect(find.text(_strings.mailAccountForgetFailed), findsOneWidget);
+    expect(find.text('First message'), findsOneWidget);
+    expect(client.disconnects, 0);
+    await _close(tester);
+  });
+
+  testWidgets(
+    'an old keychain save cannot publish into a replacement session',
+    (tester) async {
+      final saved = Completer<bool>();
+      final store = _CredentialStore()
+        ..onSave = (credentials) =>
+            credentials.email == 'reader@example.invalid'
+            ? saved.future
+            : Future<bool>.value(true);
+      final first = _Client();
+      final second = _Client();
+      final clients = [first, second];
+      await _open(tester, (_) => clients.removeAt(0), credentialStore: store);
+      await _connect(tester);
+      await tester.tap(find.byTooltip(_strings.disconnect));
+      await _pump(tester);
+      await tester.enterText(
+        _field(_strings.emailAddress),
+        'replacement@example.invalid',
+      );
+      await _connect(tester);
+      saved.complete(false);
+      await _pump(tester);
+      expect(find.text(_strings.mailAccountSaveFailed), findsNothing);
+      expect(find.text('First message'), findsOneWidget);
+      expect(store.saved!.email, 'replacement@example.invalid');
+      expect(first.disconnects, 1);
+      expect(second.disconnects, 0);
+      await _close(tester);
+    },
+  );
+
+  testWidgets('late keychain failure preserves the SMTP acceptance receipt', (
+    tester,
+  ) async {
+    final saved = Completer<bool>();
+    final store = _CredentialStore()..onSave = (_) => saved.future;
+    await _open(tester, (_) => _Client(), credentialStore: store);
+    await _connect(tester);
+    await _compose(tester);
+    expect(find.text(_strings.mailSubmissionAccepted), findsOneWidget);
+    saved.complete(false);
+    await _pump(tester);
+    expect(find.text(_strings.mailSubmissionAccepted), findsOneWidget);
+    expect(find.text(_strings.mailAccountSaveFailed), findsOneWidget);
+    expect(find.byTooltip(_strings.mailDiscardDraft), findsNothing);
+    await _close(tester);
+  });
+
+  testWidgets(
+    'manual STARTTLS is selected before the only connection attempt',
+    (tester) async {
+      mail.MailAccount? connected;
+      final client = _Client();
+      await _open(tester, (account) {
+        connected = account;
+        return client;
+      });
+      await tester.ensureVisible(find.text(_strings.useStartTls));
+      await tester.tap(find.text(_strings.useStartTls));
+      await _pump(tester);
+      await _connect(tester);
+      expect(connected!.incoming.serverConfig.port, 143);
+      expect(
+        connected!.incoming.serverConfig.socketType,
+        mail.SocketType.starttls,
+      );
+      expect(connected!.outgoing.serverConfig.port, 587);
+      expect(
+        connected!.outgoing.serverConfig.socketType,
+        mail.SocketType.starttls,
+      );
+      expect(client.connects, 1);
+      await _close(tester);
+    },
+  );
+
+  testWidgets('mailbox.org uses verified STARTTLS settings without discovery', (
+    tester,
+  ) async {
+    mail.MailAccount? connected;
+    final client = _Client();
+    await _open(tester, (account) {
+      connected = account;
+      return client;
+    }, accountDiscovery: (_) async => throw StateError('Unexpected discovery'));
+    await tester.enterText(_field(_strings.emailAddress), 'reader@MAILBOX.ORG');
+    await tester.tap(find.text(_strings.manualServers));
+    await _pump(tester);
+    await _connect(tester);
+    expect(connected!.incoming.serverConfig.hostname, 'imap.mailbox.org');
+    expect(connected!.incoming.serverConfig.port, 143);
+    expect(
+      connected!.incoming.serverConfig.socketType,
+      mail.SocketType.starttls,
+    );
+    expect(connected!.outgoing.serverConfig.hostname, 'smtp.mailbox.org');
+    expect(connected!.outgoing.serverConfig.port, 587);
+    expect(
+      connected!.outgoing.serverConfig.socketType,
+      mail.SocketType.starttls,
+    );
+    expect(client.connects, 1);
+    expect(find.text('First message'), findsOneWidget);
+    await _close(tester);
+  });
+
+  testWidgets('native credential preflight rejects before authentication', (
+    tester,
+  ) async {
+    final client = _Client();
+    final store = _CredentialStore();
+    await _open(
+      tester,
+      (_) => client,
+      credentialStore: store,
+      nativeLoader: true,
+    );
+    await tester.enterText(_field(_strings.password), '');
+    await _connect(tester);
+    expect(client.connects, 0);
+    expect(client.lists, 0);
+    expect(store.writes, isEmpty);
+    expect(find.text(_strings.mailConnectionFailed), findsOneWidget);
     await _close(tester);
   });
 
@@ -756,7 +1163,10 @@ void main() {
           }
           await _pump(tester);
           expect(client.disconnects, greaterThanOrEqualTo(1));
-          if (phase == 'connect') expect(client.lists, 0);
+          if (phase == 'connect') {
+            expect(client.connects, 1);
+            expect(client.lists, 0);
+          }
           if (phase == 'list') expect(client.fetches, 0);
           expect(find.byType(StudioMailDialog), findsNothing);
           expect(tester.takeException(), isNull);
@@ -1155,7 +1565,7 @@ void main() {
       const strings = StudioStrings(StudioLanguage.de);
       final client = _Client();
       await _open(tester, (_) => client, strings: strings);
-      expect(find.text(strings.mailSessionNotice), findsOneWidget);
+      expect(find.text(strings.mailAccountStorageNotice), findsOneWidget);
       await _connect(tester, strings: strings);
       expect(find.text(strings.noMessage), findsOneWidget);
       expect(find.byTooltip(strings.disconnect), findsOneWidget);
@@ -1218,4 +1628,177 @@ void main() {
     expect(saved.isDisposed, isTrue);
     expect(client.disconnects, 1);
   });
+
+  testWidgets(
+    'IMAP archive action stores the loaded original with Bcc and attachments without touching the mailbox',
+    (tester) async {
+      final client = _Client();
+      final raw = Uint8List.fromList(
+        utf8.encode(
+          [
+            'From: Original <original@example.invalid>',
+            'To: Reader <reader@example.invalid>',
+            'Bcc: Hidden <hidden@example.invalid>',
+            'Subject: Full MIME original, not the fetched header',
+            'X-Preserved:  unusual',
+            '\tspacing',
+            'MIME-Version: 1.0',
+            'Content-Type: multipart/mixed; boundary=archive-fixture',
+            '',
+            '--archive-fixture',
+            'Content-Type: text/plain; charset=utf-8',
+            '',
+            'Exact original body.',
+            '--archive-fixture',
+            'Content-Type: application/octet-stream',
+            'Content-Disposition: attachment; filename=original.bin',
+            'Content-Transfer-Encoding: base64',
+            '',
+            'AAEC/w0K',
+            '--archive-fixture--',
+            '',
+          ].join('\r\n'),
+        ),
+      );
+      late _Loader loader;
+      MailMessage? archived;
+      var archiveCalls = 0;
+      MailArchiveOrigin? provenance;
+      await _open(
+        tester,
+        (_) => client,
+        loaderFactory: (value) =>
+            loader = _Loader(value)..onFetch = (_, _) async => raw,
+        archiveWriter: (message, {required origin, cancellation}) async {
+          archiveCalls++;
+          archived = message;
+          provenance = origin;
+          return _archiveSuccess(message);
+        },
+      );
+      await _connect(tester);
+      expect(archived, isNull);
+      await tester.tap(find.text('First message'));
+      await _pump(tester);
+      await tester.tap(find.byTooltip(_strings.archiveCurrentMessage));
+      await _pump(tester);
+      expect(archived!.raw.bytes, orderedEquals(raw));
+      expect(
+        archived!.envelope.subject,
+        'Full MIME original, not the fetched header',
+      );
+      expect(archived!.envelope.bcc.single.address, 'hidden@example.invalid');
+      expect(archived!.attachments.single.displayName, 'original.bin');
+      expect(
+        archived!.attachments.single.content.bytes,
+        orderedEquals([0, 1, 2, 255, 13, 10]),
+      );
+      expect(provenance!.source, 'reader@example.invalid');
+      expect(provenance!.folder, 'INBOX');
+      expect(provenance!.sourceMessageId, 'imap:41:7');
+      expect(loader.marked, isEmpty);
+      expect(client.sent, isEmpty);
+      expect(client.selections, 0);
+      expect(client.fetches, 1);
+      expect(archiveCalls, 1);
+      expect(find.text(_strings.archiveMessageStored), findsWidgets);
+      await _close(tester);
+    },
+  );
+
+  testWidgets(
+    'disconnecting IMAP cancels a pending archive and suppresses its late feedback',
+    (tester) async {
+      final client = _Client();
+      final saved = Completer<MailResult<MailArchiveImportResult>>();
+      MailCancellationToken? token;
+      await _open(
+        tester,
+        (_) => client,
+        archiveWriter: (message, {required origin, cancellation}) {
+          token = cancellation;
+          return saved.future;
+        },
+      );
+      await _connect(tester);
+      await tester.tap(find.text('First message'));
+      await _pump(tester);
+      await tester.tap(find.byTooltip(_strings.archiveCurrentMessage));
+      await _pump(tester);
+      await tester.tap(find.byTooltip(_strings.disconnect));
+      await _pump(tester);
+      expect(token!.isCancelled, isTrue);
+      saved.complete(
+        const MailFailure(MailProblem(MailProblemCode.permissionDenied)),
+      );
+      await _pump(tester);
+      expect(
+        find.text(_strings.archiveProblem(MailProblemCode.permissionDenied)),
+        findsNothing,
+      );
+      expect(find.byType(StudioArchiveMessageButton), findsNothing);
+      expect(client.sent, isEmpty);
+      expect(client.disconnects, 1);
+      await _close(tester);
+    },
+  );
+
+  testWidgets('IMAP folder archiving requires an explicit loader capability', (
+    tester,
+  ) async {
+    await _open(tester, (_) => _Client());
+    await _connect(tester);
+    expect(find.byType(StudioArchiveFolderButton), findsNothing);
+    await _close(tester);
+  });
+
+  testWidgets(
+    'IMAP selected-folder action freezes source and folder without changing the mailbox',
+    (tester) async {
+      final client = _Client();
+      late _ArchivingLoader loader;
+      MailArchiveProfile? profile;
+      var runs = 0;
+      await _open(
+        tester,
+        (_) => client,
+        loaderFactory: (client) => loader = _ArchivingLoader(client),
+        archiveFolderWriter:
+            (
+              value, {
+              required cancellation,
+              onProgress,
+              required verboseDiagnostics,
+            }) async {
+              runs++;
+              profile = value;
+              return _folderReport();
+            },
+      );
+      await _connect(tester);
+      await tester.tap(find.byTooltip(_strings.archiveSelectedFolder));
+      await _pump(tester);
+      expect(runs, 0);
+      await tester.tap(find.byKey(const ValueKey('archive-folder-start')));
+      await _pump(tester);
+      expect(runs, 1);
+      expect(profile!.source, 'reader@example.invalid');
+      expect(profile!.folder, 'INBOX');
+      expect(profile!.kind, MailArchiveProfileKind.mailbox);
+      expect(profile!.includeSubfolders, isFalse);
+      expect(profile!.indexAttachmentText, isFalse);
+      expect(profile!.id, startsWith('studio-mailbox:'));
+      expect(loader.marked, isEmpty);
+      expect(client.sent, isEmpty);
+      expect(client.selections, 0);
+      expect(client.fetches, 1);
+      expect(
+        find.text(_strings.archiveFolderCounts(3, 1, 0, 2, 300)),
+        findsOneWidget,
+      );
+      await tester.tap(find.byKey(const ValueKey('archive-folder-close')));
+      await _pump(tester);
+      await _close(tester);
+    },
+  );
 }

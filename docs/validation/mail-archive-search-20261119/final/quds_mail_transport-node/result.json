@@ -1,0 +1,40 @@
+{
+  "accepted": true,
+  "argv": [
+    "/workspace/scratch/77e1c27b6c6f/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+    "--disable-dart-dev",
+    "--packages=/workspace/scratch/77e1c27b6c6f/crispoffice/.dart_tool/package_config.json",
+    "/workspace/scratch/77e1c27b6c6f/toolchains/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+    "--platform=node",
+    "--compiler=dart2js",
+    "--reporter=json",
+    "--concurrency=1",
+    "test/cloud_unsupported_test.dart",
+    "test/ews_unsupported_test.dart",
+    "test/unsupported_test.dart"
+  ],
+  "cwd": "/workspace/scratch/77e1c27b6c6f/crispoffice/packages/quds_mail_transport",
+  "elapsed_seconds": 20.799,
+  "environment_overrides": {
+    "CI": "true",
+    "DART_SUPPRESS_ANALYTICS": "true",
+    "DASH__SUPPRESS_ANALYTICS": "true",
+    "FLUTTER_SUPPRESS_ANALYTICS": "true"
+  },
+  "exit_code": 0,
+  "finished_at_utc": "2026-11-19T16:12:59.565935+00:00",
+  "kind": "tests",
+  "name": "quds_mail_transport-node",
+  "started_at_utc": "2026-11-19T16:12:38.766538+00:00",
+  "stderr_bytes": 0,
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_bytes": 5503,
+  "stdout_sha256": "ce9dfc6b164220cbd8c1974c49c03a5c2e3982739d5e609369eb7cb921056d16",
+  "test_cases_sha256": "9c5951c4546596e0f621655e12dfbf45bda1a744462bdfd9b3450c7d439fdbc9",
+  "test_counts": {
+    "failed": 0,
+    "passed": 6,
+    "skipped": 0
+  },
+  "timeout_seconds": 900
+}

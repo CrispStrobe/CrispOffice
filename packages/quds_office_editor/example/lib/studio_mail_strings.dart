@@ -374,6 +374,12 @@ extension StudioMailFeedback on StudioStrings {
     'Gespeichertes Konto entfernen',
     'نسيان الحساب المحفوظ',
   );
+  // Keep the recovery branch's feedback names compatible with the more
+  // detailed provider-aware strings used by the current account dialog.
+  String get mailAccountStorageNotice => mailSessionNotice;
+  String get mailAccountSaveFailed => mailKeychainSaveFailed;
+  String get mailAccountForgetFailed => mailKeychainClearFailed;
+
   String get mailKeychainSaveFailed => _mailText(
     'Connected, but the account could not be saved in the system keychain. This session remains available.',
     'Verbunden, aber das Konto konnte nicht im Systemschlüsselbund gespeichert werden. Diese Sitzung bleibt verfügbar.',

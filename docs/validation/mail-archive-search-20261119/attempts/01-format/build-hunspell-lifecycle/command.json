@@ -1,0 +1,24 @@
+{
+  "argv": [
+    "/usr/bin/x86_64-linux-gnu-g++-14",
+    "-std=c++17",
+    "-shared",
+    "-fPIC",
+    "-O2",
+    "-pthread",
+    "/workspace/scratch/77e1c27b6c6f/crispoffice/packages/quds_proofing_hunspell/test/fixtures/lifecycle_hunspell.cpp",
+    "-o",
+    "/workspace/scratch/77e1c27b6c6f/archive-final-validation-01/fixtures/hunspell-lifecycle.so"
+  ],
+  "cwd": "/workspace/scratch/77e1c27b6c6f/crispoffice",
+  "environment_overrides": {
+    "CI": "true",
+    "DART_SUPPRESS_ANALYTICS": "true",
+    "DASH__SUPPRESS_ANALYTICS": "true",
+    "FLUTTER_SUPPRESS_ANALYTICS": "true"
+  },
+  "kind": "command",
+  "name": "build-hunspell-lifecycle",
+  "started_at_utc": "2026-11-19T16:05:47.125882+00:00",
+  "timeout_seconds": 120
+}

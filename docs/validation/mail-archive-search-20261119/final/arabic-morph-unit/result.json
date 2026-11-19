@@ -1,0 +1,38 @@
+{
+  "accepted": true,
+  "argv": [
+    "/workspace/scratch/77e1c27b6c6f/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+    "--disable-dart-dev",
+    "--packages=/workspace/scratch/77e1c27b6c6f/crispoffice/.dart_tool/package_config.json",
+    "/workspace/scratch/77e1c27b6c6f/toolchains/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+    "--platform=vm",
+    "--compiler=kernel",
+    "--reporter=json",
+    "--concurrency=1",
+    "test/arabic_morph_unit_test.dart"
+  ],
+  "cwd": "/workspace/scratch/77e1c27b6c6f/crispoffice/packages/quds_arabic_morph",
+  "elapsed_seconds": 13.831,
+  "environment_overrides": {
+    "CI": "true",
+    "DART_SUPPRESS_ANALYTICS": "true",
+    "DASH__SUPPRESS_ANALYTICS": "true",
+    "FLUTTER_SUPPRESS_ANALYTICS": "true"
+  },
+  "exit_code": 0,
+  "finished_at_utc": "2026-11-19T16:13:54.273226+00:00",
+  "kind": "tests",
+  "name": "arabic-morph-unit",
+  "started_at_utc": "2026-11-19T16:13:40.442586+00:00",
+  "stderr_bytes": 0,
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_bytes": 7552,
+  "stdout_sha256": "e63eae0023ddb4a3efe31d2a0bcd2e0b172d2ecafd067858f4932a80975ed92e",
+  "test_cases_sha256": "1c50ec1b612a84172bab37807f1fa8103cd6a623e5b7dd04bd2c14cab9bde43a",
+  "test_counts": {
+    "failed": 0,
+    "passed": 13,
+    "skipped": 0
+  },
+  "timeout_seconds": 900
+}

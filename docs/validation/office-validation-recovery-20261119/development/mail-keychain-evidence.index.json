@@ -1,0 +1,273 @@
+{
+  "archive": {
+    "bytes": 35552,
+    "format": "POSIX PAX tar compressed with XZ",
+    "maximum_part_bytes": 1048576,
+    "metadata": "original permission modes and nanosecond modification timestamps",
+    "ownership": "normalized uid=gid=0; names empty",
+    "parts": [
+      {
+        "bytes": 35552,
+        "name": "mail-keychain-evidence.tar.xz",
+        "offset": 0,
+        "sha256": "d8e1b34861c9b8ff91383bf855fdbb04cc117f0abf42e5ee2d31f73b7768b1b9"
+      }
+    ],
+    "reconstructed_name": "mail-keychain-evidence.tar.xz",
+    "sha256": "d8e1b34861c9b8ff91383bf855fdbb04cc117f0abf42e5ee2d31f73b7768b1b9",
+    "tar_bytes": 430080,
+    "tar_sha256": "80aa83709721aef726f67dc1c9d231ed5041cdfe934f250cf60504a86bb54365",
+    "xz_check": "SHA256",
+    "xz_preset": 6
+  },
+  "members": [
+    {
+      "bytes": 14594,
+      "mode": 420,
+      "mtime_ns": 1795099062071161831,
+      "name": "latest-main-review.json",
+      "sha256": "71a7491103edc9c48d438728babab43edda8c0b67c46e597ade701fe7afb53ff",
+      "source": "latest-main-review.json",
+      "source_relative": "",
+      "type": "file"
+    },
+    {
+      "mode": 493,
+      "mtime_ns": 1795099274261571226,
+      "name": "mail-keychain-development",
+      "source": "mail-keychain-development",
+      "source_relative": "",
+      "type": "directory"
+    },
+    {
+      "bytes": 168,
+      "mode": 420,
+      "mtime_ns": 1795099253507779926,
+      "name": "mail-keychain-development/analysis-final.log",
+      "sha256": "0a34649ba06c96e53cbb8057b0c0e0f7d37c4e2449b1600fb6a6b39e94d8975e",
+      "source": "mail-keychain-development",
+      "source_relative": "analysis-final.log",
+      "type": "file"
+    },
+    {
+      "bytes": 168,
+      "mode": 420,
+      "mtime_ns": 1795099104101622665,
+      "name": "mail-keychain-development/analysis.log",
+      "sha256": "0a34649ba06c96e53cbb8057b0c0e0f7d37c4e2449b1600fb6a6b39e94d8975e",
+      "source": "mail-keychain-development",
+      "source_relative": "analysis.log",
+      "type": "file"
+    },
+    {
+      "bytes": 5430,
+      "mode": 420,
+      "mtime_ns": 1795099284765588378,
+      "name": "mail-keychain-development/development-summary.json",
+      "sha256": "e360609347c6598a0b3000ee4392d7e2e5267043ad95e6cf8187b76f743b2569",
+      "source": "mail-keychain-development",
+      "source_relative": "development-summary.json",
+      "type": "file"
+    },
+    {
+      "bytes": 46,
+      "mode": 420,
+      "mtime_ns": 1795099143403739034,
+      "name": "mail-keychain-development/format-final.log",
+      "sha256": "201363ae23832375357c5580f6a07ce89f48c2a27211bd100d74e34f26295c71",
+      "source": "mail-keychain-development",
+      "source_relative": "format-final.log",
+      "type": "file"
+    },
+    {
+      "bytes": 47,
+      "mode": 420,
+      "mtime_ns": 1795099074856390819,
+      "name": "mail-keychain-development/format.log",
+      "sha256": "7633fd3691924ff7d882307b04a339df12e2190c247b8a7df2bd5cde43bade70",
+      "source": "mail-keychain-development",
+      "source_relative": "format.log",
+      "type": "file"
+    },
+    {
+      "bytes": 2048,
+      "mode": 420,
+      "mtime_ns": 1795099117435392820,
+      "name": "mail-keychain-development/mail-keychain-initial-receipt.json",
+      "sha256": "814de36a0d09ffb73a2bb0c5b30757da27116919e44e4a87b89172a3107f6dd0",
+      "source": "mail-keychain-development",
+      "source_relative": "mail-keychain-initial-receipt.json",
+      "type": "file"
+    },
+    {
+      "bytes": 40791,
+      "mode": 420,
+      "mtime_ns": 1795099117320989810,
+      "name": "mail-keychain-development/mail-keychain-initial.jsonl",
+      "sha256": "16f98db1ca3d36bc88901a5d713e92ad8adbe94a28f0b8dad3d3cd382b74a625",
+      "source": "mail-keychain-development",
+      "source_relative": "mail-keychain-initial.jsonl",
+      "type": "file"
+    },
+    {
+      "bytes": 0,
+      "mode": 420,
+      "mtime_ns": 1795099089602316798,
+      "name": "mail-keychain-development/mail-keychain-initial.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "mail-keychain-development",
+      "source_relative": "mail-keychain-initial.stderr",
+      "type": "file"
+    },
+    {
+      "bytes": 2048,
+      "mode": 420,
+      "mtime_ns": 1795099190731491330,
+      "name": "mail-keychain-development/mail-keychain-receipt.json",
+      "sha256": "e6cb56581ab684d74e6e60c6c977bba4b00f2ba24e70c7c142de5ca9b6f49dae",
+      "source": "mail-keychain-development",
+      "source_relative": "mail-keychain-receipt.json",
+      "type": "file"
+    },
+    {
+      "bytes": 39999,
+      "mode": 420,
+      "mtime_ns": 1795099274261571226,
+      "name": "mail-keychain-development/mail-keychain-repair.patch",
+      "sha256": "38461b1e0e8a4c2429c2e53fa0b0eb79067538191cf03913780e2baa0027e71b",
+      "source": "mail-keychain-development",
+      "source_relative": "mail-keychain-repair.patch",
+      "type": "file"
+    },
+    {
+      "bytes": 35003,
+      "mode": 420,
+      "mtime_ns": 1795099190653472831,
+      "name": "mail-keychain-development/mail-keychain.jsonl",
+      "sha256": "d42da09a3056d7428ddf452d825f2bb67741b2418b8383338941ff7b6098d2e0",
+      "source": "mail-keychain-development",
+      "source_relative": "mail-keychain.jsonl",
+      "type": "file"
+    },
+    {
+      "bytes": 0,
+      "mode": 420,
+      "mtime_ns": 1795099161454691301,
+      "name": "mail-keychain-development/mail-keychain.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "mail-keychain-development",
+      "source_relative": "mail-keychain.stderr",
+      "type": "file"
+    },
+    {
+      "bytes": 3198,
+      "mode": 420,
+      "mtime_ns": 1795099161454126261,
+      "name": "mail-keychain-development/studio_mail_credentials.dart.fixed",
+      "sha256": "4ceee326506537034940b7a2eb729c9dd8d9aa2227f11a0e46a0fa97634b23f7",
+      "source": "mail-keychain-development",
+      "source_relative": "studio_mail_credentials.dart.fixed",
+      "type": "file"
+    },
+    {
+      "bytes": 2586,
+      "mode": 420,
+      "mtime_ns": 1795098527265779300,
+      "name": "mail-keychain-development/studio_mail_credentials.dart.merged-baseline",
+      "sha256": "114419b86186492e92703163403e71389bf13eed128634513964154eafcb7f44",
+      "source": "mail-keychain-development",
+      "source_relative": "studio_mail_credentials.dart.merged-baseline",
+      "type": "file"
+    },
+    {
+      "bytes": 4574,
+      "mode": 420,
+      "mtime_ns": 1795099161454691301,
+      "name": "mail-keychain-development/studio_mail_credentials_test.dart.fixed",
+      "sha256": "fc027d6c72597bca69fab2ff45827858b30f425139df2a9f114b94805a6b641d",
+      "source": "mail-keychain-development",
+      "source_relative": "studio_mail_credentials_test.dart.fixed",
+      "type": "file"
+    },
+    {
+      "bytes": 45501,
+      "mode": 420,
+      "mtime_ns": 1795099161453703626,
+      "name": "mail-keychain-development/studio_mail_native.dart.fixed",
+      "sha256": "40e389b00b631b26cf043aaded1e5c1cf13a21fa5adde23f759c14c474c91191",
+      "source": "mail-keychain-development",
+      "source_relative": "studio_mail_native.dart.fixed",
+      "type": "file"
+    },
+    {
+      "bytes": 43360,
+      "mode": 420,
+      "mtime_ns": 1795098527265446855,
+      "name": "mail-keychain-development/studio_mail_native.dart.merged-baseline",
+      "sha256": "e6e342fd78aab10338ec7326d9e6b1bd73628897b006953491a0ab4f1965a5da",
+      "source": "mail-keychain-development",
+      "source_relative": "studio_mail_native.dart.merged-baseline",
+      "type": "file"
+    },
+    {
+      "bytes": 15903,
+      "mode": 420,
+      "mtime_ns": 1795099161454380792,
+      "name": "mail-keychain-development/studio_mail_strings.dart.fixed",
+      "sha256": "e3739e67db2a3879150854f9ab40cb215af74007381b6101bb4e7eddd991623c",
+      "source": "mail-keychain-development",
+      "source_relative": "studio_mail_strings.dart.fixed",
+      "type": "file"
+    },
+    {
+      "bytes": 14885,
+      "mode": 420,
+      "mtime_ns": 1795098527265628084,
+      "name": "mail-keychain-development/studio_mail_strings.dart.merged-baseline",
+      "sha256": "b3b35f455a4aa4fc30c63deec9bde5d8f057f0fc134e1b97d825edf7e3d1966c",
+      "source": "mail-keychain-development",
+      "source_relative": "studio_mail_strings.dart.merged-baseline",
+      "type": "file"
+    },
+    {
+      "bytes": 56201,
+      "mode": 420,
+      "mtime_ns": 1795099161454551293,
+      "name": "mail-keychain-development/studio_mail_test.dart.fixed",
+      "sha256": "459bf894660ac9b31fe3a98f88ffb2a6ba3c8a6c7627b4d724c9fd8da1ad86af",
+      "source": "mail-keychain-development",
+      "source_relative": "studio_mail_test.dart.fixed",
+      "type": "file"
+    },
+    {
+      "bytes": 56198,
+      "mode": 420,
+      "mtime_ns": 1795099143349074688,
+      "name": "mail-keychain-development/studio_mail_test.initial.dart",
+      "sha256": "9bb1892370502b538ea80ff3cc40b4d0af59efd7112273d21320967d1187de25",
+      "source": "mail-keychain-development",
+      "source_relative": "studio_mail_test.initial.dart",
+      "type": "file"
+    }
+  ],
+  "packing_verification": {
+    "all_original_file_bytes_match": true,
+    "all_sizes_hashes_modes_mtimes_match": true,
+    "exact_member_set": true,
+    "members": 23,
+    "regular_bytes": 382748,
+    "regular_files": 22
+  },
+  "producer": {
+    "path": "archive_development.py",
+    "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "sha256": "dde817494cc3d94c0af61ba33961e0d936677987a7236afd37e66a23e68dcaeb"
+  },
+  "purpose": "Unfrozen development and runtime-preparation preservation; not aggregate acceptance",
+  "schema": 1,
+  "second_complete_build_byte_identical": true,
+  "sources": {
+    "latest-main-review.json": "/workspace/scratch/1db61dbeed56/latest-main-review.json",
+    "mail-keychain-development": "/workspace/scratch/1db61dbeed56/mail-keychain-development"
+  }
+}

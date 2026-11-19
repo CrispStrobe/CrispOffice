@@ -1,0 +1,52 @@
+{
+  "accepted": true,
+  "argv": [
+    "/workspace/scratch/77e1c27b6c6f/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+    "--disable-dart-dev",
+    "--packages=/workspace/scratch/77e1c27b6c6f/crispoffice/.dart_tool/package_config.json",
+    "/workspace/scratch/77e1c27b6c6f/toolchains/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+    "--platform=vm",
+    "--compiler=kernel",
+    "--reporter=json",
+    "--concurrency=1",
+    "test/office_macro_cli_test.dart",
+    "test/office_macro_expansion_test.dart",
+    "test/office_macro_language_test.dart",
+    "test/office_macro_mcp_test.dart",
+    "test/office_macro_runtime_test.dart",
+    "test/office_operations_test.dart",
+    "test/office_steps_test.dart",
+    "test/office_vba_integration_test.dart",
+    "test/office_vba_language_test.dart",
+    "test/sheet_macro_preservation_test.dart",
+    "test/table_grid_steps_test.dart",
+    "test/word_step_atomicity_test.dart",
+    "test/word_steps_vocabulary_test.dart",
+    "test/word_structure_steps_test.dart",
+    "test/word_table_grid_addressing_test.dart"
+  ],
+  "cwd": "/workspace/scratch/77e1c27b6c6f/crispoffice/packages/quds_office_engine",
+  "elapsed_seconds": 168.417,
+  "environment_overrides": {
+    "CI": "true",
+    "DART_SUPPRESS_ANALYTICS": "true",
+    "DASH__SUPPRESS_ANALYTICS": "true",
+    "FLUTTER_SUPPRESS_ANALYTICS": "true"
+  },
+  "exit_code": 0,
+  "finished_at_utc": "2026-11-19T16:17:06.561225+00:00",
+  "kind": "tests",
+  "name": "engine-incoming-macros-operations",
+  "started_at_utc": "2026-11-19T16:14:18.144060+00:00",
+  "stderr_bytes": 0,
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_bytes": 143763,
+  "stdout_sha256": "93fbe97146645aba5473016fa3d5f48b452c5d320f330a959905f1b3d0980c47",
+  "test_cases_sha256": "114b5ef8980a8829085db5052f8b2a3b4c7aad186b066d66ecd15cd4132d8471",
+  "test_counts": {
+    "failed": 0,
+    "passed": 286,
+    "skipped": 0
+  },
+  "timeout_seconds": 900
+}

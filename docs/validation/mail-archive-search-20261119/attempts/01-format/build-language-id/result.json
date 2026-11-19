@@ -1,0 +1,32 @@
+{
+  "accepted": true,
+  "argv": [
+    "/usr/bin/x86_64-linux-gnu-g++-14",
+    "-std=c++17",
+    "-shared",
+    "-fPIC",
+    "-O2",
+    "-pthread",
+    "/workspace/scratch/77e1c27b6c6f/crispoffice/packages/quds_language_id/test/fixtures/native_transport_fixture.cpp",
+    "-o",
+    "/workspace/scratch/77e1c27b6c6f/archive-final-validation-01/fixtures/language-id.so"
+  ],
+  "cwd": "/workspace/scratch/77e1c27b6c6f/crispoffice",
+  "elapsed_seconds": 0.315,
+  "environment_overrides": {
+    "CI": "true",
+    "DART_SUPPRESS_ANALYTICS": "true",
+    "DASH__SUPPRESS_ANALYTICS": "true",
+    "FLUTTER_SUPPRESS_ANALYTICS": "true"
+  },
+  "exit_code": 0,
+  "finished_at_utc": "2026-11-19T16:05:46.809173+00:00",
+  "kind": "command",
+  "name": "build-language-id",
+  "started_at_utc": "2026-11-19T16:05:46.494315+00:00",
+  "stderr_bytes": 0,
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_bytes": 0,
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "timeout_seconds": 120
+}

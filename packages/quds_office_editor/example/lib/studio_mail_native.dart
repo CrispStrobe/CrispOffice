@@ -3,9 +3,12 @@ import 'dart:async';
 import 'package:enough_mail/enough_mail.dart' as mail;
 import 'package:flutter/material.dart';
 import 'package:quds_mail_mime/quds_mail_mime.dart';
+import 'package:quds_mail_store/quds_mail_store.dart';
 import 'package:quds_mail_transport/quds_mail_transport.dart';
 import 'package:quds_mail_ui/quds_mail_ui.dart';
 
+import 'studio_mail_archive_action.dart';
+import 'studio_mail_archive_folder_action.dart';
 import 'studio_mail_cloud.dart';
 import 'studio_mail_compose.dart';
 import 'studio_mail_credentials.dart';
@@ -33,12 +36,16 @@ class StudioMailDialog extends StatefulWidget {
     this.messageLoaderFactory,
     this.accountDiscovery,
     this.credentialStore,
+    this.archiveWriter,
+    this.archiveFolderWriter,
   });
 
   final StudioStrings strings;
 
   /// Tests supply the keychain boundary without reading a platform credential.
   final StudioMailCredentialStore? credentialStore;
+  final StudioMailArchiveWriter? archiveWriter;
+  final StudioMailArchiveFolderWriter? archiveFolderWriter;
 
   /// Creates a fresh client for each connection attempt. Tests use this seam
   /// to control network completions without contacting an external account.
@@ -96,6 +103,7 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
   bool _showCompactMessage = false;
   String? _error;
   String? _notice;
+  String? _credentialError;
 
   @override
   void initState() {
@@ -119,7 +127,7 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
     final generation = _sessionGeneration;
     final settings = _settingsRevision;
     final credentialGeneration = _credentialGeneration;
-    StudioMailCredentials? saved;
+    final StudioMailCredentials? saved;
     try {
       saved = await _credentials.load();
     } on Object {
@@ -127,15 +135,18 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
       return;
     }
     if (!_currentAttempt(generation) ||
-        saved == null ||
-        _connecting ||
-        _client != null ||
-        settings != _settingsRevision ||
         credentialGeneration != _credentialGeneration) {
       return;
     }
     setState(() {
-      _email.text = saved!.email;
+      _hasSavedCredentials = saved != null;
+      if (saved == null ||
+          _connecting ||
+          _client != null ||
+          settings != _settingsRevision) {
+        return;
+      }
+      _email.text = saved.email;
       _password.text = saved.password;
       _imapHost.text = saved.imapHost;
       _smtpHost.text = saved.smtpHost;
@@ -144,7 +155,6 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
       _preset = saved.preset;
       _primaryLogin.text = saved.primaryLogin;
       _icloudFullAddressLogin = saved.icloudFullAddressLogin;
-      _hasSavedCredentials = true;
     });
   }
 
@@ -168,10 +178,13 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
     if (!mounted || generation != _credentialGeneration) return;
     setState(() {
       _credentialPending = false;
-      if (success) {
-        _hasSavedCredentials = remember;
-      } else if (_currentSession(client, sessionGeneration)) {
-        _notice = remember
+      if (success) _hasSavedCredentials = remember;
+      if (_currentSession(client, sessionGeneration)) {
+        // Credential feedback must not replace a confirmed SMTP receipt or
+        // another mailbox operation's status while the keychain is pending.
+        _credentialError = success
+            ? null
+            : remember
             ? widget.strings.mailKeychainSaveFailed
             : widget.strings.mailKeychainClearFailed;
       }
@@ -195,13 +208,13 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
       _credentialPending = false;
       if (success) {
         _hasSavedCredentials = false;
-        if (_error == widget.strings.mailKeychainClearFailed) _error = null;
+        _credentialError = null;
         if (session == _sessionGeneration && settings == _settingsRevision) {
           _password.clear();
         }
       } else if (session == _sessionGeneration &&
           settings == _settingsRevision) {
-        _error = widget.strings.mailKeychainClearFailed;
+        _credentialError = widget.strings.mailKeychainClearFailed;
       }
     });
   }
@@ -264,6 +277,7 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
       _connecting = true;
       _error = null;
       _notice = null;
+      _credentialError = null;
     });
     final email = _email.text.trim();
     final domain = email.contains('@') ? email.split('@').last : '';
@@ -945,6 +959,7 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
                             _primaryLogin.clear();
                             _icloudFullAddressLogin = false;
                             _error = null;
+                            _credentialError = null;
                           }),
                   ),
                 ),
@@ -1078,6 +1093,7 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
                   ),
                   label: Text(widget.strings.forgetAccount),
                 ),
+                if (_credentialError != null) _credentialFeedback(context),
                 if (_error != null)
                   Padding(
                     padding: const EdgeInsets.only(bottom: 12),
@@ -1113,6 +1129,14 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
     ),
   );
 
+  Widget _credentialFeedback(BuildContext context) => Material(
+    color: Theme.of(context).colorScheme.errorContainer,
+    child: Padding(
+      padding: const EdgeInsets.all(12),
+      child: SelectableText(_credentialError!),
+    ),
+  );
+
   Widget _inbox(BuildContext context, {required bool compact}) {
     final query = _search.text.trim().toLowerCase();
     final visible = query.isEmpty
@@ -1131,6 +1155,8 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
     return Column(
       children: <Widget>[
         if (_busy) const LinearProgressIndicator(minHeight: 2),
+        _folderArchiveAction(),
+        if (_credentialError != null) _credentialFeedback(context),
         if (_error != null || _notice != null)
           Material(
             color: _error == null
@@ -1281,11 +1307,79 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
     );
   }
 
+  Widget _folderArchiveAction() {
+    final loader = _messageLoader;
+    final mailbox = _mailbox;
+    final account = _account;
+    if (loader == null ||
+        loader is! StudioMailMailboxArchiver ||
+        mailbox == null ||
+        account == null) {
+      return const SizedBox.shrink();
+    }
+    final incoming = account.incoming;
+    final source = account.email;
+    final archiver = loader as StudioMailMailboxArchiver;
+    final authentication = incoming.authentication;
+    final login = authentication is mail.PlainAuthentication
+        ? authentication.userName
+        : source;
+    return Padding(
+      padding: const EdgeInsetsDirectional.only(start: 16, end: 8),
+      child: Row(
+        children: [
+          Expanded(
+            child: Text(
+              mailbox.path,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+          StudioArchiveFolderButton(
+            strings: widget.strings,
+            source: source,
+            folder: mailbox.path,
+            profileId: studioArchiveFolderProfileId(
+              'imap:${incoming.serverConfig.hostname.toLowerCase()}:${incoming.serverConfig.port}:$login',
+              source,
+              mailbox.path,
+            ),
+            sessionKey: archiver,
+            enabled: !_busy && !_dialogOpen,
+            writer: widget.archiveFolderWriter,
+            onDialogChanged: (open) {
+              if (mounted) setState(() => _dialogOpen = open);
+            },
+            runner: (archive, profile, {cancellation, onProgress}) =>
+                archiver.archiveMailbox(
+                  mailbox,
+                  archive: archive,
+                  profile: profile,
+                  cancellation: cancellation,
+                  onProgress: onProgress,
+                ),
+          ),
+        ],
+      ),
+    );
+  }
+
   Widget _messageActions() => Align(
     alignment: AlignmentDirectional.centerEnd,
     child: Row(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
+        StudioArchiveMessageButton(
+          strings: widget.strings,
+          message: _busy ? null : _reader?.result.message,
+          origin: MailArchiveOrigin(
+            source: _account?.email ?? 'IMAP',
+            folder: _messageMailbox?.path ?? '/',
+            sourceMessageId:
+                'imap:${_messageMailbox?.uidValidity ?? 0}:${_selected?.uid ?? 0}',
+          ),
+          writer: widget.archiveWriter,
+        ),
         IconButton(
           onPressed: _busy ? null : _reply,
           tooltip: widget.strings.reply,

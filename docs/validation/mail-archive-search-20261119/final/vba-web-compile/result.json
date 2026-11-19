@@ -1,0 +1,31 @@
+{
+  "accepted": true,
+  "argv": [
+    "/workspace/scratch/77e1c27b6c6f/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+    "compile",
+    "js",
+    "--packages=/workspace/scratch/77e1c27b6c6f/crispoffice/.dart_tool/package_config.json",
+    "-O1",
+    "tool/macros/web_vba_smoke.dart",
+    "-o",
+    "/workspace/scratch/77e1c27b6c6f/archive-final-validation-02/vba-web-smoke.js"
+  ],
+  "cwd": "/workspace/scratch/77e1c27b6c6f/crispoffice/packages/quds_office_engine",
+  "elapsed_seconds": 9.656,
+  "environment_overrides": {
+    "CI": "true",
+    "DART_SUPPRESS_ANALYTICS": "true",
+    "DASH__SUPPRESS_ANALYTICS": "true",
+    "FLUTTER_SUPPRESS_ANALYTICS": "true"
+  },
+  "exit_code": 0,
+  "finished_at_utc": "2026-11-19T16:20:41.413630+00:00",
+  "kind": "command",
+  "name": "vba-web-compile",
+  "started_at_utc": "2026-11-19T16:20:31.757797+00:00",
+  "stderr_bytes": 0,
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_bytes": 114,
+  "stdout_sha256": "f5b9f97078ccc080bfa34b2c1973ed98e87ec81aa91242fa600b2a040142259c",
+  "timeout_seconds": 900
+}

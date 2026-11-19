@@ -1,0 +1,360 @@
+# Office macros, MCP, and language extensions
+
+The fork provides explicitly invoked, parameterized native macros for Word,
+spreadsheets, and presentations. The same **67 document operations** power
+macro playback, direct MCP tools, and the existing fidelity command runner.
+The portable entry point is
+`package:quds_office_engine/quds_office_automation.dart`.
+
+This is a headless engine capability with a command-line runner and an MCP
+stdio bridge. The bundled [`vba-excel` dialect](VBA_MACROS.md) compiles a bounded
+Excel VBA subset from explicitly selected source into the same native plans.
+It does not add a ribbon editor, a full VBA interpreter, document-open events,
+or editor undo integration. Existing opaque VBA project bytes remain inert and
+are preserved by the Office serializers.
+
+## Execution model
+
+```mermaid
+flowchart TD
+  Recorded["Recorded tool calls"] --> Plan["Versioned macro plan"]
+  Native["Native JSON"] --> Plan
+  Language["Registered language compiler"] --> Plan
+  Plan --> Session["Document session and host policy"]
+  MCP["MCP tool calls"] --> Session
+  Session --> Commands["Shared Office operations"]
+  Commands --> Copy["Detached document and serialization"]
+  Copy --> Publish["Publish complete bytes"]
+```
+
+A session owns a copy of the input bytes. Each invocation opens another detached
+model, applies its operations in order, recalculates when spreadsheet values,
+formulas, merges, or sheet identity/order change, and serializes it. Formatting,
+pane geometry, and unmerging preserve existing formula caches. Only a completely
+successful invocation replaces the session
+bytes and increments its revision. A failing later operation, serialization
+error, cancellation, deadline, or output-size refusal leaves the session's
+previous bytes and revision unchanged. Zero-step plans still validate the
+document family and edit admission, but preserve the bytes and revision.
+
+`validate` executes the same operations and serialization on a detached copy;
+it does not publish, change revision, or append to a recording. It can therefore
+detect document-dependent errors such as an invalid paragraph or cell range.
+An empty plan checks admission without rewriting the file.
+
+The CLI and stdio bridge write a temporary file beside the selected output and
+rename only after success. A stdio persistence failure returns a tool error and
+terminates that session before accepting another mutation. This establishes
+whole-document publication; it is not a power-loss durability guarantee or a
+transaction spanning external resources.
+
+## Native macro format
+
+Save macros separately, for example as `monthly.qudsmacro.json`:
+
+```json
+{
+  "version": 1,
+  "name": "Set report title",
+  "format": "xlsx",
+  "parameters": {
+    "title": { "type": "string" }
+  },
+  "steps": [
+    {
+      "tool": "xlsx.cellValue",
+      "arguments": {
+        "sheet": 0,
+        "cell": "A1",
+        "value": { "$parameter": "title" }
+      }
+    },
+    {
+      "tool": "xlsx.cellFormat",
+      "arguments": { "sheet": 0, "cell": "A1", "bold": true }
+    }
+  ]
+}
+```
+
+The envelope requires `version`, `name`, `format`, and `steps`. `parameters` is
+optional. Supported document families are `docx`, `xlsx`, and `pptx`, including
+their macro-enabled and template package variants. The actual input package
+must match the selected family. The CLI requires the exact same input/output
+filename extension so, for example, an XLSM is not mislabeled as XLSX.
+
+Every declared parameter is required at invocation. Types are `string`, `number`,
+`integer`, `boolean`, and `json`; there are no automatic string-to-number
+conversions. `json` allows null and finite JSON values. Unknown parameters and
+unknown envelope, step, or operation fields fail explicitly.
+
+Substitution is structural. A map containing only `"$parameter"` inserts the
+named value, including at nested positions. It is not string interpolation.
+Parameter values containing quotes, dollar signs, or JSON-looking text remain
+literal values. Use `{ "$literal": value }` to include a parameter-looking
+object literally. Parameter values themselves are never interpreted again.
+
+Numeric document indexes follow the existing command runner: sheets, paragraphs,
+slides, runs, rows, and columns are **zero-based**. Spreadsheet cell and range
+addresses use A1 notation. Spreadsheet `sheet` arguments also accept a worksheet
+name, matched case-insensitively against the document at the time of each step.
+Missing or ambiguous names fail; they never fall back to the first sheet.
+Use the inspection tool to obtain valid targets.
+Each macro targets one document and contains an ordered list of calls; branching,
+loops, recursive macro calls, timers, and application events are not part of
+the native version 1 plan. The Excel VBA compiler expands supported loops and
+evaluates supported conditions before returning that finite plan.
+
+## Command line
+
+After resolving the repository workspace dependencies, run these commands from
+`packages/quds_office_engine`:
+
+```bash
+dart run tool/macros/office_macro.dart operations
+dart run tool/macros/office_macro.dart inspect input.xlsx
+dart run tool/macros/office_macro.dart validate input.xlsx \
+  example/macros/monthly_totals.qudsmacro.json \
+  example/macros/monthly_totals.parameters.json
+dart run tool/macros/office_macro.dart run input.xlsx \
+  example/macros/monthly_totals.qudsmacro.json output.xlsx \
+  example/macros/monthly_totals.parameters.json
+```
+
+The committed spreadsheet example writes title/revenue/cost cells, formats the
+heading, adds a net formula, and freezes the first row. Other examples cover a
+Word heading and presentation notes. The runner prints a JSON receipt on success
+and a JSON diagnostic to stderr on failure. `compile SOURCE.json OUTPUT.json`
+compiles a source envelope without running it; the default registry accepts
+`quds-json` and `vba-excel`.
+
+For an explicitly selected VBA source file:
+
+```bash
+dart run tool/macros/office_macro.dart compile-vba \
+  example/macros/monthly_totals.bas monthly.qudsmacro.json
+dart run tool/macros/office_macro.dart validate-vba \
+  input.xlsx example/macros/monthly_totals.bas
+dart run tool/macros/office_macro.dart run-vba \
+  input.xlsx example/macros/monthly_totals.bas output.xlsx
+```
+
+These commands default to the parameterless `Main` procedure and accept a final
+optional entry-point name. The [VBA dialect guide](VBA_MACROS.md) specifies the
+supported syntax, object members, compiler limits, and deliberate exclusions.
+
+## Dart embedding and recording
+
+```dart
+import 'package:quds_office_engine/quds_office_automation.dart';
+
+final session = OfficeMacroSession(
+  inputBytes,
+  format: OfficeMacroFormat.xlsx,
+  policy: OfficeMacroPolicy(
+    allowedTools: {'xlsx.cellValue', 'xlsx.cellFormat'},
+    maxSteps: 100,
+  ),
+);
+
+session.startRecording('Format title');
+await session.callTool('xlsx.cellValue', {'cell': 'A1', 'value': 'Summary'});
+await session.callTool('xlsx.cellFormat', {'cell': 'A1', 'bold': true});
+final recorded = session.stopRecording();
+final macroJson = recorded.encode();
+
+final anotherSession = OfficeMacroSession(
+  anotherInputBytes,
+  format: OfficeMacroFormat.xlsx,
+);
+await anotherSession.validate(OfficeMacro.parse(macroJson));
+final receipt = await anotherSession.run(recorded);
+final completeOutputBytes = anotherSession.bytes;
+```
+
+Only successful `callTool` invocations enter a session recording. Failed calls,
+validation, macro playback, and macro-management tools do not record additional
+steps. Arguments are deeply copied and made immutable; later caller changes
+cannot rewrite the recording. Recording step and byte limits are checked before
+an operation can publish, so a successful edit is never followed by a recording
+overflow error.
+
+`OfficeMacroRecorder` is also available to existing hosts. Call its `record`
+method only after the host's own canonical command succeeds. A native editor
+must separately settle pending edits, enforce its readonly configuration,
+compare its own document revision before applying the result, and commit the
+replacement through an appropriate history operation. The existing editor
+`CommandPipeline.beginBatch` is not used as a macro transaction: it does not
+provide nested rollback semantics. This change makes no single-undo claim.
+
+## MCP integration
+
+For a local MCP client, launch one process per explicitly selected document:
+
+```bash
+dart run tool/macros/office_macro_mcp.dart input.xlsx output.xlsx
+```
+
+An example stdio client configuration is:
+
+```json
+{
+  "mcpServers": {
+    "quds-office": {
+      "command": "dart",
+      "args": [
+        "run",
+        "/absolute/path/quds_office_suite/packages/quds_office_engine/tool/macros/office_macro_mcp.dart",
+        "/absolute/path/input.xlsx",
+        "/absolute/path/output.xlsx"
+      ]
+    }
+  }
+}
+```
+
+For an existing server, embed `OfficeMacroMcp(session)` and route `tools/list`
+and `tools/call` to `listTools` and `callTool`. `handleMessage` additionally
+provides a bounded JSON-RPC lifecycle for the stdio bridge. It negotiates the
+supported 2025-11-25, 2025-06-18, and 2024-11-05 protocol revisions and handles
+initialize, initialized notification, ping, tools/list, and tools/call. It does
+not implement HTTP, resources, prompts, sampling, tasks, or protocol cancellation.
+The Dart runtime exposes cooperative cancellation separately.
+
+| Tool family | Behavior |
+| --- | --- |
+| `docx.*`, `xlsx.*`, `pptx.*` | Canonical document operations for the open family, filtered by host policy |
+| `office_document_inspect` | Inspect document targets and current revision |
+| `office_macro_record_start` | Start recording with a `name` |
+| `office_macro_record_stop` | Return the recorded macro |
+| `office_macro_validate` | Dry-run `macro` and optional `parameters` |
+| `office_macro_run` | Run `macro` and optional `parameters`, then publish complete output |
+| `office_macro_compile` | Compile a `source` envelope using a registered dialect |
+
+Operation names and accepted fields come directly from the shared catalog.
+Operation field schemas intentionally leave individual field types unspecified;
+the existing handlers remain the authoritative validators for required fields,
+types, ranges, and document-dependent constraints. Macro/source envelopes have
+explicit schemas. This avoids maintaining conflicting validators, but means a
+client learns some operation requirements from a returned validation error or
+the established fidelity command documentation.
+
+Tool success/domain-error results include `structuredContent` and the same
+JSON serialized in a text content block. Domain errors set `isError: true`.
+Unknown tools and malformed protocol requests return JSON-RPC errors. Stdout
+contains protocol messages only; diagnostics go to stderr. The process has no
+network listener, and tool calls cannot choose another document or output path.
+The stdio wire format and result conventions follow the
+[MCP tools specification](https://modelcontextprotocol.io/specification/2025-11-25/server/tools)
+and [stdio transport specification](https://modelcontextprotocol.io/specification/2025-11-25/basic/transports).
+
+## Host policy and document admission
+
+Default limits are 1,000 operations, 1 MiB native JSON or source, 64 MiB input
+and output document bytes, 128 MiB expanded package bytes, 4,096 ZIP members,
+100,000 cumulative cell visits, 256 declared parameters, JSON nesting depth 32,
+and a 30-second cooperative deadline. The format's absolute step ceiling is
+10,000. Hosts can lower limits through `OfficeMacroPolicy`.
+
+Package admission checks declared sizes and actual bounded inflation, including
+ZIP members with dishonest size headers. Merge rectangles and Word table growth
+are charged before allocating cells. Parameter expansion is charged while
+traversing values and before appending another resolved call, so a small plan
+cannot bypass its byte limit by repeatedly expanding a large parameter.
+Aggregate recordings and programmatic compiler output have the same bounds.
+Near the byte ceiling, macro serialization falls back to compact JSON so its
+own parser can read the saved result.
+
+The deadline is checked between operations and before publication; it cannot
+preempt a synchronous engine operation. These checks bound specific package and
+command workloads; they are not a hard CPU/memory sandbox. A host requiring hard
+resource isolation should run the engine in a separately constrained process.
+
+Recalculation also charges the work budget for formula cells, parsed formula
+content, and referenced ranges. A formula is limited to 8,192 UTF-16 source
+units, 512 lexer tokens, and 64 syntax/AST levels. Dynamic `OFFSET` and `INDIRECT`
+references are refused when recalculation is needed. `REPT` and `SUBSTITUTE`
+require literal operands with bounded generated text; `NETWORKDAYS` requires
+literal numeric dates and a bounded day span. `SEQUENCE` is charged at the
+evaluator's 5,000-cell ceiling. These are intentionally conservative macro
+admission rules, not new promises of Excel formula compatibility. Formatting-only
+macros preserve caches even when those formulas are present.
+`LET` binding names must be statically known, and a quoted value resolving to a
+local binding does not qualify as a literal operand for the bounded generators.
+
+`allowedTools` and `allowMutation` are host-owned. A macro or language compiler
+cannot change them. Concurrent executions on the same session fail with
+`session_busy`; different sessions can run independently. Cancellation and errors
+discard detached work. Diagnostics identify a zero-based failing step where
+available; successful receipts contain the new revision and completed tools.
+
+The operation layer conservatively refuses signed packages, protected
+worksheets/workbooks, Word editing/format restrictions, active tracked changes,
+locked Word controls, and password-to-modify metadata. One restricted region
+can make the whole target unavailable. It does not attempt password removal,
+protection bypass, or partial permissions within a protected document.
+
+Portable macro code has no implicit filesystem or network access. Image
+operation `file` arguments are asset keys; a host must explicitly supply
+`OfficeMacroAssetResolver`. The bundled macro CLIs do not provide one. An asset
+resolver should be a pure lookup, because its external side effects cannot be
+rolled back. Legacy fidelity CLI wrappers retain their existing trusted local
+file behavior for test scenarios.
+
+## Language compilers and the Excel VBA subset
+
+`OfficeMacroLanguage` is the implemented extension interface:
+
+```dart
+abstract interface class OfficeMacroLanguage {
+  String get id;
+  OfficeMacro compile(OfficeMacroSource source);
+}
+```
+
+A host registers a concrete compiler with
+`OfficeMacroLanguages.register(compiler)`. `OfficeMacroSource` carries `language`,
+`source`, `format`, `moduleName`, and `entryPoint`. The registry returns a bounded,
+immutable native plan, and execution applies the same operation allowlist,
+document admission, parameter checks, and transaction rules. Tests register an
+independent small compiler and execute its result through the real dispatcher.
+The default registry includes native JSON and `OfficeVbaMacroLanguage`, exposed
+as the deliberately scoped `vba-excel` dialect. The generic language name `vba`
+remains unregistered so clients cannot infer full VBA support.
+
+The Excel adapter compiles supported statements with values known from source.
+It converts one-based worksheet and cell indexes, expands bounded rectangles
+and loops, and emits the existing `xlsx.cellValue`, `xlsx.cellFormula`, and
+`xlsx.cellFormat` operations. Named worksheets are resolved by the shared
+handler during validation or execution. The compiler receives no workbook and
+cannot read document values; [the complete dialect contract](VBA_MACROS.md)
+documents supported types, syntax, members, and limits.
+
+An interactive or document-dependent VBA interpreter needs an additional
+constrained execution model. Parsing an embedded `vbaProject.bin`, project
+references, forms, COM/ActiveX, and event dispatch are separate work. Neither
+opening an XLSM nor registering a compiler authorizes automatic execution.
+Host-installed Dart compilers are trusted extensions, not sandboxed untrusted
+plugins.
+
+## Verification
+
+Focused tests live in `office_operations_test.dart`,
+`office_macro_runtime_test.dart`, `office_macro_language_test.dart`,
+`office_macro_expansion_test.dart`,
+`office_macro_mcp_test.dart`, `office_macro_cli_test.dart`,
+`office_vba_language_test.dart`, and `office_vba_integration_test.dart`. They cover shared
+handler parity, package admission, immutable/parameterized plans, publish-on-
+success, recording, bounded extension compilation, protocol/domain errors,
+and real subprocess persistence. Existing fidelity step tests continue to use
+their original paths and exercise the same promoted handlers. The dedicated
+Office macros workflow uses the repository's `.fvmrc` pin. It also compiles
+`tool/macros/web_smoke.dart` and `tool/macros/web_vba_smoke.dart` to JavaScript
+and executes the real macro/MCP paths under Node, checking VBA compilation,
+calculation, formatting, and late-failure byte preservation. This is
+portable-runtime qualification, not a test of a Flutter browser UI.
+
+The XLSM test compares opaque VBA payload bytes and verifies native content
+type and relationships after a native macro edit/save. This proves preservation
+for that fixture; it does not prove VBA execution or native Microsoft Office
+interoperability for arbitrary macro projects.

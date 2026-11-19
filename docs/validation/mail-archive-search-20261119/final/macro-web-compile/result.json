@@ -1,0 +1,31 @@
+{
+  "accepted": true,
+  "argv": [
+    "/workspace/scratch/77e1c27b6c6f/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+    "compile",
+    "js",
+    "--packages=/workspace/scratch/77e1c27b6c6f/crispoffice/.dart_tool/package_config.json",
+    "-O1",
+    "tool/macros/web_smoke.dart",
+    "-o",
+    "/workspace/scratch/77e1c27b6c6f/archive-final-validation-02/macro-web-smoke.js"
+  ],
+  "cwd": "/workspace/scratch/77e1c27b6c6f/crispoffice/packages/quds_office_engine",
+  "elapsed_seconds": 8.944,
+  "environment_overrides": {
+    "CI": "true",
+    "DART_SUPPRESS_ANALYTICS": "true",
+    "DASH__SUPPRESS_ANALYTICS": "true",
+    "FLUTTER_SUPPRESS_ANALYTICS": "true"
+  },
+  "exit_code": 0,
+  "finished_at_utc": "2026-11-19T16:20:31.374193+00:00",
+  "kind": "command",
+  "name": "macro-web-compile",
+  "started_at_utc": "2026-11-19T16:20:22.429610+00:00",
+  "stderr_bytes": 0,
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_bytes": 114,
+  "stdout_sha256": "e731db070b90cec451742e127dcaa4e7c28400a1de0e9255bfeca0678ce51835",
+  "timeout_seconds": 900
+}

@@ -1,5 +1,40 @@
 # Quds Mail store
 
+## Durable archive and search
+
+`SqliteMailArchive` adds an independent original-message archive alongside the
+live account cache described below. Use `openNativeMailArchive` from
+`quds_mail_archive_native.dart` with an application-support directory and a
+stable host/profile identity. Its separate `quds_mail_archive` database survives
+live-account removal and cache deletion; it does not change the cache's v3
+schema. Persistent archive UI is currently native-only.
+
+Each import commits exact MIME bytes, SHA-256 identity, envelope, FTS5 index,
+and source/folder provenance in one transaction. Duplicate bytes share one
+original; equal Message-ID headers never merge different originals. Searches
+support phrases, field scopes, Boolean/negative clauses, bounded prefix
+wildcards, date/size/source/folder/attachment filters and saved searches.
+Attachment filenames are indexed; bounded text attachment content is opt-in.
+
+`MailArchiveRunner` collects an explicitly selected connected mailbox using only
+provider header/message reads. It validates scope, identities, leases and cursor
+progression, deduplicates repeat runs, bounds failures and reports committed
+counts on cancellation. It does not schedule jobs or delete source mail.
+
+Verification checks originals, projections, provenance and FTS posting integrity.
+Rebuilding can refresh projections with a supplied MIME codec. The first
+maintenance page performs guarded whole-index FTS work; subsequent original and
+projection checks are paged. Corrupt oversized values fail within configured
+read bounds. Structured diagnostics contain fixed phases, timings, counts and
+typed error codes, with optional verbose progress and no mail text or secrets.
+
+See the [archive guide and MailStore parity matrix](../../docs/roadmaps/mail/archive-search.md)
+for syntax, defaults, host examples and remaining gaps. The
+[archive validation report](../../docs/validation/mail-archive-search-20261119/README.md)
+records current local evidence separately from historical cache qualifications.
+
+## Live account cache
+
 Profile-scoped Drift/SQLite persistence for the shared Mail contracts. Original
 source is MIT. Schema v3 flags and the bounded native IMAP integration passed
 the [current reconciliation qualification](../../docs/validation/office-current-reconciliation-20261119/README.md)
@@ -9,7 +44,8 @@ application executions**, plus **42 separate launcher controls**. The earlier
 Subsequent reconciliation and TLS-rejection cleanup have a separate
 [captured synchronization record](../../docs/validation/office-main-sync-20261119/README.md),
 whose incoming history is preserved by the current reconciliation.
-The account-aware UI and SMTP remain subsequent work. Exact dependencies and
+Studio now provides foreground native account readers and submission adapters;
+the durable outbox remains a separate host integration. Exact dependencies and
 retained notices are in
 [DEPENDENCIES.json](DEPENDENCIES.json) and
 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).

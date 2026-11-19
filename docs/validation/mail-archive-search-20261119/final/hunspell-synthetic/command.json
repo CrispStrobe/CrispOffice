@@ -1,0 +1,32 @@
+{
+  "argv": [
+    "/workspace/scratch/77e1c27b6c6f/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+    "--disable-dart-dev",
+    "--packages=/workspace/scratch/77e1c27b6c6f/crispoffice/.dart_tool/package_config.json",
+    "/workspace/scratch/77e1c27b6c6f/toolchains/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+    "--platform=vm",
+    "--compiler=kernel",
+    "--reporter=json",
+    "--concurrency=1",
+    "test/hunspell_installer_cancellation_incoming_test.dart",
+    "test/hunspell_installer_cancellation_test.dart",
+    "test/hunspell_native_lifecycle_test.dart",
+    "test/hunspell_provider_test.dart",
+    "test/native_lifecycle_test.dart",
+    "test/provider_native_lifecycle_test.dart"
+  ],
+  "cwd": "/workspace/scratch/77e1c27b6c6f/crispoffice/packages/quds_proofing_hunspell",
+  "environment_overrides": {
+    "CI": "true",
+    "DART_SUPPRESS_ANALYTICS": "true",
+    "DASH__SUPPRESS_ANALYTICS": "true",
+    "FLUTTER_SUPPRESS_ANALYTICS": "true",
+    "QUDS_HUNSPELL_LIFECYCLE_LIBRARY": "/workspace/scratch/77e1c27b6c6f/archive-final-validation-02/fixtures/hunspell-lifecycle.so",
+    "QUDS_HUNSPELL_OWNERSHIP_LIBRARY": "/workspace/scratch/77e1c27b6c6f/archive-final-validation-02/fixtures/hunspell-ownership.so",
+    "QUDS_HUNSPELL_PROVIDER_LIFECYCLE_LIBRARY": "/workspace/scratch/77e1c27b6c6f/archive-final-validation-02/fixtures/hunspell-provider.so"
+  },
+  "kind": "tests",
+  "name": "hunspell-synthetic",
+  "started_at_utc": "2026-11-19T16:13:13.779456+00:00",
+  "timeout_seconds": 900
+}

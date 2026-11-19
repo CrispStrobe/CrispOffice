@@ -1,0 +1,44 @@
+{
+  "accepted": true,
+  "argv": [
+    "/workspace/scratch/77e1c27b6c6f/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+    "--disable-dart-dev",
+    "--packages=/workspace/scratch/77e1c27b6c6f/crispoffice/.dart_tool/package_config.json",
+    "/workspace/scratch/77e1c27b6c6f/toolchains/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+    "--platform=vm",
+    "--compiler=kernel",
+    "--reporter=json",
+    "--concurrency=1",
+    "test/eml_bytes_test.dart",
+    "test/mbox_test.dart",
+    "test/mime_encodings_test.dart",
+    "test/mime_limits_test.dart",
+    "test/mime_parts_test.dart",
+    "test/mime_review_regressions_test.dart",
+    "test/portable_import_test.dart"
+  ],
+  "cwd": "/workspace/scratch/77e1c27b6c6f/crispoffice/packages/quds_mail_mime",
+  "elapsed_seconds": 10.445,
+  "environment_overrides": {
+    "CI": "true",
+    "DART_SUPPRESS_ANALYTICS": "true",
+    "DASH__SUPPRESS_ANALYTICS": "true",
+    "FLUTTER_SUPPRESS_ANALYTICS": "true"
+  },
+  "exit_code": 0,
+  "finished_at_utc": "2026-11-19T16:11:10.378574+00:00",
+  "kind": "tests",
+  "name": "quds_mail_mime-vm",
+  "started_at_utc": "2026-11-19T16:10:59.933396+00:00",
+  "stderr_bytes": 0,
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_bytes": 41892,
+  "stdout_sha256": "95f0cc67390e34db52c6bf334fd8131782d5dd30d4f3e75a206fbd2004c464b2",
+  "test_cases_sha256": "c047b1ff1d56ea1f5b2fc28604147fe22b6c651688f62d6683139c4a2e08e6c9",
+  "test_counts": {
+    "failed": 0,
+    "passed": 84,
+    "skipped": 0
+  },
+  "timeout_seconds": 900
+}

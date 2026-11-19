@@ -78,7 +78,8 @@ String? wordRunProofingLanguage(
 }) {
   final value = complexScript
       ? run.properties.complexScriptLanguage
-      : run.properties.proofingLanguage ?? paragraph.properties.proofingLanguage;
+      : run.properties.proofingLanguage ??
+            paragraph.properties.proofingLanguage;
   final fallback = complexScript
       ? documentComplexScriptLanguage
       : documentLanguage;

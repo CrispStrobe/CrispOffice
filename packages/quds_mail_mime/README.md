@@ -37,5 +37,24 @@ cancellation must schedule it on an isolate or worker. Device-specific memory
 qualification remains separate from native/browser correctness tests.
 
 Tests contain independently authored synthetic mail using `example.invalid`.
+
+## Streaming MBOX import
+
+`readMailMbox` accepts a `Stream<List<int>>` and yields `MailMboxEntry` values
+containing original message bytes or a typed framing/quota problem. Specify
+`MailMboxDialect.mboxrd` (default) or `mboxo`; escaping is not guessed. The
+framer preserves message line endings and unescapes only the selected format's
+From-line quoting. Content-Length MBOX variants are explicitly unsupported.
+
+Message and count budgets bound buffering, oversized messages produce an error
+and allow later complete messages to continue, and cancellation can stop a
+stalled upstream stream. Parse each admitted record with `QudsMimeCodec` and
+inspect its status before archiving. The MBOX framer is streaming; MIME parsing
+of each bounded individual record remains synchronous.
+
+See the [archive guide](../../docs/roadmaps/mail/archive-search.md) for Studio
+imports and connected-mailbox collection. MBOX export, PST and MSG import are
+not provided by this entry point.
+
 Run `dart test`, `dart test --platform chrome`, and compile/run
 `test/compile/portable_import.dart` on both the VM and JavaScript.

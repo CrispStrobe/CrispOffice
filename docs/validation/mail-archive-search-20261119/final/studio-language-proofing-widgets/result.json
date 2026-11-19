@@ -1,0 +1,41 @@
+{
+  "accepted": true,
+  "argv": [
+    "/workspace/scratch/77e1c27b6c6f/toolchains/flutter/bin/flutter",
+    "test",
+    "--no-pub",
+    "--concurrency=1",
+    "--reporter=json",
+    "test/studio_arabic_morph_setup_test.dart",
+    "test/studio_comment_draft_proofing_test.dart",
+    "test/studio_hunspell_setup_test.dart",
+    "test/studio_hunspell_web_cancellation_test.dart",
+    "test/studio_hunspell_web_host_test.dart",
+    "test/studio_language_id_host_test.dart",
+    "test/studio_language_id_test.dart"
+  ],
+  "cwd": "/workspace/scratch/77e1c27b6c6f/crispoffice/packages/quds_office_editor/example",
+  "elapsed_seconds": 33.362,
+  "environment_overrides": {
+    "CI": "true",
+    "DART_SUPPRESS_ANALYTICS": "true",
+    "DASH__SUPPRESS_ANALYTICS": "true",
+    "FLUTTER_SUPPRESS_ANALYTICS": "true"
+  },
+  "exit_code": 0,
+  "finished_at_utc": "2026-11-19T16:20:22.422351+00:00",
+  "kind": "tests",
+  "name": "studio-language-proofing-widgets",
+  "started_at_utc": "2026-11-19T16:19:49.059947+00:00",
+  "stderr_bytes": 0,
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_bytes": 28795,
+  "stdout_sha256": "9515587040a24e1d09ca28ff379e95b6c5233d0c43166c159102b830c41ee1c4",
+  "test_cases_sha256": "584ca29c83fbbc5b82061b62159c12850537a4e425046be8907296150e4db297",
+  "test_counts": {
+    "failed": 0,
+    "passed": 46,
+    "skipped": 0
+  },
+  "timeout_seconds": 1200
+}

@@ -1,0 +1,581 @@
+{
+  "archive": {
+    "bytes": 2756224,
+    "format": "POSIX PAX tar compressed with XZ",
+    "maximum_part_bytes": 1048576,
+    "metadata": "original permission modes and nanosecond modification timestamps",
+    "ownership": "normalized uid=gid=0; names empty",
+    "parts": [
+      {
+        "bytes": 1048576,
+        "name": "runtime-extension-evidence.tar.xz.part-0001",
+        "offset": 0,
+        "sha256": "2381fb93ac77838264357237e1023564a1c7ed723ec8870ff5dcd7e8a4a44aa2"
+      },
+      {
+        "bytes": 1048576,
+        "name": "runtime-extension-evidence.tar.xz.part-0002",
+        "offset": 1048576,
+        "sha256": "177003c7f289ac5f20a30d28fdac6baf0636c6c2480fda0e92a50983ee9283b6"
+      },
+      {
+        "bytes": 659072,
+        "name": "runtime-extension-evidence.tar.xz.part-0003",
+        "offset": 2097152,
+        "sha256": "20732b3084f17a174ca8bbb664c3545e8c6fae83914914f816f546732da8dd00"
+      }
+    ],
+    "reconstructed_name": "runtime-extension-evidence.tar.xz",
+    "sha256": "d68286c0fdd500a94c0f0d8744affbbaf4d7f85fd11c00c1318f9f77790b93a0",
+    "tar_bytes": 11929600,
+    "tar_sha256": "85dd44bc1a7e70c39e2ce9c3fc1208d438995e6eccb46bee9fe1aa249db48045",
+    "xz_check": "SHA256",
+    "xz_preset": 6
+  },
+  "members": [
+    {
+      "mode": 493,
+      "mtime_ns": 1795099434073845948,
+      "name": "current-runtime-snapshot",
+      "source": "current-runtime-snapshot",
+      "source_relative": "",
+      "type": "directory"
+    },
+    {
+      "bytes": 357030,
+      "mode": 420,
+      "mtime_ns": 1795096064938786832,
+      "name": "current-runtime-snapshot/archive-members.json",
+      "sha256": "c30c0738a094f3b0bfc3ee4696204540798d4a4fbaf943a5abb0ce8833635f8f",
+      "source": "current-runtime-snapshot",
+      "source_relative": "archive-members.json",
+      "type": "file"
+    },
+    {
+      "bytes": 2335744,
+      "mode": 420,
+      "mtime_ns": 1795096144455070696,
+      "name": "current-runtime-snapshot/cache-omissions.json",
+      "sha256": "c16bf623008daa6c01cfeb16a2895d1048f42cda2274c084d9b8a58840e2d615",
+      "source": "current-runtime-snapshot",
+      "source_relative": "cache-omissions.json",
+      "type": "file"
+    },
+    {
+      "bytes": 637,
+      "mode": 420,
+      "mtime_ns": 1795096144457731514,
+      "name": "current-runtime-snapshot/env.sh",
+      "sha256": "7a16ec8ff2930450d64ebf71e56d19c12e7ea40420531b62de2b3cafe6baa7d5",
+      "source": "current-runtime-snapshot",
+      "source_relative": "env.sh",
+      "type": "file"
+    },
+    {
+      "bytes": 52746,
+      "mode": 420,
+      "mtime_ns": 1795099039965299327,
+      "name": "current-runtime-snapshot/pub-cache-receipt.json",
+      "sha256": "c171345f4143420648a81f6cca2b1115b0fc475e22344a991fd6e06ae9e3bd78",
+      "source": "current-runtime-snapshot",
+      "source_relative": "pub-cache-receipt.json",
+      "type": "file"
+    },
+    {
+      "bytes": 2274958,
+      "mode": 420,
+      "mtime_ns": 1795099039994472868,
+      "name": "current-runtime-snapshot/retained-inputs.json",
+      "sha256": "05f280725a383cf2fa5d11017eeed487ee52512389b874535b691ec1bd04318b",
+      "source": "current-runtime-snapshot",
+      "source_relative": "retained-inputs.json",
+      "type": "file"
+    },
+    {
+      "bytes": 21772,
+      "mode": 420,
+      "mtime_ns": 1795099039998002307,
+      "name": "current-runtime-snapshot/runtime.json",
+      "sha256": "599628def73c7077c8389a08b86f676636c9c2397be8016e28a2928959d9a3de",
+      "source": "current-runtime-snapshot",
+      "source_relative": "runtime.json",
+      "type": "file"
+    },
+    {
+      "bytes": 2425,
+      "mode": 420,
+      "mtime_ns": 1795099434077714813,
+      "name": "current-runtime-snapshot/snapshot-receipt.json",
+      "sha256": "3a4e8363229da85f78d302e7549e87097c81bb378442c09634d3d30e41701df8",
+      "source": "current-runtime-snapshot",
+      "source_relative": "snapshot-receipt.json",
+      "type": "file"
+    },
+    {
+      "bytes": 369,
+      "mode": 420,
+      "mtime_ns": 1795099035803472964,
+      "name": "current-runtime-snapshot/workspace-native_assets.yaml",
+      "sha256": "c5793d7824f1637be8b8af4e81948f361dd87357215c339ed095b2a345a1a3db",
+      "source": "current-runtime-snapshot",
+      "source_relative": "workspace-native_assets.yaml",
+      "type": "file"
+    },
+    {
+      "bytes": 32652,
+      "mode": 420,
+      "mtime_ns": 1795099034800938360,
+      "name": "current-runtime-snapshot/workspace-package_config.json",
+      "sha256": "4c692b91eabb97fab06ec8f12a267657ee45fb3d4b79cd63a1a29e3d29074f3e",
+      "source": "current-runtime-snapshot",
+      "source_relative": "workspace-package_config.json",
+      "type": "file"
+    },
+    {
+      "bytes": 28856,
+      "mode": 420,
+      "mtime_ns": 1795099034800938360,
+      "name": "current-runtime-snapshot/workspace-package_graph.json",
+      "sha256": "c91bb2214906dc25f003257c2e7cf924b2e66c53ce2d8866196dac947718abd4",
+      "source": "current-runtime-snapshot",
+      "source_relative": "workspace-package_graph.json",
+      "type": "file"
+    },
+    {
+      "mode": 493,
+      "mtime_ns": 1795099034080972719,
+      "name": "extension-archives",
+      "source": "extension-archives",
+      "source_relative": "",
+      "type": "directory"
+    },
+    {
+      "bytes": 313960,
+      "mode": 420,
+      "mtime_ns": 1795099017942344926,
+      "name": "extension-archives/flutter_secure_storage-9.2.4.tar.gz",
+      "sha256": "9cad52d75ebc511adfae3d447d5d13da15a55a92c9410e50f67335b6d21d16ea",
+      "source": "extension-archives",
+      "source_relative": "flutter_secure_storage-9.2.4.tar.gz",
+      "type": "file"
+    },
+    {
+      "bytes": 141756,
+      "mode": 420,
+      "mtime_ns": 1795099018021737330,
+      "name": "extension-archives/flutter_secure_storage_linux-1.2.3.tar.gz",
+      "sha256": "be76c1d24a97d0b98f8b54bce6b481a380a6590df992d0098f868ad54dc8f688",
+      "source": "extension-archives",
+      "source_relative": "flutter_secure_storage_linux-1.2.3.tar.gz",
+      "type": "file"
+    },
+    {
+      "bytes": 5346,
+      "mode": 420,
+      "mtime_ns": 1795099017934412950,
+      "name": "extension-archives/flutter_secure_storage_macos-3.1.3.tar.gz",
+      "sha256": "6c0a2795a2d1de26ae202a0d78527d163f4acbb11cde4c75c670f3a0fc064247",
+      "source": "extension-archives",
+      "source_relative": "flutter_secure_storage_macos-3.1.3.tar.gz",
+      "type": "file"
+    },
+    {
+      "bytes": 3971,
+      "mode": 420,
+      "mtime_ns": 1795099017935197029,
+      "name": "extension-archives/flutter_secure_storage_platform_interface-1.1.2.tar.gz",
+      "sha256": "cf91ad32ce5adef6fba4d736a542baca9daf3beac4db2d04be350b87f69ac4a8",
+      "source": "extension-archives",
+      "source_relative": "flutter_secure_storage_platform_interface-1.1.2.tar.gz",
+      "type": "file"
+    },
+    {
+      "bytes": 6608,
+      "mode": 420,
+      "mtime_ns": 1795099022309242956,
+      "name": "extension-archives/flutter_secure_storage_web-1.2.1.tar.gz",
+      "sha256": "f4ebff989b4f07b2656fb16b47852c0aab9fed9b4ec1c70103368337bc1886a9",
+      "source": "extension-archives",
+      "source_relative": "flutter_secure_storage_web-1.2.1.tar.gz",
+      "type": "file"
+    },
+    {
+      "bytes": 46636,
+      "mode": 420,
+      "mtime_ns": 1795099022353358323,
+      "name": "extension-archives/flutter_secure_storage_windows-3.1.2.tar.gz",
+      "sha256": "b20b07cb5ed4ed74fc567b78a72936203f587eba460af1df11281c9326cd3709",
+      "source": "extension-archives",
+      "source_relative": "flutter_secure_storage_windows-3.1.2.tar.gz",
+      "type": "file"
+    },
+    {
+      "bytes": 396141,
+      "mode": 420,
+      "mtime_ns": 1795099022368919363,
+      "name": "extension-archives/jni-1.1.2.tar.gz",
+      "sha256": "2e91e6087291affd10b31b6c872f3e3ac7dc5d93b51b5ba485d930c8f08bde6c",
+      "source": "extension-archives",
+      "source_relative": "jni-1.1.2.tar.gz",
+      "type": "file"
+    },
+    {
+      "bytes": 23711,
+      "mode": 420,
+      "mtime_ns": 1795099022349532363,
+      "name": "extension-archives/jni_flutter-1.0.4+1.tar.gz",
+      "sha256": "0dd33d67797560f66e961a6053882d4df54bd345bf063b8fe7ea133f7ad8b191",
+      "source": "extension-archives",
+      "source_relative": "jni_flutter-1.0.4+1.tar.gz",
+      "type": "file"
+    },
+    {
+      "bytes": 2705,
+      "mode": 420,
+      "mtime_ns": 1795099025684286138,
+      "name": "extension-archives/jni_util-1.0.0.tar.gz",
+      "sha256": "1ba86da04a5f2bf18fde2edb235587e70c5b0fc5bd4ba955f46b00942c3fc35f",
+      "source": "extension-archives",
+      "source_relative": "jni_util-1.0.0.tar.gz",
+      "type": "file"
+    },
+    {
+      "bytes": 10582,
+      "mode": 420,
+      "mtime_ns": 1795099025721231114,
+      "name": "extension-archives/js-0.6.7.tar.gz",
+      "sha256": "f2c445dce49627136094980615a031419f7f3eb393237e4ecd97ac15dea343f3",
+      "source": "extension-archives",
+      "source_relative": "js-0.6.7.tar.gz",
+      "type": "file"
+    },
+    {
+      "bytes": 430929,
+      "mode": 420,
+      "mtime_ns": 1795099025689372810,
+      "name": "extension-archives/objective_c-9.6.4.tar.gz",
+      "sha256": "c965d264fd4b0b4dd402dce9d049b70656bf98d3ca108b9bc55d2544ceadbe5e",
+      "source": "extension-archives",
+      "source_relative": "objective_c-9.6.4.tar.gz",
+      "type": "file"
+    },
+    {
+      "bytes": 163311,
+      "mode": 420,
+      "mtime_ns": 1795099025686047356,
+      "name": "extension-archives/path_provider-2.1.6.tar.gz",
+      "sha256": "a7f4874f987173da295a61c181b8ee71dab59b332a486b391babf26a1b884825",
+      "source": "extension-archives",
+      "source_relative": "path_provider-2.1.6.tar.gz",
+      "type": "file"
+    },
+    {
+      "bytes": 36516,
+      "mode": 420,
+      "mtime_ns": 1795099029549690917,
+      "name": "extension-archives/path_provider_android-2.3.1.tar.gz",
+      "sha256": "69cbd515a62b94d32a7944f086b2f82b4ac40a1d45bebfc00813a430ab2dabcd",
+      "source": "extension-archives",
+      "source_relative": "path_provider_android-2.3.1.tar.gz",
+      "type": "file"
+    },
+    {
+      "bytes": 141864,
+      "mode": 420,
+      "mtime_ns": 1795099029625185165,
+      "name": "extension-archives/path_provider_foundation-2.6.0.tar.gz",
+      "sha256": "2a376b7d6392d80cd3705782d2caa734ca4727776db0b6ec36ef3f1855197699",
+      "source": "extension-archives",
+      "source_relative": "path_provider_foundation-2.6.0.tar.gz",
+      "type": "file"
+    },
+    {
+      "bytes": 12225,
+      "mode": 420,
+      "mtime_ns": 1795099029585253471,
+      "name": "extension-archives/path_provider_linux-2.2.2.tar.gz",
+      "sha256": "58c2005f147315b11e9b4a7bc889cd5203e250cba8e3f012dae259b4972b5c16",
+      "source": "extension-archives",
+      "source_relative": "path_provider_linux-2.2.2.tar.gz",
+      "type": "file"
+    },
+    {
+      "bytes": 7191,
+      "mode": 420,
+      "mtime_ns": 1795099029609230407,
+      "name": "extension-archives/path_provider_platform_interface-2.1.3.tar.gz",
+      "sha256": "484838772624c3a4b94f1e44a3e19897fee738f2d5c4ce448443b0417f7c9dda",
+      "source": "extension-archives",
+      "source_relative": "path_provider_platform_interface-2.1.3.tar.gz",
+      "type": "file"
+    },
+    {
+      "bytes": 41061,
+      "mode": 420,
+      "mtime_ns": 1795099034087597937,
+      "name": "extension-archives/path_provider_windows-2.3.0.tar.gz",
+      "sha256": "bd6f00dbd873bfb70d0761682da2b3a2c2fccc2b9e84c495821639601d81afe7",
+      "source": "extension-archives",
+      "source_relative": "path_provider_windows-2.3.0.tar.gz",
+      "type": "file"
+    },
+    {
+      "bytes": 11600,
+      "mode": 420,
+      "mtime_ns": 1795099034087597937,
+      "name": "extension-archives/xdg_directories-1.1.0.tar.gz",
+      "sha256": "7a3f37b05d989967cdddcbb571f1ea834867ae2faa29725fd085180e0883aa15",
+      "source": "extension-archives",
+      "source_relative": "xdg_directories-1.1.0.tar.gz",
+      "type": "file"
+    },
+    {
+      "bytes": 26074,
+      "mode": 420,
+      "mtime_ns": 1795099010098894859,
+      "name": "extension-base-lock",
+      "sha256": "35d1ef372908f4ab278973355ec6a957cd3240bea115d615056c5b9e398df974",
+      "source": "extension-base-lock",
+      "source_relative": "",
+      "type": "file"
+    },
+    {
+      "mode": 493,
+      "mtime_ns": 1795099464596419767,
+      "name": "extension-controls",
+      "source": "extension-controls",
+      "source_relative": "",
+      "type": "directory"
+    },
+    {
+      "bytes": 113,
+      "mode": 420,
+      "mtime_ns": 1795099463892453290,
+      "name": "extension-controls/controls.log",
+      "sha256": "88938a4e6dacae447005887560cdc1b05b801080fbba3f2f9f3b92c87e74d7b0",
+      "source": "extension-controls",
+      "source_relative": "controls.log",
+      "type": "file"
+    },
+    {
+      "bytes": 2941,
+      "mode": 420,
+      "mtime_ns": 1795099464598942143,
+      "name": "extension-controls/receipt.json",
+      "sha256": "6399bd1c578a243a49e92f84412b78f6c68b55cd6b1c9ee19b19850ffa8b84bc",
+      "source": "extension-controls",
+      "source_relative": "receipt.json",
+      "type": "file"
+    },
+    {
+      "mode": 493,
+      "mtime_ns": 1795099034840191935,
+      "name": "extension-logs",
+      "source": "extension-logs",
+      "source_relative": "",
+      "type": "directory"
+    },
+    {
+      "bytes": 81,
+      "mode": 420,
+      "mtime_ns": 1795099037084829368,
+      "name": "extension-logs/native-assets-smoke.log",
+      "sha256": "97ebf61764ed1a73a1e6d42d708f151bb1d494b06c6731f608863f221a41aef2",
+      "source": "extension-logs",
+      "source_relative": "native-assets-smoke.log",
+      "type": "file"
+    },
+    {
+      "bytes": 214,
+      "mode": 420,
+      "mtime_ns": 1795099034796938551,
+      "name": "extension-logs/workspace-pub-get.log",
+      "sha256": "3640d48177b802767785e357f56651162d2250e124b566cffdc2cb88ce7e7f9c",
+      "source": "extension-logs",
+      "source_relative": "workspace-pub-get.log",
+      "type": "file"
+    },
+    {
+      "mode": 493,
+      "mtime_ns": 1795099010098451096,
+      "name": "extension-originals",
+      "source": "extension-originals",
+      "source_relative": "",
+      "type": "directory"
+    },
+    {
+      "bytes": 357030,
+      "mode": 420,
+      "mtime_ns": 1795099010094114460,
+      "name": "extension-originals/archive-members.json",
+      "sha256": "c30c0738a094f3b0bfc3ee4696204540798d4a4fbaf943a5abb0ce8833635f8f",
+      "source": "extension-originals",
+      "source_relative": "archive-members.json",
+      "type": "file"
+    },
+    {
+      "bytes": 2335744,
+      "mode": 420,
+      "mtime_ns": 1795099010092583269,
+      "name": "extension-originals/cache-omissions.json",
+      "sha256": "c16bf623008daa6c01cfeb16a2895d1048f42cda2274c084d9b8a58840e2d615",
+      "source": "extension-originals",
+      "source_relative": "cache-omissions.json",
+      "type": "file"
+    },
+    {
+      "bytes": 637,
+      "mode": 420,
+      "mtime_ns": 1795099010097863140,
+      "name": "extension-originals/env.sh",
+      "sha256": "7a16ec8ff2930450d64ebf71e56d19c12e7ea40420531b62de2b3cafe6baa7d5",
+      "source": "extension-originals",
+      "source_relative": "env.sh",
+      "type": "file"
+    },
+    {
+      "bytes": 44348,
+      "mode": 420,
+      "mtime_ns": 1795099010092027327,
+      "name": "extension-originals/pub-cache-receipt.json",
+      "sha256": "78c33990120aa8ffdffc52cc7e9f34b09ce31cb7092b9c46887bb4e7944ec591",
+      "source": "extension-originals",
+      "source_relative": "pub-cache-receipt.json",
+      "type": "file"
+    },
+    {
+      "bytes": 2049933,
+      "mode": 420,
+      "mtime_ns": 1795099010089464781,
+      "name": "extension-originals/retained-inputs.json",
+      "sha256": "8a14b584c2e9416dc73f79e556f3680feba49bdbb279e8f42cd47054c5b01a91",
+      "source": "extension-originals",
+      "source_relative": "retained-inputs.json",
+      "type": "file"
+    },
+    {
+      "bytes": 15152,
+      "mode": 420,
+      "mtime_ns": 1795099010089183925,
+      "name": "extension-originals/runtime.json",
+      "sha256": "0fca03e93af88e23984e9a386cd17c01c2f78f51a15d9e1ee97b55e25b1919c3",
+      "source": "extension-originals",
+      "source_relative": "runtime.json",
+      "type": "file"
+    },
+    {
+      "bytes": 369,
+      "mode": 420,
+      "mtime_ns": 1795099010098786353,
+      "name": "extension-originals/workspace-native_assets.yaml",
+      "sha256": "c5793d7824f1637be8b8af4e81948f361dd87357215c339ed095b2a345a1a3db",
+      "source": "extension-originals",
+      "source_relative": "workspace-native_assets.yaml",
+      "type": "file"
+    },
+    {
+      "bytes": 28400,
+      "mode": 420,
+      "mtime_ns": 1795099010098118091,
+      "name": "extension-originals/workspace-package_config.json",
+      "sha256": "ee0b74af71b561bc99f484f1792417510a2c076044a76d7e03d36f1222003fff",
+      "source": "extension-originals",
+      "source_relative": "workspace-package_config.json",
+      "type": "file"
+    },
+    {
+      "bytes": 25082,
+      "mode": 420,
+      "mtime_ns": 1795099010098451096,
+      "name": "extension-originals/workspace-package_graph.json",
+      "sha256": "b1ea15ebdf456c7569a59c55086bff000f1fbb249069e4027361c6b7b2603ec6",
+      "source": "extension-originals",
+      "source_relative": "workspace-package_graph.json",
+      "type": "file"
+    },
+    {
+      "bytes": 20637,
+      "mode": 420,
+      "mtime_ns": 1795099039997551343,
+      "name": "extension-receipt",
+      "sha256": "32feb1ffc8e7f498f9234478cef87ebfe986e1a8263755c095958c7cbeeea72d",
+      "source": "extension-receipt",
+      "source_relative": "",
+      "type": "file"
+    },
+    {
+      "mode": 493,
+      "mtime_ns": 1795099311264299369,
+      "name": "final-format-preflight",
+      "source": "final-format-preflight",
+      "source_relative": "",
+      "type": "directory"
+    },
+    {
+      "bytes": 10782,
+      "mode": 420,
+      "mtime_ns": 1795099311264729332,
+      "name": "final-format-preflight/format-fixed-receipt.json",
+      "sha256": "da511315b6bca5a265171d03104d3e49e5c95042c78ec626f9049e97e1d08e52",
+      "source": "final-format-preflight",
+      "source_relative": "format-fixed-receipt.json",
+      "type": "file"
+    },
+    {
+      "bytes": 49,
+      "mode": 420,
+      "mtime_ns": 1795099311264299369,
+      "name": "final-format-preflight/format-fixed.log",
+      "sha256": "af29be1bccd7ceba04adc87e84c213127a137ac5adc779b318a8818d443a0e36",
+      "source": "final-format-preflight",
+      "source_relative": "format-fixed.log",
+      "type": "file"
+    },
+    {
+      "bytes": 10782,
+      "mode": 420,
+      "mtime_ns": 1795099269684981530,
+      "name": "final-format-preflight/format-receipt.json",
+      "sha256": "e1bda773cce74c675d6a59340c72e4ef09b73bab9b19bc86dfd015724573eeeb",
+      "source": "final-format-preflight",
+      "source_relative": "format-receipt.json",
+      "type": "file"
+    },
+    {
+      "bytes": 132,
+      "mode": 420,
+      "mtime_ns": 1795099269684779139,
+      "name": "final-format-preflight/format.log",
+      "sha256": "9005c3d63563d3d83d511bcfbab2b72fdcd52df9856f76afb9a7ad4ff563662a",
+      "source": "final-format-preflight",
+      "source_relative": "format.log",
+      "type": "file"
+    }
+  ],
+  "packing_verification": {
+    "all_original_file_bytes_match": true,
+    "all_sizes_hashes_modes_mtimes_match": true,
+    "exact_member_set": true,
+    "members": 53,
+    "regular_bytes": 11831802,
+    "regular_files": 47
+  },
+  "producer": {
+    "path": "archive_development.py",
+    "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "sha256": "dde817494cc3d94c0af61ba33961e0d936677987a7236afd37e66a23e68dcaeb"
+  },
+  "purpose": "Unfrozen development and runtime-preparation preservation; not aggregate acceptance",
+  "schema": 1,
+  "second_complete_build_byte_identical": true,
+  "sources": {
+    "current-runtime-snapshot": "/workspace/scratch/1db61dbeed56/runtime-extension-capture",
+    "extension-archives": "/workspace/scratch/1db61dbeed56/office-runtime-extension-07b815a7/archives",
+    "extension-base-lock": "/workspace/scratch/1db61dbeed56/office-runtime-extension-07b815a7/base-pubspec.lock",
+    "extension-controls": "/workspace/scratch/1db61dbeed56/runtime-extension-controls-development",
+    "extension-logs": "/workspace/scratch/1db61dbeed56/office-runtime-extension-07b815a7/logs",
+    "extension-originals": "/workspace/scratch/1db61dbeed56/office-runtime-extension-07b815a7/originals",
+    "extension-receipt": "/workspace/scratch/1db61dbeed56/office-runtime-extension-07b815a7/extension.json",
+    "final-format-preflight": "/workspace/scratch/1db61dbeed56/final-preflight"
+  }
+}

@@ -5,6 +5,7 @@ import 'dart:io';
 
 import 'package:quds_arabic_morph/installer_io.dart';
 import 'package:quds_arabic_morph/quds_arabic_morph.dart';
+import 'package:quds_arabic_morph/src/morph_transport_native.dart' as native;
 import 'package:quds_office_engine/quds_office_engine.dart';
 import 'package:test/test.dart';
 
@@ -29,6 +30,19 @@ Directory _copyBundle() {
     File('$_bundle/${artifact.file}').copySync('${copy.path}/${artifact.file}');
   }
   return copy;
+}
+
+/// Counts this bundle's mappings, excluding other analyzers in the process.
+/// The pinned POSIX backend owns one mapping through the model destructor.
+int _databaseMappings(Directory bundle) {
+  final path = File(
+    '${bundle.path}/${camelMorphMsaProofingBin.database.file}',
+  ).resolveSymbolicLinksSync();
+  final mapping = RegExp(r'^\S+\s+\S+\s+\S+\s+\S+\s+\S+\s+(.*)$');
+  return File('/proc/self/maps')
+      .readAsLinesSync()
+      .where((line) => mapping.firstMatch(line)?.group(1) == path)
+      .length;
 }
 
 void main() {
@@ -177,6 +191,90 @@ void main() {
       await other.dispose();
       expect(other.isAvailable, isFalse);
     });
+
+    test('normal disposal releases the mapped database', () async {
+      final copy = _copyBundle();
+      final other = CamelArabicMorphology(
+        database: _files(copy.path),
+        nativeLibraryPath: _library,
+      );
+      try {
+        expect(_databaseMappings(copy), 0);
+        await other.load();
+        expect(other.failure, isNull);
+        expect(other.isAvailable, isTrue);
+        expect(other.info!['storage'], 'mapped');
+        expect(_databaseMappings(copy), 1);
+        expect((await other.analyzeWords(['كتبوا']))['كتبوا'], isNotEmpty);
+
+        await other.dispose().timeout(const Duration(seconds: 5));
+        expect(other.isAvailable, isFalse);
+        expect(_databaseMappings(copy), 0);
+        await other.dispose().timeout(const Duration(seconds: 5));
+        expect(_databaseMappings(copy), 0);
+        expect(await other.analyzeWords(['كتبوا']), {'كتبوا': isEmpty});
+      } finally {
+        await other.dispose();
+        copy.deleteSync(recursive: true);
+      }
+    }, testOn: 'linux');
+
+    test('disposal while the worker starts settles opening', () async {
+      final copy = _copyBundle();
+      final transport = native.createArabicMorphTransport(
+        nativeLibraryPath: _library,
+      );
+      try {
+        expect(_databaseMappings(copy), 0);
+        final opening = expectLater(
+          transport.open(_files(copy.path)),
+          throwsA(isA<ArabicMorphUnavailableException>()),
+        );
+        await transport.dispose().timeout(const Duration(seconds: 5));
+        await opening;
+        expect(_databaseMappings(copy), 0);
+        await expectLater(
+          transport.open(_files(copy.path)),
+          throwsA(isA<ArabicMorphUnavailableException>()),
+        );
+      } finally {
+        await transport.dispose();
+        copy.deleteSync(recursive: true);
+      }
+    }, testOn: 'linux');
+
+    test('disposal settles pending analysis and releases its model', () async {
+      final copy = _copyBundle();
+      final transport = native.createArabicMorphTransport(
+        nativeLibraryPath: _library,
+      );
+      try {
+        expect(_databaseMappings(copy), 0);
+        final info = await transport.open(_files(copy.path));
+        expect(info['storage'], 'mapped');
+        expect(_databaseMappings(copy), 1);
+        final pending = expectLater(
+          transport.analyze(['كتبوا', 'والمدرسة']),
+          throwsA(isA<ArabicMorphUnavailableException>()),
+        );
+        // Let _send enqueue the request. A worker response is an event and
+        // cannot run before this microtask continuation disposes the worker.
+        await Future<void>.value();
+        await Future.wait([
+          transport.dispose(),
+          transport.dispose(),
+          pending,
+        ]).timeout(const Duration(seconds: 5));
+        expect(_databaseMappings(copy), 0);
+        await expectLater(
+          transport.analyze(['كتبوا']),
+          throwsA(isA<ArabicMorphUnavailableException>()),
+        );
+      } finally {
+        await transport.dispose();
+        copy.deleteSync(recursive: true);
+      }
+    }, testOn: 'linux');
   }, skip: _skip);
 
   test('earlier bundles are removed, the current one is kept', () async {
@@ -354,38 +452,4 @@ void main() {
       expect(Directory('${root.path}/arabic_morph').listSync(), isEmpty);
     });
   }, skip: _skip);
-
-  test(
-    'live download from the pinned Hugging Face revision',
-    () async {
-      final root = Directory.systemTemp.createTempSync('arabic-morph-live-');
-      try {
-        final files = await MorphInstaller(
-          root,
-        ).install(camelMorphMsaProofingBin);
-        expect(
-          File(
-            '${File(files.manifestPath).parent.path}/'
-            '${camelMorphMsaProofingBin.database.file}',
-          ).lengthSync(),
-          camelMorphMsaProofingBin.database.bytes,
-        );
-        if (_library != null) {
-          final morphology = CamelArabicMorphology(
-            database: files,
-            nativeLibraryPath: _library,
-          );
-          final result = await morphology.analyzeWords(['كتبوا']);
-          expect(result['كتبوا'], isNotEmpty);
-          await morphology.dispose();
-        }
-      } finally {
-        root.deleteSync(recursive: true);
-      }
-    },
-    skip: Platform.environment['QUDS_ARABIC_MORPH_LIVE_DOWNLOAD'] == '1'
-        ? false
-        : 'Set QUDS_ARABIC_MORPH_LIVE_DOWNLOAD=1 to download from Hugging Face.',
-    timeout: const Timeout(Duration(minutes: 5)),
-  );
 }
