@@ -288,7 +288,7 @@ class ZoteroClient {
       }
       final meta = json.containsKey('meta')
           ? _object(json['meta'])
-          : <String, dynamic>{};
+          : <String, Object?>{};
       return ZoteroTag(
         name: name,
         type: _tagMetadataInteger(meta, 'type'),
@@ -298,7 +298,7 @@ class ZoteroClient {
     return _page(tags, response, uri, start, limit);
   }
 
-  static int? _tagMetadataInteger(Map<String, dynamic> meta, String key) {
+  static int? _tagMetadataInteger(Map<String, Object?> meta, String key) {
     if (!meta.containsKey(key)) return null;
     final value = meta[key];
     if (value is! int || value < 0) throw _invalidResponse();

@@ -93,6 +93,9 @@ Finder _key(String value) => find.byKey(ValueKey(value));
 Finder _choice(String value) => _key('zotero-tag-browser-choice-$value');
 
 Future<void> _tap(WidgetTester tester, Finder finder) async {
+  if (finder.evaluate().single.widget is CheckboxListTile) {
+    finder = find.descendant(of: finder, matching: find.byType(Checkbox));
+  }
   await tester.pumpAndSettle();
   await tester.ensureVisible(finder);
   await tester.pumpAndSettle();
@@ -119,8 +122,9 @@ Future<_Result> _open(
   await tester.pumpWidget(
     MaterialApp(
       builder: (context, child) => MediaQuery(
-        data: MediaQuery.of(context)
-            .copyWith(textScaler: TextScaler.linear(scale)),
+        data: MediaQuery.of(
+          context,
+        ).copyWith(textScaler: TextScaler.linear(scale)),
         child: Directionality(textDirection: direction, child: child!),
       ),
       home: Scaffold(
@@ -151,6 +155,41 @@ Future<_Result> _open(
     await tester.pump(const Duration(milliseconds: 300));
   }
   return result;
+}
+
+Future<(WordEditorController, ZoteroSession)> _openWorkspace(
+  WidgetTester tester,
+  _Catalog catalog,
+) async {
+  tester.view.devicePixelRatio = 1;
+  tester.view.physicalSize = const Size(1280, 1100);
+  addTearDown(tester.view.resetDevicePixelRatio);
+  addTearDown(tester.view.resetPhysicalSize);
+  final controller = WordEditorController(
+    document: WmlDocument.empty(text: 'Unchanged'),
+  );
+  addTearDown(controller.dispose);
+  final session = ZoteroSession()..apiKey = 'test-key';
+  await tester.pumpWidget(
+    MaterialApp(
+      home: Scaffold(
+        body: Builder(
+          builder: (context) => TextButton(
+            onPressed: () => showWordZoteroDialog(
+              context,
+              controller: controller,
+              session: session,
+              transport: catalog.send,
+            ),
+            child: const Text('Open references'),
+          ),
+        ),
+      ),
+    ),
+  );
+  await _tap(tester, find.text('Open references'));
+  await _tap(tester, find.text('Connect'));
+  return (controller, session);
 }
 
 void main() {
@@ -333,35 +372,8 @@ void main() {
   testWidgets(
     'workspace applies tags to submitted query and preserves selected sources',
     (tester) async {
-      tester.view.devicePixelRatio = 1;
-      tester.view.physicalSize = const Size(1280, 1100);
-      addTearDown(tester.view.resetDevicePixelRatio);
-      addTearDown(tester.view.resetPhysicalSize);
       final catalog = _Catalog();
-      final controller = WordEditorController(
-        document: WmlDocument.empty(text: 'Unchanged'),
-      );
-      addTearDown(controller.dispose);
-      final session = ZoteroSession()..apiKey = 'test-key';
-      await tester.pumpWidget(
-        MaterialApp(
-          home: Scaffold(
-            body: Builder(
-              builder: (context) => TextButton(
-                onPressed: () => showWordZoteroDialog(
-                  context,
-                  controller: controller,
-                  session: session,
-                  transport: catalog.send,
-                ),
-                child: const Text('Open references'),
-              ),
-            ),
-          ),
-        ),
-      );
-      await _tap(tester, find.text('Open references'));
-      await _tap(tester, find.text('Connect'));
+      final (controller, _) = await _openWorkspace(tester, catalog);
       final query = find.byWidgetPredicate(
         (widget) =>
             widget is TextField &&
@@ -402,4 +414,46 @@ void main() {
       expect(_key('zotero-tag-Research & القدس'), findsOneWidget);
     },
   );
+
+  testWidgets('workspace browses tags within the selected collection', (
+    tester,
+  ) async {
+    final catalog = _Catalog();
+    await _openWorkspace(tester, catalog);
+    final collection = find.byWidgetPredicate(
+      (widget) =>
+          widget is DropdownButtonFormField<String> &&
+          widget.decoration.labelText == 'Collection',
+    );
+    await _tap(tester, collection);
+    await _tap(tester, find.text('Research collection').last);
+    await _tap(tester, find.byTooltip('Search options'));
+    await _tap(tester, _key('zotero-browse-tags'));
+    expect(catalog.tags.single.uri.path, '/users/42/collections/COLL0001/tags');
+    expect(find.text('Collection tags: Research collection'), findsOneWidget);
+    await _tap(tester, _choice('Research & القدس'));
+    await _tap(tester, _key('zotero-tag-browser-apply'));
+    expect(
+      catalog.items.last.uri.path,
+      '/users/42/collections/COLL0001/items/top',
+    );
+    expect(catalog.items.last.uri.queryParametersAll['tag'], [
+      'Research & القدس',
+    ]);
+  });
+
+  testWidgets('changed host session rejects stale tag choices', (tester) async {
+    final catalog = _Catalog();
+    final (controller, session) = await _openWorkspace(tester, catalog);
+    await _tap(tester, find.byTooltip('Search options'));
+    await _tap(tester, _key('zotero-browse-tags'));
+    await _tap(tester, _choice('Research & القدس'));
+    final before = catalog.items.length;
+    session.library = ZoteroLibrary.group(99);
+    await _tap(tester, _key('zotero-tag-browser-apply'));
+    expect(catalog.items.length, before);
+    expect(_key('zotero-tag-Research & القدس'), findsNothing);
+    expect(controller.canUndo, isFalse);
+    expect(controller.document.paragraphs.single.text, 'Unchanged');
+  });
 }

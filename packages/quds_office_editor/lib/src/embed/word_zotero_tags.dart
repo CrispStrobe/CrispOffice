@@ -93,7 +93,8 @@ class _ZoteroTagBrowserDialogState extends State<ZoteroTagBrowserDialog> {
           FormatException value => value.message,
           ArgumentError _ =>
             'Use a shorter tag search without control characters.',
-          _ => 'Could not load tags. Try searching again when Zotero is available.',
+          _ =>
+            'Could not load tags. Try searching again when Zotero is available.',
         };
       });
     } finally {

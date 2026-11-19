@@ -4,6 +4,11 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Add read-only paginated Zotero tag catalogs for libraries and collections,
+  with literal name preservation, containing/prefix searches, optional usage
+  metadata, validated requests and separate online/desktop routes. Keep manual
+  and automatic tag records distinct without combining their usage counts.
+
 - Extend `vba-excel` with fixed one-dimensional scalar arrays, constant bounds,
   indexed reads/writes, typed defaults, `LBound`/`UBound`, and `For Each` over
   arrays and explicit rectangular ranges. Add read-only range row/column
