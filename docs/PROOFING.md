@@ -42,7 +42,32 @@ the AyaSpell Hunspell dictionary under its MPL 1.1 option, built reproducibly by
 `tools/proofing/ayaspell/build_bundle.py` from a pinned LibreOffice packaging,
 then an MPL Hunspell engine adapter, then independently authored Arabic rules.
 The Hunspell adapter and in-app Arabic download workflow remain planned.
-Nothing Arabic is enabled or downloaded by default.
+Built-in Arabic writing rules run for supported Arabic language tags; optional
+dictionary/data resources are not downloaded by default.
+
+`ArabicWritingRulesProvider` (`arabic-writing`) implements the first
+independently authored Arabic rule set. It is part of the app (MIT) and needs
+no download. It runs only for Arabic-script Arabic paragraphs, and its eleven
+rule ids are all reviewable suggestions, never automatic rewrites. Spelling
+rules:
+- hamzat al-qat' on listed words;
+- definite ta marbuta;
+- alif maqsura;
+- detached conjunction waw.
+
+Style rules:
+- final ya written as ى;
+- Arabic punctuation and its spacing;
+- tatweel;
+- repetition of closed-class words;
+- mixed digit systems.
+
+Scope, exclusions and tests are in the
+[roadmap's step 3](roadmaps/arabic-proofing.md). Its
+[LanguageTool assessment](roadmaps/arabic-proofing.md#languagetool-arabic-assessment-v68)
+records why LanguageTool's Arabic rules can only be a separate download: the
+rules are LGPL-2.1, but the POS dictionary is GPL-derived and one list is
+AGPL. Interpreting them natively is a 3–5 week engine task.
 
 ## Native spelling continuation — 18 November 2026
 
