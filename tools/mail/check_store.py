@@ -9,11 +9,99 @@ import json
 import os
 from pathlib import Path
 import shutil
+import signal
 import subprocess
 import sys
+from urllib.parse import unquote, urljoin, urlsplit
 import uuid
 
 from check_reader import write_receipt
+
+
+def execute(command: list[str], *, cwd: Path, env: dict[str, str],
+            stdout, timeout: float) -> int:
+    """Bound a command and clean up its process group on timeout/interruption."""
+    with subprocess.Popen(command, cwd=cwd, env=env, stdout=stdout,
+                          stderr=subprocess.STDOUT,
+                          start_new_session=os.name == 'posix') as process:
+        def stop() -> None:
+            try:
+                if os.name == 'posix':
+                    os.killpg(process.pid, signal.SIGTERM)
+                else:
+                    process.terminate()
+            except ProcessLookupError:
+                pass
+            try:
+                process.wait(timeout=3)
+            except subprocess.TimeoutExpired:
+                process.kill()
+            finally:
+                # A launcher may exit while its VM/Node child is still alive.
+                if os.name == 'posix':
+                    try:
+                        os.killpg(process.pid, signal.SIGKILL)
+                    except ProcessLookupError:
+                        pass
+                process.wait()
+
+        try:
+            return process.wait(timeout=timeout)
+        except (subprocess.TimeoutExpired, KeyboardInterrupt):
+            stop()
+            raise
+
+
+def direct_launcher(root: Path) -> tuple[Path, Path, dict[str, str | None]]:
+    """Use the lock-resolved package:test entry and bind its native inputs.
+
+    Direct invocation avoids Dart command precompilation. It does not build
+    native assets: the host must prepare their mapping using the package hook.
+    """
+    config = root / '.dart_tool/package_config.json'
+    packages = json.loads(config.read_text())['packages']
+    matches = [item for item in packages if item.get('name') == 'test']
+    if len(matches) != 1 or not isinstance(matches[0].get('rootUri'), str):
+        raise ValueError('Exactly one resolved package:test entry is required.')
+    uri = urlsplit(urljoin(config.as_uri(), matches[0]['rootUri']))
+    if uri.scheme != 'file' or uri.netloc or uri.query or uri.fragment:
+        raise ValueError('The resolved test package must be a local file URI.')
+    entry = Path(unquote(uri.path)).resolve() / 'bin/test.dart'
+    if not entry.is_file() or entry.is_symlink():
+        raise ValueError('The resolved package:test launcher is missing or redirected.')
+    manifest = root / '.dart_tool/native_assets.yaml'
+    # Dart's generated YAML is JSON after its explanatory comment lines.
+    mapping = json.loads('\n'.join(line for line in manifest.read_text().splitlines()
+                                   if not line.lstrip().startswith('#')))
+    inputs = [config, entry, manifest]
+    assets = mapping.get('native-assets')
+    if not isinstance(assets, dict) or not assets:
+        raise ValueError('A prepared native-assets mapping is required for store tests.')
+    sqlite = False
+    for platform in assets.values():
+        if not isinstance(platform, dict):
+            raise ValueError('Invalid native-assets platform mapping.')
+        for name, location in platform.items():
+            if (not isinstance(location, list) or len(location) != 2
+                    or location[0] != 'absolute' or not isinstance(location[1], str)):
+                raise ValueError('Native assets must identify exact absolute files.')
+            path = Path(location[1])
+            if not path.is_absolute() or not path.is_file():
+                raise ValueError('A prepared native asset is missing: ' + str(path))
+            inputs.append(path)
+            sqlite |= name == 'package:sqlite3/src/ffi/libsqlite3.g.dart'
+    if not sqlite:
+        raise ValueError('The prepared native mapping does not include SQLite.')
+    for package in ('quds_mail_core', 'quds_mail_store'):
+        directory = root / 'packages' / package
+        while directory != root:
+            candidate = directory / '.dart_tool/native_assets.yaml'
+            if candidate.exists() or candidate.is_symlink():
+                raise ValueError('A package-local native mapping shadows the workspace: ' + str(candidate))
+            inputs.append(candidate)
+            directory = directory.parent
+    return config, entry, {str(path): hashlib.sha256(path.read_bytes()).hexdigest() if path.is_file() else None
+                           for path in inputs}
 
 
 def hashes(root: Path) -> dict[str, str]:
@@ -145,7 +233,13 @@ def main() -> int:
     parser.add_argument('--output', type=Path, default=Path('build/mail-store-qualification'))
     parser.add_argument('--offline', action='store_true',
                         help='Resolve the enforced lock using only the existing Pub cache.')
+    parser.add_argument('--direct-tests', action='store_true',
+                        help='Invoke resolved package:test directly; requires prepared native assets.')
+    parser.add_argument('--command-timeout', type=float, default=300,
+                        help='Maximum seconds per child command (default: 300).')
     args = parser.parse_args()
+    if not 0 < args.command_timeout < float('inf'):
+        parser.error('--command-timeout must be finite and positive')
     root = Path(__file__).resolve().parents[2]
     output = args.output.resolve()
     output.mkdir(parents=True, exist_ok=True)
@@ -161,6 +255,7 @@ def main() -> int:
     # Replace any earlier PASS before validation or spawning a process.
     write_receipt(receipt_path, receipt)
     before = None
+    launcher_inputs = None
     code = 1
     try:
         sdk = args.flutter_sdk.resolve()
@@ -181,16 +276,20 @@ def main() -> int:
             print(name, flush=True)
             path = output / (name + ('.jsonl' if tests else '.log'))
             entry: dict[str, object] = dict(name=name, command=command, cwd=str(cwd),
-                                            status='RUNNING', log=path.name, exit_code=None)
+                                            status='RUNNING', log=path.name, exit_code=None,
+                                            timeout_seconds=args.command_timeout)
             checks.append(entry)
             receipt['active_check'] = name
             write_receipt(receipt_path, receipt)
             try:
                 with path.open('wb') as stream:
-                    result = subprocess.run(command, cwd=cwd, env=env, stdout=stream,
-                                            stderr=subprocess.STDOUT, check=False)
-                entry['exit_code'] = result.returncode
-                ok = result.returncode == 0
+                    try:
+                        entry['exit_code'] = execute(command, cwd=cwd, env=env, stdout=stream,
+                                                     timeout=args.command_timeout)
+                    except subprocess.TimeoutExpired:
+                        entry['exit_code'] = 124
+                        entry['timed_out'] = True
+                ok = entry['exit_code'] == 0 and not entry.get('timed_out')
                 if tests:
                     summary = test_summary(path)
                     details = output / (name + '-cases.json')
@@ -222,18 +321,25 @@ def main() -> int:
         if ok:
             core = root / 'packages/quds_mail_core'
             store = root / 'packages/quds_mail_store'
+            test_cmd = cmd + ['test']
+            if args.direct_tests:
+                config, entry, launcher_inputs = direct_launcher(root)
+                receipt['direct_launcher_inputs_before'] = launcher_inputs
+                test_cmd = cmd + ['--disable-dart-dev', '--packages=' + str(config), str(entry)]
+                write_receipt(receipt_path, receipt)
             for package, directory in [('core', core), ('store', store)]:
                 ok &= run(package + '-analysis', cmd + ['analyze', '--fatal-infos'], directory)
             ok &= run('format', cmd + ['format', '--output=none', '--set-exit-if-changed',
                                       str(core / 'lib'), str(core / 'test'),
                                       str(store / 'lib'), str(store / 'test'), str(store / 'tool')])
-            ok &= run('core-vm', cmd + ['test', '--platform', 'vm', '--reporter', 'json'], core, tests=True)
-            ok &= run('core-node', cmd + ['test', '--platform', 'node', '--reporter', 'json'], core, tests=True)
+            vm_args = ['--compiler=kernel'] if args.direct_tests else []
+            ok &= run('core-vm', test_cmd + vm_args + ['--platform', 'vm', '--reporter', 'json'], core, tests=True)
+            ok &= run('core-node', test_cmd + ['--platform', 'node', '--reporter', 'json'], core, tests=True)
             native = sorted(str(path.relative_to(store)) for path in (store / 'test').glob('*_test.dart')
                             if path.name != 'browser_problem_test.dart')
-            ok &= run('store-vm', cmd + ['test', '--platform', 'vm', '--reporter', 'json',
+            ok &= run('store-vm', test_cmd + vm_args + ['--platform', 'vm', '--reporter', 'json',
                                         '--concurrency=2', *native], store, tests=True)
-            ok &= run('portable-node', cmd + ['test', '--platform', 'node', '--reporter', 'json',
+            ok &= run('portable-node', test_cmd + ['--platform', 'node', '--reporter', 'json',
                                                'test/codec_test.dart', 'test/platform_configuration_test.dart',
                                                'test/browser_problem_test.dart'], store, tests=True)
             for name, source in [('browser-entry', 'tool/browser_compile_probe.dart'),
@@ -251,6 +357,17 @@ def main() -> int:
         receipt['status'] = 'FAIL'
         receipt['error'] = f'{type(error).__name__}: {error}'
     finally:
+        if launcher_inputs is not None:
+            after_inputs = {
+                name: ('symlink:' + str(Path(name).readlink()) if Path(name).is_symlink()
+                       else hashlib.sha256(Path(name).read_bytes()).hexdigest()
+                       if Path(name).is_file() else 'non-file' if Path(name).exists() else None)
+                for name in launcher_inputs}
+            receipt['direct_launcher_inputs_after'] = after_inputs
+            if launcher_inputs != after_inputs:
+                receipt['status'] = 'FAIL'
+                receipt['runtime_inputs_changed'] = True
+                code = code or 1
         if before is not None:
             after = hashes(root)
             receipt['source_after'] = after

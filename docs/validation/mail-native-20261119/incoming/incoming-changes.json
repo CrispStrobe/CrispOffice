@@ -1,0 +1,1400 @@
+[
+  {
+    "head": "15d519599017c9df18ebfba19704998825a2c86e",
+    "merge_base": "840362cd74a3d4b4365cf2bc9a2ae326225009c3",
+    "files": [
+      {
+        "added": "35",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/continuation/local/README.md"
+      },
+      {
+        "added": "26",
+        "deleted": "2",
+        "path": "docs/validation/thesaurus-20261118/continuation/local/fixtures/build_binding.py"
+      },
+      {
+        "added": "35",
+        "deleted": "5",
+        "path": "docs/validation/thesaurus-20261118/continuation/local/fixtures/run_browser.py"
+      },
+      {
+        "added": "11",
+        "deleted": "17",
+        "path": "docs/validation/thesaurus-20261118/continuation/local/fixtures/run_final_validation.py"
+      },
+      {
+        "added": "105",
+        "deleted": "10",
+        "path": "docs/validation/thesaurus-20261118/continuation/local/fixtures/test_browser_harness.py"
+      },
+      {
+        "added": "293",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/continuation/local/fixtures/test_workspace_binding.py"
+      },
+      {
+        "added": "273",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/continuation/local/fixtures/workspace_binding.py"
+      },
+      {
+        "added": "7",
+        "deleted": "3",
+        "path": "docs/validation/thesaurus-20261118/continuation/local/runtime/prepare_workspace.py"
+      },
+      {
+        "added": "54",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/reconciled/README.md"
+      },
+      {
+        "added": "12",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/reconciled/evidence/acceptance-preflight-index.json"
+      },
+      {
+        "added": "-",
+        "deleted": "-",
+        "path": "docs/validation/thesaurus-20261118/reconciled/evidence/acceptance-preflight.tar.xz"
+      },
+      {
+        "added": "22",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/reconciled/evidence/exporter-controls-index.json"
+      },
+      {
+        "added": "-",
+        "deleted": "-",
+        "path": "docs/validation/thesaurus-20261118/reconciled/evidence/exporter-controls.tar.xz"
+      },
+      {
+        "added": "32",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/reconciled/evidence/harness-controls-index.json"
+      },
+      {
+        "added": "-",
+        "deleted": "-",
+        "path": "docs/validation/thesaurus-20261118/reconciled/evidence/harness-controls.tar.xz"
+      },
+      {
+        "added": "357",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/reconciled/evidence/mail-index.json"
+      },
+      {
+        "added": "-",
+        "deleted": "-",
+        "path": "docs/validation/thesaurus-20261118/reconciled/evidence/mail.tar.xz"
+      },
+      {
+        "added": "117",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/reconciled/evidence/notes-repair-index.json"
+      },
+      {
+        "added": "-",
+        "deleted": "-",
+        "path": "docs/validation/thesaurus-20261118/reconciled/evidence/notes-repair.tar.xz"
+      },
+      {
+        "added": "57",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/reconciled/evidence/notes-review-fix-index.json"
+      },
+      {
+        "added": "-",
+        "deleted": "-",
+        "path": "docs/validation/thesaurus-20261118/reconciled/evidence/notes-review-fix.tar.xz"
+      },
+      {
+        "added": "122",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/reconciled/evidence/runtime-restoration-index.json"
+      },
+      {
+        "added": "-",
+        "deleted": "-",
+        "path": "docs/validation/thesaurus-20261118/reconciled/evidence/runtime-restoration.tar.xz"
+      },
+      {
+        "added": "10",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/reconciled/evidence/thesaurus-release-index.json"
+      },
+      {
+        "added": "-",
+        "deleted": "-",
+        "path": "docs/validation/thesaurus-20261118/reconciled/evidence/thesaurus-release.tar.gz"
+      },
+      {
+        "added": "32",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/reconciled/evidence/workspace-vendor-controls-index.json"
+      },
+      {
+        "added": "-",
+        "deleted": "-",
+        "path": "docs/validation/thesaurus-20261118/reconciled/evidence/workspace-vendor-controls.tar.xz"
+      },
+      {
+        "added": "2357",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/reconciled/incoming/captured-refs.json"
+      },
+      {
+        "added": "2526",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/reconciled/incoming/historical-replay.json"
+      },
+      {
+        "added": "1971",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/reconciled/incoming/integrated-audit.json"
+      },
+      {
+        "added": "1570",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/reconciled/incoming/refresh-captured-refs.json"
+      },
+      {
+        "added": "1970",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/reconciled/incoming/refreshed-integrated-audit.json"
+      },
+      {
+        "added": "428",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/reconciled/linguistic/de/notices/CC_BY_SA_4.0.txt"
+      },
+      {
+        "added": "29",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/reconciled/linguistic/de/notices/DE_ATTRIBUTION.txt"
+      },
+      {
+        "added": "818",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/reconciled/linguistic/de/notices/OPENTHESAURUS_COPYING.txt"
+      },
+      {
+        "added": "34",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/reconciled/linguistic/de/notices/OPENTHESAURUS_DATABASE_README.txt"
+      },
+      {
+        "added": "41",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/reconciled/linguistic/de/notices/UNICODE_INFLECTION_LICENSE"
+      },
+      {
+        "added": "44",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/reconciled/linguistic/de/notices/UNICODE_INFLECTION_NOTICE"
+      },
+      {
+        "added": "396",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/reconciled/linguistic/en/notices/CC_BY_4.0.txt"
+      },
+      {
+        "added": "24",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/reconciled/linguistic/en/notices/EN_ATTRIBUTION.txt"
+      },
+      {
+        "added": "435",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/reconciled/linguistic/en/notices/OEWN_LICENSE.md"
+      },
+      {
+        "added": "30",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/reconciled/linguistic/en/notices/WNDB_License.txt"
+      },
+      {
+        "added": "12926",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/reconciled/linguistic/linguistic-review.json"
+      },
+      {
+        "added": "1939",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/reconciled/linguistic/linguistic-review.md"
+      },
+      {
+        "added": "3324",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/reconciled/mail-summary.json"
+      },
+      {
+        "added": "41",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/reconciled/native-build-summary.json"
+      },
+      {
+        "added": "225",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/reconciled/plan.json"
+      },
+      {
+        "added": "345",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/reconciled/run_targeted.py"
+      },
+      {
+        "added": "190",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/reconciled/test_run_targeted.py"
+      },
+      {
+        "added": "61",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/resumed-20261119/README.md"
+      },
+      {
+        "added": "59",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/resumed-20261119/evidence/combined-engine-checkpoint-index.json"
+      },
+      {
+        "added": "-",
+        "deleted": "-",
+        "path": "docs/validation/thesaurus-20261118/resumed-20261119/evidence/combined-engine-checkpoint.tar.xz"
+      },
+      {
+        "added": "68",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/resumed-20261119/evidence/recovery-audit-and-runner-controls-index.json"
+      },
+      {
+        "added": "-",
+        "deleted": "-",
+        "path": "docs/validation/thesaurus-20261118/resumed-20261119/evidence/recovery-audit-and-runner-controls.tar.xz"
+      },
+      {
+        "added": "118",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/resumed-20261119/evidence/runtime-recovery-20261119-index.json"
+      },
+      {
+        "added": "-",
+        "deleted": "-",
+        "path": "docs/validation/thesaurus-20261118/resumed-20261119/evidence/runtime-recovery-20261119.tar.xz"
+      },
+      {
+        "added": "210",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/resumed-20261119/incoming/audit_selected_scope.py"
+      },
+      {
+        "added": "2062",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/resumed-20261119/incoming/captured-refs.json"
+      },
+      {
+        "added": "5028",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/resumed-20261119/incoming/integrated-audit-ff0775cb.json"
+      },
+      {
+        "added": "107",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/resumed-20261119/incoming/merge-resolution-review.json"
+      },
+      {
+        "added": "157",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/resumed-20261119/incoming/retained-source-continuity.json"
+      },
+      {
+        "added": "184",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/resumed-20261119/incoming/selected-plan-review.json"
+      },
+      {
+        "added": "18",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/resumed-20261119/preparation-summary.json"
+      },
+      {
+        "added": "4352",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/resumed-20261119/review/engine-review-and-incoming-zotero-audit.json"
+      },
+      {
+        "added": "44",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/resumed-20261119/review/initial-binding-audit.json"
+      },
+      {
+        "added": "65",
+        "deleted": "74",
+        "path": "docs/validation/zotero-word-parity-20261118/README.md"
+      },
+      {
+        "added": "7",
+        "deleted": "0",
+        "path": "docs/validation/zotero-word-parity-20261118/continuation/README.md"
+      },
+      {
+        "added": "11",
+        "deleted": "0",
+        "path": "docs/validation/zotero-word-parity-20261118/continuation/diagnostic-9547/archive.json"
+      },
+      {
+        "added": "-",
+        "deleted": "-",
+        "path": "docs/validation/zotero-word-parity-20261118/continuation/diagnostic-9547/complete-results.tar.gz"
+      },
+      {
+        "added": "643",
+        "deleted": "0",
+        "path": "docs/validation/zotero-word-parity-20261118/continuation/diagnostic-9547/independent-audit.json"
+      },
+      {
+        "added": "1108",
+        "deleted": "0",
+        "path": "docs/validation/zotero-word-parity-20261118/continuation/diagnostic-9547/summary.json"
+      },
+      {
+        "added": "57",
+        "deleted": "0",
+        "path": "docs/validation/zotero-word-parity-20261118/continuation/diagnostic-9547/whitespace-classification.json"
+      },
+      {
+        "added": "116",
+        "deleted": "0",
+        "path": "docs/validation/zotero-word-parity-20261118/continuation/final/archive.json"
+      },
+      {
+        "added": "-",
+        "deleted": "-",
+        "path": "docs/validation/zotero-word-parity-20261118/continuation/final/complete-results.tar.gz"
+      },
+      {
+        "added": "678",
+        "deleted": "0",
+        "path": "docs/validation/zotero-word-parity-20261118/continuation/final/independent-audit.json"
+      },
+      {
+        "added": "340",
+        "deleted": "0",
+        "path": "docs/validation/zotero-word-parity-20261118/continuation/final/independent_gate_audit.py"
+      },
+      {
+        "added": "1150",
+        "deleted": "0",
+        "path": "docs/validation/zotero-word-parity-20261118/continuation/final/summary.json"
+      },
+      {
+        "added": "-",
+        "deleted": "-",
+        "path": "docs/validation/zotero-word-parity-20261118/continuation/focused-ime/editor-ime.jsonl.gz"
+      },
+      {
+        "added": "310",
+        "deleted": "0",
+        "path": "docs/validation/zotero-word-parity-20261118/continuation/focused-ime/independent-counts.json"
+      },
+      {
+        "added": "50",
+        "deleted": "0",
+        "path": "docs/validation/zotero-word-parity-20261118/continuation/focused-ime/manifest.json"
+      },
+      {
+        "added": "49",
+        "deleted": "0",
+        "path": "docs/validation/zotero-word-parity-20261118/continuation/focused-ime/pub-get.json"
+      },
+      {
+        "added": "-",
+        "deleted": "-",
+        "path": "docs/validation/zotero-word-parity-20261118/continuation/focused-ime/pub-get.log.gz"
+      },
+      {
+        "added": "-",
+        "deleted": "-",
+        "path": "docs/validation/zotero-word-parity-20261118/continuation/focused-ime/source-after.json.gz"
+      },
+      {
+        "added": "-",
+        "deleted": "-",
+        "path": "docs/validation/zotero-word-parity-20261118/continuation/focused-ime/source-before.json.gz"
+      },
+      {
+        "added": "-",
+        "deleted": "-",
+        "path": "docs/validation/zotero-word-parity-20261118/continuation/focused-ime/studio-ime.jsonl.gz"
+      },
+      {
+        "added": "468",
+        "deleted": "0",
+        "path": "docs/validation/zotero-word-parity-20261118/continuation/focused-ime/summary.json"
+      },
+      {
+        "added": "2006",
+        "deleted": "0",
+        "path": "docs/validation/zotero-word-parity-20261118/continuation/reconciliation/api-inventory-20261118.json"
+      },
+      {
+        "added": "2320",
+        "deleted": "0",
+        "path": "docs/validation/zotero-word-parity-20261118/continuation/reconciliation/final-source-audit.json"
+      },
+      {
+        "added": "153",
+        "deleted": "0",
+        "path": "docs/validation/zotero-word-parity-20261118/continuation/reconciliation/historical-merge-check.json"
+      },
+      {
+        "added": "2320",
+        "deleted": "0",
+        "path": "docs/validation/zotero-word-parity-20261118/continuation/reconciliation/published-local-audit.json"
+      },
+      {
+        "added": "2320",
+        "deleted": "0",
+        "path": "docs/validation/zotero-word-parity-20261118/continuation/reconciliation/qualified-source-audit.json"
+      },
+      {
+        "added": "41",
+        "deleted": "0",
+        "path": "docs/validation/zotero-word-parity-20261118/continuation/review/independent-list-probe.dart"
+      },
+      {
+        "added": "-",
+        "deleted": "-",
+        "path": "docs/validation/zotero-word-parity-20261118/continuation/review/independent-list-probe.log.gz"
+      },
+      {
+        "added": "-",
+        "deleted": "-",
+        "path": "docs/validation/zotero-word-parity-20261118/continuation/review/notes-pane-gesture-probe.jsonl.gz"
+      },
+      {
+        "added": "56",
+        "deleted": "0",
+        "path": "docs/validation/zotero-word-parity-20261118/continuation/review/notes-pane-reachability-review.json"
+      },
+      {
+        "added": "-",
+        "deleted": "-",
+        "path": "docs/validation/zotero-word-parity-20261118/continuation/review/notes-pane-reachability-validation.jsonl.gz"
+      },
+      {
+        "added": "13",
+        "deleted": "0",
+        "path": "docs/validation/zotero-word-parity-20261118/continuation/runtime/flutter-recovery.json"
+      },
+      {
+        "added": "18",
+        "deleted": "0",
+        "path": "docs/validation/zotero-word-parity-20261118/continuation/runtime/flutter-tools-pub-get.json"
+      },
+      {
+        "added": "-",
+        "deleted": "-",
+        "path": "docs/validation/zotero-word-parity-20261118/continuation/runtime/flutter-tools-pub-get.log.gz"
+      },
+      {
+        "added": "1265",
+        "deleted": "0",
+        "path": "docs/validation/zotero-word-parity-20261118/continuation/runtime/prefetch-176.json"
+      },
+      {
+        "added": "114",
+        "deleted": "0",
+        "path": "docs/validation/zotero-word-parity-20261118/continuation/runtime/runtime-ready.json"
+      },
+      {
+        "added": "37",
+        "deleted": "0",
+        "path": "docs/validation/zotero-word-parity-20261118/continuation/runtime/runtime-sdk-ready.json"
+      },
+      {
+        "added": "-",
+        "deleted": "-",
+        "path": "docs/validation/zotero-word-parity-20261118/continuation/runtime/workspace-pub-get.log.gz"
+      },
+      {
+        "added": "99",
+        "deleted": "4",
+        "path": "docs/validation/zotero-word-parity-20261118/plan.json"
+      },
+      {
+        "added": "21",
+        "deleted": "1",
+        "path": "docs/validation/zotero-word-parity-20261118/publication-checkpoints.json"
+      },
+      {
+        "added": "356",
+        "deleted": "78",
+        "path": "docs/validation/zotero-word-parity-20261118/run_local.py"
+      },
+      {
+        "added": "325",
+        "deleted": "0",
+        "path": "docs/validation/zotero-word-parity-20261118/test_run_local.py"
+      },
+      {
+        "added": "11",
+        "deleted": "3",
+        "path": "docs/zotero-support.md"
+      },
+      {
+        "added": "12",
+        "deleted": "0",
+        "path": "docs/zotero-validation.md"
+      },
+      {
+        "added": "8",
+        "deleted": "0",
+        "path": "packages/quds_office_editor/CHANGELOG.md"
+      },
+      {
+        "added": "4",
+        "deleted": "0",
+        "path": "packages/quds_office_editor/lib/src/embed/office_controller.dart"
+      },
+      {
+        "added": "22",
+        "deleted": "28",
+        "path": "packages/quds_office_editor/lib/src/embed/office_editors.dart"
+      },
+      {
+        "added": "91",
+        "deleted": "68",
+        "path": "packages/quds_office_editor/test/word_notes_proofing_controller_test.dart"
+      },
+      {
+        "added": "43",
+        "deleted": "11",
+        "path": "packages/quds_office_editor/test/word_notes_proofing_pane_test.dart"
+      },
+      {
+        "added": "209",
+        "deleted": "0",
+        "path": "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart"
+      },
+      {
+        "added": "8",
+        "deleted": "7",
+        "path": "packages/quds_office_editor/test/word_zotero_notes_pane_test.dart"
+      },
+      {
+        "added": "7",
+        "deleted": "0",
+        "path": "packages/quds_office_engine/CHANGELOG.md"
+      },
+      {
+        "added": "137",
+        "deleted": "32",
+        "path": "packages/quds_office_engine/lib/src/word/model/word_lists.dart"
+      },
+      {
+        "added": "25",
+        "deleted": "3",
+        "path": "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart"
+      },
+      {
+        "added": "138",
+        "deleted": "15",
+        "path": "packages/quds_office_engine/lib/src/word/model/word_zotero_note.dart"
+      },
+      {
+        "added": "173",
+        "deleted": "0",
+        "path": "packages/quds_office_engine/test/word_list_numbering_snapshot_test.dart"
+      },
+      {
+        "added": "345",
+        "deleted": "0",
+        "path": "packages/quds_office_engine/test/word_zotero_note_list_test.dart"
+      },
+      {
+        "added": "10",
+        "deleted": "3",
+        "path": "tools/mail/check_store.py"
+      },
+      {
+        "added": "76",
+        "deleted": "0",
+        "path": "tools/mail/test_check_store.py"
+      }
+    ]
+  },
+  {
+    "head": "8a5dd9baa1884beae3ae69cfe77946adab9d07a6",
+    "merge_base": "0ce210973f1c86483ffcea9b91c83bbf067575e0",
+    "files": [
+      {
+        "added": "15",
+        "deleted": "2",
+        "path": "docs/validation/document-review-notes-20261118/runtime/README.md"
+      },
+      {
+        "added": "36",
+        "deleted": "1",
+        "path": "docs/validation/document-review-notes-20261118/runtime/restore_runtime.py"
+      },
+      {
+        "added": "76",
+        "deleted": "0",
+        "path": "docs/validation/document-review-notes-20261118/runtime/test_restore_runtime.py"
+      },
+      {
+        "added": "99",
+        "deleted": "0",
+        "path": "docs/validation/document-review-notes-20261119/README.md"
+      },
+      {
+        "added": "3334",
+        "deleted": "0",
+        "path": "docs/validation/document-review-notes-20261119/incoming/captured-refs.json"
+      },
+      {
+        "added": "49",
+        "deleted": "0",
+        "path": "docs/validation/document-review-notes-20261119/incoming/delta.json"
+      },
+      {
+        "added": "3738",
+        "deleted": "0",
+        "path": "docs/validation/document-review-notes-20261119/incoming/final-bounded-refs.json"
+      },
+      {
+        "added": "5760",
+        "deleted": "0",
+        "path": "docs/validation/document-review-notes-20261119/incoming/final-integrated-audit.json"
+      },
+      {
+        "added": "49",
+        "deleted": "0",
+        "path": "docs/validation/document-review-notes-20261119/incoming/final-refresh.json"
+      },
+      {
+        "added": "5764",
+        "deleted": "0",
+        "path": "docs/validation/document-review-notes-20261119/incoming/post-integration-audit.json"
+      },
+      {
+        "added": "5764",
+        "deleted": "0",
+        "path": "docs/validation/document-review-notes-20261119/incoming/pre-integration-audit.json"
+      },
+      {
+        "added": "263",
+        "deleted": "0",
+        "path": "docs/validation/document-review-notes-20261119/previous-evidence/audit_saved_evidence.py"
+      },
+      {
+        "added": "145",
+        "deleted": "0",
+        "path": "docs/validation/document-review-notes-20261119/previous-evidence/saved-evidence-audit.json"
+      },
+      {
+        "added": "266",
+        "deleted": "0",
+        "path": "docs/validation/document-review-notes-20261119/test-plan.json"
+      },
+      {
+        "added": "4",
+        "deleted": "2",
+        "path": "docs/validation/thesaurus-20261118/reconciled/plan.json"
+      },
+      {
+        "added": "100",
+        "deleted": "22",
+        "path": "docs/validation/thesaurus-20261118/reconciled/run_targeted.py"
+      },
+      {
+        "added": "206",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/reconciled/test_run_targeted.py"
+      },
+      {
+        "added": "61",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/resumed-20261119/README.md"
+      },
+      {
+        "added": "118",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/resumed-20261119/evidence/runtime-recovery-20261119-index.json"
+      },
+      {
+        "added": "-",
+        "deleted": "-",
+        "path": "docs/validation/thesaurus-20261118/resumed-20261119/evidence/runtime-recovery-20261119.tar.xz"
+      },
+      {
+        "added": "2062",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/resumed-20261119/incoming/captured-refs.json"
+      },
+      {
+        "added": "5028",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/resumed-20261119/incoming/integrated-audit-ff0775cb.json"
+      },
+      {
+        "added": "107",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/resumed-20261119/incoming/merge-resolution-review.json"
+      },
+      {
+        "added": "0",
+        "deleted": "5",
+        "path": "packages/quds_office_editor/CHANGELOG.md"
+      },
+      {
+        "added": "2",
+        "deleted": "0",
+        "path": "packages/quds_office_editor/test/word_notes_proofing_controller_test.dart"
+      },
+      {
+        "added": "2",
+        "deleted": "2",
+        "path": "packages/quds_office_editor/test/word_zotero_notes_pane_test.dart"
+      }
+    ]
+  },
+  {
+    "head": "ff06e5544673ce7f70be983299241bcdcef780d3",
+    "merge_base": "840362cd74a3d4b4365cf2bc9a2ae326225009c3",
+    "files": [
+      {
+        "added": "35",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/continuation/local/README.md"
+      },
+      {
+        "added": "26",
+        "deleted": "2",
+        "path": "docs/validation/thesaurus-20261118/continuation/local/fixtures/build_binding.py"
+      },
+      {
+        "added": "35",
+        "deleted": "5",
+        "path": "docs/validation/thesaurus-20261118/continuation/local/fixtures/run_browser.py"
+      },
+      {
+        "added": "11",
+        "deleted": "17",
+        "path": "docs/validation/thesaurus-20261118/continuation/local/fixtures/run_final_validation.py"
+      },
+      {
+        "added": "105",
+        "deleted": "10",
+        "path": "docs/validation/thesaurus-20261118/continuation/local/fixtures/test_browser_harness.py"
+      },
+      {
+        "added": "293",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/continuation/local/fixtures/test_workspace_binding.py"
+      },
+      {
+        "added": "273",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/continuation/local/fixtures/workspace_binding.py"
+      },
+      {
+        "added": "7",
+        "deleted": "3",
+        "path": "docs/validation/thesaurus-20261118/continuation/local/runtime/prepare_workspace.py"
+      },
+      {
+        "added": "54",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/reconciled/README.md"
+      },
+      {
+        "added": "12",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/reconciled/evidence/acceptance-preflight-index.json"
+      },
+      {
+        "added": "-",
+        "deleted": "-",
+        "path": "docs/validation/thesaurus-20261118/reconciled/evidence/acceptance-preflight.tar.xz"
+      },
+      {
+        "added": "22",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/reconciled/evidence/exporter-controls-index.json"
+      },
+      {
+        "added": "-",
+        "deleted": "-",
+        "path": "docs/validation/thesaurus-20261118/reconciled/evidence/exporter-controls.tar.xz"
+      },
+      {
+        "added": "32",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/reconciled/evidence/harness-controls-index.json"
+      },
+      {
+        "added": "-",
+        "deleted": "-",
+        "path": "docs/validation/thesaurus-20261118/reconciled/evidence/harness-controls.tar.xz"
+      },
+      {
+        "added": "357",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/reconciled/evidence/mail-index.json"
+      },
+      {
+        "added": "-",
+        "deleted": "-",
+        "path": "docs/validation/thesaurus-20261118/reconciled/evidence/mail.tar.xz"
+      },
+      {
+        "added": "117",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/reconciled/evidence/notes-repair-index.json"
+      },
+      {
+        "added": "-",
+        "deleted": "-",
+        "path": "docs/validation/thesaurus-20261118/reconciled/evidence/notes-repair.tar.xz"
+      },
+      {
+        "added": "57",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/reconciled/evidence/notes-review-fix-index.json"
+      },
+      {
+        "added": "-",
+        "deleted": "-",
+        "path": "docs/validation/thesaurus-20261118/reconciled/evidence/notes-review-fix.tar.xz"
+      },
+      {
+        "added": "122",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/reconciled/evidence/runtime-restoration-index.json"
+      },
+      {
+        "added": "-",
+        "deleted": "-",
+        "path": "docs/validation/thesaurus-20261118/reconciled/evidence/runtime-restoration.tar.xz"
+      },
+      {
+        "added": "10",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/reconciled/evidence/thesaurus-release-index.json"
+      },
+      {
+        "added": "-",
+        "deleted": "-",
+        "path": "docs/validation/thesaurus-20261118/reconciled/evidence/thesaurus-release.tar.gz"
+      },
+      {
+        "added": "32",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/reconciled/evidence/workspace-vendor-controls-index.json"
+      },
+      {
+        "added": "-",
+        "deleted": "-",
+        "path": "docs/validation/thesaurus-20261118/reconciled/evidence/workspace-vendor-controls.tar.xz"
+      },
+      {
+        "added": "2357",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/reconciled/incoming/captured-refs.json"
+      },
+      {
+        "added": "2526",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/reconciled/incoming/historical-replay.json"
+      },
+      {
+        "added": "1971",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/reconciled/incoming/integrated-audit.json"
+      },
+      {
+        "added": "1570",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/reconciled/incoming/refresh-captured-refs.json"
+      },
+      {
+        "added": "1970",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/reconciled/incoming/refreshed-integrated-audit.json"
+      },
+      {
+        "added": "428",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/reconciled/linguistic/de/notices/CC_BY_SA_4.0.txt"
+      },
+      {
+        "added": "29",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/reconciled/linguistic/de/notices/DE_ATTRIBUTION.txt"
+      },
+      {
+        "added": "818",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/reconciled/linguistic/de/notices/OPENTHESAURUS_COPYING.txt"
+      },
+      {
+        "added": "34",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/reconciled/linguistic/de/notices/OPENTHESAURUS_DATABASE_README.txt"
+      },
+      {
+        "added": "41",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/reconciled/linguistic/de/notices/UNICODE_INFLECTION_LICENSE"
+      },
+      {
+        "added": "44",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/reconciled/linguistic/de/notices/UNICODE_INFLECTION_NOTICE"
+      },
+      {
+        "added": "396",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/reconciled/linguistic/en/notices/CC_BY_4.0.txt"
+      },
+      {
+        "added": "24",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/reconciled/linguistic/en/notices/EN_ATTRIBUTION.txt"
+      },
+      {
+        "added": "435",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/reconciled/linguistic/en/notices/OEWN_LICENSE.md"
+      },
+      {
+        "added": "30",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/reconciled/linguistic/en/notices/WNDB_License.txt"
+      },
+      {
+        "added": "12926",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/reconciled/linguistic/linguistic-review.json"
+      },
+      {
+        "added": "1939",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/reconciled/linguistic/linguistic-review.md"
+      },
+      {
+        "added": "3324",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/reconciled/mail-summary.json"
+      },
+      {
+        "added": "41",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/reconciled/native-build-summary.json"
+      },
+      {
+        "added": "223",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/reconciled/plan.json"
+      },
+      {
+        "added": "267",
+        "deleted": "0",
+        "path": "docs/validation/thesaurus-20261118/reconciled/run_targeted.py"
+      },
+      {
+        "added": "76",
+        "deleted": "0",
+        "path": "docs/validation/zotero-annotations-20261119/README.md"
+      },
+      {
+        "added": "187",
+        "deleted": "0",
+        "path": "docs/validation/zotero-annotations-20261119/plan.json"
+      },
+      {
+        "added": "246",
+        "deleted": "0",
+        "path": "docs/validation/zotero-annotations-20261119/reconciliation/audit_published_refs.py"
+      },
+      {
+        "added": "15",
+        "deleted": "0",
+        "path": "docs/validation/zotero-annotations-20261119/reconciliation/local-integration-commits.json"
+      },
+      {
+        "added": "48",
+        "deleted": "0",
+        "path": "docs/validation/zotero-annotations-20261119/reconciliation/merge-resolution-review.md"
+      },
+      {
+        "added": "2767",
+        "deleted": "0",
+        "path": "docs/validation/zotero-annotations-20261119/reconciliation/published-replay-audit.json"
+      },
+      {
+        "added": "2779",
+        "deleted": "0",
+        "path": "docs/validation/zotero-annotations-20261119/reconciliation/published-source-audit.json"
+      },
+      {
+        "added": "1694",
+        "deleted": "0",
+        "path": "docs/validation/zotero-annotations-20261119/reconciliation/remote-snapshot-20261119.json"
+      },
+      {
+        "added": "11",
+        "deleted": "0",
+        "path": "docs/validation/zotero-annotations-20261119/runtime/env.sh"
+      },
+      {
+        "added": "1590",
+        "deleted": "0",
+        "path": "docs/validation/zotero-annotations-20261119/runtime/prefetch.json"
+      },
+      {
+        "added": "13",
+        "deleted": "0",
+        "path": "docs/validation/zotero-annotations-20261119/runtime/sdk-receipt.json"
+      },
+      {
+        "added": "28",
+        "deleted": "0",
+        "path": "docs/validation/zotero-annotations-20261119/runtime/tools-ready.json"
+      },
+      {
+        "added": "57",
+        "deleted": "0",
+        "path": "docs/validation/zotero-annotations-20261119/runtime/workspace-ready.json"
+      },
+      {
+        "added": "65",
+        "deleted": "74",
+        "path": "docs/validation/zotero-word-parity-20261118/README.md"
+      },
+      {
+        "added": "7",
+        "deleted": "0",
+        "path": "docs/validation/zotero-word-parity-20261118/continuation/README.md"
+      },
+      {
+        "added": "11",
+        "deleted": "0",
+        "path": "docs/validation/zotero-word-parity-20261118/continuation/diagnostic-9547/archive.json"
+      },
+      {
+        "added": "-",
+        "deleted": "-",
+        "path": "docs/validation/zotero-word-parity-20261118/continuation/diagnostic-9547/complete-results.tar.gz"
+      },
+      {
+        "added": "643",
+        "deleted": "0",
+        "path": "docs/validation/zotero-word-parity-20261118/continuation/diagnostic-9547/independent-audit.json"
+      },
+      {
+        "added": "1108",
+        "deleted": "0",
+        "path": "docs/validation/zotero-word-parity-20261118/continuation/diagnostic-9547/summary.json"
+      },
+      {
+        "added": "57",
+        "deleted": "0",
+        "path": "docs/validation/zotero-word-parity-20261118/continuation/diagnostic-9547/whitespace-classification.json"
+      },
+      {
+        "added": "116",
+        "deleted": "0",
+        "path": "docs/validation/zotero-word-parity-20261118/continuation/final/archive.json"
+      },
+      {
+        "added": "-",
+        "deleted": "-",
+        "path": "docs/validation/zotero-word-parity-20261118/continuation/final/complete-results.tar.gz"
+      },
+      {
+        "added": "678",
+        "deleted": "0",
+        "path": "docs/validation/zotero-word-parity-20261118/continuation/final/independent-audit.json"
+      },
+      {
+        "added": "340",
+        "deleted": "0",
+        "path": "docs/validation/zotero-word-parity-20261118/continuation/final/independent_gate_audit.py"
+      },
+      {
+        "added": "1150",
+        "deleted": "0",
+        "path": "docs/validation/zotero-word-parity-20261118/continuation/final/summary.json"
+      },
+      {
+        "added": "-",
+        "deleted": "-",
+        "path": "docs/validation/zotero-word-parity-20261118/continuation/focused-ime/editor-ime.jsonl.gz"
+      },
+      {
+        "added": "310",
+        "deleted": "0",
+        "path": "docs/validation/zotero-word-parity-20261118/continuation/focused-ime/independent-counts.json"
+      },
+      {
+        "added": "50",
+        "deleted": "0",
+        "path": "docs/validation/zotero-word-parity-20261118/continuation/focused-ime/manifest.json"
+      },
+      {
+        "added": "49",
+        "deleted": "0",
+        "path": "docs/validation/zotero-word-parity-20261118/continuation/focused-ime/pub-get.json"
+      },
+      {
+        "added": "-",
+        "deleted": "-",
+        "path": "docs/validation/zotero-word-parity-20261118/continuation/focused-ime/pub-get.log.gz"
+      },
+      {
+        "added": "-",
+        "deleted": "-",
+        "path": "docs/validation/zotero-word-parity-20261118/continuation/focused-ime/source-after.json.gz"
+      },
+      {
+        "added": "-",
+        "deleted": "-",
+        "path": "docs/validation/zotero-word-parity-20261118/continuation/focused-ime/source-before.json.gz"
+      },
+      {
+        "added": "-",
+        "deleted": "-",
+        "path": "docs/validation/zotero-word-parity-20261118/continuation/focused-ime/studio-ime.jsonl.gz"
+      },
+      {
+        "added": "468",
+        "deleted": "0",
+        "path": "docs/validation/zotero-word-parity-20261118/continuation/focused-ime/summary.json"
+      },
+      {
+        "added": "2006",
+        "deleted": "0",
+        "path": "docs/validation/zotero-word-parity-20261118/continuation/reconciliation/api-inventory-20261118.json"
+      },
+      {
+        "added": "2320",
+        "deleted": "0",
+        "path": "docs/validation/zotero-word-parity-20261118/continuation/reconciliation/final-source-audit.json"
+      },
+      {
+        "added": "153",
+        "deleted": "0",
+        "path": "docs/validation/zotero-word-parity-20261118/continuation/reconciliation/historical-merge-check.json"
+      },
+      {
+        "added": "2320",
+        "deleted": "0",
+        "path": "docs/validation/zotero-word-parity-20261118/continuation/reconciliation/published-local-audit.json"
+      },
+      {
+        "added": "2320",
+        "deleted": "0",
+        "path": "docs/validation/zotero-word-parity-20261118/continuation/reconciliation/qualified-source-audit.json"
+      },
+      {
+        "added": "41",
+        "deleted": "0",
+        "path": "docs/validation/zotero-word-parity-20261118/continuation/review/independent-list-probe.dart"
+      },
+      {
+        "added": "-",
+        "deleted": "-",
+        "path": "docs/validation/zotero-word-parity-20261118/continuation/review/independent-list-probe.log.gz"
+      },
+      {
+        "added": "-",
+        "deleted": "-",
+        "path": "docs/validation/zotero-word-parity-20261118/continuation/review/notes-pane-gesture-probe.jsonl.gz"
+      },
+      {
+        "added": "56",
+        "deleted": "0",
+        "path": "docs/validation/zotero-word-parity-20261118/continuation/review/notes-pane-reachability-review.json"
+      },
+      {
+        "added": "-",
+        "deleted": "-",
+        "path": "docs/validation/zotero-word-parity-20261118/continuation/review/notes-pane-reachability-validation.jsonl.gz"
+      },
+      {
+        "added": "13",
+        "deleted": "0",
+        "path": "docs/validation/zotero-word-parity-20261118/continuation/runtime/flutter-recovery.json"
+      },
+      {
+        "added": "18",
+        "deleted": "0",
+        "path": "docs/validation/zotero-word-parity-20261118/continuation/runtime/flutter-tools-pub-get.json"
+      },
+      {
+        "added": "-",
+        "deleted": "-",
+        "path": "docs/validation/zotero-word-parity-20261118/continuation/runtime/flutter-tools-pub-get.log.gz"
+      },
+      {
+        "added": "1265",
+        "deleted": "0",
+        "path": "docs/validation/zotero-word-parity-20261118/continuation/runtime/prefetch-176.json"
+      },
+      {
+        "added": "114",
+        "deleted": "0",
+        "path": "docs/validation/zotero-word-parity-20261118/continuation/runtime/runtime-ready.json"
+      },
+      {
+        "added": "37",
+        "deleted": "0",
+        "path": "docs/validation/zotero-word-parity-20261118/continuation/runtime/runtime-sdk-ready.json"
+      },
+      {
+        "added": "-",
+        "deleted": "-",
+        "path": "docs/validation/zotero-word-parity-20261118/continuation/runtime/workspace-pub-get.log.gz"
+      },
+      {
+        "added": "99",
+        "deleted": "4",
+        "path": "docs/validation/zotero-word-parity-20261118/plan.json"
+      },
+      {
+        "added": "21",
+        "deleted": "1",
+        "path": "docs/validation/zotero-word-parity-20261118/publication-checkpoints.json"
+      },
+      {
+        "added": "356",
+        "deleted": "78",
+        "path": "docs/validation/zotero-word-parity-20261118/run_local.py"
+      },
+      {
+        "added": "325",
+        "deleted": "0",
+        "path": "docs/validation/zotero-word-parity-20261118/test_run_local.py"
+      },
+      {
+        "added": "59",
+        "deleted": "13",
+        "path": "docs/zotero-support.md"
+      },
+      {
+        "added": "12",
+        "deleted": "0",
+        "path": "docs/zotero-validation.md"
+      },
+      {
+        "added": "14",
+        "deleted": "0",
+        "path": "packages/quds_office_editor/CHANGELOG.md"
+      },
+      {
+        "added": "5",
+        "deleted": "0",
+        "path": "packages/quds_office_editor/example/lib/suite_workspace.dart"
+      },
+      {
+        "added": "29",
+        "deleted": "24",
+        "path": "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart"
+      },
+      {
+        "added": "8",
+        "deleted": "3",
+        "path": "packages/quds_office_editor/lib/src/embed/office_controller.dart"
+      },
+      {
+        "added": "22",
+        "deleted": "22",
+        "path": "packages/quds_office_editor/lib/src/embed/office_editors.dart"
+      },
+      {
+        "added": "26",
+        "deleted": "3",
+        "path": "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart"
+      },
+      {
+        "added": "97",
+        "deleted": "70",
+        "path": "packages/quds_office_editor/test/word_notes_proofing_controller_test.dart"
+      },
+      {
+        "added": "39",
+        "deleted": "3",
+        "path": "packages/quds_office_editor/test/word_notes_proofing_pane_test.dart"
+      },
+      {
+        "added": "601",
+        "deleted": "133",
+        "path": "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart"
+      },
+      {
+        "added": "54",
+        "deleted": "0",
+        "path": "packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart"
+      },
+      {
+        "added": "29",
+        "deleted": "0",
+        "path": "packages/quds_office_editor/test/word_zotero_direct_command_test.dart"
+      },
+      {
+        "added": "13",
+        "deleted": "0",
+        "path": "packages/quds_office_engine/CHANGELOG.md"
+      },
+      {
+        "added": "137",
+        "deleted": "32",
+        "path": "packages/quds_office_engine/lib/src/word/model/word_lists.dart"
+      },
+      {
+        "added": "25",
+        "deleted": "3",
+        "path": "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart"
+      },
+      {
+        "added": "138",
+        "deleted": "15",
+        "path": "packages/quds_office_engine/lib/src/word/model/word_zotero_note.dart"
+      },
+      {
+        "added": "8",
+        "deleted": "1",
+        "path": "packages/quds_office_engine/lib/src/zotero/zotero_citing.dart"
+      },
+      {
+        "added": "173",
+        "deleted": "0",
+        "path": "packages/quds_office_engine/test/word_list_numbering_snapshot_test.dart"
+      },
+      {
+        "added": "345",
+        "deleted": "0",
+        "path": "packages/quds_office_engine/test/word_zotero_note_list_test.dart"
+      },
+      {
+        "added": "167",
+        "deleted": "76",
+        "path": "packages/quds_office_engine/test/zotero_add_note_protocol_test.dart"
+      },
+      {
+        "added": "10",
+        "deleted": "3",
+        "path": "tools/mail/check_store.py"
+      },
+      {
+        "added": "76",
+        "deleted": "0",
+        "path": "tools/mail/test_check_store.py"
+      }
+    ]
+  }
+]

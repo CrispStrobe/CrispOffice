@@ -1,0 +1,136 @@
+{
+  "created_at_utc": "2026-11-19T05:41:01.416016+00:00",
+  "scope": "Runtime preparation only; no product test result is claimed.",
+  "archive": "runtime-evidence.tar.xz",
+  "bytes": 1912460,
+  "sha256": "9d0d6701ba34134b590dd2a64e5aa5cf768506a55218f535b6e11a19338ce4e2",
+  "entries": [
+    {
+      "path": "bootstrap_runtime.py",
+      "bytes": 9286,
+      "sha256": "c8705588f02ab6a6611629cb9afb20263c956930a7e1cc529d38af4734323fa1"
+    },
+    {
+      "path": "finish_runtime.py",
+      "bytes": 3919,
+      "sha256": "808ae4f3dd3f43bfca04394b3c7cfa7ca82640411278c89f4f63b3766e1decb0"
+    },
+    {
+      "path": "bind_runtime.py",
+      "bytes": 4566,
+      "sha256": "dccada9744a11b0eff9b93889b138667aa96a121598b1294e3d6550e21963e29"
+    },
+    {
+      "path": "runtime.json",
+      "bytes": 5046,
+      "sha256": "3d945eb8679e6107243baa93670c3a174b56ebdc0582288f96367ace96b1dc30"
+    },
+    {
+      "path": "runtime-complete.json",
+      "bytes": 2783,
+      "sha256": "0cd80687561806c3d6997800f41a47e3eec388fc8cb6ba7729a7567ea00f759f"
+    },
+    {
+      "path": "binding-receipt.json",
+      "bytes": 1104,
+      "sha256": "fa840094a56af120c80bc6d7568d060c53aa8c1dc8239d88d8d31d702c746bd2"
+    },
+    {
+      "path": "retained-inputs.json.gz",
+      "bytes": 1851874,
+      "sha256": "c149fbd6119a68360fcd28b53621eb7cbb0baed4bc29895d5a91f85c9f9b354f"
+    },
+    {
+      "path": "pub-cache-receipt.json",
+      "bytes": 44348,
+      "sha256": "78c33990120aa8ffdffc52cc7e9f34b09ce31cb7092b9c46887bb4e7944ec591"
+    },
+    {
+      "path": "archive-members.json",
+      "bytes": 493700,
+      "sha256": "8799648215251c6cee363cd1573275efe5389a18fe7878dc9523b7129130438d"
+    },
+    {
+      "path": "cache-omissions.json",
+      "bytes": 441,
+      "sha256": "f593fcf4bd5e5ea905503ed354e256a7746c1594ec3e78a35f6b3fa03b482af4"
+    },
+    {
+      "path": "env.sh",
+      "bytes": 588,
+      "sha256": "6139f1395dbf2e3d3fbe3e1d69026c7a643ca4185faf3fa6c854abf359f2cad3"
+    },
+    {
+      "path": "bootstrap.log",
+      "bytes": 387,
+      "sha256": "e8c925970b4b98db47f580c38ec0c4aba51f35cdbb4c4262c68e2cff3df0516e"
+    },
+    {
+      "path": "finish_runtime.log",
+      "bytes": 2783,
+      "sha256": "0cd80687561806c3d6997800f41a47e3eec388fc8cb6ba7729a7567ea00f759f"
+    },
+    {
+      "path": "bind_runtime.log",
+      "bytes": 1104,
+      "sha256": "fa840094a56af120c80bc6d7568d060c53aa8c1dc8239d88d8d31d702c746bd2"
+    },
+    {
+      "path": "logs/archive.sha256",
+      "bytes": 109,
+      "sha256": "bf70ba72057fe9fa0d3caf671614dac451ce2590fb0d9a31f495fbef35824726"
+    },
+    {
+      "path": "logs/download.stderr",
+      "bytes": 3319,
+      "sha256": "33345738d5e829ca4b9581b6331bb53dbda20b2038d5331b6d4d8257bdd30530"
+    },
+    {
+      "path": "logs/download.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "logs/flutter-tools-pub-get.log",
+      "bytes": 1192,
+      "sha256": "c7df7cfd9293a198ccdd7a9d714748cf63b772af8efc5fbaef427528064a3c5f"
+    },
+    {
+      "path": "logs/flutter-version.log",
+      "bytes": 628,
+      "sha256": "e873d9650b7c1b0579881c1e447746137898c7932086921f8ccd1854f484c976"
+    },
+    {
+      "path": "logs/sdk-source-diff.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "logs/sdk-source-restore.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "logs/sqlite-smoke-pub.log",
+      "bytes": 462,
+      "sha256": "0ba1f451943f3c7fb7184b5e4790f0e374d25aae3ff36dad94a9d53670a59734"
+    },
+    {
+      "path": "logs/sqlite-smoke.log",
+      "bytes": 221,
+      "sha256": "a3312aff86922de0b52eddfb3120d2dc5c5dbf559abc540525213f7f121472f8"
+    },
+    {
+      "path": "logs/workspace-pub-get.log",
+      "bytes": 68,
+      "sha256": "d4cb7a3c68b4133b4f6e58c67ff5bfd13725d8021e930388cdc98da8a575919d"
+    },
+    {
+      "path": "logs/workspace-sqlite-smoke.log",
+      "bytes": 221,
+      "sha256": "a3312aff86922de0b52eddfb3120d2dc5c5dbf559abc540525213f7f121472f8"
+    }
+  ],
+  "source_basis": "Adapted scripts from docs/validation/mail-continue-20261119/runtime/runtime-evidence.tar.xz at db7501ee; scratch scripts use current paths and locally downloaded hash-verified SDK archive.",
+  "no_github_actions_used": true
+}
