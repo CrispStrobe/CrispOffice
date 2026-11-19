@@ -1,0 +1,73 @@
+{
+  "source_commit": "4624218f9468eeeac07f1f100ac0e4bb6b050a17",
+  "archive_sha256": "b9d6394c5d29ddfa05703079fea87fb49f45c336f0af696bfa452d7af498cebf",
+  "archive_bytes": 15888,
+  "members": [
+    {
+      "path": "adapter-review/after/third_party/enough_mail/lib/src/private/util/client_base.dart",
+      "bytes": 18965,
+      "sha256": "4327a44b05a9b3c6765cd1fb22692ee4e0cf0bc828b68d815df2c03d663f3d49"
+    },
+    {
+      "path": "adapter-review/after/third_party/enough_mail/lib/src/private/util/client_connection.dart",
+      "bytes": 10195,
+      "sha256": "6928f1a7dea3555a1473ddf097caa0aa7ea881cab36b2e22ef93d29ef1c1bd6a"
+    },
+    {
+      "path": "adapter-review/before/third_party/enough_mail/lib/src/private/util/client_base.dart",
+      "bytes": 18686,
+      "sha256": "c132562605a37f21732a94209bb27520cdb7aac6008f0f5a0c769dfe22975c8a"
+    },
+    {
+      "path": "adapter-review/before/third_party/enough_mail/lib/src/private/util/client_connection.dart",
+      "bytes": 8553,
+      "sha256": "f380b40cbf1030c24c274dc3b46367143537d958e5e729e5ec01429fd36c3fa3"
+    },
+    {
+      "path": "adapter-review/raw-stream-probe-receipt.json",
+      "bytes": 2131,
+      "sha256": "ee3a3663780727d5cf44f6cbe58428e2b782f7d3fbac393b17b1e6deac6d3ab6"
+    },
+    {
+      "path": "adapter-review/raw-stream-probe.log",
+      "bytes": 220,
+      "sha256": "b45114a7b1bd1ee0298e52f795f39823053b7d916fd168762d8048d43b3e4494"
+    },
+    {
+      "path": "adapter-review/raw_stream_probe.dart",
+      "bytes": 4983,
+      "sha256": "2dd22eacddf013d1e7781de38cf604193be37db41fbd81f0a19ed49095e03b1b"
+    },
+    {
+      "path": "adapter-review/source-manifest.json",
+      "bytes": 710,
+      "sha256": "aeea5b11dbe01310e788c784941e1bdb0aafe5e751cfc8e244da417cd8be68f5"
+    },
+    {
+      "path": "adapter-review/tls-stream-disconnect.patch",
+      "bytes": 4636,
+      "sha256": "72acea8f829956d0a78f0709e6daedd3dd0b5b28df3a4b8f121a89cb32dcf0d7"
+    },
+    {
+      "path": "suites-and-fixtures/native_tls_round_trip_test.dart",
+      "bytes": 11550,
+      "sha256": "26c7824a8d33b3247cccf3d5dcf27588d52c426b81260a3ac8f4d1fae5d57037"
+    },
+    {
+      "path": "suites-and-fixtures/round-trip-client-connection.patch",
+      "bytes": 1041,
+      "sha256": "8cd0e3ff2502f362842f58a2340e37504c29709159de85d535b56f357bf06c15"
+    },
+    {
+      "path": "suites-and-fixtures/tls-suite-review.json",
+      "bytes": 9711,
+      "sha256": "eb27b25a75e9d12f87617c744725176e761db55d9c52bddd2476d201a16b2ec1"
+    },
+    {
+      "path": "suites-and-fixtures/transport-tls-plan.json",
+      "bytes": 7603,
+      "sha256": "1e84fbd380344051c1f3cd0820ddfe61f3b88937ca84901e0f1c1aea286e8169"
+    }
+  ],
+  "generated_outputs_preserved_as_hashes_only": []
+}

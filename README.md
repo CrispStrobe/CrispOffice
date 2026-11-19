@@ -529,10 +529,13 @@ retains the source-bound test results, strict analysis/format checks and raw
 evidence. The earlier failed store attempt remains a separate historical record.
 
 The initial IMAP adapter provides bounded UID-window synchronization, exact
-message retrieval and guarded flag/move operations with required TLS. Real TLS
-and disposable-account interoperability, host OAuth/refresh, large or sparse
-mailbox pagination, composition/SMTP and the shared mailbox workspace remain
-open. See the [implementation status and local checks](docs/roadmaps/mail/status.md).
+message retrieval and guarded flag/move operations with required TLS. Linux
+loopback tests passed implicit TLS and STARTTLS exchange, certificate/hostname
+rejection, stalled-handshake cancellation/deadlines and transport write controls.
+External-provider and other-OS interoperability, disposable accounts, host
+OAuth/refresh, large or sparse mailbox pagination, composition/SMTP and the
+shared mailbox workspace remain open. See the
+[implementation status and local checks](docs/roadmaps/mail/status.md).
 The standalone Office host and CrispCloud migration remain later tasks; these
 packages do not qualify an application release.
 

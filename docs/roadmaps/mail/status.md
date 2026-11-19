@@ -16,7 +16,7 @@ remains [implementation-plan.md](implementation-plan.md).
 | M03 codec | Bounded byte-range scanning, public upstream header parsing, strict transfer/charset decoding, exact raw export and attachment snapshots, deterministic multipart alternatives/CID metadata | Synchronous bounded work; no streaming claim or low-memory-device qualification |
 | M04 reader | Account-free full/compact reader, custom RenderBox selection, decoded search/copy, static HTML projection, local bounded CID PNG/JPEG, immutable source/attachment callbacks, policy-approved links, actual MIME example | Browser runtime no-fetch gate remains unqualified; host parity is a separate task |
 | M05 store | Drift/SQLite transactional repository, immutable drafts/outbox blobs, memberships/tombstones/cursor CAS, bounded FTS5, pending-operation and vault-cleanup journals, account/profile retirement, cache/editor pins and schema v3 with nullable durable flags | Schema v3 and the integrated flags/transport source passed local qualification; browser storage and power-loss durability are unqualified; the database is unencrypted |
-| M06 native foundation | Manual IMAP configuration, scoped host-vault lookup, selectable folders, finite UID-window synchronization, exact on-demand message literals, guarded UID flag/move commands and a conditional unsupported browser entry | Integrated local qualification passed; OAuth authorization hosts, real TLS/interoperability, large or sparse mailbox pagination, SMTP and the account-aware UI remain open |
+| M06 native foundation | Manual IMAP configuration, scoped host-vault lookup, selectable folders, finite UID-window synchronization, exact on-demand message literals, guarded UID flag/move commands and a conditional unsupported browser entry | Integrated local and Linux loopback TLS qualification passed; OAuth authorization hosts, external-provider/other-OS interoperability, large or sparse mailbox pagination, SMTP and the account-aware UI remain open |
 
 M06 is partially implemented, not complete. M04W and M07–M13 still require the
 mailbox workspace, composition/SMTP sending, Office attachment editing,
@@ -89,7 +89,14 @@ loads current host credentials and opens a fresh connection. Password,
 XOAUTH2 and OAUTHBEARER protocol paths are present; token acquisition, refresh,
 system-browser PKCE and platform vault integration remain host work. Required
 STARTTLS and implicit TLS expose no certificate bypass or cleartext fallback.
-Controlled streams do not qualify actual TLS/certificate/hostname behavior.
+Real Linux loopback tests now exercise both TLS modes through the production
+connector: trusted local exchange, default-trust rejection and hostname mismatch,
+plus cancellation/deadlines after an observed ClientHello. They require the
+stalled peer to observe closure before teardown and verify a fresh connection.
+Delayed 1 MiB encrypted exchanges preserve exact bytes and subsequent replies;
+deterministic partial-write controls cover final readiness, and abort cancels
+an idle write producer. These checks do not qualify external providers or other
+operating systems.
 
 Synchronization fetches bounded header projections and flags by numeric UID
 window. Scoped cursors include UIDVALIDITY and a fixed sweep ceiling; records,
@@ -115,27 +122,29 @@ The integrated transport/flags source passed local controlled-parser,
 SQLite/coordinator and Node qualification. Coverage includes unsolicited flag
 notifications, EXPUNGE ambiguity, exact literal bytes, strict FETCH structure and
 decimal UID validation. Actual disposable-account interoperability, OAuth
-redirects/refresh, real TLS handshakes, SMTP, the mailbox UI and actual browser
-persistence remain separate gates.
+redirects/refresh, TLS interoperability beyond the Linux loopback fixtures,
+SMTP, the mailbox UI and actual browser persistence remain separate gates.
 
 ## Local verification
 
 ### Integrated flags and native IMAP qualification — PASS
 
 The [Office integration report](../../validation/office-main-integration-20261119/README.md)
-binds the final **32-suite / 389-case** focused pass to source
-`7d279e084bae438d383630726ad7b0514da77d35`. It covers 80 native transport cases,
-three Node unsupported-entry cases, 244 shared IMAP/POP/SMTP and byte-reader
-regressions, 32 MIME cases and 30 Mail-reader cases. Strict analysis, formatting
-and whitespace checks also passed, with the source and runtime inputs unchanged.
+binds the final **35-suite / 412-case** focused pass to source
+`4624218f9468eeeac07f1f100ac0e4bb6b050a17`. It covers 80 native transport cases,
+23 TLS/transport-ownership cases, three Node unsupported-entry cases, 244 shared
+IMAP/POP/SMTP and byte-reader regressions, 32 MIME cases and 30 Mail-reader cases.
+Strict analysis, formatting and whitespace checks also passed, with the source
+and runtime inputs unchanged.
 
-The retained core/store gate records **199 passing executions / 129 distinct
-scenarios**, with source continuity checked for the integrated tree. Its VM/Node
-repetitions are separate executions. The report retains raw events, receipts,
-source/runtime identities, failed reproductions and independent audit records;
-it does not add earlier Office, Notes or thesaurus results to this qualification.
-Controlled streams, Node and Flutter tests do not close actual browser, live TLS,
-installed Studio/OS IME, live Zotero or human linguistic acceptance.
+The fresh core/store rerun records **199 passing executions / 129 distinct
+scenarios** on the integrated source. Together, the gates comprise **611 passing
+executions / 541 distinct cases**; core/store VM/Node repetitions account for the
+difference. The report retains raw events, receipts, source/runtime identities,
+failed reproductions and independent audit records. Earlier Office, Notes and
+thesaurus results retain their original source identities and are not added.
+Actual browser, external-provider/other-OS TLS interoperability, installed
+Studio/OS IME, live Zotero and human linguistic acceptance remain open.
 
 ### Earlier baseline qualification — PASS
 
@@ -345,9 +354,9 @@ harness, not the standalone Office application.
    identities. Rerun affected checks for subsequent source changes and retain
    their raw logs and remote checkpoints separately from earlier evidence.
 2. Continue the remaining M06 work: discovered-UID pagination for large/sparse
-   mailboxes, host OAuth/refresh and lifecycle scheduling, real TLS rejection
-   controls and authorized disposable-account interoperability. Generic browser
-   socket transport remains explicitly unsupported; no automatic retry is added
+   mailboxes, host OAuth/refresh and lifecycle scheduling, TLS qualification
+   beyond Linux loopback and authorized disposable-account interoperability.
+   Generic browser socket transport remains explicitly unsupported; no automatic retry is added
    without its own bounded policy and reconciliation checks.
 3. Continue M07 composition/submission and M04W's repository-driven mailbox
    workspace. Preserve immutable queued revisions, explicit SMTP outcomes,
