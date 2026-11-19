@@ -1,5 +1,5 @@
 // Browser smoke of the real web transport (dart2js): fetches the verified
-// noprob bundle and a corpus from the serving origin, opens the bundled
+// proofing-bin bundle and a corpus from the serving origin, opens the bundled
 // worker, checks known analyses and measures load and throughput. Driven by
 // tool/browser_smoke.py, which serves the files and collects the report.
 import 'dart:convert';
@@ -39,11 +39,11 @@ Future<void> main() async {
   final report = <String, Object?>{'userAgent': web.window.navigator.userAgent};
   try {
     final files = {
-      for (final artifact in camelMorphMsaNoprob.files)
+      for (final artifact in camelMorphMsaProofingBin.files)
         artifact.file: await _bytes('/bundle/${artifact.file}'),
     };
     final morphology = CamelArabicMorphology(
-      database: MorphDatabaseBytes.verified(camelMorphMsaNoprob, files),
+      database: MorphDatabaseBytes.verified(camelMorphMsaProofingBin, files),
       workerUrl: Uri.base.resolve('/web/arabic_morph_worker.mjs'),
     );
     report['page_heap_mb_with_bundle_bytes'] = _pageHeapMb();
@@ -57,7 +57,7 @@ Future<void> main() async {
     report['info'] = morphology.info;
     // The transferred buffers now belong to the worker.
     report['database_bytes_left_in_page'] =
-        files[camelMorphMsaNoprob.database.file]!.lengthInBytes;
+        files[camelMorphMsaProofingBin.database.file]!.lengthInBytes;
 
     final known = await morphology.analyzeWords(['كتبوا', 'والمدرسة']);
     report['katabu_verb_plural'] = known['كتبوا']!.any(

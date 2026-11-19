@@ -149,8 +149,8 @@ class _StudioHunspellSetupDialogState extends State<StudioHunspellSetupDialog> {
           'against its pinned SHA-256 (manifest.json '
           '${_short(bundle.manifest.sha256)}, database '
           '${_short(bundle.database.sha256)}). The analyzer needs about '
-          '250 MB of memory while loaded'
-          '${kIsWeb ? ' (about 320 MB in this browser tab)' : ''}.',
+          '15 MB of memory while loaded'
+          '${kIsWeb ? ' (about 20 MB in this browser tab)' : ''}.',
           style: theme.textTheme.bodySmall,
         ),
         const SizedBox(height: 8),

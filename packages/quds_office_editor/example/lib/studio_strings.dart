@@ -151,9 +151,9 @@ final class StudioStrings {
     'اتصل بحساب IMAP/SMTP. يُستخدم الاكتشاف التلقائي ما لم يتم تفعيل إعدادات الخادم اليدوية.',
   );
   String get mailSessionNotice => _t(
-    'Session only: the password is not stored by this example.',
-    'Nur für diese Sitzung: Das Passwort wird von diesem Beispiel nicht gespeichert.',
-    'للجلسة فقط: لا يحفظ هذا المثال كلمة المرور.',
+    'The account and password are stored in the system keychain.',
+    'Konto und Passwort werden im Systemschlüsselbund gespeichert.',
+    'يُحفظ الحساب وكلمة المرور في سلسلة مفاتيح النظام.',
   );
   String get searchMail => _t('Search mail', 'E-Mail suchen', 'بحث في البريد');
   String get noMessages =>

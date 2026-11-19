@@ -42,7 +42,7 @@ class NativeStudioArabicMorphHost extends StudioArabicMorphHost {
     required Directory root,
     this.libraryPath,
     MorphInstaller? installer,
-    this.bundle = camelMorphMsaNoprob,
+    this.bundle = camelMorphMsaProofingBin,
   }) : _installer = installer ?? MorphInstaller(root),
        _status = StudioArabicMorphStatus(bundle: bundle);
 
@@ -106,6 +106,9 @@ class NativeStudioArabicMorphHost extends StudioArabicMorphHost {
   @override
   Future<void> refresh() async {
     try {
+      // Earlier bundles (the 78 MB noprob text database) are replaced, not
+      // migrated: they are removed and the user downloads this one.
+      await _installer.removeOtherBundles(bundle);
       final files = await _installer.installed(bundle);
       if (files == null) {
         await _deactivate();

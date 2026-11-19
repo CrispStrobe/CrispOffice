@@ -20,13 +20,14 @@ ArabicMorphTransport createArabicMorphTransport({
 
 /// A module Web Worker running the bundled WebAssembly analyzer. The verified
 /// bundle bytes are posted to it once; the worker fetches only its own
-/// same-origin code and Wasm assets. The parsed database occupies about
-/// 320 MB of Wasm memory in the worker.
+/// same-origin code and Wasm assets. The binary proofing database is used in
+/// place (12 MB of Wasm memory); results come back as one transferred buffer
+/// per batch in the compact format, decoded lazily here.
 final class _WebTransport implements ArabicMorphTransport {
   _WebTransport(this.url);
   final Uri url;
-  final _pending = <int, Completer<String>>{};
-  final _decoder = ArabicAnalysisDecoder();
+  final _pending = <int, Completer<Object>>{};
+  CompactAnalysisDecoder? _decoder;
   web.Worker? _worker;
   bool _disposed = false;
   int _sequence = 0;
@@ -48,12 +49,18 @@ final class _WebTransport implements ArabicMorphTransport {
           final message = value as JSObject;
           final id = message.getProperty<JSAny?>('id'.toJS);
           final body = message.getProperty<JSAny?>('response'.toJS);
+          final buffer = message.getProperty<JSAny?>('buffer'.toJS);
           final failure = message.getProperty<JSAny?>('unavailable'.toJS);
           final key = id != null && id.isA<JSNumber>()
               ? (id as JSNumber).toDartInt
               : null;
           if (key != null && body != null && body.isA<JSString>()) {
             _pending.remove(key)?.complete((body as JSString).toDart);
+          }
+          if (key != null && buffer != null && buffer.isA<JSArrayBuffer>()) {
+            _pending
+                .remove(key)
+                ?.complete((buffer as JSArrayBuffer).toDart.asUint8List());
           }
           if (failure != null && failure.isA<JSString>()) {
             _pending
@@ -104,7 +111,7 @@ final class _WebTransport implements ArabicMorphTransport {
     _worker = null;
   }
 
-  Future<String> _send(JSObject request, {JSArray<JSObject>? transfer}) {
+  Future<Object> _send(JSObject request, {JSArray<JSObject>? transfer}) {
     if (_disposed) {
       return Future.error(
         const ArabicMorphUnavailableException(
@@ -114,7 +121,7 @@ final class _WebTransport implements ArabicMorphTransport {
     }
     final worker = _worker ??= _start();
     final id = ++_sequence;
-    final result = Completer<String>();
+    final result = Completer<Object>();
     _pending[id] = result;
     try {
       final envelope = JSObject()
@@ -136,7 +143,10 @@ final class _WebTransport implements ArabicMorphTransport {
     return result.future;
   }
 
-  static Map<String, Object?> _success(String body) {
+  static Map<String, Object?> _success(Object body) {
+    if (body is! String) {
+      throw const FormatException('Malformed Arabic morphology response.');
+    }
     final decoded = jsonDecode(body);
     if (decoded is! Map<String, Object?> || decoded['status'] != 'success') {
       throw ArabicMorphUnavailableException(
@@ -169,7 +179,9 @@ final class _WebTransport implements ArabicMorphTransport {
       ..setProperty('manifestSha256'.toJS, database.bundle.manifest.sha256.toJS)
       ..setProperty('files'.toJS, files);
     final body = _success(await _send(request, transfer: buffers.toJS));
-    return (body['info'] as Map).cast<String, Object?>();
+    final info = (body['info'] as Map).cast<String, Object?>();
+    _decoder = CompactAnalysisDecoder((info['keys']! as List).cast<String>());
+    return info;
   }
 
   static JSUint8Array _bytes(Uint8List data, List<JSObject> buffers) {
@@ -185,14 +197,13 @@ final class _WebTransport implements ArabicMorphTransport {
     final request = JSObject()
       ..setProperty('op'.toJS, 'analyze'.toJS)
       ..setProperty('words'.toJS, [for (final w in words) w.toJS].toJS);
-    final body = _success(await _send(request));
-    final results = body['results'];
-    if (results is! List<Object?> || results.length != words.length) {
+    final body = await _send(request);
+    final decoder = _decoder;
+    if (body is String) _success(body); // a failure report
+    if (body is! Uint8List || decoder == null) {
       throw const FormatException('Malformed Arabic morphology response.');
     }
-    return [
-      for (final item in results) item == null ? null : _decoder.decode(item),
-    ];
+    return decoder.decode(body, words.length);
   }
 
   @override

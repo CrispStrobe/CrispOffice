@@ -108,43 +108,53 @@ final class WordProofingSummary {
   final List<WordProofingIssue> issues;
   final List<OfficeProofingReport> reports;
 
-  bool get complete =>
-      hasResults &&
-      !checking &&
-      !scheduled &&
-      !manualProvidersSkipped &&
-      checkedParagraphCount == paragraphCount &&
-      skippedContentCount == 0 &&
-      reports.isNotEmpty &&
-      reports.every((report) => report.complete);
+  Iterable<OfficeProofingResult> get _supportedResults sync* {
+    for (final report in reports) {
+      for (final result in report.results) {
+        if (result.status != OfficeProofingStatus.unsupported) yield result;
+      }
+    }
+  }
+
+  bool get complete {
+    final supported = _supportedResults.toList();
+    return hasResults &&
+        !checking &&
+        !scheduled &&
+        !manualProvidersSkipped &&
+        checkedParagraphCount == paragraphCount &&
+        skippedContentCount == 0 &&
+        supported.isNotEmpty &&
+        supported.every(
+          (result) => result.status == OfficeProofingStatus.success,
+        );
+  }
 
   String get statusMessage {
     if (checking) return 'Checking document…';
     if (scheduled) return 'Waiting for a pause in typing…';
     if (!hasResults) return 'Document has not been checked.';
-    final problems = <String>{};
-    for (final report in reports) {
-      if (!report.complete) {
-        for (final result in report.results) {
-          if (result.status != OfficeProofingStatus.success) {
-            problems.add(
-              result.message ?? '${result.providerId}: ${result.status.name}',
-            );
-          }
-        }
-      }
-    }
+    final supported = _supportedResults.toList();
+    final problems = <String>{
+      for (final result in supported)
+        if (result.status != OfficeProofingStatus.success)
+          result.message ?? '${result.providerId}: ${result.status.name}',
+    };
     final coverage =
         '$checkedParagraphCount of $paragraphCount paragraphs checked';
     final excluded = skippedContentCount == 0
         ? ''
         : '; $skippedContentCount excluded or unsupported content ranges';
+    if (reports.isEmpty) return '$coverage$excluded. No checkable text.';
+    if (supported.isEmpty) {
+      final language = reports.first.request.language;
+      return '$coverage$excluded. No configured checker supports $language.';
+    }
     if (problems.isNotEmpty) return '$coverage$excluded. ${problems.join(' ')}';
     if (manualProvidersSkipped) {
       return '$coverage$excluded. ${issues.length} findings; '
           'choose Check document to include the manual grammar check.';
     }
-    if (reports.isEmpty) return '$coverage$excluded. No checkable text.';
     if (!complete) {
       return '$coverage$excluded. ${issues.length} findings; coverage is incomplete.';
     }

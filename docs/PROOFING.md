@@ -164,22 +164,31 @@ Arabic/Hebrew letters). Evidence and packaging steps are in the
 `ArabicMorphology` with CrispEmbed's native port of the camel_tools 1.6.0
 analyzer (MIT; Ryu Apache-2.0). It runs in a persistent FFI isolate natively
 and as a bundled WebAssembly worker on the web. The data is the Camel Morph
-MSA v1.0 `noprob` bundle (CC BY 4.0, NYU Abu Dhabi), which the user downloads
-from the Dictionaries dialog. It is pinned to `cstr/camel-morph-msa-v1.0` at
-`b31cf4a8…`, verified by SHA-256 and installed atomically.
+MSA v1.0 `proofing-bin` bundle (CC BY 4.0, NYU Abu Dhabi), which the user
+downloads from the Dictionaries dialog. It is pinned to
+`cstr/camel-morph-msa-v1.0` at `d5364e04…` (12 MB), verified by SHA-256 and
+installed atomically. Installs of the earlier 78 MB `noprob` text bundle are
+removed.
 
-`noprob` drops only the Penn-Treebank-derived probabilities, so analyses are
-unordered. Rules must reason over every analysis, and a top-1 analysis must
-not be used (see [step 3c](roadmaps/arabic-proofing.md)). The Studio passes
-one long-lived analyzer to the Arabic rules through their `morphology:`
-parameter. Without installed data, morphology-dependent rules remain silent.
+`proofing-bin` is the `noprob` database in CrispEmbed's memory-mapped binary
+format, reduced to the 24 features the rules and lemma identity use.
+Analyses and those values are exact against camel_tools. `noprob` drops only
+the Penn-Treebank-derived probabilities, so analyses are unordered. Rules
+must reason over every analysis, and a top-1 analysis must not be used (see
+[step 3c](roadmaps/arabic-proofing.md)). The Studio passes one long-lived
+analyzer to the Arabic rules through their `morphology:` parameter. Without
+installed data, morphology-dependent rules remain silent. The worker uses
+CrispEmbed's compact batch ABI, with no JSON.
 
 Local evidence on UD Arabic-PUD (7,419 distinct words), macOS arm64:
 
 | Path | Load | Throughput | Memory |
 | --- | ---: | ---: | --- |
-| Native | 1.2–1.4 s | about 1,300 words/s | 250 MB RSS |
-| Web worker in Chrome | 1.5–2.0 s | 600–890 words/s | 320 MB Wasm heap |
+| Native | 0.16–0.26 s (was 1.2–2.5 s) | 1,750–2,955 words/s (was 709–1,360) | 30 MB RSS after load (was 250 MB) |
+| Web worker in Chrome | 0.15 s (was 1.4–2.0 s) | about 3,500 words/s (was 600–950) | 16–19 MB Wasm heap (was 320 MB) |
+
+The rules report identical findings on all 1,000 PUD sentences with the
+previous and the new backend (673 findings).
 
 The package has 22 tests and the Studio 10, all with the real library and
 database and none skipped.
@@ -1449,7 +1458,7 @@ an unqualified grammar-coverage claim on the evidence recorded here.
 - [Hunspell alternative license grant](https://github.com/hunspell/hunspell/blob/master/license.hunspell)
 - [Camel Morph MSA v1.0 (CC BY 4.0 data)](https://github.com/CAMeL-Lab/camel_morph)
 - [camel_tools (MIT)](https://github.com/CAMeL-Lab/camel_tools)
-- [Published noprob bundle at the pinned revision](https://huggingface.co/cstr/camel-morph-msa-v1.0/tree/b31cf4a83f8ad63bb1989cf2879e72f23fadbfb0/noprob)
+- [Published proofing-bin bundle at the pinned revision](https://huggingface.co/cstr/camel-morph-msa-v1.0/tree/d5364e04af7a40b0c9044ed127606e585be15272/proofing-bin)
 - [German dictionary GPL data / MIT wrapper distinction](https://github.com/wooorm/dictionaries/blob/main/dictionaries/de/readme.md)
 - [Harper](https://github.com/Automattic/harper)
 - [Harper span convention](https://writewithharper.com/docs/harperjs/spans)
