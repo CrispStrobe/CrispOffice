@@ -1,0 +1,106 @@
+{
+  "qualification_target": "5fcdf726694b5356d8fb85fb8e01a715e0fadc0c",
+  "actual_ref_count": 417,
+  "classification": {
+    "ancestor": 378,
+    "unaccounted": 11,
+    "historical_equivalent": 28
+  },
+  "historical_equivalences_reverified": true,
+  "all_captured_refs_accounted_before_integration": false,
+  "unaccounted_heads": [
+    "0b8f8f7f78fbf4e2e26671ecf9a0d858c38ca75c",
+    "16cbbebdcf7781564658cc7636473c7d04846b38",
+    "199690563b206948871ea0279f5e59f686265f8b",
+    "c268ce3bceb05f92b7868e90ba8ce7b9a5bbbe1e",
+    "cd430b2229ff81e3d486c9ed95c80e92a41fe8af",
+    "f059065fa622da8cee7824d66d29a2aff414d529"
+  ],
+  "minimal_integration_frontier": [
+    "0b8f8f7f78fbf4e2e26671ecf9a0d858c38ca75c",
+    "199690563b206948871ea0279f5e59f686265f8b",
+    "c268ce3bceb05f92b7868e90ba8ce7b9a5bbbe1e",
+    "cd430b2229ff81e3d486c9ed95c80e92a41fe8af",
+    "f059065fa622da8cee7824d66d29a2aff414d529"
+  ],
+  "unaccounted_refs": [
+    {
+      "ref": "refs/heads/codex/mail-reader-20261118",
+      "sha": "199690563b206948871ea0279f5e59f686265f8b"
+    },
+    {
+      "ref": "refs/heads/codex/office-current-reconciliation-20261119",
+      "sha": "c268ce3bceb05f92b7868e90ba8ce7b9a5bbbe1e"
+    },
+    {
+      "ref": "refs/heads/codex/office-main-integration-20261119",
+      "sha": "cd430b2229ff81e3d486c9ed95c80e92a41fe8af"
+    },
+    {
+      "ref": "refs/heads/codex/office-main-sync-20261119",
+      "sha": "0b8f8f7f78fbf4e2e26671ecf9a0d858c38ca75c"
+    },
+    {
+      "ref": "refs/heads/feat/arabic-proofing-20261119",
+      "sha": "16cbbebdcf7781564658cc7636473c7d04846b38"
+    },
+    {
+      "ref": "refs/heads/main",
+      "sha": "f059065fa622da8cee7824d66d29a2aff414d529"
+    },
+    {
+      "ref": "refs/pull/172/head",
+      "sha": "199690563b206948871ea0279f5e59f686265f8b"
+    },
+    {
+      "ref": "refs/pull/176/head",
+      "sha": "16cbbebdcf7781564658cc7636473c7d04846b38"
+    },
+    {
+      "ref": "refs/pull/177/head",
+      "sha": "c268ce3bceb05f92b7868e90ba8ce7b9a5bbbe1e"
+    },
+    {
+      "ref": "refs/pull/178/head",
+      "sha": "0b8f8f7f78fbf4e2e26671ecf9a0d858c38ca75c"
+    },
+    {
+      "ref": "refs/pull/179/head",
+      "sha": "cd430b2229ff81e3d486c9ed95c80e92a41fe8af"
+    }
+  ],
+  "findings": [
+    "Main f059065f includes Arabic publication metadata commit df989580 and Arabic branch 16cbbebd.",
+    "c268ce3b and 0b8f8f7f independently constrain AyaSpell uploads to exact verified relative names; both provide offline tests with differing cases.",
+    "Other branch changes reconcile already integrated Mail/TLS source and retain documentation/evidence.",
+    "No new Mail runtime implementation was identified beyond the already checkpointed UID discovery source."
+  ],
+  "scope": "Preflight reconciliation only. Captured advances require integration; no new runtime acceptance inferred.",
+  "github_actions": "NOT QUERIED OR AWAITED",
+  "integrated_head": "ea900499af1a59fbf5d433b8b7a522c8d8a4a144",
+  "integrated_tree": "2e00a3f3147833c4f4b58262cd4ec528b6fa4c85",
+  "post_integration_classification": {
+    "ancestor": 389,
+    "historical_equivalent": 28
+  },
+  "all_captured_refs_accounted_after_integration": true,
+  "ayaspell_merge": {
+    "builder_source": "0b8f8f7f78fbf4e2e26671ecf9a0d858c38ca75c",
+    "retained_suites": [
+      {
+        "path": "tools/proofing/ayaspell/test_build_bundle.py",
+        "origin": "c268ce3bceb05f92b7868e90ba8ce7b9a5bbbe1e",
+        "cases": 7,
+        "adaptation": "Updated the prose assertion to the equivalent current planned-adapter wording."
+      },
+      {
+        "path": "tools/proofing/ayaspell/test_build_bundle_reproducibility.py",
+        "origin": "0b8f8f7f78fbf4e2e26671ecf9a0d858c38ca75c",
+        "cases": 5,
+        "adaptation": "Byte-identical incoming test content retained under a distinct filename."
+      }
+    ],
+    "development_result": "12 passing unittest cases; no skipped or failed cases; network and publication mocked. Final frozen gate remains separate.",
+    "development_log_sha256": "dc31fd7963be563044e0413d4f204e816ac09ada39ace6c905b7f0a63c7d0cba"
+  }
+}

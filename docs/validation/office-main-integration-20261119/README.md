@@ -1,21 +1,20 @@
 # Office integration for remote main — 19 November 2026
 
-**Historical PR #174 receipt.** This 611-execution record belongs to source
-`4624218f` and was merged into main as `d4100033`. The later
-[completion report](../office-main-completion-20261119/README.md) records the
-final Socket-compatible TLS/parser resolution and 836 fresh application
-executions plus 78 Python controls at `5569c055`, carried through PR #173.
-The original evidence and counts below retain their own source identity and
-are not added to the final totals.
-
 The final integrated application, fixtures, execution harness and test-plan
-source is **`4624218f9468eeeac07f1f100ac0e4bb6b050a17`**. Both fresh local
-qualification receipts bind to that same commit: **611 passing test executions,
-541 distinct test cases and 47 distinct suites**. Later publication changes are
+source is **`ac1e4c8c788ea608402c2260488235c0189efcba`**. Both fresh local
+qualification receipts bind to that same commit: **632 passing test executions,
+562 distinct test cases and 47 distinct suites**. Later publication changes are
 documentation and evidence only.
 
 This record accompanies the user-authorized integration into remote `main`
-through PR #174. Code and evidence were saved incrementally on
+through PR #174 and PR #173, followed by this qualified cleanup continuation.
+PR #174 merged as `d41000336c84b6ebfe6b35f7f8335140b5d46038`. The concurrent
+PR #173 merge `55e262ef269634a0d618c0b5102dc9be5430a5f3` and its evidence
+publication `b0a9bd3f1b46ac89021d1b7e49c32980ca4d181e` are also reconciled.
+The [late-main review](socket-final/late_main_delta_review.json) identifies
+exactly five bound differences; publication preserves all 5,031 qualified
+`ac1e4c8c` input bytes and modes, including the cleanup assertions and plan.
+Code and evidence were saved incrementally on
 `codex/office-main-integration-20261119`, with expected-head guards and exact
 remote commit/tree readback. **No GitHub Actions run was queried, dispatched or
 awaited.** Release acceptance remains separately tracked below.
@@ -29,17 +28,19 @@ equivalence proofs. No missing objects or unaccounted references remain.
 
 | Captured incoming work | Integrated head |
 | --- | --- |
-| Main at the integration cutoff | `690e6ac8a1f7d8f5c8d4bea69d989a6728f3b27e` |
+| Initial main at the first capture | `690e6ac8a1f7d8f5c8d4bea69d989a6728f3b27e` |
 | Original PR #174, offline thesaurus | `df62b58975bab1f650879fc88f850550a3df5c13` |
 | PR #175, Notes | `c320f28347f1cd292b848be2cf72998d41f8a6ac` |
-| PR #172, latest captured Mail/TLS work | `71edec2de364805113d18e0f1d7edbb1f00467e5` |
-| PR #173, latest captured Zotero/TLS work | `54c36e40daa7b17d73801dac1fd12f110b24017f` |
+| PR #172, latest captured Mail/TLS work | `700e5a35ce5f96e7abd1dc92d1a00d2110d40649` |
+| PR #173, Zotero/TLS source captured for qualification | `022a974a96db23e22bc161f7d465e4b972e8c2a9` |
 
-The [TLS ancestry audit](tls/tls_ancestry_review.json) identifies its input as a
-frozen snapshot of already-fetched fork refs plus the saved upstream
-advertisement. It records the five pointer updates from the preceding full
-capture. This establishes the explicit qualification cutoff; it does not claim
-that other writers cannot advance branches afterward.
+The [ancestry audit](socket-final/socket_ancestry_review.json) identifies its
+input as a frozen snapshot of already-fetched fork refs plus the saved upstream
+advertisement. Latest captured Mail/Zotero branch heads are the immutable merge
+ancestors above. Older local PR aliases remain explicitly labeled observations;
+they are not relabeled as fresh advertisements. The snapshot establishes the
+qualification cutoff and does not claim other writers cannot advance branches
+afterward.
 
 The stable Notes Review layout, focus/selection/composition, tracked and
 untracked IME/undo coverage, and revision-identity assertions remain intact.
@@ -64,22 +65,32 @@ retains unsolicited flag/status handling, missing-notified-literal checks,
 EXPUNGE ambiguity protection and later flag confirmation semantics. Fourteen
 raw-parser regressions retain both malformed and valid byte-exact controls.
 
-Two concurrent TLS implementations were reconciled using the explicit
-`ClientConnection` / `RawClientConnection` adapter. It retains the original TCP
-owner through pending and established TLS, aborts stalled handshakes, preserves
-ordered partial writes and final readiness, and cancels idle or active stream
-producers. Disconnect also aborts pending TCP/TLS work. The competing Socket
-facade remains preserved in its original Git commit; a second active connection
-owner is not shipped. All three incoming TLS suites remain present; only the
-Zotero capture fixture's adapter types/import were reconciled.
+The final reconciliation adopts the revised Socket-compatible transport facade
+after reviewing its repaired ownership behavior. It retains the original TCP
+owner during and after TLS, closes TCP before secure output can block shutdown,
+settles aborted direct calls, guards generations and late results, preserves
+ordered partial writes and cancels idle or active stream producers. Existing
+Socket-returning factory signatures and trusted manual STARTTLS remain compatible.
 
-The manual `connect(Socket)` path retains ordinary and already-secure I/O. A
-default TLS upgrade of an externally supplied socket is explicitly rejected
-before handshake because its original TCP owner cannot be retained through the
-SDK handoff; native upgrades use `connectToServer`. This boundary is documented
-and tested. See [the merge decision](tls/merge-review.json),
-[suite/fixture review](tls/tls-suite-review.json) and
-[core/control merge review](tls/core-controls-merge-review.json).
+Independent review reproduced a rejected direct upgrade leaving the client
+connected. The merged fix restores generation-guarded abort cleanup while
+rethrowing the handshake exception. Existing actual-TLS rejection cases assert
+disconnected and logged-out state before test cleanup. The controlled RED/GREEN
+probe and exact patch are preserved in the
+[cleanup evidence](socket-final/upgrade-cleanup-evidence.tar.xz).
+
+Immediate physical closure of a stalled handshake is qualified for the default
+owned transport. With a manually supplied SDK Socket, TLS handoff can detach its
+TCP owner; the fallback settles abort and destroys eventual late results but
+cannot immediately close an inaccessible owner. See the
+[merge decision](socket-final/merge-review.md) and
+[suite/fixture review](socket-final/suite-review.json). The earlier adapter
+decision and its 611-execution qualification remain separately preserved.
+
+The latest FETCH detector also catches malformed response separators before
+strict shape validation. Six provider cases and twelve parser cases exercise
+failures without successful prefixes or false absent-UID tombstones, together
+with valid unrelated response controls.
 
 The Mail equality fixture retains separately constructed equivalent objects and
 adds the incoming hash equality assertion. Migration matcher disambiguation is
@@ -90,38 +101,39 @@ observations without weakening the child-termination requirement.
 
 | Focused cohort | Suites | Distinct passed cases |
 | --- | ---: | ---: |
-| Native transport/configuration/SQLite coordinator | 3 | 80 |
-| TLS and connection ownership | 3 | 23 |
+| Native transport/configuration/SQLite coordinator | 3 | 86 |
+| TLS and connection ownership | 3 | 26 |
 | Node unsupported transport boundary | 1 | 3 |
-| IMAP and byte-reader regressions | 8 | 181 |
+| IMAP and byte-reader regressions | 8 | 193 |
 | Connection lifecycle, POP, SMTP and authentication | 10 | 63 |
 | MIME consumers | 6 | 32 |
 | Mail UI consumers | 4 | 30 |
-| **Focused run** | **35** | **412** |
+| **Focused run** | **35** | **433** |
 
 The fresh core/store gate on the same commit passed 31 core VM, 31 core Node,
 95 native-store VM and 42 portable-store Node executions: **199 executions /
-129 distinct cases**. Across both receipts there are **611 executions / 541
+129 distinct cases**. Across both receipts there are **632 executions / 562
 distinct cases / 47 distinct suites**, with 70 VM/Node repetitions excluded from
 the distinct-case count. Identities use test file and case name. Earlier Office
 and intermediate Mail/transport results are not added to these totals.
 
 The TLS group combines real Linux TCP/TLS loopback tests with deterministic
-raw-write and pre-handshake rejection controls. Coverage includes successful
+raw-write and lifecycle controls. Coverage includes successful
 implicit TLS and STARTTLS, default-trust rejection, hostname mismatch,
 peer-observed closure after stalled-handshake cancellation/deadlines, fresh
 connections, exact delayed 1 MiB encrypted payloads, ordered partial writes,
-blocked-flush abort and idle-producer cancellation. Test certificates and keys
+blocked-flush abort, idle-producer cancellation, direct abort completion,
+manual STARTTLS and TCP closure before stalled secure shutdown. Test certificates and keys
 are explicitly public fixtures; trust is isolated to injected test contexts.
 Production certificate and hostname checks remain enabled.
 
 Strict analysis with fatal infos/warnings and formatting passed on **26
 transport/vendor Dart paths**. The core/store gate also passed package analysis,
 formatting, offline lock enforcement, **42 runner controls**, whitespace checks
-and browser entry/worker compilation. Supplemental adapter stream probes are
-retained separately and are not counted as Dart cases.
+and browser entry/worker compilation. Controlled cleanup reproductions and earlier supplemental adapter stream
+probes retain their own records and are not counted as Dart cases.
 
-The [independent raw-event audit](tls/tls_final_review.json) reconstructs exact
+The [independent raw-event audit](socket-final/socket_final_review.json) reconstructs exact
 suite coverage, unique identities, complete starts/completions and successful
 termination. It verifies zero failures, skipped cases, reporter errors,
 unfinished cases, duplicate case identities, layout overflows or missed-tap
@@ -137,13 +149,28 @@ Dart 3.13.7 release, with 176 verified hosted archives and a genuine SQLite/FTS5
 smoke check. Its 131 resolved packages match 114 locked and 17 workspace names.
 Earlier runtime-helper and cleanup-control results retain their own receipts.
 
-Primary evidence: [focused verification](tls/verification.json),
-[store receipt](tls/store-receipt.json),
-[distinct case inventory](tls/tls_final_review-cases.json),
-[35-suite plan](tls/plan.json), and
-[raw archive index](tls/qualification-evidence.index.json).
+Primary evidence: [focused verification](socket-final/verification.json),
+[store receipt](socket-final/store-receipt.json),
+[distinct case inventory](socket-final/socket_final_review-cases.json),
+[35-suite plan](socket-final/plan.json), and
+[raw archive index](socket-final/qualification-evidence.index.json).
 
 ## Earlier qualifications remain separately attributed
+
+The [preserved first TLS report](pre-socket-report.md) records **611 executions /
+541 distinct cases** at `4624218f`; its receipts, raw events and independent
+audits remain unchanged under `tls/`. The separately received
+[Mail-branch report](../mail-m06-resume-20261119/README.md) retains **631 executions /
+508 scenarios / 48 suites** at `71edec2d`. Neither checkpoint is added to the
+current totals. The separately merged
+[completion report](../office-main-completion-20261119/README.md) preserves
+**836 application executions / 73 distinct files and 78 separate Python
+controls** at `5569c055`. That checkpoint does not include the rejected-upgrade
+cleanup in the current source; its broader results remain separately attributed.
+All eight incoming Mail archives were independently checked
+against their indexes: 218 members and 21,444,149 uncompressed bytes. The store
+README update is a changed bound documentation input, captured afresh in this
+run; no prior source inventory was rewritten.
 
 The [preserved report before TLS](pre-tls-report.md) records the preceding
 389-case focused pass at `7d279e08`, retained 199-execution gate at `1655db9f`,
@@ -156,7 +183,7 @@ attributed to `39843ed4` in the
 [original continuation report](../thesaurus-20261118/resumed-20261119/README.md).
 They are not reruns or a fresh web build of the current source.
 
-The [historical continuity audit](tls/tls_historical_continuity.json) verifies
+The [historical continuity audit](socket-final/socket_historical_continuity.json) verifies
 all 129 original suite files, 4,971 of 4,992 ordinary source records, the tracked
 Dart closures of 125 Office suites / 1,988 historical cases, all 14 native
 fixture closures, the web fixture closure and 12 bound fixture/helper sources.
@@ -176,17 +203,20 @@ flags fixes/evidence (`ebe0498a`, `86560baf`), initial transport repairs/evidenc
 (`1655db9f`, `f9104833`), latest notification/runtime reconciliation
 (`d1dda005`, `2890a0f2`), decimal UID qualification/publication
 (`7d279e08`, `99dd7307`, `7a5c6874`), incoming native TLS capture (`f9346ed1`),
-and the final combined TLS source (`4624218f`). Later commits publish only
-documentation and evidence. The remote checkpoint branch is retained.
+the first combined TLS source/publication (`4624218f`, `59e0a7c2`), main merge
+(`d4100033`), latest Mail evidence (`3cd60db2`) and final Socket-compatible source
+(`ac1e4c8c`). The later `55e262ef` main merge contributes documentation and
+evidence; the final publication preserves every qualified input. Commits after
+that final source contain no additional executable/test/harness changes. The remote checkpoint branch is retained.
 
-The [qualification archive](tls/qualification-evidence.tar.xz) contains raw
+The [qualification archive](socket-final/qualification-evidence.tar.xz) contains raw
 events, receipts, source/runtime snapshots and case inventories. The
 [development archive](tls/development-evidence.tar.xz) retains adapter probe,
 merge and certificate-review inputs. Earlier flags, transport, parser-failure
 and runtime archives remain intact. Generated JavaScript is recorded by compile
 logs and hashes rather than duplicating reproducible application bytes.
 
-For a new replay, use a clean checkout at `4624218f` and a separate empty runtime
+For a new replay, use a clean checkout at `ac1e4c8c` and a separate empty runtime
 directory. Follow the
 [runtime recovery instructions](../document-review-notes-20261118/runtime/README.md)
 with `--node-tests`, then source the generated `env.sh`. From the repository:
@@ -198,9 +228,9 @@ python3 tools/mail/check_store.py \
   --output /absolute/path/to/fresh-store-results
 
 python3 docs/validation/document-review-notes-20261118/run_checks.py \
-  --head 4624218f9468eeeac07f1f100ac0e4bb6b050a17 \
-  --base 7d279e084bae438d383630726ad7b0514da77d35 \
-  --plan docs/validation/office-main-integration-20261119/tls/plan.json \
+  --head ac1e4c8c788ea608402c2260488235c0189efcba \
+  --base 4624218f9468eeeac07f1f100ac0e4bb6b050a17 \
+  --plan docs/validation/office-main-integration-20261119/socket-final/plan.json \
   --runtime /absolute/path/to/toolchains \
   --output /absolute/path/to/fresh-focused-results --command-timeout 300
 ```

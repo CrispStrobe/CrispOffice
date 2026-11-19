@@ -250,10 +250,10 @@ checks. Its 72-suite Office/reader gate also passed with 1,230 cases. The earlie
 historical evidence; its runner/formatting blockage is resolved for the fresh
 baseline. Those results predate schema v3 and native transport. The
 [Office integration report](../../validation/office-main-integration-20261119/README.md)
-records the subsequent passing flags/transport qualification, including the
-retained 199-execution core/store gate and its source-continuity checks. The
-[final completion report](../../validation/office-main-completion-20261119/README.md)
-records a fresh full 199-execution core/store gate on the final reconciled source,
+records the current 632-execution / 562-distinct-case qualification at
+`ac1e4c8c`, including a fresh 199-execution core/store gate. The
+[retained completion report](../../validation/office-main-completion-20261119/README.md)
+records its separate full 199-execution core/store gate at `5569c055`,
 within its 836 application executions and 78 separate Python controls.
 
 Browser entry/worker compilation and Node error-policy tests do not close actual
@@ -296,12 +296,16 @@ Cursors freeze each sweep ceiling, and arrivals beyond it enter the
 next sweep; the fallback is not a server snapshot protocol. MOVE confirms source
 absence but does not expose COPYUID destination identities. Controlled parser,
 SQLite/coordinator, lifecycle and conditional-entry tests passed in the
-[32-suite integrated qualification](../../validation/office-main-integration-20261119/README.md)
+[32-suite earlier qualification](../../validation/office-main-integration-20261119/pre-tls-report.md)
 at `7d279e084bae438d383630726ad7b0514da77d35`, with 389 focused cases. The
-[final reconciled qualification](../../validation/office-main-completion-20261119/README.md)
+[retained qualification](../../validation/office-main-completion-20261119/README.md)
 at `5569c055a021c893e941fc54d40499ad9d96a5db` adds broader protocol coverage and
-real Linux TLS tests within 836 fresh application executions. External-provider,
-other-OS and disposable-account interoperability remain open.
+real Linux TLS tests within its separate 836 application executions. The
+[current combined qualification](../../validation/office-main-integration-20261119/README.md)
+at `ac1e4c8c788ea608402c2260488235c0189efcba` passes 433 focused cases across
+35 suites, including 26 TLS/ownership cases and the rejected-upgrade cleanup,
+plus the fresh 199-execution core/store gate. External-provider, other-OS and
+disposable-account interoperability remain open.
 The 186-execution Mail and 1,230-case Office passes above retain their separate
 baseline `479e1e03` identity.
 

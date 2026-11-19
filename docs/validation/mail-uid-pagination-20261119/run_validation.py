@@ -50,10 +50,13 @@ def main() -> int:
     plans = {name: directory / (name + "-plan.json") for name in ("native", "node")}
     plan_data = {name: json.loads(path.read_text()) for name, path in plans.items()}
     tracked = set(git("ls-files", "-z").split("\0"))
-    untracked_product = [
-        path for path in git("ls-files", "--others", "--exclude-standard", "-z").split("\0")
-        if path.startswith(("packages/", "apps/", "third_party/"))
-    ]
+    def untracked_inputs() -> list[str]:
+        return [
+            path for path in git("ls-files", "--others", "--exclude-standard", "-z").split("\0")
+            if path.startswith(("packages/", "apps/", "third_party/", "tools/proofing/ayaspell/"))
+        ]
+
+    untracked_product = untracked_inputs()
     if untracked_product:
         raise RuntimeError("Commit product inputs before execution: " + repr(untracked_product))
     analyzed = set(plan_data["native"]["analysis"])
@@ -79,7 +82,7 @@ def main() -> int:
     runtime_paths["sdk/flutter_tools/package_config.json"] = runtime / "flutter/packages/flutter_tools/.dart_tool/package_config.json"
     source_paths = {
         name: repo / name for name in tracked
-        if name.startswith(("packages/", "apps/", "third_party/", "tools/mail/"))
+        if name.startswith(("packages/", "apps/", "third_party/", "tools/mail/", "tools/proofing/ayaspell/"))
         or ("/" not in name and Path(name).suffix in {".yaml", ".lock"})
         or name == ".fvmrc"
     }
@@ -141,6 +144,8 @@ def main() -> int:
         for name, path in (("shared-runner-controls", shared / "test_run_checks.py"),
                            ("runtime-controls", shared / "runtime/test_restore_runtime.py")):
             run(name, [sys.executable, str(path)])
+        run("ayaspell-offline-controls", [sys.executable, "-m", "unittest", "discover",
+                                          "-s", "tools/proofing/ayaspell", "-p", "test_*.py", "-v"])
         run("core-store", [sys.executable, str(repo / "tools/mail/check_store.py"),
                            "--flutter-sdk", str(runtime / "flutter"), "--offline", "--direct-tests",
                            "--command-timeout", str(args.command_timeout), "--output", str(output / "core-store")],
@@ -159,8 +164,9 @@ def main() -> int:
         record.update(source_unchanged=before_source == after_source, runtime_unchanged=before_runtime == after_runtime,
                       source_head_unchanged=git("rev-parse", "HEAD") == head,
                       tracked_worktree_clean_after=not git("status", "--porcelain=v1", "--untracked-files=no"),
+                      untracked_qualification_inputs_after=untracked_inputs(),
                       finished_at_utc=datetime.now(timezone.utc).isoformat())
-        if not all(record[key] for key in ("source_unchanged", "runtime_unchanged", "source_head_unchanged", "tracked_worktree_clean_after")):
+        if record["untracked_qualification_inputs_after"] or not all(record[key] for key in ("source_unchanged", "runtime_unchanged", "source_head_unchanged", "tracked_worktree_clean_after")):
             record["status"] = "FAIL"
         save()
     print(record["status"] + ": " + str(output / "execution.json"), flush=True)

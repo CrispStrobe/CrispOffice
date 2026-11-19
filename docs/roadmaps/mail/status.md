@@ -1,7 +1,9 @@
 # Mail implementation status — 19 November 2026
 
-The current integrated source and qualification are recorded in the
-[19 November completion report](../../validation/office-main-completion-20261119/README.md).
+The current Mail discovery continuation and its separate qualification are
+recorded in the [UID pagination report](../../validation/mail-uid-pagination-20261119/README.md).
+Earlier Office/TLS qualifications and concurrent reconciliation records retain
+their source identities in the historical sections below.
 Fetch the canonical repository's current refs before resuming.
 The source of product scope remains [README.md](README.md) and the ordered work
 remains [implementation-plan.md](implementation-plan.md).
@@ -140,7 +142,28 @@ records incoming reconciliation, the discovery/range implementation, fresh
 runtime provenance and committed local gate plans. Earlier counts below retain
 their original source identities and are not evidence for this new increment.
 
-### Final reconciled source — PASS
+### Prior integrated TLS cleanup — PASS
+
+The [Office integration report](../../validation/office-main-integration-20261119/README.md)
+binds both fresh gates to `ac1e4c8c788ea608402c2260488235c0189efcba`: **632
+executions / 562 distinct cases / 47 distinct suites**. The focused gate passed
+433 cases across 35 suites: 86 native transport, 26 TLS/ownership, three Node
+boundary, 256 shared IMAP/POP/SMTP/byte-reader, 32 MIME and 30 Mail UI cases.
+The fresh full core/store gate passed 199 executions representing 129 distinct
+cases, including 70 VM/Node repeats. Strict analysis/formatting of 26 changed
+Dart paths, 42 launcher controls, offline dependency resolution and browser
+entry/worker compilation passed.
+
+The final Socket-compatible facade retains its owned TCP transport, and rejected
+TLS upgrades now abort and clear connection/authentication state. Immediate
+physical stalled-handshake cancellation applies to the default owned transport;
+a manual SDK Socket has the documented narrower handoff boundary. All 5,031
+source and 11,164 focused runtime records remained unchanged. Later main evidence
+is reconciled without modifying any qualified input. Earlier checkpoint counts
+remain separate; browser, installed Studio/IME, live Zotero, external-provider
+and human linguistic acceptance remain open.
+
+### Retained Socket-compatible checkpoint — PASS
 
 The [completion report](../../validation/office-main-completion-20261119/README.md)
 binds all final execution to `5569c055a021c893e941fc54d40499ad9d96a5db`:
@@ -158,7 +181,7 @@ platforms retain their separate acceptance requirements.
 
 ### Earlier integrated flags and native IMAP qualification — PASS
 
-The [Office integration report](../../validation/office-main-integration-20261119/README.md)
+The [earlier Office integration report](../../validation/office-main-integration-20261119/pre-tls-report.md)
 binds the final **32-suite / 389-case** focused pass to source
 `7d279e084bae438d383630726ad7b0514da77d35`. It covers 80 native transport cases,
 three Node unsupported-entry cases, 244 shared IMAP/POP/SMTP and byte-reader

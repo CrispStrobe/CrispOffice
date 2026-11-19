@@ -1,0 +1,242 @@
+{
+  "frozen_source": "ac1e4c8c788ea608402c2260488235c0189efcba",
+  "incoming_mail_publication": "700e5a35ce5f96e7abd1dc92d1a00d2110d40649",
+  "preserved_added_evidence_and_log_paths": 36,
+  "all_added_evidence_and_logs_exactly_preserved": true,
+  "entries": [
+    {
+      "path": "docs/validation/mail-m06-resume-20261119/final/archive-audit.json",
+      "incoming_git_entry": "100644 blob 56f042c748f433d4cb7be2f7a8aad0a7b89d9196",
+      "frozen_git_entry": "100644 blob 56f042c748f433d4cb7be2f7a8aad0a7b89d9196",
+      "identical": true
+    },
+    {
+      "path": "docs/validation/mail-m06-resume-20261119/final/audit_final_archives.py",
+      "incoming_git_entry": "100644 blob 21f68958103c54d16dc6f06eaa7a8d25c4fad9e4",
+      "frozen_git_entry": "100644 blob 21f68958103c54d16dc6f06eaa7a8d25c4fad9e4",
+      "identical": true
+    },
+    {
+      "path": "docs/validation/mail-m06-resume-20261119/final/development.tar.index.json",
+      "incoming_git_entry": "100644 blob c431fc1c83f62b08ea947a3860f7e58843ecec4e",
+      "frozen_git_entry": "100644 blob c431fc1c83f62b08ea947a3860f7e58843ecec4e",
+      "identical": true
+    },
+    {
+      "path": "docs/validation/mail-m06-resume-20261119/final/development.tar.xz",
+      "incoming_git_entry": "100644 blob 9f1b928eff110c87f414da0e8d6573eee016b093",
+      "frozen_git_entry": "100644 blob 9f1b928eff110c87f414da0e8d6573eee016b093",
+      "identical": true
+    },
+    {
+      "path": "docs/validation/mail-m06-resume-20261119/final/evidence-audit.json",
+      "incoming_git_entry": "100644 blob e510ebae5d968bf42d095fefd9e2a6d250238a6c",
+      "frozen_git_entry": "100644 blob e510ebae5d968bf42d095fefd9e2a6d250238a6c",
+      "identical": true
+    },
+    {
+      "path": "docs/validation/mail-m06-resume-20261119/final/execution.json",
+      "incoming_git_entry": "100644 blob 214ba6ded1988c5da8220996aeb1f841dda0338e",
+      "frozen_git_entry": "100644 blob 214ba6ded1988c5da8220996aeb1f841dda0338e",
+      "identical": true
+    },
+    {
+      "path": "docs/validation/mail-m06-resume-20261119/final/first-attempt-mail-receipt.json",
+      "incoming_git_entry": "100644 blob f7efa098acd2cc3df2d60e5aaffee595e2ff05ba",
+      "frozen_git_entry": "100644 blob f7efa098acd2cc3df2d60e5aaffee595e2ff05ba",
+      "identical": true
+    },
+    {
+      "path": "docs/validation/mail-m06-resume-20261119/final/first-attempt.tar.index.json",
+      "incoming_git_entry": "100644 blob 32fbde73e7eb7a5d114036a48c69e966d1c49565",
+      "frozen_git_entry": "100644 blob 32fbde73e7eb7a5d114036a48c69e966d1c49565",
+      "identical": true
+    },
+    {
+      "path": "docs/validation/mail-m06-resume-20261119/final/first-attempt.tar.xz",
+      "incoming_git_entry": "100644 blob a13b6f20cbeea853420f1714b6c4c9a691c4354c",
+      "frozen_git_entry": "100644 blob a13b6f20cbeea853420f1714b6c4c9a691c4354c",
+      "identical": true
+    },
+    {
+      "path": "docs/validation/mail-m06-resume-20261119/final/mail-final-receipt.json",
+      "incoming_git_entry": "100644 blob 3247a7bb9e8b135544e67a51236e9b4a359e0f1f",
+      "frozen_git_entry": "100644 blob 3247a7bb9e8b135544e67a51236e9b4a359e0f1f",
+      "identical": true
+    },
+    {
+      "path": "docs/validation/mail-m06-resume-20261119/final/mail-final.tar.index.json",
+      "incoming_git_entry": "100644 blob 7d59ace893bf9b35d539fd15d5c76ac3ca53caba",
+      "frozen_git_entry": "100644 blob 7d59ace893bf9b35d539fd15d5c76ac3ca53caba",
+      "identical": true
+    },
+    {
+      "path": "docs/validation/mail-m06-resume-20261119/final/mail-final.tar.xz",
+      "incoming_git_entry": "100644 blob 7519dc3084362f223e87f626a099e0bcfae0a8c2",
+      "frozen_git_entry": "100644 blob 7519dc3084362f223e87f626a099e0bcfae0a8c2",
+      "identical": true
+    },
+    {
+      "path": "docs/validation/mail-m06-resume-20261119/final/native-final-verification.json",
+      "incoming_git_entry": "100644 blob 9801d5aea0e69d0519cf14b2716aa784b97d2629",
+      "frozen_git_entry": "100644 blob 9801d5aea0e69d0519cf14b2716aa784b97d2629",
+      "identical": true
+    },
+    {
+      "path": "docs/validation/mail-m06-resume-20261119/final/native-final.tar.index.json",
+      "incoming_git_entry": "100644 blob b4a69922ddd8ae3ea10c41a83eb2cf72600f90f5",
+      "frozen_git_entry": "100644 blob b4a69922ddd8ae3ea10c41a83eb2cf72600f90f5",
+      "identical": true
+    },
+    {
+      "path": "docs/validation/mail-m06-resume-20261119/final/native-final.tar.xz",
+      "incoming_git_entry": "100644 blob 670bde639868a5416105ac8f1b036542bb7c7dbc",
+      "frozen_git_entry": "100644 blob 670bde639868a5416105ac8f1b036542bb7c7dbc",
+      "identical": true
+    },
+    {
+      "path": "docs/validation/mail-m06-resume-20261119/final/node-final-verification.json",
+      "incoming_git_entry": "100644 blob 5c09413ac44147ed4ae4059dee5dd7117b1efba5",
+      "frozen_git_entry": "100644 blob 5c09413ac44147ed4ae4059dee5dd7117b1efba5",
+      "identical": true
+    },
+    {
+      "path": "docs/validation/mail-m06-resume-20261119/final/node-final.tar.index.json",
+      "incoming_git_entry": "100644 blob 2e94ddfb099f74292de03a5bbba7e6d25531aa9d",
+      "frozen_git_entry": "100644 blob 2e94ddfb099f74292de03a5bbba7e6d25531aa9d",
+      "identical": true
+    },
+    {
+      "path": "docs/validation/mail-m06-resume-20261119/final/node-final.tar.xz",
+      "incoming_git_entry": "100644 blob e673dd10cbf306b1ebfbb4a024ec8e14cf7f7c37",
+      "frozen_git_entry": "100644 blob e673dd10cbf306b1ebfbb4a024ec8e14cf7f7c37",
+      "identical": true
+    },
+    {
+      "path": "docs/validation/mail-m06-resume-20261119/final/preparation.tar.index.json",
+      "incoming_git_entry": "100644 blob 9d779534ecbf014a5a0d4ad98bfba6d714a344e4",
+      "frozen_git_entry": "100644 blob 9d779534ecbf014a5a0d4ad98bfba6d714a344e4",
+      "identical": true
+    },
+    {
+      "path": "docs/validation/mail-m06-resume-20261119/final/preparation.tar.xz",
+      "incoming_git_entry": "100644 blob 64277b255d81b788b7e4ac16fe551577bf34f7e9",
+      "frozen_git_entry": "100644 blob 64277b255d81b788b7e4ac16fe551577bf34f7e9",
+      "identical": true
+    },
+    {
+      "path": "docs/validation/mail-m06-resume-20261119/final/publication-scope.json",
+      "incoming_git_entry": "100644 blob bb5d7366e9795283ce46713171bb526688ea1d9c",
+      "frozen_git_entry": "100644 blob bb5d7366e9795283ce46713171bb526688ea1d9c",
+      "identical": true
+    },
+    {
+      "path": "docs/validation/mail-m06-resume-20261119/final/published-readback.json",
+      "incoming_git_entry": "100644 blob 2b4df50c7a8291072fea64bdfadc6f37960d8f26",
+      "frozen_git_entry": "100644 blob 2b4df50c7a8291072fea64bdfadc6f37960d8f26",
+      "identical": true
+    },
+    {
+      "path": "docs/validation/mail-m06-resume-20261119/final/runner-test-review.json",
+      "incoming_git_entry": "100644 blob 6ce9e5bf4652bd19750d045f2f9cd4172adf1cd3",
+      "frozen_git_entry": "100644 blob 6ce9e5bf4652bd19750d045f2f9cd4172adf1cd3",
+      "identical": true
+    },
+    {
+      "path": "docs/validation/mail-m06-resume-20261119/final/second-attempt-mail-receipt.json",
+      "incoming_git_entry": "100644 blob 82fa8b09e71793b467a2135f1a6745599d26149f",
+      "frozen_git_entry": "100644 blob 82fa8b09e71793b467a2135f1a6745599d26149f",
+      "identical": true
+    },
+    {
+      "path": "docs/validation/mail-m06-resume-20261119/final/second-attempt.tar.index.json",
+      "incoming_git_entry": "100644 blob 355b0a24c17affeb85e26071b5f6a780a9268da6",
+      "frozen_git_entry": "100644 blob 355b0a24c17affeb85e26071b5f6a780a9268da6",
+      "identical": true
+    },
+    {
+      "path": "docs/validation/mail-m06-resume-20261119/final/second-attempt.tar.xz",
+      "incoming_git_entry": "100644 blob d9a6d6c1adcd5dc71ffabb9ce88ddd6c89874fea",
+      "frozen_git_entry": "100644 blob d9a6d6c1adcd5dc71ffabb9ce88ddd6c89874fea",
+      "identical": true
+    },
+    {
+      "path": "docs/validation/mail-m06-resume-20261119/final/source-continuity.json",
+      "incoming_git_entry": "100644 blob ae71b0ac454d7a6cf5b8a1729f3865b1531a3cd8",
+      "frozen_git_entry": "100644 blob ae71b0ac454d7a6cf5b8a1729f3865b1531a3cd8",
+      "identical": true
+    },
+    {
+      "path": "docs/validation/mail-m06-resume-20261119/final/source-review.tar.index.json",
+      "incoming_git_entry": "100644 blob 9f68a241968c9ab01da83d2a32af6f45e5ffff06",
+      "frozen_git_entry": "100644 blob 9f68a241968c9ab01da83d2a32af6f45e5ffff06",
+      "identical": true
+    },
+    {
+      "path": "docs/validation/mail-m06-resume-20261119/final/source-review.tar.xz",
+      "incoming_git_entry": "100644 blob d457c8d9618b13f51ec6dbfb36f229917ac2cb20",
+      "frozen_git_entry": "100644 blob d457c8d9618b13f51ec6dbfb36f229917ac2cb20",
+      "identical": true
+    },
+    {
+      "path": "docs/validation/mail-m06-resume-20261119/final/transport-review-binding.json",
+      "incoming_git_entry": "100644 blob 417aa542135e7508f640eeb3b9991ed259981361",
+      "frozen_git_entry": "100644 blob 417aa542135e7508f640eeb3b9991ed259981361",
+      "identical": true
+    },
+    {
+      "path": "docs/validation/mail-m06-resume-20261119/final/workspace-and-plan-binding.json",
+      "incoming_git_entry": "100644 blob a18576853d546ffebd7347aaf60bd6dc67911ac1",
+      "frozen_git_entry": "100644 blob a18576853d546ffebd7347aaf60bd6dc67911ac1",
+      "identical": true
+    },
+    {
+      "path": "docs/validation/mail-m06-resume-20261119/review/tls-development-evidence/real-tls-native.log",
+      "incoming_git_entry": "100644 blob eed2eacc4f8052ee0d418461668593c56cac2ff6",
+      "frozen_git_entry": "100644 blob eed2eacc4f8052ee0d418461668593c56cac2ff6",
+      "identical": true
+    },
+    {
+      "path": "docs/validation/mail-m06-resume-20261119/review/tls-development-evidence/real-tls-reviewed.log",
+      "incoming_git_entry": "100644 blob 94e95f98265a0c4eb6e3c96ecf3e44438422d86c",
+      "frozen_git_entry": "100644 blob 94e95f98265a0c4eb6e3c96ecf3e44438422d86c",
+      "identical": true
+    },
+    {
+      "path": "docs/validation/mail-m06-resume-20261119/review/tls-development-evidence/tls-final-format.log",
+      "incoming_git_entry": "100644 blob 977e8198c290e97c39bf1203198d46fdf5acb6b3",
+      "frozen_git_entry": "100644 blob 977e8198c290e97c39bf1203198d46fdf5acb6b3",
+      "identical": true
+    },
+    {
+      "path": "docs/validation/mail-m06-resume-20261119/review/tls-development-evidence/tls-inherited-connections.log",
+      "incoming_git_entry": "100644 blob 71ecc612dea0d15ffedea34ce3c0ee131fa37852",
+      "frozen_git_entry": "100644 blob 71ecc612dea0d15ffedea34ce3c0ee131fa37852",
+      "identical": true
+    },
+    {
+      "path": "docs/validation/mail-m06-resume-20261119/review/tls-development-evidence/tls-reviewed-analyze.log",
+      "incoming_git_entry": "100644 blob 7028dc33955d1a0b5c4e722736d1fdbc3bf77dcc",
+      "frozen_git_entry": "100644 blob 7028dc33955d1a0b5c4e722736d1fdbc3bf77dcc",
+      "identical": true
+    }
+  ],
+  "contextualized_documents": [
+    {
+      "path": "packages/quds_mail_store/README.md",
+      "git_entry": "100644 blob 529b56802d11b36aaaa8a276ddef570b44782739",
+      "sha256": "5f44e34ac9dd94ea015b3ddf6609cb0bdd879ff84ae3acb1f870a1382148c221",
+      "historical_checkpoint_and_current_report_context_present": true
+    },
+    {
+      "path": "docs/validation/mail-m06-resume-20261119/README.md",
+      "git_entry": "100644 blob ecc024f5a9fed3cd25e06a4327c0d2a61fa4e9f3",
+      "sha256": "7a114e39b165fa54d03abc8ee5cbcfa87032fdb75bbd5bc31e96ab9a272a6939",
+      "historical_checkpoint_and_current_report_context_present": true
+    }
+  ],
+  "preserved_models_blob": "dd9172e8aed55f976baf698ce9e5ed52d8cc0c02",
+  "scope": "Immutable Git-tree continuity of incoming Mail publication artifacts through the final combined source; no new test run or raw-event count. The earlier eight-archive review applies to these unchanged bytes.",
+  "remote_or_actions_queries_performed": false,
+  "tracked_repository_or_runtime_mutations_performed": false
+}

@@ -1,0 +1,58 @@
+{
+  "description": "Focused fresh qualification for TLS upgrade rejection cleanup and changed core flag-value assertions after current Office/Mail/Arabic integration. Shared ClientBase users are covered through IMAP, POP, SMTP, reconnect and write-failure suites. Office/MIME/UI/store implementations are unchanged and their prior results remain historical. Python bundle publication controls run separately without network or uploads.",
+  "groups": [
+    {
+      "name": "core-model-vm",
+      "cwd": "packages/quds_mail_core",
+      "runner": "dart",
+      "tests": ["test/models_test.dart"]
+    },
+    {
+      "name": "native-tls-provider",
+      "cwd": "packages/quds_mail_transport",
+      "runner": "dart",
+      "tests": [
+        "test/native_provider_test.dart",
+        "test/native_tls_test.dart",
+        "test/native_tls_cancellation_test.dart",
+        "test/native_tls_round_trip_test.dart"
+      ]
+    },
+    {
+      "name": "shared-connection-protocols",
+      "cwd": "third_party/enough_mail",
+      "runner": "dart",
+      "tests": [
+        "test/connection_robustness_test.dart",
+        "test/reconnect_state_test.dart",
+        "test/write_failure_test.dart",
+        "test/mail/mail_client_starttls_test.dart",
+        "test/imap/imap_client_test.dart",
+        "test/pop/pop_client_test.dart",
+        "test/pop/pop_framing_test.dart",
+        "test/smtp/smtp_client_test.dart",
+        "test/smtp/smtp_framing_test.dart",
+        "test/smtp/smtp_send_state_test.dart"
+      ]
+    }
+  ],
+  "analysis": [
+    "packages/quds_mail_core/test/models_test.dart",
+    "packages/quds_mail_transport/test/native_tls_round_trip_test.dart",
+    "third_party/enough_mail/lib/src/private/util/client_base.dart"
+  ],
+  "format": [
+    "packages/quds_mail_core/test/models_test.dart",
+    "packages/quds_mail_transport/test/native_tls_round_trip_test.dart",
+    "third_party/enough_mail/lib/src/private/util/client_base.dart"
+  ],
+  "extra_inputs": [
+    "tools/proofing/ayaspell/build_bundle.py",
+    "tools/proofing/ayaspell/test_build_bundle.py",
+    "tools/mail/test_check_store.py",
+    "docs/validation/document-review-notes-20261118/test_run_checks.py",
+    "docs/validation/document-review-notes-20261118/runtime/restore_runtime.py",
+    "docs/validation/document-review-notes-20261118/runtime/test_restore_runtime.py"
+  ],
+  "whitespace_preserved_inputs": []
+}

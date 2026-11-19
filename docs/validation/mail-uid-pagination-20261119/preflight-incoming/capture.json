@@ -1,0 +1,33 @@
+{
+  "scope": "Bounded preflight origin branch, PR and tag advertisements and upstream branches; no CI queried or awaited.",
+  "qualification_target": "5fcdf726694b5356d8fb85fb8e01a715e0fadc0c",
+  "captures": [
+    {
+      "name": "origin",
+      "url": "https://github.com/CrispStrobe/quds_office_suite.git",
+      "patterns": [
+        "refs/heads/*",
+        "refs/pull/*/head",
+        "refs/tags/*"
+      ],
+      "capture_started_utc": "2026-11-19T07:50:32.682183+00:00",
+      "capture_finished_utc": "2026-11-19T07:50:37.287321+00:00",
+      "filename": "origin-refs.txt",
+      "sha256": "eb2d0647efd5b78e5f0c80aa711efe02ebc0e4b97ed8468b2cda9d13d2216912",
+      "rows": 417
+    },
+    {
+      "name": "upstream",
+      "url": "https://github.com/MohammedAsaadAsaad/quds_office_suite.git",
+      "patterns": [
+        "refs/heads/*"
+      ],
+      "capture_started_utc": "2026-11-19T07:50:37.294997+00:00",
+      "capture_finished_utc": "2026-11-19T07:50:41.354132+00:00",
+      "filename": "upstream-refs.txt",
+      "sha256": "77e7e8cc2b1515cdb809f70b12b9fff6422cb256a068d33ccce0d5ff827b1eb6",
+      "rows": 4
+    }
+  ],
+  "saved_at_utc": "2026-11-19T07:50:41.363214+00:00"
+}
