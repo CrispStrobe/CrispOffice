@@ -33,6 +33,11 @@ extension StudioMailFeedback on StudioStrings {
     'Der Versandserver hat die Nachricht angenommen. Diese Sitzung speichert keine Kopie unter „Gesendet“.',
     'قبل خادم الإرسال الرسالة. لا تحفظ هذه الجلسة نسخة في البريد المرسل.',
   );
+  String get mailSubmissionFollowUpFailed => _mailText(
+    'The sending server accepted the message, but follow-up cleanup failed. Do not resend this message. This session does not save a Sent copy.',
+    'Der Versandserver hat die Nachricht angenommen, aber die anschließende Bereinigung ist fehlgeschlagen. Diese Nachricht nicht erneut senden. Diese Sitzung speichert keine Kopie unter „Gesendet“.',
+    'قبل خادم الإرسال الرسالة، لكن التنظيف اللاحق فشل. لا ترسل هذه الرسالة مجددًا. لا تحفظ هذه الجلسة نسخة في البريد المرسل.',
+  );
   String get mailSubmissionUncertain => _mailText(
     'Submission could not be confirmed. Your draft is retained for this session. Check delivery before sending it again.',
     'Der Versand konnte nicht bestätigt werden. Der Entwurf bleibt in dieser Sitzung erhalten. Vor einem erneuten Versand die Zustellung prüfen.',
@@ -62,6 +67,41 @@ extension StudioMailFeedback on StudioStrings {
     'Could not open the complete message safely. Refresh the mailbox and try again.',
     'Die vollständige Nachricht konnte nicht sicher geöffnet werden. Das Postfach aktualisieren und erneut versuchen.',
     'تعذر فتح الرسالة كاملة بأمان. حدّث صندوق البريد وحاول مجددًا.',
+  );
+  String get mailMarkReadFailed => _mailText(
+    'The read status could not be confirmed. Refresh the mailbox before trying again.',
+    'Der Lesestatus konnte nicht bestätigt werden. Vor einem erneuten Versuch das Postfach aktualisieren.',
+    'تعذر تأكيد حالة القراءة. حدّث صندوق البريد قبل المحاولة مجددًا.',
+  );
+  String get mailRetainedDraft => _mailText(
+    'Open Compose to review the retained draft, or discard it before starting a reply or forward.',
+    'Zum Prüfen des gespeicherten Entwurfs „Verfassen“ öffnen oder den Entwurf vor dem Antworten oder Weiterleiten verwerfen.',
+    'افتح إنشاء رسالة لمراجعة المسودة المحفوظة، أو احذفها قبل بدء الرد أو إعادة التوجيه.',
+  );
+  String get mailDiscardDraft => _mailText(
+    'Discard retained draft',
+    'Gespeicherten Entwurf verwerfen',
+    'حذف المسودة المحفوظة',
+  );
+  String get mailDiscardDraftExplanation => _mailText(
+    'This removes only the draft kept in this session. It does not cancel a message already submitted. Check delivery before sending another copy.',
+    'Dies entfernt nur den in dieser Sitzung gespeicherten Entwurf. Eine bereits übermittelte Nachricht wird dadurch nicht zurückgerufen. Vor dem Senden einer weiteren Kopie die Zustellung prüfen.',
+    'يؤدي هذا إلى حذف المسودة المحفوظة في هذه الجلسة فقط. ولا يلغي رسالة أُرسلت بالفعل. تحقق من التسليم قبل إرسال نسخة أخرى.',
+  );
+  String get mailPlainTextUnavailable => _mailText(
+    'This message has no plain-text body to quote. Use Compose to write a new message.',
+    'Diese Nachricht enthält keinen Klartext zum Zitieren. Mit „Verfassen“ eine neue Nachricht schreiben.',
+    'لا تحتوي هذه الرسالة على نص عادي للاقتباس. استخدم إنشاء رسالة لكتابة رسالة جديدة.',
+  );
+  String get mailQuotedTextTruncated => _mailText(
+    '[Quoted text truncated.]',
+    '[Zitierter Text gekürzt.]',
+    '[تم اقتطاع النص المقتبس.]',
+  );
+  String get mailTextOnlyForward => _mailText(
+    '[Text-only forward; attachments are not included.]',
+    '[Weiterleitung nur als Text; Anlagen sind nicht enthalten.]',
+    '[إعادة توجيه النص فقط؛ المرفقات غير مضمنة.]',
   );
   String get reply => _mailText('Reply', 'Antworten', 'رد');
   String get forward => _mailText('Forward', 'Weiterleiten', 'إعادة توجيه');

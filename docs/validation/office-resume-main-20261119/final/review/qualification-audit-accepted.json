@@ -1,0 +1,918 @@
+{
+  "schema": 2,
+  "accepted": true,
+  "audited_at_utc": "2026-11-19T12:00:17.699901+00:00",
+  "source_commit": "0bd53e3e2b0d75ae48a4d7807dcddd123ab477f9",
+  "source_tree": "37d9017ca00c5abe491819af3373e83b80a4da98",
+  "publication_commit": null,
+  "method": "Independent raw-event lifecycle ledger; exact committed plan/command selection; Git mode/blob/content readback; complete recorded before/after source and bounded runtime mappings. No product tests executed by auditor.",
+  "issues": [],
+  "application_case_executions": 1898,
+  "executions": 1898,
+  "passed": 1898,
+  "failed": 0,
+  "skipped": 0,
+  "distinct_case_identities": 1327,
+  "cross_platform_repeated_executions": 571,
+  "distinct_suite_paths": 68,
+  "suite_platform_executions": 76,
+  "node_only_identities": [],
+  "phases": [
+    {
+      "plan": "docs/validation/office-resume-main-20261119/final/plan.json",
+      "output_dir": "/workspace/scratch/e63c6a1344bc/qualification-accepted-main",
+      "receipt_sha256": "01b011fc5409430f6c557c7c3a285d2e1918270d9fc226bee48d8f05d8743860",
+      "started_at_utc": "2026-11-19T11:50:59.649538+00:00",
+      "finished_at_utc": "2026-11-19T11:57:33.516125+00:00",
+      "accepted": true,
+      "application_case_executions": 1327,
+      "executions": 1327,
+      "passed": 1327,
+      "failed": 0,
+      "skipped": 0,
+      "distinct_suites": 68,
+      "groups": [
+        {
+          "name": "office-proofing-engine-vm",
+          "platform": "vm",
+          "suites": 17,
+          "cases": 725,
+          "executions": 725,
+          "passed": 725,
+          "failed": 0,
+          "skipped": 0,
+          "per_suite_outcomes": {
+            "packages/quds_office_engine/test/proofing/arabic_extended_rules_test.dart": {
+              "passed": 311,
+              "failed": 0,
+              "skipped": 0
+            },
+            "packages/quds_office_engine/test/proofing/arabic_grammar_rules_test.dart": {
+              "passed": 100,
+              "failed": 0,
+              "skipped": 0
+            },
+            "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart": {
+              "passed": 104,
+              "failed": 0,
+              "skipped": 0
+            },
+            "packages/quds_office_engine/test/proofing/german_spelling_test.dart": {
+              "passed": 39,
+              "failed": 0,
+              "skipped": 0
+            },
+            "packages/quds_office_engine/test/proofing/german_writing_rules_test.dart": {
+              "passed": 37,
+              "failed": 0,
+              "skipped": 0
+            },
+            "packages/quds_office_engine/test/proofing/office_proofing_merge_test.dart": {
+              "passed": 6,
+              "failed": 0,
+              "skipped": 0
+            },
+            "packages/quds_office_engine/test/proofing/office_proofing_test.dart": {
+              "passed": 14,
+              "failed": 0,
+              "skipped": 0
+            },
+            "packages/quds_office_engine/test/proofing/proofing_locale_test.dart": {
+              "passed": 6,
+              "failed": 0,
+              "skipped": 0
+            },
+            "packages/quds_office_engine/test/proofing/proofing_report_merge_test.dart": {
+              "passed": 20,
+              "failed": 0,
+              "skipped": 0
+            },
+            "packages/quds_office_engine/test/proofing/proofing_text_ranges_test.dart": {
+              "passed": 6,
+              "failed": 0,
+              "skipped": 0
+            },
+            "packages/quds_office_engine/test/proofing/word_proofing_language_test.dart": {
+              "passed": 28,
+              "failed": 0,
+              "skipped": 0
+            },
+            "packages/quds_office_engine/test/style_cascade_test.dart": {
+              "passed": 5,
+              "failed": 0,
+              "skipped": 0
+            },
+            "packages/quds_office_engine/test/word_comment_proofing_styles_test.dart": {
+              "passed": 4,
+              "failed": 0,
+              "skipped": 0
+            },
+            "packages/quds_office_engine/test/word_complex_script_language_test.dart": {
+              "passed": 17,
+              "failed": 0,
+              "skipped": 0
+            },
+            "packages/quds_office_engine/test/word_proofing_inheritance_test.dart": {
+              "passed": 13,
+              "failed": 0,
+              "skipped": 0
+            },
+            "packages/quds_office_engine/test/word_proofing_language_test.dart": {
+              "passed": 13,
+              "failed": 0,
+              "skipped": 0
+            },
+            "packages/quds_office_engine/test/word_referenced_styles_and_breaks_test.dart": {
+              "passed": 2,
+              "failed": 0,
+              "skipped": 0
+            }
+          },
+          "hidden_outcomes": {
+            "executions": 17,
+            "passed": 17,
+            "failed": 0,
+            "skipped": 0
+          },
+          "error_events": 0,
+          "started_events": 742,
+          "completed_events": 742,
+          "hidden_events": 17,
+          "event_types": {
+            "start": 1,
+            "suite": 17,
+            "testStart": 742,
+            "allSuites": 1,
+            "testDone": 742,
+            "group": 27,
+            "done": 1
+          },
+          "per_suite": {
+            "packages/quds_office_engine/test/proofing/arabic_extended_rules_test.dart": 311,
+            "packages/quds_office_engine/test/proofing/arabic_grammar_rules_test.dart": 100,
+            "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart": 104,
+            "packages/quds_office_engine/test/proofing/german_spelling_test.dart": 39,
+            "packages/quds_office_engine/test/proofing/german_writing_rules_test.dart": 37,
+            "packages/quds_office_engine/test/proofing/office_proofing_merge_test.dart": 6,
+            "packages/quds_office_engine/test/proofing/office_proofing_test.dart": 14,
+            "packages/quds_office_engine/test/proofing/proofing_locale_test.dart": 6,
+            "packages/quds_office_engine/test/proofing/proofing_report_merge_test.dart": 20,
+            "packages/quds_office_engine/test/proofing/proofing_text_ranges_test.dart": 6,
+            "packages/quds_office_engine/test/proofing/word_proofing_language_test.dart": 28,
+            "packages/quds_office_engine/test/style_cascade_test.dart": 5,
+            "packages/quds_office_engine/test/word_comment_proofing_styles_test.dart": 4,
+            "packages/quds_office_engine/test/word_complex_script_language_test.dart": 17,
+            "packages/quds_office_engine/test/word_proofing_inheritance_test.dart": 13,
+            "packages/quds_office_engine/test/word_proofing_language_test.dart": 13,
+            "packages/quds_office_engine/test/word_referenced_styles_and_breaks_test.dart": 2
+          },
+          "stderr_bytes": 0,
+          "print_events": 0,
+          "raw_log_sha256": "41fb352e58ed505744e7d7d84696db0b7d4d29b45fd70e730f2f473c0ed2cd2f"
+        },
+        {
+          "name": "english-proofing-contracts-vm",
+          "platform": "vm",
+          "suites": 3,
+          "cases": 29,
+          "executions": 29,
+          "passed": 29,
+          "failed": 0,
+          "skipped": 0,
+          "per_suite_outcomes": {
+            "packages/quds_proofing_harper/test/harper_provider_test.dart": {
+              "passed": 10,
+              "failed": 0,
+              "skipped": 0
+            },
+            "packages/quds_proofing_harper/test/harper_source_contract_test.dart": {
+              "passed": 12,
+              "failed": 0,
+              "skipped": 0
+            },
+            "packages/quds_proofing_harper/test/harper_source_text_test.dart": {
+              "passed": 7,
+              "failed": 0,
+              "skipped": 0
+            }
+          },
+          "hidden_outcomes": {
+            "executions": 3,
+            "passed": 3,
+            "failed": 0,
+            "skipped": 0
+          },
+          "error_events": 0,
+          "started_events": 32,
+          "completed_events": 32,
+          "hidden_events": 3,
+          "event_types": {
+            "start": 1,
+            "suite": 3,
+            "testStart": 32,
+            "allSuites": 1,
+            "testDone": 32,
+            "group": 3,
+            "done": 1
+          },
+          "per_suite": {
+            "packages/quds_proofing_harper/test/harper_provider_test.dart": 10,
+            "packages/quds_proofing_harper/test/harper_source_contract_test.dart": 12,
+            "packages/quds_proofing_harper/test/harper_source_text_test.dart": 7
+          },
+          "stderr_bytes": 0,
+          "print_events": 0,
+          "raw_log_sha256": "a93172cef83ac9eadbfaa530d3b9f82f2afd90ad52aad4e2be134be9b3170f25"
+        },
+        {
+          "name": "office-proofing-editor",
+          "platform": "vm",
+          "suites": 20,
+          "cases": 332,
+          "executions": 332,
+          "passed": 332,
+          "failed": 0,
+          "skipped": 0,
+          "per_suite_outcomes": {
+            "packages/quds_office_editor/test/word_arabic_writing_integration_test.dart": {
+              "passed": 3,
+              "failed": 0,
+              "skipped": 0
+            },
+            "packages/quds_office_editor/test/word_complex_script_proofing_controls_test.dart": {
+              "passed": 8,
+              "failed": 0,
+              "skipped": 0
+            },
+            "packages/quds_office_editor/test/word_draft_proofing_test.dart": {
+              "passed": 19,
+              "failed": 0,
+              "skipped": 0
+            },
+            "packages/quds_office_editor/test/word_german_grammar_integration_test.dart": {
+              "passed": 36,
+              "failed": 0,
+              "skipped": 0
+            },
+            "packages/quds_office_editor/test/word_incremental_proofing_menu_test.dart": {
+              "passed": 1,
+              "failed": 0,
+              "skipped": 0
+            },
+            "packages/quds_office_editor/test/word_incremental_proofing_test.dart": {
+              "passed": 15,
+              "failed": 0,
+              "skipped": 0
+            },
+            "packages/quds_office_editor/test/word_live_proofing_session_test.dart": {
+              "passed": 9,
+              "failed": 0,
+              "skipped": 0
+            },
+            "packages/quds_office_editor/test/word_manual_proofing_test.dart": {
+              "passed": 11,
+              "failed": 0,
+              "skipped": 0
+            },
+            "packages/quds_office_editor/test/word_notes_proofing_controller_test.dart": {
+              "passed": 46,
+              "failed": 0,
+              "skipped": 0
+            },
+            "packages/quds_office_editor/test/word_notes_proofing_pane_test.dart": {
+              "passed": 15,
+              "failed": 0,
+              "skipped": 0
+            },
+            "packages/quds_office_editor/test/word_proofing_capture_cache_test.dart": {
+              "passed": 4,
+              "failed": 0,
+              "skipped": 0
+            },
+            "packages/quds_office_editor/test/word_proofing_context_test.dart": {
+              "passed": 5,
+              "failed": 0,
+              "skipped": 0
+            },
+            "packages/quds_office_editor/test/word_proofing_correction_test.dart": {
+              "passed": 33,
+              "failed": 0,
+              "skipped": 0
+            },
+            "packages/quds_office_editor/test/word_proofing_dialog_test.dart": {
+              "passed": 23,
+              "failed": 0,
+              "skipped": 0
+            },
+            "packages/quds_office_editor/test/word_proofing_geometry_test.dart": {
+              "passed": 13,
+              "failed": 0,
+              "skipped": 0
+            },
+            "packages/quds_office_editor/test/word_proofing_navigation_test.dart": {
+              "passed": 6,
+              "failed": 0,
+              "skipped": 0
+            },
+            "packages/quds_office_editor/test/word_proofing_priority_test.dart": {
+              "passed": 7,
+              "failed": 0,
+              "skipped": 0
+            },
+            "packages/quds_office_editor/test/word_proofing_session_test.dart": {
+              "passed": 31,
+              "failed": 0,
+              "skipped": 0
+            },
+            "packages/quds_office_editor/test/word_text_proofing_controls_test.dart": {
+              "passed": 34,
+              "failed": 0,
+              "skipped": 0
+            },
+            "packages/quds_office_editor/test/word_text_proofing_pane_test.dart": {
+              "passed": 13,
+              "failed": 0,
+              "skipped": 0
+            }
+          },
+          "hidden_outcomes": {
+            "executions": 28,
+            "passed": 28,
+            "failed": 0,
+            "skipped": 0
+          },
+          "error_events": 0,
+          "started_events": 360,
+          "completed_events": 360,
+          "hidden_events": 28,
+          "event_types": {
+            "start": 1,
+            "suite": 20,
+            "testStart": 360,
+            "allSuites": 1,
+            "testDone": 360,
+            "group": 20,
+            "done": 1
+          },
+          "per_suite": {
+            "packages/quds_office_editor/test/word_arabic_writing_integration_test.dart": 3,
+            "packages/quds_office_editor/test/word_complex_script_proofing_controls_test.dart": 8,
+            "packages/quds_office_editor/test/word_draft_proofing_test.dart": 19,
+            "packages/quds_office_editor/test/word_german_grammar_integration_test.dart": 36,
+            "packages/quds_office_editor/test/word_incremental_proofing_menu_test.dart": 1,
+            "packages/quds_office_editor/test/word_incremental_proofing_test.dart": 15,
+            "packages/quds_office_editor/test/word_live_proofing_session_test.dart": 9,
+            "packages/quds_office_editor/test/word_manual_proofing_test.dart": 11,
+            "packages/quds_office_editor/test/word_notes_proofing_controller_test.dart": 46,
+            "packages/quds_office_editor/test/word_notes_proofing_pane_test.dart": 15,
+            "packages/quds_office_editor/test/word_proofing_capture_cache_test.dart": 4,
+            "packages/quds_office_editor/test/word_proofing_context_test.dart": 5,
+            "packages/quds_office_editor/test/word_proofing_correction_test.dart": 33,
+            "packages/quds_office_editor/test/word_proofing_dialog_test.dart": 23,
+            "packages/quds_office_editor/test/word_proofing_geometry_test.dart": 13,
+            "packages/quds_office_editor/test/word_proofing_navigation_test.dart": 6,
+            "packages/quds_office_editor/test/word_proofing_priority_test.dart": 7,
+            "packages/quds_office_editor/test/word_proofing_session_test.dart": 31,
+            "packages/quds_office_editor/test/word_text_proofing_controls_test.dart": 34,
+            "packages/quds_office_editor/test/word_text_proofing_pane_test.dart": 13
+          },
+          "stderr_bytes": 0,
+          "print_events": 0,
+          "raw_log_sha256": "0859077ae70ffb9537c03bf95a67d82bac1c8a8a4e7a47edda0a2d0b657cba37"
+        },
+        {
+          "name": "studio-functional-host-integration",
+          "platform": "vm",
+          "suites": 24,
+          "cases": 213,
+          "executions": 213,
+          "passed": 213,
+          "failed": 0,
+          "skipped": 0,
+          "per_suite_outcomes": {
+            "packages/quds_office_editor/example/test/pdf_gallery_faces_test.dart": {
+              "passed": 1,
+              "failed": 0,
+              "skipped": 0
+            },
+            "packages/quds_office_editor/example/test/pdf_gallery_smoke_test.dart": {
+              "passed": 1,
+              "failed": 0,
+              "skipped": 0
+            },
+            "packages/quds_office_editor/example/test/pdf_showcase_test.dart": {
+              "passed": 1,
+              "failed": 0,
+              "skipped": 0
+            },
+            "packages/quds_office_editor/example/test/studio_about_test.dart": {
+              "passed": 4,
+              "failed": 0,
+              "skipped": 0
+            },
+            "packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart": {
+              "passed": 15,
+              "failed": 0,
+              "skipped": 0
+            },
+            "packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart": {
+              "passed": 9,
+              "failed": 0,
+              "skipped": 0
+            },
+            "packages/quds_office_editor/example/test/studio_comment_review_test.dart": {
+              "passed": 38,
+              "failed": 0,
+              "skipped": 0
+            },
+            "packages/quds_office_editor/example/test/studio_compact_navigation_test.dart": {
+              "passed": 1,
+              "failed": 0,
+              "skipped": 0
+            },
+            "packages/quds_office_editor/example/test/studio_document_comparison_test.dart": {
+              "passed": 8,
+              "failed": 0,
+              "skipped": 0
+            },
+            "packages/quds_office_editor/example/test/studio_hunspell_setup_test.dart": {
+              "passed": 4,
+              "failed": 0,
+              "skipped": 0
+            },
+            "packages/quds_office_editor/example/test/studio_hunspell_web_cancellation_test.dart": {
+              "passed": 4,
+              "failed": 0,
+              "skipped": 0
+            },
+            "packages/quds_office_editor/example/test/studio_hunspell_web_host_test.dart": {
+              "passed": 4,
+              "failed": 0,
+              "skipped": 0
+            },
+            "packages/quds_office_editor/example/test/studio_linguistic_analysis_test.dart": {
+              "passed": 24,
+              "failed": 0,
+              "skipped": 0
+            },
+            "packages/quds_office_editor/example/test/studio_mail_lifecycle_test.dart": {
+              "passed": 1,
+              "failed": 0,
+              "skipped": 0
+            },
+            "packages/quds_office_editor/example/test/studio_mail_test.dart": {
+              "passed": 27,
+              "failed": 0,
+              "skipped": 0
+            },
+            "packages/quds_office_editor/example/test/studio_review_pane_test.dart": {
+              "passed": 3,
+              "failed": 0,
+              "skipped": 0
+            },
+            "packages/quds_office_editor/example/test/studio_review_status_test.dart": {
+              "passed": 10,
+              "failed": 0,
+              "skipped": 0
+            },
+            "packages/quds_office_editor/example/test/studio_settings_test.dart": {
+              "passed": 1,
+              "failed": 0,
+              "skipped": 0
+            },
+            "packages/quds_office_editor/example/test/studio_sheet_navigation_test.dart": {
+              "passed": 8,
+              "failed": 0,
+              "skipped": 0
+            },
+            "packages/quds_office_editor/example/test/studio_spacy_setup_test.dart": {
+              "passed": 11,
+              "failed": 0,
+              "skipped": 0
+            },
+            "packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart": {
+              "passed": 18,
+              "failed": 0,
+              "skipped": 0
+            },
+            "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart": {
+              "passed": 15,
+              "failed": 0,
+              "skipped": 0
+            },
+            "packages/quds_office_editor/example/test/widget_test.dart": {
+              "passed": 3,
+              "failed": 0,
+              "skipped": 0
+            },
+            "packages/quds_office_editor/example/test/word_pdf_face_export_test.dart": {
+              "passed": 2,
+              "failed": 0,
+              "skipped": 0
+            }
+          },
+          "hidden_outcomes": {
+            "executions": 24,
+            "passed": 24,
+            "failed": 0,
+            "skipped": 0
+          },
+          "error_events": 0,
+          "started_events": 237,
+          "completed_events": 237,
+          "hidden_events": 24,
+          "event_types": {
+            "start": 1,
+            "suite": 24,
+            "testStart": 237,
+            "allSuites": 1,
+            "testDone": 237,
+            "group": 25,
+            "done": 1
+          },
+          "per_suite": {
+            "packages/quds_office_editor/example/test/pdf_gallery_faces_test.dart": 1,
+            "packages/quds_office_editor/example/test/pdf_gallery_smoke_test.dart": 1,
+            "packages/quds_office_editor/example/test/pdf_showcase_test.dart": 1,
+            "packages/quds_office_editor/example/test/studio_about_test.dart": 4,
+            "packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart": 15,
+            "packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart": 9,
+            "packages/quds_office_editor/example/test/studio_comment_review_test.dart": 38,
+            "packages/quds_office_editor/example/test/studio_compact_navigation_test.dart": 1,
+            "packages/quds_office_editor/example/test/studio_document_comparison_test.dart": 8,
+            "packages/quds_office_editor/example/test/studio_hunspell_setup_test.dart": 4,
+            "packages/quds_office_editor/example/test/studio_hunspell_web_cancellation_test.dart": 4,
+            "packages/quds_office_editor/example/test/studio_hunspell_web_host_test.dart": 4,
+            "packages/quds_office_editor/example/test/studio_linguistic_analysis_test.dart": 24,
+            "packages/quds_office_editor/example/test/studio_mail_lifecycle_test.dart": 1,
+            "packages/quds_office_editor/example/test/studio_mail_test.dart": 27,
+            "packages/quds_office_editor/example/test/studio_review_pane_test.dart": 3,
+            "packages/quds_office_editor/example/test/studio_review_status_test.dart": 10,
+            "packages/quds_office_editor/example/test/studio_settings_test.dart": 1,
+            "packages/quds_office_editor/example/test/studio_sheet_navigation_test.dart": 8,
+            "packages/quds_office_editor/example/test/studio_spacy_setup_test.dart": 11,
+            "packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart": 18,
+            "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart": 15,
+            "packages/quds_office_editor/example/test/widget_test.dart": 3,
+            "packages/quds_office_editor/example/test/word_pdf_face_export_test.dart": 2
+          },
+          "stderr_bytes": 0,
+          "print_events": 0,
+          "raw_log_sha256": "5991a4344f8c0e9ec77ccaec08ac042a94c341feed06987406d404a88d9b25c5"
+        },
+        {
+          "name": "hunspell-provider-vm",
+          "platform": "vm",
+          "suites": 3,
+          "cases": 19,
+          "executions": 19,
+          "passed": 19,
+          "failed": 0,
+          "skipped": 0,
+          "per_suite_outcomes": {
+            "packages/quds_proofing_hunspell/test/hunspell_installer_cancellation_incoming_test.dart": {
+              "passed": 4,
+              "failed": 0,
+              "skipped": 0
+            },
+            "packages/quds_proofing_hunspell/test/hunspell_installer_cancellation_test.dart": {
+              "passed": 4,
+              "failed": 0,
+              "skipped": 0
+            },
+            "packages/quds_proofing_hunspell/test/hunspell_provider_test.dart": {
+              "passed": 11,
+              "failed": 0,
+              "skipped": 0
+            }
+          },
+          "hidden_outcomes": {
+            "executions": 3,
+            "passed": 3,
+            "failed": 0,
+            "skipped": 0
+          },
+          "error_events": 0,
+          "started_events": 22,
+          "completed_events": 22,
+          "hidden_events": 3,
+          "event_types": {
+            "start": 1,
+            "suite": 3,
+            "testStart": 22,
+            "allSuites": 1,
+            "testDone": 22,
+            "group": 6,
+            "done": 1
+          },
+          "per_suite": {
+            "packages/quds_proofing_hunspell/test/hunspell_installer_cancellation_incoming_test.dart": 4,
+            "packages/quds_proofing_hunspell/test/hunspell_installer_cancellation_test.dart": 4,
+            "packages/quds_proofing_hunspell/test/hunspell_provider_test.dart": 11
+          },
+          "stderr_bytes": 0,
+          "print_events": 0,
+          "raw_log_sha256": "f7c292c9834100508286a5ac2a2a36be0d41a84bc04551265255c50cd654182b"
+        },
+        {
+          "name": "arabic-morphology-contracts-vm",
+          "platform": "vm",
+          "suites": 1,
+          "cases": 9,
+          "executions": 9,
+          "passed": 9,
+          "failed": 0,
+          "skipped": 0,
+          "per_suite_outcomes": {
+            "packages/quds_arabic_morph/test/arabic_morph_unit_test.dart": {
+              "passed": 9,
+              "failed": 0,
+              "skipped": 0
+            }
+          },
+          "hidden_outcomes": {
+            "executions": 1,
+            "passed": 1,
+            "failed": 0,
+            "skipped": 0
+          },
+          "error_events": 0,
+          "started_events": 10,
+          "completed_events": 10,
+          "hidden_events": 1,
+          "event_types": {
+            "start": 1,
+            "suite": 1,
+            "testStart": 10,
+            "allSuites": 1,
+            "testDone": 10,
+            "group": 4,
+            "done": 1
+          },
+          "per_suite": {
+            "packages/quds_arabic_morph/test/arabic_morph_unit_test.dart": 9
+          },
+          "stderr_bytes": 0,
+          "print_events": 0,
+          "raw_log_sha256": "649b9d9a131be31c734a316333a28a18a16e598e98cdb4b8223b9bae50d2f01a"
+        }
+      ],
+      "static_checks": [
+        {
+          "name": "analysis",
+          "passed": true,
+          "log_sha256": "8ec1119b3f31a6b779647b7990b45a168d6f7dcc88dcf045441c855e99a2743e"
+        },
+        {
+          "name": "format",
+          "passed": true,
+          "log_sha256": "c69fc0dad98b12101c5c9e86b7e1f80339784e7c788af4658128a52de7238afc"
+        },
+        {
+          "name": "whitespace",
+          "passed": true,
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "source": {
+        "records": 5164,
+        "materialized": 5164,
+        "sparse": 0,
+        "live_readback": true,
+        "publication_checked": null
+      },
+      "runtime": {
+        "records": 11165,
+        "retained_files": 11142,
+        "additional_files": 4,
+        "native_assets": 1,
+        "runtime_root": "/workspace/scratch/e63c6a1344bc/runtime",
+        "receipt_sha256": "cc2589fedb04b9bb8aeb291390efff72136896396c228d8ea081bd68f777a5c7",
+        "dependency_report": {
+          "resolved_packages": 133,
+          "workspace_packages": 19,
+          "hosted_archive_receipts": 176,
+          "test_launcher": "/workspace/scratch/e63c6a1344bc/runtime/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+          "package_config_sha256": "571ba3dffb531299534dfcd8311bbda49d6b13d3fa0b8bba89dd9a1a2b60453a"
+        },
+        "scope": "Recorded bounded inputs and current byte readback; not an OS/container snapshot"
+      }
+    },
+    {
+      "plan": "docs/validation/office-resume-main-20261119/final/node-plan.json",
+      "output_dir": "/workspace/scratch/e63c6a1344bc/qualification-accepted-node",
+      "receipt_sha256": "72f19a4d53e1f30ce955f1323a3ac71de5eae65e1ce7014aaee1915c17631890",
+      "started_at_utc": "2026-11-19T11:57:36.151655+00:00",
+      "finished_at_utc": "2026-11-19T12:00:00.233747+00:00",
+      "accepted": true,
+      "application_case_executions": 571,
+      "executions": 571,
+      "passed": 571,
+      "failed": 0,
+      "skipped": 0,
+      "distinct_suites": 8,
+      "groups": [
+        {
+          "name": "arabic-language-node",
+          "platform": "node",
+          "suites": 6,
+          "cases": 551,
+          "executions": 551,
+          "passed": 551,
+          "failed": 0,
+          "skipped": 0,
+          "per_suite_outcomes": {
+            "packages/quds_office_engine/test/proofing/arabic_extended_rules_test.dart": {
+              "passed": 311,
+              "failed": 0,
+              "skipped": 0
+            },
+            "packages/quds_office_engine/test/proofing/arabic_grammar_rules_test.dart": {
+              "passed": 100,
+              "failed": 0,
+              "skipped": 0
+            },
+            "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart": {
+              "passed": 104,
+              "failed": 0,
+              "skipped": 0
+            },
+            "packages/quds_office_engine/test/proofing/office_proofing_merge_test.dart": {
+              "passed": 6,
+              "failed": 0,
+              "skipped": 0
+            },
+            "packages/quds_office_engine/test/word_complex_script_language_test.dart": {
+              "passed": 17,
+              "failed": 0,
+              "skipped": 0
+            },
+            "packages/quds_office_engine/test/word_proofing_language_test.dart": {
+              "passed": 13,
+              "failed": 0,
+              "skipped": 0
+            }
+          },
+          "hidden_outcomes": {
+            "executions": 6,
+            "passed": 6,
+            "failed": 0,
+            "skipped": 0
+          },
+          "error_events": 0,
+          "started_events": 557,
+          "completed_events": 557,
+          "hidden_events": 6,
+          "event_types": {
+            "start": 1,
+            "suite": 6,
+            "testStart": 557,
+            "allSuites": 1,
+            "print": 6,
+            "testDone": 557,
+            "group": 16,
+            "done": 1
+          },
+          "per_suite": {
+            "packages/quds_office_engine/test/proofing/arabic_extended_rules_test.dart": 311,
+            "packages/quds_office_engine/test/proofing/arabic_grammar_rules_test.dart": 100,
+            "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart": 104,
+            "packages/quds_office_engine/test/proofing/office_proofing_merge_test.dart": 6,
+            "packages/quds_office_engine/test/word_complex_script_language_test.dart": 17,
+            "packages/quds_office_engine/test/word_proofing_language_test.dart": 13
+          },
+          "stderr_bytes": 0,
+          "print_events": 6,
+          "raw_log_sha256": "3dcdd9828493eacc12a171c100876a4a964145b65da5e21a1c11086d517f1f50"
+        },
+        {
+          "name": "hunspell-contracts-node",
+          "platform": "node",
+          "suites": 1,
+          "cases": 11,
+          "executions": 11,
+          "passed": 11,
+          "failed": 0,
+          "skipped": 0,
+          "per_suite_outcomes": {
+            "packages/quds_proofing_hunspell/test/hunspell_provider_test.dart": {
+              "passed": 11,
+              "failed": 0,
+              "skipped": 0
+            }
+          },
+          "hidden_outcomes": {
+            "executions": 1,
+            "passed": 1,
+            "failed": 0,
+            "skipped": 0
+          },
+          "error_events": 0,
+          "started_events": 12,
+          "completed_events": 12,
+          "hidden_events": 1,
+          "event_types": {
+            "start": 1,
+            "suite": 1,
+            "testStart": 12,
+            "allSuites": 1,
+            "print": 1,
+            "testDone": 12,
+            "group": 4,
+            "done": 1
+          },
+          "per_suite": {
+            "packages/quds_proofing_hunspell/test/hunspell_provider_test.dart": 11
+          },
+          "stderr_bytes": 0,
+          "print_events": 1,
+          "raw_log_sha256": "f3af12fa9b776e37294ebcf096528982e8c8cb97e233a858f93d2d69a6d2ece1"
+        },
+        {
+          "name": "arabic-morphology-contracts-node",
+          "platform": "node",
+          "suites": 1,
+          "cases": 9,
+          "executions": 9,
+          "passed": 9,
+          "failed": 0,
+          "skipped": 0,
+          "per_suite_outcomes": {
+            "packages/quds_arabic_morph/test/arabic_morph_unit_test.dart": {
+              "passed": 9,
+              "failed": 0,
+              "skipped": 0
+            }
+          },
+          "hidden_outcomes": {
+            "executions": 1,
+            "passed": 1,
+            "failed": 0,
+            "skipped": 0
+          },
+          "error_events": 0,
+          "started_events": 10,
+          "completed_events": 10,
+          "hidden_events": 1,
+          "event_types": {
+            "start": 1,
+            "suite": 1,
+            "testStart": 10,
+            "allSuites": 1,
+            "print": 1,
+            "testDone": 10,
+            "group": 4,
+            "done": 1
+          },
+          "per_suite": {
+            "packages/quds_arabic_morph/test/arabic_morph_unit_test.dart": 9
+          },
+          "stderr_bytes": 0,
+          "print_events": 1,
+          "raw_log_sha256": "26c89192e185947741d55d85dae152cb6508be103e456eff1eb9435b71363f0d"
+        }
+      ],
+      "static_checks": [
+        {
+          "name": "whitespace",
+          "passed": true,
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "source": {
+        "records": 5164,
+        "materialized": 5164,
+        "sparse": 0,
+        "live_readback": true,
+        "publication_checked": null
+      },
+      "runtime": {
+        "records": 11162,
+        "retained_files": 11142,
+        "additional_files": 4,
+        "native_assets": 1,
+        "runtime_root": "/workspace/scratch/e63c6a1344bc/runtime",
+        "receipt_sha256": "cc2589fedb04b9bb8aeb291390efff72136896396c228d8ea081bd68f777a5c7",
+        "dependency_report": {
+          "resolved_packages": 133,
+          "workspace_packages": 19,
+          "hosted_archive_receipts": 176,
+          "test_launcher": "/workspace/scratch/e63c6a1344bc/runtime/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+          "package_config_sha256": "571ba3dffb531299534dfcd8311bbda49d6b13d3fa0b8bba89dd9a1a2b60453a"
+        },
+        "scope": "Recorded bounded inputs and current byte readback; not an OS/container snapshot"
+      }
+    }
+  ],
+  "source_inventory_records": 5164,
+  "runtime_union_records": 11165,
+  "historical_cases_added": 0,
+  "github_actions": "NOT QUERIED OR AWAITED",
+  "audit_script_sha256": "52c76f3a0b9bd0c3d509dc9686a46fcf94dc471bf082ba9313879b416dedaa93",
+  "requested_phase_count": 2,
+  "case_inventory": {
+    "path": "/workspace/scratch/e63c6a1344bc/audit-final/qualification-audit-accepted-cases.json",
+    "sha256": "82158bf7d4eb18dc1825edc42c00830c657adc0fb55b6874f29fc2ceaf7f4b28",
+    "records": 1898
+  }
+}

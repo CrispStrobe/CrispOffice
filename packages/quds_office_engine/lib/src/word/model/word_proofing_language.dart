@@ -4,6 +4,10 @@ final _complexScriptLetter = RegExp(
   r'(?=\p{L})[\p{Script=Arabic}\p{Script=Hebrew}]',
   unicode: true,
 );
+final _nonComplexScriptLetter = RegExp(
+  r'(?=\p{L})[^\p{Script=Arabic}\p{Script=Hebrew}]',
+  unicode: true,
+);
 
 /// Whether [text] contains a letter of a right-to-left complex script
 /// (Arabic or Hebrew, including presentation forms).
@@ -16,6 +20,15 @@ bool wordTextHasComplexScriptLetter(String text) =>
 bool wordRunUsesComplexScriptLanguage(WmlRun run) =>
     run.properties.complexScript == true ||
     wordTextHasComplexScriptLetter(run.text);
+
+/// Whether the run also uses the normal `w:lang/@w:val` language slot.
+/// Unmarked mixed-script text can use both slots. Explicit complex-script
+/// formatting routes the whole run to `w:bidi`; punctuation or digits alone
+/// retain the normal slot when there is no such formatting.
+bool wordRunUsesLatinScriptLanguage(WmlRun run) =>
+    run.properties.complexScript != true &&
+    (!wordTextHasComplexScriptLetter(run.text) ||
+        _nonComplexScriptLetter.hasMatch(run.text));
 
 /// The proofing language Word would apply to [run].
 ///

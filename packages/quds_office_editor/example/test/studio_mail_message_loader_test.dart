@@ -10,6 +10,200 @@ import 'package:quds_office_studio/studio_mail_message_loader.dart';
 
 void main() {
   test(
+    'mark-read freezes the full identity and requires provider success',
+    () async {
+      final completed = Completer<MailResult<MailUnit>>();
+      final harness = _Harness()..applyAnswer = (_, _) => completed.future;
+      final loader = _loader(harness);
+      addTearDown(loader.dispose);
+      final mailbox = _mailbox(uidValidity: 83);
+      final header = _header(uid: 0xffffffff)..sequenceId = 2;
+
+      final pending = loader.markRead(mailbox, header);
+      final request = harness.mutations.single;
+      final command = request.$1 as MailSetRead;
+      final identity = command.message as MailImapIdentity;
+      mailbox.uidValidity = 84;
+      header.uid = 3;
+      completed.complete(const MailSuccess(MailUnit.value));
+      await pending;
+
+      expect(command.read, isTrue);
+      expect(command.id, isNotEmpty);
+      expect(identity.mailbox.value, 'INBOX');
+      expect(identity.uidValidity, 83);
+      expect(identity.uid, 0xffffffff);
+      expect(identity.account, harness.configuration!.account);
+      expect(request.$2.isCurrent, isTrue);
+      expect(harness.requests, isEmpty);
+      expect(header.isSeen, isFalse);
+    },
+  );
+
+  test(
+    'mark-read refuses incomplete or stale identities without networking',
+    () async {
+      final harness = _Harness();
+      final loader = _loader(harness);
+      addTearDown(loader.dispose);
+      for (final uid in [null, 0, -1, 0x100000000]) {
+        final header = _header(uid: uid)..sequenceId = 2;
+        await expectLater(
+          loader.markRead(_mailbox(), header),
+          throwsA(_problem(MailProblemCode.invalidInput)),
+        );
+      }
+      for (final validity in [null, 0, -1, 0x100000000]) {
+        await expectLater(
+          loader.markRead(_mailbox(uidValidity: validity), _header()),
+          throwsA(_problem(MailProblemCode.invalidInput)),
+        );
+      }
+      await expectLater(
+        loader.markRead(
+          _mailbox(flags: [mail.MailboxFlag.noSelect]),
+          _header(),
+        ),
+        throwsA(_problem(MailProblemCode.invalidInput)),
+      );
+      final stale = _header()
+        ..setGuid(
+          email: 'fixture@example.test',
+          encodedMailboxName: 'INBOX',
+          mailboxUidValidity: 999,
+        );
+      await expectLater(
+        loader.markRead(_mailbox(), stale),
+        throwsA(_problem(MailProblemCode.conflict)),
+      );
+      expect(harness.factoryCalls, 0);
+      expect(harness.mutations, isEmpty);
+    },
+  );
+
+  test(
+    'mark-read never retries or turns an unconfirmed write into success',
+    () async {
+      final harness = _Harness();
+      final loader = _loader(harness);
+      addTearDown(loader.dispose);
+      for (final code in MailProblemCode.values) {
+        harness.applyAnswer = (_, _) async => MailFailure(MailProblem(code));
+        final before = harness.mutations.length;
+        await expectLater(
+          loader.markRead(_mailbox(), _header()),
+          throwsA(_problem(code)),
+        );
+        expect(harness.mutations.length, before + 1);
+      }
+      harness.applyAnswer = (_, _) =>
+          throw StateError('private server response fixture-only-password');
+      await expectLater(
+        loader.markRead(_mailbox(), _header()),
+        throwsA(_problem(MailProblemCode.providerFailure)),
+      );
+    },
+  );
+
+  test(
+    'mark-read rejects a provider from another account before writing',
+    () async {
+      final harness = _Harness()
+        ..providerAccount = MailAccountId(
+          'foreign',
+          profile: MailProfileId('foreign-profile', hostId: 'foreign-host'),
+        );
+      final loader = _loader(harness);
+      addTearDown(loader.dispose);
+      await expectLater(
+        loader.markRead(_mailbox(), _header()),
+        throwsA(_problem(MailProblemCode.invalidInput)),
+      );
+      expect(harness.mutations, isEmpty);
+    },
+  );
+
+  test(
+    'a mark-read operation cancels an older read without replaying it',
+    () async {
+      final delayed = Completer<MailResult<MailMessage>>();
+      final harness = _Harness()..answer = (_, _, _) => delayed.future;
+      final loader = _loader(harness);
+      addTearDown(loader.dispose);
+      final first = loader.fetch(_mailbox(), _header());
+      final expectation = expectLater(
+        first,
+        throwsA(_problem(MailProblemCode.cancelled)),
+      );
+
+      await loader.markRead(_mailbox(), _header(uid: 8));
+      await expectation;
+      delayed.completeError(StateError('late read failure'));
+      await Future<void>.delayed(Duration.zero);
+
+      expect(harness.requests.single.lease.isCurrent, isFalse);
+      expect(harness.mutations, hasLength(1));
+      expect(harness.mutations.single.$2.isCurrent, isTrue);
+    },
+  );
+
+  test(
+    'a new read cancels a pending write and ignores late write completion',
+    () async {
+      final delayed = Completer<MailResult<MailUnit>>();
+      final harness = _Harness()..applyAnswer = (_, _) => delayed.future;
+      final loader = _loader(harness);
+      addTearDown(loader.dispose);
+      final first = loader.markRead(_mailbox(), _header());
+      final expectation = expectLater(
+        first,
+        throwsA(_problem(MailProblemCode.cancelled)),
+      );
+
+      expect(
+        await loader.fetch(_mailbox(), _header(uid: 8)),
+        orderedEquals(harness.raw),
+      );
+      await expectation;
+      delayed.complete(const MailSuccess(MailUnit.value));
+      await Future<void>.delayed(Duration.zero);
+
+      expect(harness.mutations.single.$2.isCurrent, isFalse);
+      expect(harness.mutations.single.$2.cancellation!.isCancelled, isTrue);
+      expect(harness.mutations, hasLength(1));
+    },
+  );
+
+  test(
+    'dispose promptly cancels a pending mark-read and prohibits later writes',
+    () async {
+      final delayed = Completer<MailResult<MailUnit>>();
+      final harness = _Harness()..applyAnswer = (_, _) => delayed.future;
+      final loader = _loader(harness);
+      final first = loader.markRead(_mailbox(), _header());
+      final expectation = expectLater(
+        first,
+        throwsA(_problem(MailProblemCode.staleOperation)),
+      );
+
+      loader.dispose();
+      await expectation.timeout(const Duration(seconds: 1));
+      await expectLater(
+        loader.markRead(_mailbox(), _header()),
+        throwsA(_problem(MailProblemCode.staleOperation)),
+      );
+      final credentials = await harness.credentials!.load(
+        harness.configuration!.credential,
+      );
+      expect((credentials as MailSuccess<MailCredentialRecord?>).value, isNull);
+      expect(harness.mutations.single.$2.isCurrent, isFalse);
+      expect(harness.factoryCalls, 1);
+      delayed.completeError(StateError('late write failure'));
+      await Future<void>.delayed(Duration.zero);
+    },
+  );
+
+  test(
     'returns exact original non-UTF8 octets in an independent copy',
     () async {
       final harness = _Harness();
@@ -560,6 +754,12 @@ typedef _Answer =
       MailOperationLease lease,
     );
 
+typedef _ApplyAnswer =
+    Future<MailResult<MailUnit>> Function(
+      MailOperation operation,
+      MailOperationLease lease,
+    );
+
 final class _Request {
   _Request(this.identity, this.budget, this.lease);
   final MailRemoteIdentity identity;
@@ -589,6 +789,9 @@ final class _Harness {
   MailMessage? lastMessage;
   final requests = <_Request>[];
   _Answer? answer;
+  _ApplyAnswer? applyAnswer;
+  MailAccountId? providerAccount;
+  final mutations = <(MailOperation, MailOperationLease)>[];
 
   MailMessage message(MailRemoteIdentity? identity) =>
       lastMessage = MailMessage(
@@ -606,20 +809,35 @@ final class _Harness {
     this.configuration = configuration;
     credentials = credentialStore;
     this.limits = limits;
-    return _Provider(configuration.account, (identity, budget, lease) {
-      requests.add(_Request(identity, budget, lease));
-      return answer?.call(identity, budget, lease) ??
-          Future.value(MailSuccess(message(identity)));
-    });
+    return _Provider(
+      providerAccount ?? configuration.account,
+      (identity, budget, lease) {
+        requests.add(_Request(identity, budget, lease));
+        return answer?.call(identity, budget, lease) ??
+            Future.value(MailSuccess(message(identity)));
+      },
+      (operation, lease) {
+        mutations.add((operation, lease));
+        return applyAnswer?.call(operation, lease) ??
+            Future.value(const MailSuccess(MailUnit.value));
+      },
+    );
   }
 }
 
 final class _Provider implements MailProvider {
-  _Provider(this.account, this.answer);
+  _Provider(this.account, this.answer, this.applyAnswer);
 
   @override
   final MailAccountId account;
   final _Answer answer;
+  final _ApplyAnswer applyAnswer;
+
+  @override
+  Future<MailResult<MailUnit>> apply(
+    MailOperation operation,
+    MailOperationLease lease,
+  ) => applyAnswer(operation, lease);
 
   @override
   Future<MailResult<MailMessage>> fetchMessage(
@@ -629,6 +847,7 @@ final class _Provider implements MailProvider {
   }) => answer(identity, budget, lease);
 
   @override
-  dynamic noSuchMethod(Invocation invocation) =>
-      throw StateError('Unexpected provider operation in read-only loader.');
+  dynamic noSuchMethod(Invocation invocation) => throw StateError(
+    'Unexpected provider operation in bounded message adapter.',
+  );
 }

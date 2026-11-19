@@ -1,0 +1,15 @@
+{
+  "checked_at_utc": "2026-11-19T11:46:36.485862+00:00",
+  "containing_commit": "22ffa8bdcc11e5e10eb37f2326f832066f609a08",
+  "qualified_historical_source": "79e77725925d937bae944b03aac795ffb3fd967d",
+  "archive": "docs/validation/office-resume-main-20261119/superseded-79e7772/evidence.tar.xz",
+  "archive_sha256": "50d554ff3d826313a7ad77c73a50474b59f8d00665c31de5c94abf5248def648",
+  "archive_members_equal_original_audited_bytes": 57,
+  "all_compact_wrapper_references_resolve_inside_archive": true,
+  "native_receipt_source_verified": true,
+  "python_receipt_source_verified": true,
+  "node_run_present": false,
+  "classification": "SUPERSEDED_SOURCE_NOT_FINAL_ACCEPTANCE",
+  "final_source_accepted_case_contribution": 0,
+  "passed": true
+}

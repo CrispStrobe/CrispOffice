@@ -1,0 +1,75 @@
+{
+  "source_commit": "47ce5f726f1a0b1f213b926162528533dc0a3aab",
+  "status": "development-preflight-uncommitted-correction",
+  "archive": "portability-development-evidence.tar.xz",
+  "bytes": 8244,
+  "sha256": "71a7d126c21f4641652723fade0ea3503842781fe9cd9f52601a463c18c98d3e",
+  "member_count": 13,
+  "members": [
+    {
+      "path": "audit-final/morph-decimal-proposal/after/packages/quds_arabic_morph/lib/src/morph_analysis.dart",
+      "bytes": 3478,
+      "sha256": "6a1ceb143f8d5b5828f469cfec3c77fb419ebc795ec56ff6d6cd57efe2632e73"
+    },
+    {
+      "path": "audit-final/morph-decimal-proposal/after/packages/quds_arabic_morph/test/arabic_morph_unit_test.dart",
+      "bytes": 6924,
+      "sha256": "671e1777c25dbf33e1afc2d70374f5c5b080282c571e3880277defb205d19f56"
+    },
+    {
+      "path": "audit-final/morph-decimal-proposal/before/packages/quds_arabic_morph/lib/src/morph_analysis.dart",
+      "bytes": 3021,
+      "sha256": "cfd2acf71e5b13f61b9bd3164c80f92ec7df7b7eed4ba1a2074086ab6d6913b7"
+    },
+    {
+      "path": "audit-final/morph-decimal-proposal/before/packages/quds_arabic_morph/test/arabic_morph_unit_test.dart",
+      "bytes": 6197,
+      "sha256": "a523f70aa1ff88d2ec9b0fafa444c5775d8d01ce24acdc69d5f24d2f0941121c"
+    },
+    {
+      "path": "audit-final/morph-decimal-proposal/canonical-numeric-feature-text.patch",
+      "bytes": 2545,
+      "sha256": "2491d3d4ebe9b51ae21fbd68a2f25f5814a3e76badd9150f00155f3189397e70"
+    },
+    {
+      "path": "audit-final/morph-decimal-proposal/review.json",
+      "bytes": 3405,
+      "sha256": "f030604ffe62aa327677b79b1a29941853a9474051da4f87ce40511e3de0c00e"
+    },
+    {
+      "path": "audit-preservation/proofing-host-doc-correction.patch",
+      "bytes": 803,
+      "sha256": "20ca9b144c3b14aa91bfb7ba4b3851e1a7598108a3f0feafa6bfb91eb2b17db4"
+    },
+    {
+      "path": "audit-preservation/proofing-host-doc-review.json",
+      "bytes": 2485,
+      "sha256": "320b080f1e3cc97cf253264f9eaf994d8c72f478d6c20c3c3f10665089710a5c"
+    },
+    {
+      "path": "diagnostics/morph-portability/node.jsonl",
+      "bytes": 5959,
+      "sha256": "1751a7b188ed3f87ac1b52a08c3583c87d8f62500f19d17196410591b8f5ea2c"
+    },
+    {
+      "path": "diagnostics/morph-portability/node.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "diagnostics/morph-portability/receipts.json",
+      "bytes": 10241,
+      "sha256": "95cf0fe0fd55c02e52b75087229032a725255b6554598e0742931294216ffb1e"
+    },
+    {
+      "path": "diagnostics/morph-portability/vm.jsonl",
+      "bytes": 5594,
+      "sha256": "1519bdfd35dadd323c212765cc395bf9fb4b4643f8249c36a7fbeced2e920e57"
+    },
+    {
+      "path": "diagnostics/morph-portability/vm.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

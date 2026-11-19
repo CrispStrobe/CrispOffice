@@ -1,0 +1,359 @@
+{
+  "schema": 1,
+  "outcome": "REJECTED",
+  "source_commit": "4b8b9e2ecec349542bd34bc7f983e1cf500e8cbf",
+  "source_tree": "62c5bcab1813976bc4330bfa5268fe148f587eea",
+  "archive": {
+    "file": "evidence.tar.xz",
+    "bytes": 1026452,
+    "sha256": "6529d9d7f3b86576f1dce9899a1416c716e3eb36bece4921961e99408e97d455"
+  },
+  "member_count": 57,
+  "original_raw_file_count": 53,
+  "members": [
+    {
+      "path": "raw/bundle-controls.log",
+      "original": "/workspace/scratch/ca9c01a86531/final-results/bundle-controls.log",
+      "bytes": 2586,
+      "sha256": "bcc590a609cef74e12a37c24c4a78f3e531b7622f96b60d535f32c75267c8c13"
+    },
+    {
+      "path": "raw/inputs-after.json",
+      "original": "/workspace/scratch/ca9c01a86531/final-results/inputs-after.json",
+      "bytes": 2867524,
+      "sha256": "a3b625f196f4aa466ee228f8150696c57e2f92660eb97be1d5b6d17da7ad34cd"
+    },
+    {
+      "path": "raw/inputs-before.json",
+      "original": "/workspace/scratch/ca9c01a86531/final-results/inputs-before.json",
+      "bytes": 2867524,
+      "sha256": "a3b625f196f4aa466ee228f8150696c57e2f92660eb97be1d5b6d17da7ad34cd"
+    },
+    {
+      "path": "raw/native.log",
+      "original": "/workspace/scratch/ca9c01a86531/final-results/native.log",
+      "bytes": 1298,
+      "sha256": "a373f685f86c9c9385238fe97550edf012b70149c92db2ee8b51c7abe9fde337"
+    },
+    {
+      "path": "raw/native/checks/analysis.log",
+      "original": "/workspace/scratch/ca9c01a86531/final-results/native/checks/analysis.log",
+      "bytes": 4465,
+      "sha256": "c042257188f3251979eecc4e4c3b65c78e7385cd8d6905912845e99451ad88bd"
+    },
+    {
+      "path": "raw/native/checks/analysis.log.gz",
+      "original": "/workspace/scratch/ca9c01a86531/final-results/native/checks/analysis.log.gz",
+      "bytes": 1052,
+      "sha256": "adaa7590ffdd1df29b1248ce6c46925e8d62d7356cb5b6b462b3aed7dde7e886"
+    },
+    {
+      "path": "raw/native/checks/arabic-morph-native-cases.json",
+      "original": "/workspace/scratch/ca9c01a86531/final-results/native/checks/arabic-morph-native-cases.json",
+      "bytes": 6695,
+      "sha256": "6a4d2a0ca8d0809840cc8c5583ff1e49925f701846dffd300c586428ffff9886"
+    },
+    {
+      "path": "raw/native/checks/arabic-morph-native-errors.json",
+      "original": "/workspace/scratch/ca9c01a86531/final-results/native/checks/arabic-morph-native-errors.json",
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    {
+      "path": "raw/native/checks/arabic-morph-native.jsonl",
+      "original": "/workspace/scratch/ca9c01a86531/final-results/native/checks/arabic-morph-native.jsonl",
+      "bytes": 15668,
+      "sha256": "5d42c5999935cd58962469be57226f71a1750a88637f0263290e7a6e66e2b159"
+    },
+    {
+      "path": "raw/native/checks/arabic-morph-native.jsonl.gz",
+      "original": "/workspace/scratch/ca9c01a86531/final-results/native/checks/arabic-morph-native.jsonl.gz",
+      "bytes": 2036,
+      "sha256": "968c877ffb5a0dba8a881df75a13f190f52d1848713f25ab5662559ffa258478"
+    },
+    {
+      "path": "raw/native/checks/arabic-morph-native.stderr.log",
+      "original": "/workspace/scratch/ca9c01a86531/final-results/native/checks/arabic-morph-native.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "raw/native/checks/arabic-morph-native.stderr.log.gz",
+      "original": "/workspace/scratch/ca9c01a86531/final-results/native/checks/arabic-morph-native.stderr.log.gz",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "path": "raw/native/checks/format.log",
+      "original": "/workspace/scratch/ca9c01a86531/final-results/native/checks/format.log",
+      "bytes": 49,
+      "sha256": "9ff97fedd2d96f8bdac0db321e4f9a3807d0b36a935b093c88bbef15804e3883"
+    },
+    {
+      "path": "raw/native/checks/format.log.gz",
+      "original": "/workspace/scratch/ca9c01a86531/final-results/native/checks/format.log.gz",
+      "bytes": 69,
+      "sha256": "46d10bc89e5b45767f5585e7ce3a9d2fdf8d81547bf9ad6a022e62f27d54b053"
+    },
+    {
+      "path": "raw/native/checks/hunspell-native-cases.json",
+      "original": "/workspace/scratch/ca9c01a86531/final-results/native/checks/hunspell-native-cases.json",
+      "bytes": 13072,
+      "sha256": "4f2607a5601d0d9d5f23f7c08f90da2ebc9e17698cd597adf78e7fadd43d551b"
+    },
+    {
+      "path": "raw/native/checks/hunspell-native-errors.json",
+      "original": "/workspace/scratch/ca9c01a86531/final-results/native/checks/hunspell-native-errors.json",
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    {
+      "path": "raw/native/checks/hunspell-native.jsonl",
+      "original": "/workspace/scratch/ca9c01a86531/final-results/native/checks/hunspell-native.jsonl",
+      "bytes": 28872,
+      "sha256": "db4a4ebf3bf175bc4f0831f34fb3a5dfc28af59bb0c03a708d163a3149b48893"
+    },
+    {
+      "path": "raw/native/checks/hunspell-native.jsonl.gz",
+      "original": "/workspace/scratch/ca9c01a86531/final-results/native/checks/hunspell-native.jsonl.gz",
+      "bytes": 3237,
+      "sha256": "6b6251a2ce2dd6feebe2946e642395732a6a105e83d9b25f9bca1d1ac626d578"
+    },
+    {
+      "path": "raw/native/checks/hunspell-native.stderr.log",
+      "original": "/workspace/scratch/ca9c01a86531/final-results/native/checks/hunspell-native.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "raw/native/checks/hunspell-native.stderr.log.gz",
+      "original": "/workspace/scratch/ca9c01a86531/final-results/native/checks/hunspell-native.stderr.log.gz",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "path": "raw/native/checks/mail-cursor-native-cases.json",
+      "original": "/workspace/scratch/ca9c01a86531/final-results/native/checks/mail-cursor-native-cases.json",
+      "bytes": 14001,
+      "sha256": "46c10f00362b7c0dfaaa3337cd38e7938bb97025dfacfe7295d3ce5342a9effa"
+    },
+    {
+      "path": "raw/native/checks/mail-cursor-native-errors.json",
+      "original": "/workspace/scratch/ca9c01a86531/final-results/native/checks/mail-cursor-native-errors.json",
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    {
+      "path": "raw/native/checks/mail-cursor-native.jsonl",
+      "original": "/workspace/scratch/ca9c01a86531/final-results/native/checks/mail-cursor-native.jsonl",
+      "bytes": 25553,
+      "sha256": "060fbb216e052c7fcd1161f01d5500f9647d6f29d64de2f02928a06d3a6bf0c5"
+    },
+    {
+      "path": "raw/native/checks/mail-cursor-native.jsonl.gz",
+      "original": "/workspace/scratch/ca9c01a86531/final-results/native/checks/mail-cursor-native.jsonl.gz",
+      "bytes": 3163,
+      "sha256": "4b5fd30169227228e10677ff436d435fd9add7abd514a6a8c2d22bafd766f44a"
+    },
+    {
+      "path": "raw/native/checks/mail-cursor-native.stderr.log",
+      "original": "/workspace/scratch/ca9c01a86531/final-results/native/checks/mail-cursor-native.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "raw/native/checks/mail-cursor-native.stderr.log.gz",
+      "original": "/workspace/scratch/ca9c01a86531/final-results/native/checks/mail-cursor-native.stderr.log.gz",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "path": "raw/native/checks/office-editor-native-cases.json",
+      "original": "/workspace/scratch/ca9c01a86531/final-results/native/checks/office-editor-native-cases.json",
+      "bytes": 96596,
+      "sha256": "8d2a8b28f78625d348ecef801e935cffd9fee28e6d29b25ae4f454f176cb431a"
+    },
+    {
+      "path": "raw/native/checks/office-editor-native-errors.json",
+      "original": "/workspace/scratch/ca9c01a86531/final-results/native/checks/office-editor-native-errors.json",
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    {
+      "path": "raw/native/checks/office-editor-native.jsonl",
+      "original": "/workspace/scratch/ca9c01a86531/final-results/native/checks/office-editor-native.jsonl",
+      "bytes": 178503,
+      "sha256": "354b3f514a5864a72347f43781f6e5e31eb4f32208af9370f45010540ca5ca72"
+    },
+    {
+      "path": "raw/native/checks/office-editor-native.jsonl.gz",
+      "original": "/workspace/scratch/ca9c01a86531/final-results/native/checks/office-editor-native.jsonl.gz",
+      "bytes": 16463,
+      "sha256": "30c9a337d17d8ad9bdee51dded57c688df00007026c7d8bf52bc7c3e28e159a2"
+    },
+    {
+      "path": "raw/native/checks/office-editor-native.stderr.log",
+      "original": "/workspace/scratch/ca9c01a86531/final-results/native/checks/office-editor-native.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "raw/native/checks/office-editor-native.stderr.log.gz",
+      "original": "/workspace/scratch/ca9c01a86531/final-results/native/checks/office-editor-native.stderr.log.gz",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "path": "raw/native/checks/office-engine-native-cases.json",
+      "original": "/workspace/scratch/ca9c01a86531/final-results/native/checks/office-engine-native-cases.json",
+      "bytes": 241871,
+      "sha256": "fc81a68fc5dba4ff5c62d799a37a545553cb1a19ffd922db086cfca1197a2f11"
+    },
+    {
+      "path": "raw/native/checks/office-engine-native-errors.json",
+      "original": "/workspace/scratch/ca9c01a86531/final-results/native/checks/office-engine-native-errors.json",
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    {
+      "path": "raw/native/checks/office-engine-native.jsonl",
+      "original": "/workspace/scratch/ca9c01a86531/final-results/native/checks/office-engine-native.jsonl",
+      "bytes": 344898,
+      "sha256": "3cd5cfd08c546f965e6b0e45991a503849676580412a6b0a0a9f55f5be2f67d4"
+    },
+    {
+      "path": "raw/native/checks/office-engine-native.jsonl.gz",
+      "original": "/workspace/scratch/ca9c01a86531/final-results/native/checks/office-engine-native.jsonl.gz",
+      "bytes": 27435,
+      "sha256": "5a50f9ade67fc149dfe755f613271f7196afc2ad9f767247a90dd09f5df51c45"
+    },
+    {
+      "path": "raw/native/checks/office-engine-native.stderr.log",
+      "original": "/workspace/scratch/ca9c01a86531/final-results/native/checks/office-engine-native.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "raw/native/checks/office-engine-native.stderr.log.gz",
+      "original": "/workspace/scratch/ca9c01a86531/final-results/native/checks/office-engine-native.stderr.log.gz",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "path": "raw/native/checks/studio-native-cases.json",
+      "original": "/workspace/scratch/ca9c01a86531/final-results/native/checks/studio-native-cases.json",
+      "bytes": 64757,
+      "sha256": "e6dc655b465e46ce564003178d15c5d322306e99baa55c123ea92f33fec0e83e"
+    },
+    {
+      "path": "raw/native/checks/studio-native-errors.json",
+      "original": "/workspace/scratch/ca9c01a86531/final-results/native/checks/studio-native-errors.json",
+      "bytes": 1780,
+      "sha256": "b09f881b94b3957ea8ba8388c5cc1cedd2f9d78a113634664e56649d61fec28d"
+    },
+    {
+      "path": "raw/native/checks/studio-native.jsonl",
+      "original": "/workspace/scratch/ca9c01a86531/final-results/native/checks/studio-native.jsonl",
+      "bytes": 154804,
+      "sha256": "4702046a9c1f461b072e22292d70be59e2fcf54f039174a6bed0ec0e8a7f3969"
+    },
+    {
+      "path": "raw/native/checks/studio-native.jsonl.gz",
+      "original": "/workspace/scratch/ca9c01a86531/final-results/native/checks/studio-native.jsonl.gz",
+      "bytes": 13680,
+      "sha256": "72f6e98f8a5134afdee682cc4c0f1d41f2291fc5e13ae90132b0c62e9369f93b"
+    },
+    {
+      "path": "raw/native/checks/studio-native.stderr.log",
+      "original": "/workspace/scratch/ca9c01a86531/final-results/native/checks/studio-native.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "raw/native/checks/studio-native.stderr.log.gz",
+      "original": "/workspace/scratch/ca9c01a86531/final-results/native/checks/studio-native.stderr.log.gz",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "path": "raw/native/checks/whitespace.log",
+      "original": "/workspace/scratch/ca9c01a86531/final-results/native/checks/whitespace.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "raw/native/checks/whitespace.log.gz",
+      "original": "/workspace/scratch/ca9c01a86531/final-results/native/checks/whitespace.log.gz",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "path": "raw/native/environment-after.json",
+      "original": "/workspace/scratch/ca9c01a86531/final-results/native/environment-after.json",
+      "bytes": 1721944,
+      "sha256": "230a9793d8e566cdfea231887eb87c08c9a7c67c5223afb03b8e2cc093eb4c8e"
+    },
+    {
+      "path": "raw/native/environment-before.json",
+      "original": "/workspace/scratch/ca9c01a86531/final-results/native/environment-before.json",
+      "bytes": 1721944,
+      "sha256": "230a9793d8e566cdfea231887eb87c08c9a7c67c5223afb03b8e2cc093eb4c8e"
+    },
+    {
+      "path": "raw/native/source-after.json",
+      "original": "/workspace/scratch/ca9c01a86531/final-results/native/source-after.json",
+      "bytes": 1573974,
+      "sha256": "8a51837c8a5225d1db302468ec6b010083a099763a564a3534332d1ef31d1f68"
+    },
+    {
+      "path": "raw/native/source-before.json",
+      "original": "/workspace/scratch/ca9c01a86531/final-results/native/source-before.json",
+      "bytes": 1573974,
+      "sha256": "8a51837c8a5225d1db302468ec6b010083a099763a564a3534332d1ef31d1f68"
+    },
+    {
+      "path": "raw/native/verification.json",
+      "original": "/workspace/scratch/ca9c01a86531/final-results/native/verification.json",
+      "bytes": 104418,
+      "sha256": "74ee3fa101baec85455344bbc08ff06e6e17a9b4adc8538d879e90999be305b7"
+    },
+    {
+      "path": "raw/packaging-controls.log",
+      "original": "/workspace/scratch/ca9c01a86531/final-results/packaging-controls.log",
+      "bytes": 698,
+      "sha256": "2f035cbf96d71e3acba1dfbd89e638659632910cf560f9deeb602b5378e8efff"
+    },
+    {
+      "path": "raw/verification.json",
+      "original": "/workspace/scratch/ca9c01a86531/final-results/verification.json",
+      "bytes": 7268,
+      "sha256": "247f0cb36c0e0f7c2d1d4bdd8edfffd993d0c4ad7f456b636ca70690b2766d3b"
+    },
+    {
+      "path": "replay/audit_outer_validation.py",
+      "original": "/workspace/scratch/ca9c01a86531/audit-preparation/audit_outer_validation.py",
+      "bytes": 32336,
+      "sha256": "28c1e57b37b628506e6230a9a40485c5c87cc9a01ce3051c8e33c10f90a85b8d"
+    },
+    {
+      "path": "replay/audit_rejected_attempt.py",
+      "original": "/workspace/scratch/ca9c01a86531/audit-preparation/audit_rejected_attempt.py",
+      "bytes": 12012,
+      "sha256": "2cd10296b0c98b93f31e9e57adc5e56a3b2f06c8c80b83670e813f180721e4f7"
+    },
+    {
+      "path": "review/rejected-attempt-cases.json",
+      "original": "/workspace/scratch/ca9c01a86531/audit-preparation/rejected-4b8b9e2e-cases.json",
+      "bytes": 449004,
+      "sha256": "444ef841d2da7233bf032bd414d599c30c85884bbd51113cc90c91669b3f3874"
+    },
+    {
+      "path": "review/rejected-attempt.json",
+      "original": "/workspace/scratch/ca9c01a86531/audit-preparation/rejected-4b8b9e2e.json",
+      "bytes": 47086,
+      "sha256": "871354c6b1fbccf557b58b44427d04d63f9b229a69e345891acdf8a8faf0c14e"
+    }
+  ],
+  "accepted_final_application_credit": 0,
+  "accepted_final_python_credit": 0
+}

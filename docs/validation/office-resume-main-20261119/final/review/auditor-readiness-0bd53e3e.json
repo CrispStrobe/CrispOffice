@@ -1,0 +1,32 @@
+{
+  "readiness_checks_passed": true,
+  "source_commit": "0bd53e3e2b0d75ae48a4d7807dcddd123ab477f9",
+  "source_tree": "37d9017ca00c5abe491819af3373e83b80a4da98",
+  "checked_at_utc": "2026-11-19T11:52:56.873952+00:00",
+  "scope": "Pre-run manifest completeness and current source/runtime binding only; no after-state stability or qualification acceptance is claimed.",
+  "issues": [],
+  "source": {
+    "records": 5164,
+    "materialized": 5164,
+    "sparse": 0,
+    "live_readback": true,
+    "publication_checked": null
+  },
+  "runtime": {
+    "records": 11165,
+    "retained_files": 11142,
+    "additional_files": 4,
+    "native_assets": 1,
+    "runtime_root": "/workspace/scratch/e63c6a1344bc/runtime",
+    "receipt_sha256": "cc2589fedb04b9bb8aeb291390efff72136896396c228d8ea081bd68f777a5c7",
+    "dependency_report": {
+      "resolved_packages": 133,
+      "workspace_packages": 19,
+      "hosted_archive_receipts": 176,
+      "test_launcher": "/workspace/scratch/e63c6a1344bc/runtime/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+      "package_config_sha256": "571ba3dffb531299534dfcd8311bbda49d6b13d3fa0b8bba89dd9a1a2b60453a"
+    },
+    "scope": "Recorded bounded inputs and current byte readback; not an OS/container snapshot"
+  },
+  "auditor_sha256": "52c76f3a0b9bd0c3d509dc9686a46fcf94dc471bf082ba9313879b416dedaa93"
+}

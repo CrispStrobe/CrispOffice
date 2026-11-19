@@ -20,6 +20,7 @@ mail.Mailbox _box(String name) => mail.Mailbox(
   encodedPath: name,
   flags: <mail.MailboxFlag>[],
   pathSeparator: '/',
+  uidValidity: 41,
 );
 
 mail.MimeMessage _message(String subject) => mail.MimeMessage.parseFromText(
@@ -34,8 +35,8 @@ mail.MimeMessage _message(String subject) => mail.MimeMessage.parseFromText(
 final class _Client extends Fake implements mail.MailClient {
   final boxes = <mail.Mailbox>[_box('INBOX'), _box('Archive')];
   final messages = <mail.MimeMessage>[
-    _message('First message'),
-    _message('Second message'),
+    _message('First message')..uid = 7,
+    _message('Second message')..uid = 8,
   ];
   Future<void> Function()? onConnect;
   Future<List<mail.Mailbox>> Function()? onList;
@@ -131,18 +132,33 @@ final class _Client extends Fake implements mail.MailClient {
 final class _Loader implements StudioMailMessageLoader {
   _Loader(this.client);
   final mail.MailClient client;
+  Future<Uint8List> Function(mail.Mailbox, mail.MimeMessage)? onFetch;
+  Future<void> Function(mail.Mailbox, mail.MimeMessage)? onMarkRead;
+  final marked = <(mail.Mailbox, mail.MimeMessage)>[];
+  bool disposed = false;
   @override
   Future<Uint8List> fetch(mail.Mailbox mailbox, mail.MimeMessage header) async {
+    if (onFetch case final callback?) return callback(mailbox, header);
     final full = await client.fetchMessageContents(header);
     // Controlled test fixture bytes; production uses the bounded raw provider.
     return Uint8List.fromList(utf8.encode(full.renderMessage()));
   }
 
   @override
+  Future<void> markRead(mail.Mailbox mailbox, mail.MimeMessage header) async {
+    marked.add((mailbox, header));
+    await onMarkRead?.call(mailbox, header);
+  }
+
+  @override
   void cancel() {}
   @override
-  void dispose() {}
+  void dispose() => disposed = true;
 }
+
+Finder _iconButton(String tooltip) => find.byWidgetPredicate(
+  (widget) => widget is IconButton && widget.tooltip == tooltip,
+);
 
 Finder _field(String label) => find.byWidgetPredicate(
   (widget) => widget is TextField && widget.decoration?.labelText == label,
@@ -158,6 +174,7 @@ Future<void> _open(
   WidgetTester tester,
   mail.MailClient Function(mail.MailAccount) clientFactory, {
   StudioStrings strings = _strings,
+  StudioMailMessageLoader Function(mail.MailClient)? loaderFactory,
 }) async {
   await tester.binding.setSurfaceSize(const Size(1440, 1000));
   addTearDown(() => tester.binding.setSurfaceSize(null));
@@ -173,7 +190,9 @@ Future<void> _open(
                 strings: strings,
                 clientFactory: (account) =>
                     createdClient = clientFactory(account),
-                messageLoaderFactory: (_) => _Loader(createdClient!),
+                messageLoaderFactory: (_) =>
+                    loaderFactory?.call(createdClient!) ??
+                    _Loader(createdClient!),
               ),
             ),
             child: const Text('Launch Mail'),
@@ -213,17 +232,20 @@ Future<void> _close(
   expect(tester.takeException(), isNull);
 }
 
-Future<void> _compose(WidgetTester tester) async {
-  await tester.tap(find.widgetWithText(TextButton, _strings.compose));
+Future<void> _compose(
+  WidgetTester tester, {
+  StudioStrings strings = _strings,
+}) async {
+  await tester.tap(find.widgetWithText(TextButton, strings.compose));
   await _pump(tester);
-  await tester.enterText(_field(_strings.to), 'recipient@example.invalid');
-  await tester.enterText(_field(_strings.subject), 'Controlled draft');
+  await tester.enterText(_field(strings.to), 'recipient@example.invalid');
+  await tester.enterText(_field(strings.subject), 'Controlled draft');
   tester
       .widget<QudsWordEditor>(find.byType(QudsWordEditor))
       .controller
       .insertText('A <safe> body.');
   await tester.pump();
-  await tester.tap(find.widgetWithText(FilledButton, _strings.send));
+  await tester.tap(find.widgetWithText(FilledButton, strings.send));
   await _pump(tester);
 }
 
@@ -231,6 +253,295 @@ MailReaderController _reader(WidgetTester tester) =>
     tester.widget<MailMessageView>(find.byType(MailMessageView)).controller;
 
 void main() {
+  for (final forward in [false, true]) {
+    testWidgets(
+      '${forward ? 'forward' : 'reply'} uses the exact loaded body and envelope, not the list header',
+      (tester) async {
+        final client = _Client();
+        client.messages[0] = mail.MimeMessage.parseFromText(
+          'From: List sender <list@example.invalid>\r\n'
+          'Subject: First message\r\n\r\n',
+        )..uid = 7;
+        final raw = Uint8List.fromList([
+          ...ascii.encode(
+            'From: Raw sender <raw@example.invalid>\r\n'
+            'Reply-To: reply@example.invalid\r\n'
+            'To: reader@example.invalid\r\n'
+            'Bcc: hidden@example.invalid\r\n'
+            'Subject: Raw subject\r\n'
+            'Content-Type: text/plain; charset=iso-8859-1\r\n'
+            'Content-Transfer-Encoding: 8bit\r\n\r\n'
+            'Exact caf',
+          ),
+          0xe9,
+          ...ascii.encode(' body.\r\n'),
+        ]);
+        final loader = _Loader(client)..onFetch = (_, _) async => raw;
+        await _open(tester, (_) => client, loaderFactory: (_) => loader);
+        await _connect(tester);
+        await tester.tap(find.text('First message'));
+        await _pump(tester);
+        expect(_reader(tester).decodedText, contains('Exact café body.'));
+        await tester.tap(
+          find.byTooltip(forward ? _strings.forward : _strings.reply),
+        );
+        await _pump(tester);
+
+        expect(find.byType(StudioMailComposeDialog), findsOneWidget);
+        expect(
+          tester.widget<TextField>(_field(_strings.to)).controller!.text,
+          forward ? '' : 'reply@example.invalid',
+        );
+        expect(
+          tester.widget<TextField>(_field(_strings.subject)).controller!.text,
+          '${forward ? 'Fwd' : 'Re'}: Raw subject',
+        );
+        final body = tester
+            .widget<QudsWordEditor>(find.byType(QudsWordEditor))
+            .controller
+            .document
+            .paragraphs
+            .map((paragraph) => paragraph.text)
+            .join('\n');
+        expect(body, contains('> Exact café body.'));
+        expect(body, contains('raw@example.invalid'));
+        expect(body, isNot(contains('list@example.invalid')));
+        expect(body, isNot(contains('hidden@example.invalid')));
+        expect(body, isNot(contains('Body of First message')));
+        if (forward) expect(body, contains(_strings.mailTextOnlyForward));
+        expect(client.sent, isEmpty);
+        await tester.tap(find.text(_strings.cancel));
+        await _pump(tester);
+        await _close(tester);
+      },
+    );
+
+    testWidgets(
+      '${forward ? 'forward' : 'reply'} reports an HTML-only body without quoting presentation headers',
+      (tester) async {
+        final client = _Client();
+        final loader = _Loader(client)
+          ..onFetch = (_, _) async => Uint8List.fromList(
+            utf8.encode(
+              'From: writer@example.invalid\r\n'
+              'Subject: HTML message\r\n'
+              'Bcc: hidden@example.invalid\r\n'
+              'Content-Type: text/html; charset=utf-8\r\n\r\n'
+              '<p>HTML-only body.</p>',
+            ),
+          );
+        await _open(tester, (_) => client, loaderFactory: (_) => loader);
+        await _connect(tester);
+        await tester.tap(find.text('First message'));
+        await _pump(tester);
+        await tester.tap(
+          find.byTooltip(forward ? _strings.forward : _strings.reply),
+        );
+        await _pump(tester);
+        expect(find.text(_strings.mailPlainTextUnavailable), findsOneWidget);
+        expect(find.byType(StudioMailComposeDialog), findsNothing);
+        expect(client.sent, isEmpty);
+        await _close(tester);
+      },
+    );
+
+    testWidgets(
+      '${forward ? 'forward' : 'reply'} cannot replace an uncertain draft; only confirmed discard releases it',
+      (tester) async {
+        final client = _Client()
+          ..onSend = (_) async => throw StateError('uncertain submission');
+        await _open(tester, (_) => client);
+        await _connect(tester);
+        await _compose(tester);
+        await tester.tap(find.text('First message'));
+        await _pump(tester);
+        final action = find.byTooltip(
+          forward ? _strings.forward : _strings.reply,
+        );
+        await tester.tap(action);
+        await _pump(tester);
+        expect(find.text(_strings.mailRetainedDraft), findsOneWidget);
+        expect(find.byType(StudioMailComposeDialog), findsNothing);
+
+        await tester.tap(find.widgetWithText(TextButton, _strings.compose));
+        await _pump(tester);
+        expect(
+          tester.widget<TextField>(_field(_strings.subject)).controller!.text,
+          'Controlled draft',
+        );
+        expect(find.text(_strings.mailRetryAcknowledgement), findsOneWidget);
+        expect(
+          tester
+              .widget<FilledButton>(
+                find.widgetWithText(FilledButton, _strings.send),
+              )
+              .onPressed,
+          isNull,
+        );
+        await tester.tap(find.text(_strings.cancel));
+        await _pump(tester);
+
+        await tester.tap(find.byTooltip(_strings.mailDiscardDraft));
+        await _pump(tester);
+        expect(find.text(_strings.mailDiscardDraftExplanation), findsOneWidget);
+        await tester.tap(find.widgetWithText(TextButton, _strings.cancel));
+        await _pump(tester);
+        await tester.tap(action);
+        await _pump(tester);
+        expect(find.text(_strings.mailRetainedDraft), findsOneWidget);
+        expect(find.byType(StudioMailComposeDialog), findsNothing);
+
+        await tester.tap(find.byTooltip(_strings.mailDiscardDraft));
+        await _pump(tester);
+        await tester.tap(
+          find.widgetWithText(FilledButton, _strings.mailDiscardDraft),
+        );
+        await _pump(tester);
+        expect(find.byTooltip(_strings.mailDiscardDraft), findsNothing);
+        await tester.tap(action);
+        await _pump(tester);
+        expect(find.byType(StudioMailComposeDialog), findsOneWidget);
+        expect(find.text(_strings.mailRetryAcknowledgement), findsNothing);
+        expect(
+          tester.widget<TextField>(_field(_strings.subject)).controller!.text,
+          '${forward ? 'Fwd' : 'Re'}: First message',
+        );
+        expect(client.sent, hasLength(1));
+        await tester.tap(find.text(_strings.cancel));
+        await _pump(tester);
+        await _close(tester);
+      },
+    );
+  }
+
+  testWidgets(
+    'mark-read holds the UI busy and updates only after confirmation',
+    (tester) async {
+      final client = _Client();
+      final gate = Completer<void>();
+      final loader = _Loader(client)..onMarkRead = (_, _) => gate.future;
+      await _open(tester, (_) => client, loaderFactory: (_) => loader);
+      await _connect(tester);
+      await tester.tap(find.text('First message'));
+      await _pump(tester);
+      final action = tester
+          .widget<IconButton>(_iconButton(_strings.markRead))
+          .onPressed!;
+      action();
+      action();
+      await _pump(tester);
+      expect(loader.marked, hasLength(1));
+      expect(loader.marked.single.$1, isNot(same(client.selectedMailbox)));
+      expect(loader.marked.single.$1.uidValidity, 41);
+      expect(loader.marked.single.$2.uid, 7);
+      expect(client.messages.first.isSeen, isFalse);
+      expect(
+        tester.widget<IconButton>(_iconButton(_strings.markRead)).onPressed,
+        isNull,
+      );
+      await tester.tap(find.text('Archive'));
+      await _pump(tester);
+      expect(client.selections, 0);
+
+      gate.complete();
+      await _pump(tester);
+      expect(client.messages.first.isSeen, isTrue);
+      expect(
+        tester.widget<IconButton>(_iconButton(_strings.markRead)).onPressed,
+        isNull,
+      );
+      expect(find.byType(LinearProgressIndicator), findsNothing);
+      expect(find.text(_strings.mailMarkReadFailed), findsNothing);
+      await _close(tester);
+    },
+  );
+
+  testWidgets('failed mark-read preserves unread status with fixed feedback', (
+    tester,
+  ) async {
+    final client = _Client();
+    final loader = _Loader(client)
+      ..onMarkRead = (_, _) async =>
+          throw StateError('private response session-password');
+    await _open(tester, (_) => client, loaderFactory: (_) => loader);
+    await _connect(tester);
+    await tester.tap(find.text('First message'));
+    await _pump(tester);
+    await tester.tap(find.byTooltip(_strings.markRead));
+    await _pump(tester);
+    expect(client.messages.first.isSeen, isFalse);
+    expect(loader.marked, hasLength(1));
+    expect(find.text(_strings.mailMarkReadFailed), findsOneWidget);
+    expect(find.textContaining('private response'), findsNothing);
+    expect(
+      tester.widget<IconButton>(_iconButton(_strings.markRead)).onPressed,
+      isNotNull,
+    );
+    await _close(tester);
+  });
+
+  testWidgets('mark-read completion cannot mark a header whose UID changed', (
+    tester,
+  ) async {
+    final client = _Client();
+    final gate = Completer<void>();
+    final loader = _Loader(client)..onMarkRead = (_, _) => gate.future;
+    await _open(tester, (_) => client, loaderFactory: (_) => loader);
+    await _connect(tester);
+    await tester.tap(find.text('First message'));
+    await _pump(tester);
+    await tester.tap(find.byTooltip(_strings.markRead));
+    await _pump(tester);
+    client.messages.first.uid = 800;
+    gate.complete();
+    await _pump(tester);
+    expect(client.messages.first.isSeen, isFalse);
+    expect(find.text(_strings.mailMarkReadFailed), findsOneWidget);
+    await _close(tester);
+  });
+
+  for (final fail in [false, true]) {
+    testWidgets(
+      'mark-read late ${fail ? 'failure' : 'success'} cannot mutate a disconnected session',
+      (tester) async {
+        final first = _Client();
+        final second = _Client();
+        final clients = [first, second];
+        final gate = Completer<void>();
+        final loader = _Loader(first)..onMarkRead = (_, _) => gate.future;
+        await _open(
+          tester,
+          (_) => clients.removeAt(0),
+          loaderFactory: (client) =>
+              identical(client, first) ? loader : _Loader(client),
+        );
+        await _connect(tester);
+        await tester.tap(find.text('First message'));
+        await _pump(tester);
+        await tester.tap(find.byTooltip(_strings.markRead));
+        await _pump(tester);
+        await tester.tap(find.byTooltip(_strings.disconnect));
+        await _pump(tester);
+        await _connect(tester);
+        if (fail) {
+          gate.completeError(StateError('late mark-read failure'));
+        } else {
+          gate.complete();
+        }
+        await _pump(tester);
+        expect(loader.disposed, isTrue);
+        expect(first.messages.first.isSeen, isFalse);
+        expect(second.messages.first.isSeen, isFalse);
+        expect(find.text(_strings.mailMarkReadFailed), findsNothing);
+        expect(find.textContaining('late mark-read failure'), findsNothing);
+        expect(find.byType(MailMessageView), findsNothing);
+        expect(find.text('First message'), findsOneWidget);
+        expect(tester.takeException(), isNull);
+        await _close(tester);
+      },
+    );
+  }
+
   testWidgets('manual setup connects with secure settings and disconnects', (
     tester,
   ) async {
@@ -339,6 +650,26 @@ void main() {
       await _close(tester);
     },
   );
+
+  testWidgets('a nonselectable INBOX falls back to a selectable mailbox', (
+    tester,
+  ) async {
+    final client = _Client();
+    client.boxes[0] = mail.Mailbox(
+      encodedName: 'INBOX',
+      encodedPath: 'INBOX',
+      flags: <mail.MailboxFlag>[
+        mail.MailboxFlag.inbox,
+        mail.MailboxFlag.noSelect,
+      ],
+      pathSeparator: '/',
+    );
+    await _open(tester, (_) => client);
+    await _connect(tester);
+    expect(client.selectedMailbox!.path, 'Archive');
+    expect(find.text('First message'), findsOneWidget);
+    await _close(tester);
+  });
 
   testWidgets(
     'opening messages replaces and disposes readers; a failed read preserves the current message',
@@ -512,35 +843,115 @@ void main() {
     await _close(tester);
   });
 
-  for (final fail in [false, true]) {
+  for (final language in StudioLanguage.values) {
     testWidgets(
-      'disconnect during send ignores its late ${fail ? 'error' : 'success'}',
+      'confirmed submission with failed cleanup clears draft in ${language.name}',
       (tester) async {
+        final strings = StudioStrings(language);
         final client = _Client();
-        final gate = Completer<void>();
-        client.onSend = (_) => gate.future;
-        await _open(tester, (_) => client);
-        await _connect(tester);
-        await _compose(tester);
-        expect(find.text(_strings.sending), findsOneWidget);
-        await tester.tap(find.byTooltip(_strings.disconnect));
-        await _pump(tester);
-        if (fail) {
-          gate.completeError(StateError('late send failure'));
-        } else {
-          gate.complete();
-        }
+        client.onSend = (_) async => throw mail.MailSendPostSubmissionException(
+          client,
+          cleanupError: StateError('private server response session-password'),
+        );
+        await _open(tester, (_) => client, strings: strings);
+        await _connect(tester, strings: strings);
+        await _compose(tester, strings: strings);
+        expect(find.text(strings.mailSubmissionFollowUpFailed), findsOneWidget);
+        expect(find.text(strings.mailSubmissionUncertain), findsNothing);
+        expect(find.textContaining('private server response'), findsNothing);
+        expect(find.textContaining('session-password'), findsNothing);
+        expect(client.sent, hasLength(1));
+        expect(client.appendRequests, <bool>[false]);
+        await tester.tap(find.widgetWithText(TextButton, strings.compose));
         await _pump(tester);
         expect(
-          find.widgetWithText(FilledButton, _strings.connect),
-          findsOneWidget,
+          tester.widget<TextField>(_field(strings.to)).controller!.text,
+          '',
         );
-        expect(find.text(_strings.mailSubmissionAccepted), findsNothing);
-        expect(find.textContaining('late send failure'), findsNothing);
-        expect(tester.takeException(), isNull);
-        await _close(tester);
+        expect(
+          tester.widget<TextField>(_field(strings.subject)).controller!.text,
+          '',
+        );
+        expect(
+          tester
+              .widget<QudsWordEditor>(find.byType(QudsWordEditor))
+              .controller
+              .document
+              .paragraphs
+              .single
+              .text,
+          '',
+        );
+        expect(find.text(strings.mailRetryAcknowledgement), findsNothing);
+        await tester.tap(find.text(strings.cancel));
+        await _pump(tester);
+        expect(client.sent, hasLength(1));
+        await _close(tester, strings: strings);
       },
     );
+  }
+
+  testWidgets('foreign client outcome cannot confirm the active submission', (
+    tester,
+  ) async {
+    final client = _Client();
+    client.onSend = (_) async => throw mail.MailSendPostSubmissionException(
+      _Client(),
+      cleanupError: StateError('foreign client cleanup'),
+    );
+    await _open(tester, (_) => client);
+    await _connect(tester);
+    await _compose(tester);
+    expect(find.text(_strings.mailSubmissionUncertain), findsOneWidget);
+    expect(find.text(_strings.mailSubmissionFollowUpFailed), findsNothing);
+    await tester.tap(find.widgetWithText(TextButton, _strings.compose));
+    await _pump(tester);
+    expect(
+      tester.widget<TextField>(_field(_strings.subject)).controller!.text,
+      'Controlled draft',
+    );
+    expect(find.text(_strings.mailRetryAcknowledgement), findsOneWidget);
+    await tester.tap(find.text(_strings.cancel));
+    await _pump(tester);
+    await _close(tester);
+  });
+
+  for (final outcome in ['success', 'error', 'accepted follow-up error']) {
+    testWidgets('disconnect during send ignores its late $outcome', (
+      tester,
+    ) async {
+      final client = _Client();
+      final gate = Completer<void>();
+      client.onSend = (_) => gate.future;
+      await _open(tester, (_) => client);
+      await _connect(tester);
+      await _compose(tester);
+      expect(find.text(_strings.sending), findsOneWidget);
+      await tester.tap(find.byTooltip(_strings.disconnect));
+      await _pump(tester);
+      if (outcome == 'accepted follow-up error') {
+        gate.completeError(
+          mail.MailSendPostSubmissionException(
+            client,
+            cleanupError: StateError('late cleanup failure'),
+          ),
+        );
+      } else if (outcome == 'error') {
+        gate.completeError(StateError('late send failure'));
+      } else {
+        gate.complete();
+      }
+      await _pump(tester);
+      expect(
+        find.widgetWithText(FilledButton, _strings.connect),
+        findsOneWidget,
+      );
+      expect(find.text(_strings.mailSubmissionAccepted), findsNothing);
+      expect(find.text(_strings.mailSubmissionFollowUpFailed), findsNothing);
+      expect(find.textContaining('late send failure'), findsNothing);
+      expect(tester.takeException(), isNull);
+      await _close(tester);
+    });
   }
 
   testWidgets('search tolerates messages with an empty sender list', (

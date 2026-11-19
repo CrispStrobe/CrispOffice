@@ -1,0 +1,169 @@
+{
+  "scope": "Read-only provisional follow-up auditor/plan review; no current-source execution or acceptance claim. Static paths must be regenerated after the active Mail implementation is staged.",
+  "fixed_new_main": "666e9a2ea46f7aeaaa1d01b60aabea0c2fe6f0fd",
+  "saved_old_integration": "656ff82366c6d835acee29affb9f77371e4cd383",
+  "auditors": [
+    {
+      "path": "docs/validation/office-resume-main-20261119/main-followup/audit_publication_continuity.py",
+      "original_sha256": "211d11aa2c2e5bf39b2fe7f5eff045fc20744d4a032b0bdd4ad6cfb2089f382e",
+      "followup_sha256": "51d0b5fb804dd5bfda1f81c1914ba5a36ceb7599345664ab89a7cf0996e00400",
+      "only_expected_change": true,
+      "change": "FINAL_PREFIX points to main-followup/final/"
+    },
+    {
+      "path": "docs/validation/office-resume-main-20261119/main-followup/audit_fresh_gate.py",
+      "original_sha256": "1945a7f66f2f03df5315bb168985980abe8c5cc2987042c1fb29ae78b05a011c",
+      "followup_sha256": "6b3f2c8432df2771df35097c1ad5e875ea0e1897fa3d7e430b5935e74fcda7bb",
+      "only_expected_change": true,
+      "change": "two trailing blank lines removed; implementation unchanged"
+    }
+  ],
+  "historical_22_evidence_files_unchanged": [
+    {
+      "path": "docs/validation/office-resume-main-20261119/final/archive-independent-audit.json",
+      "sha256": "9b4d5c7dcd77d567a4468046d66a1a52f0e906c98c8c429a6fa102487e115e67",
+      "equals_saved_656_bytes": true
+    },
+    {
+      "path": "docs/validation/office-resume-main-20261119/final/archive_evidence.py",
+      "sha256": "318a6f17d5b22105e78bdd3e016761ec89dce5b06d417fe127f49ea14d365c42",
+      "equals_saved_656_bytes": true
+    },
+    {
+      "path": "docs/validation/office-resume-main-20261119/final/audit_publication_continuity.py",
+      "sha256": "211d11aa2c2e5bf39b2fe7f5eff045fc20744d4a032b0bdd4ad6cfb2089f382e",
+      "equals_saved_656_bytes": true
+    },
+    {
+      "path": "docs/validation/office-resume-main-20261119/final/audit_python_controls.py",
+      "sha256": "2658c96a87fd0c4e4a593f4b246e2205d766e594355720e88e7160eab71d9e69",
+      "equals_saved_656_bytes": true
+    },
+    {
+      "path": "docs/validation/office-resume-main-20261119/final/evidence-preservation.json",
+      "sha256": "a1c557088487f9fe8a9da98e761915fb33ce2bbfcde215892c79d3c70f127dbb",
+      "equals_saved_656_bytes": true
+    },
+    {
+      "path": "docs/validation/office-resume-main-20261119/final/evidence.index.json",
+      "sha256": "e98a85d8ebc5b52f3146e5a55dc4fc87739d967b5601705668eb536b9b1abecb",
+      "equals_saved_656_bytes": true
+    },
+    {
+      "path": "docs/validation/office-resume-main-20261119/final/evidence.tar.xz",
+      "sha256": "be3782668570ffa4736dea7d114bb085af79b1ec5a6037a3c8507f103a92e0d4",
+      "equals_saved_656_bytes": true
+    },
+    {
+      "path": "docs/validation/office-resume-main-20261119/final/final-independent-audit-cases.json",
+      "sha256": "b0a102001a455342bde3d0c6c08759656a9ff75dd5353ef6b460345cb8f2b76e",
+      "equals_saved_656_bytes": true
+    },
+    {
+      "path": "docs/validation/office-resume-main-20261119/final/independent-audit.json",
+      "sha256": "4b1bbe9d94fbebadd614c18ba48cfea2ce7a345c212afb2181ca788170d70ca7",
+      "equals_saved_656_bytes": true
+    },
+    {
+      "path": "docs/validation/office-resume-main-20261119/final/preserved-attempt-archives-audit.json",
+      "sha256": "882542c95e98d84cfe3a75ef758eb01b2294b44ec3f2a8598b236c28ea115596",
+      "equals_saved_656_bytes": true
+    },
+    {
+      "path": "docs/validation/office-resume-main-20261119/final/python-independent-audit.json",
+      "sha256": "42fe0d209bb9b1144190733d1bb3158e66a66821c1e2dd915ad751cbcf930207",
+      "equals_saved_656_bytes": true
+    },
+    {
+      "path": "docs/validation/office-resume-main-20261119/final/reference-audit-final-integrated.json",
+      "sha256": "c988f35f73855543b7772e837a8a7ee41197751369e6e63e3c9ffe882e4d5176",
+      "equals_saved_656_bytes": true
+    },
+    {
+      "path": "docs/validation/office-resume-main-20261119/final/superseded-archive-source-audit.json",
+      "sha256": "bce9c53c747b70c92a53519d20519818184bdba1b01d2f04f54d9ac1ed068709",
+      "equals_saved_656_bytes": true
+    },
+    {
+      "path": "docs/validation/office-resume-main-20261119/native-plan.json",
+      "sha256": "1b3a96f66475ad85c582b2c602888001a5c7421baa78841f6466c78b34b5ae8f",
+      "equals_saved_656_bytes": true
+    },
+    {
+      "path": "docs/validation/office-resume-main-20261119/node-plan.json",
+      "sha256": "f7a153eefcd7527ca0a99c83d8cf8524c1a129820b2aa79802fadedb465d88e3",
+      "equals_saved_656_bytes": true
+    },
+    {
+      "path": "docs/validation/office-resume-main-20261119/run_python_controls.py",
+      "sha256": "e6c29dbf1619524c889a98347239fe74a6528ff830b66b29b943a231ef1ea9e0",
+      "equals_saved_656_bytes": true
+    }
+  ],
+  "plans": [
+    {
+      "path": "docs/validation/office-resume-main-20261119/main-followup/native-plan.json",
+      "sha256": "f48c79f59e689abf5b8e223f3f058005747a022f3714605ec99af7a7186370be",
+      "suite_count": 50,
+      "unique_suite_count": 50,
+      "group_counts": {
+        "engine-merge-regressions": 13,
+        "editor-language-controls": 3,
+        "hunspell-cancellation-lifecycle": 6,
+        "mail-submission-outcomes": 6,
+        "studio-current-host": 22
+      },
+      "matches_independently_recommended_scope": true,
+      "all_tests_currently_exist": true,
+      "analysis_count": 63,
+      "format_count": 63,
+      "analysis_format_same": true,
+      "extra_inputs": [
+        ".fvmrc",
+        "docs/validation/office-resume-main-20261119/final/archive_evidence.py",
+        "docs/validation/office-resume-main-20261119/final/audit_python_controls.py",
+        "docs/validation/office-resume-main-20261119/main-followup/audit_fresh_gate.py",
+        "docs/validation/office-resume-main-20261119/main-followup/audit_publication_continuity.py",
+        "docs/validation/office-resume-main-20261119/prepare_native_fixtures.py",
+        "docs/validation/office-resume-main-20261119/run_python_controls.py",
+        "packages/quds_proofing_hunspell/tool/build.py",
+        "packages/quds_proofing_hunspell/tool/test_build.py",
+        "tools/proofing/ayaspell/build_bundle.py",
+        "tools/proofing/ayaspell/test_build_bundle.py",
+        "tools/proofing/ayaspell/test_build_bundle_incoming.py",
+        "tools/proofing/ayaspell/test_build_bundle_reproducibility.py"
+      ]
+    },
+    {
+      "path": "docs/validation/office-resume-main-20261119/main-followup/node-plan.json",
+      "sha256": "a38b7ef340b2775074f068da73a8a8a6244d6c1a5708eb35bbfa4129ab0cfc52",
+      "suite_count": 9,
+      "unique_suite_count": 9,
+      "group_counts": {
+        "portable-engine-node": 9
+      },
+      "matches_independently_recommended_scope": true,
+      "all_tests_currently_exist": true,
+      "analysis_count": 0,
+      "format_count": 0,
+      "analysis_format_same": true,
+      "extra_inputs": [
+        ".fvmrc",
+        "docs/validation/office-resume-main-20261119/final/archive_evidence.py",
+        "docs/validation/office-resume-main-20261119/final/audit_python_controls.py",
+        "docs/validation/office-resume-main-20261119/main-followup/audit_fresh_gate.py",
+        "docs/validation/office-resume-main-20261119/main-followup/audit_publication_continuity.py",
+        "docs/validation/office-resume-main-20261119/prepare_native_fixtures.py",
+        "docs/validation/office-resume-main-20261119/run_python_controls.py",
+        "packages/quds_proofing_hunspell/tool/build.py",
+        "packages/quds_proofing_hunspell/tool/test_build.py",
+        "tools/proofing/ayaspell/build_bundle.py",
+        "tools/proofing/ayaspell/test_build_bundle.py",
+        "tools/proofing/ayaspell/test_build_bundle_incoming.py",
+        "tools/proofing/ayaspell/test_build_bundle_reproducibility.py"
+      ]
+    }
+  ],
+  "old_final_runtime_config_still_matches_recorded_22_source": true,
+  "passed": true
+}

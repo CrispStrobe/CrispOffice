@@ -3611,14 +3611,14 @@ class WordDeserializer {
   /// The source identifies the current table/paragraph/character style context.
   /// Effective inherited run languages remain available for live proofing,
   /// while sparse export continues to omit the removed direct override. Other
-  /// formatting, other language slots, and the live document and package are
-  /// unchanged. Returns false when the selected text already
+  /// formatting, East Asian language metadata, and the live document and
+  /// package are unchanged. Returns false when the selected text already
   /// inherits its language. The preview must be detached and have source text.
   /// Set [includeComplexScript] to also remove direct `w:lang/@w:bidi`
   /// overrides. Otherwise complex-script metadata is preserved.
-  /// Set [activeLanguageOnly] to remove only each selected fragment's routed
-  /// language slot instead. This preserves the other language slot and takes
-  /// precedence over [includeComplexScript].
+  /// Set [activeLanguageOnly] to clear only the language slots used by each
+  /// selected fragment, preserving inactive slots. A mixed-script fragment
+  /// can use both slots. This takes precedence over [includeComplexScript].
   bool clearRunProofingLanguage(
     WmlDocument document,
     WmlParagraph sourceParagraph,

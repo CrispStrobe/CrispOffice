@@ -38,6 +38,8 @@ def main() -> int:
     parser.add_argument("--head", required=True)
     parser.add_argument("--base", required=True)
     parser.add_argument("--runtime", required=True, type=Path)
+    parser.add_argument("--web-sdk", required=True, type=Path,
+                        help="Separate engine-pinned web SDK prepared by prepare_web_sdk.py")
     parser.add_argument("--output", required=True, type=Path)
     parser.add_argument("--command-timeout", type=int, default=900)
     args = parser.parse_args()
@@ -46,6 +48,7 @@ def main() -> int:
     directory = Path(__file__).resolve().parent
     repo = directory.parents[2]
     runtime, output = args.runtime.resolve(), args.output.resolve()
+    web_root = args.web_sdk.resolve()
     if output == repo or repo in output.parents:
         raise RuntimeError("Keep gate output outside the frozen source checkout")
     if output.exists() and any(output.iterdir()):
@@ -76,7 +79,8 @@ def main() -> int:
     shared = repo / "docs/validation/document-review-notes-20261118"
     required = {
         str(path.relative_to(repo))
-        for path in [Path(__file__), *plans.values(), shared / "run_checks.py", shared / "test_run_checks.py"]
+        for path in [Path(__file__), *plans.values(), directory / "web-sdk.json",
+                     directory / "prepare_web_sdk.py", shared / "run_checks.py", shared / "test_run_checks.py"]
     }
     if not required <= tracked:
         raise RuntimeError("Commit the driver, both plans and shared runner before execution")
@@ -104,11 +108,42 @@ def main() -> int:
     }
     if studio_requested != studio_expected - set(excluded) or set(excluded) - studio_expected:
         raise RuntimeError("The plan must cover every ordinary Studio suite exactly")
+    planned_suites = {
+        group["cwd"] + "/" + suite
+        for group in plan_data["native"]["groups"] for suite in group["tests"]
+    }
+    optional_suites = {studio_root + "/" + suite for suite in excluded}
+    for row in plan_data["native"].get("excluded_native_backend_suites", []):
+        if not row.get("reason"):
+            raise RuntimeError("Every excluded native backend suite needs an explicit boundary")
+        optional_suites.add(row["path"])
+    changed_suites = {path for path in changed if path.endswith("_test.dart")}
+    if changed_suites - planned_suites - optional_suites:
+        raise RuntimeError("Changed test suites missing native qualification: "
+                           + str(sorted(changed_suites - planned_suites - optional_suites)))
     receipt = json.loads((runtime / "runtime.json").read_text())
     if receipt.get("status") != "ready" or not receipt.get("archive", {}).get("verified"):
         raise RuntimeError("A verified ready runtime is required")
     if digest(repo / "pubspec.lock") != receipt["workspace_lock_sha256"]:
         raise RuntimeError("Workspace lock differs from the verified runtime")
+    web_identity = json.loads((directory / "web-sdk.json").read_text())
+    if web_identity["engine_revision"] != receipt["runtime"]["engineRevision"]:
+        raise RuntimeError("Web SDK engine does not match the verified runtime")
+    web_sdk = web_root / web_identity["sdk_directory"]
+    dart_link = web_root / web_identity["dart_sdk_link"]
+    if dart_link.resolve() != (runtime / "flutter/bin/cache/dart-sdk").resolve():
+        raise RuntimeError("Separate web SDK must reference the verified Dart SDK")
+    web_archive = web_root / "flutter-web-sdk.zip"
+    if (web_archive.stat().st_size != web_identity["archive_bytes"]
+            or digest(web_archive) != web_identity["archive_sha256"]):
+        raise RuntimeError("Web SDK archive identity differs")
+    web_files = {str(path.relative_to(web_sdk)): path for path in web_sdk.rglob("*") if path.is_file()}
+    if set(web_files) != set(web_identity["files"]):
+        raise RuntimeError("Web SDK member list differs from the pinned component")
+    for name, path in web_files.items():
+        expected = web_identity["files"][name]
+        if path.is_symlink() or path.stat().st_size != expected["bytes"] or digest(path) != expected["sha256"]:
+            raise RuntimeError("Web SDK input differs: " + name)
     retained = json.loads((runtime / "retained-inputs.json").read_text())
     runtime_paths = {"runtime/" + name: runtime / name for name in retained}
     for name in ("runtime.json", "retained-inputs.json", "pub-cache-receipt.json", "cache-omissions.json", "archive-members.json", "env.sh", "bin/dart", "bin/flutter"):
@@ -118,6 +153,8 @@ def main() -> int:
     runtime_paths["workspace/package_config.json"] = repo / ".dart_tool/package_config.json"
     runtime_paths["workspace/package_graph.json"] = repo / ".dart_tool/package_graph.json"
     runtime_paths["sdk/flutter_tools/package_config.json"] = runtime / "flutter/packages/flutter_tools/.dart_tool/package_config.json"
+    runtime_paths.update({"web-sdk/" + name: path for name, path in web_files.items()})
+    runtime_paths["web-sdk/archive"] = web_archive
     source_paths = {
         name: repo / name for name in tracked
         if name.startswith(("packages/", "apps/", "third_party/", "tools/mail/", "tools/proofing/ayaspell/"))
@@ -164,9 +201,13 @@ def main() -> int:
         "source_input_count": len(source_paths), "runtime_input_count": len(runtime_paths),
         "runtime_receipt_sha256": digest(runtime / "runtime.json"),
         "python_version": sys.version, "strict_changed_dart_inputs": sorted(changed),
+        "changed_test_suites": sorted(changed_suites),
+        "changed_test_suites_explicitly_excluded": sorted(changed_suites & optional_suites),
         "excluded_studio_suites": excluded,
         "excluded_native_backend_suites": plan_data["native"].get("excluded_native_backend_suites", []),
         "removed_optional_native_environment_names": sorted(removed_environment),
+        "web_sdk_identity_sha256": digest(directory / "web-sdk.json"),
+        "web_sdk_dart_link_target": str(dart_link.resolve()),
         "historical_results_added_to_current_counts": 0,
         "github_actions_queried_or_awaited": False,
     }
@@ -174,15 +215,18 @@ def main() -> int:
     def save() -> None:
         write_json(output / "execution.json", record)
 
-    def run(name: str, command: list[str], result: Path | None = None, *, unittest: bool = False) -> None:
+    def run(name: str, command: list[str], result: Path | None = None, *, unittest: bool = False,
+            timeout_multiplier: int = 1) -> None:
         print("START " + name, flush=True)
         log = output / (name + ".log")
-        row = {"name": name, "command": command, "log": log.name, "cwd": str(repo)}
+        timeout_seconds = args.command_timeout * timeout_multiplier
+        row = {"name": name, "command": command, "log": log.name, "cwd": str(repo),
+               "timeout_seconds": timeout_seconds}
         record["runs"].append(row)
         save()
         with log.open("wb") as stream:
             try:
-                code = execute(command, cwd=repo, env=env, stdout=stream, timeout=args.command_timeout)
+                code = execute(command, cwd=repo, env=env, stdout=stream, timeout=timeout_seconds)
             except (OSError, subprocess.TimeoutExpired) as error:
                 code = 124 if isinstance(error, subprocess.TimeoutExpired) else 127
                 row["runner_error"] = repr(error)
@@ -193,7 +237,7 @@ def main() -> int:
             successful = re.search(r"^OK\s*$", text, re.MULTILINE) is not None
             skipped = re.search(r"\bskipped[= ]|^OK \(", text, re.MULTILINE) is not None
             row.update(python_tests=int(counts[-1]) if counts else 0, python_skips_detected=skipped)
-            row["accepted"] = row["accepted"] and bool(counts) and successful and not skipped
+            row["accepted"] = row["accepted"] and row["python_tests"] > 0 and successful and not skipped
         if result is not None:
             if result.is_file():
                 content = json.loads(result.read_text())
@@ -216,11 +260,59 @@ def main() -> int:
         run("core-store", [sys.executable, "-B", str(repo / "tools/mail/check_store.py"),
                            "--flutter-sdk", str(runtime / "flutter"), "--offline", "--direct-tests",
                            "--command-timeout", str(args.command_timeout), "--output", str(output / "core-store")],
-            output / "core-store/receipt.json")
+            output / "core-store/receipt.json", timeout_multiplier=13)
         for name, path in plans.items():
             run(name, [sys.executable, "-B", str(shared / "run_checks.py"), "--head", head, "--base", base,
                        "--runtime", str(runtime), "--plan", str(path), "--output", str(output / name),
-                       "--command-timeout", str(args.command_timeout)], output / name / "verification.json")
+                       "--command-timeout", str(args.command_timeout)], output / name / "verification.json",
+                timeout_multiplier=len(plan_data[name]["groups"]) + bool(plan_data[name]["analysis"])
+                + bool(plan_data[name]["format"]) + 1)
+        web_entry = repo / "packages/quds_office_editor/example/tool/mail_web_entry.dart"
+        web_kernel = output / "mail-web.dill"
+        web_js = output / "mail-web.js"
+        common = [str(runtime / "bin/dart"), "compile", "js",
+                  "--platform-binaries=" + str(web_sdk / "kernel"), "--invoker=flutter_tool",
+                  "-Ddart.vm.product=true", "-O1"]
+        run("mail-browser-frontend", [*common,
+            "--packages=" + str(repo / ".dart_tool/package_config.json"),
+            "--cfe-only", "-o", str(web_kernel), str(web_entry)])
+        deps = web_kernel.with_suffix(web_kernel.suffix + ".deps")
+        entries = set(deps.read_text().splitlines())
+        required_web = [
+            "packages/quds_office_editor/example/tool/mail_web_entry.dart",
+            "packages/quds_office_editor/example/lib/studio_mail.dart",
+            "packages/quds_office_editor/example/lib/studio_mail_web.dart",
+            "packages/quds_office_editor/example/lib/studio_saved_mail.dart",
+            "packages/quds_office_editor/example/lib/studio_mail_file_web.dart",
+        ]
+        forbidden_native = [
+            "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+            "packages/quds_office_editor/example/lib/studio_mail_message_loader.dart",
+            "packages/quds_office_editor/example/lib/studio_mail_file_native.dart",
+            "third_party/enough_mail/lib/highlevel.dart",
+            "third_party/enough_mail/lib/src/mail/mail_client.dart",
+            "third_party/enough_mail/lib/src/private/util/client_base.dart",
+        ]
+        missing_web = [path for path in required_web if (repo / path).as_uri() not in entries]
+        present_native = [path for path in forbidden_native if (repo / path).as_uri() in entries]
+        closure = {"required_web_paths": required_web, "forbidden_native_paths": forbidden_native,
+                   "missing_web_paths": missing_web, "present_native_paths": present_native,
+                   "dependency_count": len(entries), "dependencies_sha256": digest(deps),
+                   "passed": not missing_web and not present_native,
+                   "scope": "Actual Flutter browser compiler import closure; no browser runtime execution."}
+        write_json(output / "mail-browser-import-closure.json", closure)
+        if not closure["passed"]:
+            raise RuntimeError("Mail browser import graph selected an unexpected platform path")
+        run("mail-browser-javascript", [*common, "--no-source-maps", "-o", str(web_js), str(web_kernel)])
+        run("mail-browser-javascript-syntax", [receipt["node_runtime"]["path"], "--check", str(web_js)])
+        web_outputs = [web_kernel, deps, web_js, web_js.with_suffix(web_js.suffix + ".deps")]
+        if any(not path.is_file() or not path.stat().st_size for path in web_outputs):
+            raise RuntimeError("Browser compilation did not produce all expected artifacts")
+        record["browser_compilation"] = {
+            "accepted": True, "browser_session_executed": False,
+            "artifacts": {path.name: {"bytes": path.stat().st_size, "sha256": digest(path)} for path in web_outputs},
+            "import_closure_sha256": digest(output / "mail-browser-import-closure.json"),
+        }
         record["status"] = "PASS"
     except BaseException as error:
         record.update(status="FAIL", error=repr(error))
@@ -233,6 +325,7 @@ def main() -> int:
             source_head_unchanged=git("rev-parse", "HEAD") == head,
             source_index_unchanged=git("write-tree") == index_tree,
             tracked_worktree_clean_after=clean(), untracked_product_inputs_after=untracked_product(),
+            web_sdk_dart_link_unchanged=str(dart_link.resolve()) == record["web_sdk_dart_link_target"],
             finished_at_utc=datetime.now(timezone.utc).isoformat(),
         )
         record["manifest_sha256"] = {
@@ -242,7 +335,7 @@ def main() -> int:
             )
         }
         if record["untracked_product_inputs_after"] or not all(record[k] for k in (
-            "source_unchanged", "runtime_unchanged", "source_head_unchanged", "source_index_unchanged", "tracked_worktree_clean_after",
+            "source_unchanged", "runtime_unchanged", "source_head_unchanged", "source_index_unchanged", "tracked_worktree_clean_after", "web_sdk_dart_link_unchanged",
         )):
             record["status"] = "FAIL"
         save()

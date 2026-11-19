@@ -1,0 +1,122 @@
+{
+  "checked_at_utc": "2026-11-19T11:30:10.435894+00:00",
+  "source_commit": "409258f91484039d771d1fe56f097bef6f2d27ea",
+  "source_tree": "be431b7bed739f535f545f3aea40d2d36fa65b2b",
+  "classification": "REJECTED",
+  "accepted_case_contribution": 0,
+  "node_run_present": false,
+  "scope": "Preserved completed native attempt only; visible passing cases are observations from a rejected gate, never acceptance or final-source evidence.",
+  "archive": {
+    "publication_commit": "d00bd3971a187201b4ca0c1ae5bc0bc2776cbde2",
+    "path": "docs/validation/office-resume-main-20261119/attempt-409258f9/evidence.tar.xz",
+    "bytes": 798136,
+    "sha256": "6c986e9eeccc44eeb03c00f4d97665f19d54ef8e1ad6c957ecdc8ce7b3e0e6e6",
+    "index_sha256": "c0bd5216631703b131ac261836e26865891f3f70b2a7cb9e36462d78876c656c",
+    "members": 35,
+    "exact_member_hashes_lengths_and_original_bytes_verified": true
+  },
+  "groups": [
+    {
+      "name": "engine-merge-regressions",
+      "requested_suites": 12,
+      "nonempty_case_suites": 12,
+      "passed_visible_cases": 606,
+      "failed_visible_cases": 0,
+      "skipped_visible_cases": 0,
+      "excluded_failures": [],
+      "reporter_errors": 0,
+      "terminal_success": true,
+      "exit_code": 0,
+      "runner_accepted": true
+    },
+    {
+      "name": "editor-language-controls",
+      "requested_suites": 3,
+      "nonempty_case_suites": 3,
+      "passed_visible_cases": 45,
+      "failed_visible_cases": 0,
+      "skipped_visible_cases": 0,
+      "excluded_failures": [],
+      "reporter_errors": 0,
+      "terminal_success": true,
+      "exit_code": 0,
+      "runner_accepted": true
+    },
+    {
+      "name": "hunspell-cancellation-lifecycle",
+      "requested_suites": 5,
+      "nonempty_case_suites": 5,
+      "passed_visible_cases": 34,
+      "failed_visible_cases": 0,
+      "skipped_visible_cases": 0,
+      "excluded_failures": [],
+      "reporter_errors": 0,
+      "terminal_success": true,
+      "exit_code": 0,
+      "runner_accepted": true
+    },
+    {
+      "name": "studio-current-host",
+      "requested_suites": 13,
+      "nonempty_case_suites": 12,
+      "passed_visible_cases": 112,
+      "failed_visible_cases": 0,
+      "skipped_visible_cases": 0,
+      "excluded_failures": [
+        {
+          "suite": "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+          "name": "loading /workspace/scratch/261cd76b2166/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+          "result": "error",
+          "skipped": false,
+          "reporter_hidden_flag": false
+        }
+      ],
+      "reporter_errors": 1,
+      "terminal_success": false,
+      "exit_code": 1,
+      "runner_accepted": false
+    }
+  ],
+  "passed_visible_cases": 797,
+  "distinct_visible_case_identities": 797,
+  "failed_visible_cases": 0,
+  "skipped_visible_cases": 0,
+  "reporter_errors": [
+    {
+      "testID": 131,
+      "error": "Failed to load \"/workspace/scratch/261cd76b2166/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart\":\nCompilation failed for testPath=/workspace/scratch/261cd76b2166/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart: test/studio_zotero_shortcuts_test.dart:356:11: Error: Method not found: 'enableStudioSetting'.\n    await enableStudioSetting(tester, 'Show notes');\n          ^^^^^^^^^^^^^^^^^^^\n.",
+      "stackTrace": "",
+      "isFailure": false,
+      "type": "error",
+      "time": 171113
+    }
+  ],
+  "excluded_loading_failures": [
+    {
+      "suite": "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+      "name": "loading /workspace/scratch/261cd76b2166/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+      "result": "error",
+      "skipped": false,
+      "reporter_hidden_flag": false
+    }
+  ],
+  "loading_failure_note": "The failed loading event is excluded by its loading-name classification, although the reporter hidden flag is false.",
+  "analysis": {
+    "exit_code": 3,
+    "accepted": false,
+    "diagnostic": "Analyzing studio_hunspell_host_web.dart, studio_mail.dart, studio_strings.dart, suite_workspace.dart, pdf_showcase_test.dart, studio_comment_draft_proofing_test.dart, studio_comment_keyboard_review_test.dart, studio_comment_review_test.dart, studio_hunspell_web_cancellation_test.dart, studio_mail_test.dart, studio_review_status_test.dart, studio_settings_test.dart, studio_zotero_shortcuts_test.dart, studio_settings.dart, studio_test_settings.dart, widget_test.dart, word_complex_script_proofing_controls_test.dart, quds_office_engine.dart, arabic_extended_rules.dart, office_proofing.dart, wml_run_edit.dart, arabic_extended_rules_test.dart, office_proofing_merge_test.dart, word_complex_script_language_test.dart, word_proofing_language_test.dart, hunspell_installer_io.dart, hunspell_installer_cancellation_test.dart...\n\n  error - packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart:356:11 - The function 'enableStudioSetting' isn't defined. Try importing the library that defines 'enableStudioSetting', correcting the name to the name of an existing function, or defining a function named 'enableStudioSetting'. - undefined_function\n\n1 issue found.\n"
+  },
+  "source_binding": {
+    "records": 5165,
+    "all_git_entries_and_content_hashes_match": true
+  },
+  "source_before_after_identical": true,
+  "runtime_records": 11169,
+  "runtime_before_after_identical": true,
+  "source_helper_sha256": "dec25f35a0630f7b7e7971e2e02ded5979203579e32df273161345c8bdfc65dc",
+  "script_sha256": "0ba8eb778d30a1f45a7f200f2ff5b818bffac915c18dc6804d1057ad1f032265",
+  "github_actions_calls": 0,
+  "repository_mutations_performed": 0,
+  "git_lazy_fetch_disabled": true,
+  "rejection_independently_verified": true
+}

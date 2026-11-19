@@ -1,0 +1,184 @@
+{
+  "capture": {
+    "scope": "Bounded sequential remote advertisements; no workflow/status endpoints",
+    "captures": [
+      {
+        "remote": "https://github.com/CrispStrobe/quds_office_suite.git",
+        "file": "captured-fork-refs-tail.txt",
+        "started_at_utc": "2026-11-19T11:18:39.872175+00:00",
+        "finished_at_utc": "2026-11-19T11:18:45.765580+00:00",
+        "advertisements": 449
+      },
+      {
+        "remote": "https://github.com/MohammedAsaadAsaad/quds_office_suite.git",
+        "file": "captured-upstream-refs-tail.txt",
+        "started_at_utc": "2026-11-19T11:18:45.765833+00:00",
+        "finished_at_utc": "2026-11-19T11:18:49.474918+00:00",
+        "advertisements": 28
+      }
+    ]
+  },
+  "actual_reference_count": 465,
+  "counts": {
+    "fork_branch": 231,
+    "pull_request_head": 193,
+    "tag": 17,
+    "upstream_branch": 4,
+    "upstream_pull_request_head": 4,
+    "upstream_tag": 16
+  },
+  "excluded_aliases_and_peeled": 9,
+  "captures": [
+    {
+      "file": "captured-fork-refs-tail.txt",
+      "sha256": "b6945174e1a327e515c33da2abf153c4f107b117532819394acbc8493c7d9f35",
+      "upstream": false
+    },
+    {
+      "file": "captured-upstream-refs-tail.txt",
+      "sha256": "ff18c5e1bae03ba5acb473c259bfdd1eb7d2ed78a814578c30fc3a0531e2ed88",
+      "upstream": true
+    }
+  ],
+  "union_heads": {
+    "d00bd397": "d00bd3971a187201b4ca0c1ae5bc0bc2776cbde2",
+    "e80beb2": "e80beb2ed2fe70397a5a8fff5c9e908b04862f78",
+    "2abf5d2": "2abf5d264e5065772fc4ca05c7cab6d34256ab9d"
+  },
+  "advertisement_count": 477,
+  "excluded_synthetic_pr_merge_advertisements": 3,
+  "excluded_non_source_advertisement_count": 12,
+  "excluded_non_source_advertisements": [
+    {
+      "namespace": "fork",
+      "kind": "head_alias",
+      "ref": "HEAD",
+      "object_sha": "b070e228a749e22cc8ce2098029a76ab5fb8eccb",
+      "capture_file": "captured-fork-refs-tail.txt"
+    },
+    {
+      "namespace": "fork",
+      "kind": "synthetic_pull_request_merge",
+      "ref": "refs/pull/191/merge",
+      "object_sha": "190d7c6325574f0ac2b35ad46005894d9a6cedd5",
+      "capture_file": "captured-fork-refs-tail.txt"
+    },
+    {
+      "namespace": "fork",
+      "kind": "synthetic_pull_request_merge",
+      "ref": "refs/pull/192/merge",
+      "object_sha": "43a679cdfe78c04150865a623cbda38dbb2dd453",
+      "capture_file": "captured-fork-refs-tail.txt"
+    },
+    {
+      "namespace": "fork",
+      "kind": "synthetic_pull_request_merge",
+      "ref": "refs/pull/193/merge",
+      "object_sha": "942610b7075585071e1dac3ae173d0eb4d51093c",
+      "capture_file": "captured-fork-refs-tail.txt"
+    },
+    {
+      "namespace": "fork",
+      "kind": "peeled_tag_advertisement",
+      "ref": "refs/tags/crispcloud-build28-office^{}",
+      "object_sha": "216e5ba38110349d6a002a5a58e0ae27825c8bef",
+      "capture_file": "captured-fork-refs-tail.txt"
+    },
+    {
+      "namespace": "fork",
+      "kind": "peeled_tag_advertisement",
+      "ref": "refs/tags/studio-v1.0.0^{}",
+      "object_sha": "509e0cfa621775b4bbdb9bf456e8dbe218351226",
+      "capture_file": "captured-fork-refs-tail.txt"
+    },
+    {
+      "namespace": "fork",
+      "kind": "peeled_tag_advertisement",
+      "ref": "refs/tags/v0.1.0^{}",
+      "object_sha": "23969a9ec23cb37fc3aa5276a46612d8873e518f",
+      "capture_file": "captured-fork-refs-tail.txt"
+    },
+    {
+      "namespace": "fork",
+      "kind": "peeled_tag_advertisement",
+      "ref": "refs/tags/v1.0.0^{}",
+      "object_sha": "d101a3308fb046f96e7db6054a1b2b60f1724289",
+      "capture_file": "captured-fork-refs-tail.txt"
+    },
+    {
+      "namespace": "upstream",
+      "kind": "head_alias",
+      "ref": "HEAD",
+      "object_sha": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+      "capture_file": "captured-upstream-refs-tail.txt"
+    },
+    {
+      "namespace": "upstream",
+      "kind": "peeled_tag_advertisement",
+      "ref": "refs/tags/studio-v1.0.0^{}",
+      "object_sha": "509e0cfa621775b4bbdb9bf456e8dbe218351226",
+      "capture_file": "captured-upstream-refs-tail.txt"
+    },
+    {
+      "namespace": "upstream",
+      "kind": "peeled_tag_advertisement",
+      "ref": "refs/tags/v0.1.0^{}",
+      "object_sha": "23969a9ec23cb37fc3aa5276a46612d8873e518f",
+      "capture_file": "captured-upstream-refs-tail.txt"
+    },
+    {
+      "namespace": "upstream",
+      "kind": "peeled_tag_advertisement",
+      "ref": "refs/tags/v1.0.0^{}",
+      "object_sha": "d101a3308fb046f96e7db6054a1b2b60f1724289",
+      "capture_file": "captured-upstream-refs-tail.txt"
+    }
+  ],
+  "changed_or_added_source_references": [
+    {
+      "namespace": "fork",
+      "ref": "refs/heads/codex/office-continuation-20261119",
+      "head": "e80beb2ed2fe70397a5a8fff5c9e908b04862f78",
+      "prior": null
+    },
+    {
+      "namespace": "fork",
+      "ref": "refs/heads/codex/office-finish-20261119",
+      "head": "2abf5d264e5065772fc4ca05c7cab6d34256ab9d",
+      "prior": null
+    },
+    {
+      "namespace": "fork",
+      "ref": "refs/heads/codex/office-mail-continuation-20261119",
+      "head": "3119a4598e61f061e7b7633ea4a352d841332b9e",
+      "prior": null
+    },
+    {
+      "namespace": "fork",
+      "ref": "refs/heads/codex/office-resume-main-20261119",
+      "head": "409258f91484039d771d1fe56f097bef6f2d27ea",
+      "prior": "b070e228a749e22cc8ce2098029a76ab5fb8eccb"
+    },
+    {
+      "namespace": "fork",
+      "ref": "refs/pull/191/head",
+      "head": "3119a4598e61f061e7b7633ea4a352d841332b9e",
+      "prior": null
+    },
+    {
+      "namespace": "fork",
+      "ref": "refs/pull/192/head",
+      "head": "409258f91484039d771d1fe56f097bef6f2d27ea",
+      "prior": null
+    },
+    {
+      "namespace": "fork",
+      "ref": "refs/pull/193/head",
+      "head": "e80beb2ed2fe70397a5a8fff5c9e908b04862f78",
+      "prior": null
+    }
+  ],
+  "capture_classification": "465 branch, tag, and PR-head sources; 12 advertisements excluded (2 HEAD aliases, 7 peeled tag rows, 3 generated PR merge previews).",
+  "actual_integrated_graph_verified": false,
+  "graph_audit_note": "Anticipated-union graph audit is separately preserved; run audit_refs_final.py on the final integrated commit before asserting actual integration."
+}

@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "checked_at_utc": "2026-11-19T11:52:44.942862+00:00",
+  "classification": "ARCHIVE_REPRODUCIBILITY_ONLY_NOT_APPLICATION_QUALIFICATION",
+  "method": "Materialize the 90 indexed original members from the archive, then rebuild using the selection and normalized tar/gzip builder. No original live workspace input is needed for this replay.",
+  "member_count": 90,
+  "archive_sha256": "6135389d95388b8ec8fdff1b4ea403c74c570328145f5e26710a20929712f906",
+  "rebuilt_archive_sha256": "6135389d95388b8ec8fdff1b4ea403c74c570328145f5e26710a20929712f906",
+  "archive_bytes": 1230952,
+  "byte_for_byte_identical": true,
+  "builder_sha256": "600fbe8e94864fcf82a6728a74d98cf34c4fa14229a74b9e939f42f62a84871a",
+  "selection_sha256": "ca86ad20faf16a0718f18e7dca39bdbf82d38ec051d7e9b5aba52732d57d0298",
+  "passed": true,
+  "product_code_executed": false,
+  "network_or_github_actions_calls": 0
+}

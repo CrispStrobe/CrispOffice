@@ -1,0 +1,2149 @@
+{
+  "schema": 1,
+  "created_at_utc": "2026-11-19T11:51:17.668502+00:00",
+  "classification": "DEVELOPMENT_ONLY_NOT_ACCEPTED_AGGREGATE_QUALIFICATION",
+  "original_root_at_capture": "/workspace/scratch/82189ef49fff",
+  "selection_sha256": "ca86ad20faf16a0718f18e7dca39bdbf82d38ec051d7e9b5aba52732d57d0298",
+  "builder_sha256": "600fbe8e94864fcf82a6728a74d98cf34c4fa14229a74b9e939f42f62a84871a",
+  "archive": {
+    "file": "development-evidence.tar.gz",
+    "bytes": 1230952,
+    "sha256": "6135389d95388b8ec8fdff1b4ea403c74c570328145f5e26710a20929712f906",
+    "format": "gzip mtime=0, tar sorted members, normalized headers; original member bytes unchanged"
+  },
+  "member_count": 90,
+  "original_bytes_total": 5681435,
+  "members": [
+    {
+      "member": "originals/composer-narrow-review-1.jsonl",
+      "original_relative_path": "composer-narrow-review-1.jsonl",
+      "role": "development_stdout_or_stderr",
+      "bytes": 35943,
+      "sha256": "ff5f189f0ca678fc67500307af2bc7536b09aadf7ed938ca5e5278e886b3f7a8",
+      "original_mtime_ns_at_capture": 1795087074377387223,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit.",
+      "accepted_combined_source_result": false,
+      "reporter_observations": {
+        "interpretation": "Descriptive raw-event observations only; not accepted qualification.",
+        "event_counts": {
+          "allSuites": 1,
+          "done": 1,
+          "error": 1,
+          "group": 1,
+          "print": 4,
+          "start": 1,
+          "suite": 1,
+          "testDone": 2,
+          "testStart": 2
+        },
+        "visible_test_starts": 1,
+        "visible_completion_results": {
+          "error": 1
+        },
+        "visible_skipped_completions": 0,
+        "unfinished_visible_test_ids": [],
+        "duplicate_completion_test_ids": [],
+        "reporter_errors": [
+          {
+            "line": 12,
+            "test_id": 3
+          }
+        ],
+        "terminal_done_events": [
+          {
+            "success": false,
+            "time": 9413
+          }
+        ],
+        "non_json_lines": 0,
+        "other_json_lines": 0,
+        "suite_paths": [
+          "/workspace/scratch/82189ef49fff/composer-narrow-review_test.dart"
+        ]
+      }
+    },
+    {
+      "member": "originals/composer-narrow-review-1.stderr",
+      "original_relative_path": "composer-narrow-review-1.stderr",
+      "role": "development_stdout_or_stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_mtime_ns_at_capture": 1795087063729390803,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit.",
+      "accepted_combined_source_result": false
+    },
+    {
+      "member": "originals/composer-narrow-review-2.jsonl",
+      "original_relative_path": "composer-narrow-review-2.jsonl",
+      "role": "development_stdout_or_stderr",
+      "bytes": 1272,
+      "sha256": "6164a5715d79426bc0b7444d7584ede271c4438b984edca3b5ad11cd2ba33584",
+      "original_mtime_ns_at_capture": 1795087158588101909,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit.",
+      "accepted_combined_source_result": false,
+      "reporter_observations": {
+        "interpretation": "Descriptive raw-event observations only; not accepted qualification.",
+        "event_counts": {
+          "allSuites": 1,
+          "done": 1,
+          "group": 1,
+          "start": 1,
+          "suite": 1,
+          "testDone": 2,
+          "testStart": 2
+        },
+        "visible_test_starts": 1,
+        "visible_completion_results": {
+          "success": 1
+        },
+        "visible_skipped_completions": 0,
+        "unfinished_visible_test_ids": [],
+        "duplicate_completion_test_ids": [],
+        "reporter_errors": [],
+        "terminal_done_events": [
+          {
+            "success": true,
+            "time": 9475
+          }
+        ],
+        "non_json_lines": 0,
+        "other_json_lines": 0,
+        "suite_paths": [
+          "/workspace/scratch/82189ef49fff/composer-narrow-review_test.dart"
+        ]
+      }
+    },
+    {
+      "member": "originals/composer-narrow-review-2.stderr",
+      "original_relative_path": "composer-narrow-review-2.stderr",
+      "role": "development_stdout_or_stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_mtime_ns_at_capture": 1795087146636375398,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit.",
+      "accepted_combined_source_result": false
+    },
+    {
+      "member": "originals/composer-narrow-review_test.dart",
+      "original_relative_path": "composer-narrow-review_test.dart",
+      "role": "diagnostic_probe_source",
+      "bytes": 964,
+      "sha256": "cd4af8e9d701e3d0217d2324e0deea8dd706fcfbb26e77020bc0017e880e52d2",
+      "original_mtime_ns_at_capture": 1795087063485393846,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Probe bytes as present at evidence capture. Earlier diagnostic logs may have used an earlier edited version; no exact source/log pairing is asserted.",
+      "accepted_combined_source_result": false
+    },
+    {
+      "member": "originals/initial-union-diff.txt",
+      "original_relative_path": "initial-union-diff.txt",
+      "role": "merge_reconciliation_diagnostic",
+      "bytes": 21204,
+      "sha256": "7bee7ba86ff9c680652126d5d9d80e1762814b1120906ca68706fea72abae595",
+      "original_mtime_ns_at_capture": 1795086628594218588,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Scratch source comparison/conflict record preserved during current reconciliation; not an executed test or a complete source snapshot.",
+      "accepted_combined_source_result": false
+    },
+    {
+      "member": "originals/loader-analysis.log",
+      "original_relative_path": "loader-analysis.log",
+      "role": "development_stdout_or_stderr",
+      "bytes": 988,
+      "sha256": "5d77e9735f4e693d847bcb820a449f9d49c32a2fb4ddf039deddd05eb7e81079",
+      "original_mtime_ns_at_capture": 1795087077101935722,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit.",
+      "accepted_combined_source_result": false
+    },
+    {
+      "member": "originals/loader-final-analysis.log",
+      "original_relative_path": "loader-final-analysis.log",
+      "role": "development_stdout_or_stderr",
+      "bytes": 100,
+      "sha256": "7b9dbe1fd75aca9ae387d6b804d301b78151e04034f5f4fc9fc80db1a0656d15",
+      "original_mtime_ns_at_capture": 1795087134010393663,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit.",
+      "accepted_combined_source_result": false
+    },
+    {
+      "member": "originals/loader-final-tests.stderr.log",
+      "original_relative_path": "loader-final-tests.stderr.log",
+      "role": "development_stdout_or_stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_mtime_ns_at_capture": 1795087134060563992,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit.",
+      "accepted_combined_source_result": false
+    },
+    {
+      "member": "originals/loader-final-tests.stdout.jsonl",
+      "original_relative_path": "loader-final-tests.stdout.jsonl",
+      "role": "development_stdout_or_stderr",
+      "bytes": 9486,
+      "sha256": "6772d00c606d3f5ed49b57095eda7587ba37e11f94616ffe05f45c182c7e16ad",
+      "original_mtime_ns_at_capture": 1795087139288490096,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit.",
+      "accepted_combined_source_result": false,
+      "reporter_observations": {
+        "interpretation": "Descriptive raw-event observations only; not accepted qualification.",
+        "event_counts": {
+          "allSuites": 1,
+          "done": 1,
+          "group": 1,
+          "start": 1,
+          "suite": 1,
+          "testDone": 20,
+          "testStart": 20
+        },
+        "visible_test_starts": 19,
+        "visible_completion_results": {
+          "success": 19
+        },
+        "visible_skipped_completions": 0,
+        "unfinished_visible_test_ids": [],
+        "duplicate_completion_test_ids": [],
+        "reporter_errors": [],
+        "terminal_done_events": [
+          {
+            "success": true,
+            "time": 3543
+          }
+        ],
+        "non_json_lines": 0,
+        "other_json_lines": 0,
+        "suite_paths": [
+          "/workspace/scratch/82189ef49fff/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart"
+        ]
+      }
+    },
+    {
+      "member": "originals/loader-pub-get.log",
+      "original_relative_path": "loader-pub-get.log",
+      "role": "development_stdout_or_stderr",
+      "bytes": 178,
+      "sha256": "d30a44a53ba5db4dab6e556224ae0c38badb2b2bb44ce858eecb11a646ca4a70",
+      "original_mtime_ns_at_capture": 1795087045733848495,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit.",
+      "accepted_combined_source_result": false
+    },
+    {
+      "member": "originals/loader-tests-formatted.stderr.log",
+      "original_relative_path": "loader-tests-formatted.stderr.log",
+      "role": "development_stdout_or_stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_mtime_ns_at_capture": 1795087077141346910,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit.",
+      "accepted_combined_source_result": false
+    },
+    {
+      "member": "originals/loader-tests-formatted.stdout.jsonl",
+      "original_relative_path": "loader-tests-formatted.stdout.jsonl",
+      "role": "development_stdout_or_stderr",
+      "bytes": 9486,
+      "sha256": "aac9f938e964b2aaffb30e57df127e46eb7cd33e421cb76ba6260f7bd161b698",
+      "original_mtime_ns_at_capture": 1795087083381295942,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit.",
+      "accepted_combined_source_result": false,
+      "reporter_observations": {
+        "interpretation": "Descriptive raw-event observations only; not accepted qualification.",
+        "event_counts": {
+          "allSuites": 1,
+          "done": 1,
+          "group": 1,
+          "start": 1,
+          "suite": 1,
+          "testDone": 20,
+          "testStart": 20
+        },
+        "visible_test_starts": 19,
+        "visible_completion_results": {
+          "success": 19
+        },
+        "visible_skipped_completions": 0,
+        "unfinished_visible_test_ids": [],
+        "duplicate_completion_test_ids": [],
+        "reporter_errors": [],
+        "terminal_done_events": [
+          {
+            "success": true,
+            "time": 5419
+          }
+        ],
+        "non_json_lines": 0,
+        "other_json_lines": 0,
+        "suite_paths": [
+          "/workspace/scratch/82189ef49fff/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart"
+        ]
+      }
+    },
+    {
+      "member": "originals/loader-tests.stderr.log",
+      "original_relative_path": "loader-tests.stderr.log",
+      "role": "development_stdout_or_stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_mtime_ns_at_capture": 1795087045793845887,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit.",
+      "accepted_combined_source_result": false
+    },
+    {
+      "member": "originals/loader-tests.stdout.jsonl",
+      "original_relative_path": "loader-tests.stdout.jsonl",
+      "role": "development_stdout_or_stderr",
+      "bytes": 9486,
+      "sha256": "1e7bff49479708928b580459cf45398e9eecb9d50cc3202893c5c6509ab5ebdf",
+      "original_mtime_ns_at_capture": 1795087051693664209,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit.",
+      "accepted_combined_source_result": false,
+      "reporter_observations": {
+        "interpretation": "Descriptive raw-event observations only; not accepted qualification.",
+        "event_counts": {
+          "allSuites": 1,
+          "done": 1,
+          "group": 1,
+          "start": 1,
+          "suite": 1,
+          "testDone": 20,
+          "testStart": 20
+        },
+        "visible_test_starts": 19,
+        "visible_completion_results": {
+          "success": 19
+        },
+        "visible_skipped_completions": 0,
+        "unfinished_visible_test_ids": [],
+        "duplicate_completion_test_ids": [],
+        "reporter_errors": [],
+        "terminal_done_events": [
+          {
+            "success": true,
+            "time": 4832
+          }
+        ],
+        "non_json_lines": 0,
+        "other_json_lines": 0,
+        "suite_paths": [
+          "/workspace/scratch/82189ef49fff/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart"
+        ]
+      }
+    },
+    {
+      "member": "originals/mail-compose-development-1.jsonl",
+      "original_relative_path": "mail-compose-development-1.jsonl",
+      "role": "development_stdout_or_stderr",
+      "bytes": 44643,
+      "sha256": "59369985bb3993afb79cbb8c0027726e9b556ffc2c47b4c79b879cb3bf269e1d",
+      "original_mtime_ns_at_capture": 1795087261350561201,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit.",
+      "accepted_combined_source_result": false,
+      "reporter_observations": {
+        "interpretation": "Descriptive raw-event observations only; not accepted qualification.",
+        "event_counts": {
+          "allSuites": 1,
+          "done": 1,
+          "error": 10,
+          "group": 2,
+          "print": 9,
+          "start": 1,
+          "suite": 2,
+          "testDone": 51,
+          "testStart": 51
+        },
+        "visible_test_starts": 49,
+        "visible_completion_results": {
+          "error": 9,
+          "failure": 1,
+          "success": 39
+        },
+        "visible_skipped_completions": 0,
+        "unfinished_visible_test_ids": [],
+        "duplicate_completion_test_ids": [],
+        "reporter_errors": [
+          {
+            "line": 29,
+            "test_id": 13
+          },
+          {
+            "line": 33,
+            "test_id": 14
+          },
+          {
+            "line": 67,
+            "test_id": 30
+          },
+          {
+            "line": 102,
+            "test_id": 48
+          },
+          {
+            "line": 106,
+            "test_id": 49
+          },
+          {
+            "line": 110,
+            "test_id": 50
+          },
+          {
+            "line": 114,
+            "test_id": 51
+          },
+          {
+            "line": 118,
+            "test_id": 52
+          },
+          {
+            "line": 122,
+            "test_id": 53
+          },
+          {
+            "line": 126,
+            "test_id": 54
+          }
+        ],
+        "terminal_done_events": [
+          {
+            "success": false,
+            "time": 40309
+          }
+        ],
+        "non_json_lines": 0,
+        "other_json_lines": 0,
+        "suite_paths": [
+          "/workspace/scratch/82189ef49fff/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_compose_test.dart",
+          "/workspace/scratch/82189ef49fff/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_test.dart"
+        ]
+      }
+    },
+    {
+      "member": "originals/mail-compose-development-1.stderr.log",
+      "original_relative_path": "mail-compose-development-1.stderr.log",
+      "role": "development_stdout_or_stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_mtime_ns_at_capture": 1795087220139234106,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit.",
+      "accepted_combined_source_result": false
+    },
+    {
+      "member": "originals/mail-compose-development-2.jsonl",
+      "original_relative_path": "mail-compose-development-2.jsonl",
+      "role": "development_stdout_or_stderr",
+      "bytes": 30169,
+      "sha256": "ec59b317f936337150c9ecd43d40e87f6ee8f21321f62f6c28567ef05f75d41b",
+      "original_mtime_ns_at_capture": 1795087352189246023,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit.",
+      "accepted_combined_source_result": false,
+      "reporter_observations": {
+        "interpretation": "Descriptive raw-event observations only; not accepted qualification.",
+        "event_counts": {
+          "allSuites": 1,
+          "done": 1,
+          "error": 2,
+          "group": 2,
+          "print": 2,
+          "start": 1,
+          "suite": 2,
+          "testDone": 51,
+          "testStart": 51
+        },
+        "visible_test_starts": 49,
+        "visible_completion_results": {
+          "error": 2,
+          "success": 47
+        },
+        "visible_skipped_completions": 0,
+        "unfinished_visible_test_ids": [],
+        "duplicate_completion_test_ids": [],
+        "reporter_errors": [
+          {
+            "line": 29,
+            "test_id": 13
+          },
+          {
+            "line": 33,
+            "test_id": 14
+          }
+        ],
+        "terminal_done_events": [
+          {
+            "success": false,
+            "time": 22797
+          }
+        ],
+        "non_json_lines": 0,
+        "other_json_lines": 0,
+        "suite_paths": [
+          "/workspace/scratch/82189ef49fff/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_compose_test.dart",
+          "/workspace/scratch/82189ef49fff/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_test.dart"
+        ]
+      }
+    },
+    {
+      "member": "originals/mail-compose-development-2.stderr.log",
+      "original_relative_path": "mail-compose-development-2.stderr.log",
+      "role": "development_stdout_or_stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_mtime_ns_at_capture": 1795087328621573664,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit.",
+      "accepted_combined_source_result": false
+    },
+    {
+      "member": "originals/mail-compose-development-3-summary.json",
+      "original_relative_path": "mail-compose-development-3-summary.json",
+      "role": "development_summary_from_original_diagnostic",
+      "bytes": 15429,
+      "sha256": "083f5a98d57e7952acf6963e993f7656ef279207e740367109ed0e2312497fe5",
+      "original_mtime_ns_at_capture": 1795087638632531787,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Contemporaneous diagnostic summary only. Retained raw events are authoritative; this summary is not accepted aggregate qualification.",
+      "accepted_combined_source_result": false
+    },
+    {
+      "member": "originals/mail-compose-development-3.jsonl",
+      "original_relative_path": "mail-compose-development-3.jsonl",
+      "role": "development_stdout_or_stderr",
+      "bytes": 26257,
+      "sha256": "18238ac6fdd9f69e27530bac7fdef038e38096fec41ec0819595167386f512c7",
+      "original_mtime_ns_at_capture": 1795087631213246540,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit.",
+      "accepted_combined_source_result": false,
+      "reporter_observations": {
+        "interpretation": "Descriptive raw-event observations only; not accepted qualification.",
+        "event_counts": {
+          "allSuites": 1,
+          "done": 1,
+          "group": 2,
+          "start": 1,
+          "suite": 2,
+          "testDone": 51,
+          "testStart": 51
+        },
+        "visible_test_starts": 49,
+        "visible_completion_results": {
+          "success": 49
+        },
+        "visible_skipped_completions": 0,
+        "unfinished_visible_test_ids": [],
+        "duplicate_completion_test_ids": [],
+        "reporter_errors": [],
+        "terminal_done_events": [
+          {
+            "success": true,
+            "time": 33799
+          }
+        ],
+        "non_json_lines": 0,
+        "other_json_lines": 0,
+        "suite_paths": [
+          "/workspace/scratch/82189ef49fff/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_compose_test.dart",
+          "/workspace/scratch/82189ef49fff/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_test.dart"
+        ]
+      }
+    },
+    {
+      "member": "originals/mail-compose-development-3.stderr.log",
+      "original_relative_path": "mail-compose-development-3.stderr.log",
+      "role": "development_stdout_or_stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_mtime_ns_at_capture": 1795087596097889105,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit.",
+      "accepted_combined_source_result": false
+    },
+    {
+      "member": "originals/mail-final-development-analysis.log",
+      "original_relative_path": "mail-final-development-analysis.log",
+      "role": "development_stdout_or_stderr",
+      "bytes": 587,
+      "sha256": "f9151c118326cd528b8fc796ac85d8f07b88da9ebe8df1874ec062485f99b297",
+      "original_mtime_ns_at_capture": 1795087617097550199,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit.",
+      "accepted_combined_source_result": false
+    },
+    {
+      "member": "originals/mail-operation-analysis.log",
+      "original_relative_path": "mail-operation-analysis.log",
+      "role": "development_stdout_or_stderr",
+      "bytes": 2929,
+      "sha256": "ae5f659505b5a216df3109f7ca4caeaf9c7ab3dfda9cff0997e6d9acd83b8b77",
+      "original_mtime_ns_at_capture": 1795087387888993772,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit.",
+      "accepted_combined_source_result": false
+    },
+    {
+      "member": "originals/mail-operation-final-analysis.log",
+      "original_relative_path": "mail-operation-final-analysis.log",
+      "role": "development_stdout_or_stderr",
+      "bytes": 115,
+      "sha256": "1d99fd1c53be2d25a497aaad1879f51edc292b6ad39d963a9738d0dfee4adf11",
+      "original_mtime_ns_at_capture": 1795087448857695630,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit.",
+      "accepted_combined_source_result": false
+    },
+    {
+      "member": "originals/mail-operation-final-tests.stderr.log",
+      "original_relative_path": "mail-operation-final-tests.stderr.log",
+      "role": "development_stdout_or_stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_mtime_ns_at_capture": 1795087448915829752,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit.",
+      "accepted_combined_source_result": false
+    },
+    {
+      "member": "originals/mail-operation-final-tests.stdout.jsonl",
+      "original_relative_path": "mail-operation-final-tests.stdout.jsonl",
+      "role": "development_stdout_or_stderr",
+      "bytes": 4011,
+      "sha256": "32d15093adfdaa06dbe6a83fbd69838f0ecd2ef501bdea943ef943eeaccff845",
+      "original_mtime_ns_at_capture": 1795087452863805040,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit.",
+      "accepted_combined_source_result": false,
+      "reporter_observations": {
+        "interpretation": "Descriptive raw-event observations only; not accepted qualification.",
+        "event_counts": {
+          "allSuites": 1,
+          "done": 1,
+          "group": 1,
+          "start": 1,
+          "suite": 1,
+          "testDone": 8,
+          "testStart": 8
+        },
+        "visible_test_starts": 7,
+        "visible_completion_results": {
+          "success": 7
+        },
+        "visible_skipped_completions": 0,
+        "unfinished_visible_test_ids": [],
+        "duplicate_completion_test_ids": [],
+        "reporter_errors": [],
+        "terminal_done_events": [
+          {
+            "success": true,
+            "time": 2416
+          }
+        ],
+        "non_json_lines": 0,
+        "other_json_lines": 0,
+        "suite_paths": [
+          "/workspace/scratch/82189ef49fff/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_operation_test.dart"
+        ]
+      }
+    },
+    {
+      "member": "originals/mail-operation-tests.stderr.log",
+      "original_relative_path": "mail-operation-tests.stderr.log",
+      "role": "development_stdout_or_stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_mtime_ns_at_capture": 1795087387948742098,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit.",
+      "accepted_combined_source_result": false
+    },
+    {
+      "member": "originals/mail-operation-tests.stdout.jsonl",
+      "original_relative_path": "mail-operation-tests.stdout.jsonl",
+      "role": "development_stdout_or_stderr",
+      "bytes": 4009,
+      "sha256": "5d786302d07346a5583001b492759edbd21a891845123f18e7460d0d5af22fb8",
+      "original_mtime_ns_at_capture": 1795087392876666542,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit.",
+      "accepted_combined_source_result": false,
+      "reporter_observations": {
+        "interpretation": "Descriptive raw-event observations only; not accepted qualification.",
+        "event_counts": {
+          "allSuites": 1,
+          "done": 1,
+          "group": 1,
+          "start": 1,
+          "suite": 1,
+          "testDone": 8,
+          "testStart": 8
+        },
+        "visible_test_starts": 7,
+        "visible_completion_results": {
+          "success": 7
+        },
+        "visible_skipped_completions": 0,
+        "unfinished_visible_test_ids": [],
+        "duplicate_completion_test_ids": [],
+        "reporter_errors": [],
+        "terminal_done_events": [
+          {
+            "success": true,
+            "time": 3439
+          }
+        ],
+        "non_json_lines": 0,
+        "other_json_lines": 0,
+        "suite_paths": [
+          "/workspace/scratch/82189ef49fff/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_operation_test.dart"
+        ]
+      }
+    },
+    {
+      "member": "originals/mail-postsubmission-development-analysis.log",
+      "original_relative_path": "mail-postsubmission-development-analysis.log",
+      "role": "development_stdout_or_stderr",
+      "bytes": 103,
+      "sha256": "87fda0b6d016a47e21a3b9124286374ded2f46ddb1f7f97e33f084fa804d9db3",
+      "original_mtime_ns_at_capture": 1795088407867642644,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit.",
+      "accepted_combined_source_result": false
+    },
+    {
+      "member": "originals/mail-postsubmission-development-summary.json",
+      "original_relative_path": "mail-postsubmission-development-summary.json",
+      "role": "development_summary_from_original_diagnostic",
+      "bytes": 150,
+      "sha256": "99e4ca369f7da3b1fc05e2d70e90133b29fe8fea7ee6f0e2e17c55b618deb74a",
+      "original_mtime_ns_at_capture": 1795088348038545195,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Contemporaneous diagnostic summary only. Retained raw events are authoritative; this summary is not accepted aggregate qualification.",
+      "accepted_combined_source_result": false
+    },
+    {
+      "member": "originals/mail-postsubmission-development.jsonl",
+      "original_relative_path": "mail-postsubmission-development.jsonl",
+      "role": "development_stdout_or_stderr",
+      "bytes": 18239,
+      "sha256": "b5835e3e957818054ced8fae436801dd788bddff7ec6b658f6063fc698fb3b2d",
+      "original_mtime_ns_at_capture": 1795088339238900987,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit.",
+      "accepted_combined_source_result": false,
+      "reporter_observations": {
+        "interpretation": "Descriptive raw-event observations only; not accepted qualification.",
+        "event_counts": {
+          "allSuites": 1,
+          "done": 1,
+          "group": 1,
+          "start": 1,
+          "suite": 1,
+          "testDone": 34,
+          "testStart": 34
+        },
+        "visible_test_starts": 33,
+        "visible_completion_results": {
+          "success": 33
+        },
+        "visible_skipped_completions": 0,
+        "unfinished_visible_test_ids": [],
+        "duplicate_completion_test_ids": [],
+        "reporter_errors": [],
+        "terminal_done_events": [
+          {
+            "success": true,
+            "time": 24244
+          }
+        ],
+        "non_json_lines": 0,
+        "other_json_lines": 0,
+        "suite_paths": [
+          "/workspace/scratch/82189ef49fff/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_test.dart"
+        ]
+      }
+    },
+    {
+      "member": "originals/mail-postsubmission-development.stderr",
+      "original_relative_path": "mail-postsubmission-development.stderr",
+      "role": "development_stdout_or_stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_mtime_ns_at_capture": 1795088313727192408,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit.",
+      "accepted_combined_source_result": false
+    },
+    {
+      "member": "originals/office-runtime/archive-members.json",
+      "original_relative_path": "office-runtime/archive-members.json",
+      "role": "runtime_preparation_receipt_manifest_or_control_log",
+      "bytes": 357030,
+      "sha256": "c30c0738a094f3b0bfc3ee4696204540798d4a4fbaf943a5abb0ce8833635f8f",
+      "original_mtime_ns_at_capture": 1795086561360211452,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Runtime preparation/control evidence only. Embedded runtime, package, and lock identities have their stated scope; this is not application qualification.",
+      "accepted_combined_source_result": false
+    },
+    {
+      "member": "originals/office-runtime/cache-omissions.json",
+      "original_relative_path": "office-runtime/cache-omissions.json",
+      "role": "runtime_preparation_receipt_manifest_or_control_log",
+      "bytes": 2335744,
+      "sha256": "c16bf623008daa6c01cfeb16a2895d1048f42cda2274c084d9b8a58840e2d615",
+      "original_mtime_ns_at_capture": 1795086666182574774,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Runtime preparation/control evidence only. Embedded runtime, package, and lock identities have their stated scope; this is not application qualification.",
+      "accepted_combined_source_result": false
+    },
+    {
+      "member": "originals/office-runtime/env.sh",
+      "original_relative_path": "office-runtime/env.sh",
+      "role": "runtime_preparation_receipt_manifest_or_control_log",
+      "bytes": 637,
+      "sha256": "876ecbbada66991e17ecc6d51bf8d0970b33a15426fedfc138d1e3fe6b932270",
+      "original_mtime_ns_at_capture": 1795086666184617465,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Runtime preparation/control evidence only. Embedded runtime, package, and lock identities have their stated scope; this is not application qualification.",
+      "accepted_combined_source_result": false
+    },
+    {
+      "member": "originals/office-runtime/logs/flutter-tools-pub-get.log",
+      "original_relative_path": "office-runtime/logs/flutter-tools-pub-get.log",
+      "role": "runtime_preparation_receipt_manifest_or_control_log",
+      "bytes": 1192,
+      "sha256": "c7df7cfd9293a198ccdd7a9d714748cf63b772af8efc5fbaef427528064a3c5f",
+      "original_mtime_ns_at_capture": 1795086666479457939,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Runtime preparation/control evidence only. Embedded runtime, package, and lock identities have their stated scope; this is not application qualification.",
+      "accepted_combined_source_result": false
+    },
+    {
+      "member": "originals/office-runtime/logs/flutter-version.log",
+      "original_relative_path": "office-runtime/logs/flutter-version.log",
+      "role": "runtime_preparation_receipt_manifest_or_control_log",
+      "bytes": 635,
+      "sha256": "6aba4039f057670625fb86c6c7384323af0accbf4d55fbaa5eb1bd82f39ad1e2",
+      "original_mtime_ns_at_capture": 1795086691563006985,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Runtime preparation/control evidence only. Embedded runtime, package, and lock identities have their stated scope; this is not application qualification.",
+      "accepted_combined_source_result": false
+    },
+    {
+      "member": "originals/office-runtime/logs/native-assets-smoke.log",
+      "original_relative_path": "office-runtime/logs/native-assets-smoke.log",
+      "role": "runtime_preparation_receipt_manifest_or_control_log",
+      "bytes": 81,
+      "sha256": "97ebf61764ed1a73a1e6d42d708f151bb1d494b06c6731f608863f221a41aef2",
+      "original_mtime_ns_at_capture": 1795086690863018954,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Runtime preparation/control evidence only. Embedded runtime, package, and lock identities have their stated scope; this is not application qualification.",
+      "accepted_combined_source_result": false
+    },
+    {
+      "member": "originals/office-runtime/logs/workspace-pub-get.log",
+      "original_relative_path": "office-runtime/logs/workspace-pub-get.log",
+      "role": "runtime_preparation_receipt_manifest_or_control_log",
+      "bytes": 68,
+      "sha256": "d4cb7a3c68b4133b4f6e58c67ff5bfd13725d8021e930388cdc98da8a575919d",
+      "original_mtime_ns_at_capture": 1795086666967450223,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Runtime preparation/control evidence only. Embedded runtime, package, and lock identities have their stated scope; this is not application qualification.",
+      "accepted_combined_source_result": false
+    },
+    {
+      "member": "originals/office-runtime/pub-cache-receipt.json",
+      "original_relative_path": "office-runtime/pub-cache-receipt.json",
+      "role": "runtime_preparation_receipt_manifest_or_control_log",
+      "bytes": 44348,
+      "sha256": "78c33990120aa8ffdffc52cc7e9f34b09ce31cb7092b9c46887bb4e7944ec591",
+      "original_mtime_ns_at_capture": 1795086663041830915,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Runtime preparation/control evidence only. Embedded runtime, package, and lock identities have their stated scope; this is not application qualification.",
+      "accepted_combined_source_result": false
+    },
+    {
+      "member": "originals/office-runtime/retained-inputs.json",
+      "original_relative_path": "office-runtime/retained-inputs.json",
+      "role": "runtime_preparation_receipt_manifest_or_control_log",
+      "bytes": 2049933,
+      "sha256": "8a14b584c2e9416dc73f79e556f3680feba49bdbb279e8f42cd47054c5b01a91",
+      "original_mtime_ns_at_capture": 1795086698040363144,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Runtime preparation/control evidence only. Embedded runtime, package, and lock identities have their stated scope; this is not application qualification.",
+      "accepted_combined_source_result": false
+    },
+    {
+      "member": "originals/office-runtime/runtime.json",
+      "original_relative_path": "office-runtime/runtime.json",
+      "role": "runtime_preparation_receipt_manifest_or_control_log",
+      "bytes": 12829,
+      "sha256": "3ae168d3e8fa0a3ce434fe28ec644d4189ab980427cbee72d24c813af59bedc0",
+      "original_mtime_ns_at_capture": 1795086698041243396,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Runtime preparation/control evidence only. Embedded runtime, package, and lock identities have their stated scope; this is not application qualification.",
+      "accepted_combined_source_result": false
+    },
+    {
+      "member": "originals/office-web-sdk/development/cfe.log",
+      "original_relative_path": "office-web-sdk/development/cfe.log",
+      "role": "development_web_compiler_log_dependency_list_or_acquisition_receipt",
+      "bytes": 240,
+      "sha256": "17d21e52e428b2bfdf0c87966310ab91c5cca4e991c1b4ea3b758cd303d5ae8c",
+      "original_mtime_ns_at_capture": 1795087666070631539,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Exploratory Flutter web compilation or component acquisition. Complete application source before/after fingerprints were not recorded for this development compile.",
+      "accepted_combined_source_result": false
+    },
+    {
+      "member": "originals/office-web-sdk/development/js.log",
+      "original_relative_path": "office-web-sdk/development/js.log",
+      "role": "development_web_compiler_log_dependency_list_or_acquisition_receipt",
+      "bytes": 454,
+      "sha256": "2ebad2d3c12d761e45a1a750f6e0d875cd3037978bc27c3c7670b41e13d9aa28",
+      "original_mtime_ns_at_capture": 1795087699840643473,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Exploratory Flutter web compilation or component acquisition. Complete application source before/after fingerprints were not recorded for this development compile.",
+      "accepted_combined_source_result": false
+    },
+    {
+      "member": "originals/office-web-sdk/development/mail-web.dill.deps",
+      "original_relative_path": "office-web-sdk/development/mail-web.dill.deps",
+      "role": "development_web_compiler_log_dependency_list_or_acquisition_receipt",
+      "bytes": 187498,
+      "sha256": "366d754447b4739c74a6406afee3474032d06610cdfd4321434f4b21d94afa10",
+      "original_mtime_ns_at_capture": 1795087666070631539,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Exploratory Flutter web compilation or component acquisition. Complete application source before/after fingerprints were not recorded for this development compile.",
+      "accepted_combined_source_result": false
+    },
+    {
+      "member": "originals/office-web-sdk/development/mail-web.js.deps",
+      "original_relative_path": "office-web-sdk/development/mail-web.js.deps",
+      "role": "development_web_compiler_log_dependency_list_or_acquisition_receipt",
+      "bytes": 187390,
+      "sha256": "206042f3844b39095ee18949fb1781473831338c3bd165aca9768ab73ce6a9c3",
+      "original_mtime_ns_at_capture": 1795087699840643473,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Exploratory Flutter web compilation or component acquisition. Complete application source before/after fingerprints were not recorded for this development compile.",
+      "accepted_combined_source_result": false
+    },
+    {
+      "member": "originals/office-web-sdk/download-receipt.json",
+      "original_relative_path": "office-web-sdk/download-receipt.json",
+      "role": "development_web_compiler_log_dependency_list_or_acquisition_receipt",
+      "bytes": 490,
+      "sha256": "fca904c173f11add4e454ead10d1049fc752da1f92279a6f51befd8e0abd633a",
+      "original_mtime_ns_at_capture": 1795087621262594694,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Exploratory Flutter web compilation or component acquisition. Complete application source before/after fingerprints were not recorded for this development compile.",
+      "accepted_combined_source_result": false
+    },
+    {
+      "member": "originals/review-status-conflict-original.txt",
+      "original_relative_path": "review-status-conflict-original.txt",
+      "role": "merge_reconciliation_diagnostic",
+      "bytes": 16127,
+      "sha256": "341ec8444c15151f2f1a302321912940355d27383bdc1396548d59fa212a69a0",
+      "original_mtime_ns_at_capture": 1795088710817371291,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Scratch source comparison/conflict record preserved during current reconciliation; not an executed test or a complete source snapshot.",
+      "accepted_combined_source_result": false
+    },
+    {
+      "member": "originals/runtime-restore.log",
+      "original_relative_path": "runtime-restore.log",
+      "role": "runtime_preparation_receipt_manifest_or_control_log",
+      "bytes": 379,
+      "sha256": "838fe8606ee9936fb2b18feb84f0936c2a13661a1acfeaf4184d6a2537771483",
+      "original_mtime_ns_at_capture": 1795086691147014097,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Runtime preparation/control evidence only. Embedded runtime, package, and lock identities have their stated scope; this is not application qualification.",
+      "accepted_combined_source_result": false
+    },
+    {
+      "member": "originals/runtime-restorer-controls.log",
+      "original_relative_path": "runtime-restorer-controls.log",
+      "role": "runtime_preparation_receipt_manifest_or_control_log",
+      "bytes": 2769,
+      "sha256": "eb267418f315d3397ae8e750d5cb8d54a5e46954d5fdc6b12fdcae0d436222ab",
+      "original_mtime_ns_at_capture": 1795086511789798453,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Runtime preparation/control evidence only. Embedded runtime, package, and lock identities have their stated scope; this is not application qualification.",
+      "accepted_combined_source_result": false
+    },
+    {
+      "member": "originals/smtp-acceptance-analysis.log",
+      "original_relative_path": "smtp-acceptance-analysis.log",
+      "role": "development_stdout_or_stderr",
+      "bytes": 741,
+      "sha256": "5b5ad64a995a39ec350c734e0db9c73f4104fcd0999b5da94f0327d8842f6361",
+      "original_mtime_ns_at_capture": 1795088312923128742,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit.",
+      "accepted_combined_source_result": false
+    },
+    {
+      "member": "originals/smtp-acceptance-final-analysis.log",
+      "original_relative_path": "smtp-acceptance-final-analysis.log",
+      "role": "development_stdout_or_stderr",
+      "bytes": 188,
+      "sha256": "404c41d6f96611c10660581cdfa68e3f0c136a15b565f87f99e6f08d1198457c",
+      "original_mtime_ns_at_capture": 1795088348183225921,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit.",
+      "accepted_combined_source_result": false
+    },
+    {
+      "member": "originals/smtp-acceptance-final.stderr.log",
+      "original_relative_path": "smtp-acceptance-final.stderr.log",
+      "role": "development_stdout_or_stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_mtime_ns_at_capture": 1795088348202659948,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit.",
+      "accepted_combined_source_result": false
+    },
+    {
+      "member": "originals/smtp-acceptance-final.stdout.jsonl",
+      "original_relative_path": "smtp-acceptance-final.stdout.jsonl",
+      "role": "development_stdout_or_stderr",
+      "bytes": 27324,
+      "sha256": "584d1ede0ae72bb38d2c1f73c68670b94161db814669234ec69e9ac8fd80c3ca",
+      "original_mtime_ns_at_capture": 1795088363718390113,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit.",
+      "accepted_combined_source_result": false,
+      "reporter_observations": {
+        "interpretation": "Descriptive raw-event observations only; not accepted qualification.",
+        "event_counts": {
+          "allSuites": 1,
+          "done": 1,
+          "group": 16,
+          "start": 1,
+          "suite": 6,
+          "testDone": 51,
+          "testStart": 51
+        },
+        "visible_test_starts": 45,
+        "visible_completion_results": {
+          "success": 45
+        },
+        "visible_skipped_completions": 0,
+        "unfinished_visible_test_ids": [],
+        "duplicate_completion_test_ids": [],
+        "reporter_errors": [],
+        "terminal_done_events": [
+          {
+            "success": true,
+            "time": 2110
+          }
+        ],
+        "non_json_lines": 0,
+        "other_json_lines": 0,
+        "suite_paths": [
+          "test/mail/mail_send_transaction_test.dart",
+          "test/mail/mail_submission_acceptance_test.dart",
+          "test/smtp/smtp_auth_encoding_test.dart",
+          "test/smtp/smtp_send_state_test.dart",
+          "test/smtp/smtp_sendmail_command_test.dart",
+          "test/smtp/smtp_transparency_test.dart"
+        ]
+      }
+    },
+    {
+      "member": "originals/smtp-acceptance-green.stderr.log",
+      "original_relative_path": "smtp-acceptance-green.stderr.log",
+      "role": "development_stdout_or_stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_mtime_ns_at_capture": 1795088289131202246,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit.",
+      "accepted_combined_source_result": false
+    },
+    {
+      "member": "originals/smtp-acceptance-green.stdout.jsonl",
+      "original_relative_path": "smtp-acceptance-green.stdout.jsonl",
+      "role": "development_stdout_or_stderr",
+      "bytes": 27324,
+      "sha256": "d219380ee9cc78cceed76ec060abb7cc621c84c0b395ee105d0e24454b79d6f2",
+      "original_mtime_ns_at_capture": 1795088303711013474,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit.",
+      "accepted_combined_source_result": false,
+      "reporter_observations": {
+        "interpretation": "Descriptive raw-event observations only; not accepted qualification.",
+        "event_counts": {
+          "allSuites": 1,
+          "done": 1,
+          "group": 16,
+          "start": 1,
+          "suite": 6,
+          "testDone": 51,
+          "testStart": 51
+        },
+        "visible_test_starts": 45,
+        "visible_completion_results": {
+          "success": 45
+        },
+        "visible_skipped_completions": 0,
+        "unfinished_visible_test_ids": [],
+        "duplicate_completion_test_ids": [],
+        "reporter_errors": [],
+        "terminal_done_events": [
+          {
+            "success": true,
+            "time": 1986
+          }
+        ],
+        "non_json_lines": 0,
+        "other_json_lines": 0,
+        "suite_paths": [
+          "test/mail/mail_send_transaction_test.dart",
+          "test/mail/mail_submission_acceptance_test.dart",
+          "test/smtp/smtp_auth_encoding_test.dart",
+          "test/smtp/smtp_send_state_test.dart",
+          "test/smtp/smtp_sendmail_command_test.dart",
+          "test/smtp/smtp_transparency_test.dart"
+        ]
+      }
+    },
+    {
+      "member": "originals/smtp-acceptance-red.stderr.log",
+      "original_relative_path": "smtp-acceptance-red.stderr.log",
+      "role": "development_stdout_or_stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_mtime_ns_at_capture": 1795088227227946564,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit.",
+      "accepted_combined_source_result": false
+    },
+    {
+      "member": "originals/smtp-acceptance-red.stdout.jsonl",
+      "original_relative_path": "smtp-acceptance-red.stdout.jsonl",
+      "role": "development_stdout_or_stderr",
+      "bytes": 10352,
+      "sha256": "b06089197e76a78a6f0b04377cf913de3a3db4dfa6affe0f1866ce51c2b46ad5",
+      "original_mtime_ns_at_capture": 1795088247451895785,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit.",
+      "accepted_combined_source_result": false,
+      "reporter_observations": {
+        "interpretation": "Descriptive raw-event observations only; not accepted qualification.",
+        "event_counts": {
+          "allSuites": 1,
+          "done": 1,
+          "error": 9,
+          "group": 3,
+          "start": 1,
+          "suite": 1,
+          "testDone": 14,
+          "testStart": 14
+        },
+        "visible_test_starts": 13,
+        "visible_completion_results": {
+          "failure": 9,
+          "success": 4
+        },
+        "visible_skipped_completions": 0,
+        "unfinished_visible_test_ids": [],
+        "duplicate_completion_test_ids": [],
+        "reporter_errors": [
+          {
+            "line": 9,
+            "test_id": 4
+          },
+          {
+            "line": 12,
+            "test_id": 5
+          },
+          {
+            "line": 15,
+            "test_id": 6
+          },
+          {
+            "line": 18,
+            "test_id": 7
+          },
+          {
+            "line": 25,
+            "test_id": 10
+          },
+          {
+            "line": 29,
+            "test_id": 12
+          },
+          {
+            "line": 32,
+            "test_id": 13
+          },
+          {
+            "line": 35,
+            "test_id": 14
+          },
+          {
+            "line": 38,
+            "test_id": 15
+          }
+        ],
+        "terminal_done_events": [
+          {
+            "success": false,
+            "time": 4415
+          }
+        ],
+        "non_json_lines": 0,
+        "other_json_lines": 0,
+        "suite_paths": [
+          "test/mail/mail_submission_acceptance_test.dart"
+        ]
+      }
+    },
+    {
+      "member": "originals/smtp_acceptance_probe-expanded.log",
+      "original_relative_path": "smtp_acceptance_probe-expanded.log",
+      "role": "development_stdout_or_stderr",
+      "bytes": 781,
+      "sha256": "2749d144710018f817d677b4710c7e93281b5fb72860914b27d03027fd953186",
+      "original_mtime_ns_at_capture": 1795087971639952994,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit.",
+      "accepted_combined_source_result": false
+    },
+    {
+      "member": "originals/smtp_acceptance_probe.dart",
+      "original_relative_path": "smtp_acceptance_probe.dart",
+      "role": "diagnostic_probe_source",
+      "bytes": 2030,
+      "sha256": "f75fa4a2987fe940aad8c94203d044f54f66fca79d5ad6e4a8beed2a228f52e0",
+      "original_mtime_ns_at_capture": 1795087963113957152,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Probe bytes as present at evidence capture. Earlier diagnostic logs may have used an earlier edited version; no exact source/log pairing is asserted.",
+      "accepted_combined_source_result": false
+    },
+    {
+      "member": "originals/smtp_acceptance_probe.log",
+      "original_relative_path": "smtp_acceptance_probe.log",
+      "role": "development_stdout_or_stderr",
+      "bytes": 378,
+      "sha256": "59044777f8b4f514ce2dd89eb66c04767590f76d12e67016b55be729cdc860bd",
+      "original_mtime_ns_at_capture": 1795087895241109709,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit.",
+      "accepted_combined_source_result": false
+    },
+    {
+      "member": "originals/studio-discovery-development-1.jsonl",
+      "original_relative_path": "studio-discovery-development-1.jsonl",
+      "role": "development_stdout_or_stderr",
+      "bytes": 21298,
+      "sha256": "c55c20b54c7902e9562ca5ce43899180a390c6410aa8b89f2d057d7cf48b98db",
+      "original_mtime_ns_at_capture": 1795087259254593965,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit.",
+      "accepted_combined_source_result": false,
+      "reporter_observations": {
+        "interpretation": "Descriptive raw-event observations only; not accepted qualification.",
+        "event_counts": {
+          "allSuites": 1,
+          "done": 1,
+          "error": 5,
+          "group": 1,
+          "print": 5,
+          "start": 1,
+          "suite": 1,
+          "testDone": 9,
+          "testStart": 9
+        },
+        "visible_test_starts": 8,
+        "visible_completion_results": {
+          "error": 5,
+          "success": 3
+        },
+        "visible_skipped_completions": 0,
+        "unfinished_visible_test_ids": [],
+        "duplicate_completion_test_ids": [],
+        "reporter_errors": [
+          {
+            "line": 9,
+            "test_id": 3
+          },
+          {
+            "line": 13,
+            "test_id": 4
+          },
+          {
+            "line": 17,
+            "test_id": 5
+          },
+          {
+            "line": 21,
+            "test_id": 6
+          },
+          {
+            "line": 25,
+            "test_id": 7
+          }
+        ],
+        "terminal_done_events": [
+          {
+            "success": false,
+            "time": 12120
+          }
+        ],
+        "non_json_lines": 0,
+        "other_json_lines": 0,
+        "suite_paths": [
+          "/workspace/scratch/82189ef49fff/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_discovery_test.dart"
+        ]
+      }
+    },
+    {
+      "member": "originals/studio-discovery-development-1.stderr",
+      "original_relative_path": "studio-discovery-development-1.stderr",
+      "role": "development_stdout_or_stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_mtime_ns_at_capture": 1795087245958840634,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit.",
+      "accepted_combined_source_result": false
+    },
+    {
+      "member": "originals/studio-discovery-development-2-summary.json",
+      "original_relative_path": "studio-discovery-development-2-summary.json",
+      "role": "development_summary_from_original_diagnostic",
+      "bytes": 3365,
+      "sha256": "33591ee6415653edb5a13a1c9c6b8954136e1e0ab5703020a3e2f3c094012c30",
+      "original_mtime_ns_at_capture": 1795087337516446719,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Contemporaneous diagnostic summary only. Retained raw events are authoritative; this summary is not accepted aggregate qualification.",
+      "accepted_combined_source_result": false
+    },
+    {
+      "member": "originals/studio-discovery-development-2.jsonl",
+      "original_relative_path": "studio-discovery-development-2.jsonl",
+      "role": "development_stdout_or_stderr",
+      "bytes": 5190,
+      "sha256": "6db82821641ee6e702e9117fcaeff84916e6bae7d0a4168dde5e7011da25d1c8",
+      "original_mtime_ns_at_capture": 1795087313433811581,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit.",
+      "accepted_combined_source_result": false,
+      "reporter_observations": {
+        "interpretation": "Descriptive raw-event observations only; not accepted qualification.",
+        "event_counts": {
+          "allSuites": 1,
+          "done": 1,
+          "group": 1,
+          "start": 1,
+          "suite": 1,
+          "testDone": 9,
+          "testStart": 9
+        },
+        "visible_test_starts": 8,
+        "visible_completion_results": {
+          "success": 8
+        },
+        "visible_skipped_completions": 0,
+        "unfinished_visible_test_ids": [],
+        "duplicate_completion_test_ids": [],
+        "reporter_errors": [],
+        "terminal_done_events": [
+          {
+            "success": true,
+            "time": 10164
+          }
+        ],
+        "non_json_lines": 0,
+        "other_json_lines": 0,
+        "suite_paths": [
+          "/workspace/scratch/82189ef49fff/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_discovery_test.dart"
+        ]
+      }
+    },
+    {
+      "member": "originals/studio-discovery-development-2.stderr",
+      "original_relative_path": "studio-discovery-development-2.stderr",
+      "role": "development_stdout_or_stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_mtime_ns_at_capture": 1795087302365981610,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit.",
+      "accepted_combined_source_result": false
+    },
+    {
+      "member": "originals/studio-final-union-development.jsonl",
+      "original_relative_path": "studio-final-union-development.jsonl",
+      "role": "development_stdout_or_stderr",
+      "bytes": 7934,
+      "sha256": "17180e0bc600b8ea5695e2d39a05b3e96354d2b9e6f845049710aa96833c3740",
+      "original_mtime_ns_at_capture": 1795088653009975826,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit.",
+      "accepted_combined_source_result": false,
+      "reporter_observations": {
+        "interpretation": "Descriptive raw-event observations only; not accepted qualification.",
+        "event_counts": {
+          "allSuites": 1,
+          "done": 1,
+          "error": 1,
+          "group": 3,
+          "start": 1,
+          "suite": 4,
+          "testDone": 12,
+          "testStart": 12
+        },
+        "visible_test_starts": 8,
+        "visible_completion_results": {
+          "success": 8
+        },
+        "visible_skipped_completions": 0,
+        "unfinished_visible_test_ids": [],
+        "duplicate_completion_test_ids": [],
+        "reporter_errors": [
+          {
+            "line": 17,
+            "test_id": 8
+          }
+        ],
+        "terminal_done_events": [
+          {
+            "success": false,
+            "time": 19915
+          }
+        ],
+        "non_json_lines": 0,
+        "other_json_lines": 0,
+        "suite_paths": [
+          "/workspace/scratch/82189ef49fff/quds_office_suite/packages/quds_office_editor/example/test/studio_about_test.dart",
+          "/workspace/scratch/82189ef49fff/quds_office_suite/packages/quds_office_editor/example/test/studio_review_status_test.dart",
+          "/workspace/scratch/82189ef49fff/quds_office_suite/packages/quds_office_editor/example/test/studio_settings_test.dart",
+          "/workspace/scratch/82189ef49fff/quds_office_suite/packages/quds_office_editor/example/test/widget_test.dart"
+        ]
+      }
+    },
+    {
+      "member": "originals/studio-final-union-development.stderr",
+      "original_relative_path": "studio-final-union-development.stderr",
+      "role": "development_stdout_or_stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_mtime_ns_at_capture": 1795088632382282375,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit.",
+      "accepted_combined_source_result": false
+    },
+    {
+      "member": "originals/studio-incoming-mail-development-1.jsonl",
+      "original_relative_path": "studio-incoming-mail-development-1.jsonl",
+      "role": "development_stdout_or_stderr",
+      "bytes": 23699,
+      "sha256": "9db4205a4e53727ae1e76f04ee99b75e6344abfff6adc7998be669349d40d6ea",
+      "original_mtime_ns_at_capture": 1795088371046264020,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit.",
+      "accepted_combined_source_result": false,
+      "reporter_observations": {
+        "interpretation": "Descriptive raw-event observations only; not accepted qualification.",
+        "event_counts": {
+          "allSuites": 1,
+          "done": 1,
+          "error": 29,
+          "group": 2,
+          "print": 1,
+          "start": 1,
+          "suite": 2,
+          "testDone": 24,
+          "testStart": 24
+        },
+        "visible_test_starts": 22,
+        "visible_completion_results": {
+          "error": 15,
+          "success": 7
+        },
+        "visible_skipped_completions": 0,
+        "unfinished_visible_test_ids": [],
+        "duplicate_completion_test_ids": [],
+        "reporter_errors": [
+          {
+            "line": 8,
+            "test_id": 3
+          },
+          {
+            "line": 9,
+            "test_id": 3
+          },
+          {
+            "line": 12,
+            "test_id": 4
+          },
+          {
+            "line": 13,
+            "test_id": 4
+          },
+          {
+            "line": 16,
+            "test_id": 5
+          },
+          {
+            "line": 17,
+            "test_id": 5
+          },
+          {
+            "line": 20,
+            "test_id": 6
+          },
+          {
+            "line": 21,
+            "test_id": 6
+          },
+          {
+            "line": 24,
+            "test_id": 7
+          },
+          {
+            "line": 25,
+            "test_id": 7
+          },
+          {
+            "line": 28,
+            "test_id": 8
+          },
+          {
+            "line": 29,
+            "test_id": 8
+          },
+          {
+            "line": 32,
+            "test_id": 9
+          },
+          {
+            "line": 33,
+            "test_id": 9
+          },
+          {
+            "line": 36,
+            "test_id": 10
+          },
+          {
+            "line": 37,
+            "test_id": 10
+          },
+          {
+            "line": 40,
+            "test_id": 11
+          },
+          {
+            "line": 41,
+            "test_id": 11
+          },
+          {
+            "line": 44,
+            "test_id": 12
+          },
+          {
+            "line": 45,
+            "test_id": 12
+          },
+          {
+            "line": 48,
+            "test_id": 13
+          },
+          {
+            "line": 49,
+            "test_id": 13
+          },
+          {
+            "line": 52,
+            "test_id": 14
+          },
+          {
+            "line": 53,
+            "test_id": 14
+          },
+          {
+            "line": 56,
+            "test_id": 15
+          },
+          {
+            "line": 57,
+            "test_id": 15
+          },
+          {
+            "line": 60,
+            "test_id": 16
+          },
+          {
+            "line": 61,
+            "test_id": 16
+          },
+          {
+            "line": 71,
+            "test_id": 21
+          }
+        ],
+        "terminal_done_events": [
+          {
+            "success": false,
+            "time": 15822
+          }
+        ],
+        "non_json_lines": 0,
+        "other_json_lines": 0,
+        "suite_paths": [
+          "/workspace/scratch/82189ef49fff/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_session_test.dart",
+          "/workspace/scratch/82189ef49fff/quds_office_suite/packages/quds_office_editor/example/test/studio_saved_mail_test.dart"
+        ]
+      }
+    },
+    {
+      "member": "originals/studio-incoming-mail-development-1.stderr",
+      "original_relative_path": "studio-incoming-mail-development-1.stderr",
+      "role": "development_stdout_or_stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_mtime_ns_at_capture": 1795088354150548704,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit.",
+      "accepted_combined_source_result": false
+    },
+    {
+      "member": "originals/studio-incoming-mail-development-2-summary.json",
+      "original_relative_path": "studio-incoming-mail-development-2-summary.json",
+      "role": "development_summary_from_original_diagnostic",
+      "bytes": 7539,
+      "sha256": "64a4ff4eb09f0bba0306de05f02b91597f3cb85296b754f6ec1c79fc9200cd2e",
+      "original_mtime_ns_at_capture": 1795088478934262799,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Contemporaneous diagnostic summary only. Retained raw events are authoritative; this summary is not accepted aggregate qualification.",
+      "accepted_combined_source_result": false
+    },
+    {
+      "member": "originals/studio-incoming-mail-development-2.jsonl",
+      "original_relative_path": "studio-incoming-mail-development-2.jsonl",
+      "role": "development_stdout_or_stderr",
+      "bytes": 13268,
+      "sha256": "4a9ccd8ecda39556fbeae6d69bdbf16ba50825242e828919cb90ec0b488bdb8a",
+      "original_mtime_ns_at_capture": 1795088454896929186,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit.",
+      "accepted_combined_source_result": false,
+      "reporter_observations": {
+        "interpretation": "Descriptive raw-event observations only; not accepted qualification.",
+        "event_counts": {
+          "allSuites": 1,
+          "done": 1,
+          "group": 2,
+          "start": 1,
+          "suite": 2,
+          "testDone": 24,
+          "testStart": 24
+        },
+        "visible_test_starts": 22,
+        "visible_completion_results": {
+          "success": 22
+        },
+        "visible_skipped_completions": 0,
+        "unfinished_visible_test_ids": [],
+        "duplicate_completion_test_ids": [],
+        "reporter_errors": [],
+        "terminal_done_events": [
+          {
+            "success": true,
+            "time": 21188
+          }
+        ],
+        "non_json_lines": 0,
+        "other_json_lines": 0,
+        "suite_paths": [
+          "/workspace/scratch/82189ef49fff/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_session_test.dart",
+          "/workspace/scratch/82189ef49fff/quds_office_suite/packages/quds_office_editor/example/test/studio_saved_mail_test.dart"
+        ]
+      }
+    },
+    {
+      "member": "originals/studio-incoming-mail-development-2.stderr",
+      "original_relative_path": "studio-incoming-mail-development-2.stderr",
+      "role": "development_stdout_or_stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_mtime_ns_at_capture": 1795088432913264270,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit.",
+      "accepted_combined_source_result": false
+    },
+    {
+      "member": "originals/studio-incoming-mail-development-analyze.log",
+      "original_relative_path": "studio-incoming-mail-development-analyze.log",
+      "role": "development_stdout_or_stderr",
+      "bytes": 89,
+      "sha256": "e91dfc4411195077835170eb513f29d4fe7da46762ae0e2093825717190f9b59",
+      "original_mtime_ns_at_capture": 1795088495144328511,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit.",
+      "accepted_combined_source_result": false
+    },
+    {
+      "member": "originals/studio-review-status-development-2.jsonl",
+      "original_relative_path": "studio-review-status-development-2.jsonl",
+      "role": "development_stdout_or_stderr",
+      "bytes": 7872,
+      "sha256": "ebfe942cda33034682eaf7bcebdb67334a144206f092287bafbc2942e01a65a9",
+      "original_mtime_ns_at_capture": 1795088780124083360,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit.",
+      "accepted_combined_source_result": false,
+      "reporter_observations": {
+        "interpretation": "Descriptive raw-event observations only; not accepted qualification.",
+        "event_counts": {
+          "allSuites": 1,
+          "done": 1,
+          "group": 1,
+          "start": 1,
+          "suite": 1,
+          "testDone": 14,
+          "testStart": 14
+        },
+        "visible_test_starts": 13,
+        "visible_completion_results": {
+          "success": 13
+        },
+        "visible_skipped_completions": 0,
+        "unfinished_visible_test_ids": [],
+        "duplicate_completion_test_ids": [],
+        "reporter_errors": [],
+        "terminal_done_events": [
+          {
+            "success": true,
+            "time": 25150
+          }
+        ],
+        "non_json_lines": 0,
+        "other_json_lines": 0,
+        "suite_paths": [
+          "/workspace/scratch/82189ef49fff/quds_office_suite/packages/quds_office_editor/example/test/studio_review_status_test.dart"
+        ]
+      }
+    },
+    {
+      "member": "originals/studio-review-status-development-2.stderr",
+      "original_relative_path": "studio-review-status-development-2.stderr",
+      "role": "development_stdout_or_stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_mtime_ns_at_capture": 1795088754218941355,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit.",
+      "accepted_combined_source_result": false
+    },
+    {
+      "member": "originals/studio-saved-development-1-summary.json",
+      "original_relative_path": "studio-saved-development-1-summary.json",
+      "role": "development_summary_from_original_diagnostic",
+      "bytes": 4549,
+      "sha256": "d3d64e157103bfc73d7eb372ed72b3977a2c9a8765c45bc66959a49a58639a0f",
+      "original_mtime_ns_at_capture": 1795087010657330014,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Contemporaneous diagnostic summary only. Retained raw events are authoritative; this summary is not accepted aggregate qualification.",
+      "accepted_combined_source_result": false
+    },
+    {
+      "member": "originals/studio-saved-development-1.jsonl",
+      "original_relative_path": "studio-saved-development-1.jsonl",
+      "role": "development_stdout_or_stderr",
+      "bytes": 8245,
+      "sha256": "0bcf6ee313d1257ef59734eba2f5b318faa2d8e5de438bed9002adfc5fc7fae7",
+      "original_mtime_ns_at_capture": 1795087005342690242,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit.",
+      "accepted_combined_source_result": false,
+      "reporter_observations": {
+        "interpretation": "Descriptive raw-event observations only; not accepted qualification.",
+        "event_counts": {
+          "allSuites": 1,
+          "done": 1,
+          "group": 3,
+          "start": 1,
+          "suite": 3,
+          "testDone": 14,
+          "testStart": 14
+        },
+        "visible_test_starts": 11,
+        "visible_completion_results": {
+          "success": 11
+        },
+        "visible_skipped_completions": 0,
+        "unfinished_visible_test_ids": [],
+        "duplicate_completion_test_ids": [],
+        "reporter_errors": [],
+        "terminal_done_events": [
+          {
+            "success": true,
+            "time": 36125
+          }
+        ],
+        "non_json_lines": 0,
+        "other_json_lines": 0,
+        "suite_paths": [
+          "/workspace/scratch/82189ef49fff/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_lifecycle_test.dart",
+          "/workspace/scratch/82189ef49fff/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_web_test.dart",
+          "/workspace/scratch/82189ef49fff/quds_office_suite/packages/quds_office_editor/example/test/studio_saved_mail_test.dart"
+        ]
+      }
+    },
+    {
+      "member": "originals/studio-saved-development-1.stderr",
+      "original_relative_path": "studio-saved-development-1.stderr",
+      "role": "development_stdout_or_stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_mtime_ns_at_capture": 1795086966934944078,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit.",
+      "accepted_combined_source_result": false
+    },
+    {
+      "member": "originals/studio-saved-development-2-summary.json",
+      "original_relative_path": "studio-saved-development-2-summary.json",
+      "role": "development_summary_from_original_diagnostic",
+      "bytes": 4549,
+      "sha256": "d3d64e157103bfc73d7eb372ed72b3977a2c9a8765c45bc66959a49a58639a0f",
+      "original_mtime_ns_at_capture": 1795087386625388276,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Contemporaneous diagnostic summary only. Retained raw events are authoritative; this summary is not accepted aggregate qualification.",
+      "accepted_combined_source_result": false
+    },
+    {
+      "member": "originals/studio-saved-development-2.jsonl",
+      "original_relative_path": "studio-saved-development-2.jsonl",
+      "role": "development_stdout_or_stderr",
+      "bytes": 8226,
+      "sha256": "fc605989e3c18a161b064bc5a3d073357c211f6831014fe3e97fff793002c616",
+      "original_mtime_ns_at_capture": 1795087367297048586,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit.",
+      "accepted_combined_source_result": false,
+      "reporter_observations": {
+        "interpretation": "Descriptive raw-event observations only; not accepted qualification.",
+        "event_counts": {
+          "allSuites": 1,
+          "done": 1,
+          "group": 3,
+          "start": 1,
+          "suite": 3,
+          "testDone": 14,
+          "testStart": 14
+        },
+        "visible_test_starts": 11,
+        "visible_completion_results": {
+          "success": 11
+        },
+        "visible_skipped_completions": 0,
+        "unfinished_visible_test_ids": [],
+        "duplicate_completion_test_ids": [],
+        "reporter_errors": [],
+        "terminal_done_events": [
+          {
+            "success": true,
+            "time": 16061
+          }
+        ],
+        "non_json_lines": 0,
+        "other_json_lines": 0,
+        "suite_paths": [
+          "/workspace/scratch/82189ef49fff/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_lifecycle_test.dart",
+          "/workspace/scratch/82189ef49fff/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_web_test.dart",
+          "/workspace/scratch/82189ef49fff/quds_office_suite/packages/quds_office_editor/example/test/studio_saved_mail_test.dart"
+        ]
+      }
+    },
+    {
+      "member": "originals/studio-saved-development-2.stderr",
+      "original_relative_path": "studio-saved-development-2.stderr",
+      "role": "development_stdout_or_stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_mtime_ns_at_capture": 1795087350473260788,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit.",
+      "accepted_combined_source_result": false
+    },
+    {
+      "member": "originals/studio-ui-development-analyze-2.log",
+      "original_relative_path": "studio-ui-development-analyze-2.log",
+      "role": "development_stdout_or_stderr",
+      "bytes": 377,
+      "sha256": "160c98a8980c1907035c853cbaffa3b8aa1ebf0c96f6e2e26f4bfc3e76ea1e5a",
+      "original_mtime_ns_at_capture": 1795087326779121213,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit.",
+      "accepted_combined_source_result": false
+    },
+    {
+      "member": "originals/studio-ui-development-analyze.log",
+      "original_relative_path": "studio-ui-development-analyze.log",
+      "role": "development_stdout_or_stderr",
+      "bytes": 809,
+      "sha256": "185eb8d11c641a7b6de9168af2c356750b97391281fcb1ab25c0bc054645ef02",
+      "original_mtime_ns_at_capture": 1795087261078566473,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit.",
+      "accepted_combined_source_result": false
+    },
+    {
+      "member": "originals/word-synthesis-editor-first.stderr.log",
+      "original_relative_path": "word-synthesis-editor-first.stderr.log",
+      "role": "development_stdout_or_stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_mtime_ns_at_capture": 1795088839139209189,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit.",
+      "accepted_combined_source_result": false,
+      "note": "Author reported these runs used local 062150ac plus uncommitted Word synthesis. This names a base, not an exact execution commit. No complete before/after execution source snapshot is available."
+    },
+    {
+      "member": "originals/word-synthesis-editor-first.stdout.jsonl",
+      "original_relative_path": "word-synthesis-editor-first.stdout.jsonl",
+      "role": "development_stdout_or_stderr",
+      "bytes": 28047,
+      "sha256": "40ff8fc44cfccc3af39d238a5466cd250f781344341a391a8b3a71c1b589f278",
+      "original_mtime_ns_at_capture": 1795088860410929998,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit.",
+      "accepted_combined_source_result": false,
+      "reporter_observations": {
+        "interpretation": "Descriptive raw-event observations only; not accepted qualification.",
+        "event_counts": {
+          "allSuites": 1,
+          "done": 1,
+          "group": 2,
+          "start": 1,
+          "suite": 2,
+          "testDone": 59,
+          "testStart": 59
+        },
+        "visible_test_starts": 57,
+        "visible_completion_results": {
+          "success": 57
+        },
+        "visible_skipped_completions": 0,
+        "unfinished_visible_test_ids": [],
+        "duplicate_completion_test_ids": [],
+        "reporter_errors": [],
+        "terminal_done_events": [
+          {
+            "success": true,
+            "time": 18889
+          }
+        ],
+        "non_json_lines": 0,
+        "other_json_lines": 0,
+        "suite_paths": [
+          "/workspace/scratch/82189ef49fff/quds_office_suite/packages/quds_office_editor/test/word_complex_script_proofing_controls_test.dart",
+          "/workspace/scratch/82189ef49fff/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_controls_test.dart"
+        ]
+      },
+      "note": "Author reported these runs used local 062150ac plus uncommitted Word synthesis. This names a base, not an exact execution commit. No complete before/after execution source snapshot is available."
+    },
+    {
+      "member": "originals/word-synthesis-engine-first.stderr.log",
+      "original_relative_path": "word-synthesis-engine-first.stderr.log",
+      "role": "development_stdout_or_stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_mtime_ns_at_capture": 1795088839139209189,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit.",
+      "accepted_combined_source_result": false,
+      "note": "Author reported these runs used local 062150ac plus uncommitted Word synthesis. This names a base, not an exact execution commit. No complete before/after execution source snapshot is available."
+    },
+    {
+      "member": "originals/word-synthesis-engine-first.stdout.jsonl",
+      "original_relative_path": "word-synthesis-engine-first.stdout.jsonl",
+      "role": "development_stdout_or_stderr",
+      "bytes": 32358,
+      "sha256": "e94a9ef377f8bcb66d19140fdd825e0929ac74f02776d973cd7d62a9f423f33c",
+      "original_mtime_ns_at_capture": 1795088859822936641,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit.",
+      "accepted_combined_source_result": false,
+      "reporter_observations": {
+        "interpretation": "Descriptive raw-event observations only; not accepted qualification.",
+        "event_counts": {
+          "allSuites": 1,
+          "done": 1,
+          "group": 3,
+          "start": 1,
+          "suite": 3,
+          "testDone": 72,
+          "testStart": 72
+        },
+        "visible_test_starts": 69,
+        "visible_completion_results": {
+          "success": 69
+        },
+        "visible_skipped_completions": 0,
+        "unfinished_visible_test_ids": [],
+        "duplicate_completion_test_ids": [],
+        "reporter_errors": [],
+        "terminal_done_events": [
+          {
+            "success": true,
+            "time": 7240
+          }
+        ],
+        "non_json_lines": 0,
+        "other_json_lines": 0,
+        "suite_paths": [
+          "test/proofing/word_proofing_language_test.dart",
+          "test/word_complex_script_language_test.dart",
+          "test/word_proofing_inheritance_test.dart"
+        ]
+      },
+      "note": "Author reported these runs used local 062150ac plus uncommitted Word synthesis. This names a base, not an exact execution commit. No complete before/after execution source snapshot is available."
+    },
+    {
+      "member": "originals/word-synthesis-first-analysis.log",
+      "original_relative_path": "word-synthesis-first-analysis.log",
+      "role": "development_stdout_or_stderr",
+      "bytes": 1311,
+      "sha256": "0d87ddd79fafcda2922ed96ea0f800b6030944f5ba4804b658efc64a2e38d022",
+      "original_mtime_ns_at_capture": 1795088895078530031,
+      "mtime_is_not_a_claim_about_run_time": true,
+      "exact_application_source_commit": null,
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit.",
+      "accepted_combined_source_result": false,
+      "note": "Author reported these runs used local 062150ac plus uncommitted Word synthesis. This names a base, not an exact execution commit. No complete before/after execution source snapshot is available."
+    }
+  ],
+  "omitted_rebuildable_artifacts": [
+    {
+      "original_relative_path": "office-web-sdk/development/mail-web.dill",
+      "bytes": 34178680,
+      "sha256": "6aed9416249455a144bc278734679cd8cd95e7f24f69de656183fd8992dbb69b",
+      "reason": "Rebuildable generated compiler binary/output or separately pinned official SDK archive; raw development logs/dependency lists and component acquisition receipt are retained."
+    },
+    {
+      "original_relative_path": "office-web-sdk/development/mail-web.js",
+      "bytes": 6466663,
+      "sha256": "3265e5029f3b49fbdcbb58c7910bd7e45d36b1091cc9efc259b0a30477a35123",
+      "reason": "Rebuildable generated compiler binary/output or separately pinned official SDK archive; raw development logs/dependency lists and component acquisition receipt are retained."
+    },
+    {
+      "original_relative_path": "office-web-sdk/flutter-web-sdk.zip",
+      "bytes": 32388908,
+      "sha256": "230093aa91f3197d40317fd3a8a06675d5bd5a3913fd66a01b44ac16cebb6e44",
+      "reason": "Rebuildable generated compiler binary/output or separately pinned official SDK archive; raw development logs/dependency lists and component acquisition receipt are retained."
+    }
+  ],
+  "source_boundary": "These were exploratory executions while source was being edited or reconciled. No complete source/runtime snapshot bound each run. A passing diagnostic is not qualification of a later combined commit.",
+  "recorded_process_exit_codes": "Not reconstructed when absent from the original files.",
+  "historical_diagnostic_passes_added_to_accepted_counts": 0,
+  "github_actions_queried_or_awaited": false
+}
