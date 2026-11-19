@@ -1,0 +1,141 @@
+{
+  "source_commit": "71edec2de364805113d18e0f1d7edbb1f00467e5",
+  "archive": "mail-final.tar.xz",
+  "archive_bytes": 15948,
+  "archive_sha256": "0fb354141a95df2fb6ecfef86c898c55e67f5afaef6f09c27accb236b0ca3ba7",
+  "members": [
+    {
+      "path": "mail-final/browser-entry.log",
+      "bytes": 114,
+      "sha256": "dfd10d071ca7ae5700cd0576e7efe76d2ffc8fbe5fc3bd675f21fa241230b1cb"
+    },
+    {
+      "path": "mail-final/browser-worker.log",
+      "bytes": 113,
+      "sha256": "b5929a4431b1801a43bf994660a315d776da65c2441b143b846ba1879820bf68"
+    },
+    {
+      "path": "mail-final/core-analysis.log",
+      "bytes": 45,
+      "sha256": "ba8f111031783cd9617e408cf4a69a31be131b4256751d349ccf5fcd426087c9"
+    },
+    {
+      "path": "mail-final/core-node-cases.json",
+      "bytes": 6140,
+      "sha256": "d8ca3ac15f45346114648cf9bdf56e46dc6c03f1d67354a2ef0b45d31ca0b7fd"
+    },
+    {
+      "path": "mail-final/core-node.jsonl",
+      "bytes": 16926,
+      "sha256": "29bcadebce1101234fc30d685abbf21b4ffdd33a517426631173b5499f0a79a3"
+    },
+    {
+      "path": "mail-final/core-vm-cases.json",
+      "bytes": 6140,
+      "sha256": "734ae4e06de50e80aae7d7b432986fcf90cd63f2e6dacc71ae59660b976efb1c"
+    },
+    {
+      "path": "mail-final/core-vm.jsonl",
+      "bytes": 15508,
+      "sha256": "c7222436e34ad0f339eb81d0e059cb93b531fb3fd87e1e5144b373ce0ee94b96"
+    },
+    {
+      "path": "mail-final/driver.log",
+      "bytes": 237,
+      "sha256": "afebe7f323efd08eff20ca29b096d53c03fb7d790d39cf6a4ba987ed3cdc21cb"
+    },
+    {
+      "path": "mail-final/format.log",
+      "bytes": 48,
+      "sha256": "bb633de1906ad117749d80923ff5bc2143740d320d2b4e1992a3eb73f9dde0cf"
+    },
+    {
+      "path": "mail-final/locked-resolution.log",
+      "bytes": 68,
+      "sha256": "d4cb7a3c68b4133b4f6e58c67ff5bfd13725d8021e930388cdc98da8a575919d"
+    },
+    {
+      "path": "mail-final/portable-node-cases.json",
+      "bytes": 8566,
+      "sha256": "0bc3d7672b900e24e3921a0d6d035411f519589b504004a33d3ba95a7ad644fa"
+    },
+    {
+      "path": "mail-final/portable-node.jsonl",
+      "bytes": 22858,
+      "sha256": "043010f90b57b5a92575d40a20f99a4f95fd31133874e61311b32128aa89f7ac"
+    },
+    {
+      "path": "mail-final/receipt.json",
+      "bytes": 26001,
+      "sha256": "2cd0ac57d699fcf10d98c5d94ddb7ba81f69b6f0e8ccd00f6eae27486e9c429c"
+    },
+    {
+      "path": "mail-final/runner-regressions.log",
+      "bytes": 6804,
+      "sha256": "224ec4f217b5b252b2a9202d374db83701d126f4a4414dbb8b1df7855eac2213"
+    },
+    {
+      "path": "mail-final/runtime.log",
+      "bytes": 82,
+      "sha256": "945e6a359e53647f8fd753347245ed78bc06c2808919b2d7749817181d010ff4"
+    },
+    {
+      "path": "mail-final/store-analysis.log",
+      "bytes": 46,
+      "sha256": "6573947ce493b867fb233613853e29c908e91977b0e23360aa95417b9071bef1"
+    },
+    {
+      "path": "mail-final/store-vm-cases.json",
+      "bytes": 18728,
+      "sha256": "9ab4c06c690ae491276f25983b3b2a3f24188448600f4db5bcf4049c01703a3d"
+    },
+    {
+      "path": "mail-final/store-vm.jsonl",
+      "bytes": 51591,
+      "sha256": "8f8e20f16e7317169278dfb0f09188e90ca0d512a55b660dc6f1697da02645ba"
+    },
+    {
+      "path": "mail-final/whitespace.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "omitted_generated_compilation_outputs": [
+    {
+      "path": "browser-entry.js",
+      "bytes": 1344706,
+      "sha256": "70a3037c075a48edb6f17e95bd43ed4ee25ffb414b6c26121349556198f2c678",
+      "reason": "Generated browser compilation output; exact compiler commands and results retained."
+    },
+    {
+      "path": "browser-entry.js.deps",
+      "bytes": 71905,
+      "sha256": "6a830fe086be3ffcc20887a490b66df398f7e6b920b988846f5e0dbd4d485c91",
+      "reason": "Generated browser compilation output; exact compiler commands and results retained."
+    },
+    {
+      "path": "browser-entry.js.map",
+      "bytes": 577698,
+      "sha256": "464701cc30b387147732357367c7c2a28d8be2042035e0ff124436a4c2584cc1",
+      "reason": "Generated browser compilation output; exact compiler commands and results retained."
+    },
+    {
+      "path": "browser-worker.js",
+      "bytes": 1218778,
+      "sha256": "ac65b51e34c049ed3cece7b5326838b3e1d3699063a15e49048f5b21d5a55495",
+      "reason": "Generated browser compilation output; exact compiler commands and results retained."
+    },
+    {
+      "path": "browser-worker.js.deps",
+      "bytes": 67890,
+      "sha256": "2ae37f438b1be3a9b0b8969d67661b9ec45ab9903b2bb46340fec05c57cb9b73",
+      "reason": "Generated browser compilation output; exact compiler commands and results retained."
+    },
+    {
+      "path": "browser-worker.js.map",
+      "bytes": 520074,
+      "sha256": "85de24b3802fa2ba543d5e1ff63362f1e87ae82678d855b69c61293603216747",
+      "reason": "Generated browser compilation output; exact compiler commands and results retained."
+    }
+  ]
+}

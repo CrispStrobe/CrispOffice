@@ -1,0 +1,102 @@
+{
+  "head": "71edec2de364805113d18e0f1d7edbb1f00467e5",
+  "tree": "8b7443bd15be09276764f62934b9d8ce32a6be68",
+  "started_at_utc": "2026-11-19T07:05:11.662472+00:00",
+  "status": "PASS",
+  "runs": [
+    {
+      "name": "runner-controls",
+      "command": [
+        "python3",
+        "docs/validation/document-review-notes-20261118/test_run_checks.py"
+      ],
+      "cwd": "/workspace/scratch/5c6c66fd3cc3/quds_office_suite",
+      "exit_code": 0,
+      "seconds": 0.13130429000011645,
+      "log": "/workspace/scratch/5c6c66fd3cc3/verification/runner-controls.log",
+      "log_sha256": "f836e94d5aacd008f64ea6b5ce818639493bf99effcc09c9711cfa1ba0b67ece"
+    },
+    {
+      "name": "runtime-controls",
+      "command": [
+        "python3",
+        "docs/validation/document-review-notes-20261118/runtime/test_restore_runtime.py"
+      ],
+      "cwd": "/workspace/scratch/5c6c66fd3cc3/quds_office_suite",
+      "exit_code": 0,
+      "seconds": 0.1207882979997521,
+      "log": "/workspace/scratch/5c6c66fd3cc3/verification/runtime-controls.log",
+      "log_sha256": "47e942e5df0d126973e01f36d9a00f081eaee662db178f48a1f1c23d5fb4fdc9"
+    },
+    {
+      "name": "mail-final",
+      "command": [
+        "python3",
+        "tools/mail/check_store.py",
+        "--flutter-sdk",
+        "/workspace/scratch/5c6c66fd3cc3/toolchains/flutter",
+        "--offline",
+        "--direct-tests",
+        "--command-timeout",
+        "300",
+        "--output",
+        "/workspace/scratch/5c6c66fd3cc3/verification/mail-final"
+      ],
+      "cwd": "/workspace/scratch/5c6c66fd3cc3/quds_office_suite",
+      "exit_code": 0,
+      "seconds": 98.88753334500052,
+      "log": "/workspace/scratch/5c6c66fd3cc3/verification/mail-final.log",
+      "log_sha256": "afebe7f323efd08eff20ca29b096d53c03fb7d790d39cf6a4ba987ed3cdc21cb"
+    },
+    {
+      "name": "native-final",
+      "command": [
+        "python3",
+        "docs/validation/document-review-notes-20261118/run_checks.py",
+        "--head",
+        "71edec2de364805113d18e0f1d7edbb1f00467e5",
+        "--base",
+        "faab20b96e4a51fd6e3cf1a80b1439c4a1b01b9c",
+        "--runtime",
+        "/workspace/scratch/5c6c66fd3cc3/toolchains",
+        "--command-timeout",
+        "600",
+        "--plan",
+        "docs/validation/mail-m06-resume-20261119/native-test-plan.json",
+        "--output",
+        "/workspace/scratch/5c6c66fd3cc3/verification/native-final"
+      ],
+      "cwd": "/workspace/scratch/5c6c66fd3cc3/quds_office_suite",
+      "exit_code": 0,
+      "seconds": 175.24140314399938,
+      "log": "/workspace/scratch/5c6c66fd3cc3/verification/native-final.log",
+      "log_sha256": "ba3c6ba335a78c9d8e4e6b16b2265fbd636afbac1799daebdc07f216ef0a2e3c"
+    },
+    {
+      "name": "node-final",
+      "command": [
+        "python3",
+        "docs/validation/document-review-notes-20261118/run_checks.py",
+        "--head",
+        "71edec2de364805113d18e0f1d7edbb1f00467e5",
+        "--base",
+        "faab20b96e4a51fd6e3cf1a80b1439c4a1b01b9c",
+        "--runtime",
+        "/workspace/scratch/5c6c66fd3cc3/toolchains",
+        "--command-timeout",
+        "600",
+        "--plan",
+        "docs/validation/mail-m06-resume-20261119/node-test-plan.json",
+        "--output",
+        "/workspace/scratch/5c6c66fd3cc3/verification/node-final"
+      ],
+      "cwd": "/workspace/scratch/5c6c66fd3cc3/quds_office_suite",
+      "exit_code": 0,
+      "seconds": 83.56416540600003,
+      "log": "/workspace/scratch/5c6c66fd3cc3/verification/node-final.log",
+      "log_sha256": "2fdece6c3d869cb49539495293dd45c12eabe15b4da5d2a27c1485bfc94567c4"
+    }
+  ],
+  "source_unchanged": true,
+  "finished_at_utc": "2026-11-19T07:11:09.645126+00:00"
+}

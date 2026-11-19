@@ -1,0 +1,184 @@
+{
+  "schema": 1,
+  "verified_at_utc": "2026-11-19T07:07:20.986830+00:00",
+  "status": "source-continuity-confirmed; final-source-bound-gates-pending",
+  "baseline_commit": "479e1e038af0467b7f07b35d80bac9e4cc60a198",
+  "baseline_tree": "03b895b74affd80c54fa1c35dfa87a6eb1d645c6",
+  "published_commit": "71edec2de364805113d18e0f1d7edbb1f00467e5",
+  "published_tree": "8b7443bd15be09276764f62934b9d8ce32a6be68",
+  "immutable_api_readback": "published-readback.json",
+  "scope": "Git entries (path, mode, type, object id), plus materialized SHA-256 against the saved tested baseline. Includes source, tests, assets, licenses and manifests under selected package/app trees.",
+  "canonical_git_digest_encoding": "SHA-256 of UTF-8 json.dumps(entries, sort_keys=True, separators=(comma,colon)) in sorted path order; each entry has path, mode, type, git_blob.",
+  "groups": [
+    {
+      "name": "office_packages",
+      "selection": "path starts packages/quds_office_",
+      "baseline_entry_count": 2486,
+      "published_entry_count": 2486,
+      "baseline_git_manifest_sha256": "97629101367464aebae3157e9531c0579ee32202275d7180b7dc28e368b0ad87",
+      "published_git_manifest_sha256": "97629101367464aebae3157e9531c0579ee32202275d7180b7dc28e368b0ad87",
+      "identical": true
+    },
+    {
+      "name": "non_mail_packages",
+      "selection": "path starts packages/ and does not start packages/quds_mail_",
+      "baseline_entry_count": 4496,
+      "published_entry_count": 4496,
+      "baseline_git_manifest_sha256": "ddbc9805f6ea76f0a6d1d2625355c82cdcea7f5ee601d80dcb589d30f2cab13e",
+      "published_git_manifest_sha256": "ddbc9805f6ea76f0a6d1d2625355c82cdcea7f5ee601d80dcb589d30f2cab13e",
+      "identical": true
+    },
+    {
+      "name": "all_apps",
+      "selection": "path starts apps/",
+      "baseline_entry_count": 136,
+      "published_entry_count": 136,
+      "baseline_git_manifest_sha256": "f447230e31aa2622e0975edf4ac787c5f839d9da7764b1a3ae6f6b8eb0bc6d45",
+      "published_git_manifest_sha256": "f447230e31aa2622e0975edf4ac787c5f839d9da7764b1a3ae6f6b8eb0bc6d45",
+      "identical": true
+    },
+    {
+      "name": "non_mail_packages_and_all_apps",
+      "selection": "(packages/ excluding packages/quds_mail_) union all apps/",
+      "baseline_entry_count": 4632,
+      "published_entry_count": 4632,
+      "baseline_git_manifest_sha256": "7a68bca825c09484ef1944559744d8acc1df739373b1ef0f65eb5ac02ceb03cf",
+      "published_git_manifest_sha256": "7a68bca825c09484ef1944559744d8acc1df739373b1ef0f65eb5ac02ceb03cf",
+      "identical": true
+    },
+    {
+      "name": "all_non_excepted_packages_and_apps",
+      "selection": "all packages/ except exactly quds_mail_core/, quds_mail_store/, quds_mail_transport/, union all apps/",
+      "baseline_entry_count": 4673,
+      "published_entry_count": 4673,
+      "baseline_git_manifest_sha256": "0c11b125be06cf5f37e8496a786fa875377dbde6a2bd2f6204d8b48785e95d6e",
+      "published_git_manifest_sha256": "0c11b125be06cf5f37e8496a786fa875377dbde6a2bd2f6204d8b48785e95d6e",
+      "identical": true
+    },
+    {
+      "name": "non_enough_mail_third_party",
+      "selection": "path starts third_party/ and does not start third_party/enough_mail/",
+      "baseline_entry_count": 0,
+      "published_entry_count": 0,
+      "baseline_git_manifest_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "published_git_manifest_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "identical": true
+    },
+    {
+      "name": "root_dependency_lock",
+      "selection": "path equals pubspec.lock",
+      "baseline_entry_count": 1,
+      "published_entry_count": 1,
+      "baseline_git_manifest_sha256": "8957553ac205c541b63d56d08d42c991c5810c0e98c7fe27725e497a7aa573ee",
+      "published_git_manifest_sha256": "8957553ac205c541b63d56d08d42c991c5810c0e98c7fe27725e497a7aa573ee",
+      "identical": true
+    }
+  ],
+  "protected_git_manifest": "protected-git-inputs.json",
+  "protected_git_manifest_file_sha256": "1aeeddf45da99903f98369e77ecbb59bedd401b7ba78faf335b9f69cce452076",
+  "materialized_comparison": {
+    "input_count": 4673,
+    "all_match_saved_baseline": true,
+    "manifest": "protected-materialized-inputs.json",
+    "manifest_file_sha256": "eec6d3d88c0501bb04d4972fa8100f6211e707ab0ae416a0f23af13d08f68b0a"
+  },
+  "dependency_lock": {
+    "path": "pubspec.lock",
+    "baseline_blob": "13f6b3ddf846de813c4d19893c05919b67c8cd12",
+    "published_blob": "13f6b3ddf846de813c4d19893c05919b67c8cd12",
+    "sha256": "35d1ef372908f4ab278973355ec6a957cd3240bea115d615056c5b9e398df974",
+    "matches_saved_baseline_gate_workspace_lock": true
+  },
+  "protected_office_blobs": [
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/office_editors.dart",
+      "baseline_blob": "45189950fde8dd52a238a9eadb5a243e27589cb8",
+      "published_blob": "45189950fde8dd52a238a9eadb5a243e27589cb8",
+      "identical": true
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_notes_proofing_controller_test.dart",
+      "baseline_blob": "efed0b890fbc22e5bee6ae3dc5f3e7d24beb8d83",
+      "published_blob": "efed0b890fbc22e5bee6ae3dc5f3e7d24beb8d83",
+      "identical": true
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_notes_proofing_pane_test.dart",
+      "baseline_blob": "2ec75c437d7d2f7ccda0a868f5663cf2bb31e9bd",
+      "published_blob": "2ec75c437d7d2f7ccda0a868f5663cf2bb31e9bd",
+      "identical": true
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_zotero_notes_pane_test.dart",
+      "baseline_blob": "ce6f81738ffc6e638e0a63721a1c32341cf84fe8",
+      "published_blob": "ce6f81738ffc6e638e0a63721a1c32341cf84fe8",
+      "identical": true
+    },
+    {
+      "path": "packages/quds_office_editor/CHANGELOG.md",
+      "baseline_blob": "88c4fdc90ba9a5aed652644dcab1fbd08ef59c0b",
+      "published_blob": "88c4fdc90ba9a5aed652644dcab1fbd08ef59c0b",
+      "identical": true
+    }
+  ],
+  "declared_exceptions": [
+    {
+      "name": "durable_mail_flags",
+      "reason": "Scoped flags model and SQLite migration/repository implementation and tests; covered by the separate Mail core/store gate.",
+      "changed_path_count": 13
+    },
+    {
+      "name": "new_mail_transport",
+      "reason": "New M06 native transport package, documented limits, protocol/TLS tests and fixtures; covered by native/Node gates.",
+      "changed_path_count": 21
+    },
+    {
+      "name": "enough_mail_fork",
+      "reason": "Reviewed raw FETCH/parser/resource/lifecycle and TLS ownership changes; affected inherited protocol/MIME suites are included in the native/Node plans.",
+      "changed_path_count": 11
+    },
+    {
+      "name": "root_workspace_membership",
+      "reason": "Only adds packages/quds_mail_transport to the workspace member list; dependency lock is byte-identical.",
+      "changed_path_count": 1
+    }
+  ],
+  "declared_exception_manifest": "declared-source-exceptions.json",
+  "all_changes_in_product_source_scope_declared": true,
+  "baseline_gate_reference": {
+    "path": "verification/office-baseline/verification.json",
+    "receipt_sha256": "8edd4bbd2ca7d157d3b8e8001fbb0866f435b7766371c103d1bed6b57a5d585b",
+    "source_commit": "479e1e038af0467b7f07b35d80bac9e4cc60a198",
+    "recorded_success": true,
+    "source_before_sha256": "c09725bb8e55afeac2e33adab2ed61cb70f32fa11a56fa16e3ebd93e1432cf5a",
+    "source_before_equals_after": true
+  },
+  "existing_incoming_audit_reference": {
+    "path": "final-incoming-audit/post-integration-source-verification.json",
+    "sha256": "7feaa80abd6b8f4085b80b3302b2430b88e299adf41c4d3e5d63afbd54cb0b1c",
+    "no_new_advertisement_capture": true
+  },
+  "outside_comparison_scope": [
+    "docs/validation evidence and qualification runner changes",
+    "tools/mail launcher changes, separately checked by their local regression gate",
+    "other repository documentation outside the selected product source trees"
+  ],
+  "no_dart_flutter_execution": true,
+  "no_actions_queries": true,
+  "no_fresh_ref_capture": true,
+  "first_attempt_gate_status": "FAIL; retained separately",
+  "first_attempt_source_report": "../first-attempt-da78c0bb/source-continuity.json",
+  "test_followup_review": "../second-attempt-e734e3bd/test-repair-review.json",
+  "unchanged_from_first_attempt_selection": true,
+  "qualification_attempt_status": "PENDING",
+  "additional_gate_test_review": "runner-test-review.json",
+  "prior_failed_attempts": [
+    "../first-attempt-da78c0bb/failed-gate-summary.json",
+    "../second-attempt-e734e3bd/failed-gate-summary.json"
+  ],
+  "declared_gate_tooling_followup": {
+    "path": "tools/mail/test_check_store.py",
+    "reason": "Test-only process-stat read race repair; source delta and unchanged production execute implementation reviewed separately.",
+    "git_blob": "2efd2dd6f32e0a887c7097d5efbf1935d1fb42e6"
+  }
+}

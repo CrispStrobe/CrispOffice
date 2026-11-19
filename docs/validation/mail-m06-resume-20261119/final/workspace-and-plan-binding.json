@@ -1,0 +1,29 @@
+{
+  "published_commit": "71edec2de364805113d18e0f1d7edbb1f00467e5",
+  "files": [
+    {
+      "path": "pubspec.yaml",
+      "git_blob": "80a898679ac54995b3df012117db47c21784894b",
+      "sha256": "e1a41dca16b70767fcdb747940b1a63de6598d6ee8d62cef3367088f48ccaa1a",
+      "unchanged_from_first_attempt": true
+    },
+    {
+      "path": "pubspec.lock",
+      "git_blob": "13f6b3ddf846de813c4d19893c05919b67c8cd12",
+      "sha256": "35d1ef372908f4ab278973355ec6a957cd3240bea115d615056c5b9e398df974",
+      "unchanged_from_first_attempt": true
+    },
+    {
+      "path": "docs/validation/mail-m06-resume-20261119/native-test-plan.json",
+      "git_blob": "4035553c1ac7168421d95348d7544b517a9e2977",
+      "sha256": "95a423703ecbd552a840e6fe0d4471875b8e79f88cdee3bc8d2c675ebbb9aa13",
+      "unchanged_from_first_attempt": true
+    },
+    {
+      "path": "docs/validation/mail-m06-resume-20261119/node-test-plan.json",
+      "git_blob": "beb3dafb7a341a1bce5a59823b5f85884f9c7211",
+      "sha256": "742e24efef60b50cd51ee1f2c810f83941bf7e32f5cd2cb9e6fab11157981c94",
+      "unchanged_from_first_attempt": true
+    }
+  ]
+}

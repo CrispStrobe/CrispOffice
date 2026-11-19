@@ -1,0 +1,157 @@
+{
+  "source_commit": "da78c0bb7bd9e119cc6697a5a476be3b388514c4",
+  "archive": "first-attempt.tar.xz",
+  "archive_bytes": 16748,
+  "archive_sha256": "812322666eb8802ba72624320816cd5176e3784971f0b53304cbb5aef4286068",
+  "members": [
+    {
+      "path": "first-attempt/final-execution.json",
+      "bytes": 1820,
+      "sha256": "bdcc7f819825f8203e27fd22bb54c97aea5c345939612ca4b1c2e0d4e2b3fa8e"
+    },
+    {
+      "path": "first-attempt/mail-final.log",
+      "bytes": 237,
+      "sha256": "79e0be4a0dee51706d4ad5ffb6e01d7178de4f9a967cbeb31562b900f50eb92d"
+    },
+    {
+      "path": "first-attempt/mail-final/browser-entry.log",
+      "bytes": 114,
+      "sha256": "869cc632c11ec682ca75009f922980b11a781d464568846a9d07fa3a35da75a9"
+    },
+    {
+      "path": "first-attempt/mail-final/browser-worker.log",
+      "bytes": 113,
+      "sha256": "3376d024756ab39b9c781591b04441ebb3e83910c6d7dc22ccc298e9519d0940"
+    },
+    {
+      "path": "first-attempt/mail-final/core-analysis.log",
+      "bytes": 198,
+      "sha256": "ac382ca37780eba875e03a0409726f91a8374f7bc732809e5d89a59024d81d97"
+    },
+    {
+      "path": "first-attempt/mail-final/core-node-cases.json",
+      "bytes": 6140,
+      "sha256": "dd137ef72091afad8312022f56a50d6bcc991e5c3028a7fe14acac6283d6011b"
+    },
+    {
+      "path": "first-attempt/mail-final/core-node.jsonl",
+      "bytes": 16933,
+      "sha256": "d4d360edfba7aa1ab75ffc24a10147edc2f4f2033137ffb195cbe3f534b49699"
+    },
+    {
+      "path": "first-attempt/mail-final/core-vm-cases.json",
+      "bytes": 6140,
+      "sha256": "0d7380d9e94d77ead72dea6001f75beeecba743f9527f49daa7d64d7f20db607"
+    },
+    {
+      "path": "first-attempt/mail-final/core-vm.jsonl",
+      "bytes": 15510,
+      "sha256": "4b2b4643de8c32682bdfcfa2dd20acb80a1d9f11ac699bed8cc81c207cd3f0df"
+    },
+    {
+      "path": "first-attempt/mail-final/format.log",
+      "bytes": 48,
+      "sha256": "86e4f5a241a39212440f2a067cf3e48cb1daf67162687c8ffe4155b88ba6a1a8"
+    },
+    {
+      "path": "first-attempt/mail-final/locked-resolution.log",
+      "bytes": 68,
+      "sha256": "d4cb7a3c68b4133b4f6e58c67ff5bfd13725d8021e930388cdc98da8a575919d"
+    },
+    {
+      "path": "first-attempt/mail-final/portable-node-cases.json",
+      "bytes": 8566,
+      "sha256": "2dde079b90d4194300f0c015849e32f13ed3f4bcdec5e4f10b9a00a24dd4cbcd"
+    },
+    {
+      "path": "first-attempt/mail-final/portable-node.jsonl",
+      "bytes": 22858,
+      "sha256": "2da0ed239ed27d9678d255315ccd4b52086b895d6701a2c24c1e5d9f20755454"
+    },
+    {
+      "path": "first-attempt/mail-final/receipt.json",
+      "bytes": 26003,
+      "sha256": "54ad717c8ac8853b803dcae36e5552e4d927d648468d61972b651b6e257a4897"
+    },
+    {
+      "path": "first-attempt/mail-final/runner-regressions.log",
+      "bytes": 6804,
+      "sha256": "5fec2106a1796a5d183cbbb6340302c6346832ee3b364fe054a615e7d045ec3d"
+    },
+    {
+      "path": "first-attempt/mail-final/runtime.log",
+      "bytes": 82,
+      "sha256": "945e6a359e53647f8fd753347245ed78bc06c2808919b2d7749817181d010ff4"
+    },
+    {
+      "path": "first-attempt/mail-final/store-analysis.log",
+      "bytes": 1582,
+      "sha256": "952ac29d4b3aa7f8187e4199aa07f86cea5b986f71a66c874182382a727c6201"
+    },
+    {
+      "path": "first-attempt/mail-final/store-vm-cases.json",
+      "bytes": 16944,
+      "sha256": "def86ecdd1be5b228f57d51e983ed0f5b74e462eef2d00586b15f6b82ec39576"
+    },
+    {
+      "path": "first-attempt/mail-final/store-vm.jsonl",
+      "bytes": 49329,
+      "sha256": "804d33f97080c6229b02e81a1f9610e8cbbad4405444a9143f9c220f9cd347df"
+    },
+    {
+      "path": "first-attempt/mail-final/whitespace.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "first-attempt/runner-controls.log",
+      "bytes": 119,
+      "sha256": "b1bad05ca47ac486ffb3d47e667df2eedac313e81c2c4cb6b52eab92625c798f"
+    },
+    {
+      "path": "first-attempt/runtime-controls.log",
+      "bytes": 682,
+      "sha256": "47e942e5df0d126973e01f36d9a00f081eaee662db178f48a1f1c23d5fb4fdc9"
+    }
+  ],
+  "omitted_generated_compilation_outputs": [
+    {
+      "path": "mail-final/browser-entry.js",
+      "bytes": 1344706,
+      "sha256": "70a3037c075a48edb6f17e95bd43ed4ee25ffb414b6c26121349556198f2c678",
+      "reason": "Generated browser compilation output; original command results retained."
+    },
+    {
+      "path": "mail-final/browser-entry.js.deps",
+      "bytes": 71905,
+      "sha256": "6a830fe086be3ffcc20887a490b66df398f7e6b920b988846f5e0dbd4d485c91",
+      "reason": "Generated browser compilation output; original command results retained."
+    },
+    {
+      "path": "mail-final/browser-entry.js.map",
+      "bytes": 577698,
+      "sha256": "464701cc30b387147732357367c7c2a28d8be2042035e0ff124436a4c2584cc1",
+      "reason": "Generated browser compilation output; original command results retained."
+    },
+    {
+      "path": "mail-final/browser-worker.js",
+      "bytes": 1218778,
+      "sha256": "ac65b51e34c049ed3cece7b5326838b3e1d3699063a15e49048f5b21d5a55495",
+      "reason": "Generated browser compilation output; original command results retained."
+    },
+    {
+      "path": "mail-final/browser-worker.js.deps",
+      "bytes": 67890,
+      "sha256": "2ae37f438b1be3a9b0b8969d67661b9ec45ab9903b2bb46340fec05c57cb9b73",
+      "reason": "Generated browser compilation output; original command results retained."
+    },
+    {
+      "path": "mail-final/browser-worker.js.map",
+      "bytes": 520074,
+      "sha256": "85de24b3802fa2ba543d5e1ff63362f1e87ae82678d855b69c61293603216747",
+      "reason": "Generated browser compilation output; original command results retained."
+    }
+  ],
+  "scope": "Failed initial integrated store gate: strict flag-test lint and ambiguous migration-test import. Extended native/Node plans did not start. Retained separately from the repaired final source and its acceptance counts."
+}
