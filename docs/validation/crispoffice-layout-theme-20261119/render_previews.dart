@@ -24,27 +24,6 @@ Finder _key(String value) => find.byKey(ValueKey<String>(value));
 
 Future<void> _fonts() async {
   await OfficeHostFonts.ensureRegistered();
-  // Raw dart:ui text uses the Flutter test engine's default Ahem family.
-  // Substitute our bundled face in this visual harness so ruler labels show
-  // real glyphs without changing the production renderer's font policy.
-  final defaultFont = FontLoader('Ahem')
-    ..addFont(
-      rootBundle.load(
-        'packages/quds_office_editor/fonts/LiberationSans-Regular.ttf',
-      ),
-    );
-  await defaultFont.load();
-  final defaultProbe =
-      (ui.ParagraphBuilder(
-          ui.ParagraphStyle(fontSize: 9),
-        )..addText('1234')).build()
-        ..layout(const ui.ParagraphConstraints(width: 100));
-  expect(
-    defaultProbe.longestLine,
-    lessThan(30),
-    reason: 'Raw ruler text must use readable glyphs rather than Ahem blocks.',
-  );
-  defaultProbe.dispose();
   final sdk = Platform.environment['FLUTTER_ROOT'];
   if (sdk == null) throw StateError('FLUTTER_ROOT must identify the real SDK.');
   final icons = File(

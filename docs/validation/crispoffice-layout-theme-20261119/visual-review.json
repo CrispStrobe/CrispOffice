@@ -1,0 +1,272 @@
+{
+  "schema_version": 1,
+  "reviewed_at_utc": "2026-11-19T18:37:28.059729+00:00",
+  "reviewer": "ribbon_ui and root",
+  "status": "passed_with_nonblocking_presentation_notes",
+  "method": "Direct image-viewer inspection of ten final PNGs by ribbon_ui, plus root-reported direct image-viewer inspection of eight final PNGs (six shared views). All twelve final PNG SHA-256 hashes and dimensions were independently verified. No screenshots or product files were modified.",
+  "capture": {
+    "source_head": "8c6acd04637ef627959fe40f518254ed538ab087",
+    "generation_exit_code": 0,
+    "source_changed_during_generation": [],
+    "metadata_path": "validation/layout-theme/previews-images-final.json",
+    "metadata_sha256": "5a4042075c16e762a2ab400e67f750fee199a39004311a4d741d3369e5e6e47f",
+    "receipt_path": "validation/layout-theme/previews-3.json",
+    "receipt_sha256": "a555c363f702ab626e0f8da6ef68a8e823d55da7c681df095e65b4efb5db1503",
+    "source_snapshot_sha256": "954830e0dd1e0c3c9c3a76c62d7cb90eab28b1ebfa9c343a0c2809693e6bf0ff",
+    "harness": "docs/validation/crispoffice-layout-theme-20261119/render_previews.dart",
+    "harness_sha256": "5852161c020da5c6e7e537370463075ebe651cb4fee630ae56fee77bc4c8e976",
+    "temporary_test_removed": true
+  },
+  "summary": {
+    "captured_images": 12,
+    "distinct_captured_image_hashes": 12,
+    "images_visually_reviewed_here": 10,
+    "blocking_findings": 0,
+    "product_changes_required_by_this_review": false,
+    "nonblocking_note": "Long compact captions and status text are ellipsized in the narrow localized views; no overlapping controls or clipped dialog actions were observed.",
+    "images_visually_reviewed_by_root": 8,
+    "distinct_images_visually_reviewed_by_team": 12
+  },
+  "reviewed_images": [
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/screenshots/layout-dark-menu.png",
+      "sha256": "4a9c3e7b1b8e9cb098bb730e55358c2075356aa60712ea8b5559b3a2dcb42ed2",
+      "width": 1440,
+      "height": 960,
+      "matches_final_capture_receipt": true,
+      "verdict": "pass",
+      "observations": [
+        "The paper-size menu has readable labels and icons on the dark menu surface, with a clear checkmark beside A4.",
+        "The menu stays inside the viewport and contains its Page Layout dialog entry without cutting off the last row.",
+        "The active Layout tab, ribbon captions and ruler numbers remain legible around the open menu."
+      ],
+      "nonblocking_notes": [],
+      "reviewers": [
+        "ribbon_ui"
+      ]
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/screenshots/layout-dark.png",
+      "sha256": "e2ce88a4530ba042c03381ad905b6db635bb28da9bf033015ae3c943c2c3bf80",
+      "width": 1440,
+      "height": 960,
+      "matches_final_capture_receipt": true,
+      "verdict": "pass",
+      "observations": [],
+      "nonblocking_notes": [],
+      "reviewers": [
+        "root"
+      ],
+      "root_observations": [
+        "Root directly inspected readable ruler numbers and bright inactive ribbon tabs.",
+        "Root observed no desktop clipping in the final dark document view."
+      ]
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/screenshots/layout-light.png",
+      "sha256": "8d8c7774de4b3a5ba3159d8dc0f3894255cc1251aecb0e16593a33380961c1b4",
+      "width": 1440,
+      "height": 960,
+      "matches_final_capture_receipt": true,
+      "verdict": "pass",
+      "observations": [
+        "The light Layout ribbon groups remain separated, with distinct dropdown arrows and selected-tab underline.",
+        "Document title, body text and ruler numbers are readable, and the page fits between the surrounding canvas margins.",
+        "No controls overlap the document, status bar or window edges."
+      ],
+      "nonblocking_notes": [],
+      "reviewers": [
+        "ribbon_ui",
+        "root"
+      ],
+      "root_observations": [
+        "Root independently confirmed the light ribbon, document and rulers render correctly."
+      ]
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/screenshots/layout-margins-menu.png",
+      "sha256": "f01972c660d3b846a65badccb95acd5f4cce4183c786ab5b2f1a4a60e22f0f30",
+      "width": 1440,
+      "height": 960,
+      "matches_final_capture_receipt": true,
+      "verdict": "pass",
+      "observations": [
+        "Normal, Narrow, Moderate and Wide margin presets are all visible, with a clear selected checkmark.",
+        "The Page Layout dialog entry remains fully inside the menu, and the menu stays inside the desktop viewport.",
+        "Menu text and icons remain readable against the light surface."
+      ],
+      "nonblocking_notes": [],
+      "reviewers": [
+        "ribbon_ui",
+        "root"
+      ],
+      "root_observations": [
+        "Root independently confirmed the Margins menu stays inside the viewport, with a clear Normal checkmark and Page Layout action."
+      ]
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/screenshots/layout-narrow-arabic.png",
+      "sha256": "3cd3d7b1fe33f48e1765e3dbdc25d3a01fa7f9c3bdc1a6ca0dd1ae81b264a977",
+      "width": 900,
+      "height": 760,
+      "matches_final_capture_receipt": true,
+      "verdict": "pass_with_nonblocking_note",
+      "observations": [
+        "Arabic tabs and ribbon groups follow right-to-left order, with a clear selected Layout tab.",
+        "The icon-led Layout controls occupy the available 900-pixel width without overlapping adjacent groups or the document surface.",
+        "Arabic labels and the document ruler remain readable; the English sample document retains its own left-to-right text layout."
+      ],
+      "nonblocking_notes": [
+        "The longest Page Layout command caption is ellipsized within its compact control. This is visible shortening rather than an overlapping or cut-off control."
+      ],
+      "reviewers": [
+        "ribbon_ui"
+      ]
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/screenshots/layout-narrow-german.png",
+      "sha256": "0c389d3b5aad03f735b4e2dd10feb1b9aea0ea1fc36a6d95dde0bfe8dfe344b9",
+      "width": 900,
+      "height": 760,
+      "matches_final_capture_receipt": true,
+      "verdict": "pass_with_nonblocking_note",
+      "observations": [
+        "All ten visible Layout controls remain within the 900-pixel window; dropdown arrows and the active tab underline are clear.",
+        "Longer German captions wrap within their own group without colliding with adjacent groups.",
+        "The document surface and both ruler regions remain separated from the ribbon and status bar."
+      ],
+      "nonblocking_notes": [
+        "Seitenlayout uses a second-line ellipsis, and long status captions are shortened at this width. The controls themselves remain fully bounded."
+      ],
+      "reviewers": [
+        "ribbon_ui"
+      ]
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/screenshots/page-layout-columns.png",
+      "sha256": "9158be71d054e4e1b881d83fbb8b1811ee794c1cfff66c07784cc184ad022015",
+      "width": 1440,
+      "height": 960,
+      "matches_final_capture_receipt": true,
+      "verdict": "pass",
+      "observations": [
+        "Column count, spacing and calculated column width are visible without overlap.",
+        "The line-between-columns control is visibly disabled for the displayed single-column configuration.",
+        "The preview, scope selector and footer actions stay in their assigned regions."
+      ],
+      "nonblocking_notes": [],
+      "reviewers": [
+        "ribbon_ui",
+        "root"
+      ],
+      "root_observations": [
+        "Root independently confirmed bounded Page Layout tabs, fields, preview and buttons."
+      ]
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/screenshots/page-layout-dark.png",
+      "sha256": "4cd86f116e218303d5af84aa3edeaffa788ad1a0f5c58ec7f6bd86f5e1851970",
+      "width": 1440,
+      "height": 960,
+      "matches_final_capture_receipt": true,
+      "verdict": "pass",
+      "observations": [
+        "The entire Page Layout dialog is inside the 1440 by 960 viewport, with visible close, Cancel and Apply controls.",
+        "The unit selector, four tabs, four margin fields, unit suffixes and scope selector have readable text and clear outlines on the dark surface.",
+        "The preview and text-area measurements remain visible in the separate right column; neither preview nor footer overlaps the input fields."
+      ],
+      "nonblocking_notes": [],
+      "reviewers": [
+        "ribbon_ui",
+        "root"
+      ],
+      "root_observations": [
+        "Root independently confirmed bounded Page Layout tabs, fields, preview and buttons."
+      ]
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/screenshots/page-layout-margins.png",
+      "sha256": "d2cbb2c13f143bd3667d890f7f7fde693230cb7387749bf78752330430f9c4ac",
+      "width": 1440,
+      "height": 960,
+      "matches_final_capture_receipt": true,
+      "verdict": "pass",
+      "observations": [
+        "The light dialog preserves the same contained bounds and footer placement as the dark dialog.",
+        "Top, Bottom, Left and Right fields align in two columns, with readable labels and millimetre suffixes.",
+        "Help text, preview, scope selector and actions remain separated and unclipped."
+      ],
+      "nonblocking_notes": [],
+      "reviewers": [
+        "ribbon_ui"
+      ]
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/screenshots/page-layout-paper.png",
+      "sha256": "53ecd5e431c33b6ec866838cad508ee1ce1c73b13f9d98e27b54b0f9a5859f20",
+      "width": 1440,
+      "height": 960,
+      "matches_final_capture_receipt": true,
+      "verdict": "pass",
+      "observations": [
+        "A4 and Portrait selectors are fully visible above the width and height fields.",
+        "The precise width value, height and unit suffixes fit inside their controls without colliding with labels.",
+        "Preview, scope selector, Cancel and Apply remain within the dialog boundaries."
+      ],
+      "nonblocking_notes": [],
+      "reviewers": [
+        "ribbon_ui",
+        "root"
+      ],
+      "root_observations": [
+        "Root independently confirmed bounded Page Layout tabs, fields, preview and buttons."
+      ]
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/screenshots/paragraph-dark.png",
+      "sha256": "cef3d1de39116692c8fb89e40baaaf368d3013513abddf34141b25527ed2835a",
+      "width": 1440,
+      "height": 960,
+      "matches_final_capture_receipt": true,
+      "verdict": "pass",
+      "observations": [],
+      "nonblocking_notes": [],
+      "reviewers": [
+        "root"
+      ],
+      "root_observations": [
+        "Root directly inspected a correctly visible themed Paragraph dialog.",
+        "The Paragraph dialog has a stable action footer and no desktop clipping."
+      ]
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/screenshots/settings-dark.png",
+      "sha256": "78f709dae5da785ae7493f4980926dddd07be608682cb25719e7e8df647b8ce4",
+      "width": 1440,
+      "height": 960,
+      "matches_final_capture_receipt": true,
+      "verdict": "pass",
+      "observations": [
+        "Appearance, language and measurement selectors have clear labels and selected values on the dark surface.",
+        "Off and on switches are visually distinct; the explanatory language-detection text wraps within its row.",
+        "Customize Ribbon and Close are fully visible, and all settings remain inside the dialog bounds."
+      ],
+      "nonblocking_notes": [],
+      "reviewers": [
+        "ribbon_ui",
+        "root"
+      ],
+      "root_observations": [
+        "Root independently confirmed readable dark Settings labels, selected values, switches and Close action within the dialog bounds."
+      ]
+    }
+  ],
+  "unreviewed_images_in_this_report": [],
+  "scope": [
+    "Narrow Arabic and German images show the closed Layout ribbon at 900 by 760; they do not show an open localized Page Layout dialog at that width.",
+    "Page Layout raster review covers light Margins, Paper and Columns states plus dark Margins at 1440 by 960. The separate Layout tab is covered by functional tests, not by these reviewed PNGs.",
+    "All twelve final screenshots have direct visual inspection across root and ribbon_ui. Per-image reviewer attribution distinguishes independently viewed and shared views.",
+    "This static visual review does not replace keyboard, persistence, editing, screen-reader or native operating-system acceptance."
+  ],
+  "root_review_attribution": "Root supplied its eight direct view_image findings in the active collaboration task; those observations are separately attributed per image."
+}

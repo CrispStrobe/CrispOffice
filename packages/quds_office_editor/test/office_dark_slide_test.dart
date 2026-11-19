@@ -7,6 +7,15 @@ import 'package:quds_office_editor/quds_office_editor.dart';
 
 const _boundary = ValueKey('dark-slide');
 
+Iterable<XmlElement> _descendants(XmlElement root, String name) sync* {
+  for (final child in root.childElements) {
+    if (child.localName == name) {
+      yield child;
+    }
+    yield* _descendants(child, name);
+  }
+}
+
 class _Raster {
   _Raster(this.width, this.height, this.bytes);
   final int width;
@@ -35,6 +44,50 @@ class _Raster {
     }
     return found;
   }
+
+  Iterable<int> _offsets(ui.Rect area) sync* {
+    for (
+      var y = area.top.floor().clamp(0, height);
+      y < area.bottom.ceil().clamp(0, height);
+      y++
+    ) {
+      for (
+        var x = area.left.floor().clamp(0, width);
+        x < area.right.ceil().clamp(0, width);
+        x++
+      ) {
+        yield (y * width + x) * 4;
+      }
+    }
+  }
+
+  int contrastPixels(ui.Rect area, int background) {
+    final base = ui.Color(0xFF000000 | background).computeLuminance();
+    var found = 0;
+    for (final offset in _offsets(area)) {
+      final ink = ui.Color.fromARGB(
+        bytes[offset + 3],
+        bytes[offset],
+        bytes[offset + 1],
+        bytes[offset + 2],
+      ).computeLuminance();
+      final contrast = ink >= base
+          ? (ink + 0.05) / (base + 0.05)
+          : (base + 0.05) / (ink + 0.05);
+      if (contrast >= 4.5) {
+        found++;
+      }
+    }
+    return found;
+  }
+
+  List<int> pixels(ui.Rect area) => <int>[
+    for (final offset in _offsets(area))
+      (bytes[offset + 3] << 24) |
+          (bytes[offset] << 16) |
+          (bytes[offset + 1] << 8) |
+          bytes[offset + 2],
+  ];
 }
 
 PmlShape _shape(
@@ -212,13 +265,34 @@ void main() {
           reason: 'Automatic colors retain their prior behavior.',
         );
       }
-      expect(
-        dark.count(const ui.Rect.fromLTWH(384, 33, 290, 25), 0x000000),
-        greaterThan(15),
+      const lightCell = ui.Rect.fromLTWH(384, 33, 290, 25);
+      const darkCell = ui.Rect.fromLTWH(384, 93, 290, 25);
+      final authored = await _paint(
+        tester,
+        slide,
+        theme: OfficeTheme.dark.copyWith(adaptDocumentColors: false),
       );
+      final lightCoverage = dark.contrastPixels(lightCell, 0xFFFFFF);
+      final darkCoverage = dark.contrastPixels(darkCell, 0x303030);
+      final authoredDarkCoverage = authored.contrastPixels(darkCell, 0x303030);
+      debugPrint(
+        'Slide table coverage: '
+        'light exact=${dark.count(lightCell, 0x000000)}, '
+        'contrast>=4.5=$lightCoverage; '
+        'dark exact=${dark.count(darkCell, 0xF2F2F2)}, '
+        'contrast>=4.5=$darkCoverage; '
+        'authored dark contrast>=4.5=$authoredDarkCoverage.',
+      );
+      // At 13 px, anti-aliasing leaves few pixels exactly at the authored
+      // RGB value. Compare every light-cell pixel to the unchanged renderer,
+      // and require visible high-contrast glyph coverage on both actual fills.
+      expect(dark.pixels(lightCell), orderedEquals(authored.pixels(lightCell)));
+      expect(lightCoverage, greaterThan(25));
+      expect(darkCoverage, greaterThan(25));
       expect(
-        dark.count(const ui.Rect.fromLTWH(384, 93, 290, 25), 0xF2F2F2),
-        greaterThan(15),
+        authoredDarkCoverage,
+        0,
+        reason: 'Authored black has insufficient contrast on the dark cell.',
       );
       expect(
         dark.count(const ui.Rect.fromLTWH(408, 218, 240, 28), 0x000000),
@@ -237,14 +311,10 @@ void main() {
       expect(<int, String>{
         for (final shape in slide.shapes) shape.id: shape.textColor,
       }, originalColors);
-      final reopened = SlideDeserializer()
-          .readBytes(
-            SlideSerializer().writeBytes(
-              PmlPresentation(slides: <PmlSlide>[slide]),
-            ),
-          )
-          .slides
-          .single;
+      final savedBytes = SlideSerializer().writeBytes(
+        PmlPresentation(slides: <PmlSlide>[slide]),
+      );
+      final reopened = SlideDeserializer().readBytes(savedBytes).slides.single;
       final explicitShapes = reopened.shapes.where(
         (shape) => const <int>{2, 3, 4, 9, 11}.contains(shape.id),
       );
@@ -253,13 +323,38 @@ void main() {
         expect(shape.textColor, '000000');
       }
       expect(
-        reopened.shapes
-            .singleWhere((shape) => shape.id == 7)
-            .table!
-            .rows
-            .expand((row) => row)
-            .map((cell) => cell.textColor),
+        table.rows.expand((row) => row).map((cell) => cell.textColor),
         <String>['000000', '000000'],
+      );
+      // Inspect the saved table runs directly. The existing table importer
+      // assigns run colors to the shape, so cell readback is not an export
+      // preservation oracle for this render-only change.
+      final exportedSlide = XmlDocument.parse(
+        OpcPackage.openBytes(
+          savedBytes,
+        ).getPart('/ppt/slides/slide1.xml')!.readText(),
+      ).root!;
+      final cells = _descendants(exportedSlide, 'tc').toList();
+      expect(cells, hasLength(2));
+      expect(
+        <String?>[
+          for (final cell in cells)
+            _descendants(
+              cell.firstChild('txBody')!,
+              'srgbClr',
+            ).single.getAttribute('val'),
+        ],
+        <String>['000000', '000000'],
+      );
+      expect(
+        <String?>[
+          for (final cell in cells)
+            _descendants(
+              cell.firstChild('tcPr')!,
+              'srgbClr',
+            ).single.getAttribute('val'),
+        ],
+        <String>['FFFFFF', '303030'],
       );
     },
   );

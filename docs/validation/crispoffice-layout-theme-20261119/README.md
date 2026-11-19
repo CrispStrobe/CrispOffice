@@ -102,7 +102,7 @@ preserved from [PR #206](https://github.com/CrispStrobe/quds_office_suite/pull/2
 ## Visual review
 
 [render_previews.dart](render_previews.dart) creates actual Flutter-rendered
-screenshots with the bundled fonts. Its test-only default-font substitution
-replaces Flutter test's Ahem boxes for raw canvas ruler labels; it does not
-change product fonts. Dialog visibility and dark appearance are asserted before
-capture. The final screenshots are under [screenshots](screenshots/).
+screenshots with the bundled fonts. Ruler labels and readouts now use the same
+explicit font resolution as document text, avoiding implicit platform/test
+fonts. No SDK patch or test-font substitution is used. Dialog visibility and
+dark appearance are asserted before capture. The final screenshots are under [screenshots](screenshots/).
