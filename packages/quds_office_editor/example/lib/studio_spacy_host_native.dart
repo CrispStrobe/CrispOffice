@@ -118,6 +118,10 @@ class NativeStudioSpacyHost extends StudioSpacyHost {
   final SpacyPlatform? _platform;
   late StudioSpacyStatus _status;
 
+  /// Whether [refresh] has read the settings and verified the installation
+  /// at least once. Until then [_status] holds only the platform defaults.
+  bool _verified = false;
+
   @override
   StudioSpacyStatus get status => _status;
 
@@ -240,6 +244,7 @@ class NativeStudioSpacyHost extends StudioSpacyHost {
 
   @override
   Future<void> refresh() async {
+    _verified = true;
     final base = _initialStatus();
     final settings = _readSettings();
     if (base.source == StudioSpacySource.developer) {
@@ -428,6 +433,9 @@ class NativeStudioSpacyHost extends StudioSpacyHost {
 
   @override
   Future<SpacyTransport> openLanguageTransport(SpacyLanguage language) async {
+    // An explicit analysis action may come before anything else has read
+    // the saved setup (Studio refreshes lazily); verify it now.
+    if (!_verified) await refresh();
     if (language == SpacyLanguage.german) return openTransport();
     final item = _status.language(language);
     if (item == null || !item.offered || !item.installed) {
@@ -582,6 +590,7 @@ class NativeStudioSpacyHost extends StudioSpacyHost {
 
   @override
   Future<SpacyTransport> openTransport() async {
+    if (!_verified) await refresh();
     if (_developerConfigured) return _openDeveloperTransport();
     if (!_status.analysisEnabled) {
       throw const SpacyUnavailableException(
