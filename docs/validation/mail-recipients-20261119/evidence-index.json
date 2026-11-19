@@ -4,8 +4,8 @@
   "files": [
     {
       "path": "README.md",
-      "bytes": 12707,
-      "sha256": "b866d27d51c79eef76d45d1025db58913709c3195d5c2fbcc747b2d15546ac02"
+      "bytes": 13126,
+      "sha256": "78e93ac28385446f270c3e56f263b1ad5f811ed249e17887872cb026ec7e67c3"
     },
     {
       "path": "final-mail-audit/README.md",
@@ -211,6 +211,11 @@
       "path": "mail-source-harness/test.log",
       "bytes": 10543,
       "sha256": "0318c4e9a5af8366b48fa084ec3d4c5125d422269581d4b9615eb260bef47595"
+    },
+    {
+      "path": "premerge-main-reconciliation.json",
+      "bytes": 30985,
+      "sha256": "a52e4b72f52db3bbe2c1f268ae5b8f4d3ba6f27e64196e8fafb60908444fb51c"
     },
     {
       "path": "publication-checkpoints.json",

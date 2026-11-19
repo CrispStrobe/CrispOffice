@@ -11,6 +11,10 @@ All notable changes to `quds_office_editor` are documented here.
   while integrating PPTX background, crop and rich-text fidelity. Apply scalar
   rich-text edits to derived run copies without changing imported source runs.
 
+- Render slide text from current scalar edits when imported rich text is stale,
+  keep painting and caret hit testing aligned for anchored text, and preserve
+  inherited backgrounds and the established 16 pt fallback.
+
 - Add a searchable Zotero tag browser with paginated results, staged filters,
   exact-name validation and selection across searches. Applying filters retains
   selected sources and unfinished input, and restarts the submitted reference

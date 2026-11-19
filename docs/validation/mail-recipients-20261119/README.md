@@ -42,9 +42,11 @@ Nine older divergent branches were independently checked using their complete ch
 
 Subsequent inventories captured concurrently published branches and PR #218:
 
-- Zotero history through `400fffd04fcceee78959e4c38b4d1dbe89767c2b`: paginated tag discovery, source citation occurrence navigation, the explicit rich-text style correction, tests, and incoming qualification records.
+- Zotero history through `6626ad430a54122e4514cc2870fdcee18760682f`: paginated tag discovery, source citation occurrence navigation, the explicit rich-text style correction, tests, and incoming qualification records.
 - VBA history through `8356fb0ad4630824a39453ea9a5923d9fb2a2101`: one-dimensional local dynamic arrays, ReDim/Preserve, Erase, Option Base, integration tests and smoke tooling, plus additional mail host regressions.
 - PPTX history through `a5ae56c8e3e7f950c37ef491b17b5c32fcd0e13d`: slide backgrounds, crops, rich text, PDF/interlaced PNG work and tab positioning.
+
+During the final pre-merge check, PR #218 had merged into remote main `88513f04cfbdec210340f2d70a674cf3f23e31c0`. That exact main commit and the latest Zotero tip were reconciled before merging #217. `premerge-main-reconciliation.json` records this later observation and verifies that product Dart source still matches the qualified checkpoint.
 
 These histories are retained as merge parents/ancestors, not reconstructed patch-only replacements. `final-reconciliation.json` records the exact captured heads and their ancestry or previously recomputed equivalence proof.
 
@@ -78,7 +80,7 @@ The full workspace `flutter pub get` stopped when the executor reported that net
 
 Complete MIME serialization/round trips, native/EWS/Gmail/Graph host suites, Flutter composer/layout widgets, full PDF/interlaced-PNG suites, VBA dynamic arrays, Zotero occurrence/navigation widgets, the complete locked workspace and the full analyzer remain unexecuted by this continuation. VBA and Word occurrence graphs reach missing `characters`; PDF reaches missing `image`; enough_mail also needs uncached packages; cached archive does not satisfy the required legacy parser version. Live accounts were not used.
 
-The incoming Zotero validation directory is preserved separately. Its author records broader runs, including 219 mail cases and six selected transport cases against an earlier captured mail tree. Those logs are useful provenance, but they are not presented as execution of this continuation's later draft extraction, host regressions and final reconciled renderer source.
+The [incoming Zotero integration report](../zotero-workflow-20261119/README.md) and its raw validation directory are preserved separately. Its author records broader runs, including 219 mail cases and six selected transport cases against an earlier captured mail tree. Those logs are useful provenance, but they are not presented as execution of this continuation's later draft extraction, host regressions and final reconciled renderer source.
 
 ## Pending full-environment commands
 

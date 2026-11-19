@@ -243,7 +243,7 @@
     "fixedIncomingSet": true,
     "finalMainLeaseStillRequired": true
   },
-  "initialAuditFile": "zotero-remote-audit.json",
+  "initialAuditFile": "initial-reconciliation.json",
   "historicalEquivalenceProofs": [
     {
       "original": "c34945761e7991f5fe49037d79529acdd260b31c",
@@ -376,5 +376,127 @@
       "isAncestor": true
     }
   ],
-  "snapshotWrittenAt": "2026-11-19T21:10:16.919946+00:00"
+  "snapshotWrittenAt": "2026-11-19T21:10:16.919946+00:00",
+  "integrationResult": {
+    "qualifiedProductSource": "780422316b4e37989e01ac871dd2956fbd2c8908",
+    "branchResults": [
+      {
+        "name": "codex/crispoffice-layout-theme-20261119",
+        "capturedHead": "cacae8569814e4cb81f58d358734d31431f102be",
+        "checkedAncestor": "cacae8569814e4cb81f58d358734d31431f102be",
+        "included": true
+      },
+      {
+        "name": "codex/mail-archive-resume-20261119",
+        "capturedHead": "482fbd99dd8d3d5aff7d773fa87454f4d324028d",
+        "checkedAncestor": "482fbd99dd8d3d5aff7d773fa87454f4d324028d",
+        "included": true
+      },
+      {
+        "name": "codex/odt-field-continuation-20261117",
+        "capturedHead": "c34945761e7991f5fe49037d79529acdd260b31c",
+        "checkedAncestor": "2c47165d01d01cc883135a434ac9f6591ce6e770",
+        "included": true
+      },
+      {
+        "name": "codex/vba-arrays-foreach-20261119",
+        "capturedHead": "3abffb94dcf33a2766a4579d296d0ef09c9e35cd",
+        "checkedAncestor": "3abffb94dcf33a2766a4579d296d0ef09c9e35cd",
+        "included": true
+      },
+      {
+        "name": "codex/vba-dynamic-arrays-20261119",
+        "capturedHead": "1580807e1eb99a40d6c8620e93ebd039b9a01132",
+        "checkedAncestor": "1580807e1eb99a40d6c8620e93ebd039b9a01132",
+        "included": true
+      },
+      {
+        "name": "codex/zotero-workflow-20261119",
+        "capturedHead": "94e032f983ebac8351bdf3b44c522af53bf3d302",
+        "checkedAncestor": "94e032f983ebac8351bdf3b44c522af53bf3d302",
+        "included": true
+      },
+      {
+        "name": "docs/ods-color-scale",
+        "capturedHead": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+        "checkedAncestor": "1ec0a81bc43dc444872fbffffa36a8affce307a5",
+        "included": true
+      },
+      {
+        "name": "docs/ods-data-bar",
+        "capturedHead": "69d14f84cabd3931b7640c1654b401c89faba766",
+        "checkedAncestor": "38abbbb744d1d5dab1eb9162d584370d661fef24",
+        "included": true
+      },
+      {
+        "name": "feat/ods-color-scale",
+        "capturedHead": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+        "checkedAncestor": "4584d5f319aab198f1d705f48b4d6647e6cbabea",
+        "included": true
+      },
+      {
+        "name": "feat/ods-data-bar",
+        "capturedHead": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+        "checkedAncestor": "b3f41eb4b4bca8ca13676b4114891ea6d9185043",
+        "included": true
+      },
+      {
+        "name": "feat/ods-dynamic-validation-links",
+        "capturedHead": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+        "checkedAncestor": "e87494ada0729878981dc0cc60fdb07bcd5116d4",
+        "included": true
+      },
+      {
+        "name": "feat/ods-icon-sets",
+        "capturedHead": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
+        "checkedAncestor": "c84d5e16024c502f6c451fd04b9807b1e65f20d3",
+        "included": true
+      },
+      {
+        "name": "feat/ods-time-period-conditions",
+        "capturedHead": "7ef09f2408f467c65427700e65907531ecb26acb",
+        "checkedAncestor": "6f40365ae7708172c58e9aee38bc363d99327355",
+        "included": true
+      },
+      {
+        "name": "integrate/macbook-current-20261118",
+        "capturedHead": "f383c826205e321eda3ed3bdbcd584e9a2d4da14",
+        "checkedAncestor": "f383c826205e321eda3ed3bdbcd584e9a2d4da14",
+        "included": true
+      },
+      {
+        "name": "integrate/office-union-148",
+        "capturedHead": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+        "checkedAncestor": "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4",
+        "included": true
+      },
+      {
+        "name": "integrate/recent-pptx",
+        "capturedHead": "a5ae56c8e3e7f950c37ef491b17b5c32fcd0e13d",
+        "checkedAncestor": "a5ae56c8e3e7f950c37ef491b17b5c32fcd0e13d",
+        "included": true
+      },
+      {
+        "name": "main",
+        "capturedHead": "2170791c9250d72c9df31a065408365f9b50abaa",
+        "checkedAncestor": "2170791c9250d72c9df31a065408365f9b50abaa",
+        "included": true
+      },
+      {
+        "name": "work/mail-continuation-20261119",
+        "capturedHead": "275f8a346bf3aef00a736e6441c79244b84994c6",
+        "checkedAncestor": "275f8a346bf3aef00a736e6441c79244b84994c6",
+        "included": true
+      },
+      {
+        "name": "work/mail-next-20261119",
+        "capturedHead": "ab833975409abfb207f3a6a1a146183a4a5198fd",
+        "checkedAncestor": "ab833975409abfb207f3a6a1a146183a4a5198fd",
+        "included": true
+      }
+    ],
+    "capturedBranches": 19,
+    "unaccountedBranches": 0,
+    "newIncomingHeadsPreservedByAncestry": true
+  }
 }
