@@ -16,6 +16,8 @@ import 'studio_chrome.dart';
 import 'studio_files.dart';
 import 'studio_find_pane.dart';
 import 'studio_linguistic_analysis.dart';
+import 'studio_mail.dart';
+import 'studio_strings.dart';
 import 'studio_pdf_gallery.dart';
 import 'studio_pdf_gallery_dialog.dart';
 import 'studio_pdf_office.dart';
@@ -66,7 +68,11 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   SuiteLook _look = SuiteLook.light;
   OfficeInteractionMode _mode = OfficeInteractionMode.editing;
   _RibbonTab _tab = _RibbonTab.home;
-  var _arabic = true;
+  StudioLanguage _language = StudioLanguage.ar;
+  bool get _arabic => _language == StudioLanguage.ar;
+  set _arabic(bool value) =>
+      _language = value ? StudioLanguage.ar : StudioLanguage.en;
+  StudioStrings get _strings => StudioStrings(_language);
   var _wordRulers = true;
   var _sheetGridlines = true;
   var _sheetHeaders = true;
@@ -116,7 +122,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   String? _wordPath;
   String? _sheetPath;
   String? _slidePath;
-  String _wordName = 'Al Tahreer Neighbourhood Profile.docx';
+  String _wordName = 'CrispOffice product brief.docx';
   String _sheetName = 'Budget.xlsx';
   String _slideName = 'Studio deck.pptx';
   String? _pdfPath;
@@ -187,7 +193,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     _slides.addListener(_rebuild);
     _pdf.addListener(_rebuild);
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      StudioWindow.setTitle('$_chromeTitle — Quds Office Studio');
+      StudioWindow.setTitle('$_chromeTitle — CrispOffice Studio');
     });
   }
 
@@ -212,7 +218,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
             _tab = _RibbonTab.insert;
           }
         });
-        StudioWindow.setTitle('$_chromeTitle — Quds Office Studio');
+        StudioWindow.setTitle('$_chromeTitle — CrispOffice Studio');
         _syncSlideshowFullscreen();
       }
     });
@@ -613,8 +619,8 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: <Widget>[
-                          const Padding(
-                            padding: EdgeInsets.only(left: 10, right: 4),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 10, right: 4),
                             child: Row(
                               children: <Widget>[
                                 Icon(
@@ -624,7 +630,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                                 ),
                                 SizedBox(width: 8),
                                 Text(
-                                  'Quds Office Studio',
+                                  _strings.appTitle,
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.w600,
@@ -639,28 +645,34 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                           Row(
                             children: <Widget>[
                               StudioAppSwitcher(
-                                label: 'Word',
+                                label: _strings.documents,
                                 icon: Icons.description_outlined,
                                 selected: _app == SuiteApp.word,
                                 onTap: () => _switchApp(SuiteApp.word),
                               ),
                               StudioAppSwitcher(
-                                label: 'Excel',
+                                label: _strings.spreadsheets,
                                 icon: Icons.grid_on_outlined,
                                 selected: _app == SuiteApp.excel,
                                 onTap: () => _switchApp(SuiteApp.excel),
                               ),
                               StudioAppSwitcher(
-                                label: 'PowerPoint',
+                                label: _strings.presentations,
                                 icon: Icons.slideshow_outlined,
                                 selected: _app == SuiteApp.powerpoint,
                                 onTap: () => _switchApp(SuiteApp.powerpoint),
                               ),
                               StudioAppSwitcher(
-                                label: 'PDF',
+                                label: _strings.pdf,
                                 icon: Icons.picture_as_pdf_outlined,
                                 selected: _app == SuiteApp.pdf,
                                 onTap: () => _switchApp(SuiteApp.pdf),
+                              ),
+                              StudioAppSwitcher(
+                                label: _strings.mail,
+                                icon: Icons.mail_outline,
+                                selected: false,
+                                onTap: _openMail,
                               ),
                             ],
                           ),
@@ -696,7 +708,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                   ),
                   IconButton(
                     key: _settingsButtonKey,
-                    tooltip: _arabic ? 'الإعدادات' : 'Settings',
+                    tooltip: _strings.settings,
                     visualDensity: VisualDensity.compact,
                     padding: EdgeInsets.zero,
                     constraints: const BoxConstraints.tightFor(
@@ -712,7 +724,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                   ),
                   IconButton(
                     key: _accountButtonKey,
-                    tooltip: _arabic ? 'الحساب' : 'Account',
+                    tooltip: _strings.account,
                     visualDensity: VisualDensity.compact,
                     padding: EdgeInsets.zero,
                     constraints: const BoxConstraints.tightFor(
@@ -739,7 +751,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                     children: <Widget>[
                       StudioCaptionButton(
                         icon: Icons.minimize,
-                        tooltip: _arabic ? 'تصغير' : 'Minimize',
+                        tooltip: _strings.minimize,
                         onPressed: StudioWindow.minimize,
                       ),
                       StudioCaptionButton(
@@ -747,13 +759,13 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                             ? Icons.filter_none
                             : Icons.crop_square,
                         tooltip: StudioWindow.maximized
-                            ? (_arabic ? 'استعادة' : 'Restore')
-                            : (_arabic ? 'تكبير' : 'Maximize'),
+                            ? _strings.restore
+                            : _strings.maximize,
                         onPressed: StudioWindow.toggleMaximize,
                       ),
                       StudioCaptionButton(
                         icon: Icons.close,
-                        tooltip: _arabic ? 'إغلاق' : 'Close',
+                        tooltip: _strings.close,
                         onPressed: StudioWindow.close,
                         close: true,
                       ),
@@ -773,17 +785,17 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       children: <Widget>[
         _titleQat(
           Icons.save_outlined,
-          _arabic ? 'حفظ' : 'Save',
+          _strings.save,
           _isSaving || _opening ? null : _saveFile,
         ),
         _titleQat(
           Icons.undo,
-          _arabic ? 'تراجع' : 'Undo',
+          _strings.undo,
           _canMutate && _active.canUndo ? _undo : null,
         ),
         _titleQat(
           Icons.redo,
-          _arabic ? 'إعادة' : 'Redo',
+          _strings.redo,
           _canMutate && _active.canRedo ? _redo : null,
         ),
       ],
@@ -807,10 +819,10 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
 
   String get _chromeTitle {
     final String app = switch (_app) {
-      SuiteApp.word => 'Word',
-      SuiteApp.excel => 'Excel',
-      SuiteApp.powerpoint => 'PowerPoint',
-      SuiteApp.pdf => 'PDF',
+      SuiteApp.word => _strings.documents,
+      SuiteApp.excel => _strings.spreadsheets,
+      SuiteApp.powerpoint => _strings.presentations,
+      SuiteApp.pdf => _strings.pdf,
     };
     return '$_documentLabel — $app';
   }
@@ -871,7 +883,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       _app = app;
       _tab = app == SuiteApp.pdf ? _RibbonTab.view : _RibbonTab.home;
     });
-    StudioWindow.setTitle('$_chromeTitle — Quds Office Studio');
+    StudioWindow.setTitle('$_chromeTitle — CrispOffice Studio');
   }
 
   RelativeRect _menuRectFor(GlobalKey key) {
@@ -913,7 +925,14 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         ),
         PopupMenuItem<String>(
           value: 'lang',
-          child: Text(_arabic ? 'English' : 'العربية'),
+          child: Text(
+            '${_strings.languageLabel}: '
+            '${switch (_language) {
+              StudioLanguage.en => 'English',
+              StudioLanguage.de => 'Deutsch',
+              StudioLanguage.ar => 'العربية',
+            }}',
+          ),
         ),
       ],
     ).then((String? value) {
@@ -924,13 +943,24 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
           _look = SuiteLook.values[(_look.index + 1) % SuiteLook.values.length];
         });
       } else if (value == 'lang') {
-        _toggleArabic();
+        _cycleLanguage();
       }
     });
   }
 
-  void _toggleArabic() {
-    setState(() => _arabic = !_arabic);
+  Future<void> _openMail() => showDialog<void>(
+    context: context,
+    builder: (BuildContext context) => StudioMailDialog(strings: _strings),
+  );
+
+  void _cycleLanguage() {
+    setState(() {
+      _language = switch (_language) {
+        StudioLanguage.en => StudioLanguage.de,
+        StudioLanguage.de => StudioLanguage.ar,
+        StudioLanguage.ar => StudioLanguage.en,
+      };
+    });
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) {
         return;
@@ -1079,7 +1109,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
               ),
               StudioIconCmd(
                 icon: Icons.undo,
-                tooltip: _arabic ? 'تراجع' : 'Undo',
+                tooltip: _strings.undo,
                 accent: _accent,
                 foreground: _officeTheme.chromeText,
                 onPressed:
@@ -1090,7 +1120,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
               ),
               StudioIconCmd(
                 icon: Icons.redo,
-                tooltip: _arabic ? 'إعادة' : 'Redo',
+                tooltip: _strings.redo,
                 accent: _accent,
                 foreground: _officeTheme.chromeText,
                 onPressed:
@@ -1101,10 +1131,10 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
               ),
               StudioIconCmd(
                 icon: Icons.translate,
-                tooltip: _arabic ? 'English' : 'العربية',
+                tooltip: _strings.languageLabel,
                 accent: _accent,
                 foreground: _officeTheme.chromeText,
-                onPressed: _toggleArabic,
+                onPressed: _cycleLanguage,
               ),
               const SizedBox(width: 8),
             ],
@@ -1233,17 +1263,17 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         children: <Widget>[
           _cmd(
             Icons.description_outlined,
-            'Word',
+            _strings.documents,
             _opening || _isSaving ? null : () => _convertOpenPdf('docx'),
           ),
           _cmd(
             Icons.grid_on_outlined,
-            'Excel',
+            _strings.spreadsheets,
             _opening || _isSaving ? null : () => _convertOpenPdf('xlsx'),
           ),
           _cmd(
             Icons.slideshow_outlined,
-            'PowerPoint',
+            _strings.presentations,
             _opening || _isSaving ? null : () => _convertOpenPdf('pptx'),
           ),
         ],
@@ -1439,7 +1469,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     });
     try {
       await SampleLibrary.preload();
-      final OfficeFontSet fontSet = sample.id == 'office-tahreer-word'
+      final OfficeFontSet fontSet = sample.id == 'office-crispoffice-word'
           ? StudioFiles.exportFontSetForWord(SampleLibrary.wordBriefing())
           : StudioFiles.exportFontSetCovering(<String>[
               sample.titleEn,
@@ -1531,29 +1561,44 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
           _cmd(Icons.zoom_out, _arabic ? 'تصغير' : 'Zoom out', () {
             _pdf.zoomBy(1 / 1.1);
           }),
-          _cmd(Icons.fit_screen_outlined, _arabic ? 'عرض' : 'Fit width', () {
-            _togglePdfOption(() {
-              _pdfFitPolicy = PdfFitPolicy.width;
-              _pdf.fitVisibleWidth();
-            });
-          }, selected: _pdfFitPolicy == PdfFitPolicy.width),
-          _cmd(Icons.aspect_ratio, _arabic ? 'صفحة' : 'Fit page', () {
-            _togglePdfOption(() {
-              _pdfFitPolicy = PdfFitPolicy.page;
-              final Size e = _pdf.viewport.extent;
-              _pdf.fitPage(
-                e.width > 0 ? e.width : 720,
-                e.height > 0 ? e.height : 900,
-              );
-            });
-          }, selected: _pdfFitPolicy == PdfFitPolicy.page),
-          _cmd(Icons.height, _arabic ? 'ارتفاع' : 'Fit height', () {
-            _togglePdfOption(() {
-              _pdfFitPolicy = PdfFitPolicy.height;
-              final double h = _pdf.viewport.extent.height;
-              _pdf.fitHeight(h > 0 ? h : 900);
-            });
-          }, selected: _pdfFitPolicy == PdfFitPolicy.height),
+          _cmd(
+            Icons.fit_screen_outlined,
+            _arabic ? 'عرض' : 'Fit width',
+            () {
+              _togglePdfOption(() {
+                _pdfFitPolicy = PdfFitPolicy.width;
+                _pdf.fitVisibleWidth();
+              });
+            },
+            selected: _pdfFitPolicy == PdfFitPolicy.width,
+          ),
+          _cmd(
+            Icons.aspect_ratio,
+            _arabic ? 'صفحة' : 'Fit page',
+            () {
+              _togglePdfOption(() {
+                _pdfFitPolicy = PdfFitPolicy.page;
+                final Size e = _pdf.viewport.extent;
+                _pdf.fitPage(
+                  e.width > 0 ? e.width : 720,
+                  e.height > 0 ? e.height : 900,
+                );
+              });
+            },
+            selected: _pdfFitPolicy == PdfFitPolicy.page,
+          ),
+          _cmd(
+            Icons.height,
+            _arabic ? 'ارتفاع' : 'Fit height',
+            () {
+              _togglePdfOption(() {
+                _pdfFitPolicy = PdfFitPolicy.height;
+                final double h = _pdf.viewport.extent.height;
+                _pdf.fitHeight(h > 0 ? h : 900);
+              });
+            },
+            selected: _pdfFitPolicy == PdfFitPolicy.height,
+          ),
           _cmd(Icons.search, _arabic ? 'بحث' : 'Find', _openFind),
         ],
       ),
@@ -1755,7 +1800,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
           ),
           _cmd(
             Icons.save_outlined,
-            _arabic ? 'حفظ' : 'Save',
+            _strings.save,
             _isSaving || _opening ? null : _saveFile,
           ),
           _cmd(
@@ -1773,15 +1818,30 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       StudioRibbonGroup(
         title: _arabic ? 'وضع العمل' : 'Mode',
         children: <Widget>[
-          _cmd(Icons.edit, _arabic ? 'تحرير' : 'Edit', () {
-            setState(() => _mode = OfficeInteractionMode.editing);
-          }, selected: _mode == OfficeInteractionMode.editing),
-          _cmd(Icons.select_all, _arabic ? 'تحديد' : 'Select', () {
-            setState(() => _mode = OfficeInteractionMode.selecting);
-          }, selected: _mode == OfficeInteractionMode.selecting),
-          _cmd(Icons.visibility, _arabic ? 'عرض' : 'View', () {
-            setState(() => _mode = OfficeInteractionMode.viewing);
-          }, selected: _mode == OfficeInteractionMode.viewing),
+          _cmd(
+            Icons.edit,
+            _arabic ? 'تحرير' : 'Edit',
+            () {
+              setState(() => _mode = OfficeInteractionMode.editing);
+            },
+            selected: _mode == OfficeInteractionMode.editing,
+          ),
+          _cmd(
+            Icons.select_all,
+            _arabic ? 'تحديد' : 'Select',
+            () {
+              setState(() => _mode = OfficeInteractionMode.selecting);
+            },
+            selected: _mode == OfficeInteractionMode.selecting,
+          ),
+          _cmd(
+            Icons.visibility,
+            _arabic ? 'عرض' : 'View',
+            () {
+              setState(() => _mode = OfficeInteractionMode.viewing);
+            },
+            selected: _mode == OfficeInteractionMode.viewing,
+          ),
         ],
       ),
     ];
@@ -3088,12 +3148,12 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         children: <Widget>[
           _cmd(
             Icons.undo,
-            _arabic ? 'تراجع' : 'Undo',
+            _strings.undo,
             _canMutate && _word.canUndo ? _word.undo : null,
           ),
           _cmd(
             Icons.redo,
-            _arabic ? 'إعادة' : 'Redo',
+            _strings.redo,
             _canMutate && _word.canRedo ? _word.redo : null,
           ),
         ],
@@ -3212,12 +3272,12 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         children: <Widget>[
           _cmd(
             Icons.undo,
-            _arabic ? 'تراجع' : 'Undo',
+            _strings.undo,
             _canMutate && _sheet.canUndo ? _sheet.undo : null,
           ),
           _cmd(
             Icons.redo,
-            _arabic ? 'إعادة' : 'Redo',
+            _strings.redo,
             _canMutate && _sheet.canRedo ? _sheet.redo : null,
           ),
         ],
@@ -5403,7 +5463,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
             ),
             const Spacer(),
             IconButton(
-              tooltip: _arabic ? 'إغلاق' : 'Close',
+              tooltip: _strings.close,
               onPressed: () => setState(() => _showPasteOptions = false),
               icon: const Icon(Icons.close, size: 16),
             ),
@@ -5655,7 +5715,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     _word.insertCitation(
       WmlCitation(
         tag: 'Quds',
-        author: _arabic ? 'مكتب القدس' : 'Quds Office',
+        author: _arabic ? 'مكتب القدس' : 'CrispOffice',
         title: _arabic ? 'دليل المكتب' : 'Office Guide',
         year: '2026',
       ),
@@ -6097,7 +6157,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       return;
     }
     setState(() => _showComments = true);
-    _word.insertComment(author: 'Quds Office', initials: 'QO');
+    _word.insertComment(author: 'CrispOffice', initials: 'QO');
   }
 
   void _setShowComments(bool show) {
@@ -7367,7 +7427,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
 
   void _resetWord() {
     _wordPath = null;
-    _wordName = 'Al Tahreer Neighbourhood Profile.docx';
+    _wordName = 'CrispOffice product brief.docx';
     _word.document = SampleLibrary.wordBriefing();
     _word.documentCaret.paragraphIndex = 0;
     _word.documentCaret.logicalIndex = 0;

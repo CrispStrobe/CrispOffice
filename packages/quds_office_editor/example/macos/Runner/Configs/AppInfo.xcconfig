@@ -8,7 +8,7 @@
 PRODUCT_NAME = quds_office_studio
 
 // The application's bundle identifier
-PRODUCT_BUNDLE_IDENTIFIER = org.quds.qudsOfficeStudio
+PRODUCT_BUNDLE_IDENTIFIER = com.quds.qudsOfficeStudio
 
 // The copyright displayed in application information
-PRODUCT_COPYRIGHT = Copyright © 2026 org.quds. All rights reserved.
+PRODUCT_COPYRIGHT = Copyright © 2026 com.quds. All rights reserved.

@@ -23,6 +23,12 @@ dependencies:
     path: ../../quds_proofing_hunspell
   quds_proofing_spacy:
     path: ../../quds_proofing_spacy
+  quds_mail_core:
+    path: ../../quds_mail_core
+  quds_mail_mime:
+    path: ../../quds_mail_mime
+  quds_mail_ui:
+    path: ../../quds_mail_ui
   window_manager: ^0.5.1
 
 dev_dependencies:
@@ -33,6 +39,5 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - assets/al_tahreer/
     - assets/licenses/hunspell/
     - fonts/

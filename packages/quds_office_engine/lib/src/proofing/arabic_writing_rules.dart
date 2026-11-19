@@ -3,6 +3,8 @@ import 'package:characters/characters.dart';
 import 'office_proofing.dart';
 import 'proofing_text_ranges.dart';
 
+part 'arabic_extended_rules.dart';
+
 /// Independently authored Modern Standard Arabic writing checks.
 ///
 /// The word lists and messages were written for Quds from general knowledge
@@ -11,12 +13,23 @@ import 'proofing_text_ranges.dart';
 /// on syntax or meaning are either offered with several suggestions or left
 /// out (for example `علي` is also the name Ali, `فان` is also "perishing").
 ///
-/// Matching ignores harakat (U+064B–U+065F, U+0670) and tatweel (U+0640), but
-/// findings always cover the original source text and suggestions keep the
+/// Matching ignores harakat (U+064B–U+065F except U+0653–U+0655, plus U+0670)
+/// and tatweel (U+0640). Combining maddah and hamza remain part of the spelling.
+/// Findings always cover the original source text and suggestions keep the
 /// writer's harakat, replacing only the corrected letters. Offsets are
 /// original UTF-16 offsets; the text is never rewritten. Links, email
 /// addresses and closed backtick spans are excluded.
 class ArabicWritingRulesProvider extends OfficeProofingProvider {
+  /// [enabledOptionalRuleIds] opts in to rules from
+  /// [arabicExtendedOptionalRuleIds] (prescriptive usage, vowelling hints and
+  /// other convention-dependent checks); all other rules run by default.
+  ArabicWritingRulesProvider({
+    Set<String> enabledOptionalRuleIds = const <String>{},
+  }) : enabledOptionalRuleIds = Set<String>.unmodifiable(
+         enabledOptionalRuleIds.intersection(arabicExtendedOptionalRuleIds),
+       );
+
+  final Set<String> enabledOptionalRuleIds;
   bool _disposed = false;
 
   @override
@@ -42,6 +55,14 @@ class ArabicWritingRulesProvider extends OfficeProofingProvider {
     'ar.repetition.word',
     'ar.spacing.conjunction-waw',
     'ar.digits.mixed',
+  };
+
+  /// Every rule id: the original set, the default-on extension and the
+  /// opt-in extension (see `arabic_extended_rules.dart`).
+  static const Set<String> allRuleIds = <String>{
+    ...ruleIds,
+    ...arabicExtendedDefaultRuleIds,
+    ...arabicExtendedOptionalRuleIds,
   };
 
   /// Words that begin with hamzat al-qat' (bare spelling -> corrected
@@ -203,6 +224,11 @@ class ArabicWritingRulesProvider extends OfficeProofingProvider {
   static final RegExp _word = RegExp('[$_letters][$_letters$_marks]*');
   static final RegExp _mark = RegExp('[$_marks]');
   static final RegExp _arabicLetter = RegExp('[$_letters]');
+  static const Set<String> _orthographicMarks = <String>{
+    '\u0653', // Combining maddah above.
+    '\u0654', // Combining hamza above.
+    '\u0655', // Combining hamza below.
+  };
 
   /// The bare spelling and, for each bare letter, its source offset.
   static (String, List<int>) _bare(String word) {
@@ -210,7 +236,7 @@ class ArabicWritingRulesProvider extends OfficeProofingProvider {
     final List<int> positions = <int>[];
     for (int i = 0; i < word.length; i++) {
       final String unit = word[i];
-      if (_mark.hasMatch(unit)) continue;
+      if (_mark.hasMatch(unit) && !_orthographicMarks.contains(unit)) continue;
       bare.write(unit);
       positions.add(i);
     }
@@ -505,6 +531,17 @@ class ArabicWritingRulesProvider extends OfficeProofingProvider {
         replacements: <String>[digits(0x660), digits(0x30)],
       );
     }
+
+    _ArabicExtendedRules(
+      text,
+      words,
+      protected,
+      add,
+      (String ruleId) =>
+          !request.ignoredRuleIds.contains(ruleId) &&
+          (!arabicExtendedOptionalRuleIds.contains(ruleId) ||
+              enabledOptionalRuleIds.contains(ruleId)),
+    ).run();
 
     findings.sort((a, b) => a.start.compareTo(b.start));
     return OfficeProofingResult(

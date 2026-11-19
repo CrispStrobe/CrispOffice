@@ -1,7 +1,9 @@
 # Arabic proofing roadmap
 
 Accepted: 19 November 2026. Scope: Arabic spelling first, then grammar rules,
-then optional model-backed analysis. Nothing here is enabled by default yet.
+then optional model-backed analysis. Built-in Arabic writing rules now run for
+Arabic-script Arabic paragraphs. Downloadable dictionary integration and
+model-backed analysis remain planned; no Arabic resource is downloaded by default.
 
 ## Constraints
 
@@ -45,7 +47,8 @@ then optional model-backed analysis. Nothing here is enabled by default yet.
    adds the MPL 1.1 text, a manifest and a card, and can publish the bundle to
    Hugging Face. Publishing includes only the manifest-listed files and
    `manifest.json`; unrelated files in a reused output directory are excluded.
-   The Hunspell adapter and in-app Arabic download workflow remain planned.
+   The Hunspell adapter package is implemented (step 2); host registration and
+   the in-app Arabic download workflow remain open.
    The upstream GitHub copy (`linuxscout/ayaspell`
    `36a90abb`) is not used: its `.dic` contains file-concatenation separators
    and its `.aff` differs, and Hunspell 1.7.2 rejects common forms such as
@@ -131,16 +134,19 @@ then optional model-backed analysis. Nothing here is enabled by default yet.
    - style: immediate repetition of 26 closed-class words;
    - style: numbers that mix Western and Arabic-Indic digits.
 
-   Matching ignores harakat and tatweel. Suggestions keep the writer's
-   harakat. Findings use original UTF-16 offsets, and links, email and code
+   Matching ignores harakat and tatweel while preserving combining maddah and
+   hamza (U+0653–U+0655) as spelling content. Correct decomposed spellings are
+   left unchanged. Suggestions keep the writer's harakat. Findings use original
+   UTF-16 offsets, and links, email and code
    spans are excluded. Ambiguous words are left out on purpose: `علي` (the
    name Ali), `فان` ("perishing"), indefinite `مدرسه` ("his teacher").
 
    Tests:
-   - 69 engine tests: 39 positive cases covering every rule, 23 zero-finding
+   - 73 engine tests: 39 positive cases covering every rule, 23 zero-finding
      controls (hamzat al-wasl words, names, emphatic repetition, consistent
      digits, Latin text, protected spans), plus ambiguity, offset, ignore,
-     language and dispose checks;
+     language and dispose checks, three decomposed hamza/maddah controls and a
+     correction-offset regression that preserves those spellings;
    - 2 editor integration tests: default session on an `ar-SA` run with an
      applied suggestion, and silence on German text.
 
@@ -157,6 +163,114 @@ then optional model-backed analysis. Nothing here is enabled by default yet.
 
    Interpreting LanguageTool's Arabic rules is assessed
    [below](#languagetool-arabic-assessment-v68).
+3b. **Clean-room extension: tier T1 implemented (19 November 2026).** A
+   separate "dirty-room" agent studied LanguageTool ar v6.8, Fareh, Ghalatawi
+   and the aghlat list and wrote an abstract functional
+   [specification](arabic-rule-spec.md) without any copied lists, messages,
+   examples, IDs or patterns (reviewed: it contains no Arabic script, regexes,
+   rule IDs or tag strings). An independent implementer who had not seen those
+   sources wrote the MIT rules **from the spec only**: every word list,
+   message, example and test sentence was authored from general knowledge of
+   MSA, and none of those sources (or Arramooz/Qalsadi) was opened.
+
+   Code: `arabic_extended_rules.dart`, a `part` of
+   `ArabicWritingRulesProvider` (same provider id, no registration change).
+   Opt-in rules are enabled with
+   `ArabicWritingRulesProvider(enabledOptionalRuleIds: {...})`; only ids in
+   `arabicExtendedOptionalRuleIds` are accepted. All conventions of step 3
+   hold: harakat-insensitive matching, the writer's harakat kept where the
+   letter count is unchanged, original UTF-16 offsets, URLs/e-mail/code spans
+   excluded, reviewable suggestions only.
+
+   Default-on rules (19), with spec category, positive cases / zero-finding
+   controls in `arabic_extended_rules_test.dart`:
+
+   | Rule id | Spec | + | controls |
+   |---|---|---|---|
+   | `ar.punctuation.doubled` (`،،` `؛؛` `..`, not `...`) | P3 | 3 | 1 |
+   | `ar.punctuation.unpaired` (`()[]{}`, `«»`, `﴿﴾`, curly and straight `"`; either-order pairs; list labels `1)`/`أ)` and a paragraph-initial open quote exempt) | P4 | 5 | 9 |
+   | `ar.spacing.multiple` | P5 | 1 | 1 |
+   | `ar.spacing.after-sentence` (`. ! ؟ :` glued to the next Arabic word; single-letter abbreviations exempt) | P5 | 2 | 2 |
+   | `ar.spacing.run-together` (ة or ى inside a word) | S6 | 3 | 2 |
+   | `ar.spacing.theophoric` (`عبدالله` → `عبد الله`, 57 authored names) | T1-b | 3 | 2 |
+   | `ar.hamza.maqsura-hamza` (`ىء` → `ئ`) | S5 | 3 | 2 |
+   | `ar.hamza.wasl-measure` (verbal nouns of measures VII, VIII, X and hollow X written with إ; templates, not a list) | S2 generative | 7 | 9 |
+   | `ar.spelling.common` (54 frozen misspellings) | S2/S9 list | 5 | 2 |
+   | `ar.consistency.spelling` (10 groups of two accepted spellings, e.g. مسؤول/مسئول, مئة/مائة; scope: one paragraph) | S8 | 2 | 2 |
+   | `ar.date.weekday` (weekday + day + month name + year; three month-name series) | M1 | 4 | 4 |
+   | `ar.date.invalid-day` (31 April, 29 February in a common year) | M1 | 2 | 1 |
+   | `ar.date.implausible-year` (five digits after a year/month/season word) | M2 | 2 | 3 |
+   | `ar.grammar.hal-particle` (هل + negator / إنّ / إذا / لو) | G14 | 4 | 3 |
+   | `ar.redundancy.double-future` (سوف + سـ) | L6 | 2 | 3 |
+   | `ar.redundancy.phrase` (9 authored pleonasm patterns) | L6 | 5 | 4 |
+   | `ar.expression.error` (لا سيما, إن شاء الله, على حدة) | L2 | 3 | 4 |
+   | `ar.register.colloquial` (40 dialect words without an MSA homograph) | L4 | 3 | 3 |
+   | `ar.repetition.content-word` (distributive accusatives and tanwin, two-letter initials exempt) | L8 | 1 | 4 |
+
+   Opt-in rules (13): prescriptive usage, register and hints, as the spec
+   advises:
+
+   | Rule id | Spec | + | controls |
+   |---|---|---|---|
+   | `ar.usage.baynama-initial` | G13 | 1 | 1 |
+   | `ar.usage.talama` (→ ما دام) | G13 | 2 | 1 |
+   | `ar.usage.imma-aw` (إمّا … أو → وإمّا) | G13 | 1 | 1 |
+   | `ar.usage.kullama-repeated` | G13 | 1 | 1 |
+   | `ar.usage.abadan-past` (لم … أبدًا → قطّ) | G13 | 2 | 1 |
+   | `ar.usage.expression` (اختار بين, بين … وبين, لمدة, لا زال, بعضهم البعض, كما وأن) | L2 | 4 | 4 |
+   | `ar.usage.word` (26 forms of 6 lexemes: ساهم, هام, تواجد, مبروك, سويا, مدراء) | L3 | 2 | 1 |
+   | `ar.style.wordiness` (8 patterns) | L6 | 2 | 1 |
+   | `ar.style.long-sentence` (> 80 words) | L9 | 1 | 2 |
+   | `ar.style.tanwin-placement` (اً → ًا) | T1-a | 1 | 2 |
+   | `ar.register.loanword` (28 entries) | L4 | 1 | 1 |
+   | `ar.hint.vowelling` (20 words, unvowelled occurrences only) | L7 | 3 | 1 |
+   | `ar.hint.dad-za` (5 rare→frequent ض/ظ pairs) | S10 | 1 | 1 |
+
+   Tests: 195 new engine tests (81 positive cases, 68 default and 16 opt-in
+   zero-finding controls, 21 "off by default" checks, plus RTL offset tests
+   with an emoji and harakat, a phrase found on the harakat-free text, an
+   Arabic-Indic date, protected spans, ignore and opt-in filtering). The 69
+   step-3 tests are unchanged; the engine proofing suite passes 1,384 tests
+   (1,189 before) and the two editor integration tests pass.
+
+   **False-positive check on UD Arabic-PUD** (r2.14 test, 1,000 `# text =`
+   news sentences, CC BY-SA, evaluation only, not committed), every rule
+   enabled:
+   - **default-on extension: 1 finding in total** —
+     `ar.punctuation.unpaired` 1 (a quotation that continues into the next
+     sentence of the source paragraph; a corpus segmentation artifact). All
+     other 18 default-on rules: 0. Two rules were tightened after the first
+     run: `ar.hamza.wasl-measure` hit the place name إنديانا (the bare
+     accusative-alif suffix was removed from the templates) and
+     `ar.repetition.content-word` hit `بي بي سي`/`إس إس` (two-letter tokens
+     exempted).
+   - opt-in: `ar.style.tanwin-placement` 443 (PUD writes tanwin on the
+     alif; this is the convention choice the rule exists for),
+     `ar.hint.vowelling` 37, `ar.usage.expression` 6 (لمدة ×3, بعضهم البعض
+     ×2, لا زال ×1), `ar.style.wordiness` 6, `ar.usage.word` 3,
+     `ar.usage.imma-aw` 1; all are the intended prescriptive targets. The
+     ض/ظ hint fired 5 times on the frequent word ظل before it was limited
+     to the rare member of each pair; now 0.
+   - for reference, the step-3 rules on the same corpus:
+     `ar.punctuation.arabic-mark` 651 (PUD uses Latin commas),
+     `ar.style.tatweel` 13, `ar.repetition.word` 7,
+     `ar.spacing.conjunction-waw` 1.
+
+   Limitations: consistency is per paragraph (the request carries one block;
+   a document-wide pass belongs to the host); dates are day–month-name–year
+   only (no numeric or month-first dates, Hijri dates are skipped); straight
+   single quotes are not paired (apostrophes in transliteration); the
+   Hijri abbreviation `هـ` still triggers the step-3 tatweel rule.
+
+   **Deferred.** T1 items left out: S3/S4 list extensions (indefinite ta
+   marbuta is ambiguous with the ha pronoun), S10 context selection, verb
+   forms of the wasl templates (collide with loanwords such as إستبرق).
+   T2 (needs the morphology lexicon, Camel Morph MSA under consideration):
+   G10/G11 numerals, G5 jussive, G7/G8 case of duals and plurals, G2, G6,
+   G15 transitivity, L1 collocations, L5 light verbs, S7 particle merging,
+   S9 inflected forms, S1 general spelling, L2/L3 lemma variants, the
+   tense-aware part of G13 and G14's future restriction. T3 (needs a
+   disambiguator): G1, G3, G4, G12 and kana/inna predicate case.
 4. **Model-backed analysis (optional, owner decision).** Either accept the
    CAMeL weights' training-data risk and port them natively like the spaCy
    transformer pipelines, or train our own licence-clean models:
@@ -246,4 +360,3 @@ verb transitivity, number phrases), which need the GPL dictionary.
 most of the Arabic module) whether the Arramooz-derived dictionaries and
 Fareh could be offered under MPL-2.0 or LGPL. That would remove the
 GPL-download separation but would not reduce the engine work.
-
