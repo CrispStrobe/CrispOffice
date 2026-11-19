@@ -31,6 +31,25 @@ mail.MimeMessage _message(String subject) => mail.MimeMessage.parseFromText(
   'Body of $subject.\r\n',
 );
 
+mail.MimeMessage _actionMessage(
+  String subject, {
+  String body = '',
+  String? replyTo,
+  int uid = 41,
+}) =>
+    mail.MimeMessage.parseFromText(
+        'From: Writer <writer@example.invalid>\r\n'
+        'To: Reader <reader@example.invalid>\r\n'
+        '${replyTo == null ? '' : 'Reply-To: $replyTo\r\n'}'
+        'Subject: $subject\r\n'
+        'Date: Tue, 17 Nov 2026 09:30:00 +0000\r\n'
+        'Content-Type: text/plain; charset=utf-8\r\n'
+        '\r\n'
+        '$body',
+      )
+      ..uid = uid
+      ..sequenceId = 1;
+
 final class _Client extends Fake implements mail.MailClient {
   final boxes = <mail.Mailbox>[_box('INBOX'), _box('Archive')];
   final messages = <mail.MimeMessage>[
@@ -42,6 +61,7 @@ final class _Client extends Fake implements mail.MailClient {
   Future<List<mail.MimeMessage>> Function()? onFetch;
   Future<mail.Mailbox> Function(mail.Mailbox)? onSelect;
   Future<mail.MimeMessage> Function(mail.MimeMessage)? onContents;
+  Future<void> Function(mail.MessageSequence)? onMarkSeen;
   Future<void> Function(mail.MimeMessage)? onSend;
   Object? disconnectFailure;
   int connects = 0;
@@ -52,6 +72,7 @@ final class _Client extends Fake implements mail.MailClient {
   final sent = <mail.MimeMessage>[];
   final appendRequests = <bool>[];
   final recipientLists = <List<mail.MailAddress>?>[];
+  final markSeenRequests = <mail.MessageSequence>[];
   mail.Mailbox? _selectedMailbox;
 
   @override
@@ -110,6 +131,15 @@ final class _Client extends Fake implements mail.MailClient {
     List<mail.MediaToptype>? includedInlineTypes,
     Duration? responseTimeout,
   }) async => await onContents?.call(message) ?? message;
+
+  @override
+  Future<void> markSeen(
+    mail.MessageSequence sequence, {
+    int? unchangedSinceModSequence,
+  }) async {
+    markSeenRequests.add(sequence);
+    await onMarkSeen?.call(sequence);
+  }
 
   @override
   Future<void> sendMessage(
@@ -229,6 +259,14 @@ Future<void> _compose(WidgetTester tester) async {
 
 MailReaderController _reader(WidgetTester tester) =>
     tester.widget<MailMessageView>(find.byType(MailMessageView)).controller;
+
+String _draftBody(WidgetTester tester) => tester
+    .widget<QudsWordEditor>(find.byType(QudsWordEditor))
+    .controller
+    .document
+    .paragraphs
+    .map((paragraph) => paragraph.text)
+    .join('\n');
 
 void main() {
   testWidgets('manual setup connects with secure settings and disconnects', (
@@ -700,4 +738,291 @@ void main() {
     expect(saved.isDisposed, isTrue);
     expect(client.disconnects, 1);
   });
+
+  testWidgets(
+    'reply quotes the loaded body and uses Reply-To without resending',
+    (tester) async {
+      const subject = 'Re: Loaded reply';
+      const replyTo = 'Replies <replies@example.invalid>';
+      final envelope = _actionMessage(subject, replyTo: replyTo);
+      final full = _actionMessage(
+        subject,
+        replyTo: replyTo,
+        body: 'Loaded reply line one.\r\nLoaded reply line two.\r\n',
+      );
+      final client = _Client();
+      client.messages
+        ..clear()
+        ..add(envelope);
+      client.onContents = (message) async {
+        expect(message, same(envelope));
+        return full;
+      };
+      expect(envelope.decodeTextPlainPart() ?? '', isEmpty);
+      await _open(tester, (_) => client);
+      await _connect(tester);
+      await tester.tap(find.text(subject));
+      await _pump(tester);
+      final reader = _reader(tester);
+      expect(reader.decodedText, contains('Loaded reply line one.'));
+      await tester.tap(find.byTooltip(_strings.reply));
+      await _pump(tester);
+      expect(find.byType(StudioMailComposeDialog), findsOneWidget);
+      expect(
+        tester.widget<TextField>(_field(_strings.to)).controller!.text,
+        'replies@example.invalid',
+      );
+      expect(
+        tester.widget<TextField>(_field(_strings.subject)).controller!.text,
+        subject,
+      );
+      expect(_draftBody(tester), contains('writer@example.invalid wrote:'));
+      expect(_draftBody(tester), contains('> Loaded reply line one.'));
+      expect(_draftBody(tester), contains('> Loaded reply line two.'));
+      expect(client.sent, isEmpty);
+      await tester.tap(find.text(_strings.cancel));
+      await _pump(tester);
+      expect(_reader(tester), same(reader));
+      expect(client.sent, isEmpty);
+      await _close(tester);
+    },
+  );
+
+  testWidgets('forward quotes the loaded body and requires a new recipient', (
+    tester,
+  ) async {
+    const subject = 'Loaded forward';
+    final envelope = _actionMessage(subject);
+    final full = _actionMessage(
+      subject,
+      body: 'Loaded forward payload.\r\nSecond forwarded line.\r\n',
+    );
+    final client = _Client();
+    client.messages
+      ..clear()
+      ..add(envelope);
+    client.onContents = (message) async {
+      expect(message, same(envelope));
+      return full;
+    };
+    expect(envelope.decodeTextPlainPart() ?? '', isEmpty);
+    await _open(tester, (_) => client);
+    await _connect(tester);
+    await tester.tap(find.text(subject));
+    await _pump(tester);
+    expect(_reader(tester).decodedText, contains('Loaded forward payload.'));
+    await tester.tap(find.byTooltip(_strings.forward));
+    await _pump(tester);
+    expect(find.byType(StudioMailComposeDialog), findsOneWidget);
+    expect(
+      tester.widget<TextField>(_field(_strings.to)).controller!.text,
+      isEmpty,
+    );
+    expect(
+      tester.widget<TextField>(_field(_strings.subject)).controller!.text,
+      'Fwd: Loaded forward',
+    );
+    expect(_draftBody(tester), contains('From: writer@example.invalid'));
+    expect(_draftBody(tester), contains('Subject: Loaded forward'));
+    expect(_draftBody(tester), contains('> Loaded forward payload.'));
+    expect(_draftBody(tester), contains('> Second forwarded line.'));
+    expect(client.sent, isEmpty);
+    await tester.tap(find.widgetWithText(FilledButton, _strings.send));
+    await _pump(tester);
+    expect(find.byType(StudioMailComposeDialog), findsOneWidget);
+    expect(client.sent, isEmpty);
+    await tester.tap(find.text(_strings.cancel));
+    await _pump(tester);
+    await _close(tester);
+  });
+
+  testWidgets(
+    'mark read owns the pending action and permits retry after failure',
+    (tester) async {
+      final client = _Client();
+      final message = client.messages.first..uid = 41;
+      final failedAttempt = Completer<void>();
+      final successfulRetry = Completer<void>();
+      var attempt = 0;
+      client.onMarkSeen = (_) =>
+          attempt++ == 0 ? failedAttempt.future : successfulRetry.future;
+      try {
+        await _open(tester, (_) => client);
+        await _connect(tester);
+        await tester.tap(find.text('First message'));
+        await _pump(tester);
+        final reader = _reader(tester);
+        expect(message.isSeen, isFalse);
+        final markRead = tester
+            .widget<IconButton>(find.byTooltip(_strings.markRead))
+            .onPressed!;
+        markRead();
+        markRead();
+        await _pump(tester);
+        expect(client.markSeenRequests, hasLength(1));
+        expect(client.markSeenRequests.single.isUidSequence, isTrue);
+        expect(client.markSeenRequests.single.toList(), <int>[41]);
+        expect(message.isSeen, isFalse);
+        for (final tooltip in [
+          _strings.markRead,
+          _strings.reply,
+          _strings.forward,
+        ]) {
+          expect(
+            tester.widget<IconButton>(find.byTooltip(tooltip)).onPressed,
+            isNull,
+          );
+        }
+        expect(
+          tester
+              .widget<TextButton>(
+                find.widgetWithText(TextButton, _strings.compose),
+              )
+              .onPressed,
+          isNull,
+        );
+        await tester.tap(find.text('Archive'));
+        await _pump(tester);
+        expect(client.selections, 0);
+        expect(_reader(tester), same(reader));
+
+        failedAttempt.completeError(StateError('private mark-read failure'));
+        await _pump(tester);
+        expect(message.isSeen, isFalse);
+        expect(find.text(_strings.mailMessageFailed), findsOneWidget);
+        expect(find.textContaining('private mark-read failure'), findsNothing);
+        expect(
+          tester
+              .widget<IconButton>(find.byTooltip(_strings.markRead))
+              .onPressed,
+          isNotNull,
+        );
+        expect(
+          tester
+              .widget<TextButton>(
+                find.widgetWithText(TextButton, _strings.compose),
+              )
+              .onPressed,
+          isNotNull,
+        );
+        await tester.tap(find.byTooltip(_strings.markRead));
+        await _pump(tester);
+        expect(client.markSeenRequests, hasLength(2));
+        expect(client.markSeenRequests.last.toList(), <int>[41]);
+        expect(find.text(_strings.mailMessageFailed), findsNothing);
+        expect(message.isSeen, isFalse);
+        successfulRetry.complete();
+        await _pump(tester);
+        expect(message.isSeen, isTrue);
+        expect(
+          tester
+              .widget<IconButton>(find.byTooltip(_strings.markRead))
+              .onPressed,
+          isNull,
+        );
+        expect(
+          tester.widget<IconButton>(find.byTooltip(_strings.reply)).onPressed,
+          isNotNull,
+        );
+        expect(_reader(tester), same(reader));
+        expect(client.sent, isEmpty);
+        await _close(tester);
+      } finally {
+        if (!failedAttempt.isCompleted) failedAttempt.complete();
+        if (!successfulRetry.isCompleted) successfulRetry.complete();
+        await tester.pump();
+      }
+    },
+  );
+
+  for (final fail in [false, true]) {
+    testWidgets(
+      'late mark-read ${fail ? 'error' : 'success'} cannot mutate a reconnected session',
+      (tester) async {
+        final first = _Client();
+        final second = _Client();
+        final oldMessage = first.messages.first..uid = 41;
+        final newMessage = second.messages.first..uid = 52;
+        final clients = [first, second];
+        final oldRequest = Completer<void>();
+        final newRequest = Completer<void>();
+        first.onMarkSeen = (_) => oldRequest.future;
+        second.onMarkSeen = (_) => newRequest.future;
+        try {
+          await _open(tester, (_) => clients.removeAt(0));
+          await _connect(tester);
+          await tester.tap(find.text('First message'));
+          await _pump(tester);
+          final oldReader = _reader(tester);
+          await tester.tap(find.byTooltip(_strings.markRead));
+          await _pump(tester);
+          expect(first.markSeenRequests, hasLength(1));
+          await tester.tap(find.byTooltip(_strings.disconnect));
+          await _pump(tester);
+          expect(oldReader.isDisposed, isTrue);
+          await tester.enterText(
+            _field(_strings.password),
+            'new-session-password',
+          );
+          await _connect(tester);
+          await tester.tap(find.text('First message'));
+          await _pump(tester);
+          final newReader = _reader(tester);
+          await tester.tap(find.byTooltip(_strings.markRead));
+          await _pump(tester);
+          expect(second.markSeenRequests, hasLength(1));
+          expect(second.markSeenRequests.single.isUidSequence, isTrue);
+          expect(second.markSeenRequests.single.toList(), <int>[52]);
+          if (fail) {
+            oldRequest.completeError(
+              StateError('private stale mark-read failure'),
+            );
+          } else {
+            oldRequest.complete();
+          }
+          await _pump(tester);
+          expect(oldMessage.isSeen, isFalse);
+          expect(newMessage.isSeen, isFalse);
+          expect(_reader(tester), same(newReader));
+          expect(newReader.isDisposed, isFalse);
+          expect(
+            tester
+                .widget<IconButton>(find.byTooltip(_strings.markRead))
+                .onPressed,
+            isNull,
+          );
+          expect(
+            tester
+                .widget<TextButton>(
+                  find.widgetWithText(TextButton, _strings.compose),
+                )
+                .onPressed,
+            isNull,
+          );
+          expect(find.text(_strings.mailMessageFailed), findsNothing);
+          expect(
+            find.textContaining('private stale mark-read failure'),
+            findsNothing,
+          );
+          expect(second.disconnects, 0);
+          newRequest.complete();
+          await _pump(tester);
+          expect(oldMessage.isSeen, isFalse);
+          expect(newMessage.isSeen, isTrue);
+          expect(
+            tester.widget<IconButton>(find.byTooltip(_strings.reply)).onPressed,
+            isNotNull,
+          );
+          expect(first.markSeenRequests, hasLength(1));
+          expect(second.markSeenRequests, hasLength(1));
+          expect(tester.takeException(), isNull);
+          await _close(tester);
+        } finally {
+          if (!oldRequest.isCompleted) oldRequest.complete();
+          if (!newRequest.isCompleted) newRequest.complete();
+          await tester.pump();
+        }
+      },
+    );
+  }
 }

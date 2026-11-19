@@ -309,7 +309,11 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
     },
   );
 
-  Future<void> _compose() => runStudioMailOperation(() async {
+  Future<void> _compose() => _openComposer(null);
+
+  Future<void> _openComposer(
+    StudioMailDraft? initial,
+  ) => runStudioMailOperation(() async {
     final client = _client;
     final account = _account;
     if (client == null || account == null || _busy) return;
@@ -323,7 +327,7 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
       builder: (context) => StudioMailComposeDialog(
         strings: widget.strings,
         from: account.email,
-        initialDraft: _draft,
+        initialDraft: initial ?? _draft,
         previousSubmissionUncertain: _submissionUncertain,
       ),
     );
@@ -373,6 +377,78 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
           _error = attempted
               ? widget.strings.mailSubmissionUncertain
               : widget.strings.mailInvalidSender;
+        });
+      }
+    }
+  });
+
+  StudioMailDraft? _replyDraft({required bool forward}) {
+    final message = _reader?.result.message;
+    if (_selected == null || message == null) return null;
+    // The selected list item contains only an envelope. Quote the full message
+    // already decoded by the bounded reader, without reparsing native MIME.
+    final envelope = message.envelope;
+    final subject = envelope.subject;
+    final prefix = forward ? 'Fwd: ' : 'Re: ';
+    final replyTo = forward
+        ? ''
+        : (envelope.replyTo.firstOrNull?.address ??
+              envelope.from.firstOrNull?.address ??
+              '');
+    final quoted = (message.body.plainText ?? '').trim();
+    final clipped = quoted.length > 8000
+        ? '${quoted.substring(0, 8000)}\n…'
+        : quoted;
+    final header = forward
+        ? '---------- Forwarded message ----------\n'
+              'From: ${envelope.from.firstOrNull?.address ?? ''}\n'
+              'Date: ${envelope.sentAt?.toLocal() ?? ''}\n'
+              'Subject: $subject\n\n'
+        : 'On ${envelope.sentAt?.toLocal() ?? ''}, '
+              '${envelope.from.firstOrNull?.address ?? ''} wrote:\n';
+    return StudioMailDraft(
+      to: replyTo,
+      subject: subject.toLowerCase().startsWith(prefix.trim().toLowerCase())
+          ? subject
+          : '$prefix$subject',
+      body:
+          '\n\n$header${clipped.split('\n').map((line) => '> $line').join('\n')}',
+    );
+  }
+
+  Future<void> _reply() async {
+    final draft = _replyDraft(forward: false);
+    if (draft != null) await _openComposer(draft);
+  }
+
+  Future<void> _forward() async {
+    final draft = _replyDraft(forward: true);
+    if (draft != null) await _openComposer(draft);
+  }
+
+  Future<void> _markRead() => runStudioMailOperation(() async {
+    final client = _client;
+    final message = _selected;
+    if (client == null || message == null || _busy) return;
+    final generation = _sessionGeneration;
+    setState(() {
+      _busy = true;
+      _error = null;
+      _notice = null;
+    });
+    try {
+      await client.markSeen(mail.MessageSequence.fromMessage(message));
+      if (!_currentSession(client, generation)) return;
+      setState(() {
+        message.setFlag(mail.MessageFlags.seen, true);
+        _busy = false;
+        _error = null;
+      });
+    } on Object {
+      if (_currentSession(client, generation)) {
+        setState(() {
+          _busy = false;
+          _error = widget.strings.mailMessageFailed;
         });
       }
     }
@@ -749,7 +825,14 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
                     Expanded(
                       child: _reader == null
                           ? Center(child: Text(widget.strings.noMessage))
-                          : MailMessageView(controller: _reader!),
+                          : Column(
+                              children: <Widget>[
+                                _messageActions(),
+                                Expanded(
+                                  child: MailMessageView(controller: _reader!),
+                                ),
+                              ],
+                            ),
                     ),
                   ],
                 ),
@@ -757,6 +840,31 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
       ],
     );
   }
+
+  Widget _messageActions() => Align(
+    alignment: AlignmentDirectional.centerEnd,
+    child: Row(
+      mainAxisSize: MainAxisSize.min,
+      children: <Widget>[
+        IconButton(
+          onPressed: _busy ? null : _reply,
+          tooltip: widget.strings.reply,
+          icon: const Icon(Icons.reply_outlined),
+        ),
+        IconButton(
+          onPressed: _busy ? null : _forward,
+          tooltip: widget.strings.forward,
+          icon: const Icon(Icons.forward_outlined),
+        ),
+        IconButton(
+          onPressed: _busy || (_selected?.isSeen ?? true) ? null : _markRead,
+          tooltip: widget.strings.markRead,
+          icon: const Icon(Icons.mark_email_read_outlined),
+        ),
+        const SizedBox(width: 8),
+      ],
+    ),
+  );
 
   Widget _compactInbox(BuildContext context, List<mail.MimeMessage> visible) {
     if (_reader != null && _showCompactMessage) {
@@ -778,6 +886,7 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
               ),
             ],
           ),
+          _messageActions(),
           Expanded(child: MailMessageView(controller: _reader!)),
         ],
       );
