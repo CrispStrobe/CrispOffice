@@ -41,10 +41,11 @@ as data, never as executable code) and the resource assessment. First step:
 the AyaSpell Hunspell dictionary under its MPL 1.1 option, built reproducibly by
 `tools/proofing/ayaspell/build_bundle.py` from a pinned LibreOffice packaging,
 with an optional MIT adapter around the MPL Hunspell library now implemented
-in `packages/quds_proofing_hunspell`. App packaging, host registration and the
-in-app Arabic dictionary download workflow remain open. Independently authored
-Arabic writing rules are built in and registered in the default Word proofing
-service and Studio. No Arabic dictionary is downloaded automatically.
+in `packages/quds_proofing_hunspell`. Studio now offers explicit dictionary
+download/setup, provider registration and licence display; platform packaging
+and qualification boundaries are recorded in the roadmap. Independently
+authored Arabic writing rules are built in and registered in the default Word
+proofing service and Studio. No Arabic dictionary is downloaded automatically.
 
 `ArabicWritingRulesProvider` (`arabic-writing`) implements the first
 independently authored Arabic rule set. It is part of the app (MIT) and needs
@@ -108,8 +109,17 @@ dictionary (no skips), including first suggestions `الى`→`إلى`,
 `المدرسه`→`المدرسة`, `هاذا`→`هذا`, harakat/tatweel offsets, vocabulary,
 installer tamper/changed-download rejection and a live download from the
 pinned revision. iOS arm64 and Android arm64 libraries compile and link;
-Linux, Windows and on-device runs are not yet built or tested. No host app
-registers the provider or offers the download yet.
+Linux, Windows and on-device runs are not yet built or tested.
+
+**Studio wiring (19 November 2026):** Review › Proofing › Dictionaries offers
+the AyaSpell download (source revision, MPL 1.1, size, pinned digests,
+progress, cancel, remove, licence page). An installed dictionary adds the
+Hunspell provider after the Arabic rules; findings on which a rule and the
+dictionary agree (same category, range and a shared suggestion) are shown
+once with the rule's message. Arabic runs of Word documents are routed by
+their complex-script language (`w:lang/@w:bidi`, with `w:rtl`/`w:cs` or
+Arabic/Hebrew letters). Evidence and packaging steps are in the
+[roadmap](roadmaps/arabic-proofing.md) step 2.
 
 ## Native spelling continuation — 18 November 2026
 
