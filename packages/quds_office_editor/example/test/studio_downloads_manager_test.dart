@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quds_proofing_hunspell/quds_proofing_hunspell.dart';
@@ -10,6 +13,9 @@ import 'package:quds_office_studio/studio_downloads_manager.dart';
 import 'package:quds_office_studio/studio_hunspell_host.dart';
 import 'package:quds_office_studio/studio_arabic_morph_host.dart';
 import 'package:quds_office_studio/studio_spacy_host.dart';
+import 'package:quds_office_studio/studio_spacy_host_native.dart';
+import 'package:quds_proofing_spacy/quds_proofing_spacy_install.dart'
+    show SpacyPackageInstaller;
 
 class _Dictionaries extends StudioHunspellHost {
   final calls = <String>[];
@@ -77,12 +83,18 @@ class _Morphology extends StudioArabicMorphHost {
 }
 
 class _Models extends StudioSpacyHost {
+  _Models({this.bundledLibrary = false, this.package});
+
+  final bool bundledLibrary;
+  final SpacyPlatformPackage? package;
   final calls = <String>[];
   bool ner = true;
   @override
   StudioSpacyStatus get status => StudioSpacyStatus(
     platformLabel: 'fixture',
     source: StudioSpacySource.none,
+    bundledLibrary: bundledLibrary,
+    package: package,
     nerInstalled: ner,
     languages: const <StudioSpacyLanguageStatus>[
       StudioSpacyLanguageStatus(
@@ -286,4 +298,130 @@ void main() {
     expect(models.calls, <String>['refresh', 'remove-ner']);
     expect(models.ner, isFalse);
   });
+
+  for (final fixture
+      in <
+        ({String name, bool bundled, SpacyPlatformPackage? package, int bytes})
+      >[
+        (
+          name: 'bundled runtime with a downloadable package',
+          bundled: true,
+          package: spacyMacosArm64Package,
+          bytes: spacyBundleDownload.totalBytes,
+        ),
+        (
+          name: 'bundled runtime without a downloadable package',
+          bundled: true,
+          package: null,
+          bytes: spacyBundleDownload.totalBytes,
+        ),
+        (
+          name: 'downloaded runtime',
+          bundled: false,
+          package: spacyLinuxX64Package,
+          bytes: spacyLinuxX64Package.archiveBytes,
+        ),
+      ]) {
+    testWidgets('German download size reflects ${fixture.name}', (
+      tester,
+    ) async {
+      final models = _Models(
+        bundledLibrary: fixture.bundled,
+        package: fixture.package,
+      );
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: StudioDownloadsManager(
+              hunspell: _Dictionaries(),
+              morphology: _Morphology(),
+              spacy: models,
+            ),
+          ),
+        ),
+      );
+      await tester.pumpAndSettle();
+      final card = find.ancestor(
+        of: find.text('German spaCy analysis package'),
+        matching: find.byType(Card),
+      );
+      expect(
+        find.descendant(
+          of: card,
+          matching: find.textContaining(
+            '${(fixture.bytes / 1048576).toStringAsFixed(1)} MB',
+          ),
+        ),
+        findsOneWidget,
+      );
+      expect(
+        find.descendant(
+          of: card,
+          matching: find.textContaining('No package for this platform'),
+        ),
+        findsNothing,
+      );
+      expect(models.calls, <String>['refresh']);
+    });
+  }
+
+  for (final bundled in <bool>[false, true]) {
+    test(
+      '${bundled ? 'Bundled' : 'Downloaded'} runtime verifies optional NER independently',
+      () async {
+        final root = Directory.systemTemp.createTempSync('spacy-ner-status-');
+        addTearDown(() => root.deleteSync(recursive: true));
+        File(
+          '${root.path}/settings.json',
+        ).writeAsStringSync(jsonEncode(<String, Object>{'ner_enabled': true}));
+        final sentinel = File('${root.path}/runtime-sentinel')
+          ..writeAsStringSync('keep the native runtime');
+        final host = NativeStudioSpacyHost(
+          root: root,
+          environment: const <String, String>{},
+          platform: SpacyPlatform.linuxX64,
+          detectBundledLibrary: false,
+          bundledLibrary: bundled
+              ? const StudioSpacyBundledLibrary(
+                  path: '/app/Contents/Frameworks/libcrispembed-spacy.dylib',
+                  sha256:
+                      '66d54a6090ae65a8fd57d79115d1d1afcc4ab8d8dabcefb8c95bf38717224044',
+                )
+              : null,
+          installer: SpacyPackageInstaller(
+            root: root,
+            httpClientFactory: () =>
+                throw StateError('Refreshing model status must not download.'),
+          ),
+        );
+        addTearDown(host.dispose);
+        await host.refresh();
+        expect(host.status.bundledLibrary, bundled);
+        expect(host.status.nerInstalled, isFalse);
+        expect(host.status.nerProblem, isNull);
+        expect(host.status.nerEnabled, isFalse);
+
+        final ner = spacyNerDownload!;
+        final model = File('${root.path}/ner/${ner.sha256}/ner.gguf')
+          ..createSync(recursive: true)
+          ..writeAsStringSync('damaged model bytes');
+        await host.refresh();
+        expect(host.status.nerInstalled, isFalse);
+        expect(host.status.nerProblem, isNotNull);
+        expect(host.status.nerEnabled, isFalse);
+        expect(model.existsSync(), isTrue);
+
+        await host.removeNer();
+        expect(model.existsSync(), isFalse);
+        expect(host.status.nerInstalled, isFalse);
+        expect(host.status.nerProblem, isNull);
+        expect(host.status.nerEnabled, isFalse);
+        expect(sentinel.readAsStringSync(), 'keep the native runtime');
+        final settings =
+            jsonDecode(File('${root.path}/settings.json').readAsStringSync())
+                as Map<String, Object?>;
+        expect(settings['ner_enabled'], isFalse);
+      },
+    );
+  }
 }

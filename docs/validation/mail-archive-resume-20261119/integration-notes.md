@@ -28,6 +28,66 @@ GUI ruler font selection/registration and all later Studio tab/header/footer
 improvements are preserved. Local validation will qualify the combined source;
 incoming historical reports are supporting evidence and are not fresh counts.
 
+## Later publication frontier
+
+A fresh remote advertisement after the first combined-source freeze found four
+new heads. They were brought into the integration history before the next local
+acceptance window; the earlier freeze is not represented as qualification of
+these additional changes.
+
+| Stream | Observed head | Incoming work |
+| --- | --- | --- |
+| Remote main | `9f41e0427734d815b19149eba5eabef202f78ba6` | Language review callbacks, explicit download management, optional NER removal and regressions |
+| App gaps branch | `0e03878b028ec25ed3d84a790633433eafc3bede` | macOS bundled spaCy runtime, model-only setup, licence notices and build tooling |
+| GUI / PR 211 | `ba51c40abc664758df3cfc846625bdeb81e3ac13` | Publication evidence and two mail restore compatibility corrections |
+| VBA / PR 210 | `d8be43a408473da4b45059561dbc387f5b868d5b` | Final documentation, raw qualification evidence and release notes; no later runtime/test changes |
+
+The [follow-up review](frontier-followup-review.json) retains the exact API
+comparisons and changed path/blob identities. Incoming test counts are preserved
+as historical evidence, not added to this milestone's fresh accepted counts.
+
+### Mail restore compatibility
+
+The GUI stream's restore write again emits `MailArchiveOperation.archive`,
+preserving the existing completion observers used to cancel after a successful
+commit. The receipt remains part of that same atomic archive transaction.
+Existing adversarial tests explicitly observe this event; changing the operation
+identity had prevented their post-commit cancellation callbacks from running.
+
+The combined restoration loop distinguishes source/codec failures from failed
+destination receipt lookups. A source/codec failure sanitized to `storageFailure`
+is retained as one failed message, permitting other source files to be tried.
+A destination receipt failure with `storageFailure` or `unavailable` terminates
+the run after one failure. This combines the GUI source-failure correction with
+the independently reviewed destination-unavailable correction. Quota and
+permission errors retain their terminal behavior.
+
+The incoming GUI merge also included an older copy of the dark-slide fixture.
+Its file was unchanged between incorporated `a2c144be` and incoming `ba51c40a`,
+so the stronger combined fixture described above was retained in full.
+The intermediate GUI merge `8d9d1fe7` was independently proven to contain only
+the already incorporated `a2c144be` and `85c8c551` trees; its complete-tree
+reconstruction is in [post-freeze-gui-proof.json](post-freeze-gui-proof.json).
+
+### Language downloads and bundled runtime
+
+The Settings merge preserves the GUI theme and direction controls and adds
+Language downloads using the current themed context. The new proofing callbacks,
+download inventory, NER removal, app-owned model setup and their tests are kept.
+
+Cross-review identified two semantic interactions between main and app gaps
+that a text merge cannot resolve. Bundled and downloaded runtime hosts must
+both propagate verified NER installation/error state, and stale opt-in settings
+must never enable an absent or corrupt NER model. The German download inventory
+must use the model-only byte count when the runtime ships inside the app.
+These corrections and their targeted regressions belong to the next source
+freeze and are covered by the final acceptance record.
+
+The macOS app build and its explicit
+`studio_spacy_bundle_native_gate.dart` require an installed macOS app, signed
+native library and actual verified models. Linux source, widget, installer and
+build-script checks do not qualify that installed native configuration.
+
 ## Evidence whitespace
 
 Three incoming raw captures (`before-source.diff`, `after-source.diff`, and

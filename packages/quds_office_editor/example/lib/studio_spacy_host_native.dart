@@ -176,6 +176,7 @@ class NativeStudioSpacyHost extends StudioSpacyHost {
     }
     final configured = installation != null || problem != null;
     final qualification = spacyQualificationFor(bundled.sha256);
+    final ner = await _nerStatus();
     _status = StudioSpacyStatus(
       platformLabel: base.platformLabel,
       source: configured ? StudioSpacySource.installed : StudioSpacySource.none,
@@ -187,8 +188,9 @@ class NativeStudioSpacyHost extends StudioSpacyHost {
       problem: problem,
       analysisEnabled: installation != null && settings.analysis,
       nerOffered: installation != null && spacyNerDownload != null,
-      nerEnabled:
-          installation != null && settings.ner && spacyNerDownload != null,
+      nerInstalled: ner.installed,
+      nerProblem: ner.problem,
+      nerEnabled: installation != null && settings.ner && ner.installed,
       grammarEnabled:
           installation != null &&
           settings.grammar &&
@@ -196,6 +198,21 @@ class NativeStudioSpacyHost extends StudioSpacyHost {
       languages: languages,
     );
     notifyListeners();
+  }
+
+  /// The optional model remains app-owned data whether the native library is
+  /// bundled or downloaded. Both paths verify it before reporting availability.
+  Future<({bool installed, String? problem})> _nerStatus() async {
+    final ner = spacyNerDownload;
+    if (ner == null) return (installed: false, problem: null);
+    try {
+      return (
+        installed: await _installer.installedNer(ner) != null,
+        problem: null,
+      );
+    } on Object catch (error) {
+      return (installed: false, problem: '$error');
+    }
   }
 
   ({bool analysis, bool grammar, bool ner}) _readSettings() {
@@ -269,16 +286,7 @@ class NativeStudioSpacyHost extends StudioSpacyHost {
             '(${error.message}). Remove and install them again.';
       }
     }
-    var nerInstalled = false;
-    String? nerProblem;
-    final ner = spacyNerDownload;
-    if (ner != null) {
-      try {
-        nerInstalled = await _installer.installedNer(ner) != null;
-      } on Object catch (error) {
-        nerProblem = '$error';
-      }
-    }
+    final ner = await _nerStatus();
     final configured = installation != null || problem != null;
     _status = StudioSpacyStatus(
       platformLabel: base.platformLabel,
@@ -291,9 +299,9 @@ class NativeStudioSpacyHost extends StudioSpacyHost {
       problem: problem,
       analysisEnabled: installation != null && settings.analysis,
       nerOffered: installation != null && spacyNerDownload != null,
-      nerInstalled: nerInstalled,
-      nerProblem: nerProblem,
-      nerEnabled: installation != null && settings.ner && nerInstalled,
+      nerInstalled: ner.installed,
+      nerProblem: ner.problem,
+      nerEnabled: installation != null && settings.ner && ner.installed,
       grammarEnabled:
           installation != null &&
           settings.grammar &&

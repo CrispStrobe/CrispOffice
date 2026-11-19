@@ -222,7 +222,7 @@ class _StudioDownloadsManagerState extends State<StudioDownloadsManager> {
             _entry(
               title: 'German spaCy analysis package',
               detail:
-                  'Analysis; manual grammar only for a qualified build. ${spacy.package == null ? "No package for this platform" : _size(spacy.package!.archiveBytes)}\n${spacy.installedDirectory ?? spacy.unavailableReason ?? "Optional download"}',
+                  'Analysis; manual grammar only for a qualified build. ${spacy.installOffered ? _size(spacy.downloadBytes) : "No package for this platform"}\n${spacy.installedDirectory ?? spacy.unavailableReason ?? "Optional download"}',
               installed: spacy.source == StudioSpacySource.installed,
               manage: models,
               problem: spacy.problem,
