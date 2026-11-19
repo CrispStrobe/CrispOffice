@@ -25,7 +25,7 @@ final class Cld3LanguageIdentifier implements LanguageIdentifier {
     String? nativeLibraryPath,
     Uri? workerUrl,
     LanguageIdTransport? transport,
-    this.topK = 3,
+    this.topK = 5,
     this.batchTexts = 256,
   }) : _transport =
            transport ??
