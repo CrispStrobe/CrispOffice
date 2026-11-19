@@ -16,9 +16,19 @@ verified historical equivalents**, with zero unaccounted refs. All 14
 historical equivalence proofs were freshly recomputed. This is a fixed capture,
 not a claim about later writes by concurrent contributors.
 
-**Final expanded qualification is pending at this source checkpoint.** The
-committed plans below are executed only after the review fixes are saved and
-the source is frozen. GitHub Actions are neither queried nor awaited.
+**Expanded local qualification: PASS at
+`0669ac119da05f5eb777c8cfdbce32e0261df647`.** The original execution ran
+09:02:09–09:11:29 CET on 19 November. Its accepted independent audit verifies
+**1,372 application executions across 111 suite/platform runs and 94 distinct
+test files**, plus **90 separately counted Python controls**, with zero failures
+or skips. GitHub Actions were neither queried nor awaited.
+
+While this source was frozen, concurrent main advanced to `b655b8a3` with
+optional Hunspell, macOS-runner and documentation additions. PR #178 had been
+closed after an earlier checkpoint was integrated directly. This publication
+preserves the exact qualified source and evidence first. Subsequent main
+reconciliation and its checks retain separate identities; these 1,372 passes
+are never relabeled as executions against a later source.
 
 ## Integrated behavior and review fixes
 
@@ -77,7 +87,7 @@ The preliminary 237-application/90-Python synchronization gate also remains a
 separate checkpoint; the expanded capture adds application changes and receives
 new qualification.
 
-## Final local qualification plan
+## Accepted local qualification at `0669ac11`
 
 The [final native plan](final-native-plan.json) covers transport discovery and
 TLS, shared protocol parsing/lifecycle, MIME and reader consumers, Arabic engine
@@ -91,8 +101,66 @@ The [committed driver](final-run-validation.py) executes the gates sequentially,
 binds the complete selected source and runtime inventories before and after,
 and enforces strict analysis/format coverage for every changed Dart path.
 Python controls are counted once: Store launcher 42, qualification runner 20,
-runtime restoration 16 and bundle publisher 12. Original raw reporter output,
-source inventories and independent recounts will be published with the result.
+runtime restoration 16 and bundle publisher 12. The original shared-runner log
+contained 20 dots and an `OK` summary rather than named case records. The first
+independent audit therefore rejected its exact-case accounting. That failed
+audit and the original log remain unchanged. A source/runtime-bound verbose
+rerun recorded all 20 case names; they are counted once, with no application
+rerun and no extra 20 added to the total.
+
+| Fresh cohort | Platform | Passed executions |
+| --- | --- | ---: |
+| Native Mail transport and cursor discovery | VM | 119 |
+| Real TLS and connection ownership | VM | 26 |
+| Shared protocol and parser regressions | VM | 496 |
+| MIME consumers | VM | 32 |
+| Mail reader UI | Flutter VM | 30 |
+| Arabic and adjacent engine proofing | VM | 137 |
+| Word proofing integration | Flutter VM | 137 |
+| Portable transport, MIME, fork and Arabic Unicode | Node | 145 |
+| Core contracts | VM + Node | 98 |
+| Native store, migration and recovery | VM | 110 |
+| Portable store policy and codec | Node | 42 |
+| **Total application executions** | **VM + Node** | **1,372** |
+
+All **83 strict analysis and 83 formatting targets** pass, covering all 27
+changed Dart paths, alongside full core/store analysis, formatting, offline
+locked resolution and browser entry/worker compilation. The independent audit
+recounts raw events and checks case inventories, missing/duplicate completions,
+suite coverage, source Git blobs, and actual runtime files. The outer envelope
+binds 5,051 source inputs and 11,157 runtime inputs; both are unchanged.
+
+The pinned runtime is Flutter **3.47.8** / Dart **3.13.7**, restored from the
+verified official SDK stream and 176 hash-pinned hosted archives. All 131
+resolved package names matched the then-current workspace and lockfile.
+
+See the [compact result](final/summary.json), [original execution](final/execution.json)
+and [accepted independent audit](final/independent-summary.json).
+
+## Preserved evidence and remote checkpoints
+
+The [publication manifest](publication-manifest.json) lists six indexed archives.
+Each member is byte-matched against its original file. Archive/member counts
+are separate from application test counts.
+
+| Packet | Scope |
+| --- | --- |
+| [Qualification](final/evidence.tar.xz) | Original raw events, generated browser outputs, manifests, accepted audit, failed initial accounting audit and verbose-control supplement |
+| [Reconciliation](reconciliation/evidence.tar.xz) | Exact 401-ref snapshot, advertisements, proof candidates and freshly recomputed dispositions |
+| [Runtime restoration](runtime/evidence.tar.xz) | Original pinned runtime receipts and wrappers; SDK/package binaries are not bundled |
+| [Reviews and development](reviews/evidence.tar.xz) | Arabic/publisher failing-before evidence, repaired development runs, source reviews and 12 inherited archive integrity checks |
+| [Cursor regression](reviews/cursor-aba.tar.xz) | Original stale-write failure and repaired provider/SQLite development evidence |
+| [Preliminary qualification](preliminary/evidence.tar.xz) | Earlier 237-application/90-Python checkpoint, excluded from the new totals |
+
+Remote checkpoints were fetched and tree-verified after publication:
+
+| Commit | Saved scope |
+| --- | --- |
+| `c1dc63f934f81e22a41bafd98df1abf22ee6a053` | Initial incoming integration |
+| `0b8f8f7f78fbf4e2e26671ecf9a0d858c38ca75c` | Arabic publication reconciliation and publisher upload restriction |
+| `b8063b8abf9d8de8e55b0bd451b2e52215bbb846` | Concurrent main, Mail evidence and both publisher test suites |
+| `2122066f0eccf06a6f2c3c523c5715a7233bb95d` | All heads in the fixed 401-ref capture |
+| `0669ac119da05f5eb777c8cfdbce32e0261df647` | Cursor freshness, Arabic token fixes and frozen full qualification plans |
 
 ## Reconciliation decisions
 
@@ -119,7 +187,7 @@ Runtime recovery requires access to the pinned SDK/package/SQLite downloads.
 QUDS_REPO=/absolute/path/to/checkout
 QUDS_RUNTIME=/absolute/path/to/runtime
 QUDS_RESULTS=/absolute/path/to/results
-QUDS_SOURCE=<qualified-source-sha>
+QUDS_SOURCE=0669ac119da05f5eb777c8cfdbce32e0261df647
 
 git -C "$QUDS_REPO" switch --detach "$QUDS_SOURCE"
 cd "$QUDS_REPO"

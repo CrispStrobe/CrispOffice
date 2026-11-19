@@ -1,0 +1,74 @@
+{
+  "status": "PASS",
+  "scope": "Independent publication-tool controls; no application tests or source repository writes. Source-ID Git lookup was stubbed for a scratch-only fixture; published Git blob binding awaits the real publication commit.",
+  "controls": [
+    {
+      "name": "positive explicit and two prebuilt archive reuse roundtrips",
+      "passed": true,
+      "archives": 3,
+      "members": 34
+    },
+    {
+      "name": "original changes after packing",
+      "passed": true,
+      "observed_failures": [
+        "fixture/a.txt: original_bytes_equal_archived_payload"
+      ]
+    },
+    {
+      "name": "unindexed extra payload rejected",
+      "passed": true,
+      "observed_failures": [
+        "fixture: unindexed member extra",
+        "fixture: exact_archive_and_index_member_path_sets"
+      ]
+    },
+    {
+      "name": "omitted member rejected",
+      "passed": true,
+      "observed_failures": [
+        "fixture: exact_archive_and_index_member_path_sets",
+        "fixture: all_indexed_members_verified"
+      ]
+    },
+    {
+      "name": "duplicate archive member rejected",
+      "passed": true,
+      "observed_failures": [
+        "fixture: unique_archive_member_paths",
+        "fixture: all_indexed_members_verified"
+      ]
+    },
+    {
+      "name": "symlink member rejected",
+      "passed": true,
+      "observed_failures": [
+        "fixture: unsafe or nonregular member 'b.txt'",
+        "fixture: all_indexed_members_verified"
+      ]
+    },
+    {
+      "name": "payload mutation rejected after archive metadata updated",
+      "passed": true,
+      "observed_failures": [
+        "fixture/a.txt: tar_size_matches_payload_and_index",
+        "fixture/a.txt: payload_hash_matches_index",
+        "fixture/a.txt: original_bytes_equal_archived_payload"
+      ]
+    },
+    {
+      "name": "traversal member rejected",
+      "passed": true,
+      "observed_failures": [
+        "fixture: unsafe or nonregular member '../b.txt'",
+        "fixture: exact_archive_and_index_member_path_sets",
+        "fixture: all_indexed_members_verified"
+      ]
+    }
+  ],
+  "control_count": 8,
+  "inputs": {
+    "package_publication_evidence.py": "546a0e6ed43b4258f060811e7d03ba5cfc46f447f556c61b331ecfe519ef87f5",
+    "verify_publication_archives.py": "285a3f767310d9a73cc6d26d90486297666d38c7973d437997270c1dfb428e40"
+  }
+}
