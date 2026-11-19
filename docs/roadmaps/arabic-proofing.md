@@ -347,12 +347,109 @@ model-backed analysis remain planned; no Arabic resource is downloaded by defaul
    **Deferred.** T1 items left out: S3/S4 list extensions (indefinite ta
    marbuta is ambiguous with the ha pronoun), S10 context selection, verb
    forms of the wasl templates (collide with loanwords such as إستبرق).
-   T2 (needs the morphology lexicon, Camel Morph MSA under consideration):
+   T2 (needs the morphology lexicon, now available as step 3c):
    G10/G11 numerals, G5 jussive, G7/G8 case of duals and plurals, G2, G6,
    G15 transitivity, L1 collocations, L5 light verbs, S7 particle merging,
    S9 inflected forms, S1 general spelling, L2/L3 lemma variants, the
    tense-aware part of G13 and G14's future restriction. T3 (needs a
    disambiguator): G1, G3, G4, G12 and kana/inna predicate case.
+3c. **Morphology lexicon: Camel Morph MSA (integrated 19 November 2026,
+   branch `feat/arabic-morph-integration-20261119`).**
+   `packages/quds_arabic_morph` implements the engine's `ArabicMorphology`
+   with CrispEmbed's native analyzer (PR #254). That analyzer is a C++ port
+   of the camel_tools 1.6.0 analyzer, exact against camel_tools on the 9,571
+   UD Arabic-PUD and stress words (217,053/217,053 analyses).
+   - **Data:** the `noprob` variant of
+     [`cstr/camel-morph-msa-v1.0`](https://huggingface.co/cstr/camel-morph-msa-v1.0/tree/b31cf4a83f8ad63bb1989cf2879e72f23fadbfb0/noprob)
+     at the immutable revision `b31cf4a8…`. It has four files and 74.5 MB.
+     The data is CC BY 4.0, © 2024 NYU Abu Dhabi, and is downloaded by the
+     user only.
+   - **Code:** fetched as 26 files from CrispEmbed `8e40ad88`, each pinned by
+     SHA-256. It is MIT (the CrispEmbed port retains camel_tools' MIT
+     notice), with Ryu under the Apache-2.0 option and Unicode/CPython
+     tables. There is no GPL code. The GPL `calima-msa-r13` database is not
+     used.
+
+   **Decision: `noprob`, no ranking.** The `full` bundle adds
+   `lex_logprob`/`pos_lex_logprob`, which Camel Morph estimated on the Penn
+   Arabic Treebank (LDC). The owner chose not to ship treebank-derived
+   numbers. Dropping them changes no analysis: CrispEmbed's receipt shows the
+   same analysis sets for all 7,567 analyzable words. They only order the
+   analyses, and the noprob fallback order is much worse: top-1 UPOS+lemma
+   against PUD gold falls from 73.0% to 47.0% (CrispEmbed
+   `docs/validation/camel-morph-msa-20261119/ranking-full-vs-noprob.json`).
+   A top-1 analysis is therefore not a usable signal. `analyzeWords` returns
+   the full unordered set, and rules must reason over all analyses. A rule
+   reports only when **no** analysis of a word is compatible with the
+   pattern, and a word without analyses (unknown, foreign name) is silent.
+   Disambiguation (T3) remains future work and needs a licence-clean context
+   model (step 4).
+
+   **Integration:**
+   - Native: the analyzer runs in a persistent FFI isolate. Web: it runs as
+     the same code compiled by Emscripten in a module Web Worker. The bundle
+     bytes are transferred, not copied.
+   - Installer: `MorphInstaller` (pinned, verified, atomic publish and
+     removal; same design as the Hunspell installer). The analyzer re-checks
+     the manifest hash and every file before parsing.
+   - Batches and cache: `analyzeWords` over distinct words, in batches of
+     512, with a session LRU cache of 4,096 words.
+   - Studio: Review › Proofing › Dictionaries is now "Dictionaries and
+     language data". Its new section shows the source revision, data
+     project, size, manifest/database SHA-256, CC BY 4.0 attribution and
+     links, with Download (progress, cancel) and Remove. Nothing downloads
+     without that click.
+   - After installation, one long-lived analyzer loads in the background (at
+     start-up too, without network), and the Word service is rebuilt when it
+     becomes available. `ArabicWritingRulesProvider` has no `morphology:`
+     parameter yet (the rules agent adds it). The construction site in
+     `suite_workspace.dart` already receives the analyzer and carries a
+     `TODO(arabic-rules)`.
+   - Licence page: CrispEmbed (MIT), camel_tools 1.6.0 (MIT), Ryu
+     (Apache-2.0), Unicode and CPython data notices, CrispEmbed's
+     third-party summary, and the Camel Morph MSA CC BY 4.0 notice with the
+     licence text (`assets/licenses/arabic_morph/`).
+
+   **Evidence (Apple M1, macOS 26.2, Flutter 3.47.8 / Dart 3.13.7):**
+   - Tests:
+     - 22 package tests pass with the real library and the real downloaded
+       noprob bundle, with no skips. They include `كتبوا` → lex `كَتَب`, pos
+       `verb`, num `p`; `والمدرسة` → noun with `prc2 wa_conj`,
+       `prc0 Al_det`, lex `مَدْرَسَة`; harakat/tatweel input; unknown,
+       empty and over-long words; cache; tampered `NOTICE` rejected by the
+       analyzer; installer tamper, extra-file, changed-download, over-long
+       and cancellation rejection; a live download from the pinned revision.
+       They pass again against the dylib inside the signed macOS app.
+     - 10 Studio tests pass: the dialog section, cancel, a host install →
+       load → analyze → restart → remove round trip with the real library,
+       and the licence-page entries.
+   - Performance on the 1,000 UD Arabic-PUD r2.14 sentences (7,419 distinct
+     words, 215,212 analyses):
+
+     | Path | Load | Cold throughput | Memory |
+     | --- | ---: | ---: | --- |
+     | Native through the Dart API | 1.2–1.4 s | 1,240–1,360 words/s | 250 MB RSS after load, 415 MB with all words cached |
+     | Wasm in Node | 1.5–1.6 s | 1,075–1,460 words/s | 320 MB Wasm heap |
+     | Wasm in headless Chrome 157 (real Dart web transport) | 1.5–2.0 s | 600–890 words/s | 320 MB worker heap; the page keeps 1–2 MB after the transfer |
+
+     That is acceptable on desktop browsers and risky on low-memory mobile
+     browsers, as documented in the package README.
+   - Packaging:
+     - macOS release app: the dylib is in `Contents/Frameworks` and the
+       notices in `Resources/arabic-morph-licenses`, after re-signing
+       `codesign --verify --deep --strict` passes.
+     - Web release build: it contains `proofing/arabic_morph_worker.mjs`,
+       the module, the Wasm and the notices. The headless-Chrome smoke found
+       a real defect (Chrome's `TextDecoder` rejects resizable Wasm heaps),
+       fixed with `GROWABLE_ARRAYBUFFERS=0`.
+     - Android: an arm64-v8a library (NDK 28, static libc++, needs only
+       libc/libm/libdl) is installed into `jniLibs`.
+
+   **Open:** the rules that consume it (T2, rules agent); the APK and
+   on-device runs; iOS (the example has no iOS runner); Linux and Windows
+   builds; persisting the web download across sessions; a byte-level
+   analysis parser (Dart decoding halves the native 2,250 words/s); a compact
+   binary database (CrispEmbed) to cut load time and peak memory.
 4. **Model-backed analysis (optional, owner decision).** Either accept the
    CAMeL weights' training-data risk and port them natively like the spaCy
    transformer pipelines, or train our own licence-clean models:
