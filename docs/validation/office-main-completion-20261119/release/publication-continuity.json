@@ -1,0 +1,31 @@
+{
+  "verified_at_utc": "2026-11-19T07:30:54.321017+00:00",
+  "qualified_source": "5569c055a021c893e941fc54d40499ad9d96a5db",
+  "qualified_tree": "9d2c815eda61378fbc4b234124e8e7c9cfeacb5b",
+  "qualified_source_manifest_sha256": "eabd0d42984d3a4478a2919d12121ae5518d0fd3f3d5b97c6ef1d324dd855382",
+  "source_manifest_archive_member": "qualification-release-native/source-before.json",
+  "bound_source_inputs": 5031,
+  "all_index_modes_and_git_blobs_match": true,
+  "all_materialized_source_bytes_match": true,
+  "changed_paths_before_this_receipt": [
+    "README.md",
+    "docs/roadmaps/mail/implementation-plan.md",
+    "docs/roadmaps/mail/status.md",
+    "docs/validation/mail-m06-resume-20261119/README.md",
+    "docs/validation/office-main-completion-20261119/README.md",
+    "docs/validation/office-main-completion-20261119/release/coverage-summary.json",
+    "docs/validation/office-main-completion-20261119/release/independent-archive-audit.json",
+    "docs/validation/office-main-completion-20261119/release/independent-summary.json",
+    "docs/validation/office-main-completion-20261119/release/local-qualification.index.json",
+    "docs/validation/office-main-completion-20261119/release/local-qualification.tar.xz",
+    "docs/validation/office-main-completion-20261119/release/manifest.json",
+    "docs/validation/office-main-completion-20261119/release/publication-receipt.json",
+    "docs/validation/office-main-completion-20261119/release/reconciliation-summary.json",
+    "docs/validation/office-main-completion-20261119/review/prepare_evidence.py",
+    "docs/validation/office-main-completion-20261119/review/tls-review.index.json",
+    "docs/validation/office-main-completion-20261119/review/tls-review.tar.xz",
+    "docs/validation/office-main-integration-20261119/README.md"
+  ],
+  "changes_are_documentation_and_evidence_only": true,
+  "scope": "Pre-publication index and working-byte proof. Final exact commit/tree readback and main merge verification are recorded through PR #173 and the final user report. No product tests or GitHub Actions queried."
+}

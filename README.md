@@ -524,18 +524,20 @@ browser storage, quota and reload behavior remain unqualified. The database is
 unencrypted, and process-crash tests do not establish power-loss durability.
 
 The integrated flags/schema-v3 and native IMAP foundation passed local automated
-qualification. The [19 November Office integration report](docs/validation/office-main-integration-20261119/README.md)
-retains the source-bound test results, strict analysis/format checks and raw
-evidence. The earlier failed store attempt remains a separate historical record.
+qualification. The [current Office integration report](docs/validation/office-main-integration-20261119/README.md)
+records 632 passing executions / 562 distinct cases at `ac1e4c8c`, including
+actual loopback TLS and the rejected-upgrade cleanup, with strict analysis,
+formatting and independent source/runtime audits. The
+[836-execution checkpoint](docs/validation/office-main-completion-20261119/README.md)
+and earlier results retain their own source identities and are not added.
 
 The initial IMAP adapter provides bounded UID-window synchronization, exact
-message retrieval and guarded flag/move operations with required TLS. Linux
-loopback tests passed implicit TLS and STARTTLS exchange, certificate/hostname
-rejection, stalled-handshake cancellation/deadlines and transport write controls.
-External-provider and other-OS interoperability, disposable accounts, host
-OAuth/refresh, large or sparse mailbox pagination, composition/SMTP and the
-shared mailbox workspace remain open. See the
-[implementation status and local checks](docs/roadmaps/mail/status.md).
+message retrieval and guarded flag/move operations with required TLS. Real Linux
+loopback checks cover TLS cancellation, deadlines, trust and hostname refusal,
+encrypted transfers and write lifecycle. External-provider and other-OS
+interoperability, host OAuth/refresh, large or sparse
+mailbox pagination, composition/SMTP and the shared mailbox workspace remain
+open. See the [implementation status and local checks](docs/roadmaps/mail/status.md).
 The standalone Office host and CrispCloud migration remain later tasks; these
 packages do not qualify an application release.
 

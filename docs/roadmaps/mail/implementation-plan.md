@@ -250,8 +250,11 @@ checks. Its 72-suite Office/reader gate also passed with 1,230 cases. The earlie
 historical evidence; its runner/formatting blockage is resolved for the fresh
 baseline. Those results predate schema v3 and native transport. The
 [Office integration report](../../validation/office-main-integration-20261119/README.md)
-records the subsequent passing flags/transport qualification, including the
-fresh 199-execution core/store gate on the integrated source.
+records the current 632-execution / 562-distinct-case qualification at
+`ac1e4c8c`, including a fresh 199-execution core/store gate. The
+[retained completion report](../../validation/office-main-completion-20261119/README.md)
+records its separate full 199-execution core/store gate at `5569c055`,
+within its 836 application executions and 78 separate Python controls.
 
 Browser entry/worker compilation and Node error-policy tests do not close actual
 browser storage, Web Locks, reload or quota acceptance. Chromium previously
@@ -264,8 +267,8 @@ distinct from encryption. M06 is partially implemented; M07 and M04W remain open
 **Depends on:** M01, M02, M05. **Files:** quds_mail_transport native adapter and core sync.
 
 - [x] Manual IMAP endpoint/account configuration with validated host/port, required STARTTLS or implicit TLS, and no cleartext fallback or certificate bypass. SMTP configuration and bounded discovery are not included.
-- [ ] Add SMTP configuration and optional bounded account discovery after validation.
-- [x] Qualify the production connector with real Linux loopback implicit TLS and STARTTLS exchange, default-trust and hostname rejection, stalled-handshake cancellation/deadlines, delayed encrypted writes and producer cancellation. External-provider and other-OS qualification remain open.
+- [x] Qualify real Linux loopback TLS success, trust/hostname refusal, cancellation/deadlines and write lifecycle on the default owned connector, preserving certificate validation.
+- [ ] Add SMTP configuration and optional bounded account discovery after validation; qualify external-provider and other-OS TLS interoperability.
 - [x] Load current host-owned password/token bytes for each operation using account/profile/host-scoped vault references. Negotiate XOAUTH2/OAUTHBEARER protocol capability and keep credential material out of ordinary account rows and public diagnostics.
 - [ ] Implement native system-browser OAuth/PKCE, registered redirect handling, token refresh and platform credential-vault hosts. No embedded confidential secret.
 - [x] Discover selectable folders, fetch bounded header/flag UID windows, retrieve exact full-message literals on demand, and apply observed UID flag changes and capability-gated MOVE. Delete marks only `\Deleted`, without mailbox-wide EXPUNGE or CLOSE.
@@ -287,11 +290,16 @@ available. Cursors freeze each sweep ceiling, and arrivals beyond it enter the
 next sweep; the fallback is not a server snapshot protocol. MOVE confirms source
 absence but does not expose COPYUID destination identities. Controlled parser,
 SQLite/coordinator, lifecycle and conditional-entry tests passed in the
-[35-suite integrated qualification](../../validation/office-main-integration-20261119/README.md)
-at `4624218f9468eeeac07f1f100ac0e4bb6b050a17`, with 412 focused cases, including
-23 TLS/transport-ownership cases. Real Linux loopback TLS is qualified for the
-recorded controls; external-provider/other-OS and disposable-account
-interoperability remain open.
+[32-suite earlier qualification](../../validation/office-main-integration-20261119/pre-tls-report.md)
+at `7d279e084bae438d383630726ad7b0514da77d35`, with 389 focused cases. The
+[retained qualification](../../validation/office-main-completion-20261119/README.md)
+at `5569c055a021c893e941fc54d40499ad9d96a5db` adds broader protocol coverage and
+real Linux TLS tests within its separate 836 application executions. The
+[current combined qualification](../../validation/office-main-integration-20261119/README.md)
+at `ac1e4c8c788ea608402c2260488235c0189efcba` passes 433 focused cases across
+35 suites, including 26 TLS/ownership cases and the rejected-upgrade cleanup,
+plus the fresh 199-execution core/store gate. External-provider, other-OS and
+disposable-account interoperability remain open.
 The 186-execution Mail and 1,230-case Office passes above retain their separate
 baseline `479e1e03` identity.
 
