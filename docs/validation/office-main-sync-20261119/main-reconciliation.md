@@ -108,7 +108,7 @@ Studio dependency-graph entry is reconciled explicitly with those three addition
 
 ## Later current main at `be641457`
 
-After the second frozen attempt, main was read at
+During the second frozen attempt, main was read at
 `be641457c8c7d1acc25091b31c87c73eaa3c9c2a`. It contains PR #185's Word
 complex-script language routing, agreeing-provider finding merging, native/web
 Hunspell host, explicit dictionary setup, licence assets and target-packaging
@@ -156,3 +156,44 @@ by the other platform build steps. Workflow review is static: no Actions run,
 job, status or queue is queried or awaited, and no manual dispatch is requested.
 These definitions do
 not constitute platform-build or optional-backend acceptance.
+
+## Latest review footer at `d8b7f1c4`
+
+The next observed main head is
+`d8b7f1c4a576f727a0901c555dc327562dfff2b2`. Its two-file delta compacts the
+Studio chrome and moves Word review status into the footer. The merge preserves
+that placement, compact sizing, German labels and the earlier Notes setting
+repair.
+
+Review reproduced two concrete regressions. First, unavailable or incomplete
+proofing could report “No writing issues,” and checking, waiting or paused states
+could carry the clean-result icon. The footer now retains the controller's
+checking, scheduled, live-disabled, not-yet-checked and partial-result distinctions;
+only a complete zero-finding result displays the clean-result status. Seven
+regressions drive real public controller/provider states, including unavailable
+results in English, German and Arabic and manual coverage awaiting an explicit
+check.
+
+Second, the existing 390-pixel Arabic test at 1.4× text scale reproduced a
+204-pixel horizontal overflow. Only the new review strip receives bounded flex
+constraints and one-line labels. The same narrow-layout case and existing compact
+navigation case pass with the seven status regressions in a separate focused
+development run. These nine development executions are excluded from final
+qualification totals. The full frozen delta gate includes their suites.
+
+## Preserved pre-test rejection at `fce543de`
+
+The [third attempted gate](main-delta-v3/attempt-fce543de/README.md) stopped
+before all application and Python tests. Offline locked resolution succeeded,
+but the continuity expectation omitted Studio's explicit, already-resolved
+`url_launcher` dependency, added by the incoming About page. The corrected
+expectation binds all five exact additions: three Mail packages, optional
+Hunspell, and `url_launcher`. All 131 prior package mappings, other prior graph
+nodes, dependency versions and the root lockfile remain unchanged; the only
+new mapping is the Hunspell workspace package.
+
+The original guard, raw output and independent rejection audit are preserved
+unchanged. Their successful evidence-integrity checks do not qualify that
+attempt: it executed zero application cases and zero Python controls. The next
+frozen run uses a fresh output directory and retains every previously selected
+suite, adding the new footer regression suite.

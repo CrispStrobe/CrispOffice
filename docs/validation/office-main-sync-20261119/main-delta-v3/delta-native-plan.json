@@ -1,5 +1,5 @@
 {
-  "description": "Exact-source third main delta after 00014577 (including prior be641457 work): retain every v2 suite and add Word complex-script routing/editing/serialization, agreeing-provider merge, Studio settings and explicit native/web download cancellation. Accepted 1372/90 at 0669 and both rejected attempts contribute zero to this gate. The real native/live-download selection has no skipped acceptance.",
+  "description": "Exact-source third main delta after d8b7f1c4 (including prior be641457 work): retain every v2 suite and add Word complex-script routing/editing/serialization, agreeing-provider merge, Studio settings and explicit native/web download cancellation. Accepted 1372/90 at 0669 and earlier rejected attempts contribute zero to this gate. The real native/live-download selection has no skipped acceptance.",
   "groups": [
     {
       "name": "hunspell-native",
@@ -77,7 +77,8 @@
         "test/studio_arabic_proofing_native_test.dart",
         "test/studio_hunspell_setup_test.dart",
         "test/studio_settings_test.dart",
-        "test/studio_hunspell_web_cancellation_test.dart"
+        "test/studio_hunspell_web_cancellation_test.dart",
+        "test/studio_review_status_test.dart"
       ]
     }
   ],
@@ -121,6 +122,7 @@
     "packages/quds_office_editor/example/test/studio_hunspell_web_cancellation_test.dart",
     "packages/quds_office_editor/example/test/studio_mail_test.dart",
     "packages/quds_office_editor/example/test/studio_review_pane_test.dart",
+    "packages/quds_office_editor/example/test/studio_review_status_test.dart",
     "packages/quds_office_editor/example/test/studio_settings_test.dart",
     "packages/quds_office_editor/example/test/studio_sheet_navigation_test.dart",
     "packages/quds_office_editor/example/test/studio_shots_test.dart",
@@ -210,6 +212,7 @@
     "packages/quds_office_editor/example/test/studio_hunspell_web_cancellation_test.dart",
     "packages/quds_office_editor/example/test/studio_mail_test.dart",
     "packages/quds_office_editor/example/test/studio_review_pane_test.dart",
+    "packages/quds_office_editor/example/test/studio_review_status_test.dart",
     "packages/quds_office_editor/example/test/studio_settings_test.dart",
     "packages/quds_office_editor/example/test/studio_sheet_navigation_test.dart",
     "packages/quds_office_editor/example/test/studio_shots_test.dart",

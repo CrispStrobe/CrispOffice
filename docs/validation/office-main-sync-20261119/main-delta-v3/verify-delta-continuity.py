@@ -11,7 +11,7 @@ import plistlib
 import subprocess
 
 PRIOR = "0669ac119da05f5eb777c8cfdbce32e0261df647"
-MAIN = "00014577265d1f95d4c016159029510d3a10804b"
+MAIN = "d8b7f1c4a576f727a0901c555dc327562dfff2b2"
 HUNSPELL = "packages/quds_proofing_hunspell/"
 MACOS = "packages/quds_office_editor/example/macos/"
 REPORT = "docs/validation/office-main-sync-20261119/"
@@ -191,8 +191,8 @@ def main() -> int:
     old_graph, new_graph = read("prior-resolution/.dart_tool/package_graph.json"), read("package_graph.json")
     old_nodes, new_nodes = ({row["name"]: row for row in value["packages"]} for value in (old_graph, new_graph))
     studio = dict(old_nodes["quds_office_studio"])
-    studio["dependencies"] = sorted(studio["dependencies"] + ["quds_mail_core", "quds_mail_mime", "quds_mail_ui", "quds_proofing_hunspell"])
-    check(new_nodes.get("quds_office_studio") == studio, "Exact Studio dependency graph addition of three Mail packages and the Hunspell workspace package")
+    studio["dependencies"] = sorted(studio["dependencies"] + ["quds_mail_core", "quds_mail_mime", "quds_mail_ui", "quds_proofing_hunspell", "url_launcher"])
+    check(new_nodes.get("quds_office_studio") == studio, "Exact Studio dependency graph addition of three Mail packages, Hunspell and the existing URL launcher")
     check(set(new_nodes) - set(old_nodes) == {"quds_proofing_hunspell"} and set(old_nodes) <= set(new_nodes)
           and all(new_nodes.get(name) == row for name, row in old_nodes.items() if name != "quds_office_studio"),
           "All other prior dependency graph nodes unchanged")
@@ -240,7 +240,7 @@ def main() -> int:
               "intentionally_deleted_source_paths": deleted_paths, "removed_prior_bound_inputs": bound_deletions,
               "reviewed_source_overrides": list(overrides.values()), "reviewed_override_file_sha256": digest(override_raw),
               "changed_dependency_graph_nodes": {"quds_office_studio": {"before": old_nodes["quds_office_studio"], "after": studio}},
-              "earlier_incoming_main_sources": ["b655b8a37fddc874bd42a453c371eed6253e82d8", "b559f6c764fbfac143f593e89ddc1096ad8b5c4e", "be641457c8c7d1acc25091b31c87c73eaa3c9c2a"],
+              "earlier_incoming_main_sources": ["b655b8a37fddc874bd42a453c371eed6253e82d8", "b559f6c764fbfac143f593e89ddc1096ad8b5c4e", "be641457c8c7d1acc25091b31c87c73eaa3c9c2a", "00014577265d1f95d4c016159029510d3a10804b"],
               "changed_existing_source": changes, "new_paths": additions,
               "runtime_changed_paths": runtime_changes, "workspace_before": sorted(before_rows), "workspace_after": sorted(after_rows),
               "workspace_before_count": len(before_rows), "workspace_after_count": len(after_rows),

@@ -13,7 +13,7 @@ import subprocess
 import sys
 
 PRIOR = "0669ac119da05f5eb777c8cfdbce32e0261df647"
-MAIN = "00014577265d1f95d4c016159029510d3a10804b"
+MAIN = "d8b7f1c4a576f727a0901c555dc327562dfff2b2"
 
 
 def sha(path: Path) -> str:
@@ -137,7 +137,7 @@ def main() -> int:
               "github_actions_queried_or_awaited": False, "prior_application_cases_added_to_delta": 0,
               "prior_python_controls_added_to_delta": 0,
               "rejected_attempts_added_to_delta": 0,
-              "rejected_attempt_sources": ["aea5d91af0083bc088d599ed767188f0bb071195", "c0c71a26e014cadda7a1f42244e710509dea5f6c"],
+              "rejected_attempt_sources": ["aea5d91af0083bc088d599ed767188f0bb071195", "c0c71a26e014cadda7a1f42244e710509dea5f6c", "fce543dedb1217804f67de088ef9c287e8a2edca"],
               "preserved_pre_resolution_receipt_sha256": sha(output / "prior-resolution/receipt.json")}
 
     def save() -> None:

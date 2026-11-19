@@ -1,23 +1,26 @@
 # Continued main integration qualification
 
 This third plan version integrates incoming main
-`00014577265d1f95d4c016159029510d3a10804b` and retains every suite selected by
+`d8b7f1c4a576f727a0901c555dc327562dfff2b2` and retains every suite selected by
 the rejected second attempt. It adds the affected Word language, finding merge,
 Studio settings, native proofing, setup and download cancellation coverage.
 
 The **1,372 application executions / 90 Python controls at `0669ac11`** remain
 an accepted historical qualification of that source. The first rejected attempt
 at `aea5d91a` and the second rejected attempt at `c0c71a26` remain rejected under
-their own source identities. All prior, rejected and development executions add
-**zero** to the totals produced by this plan.
+their own source identities. The pre-test guard rejection at `fce543de` ran no
+application or Python controls: its expectation omitted the existing URL launcher
+explicitly declared by incoming main. That exact graph expectation is corrected
+here, and its original failed receipt is preserved. All prior, rejected and
+development executions add **zero** to the totals produced by this plan.
 
-The planned selection is **37 native suite/platform executions**, **11 Node
-suite/platform executions**, **87 strict Dart analysis/format targets**, **17
+The planned selection is **38 native suite/platform executions**, **11 Node
+suite/platform executions**, **88 strict Dart analysis/format targets**, **17
 verbose AyaSpell bundle controls**, **4 separate offline packaging controls**,
-and browser transport compilation. These
-are suite and target inventories, not advance claims about passing cases. The
+and browser transport compilation. These are suite and target inventories,
+not advance claims about passing cases. The
 source-freeze guard also requires every Dart path changed from either `0669ac11`
-or `00014577` in both strict target lists. Final author identities must be
+or `d8b7f1c4` in both strict target lists. Final author identities must be
 recorded before source freeze; a pending override receipt rejects execution.
 
 ## What is exercised
@@ -34,7 +37,9 @@ proofing-service coverage. Flutter editor suites cover imported complex-script
 language, selected text changes/reset, inherited properties, undo/redo,
 serialization and session routing. The native Studio integration uses the real
 dictionary and language service. The previous thirteen Studio suites are kept,
-with setup, settings and web-host cancellation added. The opt-in screenshot
+with setup, settings, web-host cancellation and the incoming footer status
+regressions added. The status suite distinguishes scheduled, paused and incomplete
+checks from a completed check with no findings. The opt-in screenshot
 harness is checked only by analysis and formatting; it does not add a skipped
 artifact test to the qualification.
 
@@ -62,13 +67,13 @@ plans are unchanged. The two earlier delta plan directories remain historical.
 
 All 131 original package mappings remain byte-identical; only the Hunspell
 workspace mapping is added. The sole permitted change to an existing dependency
-graph node is Studio gaining `quds_mail_core`, `quds_mail_mime`, `quds_mail_ui`
-and `quds_proofing_hunspell`. The lockfile and original 131-package runtime
-bootstrap receipt remain unchanged. The current 132-package workspace receives
-its own explicit before/after receipts.
+graph node is Studio gaining `quds_mail_core`, `quds_mail_mime`, `quds_mail_ui`,
+`quds_proofing_hunspell` and the already-resolved `url_launcher`. The lockfile and
+original 131-package runtime bootstrap receipt remain unchanged. The current
+132-package workspace receives its own explicit before/after receipts.
 
 The exact incoming upstream license bytes remain intact. Whitespace is checked
-against `00014577`, without exceptions or shared-runner edits. macOS entitlement
+against `d8b7f1c4`, without exceptions or shared-runner edits. macOS entitlement
 inspection is static. Linux native tests, Flutter host/widget tests and Dart
 browser transport compilation do not establish a macOS launch or actual browser
 WebAssembly-worker execution.
@@ -96,7 +101,7 @@ python3 docs/validation/office-main-sync-20261119/main-delta-v3/run-delta-valida
   --pre-resolution /workspace/scratch/79e6ad9e4046/main-delta/pre-resolution \
   --prior-gate /workspace/scratch/79e6ad9e4046/final-integration-checks \
   --prior-audit /workspace/scratch/79e6ad9e4046/audit-review/final-0669ac11-accepted/independent-summary.json \
-  --output /workspace/scratch/79e6ad9e4046/main-delta/v3-final-checks \
+  --output /workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks \
   --command-timeout 600
 ```
 

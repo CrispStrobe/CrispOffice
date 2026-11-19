@@ -1,7 +1,7 @@
 {
   "status": "REVIEWED",
   "prior_qualified_source": "0669ac119da05f5eb777c8cfdbce32e0261df647",
-  "incoming_main_source": "00014577265d1f95d4c016159029510d3a10804b",
+  "incoming_main_source": "d8b7f1c4a576f727a0901c555dc327562dfff2b2",
   "paths": [
     {
       "path": ".github/workflows/crispoffice-binaries.yml",
@@ -41,9 +41,9 @@
     },
     {
       "path": "packages/quds_office_editor/example/lib/suite_workspace.dart",
-      "after_sha256": "839e2e77c830b5438bd800f2a9734ad4a3627128a02e3273d461348875daf1b8",
-      "reason": "Preserve the latest localization/About/branding/defaults while retaining the notes cache key, and correct only the macOS workflow step working directory; no hosted CI execution or query.",
-      "incoming_sha256": "47d266cf1ae4c82dc4571ac1c2012180ac436a072d71c7c3c86869e6c43bf2fc"
+      "after_sha256": "0ea07fdbe002adde9c58c082e02e375945e5ed478eb3312cd60787626854db68",
+      "reason": "Preserve exact incoming footer/chrome/localization while retaining the notes cache key, distinguishing scheduled/paused/incomplete checks from clear results, and constraining the proven narrow-layout overflow; seven public controller/provider regressions are selected for fresh qualification.",
+      "incoming_sha256": "7b298e2232d52dcb502537227e45d1b6620454b07a469de004542474912612ba"
     },
     {
       "path": "packages/quds_office_editor/example/test/pdf_gallery_smoke_test.dart",
@@ -96,6 +96,11 @@
       "after_sha256": "fa3d7f4b6881a2d3d4122d57154eac1566ce185ed9aad8037cb7db66cf1fd2ac",
       "reason": "Preserve incoming defaults and all prior behavior assertions; repair localized selectors, bind the notes configuration key, and apply pinned formatting where recorded. The artifact screenshot harness is static-check only.",
       "incoming_sha256": "0db14563c309aedb65250dd87cf7d07478827c42119e4462c06a4c47f5dfe8fa"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_review_status_test.dart",
+      "after_sha256": "0399a11aa9e2c6c9ac3aacec7004d4f015c9aee3c7c764c698ee5a0dace8cad7",
+      "reason": "Preserve exact incoming footer/chrome/localization while retaining the notes cache key, distinguishing scheduled/paused/incomplete checks from clear results, and constraining the proven narrow-layout overflow; seven public controller/provider regressions are selected for fresh qualification."
     },
     {
       "path": "packages/quds_office_editor/example/test/studio_settings_test.dart",
@@ -307,6 +312,7 @@
     "host-cancellation-review/files.json": "c482ac9d4cf1b80ce7036fa52ac2fbcb202079eed8c25e4b229ce63881d76934",
     "main-delta/be641-docs-files.json": "f5bd83d26655616786981dfc0541f821359057f2e18f9e996a833bd5ed203561",
     "studio-main-tail-review/workspace-files.json": "8e59727316c155af5c83fd2af6e3ae90d0f88b00a903556ee39f9aa897673581",
+    "studio-d8-review/final-files.json": "554a98e127010b13151a9eb230531c721472a0111b1f12e15484522ec755cd4b",
     "audit-review/packaging-controls-files.json": "de0117411751ab8fb69482966020e897b5428874581bfaf495499814bc1b286b",
     "main-delta/v3-format-review/receipt.json": "85b4f49c07aefb117b1fcd0729ac0127b09b019d27b0080b6d2b932c05c6b350"
   },
