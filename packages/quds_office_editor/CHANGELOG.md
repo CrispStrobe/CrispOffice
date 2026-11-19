@@ -18,6 +18,11 @@ All notable changes to `quds_office_editor` are documented here.
   subsequent cleanup fails, and independently abort both owned transports when
   releasing a session. This remains a foreground,
   session-only host; durable outbox and real-provider qualification are separate.
+- Retain incoming reply, text-only forward and mark-read actions. Quote the
+  loaded plain-text body with Unicode-safe truncation, protect uncertain drafts
+  from replacement, and verify read flags through the bounded UID provider
+  before updating the foreground message. Explicit draft discard does not cancel
+  an already submitted message.
 
 - Add **Add Zotero annotation** to the native Word ribbon and **Add annotation
   from Zotero…** to the references workspace. Text annotations and their active

@@ -140,6 +140,11 @@ class _Client extends Fake implements mail.MailClient {
 
 final class _Loader implements StudioMailMessageLoader {
   @override
+  Future<void> markRead(mail.Mailbox mailbox, mail.MimeMessage header) async {
+    throw StateError('This session fixture must not write message flags.');
+  }
+
+  @override
   Future<Uint8List> fetch(mail.Mailbox mailbox, mail.MimeMessage header) async {
     throw StateError('This session fixture must not fetch message bodies.');
   }

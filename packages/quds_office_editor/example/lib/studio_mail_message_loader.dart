@@ -6,17 +6,20 @@ import 'package:enough_mail/enough_mail.dart' as mail;
 import 'package:quds_mail_core/quds_mail_core.dart';
 import 'package:quds_mail_transport/quds_mail_transport.dart';
 
-/// Reads original message octets for one foreground Studio account session.
+/// Owns bounded message operations for one foreground Studio account session.
 abstract interface class StudioMailMessageLoader {
   Future<Uint8List> fetch(
     mail.Mailbox selectedMailbox,
     mail.MimeMessage header,
   );
 
-  /// Cancels the current read, leaving the session available for another read.
+  /// Marks the exact UID read only after the server confirms its current flags.
+  Future<void> markRead(mail.Mailbox selectedMailbox, mail.MimeMessage header);
+
+  /// Cancels the current operation, leaving the session available for another.
   void cancel();
 
-  /// Cancels reads and releases this loader's in-memory credential snapshot.
+  /// Cancels operations and releases this session's in-memory credentials.
   void dispose();
 }
 
@@ -163,13 +166,13 @@ final class NativeStudioMailMessageLoader implements StudioMailMessageLoader {
   final MailAccountSession _session;
   final MailReadBudget budget;
   final MailTransportLimits limits;
-  _MessageRead? _active;
+  _MessageOperation? _active;
+  int _nextOperation = 0;
 
-  @override
-  Future<Uint8List> fetch(
+  MailImapIdentity _identity(
     mail.Mailbox selectedMailbox,
     mail.MimeMessage header,
-  ) async {
+  ) {
     if (_session.isDisposed) {
       throw const StudioMailMessageLoadException(
         MailProblemCode.staleOperation,
@@ -210,9 +213,54 @@ final class NativeStudioMailMessageLoader implements StudioMailMessageLoader {
     } on ArgumentError {
       throw const StudioMailMessageLoadException(MailProblemCode.invalidInput);
     }
+    return identity;
+  }
 
+  @override
+  Future<Uint8List> fetch(
+    mail.Mailbox selectedMailbox,
+    mail.MimeMessage header,
+  ) async {
+    final identity = _identity(selectedMailbox, header);
+    final message = await _run(
+      (provider, lease) =>
+          provider.fetchMessage(identity, budget: budget, lease: lease),
+    );
+    if (message.remoteIdentity != identity) {
+      throw const StudioMailMessageLoadException(MailProblemCode.conflict);
+    }
+    if (message.raw.length > budget.maxRawBytes) {
+      throw const StudioMailMessageLoadException(MailProblemCode.quotaExceeded);
+    }
+    return message.raw.copyBytes();
+  }
+
+  @override
+  Future<void> markRead(
+    mail.Mailbox selectedMailbox,
+    mail.MimeMessage header,
+  ) async {
+    final identity = _identity(selectedMailbox, header);
+    // The provider opens a bounded connection, compares UIDVALIDITY, verifies
+    // this UID exists, performs UID STORE, then reads back the flag. It never
+    // replays a write after reconnecting or falls back to a sequence number.
+    await _run(
+      (provider, lease) => provider.apply(
+        MailSetRead(
+          id: 'mark-read-${++_nextOperation}',
+          message: identity,
+          read: true,
+        ),
+        lease,
+      ),
+    );
+  }
+
+  Future<T> _run<T>(
+    Future<MailResult<T>> Function(MailProvider, MailOperationLease) action,
+  ) async {
     cancel();
-    final operation = _MessageRead();
+    final operation = _MessageOperation();
     _active = operation;
     final lease = _session.begin(cancellation: operation.cancellation.token);
     try {
@@ -227,24 +275,17 @@ final class NativeStudioMailMessageLoader implements StudioMailMessageLoader {
         );
       }
       lease.checkCurrent();
-      final result = await Future.any<MailResult<MailMessage>>([
-        provider.fetchMessage(identity, budget: budget, lease: lease),
-        operation.cancelled.future,
+      final result = await Future.any<MailResult<T>>([
+        action(provider, lease),
+        operation.cancelled.future.then(
+          (code) => MailFailure(MailProblem(code)),
+        ),
       ]);
       lease.checkCurrent();
-      if (result case MailFailure<MailMessage>(:final problem)) {
+      if (result case MailFailure<T>(:final problem)) {
         throw StudioMailMessageLoadException(problem.code);
       }
-      final message = (result as MailSuccess<MailMessage>).value;
-      if (message.remoteIdentity != identity) {
-        throw const StudioMailMessageLoadException(MailProblemCode.conflict);
-      }
-      if (message.raw.length > budget.maxRawBytes) {
-        throw const StudioMailMessageLoadException(
-          MailProblemCode.quotaExceeded,
-        );
-      }
-      return message.raw.copyBytes();
+      return (result as MailSuccess<T>).value;
     } on StudioMailMessageLoadException {
       rethrow;
     } on MailCancelled catch (error) {
@@ -279,9 +320,9 @@ final class NativeStudioMailMessageLoader implements StudioMailMessageLoader {
   }
 }
 
-final class _MessageRead {
+final class _MessageOperation {
   final cancellation = MailCancellationSource();
-  final cancelled = Completer<MailResult<MailMessage>>();
+  final cancelled = Completer<MailProblemCode>();
 
   void cancel(MailProblemCode code) {
     cancellation.cancel(
@@ -290,7 +331,7 @@ final class _MessageRead {
           : MailCancellationReason.user,
     );
     if (!cancelled.isCompleted) {
-      cancelled.complete(MailFailure(MailProblem(code)));
+      cancelled.complete(code);
     }
   }
 }

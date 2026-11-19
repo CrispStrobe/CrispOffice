@@ -25,8 +25,10 @@ reading beside the newly introduced account view. The browser entry supports
 saved messages and explicitly declines direct IMAP/SMTP accounts.
 
 The native Studio host lists folders and fifty envelope records per load through
-the existing high-level client. Selected bodies use the bounded shared IMAP
-provider with exact original octets and a frozen mailbox/UIDVALIDITY/UID identity.
+the existing high-level client. Selected bodies and read-flag writes use the
+bounded shared IMAP provider with a frozen mailbox/UIDVALIDITY/UID identity.
+Body reads preserve exact original octets; mark-read verifies the remote flag
+before changing the displayed header and never automatically retries a write.
 Connection and read callbacks cannot publish into a replaced session. Secure
 account discovery is required before credentials are used, public failures are
 redacted, and legacy protocol print output is scoped away from application logs.
@@ -43,9 +45,16 @@ acknowledgement before another attempt. DATA and BDAT must return final SMTP 250
 acceptance; an earlier positive reply or a recorded command failure cannot
 certify submission.
 
+Reply and text-only forwarding quote the fetched message's plain-text part,
+preserve complete Unicode characters at their explicit quote limit, and do not
+copy Bcc or attachments. HTML-only quotation and threading headers remain outside
+this increment. A retained uncertain draft cannot be silently replaced by a
+reply/forward; Compose resumes it, and an explicit confirmed discard removes
+only the session draft without cancelling a message already submitted.
+
 This does **not** close M04W or M07: accounts/drafts remain session-only, there is
 no repository-driven mailbox or durable outbox, and no automatic resend is added.
-Only on-demand body reads use the bounded provider. The high-level folder,
+On-demand body reads and mark-read use the bounded provider. The high-level folder,
 envelope and SMTP paths retain their own reconnect behavior and do not acquire
 the provider's protocol-byte limits. Session release attempts both owned
 low-level transport aborts independently of high-level disconnect, including

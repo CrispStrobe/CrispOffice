@@ -48,5 +48,14 @@ The only new product changes introduced by that reconciliation are the incoming
 reply, forward and mark-read actions; the newer Word, SMTP, browser, saved-reader
 and lifecycle safeguards on this branch remain intact. PR #191 was reopened
 after the concurrent main integration closed it without merging its remaining
-work. Incoming action repairs and their focused regression cases precede the
-next frozen qualification.
+work. Reply/forward now quote the authoritative loaded plain-text message,
+preserve complete Unicode scalar values at the explicit 8,000-scalar limit,
+and protect retained uncertain drafts from implicit replacement. An explicit
+confirmed discard removes only the session draft. HTML-only quotation, threading
+headers and attachment forwarding remain outside this increment.
+
+Mark-read uses the existing bounded `MailSetRead` provider path, which checks the
+frozen mailbox, UIDVALIDITY, exact UID, read-write access and resulting flag.
+The foreground operation is serialized, cancellation and stale session checks
+remain in force, and no automatic write retry is introduced. These repairs and
+their focused regression cases precede the next frozen qualification.
