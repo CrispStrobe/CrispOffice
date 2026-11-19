@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:ffi';
 import 'dart:io';
 import 'dart:isolate';
+import 'dart:typed_data';
 
 import 'package:quds_office_engine/quds_office_engine.dart';
 
@@ -23,8 +24,9 @@ String get arabicMorphLibraryName => Platform.isWindows
     : 'libquds_arabic_morph.so';
 
 /// Owns a persistent isolate holding the native analyzer, so database
-/// loading (about 1.5 s) and analysis never block the UI isolate. Analyses
-/// are decoded into compact maps inside the worker isolate.
+/// loading and analysis never block the UI isolate. The isolate calls the
+/// compact batch ABI (no JSON) and transfers each batch's buffer; this side
+/// keeps per-word records and reads features from them on demand.
 final class _NativeTransport implements ArabicMorphTransport {
   _NativeTransport(this.libraryPath);
   final String? libraryPath;
@@ -36,6 +38,7 @@ final class _NativeTransport implements ArabicMorphTransport {
   Completer<SendPort>? _ready;
   bool _disposed = false;
   int _sequence = 0;
+  CompactAnalysisDecoder? _decoder;
 
   Future<SendPort> _start() async {
     final ready = _ready = Completer<SendPort>();
@@ -149,14 +152,28 @@ final class _NativeTransport implements ArabicMorphTransport {
       database.manifestPath,
       database.bundle.manifest.sha256,
     ]);
-    return (jsonDecode(info! as String) as Map).cast<String, Object?>();
+    final decoded = (jsonDecode(info! as String) as Map)
+        .cast<String, Object?>();
+    _decoder = CompactAnalysisDecoder(
+      (decoded['keys']! as List).cast<String>(),
+    );
+    return decoded;
   }
 
   @override
   Future<List<List<ArabicAnalysis>?>> analyze(List<String> words) async {
     if (words.isEmpty) return const [];
     final result = await _send(['analyze', words]);
-    return (result! as List).cast<List<ArabicAnalysis>?>();
+    final decoder = _decoder;
+    if (decoder == null) {
+      throw const ArabicMorphUnavailableException(
+        'No Arabic morphology database is open.',
+      );
+    }
+    final bytes = (result! as TransferableTypedData)
+        .materialize()
+        .asUint8List();
+    return decoder.decode(bytes, words.length);
   }
 
   @override
@@ -190,7 +207,6 @@ void _workerMain(List<Object?> arguments) {
     return;
   }
   host.send(input.sendPort);
-  final decoder = ArabicAnalysisDecoder();
   Pointer<Void> handle = nullptr;
   input.listen((Object? value) {
     if (value is! List || value.isEmpty || value.first is! int) return;
@@ -226,12 +242,8 @@ void _workerMain(List<Object?> arguments) {
           ]);
           return;
         }
-        final results = <List<ArabicAnalysis>?>[];
-        for (final word in words) {
-          final json = bindings.analyze(handle, word! as String);
-          results.add(json == null ? null : decoder.decode(json));
-        }
-        host.send(['result', id, results]);
+        final parts = bindings.analyzeCompact(handle, words.cast<String>());
+        host.send(['result', id, TransferableTypedData.fromList(parts)]);
       }
     } on Object catch (error) {
       host.send(['error', id, 'Native Arabic morphology failed: $error']);
@@ -239,9 +251,11 @@ void _workerMain(List<Object?> arguments) {
   });
 }
 
-const _inputError = 5;
-const _maxWordBytes = 4096;
 const _errorCapacity = 512;
+const _compactMagic = 0x31434D41;
+const _compactDedup = 1;
+// quds_arabic_morph_alloc's limit; batches are split to stay below it.
+const _maxAllocation = 1 << 20;
 
 final class _Bindings {
   _Bindings(DynamicLibrary library)
@@ -262,12 +276,14 @@ final class _Bindings {
               int,
             )
           >('crispembed_ar_morph_open'),
-      _analyze = library
+      _analyzeCompact = library
           .lookupFunction<
             Int32 Function(
               Pointer<Void>,
               Pointer<Uint8>,
-              Size,
+              Pointer<Uint32>,
+              Uint32,
+              Uint32,
               Pointer<Pointer<Uint8>>,
               Pointer<Size>,
               Pointer<Uint8>,
@@ -276,18 +292,20 @@ final class _Bindings {
             int Function(
               Pointer<Void>,
               Pointer<Uint8>,
+              Pointer<Uint32>,
+              int,
               int,
               Pointer<Pointer<Uint8>>,
               Pointer<Size>,
               Pointer<Uint8>,
               int,
             )
-          >('crispembed_ar_morph_analyze'),
-      _stringFree = library
+          >('crispembed_ar_morph_analyze_compact'),
+      _bufferFree = library
           .lookupFunction<
             Void Function(Pointer<Uint8>),
             void Function(Pointer<Uint8>)
-          >('crispembed_ar_morph_string_free'),
+          >('crispembed_ar_morph_buffer_free'),
       _info = library
           .lookupFunction<
             Pointer<Uint8> Function(Pointer<Void>),
@@ -314,10 +332,9 @@ final class _Bindings {
     final adapter = library.lookupFunction<Uint32 Function(), int Function()>(
       'quds_arabic_morph_adapter_version',
     );
-    if (abi() != 1 || adapter() != 1) {
+    if (abi() != 2 || adapter() != 1) {
       throw StateError('Unsupported Arabic morphology ABI.');
     }
-    _word = _allocate(_maxWordBytes + 1);
     _error = _allocate(_errorCapacity);
     _out = _allocate(sizeOf<Pointer<Uint8>>()).cast();
     _outLength = _allocate(sizeOf<Size>()).cast();
@@ -334,21 +351,22 @@ final class _Bindings {
   final int Function(
     Pointer<Void>,
     Pointer<Uint8>,
+    Pointer<Uint32>,
+    int,
     int,
     Pointer<Pointer<Uint8>>,
     Pointer<Size>,
     Pointer<Uint8>,
     int,
   )
-  _analyze;
-  final void Function(Pointer<Uint8>) _stringFree;
+  _analyzeCompact;
+  final void Function(Pointer<Uint8>) _bufferFree;
   final Pointer<Uint8> Function(Pointer<Void>) _info;
   final void Function(Pointer<Void>) free;
   final Pointer<Uint8> Function(int) _malloc;
   final void Function(Pointer<Uint8>) _free;
 
   // Buffers owned for the isolate's lifetime (one analyzer per isolate).
-  late final Pointer<Uint8> _word;
   late final Pointer<Uint8> _error;
   late final Pointer<Pointer<Uint8>> _out;
   late final Pointer<Size> _outLength;
@@ -394,36 +412,84 @@ final class _Bindings {
 
   String info(Pointer<Void> handle) => _cString(_info(handle));
 
-  static final _json = utf8.decoder.fuse(json.decoder);
-
-  /// The decoded JSON analyses of [word] (parsed straight from the native
-  /// buffer), or null when the analyzer rejects it as input. Other failures
-  /// throw.
-  Object? analyze(Pointer<Void> handle, String word) {
-    final bytes = utf8.encode(word);
-    if (bytes.length > _maxWordBytes) return null;
-    _word.asTypedList(bytes.length).setAll(0, bytes);
-    _error[0] = 0;
-    final status = _analyze(
-      handle,
-      _word,
-      bytes.length,
-      _out,
-      _outLength,
-      _error,
-      _errorCapacity,
-    );
-    if (status == _inputError) return null;
-    if (status != 0) {
-      throw StateError(
-        'analysis failed ($status): ${_cString(_error, _errorCapacity)}',
-      );
+  /// The compact results of [words] in the analyzer's batch format (`AMC1`,
+  /// word count, per-word status and record; duplicate analyses dropped),
+  /// as parts to concatenate. Words are sent in chunks below the adapter's
+  /// allocation limit; a word the analyzer rejects (invalid UTF-8, over
+  /// 4,096 bytes) gets the input-error status. Other failures throw.
+  List<Uint8List> analyzeCompact(Pointer<Void> handle, List<String> words) {
+    final encoded = [for (final word in words) utf8.encode(word)];
+    final out = <Uint8List>[
+      (ByteData(8)
+            ..setUint32(0, _compactMagic, Endian.little)
+            ..setUint32(4, words.length, Endian.little))
+          .buffer
+          .asUint8List(),
+    ];
+    var start = 0;
+    while (start < encoded.length) {
+      var end = start;
+      var bytes = 0;
+      while (end < encoded.length &&
+          (end == start ||
+              bytes + encoded[end].length + 4 * (end - start + 1) <
+                  _maxAllocation)) {
+        bytes += encoded[end].length;
+        end++;
+      }
+      out.add(_chunk(handle, encoded.sublist(start, end)));
+      start = end;
     }
-    final output = _out.value;
+    return out;
+  }
+
+  /// One native call; returns the per-word part (after the 8-byte header).
+  Uint8List _chunk(Pointer<Void> handle, List<Uint8List> words) {
+    final total = words.fold<int>(0, (sum, w) => sum + w.length);
+    if (total + 4 * words.length >= _maxAllocation) {
+      // A single word above the limit: the analyzer rejects it anyway.
+      final rejected = ByteData(8)
+        ..setUint32(0, 5, Endian.little)
+        ..setUint32(4, 0, Endian.little);
+      return rejected.buffer.asUint8List();
+    }
+    final text = _allocate(total == 0 ? 1 : total);
+    final lengths = _allocate(4 * words.length).cast<Uint32>();
     try {
-      return _json.convert(output.asTypedList(_outLength.value));
+      var at = 0;
+      final view = text.asTypedList(total == 0 ? 1 : total);
+      for (var i = 0; i < words.length; i++) {
+        view.setAll(at, words[i]);
+        at += words[i].length;
+        lengths[i] = words[i].length;
+      }
+      _error[0] = 0;
+      final status = _analyzeCompact(
+        handle,
+        text,
+        lengths,
+        words.length,
+        _compactDedup,
+        _out,
+        _outLength,
+        _error,
+        _errorCapacity,
+      );
+      if (status != 0) {
+        throw StateError(
+          'analysis failed ($status): ${_cString(_error, _errorCapacity)}',
+        );
+      }
+      final output = _out.value;
+      try {
+        final length = _outLength.value;
+        return output.asTypedList(length).sublist(8); // one copy
+      } finally {
+        _bufferFree(output);
+      }
     } finally {
-      _stringFree(output);
+      _free(text);
+      _free(lengths.cast());
     }
   }
 }

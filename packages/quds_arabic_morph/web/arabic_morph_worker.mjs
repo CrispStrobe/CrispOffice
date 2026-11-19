@@ -10,7 +10,7 @@ const BUNDLE = '/camel-morph';
 
 async function load() {
   const api = await createArabicMorphModule();
-  if (api._quds_arabic_morph_adapter_version() !== 1 || api._crispembed_ar_morph_abi_version() !== 1) {
+  if (api._quds_arabic_morph_adapter_version() !== 1 || api._crispembed_ar_morph_abi_version() !== 2) {
     throw new Error('Unsupported Arabic morphology ABI');
   }
   return api;
@@ -52,38 +52,45 @@ function open(api, files, manifestSha256) {
     if (!handle) throw new Error(`The morphology database could not be opened: ${text(api, error)}`);
   } finally {
     api._free(error);
-    // The analyzer keeps its own parsed copy; drop the in-memory files.
+    // The analyzer keeps its own copy of the database; drop the in-memory files.
     for (const path of written) { try { api.FS.unlink(path); } catch (_) { /* gone */ } }
   }
   return text(api, api._crispembed_ar_morph_info(handle));
 }
 
-// One JSON document: {"status":"success","results":[<analyses array>|null, ...]}
-// in input order; null marks a word the analyzer rejected (input error).
+// One compact batch buffer (crispembed_ar_morph_analyze_compact, duplicate
+// analyses dropped): magic, word count, then per word a status (0 or 5 for a
+// rejected word) and its record. Returned as a transferable ArrayBuffer.
+const encoder = new TextEncoder();
 function analyze(api, words) {
+  const parts = words.map(word => encoder.encode(word));
+  const total = parts.reduce((sum, part) => sum + part.length, 0);
+  const input = api._malloc(Math.max(total, 1));
+  const lengths = api._malloc(4 * Math.max(parts.length, 1));
   const out = api._malloc(8);
   const error = api._malloc(256);
-  const parts = [];
   try {
-    for (const word of words) {
-      const status = withString(api, word, pointer => api._crispembed_ar_morph_analyze(
-        handle, pointer, api.lengthBytesUTF8(word), out, out + 4, error, 256));
-      if (status === 0) {
-        const json = api.HEAPU32[out >> 2];
-        const length = api.HEAPU32[(out + 4) >> 2];
-        parts.push(text(api, json, length));
-        api._crispembed_ar_morph_string_free(json);
-      } else if (status === 5) {
-        parts.push('null');
-      } else {
-        throw new Error(`analysis failed (${status}): ${text(api, error)}`);
-      }
-    }
+    // Read the heap views after every allocation: growth replaces them.
+    let at = 0;
+    parts.forEach((part, i) => {
+      api.HEAPU8.set(part, input + at);
+      api.HEAPU32[(lengths >> 2) + i] = part.length;
+      at += part.length;
+    });
+    const status = api._crispembed_ar_morph_analyze_compact(handle, input, lengths, parts.length, 1, out, out + 4,
+      error, 256);
+    if (status !== 0) throw new Error(`analysis failed (${status}): ${text(api, error)}`);
+    const pointer = api.HEAPU32[out >> 2];
+    const length = api.HEAPU32[(out + 4) >> 2];
+    const result = api.HEAPU8.slice(pointer, pointer + length);
+    api._crispembed_ar_morph_buffer_free(pointer);
+    return result.buffer;
   } finally {
+    api._free(input);
+    api._free(lengths);
     api._free(out);
     api._free(error);
   }
-  return `{"status":"success","results":[${parts.join(',')}]}`;
 }
 
 // Serialize requests: one analyzer handle, one owner.
@@ -106,7 +113,8 @@ self.onmessage = event => {
         self.postMessage({id, response: JSON.stringify({status: 'success', info: JSON.parse(info),
           heapBytes: api.HEAPU32.buffer.byteLength})});
       } else if (request.op === 'analyze' && handle) {
-        self.postMessage({id, response: analyze(api, request.words)});
+        const buffer = analyze(api, request.words);
+        self.postMessage({id, buffer}, [buffer]);
       } else if (request.op === 'stats') {
         self.postMessage({id, response: JSON.stringify({status: 'success', open: handle !== 0,
           heapBytes: api.HEAPU32.buffer.byteLength})});

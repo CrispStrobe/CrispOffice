@@ -613,9 +613,28 @@ below. No Arabic resource is downloaded by default.
 
    **Open:** the rules that consume it (T2, rules agent); on-device
    Android/iOS runs; iOS (the example has no iOS runner); Linux and Windows
-   builds; persisting the web download across sessions; a byte-level
-   analysis parser (Dart decoding halves the native 2,250 words/s); a compact
-   binary database (CrispEmbed) to cut load time and peak memory.
+   builds; persisting the web download across sessions.
+
+   **Binary proofing database (done, branch
+   `feat/arabic-morph-binary-20261119`, CrispEmbed PR #255).** The app now
+   downloads `proofing-bin`
+   (`cstr/camel-morph-msa-v1.0@d5364e04…`, 12 MB instead of 74.5 MB).
+   - It is the noprob database in a memory-mapped binary format, reduced to
+     the 24 features the rules and lemma identity use: `diac lex root pos`,
+     the clitics, the inflectional features and `source`.
+   - It is exact against camel_tools on 9,571 PUD and stress words in NONE,
+     NOAN_PROP and ADD_ALL backoff.
+   - The worker isolate and the Web Worker use the compact batch ABI, with
+     no JSON. Results are cached as compact per-word records whose maps are
+     read lazily.
+   - Load: 0.16–0.26 s natively (was 1.2–2.5 s) and 0.15 s in Chrome (was
+     1.4–2.0 s).
+   - Memory: 30 MB native RSS after load (was 250 MB); 16–19 MB Wasm heap
+     (was 320 MB).
+   - Throughput through Dart is 2.5–4× higher.
+   - The rules report the same 673 findings on all 1,000 PUD sentences as
+     before.
+   - Studio removes earlier noprob installs.
 4. **Model-backed analysis (optional, owner decision).** Either accept the
    CAMeL weights' training-data risk and port them natively like the spaCy
    transformer pipelines, or train our own licence-clean models:
