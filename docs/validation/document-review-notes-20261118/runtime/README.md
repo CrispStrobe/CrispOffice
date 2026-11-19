@@ -1,5 +1,11 @@
 # Local runtime and reproduction — Notes review continuation
 
+**19 November update:** the corrected complete fresh `--node-tests` restoration
+has now executed successfully, including genuine SQLite hooks and the FTS5 smoke.
+Its source and full provenance are recorded in the
+[current continuation](../../document-review-notes-20261119/README.md). The
+historical observations below retain their original scope.
+
 The resumed **77-suite local gate passed** on source `a7512e94da8208123aa2df5f5c2c0354d079ddc7`: **1,244 Dart/Flutter cases, no failures or skips**, plus strict analysis, formatting and whitespace checks. See the [final resumed record](../resumed/README.md) and [exact receipt](../resumed/verification.json). The earlier disk-exhaustion observations below are retained as history.
 
 ## Earlier disk-exhaustion attempt (historical)
