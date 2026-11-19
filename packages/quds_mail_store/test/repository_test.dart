@@ -130,132 +130,200 @@ void main() {
   });
   tearDown(() async => store.close());
 
-  test('observed flags persist while an omitted snapshot preserves them', () async {
-    const observed = MailMessageFlags(isRead: true, isFlagged: true);
-    value(await store.commitSyncPage(
-      page('c1', upserts: [header(1, flags: observed), header(2)]),
-      expectedCursor: null,
-      lease: session.begin(),
-    ));
-    final initial = value(await store.listHeaders(mailbox));
-    expect(initial.first.flags, observed);
-    expect(initial.last.flags, isNull);
-
-    value(await store.commitSyncPage(
-      page('c2', upserts: [header(1, subject: 'Updated searchable subject')]),
-      expectedCursor: value(await store.readCursor(mailbox)),
-      lease: session.begin(),
-    ));
-    final updated = value(await store.listHeaders(mailbox)).first;
-    expect(updated.flags, observed);
-    expect(updated.remote, remote(1));
-    expect(updated.id, header(1).id);
-    expect(updated.envelope.subject, 'Updated searchable subject');
-    expect(value(await store.search(account, 'searchable')).single.header.flags,
-        observed);
-    expect(value(await store.watchHeaders(mailbox).first).first.flags, observed);
-
-    value(await store.commitSyncPage(
-      page('c3', upserts: [header(1, flags: const MailMessageFlags())]),
-      expectedCursor: value(await store.readCursor(mailbox)),
-      lease: session.begin(),
-    ));
-    final cleared = value(await store.listHeaders(mailbox));
-    expect(cleared.first.flags, const MailMessageFlags());
-    expect(cleared.last.flags, isNull);
-  });
-
-  test('flag mutation and cursor roll back together on transaction failure', () async {
-    const original = MailMessageFlags(isRead: true);
-    const changed = MailMessageFlags(isFlagged: true, isDeleted: true);
-    value(await store.commitSyncPage(
-      page('c1', upserts: [header(1, flags: original)]),
-      expectedCursor: null,
-      lease: session.begin(),
-    ));
-    final cursor = value(await store.readCursor(mailbox));
-    failAt = MailStoreCheckpoint.beforeSyncCursor;
-    problem(await store.commitSyncPage(
-      page('c2', upserts: [header(1, flags: changed)]),
-      expectedCursor: cursor,
-      lease: session.begin(),
-    ), MailProblemCode.storageFailure);
-    expect(value(await store.listHeaders(mailbox)).single.flags, original);
-    expect(value(await store.readCursor(mailbox))!.value, 'c1');
-
-    failAt = null;
-    value(await store.commitSyncPage(
-      page('c2', upserts: [header(1, flags: changed)]),
-      expectedCursor: cursor,
-      lease: session.begin(),
-    ));
-    expect(value(await store.listHeaders(mailbox)).single.flags, changed);
-    expect(value(await store.readCursor(mailbox))!.value, 'c2');
-  });
-
-  test('flag snapshots stay scoped to account, mailbox and UIDVALIDITY', () async {
-    const firstFlags = MailMessageFlags(isRead: true);
-    const secondFlags = MailMessageFlags(isFlagged: true);
-    final otherAccount = MailAccountId('other', profile: profile);
-    final otherInbox = MailMailboxId(mailbox.value, account: otherAccount);
-    final archive = MailMailboxId('archive', account: account);
-    value(await store.createAccount(MailStoreAccount(
-      id: otherAccount,
-      provider: MailProviderKind.imap,
-      displayName: 'Other',
-    )));
-    value(await store.commitSyncPage(
-      page('c1', upserts: [header(1, flags: firstFlags)]),
-      expectedCursor: null,
-      lease: session.begin(),
-    ));
-    for (final target in [otherInbox, archive]) {
-      value(await store.commitSyncPage(
-        MailSyncPage(
-          mailbox: target,
-          upserts: [MailHeaderRecord(
-            id: MailMessageId(target == otherInbox ? 'message-1-1' : 'archive-1'),
-            remote: MailImapIdentity(mailbox: target, uidValidity: 1, uid: 1),
-            envelope: MailEnvelope(subject: 'Separate identity'),
-            flags: secondFlags,
-          )],
-          tombstones: [],
-          next: MailCursor(mailbox: target, value: 'separate'),
-          hasMore: false,
+  test(
+    'observed flags persist while an omitted snapshot preserves them',
+    () async {
+      const observed = MailMessageFlags(isRead: true, isFlagged: true);
+      value(
+        await store.commitSyncPage(
+          page(
+            'c1',
+            upserts: [
+              header(1, flags: observed),
+              header(2),
+            ],
+          ),
+          expectedCursor: null,
+          lease: session.begin(),
         ),
-        expectedCursor: null,
-        lease: MailAccountSession(target.account).begin(),
-      ));
-    }
-    expect(value(await store.listHeaders(mailbox)).single.flags, firstFlags);
-    expect(value(await store.listHeaders(otherInbox)).single.flags, secondFlags);
-    expect(value(await store.listHeaders(archive)).single.flags, secondFlags);
+      );
+      final initial = value(await store.listHeaders(mailbox));
+      expect(initial.first.flags, observed);
+      expect(initial.last.flags, isNull);
 
-    problem(await store.commitSyncPage(
-      page('wrong-identity', upserts: [MailHeaderRecord(
-        id: header(1).id,
-        remote: remote(2),
-        envelope: MailEnvelope(subject: 'Conflicting identity'),
-        flags: secondFlags,
-      )]),
-      expectedCursor: value(await store.readCursor(mailbox)),
-      lease: session.begin(),
-    ), MailProblemCode.conflict);
-    expect(value(await store.listHeaders(mailbox)).single.remote, remote(1));
-    expect(value(await store.listHeaders(mailbox)).single.flags, firstFlags);
-    expect(value(await store.readCursor(mailbox))!.value, 'c1');
+      value(
+        await store.commitSyncPage(
+          page(
+            'c2',
+            upserts: [header(1, subject: 'Updated searchable subject')],
+          ),
+          expectedCursor: value(await store.readCursor(mailbox)),
+          lease: session.begin(),
+        ),
+      );
+      final updated = value(await store.listHeaders(mailbox)).first;
+      expect(updated.flags, observed);
+      expect(updated.remote, remote(1));
+      expect(updated.id, header(1).id);
+      expect(updated.envelope.subject, 'Updated searchable subject');
+      expect(
+        value(await store.search(account, 'searchable')).single.header.flags,
+        observed,
+      );
+      expect(
+        value(await store.watchHeaders(mailbox).first).first.flags,
+        observed,
+      );
 
-    value(await store.commitSyncPage(
-      page('reset', upserts: [header(1, validity: 2)], reset: true),
-      expectedCursor: value(await store.readCursor(mailbox)),
-      lease: session.begin(),
-    ));
-    final reset = value(await store.listHeaders(mailbox)).single;
-    expect(reset.remote, remote(1, validity: 2));
-    expect(reset.flags, isNull);
-    expect(value(await store.listHeaders(otherInbox)).single.flags, secondFlags);
-    expect(value(await store.listHeaders(archive)).single.flags, secondFlags);
-  });
+      value(
+        await store.commitSyncPage(
+          page('c3', upserts: [header(1, flags: const MailMessageFlags())]),
+          expectedCursor: value(await store.readCursor(mailbox)),
+          lease: session.begin(),
+        ),
+      );
+      final cleared = value(await store.listHeaders(mailbox));
+      expect(cleared.first.flags, const MailMessageFlags());
+      expect(cleared.last.flags, isNull);
+    },
+  );
+
+  test(
+    'flag mutation and cursor roll back together on transaction failure',
+    () async {
+      const original = MailMessageFlags(isRead: true);
+      const changed = MailMessageFlags(isFlagged: true, isDeleted: true);
+      value(
+        await store.commitSyncPage(
+          page('c1', upserts: [header(1, flags: original)]),
+          expectedCursor: null,
+          lease: session.begin(),
+        ),
+      );
+      final cursor = value(await store.readCursor(mailbox));
+      failAt = MailStoreCheckpoint.beforeSyncCursor;
+      problem(
+        await store.commitSyncPage(
+          page('c2', upserts: [header(1, flags: changed)]),
+          expectedCursor: cursor,
+          lease: session.begin(),
+        ),
+        MailProblemCode.storageFailure,
+      );
+      expect(value(await store.listHeaders(mailbox)).single.flags, original);
+      expect(value(await store.readCursor(mailbox))!.value, 'c1');
+
+      failAt = null;
+      value(
+        await store.commitSyncPage(
+          page('c2', upserts: [header(1, flags: changed)]),
+          expectedCursor: cursor,
+          lease: session.begin(),
+        ),
+      );
+      expect(value(await store.listHeaders(mailbox)).single.flags, changed);
+      expect(value(await store.readCursor(mailbox))!.value, 'c2');
+    },
+  );
+
+  test(
+    'flag snapshots stay scoped to account, mailbox and UIDVALIDITY',
+    () async {
+      const firstFlags = MailMessageFlags(isRead: true);
+      const secondFlags = MailMessageFlags(isFlagged: true);
+      final otherAccount = MailAccountId('other', profile: profile);
+      final otherInbox = MailMailboxId(mailbox.value, account: otherAccount);
+      final archive = MailMailboxId('archive', account: account);
+      value(
+        await store.createAccount(
+          MailStoreAccount(
+            id: otherAccount,
+            provider: MailProviderKind.imap,
+            displayName: 'Other',
+          ),
+        ),
+      );
+      value(
+        await store.commitSyncPage(
+          page('c1', upserts: [header(1, flags: firstFlags)]),
+          expectedCursor: null,
+          lease: session.begin(),
+        ),
+      );
+      for (final target in [otherInbox, archive]) {
+        value(
+          await store.commitSyncPage(
+            MailSyncPage(
+              mailbox: target,
+              upserts: [
+                MailHeaderRecord(
+                  id: MailMessageId(
+                    target == otherInbox ? 'message-1-1' : 'archive-1',
+                  ),
+                  remote: MailImapIdentity(
+                    mailbox: target,
+                    uidValidity: 1,
+                    uid: 1,
+                  ),
+                  envelope: MailEnvelope(subject: 'Separate identity'),
+                  flags: secondFlags,
+                ),
+              ],
+              tombstones: [],
+              next: MailCursor(mailbox: target, value: 'separate'),
+              hasMore: false,
+            ),
+            expectedCursor: null,
+            lease: MailAccountSession(target.account).begin(),
+          ),
+        );
+      }
+      expect(value(await store.listHeaders(mailbox)).single.flags, firstFlags);
+      expect(
+        value(await store.listHeaders(otherInbox)).single.flags,
+        secondFlags,
+      );
+      expect(value(await store.listHeaders(archive)).single.flags, secondFlags);
+
+      problem(
+        await store.commitSyncPage(
+          page(
+            'wrong-identity',
+            upserts: [
+              MailHeaderRecord(
+                id: header(1).id,
+                remote: remote(2),
+                envelope: MailEnvelope(subject: 'Conflicting identity'),
+                flags: secondFlags,
+              ),
+            ],
+          ),
+          expectedCursor: value(await store.readCursor(mailbox)),
+          lease: session.begin(),
+        ),
+        MailProblemCode.conflict,
+      );
+      expect(value(await store.listHeaders(mailbox)).single.remote, remote(1));
+      expect(value(await store.listHeaders(mailbox)).single.flags, firstFlags);
+      expect(value(await store.readCursor(mailbox))!.value, 'c1');
+
+      value(
+        await store.commitSyncPage(
+          page('reset', upserts: [header(1, validity: 2)], reset: true),
+          expectedCursor: value(await store.readCursor(mailbox)),
+          lease: session.begin(),
+        ),
+      );
+      final reset = value(await store.listHeaders(mailbox)).single;
+      expect(reset.remote, remote(1, validity: 2));
+      expect(reset.flags, isNull);
+      expect(
+        value(await store.listHeaders(otherInbox)).single.flags,
+        secondFlags,
+      );
+      expect(value(await store.listHeaders(archive)).single.flags, secondFlags);
+    },
+  );
 
   test(
     'commits headers and cursor with a compare-and-set precondition',

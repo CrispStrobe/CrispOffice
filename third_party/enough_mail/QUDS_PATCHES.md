@@ -77,6 +77,32 @@ implemented Quds packages outside this directory keep their own MIT license.
     exactly, so the fork does not silently roll them into the next minute.
     Regressions include a valid leap day and a nonzero zone offset.
 
+12. Add the native public `RawImapMessage`, `RawImapFetchResult`, and
+    `ImapClient.uidFetchRawMessages` path. It retains exact complete literals,
+    validates requested UID intervals and unique records, and does not normalize
+    newlines or eagerly parse MIME. Header mode requests only envelope
+    HEADER.FIELDS. Its parser rejects partial bodies, malformed prefixes,
+    duplicate/out-of-range UIDs and unbalanced response grammar; a tagged OK
+    cannot accept an earlier valid prefix. Protocol atoms remain case-insensitive.
+13. Add configurable literal, protocol-line/greeting and aggregate response-byte
+    bounds. Deterministic budget failures are latched separately from provider
+    or authentication errors. Strict response iteration suppresses the historical
+    raw-literal warning output; malformed raw responses fail and abort the client.
+14. Frame IMAP greetings across TCP fragmentation/coalescing. Add hard abort,
+    connection-generation guards, and late socket/TLS result destruction.
+    Production socket creation keeps the existing certificate and hostname trust
+    policy. Overridable socket-opening seams permit deterministic protocol tests
+    without claiming a real TLS handshake. SMTP/POP greeting framing retains its
+    existing mode; their shared connection/abort behavior is regression tested.
+15. Correct OAUTHBEARER's GS2 authorization identity from `u=` to `a=` and send
+    the required `AQ==` error-challenge terminator. Quds enables initial-response
+    token mechanisms only with the corresponding AUTH capability and SASL-IR.
+    OAuth browser authorization, PKCE, redirect and refresh remain host work.
+
+These native additions are covered by MPL-2.0. `UPSTREAM.json` remains the
+unchanged original-source inventory; local additions and modifications are
+identified by the consuming Quds commit and source-bound validation manifest.
+
 `PORTABLE_CLOSURE.json` records the current 21-file local and 87-file complete
 selected import closure, including external packages. `DEPENDENCIES.json`
 records the 30-package runtime graph resolved by the root workspace lock;
@@ -116,8 +142,10 @@ the retained MPL notice; the archive is not otherwise blanket-approved.
 - `MailCodec.decodeBinary` retains upstream CRLF removal for identity 7bit/8bit
   data. Byte-exact incoming attachments must be taken from their original body
   ranges, not reconstructed through that legacy helper.
-- No HTML rendering/sanitization, sync, credentials or network request is added
-  by this patch. No Apple application or distribution approval is claimed.
+- The original portable MIME patch adds no HTML rendering, sync, credentials
+  or network request. The later native primitives above are consumed by
+  `quds_mail_transport`, which owns bounded synchronization and host-vault
+  access. Neither patch supplies an Apple application or distribution approval.
 
 ## Matching covered source for binaries
 

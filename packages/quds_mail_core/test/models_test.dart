@@ -14,8 +14,10 @@ void main() {
     expect(empty.isDeleted, isFalse);
     expect(observed, const MailMessageFlags(isRead: true, isFlagged: true));
     expect(observed, isNot(empty));
-    expect({observed, const MailMessageFlags(isRead: true, isFlagged: true)},
-        hasLength(1));
+    expect({
+      observed,
+      const MailMessageFlags(isRead: true, isFlagged: true),
+    }, hasLength(1));
     for (final different in const [
       MailMessageFlags(isRead: true),
       MailMessageFlags(isFlagged: true),

@@ -1,5 +1,6 @@
 import 'dart:typed_data';
 
+import '../util/protocol_resource_limit.dart';
 import '../util/uint8_list_reader.dart';
 import 'imap_response.dart';
 import 'imap_response_line.dart';
@@ -10,6 +11,7 @@ class ImapResponseReader {
   ImapResponseReader(
     this.onImapResponse, {
     this.maxLiteralSize = defaultMaxLiteralSize,
+    this.maxProtocolLineBytes,
   });
 
   /// The default for [maxLiteralSize]: 128 MiB
@@ -24,6 +26,9 @@ class ImapResponseReader {
   /// large literal and make the client buffer everything that follows
   /// forever. Exceeding the limit throws a [FormatException] from [onData].
   final int maxLiteralSize;
+
+  /// Optional bound checked before converting a protocol line to text.
+  final int? maxProtocolLineBytes;
 
   final Uint8ListReader _rawReader = Uint8ListReader();
 
@@ -52,7 +57,7 @@ class ImapResponseReader {
       final response = _currentResponse;
       if (response == null) {
         // there is currently no response awaiting its finalization
-        final text = _rawReader.readLine();
+        final text = _rawReader.readLine(maxBytes: maxProtocolLineBytes);
         if (text == null) {
           return;
         }
@@ -73,7 +78,7 @@ class ImapResponseReader {
         if (literal > maxLiteralSize) {
           _currentResponse = null;
           _awaitingLiteralFor = null;
-          throw FormatException(
+          throw ProtocolResourceLimit(
             'literal of $literal bytes exceeds the maximum of '
             '$maxLiteralSize bytes',
           );
@@ -90,7 +95,7 @@ class ImapResponseReader {
         continue;
       }
       // the literal has been consumed, read the remainder of the line:
-      final text = _rawReader.readLine();
+      final text = _rawReader.readLine(maxBytes: maxProtocolLineBytes);
       if (text == null) {
         return;
       }
