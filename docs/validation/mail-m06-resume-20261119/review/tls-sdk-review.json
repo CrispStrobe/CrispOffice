@@ -1,0 +1,51 @@
+{
+  "schema": 1,
+  "reviewed_at_utc": "2026-11-19T06:36:02.504813+00:00",
+  "reviewed_commit": "ca00a8ffb3c0c82c646eaf2e5a134ab7348ae90e",
+  "sdk_root": "/workspace/scratch/5c6c66fd3cc3/toolchains/flutter/bin/cache/dart-sdk",
+  "sdk_version": "3.13.7",
+  "sdk_source_manifest": [
+    {
+      "path": "version",
+      "sha256": "3ce16e94590543a327d3e5ae412e663206e0ed1b46628ed3dd5ad29caa1ff5ac",
+      "bytes": 7
+    },
+    {
+      "path": "lib/io/secure_socket.dart",
+      "sha256": "efead7dc89e2c146f7801321d07169d06ed6bdf452b297eb70666e4d7536d835",
+      "bytes": 50394
+    },
+    {
+      "path": "lib/_internal/vm/bin/socket_patch.dart",
+      "sha256": "d7b9a4bdcca4b4c50d4a253713c42b4fb15dc1ac15d89f3db54377192599370e",
+      "bytes": 97254
+    },
+    {
+      "path": "lib/_internal/vm/bin/secure_socket_patch.dart",
+      "sha256": "eda57e143bac03f782970c9cc3c52ce9d111d2356f0322eacb74230233173b6a",
+      "bytes": 10937
+    }
+  ],
+  "successful_upgrade_cleanup": {
+    "status": "safe-by-exact-SDK-inspection",
+    "proof": [
+      "lib/io/secure_socket.dart SecureSocket.secure calls socket._detachRaw before RawSecureSocket.secure.",
+      "lib/_internal/vm/bin/socket_patch.dart _Socket._detachRaw sets the old _raw field to null.",
+      "_Socket.destroy returns immediately when _raw is null; the old controller subscription cancellation only shuts down receive when _raw is nonnull.",
+      "Therefore originalSocket.destroy after the secure future completes does not close the upgraded connection."
+    ]
+  },
+  "pending_handshake": {
+    "status": "open-T12",
+    "proof": [
+      "SecureSocket.secure detaches before waiting for the TLS handshake.",
+      "_RawSecureSocket.connect returns _handshakeComplete.future; the secure path has no handshake timeout timer.",
+      "ClientBase abort currently has only the detached old Socket during STARTTLS, or no constructed Socket during implicit TLS.",
+      "Generation guards run only when createConnectionSocket/createSecureConnectionSocket eventually resolves.",
+      "SecureSocket.startConnect alone does not fix this: it delegates cancellation to the TCP task, whose winning native socket is removed from the connecting set before TLS starts."
+    ]
+  },
+  "recommended_strategy": "Retain RawSocket ownership during RawSecureSocket.secure and use a protocol/socket adapter boundary that can close the raw owner until secure handoff completes. Preserve normal certificate/hostname verification.",
+  "required_regression": "Use a real local TCP peer that either accepts implicit TLS or answers STARTTLS OK, then never answers the ClientHello. Cancel/timeout the provider and assert peer-observed TCP closure before releasing any stalled-handshake gate. Verify no auth command is sent and a subsequent call uses a fresh connection.",
+  "runtime_executed_by_reviewer": false
+}

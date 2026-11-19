@@ -1,4 +1,4 @@
-# Mail implementation status — 18 November 2026
+# Mail implementation status — 19 November 2026
 
 Development continues on `codex/mail-reader-20261118` in the canonical Quds
 repository. Fetch that branch when resuming before it is merged into main.
@@ -11,17 +11,17 @@ remains [implementation-plan.md](implementation-plan.md).
 | --- | --- | --- |
 | M00 baseline | The reader foundation reconciled its captured Office heads; the M05 continuation captures and reconciles incoming main, branch and PR history separately before implementation | Capture-specific dispositions and subsequent changes belong to the dated reconciliation receipts; historical test reports are not new results |
 | M01 fork | Pinned enough_mail 3.0.0 source, retained MPL/provenance, supported public `mime_core.dart`, content-redacted diagnostics, strict charset admission, RFC2231 and date corrections, selected dependency/source inventory | Actual browser execution and per-product shipped dependency/notice clearance remain open |
-| M02 core | Pure-Dart immutable DTOs, exact-byte ownership, profile/account/IMAP identity, budgets/capabilities, typed host/provider/store ports, cancellation leases, cursor compare-and-set and tested outbox state machine | The store implements the persistence port in M05; live providers and SMTP remain subsequent work |
+| M02 core | Pure-Dart immutable DTOs, exact-byte ownership, profile/account/IMAP identity, nullable standard flag snapshots, budgets/capabilities, typed host/provider/store ports, cancellation leases, cursor compare-and-set and tested outbox state machine | M05 implements persistence; the initial M06 IMAP adapter is present, with combined qualification pending; SMTP remains subsequent work |
 | M03 codec | Bounded byte-range scanning, public upstream header parsing, strict transfer/charset decoding, exact raw export and attachment snapshots, deterministic multipart alternatives/CID metadata | Synchronous bounded work; no streaming claim or low-memory-device qualification |
 | M04 reader | Account-free full/compact reader, custom RenderBox selection, decoded search/copy, static HTML projection, local bounded CID PNG/JPEG, immutable source/attachment callbacks, policy-approved links, actual MIME example | Browser runtime no-fetch gate remains unqualified; host parity is a separate task |
-| M05 store | Drift/SQLite transactional repository, immutable drafts/outbox blobs, memberships/tombstones/cursor CAS, bounded FTS5, pending-operation and vault-cleanup journals, account/profile retirement, cache/editor pins and schema migrations | Native behavior and Linux process-crash recovery are exercised; final qualification is BLOCKED; browser storage and power-loss durability are unqualified; the database is unencrypted |
+| M05 store | Drift/SQLite transactional repository, immutable drafts/outbox blobs, memberships/tombstones/cursor CAS, bounded FTS5, pending-operation and vault-cleanup journals, account/profile retirement, cache/editor pins and schema v3 with nullable durable flags | Fresh baseline qualification passed at `479e1e03`; the new flags/transport integration is pending qualification; browser storage and power-loss durability are unqualified; the database is unencrypted |
+| M06 native foundation | Manual IMAP configuration, scoped host-vault lookup, selectable folders, finite UID-window synchronization, exact on-demand message literals, guarded UID flag/move commands and a conditional unsupported browser entry | Integrated local qualification is pending; OAuth authorization hosts, real TLS/interoperability, large or sparse mailbox pagination, SMTP and the account-aware UI remain open |
 
-The remaining M04W/M06–M13 features have **not** been implemented by this
-checkpoint: mailbox workspace, native IMAP/SMTP accounts, composition/sending,
-Office attachment editing, standalone full Office host, CrispCloud migration,
-additional providers, Calendar/People and Apple distribution. M14 evidence
-continues for the reader and store increments; it does not qualify the later
-products.
+M06 is partially implemented, not complete. M04W and M07–M13 still require the
+mailbox workspace, composition/SMTP sending, Office attachment editing,
+standalone full Office host, CrispCloud migration, additional providers,
+Calendar/People and Apple distribution work. M14 evidence continues for each
+increment; it does not qualify those later products.
 
 ## M05 storage and recovery
 
@@ -54,12 +54,19 @@ preserves outgoing and pinned content. Logout retains work and journals host-vau
 cleanup; explicit account/profile removal deletes local content and retains the
 markers needed to finish cleanup after restart.
 
-Schema v1-to-v2 upgrade is transactional and preserves existing data; FTS backfill
-is explicit and bounded. Unknown future schemas are rejected without reset.
-Native file-backed tests verify migration rollback/retry and stricter read limits.
-Five Linux SIGKILL scenarios exercise actual process termination at transaction
-boundaries. These results establish the tested process-crash behavior, not disk
-failure, operating-system power loss, mobile suspension or Apple packaging.
+The current schema is v3, with transactional upgrades from v1 and v2. Existing
+rows receive unknown flags; an omitted provider observation preserves known
+flags for the same remote identity, while an observed empty set clears them.
+Read, flagged, answered, draft and deleted are durable; IMAP Recent is not.
+Header listings, streams and search expose the stored snapshot. Existing v2
+FTS data is preserved, and v1 backfill remains explicit and bounded. Unknown
+future schemas are rejected without reset. The added v3 migration/reopen and
+flag transaction tests await the integrated qualification described below.
+
+The passing baseline includes native file-backed migration/recovery and five
+Linux SIGKILL scenarios at transaction boundaries. These results establish the
+tested process-crash behavior, not disk failure, operating-system power loss,
+mobile suspension or Apple packaging.
 
 Browser setup has a separate public entry, explicit same-origin SQLite Wasm and
 worker assets, and a required Web Locks owner lease. Unsafe concurrent IndexedDB
@@ -71,9 +78,75 @@ The database is **not encrypted**. App-container access and a separate credentia
 vault do not establish database encryption or secure erasure. The host must
 execute and acknowledge credential cleanup and supply platform assets/services.
 
+## M06 native IMAP foundation
+
+The new [transport package](../../../packages/quds_mail_transport/README.md)
+provides `createMailImapProvider` through a conditional public entry. Manual
+configuration contains an explicit DNS/IP host, port, TLS mode, login identity,
+authentication mechanism and account-scoped vault reference. Each operation
+loads current host credentials and opens a fresh connection. Password,
+XOAUTH2 and OAUTHBEARER protocol paths are present; token acquisition, refresh,
+system-browser PKCE and platform vault integration remain host work. Required
+STARTTLS and implicit TLS expose no certificate bypass or cleartext fallback.
+Controlled streams do not qualify actual TLS/certificate/hostname behavior.
+
+Synchronization fetches bounded header projections and flags by numeric UID
+window. Scoped cursors include UIDVALIDITY and a fixed sweep ceiling; records,
+absent-UID tombstones and the next cursor commit atomically through the existing
+coordinator/store. Completed sweeps restart to observe old flag changes and
+expunges without claiming IDLE, CONDSTORE or QRESYNC. The default `maxUidScan`
+is **10,000**, configurable up to **100,000**. It limits the highest UID, not
+message count. A mailbox whose `UIDNEXT - 1` exceeds it returns `unsupported`
+before fetching or committing a page, including sparse mailboxes with few
+messages and high UIDs. Discovered-UID pagination remains open. Direct retrieval
+of a specified high UID is supported and retains the exact full-message literal
+before bounded MIME parsing; partial projections fail explicitly.
+
+Flag mutations use UID STORE and verify the resulting observation. Delete
+sets `\Deleted` only; it does not expunge mail or issue mailbox-wide CLOSE.
+MOVE requires the advertised capability and confirms source absence; destination
+identity mapping and synchronization remain separate. Operations have finite
+timeouts and account-lease cancellation, with no automatic retry. Ambiguous
+mutation outcomes return `conflict` for host reconciliation. The browser entry
+returns typed `unsupported` without accessing the vault or codec.
+
+The integrated transport/flags source and its controlled-parser, SQLite and
+JavaScript tests are present. **Fresh qualification of that combined source is
+pending.** Baseline results below do not validate these additions. Actual
+disposable-account interoperability, OAuth redirects/refresh, real TLS handshakes,
+SMTP, the mailbox UI and actual browser persistence remain separate gates.
+
 ## Local verification
 
-### Current store increment — final qualification BLOCKED
+### Fresh baseline qualification — PASS; integrated M06 qualification pending
+
+The [19 November continuation](../../validation/mail-m06-resume-20261119/README.md)
+binds the fresh results to source
+`479e1e038af0467b7f07b35d80bac9e4cc60a198`, before the schema v3 and transport
+additions. Its [Mail receipt](../../validation/mail-m06-resume-20261119/baseline/mail-receipt.json)
+records **186 passing test executions**, with zero failures and zero skips:
+
+| Cohort | Passing cases |
+| --- | ---: |
+| Core VM | 30 |
+| Core Node | 30 |
+| Native store VM | 87 |
+| Portable store policy/codec Node | 39 |
+
+The **42 Python launcher regressions**, enforced offline lock resolution,
+strict analysis, formatting, browser entry/worker compilation and whitespace
+checks also passed. VM and Node repetitions are separate executions, not
+distinct scenarios. The [72-suite Office/reader run](../../validation/mail-m06-resume-20261119/baseline/office-verification.json)
+passed on the same frozen source with **1,230 cases**, zero failures and zero
+skips: 233 engine, 887 editor, 99 Studio and 11 Mail-reader cases. Raw evidence,
+case lists, archive indexes and source/runtime identity checks are retained in
+that dated record. No historical totals are included in these fresh results.
+
+The old runner/formatting blockage is resolved for that baseline. The newly
+integrated schema v3 flags and M06 adapter require a new source-bound gate;
+their qualification remains **pending** at this documentation checkpoint.
+
+### Historical store attempt — failed before recovery
 
 The combined local attempt exercised source
 `8a6105a7ec217b48105d171703c8d0294c7d2dc6`. Its observed test cohorts were:
@@ -96,10 +169,10 @@ browser-error-policy cases; they do not execute browser persistence.
 mismatch in `native_platform_test.dart`. Disk exhaustion then prevented a new
 executor process from starting. The lint repairs and stricter qualification-event
 parser, with 18 new parser regressions, were saved remotely in recovery checkpoint
-`7848eca0eec8e291cd88ed6e353151508b77784e`, but remain **NOT RUN**.
-The native-platform formatting repair and a complete qualification rerun remain
-open. Passing test events do not turn the overall result into a PASS or qualify
-those later edits.
+`7848eca0eec8e291cd88ed6e353151508b77784e`, but had not run at that checkpoint.
+The native-platform formatting repair and complete qualification rerun were
+also open then. The fresh baseline record above validates the subsequent
+repairs; it does not rewrite this historical attempt as a PASS.
 
 See the [M05 report](../../validation/mail-store-20261118/README.md) and
 [recovered qualification summary](../../validation/mail-store-20261118/checks/receipt.json).
@@ -115,8 +188,8 @@ The [runtime record](../../validation/mail-store-20261118/runtime/README.md)
 retains the earlier verified Flutter 3.47.8/Dart 3.13.7 setup, SQLite 3.54.1 Linux
 x64 binary, dependency-resolution comparison and platform checks. Incoming
 Office work has [separate reconciliation and regression evidence](../../validation/mail-store-20261118/incoming/).
-Retain the raw evidence and run the corrected qualification flow on the final
-source before replacing this BLOCKED state with a source-bound pass.
+Retain this failed-attempt evidence and its recovery limitations separately from
+the newer source-bound baseline pass and the pending integrated M06 gate.
 
 ### Earlier reader checkpoint
 
@@ -209,17 +282,20 @@ Resolve the SDK's own flutter_tools dependencies normally if this is a fresh
 SDK extraction. From the repository root, qualify the store and updated core:
 
 ```bash
-python tools/mail/check_store.py --flutter-sdk /path/to/flutter
+python3 tools/mail/test_check_store.py
+python3 tools/mail/check_store.py --flutter-sdk /path/to/flutter \
+  --offline --direct-tests --command-timeout 300 --output /path/to/fresh-store-checks
 ```
 
 The store runner records source hashes before/after execution, raw test events,
 substantive cases, compilation and exact exit results. Its default output is
 `build/mail-store-qualification`. It replaces any earlier PASS receipt with the
 current run state before starting, and reports actual browser storage as NOT RUN.
-The stricter event parser and its 18 new regression tests saved during recovery
-still require execution. Run those tests and resolve the remaining format gate
-before using a fresh full run as acceptance evidence. Its native transaction-
-crash cases require an environment that can start and terminate child processes.
+The corrected launcher and its 42 regressions passed in the fresh baseline;
+run them again with the final source when recording a new gate. Native
+transaction-crash cases require an environment that can start and terminate child
+processes. Transport/flags qualification has its own combined source-bound
+record under [the M06 continuation](../../validation/mail-m06-resume-20261119/README.md).
 
 For the earlier reader qualification workflow:
 
@@ -246,15 +322,14 @@ harness, not the standalone Office application.
 
 ## Next implementation order
 
-1. Recover local raw evidence after freeing space, apply the pending test format,
-   run the 18 qualification-parser regressions and rerun the complete corrected
-   store qualifier into a fresh output directory. Finish the interrupted incoming
-   Office checks, refresh remote heads and verify the final tree before claiming
-   final M05 qualification.
-2. Implement M06 native accounts and bounded IMAP synchronization against the
-   durable repository: explicit host-owned credentials, validated TLS setup,
-   UIDVALIDITY/cursor recovery, cancellation and foreground/resume behavior.
-   Generic browser socket transport remains explicitly unsupported.
+1. Freeze and qualify the integrated schema v3/transport source, preserving fresh
+   raw logs, source/runtime identities and expected-head remote checkpoints.
+   The passed `479e1e03` baseline is not acceptance of those additions.
+2. Continue the remaining M06 work: discovered-UID pagination for large/sparse
+   mailboxes, host OAuth/refresh and lifecycle scheduling, real TLS rejection
+   controls and authorized disposable-account interoperability. Generic browser
+   socket transport remains explicitly unsupported; no automatic retry is added
+   without its own bounded policy and reconciliation checks.
 3. Continue M07 composition/submission and M04W's repository-driven mailbox
    workspace. Preserve immutable queued revisions, explicit SMTP outcomes,
    uncertain-send reconciliation and the all-or-abort recipient policy.

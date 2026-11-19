@@ -1,0 +1,326 @@
+{
+  "schema": 1,
+  "captured_at_utc": "2026-11-19T06:36:02.504813+00:00",
+  "reviewer": "recover_repository",
+  "worktree": "/workspace/scratch/5c6c66fd3cc3/mail-transport",
+  "base_head": "e78d7e91e9c2dc0d86e9cbcf8ab262acb8bc190e",
+  "status": "static-review-open-T12-pending-real-TLS-handshake-ownership",
+  "scope": [
+    "raw literal byte preservation",
+    "response/literal/header and UID work bounds",
+    "cursor and UIDVALIDITY isolation",
+    "credential/TLS policy",
+    "cancellation and socket cleanup",
+    "mutation uncertainty",
+    "portable public API",
+    "static test inspection"
+  ],
+  "findings": [
+    {
+      "id": "T01",
+      "title": "Malformed raw FETCH could become false tombstones",
+      "location": "RawFetchParser and ImapClient.onUntaggedResponse",
+      "status": "resolved-by-static-inspection",
+      "resolution": "The parser now latches fatal failure and the raw command is failed/aborted; no accepted prefix can become a successful page."
+    },
+    {
+      "id": "T02",
+      "title": "Multipart header-only source failed MIME parsing",
+      "location": "rawImapHeaderItem and NativeMailImapProvider._header",
+      "status": "resolved-by-static-inspection",
+      "resolution": "Header fetch now requests only envelope fields, excluding MIME content headers that require an omitted body. Full BODY[] fetch remains byte exact."
+    },
+    {
+      "id": "T03",
+      "title": "Unbalanced response syntax could print private literal data",
+      "location": "ImapResponse.iterate(strict: true)",
+      "status": "resolved-by-static-inspection",
+      "resolution": "Strict raw parsing rejects unbalanced parentheses/unterminated values; the legacy warning no longer prints literal content."
+    },
+    {
+      "id": "T04",
+      "title": "Case-sensitive FETCH atoms could be ignored",
+      "location": "RawFetchParser._parseUntagged",
+      "status": "resolved-by-static-inspection",
+      "resolution": "Protocol atoms are compared case-insensitively, with literal bytes untouched."
+    },
+    {
+      "id": "T05",
+      "title": "Cancelled connections could complete late or remain open",
+      "location": "ClientBase.connectToServer, upgradeToSslSocket, abort; NativeMailImapProvider._run",
+      "status": "resolved-by-static-inspection",
+      "resolution": "Hard abort destroys current sockets and invalidates the connection generation. Generation is checked both around connect completion and after TLS/subscription awaits; late sockets are destroyed."
+    },
+    {
+      "id": "T06",
+      "title": "Sparse UID space allowed excessively large whole sweeps",
+      "location": "MailTransportLimits.maxUidScan and pullChanges",
+      "status": "resolved-by-static-inspection",
+      "resolution": "Whole UID sweeps are explicitly limited to a default ceiling of 10000 (configurable through 100000); larger UIDNEXT/continuation ceilings return unsupported before FETCH. This is an explicit first-slice limitation, not sparse-mailbox scalability."
+    },
+    {
+      "id": "T07",
+      "title": "OAUTHBEARER GS2 identity and challenge handling were incorrect",
+      "location": "ImapClient.authenticateWithOAuthBearer; NativeMailImapProvider._authenticate",
+      "status": "resolved-by-static-inspection",
+      "resolution": "GS2 uses a=, an error continuation sends AQ==, and both OAuth modes require the advertised mechanism plus SASL-IR before initial-response authentication."
+    },
+    {
+      "id": "T08",
+      "title": "Input-budget failures could be mislabeled authentication/transient errors",
+      "location": "ProtocolResourceLimit, ImapResponseReader, Uint8ListReader, ClientBase greeting handling and _run",
+      "status": "resolved-by-static-inspection",
+      "resolution": "Literal, line, greeting and aggregate response limits latch a typed quota condition; quota classification precedes authentication classification."
+    },
+    {
+      "id": "T09",
+      "title": "Acknowledged STORE could report success without desired flags",
+      "location": "NativeMailImapProvider._readIdentity/_setFlag/apply",
+      "status": "resolved-by-static-inspection",
+      "resolution": "Source identity is read before mutation, exact UID flags are re-read after STORE, and MOVE checks source absence. Unsupported MOVE and missing source are rejected before mutation."
+    },
+    {
+      "id": "T10",
+      "title": "Final lease invalidation could hide completed-write uncertainty",
+      "location": "NativeMailImapProvider._Operation.mutationStarted and _run",
+      "status": "resolved-by-static-inspection",
+      "resolution": "The mutation-started state remains latched through final lease checks; any subsequent failure is conflict without automatic retry."
+    },
+    {
+      "id": "T11",
+      "title": "Malformed FETCH sequence prefix remained silently ignored",
+      "location": "RawFetchParser._parseUntagged",
+      "status": "resolved-by-static-inspection",
+      "resolution": "FETCH-looking data is detected separately, then positive 32-bit sequence syntax is validated. A malformed prefix fails instead of generating a successful empty sync page."
+    },
+    {
+      "id": "T12",
+      "title": "Aborting a pending real TLS handshake cannot close detached underlying socket",
+      "location": "ClientBase.createConnectionSocket, createSecureConnectionSocket, upgradeToSslSocket and abort",
+      "status": "open-confirmed-by-exact-SDK-source",
+      "impact": "The provider result can time out or cancel while the real TCP/TLS connection remains open. Generation checks destroy a socket only after the secure future completes, so a peer that never finishes TLS can retain resources across retries. No credential transmission or mutation is claimed in this failure mode.",
+      "evidence": "tls-sdk-review.json records the pinned Dart 3.13.7 detachment and handshake-future ownership proof. The controlled TLS seam does not model that transfer.",
+      "required_resolution": "Retain a cancellable raw transport owner during both implicit TLS and STARTTLS, and add a real loopback peer that stalls the handshake; demonstrate closure on timeout/cancellation before marking resolved."
+    }
+  ],
+  "execution_evidence": {
+    "reviewer_ran_dart_or_flutter": false,
+    "reviewer_claims_tests_passed": false,
+    "controlled_tests_status": "Authored controls statically inspected. Author reported development passes separately; final root source-bound execution receipt remains required. This reviewer ran no Dart or Flutter.",
+    "no_actions_queries": true
+  },
+  "limitations": [
+    "The controlled socket fixture exercises actual ClientBase connect/upgrade/abort and enough_mail command/response code, but substitutes socket construction. It does not prove real TLS negotiation, trust-store behavior, certificate hostname rejection, or live account/provider compatibility.",
+    "UID sweeps use numeric windows and tombstones for missing UIDs. The explicit ceiling prevents unbounded sparse scans; scalable discovery/CONDSTORE/QRESYNC remains outside this slice.",
+    "MOVE success verifies acknowledged command plus source absence, not a returned destination UID mapping. Reconciliation of destination membership remains a later sync responsibility.",
+    "Header parsing accepts partial envelope projections because MailHeaderRecord has no diagnostics field; after envelope-only HEADER.FIELDS this is not a demonstrated corruption blocker. Full-message parsing rejects partial results.",
+    "No concrete INBOX-case-alias regression was demonstrated; canonicalization was not added as an unsolicited scope expansion.",
+    "No live OAuth flow, platform keychain, SMTP sending, background retry, or mailbox-wide expunge is qualified here."
+  ],
+  "source_manifest": [
+    {
+      "path": "packages/quds_mail_core/test/models_test.dart",
+      "git_blob_sha1": "ff7fceee21731efe71edb828be2a3c131aab9c2d",
+      "sha256": "1de62be88652595150b1f4ba35790505616476a93ae4e70aa1a9eba9efa06ae9",
+      "bytes": 8062
+    },
+    {
+      "path": "packages/quds_mail_store/test/codec_test.dart",
+      "git_blob_sha1": "0a810d49252e81ec4aee244e43e17c1721a487be",
+      "sha256": "307d152ed5bd4792c1290168328b8ff6243c7487b71485a3b3db6fdec09e237c",
+      "bytes": 26892
+    },
+    {
+      "path": "packages/quds_mail_store/test/migration_test.dart",
+      "git_blob_sha1": "111b3fc30e57ceb89fb050277c9bbc66e9814f51",
+      "sha256": "2dd7e12d7ae98099a9f3b8003c6ed29f2062e689ea334ea5ab5f5be46e1cf248",
+      "bytes": 22035
+    },
+    {
+      "path": "packages/quds_mail_store/test/repository_test.dart",
+      "git_blob_sha1": "b12ba07cfb29df826929b155f3488c459386bf7f",
+      "sha256": "7341ce5ee76481e020ff3253a22bf3a9cd2344fa5972c3d39db0c80bc0be7a50",
+      "bytes": 27111
+    },
+    {
+      "path": "packages/quds_mail_transport/CHANGELOG.md",
+      "git_blob_sha1": "19a92c9b6455671e70d40c171c8f19470e3779f0",
+      "sha256": "2d68e6d919e60aca571630b3b9d549237b1da51ca274465936ba4473bb095236",
+      "bytes": 915
+    },
+    {
+      "path": "packages/quds_mail_transport/LICENSE",
+      "git_blob_sha1": "14fac913ccf80234b1848540089a3bbcb6e5283d",
+      "sha256": "1126322e2cc8d165adc4c792eeb195717de2bcc7b39be1ce77959d78e87ef685",
+      "bytes": 1056
+    },
+    {
+      "path": "packages/quds_mail_transport/README.md",
+      "git_blob_sha1": "0cf72b4a0c468b9e5a7a0c0e810df4cae10af86a",
+      "sha256": "11c252b35171bb31eeaa6f1595b3f078d9f3104dffcb8669adfc2562ad9970ef",
+      "bytes": 7187
+    },
+    {
+      "path": "packages/quds_mail_transport/analysis_options.yaml",
+      "git_blob_sha1": "d04adaf90938aaa1a97dd6b05391823376154428",
+      "sha256": "4f81df7733df22a4734e70a7af950dea7547c134fad68d5b7cdafa435d337d00",
+      "bytes": 140
+    },
+    {
+      "path": "packages/quds_mail_transport/lib/quds_mail_transport.dart",
+      "git_blob_sha1": "1dd741be7c6a1abc0f9d41ae3eefeadef6a960ba",
+      "sha256": "2ac189a245b4f6f82ffae15ded0c082c5e22dbaf7af54b9b559452d3f6c104e9",
+      "bytes": 218
+    },
+    {
+      "path": "packages/quds_mail_transport/lib/src/configuration.dart",
+      "git_blob_sha1": "2aab34f06876525f183551ef8261e75eaacae7b7",
+      "sha256": "fa7fa1d072781d826e7bc433cc70ef514df2793f7dbee60608600f471982ce85",
+      "bytes": 4358
+    },
+    {
+      "path": "packages/quds_mail_transport/lib/src/cursor.dart",
+      "git_blob_sha1": "5dc3a72d77dd3fd54512d1c1b0a687fffcffbb41",
+      "sha256": "f0806f1272ff47b9a7c4147ca04c53f5250d5f5bed1c79bfb09e178f4c427653",
+      "bytes": 2212
+    },
+    {
+      "path": "packages/quds_mail_transport/lib/src/native/factory.dart",
+      "git_blob_sha1": "b446ae6dff1fde7766527b3475e257c3f85e9cda",
+      "sha256": "65e51c3621f980b4c5134992becebc35b9dc6afc9566bde8873337593fcad44f",
+      "bytes": 617
+    },
+    {
+      "path": "packages/quds_mail_transport/lib/src/native/provider.dart",
+      "git_blob_sha1": "357fa57203b4bd6f2a1cab0303263ba1347dfbe4",
+      "sha256": "324a188b2f7994d6c5b03d9481dd83b967c5178036eeb1d90d0864af2c79a0db",
+      "bytes": 20968
+    },
+    {
+      "path": "packages/quds_mail_transport/lib/src/unsupported/provider.dart",
+      "git_blob_sha1": "4e5d17aa1495661a72ea657bf95828a4080f8442",
+      "sha256": "a6ff0c704076e52aa33a3d488af7333311a8ec3c9c96a436a551ccfb0a35be56",
+      "bytes": 1726
+    },
+    {
+      "path": "packages/quds_mail_transport/pubspec.yaml",
+      "git_blob_sha1": "e4b423bd3137ad55551386cea9e93e7eaf404ff4",
+      "sha256": "f09215e82fd42ed1d4d7d42659d789f633cd4e9992a880ce47a5b21ca1679207",
+      "bytes": 475
+    },
+    {
+      "path": "packages/quds_mail_transport/test/configuration_test.dart",
+      "git_blob_sha1": "f4f6116ebadeb5bf391612595cb25bf74a3999c2",
+      "sha256": "848695bd10da9ff457d8d97862e66f99c52d6757181c2b5bb1065ddb080c4cdf",
+      "bytes": 10296
+    },
+    {
+      "path": "packages/quds_mail_transport/test/host_store_integration_test.dart",
+      "git_blob_sha1": "17b9dc31c38ba7ebd8d89a91142c85d1865f68eb",
+      "sha256": "bc55659fe20be9629c84c4dfbe1660fd39ff99f28a3f6a1450428e58433e53aa",
+      "bytes": 15994
+    },
+    {
+      "path": "packages/quds_mail_transport/test/native_provider_test.dart",
+      "git_blob_sha1": "5a26c900fc41d127f6853d03c670fdfc55b2c576",
+      "sha256": "343e8b5dd1fddeef7cd45d67bdac068cf7697341801acd12c157f96f3a38449a",
+      "bytes": 26710
+    },
+    {
+      "path": "packages/quds_mail_transport/test/support/imap_fixture.dart",
+      "git_blob_sha1": "b0f72d4177ab46cb4213fd81f3b09730a8540925",
+      "sha256": "cf6a0b90860b5b2bb85d2668b883cc285397a3d73c22c812bceb92c2c8994924",
+      "bytes": 13690
+    },
+    {
+      "path": "packages/quds_mail_transport/test/unsupported_test.dart",
+      "git_blob_sha1": "021c7e6bc230b36229078397aab734cb15b21be6",
+      "sha256": "77879713ab23606721713684b38671951cc7fbea41f7acb6cfccc7fd8f172a6d",
+      "bytes": 4479
+    },
+    {
+      "path": "pubspec.yaml",
+      "git_blob_sha1": "80a898679ac54995b3df012117db47c21784894b",
+      "sha256": "e1a41dca16b70767fcdb747940b1a63de6598d6ee8d62cef3367088f48ccaa1a",
+      "bytes": 946
+    },
+    {
+      "path": "third_party/enough_mail/QUDS_PATCHES.md",
+      "git_blob_sha1": "b1352d90b1cce19302a06a4dbf1d6e57c283efd6",
+      "sha256": "e01a90a512053b4c4bc5876f4198f291d1ed7db6e8b737614366eaff2b55ba68",
+      "bytes": 10607
+    },
+    {
+      "path": "third_party/enough_mail/lib/imap.dart",
+      "git_blob_sha1": "98e7acf7cb2671aa9427985d2046e41b05ce7582",
+      "sha256": "293f6c4bb5a2feaff9c03faaf3d61071d24d52c20432a55a41cf66320d413eb3",
+      "bytes": 715
+    },
+    {
+      "path": "third_party/enough_mail/lib/src/imap/imap_client.dart",
+      "git_blob_sha1": "adbccd3aa6dacd0e02753078292e4b6fa67ff610",
+      "sha256": "8dbed96103e23bea2e8859dde649d5c66927f927a3a462a2158ff639e8f522a4",
+      "bytes": 111313
+    },
+    {
+      "path": "third_party/enough_mail/lib/src/imap/raw_fetch.dart",
+      "git_blob_sha1": "b0d8d246ae4cbd221cc1bede1d39b8d90a18e811",
+      "sha256": "e9a5621ed125bfdf95483a04eef6fcc6b050e9a1f138ef8dffdaf47b5346b58c",
+      "bytes": 1529
+    },
+    {
+      "path": "third_party/enough_mail/lib/src/private/imap/imap_response.dart",
+      "git_blob_sha1": "f3d11bc602e8fb36ee9c2f0558eb6ec80bf8b10a",
+      "sha256": "b9c537b39200df9322715be118b8c09435769f3947df7518494d6c5caf0fad36",
+      "bytes": 9554
+    },
+    {
+      "path": "third_party/enough_mail/lib/src/private/imap/imap_response_reader.dart",
+      "git_blob_sha1": "f283fb7fa73cc9a890b41de512dc869bfc745c67",
+      "sha256": "f355e1e5788d58b5c877f0916b2d07af74efcc88137b96af9a558a5c6feb005d",
+      "bytes": 4004
+    },
+    {
+      "path": "third_party/enough_mail/lib/src/private/imap/raw_fetch_parser.dart",
+      "git_blob_sha1": "50a770c2d2a05077fa675ae69d1afbf156a37a68",
+      "sha256": "9f382890f703267c2855d5ea8abfb6b6847f53c2e5b545a15897a08dc091e05c",
+      "bytes": 4793
+    },
+    {
+      "path": "third_party/enough_mail/lib/src/private/util/client_base.dart",
+      "git_blob_sha1": "4ccb837aba7a4152de48b6ecb79176a87379649e",
+      "sha256": "950018c4440b97a93cfc99e4cd4061916162a2b6726b5e1b4218ef7f5fe66a43",
+      "bytes": 16515
+    },
+    {
+      "path": "third_party/enough_mail/lib/src/private/util/protocol_resource_limit.dart",
+      "git_blob_sha1": "ec03a316582b6b1e09525ae73e69e69cda5b3d67",
+      "sha256": "b1570fdb1c0cc7bfb58507cafccbc2c8cc60a44fedc9a20a96a047089687339c",
+      "bytes": 480
+    },
+    {
+      "path": "third_party/enough_mail/lib/src/private/util/uint8_list_reader.dart",
+      "git_blob_sha1": "e844f12c35f8b33129f12f40d54b366263bb146c",
+      "sha256": "f56b2399361666a0842dc7ead69f5c5d70296e868acd87ed0610c3482ef3a9a2",
+      "bytes": 9773
+    }
+  ],
+  "manifest_sha256": "721d6be517169acd4a0dcb1be37f8b9e2226bc4a30ac309c1bd3ec5927a1a0b5",
+  "initial_draft_manifest_sha256": "f9a924bd2c4954a0b733aac58713d9133b83720864d2ea0a3cbedccad831f365",
+  "initial_draft_review_at_utc": "2026-11-19T06:20:20.903951+00:00",
+  "reviewed_commit": "ca00a8ffb3c0c82c646eaf2e5a134ab7348ae90e",
+  "reviewed_tree": "4e2d8a787be55cfde9dd57adb11ca49bf4d99bd1",
+  "clean_worktree": true,
+  "final_refresh_notes": [
+    "Reviewed the final manual-connect greeting reset: connect(socket, connectionInformation:...) clears _greetingBytes together with resetting greeting state.",
+    "RawImapMessage bytes documentation now identifies BODY[HEADER.FIELDS ...] correctly; byte-copy implementation is unchanged.",
+    "Read four additional resource-classification tests for oversized greeting, protocol line, aggregate authentication response bytes and header literals. They assert typed quota failures and no successful sync page.",
+    "The committed README and fork patch notes explicitly separate controlled protocol evidence from real TLS, live OAuth/account interoperability and future large/sparse mailbox pagination.",
+    "The complete changed-path manifest includes formatter-only existing Mail core/store tests and package/fork documentation, in addition to transport and fork implementation files.",
+    "ca00a8ff makes ProtocolResourceLimit a FormatException subtype while retaining fixed typed messages and quota classification; the inherited literal-size regression remains compatible.",
+    "ca00a8ff removes unrelated German-morphology notices from the new original transport package LICENSE; fork MPL notices remain intact.",
+    "Exact pinned-SDK review confirmed successful post-TLS cleanup is safe, but found T12: pending real handshakes lose the closeable Socket owner before completion. Review remains open until a real stalled-handshake regression verifies a repair."
+  ],
+  "previous_reviewed_commit": "9d4bdf70f0b979a736764daf671f10e4f8b70286",
+  "previous_manifest_sha256": "8fc999c83f52d1bc77a9a88771879a894cc8a88c45b91befaf8e9e8086d7b6ac"
+}

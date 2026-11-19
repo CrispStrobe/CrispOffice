@@ -1,9 +1,10 @@
 # Quds Mail store
 
 Profile-scoped Drift/SQLite persistence for the shared Mail contracts. Original
-source is MIT. The native M05 store is implemented; final local qualification is
-**BLOCKED** as detailed below. Live mail transport and the account-aware UI remain
-subsequent milestones. Exact dependencies and retained notices are in
+source is MIT. The native M05 baseline passed fresh local qualification at
+`479e1e03`; the newly integrated schema v3 flags and bounded native IMAP adapter
+are **pending combined qualification**. The account-aware UI and SMTP remain
+subsequent work. Exact dependencies and retained notices are in
 [DEPENDENCIES.json](DEPENDENCIES.json) and
 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
 
@@ -135,7 +136,29 @@ A failed migration rolls back, and an unknown future version returns
 
 ## Qualification boundary
 
-**Final local qualification is BLOCKED.** The combined attempt on source
+### Fresh baseline pass and pending flags/transport integration
+
+The [19 November continuation](../../docs/validation/mail-m06-resume-20261119/README.md)
+records a complete Mail gate **PASS** on source
+`479e1e038af0467b7f07b35d80bac9e4cc60a198`: **186 passing test executions**, zero
+failures and zero skips, comprising 30 core VM, 30 core Node, 87 native store VM
+and 39 portable store Node cases. The 42 Python launcher regressions, offline
+lock enforcement, strict analysis, formatting, browser entry/worker compilation
+and whitespace checks passed. The accompanying 72-suite Office/reader gate
+passed **1,230 cases** on the same frozen baseline. Original logs, case lists,
+archive indexes and source/runtime identities are retained in the dated record.
+
+These results predate schema v3 and native transport. The additive nullable
+flags, v1/v2-to-v3 migration and new transport/coordinator/store cases are
+implemented, but **fresh qualification of the integrated source is pending**.
+Historical passes are not substituted for that new gate. The
+[transport package](../quds_mail_transport/README.md) implements the initial
+bounded M06 foundation; it does not complete OAuth hosts, live interoperability,
+SMTP or the mailbox UI.
+
+### Historical failed store attempt
+
+The earlier combined attempt on source
 `8a6105a7ec217b48105d171703c8d0294c7d2dc6` observed 30 passing core VM tests,
 30 passing core Node tests, 87 passing store VM tests and 39 passing portable
 store Node tests. These are separate runtime cohorts. The overall runner result
@@ -144,8 +167,9 @@ was **FAIL**, caused by two test lint infos and a formatting mismatch in
 
 Disk exhaustion then prevented command execution. The two lint repairs and a
 stricter event parser with 18 new parser regressions were saved in recovery
-checkpoint `7848eca0eec8e291cd88ed6e353151508b77784e`; those changes remain
-**NOT RUN**, and the native-platform formatting repair remains open. The
+checkpoint `7848eca0eec8e291cd88ed6e353151508b77784e`; those changes had not run
+and the native-platform formatting repair remained open at that checkpoint.
+The fresh baseline pass above validates the subsequent repairs. The
 [qualification summary](../../docs/validation/mail-store-20261118/checks/receipt.json)
 is a recovered observation record, not the original raw qualification receipt.
 Original aggregate logs/source manifests and additional review/late Office raw
@@ -153,7 +177,7 @@ evidence remain local and were not uploaded. See the
 [M05 report](../../docs/validation/mail-store-20261118/README.md) for recovery
 steps and preserved evidence boundaries.
 
-The accepted individual native runs include seven file-backed migration cases
+The historical and fresh baseline native cohorts include seven file-backed migration cases
 and five Linux SIGKILL transaction scenarios. The latter cover interruption
 after sync-record writes, before cursor write, after draft-blob writes, after an
 outbox write and after a submitting attempt has committed. They verify
@@ -164,8 +188,9 @@ Portable serialization, configuration and browser-error mapping can run in
 Node. They do not execute a browser SQLite filesystem. Browser entry/worker
 compilation also does not establish storage persistence, actual browser quota
 errors, reloads or Web Locks behavior. Those runtime gates remain **NOT RUN**.
-Live accounts, IMAP/SMTP, composition, the mailbox UI and product-specific Apple
-packaging remain later milestones.
+The initial native IMAP adapter is implemented separately; real TLS and live
+account interoperability, OAuth host flows, SMTP/composition, the mailbox UI and
+product-specific Apple packaging remain open.
 
 The host must finish acknowledged vault cleanup, supply its own application
 container and browser assets, and obtain new provider authorization before
@@ -175,21 +200,23 @@ external services are required by the test fixtures.
 ## Local qualification
 
 Resolve the committed workspace lockfile using the pinned Flutter/Dart
-toolchain. With Node available, first execute the new runner regressions and
-resolve the remaining formatting gate, then run from the repository root:
+toolchain. With Node available, run the launcher regressions and use a fresh
+qualification output directory from the repository root:
 
 ```bash
-python tools/mail/check_store.py --flutter-sdk /path/to/flutter
+python3 tools/mail/test_check_store.py
+python3 tools/mail/check_store.py --flutter-sdk /path/to/flutter \
+  --offline --direct-tests --command-timeout 300 --output /path/to/fresh-store-checks
 ```
 
 The runner performs analysis, formatting, core/store VM checks, the selected
 portable Node suites and browser entry/worker compilation. It records raw test
 events, substantive case counts, source hashes before/after execution and the
 browser runtime gap in `build/mail-store-qualification/receipt.json`. Failed or
-interrupted runs replace an earlier PASS receipt. The stricter event accounting
-saved during recovery still requires validation with its 18 new tests and a
-fresh complete run. Recover the original raw evidence before removing local
-build outputs.
+interrupted runs replace an earlier PASS receipt. The corrected launcher and
+42 regression cases passed with the fresh baseline; retain each new run's raw
+evidence before removing build outputs. The integrated flags/transport source
+needs its own acceptance record, independently of that baseline.
 
 The native crash cases start child processes and send SIGKILL to the process
 that owns SQLite; run them in an environment that permits those operations.
