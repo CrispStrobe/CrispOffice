@@ -63,6 +63,17 @@ Test-only follow-ups improve native-plugin mocks, migrate icon-button finders,
 exercise the new save confirmation, and isolate unrelated proofing providers.
 They preserve the original document, navigation and mail assertions.
 
+The publication refresh at `df7f4b4c8df63cbcf80d9087d06707d166a2c678`
+also preserves VBA tip `bba77ddc1a40d5cdb5e8859744306fd3792db996` and the
+updated MacBook tip `de9d21f9014060c14263ce17fe323d5fdb063d11`. Its only
+test change resolves the system temporary directory before creating the
+directory-import fixture, accommodating macOS's `/var` symlink. Its only
+documentation change adds a blank line between changelog paragraphs. Product
+source is unchanged. The affected 30-case suite and its strict analysis are
+recorded separately in the acceptance data; reruns do not increase the total.
+See [reconciliation-final.json](reconciliation-final.json) for the fresh
+publication-frontier audit.
+
 ## Local acceptance
 
 The actual repository-pinned Flutter **3.47.8** / Dart **3.13.7** runtime was
