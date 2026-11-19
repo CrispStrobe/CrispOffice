@@ -126,6 +126,42 @@ def arabic_morph_inputs(repo: Path, runtime_receipt: dict, library: Path, bundle
             "live_external_download_executed": False}
 
 
+def runtime_extension_inputs(repo: Path, runtime: Path, receipt: dict) -> dict:
+    """Bind the additive cache extension without rewriting restoration history."""
+    directory = Path(__file__).resolve().parent
+    profile_path = directory / "runtime-extension-locks.json"
+    profile = json.loads(profile_path.read_text())
+    binding = receipt.get("runtime_extension", {})
+    if binding.get("status") != "ready" or receipt["workspace_lock_sha256"] != profile["target_lock_sha256"]:
+        raise RuntimeError("The exact ready runtime extension is required for this lock")
+    record_path = Path(binding["receipt"]).resolve(strict=True)
+    if (digest(record_path) != binding["sha256"]
+            or receipt["additional_inputs"].get(str(record_path)) != binding["sha256"]
+            or binding["profile_sha256"] != digest(profile_path)):
+        raise RuntimeError("Runtime extension receipt/profile binding changed")
+    record = json.loads(record_path.read_text())
+    if (record.get("status") != "ready" or record["source"] != str(repo) or record["runtime"] != str(runtime)
+            or record["profile_sha256"] != digest(profile_path)
+            or record["implementation_sha256"] != digest(directory / "extend_runtime.py")
+            or record["base_lock_sha256"] != profile["base_lock_sha256"]
+            or record["target_lock_sha256"] != profile["target_lock_sha256"]
+            or record["base_archives"] != profile["base_archive_count"]
+            or record["target_archives"] != profile["target_archive_count"]):
+        raise RuntimeError("Runtime extension differs from its source-bound profile")
+    if ([row["name"] for row in record["runs"]] != ["workspace-pub-get", "native-assets-smoke"]
+            or any(row["exit_code"] != 0 for row in record["runs"])):
+        raise RuntimeError("Runtime extension resolution/native smoke did not complete")
+    logs = {}
+    for row in record["runs"]:
+        path = Path(row["log"]).resolve(strict=True)
+        if digest(path) != row["log_sha256"]:
+            raise RuntimeError("Runtime extension log changed: " + str(path))
+        logs[str(path)] = row["log_sha256"]
+    return {"receipt": str(record_path), "sha256": binding["sha256"],
+            "profile_sha256": digest(profile_path), "base_archives": record["base_archives"],
+            "target_archives": record["target_archives"], "logs": logs}
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--head", required=True)
@@ -242,6 +278,7 @@ def main() -> int:
         raise RuntimeError("A verified ready runtime is required")
     if digest(repo / "pubspec.lock") != receipt["workspace_lock_sha256"]:
         raise RuntimeError("Workspace lock differs from the verified runtime")
+    extension = runtime_extension_inputs(repo, runtime, receipt)
     language_id = language_id_inputs(repo, receipt, args.language_id_library, args.language_id_fixture_library)
     arabic_morph = arabic_morph_inputs(repo, receipt, args.arabic_morph_library, args.arabic_morph_bundle)
     web_identity = json.loads((directory / "web-sdk.json").read_text())
@@ -267,6 +304,7 @@ def main() -> int:
     for name in ("runtime.json", "retained-inputs.json", "pub-cache-receipt.json", "cache-omissions.json", "archive-members.json", "env.sh", "bin/dart", "bin/flutter"):
         runtime_paths["runtime/" + name] = runtime / name
     runtime_paths.update({"additional/" + name: Path(name) for name in receipt.get("additional_inputs", {})})
+    runtime_paths.update({"extension-log/" + name: Path(name) for name in extension["logs"]})
     runtime_paths["python/executable"] = Path(sys.executable).resolve()
     runtime_paths["workspace/package_config.json"] = repo / ".dart_tool/package_config.json"
     runtime_paths["workspace/package_graph.json"] = repo / ".dart_tool/package_graph.json"
@@ -320,6 +358,7 @@ def main() -> int:
         "started_at_utc": datetime.now(timezone.utc).isoformat(),
         "source_input_count": len(source_paths), "runtime_input_count": len(runtime_paths),
         "runtime_receipt_sha256": digest(runtime / "runtime.json"),
+        "runtime_extension": extension,
         "python_version": sys.version, "strict_changed_dart_inputs": sorted(changed),
         "changed_test_suites": sorted(changed_suites),
         "changed_test_suites_explicitly_excluded": sorted(changed_suites & optional_suites),
@@ -379,6 +418,7 @@ def main() -> int:
     try:
         run("shared-runner-controls", [sys.executable, "-B", str(shared / "test_run_checks.py")], unittest=True)
         run("runtime-replay-controls", [sys.executable, "-B", str(shared / "runtime/test_restore_runtime.py")], unittest=True)
+        run("runtime-extension-controls", [sys.executable, "-B", str(directory / "test_extend_runtime.py")], unittest=True)
         run("publisher-offline-controls", [sys.executable, "-B", "-m", "unittest", "discover", "-s", "tools/proofing/ayaspell", "-p", "test_build_bundle*.py", "-v"], unittest=True)
         run("hunspell-packaging-controls", [sys.executable, "-B", "-m", "unittest", "discover", "-s", "packages/quds_proofing_hunspell/tool", "-p", "test_build.py", "-v"], unittest=True)
         run("core-store", [sys.executable, "-B", str(repo / "tools/mail/check_store.py"),

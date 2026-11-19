@@ -1,5 +1,5 @@
 {
-  "description": "Complementary portable Node executions from the exact same frozen source: Mail IMAP/EWS configuration, SOAP and unsupported-platform boundaries, MIME and vendored portable codec, Arabic T1/T2 rules and Unicode offsets/shared merge, scripted Hunspell and Camel Morph, and paragraph-language script/precedence policy. Node execution does not establish browser networking/storage/Worker/Wasm acceptance. Repeated platform executions remain distinct from unique suite files.",
+  "description": "Complementary portable Node executions from the exact same frozen source: Mail IMAP/EWS configuration, SOAP and unsupported-platform boundaries, MIME and vendored portable codec, Arabic T1/T2 rules and Unicode offsets/shared merge, scripted Hunspell and Camel Morph, and paragraph-language script/precedence policy. Node execution does not establish browser networking/storage/Worker/Wasm acceptance. Repeated platform executions remain distinct from unique suite files. Portable thesaurus relation resolution and reset/disposal behavior also execute on Node.",
   "groups": [
     {
       "name": "mail-transport-node",
@@ -79,6 +79,15 @@
         "test/proofing/language_identification_test.dart",
         "test/proofing/language_identification_calibration_test.dart"
       ]
+    },
+    {
+      "name": "thesaurus-node",
+      "cwd": "packages/quds_office_engine",
+      "runner": "dart",
+      "platform": "node",
+      "tests": [
+        "test/office_thesaurus_test.dart"
+      ]
     }
   ],
   "analysis": [],
@@ -93,7 +102,10 @@
     "docs/validation/office-mail-continuation-20261119/native-plan.json",
     "docs/validation/office-mail-continuation-20261119/audit_results.py",
     "docs/validation/office-mail-continuation-20261119/prepare_language_id.py",
-    "docs/validation/office-mail-continuation-20261119/prepare_arabic_morph.py"
+    "docs/validation/office-mail-continuation-20261119/prepare_arabic_morph.py",
+    "docs/validation/office-mail-continuation-20261119/extend_runtime.py",
+    "docs/validation/office-mail-continuation-20261119/test_extend_runtime.py",
+    "docs/validation/office-mail-continuation-20261119/runtime-extension-locks.json"
   ],
   "whitespace_preserved_inputs": []
 }

@@ -17,9 +17,12 @@ import os
 import re
 import subprocess
 import sys
+import tarfile
 from datetime import datetime, timezone
 from pathlib import Path, PurePosixPath
 from urllib.parse import unquote, urlparse
+
+import yaml
 
 
 RUNNER = "docs/validation/document-review-notes-20261118/run_checks.py"
@@ -520,6 +523,179 @@ class Audit:
                     f"Python count differs from raw output: {label}")
         return {"name": label, "passed": count, "skipped": 0, "log_sha256": file_hash(path)}
 
+    def runtime_extension(self, boundary):
+        """Reconstruct the exact archive addition and retained bytes independently."""
+        gate = self.repo / PurePosixPath(AUDITOR).parent
+        profile_path = gate / "runtime-extension-locks.json"
+        profile = read_json(profile_path)
+        binding = self.runtime_receipt.get("runtime_extension", {})
+        require(binding.get("status") == "ready", "Runtime cache extension is not ready")
+        record_path = Path(binding["receipt"])
+        require(record_path.is_absolute(), "Runtime extension receipt must be absolute")
+        local_file(record_path, binding["sha256"])
+        record = read_json(record_path)
+        extra = self.runtime_receipt["additional_inputs"]
+        require(extra.get(str(record_path)) == binding["sha256"], "Extension receipt is not runtime-bound")
+        require(record["status"] == "ready" and record["source"] == str(self.repo)
+                and record["runtime"] == str(self.runtime)
+                and record["profile_sha256"] == binding["profile_sha256"] == file_hash(profile_path)
+                and record["implementation_sha256"] == file_hash(gate / "extend_runtime.py"),
+                "Extension source, implementation or profile differs")
+        require(all(record[key] is True for key in (
+            "new_archive_contents_retained_in_full", "original_sdk_provenance_and_restore_runs_preserved",
+            "dependency_manifests_unchanged", "original_omission_record_unchanged"))
+                and record["github_actions_queried_or_awaited"] is False,
+                "Extension preservation boundary differs")
+        names = {"runtime.json", "retained-inputs.json", "pub-cache-receipt.json", "cache-omissions.json",
+                 "archive-members.json", "env.sh", "workspace-package_config.json",
+                 "workspace-package_graph.json", "workspace-native_assets.yaml"}
+        preserved = {str(record_path.parent / "originals" / name) for name in names}
+        base_lock = record_path.parent / "base-pubspec.lock"
+        preserved.add(str(base_lock))
+        require(set(record["preserved_originals"]) == preserved, "Preserved original receipt inventory differs")
+        for name, expected in record["preserved_originals"].items():
+            require(extra.get(name) == expected, "Preserved original is not runtime-bound: " + name)
+            local_file(Path(name), expected)
+        old = read_json(record_path.parent / "originals/runtime.json")
+        old_retained = read_json(record_path.parent / "originals/retained-inputs.json")
+        mutable = {"status", "workspace_lock_sha256", "hosted_archives_verified", "retained_runtime_input_count",
+                   "workspace_packages", "workspace_package_count", "native_assets", "node_runtime",
+                   "test_input_binding", "additional_inputs", "runtime_extension"}
+        require(old["status"] == "ready" and old["archive"]["verified"] is True
+                and old["workspace_lock_sha256"] == profile["base_lock_sha256"]
+                and old["archive"]["sha256"] == profile["sdk_archive_sha256"]
+                and old["archive"]["bytes"] == profile["sdk_archive_bytes"]
+                and old["runtime"]["frameworkRevision"] == profile["framework_revision"]
+                and old["runtime"]["dartSdkVersion"] == profile["dart_sdk_version"],
+                "Original runtime is not the base profile")
+        for key, value in old.items():
+            if key not in mutable:
+                require(self.runtime_receipt.get(key) == value, "Original restoration provenance changed: " + key)
+        require(record["original_retained_inputs_verified"] == old["retained_runtime_input_count"] == len(old_retained)
+                and all(self.retained.get(name) == row for name, row in old_retained.items()),
+                "Original retained inputs were removed or replaced")
+        for name, expected in old["additional_inputs"].items():
+            if name != str(self.repo / ".dart_tool/native_assets.yaml"):
+                require(extra.get(name) == expected, "Previously bound native input was changed or dropped: " + name)
+        for name in ("cache-omissions.json", "archive-members.json", "env.sh"):
+            require(file_hash(self.runtime / name) == record["preserved_originals"][str(record_path.parent / "originals" / name)],
+                    "Original runtime selection/omission evidence changed: " + name)
+        require(file_hash(base_lock) == profile["base_lock_sha256"]
+                and digest(self.git("show", profile["base_source_commit"] + ":pubspec.lock")) == profile["base_lock_sha256"]
+                and file_hash(self.repo / "pubspec.lock") == profile["target_lock_sha256"]
+                and file_hash(self.runtime / "flutter/packages/flutter_tools/pubspec.lock") == profile["sdk_tools_lock_sha256"],
+                "Extension lock profile differs from exact source/SDK locks")
+
+        def archives(*paths):
+            identities = {}
+            for path in paths:
+                for name, item in yaml.safe_load(path.read_text())["packages"].items():
+                    if item["source"] == "hosted":
+                        description = item["description"]
+                        require(description["url"] == "https://pub.dev" and description["name"] == name,
+                                "Unapproved hosted dependency in extension lock")
+                        key = name + "-" + item["version"]
+                        row = {"name": name, "version": item["version"], "sha256": description["sha256"]}
+                        require(key not in identities or identities[key] == row, "Conflicting locked archive identity")
+                        identities[key] = row
+            return identities
+
+        sdk_lock = self.runtime / "flutter/packages/flutter_tools/pubspec.lock"
+        old_union, new_union = archives(base_lock, sdk_lock), archives(self.repo / "pubspec.lock", sdk_lock)
+        additions = {row["name"] + "-" + row["version"]: row for row in profile["additions"]}
+        require(len(additions) == len(profile["additions"])
+                and len(old_union) == record["base_archives"] == profile["base_archive_count"]
+                and len(new_union) == record["target_archives"] == profile["target_archive_count"]
+                and set(old_union).isdisjoint(additions) and new_union == old_union | additions,
+                "Extension adds/replaces archives outside the exact profile")
+        current_archives = read_json(self.runtime / "pub-cache-receipt.json")
+        old_archives = read_json(record_path.parent / "originals/pub-cache-receipt.json")
+        current_by_key = {row["name"] + "-" + row["version"]: row for row in current_archives}
+        original_by_key = {row["name"] + "-" + row["version"]: row for row in old_archives}
+        downloaded = {row["name"] + "-" + row["version"]: row for row in record["new_archives"]}
+        require(len(current_by_key) == len(current_archives) == len(new_union)
+                and len(original_by_key) == len(old_archives) == len(old_union)
+                and len(downloaded) == len(record["new_archives"]) == len(additions)
+                and set(downloaded) == set(additions)
+                and current_by_key == original_by_key | downloaded,
+                "Original archive receipts changed or new archive inventory differs")
+        for key, row in current_by_key.items():
+            require(row["verified"] is True and {name: row[name] for name in ("name", "version", "sha256")} == new_union[key],
+                    "Archive receipt differs from exact lock: " + key)
+        new_files = {}
+        for key, row in downloaded.items():
+            archive = Path(row["archive"])
+            require(archive == record_path.parent / "archives" / (key + ".tar.gz")
+                    and extra.get(str(archive)) == row["sha256"], "Unbound extension package archive: " + key)
+            local_file(archive, row["sha256"], row["bytes"])
+            with tarfile.open(archive, "r:gz") as stream:
+                for member in stream:
+                    if member.isdir():
+                        continue
+                    require(member.isfile(), "Unexpected nonregular extension archive member")
+                    relative = safe_relative(PurePosixPath(member.name).as_posix())
+                    if ".dart_tool" in PurePosixPath(relative).parts:
+                        continue
+                    name = "pub-cache/hosted/pub.dev/" + key + "/" + relative
+                    expected = {"bytes": member.size, "sha256": digest(stream.extractfile(member).read())}
+                    require(name not in new_files and self.retained.get(name) == expected,
+                            "Retained cache differs from the exact new package archive: " + name)
+                    new_files[name] = expected
+        # Pub may have cached version/advisory JSON during development. These
+        # are separately bound metadata, never represented as package source
+        # extracted from one of the 18 new archives.
+        metadata = {name: row for name, row in self.retained.items()
+                    if name not in old_retained and name not in new_files}
+        package_names = {row["name"] for row in new_union.values()}
+        metadata_outside_lock = set()
+        for name, row in metadata.items():
+            match = re.fullmatch(r"pub-cache/hosted/pub\.dev/\.cache/([A-Za-z0-9_]+)-(versions|advisories)\.json", name)
+            require(match is not None,
+                    "Unexpected runtime addition outside exact archives: " + name)
+            if match.group(1) not in package_names:
+                metadata_outside_lock.add(match.group(1))
+            path = self.runtime / name
+            local_file(path, row["sha256"], row["bytes"])
+            value = read_json(path)
+            require(isinstance(value, dict), "Pub cache metadata must be JSON objects")
+            require((match.group(2) == "versions" and value.get("name") == match.group(1)
+                     and isinstance(value.get("versions"), list))
+                    or (match.group(2) == "advisories" and isinstance(value.get("advisories"), list)),
+                    "Pub cache metadata identity differs: " + name)
+        require(self.retained == old_retained | new_files | metadata
+                and record["retained_runtime_input_count"] == len(self.retained),
+                "Extended retained inventory adds omissions or unexpected files")
+        for name, key in (("retained-inputs.json", "current_retained_manifest_sha256"),
+                          ("pub-cache-receipt.json", "current_pub_cache_receipt_sha256")):
+            require(file_hash(self.runtime / name) == record[key], "Extension final manifest changed: " + name)
+        require([row["name"] for row in record["runs"]] == ["workspace-pub-get", "native-assets-smoke"]
+                and all(row["exit_code"] == 0 for row in record["runs"]), "Extension resolution/smoke failed or changed")
+        dart = str(self.runtime / "flutter/bin/cache/dart-sdk/bin/dart")
+        require(record["runs"][0]["command"] == [dart, "pub", "get", "--offline", "--enforce-lockfile"]
+                and record["runs"][0]["cwd"] == str(self.repo), "Extension did not enforce offline locked resolution")
+        smoke = record["native_smoke"]
+        require(smoke["real_hook_execution"] is True and smoke["owner"] == "quds_mail_store"
+                and smoke["sha256"] == file_hash(self.repo / "docs/validation/document-review-notes-20261118/runtime/native_asset_smoke.dart")
+                and record["runs"][1]["command"] == [dart, "run", smoke["entrypoint"]]
+                and record["runs"][1]["cwd"] == str(self.repo / "packages/quds_mail_store"),
+                "Extension native smoke source or owning package differs")
+        logs = {}
+        for row in record["runs"]:
+            path = Path(row["log"])
+            require(path == record_path.parent / "logs" / (row["name"] + ".log"), "Extension log path differs")
+            local_file(path, row["log_sha256"])
+            logs[str(path)] = row["log_sha256"]
+        expected = {"receipt": str(record_path), "sha256": binding["sha256"], "profile_sha256": file_hash(profile_path),
+                    "base_archives": len(old_union), "target_archives": len(new_union), "logs": logs}
+        require(boundary == expected, "Outer extension boundary differs from independently reconstructed provenance")
+        self.runtime_extension_summary = {**expected, "original_retained_files_unchanged": len(old_retained),
+                                          "new_package_files_reconstructed_from_archives": len(new_files),
+                                          "separately_bound_pub_cache_metadata_files": len(metadata),
+                                          "inactive_cached_metadata_package_names": sorted(metadata_outside_lock),
+                                          "original_archive_receipts_unchanged": True,
+                                          "original_sdk_and_restore_runs_unchanged": True}
+        return logs
+
     def language_id(self, record, environment):
         """Verify native classifier provenance independently of the driver."""
         require(set(record) == {"library", "library_sha256", "build_receipt", "build_receipt_sha256",
@@ -733,6 +909,8 @@ class Audit:
                      "archive-members.json", "env.sh", "bin/dart", "bin/flutter"):
             paths["runtime/" + name] = self.runtime / name
         paths.update({"additional/" + name: Path(name) for name in self.runtime_receipt["additional_inputs"]})
+        extension_logs = self.runtime_extension(receipt["runtime_extension"])
+        paths.update({"extension-log/" + name: Path(name) for name in extension_logs})
         paths.update({"python/executable": Path(sys.executable).resolve(),
                       "workspace/package_config.json": self.repo / ".dart_tool/package_config.json",
                       "workspace/package_graph.json": self.repo / ".dart_tool/package_graph.json",
@@ -769,7 +947,7 @@ class Audit:
                 else:
                     require(name.startswith("workspace/") and expected is None,
                             "Unexpected nested-only runtime input: " + name)
-        names = ["shared-runner-controls", "runtime-replay-controls", "publisher-offline-controls", "hunspell-packaging-controls",
+        names = ["shared-runner-controls", "runtime-replay-controls", "runtime-extension-controls", "publisher-offline-controls", "hunspell-packaging-controls",
                  "core-store", "native", "node", "mail-browser-frontend", "mail-browser-javascript", "mail-browser-javascript-syntax",
                  "language-id-browser-frontend", "language-id-browser-javascript", "language-id-browser-javascript-syntax"]
         require([row["name"] for row in receipt["runs"]] == names, "Outer run sequence incomplete or changed")
@@ -777,6 +955,7 @@ class Audit:
         control_arguments = {
             "shared-runner-controls": ["-B", str(self.repo / "docs/validation/document-review-notes-20261118/test_run_checks.py")],
             "runtime-replay-controls": ["-B", str(self.repo / "docs/validation/document-review-notes-20261118/runtime/test_restore_runtime.py")],
+            "runtime-extension-controls": ["-B", str(self.repo / gate / "test_extend_runtime.py")],
             "publisher-offline-controls": ["-B", "-m", "unittest", "discover", "-s", "tools/proofing/ayaspell", "-p", "test_build_bundle*.py", "-v"],
             "hunspell-packaging-controls": ["-B", "-m", "unittest", "discover", "-s", "packages/quds_proofing_hunspell/tool", "-p", "test_build.py", "-v"],
         }
@@ -1101,6 +1280,7 @@ class Audit:
                                 "retained_inputs": len(self.retained), "web_component_files": outer["web_sdk_files"],
                                 "verified_hosted_archives": len(archives), "package_test_launcher_bound": True,
                                 "scope": "Declared SDK, package cache, native-assets, Node, Python executable and browser component inputs; not an exhaustive operating-system dependency inventory."},
+            "runtime_extension": self.runtime_extension_summary,
             "browser_compilation": outer["receipt"]["browser_compilation"],
             "language_id_browser_compilation": outer["receipt"]["language_id_browser_compilation"],
             "language_id_native": outer["receipt"]["language_id_native"],

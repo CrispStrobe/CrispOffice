@@ -1,0 +1,37 @@
+{
+  "schema": 1,
+  "recorded_at_utc": "2026-11-19T14:41:41.931154+00:00",
+  "integration_head": "d5e34fda24a3085a98f9072fb30869fd3c4a7b21",
+  "initial_bounded_capture": "pre-freeze-remote-refs.txt",
+  "initial_reference_count": 230,
+  "initial_capture_fully_accounted": true,
+  "latest_main_included": "07b815a79d011f88b048900e22aa6544f44f2758",
+  "later_language_pr_included": {
+    "number": 199,
+    "head": "107155216505590e2eabfb93fc67cb908ad6173d"
+  },
+  "later_inventory": {
+    "file": "latest-main-remote-refs.txt",
+    "actual_references": 233,
+    "classification": {
+      "unaccounted": 2,
+      "historical_equivalent": 23,
+      "ancestor": 208
+    },
+    "audit": "late-inventory-audit.json",
+    "fully_integrated": false
+  },
+  "post_cutoff_work": [
+    {
+      "pr": 200,
+      "head": "b5eb7b81a02123446e9737e40e2a2e9e1631f7d8",
+      "branch": "codex/mail-providers-20261119",
+      "observed_draft": true,
+      "fetched": true,
+      "integrated": false,
+      "reason": "Created after the bounded capture; substantial active Gmail/Graph and OAuth implementation overlaps account setup and expands provider qualification. Preserve its separate remote branch and report it explicitly while finishing this recovery. Reconcile material main changes before final merge."
+    }
+  ],
+  "github_actions_queried_or_awaited": false,
+  "scope": "The original bounded capture is fully accounted for. The later inventory explicitly retains two non-integrated references to one active draft; they are not historical equivalents or accepted recovery source."
+}

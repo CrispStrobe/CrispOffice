@@ -1,0 +1,105 @@
+{
+  "schema": 1,
+  "base_source_commit": "4c25c0455cee867db4cfad0f737cb886f01c1936",
+  "base_lock_sha256": "35d1ef372908f4ab278973355ec6a957cd3240bea115d615056c5b9e398df974",
+  "target_lock_sha256": "72a5a52654a1484f4df646c631b4d1ea47e96025a671beff045eecf2b9e78e82",
+  "sdk_tools_lock_sha256": "6a98afb61c0cc72f31631ab444932f072fd275aa04d56cde2bf6831ba02fc8f8",
+  "sdk_archive_sha256": "baf7dcc5a3dbba60fe863bf493a6cf203195621f7786eaa5a1bba02cd0d87dd2",
+  "sdk_archive_bytes": 1581444364,
+  "framework_revision": "737ba8f885dc774b53b442759999a312c9461e4e",
+  "dart_sdk_version": "3.13.7",
+  "base_archive_count": 176,
+  "target_archive_count": 194,
+  "additions": [
+    {
+      "name": "flutter_secure_storage",
+      "version": "9.2.4",
+      "sha256": "9cad52d75ebc511adfae3d447d5d13da15a55a92c9410e50f67335b6d21d16ea"
+    },
+    {
+      "name": "flutter_secure_storage_linux",
+      "version": "1.2.3",
+      "sha256": "be76c1d24a97d0b98f8b54bce6b481a380a6590df992d0098f868ad54dc8f688"
+    },
+    {
+      "name": "flutter_secure_storage_macos",
+      "version": "3.1.3",
+      "sha256": "6c0a2795a2d1de26ae202a0d78527d163f4acbb11cde4c75c670f3a0fc064247"
+    },
+    {
+      "name": "flutter_secure_storage_platform_interface",
+      "version": "1.1.2",
+      "sha256": "cf91ad32ce5adef6fba4d736a542baca9daf3beac4db2d04be350b87f69ac4a8"
+    },
+    {
+      "name": "flutter_secure_storage_web",
+      "version": "1.2.1",
+      "sha256": "f4ebff989b4f07b2656fb16b47852c0aab9fed9b4ec1c70103368337bc1886a9"
+    },
+    {
+      "name": "flutter_secure_storage_windows",
+      "version": "3.1.2",
+      "sha256": "b20b07cb5ed4ed74fc567b78a72936203f587eba460af1df11281c9326cd3709"
+    },
+    {
+      "name": "jni",
+      "version": "1.1.2",
+      "sha256": "2e91e6087291affd10b31b6c872f3e3ac7dc5d93b51b5ba485d930c8f08bde6c"
+    },
+    {
+      "name": "jni_flutter",
+      "version": "1.0.4+1",
+      "sha256": "0dd33d67797560f66e961a6053882d4df54bd345bf063b8fe7ea133f7ad8b191"
+    },
+    {
+      "name": "jni_util",
+      "version": "1.0.0",
+      "sha256": "1ba86da04a5f2bf18fde2edb235587e70c5b0fc5bd4ba955f46b00942c3fc35f"
+    },
+    {
+      "name": "js",
+      "version": "0.6.7",
+      "sha256": "f2c445dce49627136094980615a031419f7f3eb393237e4ecd97ac15dea343f3"
+    },
+    {
+      "name": "objective_c",
+      "version": "9.6.4",
+      "sha256": "c965d264fd4b0b4dd402dce9d049b70656bf98d3ca108b9bc55d2544ceadbe5e"
+    },
+    {
+      "name": "path_provider",
+      "version": "2.1.6",
+      "sha256": "a7f4874f987173da295a61c181b8ee71dab59b332a486b391babf26a1b884825"
+    },
+    {
+      "name": "path_provider_android",
+      "version": "2.3.1",
+      "sha256": "69cbd515a62b94d32a7944f086b2f82b4ac40a1d45bebfc00813a430ab2dabcd"
+    },
+    {
+      "name": "path_provider_foundation",
+      "version": "2.6.0",
+      "sha256": "2a376b7d6392d80cd3705782d2caa734ca4727776db0b6ec36ef3f1855197699"
+    },
+    {
+      "name": "path_provider_linux",
+      "version": "2.2.2",
+      "sha256": "58c2005f147315b11e9b4a7bc889cd5203e250cba8e3f012dae259b4972b5c16"
+    },
+    {
+      "name": "path_provider_platform_interface",
+      "version": "2.1.3",
+      "sha256": "484838772624c3a4b94f1e44a3e19897fee738f2d5c4ce448443b0417f7c9dda"
+    },
+    {
+      "name": "path_provider_windows",
+      "version": "2.3.0",
+      "sha256": "bd6f00dbd873bfb70d0761682da2b3a2c2fccc2b9e84c495821639601d81afe7"
+    },
+    {
+      "name": "xdg_directories",
+      "version": "1.1.0",
+      "sha256": "7a3f37b05d989967cdddcbb571f1ea834867ae2faa29725fd085180e0883aa15"
+    }
+  ]
+}
