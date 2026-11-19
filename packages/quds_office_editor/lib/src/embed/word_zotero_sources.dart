@@ -118,8 +118,9 @@ Map<String, List<ZoteroDocumentOccurrence>> zoteroDocumentCitationOccurrences(
   final locations = _documentParagraphLocations(document);
   return Map.unmodifiable({
     for (final group in groups.entries)
-      _documentReference(group)
-          .selectionKey: List<ZoteroDocumentOccurrence>.unmodifiable([
+      _documentReference(
+        group,
+      ).selectionKey: List<ZoteroDocumentOccurrence>.unmodifiable([
         for (final field in members[group.key]!)
           ZoteroDocumentOccurrence(
             field: field,

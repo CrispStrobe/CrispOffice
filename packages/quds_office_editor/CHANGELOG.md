@@ -4,19 +4,19 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
-- Preserve explicit white slide and layout fills while adapting inherited
-  neutral paper to the display theme; retain the document-color opt-out.
+- Keep painting and caret hit testing aligned for anchored slide text, apply
+  current scalar formatting to imported rich text, and preserve inherited
+  backgrounds and the established 16-point fallback.
 
 - Add bounded multiple To recipients, Cc, Bcc and Reply all to native Studio
   mail. Keep hidden recipients in the explicit envelope, preserve all groups
   through uncertain retries, and reject unsupported decoded reply addresses.
-- Preserve dark/high-contrast slide readability and master-background editing
-  while integrating PPTX background, crop and rich-text fidelity. Apply scalar
-  rich-text edits to derived run copies without changing imported source runs.
+- Preserve explicit white slide and layout fills while adapting inherited
+  neutral paper to the display theme; retain the document-color opt-out.
 
-- Render slide text from current scalar edits when imported rich text is stale,
-  keep painting and caret hit testing aligned for anchored text, and preserve
-  inherited backgrounds and the established 16 pt fallback.
+- Retain slide theme inheritance and the native 16-point text default when
+  rendering imported rich text. Honor scalar text formatting and paragraph
+  font fallbacks while preserving authored color contrast in dark displays.
 
 - Add a searchable Zotero tag browser with paginated results, staged filters,
   exact-name validation and selection across searches. Applying filters retains
@@ -26,10 +26,6 @@ All notable changes to `quds_office_editor` are documented here.
   text and body/note location labels. Preserve source identity aliases and
   read-only document state, retain source-picker drafts on Back, and reject
   changed destinations before moving the caret.
-
-- Retain slide theme inheritance and the native 16-point text default when
-  rendering imported rich text. Honor scalar text formatting and paragraph
-  font fallbacks while preserving authored color contrast in dark displays.
 
 - Preserve validated reply-thread identifiers through native Studio composition
   and explicit uncertain-send retries. Emit bounded In-Reply-To/References

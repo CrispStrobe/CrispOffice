@@ -37,8 +37,9 @@ Iterable<XmlElement> _descendants(XmlElement root, String name) sync* {
 }
 
 XmlElement _body(OpcPackage package) => _descendants(
-  XmlDocument.parse(package.getPart('/ppt/slides/slide1.xml')!.readText())
-      .root!,
+  XmlDocument.parse(
+    package.getPart('/ppt/slides/slide1.xml')!.readText(),
+  ).root!,
   'txBody',
 ).first;
 
@@ -94,8 +95,9 @@ void main() {
         expect(body.firstChild('bodyPr')!.getAttribute('anchor'), 'ctr');
         expect(_descendants(body, 'buChar').single.getAttribute('char'), '•');
         Directory('build/fidelity-slide-text').createSync(recursive: true);
-        File('build/fidelity-slide-text/rich-imported-$cycle.pptx')
-            .writeAsBytesSync(bytes);
+        File(
+          'build/fidelity-slide-text/rich-imported-$cycle.pptx',
+        ).writeAsBytesSync(bytes);
         deck = SlideDeserializer().readBytes(bytes);
       }
     },
@@ -153,8 +155,9 @@ void main() {
         expect(pPr.getAttribute('algn'), 'ctr');
         expect(pPr.getAttribute('rtl'), '0');
         Directory('build/fidelity-slide-text').createSync(recursive: true);
-        File('build/fidelity-slide-text/rich-edited-$cycle.pptx')
-            .writeAsBytesSync(bytes);
+        File(
+          'build/fidelity-slide-text/rich-edited-$cycle.pptx',
+        ).writeAsBytesSync(bytes);
         deck = SlideDeserializer().readBytes(bytes);
         expect(deck.slides.single.shapes.single.fontSizePt, 30);
         expect(deck.slides.single.shapes.single.textColor, '112233');
@@ -162,29 +165,35 @@ void main() {
     },
   );
 
-  test('multiline text replacement retains first-run styling and paragraph boundaries', () async {
-    PmlPresentation deck = _richDeck();
-    deck.slides.single.shapes.single.text = 'Replacement\nSecond line';
-    expect(deck.slides.single.shapes.single.resolvedRichText, isEmpty);
-    for (int cycle = 0; cycle < 3; cycle++) {
-      final bytes = await OfficeIsolateSave.presentation(deck);
-      final XmlElement body = _body(OpcPackage.openBytes(bytes));
-      expect(body.childrenNamed('p'), hasLength(2));
-      expect(
-        _descendants(body, 'rPr').map((XmlElement p) => p.getAttribute('b')),
-        everyElement('1'),
-      );
-      expect(
-        _descendants(
-          body,
-          'latin',
-        ).map((XmlElement e) => e.getAttribute('typeface')),
-        everyElement('Liberation Serif'),
-      );
-      deck = SlideDeserializer().readBytes(bytes);
-      expect(deck.slides.single.shapes.single.text, 'Replacement\nSecond line');
-    }
-  });
+  test(
+    'multiline text replacement retains first-run styling and paragraph boundaries',
+    () async {
+      PmlPresentation deck = _richDeck();
+      deck.slides.single.shapes.single.text = 'Replacement\nSecond line';
+      expect(deck.slides.single.shapes.single.resolvedRichText, isEmpty);
+      for (int cycle = 0; cycle < 3; cycle++) {
+        final bytes = await OfficeIsolateSave.presentation(deck);
+        final XmlElement body = _body(OpcPackage.openBytes(bytes));
+        expect(body.childrenNamed('p'), hasLength(2));
+        expect(
+          _descendants(body, 'rPr').map((XmlElement p) => p.getAttribute('b')),
+          everyElement('1'),
+        );
+        expect(
+          _descendants(
+            body,
+            'latin',
+          ).map((XmlElement e) => e.getAttribute('typeface')),
+          everyElement('Liberation Serif'),
+        );
+        deck = SlideDeserializer().readBytes(bytes);
+        expect(
+          deck.slides.single.shapes.single.text,
+          'Replacement\nSecond line',
+        );
+      }
+    },
+  );
 
   test(
     'spaces blank paragraphs and hard breaks survive text round trips',

@@ -4,27 +4,22 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Keep imported slide runs as a source snapshot while applying scalar edits
+  to derived rendering runs. Respect explicit plain-run overrides, inherited
+  backgrounds, and PDF text tab-stop alignment.
+
 - Resolve direct master-background edits while preserving imported secondary
   master colors until the master changes. Keep explicit slide/layout fills
   independent and carry inherited background provenance through slide copies.
 
-- Reconcile PPTX slide backgrounds, crop and rich-text fidelity. Distinguish
-  inherited and explicit slide paper, apply scalar rich-text edits in PDF
-  rendering without rewriting source runs, and retain the incoming interlaced
-  PNG support. Full PDF/widget qualification remains tracked separately.
-
-- Preserve imported slide rich-text formatting only while its scalar snapshot
-  still matches. Respect explicit plain runs and inherited backgrounds, restore
-  the established 16 pt fallback, and retain PDF text tab-stop alignment.
+- Integrate recent PPTX background, crop, rich-text and interlaced PNG work.
+  Preserve inherited master backgrounds and apply scalar text-format edits to
+  imported rich runs consistently in PDF export without changing source runs.
 
 - Add read-only paginated Zotero tag catalogs for libraries and collections,
   with literal name preservation, containing/prefix searches, optional usage
   metadata, validated requests and separate online/desktop routes. Keep manual
   and automatic tag records distinct without combining their usage counts.
-
-- Integrate recent PPTX background, crop, rich-text and interlaced PNG work.
-  Preserve inherited master backgrounds and apply scalar text-format edits to
-  imported rich runs consistently in PDF export without changing source runs.
 
 - Extend `vba-excel` with local one-dimensional dynamic arrays, `ReDim`,
   `ReDim Preserve`, `Erase`, and module `Option Base 0/1`. Preserve element

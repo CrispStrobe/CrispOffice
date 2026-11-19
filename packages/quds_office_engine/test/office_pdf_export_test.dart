@@ -60,8 +60,9 @@ void main() {
       shape
         ..fontSizePt = 30
         ..textColor = 'CC3300';
-      final String edited = _inflated(OfficePdfExport.presentation(deck))
-          .join();
+      final String edited = _inflated(
+        OfficePdfExport.presentation(deck),
+      ).join();
       expect(edited, contains('/F2 30 Tf'));
       expect(edited, contains('0.800 0.200 0 rg'));
       expect(edited, isNot(contains('/F2 18 Tf')));
@@ -69,8 +70,9 @@ void main() {
       expect(shape.richText.single.runs.single.color, '112233');
 
       shape.text = 'Replacement';
-      final String replaced = _inflated(OfficePdfExport.presentation(deck))
-          .join();
+      final String replaced = _inflated(
+        OfficePdfExport.presentation(deck),
+      ).join();
       expect(replaced, contains('(Replacement) Tj'));
       expect(replaced, isNot(contains('(Original) Tj')));
     },

@@ -1,0 +1,147 @@
+{
+  "reviewed_at_utc": "2026-11-19T21:40:23.616409+00:00",
+  "review_scope": "Read-only independent inspection and raw evidence verification; no Dart/Flutter/Node test or compilation command was executed by this review.",
+  "accepted": true,
+  "blocking_findings": [],
+  "runner_sha256": "a9830b97c3464b938d27b06350ffde888691087e2a20c67966fce2b598dee32d",
+  "validation_draft_sha256": "35808a5d6d4c80421a574f998a34e712d1abe65d0678f44487b4780f46cfe1ce",
+  "mandatory_explicit_cwd": true,
+  "integration_engine_package_root_verified": true,
+  "actual_test_source_urls_verified": true,
+  "raw_test_counts": {
+    "core": {
+      "passed": 134,
+      "source_urls": [
+        "file:///workspace/scratch/745299cf52c6/integration-repo/packages/quds_office_engine/test/office_macro_mcp_test.dart",
+        "file:///workspace/scratch/745299cf52c6/integration-repo/packages/quds_office_engine/test/office_macro_runtime_test.dart",
+        "file:///workspace/scratch/745299cf52c6/integration-repo/packages/quds_office_engine/test/office_operations_test.dart",
+        "file:///workspace/scratch/745299cf52c6/integration-repo/packages/quds_office_engine/test/office_steps_test.dart",
+        "file:///workspace/scratch/745299cf52c6/integration-repo/packages/quds_office_engine/test/office_vba_dynamic_arrays_integration_test.dart",
+        "file:///workspace/scratch/745299cf52c6/integration-repo/packages/quds_office_engine/test/office_vba_dynamic_arrays_test.dart"
+      ],
+      "unfinished": 0,
+      "errors": 0
+    },
+    "cli": {
+      "passed": 1,
+      "source_urls": [
+        "file:///workspace/scratch/745299cf52c6/integration-repo/packages/quds_office_engine/test/office_macro_cli_test.dart"
+      ],
+      "unfinished": 0,
+      "errors": 0
+    }
+  },
+  "distinct_test_cases": 135,
+  "all_raw_command_exits_and_log_hashes_match": true,
+  "command_count": 7,
+  "commands": [
+    {
+      "name": "core",
+      "cwd": "/workspace/scratch/745299cf52c6/integration-repo/packages/quds_office_engine",
+      "exit_code": 0,
+      "stdout_sha256": "636d81eba66d30d5c6f98605497991afe7d34e60bc43efb506cbb515b32443a5",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "cli",
+      "cwd": "/workspace/scratch/745299cf52c6/integration-repo/packages/quds_office_engine",
+      "exit_code": 0,
+      "stdout_sha256": "2e0f23fc05757038f93146433dd0b029432debfdfcb6ce850a869e72b9463341",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "web/web_smoke-compile",
+      "cwd": "/workspace/scratch/745299cf52c6/integration-repo/packages/quds_office_engine",
+      "exit_code": 0,
+      "stdout_sha256": "1a6fca5aec31a475b37a0d9813609cb0e5ba6a01b3da2c11e5bc0603858a8397",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "web/web_smoke-run",
+      "cwd": "/workspace/scratch/745299cf52c6/integration-repo/packages/quds_office_engine",
+      "exit_code": 0,
+      "stdout_sha256": "733f79b8c8c236f674a733d3c205f6f46c6a52d4a6da005729755db94d853971",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "web/web_vba_dynamic_arrays_smoke-compile",
+      "cwd": "/workspace/scratch/745299cf52c6/integration-repo/packages/quds_office_engine",
+      "exit_code": 0,
+      "stdout_sha256": "d0bb276faf0fed55fe5e3b823e04a0b9998ebe3a821ad5b450483790a598480e",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "web/web_vba_dynamic_arrays_smoke-run",
+      "cwd": "/workspace/scratch/745299cf52c6/integration-repo/packages/quds_office_engine",
+      "exit_code": 0,
+      "stdout_sha256": "5529e665b8ed1f73582686f38ecb80bff05e6c50c2f5d845a5bfdc8706ff2b1c",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "web/web_vba_dynamic_arrays_smoke-vm",
+      "cwd": "/workspace/scratch/745299cf52c6/integration-repo/packages/quds_office_engine",
+      "exit_code": 0,
+      "stdout_sha256": "5529e665b8ed1f73582686f38ecb80bff05e6c50c2f5d845a5bfdc8706ff2b1c",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "source_guards": {
+    "unchanged": true,
+    "guarded_inputs": 562,
+    "tracked_blobs_matched": 560,
+    "environment_inputs": [
+      ".dart_tool/package_config.json",
+      ".dart_tool/package_graph.json"
+    ],
+    "saved_product_commit": "435bc212401db13efa56483ac852e4bc25bcc5d2",
+    "saved_product_tree": "0a916bed8acace7078e031b76a690991ff323a0e"
+  },
+  "portable_programs": [
+    {
+      "source": "tool/macros/web_smoke.dart",
+      "compiled_js_sha256": "679071774a583094ade2812a4041d6fff25ba0977e8b0aa4d5fd82c813373762",
+      "assertions_verified": true,
+      "dynamic_vm_js_equal": null
+    },
+    {
+      "source": "tool/macros/web_vba_dynamic_arrays_smoke.dart",
+      "compiled_js_sha256": "b7874e5540ea58b95e1e584ab53ad4e8e75803bac8c69fdde8a12ce8f372f07a",
+      "assertions_verified": true,
+      "dynamic_vm_js_equal": true
+    }
+  ],
+  "excluded_attempt_records_intact": true,
+  "excluded_attempt_contribution": 0,
+  "publication_facts_verified": {
+    "original_macro_distinct": 675,
+    "original_successes_before_retries": 673,
+    "exact_isolated_retries": 2,
+    "original_guard_inputs": 582,
+    "original_web_programs": 6,
+    "captured_slides": {
+      "engine": 68,
+      "editor": 37
+    },
+    "captured_mail": 235,
+    "final_mail": 254,
+    "zotero": 341,
+    "final_slides": 107,
+    "final_macro_native": 135,
+    "unchanged_automation_and_sheet_files": 34,
+    "final_zotero_source_and_test_diff_empty": true
+  },
+  "editorial_corrections_reported_to_parent": [
+    "Describe Flutter as repository-pinned, Dart as the bundled version, and Node24.22.3 as the observed runtime rather than implying a repository Node pin.",
+    "Call web_smoke.dart the native spreadsheet web program; its substantive assertions exercise XLSX, while Word/PML are separately exercised by the native suites and exact CLI case."
+  ],
+  "scope_assessment": "The draft keeps original675-case and final135-case scopes separate, discloses the timeout retries and excluded wrong-cwd attempt, does not sum overlapping rows, and does not claim Microsoft Office differential parity. Final135 results bind to435bc212; the earlier675 remain bound to9dbba0f7.",
+  "remaining_publication_work": "Attach referenced evidence/index/qualification artifacts and preserve or prove exact tested source bytes when reconciling the parent-reported newer main. No additional product testing is required by this review if the final source-equivalence proof succeeds.",
+  "publication_draft_final_reviewed_at_utc": "2026-11-19T21:41:04.268725+00:00",
+  "publication_draft_remaining_placeholders": [],
+  "editorial_corrections_resolved": true,
+  "parent_reported_main_advance": {
+    "prefix": "88513f04",
+    "zotero_merged_prefix": "6626ad43",
+    "status": "Parent and incoming_audit are separately proving later source differences and preserving tested435bc212 product bytes while reconciling current main. This review does not authorize replacing a changed main."
+  }
+}

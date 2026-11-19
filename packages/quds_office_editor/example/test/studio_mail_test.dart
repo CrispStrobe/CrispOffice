@@ -933,27 +933,26 @@ void main() {
     await _close(tester);
   });
 
-  testWidgets(
-    'a failed keychain save keeps Mail connected with fixed feedback',
-    (tester) async {
-      final store = _CredentialStore()
-        ..onSave = (_) async =>
-            throw StateError('private-keychain-reply saved-fixture-password');
-      final client = _Client();
-      await _open(tester, (_) => client, credentialStore: store);
-      await _connect(tester);
-      expect(find.text('First message'), findsOneWidget);
-      expect(find.text(_strings.mailAccountSaveFailed), findsOneWidget);
-      expect(find.textContaining('private-keychain-reply'), findsNothing);
-      expect(find.text(_strings.mailConnectionFailed), findsNothing);
-      expect(client.disconnects, 0);
-      await tester.tap(find.byTooltip(_strings.disconnect));
-      await _pump(tester);
-      // Forget remains available for unreadable or still-pending keychain records.
-      expect(find.text(_strings.forgetAccount), findsOneWidget);
-      await _close(tester);
-    },
-  );
+  testWidgets('a failed keychain save keeps Mail connected with fixed feedback', (
+    tester,
+  ) async {
+    final store = _CredentialStore()
+      ..onSave = (_) async =>
+          throw StateError('private-keychain-reply saved-fixture-password');
+    final client = _Client();
+    await _open(tester, (_) => client, credentialStore: store);
+    await _connect(tester);
+    expect(find.text('First message'), findsOneWidget);
+    expect(find.text(_strings.mailAccountSaveFailed), findsOneWidget);
+    expect(find.textContaining('private-keychain-reply'), findsNothing);
+    expect(find.text(_strings.mailConnectionFailed), findsNothing);
+    expect(client.disconnects, 0);
+    await tester.tap(find.byTooltip(_strings.disconnect));
+    await _pump(tester);
+    // Forget remains available for unreadable or still-pending keychain records.
+    expect(find.text(_strings.forgetAccount), findsOneWidget);
+    await _close(tester);
+  });
 
   testWidgets('a failed keychain deletion remains visible and can be retried', (
     tester,

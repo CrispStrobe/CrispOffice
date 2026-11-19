@@ -1213,12 +1213,15 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
             : (paragraph.defaultFontSizePt > 0
                   ? paragraph.defaultFontSizePt
                   : (shape.fontSizePt > 0 ? shape.fontSizePt : 16));
-        final Color authored = run.color.isEmpty
+        final Color authoredColor = run.color.isEmpty
             ? color
             : _hexColor(run.color, color);
         final Color runColor = background == null
-            ? authored
-            : _theme.resolveDocumentColor(authored, background: background);
+            ? authoredColor
+            : _theme.resolveDocumentColor(
+                authoredColor,
+                background: background,
+              );
         final String? family = run.fontFamily.isEmpty
             ? _theme.fontFamily
             : run.fontFamily;
@@ -1581,7 +1584,7 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
   Color _slidePaper(PmlSlide target) {
     final int? rgb = int.tryParse(target.background, radix: 16);
     // Inherited neutral paper follows the display theme when adaptation is
-    // enabled. Explicit slide/layout overrides retain their authored color.
+    // enabled. Explicit slide/layout fills retain their authored appearance.
     return rgb == null ||
             (_theme.adaptDocumentColors &&
                 target.inheritsMasterBackground &&

@@ -1,0 +1,188 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-11-19T21:43:32.203205+00:00",
+  "repository": "CrispStrobe/quds_office_suite",
+  "testedSourceCheckpoint": "435bc212401db13efa56483ac852e4bc25bcc5d2",
+  "advancedMain": {
+    "commit": "88513f04cfbdec210340f2d70a674cf3f23e31c0",
+    "tree": "4de8bf37cfecac87209c31740bb0e266a0231277",
+    "parents": [
+      "2170791c9250d72c9df31a065408365f9b50abaa",
+      "6626ad430a54122e4514cc2870fdcee18760682f"
+    ]
+  },
+  "mergeBase": "400fffd04fcceee78959e4c38b4d1dbe89767c2b",
+  "directTreeDifferenceCount": 61,
+  "actualIncomingChangeCount": 29,
+  "classification": {
+    "documentsAndEvidence": [
+      "docs/validation/mail-recipients-20261119/README.md",
+      "docs/validation/office-vba-dynamic-arrays-20261119/README.md",
+      "docs/validation/zotero-workflow-20261119/README.md",
+      "docs/validation/zotero-workflow-20261119/analysis-formatted-final.log",
+      "docs/validation/zotero-workflow-20261119/final-reconciliation.json",
+      "docs/validation/zotero-workflow-20261119/format-ast-final.log",
+      "docs/validation/zotero-workflow-20261119/format-final.log",
+      "docs/validation/zotero-workflow-20261119/format-normalization.json",
+      "docs/validation/zotero-workflow-20261119/format-normalization.log",
+      "docs/validation/zotero-workflow-20261119/independent-vba-audit.json",
+      "docs/validation/zotero-workflow-20261119/static-checks-final.json",
+      "docs/validation/zotero-workflow-20261119/vba-final-analyzer.log.gz",
+      "docs/validation/zotero-workflow-20261119/vba-final-receipt.json",
+      "docs/validation/zotero-workflow-20261119/vba-final-receipt.json.gz",
+      "docs/validation/zotero-workflow-20261119/vba-final.jsonl.gz",
+      "docs/validation/zotero-workflow-20261119/vba-final.stderr.log.gz",
+      "docs/validation/zotero-workflow-20261119/vba-flutter-attempt.jsonl.gz",
+      "docs/validation/zotero-workflow-20261119/vba-flutter-attempt.stderr.log.gz",
+      "docs/validation/zotero-workflow-20261119/vba-inputs.json.gz",
+      "docs/validation/zotero-workflow-20261119/vba-vm-attempt.jsonl.gz",
+      "docs/validation/zotero-workflow-20261119/vba-vm-attempt.stderr.log.gz",
+      "docs/validation/zotero-workflow-20261119/verify-format-ast.dart.txt",
+      "docs/validation/zotero-workflow-20261119/whitespace-final.log",
+      "docs/zotero-validation.md"
+    ],
+    "changelogs": [
+      "packages/quds_office_editor/CHANGELOG.md",
+      "packages/quds_office_engine/CHANGELOG.md"
+    ],
+    "formatterOnlyDartFiles": [
+      "packages/quds_office_editor/example/lib/studio_mail_ews.dart",
+      "packages/quds_office_editor/example/test/studio_mail_compose_test.dart",
+      "packages/quds_office_editor/example/test/studio_mail_reply_test.dart"
+    ]
+  },
+  "formattingProof": {
+    "method": "Parse old/new source with the pinned analyzer, require zero parse errors and compare canonical CompilationUnit.toSource() output.",
+    "results": [
+      {
+        "path": "packages/quds_office_editor/example/lib/studio_mail_ews.dart",
+        "astToSourceEqual": true,
+        "beforeParseErrors": 0,
+        "afterParseErrors": 0
+      },
+      {
+        "path": "packages/quds_office_editor/example/test/studio_mail_compose_test.dart",
+        "astToSourceEqual": true,
+        "beforeParseErrors": 0,
+        "afterParseErrors": 0
+      },
+      {
+        "path": "packages/quds_office_editor/example/test/studio_mail_reply_test.dart",
+        "astToSourceEqual": true,
+        "beforeParseErrors": 0,
+        "afterParseErrors": 0
+      }
+    ],
+    "command": {
+      "argv": [
+        "dart",
+        "--packages=/workspace/scratch/745299cf52c6/integration-repo/.dart_tool/package_config.json",
+        "/workspace/scratch/745299cf52c6/final-main-format-proof/verify.dart",
+        "/workspace/scratch/745299cf52c6/final-main-format-proof/before",
+        "/workspace/scratch/745299cf52c6/final-main-format-proof/after",
+        "packages/quds_office_editor/example/lib/studio_mail_ews.dart",
+        "packages/quds_office_editor/example/test/studio_mail_compose_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_reply_test.dart"
+      ],
+      "cwd": "/workspace/scratch/745299cf52c6/integration-repo",
+      "exitCode": 0
+    },
+    "files": [
+      {
+        "path": "/workspace/scratch/745299cf52c6/final-main-format-proof/verify.dart",
+        "sha256": "5bf3c17eeb031dd79601077af492673f2fb2687eeb5312fa1f6de4b8f2c9b1d8",
+        "bytes": 726
+      },
+      {
+        "path": "/workspace/scratch/745299cf52c6/final-main-format-proof/stdout.json",
+        "sha256": "d99136018382f14e5f2bf9f8c0fa24c4318cd9421b3dbe33efc8aff33b89156c",
+        "bytes": 437
+      },
+      {
+        "path": "/workspace/scratch/745299cf52c6/final-main-format-proof/stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    ]
+  },
+  "mergeTreeProbe": {
+    "argv": [
+      "git",
+      "merge-tree",
+      "--write-tree",
+      "--name-only",
+      "--messages",
+      "435bc212401db13efa56483ac852e4bc25bcc5d2",
+      "88513f04cfbdec210340f2d70a674cf3f23e31c0"
+    ],
+    "exitCode": 1,
+    "prospectiveTree": "6ecf49e79129433b07ac4d0ebfcd0f78c13827ae",
+    "conflicts": [
+      "packages/quds_office_editor/CHANGELOG.md",
+      "packages/quds_office_engine/CHANGELOG.md"
+    ],
+    "stdout": {
+      "path": "/workspace/scratch/745299cf52c6/final-main-merge-tree.txt",
+      "sha256": "2869dbcc3b2c44061086c43bf2c38cd2ad09856d8aff7f959f3b3068a0a0c0ee",
+      "bytes": 556
+    },
+    "stderr": {
+      "path": "/workspace/scratch/745299cf52c6/final-main-merge-tree.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "note": "Read-only with respect to worktree and refs; writes merge-preview Git objects only. No product conflict."
+  },
+  "riskAssessment": "The actual main advance contains no new product behavior. Its three Dart changes are parser-proven formatting only. Two test formatting changes are already present in the tested union; the prospective merge otherwise changes only EWS typedef layout. Retaining the accepted EWS bytes makes every non-document entry exactly equal to the tested checkpoint.",
+  "resolution": {
+    "localCommit": "7d58e76101eee897b19f9d8885d408799d36996a",
+    "tree": "f4b499799e50c5d1955f9c3f180a1560fb1531ae",
+    "parents": [
+      "435bc212401db13efa56483ac852e4bc25bcc5d2",
+      "88513f04cfbdec210340f2d70a674cf3f23e31c0"
+    ],
+    "ancestryVerified": {
+      "435bc212401db13efa56483ac852e4bc25bcc5d2": true,
+      "88513f04cfbdec210340f2d70a674cf3f23e31c0": true
+    },
+    "restoredTestedFile": "packages/quds_office_editor/example/lib/studio_mail_ews.dart",
+    "changelogDecision": "Combine incoming anchored-text/plain-run/tab-stop notes with current behavior. Describe scalar edits as a derived rich-text projection rather than discarding imported formatting whenever a scalar changes.",
+    "all24IncomingDocumentsExactlyPreserved": true,
+    "resultReceipt": {
+      "path": "/workspace/scratch/745299cf52c6/final-main-reconciliation-result.json",
+      "sha256": "f06fc0e8c83df7ced2d78265d89a5119bc10e81f3f5db5fda588bedb5d77c5c2",
+      "bytes": 5507
+    }
+  },
+  "sourcePreservation": {
+    "allNonDocumentModesTypesBlobsIdentical": true,
+    "entryCount": 5647,
+    "manifestSha256": "28ba94f1f167c10cd1940098dda7b3cd923cb3d75c46c9265c0c9b29f3aa4493",
+    "manifestDefinition": "Read git ls-tree -rz for each tree; map path -> mode/type/blob metadata. Exclude only paths beginning docs/ and the two package CHANGELOG.md files. SHA256 of json.dumps(mapping, sort_keys=True, separators=(comma,colon)).encode() using default ensure_ascii=True.",
+    "priorSlideGuardCount": 629,
+    "priorSlideGuardUnchanged": true,
+    "changedPriorGuardInputs": [],
+    "worktreeClean": true
+  },
+  "qualificationBoundary": "No product test rerun: the complete non-document tree, including tests, fixtures, configuration and workflows, is byte-identical to the accepted 435bc212 source. Existing test receipts retain their original execution checkpoint and are carried through the equality proof. Main imported validation records remain historical evidence.",
+  "nextOwner": "Root publishes only documentation/evidence and performs an expected-main, non-forced merge.",
+  "githubActions": "No workflow/check/status endpoint queried, awaited, or rerun.",
+  "publishedReconciliationCheckpoint": {
+    "commit": "6a7e0afaec7b597abf3a6ad5d43a8295fcce855a",
+    "tree": "f4b499799e50c5d1955f9c3f180a1560fb1531ae",
+    "parents": [
+      "435bc212401db13efa56483ac852e4bc25bcc5d2",
+      "88513f04cfbdec210340f2d70a674cf3f23e31c0"
+    ],
+    "verifiedAt": "2026-11-19T21:44:03.218319+00:00",
+    "allTrackedWorkingBytesMatch": true,
+    "comparisonArgv": [
+      "git",
+      "diff",
+      "--exit-code",
+      "6a7e0afaec7b597abf3a6ad5d43a8295fcce855a",
+      "--"
+    ],
+    "comparisonExitCode": 0
+  }
+}

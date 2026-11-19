@@ -1,0 +1,194 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-11-19T21:56:50.004769+00:00",
+  "qualifiedImplementation": "435bc212401db13efa56483ac852e4bc25bcc5d2",
+  "evidenceParent": "cf6fb0b0f0d5c4ba1aa5ebf1f318e114eff3af15",
+  "advancedMain": "057fdb9325ec2f93d2ac0592217da8ad350b0664",
+  "localCommit": "636dd5ea8826224365316762636e08595f28af42",
+  "tree": "38a287a6e9179f2d0ed02f83f036f71fc11ef13c",
+  "parents": [
+    "cf6fb0b0f0d5c4ba1aa5ebf1f318e114eff3af15",
+    "057fdb9325ec2f93d2ac0592217da8ad350b0664"
+  ],
+  "mergeBases": [
+    "435bc212401db13efa56483ac852e4bc25bcc5d2",
+    "88513f04cfbdec210340f2d70a674cf3f23e31c0"
+  ],
+  "sourceReview": {
+    "dartPathsCompared": 24,
+    "parserEquivalentPaths": 21,
+    "nonEquivalentPaths": [
+      "packages/quds_office_editor/lib/src/editor_slide/render_slide_stage.dart",
+      "packages/quds_office_editor/test/office_dark_slide_test.dart",
+      "packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart"
+    ],
+    "decisions": [
+      "Retain qualified resolvedRichText implementation: incoming scalar projection matches intended values but changes the empty-list reference/mutability edge and redundantly copies run lists. This is explicitly not classified as formatting only.",
+      "Retain qualified renderer: incoming changes rename a local authored-color variable and reword a comment without introducing behavior.",
+      "Retain qualified test order/formatting and import both genuinely new dark-slide assertions: explicit white remains independent after a controller master edit; adaptation-disabled paper/ink is tested under high contrast as well as dark."
+    ]
+  },
+  "sourceIdentity": {
+    "allOtherNonDocumentModesTypesBlobsEqualQualified": true,
+    "entryCount": 5645,
+    "manifestSha256": "d6f5a2bb46c5dcc13fc1bae70b35e8a77700dafc4ed55f8f17c9c6a021554356",
+    "documentExclusions": [
+      "docs/",
+      "README.md",
+      "packages/quds_office_editor/CHANGELOG.md",
+      "packages/quds_office_engine/CHANGELOG.md"
+    ],
+    "onlyTestException": {
+      "path": "packages/quds_office_editor/test/office_dark_slide_test.dart",
+      "qualifiedBlob": "100644 blob 0199a6a15b46a7070bd32297e53924e7944c8539",
+      "candidateBlob": "100644 blob 0a0fe244c4e71bd6bd1a31cea5e2d6bcbe985304",
+      "sha256": "367c06ea0376db58561fb51b326b45cc3259a851d8701c44350ce16e8ad55721",
+      "patch": {
+        "path": "/workspace/scratch/745299cf52c6/second-main-reconciliation/new-assertions.diff",
+        "sha256": "f3533fd481d0b82ca1f73562f4c0379fb0997caa23be36962b04fc554ca014d2",
+        "bytes": 2002
+      }
+    },
+    "originalSixDarkAssertionsUnchanged": true,
+    "originalDarkTestSha256": "00e384eac7c2e1d3ce8d423d7e3ceafbc6beb28fdddfe704ce06ac2e20e81b85"
+  },
+  "evidencePreservation": {
+    "allPriorEvidenceFilesUnchangedExceptMergedMailReadme": true,
+    "newMainDocumentFiles": 91,
+    "newMainDocumentsAllExactBlobs": true,
+    "mainMailEvidenceEntriesPreserved": 93,
+    "bothReadmeBodiesRetained": true,
+    "newPaths": [
+      "docs/validation/mail-recipients-20261119/evidence-index.json",
+      "docs/validation/mail-recipients-20261119/final-mail-audit/README.md",
+      "docs/validation/mail-recipients-20261119/final-mail-audit/audit.json",
+      "docs/validation/mail-recipients-20261119/final-reconciliation-audit/c1b98-final-optout-addendum.json",
+      "docs/validation/mail-recipients-20261119/final-reconciliation-audit/c1b98-final-optout-addendum.md",
+      "docs/validation/mail-recipients-20261119/final-reconciliation-audit/c1b98-final-resolved-delta.diff",
+      "docs/validation/mail-recipients-20261119/final-reconciliation-audit/c1b98-integration-audit.json",
+      "docs/validation/mail-recipients-20261119/final-reconciliation-audit/c1b98-integration-audit.md",
+      "docs/validation/mail-recipients-20261119/final-reconciliation-audit/c1b98-vs-a0-merge-resolution-paths.diff",
+      "docs/validation/mail-recipients-20261119/final-reconciliation-audit/c1b98-vs-first-parent-resolution-paths.diff",
+      "docs/validation/mail-recipients-20261119/final-reconciliation-audit/incoming-8356-addendum.md",
+      "docs/validation/mail-recipients-20261119/final-reconciliation-audit/incoming-8356-host-test-checks.json",
+      "docs/validation/mail-recipients-20261119/final-reconciliation-audit/inspect_8356_test_delta.dart",
+      "docs/validation/mail-recipients-20261119/final-reconciliation.json",
+      "docs/validation/mail-recipients-20261119/final-remote-inventory.json",
+      "docs/validation/mail-recipients-20261119/final-static-checks-before-vba435/format-check.json",
+      "docs/validation/mail-recipients-20261119/final-static-checks-before-vba435/format-check.log",
+      "docs/validation/mail-recipients-20261119/final-static-checks-before-vba435/format-final.json",
+      "docs/validation/mail-recipients-20261119/final-static-checks-before-vba435/format-final.log",
+      "docs/validation/mail-recipients-20261119/final-static-checks-before-vba435/whitespace.json",
+      "docs/validation/mail-recipients-20261119/final-static-checks/format-check.json",
+      "docs/validation/mail-recipients-20261119/final-static-checks/format-check.log",
+      "docs/validation/mail-recipients-20261119/final-static-checks/format-final.json",
+      "docs/validation/mail-recipients-20261119/final-static-checks/format-final.log",
+      "docs/validation/mail-recipients-20261119/final-static-checks/whitespace.json",
+      "docs/validation/mail-recipients-20261119/final-vba-reconciliation.json",
+      "docs/validation/mail-recipients-20261119/mail-source-harness/README.md",
+      "docs/validation/mail-recipients-20261119/mail-source-harness/first-pass-provenance.json",
+      "docs/validation/mail-recipients-20261119/mail-source-harness/first-pass-test.log",
+      "docs/validation/mail-recipients-20261119/mail-source-harness/pre-format-provenance.json",
+      "docs/validation/mail-recipients-20261119/mail-source-harness/pre-format-test.log",
+      "docs/validation/mail-recipients-20261119/mail-source-harness/prepare_mail_tests.dart",
+      "docs/validation/mail-recipients-20261119/mail-source-harness/provenance.json",
+      "docs/validation/mail-recipients-20261119/mail-source-harness/pubspec.lock",
+      "docs/validation/mail-recipients-20261119/mail-source-harness/pubspec.yaml",
+      "docs/validation/mail-recipients-20261119/mail-source-harness/receipt.json",
+      "docs/validation/mail-recipients-20261119/mail-source-harness/setup_attempt.log",
+      "docs/validation/mail-recipients-20261119/mail-source-harness/studio_mail_recipients.diff",
+      "docs/validation/mail-recipients-20261119/mail-source-harness/studio_mail_recipients_offline_test.dart",
+      "docs/validation/mail-recipients-20261119/mail-source-harness/studio_mail_recipients_original.dart",
+      "docs/validation/mail-recipients-20261119/mail-source-harness/studio_mail_reply.diff",
+      "docs/validation/mail-recipients-20261119/mail-source-harness/studio_mail_reply_offline_test.dart",
+      "docs/validation/mail-recipients-20261119/mail-source-harness/studio_mail_reply_original.dart",
+      "docs/validation/mail-recipients-20261119/mail-source-harness/studio_mail_threading.diff",
+      "docs/validation/mail-recipients-20261119/mail-source-harness/studio_mail_threading_offline_test.dart",
+      "docs/validation/mail-recipients-20261119/mail-source-harness/studio_mail_threading_original.dart",
+      "docs/validation/mail-recipients-20261119/mail-source-harness/test.log",
+      "docs/validation/mail-recipients-20261119/premerge-main-reconciliation.json",
+      "docs/validation/mail-recipients-20261119/publication-checkpoints.json",
+      "docs/validation/mail-recipients-20261119/recipient-parser/mail-recipients-review.dart",
+      "docs/validation/mail-recipients-20261119/recipient-parser/mail-recipients-review.json",
+      "docs/validation/mail-recipients-20261119/recipient-parser/mail-recipients-review.stderr.log",
+      "docs/validation/mail-recipients-20261119/runtime/flutter_pub_get.log",
+      "docs/validation/mail-recipients-20261119/runtime/flutter_pub_get_offline.log",
+      "docs/validation/mail-recipients-20261119/runtime/mail_core_offline_test.log",
+      "docs/validation/mail-recipients-20261119/runtime/offline-pubspec.lock",
+      "docs/validation/mail-recipients-20261119/runtime/offline-pubspec.yaml",
+      "docs/validation/mail-recipients-20261119/runtime/runtime-receipt.md",
+      "docs/validation/mail-recipients-20261119/slide-source-harness-before-vba435/README.md",
+      "docs/validation/mail-recipients-20261119/slide-source-harness-before-vba435/adapted_tests/slide_import_fidelity_test.dart",
+      "docs/validation/mail-recipients-20261119/slide-source-harness-before-vba435/adapted_tests/slide_rich_text_explicit_style_test.dart",
+      "docs/validation/mail-recipients-20261119/slide-source-harness-before-vba435/qualification.json",
+      "docs/validation/mail-recipients-20261119/slide-source-harness-before-vba435/run.py",
+      "docs/validation/mail-recipients-20261119/slide-source-harness-before-vba435/slide_import_fidelity_test.dart.imports.diff",
+      "docs/validation/mail-recipients-20261119/slide-source-harness-before-vba435/slide_rich_text_explicit_style_test.dart.imports.diff",
+      "docs/validation/mail-recipients-20261119/slide-source-harness-before-vba435/tests.log",
+      "docs/validation/mail-recipients-20261119/slide-source-harness/README.md",
+      "docs/validation/mail-recipients-20261119/slide-source-harness/adapted_tests/slide_import_fidelity_test.dart",
+      "docs/validation/mail-recipients-20261119/slide-source-harness/adapted_tests/slide_rich_text_explicit_style_test.dart",
+      "docs/validation/mail-recipients-20261119/slide-source-harness/qualification.json",
+      "docs/validation/mail-recipients-20261119/slide-source-harness/run.py",
+      "docs/validation/mail-recipients-20261119/slide-source-harness/slide_import_fidelity_test.dart.imports.diff",
+      "docs/validation/mail-recipients-20261119/slide-source-harness/slide_rich_text_explicit_style_test.dart.imports.diff",
+      "docs/validation/mail-recipients-20261119/slide-source-harness/tests.log",
+      "docs/validation/mail-recipients-20261119/slide-source-harness/vba435-integration-review.json",
+      "docs/validation/mail-recipients-20261119/slide-source-harness/vba435-union.diff",
+      "docs/validation/mail-recipients-20261119/source-binding-before-vba435.json",
+      "docs/validation/mail-recipients-20261119/source-binding.json",
+      "docs/validation/mail-recipients-20261119/vba-incoming-audit.json",
+      "docs/validation/mail-recipients-20261119/vba-offline-boundary/README.md",
+      "docs/validation/mail-recipients-20261119/vba-offline-boundary/inspect_graph.py",
+      "docs/validation/mail-recipients-20261119/vba-offline-boundary/receipt.json",
+      "docs/validation/mail-recipients-20261119/verify_source_binding.py",
+      "docs/validation/mail-recipients-20261119/zotero-source-harness/README.md",
+      "docs/validation/mail-recipients-20261119/zotero-source-harness/occurrence-and-widget-exclusions.json",
+      "docs/validation/mail-recipients-20261119/zotero-source-harness/tag-catalog-command.json",
+      "docs/validation/mail-recipients-20261119/zotero-source-harness/tag-catalog-import.diff",
+      "docs/validation/mail-recipients-20261119/zotero-source-harness/tag-catalog-qualification.json",
+      "docs/validation/mail-recipients-20261119/zotero-source-harness/tag-catalog-tests.jsonl",
+      "docs/validation/mail-recipients-20261119/zotero-source-harness/tag-catalog-tests.stderr.log",
+      "docs/validation/mail-recipients-20261119/zotero-source-harness/zotero_tag_catalog_test.dart"
+    ]
+  },
+  "qualification": {
+    "receipt": {
+      "path": "/workspace/scratch/745299cf52c6/second-main-reconciliation/dark-slide-receipt.json",
+      "sha256": "4c7dba614bfbb8b9d0589e129e523f1309b3cf4d7d5db6b868c5f0fddf935b8b",
+      "bytes": 184047
+    },
+    "rawReporter": {
+      "path": "/workspace/scratch/745299cf52c6/second-main-reconciliation/dark-slide.jsonl",
+      "sha256": "0a43dfbbb3993dd17deb9b81b51acba7489997ab6404b39951b569c47830baaf",
+      "bytes": 7190
+    },
+    "casesPassed": 11,
+    "failed": 0,
+    "skipped": 0,
+    "scopedAnalysisFormatWhitespacePassed": true,
+    "guardedInputs": 629,
+    "inputsUnchanged": true,
+    "countingNote": "These 11 cases rerun and strengthen cases within the previously accepted 107; do not add them as disjoint new cases. No other suites were repeated."
+  },
+  "staticComparison": {
+    "command": {
+      "path": "/workspace/scratch/745299cf52c6/second-main-reconciliation/format-proof/command.json",
+      "sha256": "476ccf09dd88208a7797c8f31aa63363cfd804d22ee9e856f15832aaac4df6bf",
+      "bytes": 2269
+    },
+    "results": {
+      "path": "/workspace/scratch/745299cf52c6/second-main-reconciliation/format-proof/stdout.json",
+      "sha256": "ea620f96d13f6c130d3c370a963231efe2454611abed78f9722f06e12bf71b78",
+      "bytes": 3509
+    },
+    "note": "Exit1 records three real structural differences for manual review, not a failed product test."
+  },
+  "rawMergePreview": {
+    "path": "/workspace/scratch/745299cf52c6/second-main-reconciliation/merge-tree.txt",
+    "sha256": "73362d87ca2ac43c3a6a13d4a6ef856ea921116fd6488db3be9fe414ec2bc6a4",
+    "bytes": 594
+  },
+  "worktreeClean": true,
+  "githubActions": "No workflow/check/status endpoint was queried, awaited, or rerun."
+}

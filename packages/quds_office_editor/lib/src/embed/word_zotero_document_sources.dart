@@ -285,7 +285,8 @@ class _ZoteroSourceOccurrencesDialogState
     // full handle/content validation after all dialogs have closed.
     if (widget.canReveal?.call(field) != true) {
       setState(() {
-        _error = 'This citation is no longer available. Close this list and open cited references again.';
+        _error =
+            'This citation is no longer available. Close this list and open cited references again.';
       });
       return;
     }

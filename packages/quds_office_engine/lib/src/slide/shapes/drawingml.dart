@@ -415,8 +415,9 @@ void _captureTextSources(
         reader.namespaceUri == OfficeNamespaces.p &&
         current != null) {
       final XmlElement body = XmlDocument.readElement(reader);
-      final String snapshot = XmlDocument(root: body)
-          .toXmlString(declaration: false);
+      final String snapshot = XmlDocument(
+        root: body,
+      ).toXmlString(declaration: false);
       current.textSource = PmlTextSource(
         xml: snapshot,
         text: current.text,

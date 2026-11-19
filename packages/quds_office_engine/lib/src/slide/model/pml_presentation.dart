@@ -409,10 +409,40 @@ class PmlShape {
   /// Rich paragraph/run model when the source text has not been replaced.
   List<PmlTextParagraph> richText;
 
-  /// Whether imported rich runs still describe the exposed text and formatting.
+  /// Rich text with the same scalar formatting overrides used by PPTX export.
   ///
-  /// Scalar edits are serialized onto the source XML. Until it is reparsed,
-  /// renderers must use those edited values instead of the old run snapshot.
+  /// Moving a shape preserves its imported runs. Font, color, alignment and
+  /// direction edits apply to those runs without mutating the import snapshot.
+  /// Replacing imported text invalidates the old runs altogether.
+  List<PmlTextParagraph> get resolvedRichText {
+    final PmlTextSource? source = textSource;
+    if (source == null || richText.isEmpty) return richText;
+    if (source.text != text) return const <PmlTextParagraph>[];
+    final bool fontChanged = source.fontSizePt != fontSizePt;
+    final bool colorChanged = source.textColor != textColor;
+    final bool alignChanged = source.textAlign != textAlign;
+    final bool directionChanged = source.rightToLeft != rightToLeft;
+    if (!fontChanged && !colorChanged && !alignChanged && !directionChanged) {
+      return richText;
+    }
+    final List<PmlTextParagraph> resolved = <PmlTextParagraph>[];
+    for (final PmlTextParagraph original in richText) {
+      final PmlTextParagraph paragraph = original.copy();
+      if (alignChanged) paragraph.align = textAlign;
+      if (directionChanged) paragraph.rightToLeft = rightToLeft ?? false;
+      if (fontChanged) paragraph.defaultFontSizePt = fontSizePt;
+      if (colorChanged) paragraph.defaultColor = textColor;
+      for (final PmlTextRun run in paragraph.runs) {
+        if (fontChanged) run.fontSizePt = fontSizePt;
+        if (colorChanged) run.color = textColor;
+      }
+      resolved.add(paragraph);
+    }
+    return resolved;
+  }
+
+  /// Whether the unmodified imported runs still match scalar text formatting.
+  /// Renderers use [resolvedRichText] to apply edits while retaining run styles.
   bool get hasCurrentRichText {
     if (richText.isEmpty) return false;
     final PmlTextSource? source = textSource;
@@ -454,41 +484,6 @@ class PmlShape {
 
   /// True when this shape has playable media.
   bool get hasMedia => mediaBytes.isNotEmpty || mediaName.isNotEmpty;
-
-  /// Rich runs with the scalar edits exposed by the shape editor applied.
-  /// The imported runs and source snapshot remain unchanged for undo/export.
-  List<PmlTextParagraph> get resolvedRichText {
-    final PmlTextSource? source = textSource;
-    if (richText.isEmpty || (source != null && source.text != text)) {
-      return const <PmlTextParagraph>[];
-    }
-    if (source == null) return richText;
-    final bool sizeChanged = source.fontSizePt != fontSizePt;
-    final bool colorChanged = source.textColor != textColor;
-    final bool alignChanged = source.textAlign != textAlign;
-    final bool directionChanged = source.rightToLeft != rightToLeft;
-    if (!sizeChanged && !colorChanged && !alignChanged && !directionChanged) {
-      return richText;
-    }
-    return <PmlTextParagraph>[
-      for (final PmlTextParagraph paragraph in richText)
-        paragraph.copy()
-          ..align = alignChanged ? textAlign : paragraph.align
-          ..rightToLeft = directionChanged
-              ? (rightToLeft ?? false)
-              : paragraph.rightToLeft
-          ..defaultFontSizePt = sizeChanged
-              ? fontSizePt
-              : paragraph.defaultFontSizePt
-          ..defaultColor = colorChanged ? textColor : paragraph.defaultColor
-          ..runs = <PmlTextRun>[
-            for (final PmlTextRun run in paragraph.runs)
-              run.copy()
-                ..fontSizePt = sizeChanged ? fontSizePt : run.fontSizePt
-                ..color = colorChanged ? textColor : run.color,
-          ],
-    ];
-  }
 
   /// copy API.
   PmlShape copy({int? id}) {

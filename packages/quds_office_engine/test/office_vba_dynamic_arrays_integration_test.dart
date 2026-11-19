@@ -268,15 +268,17 @@ void main() {
       () async {
         final session = _session();
         final original = session.bytes;
-        final result = await OfficeMacroMcp(session)
-            .callTool('office_macro_compile', <String, Object?>{
-              'source': <String, Object?>{
-                'language': 'vba-excel',
-                'format': 'xlsx',
-                'moduleName': 'BadPreserve',
-                'source': _badPreserve,
-              },
-            });
+        final result = await OfficeMacroMcp(session).callTool(
+          'office_macro_compile',
+          <String, Object?>{
+            'source': <String, Object?>{
+              'language': 'vba-excel',
+              'format': 'xlsx',
+              'moduleName': 'BadPreserve',
+              'source': _badPreserve,
+            },
+          },
+        );
         expect(result['isError'], isTrue);
         final content = _structured(result);
         expect(content.containsKey('macro'), isFalse);

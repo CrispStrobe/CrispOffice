@@ -4271,8 +4271,9 @@ class WordEditorController extends OfficeController {
           WmlRunEdit.replaceRange(last, 0, to, '');
           WordRevisions.joinParagraphs(document, first, last);
           first.inlines.addAll(
-            _cloneInlinesFrom(last.inlines)
-                .where((inline) => inline is! WmlRun || inline.text.isNotEmpty),
+            _cloneInlinesFrom(
+              last.inlines,
+            ).where((inline) => inline is! WmlRun || inline.text.isNotEmpty),
           );
           WmlRunEdit.coalesce(first);
           parent.removeRange(range.startPara + 1, range.endPara + 1);
@@ -4901,8 +4902,9 @@ class WordEditorController extends OfficeController {
             ..addAll(_cloneInlinesFrom(keepInlines));
           WordRevisions.joinParagraphs(document, keep, drop);
           keep.inlines.addAll(
-            _cloneInlinesFrom(dropInlines)
-                .where((inline) => inline is! WmlRun || inline.text.isNotEmpty),
+            _cloneInlinesFrom(
+              dropInlines,
+            ).where((inline) => inline is! WmlRun || inline.text.isNotEmpty),
           );
           WmlRunEdit.coalesce(keep);
           parent.remove(drop);
@@ -5008,8 +5010,9 @@ class WordEditorController extends OfficeController {
             ..addAll(_cloneInlinesFrom(keepInlines));
           WordRevisions.joinParagraphs(document, keep, drop);
           keep.inlines.addAll(
-            _cloneInlinesFrom(dropInlines)
-                .where((inline) => inline is! WmlRun || inline.text.isNotEmpty),
+            _cloneInlinesFrom(
+              dropInlines,
+            ).where((inline) => inline is! WmlRun || inline.text.isNotEmpty),
           );
           WmlRunEdit.coalesce(keep);
           parent.remove(drop);
@@ -8775,8 +8778,9 @@ class WordEditorController extends OfficeController {
     if (_disposed || !_ownsNote(note)) return null;
     final current = _currentProofingIssue(issue);
     if (current == null) return null;
-    return proofingIssuesForNote(note)
-            .any((entry) => identical(entry.issue, current))
+    return proofingIssuesForNote(
+          note,
+        ).any((entry) => identical(entry.issue, current))
         ? current
         : null;
   }
@@ -8992,9 +8996,9 @@ class WordEditorController extends OfficeController {
     if (!config.allowsMutation || WordNotes.editableText(note) == text) {
       return;
     }
-    final beforeText = WordNotes.editableParagraphs(note)
-        .map((paragraph) => paragraph.text)
-        .toList();
+    final beforeText = WordNotes.editableParagraphs(
+      note,
+    ).map((paragraph) => paragraph.text).toList();
     final paragraphs = note.allParagraphs.toList();
     final hasInlineControls = paragraphs.any(
       WordContentControls.hasInlineControls,
@@ -9043,9 +9047,9 @@ class WordEditorController extends OfficeController {
     WordNotes.editText(note, text);
     if (listEquals(
       beforeText,
-      WordNotes.editableParagraphs(note)
-          .map((paragraph) => paragraph.text)
-          .toList(),
+      WordNotes.editableParagraphs(
+        note,
+      ).map((paragraph) => paragraph.text).toList(),
     )) {
       return;
     }
@@ -9494,8 +9498,9 @@ class WordEditorController extends OfficeController {
             proofing.languageDetector != null) {
           final detection = proofing.detectedLanguages(text);
           if (detection == null) {
-            detectionPending |= scriptSegments(text.substring(from, to))
-                .isNotEmpty;
+            detectionPending |= scriptSegments(
+              text.substring(from, to),
+            ).isNotEmpty;
           } else {
             for (final segment in detection.segments) {
               final language = segment.language;
@@ -9765,8 +9770,9 @@ class WordEditorController extends OfficeController {
 
   static bool _textProofingControlLocked(WmlContentControlData control) {
     try {
-      final properties = WordContentControls.template(control)
-          .firstChild('sdtPr', namespaceUri: OfficeNamespaces.w);
+      final properties = WordContentControls.template(
+        control,
+      ).firstChild('sdtPr', namespaceUri: OfficeNamespaces.w);
       final lock = properties?.firstChild(
         'lock',
         namespaceUri: OfficeNamespaces.w,
@@ -10312,11 +10318,13 @@ class WordEditorController extends OfficeController {
       return switch (capture.status) {
         WordTextRangeStatus.mixedLanguage => const WordThesaurusCapture._(
           WordThesaurusTargetStatus.mixedLanguage,
-          message: 'The selection contains more than one language. Select a single-language word or phrase.',
+          message:
+              'The selection contains more than one language. Select a single-language word or phrase.',
         ),
         WordTextRangeStatus.protectedContent => const WordThesaurusCapture._(
           WordThesaurusTargetStatus.protectedContent,
-          message: 'This range contains protected, generated, or pending tracked content. Select ordinary text.',
+          message:
+              'This range contains protected, generated, or pending tracked content. Select ordinary text.',
         ),
         WordTextRangeStatus.invalidRange => const WordThesaurusCapture._(
           WordThesaurusTargetStatus.invalidRange,
@@ -10588,8 +10596,9 @@ class WordEditorController extends OfficeController {
     final activeNote = noteEditingTarget;
     final activeNoteAffected =
         activeNote != null &&
-        _noteTextSegments(activeNote.note)
-            .any((segment) => identical(segment.paragraph, paragraph));
+        _noteTextSegments(
+          activeNote.note,
+        ).any((segment) => identical(segment.paragraph, paragraph));
     final activeComment = isEditingComment ? selectedComment : null;
     final activeHeaderFooter = isEditingHeaderFooter ? activeParagraphs : null;
     bool sameCaretStory() =>

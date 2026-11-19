@@ -55,9 +55,9 @@ void main() {
         final bytes = SlideSerializer().writeBytes(deck);
         expect(shape.textSource!.xml, sourceXml);
         final XmlElement saved = XmlDocument.parse(
-          OpcPackage.openBytes(bytes)
-              .getPart('/ppt/slides/slide1.xml')!
-              .readText(),
+          OpcPackage.openBytes(
+            bytes,
+          ).getPart('/ppt/slides/slide1.xml')!.readText(),
         ).root!;
         final List<XmlElement> runs = _descendants(saved, 'r').toList();
         expect(

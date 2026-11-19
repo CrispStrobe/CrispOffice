@@ -1,5 +1,10 @@
 # Studio recipient groups and Reply all — 2026-11-19
 
+This record preserves the mail branch author's evidence and execution boundaries.
+The separate locked-workspace combined qualification is retained at the end of
+this file. References below to unexecuted suites describe that mail continuation;
+they do not replace the source-bound combined execution records.
+
 ## Outcome and qualification
 
 This continuation adds multiple To recipients, Cc, Bcc and Reply all to the foreground Studio mail hosts. It also preserves the captured recent PPTX, VBA dynamic-array and Zotero histories, their regression tests, and their validation records. The starting main was `2170791c9250d72c9df31a065408365f9b50abaa`.
@@ -99,3 +104,29 @@ From `packages/quds_office_editor`, run the dark-slide, slide-render-fidelity an
 ## Publication
 
 PR #217 publishes `work/mail-continuation-20261119` to `main`. Each remote checkpoint used the expected previous branch head, no force update, and a Git tree identical to its local candidate. Source and test work was published incrementally before this evidence commit. The final post-merge PR receipt records the published candidate, resulting main commit, merge parents, exact tree comparison and retained branch head.
+
+
+---
+
+## Retained combined qualification record
+
+## Initial checkpoint status (historical)
+
+Implementation and regression work are in progress. The pinned Flutter 3.47.8
+runtime is being prepared locally. No test result is claimed by this checkpoint.
+The final receipt will distinguish executed checks from remaining boundaries.
+
+## Combined integration qualification
+
+The final PR head `a0f27b2f61d332ff834d4bda59dadccdad020021` is included in
+qualified combined source `435bc212401db13efa56483ac852e4bc25bcc5d2`, with
+concurrently advanced main preserved by `6a7e0afaec7b597abf3a6ad5d43a8295fcce855a`.
+Fresh local checks pass 249 Studio cases across nine suites and five targeted
+transport cases, with zero failures or skips. Strict analysis of eight mail
+sources and nine suites passes. All 735 tracked guarded inputs match the
+qualified checkpoint; transient package configuration is hashed separately.
+
+These checks use controlled local fakes and do not claim live-provider
+interoperability. The [combined validation record](../office-vba-dynamic-arrays-20261119/README.md)
+contains exact commands, raw logs, source bindings and the final mail review.
+No GitHub Actions result was queried or used as an acceptance gate.
