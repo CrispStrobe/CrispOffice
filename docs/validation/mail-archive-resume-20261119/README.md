@@ -5,7 +5,17 @@ or process termination. Progress belongs to the destination archive and is
 committed atomically with each original, search projection and complete source
 provenance. Full source-verification reruns remain available.
 
-## Acceptance and publication status
+## Continuation and current merge status
+
+Publication resumed from `b2c05a0afa0ae606b061b13d5e50937c2a8eb1df` after
+PR #214 advanced main to `9ceb994d8edce3989228f1244cda90ecc9884931`. Its
+bundled-model labels and assertions are being integrated with the accepted
+mail implementation. The [continuation record](continuation/README.md)
+records the exact three-file source/test delta, fresh verification of the
+saved acceptance, and the additional local qualification required for merge.
+The original results below retain their original source binding.
+
+## Original complete acceptance and publication
 
 The complete mail acceptance run passed **1,138 test executions across 62 distinct
 test files**, with **zero failures and zero skips**, on preserved source
@@ -24,10 +34,12 @@ Incoming qualification additionally binds 4,494 source inputs, 9,298 dependencie
 evidence, interrupted runs, focused development passes and superseded v2 runs
 contribute no accepted executions. GitHub Actions are neither queried nor awaited.
 
-The exact published/merged commit and final remote verification are recorded in
-[PR #212](https://github.com/CrispStrobe/quds_office_suite/pull/212). Publication
-requires the accepted source inputs to match the candidate's Git blobs and
-permits only validation-document changes after the accepted source.
+The original publication at `b2c05a0afa0ae606b061b13d5e50937c2a8eb1df`
+verified that all accepted source inputs matched the candidate's Git blobs and
+only validation documents had changed. The continuation additionally qualifies
+the explicit latest-main delta. Final publication and merge identities are
+recorded in [PR #212](https://github.com/CrispStrobe/quds_office_suite/pull/212)
+and the continuation record.
 
 - [Published source verification](publication-verification.json)
 - [Combined acceptance receipt](acceptance.json)

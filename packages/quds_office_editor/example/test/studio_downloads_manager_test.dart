@@ -342,7 +342,11 @@ void main() {
       );
       await tester.pumpAndSettle();
       final card = find.ancestor(
-        of: find.text('German spaCy analysis package'),
+        of: find.text(
+          fixture.bundled
+              ? 'German spaCy analysis model'
+              : 'German spaCy analysis package',
+        ),
         matching: find.byType(Card),
       );
       expect(
@@ -364,6 +368,27 @@ void main() {
       expect(models.calls, <String>['refresh']);
     });
   }
+
+  testWidgets('a bundled library lists only the model download', (tester) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: StudioDownloadsManager(
+            hunspell: _Dictionaries(),
+            morphology: _Morphology(),
+            spacy: _Models(bundledLibrary: true),
+          ),
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+    expect(find.text('German spaCy analysis model'), findsOneWidget);
+    expect(find.text('German spaCy analysis package'), findsNothing);
+    expect(
+      find.textContaining('model files only (library built into the app)'),
+      findsOneWidget,
+    );
+  });
 
   for (final bundled in <bool>[false, true]) {
     test(

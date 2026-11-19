@@ -440,6 +440,8 @@ void main() {
       expect(status.source, StudioSpacySource.none);
       expect(status.librarySha256, digest);
       expect(status.grammarOffered, isFalse);
+      expect(status.nerInstalled, isFalse);
+      expect(status.nerEnabled, isFalse);
       final english = status.language(SpacyLanguage.english)!;
       expect(english.offered, isTrue);
       expect(english.bundledRuntime, isTrue);
