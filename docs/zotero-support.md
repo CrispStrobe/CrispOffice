@@ -58,6 +58,10 @@ commands continue to work inside authored footnotes and endnotes.
 
 Paragraphs, empty paragraphs, soft line breaks, heading levels 1–6, supported
 character formatting, and ordinary HTTP(S), mail and Zotero links are retained.
+Flat bullet and decimal numbered lists are retained as native Word lists,
+including positive starting numbers. Each item can contain rich inline text or
+one paragraph, with active citation placeholders. Separate imported lists start
+their own counters and do not continue or change surrounding document lists.
 Default PDF annotation note wrappers and their title headings are recognized.
 Citation placeholders become active Zotero fields with the source data, rather
 than remaining ordinary hyperlinks. Zotero controls their formatting and
@@ -68,13 +72,17 @@ notes retain the active fields through DOCX saving and reopening.
 The whole insertion, including new footnotes/endnotes, bibliography callbacks
 and document style preferences, is staged until completion and applied as one
 undoable operation. The body caret finishes after the imported note. Surrounding
-prose and its formatting remain intact; headings occupy their own paragraphs.
+prose and its formatting remain intact; headings and list items occupy their own
+paragraphs. Undo also restores the previous numbering definitions; unrelated
+document parts and relationships remain intact after saving and undo/redo.
 Cancelling the note picker before it supplies any text also discards temporary
 fields and staged preference changes.
 
 Add Note currently starts from a body caret, not a text selection or an existing
-footnote/endnote. Embedded images, tables, list layouts and unsupported custom
-formatting are refused with an explanation before application. Malformed,
+footnote/endnote. Embedded images, tables, nested lists, multi-paragraph list
+items, custom or reversed list markers, and unsupported custom formatting are
+refused with an explanation before application. Ordered-list starting numbers
+must be integers from 1 to 999999. Malformed,
 missing, repeated or unconverted citation placeholders also refuse the whole
 result. Nothing is silently flattened to make these structures fit.
 

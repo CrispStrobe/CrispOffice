@@ -11,7 +11,8 @@ from pathlib import Path
 import subprocess
 import time
 
-from build_binding import FIXTURE_FILES, binding_metadata
+from build_binding import FIXTURE_FILES, SOURCE_HELPER_FILES, binding_metadata
+from workspace_binding import snapshot_sources
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--root', type=Path, required=True,
@@ -44,19 +45,11 @@ def sha(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 def snapshot():
-    files = {repo / 'pubspec.yaml', repo / '.fvmrc'}
-    for package in (repo / 'packages').iterdir():
-        if not package.is_dir(): continue
-        if (package / 'pubspec.yaml').is_file(): files.add(package / 'pubspec.yaml')
-        for name in ['lib', 'test', 'assets']:
-            directory = package / name
-            if directory.exists(): files.update(p for p in directory.rglob('*') if p.is_file())
-    result = {p.relative_to(repo).as_posix(): {'sha256': sha(p), 'bytes': p.stat().st_size}
-              for p in sorted(files)}
-    result['__workspace_lock__'] = {'sha256': sha(workspace / 'pubspec.lock')}
-    result['__workspace_package_config__'] = {'sha256': sha(workspace / '.dart_tool/package_config.json')}
+    result = snapshot_sources(repo, workspace)
     for name in FIXTURE_FILES:
         result['__fixture__/' + name] = {'sha256': sha(fixture / name)}
+    for name in SOURCE_HELPER_FILES:
+        result['__helper__/' + name] = {'sha256': sha(repo / name)}
     return result
 
 def digest(value):
@@ -65,11 +58,6 @@ def digest(value):
 receipt = {'started_at_utc': datetime.now(timezone.utc).isoformat(),
            'base_commit': subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=repo, text=True).strip(),
            'runs': [], 'status': 'running'}
-before = snapshot()
-receipt['input_digest'] = digest(before)
-with gzip.open(output / 'source-inputs.json.gz', 'wt') as stream:
-    json.dump(before, stream, indent=2, sort_keys=True)
-
 def write():
     (output / 'receipt.json').write_text(json.dumps(receipt, indent=2) + '\n')
 
@@ -90,6 +78,12 @@ def run(name, command, cwd):
     return result.returncode
 
 try:
+    write()
+    before = snapshot()
+    receipt['input_digest'] = digest(before)
+    receipt['workspace_binding'] = before['__workspace_binding__']
+    with gzip.open(output / 'source-inputs.json.gz', 'wt') as stream:
+        json.dump(before, stream, indent=2, sort_keys=True)
     write()
     selected_tests = ['test/word_thesaurus_dialog_test.dart', 'test/word_thesaurus_controller_test.dart',
                     'test/word_proofing_correction_test.dart', 'test/word_proofing_capture_cache_test.dart',

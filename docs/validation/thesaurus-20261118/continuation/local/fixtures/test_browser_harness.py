@@ -9,6 +9,7 @@ import subprocess
 import tempfile
 import unittest
 from urllib.request import urlopen
+import zlib
 
 import build_binding
 import install_offline
@@ -36,6 +37,10 @@ class OfflineFixtureTests(unittest.TestCase):
         inputs = {'__fixture__/' + name: {'sha256': build_binding.sha256(
                     (Path(__file__).parent / name).read_bytes())}
                   for name in build_binding.FIXTURE_FILES}
+        inputs.update({'__helper__/' + name: {'sha256': build_binding.sha256(
+                       (build_binding.repository_root() / name).read_bytes())}
+                       for name in build_binding.SOURCE_HELPER_FILES})
+        inputs['__workspace_binding__'] = {'schema': build_binding.WORKSPACE_SCHEMA}
         records = install_offline.file_records(self.root)
         (self.evidence / 'source-inputs.json.gz').write_bytes(gzip.compress(json.dumps(inputs).encode()))
         (self.evidence / 'browser-build-files.json.gz').write_bytes(gzip.compress(json.dumps(records).encode()))
@@ -173,6 +178,25 @@ class OfflineFixtureTests(unittest.TestCase):
         self.compile_receipt.write_text(json.dumps(receipt))
         with self.assertRaisesRegex(ValueError, 'different acceptance fixture'):
             install_offline.prepare(self.root, self.compile_receipt)
+
+    def test_unverified_workspace_and_changed_source_helpers_are_rejected(self):
+        for mutation in ('workspace', 'helper'):
+            with self.subTest(mutation=mutation):
+                self.write_compile_evidence()
+                path = self.evidence / 'source-inputs.json.gz'
+                inputs = json.loads(gzip.decompress(path.read_bytes()))
+                if mutation == 'workspace':
+                    inputs.pop('__workspace_binding__')
+                else:
+                    inputs['__helper__/' + build_binding.SOURCE_HELPER_FILES[0]]['sha256'] = '0' * 64
+                path.write_bytes(gzip.compress(json.dumps(inputs).encode()))
+                receipt = json.loads(self.compile_receipt.read_text())
+                receipt['input_digest'] = build_binding.digest(inputs)
+                receipt['browser_build_binding'] = build_binding.binding_metadata(self.evidence)
+                self.compile_receipt.write_text(json.dumps(receipt))
+                with self.assertRaises(ValueError):
+                    install_offline.prepare(self.root, self.compile_receipt)
+                self.assertFalse((self.root / 'offline-install.js').exists())
 
     def test_competing_default_worker_bootstrap_is_rejected(self):
         index = (self.root / 'index.html').read_bytes()
@@ -346,24 +370,53 @@ console.log(JSON.stringify({status, incomplete, corrupted, substituted,
 
 class PanelReceiptTests(unittest.TestCase):
     def setUp(self):
-        self.packs = {
-            locale: {'identity': locale + ':fixture',
-                     'notices': {'notices/LICENSE.txt':
-                                 {'text': locale + ' notice',
-                                  'sha256': run_browser.sha256((locale + ' notice').encode())}}}
-            for locale in ('en', 'de')}
+        self.temporary = tempfile.TemporaryDirectory(dir=Path.cwd())
+        self.root = Path(self.temporary.name)
+        records = {'en': {}, 'de': {}}
         queries = []
         for word, language in run_browser.QUERIES:
             unsupported = language == 'fr-FR'
             negative = word.startswith('qudsxyz')
+            senses = []
+            if not unsupported and not negative:
+                for number in (1, 2):
+                    source = {'id': word + ':' + str(number), 'source': language[:2],
+                              'pos': 'n', 'gloss': 'Source meaning', 'labels': ['source label'],
+                              'examples': ['source example'] if number == 1 else [],
+                              'terms': [{'id': word + ':term-' + str(number),
+                                         'text': word + ' alternative', 'labels': ['term label'],
+                                         'note': 'Source-only term note'}],
+                              'relations': [{'type': 'related', 'target': word + ':relation'}]}
+                    records[language[:2]].setdefault(run_browser.shard(source['id']), {})[source['id']] = source
+                    senses.append(run_browser.observed_sense(source))
             queries.append({'text': word, 'language': language,
                             'status': 'unsupportedLanguage' if unsupported else
                                       'noEntry' if negative else 'ready',
-                            'pack': None if unsupported else language[:2] + ':fixture',
-                            'senses': [] if unsupported or negative else
-                                      [{'id': word + ':1', 'examples': ['source example']},
-                                       {'id': word + ':2', 'examples': []}],
+                            'pack': None,
+                            'senses': senses,
                             'matches': [{'text': 'Haus'}] if word == 'Häusern' else []})
+        for locale, shards in records.items():
+            directory = self.root / 'assets/packages/quds_office_editor/assets/thesaurus' / locale
+            (directory / 'notices').mkdir(parents=True)
+            (directory / 'senses').mkdir()
+            notice = (locale + ' notice').encode()
+            (directory / 'notices/LICENSE.txt').write_bytes(notice)
+            files = {'notices/LICENSE.txt': {'size': len(notice), 'sha256': run_browser.sha256(notice)}}
+            for name, senses in shards.items():
+                value = json.dumps(senses).encode()
+                compressor = zlib.compressobj(wbits=-15)
+                compressed = compressor.compress(value) + compressor.flush()
+                path = 'senses/' + name + '.json'
+                (directory / (path + '.deflate')).write_bytes(compressed)
+                files[path] = {'size': len(value), 'sha256': run_browser.sha256(value),
+                               'compression': 'deflate-raw', 'compressedSize': len(compressed),
+                               'compressedSha256': run_browser.sha256(compressed)}
+            (directory / 'manifest.json').write_text(json.dumps(
+                {'packId': locale + ':fixture', 'noticePaths': ['notices/LICENSE.txt'], 'files': files}))
+        self.packs = run_browser.expected_packs(self.root)
+        for query in queries:
+            if query['language'] != 'fr-FR':
+                query['pack'] = self.packs[query['language'][:2]]['identity']
         self.panel = {'queries': queries, 'notices': [
             {'locale': locale, 'pack': pack['identity'],
              'notices': [{'path': path, 'text': notice['text']}
@@ -372,6 +425,9 @@ class PanelReceiptTests(unittest.TestCase):
             'warm_mode': 'result-cache', 'warm_ms': [0.01] * 75,
             'cached_shards': 64, 'cached_results': 14,
             'cache_limits': {'shards': 64, 'results': 64}}
+
+    def tearDown(self):
+        self.temporary.cleanup()
 
     def test_complete_declared_panel_is_accepted(self):
         run_browser.validate_panel(self.panel, self.packs)
@@ -427,6 +483,45 @@ class PanelReceiptTests(unittest.TestCase):
                         sense['examples'] = []
                 with self.assertRaises(AssertionError):
                     run_browser.validate_panel(panel, self.packs)
+
+    def test_empty_ready_duplicate_and_unsuccessful_senses_cannot_pass(self):
+        for mutation in ('empty-ready', 'duplicate', 'negative-sense',
+                         'unsupported-sense', 'unsupported-pack', 'negative-match'):
+            with self.subTest(mutation=mutation):
+                panel = copy.deepcopy(self.panel)
+                queries = panel['queries']
+                if mutation == 'empty-ready':
+                    queries[1]['senses'] = []
+                elif mutation == 'duplicate':
+                    queries[0]['senses'][1] = copy.deepcopy(queries[0]['senses'][0])
+                elif mutation == 'negative-sense':
+                    queries[-3]['senses'] = copy.deepcopy(queries[0]['senses'])
+                elif mutation == 'unsupported-sense':
+                    queries[-1]['senses'] = copy.deepcopy(queries[0]['senses'])
+                elif mutation == 'unsupported-pack':
+                    queries[-1]['pack'] = self.packs['en']['identity']
+                else:
+                    queries[-2]['matches'] = [{'text': 'invented match'}]
+                with self.assertRaises(AssertionError):
+                    run_browser.validate_panel(panel, self.packs)
+
+    def test_changed_source_projection_cannot_pass(self):
+        for field in ('id', 'source', 'pos', 'gloss', 'labels', 'examples', 'terms', 'relations'):
+            with self.subTest(field=field):
+                panel = copy.deepcopy(self.panel)
+                sense = panel['queries'][0]['senses'][0]
+                sense[field] = ['invented value'] if isinstance(sense[field], list) else 'invented value'
+                with self.assertRaises(AssertionError):
+                    run_browser.validate_panel(panel, self.packs)
+
+    def test_damaged_source_shard_cannot_validate_observed_senses(self):
+        sense = self.panel['queries'][0]['senses'][0]
+        path = self.packs['en']['directory'] / ('senses/' + run_browser.shard(sense['id']) + '.json.deflate')
+        contents = bytearray(path.read_bytes())
+        contents[0] ^= 1
+        path.write_bytes(contents)
+        with self.assertRaisesRegex(ValueError, 'Compressed source mismatch'):
+            run_browser.validate_panel(self.panel, self.packs)
 
 
 if __name__ == '__main__':

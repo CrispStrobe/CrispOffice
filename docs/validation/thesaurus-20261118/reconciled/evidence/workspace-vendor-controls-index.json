@@ -1,0 +1,32 @@
+{
+  "archive": "workspace-vendor-controls.tar.xz",
+  "bytes": 2864,
+  "sha256": "c0eb726b640cebc89a646658d8094b413f60e2212123d33b89d9b9bcd3ef149b",
+  "files": [
+    {
+      "path": "receipt.json",
+      "bytes": 7145,
+      "sha256": "a212b616bf301cc218b86e642eb89c572b3e18fe7274c8696ae02ae113022c7b"
+    },
+    {
+      "path": "test_browser_harness.py.stderr",
+      "bytes": 3017,
+      "sha256": "3feb6ebec14105e5daf90bd70f2afed86fde6d7b4184553330c48c9ade38de73"
+    },
+    {
+      "path": "test_browser_harness.py.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "test_workspace_binding.py.stderr",
+      "bytes": 2759,
+      "sha256": "118f33421abb8b4de5b3dc0de82175789495a86555adc2faefe4391542655e6e"
+    },
+    {
+      "path": "test_workspace_binding.py.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

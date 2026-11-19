@@ -1,0 +1,31 @@
+{
+  "qualified_source": "a7512e94da8208123aa2df5f5c2c0354d079ddc7",
+  "qualified_tree": "0817e6573070fe1e30f63615956e801b1605f992",
+  "checked_at_utc": "2026-11-18T22:11:41.113476+00:00",
+  "source_manifest_sha256": "584569acb5154dddd770b0a7aef4466b7e339db46c5dbe47685c70b49cb3c7a3",
+  "materialized_source_inputs_reverified_after_documentation_writes": 5012,
+  "source_inputs_unchanged": true,
+  "publication_scope": "Documentation, preserved validation evidence and rendered screenshots only. No implementation, tests, plan or executed tooling changes after qualification.",
+  "intended_publication_parent": "a7512e94da8208123aa2df5f5c2c0354d079ddc7",
+  "github_actions_queried_or_awaited": false,
+  "publication_paths": [
+    "docs/validation/document-review-notes-20261118/README.md",
+    "docs/validation/document-review-notes-20261118/recovery/previous-validation-readme.md",
+    "docs/validation/document-review-notes-20261118/resumed/README.md",
+    "docs/validation/document-review-notes-20261118/resumed/completed-groups-peer-review.json",
+    "docs/validation/document-review-notes-20261118/resumed/evidence-index.json",
+    "docs/validation/document-review-notes-20261118/resumed/evidence.tar.xz",
+    "docs/validation/document-review-notes-20261118/resumed/final-peer-review.json",
+    "docs/validation/document-review-notes-20261118/resumed/integration-verification.json",
+    "docs/validation/document-review-notes-20261118/resumed/publication-checkpoints.json",
+    "docs/validation/document-review-notes-20261118/resumed/publication-scope.json",
+    "docs/validation/document-review-notes-20261118/resumed/python-verification.json",
+    "docs/validation/document-review-notes-20261118/resumed/runtime-peer-review.json",
+    "docs/validation/document-review-notes-20261118/resumed/screenshots/header-even-review.png",
+    "docs/validation/document-review-notes-20261118/resumed/screenshots/notes-inline-arabic-narrow.png",
+    "docs/validation/document-review-notes-20261118/resumed/screenshots/notes-inline-desktop.png",
+    "docs/validation/document-review-notes-20261118/resumed/verification.json",
+    "docs/validation/document-review-notes-20261118/resumed/visual-review.json",
+    "docs/validation/document-review-notes-20261118/runtime/README.md"
+  ]
+}

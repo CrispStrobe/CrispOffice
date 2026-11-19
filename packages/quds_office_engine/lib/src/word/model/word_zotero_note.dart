@@ -8,21 +8,22 @@ import 'wml_document.dart';
 /// A bounded, inert note fragment with citation placeholders kept separate.
 /// Unsupported structure and formatting are refused before document edits.
 final class WordZoteroNoteText {
-  WordZoteroNoteText._(this.paragraphs, this.placeholders);
+  WordZoteroNoteText._(this.paragraphs, this.placeholders, this.listItems);
 
   final List<WmlParagraph> paragraphs;
   final Map<String, WordZoteroNotePlaceholder> placeholders;
+
+  /// Native list metadata keyed by the item's paragraph index.
+  final Map<int, WordZoteroNoteListItem> listItems;
   String get plainText => paragraphs.map((p) => p.text).join('\n');
 
   factory WordZoteroNoteText.fromHtml(
     String html, {
     WmlRunProps? baseProperties,
   }) {
-    final checked = ZoteroFormattedText.fromHtml(html);
-    if (checked.unsupportedFormatting.isNotEmpty) {
-      throw UnsupportedError(
-        'This Zotero note contains unsupported formatting or embedded content. The document was kept unchanged.',
-      );
+    if (html.length > 8 * 1024 * 1024 ||
+        utf8.encode(html).length > 8 * 1024 * 1024) {
+      throw const FormatException('The Zotero note is too large.');
     }
     if (html.contains('<![CDATA[')) {
       throw UnsupportedError('CDATA in Zotero note content is not supported.');
@@ -31,6 +32,8 @@ final class WordZoteroNoteText {
     final canonical = StringBuffer();
     final stack = <_NoteElement>[];
     final links = <_NoteLink>[];
+    final items = <WordZoteroNoteListItem>[];
+    var listCount = 0;
     var activeLink = false;
     var elements = 0;
     const escape = HtmlEscape(HtmlEscapeMode.element);
@@ -58,6 +61,7 @@ final class WordZoteroNoteText {
               if (name != 'style' &&
                   name != 'class' &&
                   !(name == 'href' && tag == 'a') &&
+                  !(name == 'start' && tag == 'ol') &&
                   !(const <String>{
                         'data-schema-version',
                         'data-citation-items',
@@ -78,7 +82,72 @@ final class WordZoteroNoteText {
               }
               attributes[name] = value;
             }
-            final outputTag = tag == 'a' ? 'span' : tag;
+            final parent = stack.lastOrNull;
+            final activeItem = stack
+                .where((element) => element.tag == 'li')
+                .lastOrNull;
+            final isList = tag == 'ul' || tag == 'ol';
+            if (isList &&
+                (activeLink ||
+                    !const <String>{
+                      'quds-note',
+                      'html',
+                      'body',
+                      'div',
+                    }.contains(parent?.tag))) {
+              throw _unsupportedList();
+            }
+            if (parent?.list != null && tag != 'li') {
+              throw _unsupportedList();
+            }
+            if (activeItem != null &&
+                (tag == 'p' || tag == 'div' || _headings.contains(tag))) {
+              if (tag != 'p' ||
+                  !identical(parent, activeItem) ||
+                  activeItem.hasText ||
+                  activeItem.itemParagraphs != 0) {
+                throw _unsupportedList();
+              }
+              activeItem.itemParagraphs++;
+            } else if (identical(parent, activeItem) &&
+                activeItem != null &&
+                activeItem.itemParagraphs != 0) {
+              throw _unsupportedList();
+            }
+            _NoteList? list;
+            if (isList) {
+              final start = attributes['start'];
+              if (start != null &&
+                  (!RegExp(r'^[1-9][0-9]{0,5}$').hasMatch(start))) {
+                throw _unsupportedList();
+              }
+              list = _NoteList(
+                id: listCount++,
+                numbered: tag == 'ol',
+                start: start == null ? 1 : int.parse(start),
+              );
+            }
+            int? itemIndex;
+            if (tag == 'li') {
+              final owner = parent?.list;
+              if (owner == null) throw _unsupportedList();
+              itemIndex = items.length;
+              items.add(
+                WordZoteroNoteListItem(
+                  listId: owner.id,
+                  numbered: owner.numbered,
+                  start: owner.start,
+                  index: owner.items++,
+                ),
+              );
+            }
+            final outputTag = tag == 'a' || (tag == 'p' && activeItem != null)
+                ? 'span'
+                : isList
+                ? 'div'
+                : tag == 'li'
+                ? 'p'
+                : tag;
             canonical.write('<$outputTag');
             final authoredStyle = attributes['style'];
             final style = _headings.contains(tag)
@@ -105,19 +174,24 @@ final class WordZoteroNoteText {
               canonical.write('\uE000${linkIndex * 2}\uE001');
             }
             // Preserve authored empty paragraphs through the shared renderer.
-            if (tag == 'p') canonical.write('\uE002');
+            if (tag == 'p' || tag == 'li') canonical.write('\uE002');
+            if (itemIndex != null) {
+              canonical.write('\uE000l$itemIndex\uE001');
+            }
             if (_headings.contains(tag)) {
               canonical.write('\uE000$tag\uE001');
             }
-            stack.add(_NoteElement(outputTag, tag, linkIndex));
+            stack.add(_NoteElement(outputTag, tag, linkIndex, list));
           case XmlEventType.endElement:
             if (stack.isEmpty) throw _malformed();
             final element = stack.removeLast();
+            if (element.list?.items == 0) throw _unsupportedList();
             if (element.linkIndex != null) {
               canonical.write('\uE000${element.linkIndex! * 2 + 1}\uE001');
               activeLink = false;
             }
             if (element.tag == 'p' ||
+                element.tag == 'li' ||
                 (element.tag == 'div' && !element.hasText)) {
               canonical.write('\uE002');
             }
@@ -130,11 +204,18 @@ final class WordZoteroNoteText {
             if (stack.isNotEmpty &&
                 (element.hasText ||
                     element.tag == 'p' ||
-                    element.tag == 'div')) {
+                    element.tag == 'div' ||
+                    element.tag == 'li')) {
               stack.last.hasText = true;
             }
           case XmlEventType.characters:
             _checkMarkers(reader.text);
+            final parent = stack.lastOrNull;
+            if (parent?.list != null ||
+                (parent?.tag == 'li' && parent!.itemParagraphs != 0)) {
+              if (reader.text.trim().isNotEmpty) throw _unsupportedList();
+              break;
+            }
             canonical.write(escape.convert(reader.text));
             if (stack.isNotEmpty && reader.text.trim().isNotEmpty) {
               stack.last.hasText = true;
@@ -155,13 +236,18 @@ final class WordZoteroNoteText {
     }
     if (stack.isNotEmpty || activeLink) throw _malformed();
     final formatted = ZoteroFormattedText.fromHtml(canonical.toString());
-    if (formatted.unsupportedFormatting.isNotEmpty) throw _malformed();
+    if (formatted.unsupportedFormatting.isNotEmpty) {
+      throw UnsupportedError(
+        'This Zotero note contains unsupported formatting or embedded content. The document was kept unchanged.',
+      );
+    }
     final paragraphs = <WmlParagraph>[];
     final placeholders = <String, WordZoteroNotePlaceholder>{};
+    final listItems = <int, WordZoteroNoteListItem>{};
     _NoteLink? current;
     var currentStart = 0;
     var currentParagraph = 0;
-    final marker = RegExp('\uE000([0-9]+|h[1-6]|/h)\uE001|\uE002');
+    final marker = RegExp('\uE000([0-9]+|h[1-6]|/h|l[0-9]+)\uE001|\uE002');
     for (final sourceRuns in formatted.toParagraphRuns(
       baseProperties: baseProperties,
     )) {
@@ -186,7 +272,13 @@ final class WordZoteroNoteText {
         for (final match in marker.allMatches(run.text)) {
           append(run.text.substring(start, match.start));
           final number = match[1];
-          if (number != null && number.startsWith('h')) {
+          if (number != null && number.startsWith('l')) {
+            if (offset != 0 || listItems.containsKey(paragraphs.length)) {
+              throw _malformed();
+            }
+            listItems[paragraphs.length] =
+                items[int.parse(number.substring(1))];
+          } else if (number != null && number.startsWith('h')) {
             if (offset != 0 || paragraph.properties.headingLevel != null) {
               throw _malformed();
             }
@@ -244,7 +336,8 @@ final class WordZoteroNoteText {
     if (paragraphs.every((p) => p.text.trim().isEmpty)) {
       throw const FormatException('The selected Zotero note contains no text.');
     }
-    return WordZoteroNoteText._(paragraphs, placeholders);
+    if (listItems.length != items.length) throw _malformed();
+    return WordZoteroNoteText._(paragraphs, placeholders, listItems);
   }
 
   static void _checkMarkers(String value) {
@@ -260,6 +353,9 @@ final class WordZoteroNoteText {
       .replaceAll(RegExp(r'<br\s*>', caseSensitive: false), '<br/>');
   static FormatException _malformed() => const FormatException(
     'Zotero returned a malformed or unsupported note. The document was kept unchanged.',
+  );
+  static UnsupportedError _unsupportedList() => UnsupportedError(
+    'This Zotero note needs a simple bulleted or numbered list. Nested lists, multiple paragraphs per item, and custom numbering are not supported. The document was kept unchanged.',
   );
   static const _headings = <String>{'h1', 'h2', 'h3', 'h4', 'h5', 'h6'};
   static const _tags = <String>{
@@ -282,6 +378,9 @@ final class WordZoteroNoteText {
     'del',
     'sub',
     'sup',
+    'ul',
+    'ol',
+    'li',
   };
   static const _entities = <String, int>{
     'amp': 38,
@@ -318,6 +417,20 @@ final class WordZoteroNoteText {
   };
 }
 
+/// A paragraph in one independent, single-level research-note list.
+final class WordZoteroNoteListItem {
+  const WordZoteroNoteListItem({
+    required this.listId,
+    required this.numbered,
+    required this.start,
+    required this.index,
+  });
+  final int listId;
+  final bool numbered;
+  final int start;
+  final int index;
+}
+
 final class WordZoteroNotePlaceholder {
   const WordZoteroNotePlaceholder(
     this.id,
@@ -332,11 +445,21 @@ final class WordZoteroNotePlaceholder {
 }
 
 final class _NoteElement {
-  _NoteElement(this.outputTag, this.tag, this.linkIndex);
+  _NoteElement(this.outputTag, this.tag, this.linkIndex, this.list);
   final String outputTag;
   final String tag;
   final int? linkIndex;
+  final _NoteList? list;
   bool hasText = false;
+  int itemParagraphs = 0;
+}
+
+final class _NoteList {
+  _NoteList({required this.id, required this.numbered, required this.start});
+  final int id;
+  final bool numbered;
+  final int start;
+  int items = 0;
 }
 
 final class _NoteLink {

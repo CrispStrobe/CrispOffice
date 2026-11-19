@@ -206,6 +206,25 @@ class _WordNotesPaneState extends State<WordNotesPane> {
     }
   }
 
+  void _history(WmlNote note, {required bool redo}) {
+    if (!_canInspect ||
+        !_c.canApplyProofingSuggestions ||
+        _composing(note) ||
+        !(note.endnote ? _c.document.endnotes : _c.document.footnotes).contains(
+          note,
+        )) {
+      return;
+    }
+    _publishSelection(note);
+    setState(() => _notice = null);
+    if (redo) {
+      _c.redo();
+    } else {
+      _c.undo();
+    }
+    _c.requestEditingFocus();
+  }
+
   void _refreshAfterChoice() {
     if (!_c.proofing.enabled) {
       unawaited(_check(includeManualProviders: false));
@@ -315,7 +334,7 @@ class _WordNotesPaneState extends State<WordNotesPane> {
           alignment: AlignmentDirectional.centerStart,
           child: TextButton(
             key: const ValueKey<String>('notes-check-now'),
-            onPressed: !_c.config.allowsSelection || summary.checking
+            onPressed: !_c.config.allowsSelection
                 ? null
                 : () => unawaited(_check()),
             child: Text(_s('Check document (F7)', 'تدقيق المستند (F7)')),
@@ -462,6 +481,10 @@ class _WordNotesPaneState extends State<WordNotesPane> {
     return CallbackShortcuts(
       bindings: <ShortcutActivator, VoidCallback>{
         const SingleActivator(LogicalKeyboardKey.f7): () => unawaited(_check()),
+        const SingleActivator(LogicalKeyboardKey.keyY, control: true): () {
+          final note = _c.noteEditingTarget?.note;
+          if (note != null) _history(note, redo: true);
+        },
         const SingleActivator(LogicalKeyboardKey.f7, alt: true): () {
           final target = _c.noteEditingTarget;
           if (target != null) _stepFinding(target.note, 1);
@@ -588,33 +611,52 @@ class _WordNotesPaneState extends State<WordNotesPane> {
                               ],
                             ),
                             const SizedBox(height: 4),
-                            TextField(
-                              key: ValueKey<String>('notes-edit-$identity'),
-                              controller: edit,
-                              focusNode: _focusFor(note),
-                              minLines: 1,
-                              maxLines: null,
-                              keyboardType: TextInputType.multiline,
-                              enabled: _c.config.allowsSelection,
-                              readOnly: !editable,
-                              enableInteractiveSelection:
-                                  _c.config.allowsSelection,
-                              style: TextStyle(
-                                color: theme.chromeText,
-                                fontSize: 11,
+                            // Override EditableText's private text-only history:
+                            // native Undo/Redo shortcuts must restore document
+                            // revisions and formatting as well as the field text.
+                            Actions(
+                              actions: <Type, Action<Intent>>{
+                                UndoTextIntent: CallbackAction<UndoTextIntent>(
+                                  onInvoke: (_) {
+                                    _history(note, redo: false);
+                                    return null;
+                                  },
+                                ),
+                                RedoTextIntent: CallbackAction<RedoTextIntent>(
+                                  onInvoke: (_) {
+                                    _history(note, redo: true);
+                                    return null;
+                                  },
+                                ),
+                              },
+                              child: TextField(
+                                key: ValueKey<String>('notes-edit-$identity'),
+                                controller: edit,
+                                focusNode: _focusFor(note),
+                                minLines: 1,
+                                maxLines: null,
+                                keyboardType: TextInputType.multiline,
+                                enabled: _c.config.allowsSelection,
+                                readOnly: !editable,
+                                enableInteractiveSelection:
+                                    _c.config.allowsSelection,
+                                style: TextStyle(
+                                  color: theme.chromeText,
+                                  fontSize: 11,
+                                ),
+                                decoration: const InputDecoration(
+                                  isDense: true,
+                                  border: InputBorder.none,
+                                ),
+                                onChanged: editable
+                                    ? (String value) {
+                                        _notice = null;
+                                        _c.setNoteText(note, value);
+                                        _publishSelection(note);
+                                      }
+                                    : null,
+                                onTapOutside: (_) => _focusFor(note).unfocus(),
                               ),
-                              decoration: const InputDecoration(
-                                isDense: true,
-                                border: InputBorder.none,
-                              ),
-                              onChanged: editable
-                                  ? (String value) {
-                                      _notice = null;
-                                      _c.setNoteText(note, value);
-                                      _publishSelection(note);
-                                    }
-                                  : null,
-                              onTapOutside: (_) => _focusFor(note).unfocus(),
                             ),
                             if (issues.isNotEmpty)
                               _findingControls(note, identity, issues, theme),

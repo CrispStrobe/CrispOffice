@@ -1,6 +1,8 @@
-# Local runtime and recovery status — Notes review continuation
+# Local runtime and reproduction — Notes review continuation
 
-## What actually completed
+The resumed **77-suite local gate passed** on source `a7512e94da8208123aa2df5f5c2c0354d079ddc7`: **1,244 Dart/Flutter cases, no failures or skips**, plus strict analysis, formatting and whitespace checks. See the [final resumed record](../resumed/README.md) and [exact receipt](../resumed/verification.json). The earlier disk-exhaustion observations below are retained as history.
+
+## Earlier disk-exhaustion attempt (historical)
 
 Before the host filesystem filled, the continuation restored and verified
 Flutter **3.47.8** / Dart **3.13.7**, resolved the new Mail-inclusive workspace
@@ -45,7 +47,11 @@ the filesystem block.
   and binds source/runtime identities before and after sequential checks.
 
 The recovery restorer is **not** the byte-identical collection of scripts
-executed locally. It has not been executed. The gate runner had been written
+executed locally. Its VM-only path was subsequently executed in this
+continuation. A separate verified SDK stream supplied the Node compiler (`compiler-supplement.json`);
+the original extraction receipt remains distinct. The combined `--node-tests`
+and native-smoke restore path below is new reproduction code, not a claim about
+that original run. The gate runner had been written
 locally but its syntax/self-tests and product gates had not run when disk
 exhaustion blocked every filesystem tool launch. Its local file could not be
 re-read for an independent byte comparison.
@@ -59,7 +65,8 @@ files that were actually uploaded.
 ## Restore on a machine with sufficient disk space
 
 Use Python 3.12 or newer with PyYAML, access to the official SDK and Pub archive
-hosts, and at least **2 GiB of free disk space**, in addition to the checkout.
+hosts and the SQLite GitHub release asset host, an installed Node on `PATH`
+for Node tests, and at least **2 GiB of free disk space** beyond the checkout.
 Keep the runtime directory outside the repository.
 
 Check out the source checkpoint to be tested. Its root `pubspec.lock` must
@@ -69,7 +76,7 @@ and refuses a nonempty runtime destination.
 ```bash
 python3 docs/validation/document-review-notes-20261118/runtime/restore_runtime.py \
   --repo /absolute/path/to/quds_office_suite \
-  --runtime-root /absolute/path/to/toolchains
+  --runtime-root /absolute/path/to/toolchains --node-tests
 
 source /absolute/path/to/toolchains/env.sh
 ```
@@ -78,10 +85,22 @@ The restorer streams the complete official archive, validates its full hash and
 the Dart/Flutter tester hashes, verifies 176 package archives against the two
 locked dependency sets, and runs offline lock enforcement for Flutter tools and
 the workspace. It regenerates package configuration, wrappers, a runtime
-receipt, and retained-input/omission manifests for the new location.
+receipt, and retained-input/omission manifests for the new location. It runs the
+absolute `native_asset_smoke.dart` file through `dart run` to prepare the native
+mapping and verify an in-memory SQLite/FTS5 round trip. The receipt binds that
+mapping, each absolute library, the original cached hook library used by child
+`dart run` fixtures, and (with `--node-tests`) Node's resolved path,
+version and hash. SQLite must match the pinned Linux x64 hook asset SHA-256.
+
+`bind_test_inputs(repo, root, receipt, node_tests=True)` can also be imported
+and called after that smoke against an existing runtime; save the updated
+receipt separately from historical receipts. It neither downloads an
+SDK nor reruns hooks, and leaves original restore commands/archive data intact.
 
 The selected SDK contains **530,414,490 bytes**. It supports VM Flutter tests
-and AOT analysis. It omits Flutter Git history, the web SDK/compilers, DevTools,
+and AOT analysis. `--node-tests` retains another **20,827,888 bytes** for the
+verified Dart-to-JavaScript compiler. It omits Flutter Git history, the Flutter
+web SDK and other web compilers, DevTools,
 sanitizer runtimes, the duplicate JIT analyzer, the DDS AOT snapshot, and the
 native GTK build library. The genuine Flutter version cache supplies the
 framework identity; no fabricated Git metadata is needed.
@@ -95,11 +114,15 @@ This is not a full native/web application build environment.
 
 ## Run the selected final cohort
 
-The committed [test-plan.json](../test-plan.json) selects 74 suites: 9 engine,
-49 editor, 9 Studio, 1 Mail core, 5 Mail store, and 1 Mail UI. It also requests
-strict analysis and formatting checks for the integrated changed Dart files.
-No run of that plan has completed. The two-case smoke result above is not
-feature acceptance.
+The committed [test-plan.json](../test-plan.json) selects **77 suites**: 9 engine,
+49 editor, 9 Studio, 1 Mail core, 7 Mail native store, 1 Mail Node, and 1 Mail UI.
+It also requests strict analysis and formatting checks for the integrated
+changed Dart files. The first resumed combined run completed with 1,243 passing
+cases, one failing off-screen-tap fixture, and no skips. Analysis and formatting
+passed. The fixture and exact preserved-evidence whitespace handling were
+corrected before the passing frozen-source run. See the [resumed validation record](../resumed/README.md)
+for its exact source identity and preserved raw evidence; the historical two-case
+smoke result above is not feature acceptance.
 
 Verify the recovered runner's syntax and reporter parsing before using it as
 acceptance evidence. Format the source and commit any formatting

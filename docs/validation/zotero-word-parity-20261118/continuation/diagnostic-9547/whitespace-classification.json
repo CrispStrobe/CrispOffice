@@ -1,0 +1,57 @@
+{
+  "incoming_integration": "8fa115e8358e305872fd14e757f9133fa9c1540d",
+  "frozen_commit": "9547b087011695efa43014a64b128369b319e0f6",
+  "warning_count": 48,
+  "affected_paths": 6,
+  "rows": [
+    {
+      "path": "docs/validation/document-review-notes-20261118/recovery/notes-controller.patch",
+      "warnings": 13,
+      "kind": "patch context record",
+      "incoming_blob": "de6d842f42117e211337d09cc8833756b0ff97d0",
+      "frozen_blob": "de6d842f42117e211337d09cc8833756b0ff97d0",
+      "unchanged_from_incoming_integration": true
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/linguistic/de/notices/CC_BY_SA_4.0.txt",
+      "warnings": 1,
+      "kind": "verbatim third-party notice",
+      "incoming_blob": "2d58298e6eda10e7204abb52722efbc840db2390",
+      "frozen_blob": "2d58298e6eda10e7204abb52722efbc840db2390",
+      "unchanged_from_incoming_integration": true
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/linguistic/de/notices/OPENTHESAURUS_COPYING.txt",
+      "warnings": 1,
+      "kind": "verbatim third-party notice",
+      "incoming_blob": "e9a5cbe37f5fa0726cc9283ecfdc099b764e1a46",
+      "frozen_blob": "e9a5cbe37f5fa0726cc9283ecfdc099b764e1a46",
+      "unchanged_from_incoming_integration": true
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/linguistic/en/notices/CC_BY_4.0.txt",
+      "warnings": 1,
+      "kind": "verbatim third-party notice",
+      "incoming_blob": "da6ab6cc8f333d7e89a99812866df8f24374d47c",
+      "frozen_blob": "da6ab6cc8f333d7e89a99812866df8f24374d47c",
+      "unchanged_from_incoming_integration": true
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/linguistic/en/notices/OEWN_LICENSE.md",
+      "warnings": 2,
+      "kind": "verbatim third-party notice",
+      "incoming_blob": "fe4d1dce8109caa7016fca97f48e49a9ced36ad4",
+      "frozen_blob": "fe4d1dce8109caa7016fca97f48e49a9ced36ad4",
+      "unchanged_from_incoming_integration": true
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/linguistic/en/notices/WNDB_License.txt",
+      "warnings": 30,
+      "kind": "verbatim third-party notice",
+      "incoming_blob": "cecbc6cf2dcb20ffbcba84319affc1ed0c6dca6f",
+      "frozen_blob": "cecbc6cf2dcb20ffbcba84319affc1ed0c6dca6f",
+      "unchanged_from_incoming_integration": true
+    }
+  ],
+  "product_source_paths_affected": 0
+}

@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Restore the pinned VM test runtime for the Notes-review continuation.
 
-Recovery implementation reconstructed after host disk exhaustion. It has not
-been executed in this session. It downloads only the pinned official SDK and
-Pub archives and never changes tracked repository inputs or contacts Actions.
+Recovery implementation reconstructed after host disk exhaustion. It downloads
+only the pinned official SDK, Pub archives, and SQLite native asset. It never
+changes tracked repository inputs or contacts Actions.
 Requires Python 3.12+, PyYAML, and at least 2 GiB of free disk space.
 """
 from __future__ import annotations
@@ -34,6 +34,10 @@ EXECUTABLES = {
     "bin/cache/dart-sdk/bin/dart": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb",
     "bin/cache/artifacts/engine/linux-x64/flutter_tester": "800f4ca182df7dd2fb46a42dea5d76277b9dbc5e8cd2915e02bcbc978681b45f",
 }
+SQLITE_NATIVE_SHA256 = "0a65852703763619a7a34633b4959b3b86c4103804a4dfe4e8b27b5de1c0647b"
+NODE_COMPILER = "bin/cache/dart-sdk/bin/snapshots/dart2js_aot.dart.snapshot"
+NODE_COMPILER_BYTES = 20827888
+NODE_COMPILER_SHA256 = "29314b1f8e994436c5639a59df0243692cd83625fc587619a9c99e9a3804b1d6"
 OMIT_SNAPSHOTS = {
     "analysis_server.dart.snapshot", "dartdevc.dart.snapshot",
     "dartdevc_aot.dart.snapshot", "dart2js_aot.dart.snapshot",
@@ -53,6 +57,63 @@ def sha256(path: Path) -> str:
 
 def write_json(path: Path, value: object) -> None:
     path.write_text(json.dumps(value, indent=2) + "\n", encoding="utf-8")
+
+
+def bind_test_inputs(repo: Path, root: Path, receipt: dict, *, node_tests=False) -> None:
+    """Bind existing hook output and Node; leave original restore provenance intact."""
+    manifest = repo.resolve() / ".dart_tool/native_assets.yaml"
+    mapping = json.loads("\n".join(
+        line for line in manifest.read_text().splitlines()
+        if not line.lstrip().startswith("#")
+    ))
+    assets = mapping.get("native-assets", {})
+    sqlite_id = "package:sqlite3/src/ffi/libsqlite3.g.dart"
+    if (mapping.get("format-version") != [1, 0, 0]
+            or set(assets) != {"linux_x64"} or set(assets["linux_x64"]) != {sqlite_id}):
+        raise RuntimeError("Expected the captured Linux x64 SQLite native mapping")
+    inputs, libraries = {str(manifest): sha256(manifest)}, {}
+    for location in assets["linux_x64"].values():
+        if (not isinstance(location, list) or len(location) != 2
+                or location[0] != "absolute" or not isinstance(location[1], str)
+                or not Path(location[1]).is_absolute()):
+            raise RuntimeError("Native asset must name an absolute library")
+        library = Path(location[1])
+        if not library.is_file() or sha256(library) != SQLITE_NATIVE_SHA256:
+            raise RuntimeError("Native SQLite library differs from the locked hook asset")
+        libraries[str(library)] = SQLITE_NATIVE_SHA256
+        inputs.update({str(library): SQLITE_NATIVE_SHA256,
+                       str(library.resolve()): SQLITE_NATIVE_SHA256})
+    # Crash/native subprocess fixtures use `dart run`, which can reuse the
+    # original hook download before copying it to the workspace asset map.
+    hook_library = (repo.resolve() / ".dart_tool/hooks_runner/shared/sqlite3/build"
+                    / ("download-" + SQLITE_NATIVE_SHA256[:8]) / "libsqlite3.so")
+    if not hook_library.is_file() or sha256(hook_library) != SQLITE_NATIVE_SHA256:
+        raise RuntimeError("Cached SQLite hook input differs from the pinned asset")
+    inputs[str(hook_library)] = SQLITE_NATIVE_SHA256
+    node_record = None
+    if node_tests:
+        if sha256(root.resolve() / "flutter" / NODE_COMPILER) != NODE_COMPILER_SHA256:
+            raise RuntimeError("The retained Node compiler differs from the verified SDK")
+        executable = shutil.which("node")
+        if executable is None:
+            raise RuntimeError("--node-tests requires an installed Node executable on PATH")
+        node = Path(executable).resolve(strict=True)
+        version = subprocess.check_output([str(node), "--version"], text=True, timeout=15).strip()
+        node_record = {"path": str(node), "sha256": sha256(node), "version": version}
+        inputs[str(node)] = node_record["sha256"]
+    receipt["additional_inputs"] = inputs
+    receipt["native_assets"] = {
+        "manifest": str(manifest), "libraries": libraries,
+        "hook_library": str(hook_library),
+        "provenance": "sqlite3 3.9.1 hook; pinned Linux x64 SHA-256 matched",
+    }
+    if node_record is not None:
+        receipt["node_runtime"] = node_record
+    receipt["test_input_binding"] = {
+        "at_utc": datetime.now(timezone.utc).isoformat(),
+        "implementation_sha256": sha256(Path(__file__)),
+        "scope": "Native/Node binding; original restore runs and archive unchanged",
+    }
 
 
 def selected(name: str) -> bool:
@@ -109,6 +170,8 @@ def main() -> None:
     parser.add_argument("--repo", required=True, type=Path)
     parser.add_argument("--runtime-root", required=True, type=Path)
     parser.add_argument("--workers", type=int, default=8)
+    parser.add_argument("--node-tests", action="store_true",
+                        help="Retain the verified Dart-to-JavaScript compiler for Node test groups")
     args = parser.parse_args()
     repo, root = args.repo.resolve(), args.runtime_root.resolve()
     if repo == root or repo in root.parents or root in repo.parents:
@@ -127,7 +190,9 @@ def main() -> None:
         "started_at_utc": datetime.now(timezone.utc).isoformat(),
         "source": str(repo), "sdk": str(sdk), "status": "restoring", "runs": [],
         "recovery_implementation": True,
-        "selection": "VM Flutter tests and AOT analysis; no complete web/native build toolchain",
+        "selection": "VM Flutter tests and AOT analysis"
+                     + (" and Dart-to-JavaScript Node tests" if args.node_tests else "")
+                     + "; no complete web/native build toolchain",
         "workspace_lock_sha256": LOCK_SHA256,
     }
 
@@ -142,7 +207,9 @@ def main() -> None:
             reader = DigestReader(response)
             with tarfile.open(fileobj=reader, mode="r|xz") as archive:
                 for member in archive:
-                    if selected(member.name):
+                    if selected(member.name) or (
+                        args.node_tests and member.name == "flutter/" + NODE_COMPILER
+                    ):
                         expanded += member.size
                         if expanded > 1024**3 or shutil.disk_usage(root).free < 100 * 1024**2:
                             raise RuntimeError("SDK extraction reached its disk budget")
@@ -156,17 +223,21 @@ def main() -> None:
                 pass
             if reader.digest.hexdigest() != SDK_SHA256 or reader.total != SDK_BYTES:
                 raise RuntimeError("Official SDK archive identity differs")
-        if expanded != 530414490:
+        expected_expanded = 530414490 + (NODE_COMPILER_BYTES if args.node_tests else 0)
+        if expanded != expected_expanded:
             raise RuntimeError("Retained SDK selection differs from the recorded byte count")
         receipt["archive"] = {
             "url": SDK_URL, "sha256": SDK_SHA256, "bytes": SDK_BYTES,
             "verified": True, "extracted_bytes": expanded,
         }
         write_json(root / "archive-members.json", members)
-        for relative, expected in EXECUTABLES.items():
+        executables = dict(EXECUTABLES)
+        if args.node_tests:
+            executables[NODE_COMPILER] = NODE_COMPILER_SHA256
+        for relative, expected in executables.items():
             if sha256(sdk / relative) != expected:
                 raise RuntimeError("Verified executable differs: " + relative)
-        receipt["executables_sha256"] = {str(sdk / key): value for key, value in EXECUTABLES.items()}
+        receipt["executables_sha256"] = {str(sdk / key): value for key, value in executables.items()}
         save()
 
         packages = {}
@@ -275,6 +346,9 @@ def main() -> None:
 
         run("flutter-tools-pub-get", [dart, "pub", "get", "--offline", "--enforce-lockfile"], sdk / "packages/flutter_tools")
         run("workspace-pub-get", [dart, "pub", "get", "--offline", "--enforce-lockfile"], repo)
+        smoke = repo / "docs/validation/document-review-notes-20261118/runtime/native_asset_smoke.dart"
+        run("native-assets-smoke", [dart, "run", smoke], repo)
+        bind_test_inputs(repo, root, receipt, node_tests=args.node_tests)
         version = run("flutter-version", [flutter, "--version", "--machine"], repo)
         receipt["runtime"] = json.loads(version.read_text())
         if receipt["runtime"]["frameworkRevision"] != "737ba8f885dc774b53b442759999a312c9461e4e" or receipt["runtime"]["dartSdkVersion"] != "3.13.7":
