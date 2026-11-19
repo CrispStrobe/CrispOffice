@@ -1,0 +1,287 @@
+{
+  "schema": 1,
+  "created_at_utc": "2026-11-19T11:22:52.308499+00:00",
+  "scope": "Development-only recovery, authoring and independent review evidence. Historical/overlapping run counts are not aggregated or used as frozen-source acceptance.",
+  "archive": "development-evidence.tar.xz",
+  "bytes": 141460,
+  "sha256": "dd08fed665c7b3ced5822c3310bf3c81c51e18cab9ff6e3f7b98582718e6bd04",
+  "member_count": 53,
+  "members": [
+    {
+      "path": "ayaspell-controls.log",
+      "bytes": 116,
+      "sha256": "1a4567ff7ac5667d0e9e5aecd9135b174ab5c2bfaad7b985ac47bb09d4078cdb"
+    },
+    {
+      "path": "development-evidence.md",
+      "bytes": 1714,
+      "sha256": "5f7ae6072340e7f8168dc251ee675010f220d49df47ed230bc6f4a058df2b342"
+    },
+    {
+      "path": "independent-review/README.md",
+      "bytes": 4532,
+      "sha256": "564a0caf36d5318c610ab0c4a7aec4fb335a35a84408bae670729515e7653b4e"
+    },
+    {
+      "path": "independent-review/invocations.json",
+      "bytes": 5280,
+      "sha256": "174bc26613becda3df460764a253fbb30f3c2894944eb503f1e66c218666b233"
+    },
+    {
+      "path": "independent-review/review-summary.json",
+      "bytes": 7951,
+      "sha256": "cd43b59962d63b6a101a7b0af9e56cabad41955d9914cbb7165af9466f4bc249"
+    },
+    {
+      "path": "independent-review/word-fix-analysis.txt",
+      "bytes": 170,
+      "sha256": "c16e827af2f977ae7e823313b556f99ad2d0edba8ad955fefe2ccde953a57866"
+    },
+    {
+      "path": "independent-review/word-fix-base-source/packages/quds_office_editor/lib/src/embed/office_controller.dart",
+      "bytes": 463943,
+      "sha256": "5886498c600d637f8d0ddd97aa364dbb9c637110767cbeca867e256cb140977d"
+    },
+    {
+      "path": "independent-review/word-fix-base-source/packages/quds_office_editor/test/word_complex_script_proofing_controls_test.dart",
+      "bytes": 8313,
+      "sha256": "0197553773e1f1cd559f8f722cedf1cad4e49068822c114483871634d7d251f6"
+    },
+    {
+      "path": "independent-review/word-fix-base-source/packages/quds_office_engine/lib/src/word/model/wml_run_edit.dart",
+      "bytes": 17469,
+      "sha256": "994f41390ce0df501f50e3052e1642167b02593db70dd0e932f2b080f7981258"
+    },
+    {
+      "path": "independent-review/word-fix-base-source/packages/quds_office_engine/lib/src/word/serial/word_style_cascade.dart",
+      "bytes": 23137,
+      "sha256": "0b9c76250946509039ed53675b5a32bcb55121efdb4d5ac9f3e9d0d5d7493ab2"
+    },
+    {
+      "path": "independent-review/word-fix-base-source/packages/quds_office_engine/test/wml_run_edit_test.dart",
+      "bytes": 642,
+      "sha256": "5e2216190e5ed97a859a3c66c8aedace2aa12a1cd0db44cc68b5bfb073675ace"
+    },
+    {
+      "path": "independent-review/word-fix-base.json",
+      "bytes": 1009,
+      "sha256": "2cf22132a02e905ae04c0be50dd9892d1f49eb639b0a0dccab7f2bb9afbd8b97"
+    },
+    {
+      "path": "independent-review/word-fix-editor.jsonl",
+      "bytes": 30096,
+      "sha256": "755fe5f78e238d85fd3e2448a800048db3f7653cd33e0aef5e2d392da100eb6d"
+    },
+    {
+      "path": "independent-review/word-fix-editor.stderr",
+      "bytes": 67,
+      "sha256": "e79d957dc156378e662f738d5731d4aea7ee13f9d634b349525a57c30a3c9b39"
+    },
+    {
+      "path": "independent-review/word-fix-engine-dart.jsonl",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "independent-review/word-fix-engine-dart.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "independent-review/word-fix-engine-direct.jsonl",
+      "bytes": 96386,
+      "sha256": "fb603a320af5abc538ca1d937a43258e5acc753cf253422e8daaff314cca8982"
+    },
+    {
+      "path": "independent-review/word-fix-engine-direct.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "independent-review/word-fix-engine.jsonl",
+      "bytes": 98367,
+      "sha256": "6aade99694f2b18f0159b024d0748a730a116a66bfd74dd5986a5ad87f2630b8"
+    },
+    {
+      "path": "independent-review/word-fix-engine.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "independent-review/word-fix-inputs-after.json",
+      "bytes": 801,
+      "sha256": "1fd174522a9f558097e4e32a4e552113e430b8c39b00dd6c6daff45cd0dc4a86"
+    },
+    {
+      "path": "independent-review/word-fix-inputs-before.json",
+      "bytes": 780,
+      "sha256": "e4511134271ce105fd00ad4744617dc8e348fb876fd574bbab422ce73b3b8ac2"
+    },
+    {
+      "path": "independent-review/word-fix-source/packages/quds_office_editor/lib/src/embed/office_controller.dart",
+      "bytes": 464036,
+      "sha256": "e428120ae39df521707ec5d093e8bfb7c3c56062bbe74edb30f8368f7675d491"
+    },
+    {
+      "path": "independent-review/word-fix-source/packages/quds_office_editor/test/word_complex_script_proofing_controls_test.dart",
+      "bytes": 12430,
+      "sha256": "1cf2066746f9d6bca2c3fe516da4e692590c5a4663753d3946138feb95c13e2e"
+    },
+    {
+      "path": "independent-review/word-fix-source/packages/quds_office_engine/lib/src/word/model/wml_run_edit.dart",
+      "bytes": 18809,
+      "sha256": "53e70fdef0157ad0acf092b222a10c68411cfd287f188d0df287b89c10f16908"
+    },
+    {
+      "path": "independent-review/word-fix-source/packages/quds_office_engine/lib/src/word/serial/word_style_cascade.dart",
+      "bytes": 23193,
+      "sha256": "4ac6a185333f11bf6538d860e44b2e642fcd1c8d4f65a1c67704c59dafe1f214"
+    },
+    {
+      "path": "independent-review/word-fix-source/packages/quds_office_engine/test/wml_run_edit_test.dart",
+      "bytes": 3136,
+      "sha256": "6c324dee3a5797d14dac406d90dde0594d91617e07e4abddecd81ca4acf0f30f"
+    },
+    {
+      "path": "independent-review/word-fix.patch",
+      "bytes": 13000,
+      "sha256": "a055e6cabff8e6a885c0e4b9bbbff37620a015fe0bac2dbe732825b017187666"
+    },
+    {
+      "path": "independent-review/word-mixed-noop.jsonl",
+      "bytes": 1798,
+      "sha256": "237e6f666f845c1d2aad4a96a011fb6b9ffb738d0edaea1e22a7dbd88bfe0536"
+    },
+    {
+      "path": "independent-review/word-mixed-noop.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "independent-review/word_mixed_noop_review_test.dart",
+      "bytes": 1169,
+      "sha256": "a50277edcc6499bbc103f836ef163dbb0f359a211871f45ce8bb7ec3a134672c"
+    },
+    {
+      "path": "mail-session-evidence.index.json",
+      "bytes": 4144,
+      "sha256": "d95b4d1ae0cc250c26515f2762f03753c05100a78340d34a494f2a1698585c36"
+    },
+    {
+      "path": "mail-session-evidence.tar.xz",
+      "bytes": 14880,
+      "sha256": "41c5f373b098269c855194d4f3c2f83abba85630036f055dfb3c1ff8af06bd72"
+    },
+    {
+      "path": "saved-mail-analysis.log",
+      "bytes": 196,
+      "sha256": "f9e5ff99aa1e95a04de89e328e21ca228cb3009108280d13637fc7acc7ab51ac"
+    },
+    {
+      "path": "saved-mail-tests.jsonl",
+      "bytes": 10842,
+      "sha256": "559f99010bbe2388705ba9476b990ad8685c624ea97cbc444084426322db498f"
+    },
+    {
+      "path": "saved-mail-tests.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "studio-review/README.md",
+      "bytes": 1938,
+      "sha256": "cd80f2f05ab2b1a294f7ad340aa656ef9d25903bf6f81c8024cbabf58bc7f9e7"
+    },
+    {
+      "path": "studio-review/focused-01.stderr.log",
+      "bytes": 178,
+      "sha256": "3d4c4cad0649e7a0aa29ce892e4d1f5a43bdc1bd3123d439f2b114e7828c3136"
+    },
+    {
+      "path": "studio-review/focused-01.stdout.jsonl",
+      "bytes": 36864,
+      "sha256": "a434ab2f0257152a124b621691d7bdcc9e325341dc447d7cf07c50ab31aaa000"
+    },
+    {
+      "path": "studio-review/focused-02.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "studio-review/focused-02.stdout.jsonl",
+      "bytes": 21459,
+      "sha256": "b41a3bdffaad05935cacc547feca6b76c6172d8332190fa7fbc0ee25ba4dd7d7"
+    },
+    {
+      "path": "studio-review/summary.json",
+      "bytes": 3370,
+      "sha256": "b44821c777c88ce3fbda6687193bc9d386ad448d4aa4a8d0d5376fc45806ce4c"
+    },
+    {
+      "path": "word-editor-tests-before-repair.jsonl",
+      "bytes": 21652,
+      "sha256": "8748cb45ce17ddc21b072237ae62c37d33aaec39d337e732d8e9978296af929f"
+    },
+    {
+      "path": "word-editor-tests-before-repair.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "word-editor-tests.jsonl",
+      "bytes": 20768,
+      "sha256": "e87841fedc2c1cdbd78d3090cc00735bb19ee13c28cc619167a3903bcae5ff08"
+    },
+    {
+      "path": "word-editor-tests.stderr",
+      "bytes": 67,
+      "sha256": "e79d957dc156378e662f738d5731d4aea7ee13f9d634b349525a57c30a3c9b39"
+    },
+    {
+      "path": "word-engine-tests-before-repair.jsonl",
+      "bytes": 180208,
+      "sha256": "aed4625c5286ac1e4c7cc8e96559a6296f38077a31970abd16578f1503000931"
+    },
+    {
+      "path": "word-engine-tests-before-repair.stderr",
+      "bytes": 67,
+      "sha256": "e79d957dc156378e662f738d5731d4aea7ee13f9d634b349525a57c30a3c9b39"
+    },
+    {
+      "path": "word-engine-tests.jsonl",
+      "bytes": 178230,
+      "sha256": "dadc50e31ec36a5d0b5c95d2f5b1380f33a19bb8851358ea948823a48d7e7807"
+    },
+    {
+      "path": "word-engine-tests.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "word-merge-analysis.txt",
+      "bytes": 253,
+      "sha256": "a0131665447f5d8af81219b8d21c8519f8d9424f4078a424eeced96f9d693262"
+    },
+    {
+      "path": "word-merge-format.txt",
+      "bytes": 129,
+      "sha256": "3095bda0eadd5dd8336deb885dcba6362628e5115a2661315e525872691b2304"
+    },
+    {
+      "path": "word-merge-review.json",
+      "bytes": 5792,
+      "sha256": "fe0489cf8f6e2ba57bbde0306f58d84f0165a0771794dea2cb854852f704c160"
+    }
+  ],
+  "verified_all_members": true,
+  "nested_archives": [
+    {
+      "path": "mail-session-evidence.tar.xz",
+      "index": "mail-session-evidence.index.json",
+      "sha256": "41c5f373b098269c855194d4f3c2f83abba85630036f055dfb3c1ff8af06bd72",
+      "member_count": 21
+    }
+  ],
+  "source_repair_base": "2e6bc30a87125f3209ce4c58208b3f7bf1d84dd8",
+  "source_unchanged_from_tests": true
+}
