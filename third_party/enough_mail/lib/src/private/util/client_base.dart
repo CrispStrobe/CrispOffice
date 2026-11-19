@@ -1,6 +1,9 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
+
+part 'cancellable_socket.dart';
 
 /// Provides connection information
 class ConnectionInfo {
@@ -59,6 +62,8 @@ abstract class ClientBase {
   late Socket _socket;
   bool _hasSocket = false;
   int _connectionGeneration = 0;
+  ConnectionTask<RawSocket>? _pendingConnection;
+  RawSocket? _pendingRawSocket;
 
   /// `true` when it is expected that the socket is closed
   bool isSocketClosingExpected = false;
@@ -96,8 +101,8 @@ abstract class ClientBase {
 
   /// Optional [SecurityContext] for mTLS (mutual TLS).
   ///
-  /// When set, it is passed to [SecureSocket.connect] and
-  /// [SecureSocket.secure] to enable client certificate authentication.
+  /// When set, it is passed to the TLS handshake to enable client certificate
+  /// authentication while preserving the requested hostname verification.
   final SecurityContext? securityContext;
 
   /// Is called when data is received
@@ -120,14 +125,62 @@ abstract class ClientBase {
     String host,
     int port, {
     required bool isSecure,
-  }) => isSecure
-      ? SecureSocket.connect(
-          host,
-          port,
-          onBadCertificate: onBadCertificate,
-          context: securityContext,
-        )
-      : Socket.connect(host, port);
+  }) async {
+    final generation = _connectionGeneration;
+    final task = await RawSocket.startConnect(host, port);
+    if (generation != _connectionGeneration) {
+      task.cancel();
+    } else {
+      _pendingConnection = task;
+    }
+    RawSocket? raw;
+    try {
+      raw = await task.socket;
+      if (generation != _connectionGeneration) {
+        throw createClientError('connection attempt was abandoned');
+      }
+      _pendingRawSocket = raw;
+      final connected = isSecure
+          ? await RawSecureSocket.secure(
+              raw,
+              host: host,
+              onBadCertificate: onBadCertificate,
+              context: securityContext,
+            )
+          : raw;
+      if (generation != _connectionGeneration) {
+        unawaited(connected.close());
+        throw createClientError('connection attempt was abandoned');
+      }
+      return _CancellableSocket(connected);
+    } catch (_) {
+      if (raw != null) {
+        unawaited(raw.close());
+      }
+      rethrow;
+    } finally {
+      if (identical(_pendingConnection, task)) {
+        _pendingConnection = null;
+      }
+      if (identical(_pendingRawSocket, raw)) {
+        _pendingRawSocket = null;
+      }
+    }
+  }
+
+  // SecureSocket.secure detaches the original Socket before its TLS future
+  // resolves. Retaining the public RawSocket owner lets abort close a stalled
+  // handshake, including one that has not produced a secure socket yet.
+  void _cancelPendingConnection() {
+    final task = _pendingConnection;
+    final raw = _pendingRawSocket;
+    _pendingConnection = null;
+    _pendingRawSocket = null;
+    task?.cancel();
+    if (raw != null) {
+      unawaited(raw.close());
+    }
+  }
 
   /// Connects to the specified server.
   ///
@@ -161,6 +214,7 @@ abstract class ClientBase {
           onTimeout: () {
             if (generation == _connectionGeneration) {
               _connectionGeneration++;
+              _cancelPendingConnection();
             }
             throw createClientError('connection attempt timed out');
           },
@@ -263,12 +317,31 @@ abstract class ClientBase {
   Future<Socket> createSecureConnectionSocket(
     Socket socket, {
     required String host,
-  }) => SecureSocket.secure(
-    socket,
-    host: host,
-    context: securityContext,
-    onBadCertificate: onBadCertificate,
-  );
+  }) async {
+    if (socket is! _CancellableSocket) {
+      // Caller-supplied socket factories retain their existing upgrade seam.
+      // Only the default owned raw transport can cancel before TLS resolves.
+      return SecureSocket.secure(
+        socket,
+        host: host,
+        context: securityContext,
+        onBadCertificate: onBadCertificate,
+      );
+    }
+    final raw = socket.rawSocket;
+    _pendingRawSocket = raw;
+    try {
+      return await socket.secure(
+        host: host,
+        context: securityContext,
+        onBadCertificate: onBadCertificate,
+      );
+    } finally {
+      if (identical(_pendingRawSocket, raw)) {
+        _pendingRawSocket = null;
+      }
+    }
+  }
 
   /// Upgrades the current connection without reviving an aborted generation.
   Future<void> upgradeToSslSocket() async {
@@ -361,6 +434,7 @@ abstract class ClientBase {
   /// Late connect completions are discarded by their generation guard.
   Future<void> abort() async {
     _connectionGeneration++;
+    _cancelPendingConnection();
     _failGreeting('connection aborted');
     _greetingBytes.clear();
     isLoggedIn = false;
@@ -375,6 +449,10 @@ abstract class ClientBase {
 
   /// Disconnects from the service
   Future<void> disconnect() async {
+    if (_pendingConnection != null || _pendingRawSocket != null) {
+      await abort();
+      return;
+    }
     if (_isConnected) {
       isLoggedIn = false;
       _isConnected = false;

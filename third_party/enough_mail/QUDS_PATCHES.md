@@ -89,6 +89,9 @@ implemented Quds packages outside this directory keep their own MIT license.
     sparse responses instead of turning them into false deletion tombstones.
     Later identified flags supersede earlier snapshots; an uncorrelated UID-less
     update after EXPUNGE cannot confirm a write through a stale sequence map.
+    Strict iteration rejects repeated attached lists, while the raw parser
+    requires one canonical `* sequence FETCH (...)` root with no trailing
+    atom/list or sibling FETCH body. Legacy non-strict iteration is retained.
     Protocol atoms remain case-insensitive.
 13. Add configurable literal, protocol-line/greeting and aggregate response-byte
     bounds. Deterministic budget failures are latched separately from provider
@@ -105,6 +108,17 @@ implemented Quds packages outside this directory keep their own MIT license.
     the required `AQ==` error-challenge terminator. Quds enables initial-response
     token mechanisms only with the corresponding AUTH capability and SASL-IR.
     OAuth browser authorization, PKCE, redirect and refresh remain host work.
+16. Retain the default transport's public `RawSocket` owner through implicit TLS
+    and STARTTLS, together with the pending TCP `ConnectionTask`. Cancellation,
+    disconnect and connect timeout can close a stalled handshake before a
+    secure socket is returned. The private Socket-compatible facade preserves
+    ordered writes, partial-write readiness, input pause semantics and TLS
+    subscription transfer; abort also cancels an open write producer. Hostname,
+    `SecurityContext` and certificate callback policy are forwarded unchanged.
+    Caller-injected arbitrary sockets keep the existing upgrade seam and own
+    their pending-handshake lifecycle. Real Linux loopback regressions prove
+    peer-observed closure, fresh retries, encrypted data continuity and default
+    trust refusal, without claiming external-service or other-OS acceptance.
 
 These native additions are covered by MPL-2.0. `UPSTREAM.json` remains the
 unchanged original-source inventory; local additions and modifications are

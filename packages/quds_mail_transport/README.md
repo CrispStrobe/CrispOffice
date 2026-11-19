@@ -86,9 +86,14 @@ boundary for callers that need detailed partial-parse diagnostics.
 
 One provider instance allows one active operation. Every call opens a fresh
 connection and loads current vault credentials. Operations have a finite total
-timeout and poll the account lease for cancellation. Abort destroys connected
-sockets and rejects late socket/TLS completions. The provider never automatically
-replays a command; retry timing is a host decision.
+timeout and poll the account lease for cancellation. The default connector
+retains a cancellable raw transport owner through TCP connection and TLS
+handshake establishment. Abort closes a stalled implicit-TLS or STARTTLS
+connection before its handshake completes, destroys established sockets, and
+rejects late completions. Certificate and hostname verification remain enabled.
+The provider never automatically replays a command; retry timing is a host
+decision. Custom protocol-library socket factories remain responsible for their
+own pending transport ownership.
 
 Read/flagged/delete operations verify the UID exists, use UID STORE, then read
 that same UID's observed flags before reporting success. **Delete only sets
@@ -115,11 +120,21 @@ real SQLite/coordinator transactions. A Node test exercises the public browser
 entry and throwing vault/codec spies. Source-bound acceptance logs are maintained
 in the repository's continuation validation records.
 
-Controlled socket streams do not establish a real TLS handshake, certificate or
-hostname rejection, OAuth redirect/refresh integration, or disposable-account
-interoperability. Those are separate gates, as are discovered-UID pagination for
-large/sparse mailboxes, IDLE/CONDSTORE/QRESYNC, SMTP/composition, the account-aware
-mailbox workspace, actual browser persistence, and platform credential hosts.
+Separate real Linux loopback tests exercise implicit TLS and STARTTLS. They
+observe a ClientHello, keep the peer's handshake stalled, and require the peer
+to observe connection closure after cancellation or timeout before teardown.
+They also check a fresh same-provider connection, delayed exact 1 MiB encrypted
+payloads and subsequent replies, default-trust refusal of a public test
+certificate, and cancellation of an open write producer. The successful
+handshakes use an isolated test-CA context; no test bypasses certificate checks
+or changes global trust.
+
+These local checks do not establish external-provider interoperability,
+additional hostname-mismatch or certificate-chain scenarios, other operating
+systems, OAuth redirect/refresh integration, or disposable-account acceptance.
+Other remaining gates include discovered-UID pagination for large/sparse
+mailboxes, IDLE/CONDSTORE/QRESYNC, SMTP/composition, the account-aware mailbox
+workspace, actual browser persistence, and platform credential hosts.
 
 Original package code is MIT. The native adapter uses the reviewed MPL-2.0
 `third_party/enough_mail` fork; its new raw-fetch and lifecycle additions retain
