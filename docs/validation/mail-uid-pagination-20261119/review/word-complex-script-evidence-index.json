@@ -1,0 +1,39 @@
+{
+  "archive": "word-complex-script-evidence.tar.gz",
+  "sha256": "0f00fbe23b60c561e103aa37cdfddf0d2104686dd57bda9f55cefee52592870e",
+  "bytes": 3444,
+  "members": {
+    "marker-red-source.json": {
+      "sha256": "fae6ef52b3866752be178b2bfc1cb37c844b92ad5a441a3f9b4560a693444a2e",
+      "bytes": 240
+    },
+    "marker-red.jsonl": {
+      "sha256": "8ba95c6747ad1e450e0f38f7a565c0ae5f9c777db42450dfec79deb02a8d7443",
+      "bytes": 4639
+    },
+    "marker-red.stderr": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "followup-source-before.json": {
+      "sha256": "986ef61a27f90b9ac3319d404ed6709082d06627e9ce932415b59cf02813f4ac",
+      "bytes": 751
+    },
+    "engine-final-vm.jsonl": {
+      "sha256": "dece0b8ed0ed8e024802a85e6f7359fd89bbb404fb5ac76cd3dc741e218f260f",
+      "bytes": 19247
+    },
+    "engine-final-vm.stderr": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "word_complex_marker_probe.dart": {
+      "sha256": "6f396e242d6408b9517065fac82c5e618e5e293ed78b3a22c4a78a7a740ae8bd",
+      "bytes": 1065
+    },
+    "word-complex-marker-green.txt": {
+      "sha256": "30a639e1750aed1481f37e493d7cf3176170789211e03a1be67683f7d6b4be67",
+      "bytes": 143
+    }
+  }
+}

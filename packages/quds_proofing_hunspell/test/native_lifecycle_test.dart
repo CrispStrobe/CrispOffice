@@ -11,7 +11,6 @@ import 'package:quds_proofing_hunspell/src/hunspell_transport.dart';
 import 'package:quds_proofing_hunspell/src/hunspell_transport_native.dart';
 import 'package:test/test.dart';
 
-
 void main() {
   final libraryPath = Platform.environment['QUDS_HUNSPELL_LIFECYCLE_LIBRARY'];
   if (libraryPath == null) {

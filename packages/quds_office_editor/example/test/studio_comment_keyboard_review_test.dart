@@ -77,10 +77,20 @@ Future<WordEditorController> _studio(WidgetTester tester) async {
   addTearDown(() => tester.binding.setSurfaceSize(null));
   await tester.pumpWidget(const QudsOfficeStudioApp());
   await _pump(tester);
-  await tester.tap(find.byTooltip('اللغة'));
-  await _pump(tester);
+  expect(find.byTooltip('Language'), findsOneWidget);
   final controller = _editor(tester).controller;
   controller.proofing.enabled = false;
+  // Studio starts with comments hidden; these suites exercise an open pane.
+  await tester.tap(find.byTooltip('Settings'));
+  await tester.pump(const Duration(milliseconds: 350));
+  await _pump(tester);
+  final comments = find.widgetWithText(SwitchListTile, 'Show comments');
+  await tester.ensureVisible(comments);
+  await tester.tap(comments);
+  await _pump(tester);
+  await tester.tap(find.widgetWithText(TextButton, 'Close'));
+  await tester.pump(const Duration(milliseconds: 350));
+  await _pump(tester);
   controller.proofing.configure(OfficeProofingService(providers: []));
   controller.document = _document();
   controller.refresh();

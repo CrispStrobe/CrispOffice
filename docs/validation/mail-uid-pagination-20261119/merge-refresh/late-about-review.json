@@ -1,0 +1,135 @@
+{
+  "review_kind": "Independent bounded static semantic review of late main guard; separate from09:05ref capture",
+  "incoming_main": "00014577265d1f95d4c016159029510d3a10804b",
+  "previous_remote_main": "baf3dbd086d1688c5110335b6a6cc6d5a5feb4eb",
+  "consolidated_pre_about_source": "21d979590ea902ad0593c38c816808cbb7134f6b",
+  "merge_commit": "a6c86f8d158314683087dead60f73ef9ce324c24",
+  "encoding_repair_commit": "8170f246e4ccfff0984966d52c69172c48fc0564",
+  "reviewed_tree": "f643339f7f1285ef83eed885cc751be844a4108e",
+  "changed_paths": {
+    "packages/quds_office_editor/example/lib/crisp_office_sample.dart": {
+      "after_blob": "6da40bdab1bd00840d81ddadcdabcd39fde64907",
+      "after_sha256": "80bc9f9485ae38b52db509aaac5934f52c412adf75f4af2048149fd4b7bdd2ee",
+      "after_bytes": 1844,
+      "before_blob": "60104e867a82247e5754b4e0ac6dacdd7bf4062b",
+      "before_sha256": "2d3a5c20c5b3151308d4ed8171f2a0c91dee3ce5d8504736a380593120acdfa5",
+      "before_bytes": 1859
+    },
+    "packages/quds_office_editor/example/lib/studio_about.dart": {
+      "after_blob": "2b3d62dd98d655b2e98ce4771f5ebed9d244abb9",
+      "after_sha256": "34788b0ff27940ab5818d2bde24920f4d0bb0da589488dbb4aa371520c6d61ff",
+      "after_bytes": 5436
+    },
+    "packages/quds_office_editor/example/lib/studio_de_strings.dart": {
+      "after_blob": "6473e6ddd670f1ec9a951e9b6a09f8dab648c15d",
+      "after_sha256": "606e97e6b5e6b49bf25bf5289537490f57c28a41464b1a854562861549c81d1f",
+      "after_bytes": 13169
+    },
+    "packages/quds_office_editor/example/lib/studio_strings.dart": {
+      "after_blob": "88268b805c817bc5c2cc8f9af33b13f67bb5c88c",
+      "after_sha256": "ef13c777c4410c31ff578f81813a7292e6b03403fda53494af8edb24331db0a1",
+      "after_bytes": 7234,
+      "before_blob": "625ab672199c4b2e7da3b370181ee39fe6ae8c01",
+      "before_sha256": "422298d9726f20e1731ace5ce898b413b8189c7ac0ae14924f4b885acf5c54ac",
+      "before_bytes": 4344
+    },
+    "packages/quds_office_editor/example/lib/suite_workspace.dart": {
+      "after_blob": "cad6321a1a8d0bd12f84ea045045869144be1ffd",
+      "after_sha256": "47d266cf1ae4c82dc4571ac1c2012180ac436a072d71c7c3c86869e6c43bf2fc",
+      "after_bytes": 386191,
+      "before_blob": "7b32a1d83a65d2a601fa2aa227bf929f0a4d41f3",
+      "before_sha256": "460c51d1da767183710d03edfabd401f3a478f938d189e0397a6c7e22f60ab34",
+      "before_bytes": 361662
+    },
+    "packages/quds_office_editor/example/macos/Runner/AppDelegate.swift": {
+      "after_blob": "695c8f26f83baffb5754614e7dfef8ed118cb4d9",
+      "after_sha256": "40ba44d0c01108c7fa1677c13278224488e15cf46966e3b288cb9030ff3b22bf",
+      "after_bytes": 786,
+      "before_blob": "b3c176141221dbe2b40d3e36942b15068ba48677",
+      "before_sha256": "ce9dbe45a57c59e85519da50a26c471615b9c8cdd85a8f4a39d2e480e62a4af4",
+      "before_bytes": 311
+    },
+    "packages/quds_office_editor/example/macos/Runner/Base.lproj/MainMenu.xib": {
+      "after_blob": "14c406665077282620938ca373ed19a55f907618",
+      "after_sha256": "ec80aec154eb65d05ec4ae02d22b83320efb8459ff70de24d7c18ccb663a6283",
+      "after_bytes": 23732,
+      "before_blob": "80e867a4e06b4dc26d0a2b327cbd54041addc50a",
+      "before_sha256": "be9e9ef8469d3262370e0f0b855ed163cbf9c8362c59e330b2ffe63b86fa42f4",
+      "before_bytes": 23729
+    },
+    "packages/quds_office_editor/example/pubspec.yaml": {
+      "after_blob": "f50724869d36b449212935c236af93877a3ee4a9",
+      "after_sha256": "90157d4fe8016cdff5da96540cf3175d894e528a05772748df3373cee79dc36b",
+      "after_bytes": 945,
+      "before_blob": "2ed2cb8f0d6751822764bf7d5de9eac588122527",
+      "before_sha256": "968527a80752320cc29bc0247cb44743ae4bcde2f9cb4d8698d159f1bfe1fe47",
+      "before_bytes": 899
+    }
+  },
+  "path_count": 8,
+  "all_other_tracked_paths_unchanged_from_pre_about_source": true,
+  "workspace_semantic_comparison": {
+    "before_members": 444,
+    "after_members": 445,
+    "normalized_labels_before": {
+      "conditionals": 681,
+      "map_calls": 0
+    },
+    "normalized_labels_after": {
+      "conditionals": 41,
+      "map_calls": 640
+    },
+    "added": [
+      "_SuiteWorkspaceState:fields:_aboutChannel"
+    ],
+    "removed": [],
+    "changed": [
+      "_SuiteWorkspaceState:method:initState",
+      "_SuiteWorkspaceState:method:dispose",
+      "_SuiteWorkspaceState:method:_showAbout"
+    ],
+    "unchanged": 441,
+    "scope": "AST comparison normalizes only exact Arabic/English conditional labels to matching German-map lookup calls, and redundant parentheses. Other syntax is preserved structurally."
+  },
+  "imports_added": [
+    "import 'studio_about.dart';"
+  ],
+  "imports_removed": [],
+  "resolved_finding": {
+    "description": "18 German map values contained reversibleUTF8/Latin1 mojibake; exact values corrected without changing keys or other source.",
+    "mapping_file": "late-about-german-encoding-repair.json",
+    "mapping_sha256": "8360edeaeebeb1d561a85ab0871269b6bc73ed9186cae484fb4df43391fe0480"
+  },
+  "remaining_blocking_findings": [],
+  "conclusions": [
+    "Mail packages and enough_mail, Hunspell package/host cancellation code, Word routing/cascade/setter code, and all prior tests remain byte-identical outside the eight declared Studio paths.",
+    "Workspace AST normalization verifies equivalent English/Arabic label expressions become the matchingGerman-map calls;441 of444 previous members remain structurally equivalent, no members are removed, and onlyAbout lifecycle/entrypoint methods change plus its channel field.",
+    "TheAbout channel name crispoffice/about and show method match between Swift and Dart; XIB selector showCrispOfficeAbout: targets theAppDelegate object. Flutter unregisters the handler on dispose and checks mounted before handling requests.",
+    "About uses the existing registered branding asset and adds explicit external source/website links plus the existing license registry. url_launcher^6.3.1 already existed as an editor dependency; locked6.3.3 satisfies the new directStudio edge.",
+    "The eighteen encoding corrections are a bounded reversible text repair; no application behavior was changed by that corrective commit."
+  ],
+  "artifacts": {
+    "compare_ast.dart": {
+      "sha256": "ad49e0c348b9b1328a991d74efdf34a8f99d18a85d56b90fa0b05d286272d430",
+      "bytes": 3304
+    },
+    "semantic-delta.json": {
+      "sha256": "ae87f484883335e656c015391c2eac4ff2c2c18c057d14c9f53e4f0fd3413689",
+      "bytes": 659
+    },
+    "before.dart": {
+      "sha256": "460c51d1da767183710d03edfabd401f3a478f938d189e0397a6c7e22f60ab34",
+      "bytes": 361662
+    },
+    "after.dart": {
+      "sha256": "47d266cf1ae4c82dc4571ac1c2012180ac436a072d71c7c3c86869e6c43bf2fc",
+      "bytes": 386191
+    }
+  },
+  "boundaries": [
+    "This review adds no product test or native macOS execution claim. Parent final frozen qualification will execute all23Studio suites and strict checks.",
+    "AST comparison uses the pinned local analyzer on saved immutable source bytes; it does not execute application code.",
+    "The late main guard is accounted separately from the bounded09:05 origin capture and earlier08:03 upstream capture.",
+    "No remote refresh or GitHubActions endpoint was used."
+  ]
+}

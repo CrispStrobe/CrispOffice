@@ -59,6 +59,37 @@ keeping stdout and exit validation strict. An independent scoped audit accepts
 Hunspell checks will run on the final source. The earlier Arabic/Hunspell groups
 are excluded from the final acceptance matrix rather than counted twice.
 
+## Final captured heads and fresh replay
+
+Later main `baf3dbd0` adds Studio's explicit dictionary setup, Word complex-script
+language routing, default settings and artifact workflow. The final bounded
+origin refresh at 09:05:31 UTC / 10:05:31 CET captures **424 actual origin refs**.
+Its two new frontier heads, `293f4544` and `c0c71a26`, are retained as parents of
+checkpoint `39444f0d`, including all their separate qualification archives and
+unique regressions. The earlier four upstream refs keep their earlier capture
+time. The [refresh and reconciliation record](merge-refresh/README.md) explains
+all scope and conflict decisions.
+
+Independent review repaired true-letter language detection, effective Word
+language selection/reset and inherited default-on complex-script markers.
+Dictionary cancellation now interrupts stalled headers and bodies; the
+[Word and cancellation review](review/word-complex-script-review.md) preserves
+failed reproductions and passing author checks. Delayed Mail picker and file
+reads, three native ownership fixture families, all Arabic controls and the
+current English/default-hidden-comments Studio behavior remain covered.
+
+The incoming Mail analyzer exclusion changes one configuration input in the
+previous exact closure. The final qualification therefore uses **fresh Mail
+replay on the combined source**, not the historical 953-case acceptance subset.
+That subset and the rejected overall attempt remain preserved separately.
+
+The later merge guard captured main `00014577`: eight Studio About/German-label,
+branding and macOS menu paths. It is also retained before qualification. The
+added `url_launcher` edge uses the unchanged workspace lock. Eighteen malformed
+German values were repaired without changing dictionary keys, and the two new
+Dart files are included in strict checks. This later main observation is kept
+separate from the bounded 09:05 ref snapshot.
+
 ## Implemented behavior
 
 The native provider discovers existing UIDs with strict simple SEARCH and pages
@@ -149,48 +180,53 @@ the actual Hunspell backend. No fake backend result qualifies real spelling.
 The incoming macOS runner is preserved and its structured assets parse. This
 Linux-host qualification does not build or execute macOS, iOS, Android or Windows.
 
-## Current committed follow-up
+## Current committed qualification
 
-The [tail native plan](tail-native-plan.json) selects **37 suites**: seven Arabic/
-shared-engine suites, eight editor proofing suites, all 19 Studio suites and
-three Hunspell suites. The [tail Node plan](tail-node-plan.json) selects **14
-suites**, including all ten deferred Mail/MIME/fork suites and four Arabic/
-Hunspell suites. Strict analysis and formatting cover **119 Dart paths**, including
-all 23 Dart paths changed by the later main and compatibility repairs.
+The [tail native plan](tail-native-plan.json) selects **53 suites**: 13 Arabic,
+Word and shared-engine suites, 11 editor suites, all 23 ordinary Studio suites
+and six Hunspell suites. The [tail Node plan](tail-node-plan.json) selects
+**19 suites**, including all ten Mail/MIME/fork suites, eight Arabic/Word/shared
+suites and the portable Hunspell provider suite. Strict analysis and formatting
+cover **150 Dart paths**, including all 64 extant Dart paths changed since the
+retained `162f53c0` attempt.
 
-The [driver](run_tail_validation.py) verifies the independently audited 953-case
-Mail subset, its complete archived evidence, all **399 unchanged Mail/configuration
-inputs** and **11,175 unchanged prior runtime records** before any carryforward.
-The runtime receipt is deliberately augmented with verified Poppler inputs. The
-source and runtime remain bound throughout the new execution. Screenshot output
-is enabled so all Studio suites run; native standard error is preserved separately
-from strict JSON reporter output. Superseded Arabic/Hunspell executions are not
-added to the final matrix.
+Fresh replay additionally runs all current core/store suites and the
+[64-suite native Mail plan](mail-replay-plan.json). The driver binds the exact
+source, dependency inputs and runtime before and after execution. It enables
+screenshot output, actual Linux Hunspell/AyaSpell checks, all three distinct
+native fixture families and the pinned public dictionary download. Native
+standard error is preserved separately from strict JSON reporter output.
+Zero skips, failed cases, unfinished cases and malformed stdout are required.
+No historical application execution is added to this fresh gate's totals.
+
+The previous exact carryforward option remains reproducible for sources that
+match its complete input closure. It is deliberately not used for this source.
 
 ## Reproduce
 
 Use the [original runtime restoration](runtime/README.md), then the additional
 [Hunspell preparation](runtime/combined-README.md) and
-[Studio/Poppler preparation](runtime/tail-README.md). All source, tests, plans and
-drivers must be committed before execution. Keep runtime and output directories
+[Studio/Poppler preparation](runtime/tail-README.md), followed by the
+[final installed-library/fixture preparation](runtime/final-README.md) and
+[post-About workspace binding](runtime/about-README.md). All
+source, tests, plans and drivers must be committed before execution. Keep runtime and output directories
 outside the source checkout and use an empty output directory for every attempt.
 
-The current bounded gate reuses only the verified unchanged Mail subset:
+The current gate executes the complete selected Mail and Office matrix afresh:
 
 ```bash
 python3 docs/validation/mail-uid-pagination-20261119/run_tail_validation.py \
   --head FINAL_SOURCE_COMMIT \
   --base 162f53c0aff2314d88df912f9a64c0838e2a9da4 \
   --runtime /absolute/path/to/runtime \
-  --output /absolute/path/to/empty-results --command-timeout 600
+  --output /absolute/path/to/empty-results --command-timeout 600 --replay-mail
 ```
 
-For a completely fresh qualification on the current source, add `--replay-mail`.
-That option runs current core/store plus the [five-group native Mail replay
-plan](mail-replay-plan.json) before the tail gates; it does not require rerunning
-the rejected historical attempt. Every case and diagnostic stream is preserved.
-The default gate refuses any changed Mail or previously qualified runtime input;
-use the fresh option when that exact carryforward check cannot be satisfied.
+`--replay-mail` runs current core/store and the five native Mail groups before
+the tail gates. Every current case and diagnostic stream is preserved. The
+historical failed attempt is not replayed or relabeled. Omitting this option
+invokes the strict old carryforward checks, which correctly refuse this source's
+changed Mail analyzer input.
 
 ## Acceptance boundaries
 

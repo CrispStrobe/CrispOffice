@@ -273,14 +273,16 @@ class WhitespaceInputTests(unittest.TestCase):
             ("license.hunspell", "fad5a162300e7d1719ff6b7ba3713aaaa501a4bc"),
             ("license.myspell", "2da533075026777f93882fdeb11ff02a711d4b81"),
         ]:
-            path = "packages/quds_proofing_hunspell/licenses/upstream/" + name
-            entry = {"path": path, "git_blob": blob, "reason": "Verbatim pinned upstream notice"}
-            tracked = {path: {"mode": "100644", "git_blob": blob}}
-            with self.subTest(name=name):
-                preserved = gate.validate_whitespace_preserved_inputs([entry], tracked)
-                self.assertEqual(preserved, [entry])
-                self.assertEqual(gate.whitespace_command("base", "head", preserved)[-1],
-                                 ":(exclude)" + path)
+            for prefix in ["packages/quds_proofing_hunspell/licenses/upstream/",
+                           "packages/quds_office_editor/example/assets/licenses/hunspell/"]:
+                path = prefix + name
+                entry = {"path": path, "git_blob": blob, "reason": "Verbatim pinned upstream notice"}
+                tracked = {path: {"mode": "100644", "git_blob": blob}}
+                with self.subTest(path=path):
+                    preserved = gate.validate_whitespace_preserved_inputs([entry], tracked)
+                    self.assertEqual(preserved, [entry])
+                    self.assertEqual(gate.whitespace_command("base", "head", preserved)[-1],
+                                     ":(exclude)" + path)
 
     def test_changed_upstream_notice_pin_is_rejected_even_when_tracked(self):
         path = "packages/quds_proofing_hunspell/licenses/upstream/COPYING.MPL"
@@ -298,6 +300,8 @@ class WhitespaceInputTests(unittest.TestCase):
             "packages/quds_proofing_hunspell/licenses/upstream/OTHER.txt",
             "packages/quds_proofing_hunspell/licenses/upstream/LICENSE.md",
             "packages/quds_proofing_hunspell/licenses/upstream/COPYING.MPL.copy",
+            "packages/quds_office_editor/example/assets/licenses/hunspell/OTHER.txt",
+            "packages/quds_office_editor/example/assets/licenses/hunspell/COPYING.MPL.copy",
             "packages/other/licenses/upstream/COPYING.MPL",
         ]:
             blob = "7714141d154290f53e9e60c615a8edc9b51a8df7"

@@ -294,11 +294,17 @@ PINNED_UPSTREAM_NOTICE_BLOBS = {
         "fad5a162300e7d1719ff6b7ba3713aaaa501a4bc",
     "packages/quds_proofing_hunspell/licenses/upstream/license.myspell":
         "2da533075026777f93882fdeb11ff02a711d4b81",
+    "packages/quds_office_editor/example/assets/licenses/hunspell/COPYING.MPL":
+        "7714141d154290f53e9e60c615a8edc9b51a8df7",
+    "packages/quds_office_editor/example/assets/licenses/hunspell/license.hunspell":
+        "fad5a162300e7d1719ff6b7ba3713aaaa501a4bc",
+    "packages/quds_office_editor/example/assets/licenses/hunspell/license.myspell":
+        "2da533075026777f93882fdeb11ff02a711d4b81",
 }
 
 
 def validate_whitespace_preserved_inputs(entries: object, tracked: dict) -> list[dict]:
-    """Allow frozen evidence and three pinned upstream notices; no glob exclusions."""
+    """Allow frozen evidence and exact upstream notice copies; no glob exclusions."""
     if not isinstance(entries, list):
         raise RuntimeError("whitespace_preserved_inputs must be an explicit list")
     validated, seen = [], set()

@@ -25,7 +25,7 @@ void main() {
     addTearDown(() => tester.binding.setSurfaceSize(null));
     await tester.pumpWidget(const QudsOfficeStudioApp());
     await _pump(tester);
-    await tester.tap(find.byTooltip('اللغة'));
+    expect(find.byTooltip('Language'), findsOneWidget);
     await _pump(tester);
     final pdfApp = find.byWidgetPredicate(
       (widget) => widget is StudioAppSwitcher && widget.label == 'PDF',

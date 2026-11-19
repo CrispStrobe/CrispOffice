@@ -9387,6 +9387,7 @@ class WordEditorController extends OfficeController {
         headerFooterVariant: _editingHeaderFooterVariant,
         note: note,
         documentLanguage: document.proofingLanguage,
+        documentComplexScriptLanguage: document.complexScriptLanguage,
         styles: _textProofingStylesToken,
         tracking: document.trackRevisions,
         restricted: document.restrictEditing,
@@ -9609,8 +9610,15 @@ class WordEditorController extends OfficeController {
       final reader = WordDeserializer();
       return _setTextProofingOption(
         target,
-        prepare: (source, preview, start, end) => reader
-            .clearRunProofingLanguage(document, source, preview, start, end),
+        prepare: (source, preview, start, end) =>
+            reader.clearRunProofingLanguage(
+              document,
+              source,
+              preview,
+              start,
+              end,
+              includeComplexScript: true,
+            ),
       );
     }
     return _setTextProofingOption(
@@ -9619,8 +9627,12 @@ class WordEditorController extends OfficeController {
         preview,
         start,
         end,
-        needsChange: (properties) => properties.proofingLanguage != normalized,
-        update: (properties) => properties.proofingLanguage = normalized,
+        needsChange: (properties) =>
+            properties.proofingLanguage != normalized ||
+            properties.complexScriptLanguage != normalized,
+        update: (properties) => properties
+          ..proofingLanguage = normalized
+          ..complexScriptLanguage = normalized,
       ),
     );
   }

@@ -1,0 +1,23 @@
+{
+  "before_members": 444,
+  "after_members": 445,
+  "normalized_labels_before": {
+    "conditionals": 681,
+    "map_calls": 0
+  },
+  "normalized_labels_after": {
+    "conditionals": 41,
+    "map_calls": 640
+  },
+  "added": [
+    "_SuiteWorkspaceState:fields:_aboutChannel"
+  ],
+  "removed": [],
+  "changed": [
+    "_SuiteWorkspaceState:method:initState",
+    "_SuiteWorkspaceState:method:dispose",
+    "_SuiteWorkspaceState:method:_showAbout"
+  ],
+  "unchanged": 441,
+  "scope": "AST comparison normalizes only exact Arabic/English conditional labels to matching German-map lookup calls, and redundant parentheses. Other syntax is preserved structurally."
+}

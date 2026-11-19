@@ -22,7 +22,7 @@ abstract final class CrispOfficeSample {
           blocks: <WmlBlock>[
             paragraph('CrispOffice product brief', style: 'Title'),
             paragraph(
-              'A neutral sample document for the CrispOffice Studio workspace. '
+              'A sample document for the CrispOffice workspace. '
               'It demonstrates headings, body text and editable paragraphs '
               'without third-party content.',
             ),

@@ -9,10 +9,10 @@ Arabic: the AyaSpell bundle published unmodified at
 [`cstr/ayaspell-ar-hunspell`](https://huggingface.co/cstr/ayaspell-ar-hunspell/tree/e9ace7cca3844bef906d8d9fc5431c4e15bd2740)
 (immutable revision `e9ace7cc…`). Nothing is downloaded or enabled by default.
 
-This package supplies the provider, installer and backend. App registration,
-the download interface and packaging into each host target remain host work.
-The repository's Studio example now implements dictionary setup and provider
-registration; see the Arabic proofing roadmap for platform qualification.
+This package supplies the provider, installer and backend. Studio implements
+dictionary setup and provider registration; other hosts supply their own user
+interface and registration. See the Arabic proofing roadmap for platform
+qualification.
 
 - **Engine (part of the app):** the MIT adapter `native/src/quds_hunspell.cpp`
   compiled with the unmodified Hunspell 1.7.2 library sources under their
@@ -62,7 +62,16 @@ share this cleanup. Reopening first releases the previous handle, including
 when the replacement cannot be allocated. A native finalizer backs up abnormal
 worker termination. If the worker cannot acknowledge shutdown within two
 seconds, it is terminated; this fallback does not promise immediate completion
-of a synchronous native call or immediate finalizer execution.
+of a synchronous native call or immediate finalizer execution. Termination waits
+for the current worker event boundary so a native open can attach ownership
+before exit. Missing affix or dictionary files are rejected before native
+admission, including an existing affix file paired with an absent dictionary.
+
+Native installation and Studio's web host subscribe to cancellation while
+waiting for headers and while reading a response body. Cancelling closes the
+active connection; an already-cancelled request creates no client. Native
+staging is cleaned up and a subsequent explicit retry can succeed. The native
+host removes its cancellation listener after the operation settles.
 
 ## Behaviour
 
@@ -98,6 +107,20 @@ The fixture suite is separate from qualification against the real Hunspell
 library and verified AyaSpell dictionary. Ordinary package tests skip this
 optional suite when its compiled fixture is absent. Complete qualification
 requires the hash-bound fixture and rejects skipped cases.
+
+Two independently authored fixture families are also retained, with distinct
+environment variables so incompatible counter ABIs cannot be confused:
+
+| Test file | Fixture source | Environment variable |
+| --- | --- | --- |
+| `test/native_lifecycle_test.dart` | `test/fixtures/lifecycle_hunspell.cpp` | `QUDS_HUNSPELL_LIFECYCLE_LIBRARY` |
+| `test/hunspell_native_lifecycle_test.dart` | `test/support/lifecycle_library.cpp` | `QUDS_HUNSPELL_OWNERSHIP_LIBRARY` |
+| `test/provider_native_lifecycle_test.dart` | `test/support/hunspell_lifecycle_shim.cpp` | `QUDS_HUNSPELL_PROVIDER_LIFECYCLE_LIBRARY` |
+
+The ownership family holds native open/check calls for 3.5 seconds to exercise
+the retained two-second shutdown fallback. Its bounded disposal assertions
+remain below the native delay, then independently observe eventual handle
+closure. The provider family checks shared disposal and timeout cleanup.
 
 ## Build and package
 

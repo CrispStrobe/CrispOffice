@@ -163,10 +163,13 @@ below. No Arabic resource is downloaded by default.
    or the document default's complex-script language
    (`wordRunProofingLanguage`), so Arabic in Word documents with
    `w:val="en-US" w:bidi="ar-SA"` reaches the Arabic providers; Latin runs
-   keep `w:val`. Both attributes stay read-only for routing and round-trip
-   unchanged (tested). Setting a language from the selection still writes
-   `w:val` only; for an Arabic run the complex-script language keeps
-   precedence.
+   keep `w:val`. Digits, punctuation and combining marks alone do not select
+   the complex-script language. Unmodified attributes round-trip unchanged.
+   Setting the selection language updates both `w:val` and `w:bidi`, so the
+   choice also takes effect for Arabic/RTL runs; resetting to inherit clears
+   those two direct overrides while retaining East Asian language and other
+   native formatting. Document defaults remain live, and a changed default
+   invalidates an already captured selection target.
 
    Interpreting LanguageTool's Arabic rules is assessed
    [below](#languagetool-arabic-assessment-v68).

@@ -10,10 +10,10 @@ void main() {
       addTearDown(() => tester.binding.setSurfaceSize(null));
       await tester.pumpWidget(const QudsOfficeStudioApp());
       await tester.pump();
-      await tester.tap(find.text('مراجعة'));
+      await tester.tap(find.text('Review'));
       await tester.pump();
-      expect(find.text('تدقيق'), findsOneWidget);
-      expect(find.text('تحليل AOT'), findsNothing);
+      expect(find.text('Spelling'), findsOneWidget);
+      expect(find.text('AOT analysis'), findsNothing);
       await tester.pumpWidget(const SizedBox.shrink());
       expect(tester.takeException(), isNull);
     },
@@ -27,15 +27,15 @@ void main() {
     await tester.pumpWidget(const QudsOfficeStudioApp());
     await tester.pump();
 
-    expect(find.text('CrispOffice Studio'), findsOneWidget);
-    expect(find.text('المستندات'), findsWidgets);
+    expect(find.text('CrispOffice'), findsOneWidget);
+    expect(find.text('Documents'), findsWidgets);
 
-    await tester.tap(find.text('جداول البيانات').first);
+    await tester.tap(find.text('Spreadsheets').first);
     await tester.pump();
     expect(find.text('Budget'), findsWidgets);
     expect(find.text('Roster'), findsWidgets);
 
-    await tester.tap(find.text('العروض التقديمية').first);
+    await tester.tap(find.text('Presentations').first);
     await tester.pump();
     expect(find.textContaining('.pptx'), findsWidgets);
     expect(tester.takeException(), isNull);

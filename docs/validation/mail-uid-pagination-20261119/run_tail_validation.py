@@ -177,6 +177,11 @@ def main() -> int:
     lifecycle = json.loads(Path(native_preparation["lifecycle_receipt"]).read_text())
     if digest(repo / lifecycle["source"]) != lifecycle["source_sha256"]:
         raise RuntimeError("Rebuild the native lifecycle fixture after changing its source")
+    for environment, fixture in receipt.get("lifecycle_fixtures", {}).items():
+        if (digest(repo / fixture["source"]) != fixture["source_sha256"]
+                or digest(Path(fixture["library"])) != fixture["library_sha256"]
+                or digest(Path(fixture["receipt"])) != fixture["receipt_sha256"]):
+            raise RuntimeError("Rebuild/rebind the changed lifecycle fixture: " + environment)
     write_json(output / "source-before.json", before_source)
     write_json(output / "runtime-before.json", before_runtime)
     env = dict(os.environ, PUB_CACHE=str(runtime / "pub-cache"), FLUTTER_ROOT=str(runtime / "flutter"),
@@ -187,12 +192,14 @@ def main() -> int:
     env["PATH"] = str(runtime / "bin") + os.pathsep + env.get("PATH", "")
     qualification_environment = receipt.get("qualification_environment", {})
     required_environment = {"QUDS_HUNSPELL_TEST_LIBRARY", "QUDS_HUNSPELL_TEST_DICTIONARY",
-                            "QUDS_HUNSPELL_LIFECYCLE_LIBRARY", "QUDS_HUNSPELL_LIVE_DOWNLOAD"}
+                            "QUDS_HUNSPELL_LIFECYCLE_LIBRARY", "QUDS_HUNSPELL_LIVE_DOWNLOAD",
+                            "QUDS_HUNSPELL_OWNERSHIP_LIBRARY", "QUDS_HUNSPELL_PROVIDER_LIFECYCLE_LIBRARY"}
     if set(qualification_environment) != required_environment or any(
         not isinstance(value, str) for value in qualification_environment.values()
     ) or qualification_environment["QUDS_HUNSPELL_LIVE_DOWNLOAD"] != "1":
         raise RuntimeError("Bind and enable the genuine native Hunspell and dictionary qualification environment")
-    for name in ("QUDS_HUNSPELL_TEST_LIBRARY", "QUDS_HUNSPELL_LIFECYCLE_LIBRARY"):
+    for name in ("QUDS_HUNSPELL_TEST_LIBRARY", "QUDS_HUNSPELL_LIFECYCLE_LIBRARY",
+                 "QUDS_HUNSPELL_OWNERSHIP_LIBRARY", "QUDS_HUNSPELL_PROVIDER_LIFECYCLE_LIBRARY"):
         path = qualification_environment[name]
         if path not in receipt.get("additional_inputs", {}):
             raise RuntimeError("The selected native library is not hash-bound: " + name)

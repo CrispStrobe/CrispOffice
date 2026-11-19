@@ -133,7 +133,13 @@
     "docs/validation/mail-uid-pagination-20261119/attempt-162f53c0/accepted-mail-cases.json.gz",
     "docs/validation/mail-uid-pagination-20261119/attempt-162f53c0/evidence-files.json",
     "docs/validation/mail-uid-pagination-20261119/attempt-162f53c0/attempt-162f53c0.tar.xz",
-    "docs/validation/mail-uid-pagination-20261119/attempt-162f53c0/attempt-162f53c0.tar.index.json"
+    "docs/validation/mail-uid-pagination-20261119/attempt-162f53c0/attempt-162f53c0.tar.index.json",
+    "docs/validation/mail-uid-pagination-20261119/runtime/host-notice-preservation.json",
+    ".github/workflows/crispoffice-binaries.yml",
+    "docs/validation/mail-uid-pagination-20261119/runtime/refresh_final_runtime.py",
+    "docs/validation/mail-uid-pagination-20261119/runtime/final-runtime.json",
+    "docs/validation/mail-uid-pagination-20261119/runtime/refresh_about_runtime.py",
+    "docs/validation/mail-uid-pagination-20261119/runtime/about-runtime.json"
   ],
   "whitespace_preserved_inputs": [
     {
@@ -150,6 +156,21 @@
       "path": "packages/quds_proofing_hunspell/licenses/upstream/license.myspell",
       "git_blob": "2da533075026777f93882fdeb11ff02a711d4b81",
       "reason": "Preserve the exact Hunspell 1.7.2 upstream license notice bytes, verified against the pinned release archive and licenses/manifest.json; see runtime/upstream-notice-preservation.json."
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/licenses/hunspell/COPYING.MPL",
+      "git_blob": "7714141d154290f53e9e60c615a8edc9b51a8df7",
+      "reason": "Preserve the exact upstream Hunspell 1.7.2 notice copied into Studio assets; byte identity verified against the pinned archive, original package notice and license manifest. See runtime/host-notice-preservation.json."
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/licenses/hunspell/license.hunspell",
+      "git_blob": "fad5a162300e7d1719ff6b7ba3713aaaa501a4bc",
+      "reason": "Preserve the exact upstream Hunspell 1.7.2 notice copied into Studio assets; byte identity verified against the pinned archive, original package notice and license manifest. See runtime/host-notice-preservation.json."
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/licenses/hunspell/license.myspell",
+      "git_blob": "2da533075026777f93882fdeb11ff02a711d4b81",
+      "reason": "Preserve the exact upstream Hunspell 1.7.2 notice copied into Studio assets; byte identity verified against the pinned archive, original package notice and license manifest. See runtime/host-notice-preservation.json."
     }
   ]
 }

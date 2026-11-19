@@ -1,3 +1,5 @@
+import 'studio_de_strings.dart';
+
 /// User-facing Studio chrome in English, German and Arabic.
 enum StudioLanguage { en, de, ar }
 
@@ -5,6 +7,8 @@ final class StudioStrings {
   const StudioStrings(this.language);
 
   final StudioLanguage language;
+
+  static String de(String english) => studioGerman[english] ?? english;
 
   String _t(String en, String de, String ar) => switch (language) {
     StudioLanguage.en => en,
@@ -78,4 +82,37 @@ final class StudioStrings {
     'Öffnen Sie eine .eml-Nachricht, um sie hier zu lesen.',
     'افتح رسالة .eml لقراءتها هنا.',
   );
+  String get viewLicences =>
+      _t('View licences', 'Lizenzen anzeigen', 'عرض التراخيص');
+  String get aboutVersion => _t('Version', 'Version', 'الإصدار');
+  String get aboutProduct => _t('Product', 'Produkt', 'المنتج');
+  String get aboutLegal => _t('Legal', 'Rechtliches', 'قانوني');
+  String get aboutSource =>
+      _t('Source and attribution', 'Quelle und Zuordnung', 'المصدر والإسناد');
+  String get aboutProductText => _t(
+    'Documents, spreadsheets and presentations are edited locally by the independent CrispOffice engine. No Microsoft Office installation is required.',
+    'Dokumente, Tabellen und Präsentationen werden lokal von der unabhängigen CrispOffice-Engine bearbeitet. Eine Microsoft-Office-Installation ist nicht erforderlich.',
+    'تُحرَّر المستندات وجداول البيانات والعروض التقديمية محليًا بواسطة محرك CrispOffice المستقل. لا يلزم تثبيت Microsoft Office.',
+  );
+  String get aboutSourceText => _t(
+    'CrispOffice is built on the MIT-licensed Quds Office engine and editor, with additional independent work by CrispStrobe. Corresponding source is available from the project repository.',
+    'CrispOffice basiert auf der MIT-lizenzierten Quds-Office-Engine und dem Editor, ergänzt durch unabhängige Arbeit von CrispStrobe. Der zugehörige Quellcode ist im Projekt-Repository verfügbar.',
+    'يعتمد CrispOffice على محرك ومحرر Quds Office المرخّصين بموجب MIT، مع أعمال مستقلة إضافية من CrispStrobe. يتوفر الكود المصدري المقابل في مستودع المشروع.',
+  );
+  String get serviceProvider =>
+      _t('Service Provider', 'Dienstanbieter', 'مزوّد الخدمة');
+  String get contact => _t('Contact', 'Kontakt', 'اتصل بنا');
+  String get disclaimer =>
+      _t('Disclaimer', 'Haftungsausschluss', 'إخلاء المسؤولية');
+  String get disclaimerText => _t(
+    'This software is provided "as is", without warranty of any kind. CrispOffice is independent software and is not affiliated with any office-suite or cloud provider.',
+    'Diese Software wird "wie besehen" bereitgestellt, ohne jegliche Garantie. CrispOffice ist unabhängige Software und nicht mit einem Office- oder Cloud-Anbieter verbunden.',
+    'يُقدَّم هذا البرنامج «كما هو» دون أي ضمان. CrispOffice برنامج مستقل وغير تابع لأي مزوّد مكتبي أو سحابي.',
+  );
+  String get sourceCode => _t(
+    'Source Code (GitHub)',
+    'Quellcode (GitHub)',
+    'الشفرة المصدرية (GitHub)',
+  );
+  String get website => _t('Website', 'Webseite', 'الموقع الإلكتروني');
 }

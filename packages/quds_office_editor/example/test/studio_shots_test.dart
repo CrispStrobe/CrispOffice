@@ -100,14 +100,14 @@ void main() {
     await tester.runAsync(() => _save(boundaryKey, 'word.png'));
 
     for (final (String tab, String file) in <(String, String)>[
-      ('جداول البيانات', 'excel.png'),
-      ('العروض التقديمية', 'powerpoint.png'),
+      ('Spreadsheets', 'excel.png'),
+      ('Presentations', 'powerpoint.png'),
       ('PDF', 'pdf.png'),
     ]) {
       await tester.tap(find.text(tab).first);
       await settle();
       if (tab == 'PDF') {
-        await tester.tap(find.text('صفحة').first);
+        await tester.tap(find.text('Fit page').first);
       }
       await settle();
       await tester.runAsync(() => _save(boundaryKey, file));
