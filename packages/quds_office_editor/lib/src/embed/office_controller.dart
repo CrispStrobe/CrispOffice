@@ -9617,23 +9617,14 @@ class WordEditorController extends OfficeController {
               preview,
               start,
               end,
-              includeComplexScript: true,
+              activeLanguageOnly: true,
             ),
       );
     }
     return _setTextProofingOption(
       target,
-      prepare: (source, preview, start, end) => _prepareTextProofingRuns(
-        preview,
-        start,
-        end,
-        needsChange: (properties) =>
-            properties.proofingLanguage != normalized ||
-            properties.complexScriptLanguage != normalized,
-        update: (properties) => properties
-          ..proofingLanguage = normalized
-          ..complexScriptLanguage = normalized,
-      ),
+      prepare: (source, preview, start, end) =>
+          _prepareTextProofingLanguage(preview, start, end, normalized),
     );
   }
 
@@ -9652,6 +9643,40 @@ class WordEditorController extends OfficeController {
       update: (properties) => properties.noProof = !enabled,
     ),
   );
+
+  static bool _prepareTextProofingLanguage(
+    WmlParagraph preview,
+    int start,
+    int end,
+    String language,
+  ) {
+    final range = WmlRunEdit.normalizeRange(preview, start, end);
+    WmlRunEdit.splitAt(preview, range.end);
+    WmlRunEdit.splitAt(preview, range.start);
+    // Choose the language slot from each selected fragment, rather than from
+    // unselected Arabic/Hebrew letters elsewhere in its original run.
+    final complexProperties = {
+      for (final run in preview.inlines.whereType<WmlRun>())
+        if (wordRunUsesComplexScriptLanguage(run)) run.properties,
+    };
+    return _prepareTextProofingRuns(
+      preview,
+      range.start,
+      range.end,
+      needsChange: (properties) =>
+          (complexProperties.contains(properties)
+              ? properties.complexScriptLanguage
+              : properties.proofingLanguage) !=
+          language,
+      update: (properties) {
+        if (complexProperties.contains(properties)) {
+          properties.complexScriptLanguage = language;
+        } else {
+          properties.proofingLanguage = language;
+        }
+      },
+    );
+  }
 
   static bool _prepareTextProofingRuns(
     WmlParagraph preview,

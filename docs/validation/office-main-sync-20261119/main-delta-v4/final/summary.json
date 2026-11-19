@@ -1,0 +1,139 @@
+{
+  "passed": true,
+  "source_commit": "5c18db77505f876bf70bf7e89c49e8c3b617e0d4",
+  "source_tree": "c29e6bae74ed0c1d0375fa230bf54762658c69cb",
+  "application_case_executions": 1026,
+  "suite_platform_executions": 49,
+  "distinct_test_files": 38,
+  "failed": 0,
+  "skipped": 0,
+  "separate_python_controls": 21,
+  "groups": [
+    {
+      "gate": "native",
+      "name": "hunspell-native",
+      "suites": 4,
+      "passed": 28,
+      "failed": 0,
+      "skipped": 0,
+      "excluded_hidden_success_events": 6,
+      "raw_log_sha256": "cbbe969fdfbf961b5b673ca6d7236f68de4b158f058dd75271c6c3b27b26d68f",
+      "exact_case_inventory_match": true
+    },
+    {
+      "gate": "native",
+      "name": "cursor-main-merge-vm",
+      "suites": 4,
+      "passed": 50,
+      "failed": 0,
+      "skipped": 0,
+      "excluded_hidden_success_events": 4,
+      "raw_log_sha256": "9632e6bf7c965ef06c073f74d9a4b6ee66aa181ca9b7de9b13f1b918d0c560f4",
+      "exact_case_inventory_match": true
+    },
+    {
+      "gate": "native",
+      "name": "arabic-main-merge-vm",
+      "suites": 3,
+      "passed": 294,
+      "failed": 0,
+      "skipped": 0,
+      "excluded_hidden_success_events": 3,
+      "raw_log_sha256": "e466a543ff7073cc2e03fd6e9aa2bde9b4eb09f69a66a72a768311358fb5dcf5",
+      "exact_case_inventory_match": true
+    },
+    {
+      "gate": "native",
+      "name": "word-language-and-findings-vm",
+      "suites": 5,
+      "passed": 70,
+      "failed": 0,
+      "skipped": 0,
+      "excluded_hidden_success_events": 5,
+      "raw_log_sha256": "3f8ba913de3e009de5204e2ec48d3e95fe80eb834c0c21cdd82df17005b0cdf3",
+      "exact_case_inventory_match": true
+    },
+    {
+      "gate": "native",
+      "name": "word-arabic-main-merge-vm",
+      "suites": 4,
+      "passed": 73,
+      "failed": 0,
+      "skipped": 0,
+      "excluded_hidden_success_events": 4,
+      "raw_log_sha256": "d3f65e2f47deb250af4e408f3c144d95e311a1e1285c583b5abf3c2261e0d44a",
+      "exact_case_inventory_match": true
+    },
+    {
+      "gate": "native",
+      "name": "studio-main-merge-vm",
+      "suites": 18,
+      "passed": 119,
+      "failed": 0,
+      "skipped": 0,
+      "excluded_hidden_success_events": 18,
+      "raw_log_sha256": "06c3fe9e41cfbcd96e9e1f2c5d237456993279389f67fb2536bc50a46209220a",
+      "exact_case_inventory_match": true
+    },
+    {
+      "gate": "node",
+      "name": "hunspell-provider-node",
+      "suites": 1,
+      "passed": 11,
+      "failed": 0,
+      "skipped": 0,
+      "excluded_hidden_success_events": 1,
+      "raw_log_sha256": "e829174b85517cbbe7e284b684ea6b6bf6beea205fca1defbfa57215d1cf06b8",
+      "exact_case_inventory_match": true
+    },
+    {
+      "gate": "node",
+      "name": "cursor-main-merge-node",
+      "suites": 2,
+      "passed": 17,
+      "failed": 0,
+      "skipped": 0,
+      "excluded_hidden_success_events": 2,
+      "raw_log_sha256": "d762625e15f478af0cd7ecf2bce1431dfa6a4dc20cf8ff194d9c3f504584b894",
+      "exact_case_inventory_match": true
+    },
+    {
+      "gate": "node",
+      "name": "arabic-main-merge-node",
+      "suites": 3,
+      "passed": 294,
+      "failed": 0,
+      "skipped": 0,
+      "excluded_hidden_success_events": 3,
+      "raw_log_sha256": "883af24eb4db5061c8f2050bb500957b0eb6615003fb8bc69d03bc162c814542",
+      "exact_case_inventory_match": true
+    },
+    {
+      "gate": "node",
+      "name": "word-language-and-findings-node",
+      "suites": 5,
+      "passed": 70,
+      "failed": 0,
+      "skipped": 0,
+      "excluded_hidden_success_events": 5,
+      "raw_log_sha256": "de8611759af5417e8a57e7fc1c518af6d6100ac48c5754ce95f5c4aad36e58f2",
+      "exact_case_inventory_match": true
+    }
+  ],
+  "prior_qualification": {
+    "source_commit": "0669ac119da05f5eb777c8cfdbce32e0261df647",
+    "application_executions": 1372,
+    "separate_python_controls": 90,
+    "application_cases_added_to_delta": 0,
+    "python_controls_added_to_delta": 0
+  },
+  "development_cases_added_to_delta": 0,
+  "github_actions": "NOT QUERIED OR AWAITED",
+  "started_at_utc": "2026-11-19T09:51:27.081346+00:00",
+  "finished_at_utc": "2026-11-19T10:00:37.190780+00:00",
+  "source_inputs": 5125,
+  "runtime_inputs": 11171,
+  "fixture_inputs": 13,
+  "independent_summary_sha256": "fbb36747e13fb736b0f4e9604f0c76d3d49fcafd3aa87aba4902c191d5fddb45",
+  "original_execution_sha256": "18a2beac690d5ea4c3c2a25dbfa8ca6c7e20a79f997e691f9cd1212e97e4601f"
+}

@@ -78,7 +78,10 @@ void main() {
     final PdfFile night = PdfFile.open(cairo);
     expect(night.pageCount, greaterThan(1));
     expect(_hasArabic(PdfExtract.pageText(night, 0)), isTrue);
-    expect(PdfExtract.pageText(night, night.pageCount - 1), contains('Hand-off'));
+    expect(
+      PdfExtract.pageText(night, night.pageCount - 1),
+      contains('Hand-off'),
+    );
   });
 }
 
