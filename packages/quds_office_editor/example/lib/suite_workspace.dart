@@ -7482,7 +7482,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       return;
     }
     setState(() => _showComments = true);
-    _word.insertComment(author: 'CrispOffice', initials: 'QO');
+    _word.insertComment(author: 'CrispOffice', initials: 'CO');
   }
 
   void _setShowComments(bool show) {
