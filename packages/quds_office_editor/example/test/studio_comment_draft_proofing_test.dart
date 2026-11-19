@@ -515,7 +515,7 @@ void main() {
       });
     }
     await _studio(tester, provider, captureKey: captureKey);
-    await tester.tap(find.byTooltip('العربية'));
+    await switchStudioToArabic(tester);
     await _pump(tester);
     await tester.binding.setSurfaceSize(const Size(390, 1000));
     tester.platformDispatcher.textScaleFactorTestValue = 1.4;

@@ -21,3 +21,15 @@ Future<void> enableStudioSetting(WidgetTester tester, String title) async {
   await tester.pump(const Duration(milliseconds: 300));
   expect(find.byType(AlertDialog), findsNothing);
 }
+
+/// Switches the Studio chrome from English to Arabic.
+///
+/// The title-bar language button cycles English -> German -> Arabic; its
+/// tooltip is the localized word for "Language".
+Future<void> switchStudioToArabic(WidgetTester tester) async {
+  await tester.tap(find.byTooltip('Language'));
+  await tester.pump();
+  await tester.tap(find.byTooltip('Sprache'));
+  await tester.pump();
+  expect(find.byTooltip('اللغة'), findsOneWidget);
+}

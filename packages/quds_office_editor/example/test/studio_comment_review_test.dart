@@ -1247,7 +1247,7 @@ void main() {
         await tester.binding.setSurfaceSize(const Size(900, 1000));
         await _pump(tester);
         if (arabic) {
-          await tester.tap(find.byTooltip('العربية'));
+          await switchStudioToArabic(tester);
           await _pump(tester);
         }
         final pane = tester.getRect(

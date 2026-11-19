@@ -2,6 +2,8 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quds_office_studio/main.dart';
 
+import 'support/studio_settings.dart';
+
 void main() {
   testWidgets(
     'Review keeps spelling available without the retired AOT action',
@@ -10,12 +12,7 @@ void main() {
       addTearDown(() => tester.binding.setSurfaceSize(null));
       await tester.pumpWidget(const QudsOfficeStudioApp());
       await tester.pump();
-      // Studio starts in English and the language button cycles EN -> DE -> AR.
-      await tester.tap(find.byTooltip('Language'));
-      await tester.pump();
-      await tester.tap(find.byTooltip('Sprache'));
-      await tester.pump();
-      expect(find.byTooltip('اللغة'), findsOneWidget);
+      await switchStudioToArabic(tester);
       await tester.tap(find.text('مراجعة'));
       await tester.pump();
       expect(find.text('تدقيق'), findsOneWidget);
