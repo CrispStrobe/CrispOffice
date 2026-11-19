@@ -667,6 +667,20 @@ End Function
   });
 
   group('dynamic array cumulative resource accounting', () {
+    test('every unallocated Erase target consumes shared work', () {
+      final targets = List<String>.filled(256, 'data').join(', ');
+      expect(
+        _compile(_module('Dim data() As Long\nErase $targets')).steps,
+        isEmpty,
+      );
+      _reject('''
+Dim data() As Long, index As Long
+For index = 1 To 450
+  Erase $targets
+Next index
+''', 'vba_limit_exceeded');
+    });
+
     test('exact per-array bound is accepted and the next slot is refused', () {
       final macro = _compile(
         _module('''

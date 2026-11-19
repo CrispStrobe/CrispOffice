@@ -15517,7 +15517,9 @@ class SlideEditorController extends OfficeController {
     }
     presentation.master.background = rgb;
     for (final PmlSlide slide in presentation.slides) {
-      if (slide.inheritsMasterBackground) slide.background = rgb;
+      if (slide.inheritsMasterBackground) {
+        slide.setInheritedBackground(rgb, masterBackground: rgb);
+      }
     }
     notifyListeners();
   }

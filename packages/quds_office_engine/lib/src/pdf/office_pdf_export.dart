@@ -1824,8 +1824,7 @@ abstract final class OfficePdfExport {
   }
 
   static String _slideBackground(PmlPresentation deck, PmlSlide slide) {
-    if (slide.background.isNotEmpty) return slide.background;
-    return deck.master.background.isEmpty ? 'FFFFFF' : deck.master.background;
+    return slide.resolveBackground(deck.master.background);
   }
 
   static void _paintRichText(
@@ -1841,21 +1840,20 @@ abstract final class OfficePdfExport {
     const double topInset = 3.6;
     const double rightInset = 7.2;
     final double width = math.max(8, w - leftInset - rightInset);
-    const String fallbackColor = '000000';
+    final String fallbackColor = shape.textColor.isEmpty
+        ? '000000'
+        : shape.textColor;
     final double fallbackSize = shape.fontSizePt > 0 ? shape.fontSizePt : 12;
     double total = 0;
     for (final PmlTextParagraph paragraph in paragraphs) {
       final PmlTextRun? run = _firstRichRun(paragraph);
       final String text = _paragraphText(paragraph);
       final bool blank = text.trim().isEmpty;
-      final double autoSize = (h * 0.22).clamp(10.0, 18.0);
       final double size = (run?.fontSizePt ?? 0) > 0
           ? run!.fontSizePt
-          : (blank
-                ? (paragraph.defaultFontSizePt > 0
-                      ? paragraph.defaultFontSizePt
-                      : fallbackSize)
-                : autoSize);
+          : (paragraph.defaultFontSizePt > 0
+                ? paragraph.defaultFontSizePt
+                : fallbackSize);
       final bool bold =
           (run?.bold ?? false) &&
           !(run?.fontFamily.toLowerCase().contains('microsoft sans serif') ??
@@ -1883,14 +1881,11 @@ abstract final class OfficePdfExport {
       final PmlTextRun? run = _firstRichRun(paragraph);
       final String text = _paragraphText(paragraph);
       final bool blank = text.trim().isEmpty;
-      final double autoSize = (h * 0.22).clamp(10.0, 18.0);
       final double size = (run?.fontSizePt ?? 0) > 0
           ? run!.fontSizePt
-          : (blank
-                ? (paragraph.defaultFontSizePt > 0
-                      ? paragraph.defaultFontSizePt
-                      : fallbackSize)
-                : autoSize);
+          : (paragraph.defaultFontSizePt > 0
+                ? paragraph.defaultFontSizePt
+                : fallbackSize);
       final String color = (run?.color ?? '').isNotEmpty
           ? run!.color
           : fallbackColor;
@@ -1905,7 +1900,7 @@ abstract final class OfficePdfExport {
           ? null
           : run!.fontFamily;
       cy += paragraph.spaceBeforePt;
-      if (text.trim().isEmpty) {
+      if (blank) {
         cy += size * 1.25;
         cy += paragraph.spaceAfterPt;
         continue;

@@ -7,6 +7,102 @@ import 'package:test/test.dart';
 void main() {
   final SfntFont? font = _tryFont();
 
+  test(
+    'PPT PDF inherits the master background and honors a slide override',
+    () {
+      final PmlPresentation deck = PmlPresentation(
+        slides: <PmlSlide>[
+          PmlSlide(id: 256),
+          PmlSlide(id: 257, background: '445566'),
+        ],
+      )..master.background = '112233';
+      final List<String> streams = _inflated(
+        OfficePdfExport.presentation(deck),
+      );
+      expect(streams.first, contains('0.067 0.133 0.200 rg'));
+      expect(streams.last, contains('0.267 0.333 0.400 rg'));
+      expect(streams.last, isNot(contains('0.067 0.133 0.200 rg')));
+    },
+  );
+
+  test(
+    'PPT rich-text PDF reflects scalar edits and later text replacement',
+    () {
+      final PmlShape shape = PmlShape(
+        id: 2,
+        name: 'Imported text',
+        text: 'Original',
+        fontSizePt: 18,
+        textColor: '112233',
+        fillColor: '',
+        transform: const PmlTransform(cx: 5080000, cy: 1270000),
+        textSource: const PmlTextSource(
+          xml: '',
+          text: 'Original',
+          fontSizePt: 18,
+          textColor: '112233',
+          textAlign: PmlTextAlign.left,
+          rightToLeft: null,
+        ),
+        richText: <PmlTextParagraph>[
+          PmlTextParagraph(
+            runs: <PmlTextRun>[
+              PmlTextRun(text: 'Original', fontSizePt: 18, color: '112233'),
+            ],
+          ),
+        ],
+      );
+      final PmlPresentation deck = PmlPresentation(
+        slides: <PmlSlide>[
+          PmlSlide(id: 256, shapes: <PmlShape>[shape]),
+        ],
+      );
+      shape
+        ..fontSizePt = 30
+        ..textColor = 'CC3300';
+      final String edited = _inflated(OfficePdfExport.presentation(deck))
+          .join();
+      expect(edited, contains('/F2 30 Tf'));
+      expect(edited, contains('0.800 0.200 0 rg'));
+      expect(edited, isNot(contains('/F2 18 Tf')));
+      expect(shape.richText.single.runs.single.fontSizePt, 18);
+      expect(shape.richText.single.runs.single.color, '112233');
+
+      shape.text = 'Replacement';
+      final String replaced = _inflated(OfficePdfExport.presentation(deck))
+          .join();
+      expect(replaced, contains('(Replacement) Tj'));
+      expect(replaced, isNot(contains('(Original) Tj')));
+    },
+  );
+
+  test('PPT rich-text PDF uses paragraph font defaults for unstyled runs', () {
+    final PmlPresentation deck = PmlPresentation(
+      slides: <PmlSlide>[
+        PmlSlide(
+          id: 256,
+          shapes: <PmlShape>[
+            PmlShape(
+              id: 2,
+              name: 'Paragraph default',
+              text: 'Default size',
+              fillColor: '',
+              transform: const PmlTransform(cx: 5080000, cy: 1270000),
+              richText: <PmlTextParagraph>[
+                PmlTextParagraph(
+                  defaultFontSizePt: 11,
+                  runs: <PmlTextRun>[PmlTextRun(text: 'Default size')],
+                ),
+              ],
+            ),
+          ],
+        ),
+      ],
+    );
+    final String stream = _inflated(OfficePdfExport.presentation(deck)).join();
+    expect(stream, contains('/F2 11 Tf'));
+  });
+
   test('Word PDF keeps pages, headers, tables, lists, and pictures', () {
     final WmlDocument doc = WmlDocument(
       sections: <WmlSection>[
@@ -247,6 +343,8 @@ void main() {
         slides: <PmlSlide>[
           PmlSlide(id: 256),
           PmlSlide(id: 257, background: '0000FF'),
+          PmlSlide(id: 258)
+            ..setInheritedBackground('00FFFF', masterBackground: 'FF0000'),
         ],
       );
       for (final int perPage in <int>[1, 2]) {
@@ -256,6 +354,7 @@ void main() {
         ).join();
         expect(red, contains('1 0 0 rg'));
         expect(red, contains('0 0 1 rg'));
+        expect(red, contains('0 1 1 rg'));
         deck.master.background = '00FF00';
         final String green = _inflated(
           OfficePdfExport.presentation(deck, slidesPerPage: perPage),
@@ -263,6 +362,7 @@ void main() {
         expect(green, contains('0 1 0 rg'));
         expect(green, contains('0 0 1 rg'));
         expect(green, isNot(contains('1 0 0 rg')));
+        expect(green, isNot(contains('0 1 1 rg')));
       }
     },
   );

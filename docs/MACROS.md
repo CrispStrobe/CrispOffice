@@ -10,9 +10,12 @@ This is a headless engine capability with a command-line runner and an MCP
 stdio bridge. The bundled [`vba-excel` dialect](VBA_MACROS.md) compiles a bounded
 Excel VBA subset from explicitly selected source into the same native plans.
 The subset includes reusable in-module procedures, scalar functions, explicit
-`ByVal` arguments, fixed one-dimensional scalar arrays, bounded
+`ByVal` arguments, fixed and dynamic one-dimensional scalar arrays, bounded
 `For`/`For Each`/`Do`/`While` loops, `Select Case`, and early exits. Its compiler evaluates those constructs before execution; workbook
 values are not available to source logic.
+Dynamic arrays support `ReDim`/`Preserve` and `Erase`, and `Option Base` sets
+omitted lower bounds. The [parity roadmap](VBA_PARITY_ROADMAP.md) records the
+remaining language, runtime, and Word/PowerPoint object-model stages.
 It does not add a ribbon editor, a full VBA interpreter, document-open events,
 or editor undo integration. Existing opaque VBA project bytes remain inert and
 are preserved by the Office serializers.
@@ -158,6 +161,9 @@ operations and a formula total of 1,575. The
 `LBound`/`UBound`, scalar helpers, and both `For Each` forms to emit 24 native
 operations. Its source and worksheet totals are both 850. All examples use the
 same CLI and MCP compilation, validation, and execution paths.
+The `example/macros/dynamic_array_report.bas` example grows and shrinks its
+source arrays, preserves retained entries, and demonstrates reallocation after
+`Erase`, also producing 24 native operations and matching totals of 850.
 
 ## Dart embedding and recording
 

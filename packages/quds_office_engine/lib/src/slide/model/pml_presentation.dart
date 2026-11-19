@@ -545,14 +545,18 @@ class PmlSlide {
     List<PmlShape>? shapes,
     this.layoutName = 'Blank',
     this.masterName = 'Office Theme',
-    this.background = '',
+    String background = '',
     bool? inheritsMasterBackground,
     this.notes = '',
     this.sourcePartUri,
     this.transition = const PmlSlideTransition(),
     List<PmlShapeAnimation>? animations,
     this.hidden = false,
-  }) : inheritsMasterBackground =
+  }) : _background = background,
+       _primaryMasterBackground = background.isEmpty
+           ? null
+           : background.toUpperCase(),
+       inheritsMasterBackground =
            inheritsMasterBackground ?? background.isEmpty,
        shapes = shapes ?? <PmlShape>[],
        animations = animations ?? <PmlShapeAnimation>[];
@@ -569,12 +573,49 @@ class PmlSlide {
   /// masterName API.
   String masterName;
 
+  String _background;
+  String? _primaryMasterBackground;
+
   /// Resolved solid background (`RRGGBB`); empty uses the current master.
-  String background;
+  /// Assigning a nonempty color records an explicit slide override.
+  String get background => _background;
+
+  set background(String value) {
+    _background = value;
+    inheritsMasterBackground = value.isEmpty;
+    _primaryMasterBackground = null;
+  }
 
   /// Whether a master-background edit should update this slide's paper.
   /// Explicit slide/layout fills remain independent of master edits.
   bool inheritsMasterBackground;
+
+  /// Retains an inherited color and the primary master at resolution time.
+  /// The resolved color can come from a secondary imported slide master.
+  void setInheritedBackground(
+    String value, {
+    required String masterBackground,
+  }) {
+    _background = value;
+    inheritsMasterBackground = true;
+    _primaryMasterBackground = masterBackground.isEmpty
+        ? 'FFFFFF'
+        : masterBackground.toUpperCase();
+  }
+
+  /// Resolves direct master edits without losing imported secondary colors.
+  String resolveBackground(String masterBackground) {
+    final String current = masterBackground.isEmpty
+        ? 'FFFFFF'
+        : masterBackground;
+    if (inheritsMasterBackground &&
+        (_background.isEmpty ||
+            (_primaryMasterBackground != null &&
+                _primaryMasterBackground != current.toUpperCase()))) {
+      return current;
+    }
+    return _background.isEmpty ? current : _background;
+  }
 
   /// Original owning part, retained when slides are reordered.
   String? sourcePartUri;
@@ -607,7 +648,7 @@ class PmlSlide {
         for (final PmlShapeAnimation anim in animations) anim.copyWith(),
       ],
       shapes: <PmlShape>[for (final PmlShape shape in shapes) shape.copy()],
-    );
+    ).._primaryMasterBackground = _primaryMasterBackground;
   }
 }
 
