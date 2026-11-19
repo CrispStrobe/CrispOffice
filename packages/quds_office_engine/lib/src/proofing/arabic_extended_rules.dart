@@ -240,6 +240,8 @@ final class _ArabicExtendedRules {
   final List<int> sentenceOf = <int>[];
 
   static const String _l = ArabicWritingRulesProvider._letters;
+  static const String _tokenContinuation =
+      ArabicWritingRulesProvider._wordContinuation;
   static final RegExp _sentenceEnd = RegExp(r'[.!?؟\n]');
   static final RegExp _spaces = RegExp(r'^[ \u00A0]+$');
   static final RegExp _tanwin = RegExp('[\u064B-\u064D]');
@@ -923,13 +925,14 @@ final class _ArabicExtendedRules {
     if (enabled(weekday) || enabled(invalid)) {
       final String days = _weekdays.keys.join('|');
       final RegExp date = RegExp(
-        '(?<![$_l])[وف]?(?:يوم\\s+)?($days)(?![$_l])\\s*[،,]?\\s*'
+        '(?<![$_tokenContinuation])[وف]?(?:يوم\\s+)?($days)(?![$_tokenContinuation])\\s*[،,]?\\s*'
         '(?:(?:الموافق|الماضي|المقبل|القادم|المنصرم)\\s*[،,]?\\s*)?'
         '($_digit{1,2})(?!$_digit)\\s*(?:من\\s+)?(?:شهر\\s+)?'
-        '($_monthPattern)(?![$_l])'
+        '($_monthPattern)(?![$_tokenContinuation])'
         '(?:\\s*[(/]\\s*(?:$_monthPattern)\\s*\\)?)?'
         '\\s*[،,]?\\s*(?:(?:من\\s+)?(?:عام|سنة|العام)\\s+)?'
-        '($_digit{4})(?!$_digit)(?!\\s*ه)',
+        '($_digit{4})(?![$_tokenContinuation])(?!\\s*ه)',
+        unicode: true,
       );
       for (final RegExpMatch m in date.allMatches(bare)) {
         final String all = m.group(0)!;
@@ -972,9 +975,10 @@ final class _ArabicExtendedRules {
           'دولار|دينار|درهم|ريال|جنيه|يورو|ليرة|شخص|نسمة|طن|متر|كيلو|برميل|'
           'وحدة|سهم|قطعة|مرة|عامل|زائر|حالة|ق|قبل';
       final RegExp implausible = RegExp(
-        '(?<![$_l])[وفبل]?(?:عام|العام|سنة|السنة|(?:ال)?(?:ربيع|صيف|خريف|شتاء)|'
-        '$_monthPattern)\\s+([12١٢]$_digit{4})(?![0-9٠-٩.,٫٬])'
-        '(?!\\s*(?:$units)(?![$_l]))',
+        '(?<![$_tokenContinuation])[وفبل]?(?:عام|العام|سنة|السنة|(?:ال)?(?:ربيع|صيف|خريف|شتاء)|'
+        '$_monthPattern)\\s+([12١٢]$_digit{4})(?![$_tokenContinuation.,٫٬])'
+        '(?!\\s*(?:$units)(?![$_tokenContinuation]))',
+        unicode: true,
       );
       for (final RegExpMatch m in implausible.allMatches(bare)) {
         final int at = m.start + m.group(0)!.lastIndexOf(m.group(1)!);
@@ -1751,7 +1755,10 @@ final class _ArabicExtendedRules {
     for (final _Phrase phrase in phrases) {
       final RegExp re = _phraseRegExps.putIfAbsent(
         phrase.pattern,
-        () => RegExp('(?<![$_l])(?:${phrase.pattern})(?![$_l])'),
+        () => RegExp(
+          '(?<![$_tokenContinuation])(?:${phrase.pattern})(?![$_tokenContinuation])',
+          unicode: true,
+        ),
       );
       for (final RegExpMatch m in re.allMatches(bare)) {
         final List<String> replacements = <String>[
@@ -1801,7 +1808,9 @@ final class _ArabicExtendedRules {
     final bool doubleFuture = enabled('ar.redundancy.double-future');
     if (doubleFuture) {
       for (final RegExpMatch m in RegExp(
-        '(?<![$_l])((?:[وف])?)سوف\\s+(س[يتنأ](?!ار)[$_l]+)',
+        '(?<![$_tokenContinuation])((?:[وف])?)سوف\\s+'
+        '(س[يتنأ](?!ار)[$_l]+)(?![$_tokenContinuation])',
+        unicode: true,
       ).allMatches(bareText.bare)) {
         final int verb = m.start + m.group(0)!.lastIndexOf(m.group(2)!);
         final int start = bareText.start(m.start);

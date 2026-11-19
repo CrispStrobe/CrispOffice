@@ -9594,10 +9594,15 @@ class WordEditorController extends OfficeController {
       ],
   ]);
 
-  /// Changes the language of exactly [target]. Null removes run overrides so
-  /// the text inherits its character/paragraph styles and paragraph/document
-  /// defaults. Returns false if the
-  /// displayed target became stale or cannot be changed safely.
+  /// Changes the proofing language of exactly [target].
+  ///
+  /// Each selected run fragment changes only its active language slot:
+  /// `w:lang/@w:bidi` for complex-script text or formatting, otherwise
+  /// `w:lang/@w:val`. Other language slots and formatting are preserved.
+  /// Null removes only that active direct override so the fragment inherits
+  /// its character/paragraph styles and paragraph/document defaults.
+  /// Returns false if the displayed target became stale or cannot be changed
+  /// safely.
   bool setTextProofingLanguage(
     String? language, {
     required WordTextProofingTarget target,
