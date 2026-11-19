@@ -16,8 +16,10 @@ import '../private/imap/capability_parser.dart';
 import '../private/imap/command.dart';
 import '../private/imap/imap_response.dart';
 import '../private/imap/imap_response_reader.dart';
+import '../private/imap/raw_fetch_parser.dart';
 import '../private/imap/response_parser.dart';
 import '../private/util/client_base.dart';
+import '../private/util/protocol_resource_limit.dart';
 import 'id.dart';
 import 'imap_events.dart';
 import 'imap_exception.dart';
@@ -27,6 +29,7 @@ import 'message_sequence.dart';
 import 'metadata.dart';
 import 'namespace.dart';
 import 'qresync.dart';
+import 'raw_fetch.dart';
 import 'response.dart';
 import 'return_option.dart';
 
@@ -261,13 +264,20 @@ class ImapClient extends ClientBase {
     this.defaultResponseTimeout,
     bool Function(X509Certificate)? onBadCertificate,
     SecurityContext? securityContext,
+    int maxLiteralSize = ImapResponseReader.defaultMaxLiteralSize,
+    this.maxProtocolLineBytes,
+    this.maxResponseBytes,
   }) : super(
          isLogEnabled: isLogEnabled,
          logName: logName,
          onBadCertificate: onBadCertificate,
          securityContext: securityContext,
        ) {
-    _imapResponseReader = ImapResponseReader(onServerResponse);
+    _imapResponseReader = ImapResponseReader(
+      onServerResponse,
+      maxLiteralSize: maxLiteralSize,
+      maxProtocolLineBytes: maxProtocolLineBytes,
+    );
   }
 
   late ImapServerInfo _serverInfo;
@@ -314,16 +324,37 @@ class ImapClient extends ClientBase {
   /// The default timeout for sending a command
   final Duration? defaultWriteTimeout;
 
+  /// Optional aggregate response-byte bound for one connection.
+  final int? maxResponseBytes;
+
+  /// Optional protocol-line and greeting bound, excluding literal payloads.
+  final int? maxProtocolLineBytes;
+  int _receivedBytes = 0;
+
+  @override
+  bool get requiresSingleLineGreeting => true;
+
+  @override
+  int? get maxGreetingBytes => maxProtocolLineBytes;
+
   @override
   void onDataReceived(Uint8List data) {
     try {
+      _receivedBytes += data.length;
+      if (maxResponseBytes != null && _receivedBytes > maxResponseBytes!) {
+        responseLimitExceeded = true;
+        throw const ProtocolResourceLimit('IMAP response byte limit exceeded');
+      }
       _imapResponseReader.onData(data);
     } catch (e, s) {
+      if (e is ProtocolResourceLimit) {
+        responseLimitExceeded = true;
+      }
       // the response stream cannot be interpreted anymore, e.g. because the
       // server announced a literal above the size limit:
       logApp('Protocol error, closing connection: $e $s');
       _completePendingTasksWithError('protocol error: $e');
-      unawaited(disconnect());
+      unawaited(abort());
     }
   }
 
@@ -333,6 +364,8 @@ class ImapClient extends ClientBase {
     String serverGreeting,
   ) async {
     // discard any partial response of a previous connection
+    _receivedBytes = 0;
+    responseLimitExceeded = false;
     _imapResponseReader.reset();
     _isInIdleMode = false;
     _serverInfo = ImapServerInfo(connectionInfo);
@@ -392,6 +425,13 @@ class ImapClient extends ClientBase {
         logApp('unable to completeError for task $task: $e');
       }
     }
+  }
+
+  @override
+  Future<void> abort() async {
+    _failPendingIdleContinuation('client aborted');
+    _completePendingTasksWithError('client aborted');
+    return super.abort();
   }
 
   @override
@@ -487,13 +527,13 @@ class ImapClient extends ClientBase {
     // escaped as =2C and =3D
     final escapedUser = user.replaceAll('=', '=3D').replaceAll(',', '=2C');
     final authText =
-        'n,u=$escapedUser,\u{0001}'
+        'n,a=$escapedUser,\u{0001}'
         'host=$host\u{0001}'
         'port=$port\u{0001}'
         'auth=Bearer $accessToken\u{0001}\u{0001}';
     final authBase64Text = base64.encode(utf8.encode(authText));
-    final cmd = Command(
-      'AUTHENTICATE OAUTHBEARER $authBase64Text',
+    final cmd = Command.withContinuation(
+      ['AUTHENTICATE OAUTHBEARER $authBase64Text', 'AQ=='],
       logText: 'AUTHENTICATE OAUTHBEARER (base64 code scrambled)',
       writeTimeout: defaultWriteTimeout,
       responseTimeout: defaultResponseTimeout,
@@ -2144,6 +2184,45 @@ class ImapClient extends ClientBase {
     return sendCommand<FetchImapResult>(cmd, parser);
   }
 
+  /// Fetches exact complete literals without MIME parsing or normalization.
+  ///
+  /// This intentionally accepts only a finite UID interval. Response literal
+  /// and line limits should also be configured on the client before connecting.
+  Future<RawImapFetchResult> uidFetchRawMessages({
+    required int firstUid,
+    required int lastUid,
+    required bool headersOnly,
+    required int maxMessages,
+    required int maxLiteralBytes,
+    Duration? responseTimeout,
+  }) {
+    if (firstUid < 1 ||
+        lastUid < firstUid ||
+        lastUid > 0xffffffff ||
+        maxMessages < 1 ||
+        maxLiteralBytes < 1) {
+      throw ArgumentError('Invalid bounded raw FETCH request');
+    }
+    final item = headersOnly
+        ? rawImapHeaderItem.replaceFirst('BODY[', 'BODY.PEEK[')
+        : 'BODY.PEEK[]';
+    final command = Command(
+      'UID FETCH $firstUid:$lastUid (UID FLAGS $item)',
+      writeTimeout: defaultWriteTimeout,
+      responseTimeout: responseTimeout ?? defaultResponseTimeout,
+    );
+    return sendCommand<RawImapFetchResult>(
+      command,
+      RawFetchParser(
+        firstUid: firstUid,
+        lastUid: lastUid,
+        headersOnly: headersOnly,
+        maxMessages: maxMessages,
+        maxLiteralBytes: maxLiteralBytes,
+      ),
+    );
+  }
+
   /// Appends the specified MIME [message].
   ///
   /// When no [targetMailbox] or [targetMailboxPath] is specified, then the
@@ -3085,8 +3164,14 @@ class ImapClient extends ClientBase {
         log('untagged not handled: [$imapResponse] by task $task');
       }
     } catch (e, s) {
-      // malformed untagged data must not abort the processing of the
-      // remaining server responses
+      if (task?.parser is RawFetchParser) {
+        // Raw synchronization must fail the whole response: accepting an
+        // earlier prefix could turn rejected messages into false tombstones.
+        _completePendingTasksWithError('invalid bounded raw FETCH response');
+        unawaited(abort());
+        return;
+      }
+      // Legacy parsers retain their existing permissive handling.
       logApp('Unable to parse untagged response [$imapResponse]: $e $s');
     }
   }

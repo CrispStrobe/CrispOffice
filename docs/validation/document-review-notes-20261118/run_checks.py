@@ -325,6 +325,13 @@ def main() -> int:
     parser.add_argument("--command-timeout", type=int, default=1800)
     args = parser.parse_args()
     repo, runtime, output = repository_root(), args.runtime.resolve(), args.output.resolve()
+    if args.command_timeout <= 0:
+        parser.error("--command-timeout must be positive")
+    # The Mail runner already regression-tests complete process-group cleanup.
+    # Reuse it for compiler/test children, including interrupted socket fixtures.
+    sys.path.insert(0, str(repo / "tools/mail"))
+    from check_store import execute
+
     plan_path = args.plan.resolve()
     if output == repo or repo in output.parents:
         raise RuntimeError("Write output outside the frozen source checkout")
@@ -418,7 +425,8 @@ def main() -> int:
     formatting = check_paths(plan.get("format", "changed"))
     selected = {path for path in tracked if path.startswith(("packages/", "apps/", "third_party/"))}
     selected.update(path for path in tracked if "/" not in path and Path(path).suffix in {".yaml", ".lock"})
-    selected.update([plan_name, runner_name, *requested, *analysis, *formatting])
+    selected.update([plan_name, runner_name, "tools/mail/check_store.py",
+                     "tools/mail/check_reader.py", *requested, *analysis, *formatting])
     selected.update(plan.get("extra_inputs", []))
     selected.update(entry["path"] for entry in whitespace_preserved)
     for path in selected:
@@ -507,9 +515,8 @@ def main() -> int:
         item = {"name": name, "command": command, "cwd": str(cwd.relative_to(repo)) or "."}
         with log.open("wb") as stream:
             try:
-                result = subprocess.run(command, cwd=cwd, env=env, stdout=stream,
-                                        stderr=subprocess.STDOUT, timeout=args.command_timeout)
-                item["exit_code"] = result.returncode
+                item["exit_code"] = execute(command, cwd=cwd, env=env, stdout=stream,
+                                            timeout=args.command_timeout)
             except (OSError, subprocess.TimeoutExpired) as error:
                 item["exit_code"] = 124 if isinstance(error, subprocess.TimeoutExpired) else 127
                 item["runner_error"] = repr(error)
