@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quds_mail_core/quds_mail_core.dart';
 import 'package:quds_mail_mime/quds_mail_mime.dart';
-import 'package:quds_mail_store/quds_mail_store.dart';
+import 'package:quds_mail_store/quds_mail_archive_native.dart';
 import 'package:quds_office_studio/studio_mail_archive_native.dart';
 import 'package:quds_office_studio/studio_mail_archive_strings.dart';
 import 'package:quds_office_studio/studio_strings.dart';
@@ -41,6 +41,11 @@ MailArchiveEntry _entry(MailMessage message) => MailArchiveEntry(
 );
 
 final class _Store extends Fake implements StudioMailArchiveStore {
+  @override
+  final profile = MailProfileId('studio-archive', hostId: 'widget-tests');
+  final exportRequests = <MailArchiveSearchRequest>[];
+  Future<MailResult<MailArchiveExportPlan>> Function(MailArchiveSearchRequest)?
+  onPlan;
   final entries = <MailArchiveSearchHit>[];
   final originals = <String, MailBytes>{};
   final searches = <MailArchiveSearchRequest>[];
@@ -78,6 +83,30 @@ final class _Store extends Fake implements StudioMailArchiveStore {
 
   @override
   set diagnostics(MailArchiveDiagnostics? value) => logging = value;
+  @override
+  Future<MailResult<MailArchiveExportPlan>> planExport(
+    MailArchiveSearchRequest request, {
+    MailArchiveExportLimits exportLimits = const MailArchiveExportLimits(),
+    MailCancellationToken? cancellation,
+  }) async {
+    exportRequests.add(request);
+    if (onPlan != null) return onPlan!(request);
+    return MailSuccess(
+      MailArchiveExportPlan(
+        profile: profile,
+        createdAt: DateTime.utc(2026, 11, 19),
+        items: [
+          for (final hit in entries)
+            MailArchiveExportItem(
+              id: hit.entry.id,
+              byteLength: hit.entry.byteLength,
+              origins: [origin],
+            ),
+        ],
+      ),
+    );
+  }
+
   @override
   Future<MailResult<MailArchiveSearchPage>> search(
     MailArchiveSearchRequest request,
@@ -201,6 +230,19 @@ final class _Store extends Fake implements StudioMailArchiveStore {
 }
 
 final class _Files extends Fake implements StudioMailArchiveFiles {
+  String? pickedDirectory = '/selected';
+  final exportedPlans = <MailArchiveExportPlan>[];
+  final directoryEntries = <MailArchiveDirectoryEntry>[];
+  bool? scanRecursive;
+  MailCancellationToken? exportCancellation;
+  MailProfileId? resumedProfile;
+  int resumeCalls = 0;
+  Future<MailArchiveExportReport> Function(
+    MailArchiveExportPlan,
+    MailCancellationToken,
+    MailArchiveExportProgressSink?,
+  )?
+  onBulkExport;
   List<StudioMailArchiveInput>? picked;
   final records = <String, List<MailResult<Uint8List>>>{};
   MailBytes? exported;
@@ -210,6 +252,51 @@ final class _Files extends Fake implements StudioMailArchiveFiles {
   MailMboxDialect? dialectRead;
   @override
   Future<List<StudioMailArchiveInput>?> pickFiles() async => picked;
+  @override
+  Future<String?> pickDirectory() async => pickedDirectory;
+  @override
+  Stream<MailArchiveDirectoryEntry> enumerateDirectory(
+    String path, {
+    required MailCancellationToken cancellation,
+    MailArchiveDirectoryLimits limits = const MailArchiveDirectoryLimits(),
+    bool recursive = true,
+  }) {
+    scanRecursive = recursive;
+    return Stream.fromIterable(directoryEntries);
+  }
+
+  @override
+  Future<MailArchiveExportReport> exportPlan(
+    MailArchiveExportPlan plan,
+    String parentPath, {
+    required MailArchiveOriginalLoader loadOriginal,
+    required MailCancellationToken cancellation,
+    MailArchiveExportProgressSink? onProgress,
+  }) async {
+    exportedPlans.add(plan);
+    exportCancellation = cancellation;
+    if (onBulkExport != null) {
+      return onBulkExport!(plan, cancellation, onProgress);
+    }
+    return _exportReport(
+      planned: plan.items.length,
+      written: plan.items.length,
+    );
+  }
+
+  @override
+  Future<MailArchiveExportReport> resumeExport(
+    String directoryPath, {
+    required MailProfileId profile,
+    required MailArchiveOriginalLoader loadOriginal,
+    required MailCancellationToken cancellation,
+    MailArchiveExportProgressSink? onProgress,
+  }) async {
+    resumeCalls++;
+    resumedProfile = profile;
+    return _exportReport(planned: 1, existing: 1);
+  }
+
   @override
   Stream<MailResult<Uint8List>> readMessages(
     StudioMailArchiveInput input, {
@@ -238,6 +325,26 @@ final class _Files extends Fake implements StudioMailArchiveFiles {
     return const MailSuccess(true);
   }
 }
+
+MailArchiveExportReport _exportReport({
+  MailArchiveExportStatus status = MailArchiveExportStatus.completed,
+  int planned = 1,
+  int written = 0,
+  int existing = 0,
+  int failed = 0,
+}) => MailArchiveExportReport(
+  status: status,
+  planned: planned,
+  written: written,
+  existing: existing,
+  failed: failed,
+  bytes: 10 * (written + existing),
+  elapsedMicroseconds: 100,
+  observerErrors: 0,
+  failures: const [],
+  droppedFailures: 0,
+  directoryPath: '/selected/crispoffice-mail-export-job',
+);
 
 Finder _key(String key) => find.byKey(ValueKey(key));
 Future<void> _pump(WidgetTester tester) async {
@@ -283,6 +390,239 @@ Future<void> _filters(WidgetTester tester) async =>
     _tap(tester, 'archive-filter-panel');
 
 void main() {
+  testWidgets(
+    'bulk export freezes all pages of the applied search and shows its destination',
+    (tester) async {
+      final store = _Store();
+      for (var i = 0; i < 51; i++) {
+        store.add('Invoice $i');
+      }
+      final files = _Files();
+      await _show(tester, store, files: files);
+      await tester.enterText(_key('archive-query'), 'subject:Invoice');
+      await _tap(tester, 'archive-search');
+      await _tap(tester, 'archive-next');
+      expect(store.searches.last.offset, 50);
+      await _tap(tester, 'archive-bulk-export');
+      expect(
+        find.textContaining('Export 51 original messages'),
+        findsOneWidget,
+      );
+      await _tap(tester, 'archive-choose-export-directory');
+      expect(store.exportRequests.single.query, 'subject:Invoice');
+      expect(files.exportedPlans.single.items, hasLength(51));
+      expect(
+        find.text(
+          _strings.archiveBulkSummary(
+            MailArchiveExportStatus.completed,
+            51,
+            0,
+            0,
+            51,
+          ),
+        ),
+        findsOneWidget,
+      );
+      expect(
+        find.textContaining('/selected/crispoffice-mail-export-job'),
+        findsOneWidget,
+      );
+      expect(tester.takeException(), isNull);
+    },
+  );
+
+  testWidgets('cancelled export picker does not start file publication', (
+    tester,
+  ) async {
+    final store = _Store()..add('One');
+    final files = _Files()..pickedDirectory = null;
+    await _show(tester, store, files: files);
+    await _tap(tester, 'archive-bulk-export');
+    await _tap(tester, 'archive-choose-export-directory');
+    expect(files.exportedPlans, isEmpty);
+    expect(_key('archive-error'), findsNothing);
+  });
+
+  testWidgets(
+    'failed export plan reports its bound without starting a picker or export',
+    (tester) async {
+      final store = _Store()
+        ..onPlan = (_) async =>
+            const MailFailure(MailProblem(MailProblemCode.quotaExceeded));
+      final files = _Files();
+      await _show(tester, store, files: files);
+      await _tap(tester, 'archive-bulk-export');
+      expect(
+        find.text(_strings.archiveProblem(MailProblemCode.quotaExceeded)),
+        findsOneWidget,
+      );
+      expect(_key('archive-choose-export-directory'), findsNothing);
+      expect(files.exportedPlans, isEmpty);
+    },
+  );
+
+  testWidgets(
+    'resume uses the saved export and archive profile without replanning current filters',
+    (tester) async {
+      final store = _Store()..add('One');
+      final files = _Files();
+      await _show(tester, store, files: files);
+      await tester.enterText(_key('archive-query'), 'unsent query');
+      await _tap(tester, 'archive-resume-export');
+      expect(find.text(_strings.archiveResumeHelp), findsOneWidget);
+      await _tap(tester, 'archive-choose-export-directory');
+      expect(store.exportRequests, isEmpty);
+      expect(files.resumeCalls, 1);
+      expect(files.resumedProfile, store.profile);
+      expect(
+        find.text(
+          _strings.archiveBulkSummary(
+            MailArchiveExportStatus.completed,
+            0,
+            1,
+            0,
+            1,
+          ),
+        ),
+        findsOneWidget,
+      );
+    },
+  );
+
+  testWidgets(
+    'export cancellation waits for the final confirmed publication counts',
+    (tester) async {
+      final store = _Store()..add('One');
+      final done = Completer<void>();
+      final files = _Files()
+        ..onBulkExport = (plan, cancellation, progress) async {
+          progress?.call(
+            const MailArchiveExportProgress(
+              phase: MailArchiveExportPhase.message,
+              planned: 2,
+              written: 1,
+              existing: 0,
+              failed: 0,
+              bytes: 10,
+              elapsedMicroseconds: 1,
+              observerErrors: 0,
+            ),
+          );
+          await done.future;
+          expect(cancellation.isCancelled, isTrue);
+          return _exportReport(
+            status: MailArchiveExportStatus.cancelled,
+            planned: 2,
+            written: 1,
+          );
+        };
+      await _show(tester, store, files: files);
+      await _tap(tester, 'archive-bulk-export');
+      await _tap(tester, 'archive-choose-export-directory');
+      await _tap(tester, 'archive-cancel');
+      expect(files.exportCancellation!.isCancelled, isTrue);
+      expect(
+        tester.widget<OutlinedButton>(_key('archive-bulk-export')).onPressed,
+        isNull,
+      );
+      done.complete();
+      await _pump(tester);
+      expect(
+        find.text(
+          _strings.archiveBulkSummary(
+            MailArchiveExportStatus.cancelled,
+            1,
+            0,
+            0,
+            2,
+          ),
+        ),
+        findsOneWidget,
+      );
+      expect(
+        find.textContaining('/selected/crispoffice-mail-export-job'),
+        findsOneWidget,
+      );
+    },
+  );
+
+  testWidgets(
+    'disposed export planning cannot open a dialog or publish files',
+    (tester) async {
+      final plan = Completer<MailResult<MailArchiveExportPlan>>();
+      final store = _Store()..onPlan = (_) => plan.future;
+      final files = _Files();
+      await _show(tester, store, files: files);
+      await _tap(tester, 'archive-bulk-export');
+      await tester.pumpWidget(const SizedBox.shrink());
+      plan.complete(
+        MailSuccess(
+          MailArchiveExportPlan(
+            profile: store.profile,
+            createdAt: DateTime.utc(2026),
+            items: const [],
+          ),
+        ),
+      );
+      await _pump(tester);
+      expect(files.exportedPlans, isEmpty);
+      expect(store.closes, 1);
+      expect(tester.takeException(), isNull);
+    },
+  );
+
+  testWidgets(
+    'directory import exposes recursive choice and retains relative provenance',
+    (tester) async {
+      final store = _Store();
+      final files = _Files();
+      final raw = _eml('Nested original');
+      const counts = MailArchiveDirectoryProgress(
+        entriesInspected: 3,
+        directoriesVisited: 2,
+        filesAccepted: 1,
+        acceptedBytes: 200,
+        skippedEntries: 0,
+        errorEntries: 0,
+        limitedEntries: 0,
+      );
+      files.directoryEntries.addAll([
+        MailArchiveDirectoryEntry(
+          outcome: MailArchiveDirectoryOutcome.file,
+          progress: counts,
+          absolutePath: '/selected/Letters/item.eml',
+          relativePath: 'Letters/item.eml',
+          relativeFolder: 'Letters',
+          kind: MailArchiveDirectoryFileKind.eml,
+          byteLength: raw.length,
+        ),
+        const MailArchiveDirectoryEntry(
+          outcome: MailArchiveDirectoryOutcome.completed,
+          progress: counts,
+          terminal: true,
+        ),
+      ]);
+      files.records['item.eml'] = [MailSuccess(raw)];
+      await _show(tester, store, files: files);
+      await _tap(tester, 'archive-import-directory');
+      expect(find.text(_strings.archiveDirectoryHelp), findsOneWidget);
+      await tester.enterText(_key('archive-import-folder'), '/Imported');
+      await _tap(tester, 'archive-choose-files');
+      await tester.pumpAndSettle();
+      expect(files.scanRecursive, isTrue);
+      expect(store.importedOrigins.single.folder, '/Imported/Letters');
+      expect(store.imported.single.raw.bytes, raw);
+      expect(
+        find.textContaining('1 saved · 0 already archived'),
+        findsOneWidget,
+        reason: tester
+            .widgetList<SelectableText>(find.byType(SelectableText))
+            .map((text) => text.data)
+            .join('\n'),
+      );
+    },
+  );
+
   testWidgets('persistent search paginates with the complete query request', (
     tester,
   ) async {
