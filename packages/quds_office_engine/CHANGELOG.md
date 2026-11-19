@@ -4,6 +4,10 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Integrate recent PPTX background, crop, rich-text and interlaced PNG work.
+  Preserve inherited master backgrounds and apply scalar text-format edits to
+  imported rich runs consistently in PDF export without changing source runs.
+
 - Extend `vba-excel` with local one-dimensional dynamic arrays, `ReDim`,
   `ReDim Preserve`, `Erase`, and module `Option Base 0/1`. Preserve element
   types, source evaluation order, enumeration locks, shared slot/string/work

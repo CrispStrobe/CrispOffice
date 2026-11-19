@@ -409,6 +409,38 @@ class PmlShape {
   /// Rich paragraph/run model when the source text has not been replaced.
   List<PmlTextParagraph> richText;
 
+  /// Rich text with the same scalar formatting overrides used by PPTX export.
+  ///
+  /// Moving a shape preserves its imported runs. Font, color, alignment and
+  /// direction edits apply to those runs without mutating the import snapshot.
+  /// Replacing imported text invalidates the old runs altogether.
+  List<PmlTextParagraph> get resolvedRichText {
+    final PmlTextSource? source = textSource;
+    if (source == null || richText.isEmpty) return richText;
+    if (source.text != text) return const <PmlTextParagraph>[];
+    final bool fontChanged = source.fontSizePt != fontSizePt;
+    final bool colorChanged = source.textColor != textColor;
+    final bool alignChanged = source.textAlign != textAlign;
+    final bool directionChanged = source.rightToLeft != rightToLeft;
+    if (!fontChanged && !colorChanged && !alignChanged && !directionChanged) {
+      return richText;
+    }
+    final List<PmlTextParagraph> resolved = <PmlTextParagraph>[];
+    for (final PmlTextParagraph original in richText) {
+      final PmlTextParagraph paragraph = original.copy();
+      if (alignChanged) paragraph.align = textAlign;
+      if (directionChanged) paragraph.rightToLeft = rightToLeft ?? false;
+      if (fontChanged) paragraph.defaultFontSizePt = fontSizePt;
+      if (colorChanged) paragraph.defaultColor = textColor;
+      for (final PmlTextRun run in paragraph.runs) {
+        if (fontChanged) run.fontSizePt = fontSizePt;
+        if (colorChanged) run.color = textColor;
+      }
+      resolved.add(paragraph);
+    }
+    return resolved;
+  }
+
   /// Shapes that share a [groupId] move together.
   int? groupId;
 
@@ -495,7 +527,7 @@ class PmlSlide {
     List<PmlShape>? shapes,
     this.layoutName = 'Blank',
     this.masterName = 'Office Theme',
-    this.background = 'FFFFFF',
+    this.background = '',
     this.notes = '',
     this.sourcePartUri,
     this.transition = const PmlSlideTransition(),
@@ -517,6 +549,7 @@ class PmlSlide {
   String masterName;
 
   /// Resolved solid slide background (`RRGGBB`), inherited from layout/master.
+  /// An empty value inherits the master for export and the display theme.
   String background;
 
   /// Original owning part, retained when slides are reordered.

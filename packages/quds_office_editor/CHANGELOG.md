@@ -4,6 +4,10 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Retain slide theme inheritance and the native 16-point text default when
+  rendering imported rich text. Honor scalar text formatting and paragraph
+  font fallbacks while preserving authored color contrast in dark displays.
+
 - Preserve validated reply-thread identifiers through native Studio composition
   and explicit uncertain-send retries. Emit bounded In-Reply-To/References
   headers, keep forwards independent, and omit unsupported or unsafe IDs.
