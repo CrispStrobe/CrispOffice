@@ -156,27 +156,37 @@ class StudioCommandMenu extends StatelessWidget {
   final List<StudioCmd> commands;
 
   @override
-  Widget build(BuildContext context) => MenuAnchor(
-    consumeOutsideTap: true,
-    menuChildren: <Widget>[
-      for (final command in commands)
-        MenuItemButton(
-          leadingIcon: Icon(command.icon, size: 19),
-          onPressed: command.onPressed,
-          child: Text(command.label),
-        ),
-    ],
-    builder: (context, controller, child) => StudioCmd(
-      icon: icon,
-      label: label,
-      accent: accent,
-      foreground: foreground,
-      isMenu: true,
-      onPressed: commands.any((command) => command.onPressed != null)
-          ? () => controller.isOpen ? controller.close() : controller.open()
-          : null,
-    ),
-  );
+  Widget build(BuildContext context) {
+    final firstEnabled = commands.indexWhere(
+      (command) => command.onPressed != null,
+    );
+    return MenuAnchor(
+      // Switching ribbon controls should dismiss this menu and perform the
+      // clicked action in the same gesture.
+      consumeOutsideTap: false,
+      menuChildren: <Widget>[
+        for (var index = 0; index < commands.length; index++)
+          MenuItemButton(
+            // Move keyboard focus into the submenu so its Escape and arrow-key
+            // shortcuts take precedence over document/workspace shortcuts.
+            autofocus: index == firstEnabled,
+            leadingIcon: Icon(commands[index].icon, size: 19),
+            onPressed: commands[index].onPressed,
+            child: Text(commands[index].label),
+          ),
+      ],
+      builder: (context, controller, child) => StudioCmd(
+        icon: icon,
+        label: label,
+        accent: accent,
+        foreground: foreground,
+        isMenu: true,
+        onPressed: commands.any((command) => command.onPressed != null)
+            ? () => controller.isOpen ? controller.close() : controller.open()
+            : null,
+      ),
+    );
+  }
 }
 
 /// Icon-only ribbon button, matching the dense Office Home toolbar.

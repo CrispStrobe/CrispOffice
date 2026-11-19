@@ -176,6 +176,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   var _findReplace = false;
   var _printPreview = false;
   static const MethodChannel _aboutChannel = MethodChannel('crispoffice/about');
+  bool _nativeDialogOpen = false;
 
   @override
   void initState() {
@@ -185,7 +186,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     unawaited(_ribbonPreferences.load());
     _aboutChannel.setMethodCallHandler((MethodCall call) async {
       if (call.method == 'show' && mounted) {
-        await _showAbout();
+        await _showNativeDialog(_showAbout);
       }
     });
     _pdfEvents = StudioPdfViewerEvents(
@@ -405,8 +406,8 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       settingsLabel: '${_strings.settings}…',
       fileGroups: _desktopFileGroups,
       editGroups: _desktopEditGroups,
-      onAbout: _showAbout,
-      onSettings: _openSettings,
+      onAbout: () => _showNativeDialog(_showAbout),
+      onSettings: () => _showNativeDialog(_openSettings),
       child: CallbackShortcuts(
         bindings: <ShortcutActivator, VoidCallback>{
           if (StudioWindow.isDesktop) ...<ShortcutActivator, VoidCallback>{
@@ -687,6 +688,23 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     }
   }
 
+  Future<void> _showNativeDialog(Future<void> Function() open) async {
+    if (!mounted ||
+        _nativeDialogOpen ||
+        !(ModalRoute.isCurrentOf(context) ?? true)) {
+      return;
+    }
+    _nativeDialogOpen = true;
+    try {
+      await StudioWindow.show();
+      if (mounted && (ModalRoute.isCurrentOf(context) ?? true)) {
+        await open();
+      }
+    } finally {
+      _nativeDialogOpen = false;
+    }
+  }
+
   SingleActivator _fileShortcut(LogicalKeyboardKey key, {bool shift = false}) =>
       SingleActivator(
         key,
@@ -937,6 +955,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       if (!await _confirmSaveActiveFile() || !mounted) return false;
     }
     if (mounted) _switchApp(previous);
+    await _ribbonPreferences.flush();
     return true;
   }
 
@@ -6977,7 +6996,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         author: _t(
           'CrispOffice',
           StudioStrings.de('CrispOffice'),
-          'مكتب القدس',
+          'CrispOffice',
         ),
         title: _t(
           'Office Guide',

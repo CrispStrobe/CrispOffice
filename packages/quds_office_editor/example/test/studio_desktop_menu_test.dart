@@ -294,5 +294,7 @@ void main() {
     expect(StudioWindow.usesNativeTrafficLights, isTrue);
     expect(StudioWindow.usesCaptionButtons, isFalse);
     await tester.pumpWidget(const SizedBox.shrink());
+    StudioWindow.supported = false;
+    expect(StudioWindow.usesNativeTrafficLights, isTrue);
   }, variant: TargetPlatformVariant.only(TargetPlatform.macOS));
 }

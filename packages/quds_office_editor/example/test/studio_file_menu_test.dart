@@ -1,10 +1,11 @@
-import 'dart:typed_data';
+import 'dart:async';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quds_office_editor/quds_office_editor.dart';
+import 'package:quds_office_studio/studio_about.dart';
 import 'package:quds_office_studio/studio_chrome.dart';
 import 'package:quds_office_studio/studio_desktop_menu.dart';
 import 'package:quds_office_studio/studio_ribbon_preferences.dart';
@@ -184,12 +185,20 @@ void main() {
   );
 
   testWidgets(
-    'macOS keeps native chrome and disables File actions behind a modal',
+    'macOS opens native dialogs safely and disables modal File actions',
     (tester) async {
       StudioWindow.supported = true;
       final messenger = tester.binding.defaultBinaryMessenger;
       const windowChannel = MethodChannel('window_manager');
-      messenger.setMockMethodCallHandler(windowChannel, (call) async => null);
+      final shown = Completer<void>();
+      final windowCalls = <String>[];
+      messenger.setMockMethodCallHandler(windowChannel, (call) async {
+        windowCalls.add(call.method);
+        if (call.method == 'show') {
+          await shown.future;
+        }
+        return null;
+      });
       messenger.setMockMethodCallHandler(
         SystemChannels.menu,
         (call) async => null,
@@ -217,8 +226,15 @@ void main() {
             .every((action) => action.onSelected != null),
         isTrue,
       );
-      await tester.tap(find.byTooltip('Settings'));
+      before.onSettings();
       await _frames(tester);
+      expect(find.byType(AlertDialog), findsNothing);
+      before.onAbout();
+      expect(windowCalls.where((method) => method == 'show'), hasLength(1));
+      shown.complete();
+      await _frames(tester);
+      expect(windowCalls.where((method) => method == 'focus'), hasLength(1));
+      expect(find.byType(AlertDialog), findsOneWidget);
       final during = tester.widget<StudioNativeMenus>(
         find.byType(StudioNativeMenus),
       );
@@ -236,6 +252,13 @@ void main() {
       expect(picker.opens, 0);
       expect(tester.takeException(), isNull);
       await tester.tap(find.widgetWithText(TextButton, 'Close'));
+      await _frames(tester);
+      before.onAbout();
+      await _frames(tester);
+      expect(find.byType(StudioAboutDialog), findsOneWidget);
+      expect(windowCalls.where((method) => method == 'show'), hasLength(2));
+      expect(windowCalls.where((method) => method == 'focus'), hasLength(2));
+      await tester.tap(find.widgetWithText(ElevatedButton, 'Close'));
       await _frames(tester);
     },
     variant: TargetPlatformVariant.only(TargetPlatform.macOS),

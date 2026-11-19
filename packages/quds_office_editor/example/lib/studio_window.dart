@@ -18,7 +18,8 @@ class StudioWindow {
   static bool get isMacOS =>
       !kIsWeb && defaultTargetPlatform == TargetPlatform.macOS;
 
-  static bool get usesNativeTrafficLights => supported && isMacOS;
+  // AppKit draws these even when the window-manager plugin cannot initialize.
+  static bool get usesNativeTrafficLights => isMacOS;
 
   static bool get usesCaptionButtons => supported && !isMacOS;
 
