@@ -1,0 +1,94 @@
+{
+  "harness": "docs/validation/crispoffice-layout-theme-20261119/render_previews.dart",
+  "harness_sha256": "95a780f7d86350da55d15b333907fe54c44b505569acf6d21cf0a74c900a95fb",
+  "temporary_test_removed": true,
+  "image_count": 12,
+  "screenshots": [
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/screenshots/layout-dark-menu.png",
+      "sha256": "6b3a8a3900902b0675ce83cf84c641905ca3357e74f2fb421f3e87e3f1a0bee8",
+      "width": 1440,
+      "height": 960,
+      "bytes": 126999
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/screenshots/layout-dark.png",
+      "sha256": "e74247c87cf4fe41f750a2b92aab80c48350cc37fdf8bd30fcd7c2c953e0b256",
+      "width": 1440,
+      "height": 960,
+      "bytes": 121998
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/screenshots/layout-light.png",
+      "sha256": "4a5773d2286e61d595cd2a960a06ee660e5edfc3ba412cf55894e52ef911d3ab",
+      "width": 1440,
+      "height": 960,
+      "bytes": 122349
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/screenshots/layout-margins-menu.png",
+      "sha256": "3742a5baa3b6f7c0ac6d6dc79048f3b1fdcb1f5e8b4879c4d1776bcef8b4557f",
+      "width": 1440,
+      "height": 960,
+      "bytes": 130250
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/screenshots/layout-narrow-arabic.png",
+      "sha256": "353e9d0af33836d33615b405f226b982f52ca6848d7c5585d6b086eec90bf825",
+      "width": 900,
+      "height": 760,
+      "bytes": 96535
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/screenshots/layout-narrow-german.png",
+      "sha256": "2017829ed89875dda5f109823ae191d1caec4df8e4328af306ce94a87981de26",
+      "width": 900,
+      "height": 760,
+      "bytes": 102385
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/screenshots/page-layout-columns.png",
+      "sha256": "a1e871f0ea1aa500944041f0584542fa5467378a7bd06ef0d3eb43ec252d698b",
+      "width": 1440,
+      "height": 960,
+      "bytes": 77872
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/screenshots/page-layout-dark.png",
+      "sha256": "7db24c6b469786ba38da642f5580c4066b3f214e758a5413365d8cc21b98f48b",
+      "width": 1440,
+      "height": 960,
+      "bytes": 83556
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/screenshots/page-layout-margins.png",
+      "sha256": "215bea7dc8bde2966bc419ae4f48d5f6feb3e527e21377505820493dde8150a4",
+      "width": 1440,
+      "height": 960,
+      "bytes": 84360
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/screenshots/page-layout-paper.png",
+      "sha256": "58ae7978001b6ae33fba8a108275f3bf6d6e5f41edb137879ae3f4bf11761663",
+      "width": 1440,
+      "height": 960,
+      "bytes": 76915
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/screenshots/paragraph-dark.png",
+      "sha256": "e74247c87cf4fe41f750a2b92aab80c48350cc37fdf8bd30fcd7c2c953e0b256",
+      "width": 1440,
+      "height": 960,
+      "bytes": 121998
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/screenshots/settings-dark.png",
+      "sha256": "54c85b05bd7a86a68458bb6b1cb647e182b1bce5d45a77848e84b4fc52a90407",
+      "width": 1440,
+      "height": 960,
+      "bytes": 114546
+    }
+  ],
+  "render_receipt": "previews.json",
+  "visual_review": "Pending root inspection; raster files alone are not a visual acceptance claim."
+}

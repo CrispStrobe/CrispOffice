@@ -1,0 +1,9 @@
+00:00 +0: loading /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/example/test/studio_layout_theme_test.dart
+00:00 +0: Layout dropdown commands apply and Undo restores each setting (variant: TargetPlatform.linux)
+00:03 +1: Paragraph presets switch exact spacing back to multiples without truncating custom spacing (variant: TargetPlatform.linux)
+00:04 +2: Paragraph menu reflects the active first-page header and preserves body formatting (variant: TargetPlatform.linux)
+00:05 +3: Page Layout and Paragraph dialogs are reachable from the ribbon (variant: TargetPlatform.linux)
+00:07 +4: Document mode explains restrictions and disables layout editing (variant: TargetPlatform.linux)
+00:09 +5: Dark appearance updates the open Settings dialog and later routes (variant: TargetPlatform.linux)
+00:10 +6: narrow Arabic Layout menus and dialog stay reachable at 160 percent (variant: TargetPlatform.linux)
+00:12 +7: All tests passed!

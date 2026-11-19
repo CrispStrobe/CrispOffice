@@ -78,7 +78,7 @@ The exact refreshed tips are VBA
 `1a99845fe628c9e539d4bca7e7c586c5616da267`; both are ancestors of integration
 checkpoint `2d7360a217b51c34ccf72eb5ed78c82ccd20bae5`.
 
-The final GUI source and twelve visually reviewed screenshots are preserved in
+The initial accepted GUI source and twelve visually reviewed screenshots are preserved in
 `2dbd1c58dd724bb2208e06c43a835b220484b1e1`. The publication integration
 `8d9d1fe77284f76e71fbd6cb2718d3f6cfb636af` also preserves VBA tip
 `f6b8638d5c78a2d17e5e1c2fb43620c63a23b90c`, mail resume tip
@@ -88,6 +88,15 @@ are confined to thirteen mail-specific library files. The GUI product files
 and complete engine library, test and tool trees are unchanged from the
 accepted GUI checkpoint. The one test conflict retained the accepted Slide
 contrast, light-cell raster-equivalence and saved-XML assertions.
+
+Local qualification of the incoming resume code exposed three existing
+adversarial-test failures. Follow-up
+`ba51c40abc664758df3cfc846625bdeb81e3ac13` makes two targeted corrections:
+confirmed restore writes retain the established archive completion diagnostic,
+and per-item source/codec failures remain bounded and reportable while actual
+destination receipt corruption still stops resumption. Original tests and the
+atomic original/index/provenance/receipt transaction are unchanged. The failed
+run is retained alongside the corrected acceptance result.
 
 [Incoming audits](incoming/README.md) distinguish functional changes from
 formatting and evidence. The retained remote capture covers 231 fork branch/PR
@@ -102,17 +111,56 @@ see [reconciliation-publication.json](reconciliation-publication.json).
 The [publication audit](incoming/publication-audit.json) additionally binds the
 inspected mail resume snapshot and explains its fresh acceptance requirements.
 
+Published main subsequently advanced to
+`9f41e0427734d815b19149eba5eabef202f78ba6`. Integration
+`a93c78032b043c35edd2632ba3ab7a058299926a` preserves its language-review fixes,
+explicit language/model download manager and native model removal together with
+the accepted GUI. The combined Settings dialog retains live theme and RTL
+updates, exposes Language downloads, and keeps document mode in File and View.
+The download manager inherits the active themed route. The
+[final integration review](integration-review-publication.json) records the
+exact source review; the retained merge proof records all twelve resolved paths.
+
+The **tested GUI and language-controls source checkpoint** is published at
+`fedabc7079db1c402cadcd9ef15296244979132e`, tree
+`ec7fe4262f93698f2a56b2ff334cde7574455fdb`. The frozen 921-case acceptance package
+below binds this checkpoint. Later incoming integrations retain their own
+source review and targeted acceptance records.
+
 ## Local acceptance
 
-Acceptance receipts, precise source identities and the final result summary are
-recorded beside this document. Local checks use the repository-pinned Flutter
+The [acceptance summary](local-acceptance/acceptance-summary.json) records
+**921 distinct passing behavior cases across 44 test files**. The
+[package manifest](local-acceptance/manifest.json) and
+[path map](local-acceptance/path-map.json) identify every retained receipt, log,
+source manifest, case mapping and merge proof, with original and stored hashes.
+Large evidence files use reproducible gzip compression. Failed and superseded
+attempts remain available and do not contribute to the accepted total.
+
+Local checks use the repository-pinned Flutter
 3.47.8 and Dart 3.13.7 runtime, the unchanged dependency lockfile, the normal
 SQLite native hook, actual raster captures and Node execution of the web smoke
 programs. Corrected reruns count each behavior case once; development failures
 remain identified separately.
 
-The GUI portion contains **144 distinct accepted behavior cases**, plus one
-separate screenshot-generation case:
+| Accepted cohort | Distinct cases |
+| --- | ---: |
+| GUI continuation: rendering, dialogs, menus and existing regressions | 144 |
+| Language downloads manager | 5 |
+| Proofing controls and Review | 66 |
+| Native NER model removal | 2 |
+| VBA VM, including actual CLI subprocesses | 395 |
+| Native mail restoration and repository | 181 |
+| Portable mail on Node | 9 |
+| Studio mail restoration | 31 |
+| Editor embedding | 88 |
+| **Total** | **921** |
+
+Two compiled JavaScript smoke programs with checked JSON assertions and one
+screenshot-generation test producing twelve distinct images are recorded
+separately. The earlier 634-case GUI phase is also excluded from this total.
+
+The GUI continuation's 144 cases break down as follows:
 
 | Area | Distinct cases |
 | --- | ---: |
@@ -123,11 +171,18 @@ separate screenshot-generation case:
 | Slide dark rendering and saved color preservation | 6 |
 | **GUI total** | **144** |
 
-The incoming VBA qualification also passed **395 cases** across eleven suites,
-including real CLI subprocesses. Its engine source, tests and tools remain
-byte-identical across the publication integration, so that gate remains bound
-to the integrated code. Incoming mail resume, Studio restore and embedding
-fixtures receive their own final-source qualification.
+The incoming VBA qualification covers eleven suites. Its engine source, tests
+and tools remain byte-identical across the later integrations. The complete
+181-case native mail gate passed after the two restore corrections, with the
+original tests unchanged. Portable mail, Studio restoration and embedding
+fixtures also passed against the integrated source.
+
+The last main integration passed 45 example cases, 76 core proofing/Page Layout
+cases and two native NER-removal cases. Of these, 73 are additional cases and
+the remaining reruns replace earlier accepted results. Strict scoped analysis
+and nonmutating format checks passed. The summary explains which earlier
+results are retained, their source comparisons, and the exact accepted log for
+each case; a final manifest binds 1,040 source and configuration files.
 
 The full suite and native macOS/AppKit execution are outside this focused Linux
 qualification. The earlier desktop/native-menu wiring and its focused tests are
@@ -139,8 +194,14 @@ preserved from [PR #206](https://github.com/CrispStrobe/quds_office_suite/pull/2
 screenshots with the bundled fonts. Ruler labels and readouts now use the same
 explicit font resolution as document text, avoiding implicit platform/test
 fonts. No SDK patch or test-font substitution is used. Dialog visibility and
-dark appearance are asserted before capture. The final screenshots are under [screenshots](screenshots/).
-All twelve distinct images were directly reviewed; the
-[visual review](visual-review.json) records their hashes, viewport dimensions,
-reviewer observations and scope. The narrow German and Arabic views use a
-900 × 760 viewport; the desktop and dialog views use 1440 × 960.
+dark appearance are asserted before capture. The final merged-source screenshots
+are under [screenshots-publication](screenshots-publication/). All twelve
+distinct images were directly reviewed; the
+[publication visual review](visual-review-publication.json) records their
+hashes, viewport dimensions, reviewer observations and scope. They include the
+merged Language downloads Settings entry and the updated sample language.
+The narrow German and Arabic views use a 900 × 760 viewport; the desktop and
+dialog views use 1440 × 960.
+
+The earlier [screenshots](screenshots/) and [visual review](visual-review.json)
+remain unchanged to preserve their original source and hash relationship.

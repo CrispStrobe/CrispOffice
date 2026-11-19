@@ -1,0 +1,19 @@
+Updating ba51c40ab..a93c78032
+Fast-forward
+ .../language-downloads-20261119/README.md          |  62 +++++
+ .../example/lib/crisp_office_sample.dart           |   1 +
+ .../example/lib/studio_downloads_manager.dart      | 268 +++++++++++++++++++
+ .../example/lib/studio_spacy_host.dart             |   7 +
+ .../example/lib/studio_spacy_host_native.dart      |  30 ++-
+ .../example/lib/suite_workspace.dart               |  65 ++++-
+ .../test/studio_downloads_manager_test.dart        | 289 +++++++++++++++++++++
+ .../lib/src/embed/office_controller.dart           |  36 ++-
+ .../lib/src/embed/word_review_pane.dart            |  10 +-
+ .../test/word_text_proofing_pane_test.dart         |  55 ++++
+ .../quds_proofing_spacy/lib/src/installer_io.dart  |  27 ++
+ .../quds_proofing_spacy/test/ner_removal_test.dart |  56 ++++
+ 12 files changed, 887 insertions(+), 19 deletions(-)
+ create mode 100644 docs/validation/language-downloads-20261119/README.md
+ create mode 100644 packages/quds_office_editor/example/lib/studio_downloads_manager.dart
+ create mode 100644 packages/quds_office_editor/example/test/studio_downloads_manager_test.dart
+ create mode 100644 packages/quds_proofing_spacy/test/ner_removal_test.dart

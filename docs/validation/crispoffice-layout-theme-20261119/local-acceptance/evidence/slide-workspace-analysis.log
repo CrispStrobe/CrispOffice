@@ -1,0 +1,5 @@
+Analyzing render_slide_stage.dart, office_dark_slide_test.dart, suite_workspace.dart, studio_layout_theme_test.dart...
+
+   info - example/lib/suite_workspace.dart:1421:31 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+
+1 issue found.

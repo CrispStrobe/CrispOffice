@@ -1,0 +1,41 @@
+{
+  "changed_product_files": [
+    "packages/quds_mail_store/lib/src/archive_restore_checkpoints.dart",
+    "packages/quds_mail_store/lib/src/archive_restore_native.dart"
+  ],
+  "all_original_test_files_unchanged": true,
+  "test_source_comparison": {
+    "packages/quds_mail_store/test/archive_restore_checkpoint_test.dart": {
+      "failed_run_sha256": "bb9885626c8da3d91f3532bb98abcd4f7310fa15bb93e8bd948b2434466259a2",
+      "accepted_run_sha256": "bb9885626c8da3d91f3532bb98abcd4f7310fa15bb93e8bd948b2434466259a2"
+    },
+    "packages/quds_mail_store/test/archive_restore_resume_test.dart": {
+      "failed_run_sha256": "a4d85416abc4c6909df18454fcd2054ae5be117890e3e785f56fbc91e6c47c0f",
+      "accepted_run_sha256": "a4d85416abc4c6909df18454fcd2054ae5be117890e3e785f56fbc91e6c47c0f"
+    },
+    "packages/quds_mail_store/test/archive_restore_native_test.dart": {
+      "failed_run_sha256": "406afdd45c7bb1fcba0b004c5c63bc1d125132667f63ea5fe5dab78b5574f8ad",
+      "accepted_run_sha256": "406afdd45c7bb1fcba0b004c5c63bc1d125132667f63ea5fe5dab78b5574f8ad"
+    },
+    "packages/quds_mail_store/test/archive_restore_adversarial_test.dart": {
+      "failed_run_sha256": "43d22351e0aa9a019018dc4af0e5d4c2aa8fa9ae559c280275df7cf072b71352",
+      "accepted_run_sha256": "43d22351e0aa9a019018dc4af0e5d4c2aa8fa9ae559c280275df7cf072b71352"
+    },
+    "packages/quds_mail_store/test/archive_native_test.dart": {
+      "failed_run_sha256": "c0da5ebe70401deadba4d89c23678b18a7108df9185a440be1a3a844e6501209",
+      "accepted_run_sha256": "c0da5ebe70401deadba4d89c23678b18a7108df9185a440be1a3a844e6501209"
+    },
+    "packages/quds_mail_store/test/archive_multi_origin_test.dart": {
+      "failed_run_sha256": "c28d5209a5e78dec16fe56498bac189c06b10bf5822e66ea247fbcb3b5d7d41e",
+      "accepted_run_sha256": "c28d5209a5e78dec16fe56498bac189c06b10bf5822e66ea247fbcb3b5d7d41e"
+    },
+    "packages/quds_mail_store/test/archive_repository_test.dart": {
+      "failed_run_sha256": "0734bfee2891b65d70f662ede6132e7f8374aae77a5e064d66b8655025a1d22d",
+      "accepted_run_sha256": "0734bfee2891b65d70f662ede6132e7f8374aae77a5e064d66b8655025a1d22d"
+    }
+  },
+  "failed_receipt": "incoming-resume-native.json",
+  "accepted_receipt": "incoming-resume-native-2.json",
+  "published_source_commit": "ba51c40abc664758df3cfc846625bdeb81e3ac13",
+  "published_source_tree": "e3b0c194fc9b0ccbdcc16b052daffc6646d216cc"
+}

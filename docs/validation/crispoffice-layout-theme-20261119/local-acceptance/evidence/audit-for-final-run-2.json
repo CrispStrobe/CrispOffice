@@ -1,0 +1,683 @@
+{
+  "schema_version": 1,
+  "audited_at_utc": "2026-11-19T18:17:14.823190+00:00",
+  "repository": "CrispStrobe/quds_office_suite",
+  "mode": "Read-only Git/source audit with pinned formatter replay through stdin; no source mutations, compiler, test, merge, push or GitHub Actions query performed.",
+  "local_head_at_audit": "5fe62a07c1ad8fb85f8c2202fc7f52a5586fb5b2",
+  "local_branch": "codex/crispoffice-layout-theme-20261119",
+  "baseline": "37ac6ea8a08225a42098c455deb5375837912eec",
+  "main_before_baseline": "cf59efa99232a3fd26cf21ce7f2382402e576f9b",
+  "tips": {
+    "vba": "ac9de9e000274718145659da0abc7c8cadb9e8c3",
+    "mail": "0c77b3488eb534868a7f98271ba2923d06759b8d",
+    "common_frontier": "358544a48466c942873a4718a87fa9d1c2be11f7"
+  },
+  "baseline_is_ancestor": {
+    "vba": true,
+    "mail": true,
+    "local": true
+  },
+  "incoming_commits": {
+    "vba": [
+      {
+        "sha": "ac9de9e000274718145659da0abc7c8cadb9e8c3",
+        "parents": [
+          "21a6b9a5a8ae4956d2829e7b7359f3b06dc55697",
+          "358544a48466c942873a4718a87fa9d1c2be11f7"
+        ],
+        "subject": "Bound array string storage and integrate refreshed mail frontier [skip ci]"
+      },
+      {
+        "sha": "21a6b9a5a8ae4956d2829e7b7359f3b06dc55697",
+        "parents": [
+          "6918f91dabc79a778f944d0ad0cfd2ff8ef4d809"
+        ],
+        "subject": "Add bounded VBA arrays, source coordinates, and For Each iteration [skip ci]"
+      },
+      {
+        "sha": "6918f91dabc79a778f944d0ad0cfd2ff8ef4d809",
+        "parents": [
+          "37ac6ea8a08225a42098c455deb5375837912eec"
+        ],
+        "subject": "Record reconciled remote frontier for VBA arrays and For Each [skip ci]"
+      },
+      {
+        "sha": "358544a48466c942873a4718a87fa9d1c2be11f7",
+        "parents": [
+          "37ac6ea8a08225a42098c455deb5375837912eec"
+        ],
+        "subject": "Normalize incoming Dart formatting before local archive acceptance [skip ci]"
+      }
+    ],
+    "mail": [
+      {
+        "sha": "0c77b3488eb534868a7f98271ba2923d06759b8d",
+        "parents": [
+          "358544a48466c942873a4718a87fa9d1c2be11f7"
+        ],
+        "subject": "Correct portable validation selection and document restore APIs [skip ci]"
+      },
+      {
+        "sha": "358544a48466c942873a4718a87fa9d1c2be11f7",
+        "parents": [
+          "37ac6ea8a08225a42098c455deb5375837912eec"
+        ],
+        "subject": "Normalize incoming Dart formatting before local archive acceptance [skip ci]"
+      }
+    ]
+  },
+  "changed_paths_from_baseline": {
+    "vba": [
+      ".github/workflows/office-macros.yml",
+      "docs/MACROS.md",
+      "docs/VBA_MACROS.md",
+      "docs/validation/mail-archive-restore-20261119/format-reconciliation.json",
+      "docs/validation/office-vba-arrays-20261119/remote-initial/README.md",
+      "docs/validation/office-vba-arrays-20261119/remote-initial/audit.json",
+      "docs/validation/office-vba-arrays-20261119/run-local-validation.py",
+      "packages/quds_office_editor/example/lib/studio_hunspell_setup.dart",
+      "packages/quds_office_editor/example/lib/studio_pdf_flutter_samples.dart",
+      "packages/quds_office_editor/example/lib/studio_pdf_toc_samples.dart",
+      "packages/quds_office_engine/example/macros/array_report.bas",
+      "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+      "packages/quds_office_engine/lib/src/office/office_document_properties.dart",
+      "packages/quds_office_engine/lib/src/pdf/samples/literary_arabic.dart",
+      "packages/quds_office_engine/lib/src/pdf/samples/widgets_catalog.dart",
+      "packages/quds_office_engine/lib/src/pdf/widgets/pw_core.dart",
+      "packages/quds_office_engine/lib/src/reports/report_templates.dart",
+      "packages/quds_office_engine/test/office_vba_arrays_boundaries_test.dart",
+      "packages/quds_office_engine/test/office_vba_arrays_integration_test.dart",
+      "packages/quds_office_engine/test/office_vba_arrays_test.dart",
+      "packages/quds_office_engine/tool/macros/web_vba_arrays_smoke.dart"
+    ],
+    "mail": [
+      "docs/validation/mail-archive-restore-20261119/attempts.md",
+      "docs/validation/mail-archive-restore-20261119/format-reconciliation.json",
+      "docs/validation/mail-archive-restore-20261119/incoming/run_incoming.py",
+      "docs/validation/mail-archive-restore-20261119/run-mail-validation.py",
+      "packages/quds_mail_store/CHANGELOG.md",
+      "packages/quds_mail_store/README.md",
+      "packages/quds_office_editor/example/lib/studio_hunspell_setup.dart",
+      "packages/quds_office_editor/example/lib/studio_pdf_flutter_samples.dart",
+      "packages/quds_office_editor/example/lib/studio_pdf_toc_samples.dart",
+      "packages/quds_office_engine/lib/src/office/office_document_properties.dart",
+      "packages/quds_office_engine/lib/src/pdf/samples/literary_arabic.dart",
+      "packages/quds_office_engine/lib/src/pdf/samples/widgets_catalog.dart",
+      "packages/quds_office_engine/lib/src/pdf/widgets/pw_core.dart",
+      "packages/quds_office_engine/lib/src/reports/report_templates.dart"
+    ]
+  },
+  "format_receipt": {
+    "path": "docs/validation/mail-archive-restore-20261119/format-reconciliation.json",
+    "commit": "358544a48466c942873a4718a87fa9d1c2be11f7",
+    "checks": [
+      {
+        "path": "packages/quds_office_editor/example/lib/studio_hunspell_setup.dart",
+        "before_sha256": "4816d25bc9ebe24c832b78b55d08cc82dfdd54f6108ff369174d64ec0626380d",
+        "after_sha256": "fe37501517b1403754d61300975b786eb5d1169acd91e469210985696d7167d0",
+        "author_hashes_match": true,
+        "formatter_argv": [
+          "/workspace/scratch/9c3338a48b2c/toolchain/run_dart.sh",
+          "format",
+          "--output=show",
+          "--summary=none",
+          "--stdin-name=/workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/example/lib/studio_hunspell_setup.dart"
+        ],
+        "formatter_exit_code": 0,
+        "formatter_stderr": "",
+        "matches_pinned_formatter_output": true,
+        "author_reports_exact_pinned_formatter_output": true
+      },
+      {
+        "path": "packages/quds_office_editor/example/lib/studio_pdf_flutter_samples.dart",
+        "before_sha256": "915dcd2a2debcc5bc171a379cb2b8bcf5956e54b23443d7ae506f8760aeca7d0",
+        "after_sha256": "6d2ff4f9133b021222793ff49bf1a8ec7d97b89c598e6d703a7be9406fd0d74c",
+        "author_hashes_match": true,
+        "formatter_argv": [
+          "/workspace/scratch/9c3338a48b2c/toolchain/run_dart.sh",
+          "format",
+          "--output=show",
+          "--summary=none",
+          "--stdin-name=/workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/example/lib/studio_pdf_flutter_samples.dart"
+        ],
+        "formatter_exit_code": 0,
+        "formatter_stderr": "",
+        "matches_pinned_formatter_output": true,
+        "author_reports_exact_pinned_formatter_output": true
+      },
+      {
+        "path": "packages/quds_office_editor/example/lib/studio_pdf_toc_samples.dart",
+        "before_sha256": "fe605b144e1e205bab2d61691183e0248c44797fd3f53eb1222a534d1ffcbea4",
+        "after_sha256": "2d535621333a52b370857c3d294160a8b1e2f844f9a27f6a0d9f55208f2cad6f",
+        "author_hashes_match": true,
+        "formatter_argv": [
+          "/workspace/scratch/9c3338a48b2c/toolchain/run_dart.sh",
+          "format",
+          "--output=show",
+          "--summary=none",
+          "--stdin-name=/workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/example/lib/studio_pdf_toc_samples.dart"
+        ],
+        "formatter_exit_code": 0,
+        "formatter_stderr": "",
+        "matches_pinned_formatter_output": true,
+        "author_reports_exact_pinned_formatter_output": true
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/office/office_document_properties.dart",
+        "before_sha256": "4c5c8bdac959031c64ca743858aca4e41b45064717678918134278b886646445",
+        "after_sha256": "0213f647fa471eeb454bee7722a64104f5bae363822ab060a3b02e2cdd8af649",
+        "author_hashes_match": true,
+        "formatter_argv": [
+          "/workspace/scratch/9c3338a48b2c/toolchain/run_dart.sh",
+          "format",
+          "--output=show",
+          "--summary=none",
+          "--stdin-name=/workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_engine/lib/src/office/office_document_properties.dart"
+        ],
+        "formatter_exit_code": 0,
+        "formatter_stderr": "",
+        "matches_pinned_formatter_output": true,
+        "author_reports_exact_pinned_formatter_output": true
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/pdf/samples/literary_arabic.dart",
+        "before_sha256": "4e0230dc99d58bef3ee4571949a49433fd24c807acc2e48ffb8a444978604736",
+        "after_sha256": "47a39860484e33b252a3814157776da32ee317b3b8962f517c253a8261c88928",
+        "author_hashes_match": true,
+        "formatter_argv": [
+          "/workspace/scratch/9c3338a48b2c/toolchain/run_dart.sh",
+          "format",
+          "--output=show",
+          "--summary=none",
+          "--stdin-name=/workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_engine/lib/src/pdf/samples/literary_arabic.dart"
+        ],
+        "formatter_exit_code": 0,
+        "formatter_stderr": "",
+        "matches_pinned_formatter_output": true,
+        "author_reports_exact_pinned_formatter_output": true
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/pdf/samples/widgets_catalog.dart",
+        "before_sha256": "70dd2564c4353f5ce2dead904cd6d23df31a0200e2770efedbad2146914bfea7",
+        "after_sha256": "3893f3a5712889883c0c8a070fb8b4de88a5bdbbd829ee00ad021c37915c89ba",
+        "author_hashes_match": true,
+        "formatter_argv": [
+          "/workspace/scratch/9c3338a48b2c/toolchain/run_dart.sh",
+          "format",
+          "--output=show",
+          "--summary=none",
+          "--stdin-name=/workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_engine/lib/src/pdf/samples/widgets_catalog.dart"
+        ],
+        "formatter_exit_code": 0,
+        "formatter_stderr": "",
+        "matches_pinned_formatter_output": true,
+        "author_reports_exact_pinned_formatter_output": true
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/pdf/widgets/pw_core.dart",
+        "before_sha256": "86d397410745c1180b92a46e5f3098650d6d400cf74f17513a6e8dae7bc35fee",
+        "after_sha256": "e13ef8204a36a06b68d38c97d34ee1271bfca00e46e844d1b0204ff4f1f1ec48",
+        "author_hashes_match": true,
+        "formatter_argv": [
+          "/workspace/scratch/9c3338a48b2c/toolchain/run_dart.sh",
+          "format",
+          "--output=show",
+          "--summary=none",
+          "--stdin-name=/workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_engine/lib/src/pdf/widgets/pw_core.dart"
+        ],
+        "formatter_exit_code": 0,
+        "formatter_stderr": "",
+        "matches_pinned_formatter_output": true,
+        "author_reports_exact_pinned_formatter_output": true
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/reports/report_templates.dart",
+        "before_sha256": "23590df1463e109ff59da1decb62a29c7ba90ff61da4c0596904357bb437ad1b",
+        "after_sha256": "c3632ae8959e68edb484a16d9cc1015ffe47f4186d852972f8ec0e46ace8b90c",
+        "author_hashes_match": true,
+        "formatter_argv": [
+          "/workspace/scratch/9c3338a48b2c/toolchain/run_dart.sh",
+          "format",
+          "--output=show",
+          "--summary=none",
+          "--stdin-name=/workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_engine/lib/src/reports/report_templates.dart"
+        ],
+        "formatter_exit_code": 0,
+        "formatter_stderr": "",
+        "matches_pinned_formatter_output": true,
+        "author_reports_exact_pinned_formatter_output": true
+      }
+    ]
+  },
+  "mail_latest_commit_changes_product_or_tests": false,
+  "archive_restore_already_in_baseline": [
+    {
+      "path": "packages/quds_mail_store/lib/quds_mail_archive_native.dart",
+      "baseline_sha256": "b33a719078671c0d5b51276b0574bbc81a8ecf7bc22173605e85a6a8882a4605",
+      "vba_tip_matches_baseline": true,
+      "mail_tip_matches_baseline": true
+    },
+    {
+      "path": "packages/quds_mail_store/lib/quds_mail_store.dart",
+      "baseline_sha256": "4102db42ae0572855dca26020ae849f94305a42f5b4b985739005806450033a9",
+      "vba_tip_matches_baseline": true,
+      "mail_tip_matches_baseline": true
+    },
+    {
+      "path": "packages/quds_mail_store/lib/src/archive_models.dart",
+      "baseline_sha256": "71064c26e61bf8c2a36b0bbc30c60ed901ba69fe7e5721385eecb43bb43f4643",
+      "vba_tip_matches_baseline": true,
+      "mail_tip_matches_baseline": true
+    },
+    {
+      "path": "packages/quds_mail_store/lib/src/archive_repository.dart",
+      "baseline_sha256": "c64538de2227c33c013dbd9dc70a587f394805e2c8d58f4d4915fbd730996bd0",
+      "vba_tip_matches_baseline": true,
+      "mail_tip_matches_baseline": true
+    },
+    {
+      "path": "packages/quds_mail_store/lib/src/archive_restore_models.dart",
+      "baseline_sha256": "97084fc6f44488d36a9218d265d750cbd8ac4bbfc6bdc256168ece2db3e838e8",
+      "vba_tip_matches_baseline": true,
+      "mail_tip_matches_baseline": true
+    },
+    {
+      "path": "packages/quds_mail_store/lib/src/archive_restore_native.dart",
+      "baseline_sha256": "8d487d44b0679efaaa8fa6c2627aaf031b164ecb6c1d831083e3295be109c5d7",
+      "vba_tip_matches_baseline": true,
+      "mail_tip_matches_baseline": true
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_multi_origin_test.dart",
+      "baseline_sha256": "c28d5209a5e78dec16fe56498bac189c06b10bf5822e66ea247fbcb3b5d7d41e",
+      "vba_tip_matches_baseline": true,
+      "mail_tip_matches_baseline": true
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_restore_adversarial_test.dart",
+      "baseline_sha256": "43d22351e0aa9a019018dc4af0e5d4c2aa8fa9ae559c280275df7cf072b71352",
+      "vba_tip_matches_baseline": true,
+      "mail_tip_matches_baseline": true
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_restore_native_test.dart",
+      "baseline_sha256": "d73f82c1029df77ff80b4aaeb37036d2882595c05a54ba60ba1f10fb2e0501ae",
+      "vba_tip_matches_baseline": true,
+      "mail_tip_matches_baseline": true
+    },
+    {
+      "path": "packages/quds_mail_store/tool/archive_restore_crash_fixture.dart",
+      "baseline_sha256": "e3a60b529c1dcca3c92a168cb35c0553139280225236a85cc241e08d574f2e20",
+      "vba_tip_matches_baseline": true,
+      "mail_tip_matches_baseline": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_archive_host.dart",
+      "baseline_sha256": "dd9e59b6f0acd496cda0c5a656d3ffb6cf123e088dc7983feb4e4304da60af47",
+      "vba_tip_matches_baseline": true,
+      "mail_tip_matches_baseline": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_archive_native.dart",
+      "baseline_sha256": "470fc1b2924a495debf23ea3dbc97dc24a47e3095a954b68f2d99a0cd21f61b3",
+      "vba_tip_matches_baseline": true,
+      "mail_tip_matches_baseline": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_archive_restore.dart",
+      "baseline_sha256": "e7cbd6b3425be30765534c3a3fff9b1e62180fe487192a19c2c45474814d3371",
+      "vba_tip_matches_baseline": true,
+      "mail_tip_matches_baseline": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_archive_restore_strings.dart",
+      "baseline_sha256": "deeecfe4a7a0df30c66f676854c765f9637f6a1244b266a8f24675b4884020cc",
+      "vba_tip_matches_baseline": true,
+      "mail_tip_matches_baseline": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_archive_portability_visual_test.dart",
+      "baseline_sha256": "04af65f840add6859a8121d612e4a4c3542d6d3ad8caa3114721ea11fabed16c",
+      "vba_tip_matches_baseline": true,
+      "mail_tip_matches_baseline": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_archive_restore_native_test.dart",
+      "baseline_sha256": "42d0a522d0dc626b014d50e66758fe2e4c5e62e2c8c80451c08995ebe42958ea",
+      "vba_tip_matches_baseline": true,
+      "mail_tip_matches_baseline": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart",
+      "baseline_sha256": "0ed0e7688d3ffaf62fb77257fe49bf1a7bb9d1fd89aa7e2d40d9f58495e7b27a",
+      "vba_tip_matches_baseline": true,
+      "mail_tip_matches_baseline": true
+    }
+  ],
+  "historical_equivalence_rechecked": [
+    {
+      "branch": "feat/ods-color-scale",
+      "head": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+      "accepted_pr": 135,
+      "accepted_merge": "4584d5f319aab198f1d705f48b4d6647e6cbabea",
+      "comparison_merge_base": "e3a38789359adaa33b2da1345c952fa1c2d8aebb",
+      "accepted_merge_is_ancestor_of_local_head": true,
+      "changed_paths_compared": 7,
+      "matching_blob_ids": 7,
+      "mismatched_paths": [],
+      "source_proof": "docs/validation/office-vba-arrays-20261119/remote-initial/audit.json",
+      "fresh_github_query_performed": false
+    },
+    {
+      "branch": "feat/ods-dynamic-validation-links",
+      "head": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+      "accepted_pr": 137,
+      "accepted_merge": "d754bf15b07a24c8a86c8dce339ca749fecd9531",
+      "comparison_merge_base": "4eaca83b192897edad82658107dfeb5bcbed0920",
+      "accepted_merge_is_ancestor_of_local_head": true,
+      "changed_paths_compared": 4,
+      "matching_blob_ids": 4,
+      "mismatched_paths": [],
+      "source_proof": "docs/validation/office-vba-arrays-20261119/remote-initial/audit.json",
+      "fresh_github_query_performed": false
+    },
+    {
+      "branch": "codex/odt-field-continuation-20261117",
+      "head": "c34945761e7991f5fe49037d79529acdd260b31c",
+      "accepted_pr": 140,
+      "accepted_merge": "2c47165d01d01cc883135a434ac9f6591ce6e770",
+      "comparison_merge_base": "e3a38789359adaa33b2da1345c952fa1c2d8aebb",
+      "accepted_merge_is_ancestor_of_local_head": true,
+      "changed_paths_compared": 37,
+      "matching_blob_ids": 37,
+      "mismatched_paths": [],
+      "source_proof": "docs/validation/office-vba-arrays-20261119/remote-initial/audit.json",
+      "fresh_github_query_performed": false
+    },
+    {
+      "branch": "feat/ods-data-bar",
+      "head": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+      "accepted_pr": 141,
+      "accepted_merge": "b3f41eb4b4bca8ca13676b4114891ea6d9185043",
+      "comparison_merge_base": "d754bf15b07a24c8a86c8dce339ca749fecd9531",
+      "accepted_merge_is_ancestor_of_local_head": true,
+      "changed_paths_compared": 8,
+      "matching_blob_ids": 8,
+      "mismatched_paths": [],
+      "source_proof": "docs/validation/office-vba-arrays-20261119/remote-initial/audit.json",
+      "fresh_github_query_performed": false
+    },
+    {
+      "branch": "feat/ods-icon-sets",
+      "head": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
+      "accepted_pr": 145,
+      "accepted_merge": "c84d5e16024c502f6c451fd04b9807b1e65f20d3",
+      "comparison_merge_base": "16e2477ff93f7a1ec5c6ed78491f2716ce4d1658",
+      "accepted_merge_is_ancestor_of_local_head": true,
+      "changed_paths_compared": 7,
+      "matching_blob_ids": 7,
+      "mismatched_paths": [],
+      "source_proof": "docs/validation/office-vba-arrays-20261119/remote-initial/audit.json",
+      "fresh_github_query_performed": false
+    },
+    {
+      "branch": "integrate/office-union-148",
+      "head": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+      "accepted_pr": 149,
+      "accepted_merge": "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4",
+      "comparison_merge_base": "bb5556e8cc4cb73e2c668b5319a2844a20c6c50c",
+      "accepted_merge_is_ancestor_of_local_head": true,
+      "changed_paths_compared": 221,
+      "matching_blob_ids": 221,
+      "mismatched_paths": [],
+      "source_proof": "docs/validation/office-vba-arrays-20261119/remote-initial/audit.json",
+      "fresh_github_query_performed": false
+    },
+    {
+      "branch": "feat/ods-time-period-conditions",
+      "head": "7ef09f2408f467c65427700e65907531ecb26acb",
+      "accepted_pr": 151,
+      "accepted_merge": "34dc6b6806869570e9ec342e4d7ee0d6951c0ba6",
+      "comparison_merge_base": "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4",
+      "accepted_merge_is_ancestor_of_local_head": true,
+      "changed_paths_compared": 7,
+      "matching_blob_ids": 7,
+      "mismatched_paths": [],
+      "source_proof": "docs/validation/office-vba-arrays-20261119/remote-initial/audit.json",
+      "fresh_github_query_performed": false
+    }
+  ],
+  "prior_full_frontier_evidence_preserved": [
+    {
+      "path": "docs/validation/crispoffice-gui-20261119/reconciliation-final.json",
+      "baseline_sha256": "794c9422f755a941bcc9d5353f8cd4af25d237dcf1604592a1562aa90e19584b",
+      "vba_tip_identical": true,
+      "mail_tip_identical": true
+    },
+    {
+      "path": "docs/validation/mail-archive-restore-20261119/reconciliation.json",
+      "baseline_sha256": "6b27ff7c6427b99818800ff8df0b289d56a6f9653c8257d292d9ae66c7d00724",
+      "vba_tip_identical": true,
+      "mail_tip_identical": true
+    },
+    {
+      "path": "docs/validation/office-vba-control-flow-20261119/final-frontier.json",
+      "baseline_sha256": "76188bf19f6d2cd781bf6850faa29cc930090e73100a73612b361b5149081158",
+      "vba_tip_identical": true,
+      "mail_tip_identical": true
+    }
+  ],
+  "integration_recommendation": {
+    "exact_tips": [
+      "ac9de9e000274718145659da0abc7c8cadb9e8c3",
+      "0c77b3488eb534868a7f98271ba2923d06759b8d"
+    ],
+    "method": "Merge both exact tips into the checkpointed GUI branch, retaining ancestry. VBA already contains the formatter commit; mail contributes its final docs/validation correction. Do not replay historical equivalent branches or replace GUI files with an incoming tree.",
+    "refresh_required_before_final_publication": true
+  },
+  "qualification": {
+    "performed_by_this_audit": false,
+    "required_after_integration": "Run the focused gates serially on the final merged source and bind all receipts to its source hashes. Retain existing GUI acceptance and original evidence; unchanged historical paths need no replay.",
+    "gates": [
+      {
+        "id": "vba-scoped-analysis",
+        "cwd": "packages/quds_office_engine",
+        "argv": [
+          "/workspace/scratch/9c3338a48b2c/toolchain/run_dart.sh",
+          "analyze",
+          "--fatal-infos",
+          "--fatal-warnings",
+          "lib/src/automation/office_vba_language.dart",
+          "test/office_vba_arrays_test.dart",
+          "test/office_vba_arrays_boundaries_test.dart",
+          "test/office_vba_arrays_integration_test.dart",
+          "tool/macros/web_vba_arrays_smoke.dart"
+        ],
+        "purpose": "New compiler and array entry points, without analyzing unrelated packages."
+      },
+      {
+        "id": "vba-vm",
+        "cwd": "packages/quds_office_engine",
+        "argv": [
+          "/workspace/scratch/9c3338a48b2c/toolchain/run_dart.sh",
+          "--packages=/workspace/scratch/9c3338a48b2c/crispoffice/.dart_tool/package_config.json",
+          "/workspace/scratch/9c3338a48b2c/toolchain/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+          "--platform=vm",
+          "--compiler=kernel",
+          "--concurrency=1",
+          "--reporter=json",
+          "test/office_vba_arrays_test.dart",
+          "test/office_vba_arrays_boundaries_test.dart",
+          "test/office_vba_arrays_integration_test.dart",
+          "test/office_vba_language_test.dart",
+          "test/office_vba_integration_test.dart",
+          "test/office_vba_procedures_test.dart",
+          "test/office_vba_procedure_boundaries_test.dart",
+          "test/office_vba_procedures_integration_test.dart",
+          "test/office_vba_control_flow_test.dart",
+          "test/office_vba_control_flow_boundaries_test.dart",
+          "test/office_vba_control_flow_integration_test.dart"
+        ],
+        "purpose": "Three new suites plus existing VBA syntax/procedure/control-flow paths sharing the changed compiler."
+      },
+      {
+        "id": "archive-scoped-analysis",
+        "cwd": ".",
+        "argv": [
+          "/workspace/scratch/9c3338a48b2c/toolchain/run_dart.sh",
+          "analyze",
+          "--fatal-infos",
+          "--fatal-warnings",
+          "packages/quds_mail_store/lib/quds_mail_archive_native.dart",
+          "packages/quds_mail_store/lib/quds_mail_store.dart",
+          "packages/quds_mail_store/lib/src/archive_models.dart",
+          "packages/quds_mail_store/lib/src/archive_repository.dart",
+          "packages/quds_mail_store/lib/src/archive_restore_models.dart",
+          "packages/quds_mail_store/lib/src/archive_restore_native.dart",
+          "packages/quds_mail_store/test/archive_multi_origin_test.dart",
+          "packages/quds_mail_store/test/archive_restore_adversarial_test.dart",
+          "packages/quds_mail_store/test/archive_restore_native_test.dart",
+          "packages/quds_mail_store/tool/archive_restore_crash_fixture.dart",
+          "packages/quds_office_editor/example/lib/studio_mail_archive_host.dart",
+          "packages/quds_office_editor/example/lib/studio_mail_archive_native.dart",
+          "packages/quds_office_editor/example/lib/studio_mail_archive_restore.dart",
+          "packages/quds_office_editor/example/lib/studio_mail_archive_restore_strings.dart",
+          "packages/quds_office_editor/example/test/studio_mail_archive_portability_visual_test.dart",
+          "packages/quds_office_editor/example/test/studio_mail_archive_restore_native_test.dart",
+          "packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart"
+        ],
+        "purpose": "Previously integrated restoration APIs, atomic repository changes, Studio host and their tests."
+      },
+      {
+        "id": "archive-native",
+        "cwd": "packages/quds_mail_store",
+        "argv": [
+          "/workspace/scratch/9c3338a48b2c/toolchain/run_dart.sh",
+          "--packages=/workspace/scratch/9c3338a48b2c/crispoffice/.dart_tool/package_config.json",
+          "/workspace/scratch/9c3338a48b2c/toolchain/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+          "--platform=vm",
+          "--compiler=kernel",
+          "--concurrency=1",
+          "--reporter=json",
+          "test/archive_multi_origin_test.dart",
+          "test/archive_restore_native_test.dart",
+          "test/archive_restore_adversarial_test.dart",
+          "test/archive_repository_test.dart",
+          "test/archive_native_test.dart",
+          "test/archive_export_manifest_test.dart"
+        ],
+        "purpose": "Atomic multi-origin writes, restoration, adversarial/process recovery, existing repository/native API compatibility, manifest contract."
+      },
+      {
+        "id": "archive-portable",
+        "cwd": "packages/quds_mail_store",
+        "argv": [
+          "/workspace/scratch/9c3338a48b2c/toolchain/run_dart.sh",
+          "--packages=/workspace/scratch/9c3338a48b2c/crispoffice/.dart_tool/package_config.json",
+          "/workspace/scratch/9c3338a48b2c/toolchain/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+          "--platform=node",
+          "--compiler=dart2js",
+          "--concurrency=1",
+          "--reporter=json",
+          "test/archive_export_manifest_test.dart",
+          "test/browser_problem_test.dart"
+        ],
+        "purpose": "Portable public manifest and declared browser boundary; do not run archive_query_test.dart on Node."
+      },
+      {
+        "id": "archive-studio",
+        "cwd": "packages/quds_office_editor/example",
+        "argv": [
+          "/workspace/scratch/9c3338a48b2c/toolchain/run_flutter.sh",
+          "test",
+          "--no-pub",
+          "--concurrency=1",
+          "--reporter=json",
+          "test/studio_mail_archive_restore_test.dart",
+          "test/studio_mail_archive_restore_native_test.dart",
+          "test/studio_mail_archive_portability_visual_test.dart"
+        ],
+        "purpose": "Deliberate preview/start/cancel flow, genuine native MIME/SQLite restoration, localized narrow layouts."
+      },
+      {
+        "id": "web_vba_arrays_smoke-compile",
+        "cwd": "packages/quds_office_engine",
+        "argv": [
+          "/workspace/scratch/9c3338a48b2c/toolchain/run_dart.sh",
+          "compile",
+          "js",
+          "-O1",
+          "tool/macros/web_vba_arrays_smoke.dart",
+          "-o",
+          "/workspace/scratch/9c3338a48b2c/crispoffice/docs/validation/crispoffice-layout-theme-20261119/incoming/web_vba_arrays_smoke.js"
+        ],
+        "purpose": "Compile the portable compiler/runtime path."
+      },
+      {
+        "id": "web_vba_arrays_smoke-node",
+        "cwd": "packages/quds_office_engine",
+        "argv": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+          "-e",
+          "globalThis.self = globalThis; require(\"/workspace/scratch/9c3338a48b2c/crispoffice/docs/validation/crispoffice-layout-theme-20261119/incoming/web_vba_arrays_smoke.js\");"
+        ],
+        "purpose": "Execute and inspect the JSON assertions; exit code alone is not sufficient.",
+        "required_json_true_fields": [
+          "liveArraySlotsAndIndependentControlVariables",
+          "rangeSnapshotAndRowMajorOrder",
+          "exactArrayAllocationAndNegativeBounds",
+          "boundedArraysAndRangeIteration",
+          "staticInactiveChecks",
+          "validationPreservedBytes",
+          "lateFailurePreservedBytes",
+          "mcpCompileAndRun"
+        ],
+        "coldDepthStress_contains": [
+          "32",
+          "63"
+        ]
+      },
+      {
+        "id": "web_vba_control_flow_smoke-compile",
+        "cwd": "packages/quds_office_engine",
+        "argv": [
+          "/workspace/scratch/9c3338a48b2c/toolchain/run_dart.sh",
+          "compile",
+          "js",
+          "-O1",
+          "tool/macros/web_vba_control_flow_smoke.dart",
+          "-o",
+          "/workspace/scratch/9c3338a48b2c/crispoffice/docs/validation/crispoffice-layout-theme-20261119/incoming/web_vba_control_flow_smoke.js"
+        ],
+        "purpose": "Compile the portable compiler/runtime path."
+      },
+      {
+        "id": "web_vba_control_flow_smoke-node",
+        "cwd": "packages/quds_office_engine",
+        "argv": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+          "-e",
+          "globalThis.self = globalThis; require(\"/workspace/scratch/9c3338a48b2c/crispoffice/docs/validation/crispoffice-layout-theme-20261119/incoming/web_vba_control_flow_smoke.js\");"
+        ],
+        "purpose": "Execute and inspect the JSON assertions; exit code alone is not sufficient.",
+        "required_json_true_fields": [
+          "orderedCasesAndEagerRangeBounds",
+          "sharedLoopWorkBudget",
+          "staticInactiveChecks",
+          "validationPreservedBytes",
+          "lateFailurePreservedBytes",
+          "mcpCompileAndRun"
+        ],
+        "coldDepthStress_contains": [
+          "32",
+          "63"
+        ]
+      }
+    ]
+  },
+  "scope_limits": [
+    "This checks only the two pinned tips supplied by root; it is not a fresh all-refs internet inventory.",
+    "Historical accepted PR mappings come from the preserved author audit. Ancestry and changed-path blob equality were recomputed locally; PR metadata was not re-queried.",
+    "No new functionality is qualified by this read-only report."
+  ]
+}

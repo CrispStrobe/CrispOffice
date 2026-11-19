@@ -1,0 +1,32 @@
+{
+  "gate": "web_vba_control_flow_smoke-node",
+  "emitted_json": {
+    "language": "vba-excel",
+    "revision": 2,
+    "steps": 9,
+    "formulaTotal": 100,
+    "coldDepthStress": "32 procedure frames / 32 mixed blocks / 63 unary operators",
+    "orderedCasesAndEagerRangeBounds": true,
+    "sharedLoopWorkBudget": true,
+    "staticInactiveChecks": true,
+    "validationPreservedBytes": true,
+    "lateFailurePreservedBytes": true,
+    "mcpCompileAndRun": true
+  },
+  "assertions": {
+    "orderedCasesAndEagerRangeBounds": true,
+    "sharedLoopWorkBudget": true,
+    "staticInactiveChecks": true,
+    "validationPreservedBytes": true,
+    "lateFailurePreservedBytes": true,
+    "mcpCompileAndRun": true,
+    "coldDepthStress contains 32": true,
+    "coldDepthStress contains 63": true
+  },
+  "all_passed": true,
+  "compiled_artifact_sha256": {
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/incoming-runtime/web_vba_control_flow_smoke.js": "b5dc54f4b8615f502389adc2c19858c69cf5b8f214c64dfe0bce88d1a8fb33d4",
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/incoming-runtime/web_vba_control_flow_smoke.js.deps": "149d38a043d039f5d7d851427e69bae96f71470b7ff5f02676465dbd36b08aed",
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/incoming-runtime/web_vba_control_flow_smoke.js.map": "8ea648df2dbc27f5552fde1a08fa8ce104ba00f15e6c00f9a0706333e7562a42"
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "accepted_parent": "ba51c40abc664758df3cfc846625bdeb81e3ac13",
+  "adopted_merge": "a93c78032b043c35edd2632ba3ab7a058299926a",
+  "analysis_scope": "Changed Dart product and test paths in the adopted 12-path delta, plus root dark-route assertion extension; runtime owns serial execution.",
+  "disposition": "No additional actionable blocker found in the reviewed integration.",
+  "findings": [
+    {
+      "result": "The resolved workspace retains the accepted live Theme/RTL Settings wrappers, configurable ribbons, document mode controls and page/paragraph callbacks. Language downloads uses the retained _themedContext. The existing manager workspace case is extended to assert a dark surface/light foreground without downloading.",
+      "topic": "Workspace theme and existing controls"
+    },
+    {
+      "result": "The controller delta adds host callbacks after successful language edits and no-op/rejected targeted edits do not trigger those callbacks. Page Layout transaction code is unchanged. Review adds a manager entry and suppresses unsupported provider noise.",
+      "topic": "Controller and review hooks"
+    },
+    {
+      "result": "Opening the manager refreshes local inventory only. Installation remains an explicit package-review action. NER removal disables use first, validates the model identity and model storage type, refuses root/ner symbolic-link redirection, and removes the content-addressed model directory while retaining the shared runtime and documents.",
+      "topic": "Downloads and removal"
+    },
+    {
+      "result": "Qualify the changed controller/host/installer paths with focused gates and retain prior accepted VBA, mail, rendering and export cohorts when their relevant sources are unchanged. Final counts and source bindings belong to the runtime acceptance summary.",
+      "topic": "Inherited acceptance"
+    }
+  ],
+  "focused_tests": {
+    "packages/quds_office_editor": [
+      "test/word_text_proofing_pane_test.dart",
+      "test/word_text_proofing_controls_test.dart",
+      "test/word_page_layout_test.dart"
+    ],
+    "packages/quds_office_editor/example": [
+      "test/studio_downloads_manager_test.dart",
+      "test/studio_layout_theme_test.dart",
+      "test/studio_ribbon_customization_test.dart",
+      "test/studio_page_layout_dialog_test.dart",
+      "test/studio_paragraph_dialog_test.dart"
+    ],
+    "packages/quds_proofing_spacy": [
+      "test/ner_removal_test.dart"
+    ]
+  },
+  "product_source_sha256": {
+    "packages/quds_office_editor/example/lib/crisp_office_sample.dart": "6b9ed9596b36bc81cdbc4b960dfbeb877b8cf623765aa0b241a377b08fc60e20",
+    "packages/quds_office_editor/example/lib/studio_downloads_manager.dart": "3e6b0399228f79f90fa8830268860e8a0c3d5290eb67508fa777cdb2a48ef994",
+    "packages/quds_office_editor/example/lib/studio_spacy_host.dart": "39aa3a36a0d9d87cbcc90a8465f067b7c863257c902d49f999405218ab5420b9",
+    "packages/quds_office_editor/example/lib/studio_spacy_host_native.dart": "dea2f6f8ca1b8754709c54fe42da58258e6d1008ed6537669d1791cbe6cb1898",
+    "packages/quds_office_editor/example/lib/suite_workspace.dart": "199ffc0f67ac7aa2882d1910638875d931633fe5161ffe53fe8388ead1f63702",
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart": "61013807f615bba960e75ffffa8b21d604eb3b81f9ff5c5e59b98788c818f154",
+    "packages/quds_office_editor/lib/src/embed/word_review_pane.dart": "c03fd163f1a64359ea93040798a190192aa1bac2fe035d90a0a5ea656f91a5e5",
+    "packages/quds_proofing_spacy/lib/src/installer_io.dart": "0f4ea0d862c35edf3639af908508e95cbd3b925d24152fafde2498914890c078"
+  },
+  "resolution_proof": "/workspace/scratch/9c3338a48b2c/validation/layout-theme/merge-main-9f41/resolution.json",
+  "resolution_proof_sha256": "da5f743e6e7501c2a62e1c1a94718c09ad02f421cc2812f7eea6ecc4f6a16431",
+  "resolved_tree": "f0528dbcc61bda532ac22a051e164d607cee0658",
+  "reviewed_incoming": "9f41e0427734d815b19149eba5eabef202f78ba6",
+  "schema_version": 1,
+  "scope": "Read-only review of the exact incoming language/download-manager delta and its integration with accepted GUI, Page Layout and proofing controls. No source edits, compiler jobs or remote frontier searches.",
+  "visual_review": "Fresh publication screenshots and a separate visual-review-publication.json are required; earlier screenshots and visual review remain unchanged."
+}

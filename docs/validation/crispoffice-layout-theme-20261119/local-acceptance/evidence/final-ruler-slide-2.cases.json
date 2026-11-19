@@ -1,0 +1,82 @@
+[
+  {
+    "file": "packages/quds_office_editor/test/office_chrome_theme_test.dart",
+    "name": "dark rulers and drag readouts follow chrome colors",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 43
+  },
+  {
+    "file": "packages/quds_office_editor/test/office_chrome_theme_test.dart",
+    "name": "high contrast rulers and drag readouts follow chrome colors",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 43
+  },
+  {
+    "file": "packages/quds_office_editor/test/office_chrome_theme_test.dart",
+    "name": "dark chrome with white paper rulers and drag readouts follow chrome colors",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 43
+  },
+  {
+    "file": "packages/quds_office_editor/test/office_chrome_theme_test.dart",
+    "name": "light ruler surfaces retain their established palette",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 83
+  },
+  {
+    "file": "packages/quds_office_editor/test/office_dark_slide_test.dart",
+    "name": "dark Slides adapt explicit ink and preserve automatic and exported colors",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 211
+  },
+  {
+    "file": "packages/quds_office_editor/test/office_dark_slide_test.dart",
+    "name": "unfilled Slide text preserves authored ink over picture",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 368
+  },
+  {
+    "file": "packages/quds_office_editor/test/office_dark_slide_test.dart",
+    "name": "unfilled Slide text preserves authored ink over chart",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 368
+  },
+  {
+    "file": "packages/quds_office_editor/test/office_dark_slide_test.dart",
+    "name": "unfilled Slide text preserves authored ink over partial fill",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 368
+  },
+  {
+    "file": "packages/quds_office_editor/test/office_dark_slide_test.dart",
+    "name": "unfilled Slide text preserves authored ink over rotated fill",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 368
+  },
+  {
+    "file": "packages/quds_office_editor/test/office_dark_slide_test.dart",
+    "name": "dark Morph ink uses the interpolated fill instead of target fill",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 424
+  }
+]

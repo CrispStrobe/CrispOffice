@@ -1,0 +1,140 @@
+{
+  "schema_version": 1,
+  "prepared_at_utc": "2026-11-19T18:58:08.785866+00:00",
+  "ours": "ba51c40abc664758df3cfc846625bdeb81e3ac13",
+  "incoming": "9f41e0427734d815b19149eba5eabef202f78ba6",
+  "merge_base": "caf378f40fd5bda50f504a6816404d01d8bbb8f8",
+  "unresolved_auto_merge_tree": "971f3d12ecc3daf247d752840c95f9fe62dfd6b0",
+  "resolved_tree": "f0528dbcc61bda532ac22a051e164d607cee0658",
+  "temporary_index": "/workspace/scratch/9c3338a48b2c/validation/layout-theme/merge-main-9f41/candidate.index",
+  "resolved_workspace_file": "/workspace/scratch/9c3338a48b2c/validation/layout-theme/merge-main-9f41/packages/quds_office_editor/example/lib/suite_workspace.dart",
+  "resolution_diff": "/workspace/scratch/9c3338a48b2c/validation/layout-theme/merge-main-9f41/workspace-resolution.diff",
+  "main_index_sha256_before": "b6ad9c616188f227157d948d4b7ab5729a8c97a98f3f34b989be270e1f977975",
+  "main_index_sha256_after": "b6ad9c616188f227157d948d4b7ab5729a8c97a98f3f34b989be270e1f977975",
+  "main_index_unchanged": true,
+  "manual_resolution": {
+    "path": "packages/quds_office_editor/example/lib/suite_workspace.dart",
+    "resolved_blob": "6e43501dc2a00f505abe9462803c29d37f33bdf4",
+    "decisions": [
+      "Start with the complete accepted workspace; add only incoming language-download wiring.",
+      "Keep the live Material Theme and RTL Directionality Settings wrapper, existing appearance/unit/ribbon settings, and the File document-mode menu.",
+      "Add the incoming Language downloads Settings action without restoring the obsolete Settings mode dropdown.",
+      "Replace the Review Dictionaries action with Language downloads and keep the remaining ribbon layout unchanged.",
+      "Preserve all incoming proofing-language callbacks and their batched pending-language dialog behavior.",
+      "Use the accepted _themedContext for the new downloads dialog and retain per-app focus restoration.",
+      "Place the new relative import in the relative-import group and remove the obsolete direct Hunspell setup import."
+    ]
+  },
+  "formatter": {
+    "argv": [
+      "/workspace/scratch/9c3338a48b2c/toolchain/run_dart.sh",
+      "format",
+      "--output=show",
+      "--summary=none",
+      "--stdin-name=/workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/example/lib/suite_workspace.dart"
+    ],
+    "exit_code": 0,
+    "stderr": "",
+    "compiler_or_tests_run": false
+  },
+  "changed_paths": [
+    {
+      "path": "docs/validation/language-downloads-20261119/README.md",
+      "base_blob": null,
+      "ours_blob": null,
+      "incoming_blob": "49665bd0a72c6f9510eab8cba70214b40e1ce61e",
+      "resolved_blob": "49665bd0a72c6f9510eab8cba70214b40e1ce61e",
+      "resolved_sha256": "9db43e7a97382fece92d4647e45b37ee6ae7ad9fff07645b22f81a18f1676210"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/crisp_office_sample.dart",
+      "base_blob": "6da40bdab1bd00840d81ddadcdabcd39fde64907",
+      "ours_blob": "6da40bdab1bd00840d81ddadcdabcd39fde64907",
+      "incoming_blob": "79711bd22d851fe9cba38e5e5afcdd957036d458",
+      "resolved_blob": "79711bd22d851fe9cba38e5e5afcdd957036d458",
+      "resolved_sha256": "6b9ed9596b36bc81cdbc4b960dfbeb877b8cf623765aa0b241a377b08fc60e20"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_downloads_manager.dart",
+      "base_blob": null,
+      "ours_blob": null,
+      "incoming_blob": "2086663977dc9e711af24554a2542c463e2cddc4",
+      "resolved_blob": "2086663977dc9e711af24554a2542c463e2cddc4",
+      "resolved_sha256": "3e6b0399228f79f90fa8830268860e8a0c3d5290eb67508fa777cdb2a48ef994"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_spacy_host.dart",
+      "base_blob": "80c9f85b06d0c3be05ff57d5741406b28e2522fd",
+      "ours_blob": "80c9f85b06d0c3be05ff57d5741406b28e2522fd",
+      "incoming_blob": "01b35e855be9c9c812b797f034c33430133fa512",
+      "resolved_blob": "01b35e855be9c9c812b797f034c33430133fa512",
+      "resolved_sha256": "39aa3a36a0d9d87cbcc90a8465f067b7c863257c902d49f999405218ab5420b9"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_spacy_host_native.dart",
+      "base_blob": "4fabbd81c7af9a61f80d243f8e432456ec5a8ba6",
+      "ours_blob": "4fabbd81c7af9a61f80d243f8e432456ec5a8ba6",
+      "incoming_blob": "2c48b6937450ece3e98915de877c4f0e673ff3df",
+      "resolved_blob": "2c48b6937450ece3e98915de877c4f0e673ff3df",
+      "resolved_sha256": "dea2f6f8ca1b8754709c54fe42da58258e6d1008ed6537669d1791cbe6cb1898"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/suite_workspace.dart",
+      "base_blob": "6b151cfbf8a6ae5318fd08f95a25341f6898df18",
+      "ours_blob": "a51758734c35b897480ca949fa3f36de2f55c3ec",
+      "incoming_blob": "54e62782d0b9dbd58955aa40027915e7505bb2b5",
+      "resolved_blob": "6e43501dc2a00f505abe9462803c29d37f33bdf4",
+      "resolved_sha256": "199ffc0f67ac7aa2882d1910638875d931633fe5161ffe53fe8388ead1f63702"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_downloads_manager_test.dart",
+      "base_blob": null,
+      "ours_blob": null,
+      "incoming_blob": "6bd155c95253e92006992c284d4293908028c059",
+      "resolved_blob": "6bd155c95253e92006992c284d4293908028c059",
+      "resolved_sha256": "dd31d5923bebc2587dcd1801f9cd3138af3328c9c70d982b6d1ac4270e53c190"
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+      "base_blob": "2a0f7e2cc30ba9041506ba9265f0076553a04614",
+      "ours_blob": "2da863736fb828ec65ecff03129ba4905f93685c",
+      "incoming_blob": "9afebb96b5d941c648d6064a942a5515545622c8",
+      "resolved_blob": "46118c92ad9b6dadea0d946896ddec0fc111792d",
+      "resolved_sha256": "61013807f615bba960e75ffffa8b21d604eb3b81f9ff5c5e59b98788c818f154"
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/word_review_pane.dart",
+      "base_blob": "b1c2282f85e46b365a7ad4bb961d714cc476ec12",
+      "ours_blob": "b1c2282f85e46b365a7ad4bb961d714cc476ec12",
+      "incoming_blob": "cc95542a1b16a051698f5c5115c2516e3bcc5bdc",
+      "resolved_blob": "cc95542a1b16a051698f5c5115c2516e3bcc5bdc",
+      "resolved_sha256": "c03fd163f1a64359ea93040798a190192aa1bac2fe035d90a0a5ea656f91a5e5"
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_text_proofing_pane_test.dart",
+      "base_blob": "78a1dc968ce3a5e0e7d590cc2c63f6feead6e0ce",
+      "ours_blob": "78a1dc968ce3a5e0e7d590cc2c63f6feead6e0ce",
+      "incoming_blob": "6c9ad57b48146def4da53e2841d631457f739b2f",
+      "resolved_blob": "6c9ad57b48146def4da53e2841d631457f739b2f",
+      "resolved_sha256": "1b04655ce9e02b8e912a35d0d7a23de3c5b46f7f650c8799d8b865c15b06ccb1"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/lib/src/installer_io.dart",
+      "base_blob": "6fe538feebd4ad32cc8f66fbc27a22c11ccabfe7",
+      "ours_blob": "6fe538feebd4ad32cc8f66fbc27a22c11ccabfe7",
+      "incoming_blob": "576528a56a639d6b846c6c400c09e981880ba863",
+      "resolved_blob": "576528a56a639d6b846c6c400c09e981880ba863",
+      "resolved_sha256": "0f4ea0d862c35edf3639af908508e95cbd3b925d24152fafde2498914890c078"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/test/ner_removal_test.dart",
+      "base_blob": null,
+      "ours_blob": null,
+      "incoming_blob": "a11ad2bc23a17994570e5a505926bfdbe1a57f9a",
+      "resolved_blob": "a11ad2bc23a17994570e5a505926bfdbe1a57f9a",
+      "resolved_sha256": "7090823d54e5552852fe6a2d5e08ec00b991a10de0d12ee1ba4d648e22d3e936"
+    }
+  ],
+  "scope": "Candidate Git tree only. No main-worktree product files, branch refs, or main index were modified. No compiler or tests ran; only the detached workspace candidate was formatted.",
+  "validation_pending": "Root will publish/adopt the candidate, then runtime owns focused acceptance."
+}

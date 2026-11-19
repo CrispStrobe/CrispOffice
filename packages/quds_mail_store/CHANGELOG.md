@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+- Add durable, destination-bound restore receipts committed atomically with
+  originals, indexing and provenance. Resume verifies retained destination
+  data before skipping completed source messages; full source verification and
+  deliberate progress cleanup remain available.
+- Preserve archive completion diagnostics and confirmed counts when a restore
+  is cancelled after commit. Keep source/codec failures bounded per message,
+  while destination receipt corruption stops resumption immediately.
+
 - Add `NativeMailArchiveRestorer` for read-only inspection and verified
   cross-profile restoration of exported originals with all recorded provenance.
   Repeated restores deduplicate originals, add missing origins, and retain

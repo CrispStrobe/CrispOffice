@@ -1,0 +1,24 @@
+{
+  "head": "5fe62a07c1ad8fb85f8c2202fc7f52a5586fb5b2",
+  "cwd": "/workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/example",
+  "command": [
+    "/workspace/scratch/9c3338a48b2c/toolchain/run_flutter.sh",
+    "test",
+    "--no-pub",
+    "--concurrency=1",
+    "--reporter=expanded",
+    "test/studio_paragraph_dialog_test.dart",
+    "test/studio_layout_theme_test.dart",
+    "test/studio_slide_sheet_menus_test.dart"
+  ],
+  "exit_code": 0,
+  "elapsed_seconds": 35.383,
+  "log": "/workspace/scratch/9c3338a48b2c/validation/layout-theme/dialogs-workspace-2.log",
+  "log_sha256": "5eefa03d5e6281896fd2ba90078b189db1cf1ca2671bc0f41fabacc18a40ee53",
+  "source_before": {
+    "path": "/workspace/scratch/9c3338a48b2c/validation/layout-theme/dialogs-workspace-2.source-before.json",
+    "sha256": "87de432f8d06cd72b1a33e34a9dfefd35cf95206990eeea01cdcde505361cfba",
+    "file_count": 828
+  },
+  "source_changed_during_run": []
+}

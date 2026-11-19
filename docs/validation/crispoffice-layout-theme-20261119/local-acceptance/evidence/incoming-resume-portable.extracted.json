@@ -1,0 +1,182 @@
+{
+  "schema_version": 1,
+  "format": "dart-json",
+  "context": {
+    "platform": "vm",
+    "exit_code": 0,
+    "repo_root": "/workspace/scratch/9c3338a48b2c/crispoffice",
+    "cwd": "/workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_mail_store"
+  },
+  "cases": [
+    {
+      "test_id": 3,
+      "name": "manifest byte boundary: 0 originals, Unicode: false",
+      "result": "passed",
+      "start_line": 8,
+      "result_source": "json-events",
+      "end_line": 9,
+      "file": "packages/quds_mail_store/test/archive_export_manifest_test.dart",
+      "platform": "node",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 4,
+      "name": "manifest byte boundary: 0 originals, Unicode: true",
+      "result": "passed",
+      "start_line": 10,
+      "result_source": "json-events",
+      "end_line": 11,
+      "file": "packages/quds_mail_store/test/archive_export_manifest_test.dart",
+      "platform": "node",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 5,
+      "name": "manifest byte boundary: 1 originals, Unicode: false",
+      "result": "passed",
+      "start_line": 12,
+      "result_source": "json-events",
+      "end_line": 13,
+      "file": "packages/quds_mail_store/test/archive_export_manifest_test.dart",
+      "platform": "node",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 6,
+      "name": "manifest byte boundary: 1 originals, Unicode: true",
+      "result": "passed",
+      "start_line": 14,
+      "result_source": "json-events",
+      "end_line": 15,
+      "file": "packages/quds_mail_store/test/archive_export_manifest_test.dart",
+      "platform": "node",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 7,
+      "name": "manifest byte boundary: 3 originals, Unicode: false",
+      "result": "passed",
+      "start_line": 16,
+      "result_source": "json-events",
+      "end_line": 17,
+      "file": "packages/quds_mail_store/test/archive_export_manifest_test.dart",
+      "platform": "node",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 8,
+      "name": "manifest byte boundary: 3 originals, Unicode: true",
+      "result": "passed",
+      "start_line": 18,
+      "result_source": "json-events",
+      "end_line": 19,
+      "file": "packages/quds_mail_store/test/archive_export_manifest_test.dart",
+      "platform": "node",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 12,
+      "name": "DOM storage quota maps by name without copying private error text",
+      "result": "passed",
+      "start_line": 25,
+      "result_source": "json-events",
+      "end_line": 26,
+      "file": "packages/quds_mail_store/test/browser_problem_test.dart",
+      "platform": "node",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 13,
+      "name": "blocked and aborted browser storage have typed results",
+      "result": "passed",
+      "start_line": 27,
+      "result_source": "json-events",
+      "end_line": 28,
+      "file": "packages/quds_mail_store/test/browser_problem_test.dart",
+      "platform": "node",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 14,
+      "name": "typed SQLite and domain failures retain their classification",
+      "result": "passed",
+      "start_line": 29,
+      "result_source": "json-events",
+      "end_line": 30,
+      "file": "packages/quds_mail_store/test/browser_problem_test.dart",
+      "platform": "node",
+      "platform_source": "reporter"
+    }
+  ],
+  "excluded_events": [
+    {
+      "test_id": 1,
+      "name": "loading test/archive_export_manifest_test.dart",
+      "result": "passed",
+      "start_line": 3,
+      "result_source": "json-events",
+      "end_line": 6,
+      "file": "packages/quds_mail_store/test/archive_export_manifest_test.dart",
+      "platform": "node",
+      "platform_source": "reporter",
+      "excluded_reason": "loader"
+    },
+    {
+      "test_id": 10,
+      "name": "loading test/browser_problem_test.dart",
+      "result": "passed",
+      "start_line": 21,
+      "result_source": "json-events",
+      "end_line": 23,
+      "file": "packages/quds_mail_store/test/browser_problem_test.dart",
+      "platform": "node",
+      "platform_source": "reporter",
+      "excluded_reason": "loader"
+    }
+  ],
+  "ambiguities": [],
+  "warnings": [],
+  "errors": [],
+  "terminal_success": true,
+  "terminal_count": 1,
+  "suite_count": 2,
+  "unfinished_hidden_events": 0,
+  "complete": true,
+  "status": "passed",
+  "process_success_confirmed": true,
+  "usable_pass_evidence": true,
+  "scope": "Log/process evidence only; source-revision acceptance must be supplied separately.",
+  "counts": {
+    "visible_case_occurrences": 9,
+    "results": {
+      "passed": 9
+    },
+    "excluded_event_occurrences": 2,
+    "confirmed_pass_occurrences": 9,
+    "distinct_file_name_platform": 9,
+    "distinct_file_name": 9
+  },
+  "per_file": [
+    {
+      "file": "packages/quds_mail_store/test/archive_export_manifest_test.dart",
+      "platform": "node",
+      "results": {
+        "passed": 6
+      },
+      "total": 6
+    },
+    {
+      "file": "packages/quds_mail_store/test/browser_problem_test.dart",
+      "platform": "node",
+      "results": {
+        "passed": 3
+      },
+      "total": 3
+    }
+  ],
+  "log": {
+    "path": "/workspace/scratch/9c3338a48b2c/validation/layout-theme/incoming-resume-portable.log",
+    "sha256": "c299d283b05a0b6328653a776151ef8c941b0c5d45045c620ed8eab031ab7d62",
+    "bytes": 5786
+  }
+}
