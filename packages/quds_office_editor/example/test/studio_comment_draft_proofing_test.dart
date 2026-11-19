@@ -6,6 +6,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:quds_office_editor/quds_office_editor.dart';
 import 'package:quds_office_studio/main.dart';
 
+import 'support/studio_settings.dart';
+
 class _DraftProvider extends OfficeProofingProvider {
   _DraftProvider({
     this.gates = const {},
@@ -119,26 +121,14 @@ Future<WordEditorController> _studio(
         : RepaintBoundary(key: captureKey, child: const QudsOfficeStudioApp()),
   );
   await _pump(tester);
+  expect(find.byTooltip('Language'), findsOneWidget);
+  await _pump(tester);
   final controller = tester
       .widget<QudsWordEditor>(find.byType(QudsWordEditor))
       .controller;
   controller.proofing.enabled = false;
   controller.proofing.configure(OfficeProofingService(providers: [provider]));
-  await tester.tap(find.byTooltip('Settings'));
-  await tester.pump(const Duration(milliseconds: 350));
-  await _pump(tester);
-  final comments = find.widgetWithText(SwitchListTile, 'Show comments');
-  await tester.ensureVisible(comments);
-  await tester.tap(comments);
-  await _pump(tester);
-  await tester.tap(
-    find.descendant(
-      of: find.byType(AlertDialog),
-      matching: find.widgetWithText(TextButton, 'Close'),
-    ),
-  );
-  await tester.pump(const Duration(milliseconds: 350));
-  await _pump(tester);
+  await enableStudioSetting(tester, 'Show comments');
   controller.document = _document();
   controller.refresh();
   controller.selectComment(1);
@@ -525,9 +515,7 @@ void main() {
       });
     }
     await _studio(tester, provider, captureKey: captureKey);
-    await tester.tap(find.byTooltip('Language'));
-    await _pump(tester);
-    await tester.tap(find.byTooltip('Sprache'));
+    await switchStudioToArabic(tester);
     await _pump(tester);
     await tester.binding.setSurfaceSize(const Size(390, 1000));
     tester.platformDispatcher.textScaleFactorTestValue = 1.4;

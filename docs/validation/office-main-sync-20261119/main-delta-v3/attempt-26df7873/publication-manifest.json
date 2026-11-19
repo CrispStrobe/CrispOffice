@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "source_commit": "26df787326f58a002b62241b7feb52acff089f2f",
+  "created_at_utc": "2026-11-19T09:49:13.175097+00:00",
+  "spec_sha256": "07562968b732ea26990418749c6cd9e7ed374858454095a65056e04588774fe6",
+  "packer_sha256": "546a0e6ed43b4258f060811e7d03ba5cfc46f447f556c61b331ecfe519ef87f5",
+  "archives": [
+    {
+      "name": "rejected-26df7873-strict-analysis-attempt",
+      "archive": "docs/validation/office-main-sync-20261119/main-delta-v3/attempt-26df7873/evidence.tar.xz",
+      "index": "docs/validation/office-main-sync-20261119/main-delta-v3/attempt-26df7873/evidence.index.json",
+      "scope": "Rejected 26df7873 strict-analysis attempt: the single incoming engine directives_ordering diagnostic prevents acceptance despite 634 native application successes and 21 separately counted Python control successes. accepted_qualification=false; no Node or browser stage started; zero results contribute to accepted totals. Original raw evidence and the completed independent rejection audit are preserved without reruns.",
+      "source_commit": "26df787326f58a002b62241b7feb52acff089f2f",
+      "archive_bytes": 875528,
+      "archive_sha256": "e865a927ac0c5fbcf72af4beef2f3e2512a2691ad90caa15c75c5b6d03c5ee51",
+      "index_bytes": 20336,
+      "index_sha256": "edf1aad387ea109754fa8d2ec6cd1d0ca8bddea81b06e2b71720f0cf80d87235",
+      "member_count": 62
+    }
+  ],
+  "scope": "Byte-preserving evidence publication. Archive/member counts are not application test counts. Historical and development evidence retain their separate scopes."
+}

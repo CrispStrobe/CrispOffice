@@ -10761,12 +10761,16 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                     Flexible(
                       child: Text(
                         _app == SuiteApp.pdf
-                            ? (_t(
+                            ? _t(
                                 'PDF document',
                                 StudioStrings.de('PDF document'),
                                 'مستند PDF',
-                              ))
-                            : _active.semanticsLabel,
+                              )
+                            : _app == SuiteApp.word
+                            ? _t('Document', 'Dokument', 'مستند')
+                            : _app == SuiteApp.excel
+                            ? _t('Spreadsheet', 'Tabelle', 'جدول بيانات')
+                            : _t('Presentation', 'Präsentation', 'عرض تقديمي'),
                         style: const TextStyle(
                           color: Colors.white,
                           fontSize: 11,

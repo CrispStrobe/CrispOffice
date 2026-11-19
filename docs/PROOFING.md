@@ -90,8 +90,9 @@ categories are in [step 3b](roadmaps/arabic-proofing.md).
 
 [`quds_proofing_hunspell`](../packages/quds_proofing_hunspell/README.md) adds a
 Hunspell spelling provider and dictionary installer for host apps, first
-Arabic (AyaSpell, `cstr/ayaspell-ar-hunspell` at `e9ace7cc…`). Host registration
-and the download UI remain open. The engine
+Arabic (AyaSpell, `cstr/ayaspell-ar-hunspell` at `e9ace7cc…`). Studio implements
+native/web host registration and an explicit dictionary setup dialog, described
+below. The engine
 is the MIT adapter plus unmodified Hunspell 1.7.2 library files under their
 MPL 1.1 option, as a native library in a persistent isolate or a bundled
 WebAssembly module in a Web Worker; only dictionary data is downloaded, pinned

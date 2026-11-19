@@ -10,6 +10,8 @@ import 'package:quds_office_studio/studio_chrome.dart';
 import 'package:quds_office_studio/studio_zotero.dart';
 import 'package:quds_office_studio/suite_workspace.dart';
 
+import 'support/studio_settings.dart';
+
 final class _Transport extends StudioZoteroTransport {
   _Transport(this.handle, this.onDispose);
 
@@ -125,6 +127,8 @@ Future<WordEditorController> _studio(
   controller.proofing.configure(OfficeProofingService(providers: []));
   controller.document = WmlDocument.empty(text: 'A citation belongs here.');
   controller.refresh();
+  expect(find.byTooltip('Language'), findsOneWidget);
+  await _frames(tester);
   editor.focusNode!.requestFocus();
   await _frames(tester);
   return controller;
@@ -349,21 +353,7 @@ void main() {
   ) async {
     final desktop = _Desktop(inspectCurrentField: true);
     final controller = await _studio(tester, desktop);
-    await tester.tap(find.byTooltip('Settings'));
-    await _frames(tester);
-    await tester.pump(const Duration(milliseconds: 350));
-    final notes = find.widgetWithText(SwitchListTile, 'Show notes');
-    await tester.ensureVisible(notes);
-    await tester.tap(notes);
-    await _frames(tester);
-    await tester.tap(
-      find.descendant(
-        of: find.byType(AlertDialog),
-        matching: find.widgetWithText(TextButton, 'Close'),
-      ),
-    );
-    await _frames(tester);
-    await tester.pump(const Duration(milliseconds: 350));
+    await enableStudioSetting(tester, 'Show notes');
     final note = WordNotes.insert(
       controller.document,
       controller.document.paragraphs.single,
