@@ -34,9 +34,16 @@ and [review/fresh_mail_review.json](review/fresh_mail_review.json).
 A later bounded refresh captured Mail `fa284f22` and Zotero `5107eff6`, including
 new native IMAP transport and shared protocol lifecycle changes. Checkpoint
 `3c66d76b` integrates these without changing the earlier qualified flags or Office
-source. Additional transport qualification is **pending execution**. The new
+source. The first transport qualification at `1655db9f` passed **359 distinct cases**. The
 [32-suite plan](transport-plan.json) covers transport VM/Node, IMAP/POP/SMTP
-regressions, MIME and Mail UI. The full core/store gate will also run again.
+regressions, MIME and Mail UI. The full core/store gate also passed again: 199 executions / 129 distinct scenarios.
+The first combined total is 558 executions / 488 distinct scenarios.
+Raw evidence is retained under [transport-first/](transport-first/).
+
+A subsequent refresh captured Zotero `30e9efce` and Mail `7d1adf16`, including
+unsolicited IMAP flags/status handling and exact runtime package-name checks.
+Their integration and the final combined qualification are pending at this
+evidence-only checkpoint. Later source counts must remain separately bound.
 
 Three narrow parser repairs preserve the FormatException subtype contract,
 require one canonical FETCH root, and reject repeated field lists in strict mode.

@@ -1,0 +1,49 @@
+{
+  "scope": "Read-only open PR metadata captured during final qualification; GitHub Actions endpoints were not accessed.",
+  "prs": [
+    {
+      "number": 175,
+      "title": "Review Notes inline and navigate exact header/footer stories [skip ci]",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/175",
+      "head": "c320f28347f1cd292b848be2cf72998d41f8a6ac",
+      "head_branch": "codex/document-review-notes-20261118",
+      "base": "main",
+      "base_sha": "690e6ac8a1f7d8f5c8d4bea69d989a6728f3b27e",
+      "draft": true,
+      "updated_at": "2026-11-19T06:01:10Z"
+    },
+    {
+      "number": 174,
+      "title": "Harden offline thesaurus acceptance and reconcile Notes, Mail and Zotero",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/174",
+      "head": "df62b58975bab1f650879fc88f850550a3df5c13",
+      "head_branch": "codex/offline-thesaurus-20261118",
+      "base": "main",
+      "base_sha": "690e6ac8a1f7d8f5c8d4bea69d989a6728f3b27e",
+      "draft": true,
+      "updated_at": "2026-11-19T06:02:12Z"
+    },
+    {
+      "number": 173,
+      "title": "Integrate Zotero, Notes, thesaurus and native Mail for main [skip ci]",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/173",
+      "head": "c634f494b85f7b2118781300a322ad0d9c216a17",
+      "head_branch": "codex/zotero-word-parity-20261118",
+      "base": "main",
+      "base_sha": "690e6ac8a1f7d8f5c8d4bea69d989a6728f3b27e",
+      "draft": false,
+      "updated_at": "2026-11-19T06:56:38Z"
+    },
+    {
+      "number": 172,
+      "title": "Implement shared Mail reader and durable storage; reconcile Office work [skip ci]",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/172",
+      "head": "7d1adf1636450b3f6040b79856ea62045d03f23d",
+      "head_branch": "codex/mail-reader-20261118",
+      "base": "main",
+      "base_sha": "690e6ac8a1f7d8f5c8d4bea69d989a6728f3b27e",
+      "draft": true,
+      "updated_at": "2026-11-19T06:36:55Z"
+    }
+  ]
+}
