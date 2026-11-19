@@ -191,7 +191,13 @@ class RawFetchParser extends ResponseParser<RawImapFetchResult> {
           if (uid != null) {
             throw const FormatException('Duplicate raw FETCH UID');
           }
-          uid = int.tryParse(value.value ?? '');
+          final uidText = value.value ?? '';
+          // RFC 3501 section 9: uniqueid = nz-number = digit-nz *DIGIT.
+          // Integer parsing alone also accepts signed and hexadecimal forms.
+          if (!RegExp(r'^[1-9][0-9]*$').hasMatch(uidText)) {
+            throw const FormatException('Invalid raw FETCH UID');
+          }
+          uid = int.tryParse(uidText);
           if (uid == null ||
               uid < 1 ||
               uid > 0xffffffff ||

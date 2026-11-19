@@ -82,7 +82,8 @@ implemented Quds packages outside this directory keep their own MIT license.
     validates requested UID intervals and unique records, and does not normalize
     newlines or eagerly parse MIME. Header mode requests only envelope
     HEADER.FIELDS. Its parser rejects partial bodies, malformed prefixes,
-    duplicate/out-of-range UIDs and unbalanced response grammar; a tagged OK
+    duplicate/out-of-range or non-decimal UIDs, repeated field lists and trailing
+    response fields; a tagged OK
     cannot accept an earlier valid prefix. Valid unsolicited FLAGS-only updates
     are handled separately and do not consume the requested literal count.
     Bounded notification tracking rejects missing in-range literals and ambiguous

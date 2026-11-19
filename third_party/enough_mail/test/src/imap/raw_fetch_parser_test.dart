@@ -36,12 +36,13 @@ Uint8List _single(
   String item,
   Uint8List literal, {
   int uid = 1,
+  String? uidLexeme,
   String suffix = '',
 }) =>
     (BytesBuilder()
           ..add(
             ascii.encode(
-              '* $uid FETCH (UID $uid FLAGS (\\Seen) '
+              '* $uid FETCH (UID ${uidLexeme ?? uid} FLAGS (\\Seen) '
               '$item {${literal.length}}\r\n',
             ),
           )
@@ -169,4 +170,38 @@ void main() {
       );
     },
   );
+  for (final lexeme in ['0x1', '+1', '01']) {
+    test('full raw FETCH rejects non-decimal UID lexeme $lexeme', () {
+      final parser = _parser();
+      final malformed = _read(
+        _single('BODY[]', Uint8List.fromList([65]), uidLexeme: lexeme),
+      );
+      expect(
+        () => parser.parseUntagged(malformed, null),
+        throwsFormatException,
+      );
+      expect(() => _taggedOk(parser), throwsFormatException);
+    });
+
+    test('flag notification rejects non-decimal UID lexeme $lexeme', () {
+      final parser = _parser();
+      expect(
+        parser.parseUntagged(
+          _read(_single('BODY[]', Uint8List.fromList([65]))),
+          null,
+        ),
+        isTrue,
+      );
+      final malformed = _read(
+        Uint8List.fromList(
+          ascii.encode('* 1 FETCH (UID $lexeme FLAGS (\\Seen))\r\n'),
+        ),
+      );
+      expect(
+        () => parser.parseUntagged(malformed, null),
+        throwsFormatException,
+      );
+      expect(() => _taggedOk(parser), throwsFormatException);
+    });
+  }
 }
