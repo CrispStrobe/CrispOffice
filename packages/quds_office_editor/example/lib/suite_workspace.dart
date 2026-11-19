@@ -616,8 +616,8 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       child: Directionality(
         textDirection: TextDirection.ltr,
         child: SizedBox(
-          height: (studioChromeLineHeight(context, 13) + 12)
-              .clamp(36.0, double.infinity)
+          height: (studioChromeLineHeight(context, 12) + 8)
+              .clamp(32.0, double.infinity)
               .toDouble(),
           width: double.infinity,
           child: Stack(
@@ -1228,7 +1228,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     return Material(
       color: dark ? const Color(0xFF2A2A2A) : Colors.white,
       child: SizedBox(
-        height: 36 + _extraChromeTextHeight(13),
+        height: 32 + _extraChromeTextHeight(12),
         child: LayoutBuilder(
           builder: (context, constraints) => Row(
             children: <Widget>[
@@ -8375,6 +8375,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                   QudsWordEditor(
                     controller: _word,
                     focusNode: _wordFocus,
+                    showReviewStatus: false,
                     onCommentContextMenuRequested: _showCommentCaretContext,
                     config: _printPreview
                         ? _config.copyWith(mode: OfficeInteractionMode.viewing)
@@ -10534,6 +10535,97 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     );
   }
 
+  Widget _reviewStrip() => AnimatedBuilder(
+    animation: _word,
+    builder: (BuildContext context, Widget? _) {
+      final summary = _word.proofing.summary;
+      final pending = _word.document.revisions
+          .where((revision) => revision.accepted == null)
+          .length;
+      final language =
+          _word.textProofingTarget?.language ??
+          (summary.hasResults ? _t('Mixed', 'Gemischt', 'مختلط') : '');
+      final issues = summary.checking
+          ? _t('Checking…', 'Prüfung läuft …', 'جارٍ التدقيق…')
+          : !summary.hasResults
+          ? _t('Not checked yet', 'Noch nicht geprüft', 'لم يُدقّق بعد')
+          : summary.issues.isEmpty
+          ? _t('No writing issues', 'Keine Schreibhinweise', 'لا توجد ملاحظات')
+          : summary.issues.length == 1
+          ? _t('1 writing issue', '1 Schreibhinweis', 'ملاحظة واحدة')
+          : _t(
+              '${summary.issues.length} writing issues',
+              '${summary.issues.length} Schreibhinweise',
+              '${summary.issues.length} ملاحظات',
+            );
+      final changes = pending == 1
+          ? _t('1 change', '1 Änderung', 'تغيير واحد')
+          : _t('$pending changes', '$pending Änderungen', '$pending تغييرات');
+      Widget action(
+        IconData icon,
+        String label,
+        Tooltip? tooltip,
+        VoidCallback? onTap,
+      ) {
+        final button = TextButton.icon(
+          onPressed: onTap,
+          icon: Icon(icon, size: 14, color: Colors.white),
+          label: Text(
+            label,
+            style: const TextStyle(color: Colors.white, fontSize: 10),
+          ),
+          style: TextButton.styleFrom(
+            padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 0),
+            minimumSize: const Size(0, 24),
+            tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+          ),
+        );
+        return tooltip == null
+            ? button
+            : Tooltip(message: tooltip.message, child: button);
+      }
+
+      return Row(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          action(
+            summary.issues.isEmpty
+                ? Icons.check_circle_outline
+                : Icons.spellcheck,
+            issues,
+            Tooltip(message: summary.statusMessage),
+            _word.openReviewPane,
+          ),
+          if (language.isNotEmpty)
+            action(
+              Icons.language,
+              language,
+              Tooltip(
+                message: _t(
+                  'Language and checking',
+                  'Sprache und Prüfung',
+                  'اللغة والتدقيق',
+                ),
+              ),
+              _word.showTextProofingOptions,
+            ),
+          action(
+            Icons.track_changes,
+            changes,
+            Tooltip(
+              message: _t(
+                'Review tracked changes',
+                'Nachverfolgte Änderungen prüfen',
+                'مراجعة التغييرات المتعقبة',
+              ),
+            ),
+            () => _word.openReviewPane(tab: WordReviewPaneTab.changes),
+          ),
+        ],
+      );
+    },
+  );
+
   Widget _statusBar() {
     final String detail = switch (_app) {
       SuiteApp.word =>
@@ -10599,6 +10691,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                         maxLines: 1,
                       ),
                     ),
+                    if (_app == SuiteApp.word) _reviewStrip(),
                     InkWell(
                       onTap: () => _setZoom(_viewScale - 0.1),
                       child: const Icon(

@@ -353,11 +353,11 @@ class StudioRibbonStrip extends StatelessWidget {
 
   /// Leaves space for the icon, command label and group title at full scale.
   static double preferredHeight(BuildContext context) =>
-      (40 +
+      (30 +
               studioChromeLineHeight(context, 10) +
               studioChromeLineHeight(context, 9))
           .ceilToDouble()
-          .clamp(72.0, double.infinity)
+          .clamp(56.0, double.infinity)
           .toDouble();
 
   @override
