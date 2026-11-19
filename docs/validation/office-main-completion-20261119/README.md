@@ -80,6 +80,14 @@ This is a bounded release capture, not a claim about future writes to other
 branches. The [reconciliation summary](release/reconciliation-summary.json) and
 complete archived advertisement/proof records preserve its exact scope.
 
+During final publication, PR #174 advanced main to `d4100033` through its
+`59e0a7c2` evidence checkpoint. Its application state exactly matches the already
+integrated `4624218f`; all 20 additional paths are documentation/evidence.
+That main merge and its 611-execution historical receipt are also preserved.
+The [post-cutoff main review](release/post-cutoff-main-review.json) records this
+additional reconciliation; the final qualified application inputs remain
+exactly those of `5569c055`.
+
 ## Final local results
 
 All **836 application case executions** passed, across **85 suite/platform
@@ -156,6 +164,7 @@ new execution.
 | `292f9b97` | Independently audited 795-case checkpoint |
 | `5569c055` | Final reconciled source, safeguards, regressions and plans |
 | `022a974a` | Source-bound TLS/FETCH review and replay archive |
+| `bbf1032d` | Final 836-case evidence archive, audits and completion report |
 
 Later evidence-only commits are discoverable in the branch's first-parent Git
 history and in PR #173. Archives were reopened and each member compared with its
