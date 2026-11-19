@@ -23,6 +23,7 @@ All notable changes to `quds_office_editor` are documented here.
   files, preserve them unchanged, skip recognized export staging and distinguish
   completed, partial, limited and cancelled outcomes. Generic EML reimport does
   not restore exported manifest provenance, profiles or saved searches.
+
 - Add a native Mail archive with EML/streamed MBOX import, connected-message and
   selected-folder collection, local FTS search and filters, saved searches,
   exact-original EML export, integrity checks and index rebuilding. Include
