@@ -59,13 +59,17 @@ then optional model-backed analysis. Nothing here is enabled by default yet.
    download of `ar.aff`/`ar.dic` from that revision gives the same Hunspell
    results. The Hub's metadata has no `mpl-1.1` identifier, so the card
    declares `license: other` / `license_name: mpl-1.1` and ships the text.
-2. **Hunspell engine in Quds.** An MPL-1.1 Hunspell adapter behind the
-   existing spelling-provider interface: native library for desktop/mobile,
-   WebAssembly for the web build, dictionary bytes from the user's download.
-   Arabic needs right-to-left offsets, tatweel and harakat handling and
-   UTF-16 mapping of findings; the existing provider contract already reports
-   original UTF-16 offsets. Personal vocabulary and ignore controls as for
-   German.
+2. **Hunspell engine in Quds (package implemented, host wiring open).**
+   `packages/quds_proofing_hunspell`: MIT adapter + unmodified Hunspell 1.7.2
+   library files (MPL 1.1 option, tarball SHA-256 `11ddfa39…`, every compiled
+   file hashed in `licenses/manifest.json`, exact sources shipped as
+   `licenses/hunspell-1.7.2-library-sources.tar.gz`); native isolate transport
+   and bundled WebAssembly worker; pinned installer with atomic publish and
+   removal. Evidence: identical flagged multiset to the Hunspell CLI on UD
+   Arabic-PUD (795 of 15,676 words) for both native and Wasm; 18 Dart tests
+   with the real library and dictionary; iOS/Android arm64 compile and link.
+   Open: host registration and download UI, packaging the library/worker into
+   the app targets, Linux/Windows builds, on-device runs.
 3. **Arabic grammar rules.** First an independently authored, MIT-licensed set
    in the existing rule framework for checks that need no model: hamza on alif
    (أ/إ/ا), ta marbuta vs ha (ة/ه), alif maqsura vs ya (ى/ي), Arabic
