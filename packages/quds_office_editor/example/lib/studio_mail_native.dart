@@ -578,7 +578,10 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
       await client.sendMessage(
         message,
         appendToSent: false,
-        recipients: <mail.MailAddress>[mail.MailAddress('', draft.to)],
+        recipients: [
+          for (final address in draft.recipients.envelope)
+            mail.MailAddress('', address),
+        ],
       );
       if (_currentSession(client, generation)) {
         setState(() {
@@ -623,37 +626,54 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
 
   Future<void> _reply() => _composeFromMessage(forward: false);
 
+  Future<void> _replyAll() =>
+      _composeFromMessage(forward: false, replyAll: true);
+
   Future<void> _forward() => _composeFromMessage(forward: true);
 
-  Future<void> _composeFromMessage({required bool forward}) =>
-      runStudioMailOperation(() async {
-        if (_busy || _dialogOpen || _client == null) return;
-        if (_draft != null) {
-          setState(() {
-            _error = widget.strings.mailRetainedDraft;
-            _notice = null;
-          });
-          return;
-        }
-        // The list item contains only an envelope. Quote the authoritative
-        // bounded raw-message parse, never the reader's header presentation.
-        final message = _reader?.result.message;
-        if (message == null) return;
-        try {
-          final draft = buildStudioMailReplyDraft(
-            message,
-            forward: forward,
-            truncationNotice: widget.strings.mailQuotedTextTruncated,
-            forwardNotice: widget.strings.mailTextOnlyForward,
-          );
-          await _openComposer(draft);
-        } on StudioMailReplyUnavailable {
-          setState(() {
-            _error = widget.strings.mailPlainTextUnavailable;
-            _notice = null;
-          });
-        }
+  Future<void> _composeFromMessage({
+    required bool forward,
+    bool replyAll = false,
+  }) => runStudioMailOperation(() async {
+    final account = _account;
+    if (_busy || _dialogOpen || _client == null || account == null) return;
+    if (_draft != null) {
+      setState(() {
+        _error = widget.strings.mailRetainedDraft;
+        _notice = null;
       });
+      return;
+    }
+    // The list item contains only an envelope. Quote the authoritative
+    // bounded raw-message parse, never the reader's header presentation.
+    final message = _reader?.result.message;
+    if (message == null) return;
+    try {
+      final draft = replyAll
+          ? buildStudioMailReplyAllDraft(
+              message,
+              sender: account.email,
+              truncationNotice: widget.strings.mailQuotedTextTruncated,
+            )
+          : buildStudioMailReplyDraft(
+              message,
+              forward: forward,
+              truncationNotice: widget.strings.mailQuotedTextTruncated,
+              forwardNotice: widget.strings.mailTextOnlyForward,
+            );
+      await _openComposer(draft);
+    } on StudioMailReplyRecipientsUnavailable {
+      setState(() {
+        _error = widget.strings.mailReplyRecipientsUnavailable;
+        _notice = null;
+      });
+    } on StudioMailReplyUnavailable {
+      setState(() {
+        _error = widget.strings.mailPlainTextUnavailable;
+        _notice = null;
+      });
+    }
+  });
 
   Future<void> _discardDraft() async {
     final client = _client;
@@ -1384,6 +1404,11 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
           onPressed: _busy ? null : _reply,
           tooltip: widget.strings.reply,
           icon: const Icon(Icons.reply_outlined),
+        ),
+        IconButton(
+          onPressed: _busy ? null : _replyAll,
+          tooltip: widget.strings.replyAll,
+          icon: const Icon(Icons.reply_all_outlined),
         ),
         IconButton(
           onPressed: _busy ? null : _forward,
