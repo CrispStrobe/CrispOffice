@@ -3,3 +3,4 @@
 *.stdout -whitespace
 *.stderr -whitespace
 *.jsonl -whitespace
+*.diff -whitespace

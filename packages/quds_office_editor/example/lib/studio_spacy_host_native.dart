@@ -162,6 +162,16 @@ class NativeStudioSpacyHost extends StudioSpacyHost {
             '(${error.message}). Remove and install them again.';
       }
     }
+    var nerInstalled = false;
+    String? nerProblem;
+    final ner = spacyNerDownload;
+    if (ner != null) {
+      try {
+        nerInstalled = await _installer.installedNer(ner) != null;
+      } on Object catch (error) {
+        nerProblem = '$error';
+      }
+    }
     final configured = installation != null || problem != null;
     _status = StudioSpacyStatus(
       platformLabel: base.platformLabel,
@@ -174,8 +184,9 @@ class NativeStudioSpacyHost extends StudioSpacyHost {
       problem: problem,
       analysisEnabled: installation != null && settings.analysis,
       nerOffered: installation != null && spacyNerDownload != null,
-      nerEnabled:
-          installation != null && settings.ner && spacyNerDownload != null,
+      nerInstalled: nerInstalled,
+      nerProblem: nerProblem,
+      nerEnabled: installation != null && settings.ner && nerInstalled,
       grammarEnabled:
           installation != null &&
           settings.grammar &&
@@ -350,6 +361,21 @@ class NativeStudioSpacyHost extends StudioSpacyHost {
       analysis: _readSettings().analysis || enabled,
       grammar: enabled,
     );
+    await refresh();
+  }
+
+  @override
+  Future<void> removeNer() async {
+    final ner = spacyNerDownload;
+    if (ner == null) return;
+    final settings = _readSettings();
+    _writeSettings(
+      analysis: settings.analysis,
+      grammar: settings.grammar,
+      ner: false,
+    );
+    await refresh(); // notify the host to retire consumers before removal
+    await _installer.removeNer(ner);
     await refresh();
   }
 

@@ -1,0 +1,26 @@
+{
+  "prior_pr_head": "d8be43a408473da4b45059561dbc387f5b868d5b",
+  "incoming_main": "9f41e0427734d815b19149eba5eabef202f78ba6",
+  "incoming_parent": "caf378f40fd5bda50f504a6816404d01d8bbb8f8",
+  "incoming_paths": [
+    "docs/validation/language-downloads-20261119/README.md",
+    "packages/quds_office_editor/example/lib/crisp_office_sample.dart",
+    "packages/quds_office_editor/example/lib/studio_downloads_manager.dart",
+    "packages/quds_office_editor/example/lib/studio_spacy_host.dart",
+    "packages/quds_office_editor/example/lib/studio_spacy_host_native.dart",
+    "packages/quds_office_editor/example/lib/suite_workspace.dart",
+    "packages/quds_office_editor/example/test/studio_downloads_manager_test.dart",
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+    "packages/quds_office_editor/lib/src/embed/word_review_pane.dart",
+    "packages/quds_office_editor/test/word_text_proofing_pane_test.dart",
+    "packages/quds_proofing_spacy/lib/src/installer_io.dart",
+    "packages/quds_proofing_spacy/test/ner_removal_test.dart"
+  ],
+  "conflict_file": "packages/quds_office_editor/example/lib/suite_workspace.dart",
+  "conflict_hunks": 2,
+  "resolution": "Preserve themed and RTL Settings with current SuiteLook controls; insert incoming Language downloads tile. Use incoming manager/callback/focus behavior with _themedContext.",
+  "controller_merge": "Automatic nonconflicting union of page-layout API and proofing callbacks.",
+  "macro_accepted_input_count": 856,
+  "macro_accepted_input_hash_changes": [],
+  "actions_queried_or_awaited": false
+}

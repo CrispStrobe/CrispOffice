@@ -1387,6 +1387,11 @@ class WordEditorController extends OfficeController {
   /// Host opens web / file targets. Internal anchors stay in the editor.
   void Function(WmlHyperlink link)? onFollowExternalLink;
 
+  /// Host-owned language support/download UI. These callbacks never download
+  /// anything themselves and run only after a successful language edit.
+  void Function(String language)? onProofingLanguageChanged;
+  VoidCallback? onManageProofingDownloads;
+
   /// relayout API.
   void relayout({bool localEdit = false}) {
     _syncEmptyParagraphDirection();
@@ -9852,7 +9857,8 @@ class WordEditorController extends OfficeController {
     if (normalized != null && normalized.isEmpty) return false;
     if (normalized == null) {
       final reader = WordDeserializer();
-      return _setTextProofingOption(
+      final before = contentRevision;
+      final applied = _setTextProofingOption(
         target,
         prepare: (source, preview, start, end) =>
             reader.clearRunProofingLanguage(
@@ -9865,8 +9871,19 @@ class WordEditorController extends OfficeController {
               activeLanguageOnly: activeLanguageOnly,
             ),
       );
+      if (applied && contentRevision != before) {
+        final inherited = textProofingTarget;
+        for (final tag in <String>{
+          ...?inherited?.scriptLanguages.values.whereType<String>(),
+          if (inherited?.language case final String tag) tag,
+        }) {
+          onProofingLanguageChanged?.call(tag);
+        }
+      }
+      return applied;
     }
-    return _setTextProofingOption(
+    final before = contentRevision;
+    final applied = _setTextProofingOption(
       target,
       prepare: (source, preview, start, end) => activeLanguageOnly
           ? _prepareTextProofingLanguage(preview, start, end, normalized)
@@ -9882,6 +9899,10 @@ class WordEditorController extends OfficeController {
                 ..complexScriptLanguage = normalized,
             ),
     );
+    if (applied && contentRevision != before) {
+      onProofingLanguageChanged?.call(normalized);
+    }
+    return applied;
   }
 
   /// Runs automatic language detection for the paragraphs of [target] (when
@@ -9910,7 +9931,8 @@ class WordEditorController extends OfficeController {
     if (target.detectedLanguages.isEmpty) return false;
     final documentLanguage = document.proofingLanguage;
     final documentComplex = document.complexScriptLanguage;
-    return _setTextProofingOption(
+    final before = contentRevision;
+    final applied = _setTextProofingOption(
       target,
       prepare: (source, preview, start, end) {
         final detection = proofing.detectedLanguages(source.text);
@@ -9975,6 +9997,13 @@ class WordEditorController extends OfficeController {
         return changed;
       },
     );
+    if (applied && contentRevision != before) {
+      for (final language
+          in target.detectedLanguages.values.whereType<String>().toSet()) {
+        onProofingLanguageChanged?.call(language);
+      }
+    }
+    return applied;
   }
 
   /// Includes or excludes exactly [target] in document proofing. One history
@@ -10164,6 +10193,7 @@ class WordEditorController extends OfficeController {
     );
     relayout();
     notifyListeners();
+    onProofingLanguageChanged?.call(language);
   }
 
   /// Saves the displayed language together with the hyphenation toggle so an

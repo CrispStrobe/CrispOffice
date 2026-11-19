@@ -34,6 +34,8 @@ class StudioSpacyStatus {
     this.grammarEnabled = false,
     this.nerOffered = false,
     this.nerEnabled = false,
+    this.nerInstalled = false,
+    this.nerProblem,
     this.languages = const [],
   });
 
@@ -64,6 +66,8 @@ class StudioSpacyStatus {
 
   /// The user downloaded and enabled named entities.
   final bool nerEnabled;
+  final bool nerInstalled;
+  final String? nerProblem;
 
   /// Additional analysis languages (English, French) on this platform.
   final List<StudioSpacyLanguageStatus> languages;
@@ -163,6 +167,9 @@ abstract class StudioSpacyHost extends ChangeNotifier {
   Future<void> setGrammarEnabled(bool enabled);
 
   /// Downloads (when enabling) the optional verified NER model and toggles it.
+  Future<void> removeNer() async =>
+      throw UnsupportedError('Named entities are unavailable here.');
+
   Future<void> setNerEnabled(bool enabled) async =>
       throw UnsupportedError('Named entities are unavailable here.');
 

@@ -1,0 +1,49 @@
+{
+  "done_events": [
+    {
+      "success": true,
+      "time": 11609,
+      "type": "done"
+    }
+  ],
+  "failed": 0,
+  "non_json_stdout_lines": 0,
+  "passed": 1,
+  "skipped": 0,
+  "tests": [
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 3,
+        "time": 11572,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 0,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_layout_theme_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          2
+        ],
+        "id": 3,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "Language downloads inherits dark Studio appearance from Settings (variant: TargetPlatform.linux)",
+        "root_column": 3,
+        "root_line": 385,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_layout_theme_test.dart",
+        "suiteID": 0,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    }
+  ],
+  "visible_test_count": 1
+}

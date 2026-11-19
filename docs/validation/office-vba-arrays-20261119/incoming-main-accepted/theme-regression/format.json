@@ -1,0 +1,26 @@
+{
+  "command": [
+    "/workspace/scratch/652d74384990/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+    "format",
+    "test/studio_layout_theme_test.dart"
+  ],
+  "cwd": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example",
+  "elapsed_seconds": 0.10948848724365234,
+  "environment_overrides": {
+    "CI": "true",
+    "DART_SUPPRESS_ANALYTICS": "true",
+    "FLUTTER_SUPPRESS_ANALYTICS": "true",
+    "PUB_CACHE": "/workspace/scratch/652d74384990/runtime/pub-cache",
+    "TMPDIR": "/workspace/scratch/652d74384990/runtime/tmp"
+  },
+  "exit_code": 0,
+  "name": "format",
+  "removed_optional_environment": [
+    "QUDS_MAIL_PORTABILITY_SHOTS"
+  ],
+  "started_at_utc": "2026-11-19T19:00:07Z",
+  "stderr": "format.stderr.log",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout": "format.stdout.log",
+  "stdout_sha256": "201363ae23832375357c5580f6a07ce89f48c2a27211bd100d74e34f26295c71"
+}
