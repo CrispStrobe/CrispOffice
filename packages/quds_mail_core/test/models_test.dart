@@ -7,17 +7,19 @@ void main() {
   test('observed standard flags have value equality and an empty snapshot', () {
     const empty = MailMessageFlags();
     const observed = MailMessageFlags(isRead: true, isFlagged: true);
+    final equivalent = MailMessageFlags(
+      isRead: observed.isRead,
+      isFlagged: observed.isFlagged,
+    );
     expect(empty.isRead, isFalse);
     expect(empty.isFlagged, isFalse);
     expect(empty.isAnswered, isFalse);
     expect(empty.isDraft, isFalse);
     expect(empty.isDeleted, isFalse);
-    expect(observed, const MailMessageFlags(isRead: true, isFlagged: true));
+    expect(identical(observed, equivalent), isFalse);
+    expect(observed, equivalent);
     expect(observed, isNot(empty));
-    expect({
-      observed,
-      const MailMessageFlags(isRead: true, isFlagged: true),
-    }, hasLength(1));
+    expect({observed}..add(equivalent), hasLength(1));
     for (final different in const [
       MailMessageFlags(isRead: true),
       MailMessageFlags(isFlagged: true),
