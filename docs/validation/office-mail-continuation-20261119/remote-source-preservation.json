@@ -1,0 +1,151 @@
+{
+  "schema": 1,
+  "record_kind": "remote_source_preservation_review",
+  "observed_at_utc": "2026-11-19 12:50:11 UTC",
+  "repository": "CrispStrobe/quds_office_suite",
+  "branch": "codex/office-mail-continuation-20261119",
+  "frozen_source_commit": "de24bdfc2b2a1c6691d53d963c993fc236d1ffe5",
+  "frozen_source_tree": "af6b6cb49b7ab1fd01aabe2acdc66c7fe72c8b84",
+  "remote_main_at_review": "666e9a2ea46f7aeaaa1d01b60aabea0c2fe6f0fd",
+  "server_compare": {
+    "status": "ahead",
+    "ahead_by": 26,
+    "behind_by": 0,
+    "merge_base": "666e9a2ea46f7aeaaa1d01b60aabea0c2fe6f0fd"
+  },
+  "pull_request": 191,
+  "pull_request_open": true,
+  "pull_request_draft_at_review": true,
+  "proposed_merge": {
+    "commit": "6fd340f433a9c1645ea3cad488f4879021c9640c",
+    "tree": "af6b6cb49b7ab1fd01aabe2acdc66c7fe72c8b84",
+    "parents": [
+      "666e9a2ea46f7aeaaa1d01b60aabea0c2fe6f0fd",
+      "de24bdfc2b2a1c6691d53d963c993fc236d1ffe5"
+    ],
+    "tree_equals_frozen_source": true
+  },
+  "bounded_ref_audit": {
+    "path": "reconciliation/final-cutoff-audit.json",
+    "audited_checkpoint": "1c415fef97a9552191e83a6e5f8a071a6fe06710",
+    "references": 468,
+    "ancestors": 440,
+    "historical_equivalents": 28,
+    "recomputed_proofs": 14,
+    "unaccounted": 0,
+    "scope": "Captured actual branch, tag and PR-head refs; generated PR merge previews are excluded and their raw advertisements preserved."
+  },
+  "frozen_root_entries": [
+    {
+      "path": ".cursorrules",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1a33e732cc093fa85ec14afcf9e8d7ee78f2253d"
+    },
+    {
+      "path": ".fvmrc",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4e46fba09bb9c1d654a226b7285b55b6949b3767"
+    },
+    {
+      "path": ".github",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "d7bb912b6ac7034adab3310a664c904b1583ba64"
+    },
+    {
+      "path": ".gitignore",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7c2bfda1f3938a75ea529cc25a8cdb7c6195d6c6"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8ac0d583dda68079b97b6c79a57a4803ecf13e40"
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7b172a8eef21770142d5ba2b276c9a2ae812f66e"
+    },
+    {
+      "path": "LICENSE",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d2c25674e883f1006ac85cf45912f851a2b5ef0e"
+    },
+    {
+      "path": "README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b92888a8bb4be6ebaa25a87393e81fd097824019"
+    },
+    {
+      "path": "analysis_options.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e40c961c5eda58a8470527fb768f093aa7dbbfff"
+    },
+    {
+      "path": "apps",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "e97767581d70416a246cd149cdcd5e0a8d3f2352"
+    },
+    {
+      "path": "docs",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "e53d7c796449f6761778c1a907cbe3b1d78d31f7"
+    },
+    {
+      "path": "packages",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "99dbe5e40e53831a81ea25ce97a250b2caee43b7"
+    },
+    {
+      "path": "pubspec.lock",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "13f6b3ddf846de813c4d19893c05919b67c8cd12"
+    },
+    {
+      "path": "pubspec.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "17310477afd25866164346b32313e3854ed09696"
+    },
+    {
+      "path": "third_party",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "4ca1ad22af2e0a0bf6a47f7b1ccc6b4733011022"
+    },
+    {
+      "path": "tmp",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "e22b873ec74ec2705f70fec6a09fa0787d4832c9"
+    },
+    {
+      "path": "tool",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "a3d02a1de63b803d6d6e02e3e0deda8a5eb872f6"
+    },
+    {
+      "path": "tools",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "0a8eee7641bed0db07f445966ccb6e61130a461a"
+    }
+  ],
+  "github_actions_queried_or_awaited": false,
+  "aggregate_qualification_accepted": false,
+  "verification_boundary": "GitHub object/ref/tree/compare reads confirm remote source preservation and merge ancestry. They do not execute tests or replace the independent local gate audit. The subsequent closeout commit is restricted to documentation and this explicit environment-failure record; final merge identity is recorded in PR #191."
+}

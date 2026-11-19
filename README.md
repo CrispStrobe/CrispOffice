@@ -153,8 +153,9 @@ The [19 November continuation](docs/validation/office-mail-continuation-20261119
 reconciles the current Mail, Arabic morphology, proofing and Studio work with
 the earlier source-qualified evidence. Mail retains its account mailbox and
 saved-message reader; Word language changes preserve the inactive language
-setting. The report records the exact source, local checks and remaining
-installed-application and external-service acceptance boundaries.
+setting. The report records the exact source, preserved local checks and remaining
+acceptance boundaries. The latest combined qualification is incomplete after
+local filesystem exhaustion; earlier passing results retain their own sources.
 
 The Word editor now has a [document review workspace](docs/document-review.md):
 reviewer attribution, filtered pending changes, undoable batch accept/reject,

@@ -62,8 +62,11 @@ after stale connection completions; this does not establish a bounded physical
 shutdown time or disable those clients' reconnect policies.
 Real provider accounts, OAuth/PKCE, native credential vaults, actual browser
 persistence and installed-platform distribution remain separate acceptance gates.
-See the current report for fresh execution identity and results; previous totals
-below are historical and are not added to that gate.
+The final combined source is saved remotely, but its latest local aggregate
+qualification failed before completion and subsequent filesystem tool launches
+reported no space left on device. No accepted aggregate result is claimed for
+that source. See the current report for the exact source, preserved earlier
+attempts and replay instructions; previous totals below remain historical.
 
 ## Delivered code
 
