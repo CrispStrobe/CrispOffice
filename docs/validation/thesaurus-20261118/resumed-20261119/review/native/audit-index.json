@@ -1,0 +1,46 @@
+{
+  "source_commit": "39843ed4874c7b56572c7aa8195716e5892aeca2",
+  "recorded_at_utc": "2026-11-19T05:56:45.263606+00:00",
+  "files": [
+    {
+      "path": "bundle-readback.json",
+      "bytes": 713,
+      "sha256": "441cb45e15edc616cb90dfeb4b4956756c23a5154d028ff07079aec4f6b3b901"
+    },
+    {
+      "path": "compile-installation.json",
+      "bytes": 5234,
+      "sha256": "155c96687b96f5120243ae86d0601603038b59e991fbf27b3ff49f7b38947fd4"
+    },
+    {
+      "path": "independent_audit.py",
+      "bytes": 23951,
+      "sha256": "4cc5e13a6e5da71bc8b4aeea0f7b44d0761a879cdf8be42aae07ad1657102a20"
+    },
+    {
+      "path": "linguistic-packet.json",
+      "bytes": 5478,
+      "sha256": "be35768959dc6197b219fc68c194bcf1d5f05740cb14c5bf4d4b3eadc9c56d5c"
+    },
+    {
+      "path": "native-events.json",
+      "bytes": 60342,
+      "sha256": "8c6f8ada1b571b265e3391f5b4eb4ee98ac8ce0244bd0bef3babfc2b27f30eff"
+    },
+    {
+      "path": "source-binding.json",
+      "bytes": 1993,
+      "sha256": "1535414bf4fa95693291155f8813311ba2938ac0f04ab12e0cdcdd6b4ac3ec1b"
+    },
+    {
+      "path": "summary.json",
+      "bytes": 907,
+      "sha256": "a32c32fd9366490c943c7094b4f6e043a348e12777141bf77c7dccf4e4c6a18f"
+    },
+    {
+      "path": "visual-review.json",
+      "bytes": 2212,
+      "sha256": "38974f276b25ac84888381e1f069c7ef3868b2882b3525bee1fdcaa8b43cfa71"
+    }
+  ]
+}

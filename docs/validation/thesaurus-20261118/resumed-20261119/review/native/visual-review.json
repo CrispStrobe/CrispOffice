@@ -1,0 +1,36 @@
+{
+  "status": "no_visible_modal_layout_defect_observed",
+  "screenshots": [
+    {
+      "file": "english-desktop.png",
+      "bytes": 92942,
+      "sha256": "bece8327216f76679552e82ade84253b9065b00fcd10acd8bc78bd60b5915682",
+      "width": 1200,
+      "height": 900,
+      "independently_opened_and_inspected": true,
+      "observation": "1200×900 native rendering. Thesaurus title, financial bank sense and selected multiword alternative, relation rows, notices, Close and Replace are readable. No visible overflow stripes or clipped action labels. Partial cards at the scroll viewport edges reflect the captured scroll position."
+    },
+    {
+      "file": "german-desktop.png",
+      "bytes": 95171,
+      "sha256": "26bbc3c3cafe70e2464e5ebaf2223dc7356b319a70a6760399127f3c59b542c9",
+      "width": 1200,
+      "height": 900,
+      "independently_opened_and_inspected": true,
+      "observation": "1200×900 native rendering. German language note, Bank meaning groups, selected Finanzinstitution and wrapped alternatives fit the modal. Notices, Close and Replace remain readable. The scrolled query area and lower card meet the fixed viewport boundaries without action-label clipping."
+    },
+    {
+      "file": "german-narrow-large-text.png",
+      "bytes": 65495,
+      "sha256": "32114c3c60870a47bbfb92691d37c87139e1fb91fe4b58c44397cd9fcef9b620",
+      "width": 390,
+      "height": 844,
+      "independently_opened_and_inspected": true,
+      "observation": "390×844 native rendering. Enlarged German alternatives wrap to multiple rows and footer actions wrap within dialog width. Title, close icon, Sources and licenses, Close and Replace are legible; no visible overflow stripes. List content is partially clipped at deliberate scroll viewport boundaries. Obscured app status labels use ellipses at narrow width."
+    }
+  ],
+  "scope": "Actual three PNGs were opened and independently inspected by this agent. They are native widget renderings; they do not establish actual browser execution or an installed native desktop run.",
+  "recorded_at_utc": "2026-11-19T05:55:51.617579+00:00",
+  "auditor": "independent incoming_audit agent",
+  "source_commit": "39843ed4874c7b56572c7aa8195716e5892aeca2"
+}

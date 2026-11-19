@@ -1,0 +1,96 @@
+{
+  "status": "passed",
+  "method": "Independent byte scanner reconstructed compile inventory plus the two bound literal overlays; checked every installed byte, generated worker text, complete manifest, bootstrap, hashes and provenance.",
+  "compile_exit_code": 0,
+  "compile_command": [
+    "/workspace/scratch/786b438f79ef/native-validation-task/zotero-toolchain/flutter-sdk/bin/flutter",
+    "build",
+    "web",
+    "--no-pub",
+    "--release",
+    "--csp",
+    "--no-web-resources-cdn",
+    "--no-wasm-dry-run",
+    "--pwa-strategy=none",
+    "--target=/workspace/scratch/786b438f79ef/quds_office_suite/docs/validation/thesaurus-20261118/continuation/local/fixtures/lib/main.dart",
+    "--output=/workspace/scratch/786b438f79ef/native-final-qualification/browser-build"
+  ],
+  "compile_stdout_sha256": "24d26f90bc280aeba95ed2e6944643c9b244859cb8fc1bb509e20573572cb06e",
+  "compile_stderr_sha256": "aa02819df39ec700ae4616271df6ed38b149d3a6aabcf8382426836fad94c5bc",
+  "compiled_inventory_files": 1155,
+  "compiled_inventory_bytes": 87446576,
+  "original_compiled_files_rehashed_unchanged": 1154,
+  "overlays": [
+    "index.html replaced with exact bound literal",
+    "offline-install.js added with exact bound literal"
+  ],
+  "original_index_limit": "The original compile index is retained as a bound inventory record; its original bytes were replaced during installation, so this audit rehashes its literal replacement rather than claiming to rehash the original index.",
+  "installed_inventory_files": 1156,
+  "installed_inventory_bytes": 87447167,
+  "generated_files_outside_cache_inventory": {
+    "offline-files.json": {
+      "path": "offline-files.json",
+      "bytes": 229967,
+      "sha256": "926e899358da250e0d8516af687b38a7fbc8725a36f7ac81688e1a6d2beee361"
+    },
+    "offline-test-worker.js": {
+      "path": "offline-test-worker.js",
+      "bytes": 212850,
+      "sha256": "df22767cb523cec322c97a9c5834d57382122d1b981a7fd18f13bb57807dca66"
+    }
+  },
+  "all_on_disk_files": 1158,
+  "all_on_disk_bytes": 87889984,
+  "cache_identity": "1694b24fcdc9422efa5781cef722b3d159142d9577c462e21eef527114dd9e78",
+  "compile_provenance": {
+    "schema": "quds-thesaurus-browser-build-v2",
+    "receipt_path": "/workspace/scratch/786b438f79ef/native-final-qualification/receipt.json",
+    "receipt_sha256": "dbaf9ed54cb6949e9f5348d2bb9cab900cedb497607172e6ab67dd076694cc46",
+    "source_commit": "39843ed4874c7b56572c7aa8195716e5892aeca2",
+    "source_input_digest": "5c9ed5d3025fcb8dbf1622dddfa09d98860bb35031a7d7f8ed0dffcb6e5b63a9",
+    "source_inventory_sha256": "ce789ec264c12cf217303e208dc932537fcc969850ccb690551eaa5d36f9a5ea",
+    "compiled_inventory_sha256": "f0948c40fa78479b345c4e598b4e83aad88cce68c23bee3ea908160e0c578c91",
+    "compiled_files": 1155,
+    "compiled_bytes": 87446576,
+    "fixture_inputs": {
+      "lib/main.dart": "9caff2312188c3fd1b668055495bc1e6b37b897ddebfe85b2c32b9e8d75485a4",
+      "native_pack_test.dart": "2c12b51deabbc6fc407d390b51570538e12f1aa61d113afafd698aab17054891",
+      "native_visual_test.dart": "99e41ba060c8f35f2677b968dbaad0679868190a50f2e4debe57bc296ea34c7c",
+      "install_offline.py": "174329331c5e363afcb4dd58d8182aa14b4f86b405e0ec84be5179414fc968aa",
+      "run_browser.py": "62f1b712957c7fe360014799f7178db019ec1a5fd7ea347d3563c9cb909b72d3",
+      "run_final_validation.py": "382a3e7e1688df926a7fd9a2bfe57b526735607fecc2ec2e024633d850581582",
+      "test_browser_harness.py": "7516f54f7e91332c92fc234ba7d973b7c299340269f846465a3f8d9bfebe306c",
+      "build_binding.py": "4dd56dd08f3228afec52172e396bd49504ce183dceb5fd8837f0a03fb0740d26",
+      "workspace_binding.py": "886e6073554da1fd88cc62e9796e2ced1db541ee2f2891a7e6959b4f37d5a3b7",
+      "test_workspace_binding.py": "ba84d9cce6f031c4d920b8f2465af120d82a427e855c697535b0f12aa5a632e5"
+    },
+    "source_verification_helpers": {
+      "tools/thesaurus/build_packs.py": "52c87f52f7c85ed2ec9d58b91e5afeb5bb658e7b99fe167cc4a26e6fb5608e4c",
+      "tools/thesaurus/export_review_packet.py": "1d14bd72961bad937d2eaf624ea179bafce8cc61fc6534c8b893deed1f33945f"
+    },
+    "workspace_binding_schema": "quds-thesaurus-workspace-v1",
+    "build_command": [
+      "/workspace/scratch/786b438f79ef/native-validation-task/zotero-toolchain/flutter-sdk/bin/flutter",
+      "build",
+      "web",
+      "--no-pub",
+      "--release",
+      "--csp",
+      "--no-web-resources-cdn",
+      "--no-wasm-dry-run",
+      "--pwa-strategy=none",
+      "--target=/workspace/scratch/786b438f79ef/quds_office_suite/docs/validation/thesaurus-20261118/continuation/local/fixtures/lib/main.dart",
+      "--output=/workspace/scratch/786b438f79ef/native-final-qualification/browser-build"
+    ]
+  },
+  "compiler_warnings": [
+    "Deprecated --pwa-strategy option",
+    "Wider editor references packages/cupertino_icons/CupertinoIcons without a bundled font"
+  ],
+  "browser_execution": "not_run",
+  "installed_native_desktop": "not_run",
+  "scope": "Successful release web compilation and test-only offline installation byte integrity; not browser/service-worker execution acceptance.",
+  "recorded_at_utc": "2026-11-19T05:55:51.617579+00:00",
+  "auditor": "independent incoming_audit agent",
+  "source_commit": "39843ed4874c7b56572c7aa8195716e5892aeca2"
+}

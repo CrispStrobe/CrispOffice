@@ -1,0 +1,61 @@
+{
+  "source_commit": "39843ed4874c7b56572c7aa8195716e5892aeca2",
+  "source_tree": "37ac64ec6ec9aa9b13b4504be0b93e82fd20fb0e",
+  "suite_count": 129,
+  "passed": 2018,
+  "success": true,
+  "source_unchanged": true,
+  "environment_unchanged": true,
+  "harness_unchanged": true,
+  "started_utc": "2026-11-19T05:45:56.616356+00:00",
+  "finished_utc": "2026-11-19T05:52:41.221738+00:00",
+  "status": "local_qualification_passed_external_acceptance_pending",
+  "analysis_targets": 30,
+  "format_targets": 30,
+  "runs": [
+    {
+      "name": "engine-review-and-incoming-zotero",
+      "exit_code": 0,
+      "accepted": true,
+      "passed": 717,
+      "seconds": 35.328
+    },
+    {
+      "name": "editor-review-notes-headers-and-zotero",
+      "exit_code": 0,
+      "accepted": true,
+      "passed": 1154,
+      "seconds": 172.376
+    },
+    {
+      "name": "studio-review-and-incoming-navigation",
+      "exit_code": 0,
+      "accepted": true,
+      "passed": 117,
+      "seconds": 136.293
+    },
+    {
+      "name": "incoming-mail-reader",
+      "exit_code": 0,
+      "accepted": true,
+      "passed": 30,
+      "seconds": 9.266
+    },
+    {
+      "name": "analysis",
+      "exit_code": 0,
+      "accepted": true,
+      "seconds": 23.38
+    },
+    {
+      "name": "format",
+      "exit_code": 0,
+      "accepted": true,
+      "seconds": 1.119
+    }
+  ],
+  "source_files": 4992,
+  "environment_records": 11948,
+  "other_runs_added": false,
+  "github_actions": "NOT USED"
+}

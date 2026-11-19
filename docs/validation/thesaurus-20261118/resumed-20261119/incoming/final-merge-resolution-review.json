@@ -1,0 +1,148 @@
+{
+  "schema": 1,
+  "reviewed_at_utc": "2026-11-19T05:44:18.003456+00:00",
+  "reviewer": "independent incoming-audit agent",
+  "review_kind": "Read-only static final merge-resolution review, immutable blob comparisons and complete captured-head ancestry replay; no runtime pass claimed.",
+  "base": "fa0cd40d6a46767c800546aa2e894eec6567433a",
+  "local_integrated_head": "4b9dcd95fe8195099ec04dae159a3488fa15057a",
+  "local_integrated_tree": "a9d2e1f8cf2c41e78c2f8c15196d9bbb220dac63",
+  "expected_remote_parents": [
+    "fa0cd40d6a46767c800546aa2e894eec6567433a",
+    "bb241a34a1722a44b29f51fdce4be64e0ffc47b9",
+    "db7501ee42c97e8da42b776a4213802cac41a9b0",
+    "ff06e5544673ce7f70be983299241bcdcef780d3"
+  ],
+  "application_feature_file_count": 4,
+  "annotation_test_suite_count": 5,
+  "captured_feature_blob_checks": [
+    {
+      "path": "packages/quds_office_editor/example/lib/suite_workspace.dart",
+      "sha256": "9ce85cbfa0acfeb48b580b1b588e8c1bffabc7ffde0d0753bb3ba81a2327a2f3",
+      "matches_captured_annotation_head": true
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+      "sha256": "8849c0545deb504e73f521f5b0f432e2abd1d0a394b3c21e23383cf98a7d4182",
+      "matches_captured_annotation_head": true
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart",
+      "sha256": "31de3dc5c941b8193d0ea2044e6f3850cbf7f33b37bcd494ed743a403ab6efe4",
+      "matches_captured_annotation_head": true
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/zotero/zotero_citing.dart",
+      "sha256": "3595c58e8adb5417ce41aac7934e3144c5f2bb782ae44697f5be64bafa32be34",
+      "matches_captured_annotation_head": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+      "sha256": "27916e7a920fa463e0f06c4fdfcf5903fbfb70bf503db3b83775792b5b2a1e1c",
+      "matches_captured_annotation_head": true
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+      "sha256": "0aca5157297ae348fac78c646f51037c20fa87778ff1afc4330989644fad9ab6",
+      "matches_captured_annotation_head": true
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart",
+      "sha256": "1d6a100859393b5db4819c8097b7c9696223cb221810d6c9bc16cd29e75b46b3",
+      "matches_captured_annotation_head": true
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_zotero_direct_command_test.dart",
+      "sha256": "89d4d9cb7871d593006ab4dd07219d9f41e903b983a7c98fb4b3899a245fa484",
+      "matches_captured_annotation_head": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/zotero_add_note_protocol_test.dart",
+      "sha256": "5eb5ce4e38ef2594a789f8b9de929a66ff27e8c02bc6842c841c860cfe37c323",
+      "matches_captured_annotation_head": true
+    }
+  ],
+  "preserved_source_checks": [
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/office_editors.dart",
+      "unchanged_from_validated_base": true,
+      "sha256": "bcb62b01edddb4df4497e9559aa0c05cfba4f9eb5e465a04bb422446d660e57f"
+    },
+    {
+      "path": "packages/quds_office_editor/test/support/review_fonts.dart",
+      "unchanged_from_validated_base": true,
+      "sha256": "a6053547af89a8968443fc99480ece65bf799b0756c23ee8447f002eb31e5695"
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_notes_proofing_pane_test.dart",
+      "unchanged_from_validated_base": true,
+      "sha256": "fb0d6f79121111d1224fda784fb97511934d238d228f87b4f3e810a27f9aebe5"
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_zotero_notes_pane_test.dart",
+      "unchanged_from_validated_base": true,
+      "sha256": "d9575bfb55857ab242adf29ddf96ae31955c45fdc9144ea1c1594e9c4d604390"
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/reconciled/run_targeted.py",
+      "unchanged_from_validated_base": true,
+      "sha256": "974601579530bee323e2912c05c2cf1302a788bf5da67d9d6e2d8e26d925d49d"
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/reconciled/test_run_targeted.py",
+      "unchanged_from_validated_base": true,
+      "sha256": "a8b082f111d8d6a0629680a04ab54e09d1173ac06a4da253e02d3c0d89d367a2"
+    }
+  ],
+  "notes_resolution": {
+    "path": "packages/quds_office_editor/test/word_notes_proofing_controller_test.dart",
+    "only_changes_are_two_stronger_tracking_assertions": true,
+    "added": [
+      "          expect(controller.document.revisions, hasLength(3));",
+      "          expect(controller.document.revisions.first, same(revision));"
+    ],
+    "removed": [],
+    "interpretation": "Retains both tracking modes, both undo boundaries, original disjoint provider fixture labels and prior selection safeguards; adds total revision count and preservation of the original body revision identity."
+  },
+  "feature_review": [
+    "Both Add Note and Add Annotation take the same controller preflight and supported-body-caret guard through insertsNoteText.",
+    "Both commands use the existing detached transaction and discard staged edits when no text was inserted; annotation title, version guidance, disabled-action behavior and Studio ribbon route are present.",
+    "All five captured feature suites are retained byte-for-byte, including the added quoted-text/active-citation/undo/save-reopen cases, fourteen early-refusal scenarios, cancellation and unavailable-command behavior.",
+    "The stable Flex layout and retained field controller/focus/selection helpers remain unchanged; the redundant incoming document-pane GlobalKey is absent."
+  ],
+  "plan_review": {
+    "path": "docs/validation/thesaurus-20261118/reconciled/plan.json",
+    "working_copy_sha256": "7bd8837025617f848721cb5ad9a332706b0ea58f7af1bc68bcd224840d06f266",
+    "committed_sha256": "014d754194049684543e4c3b430c1f60769a4b5ad1644469c466a199e2ffd02e",
+    "matches_local_integrated_commit": false,
+    "suites": 129,
+    "analysis_targets": 30,
+    "format_targets": 30,
+    "feature_suites_all_selected": true,
+    "feature_sources_and_tests_in_analysis": true,
+    "feature_sources_and_tests_in_format": true,
+    "publication_requirement": "Include the working30-target plan when publishing the API combined tree;4b9dcd95 itself still has the29-target plan."
+  },
+  "scoped_whitespace_check": {
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "conflict_markers": [],
+  "ancestry_report": "final-integrated-audit-local.json",
+  "captured_ref_snapshot": "final-captured-refs.json",
+  "ancestry": {
+    "total_refs": 391,
+    "distinct_heads": 253,
+    "ancestor_refs": 363,
+    "historical_equivalent_refs": 28,
+    "reverified_historical_equivalents": 14,
+    "all_captured_refs_accounted_for": true,
+    "all_captured_refs_in_integrated_head": true
+  },
+  "blocking_findings": [],
+  "runtime_validation": "Pending on final integrated source; source-changing annotation integration supersedes the earlier native-build source-continuity claim. Preserve earlier results under their original source.",
+  "github_actions_calls": 0,
+  "remote_refresh_calls": 0,
+  "root_checkout_mutations": 0,
+  "passed": true
+}

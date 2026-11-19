@@ -1,0 +1,1093 @@
+{
+  "status": "passed",
+  "method": "Parsed every raw JSON event; independently classified loading/setup/teardown and checked test identity, completion, final success and diagnostics.",
+  "raw_stdout_sha256": "1fbc22eeb6bb23ff43f728fb513c42fb949e42d130b00c807b0eb9d627f1815b",
+  "events": 502,
+  "event_types": {
+    "start": 1,
+    "suite": 14,
+    "testStart": 234,
+    "allSuites": 1,
+    "testDone": 234,
+    "group": 14,
+    "print": 3,
+    "done": 1
+  },
+  "substantive_passed": 208,
+  "substantive_failed": 0,
+  "substantive_skipped": 0,
+  "suite_count": 14,
+  "selected_suite_identity_matches": true,
+  "test_starts": 234,
+  "test_finishes": 234,
+  "each_start_finished_once": true,
+  "unique_suite_and_case_identities": 208,
+  "excluded_successful_pseudo_events": 26,
+  "excluded_loading": 14,
+  "excluded_setup_teardown": 12,
+  "final_success_events": 1,
+  "error_events": 0,
+  "layout_or_tap_diagnostics": [],
+  "suite_case_counts": {
+    "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_keyboard_context_geometry_test.dart": 11,
+    "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_keyboard_review_identity_test.dart": 4,
+    "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_keyboard_review_test.dart": 16,
+    "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_proofing_capture_cache_test.dart": 4,
+    "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_proofing_context_test.dart": 5,
+    "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_proofing_correction_test.dart": 33,
+    "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_review_pane_test.dart": 11,
+    "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_text_proofing_controls_test.dart": 31,
+    "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_text_proofing_pane_test.dart": 13,
+    "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_thesaurus_controller_test.dart": 52,
+    "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_thesaurus_dialog_test.dart": 21,
+    "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_thesaurus_review_integration_test.dart": 3,
+    "/workspace/scratch/786b438f79ef/quds_office_suite/docs/validation/thesaurus-20261118/continuation/local/fixtures/native_pack_test.dart": 1,
+    "/workspace/scratch/786b438f79ef/quds_office_suite/docs/validation/thesaurus-20261118/continuation/local/fixtures/native_visual_test.dart": 3
+  },
+  "cases": [
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_thesaurus_dialog_test.dart",
+      "name": "lookup is nonmutating, preserves meanings and requires explicit Replace",
+      "test_id": 3
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_thesaurus_dialog_test.dart",
+      "name": "closing lookup adds no undo entry",
+      "test_id": 4
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_thesaurus_dialog_test.dart",
+      "name": "a changed selection disables Replace and explains how to refresh",
+      "test_id": 5
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_thesaurus_dialog_test.dart",
+      "name": "an invalidated pack refuses a previously selected candidate",
+      "test_id": 6
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_thesaurus_dialog_test.dart",
+      "name": "language override uses another pack without changing document language",
+      "test_id": 7
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_thesaurus_dialog_test.dart",
+      "name": "shows distinct noEntry outcome",
+      "test_id": 8
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_thesaurus_dialog_test.dart",
+      "name": "shows distinct unsupportedLanguage outcome",
+      "test_id": 9
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_thesaurus_dialog_test.dart",
+      "name": "shows distinct missingPack outcome",
+      "test_id": 10
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_thesaurus_dialog_test.dart",
+      "name": "shows distinct failedPack outcome",
+      "test_id": 11
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_thesaurus_dialog_test.dart",
+      "name": "empty caret target explains how to select text",
+      "test_id": 12
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_thesaurus_dialog_test.dart",
+      "name": "explicit retry reloads a repaired pack after a failed manifest",
+      "test_id": 13
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_thesaurus_dialog_test.dart",
+      "name": "late lookup completion after closing is ignored safely",
+      "test_id": 14
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_thesaurus_dialog_test.dart",
+      "name": "source view displays verified notices",
+      "test_id": 15
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_thesaurus_dialog_test.dart",
+      "name": "source view reports a damaged notice without an uncaught error",
+      "test_id": 16
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_thesaurus_dialog_test.dart",
+      "name": "narrow screen and large text keep alternatives and actions usable",
+      "test_id": 17
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_thesaurus_dialog_test.dart",
+      "name": "Shift F7 opens thesaurus while F7 keeps the writing review action",
+      "test_id": 18
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_thesaurus_dialog_test.dart",
+      "name": "Shift F7 refuses thesaurus without interrupting active IME",
+      "test_id": 19
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_thesaurus_dialog_test.dart",
+      "name": "an earlier ready capture refuses thesaurus without interrupting active IME",
+      "test_id": 20
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_thesaurus_dialog_test.dart",
+      "name": "a host without Scaffold refuses thesaurus without interrupting active IME",
+      "test_id": 21
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_thesaurus_dialog_test.dart",
+      "name": "review status action opens the selected text",
+      "test_id": 22
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_thesaurus_dialog_test.dart",
+      "name": "context menu retains the captured selection through focus transfer",
+      "test_id": 23
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_thesaurus_controller_test.dart",
+      "name": "lookup at the caret changes neither selection nor document history",
+      "test_id": 27
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_thesaurus_controller_test.dart",
+      "name": "literal bank replacement and history (tracked false)",
+      "test_id": 28
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_thesaurus_controller_test.dart",
+      "name": "literal bank replacement and history (tracked true)",
+      "test_id": 29
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_thesaurus_controller_test.dart",
+      "name": "literal financial institution replacement and history (tracked false)",
+      "test_id": 30
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_thesaurus_controller_test.dart",
+      "name": "literal financial institution replacement and history (tracked true)",
+      "test_id": 31
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_thesaurus_controller_test.dart",
+      "name": "literal 😀 café עברית replacement and history (tracked false)",
+      "test_id": 32
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_thesaurus_controller_test.dart",
+      "name": "literal 😀 café עברית replacement and history (tracked true)",
+      "test_id": 33
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_thesaurus_controller_test.dart",
+      "name": "literal fast­ replacement and history (tracked false)",
+      "test_id": 34
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_thesaurus_controller_test.dart",
+      "name": "literal fast­ replacement and history (tracked true)",
+      "test_id": 35
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_thesaurus_controller_test.dart",
+      "name": "literal ba­nk replacement and history (tracked false)",
+      "test_id": 36
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_thesaurus_controller_test.dart",
+      "name": "literal ba­nk replacement and history (tracked true)",
+      "test_id": 37
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_thesaurus_controller_test.dart",
+      "name": "formatting, links, bookmarks and comments survive one undo unit (tracked false)",
+      "test_id": 38
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_thesaurus_controller_test.dart",
+      "name": "formatting, links, bookmarks and comments survive one undo unit (tracked true)",
+      "test_id": 39
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_thesaurus_controller_test.dart",
+      "name": "mixed linked and unlinked source does not invent a link",
+      "test_id": 40
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_thesaurus_controller_test.dart",
+      "name": "run then paragraph then document language is authoritative",
+      "test_id": 41
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_thesaurus_controller_test.dart",
+      "name": "text language controls and undo retire an earlier thesaurus lookup",
+      "test_id": 42
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_thesaurus_controller_test.dart",
+      "name": "mixed source language is explicit (split grapheme false)",
+      "test_id": 43
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_thesaurus_controller_test.dart",
+      "name": "mixed source language is explicit (split grapheme true)",
+      "test_id": 44
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_thesaurus_controller_test.dart",
+      "name": "selection after lookup rejects without editing history",
+      "test_id": 45
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_thesaurus_controller_test.dart",
+      "name": "source text after lookup rejects without editing history",
+      "test_id": 46
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_thesaurus_controller_test.dart",
+      "name": "document identity after lookup rejects without editing history",
+      "test_id": 47
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_thesaurus_controller_test.dart",
+      "name": "document language after lookup rejects without editing history",
+      "test_id": 48
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_thesaurus_controller_test.dart",
+      "name": "run language after lookup rejects without editing history",
+      "test_id": 49
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_thesaurus_controller_test.dart",
+      "name": "generated source after lookup rejects without editing history",
+      "test_id": 50
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_thesaurus_controller_test.dart",
+      "name": "formatting after lookup rejects without editing history",
+      "test_id": 51
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_thesaurus_controller_test.dart",
+      "name": "hyperlink after lookup rejects without editing history",
+      "test_id": 52
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_thesaurus_controller_test.dart",
+      "name": "tracking mode after lookup rejects without editing history",
+      "test_id": 53
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_thesaurus_controller_test.dart",
+      "name": "IME after lookup rejects without editing history",
+      "test_id": 54
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_thesaurus_controller_test.dart",
+      "name": "host viewing mode after lookup rejects without editing history",
+      "test_id": 55
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_thesaurus_controller_test.dart",
+      "name": "selected picture after lookup rejects without editing history",
+      "test_id": 56
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_thesaurus_controller_test.dart",
+      "name": "selected frame after lookup rejects without editing history",
+      "test_id": 57
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_thesaurus_controller_test.dart",
+      "name": "selected equation after lookup rejects without editing history",
+      "test_id": 58
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_thesaurus_controller_test.dart",
+      "name": "document protection after lookup rejects without editing history",
+      "test_id": 59
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_thesaurus_controller_test.dart",
+      "name": "candidate identity, controller owner and pack revision cannot be substituted",
+      "test_id": 60
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_thesaurus_controller_test.dart",
+      "name": "observed selection changes and text edit then undo cannot revive old choices",
+      "test_id": 61
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_thesaurus_controller_test.dart",
+      "name": "word-at-caret preserves full Unicode and internal punctuation ranges",
+      "test_id": 62
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_thesaurus_controller_test.dart",
+      "name": "new language override retires old choices without changing source tags",
+      "test_id": 63
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_thesaurus_controller_test.dart",
+      "name": "late old request cannot replace newer lookup or revived source",
+      "test_id": 64
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_thesaurus_controller_test.dart",
+      "name": "source changes while pack loads keep returned result noneditable",
+      "test_id": 65
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_thesaurus_controller_test.dart",
+      "name": "field gives a clear noneditable capture",
+      "test_id": 66
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_thesaurus_controller_test.dart",
+      "name": "page number gives a clear noneditable capture",
+      "test_id": 67
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_thesaurus_controller_test.dart",
+      "name": "no proof gives a clear noneditable capture",
+      "test_id": 68
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_thesaurus_controller_test.dart",
+      "name": "locked block gives a clear noneditable capture",
+      "test_id": 69
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_thesaurus_controller_test.dart",
+      "name": "bound block gives a clear noneditable capture",
+      "test_id": 70
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_thesaurus_controller_test.dart",
+      "name": "pending revision gives a clear noneditable capture",
+      "test_id": 71
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_thesaurus_controller_test.dart",
+      "name": "empty field in range gives a clear noneditable capture",
+      "test_id": 72
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_thesaurus_controller_test.dart",
+      "name": "partial surrogate and combining mark selections never become targets",
+      "test_id": 73
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_thesaurus_controller_test.dart",
+      "name": "active IME is neither committed nor cleared by capture",
+      "test_id": 74
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_thesaurus_controller_test.dart",
+      "name": "selection spanning paragraphs is explicit and leaves source untouched",
+      "test_id": 75
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_thesaurus_controller_test.dart",
+      "name": "read-only selection can look up but cannot apply",
+      "test_id": 76
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_thesaurus_controller_test.dart",
+      "name": "active header has independent source and history",
+      "test_id": 77
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_thesaurus_controller_test.dart",
+      "name": "active comment has independent source and history",
+      "test_id": 78
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_proofing_correction_test.dart",
+      "name": "correction history preserves the selection after switching comments",
+      "test_id": 82
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_proofing_correction_test.dart",
+      "name": "correction history preserves the selection after switching header/footer stories",
+      "test_id": 83
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_proofing_correction_test.dart",
+      "name": "correction restores caret and selection through undo/redo (tracking: false)",
+      "test_id": 84
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_proofing_correction_test.dart",
+      "name": "correction restores caret and selection through undo/redo (tracking: true)",
+      "test_id": 85
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_proofing_correction_test.dart",
+      "name": "zero-width findings are hit only at their insertion point",
+      "test_id": 86
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_proofing_correction_test.dart",
+      "name": "already-enabled hyphenation on an untagged document saves the default language with reversible history",
+      "test_id": 87
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_proofing_correction_test.dart",
+      "name": "a correction across styled runs after emoji preserves source styles and one undo/redo step",
+      "test_id": 88
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_proofing_correction_test.dart",
+      "name": "empty replacement suggestions delete text and remain undoable",
+      "test_id": 89
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_proofing_correction_test.dart",
+      "name": "zero-width punctuation suggestions use a UTF-16 boundary after emoji",
+      "test_id": 90
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_proofing_correction_test.dart",
+      "name": "unoffered and multiline replacements do not open an undo transaction",
+      "test_id": 91
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_proofing_correction_test.dart",
+      "name": "a host switching to read-only prevents applying an existing result",
+      "test_id": 92
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_proofing_correction_test.dart",
+      "name": "live document protection prevents a result even before host mode synchronization",
+      "test_id": 93
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_proofing_correction_test.dart",
+      "name": "active IME composition blocks correction without invalidating the unchanged result",
+      "test_id": 94
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_proofing_correction_test.dart",
+      "name": "same-length source edits reject stale suggestions without a revision callback",
+      "test_id": 95
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_proofing_correction_test.dart",
+      "name": "a replaced document with the same text does not accept findings from the prior document",
+      "test_id": 96
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_proofing_correction_test.dart",
+      "name": "changing only noProof semantics invalidates an old finding and excludes a fresh check",
+      "test_id": 97
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_proofing_correction_test.dart",
+      "name": "live inline content-control locks reject old and freshly checked corrections",
+      "test_id": 98
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_proofing_correction_test.dart",
+      "name": "live container content-control locks reject old and freshly checked corrections",
+      "test_id": 99
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_proofing_correction_test.dart",
+      "name": "live wrapper content-control locks reject old and freshly checked corrections",
+      "test_id": 100
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_proofing_correction_test.dart",
+      "name": "data-bound content is reviewable but cannot be rewritten even without a content lock",
+      "test_id": 101
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_proofing_correction_test.dart",
+      "name": "an sdtLocked container still permits edits to its unlocked text content",
+      "test_id": 102
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_proofing_correction_test.dart",
+      "name": "simple generic field results are excluded while adjacent ordinary text remains correctable",
+      "test_id": 103
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_proofing_correction_test.dart",
+      "name": "complex fields spanning paragraphs and sections exclude cached results but permit text after the end",
+      "test_id": 104
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_proofing_correction_test.dart",
+      "name": "paragraph-level generic fields never produce editable cached-text findings",
+      "test_id": 105
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_proofing_correction_test.dart",
+      "name": "tracked correction immediately before simple field cannot insert into that field",
+      "test_id": 106
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_proofing_correction_test.dart",
+      "name": "tracked correction immediately before complex field cannot insert into that field",
+      "test_id": 107
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_proofing_correction_test.dart",
+      "name": "tracked correction immediately before empty complex field cannot insert into that field",
+      "test_id": 108
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_proofing_correction_test.dart",
+      "name": "tracked correction ending at a locked inline control boundary cannot inherit its insertion affinity",
+      "test_id": 109
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_proofing_correction_test.dart",
+      "name": "tracked correction creates separate valid deletion and insertion with undo and DOCX accept/reject",
+      "test_id": 110
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_proofing_correction_test.dart",
+      "name": "tracked deletion suggestions create only a deletion and preserve accept/reject semantics",
+      "test_id": 111
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_proofing_correction_test.dart",
+      "name": "legacy pending insert revisions without targetParagraph block overlapping proofing edits",
+      "test_id": 112
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_proofing_correction_test.dart",
+      "name": "hyphenation on an untagged document saves its displayed language in the same undo step",
+      "test_id": 113
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_proofing_correction_test.dart",
+      "name": "adding a zero-width field with identical paragraph text invalidates prior structure-bound findings",
+      "test_id": 114
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_proofing_capture_cache_test.dart",
+      "name": "warm capture notices noProof and language changes without text edits",
+      "test_id": 118
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_proofing_capture_cache_test.dart",
+      "name": "warm empty and generated paragraphs keep current language and coverage",
+      "test_id": 119
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_proofing_capture_cache_test.dart",
+      "name": "reused field-opening snapshots still propagate field depth across sections",
+      "test_id": 120
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_proofing_capture_cache_test.dart",
+      "name": "warm capture rechecks parent locks and revision guards on unchanged text",
+      "test_id": 121
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_proofing_context_test.dart",
+      "name": "review centers a late finding and preserves Unicode clusters",
+      "test_id": 125
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_proofing_context_test.dart",
+      "name": "an insertion has a visible and accessible context marker",
+      "test_id": 126
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_proofing_context_test.dart",
+      "name": "short passages retain their complete context without ellipses",
+      "test_id": 127
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_proofing_context_test.dart",
+      "name": "long findings remain bounded without splitting joined emoji",
+      "test_id": 128
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_proofing_context_test.dart",
+      "name": "narrow review at large text scale does not hide its finding",
+      "test_id": 129
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_review_pane_test.dart",
+      "name": "editing stays available while live findings update in the pane",
+      "test_id": 134
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_review_pane_test.dart",
+      "name": "opening and correcting do not implicitly run manual providers",
+      "test_id": 135
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_review_pane_test.dart",
+      "name": "unavailable provider status is not presented as a clean document",
+      "test_id": 136
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_review_pane_test.dart",
+      "name": "a suggestion captured before an edit cannot change newer text",
+      "test_id": 137
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_review_pane_test.dart",
+      "name": "category filtering navigates only matching findings",
+      "test_id": 138
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_review_pane_test.dart",
+      "name": "tracked changes resolve in place and undo restores them",
+      "test_id": 139
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_review_pane_test.dart",
+      "name": "reviewer field affects future attribution and leaves document alone",
+      "test_id": 140
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_review_pane_test.dart",
+      "name": "viewing mode allows inspection while disabling document mutations",
+      "test_id": 141
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_review_pane_test.dart",
+      "name": "stale checks stay pending until a current provider result arrives",
+      "test_id": 142
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_review_pane_test.dart",
+      "name": "narrow English pane remains scrollable",
+      "test_id": 143
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_review_pane_test.dart",
+      "name": "narrow Arabic pane remains scrollable",
+      "test_id": 144
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_thesaurus_review_integration_test.dart",
+      "name": "390px English review keeps language and thesaurus actions usable at 1.5x text",
+      "test_id": 150
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_thesaurus_review_integration_test.dart",
+      "name": "390px Arabic RTL review keeps language and thesaurus actions usable at 1.5x text",
+      "test_id": 151
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_thesaurus_review_integration_test.dart",
+      "name": "Alt Shift F7 keeps reverse review navigation while Shift F7 opens thesaurus",
+      "test_id": 152
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_keyboard_review_test.dart",
+      "name": "Alt F7 opens writing and wraps without invoking manual tools",
+      "test_id": 158
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_keyboard_review_test.dart",
+      "name": "Alt Shift F7 navigates backwards and wraps at the first issue",
+      "test_id": 159
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_keyboard_review_test.dart",
+      "name": "issue navigation with no findings opens a usable writing pane",
+      "test_id": 160
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_keyboard_review_test.dart",
+      "name": "review navigation and context shortcuts preserve active IME composition",
+      "test_id": 161
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_keyboard_review_test.dart",
+      "name": "focused Writing filter limits both issue navigation shortcuts",
+      "test_id": 162
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_keyboard_review_test.dart",
+      "name": "issue navigation from a Changes search field opens Writing",
+      "test_id": 163
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_keyboard_review_test.dart",
+      "name": "ordinary shortcuts in a focused reviewer field edit only the field",
+      "test_id": 164
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_keyboard_review_test.dart",
+      "name": "Shift F10 opens suggestions without moving the caret and Enter corrects",
+      "test_id": 165
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_keyboard_review_test.dart",
+      "name": "Context Menu key and Escape restore canvas focus and text input",
+      "test_id": 166
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_keyboard_review_test.dart",
+      "name": "selected issue ending at the next issue uses its own keyboard correction",
+      "test_id": 167
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_keyboard_review_test.dart",
+      "name": "a short unfiltered context menu supports arrows and Enter",
+      "test_id": 168
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_keyboard_review_test.dart",
+      "name": "source edits dismiss a keyboard suggestion before it can act",
+      "test_id": 169
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_keyboard_review_test.dart",
+      "name": "viewing keeps keyboard findings inspectable without correction",
+      "test_id": 170
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_keyboard_review_test.dart",
+      "name": "document protection keeps keyboard findings inspectable without correction",
+      "test_id": 171
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_keyboard_review_test.dart",
+      "name": "keyboard context resolves the current tracked change with Undo",
+      "test_id": 172
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_keyboard_review_test.dart",
+      "name": "Check document upgrades a held background check and shares its full result",
+      "test_id": 173
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_keyboard_review_identity_test.dart",
+      "name": "keyboard correction preserves an explicitly selected overlapping finding",
+      "test_id": 179
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_keyboard_review_identity_test.dart",
+      "name": "keyboard change decisions preserve the selected adjacent revision",
+      "test_id": 180
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_keyboard_review_identity_test.dart",
+      "name": "covered pane shortcuts cannot navigate, check or close review",
+      "test_id": 181
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_keyboard_review_identity_test.dart",
+      "name": "an open keyboard menu cannot act after its origin route is covered",
+      "test_id": 182
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_keyboard_context_geometry_test.dart",
+      "name": "keyboard hit preserves source, selection, layout and viewport",
+      "test_id": 188
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_keyboard_context_geometry_test.dart",
+      "name": "keyboard hit follows the wrapped LTR caret",
+      "test_id": 189
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_keyboard_context_geometry_test.dart",
+      "name": "keyboard hit follows the wrapped RTL caret",
+      "test_id": 190
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_keyboard_context_geometry_test.dart",
+      "name": "offscreen hit clamps its anchor without revealing the caret",
+      "test_id": 191
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_keyboard_context_geometry_test.dart",
+      "name": "keyboard hit uses exact active header",
+      "test_id": 192
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_keyboard_context_geometry_test.dart",
+      "name": "keyboard hit uses exact active footer",
+      "test_id": 193
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_keyboard_context_geometry_test.dart",
+      "name": "repeated header anchors to its visible source occurrence",
+      "test_id": 194
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_keyboard_context_geometry_test.dart",
+      "name": "nested cell hit retains link and comment from its source run",
+      "test_id": 195
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_keyboard_context_geometry_test.dart",
+      "name": "context metadata follows the caret, without stale selection",
+      "test_id": 196
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_keyboard_context_geometry_test.dart",
+      "name": "invalid indices and detached source do not target another paragraph",
+      "test_id": 197
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_keyboard_context_geometry_test.dart",
+      "name": "empty paragraphs need an identity-bound layout line for a hit",
+      "test_id": 198
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+      "name": "inspection and options chrome never create text or history",
+      "test_id": 203
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+      "name": "collapsed caret changes the whole paragraph and preserves rich runs",
+      "test_id": 204
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+      "name": "multiline reversed selection formats complete emoji and combining clusters only",
+      "test_id": 205
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+      "name": "effective mixed states, inherited languages and no-op history are distinct",
+      "test_id": 206
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+      "name": "live changes recheck language, suppress findings and reject late results without manual inference",
+      "test_id": 207
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+      "name": "a captured target refuses stale caret without history",
+      "test_id": 208
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+      "name": "a captured target refuses stale text without history",
+      "test_id": 209
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+      "name": "a captured target refuses stale language without history",
+      "test_id": 210
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+      "name": "a captured target refuses stale run language without history",
+      "test_id": 211
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+      "name": "a captured target refuses stale suppression without history",
+      "test_id": 212
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+      "name": "a captured target refuses stale run replacement without history",
+      "test_id": 213
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+      "name": "a captured target refuses stale document without history",
+      "test_id": 214
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+      "name": "a captured target refuses stale paragraph order without history",
+      "test_id": 215
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+      "name": "a field in a multiline target refuses the entire change",
+      "test_id": 216
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+      "name": "a note in a multiline target refuses the entire change",
+      "test_id": 217
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+      "name": "a complex field in a multiline target refuses the entire change",
+      "test_id": 218
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+      "name": "a generated paragraph in a multiline target refuses the entire change",
+      "test_id": 219
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+      "name": "a complex field opened in a prior paragraph remains protected",
+      "test_id": 220
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+      "name": "protected block controls refuse both proofing operations",
+      "test_id": 221
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+      "name": "protected inline controls refuse both proofing operations",
+      "test_id": 222
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+      "name": "protected wrapper controls refuse both proofing operations",
+      "test_id": 223
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+      "name": "protected binding controls refuse both proofing operations",
+      "test_id": 224
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+      "name": "unlocked control boundaries survive selected formatting and Undo",
+      "test_id": 225
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+      "name": "formatting leaves tracked insertion/deletion ranges and authors intact",
+      "test_id": 226
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+      "name": "comment target follows exact ownership and history preserves other story selections",
+      "test_id": 227
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+      "name": "header target follows exact ownership and history preserves other story selections",
+      "test_id": 228
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+      "name": "viewing mode, late protection and IME never mutate displayed targets",
+      "test_id": 229
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+      "name": "language inheritance and explicit checking permission survive DOCX save",
+      "test_id": 230
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+      "name": "resetting imported language preserves style inheritance live, through history and after save",
+      "test_id": 231
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+      "name": "a style part replacement makes an already displayed language target stale",
+      "test_id": 232
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+      "name": "aliased paragraph ownership cannot modify another story indirectly",
+      "test_id": 233
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_text_proofing_pane_test.dart",
+      "name": "language status opens paragraph options without a dialog or document edit",
+      "test_id": 238
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_text_proofing_pane_test.dart",
+      "name": "selection language updates live checking and preserves the selection with Undo",
+      "test_id": 239
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_text_proofing_pane_test.dart",
+      "name": "text checking toggle excludes only the selected text and can restore it",
+      "test_id": 240
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_text_proofing_pane_test.dart",
+      "name": "mixed text settings display and enable the full selected range",
+      "test_id": 241
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_text_proofing_pane_test.dart",
+      "name": "inherited language follows paragraph defaults and supports Undo",
+      "test_id": 242
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_text_proofing_pane_test.dart",
+      "name": "unchanged inherited language does not promise an Undo entry",
+      "test_id": 243
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_text_proofing_pane_test.dart",
+      "name": "old dropdown action refuses a different selection",
+      "test_id": 244
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_text_proofing_pane_test.dart",
+      "name": "text options cannot mutate through a covering modal",
+      "test_id": 245
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_text_proofing_pane_test.dart",
+      "name": "viewing mode keeps inspection and disables text changes",
+      "test_id": 246
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_text_proofing_pane_test.dart",
+      "name": "pane follows caret context and keeps its open section across hiding",
+      "test_id": 247
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_text_proofing_pane_test.dart",
+      "name": "language status reveals expanded settings again after scrolling",
+      "test_id": 248
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_text_proofing_pane_test.dart",
+      "name": "narrow English text options remain usable with large text",
+      "test_id": 249
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/native-validation-task/zotero-validation/packages/quds_office_editor/test/word_text_proofing_pane_test.dart",
+      "name": "narrow RTL text options remain usable with large text",
+      "test_id": 250
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/quds_office_suite/docs/validation/thesaurus-20261118/continuation/local/fixtures/native_pack_test.dart",
+      "name": "installed English and German corpus panel, notices and warm lookup",
+      "test_id": 255
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/quds_office_suite/docs/validation/thesaurus-20261118/continuation/local/fixtures/native_visual_test.dart",
+      "name": "real pack rendering english-desktop",
+      "test_id": 259
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/quds_office_suite/docs/validation/thesaurus-20261118/continuation/local/fixtures/native_visual_test.dart",
+      "name": "real pack rendering german-desktop",
+      "test_id": 260
+    },
+    {
+      "suite": "/workspace/scratch/786b438f79ef/quds_office_suite/docs/validation/thesaurus-20261118/continuation/local/fixtures/native_visual_test.dart",
+      "name": "real pack rendering german-narrow-large-text",
+      "test_id": 261
+    }
+  ],
+  "scope": "Native event-stream audit only; no additional runtime tests executed.",
+  "recorded_at_utc": "2026-11-19T05:55:51.617579+00:00",
+  "auditor": "independent incoming_audit agent",
+  "source_commit": "39843ed4874c7b56572c7aa8195716e5892aeca2"
+}

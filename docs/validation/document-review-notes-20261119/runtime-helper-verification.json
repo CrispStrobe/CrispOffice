@@ -1,0 +1,78 @@
+{
+  "started_at_utc": "2026-11-19T05:40:04.072238+00:00",
+  "finished_at_utc": "2026-11-19T05:40:04.237698+00:00",
+  "status": "passed",
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3.12",
+    "/workspace/scratch/55e682a034c1/quds_office_suite/docs/validation/document-review-notes-20261118/runtime/test_restore_runtime.py"
+  ],
+  "cwd": "/workspace/scratch/55e682a034c1/quds_office_suite",
+  "environment_overrides": {
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "TMPDIR": "/workspace/scratch/55e682a034c1/runtime-controls/qualified/tmp"
+  },
+  "process_exit_code": 0,
+  "python": {
+    "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3.12",
+    "version": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "sha256_before": "fa67443527ed9647f760d807e2a38f26340757123e643c4639cf273ed15d5ea7",
+    "sha256_after": "fa67443527ed9647f760d807e2a38f26340757123e643c4639cf273ed15d5ea7"
+  },
+  "source_before": {
+    "docs/validation/document-review-notes-20261118/runtime/test_restore_runtime.py": {
+      "sha256": "e35a85bc9d0186ad3d1b686a96f8cf41c8b76c8e99ac5c30e17d0524f2ffaabf",
+      "bytes": 3353
+    },
+    "docs/validation/document-review-notes-20261118/runtime/restore_runtime.py": {
+      "sha256": "d4d5e937239957b8a5db0dcfa2630d1d30b96a714eeadc02e4ae3cb3f1e567a9",
+      "bytes": 21144
+    },
+    "docs/validation/document-review-notes-20261118/runtime/native_asset_smoke.dart": {
+      "sha256": "f7f59b867a024a1293fb615d5fe401f38658fc06d7fb033d3d4146c7de5577be",
+      "bytes": 744
+    },
+    "packages/quds_mail_store/pubspec.yaml": {
+      "sha256": "c19f88e29dc3f530505d992e9f79c287336f9ee0310b081c6cfa0017a5c626b6",
+      "bytes": 387
+    }
+  },
+  "source_after": {
+    "docs/validation/document-review-notes-20261118/runtime/test_restore_runtime.py": {
+      "sha256": "e35a85bc9d0186ad3d1b686a96f8cf41c8b76c8e99ac5c30e17d0524f2ffaabf",
+      "bytes": 3353
+    },
+    "docs/validation/document-review-notes-20261118/runtime/restore_runtime.py": {
+      "sha256": "d4d5e937239957b8a5db0dcfa2630d1d30b96a714eeadc02e4ae3cb3f1e567a9",
+      "bytes": 21144
+    },
+    "docs/validation/document-review-notes-20261118/runtime/native_asset_smoke.dart": {
+      "sha256": "f7f59b867a024a1293fb615d5fe401f38658fc06d7fb033d3d4146c7de5577be",
+      "bytes": 744
+    },
+    "packages/quds_mail_store/pubspec.yaml": {
+      "sha256": "c19f88e29dc3f530505d992e9f79c287336f9ee0310b081c6cfa0017a5c626b6",
+      "bytes": 387
+    }
+  },
+  "inputs_unchanged": true,
+  "actual_cases": 4,
+  "cases": [
+    "test_entrypoint_uses_sqlite_member_and_preserves_other_inputs",
+    "test_failed_probe_removes_only_its_temporary_directory",
+    "test_missing_source_leaves_no_generated_probe",
+    "test_wrong_sqlite_pin_refuses_to_stage"
+  ],
+  "raw_summary_ok": true,
+  "log": {
+    "path": "/workspace/scratch/55e682a034c1/runtime-controls/qualified/runtime-helper-controls.log",
+    "bytes": 682,
+    "sha256": "c5f2bbbf4151b880a319e770b41aeca10de811861440d15beb1719939020a94f"
+  },
+  "original_observation": {
+    "path": "/workspace/scratch/55e682a034c1/runtime-controls/runtime-helper-controls.json",
+    "sha256": "00e3d3534846227312ffe7150a8ecbe57d466caa6e6d492f1bca1ac07bc23ec7",
+    "aggregate_contribution": 0
+  },
+  "aggregation": "Count these four qualified cases once. The earlier observation and its raw log remain preserved and are not added to totals.",
+  "temporary_children_after": []
+}

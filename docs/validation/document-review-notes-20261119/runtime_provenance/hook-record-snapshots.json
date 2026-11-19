@@ -1,0 +1,16 @@
+[
+  {
+    "original_path": "/workspace/scratch/55e682a034c1/quds_office_suite/.dart_tool/hooks_runner/sqlite3/6b4ebf10e7/input.json",
+    "snapshot": "/workspace/scratch/55e682a034c1/evidence_audit/runtime_provenance/input.json",
+    "sha256": "ba912653eb35d1a4ab8673066df8ec6dde091656497e515d9d92e93d2b306aef",
+    "matches_initial_receipt": true,
+    "parsed_content_matches": true
+  },
+  {
+    "original_path": "/workspace/scratch/55e682a034c1/quds_office_suite/.dart_tool/hooks_runner/sqlite3/6b4ebf10e7/output.json",
+    "snapshot": "/workspace/scratch/55e682a034c1/evidence_audit/runtime_provenance/output.json",
+    "sha256": "ce42972670001bba7781d7e098e6c4e7180b85e16099827ccf044069abcfa251",
+    "matches_initial_receipt": true,
+    "parsed_content_matches": true
+  }
+]
