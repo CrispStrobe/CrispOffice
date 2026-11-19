@@ -1,0 +1,131 @@
+{
+  "status": "completed",
+  "cwd": "/workspace/scratch/d63f6e7d8f24/zotero-validation/packages/quds_office_engine",
+  "command": [
+    "timeout",
+    "240s",
+    "/workspace/scratch/d63f6e7d8f24/zotero-toolchain/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+    "--disable-dart-dev",
+    "--packages=/workspace/scratch/d63f6e7d8f24/zotero-validation/.dart_tool/package_config.json",
+    "/workspace/scratch/d63f6e7d8f24/zotero-toolchain/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+    "--reporter",
+    "json",
+    "--concurrency",
+    "1",
+    "test/office_vba_dynamic_arrays_test.dart",
+    "test/office_vba_arrays_test.dart",
+    "test/office_vba_arrays_boundaries_test.dart",
+    "test/office_vba_language_test.dart",
+    "test/office_vba_control_flow_test.dart",
+    "test/office_vba_procedures_test.dart",
+    "test/office_vba_arrays_integration_test.dart",
+    "test/office_vba_integration_test.dart"
+  ],
+  "tested_vba_head": "1580807e1eb99a40d6c8620e93ebd039b9a01132",
+  "started_utc": "2026-11-19T21:23:17Z",
+  "source_head_before": "30bf612547fd7a00a5cb2ba525a04fbe27d3d90d",
+  "events_path": "/workspace/scratch/d63f6e7d8f24/vba-final.jsonl",
+  "stderr_path": "/workspace/scratch/d63f6e7d8f24/vba-final.stderr.log",
+  "exit_code": 0,
+  "elapsed_seconds": 194.032,
+  "finished_utc": "2026-11-19T21:26:31Z",
+  "source_head_after": "400fffd04fcceee78959e4c38b4d1dbe89767c2b",
+  "changed_inputs": [],
+  "non_json_output_lines": [],
+  "suite_result": {
+    "success": true,
+    "type": "done",
+    "time": 181792
+  },
+  "passed_tests": 364,
+  "failed_tests": 0,
+  "errors": [],
+  "reporter_reader_sha256": "4f0f8e1e3a6271b936d90d91098d64573b9256f026136fca6148bc49cda6556b",
+  "validated_reporter_counts": {
+    "passed": 364,
+    "failed": 0,
+    "skipped": 0,
+    "errors": 0,
+    "done_success": true,
+    "runner_starts": 1,
+    "terminal_events": 1,
+    "unfinished": [],
+    "missing_requested_suites": [],
+    "unexpected_suites": [],
+    "empty_requested_suites": [],
+    "protocol_issues": [],
+    "per_suite": {
+      "/workspace/scratch/d63f6e7d8f24/quds_office_suite/packages/quds_office_engine/test/office_vba_dynamic_arrays_test.dart": {
+        "passed": 49,
+        "failed": 0,
+        "skipped": 0
+      },
+      "/workspace/scratch/d63f6e7d8f24/quds_office_suite/packages/quds_office_engine/test/office_vba_arrays_test.dart": {
+        "passed": 32,
+        "failed": 0,
+        "skipped": 0
+      },
+      "/workspace/scratch/d63f6e7d8f24/quds_office_suite/packages/quds_office_engine/test/office_vba_arrays_boundaries_test.dart": {
+        "passed": 144,
+        "failed": 0,
+        "skipped": 0
+      },
+      "/workspace/scratch/d63f6e7d8f24/quds_office_suite/packages/quds_office_engine/test/office_vba_language_test.dart": {
+        "passed": 55,
+        "failed": 0,
+        "skipped": 0
+      },
+      "/workspace/scratch/d63f6e7d8f24/quds_office_suite/packages/quds_office_engine/test/office_vba_control_flow_test.dart": {
+        "passed": 35,
+        "failed": 0,
+        "skipped": 0
+      },
+      "/workspace/scratch/d63f6e7d8f24/quds_office_suite/packages/quds_office_engine/test/office_vba_procedures_test.dart": {
+        "passed": 26,
+        "failed": 0,
+        "skipped": 0
+      },
+      "/workspace/scratch/d63f6e7d8f24/quds_office_suite/packages/quds_office_engine/test/office_vba_arrays_integration_test.dart": {
+        "passed": 11,
+        "failed": 0,
+        "skipped": 0
+      },
+      "/workspace/scratch/d63f6e7d8f24/quds_office_suite/packages/quds_office_engine/test/office_vba_integration_test.dart": {
+        "passed": 12,
+        "failed": 0,
+        "skipped": 0
+      }
+    },
+    "excluded_events": {
+      "hidden": 8
+    },
+    "error_events": [],
+    "valid": true
+  },
+  "qualification": true,
+  "analysis": {
+    "command": [
+      "timeout",
+      "120s",
+      "dart",
+      "analyze",
+      "--fatal-infos",
+      "lib/src/automation/office_vba_language.dart",
+      "test/office_vba_dynamic_arrays_test.dart",
+      "test/office_vba_arrays_boundaries_test.dart",
+      "test/office_vba_language_test.dart"
+    ],
+    "cwd": "/workspace/scratch/d63f6e7d8f24/zotero-validation/packages/quds_office_engine",
+    "started_utc": "2026-11-19T21:26:48Z",
+    "finished_utc": "2026-11-19T21:26:55Z",
+    "elapsed_seconds": 7.462,
+    "exit_code": 0,
+    "log_path": "/workspace/scratch/d63f6e7d8f24/vba-final-analyzer.log",
+    "sha256_log": "0c6f13a4c98e0a00aadde29a20d8ddeb6f8185d41fe20467567f3c8d9f357778",
+    "source_head_after": "400fffd04fcceee78959e4c38b4d1dbe89767c2b",
+    "changed_inputs": []
+  },
+  "input_count": 372,
+  "inputs_manifest": "vba-inputs.json.gz",
+  "full_original_receipt": "vba-final-receipt.json.gz"
+}

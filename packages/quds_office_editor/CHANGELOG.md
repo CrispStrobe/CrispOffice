@@ -4,6 +4,10 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Keep painting and caret hit testing aligned for anchored slide text, apply
+  current scalar formatting to imported rich text, and preserve inherited
+  backgrounds and the established 16-point fallback.
+
 - Add bounded multiple To recipients, Cc, Bcc and Reply all to native Studio
   mail. Keep hidden recipients in the explicit envelope, preserve all groups
   through uncertain retries, and reject unsupported decoded reply addresses.

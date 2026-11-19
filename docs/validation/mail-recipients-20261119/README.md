@@ -1,5 +1,9 @@
 # Studio recipient groups and Reply all — 2026-11-19
 
+## Subsequent integration qualification
+
+All 219 selected Mail host cases and 6 focused transport cases passed in the integrated Zotero workflow qualification. See the [19 November integrated report](../zotero-workflow-20261119/README.md) for exact source, raw evidence and local validation limits. The checkpoint record below is retained as originally written.
+
 ## Scope and publication policy
 
 Continue from remote main `2170791c9250d72c9df31a065408365f9b50abaa`.

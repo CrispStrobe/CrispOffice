@@ -4,6 +4,10 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Keep imported slide runs as a source snapshot while applying scalar edits
+  to derived rendering runs. Respect explicit plain-run overrides, inherited
+  backgrounds, and PDF text tab-stop alignment.
+
 - Resolve direct master-background edits while preserving imported secondary
   master colors until the master changes. Keep explicit slide/layout fills
   independent and carry inherited background provenance through slide copies.
