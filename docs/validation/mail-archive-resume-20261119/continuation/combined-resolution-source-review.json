@@ -1,0 +1,107 @@
+{
+  "status": "passed_source_review",
+  "reviewed_at_utc": "2026-11-19T20:04:41.666616+00:00",
+  "reviewer": "independent remote_reconciliation agent",
+  "mail_parent": "b2c05a0afa0ae606b061b13d5e50937c2a8eb1df",
+  "incoming_main_parent": "088d80905e3f76542dd9813e96584cd5c61454ff",
+  "prior_main_parent": "9ceb994d8edce3989228f1244cda90ecc9884931",
+  "previous_continuation_source": "2cb7ed411afba8e81e19c28457ac632de78918bc",
+  "checkout_head_at_review": "2cb7ed411afba8e81e19c28457ac632de78918bc",
+  "scope": "Independent source integration and staged-diff review. Four product/test files are compared with the original accepted publication; three incoming validation docs are checked separately against exact main blobs. This review does not assert fresh runtime execution.",
+  "changed_paths": [
+    "packages/quds_office_editor/example/lib/studio_downloads_manager.dart",
+    "packages/quds_office_editor/example/lib/studio_spacy_host_native.dart",
+    "packages/quds_office_editor/example/test/studio_downloads_manager_test.dart",
+    "packages/quds_office_editor/example/test/studio_spacy_setup_test.dart"
+  ],
+  "diff_stats": [
+    "4\t2\tpackages/quds_office_editor/example/lib/studio_downloads_manager.dart",
+    "9\t0\tpackages/quds_office_editor/example/lib/studio_spacy_host_native.dart",
+    "28\t1\tpackages/quds_office_editor/example/test/studio_downloads_manager_test.dart",
+    "28\t0\tpackages/quds_office_editor/example/test/studio_spacy_setup_test.dart"
+  ],
+  "patch_sha256": "21adf43ba432c7e0ea765e54e6255fdbc6c2001a6afb066439581e6ad4dd46e6",
+  "files": {
+    "manager": {
+      "path": "packages/quds_office_editor/example/lib/studio_downloads_manager.dart",
+      "sha256": "94831669a91da4fd28812f0db4a4506729d49882330ce8edbea3d8b650b71bf0",
+      "git_blob_sha": "b0cbd72b5e172ce203eddc16a304de5233e1c9be",
+      "working_equals_index": true,
+      "equals_mail_parent": false,
+      "equals_incoming_main": true
+    },
+    "native_host": {
+      "path": "packages/quds_office_editor/example/lib/studio_spacy_host_native.dart",
+      "sha256": "8c64b5a84b458adcd46b605bdf2ec94b735c98a606ba42728d580fd80e97ff95",
+      "git_blob_sha": "9e6cb8ac3289b32fd1813377ac4e1cc567a367bd",
+      "working_equals_index": true,
+      "equals_mail_parent": false,
+      "equals_incoming_main": false
+    },
+    "manager_tests": {
+      "path": "packages/quds_office_editor/example/test/studio_downloads_manager_test.dart",
+      "sha256": "f36ac697a4d6ec77b23354a4918517c2cf9c359b418b41d9ba68a5688afac010",
+      "git_blob_sha": "be7b66dc2d1bae71b6ee7e64db5450a2f3d66c63",
+      "working_equals_index": true,
+      "equals_mail_parent": false,
+      "equals_incoming_main": false
+    },
+    "setup_tests": {
+      "path": "packages/quds_office_editor/example/test/studio_spacy_setup_test.dart",
+      "sha256": "8a5af4750a2e2a39cf338b95a1b41f2f125ef175c6da1224b90aca6f1415449e",
+      "git_blob_sha": "f582e41239b6de6241ab25210b93226f422ba686",
+      "working_equals_index": true,
+      "equals_mail_parent": false,
+      "equals_incoming_main": true
+    }
+  },
+  "checks": {
+    "exactly_four_intended_non_validation_paths_changed": true,
+    "working_files_match_staged_files": true,
+    "host_contains_exact_pr215_additions_on_accepted_mail_host": true,
+    "same_pr215_additions_reconstruct_incoming_main_from_prior_main": true,
+    "mail_ner_status_helper_and_preexisting_host_retained": true,
+    "download_manager_identical_to_latest_main": true,
+    "setup_test_identical_to_latest_main": true,
+    "all_prior_manager_test_bytes_retained_except_label_finder": true,
+    "new_label_test_exactly_matches_main_except_existing_fixture_argument": true,
+    "all_three_incoming_validation_docs_match_exact_main_blobs": true,
+    "scoped_staged_whitespace_check": true
+  },
+  "incoming_validation_documents": [
+    {
+      "path": "docs/validation/language-downloads-20261119/README.md",
+      "sha256": "6bb0c8da587d21dd03ecb977ecb898eae66cd908454881073c5a2c14a4b157a9",
+      "git_blob_sha": "37c79b848d413758f7322405de6e5b4f13fa0624",
+      "equals_incoming_main": true
+    },
+    {
+      "path": "docs/validation/language-downloads-20261119/bundled-runtime-acceptance.json",
+      "sha256": "22675c33205bd8a003ed2d5186c4f4228f5009ebeb4649afc5c649807e468090",
+      "git_blob_sha": "0ddd134c3b96d4f020e9eb01f95bf48bef87c083",
+      "equals_incoming_main": true
+    },
+    {
+      "path": "docs/validation/language-downloads-20261119/bundled-runtime-native-gate.txt",
+      "sha256": "22af257ed498763cb9f1b428d540696941e4f5e843cb062b63ed38e443993ad8",
+      "git_blob_sha": "359978ed62ff6f3187f67d30eabb89bcaf8487d2",
+      "equals_incoming_main": true
+    }
+  ],
+  "integration_decisions": [
+    "Retain the accepted mail _nerStatus implementation and all prior native-host source bytes; apply exactly the nine PR215 additions for first-analysis setup verification.",
+    "Preserve PR214 manager label, explanatory text, and model-only download size by taking the exact latest-main manager blob.",
+    "Take the exact latest-main setup-test blob, including both PR214 NER assertions and the PR215 first-analysis regression.",
+    "Retain all preexisting mail manager-test source, changing only the conditional title finder and adding the exact main label test adapted to the existing bundledLibrary fixture argument.",
+    "Preserve all three incoming macOS qualification documents byte-for-byte. Their native execution counts remain author evidence and do not add to this continuation Linux acceptance."
+  ],
+  "retained_focused_mail_cases": [
+    "German download size: bundled runtime with a downloadable package",
+    "German download size: bundled runtime without a downloadable package",
+    "German download size: downloaded runtime",
+    "Bundled runtime verifies optional NER independently",
+    "Downloaded runtime verifies optional NER independently"
+  ],
+  "remaining_validation": "Bind the local setup, linguistic-analysis and downloads-manager gate plus focused strict analysis/formatting to the newly published source. Preserve the prior 2cb focused run separately.",
+  "findings": []
+}

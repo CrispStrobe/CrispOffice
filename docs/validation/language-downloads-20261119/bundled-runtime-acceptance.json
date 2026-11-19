@@ -1,0 +1,37 @@
+{
+  "passed": true,
+  "preview": "CrispOffice Runtime Preview 9ceb994d.app",
+  "bundleId": "com.CrispStrobe.crispoffice.runtimepreview20261119",
+  "sourceCommit": "9ceb994d8edce3989228f1244cda90ecc9884931",
+  "startupSeconds": 20,
+  "signatureVerified": true,
+  "architecture": "arm64",
+  "executableSha256": "2bf846ee4be84821bb97e02119d0f3382a9a1fc1a9f96c6db69f53676880cba4",
+  "qudsCommit": "9ceb994d8edce3989228f1244cda90ecc9884931",
+  "incomingPrs": [
+    213,
+    214
+  ],
+  "incomingStudioTests": 24,
+  "incomingSpacyUnitTests": 32,
+  "crispcloudHostTests": 5,
+  "nativeBundleGate": {
+    "passed": true,
+    "tests": 1,
+    "scratchData": "/tmp/quds-language-live-models-9ceb",
+    "downloadedExecutablePackages": false,
+    "languages": [
+      "de",
+      "en"
+    ],
+    "checks": [
+      "German lemmas, POS, dependency analysis and named entities",
+      "English lemmas and named entities",
+      "sealed bundled library digest and isolate transport"
+    ]
+  },
+  "bundledSpacy": {
+    "library": "libcrispembed-spacy.dylib",
+    "sha256": "d4e4ea30dedbe2765aad3ea7001742cb99529c04ce50005081066e264e9d92d7"
+  }
+}

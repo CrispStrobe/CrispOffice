@@ -465,6 +465,32 @@ void main() {
       expect(host.status.analysisEnabled, isFalse);
     });
 
+    test('the first analysis verifies the saved setup itself', () async {
+      final host = NativeStudioSpacyHost(
+        root: root,
+        environment: const {},
+        platform: SpacyPlatform.macosArm64,
+        bundledLibrary: const StudioSpacyBundledLibrary(
+          path: '/app/Contents/Frameworks/libcrispembed-spacy.dylib',
+          sha256:
+              '66d54a6090ae65a8fd57d79115d1d1afcc4ab8d8dabcefb8c95bf38717224044',
+        ),
+      );
+      var refreshed = 0;
+      host.addListener(() => refreshed++);
+      // No refresh() before the explicit action (Studio refreshes lazily).
+      await expectLater(
+        host.openTransport(),
+        throwsA(isA<SpacyUnavailableException>()),
+      );
+      expect(refreshed, 1);
+      await expectLater(
+        host.openLanguageTransport(SpacyLanguage.english),
+        throwsA(isA<SpacyUnavailableException>()),
+      );
+      expect(refreshed, 1, reason: 'verified once, then status is current');
+    });
+
     test('bundled library is found next to the executable', () {
       final contents = Directory('${root.path}/Studio.app/Contents');
       final executable = File('${contents.path}/MacOS/Studio')
