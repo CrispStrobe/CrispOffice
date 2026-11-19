@@ -157,7 +157,9 @@ final class _ArabicBareText {
   _ArabicBareText(String text) : _sourceLength = text.length {
     final StringBuffer buffer = StringBuffer();
     for (int i = 0; i < text.length; i++) {
-      if (ArabicWritingRulesProvider._comparisonMark.hasMatch(text[i])) continue;
+      if (ArabicWritingRulesProvider._comparisonMark.hasMatch(text[i])) {
+        continue;
+      }
       buffer.write(text[i]);
       _map.add(i);
     }

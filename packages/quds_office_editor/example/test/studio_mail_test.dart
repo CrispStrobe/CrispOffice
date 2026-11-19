@@ -4,6 +4,9 @@ import 'package:enough_mail/enough_mail.dart' as mail;
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quds_mail_ui/quds_mail_ui.dart';
+import 'package:quds_office_editor/quds_office_editor.dart';
+import 'package:quds_office_studio/main.dart';
+import 'package:quds_office_studio/studio_chrome.dart';
 import 'package:quds_office_studio/studio_mail.dart';
 import 'package:quds_office_studio/studio_strings.dart';
 
@@ -520,4 +523,84 @@ void main() {
       await _close(tester, strings: strings);
     },
   );
+
+  testWidgets('Studio cycles languages and Mail preserves its active sheet', (
+    tester,
+  ) async {
+    await tester.binding.setSurfaceSize(const Size(1440, 900));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+    await tester.pumpWidget(const QudsOfficeStudioApp());
+    await tester.pump();
+    final word = tester.widget<QudsWordEditor>(find.byType(QudsWordEditor));
+    word.controller.proofing.enabled = false;
+    word.controller.proofing.configure(OfficeProofingService(providers: []));
+    await _pump(tester);
+
+    void expectModules(List<String> labels) {
+      expect(
+        tester
+            .widgetList<StudioAppSwitcher>(find.byType(StudioAppSwitcher))
+            .map((widget) => widget.label),
+        labels,
+      );
+    }
+
+    expectModules(<String>[
+      'Documents',
+      'Spreadsheets',
+      'Presentations',
+      'PDF',
+      'Mail',
+    ]);
+    await tester.tap(find.byTooltip('Language'));
+    await _pump(tester);
+    expectModules(<String>[
+      'Dokumente',
+      'Tabellen',
+      'Präsentationen',
+      'PDF',
+      'E-Mail',
+    ]);
+    await tester.tap(find.text('Tabellen'));
+    await _pump(tester);
+    final sheet = tester.widget<QudsSheetEditor>(find.byType(QudsSheetEditor));
+    await tester.tap(find.text('E-Mail'));
+    await _pump(tester);
+    expect(find.byType(StudioMailDialog), findsOneWidget);
+    const german = StudioStrings(StudioLanguage.de);
+    expect(find.text(german.mailSetupHelp), findsOneWidget);
+    expect(_field(german.emailAddress), findsOneWidget);
+    expect(_field(german.password), findsOneWidget);
+    expect(find.widgetWithText(FilledButton, german.connect), findsOneWidget);
+    expect(find.text(german.mailSessionNotice), findsOneWidget);
+    await tester.tap(find.byTooltip('Schließen').last);
+    await _pump(tester);
+    expect(find.byType(StudioMailDialog), findsNothing);
+    expect(
+      tester.widget<QudsSheetEditor>(find.byType(QudsSheetEditor)).controller,
+      same(sheet.controller),
+    );
+    await tester.tap(find.byTooltip('Sprache'));
+    await _pump(tester);
+    expectModules(<String>[
+      'المستندات',
+      'جداول البيانات',
+      'العروض التقديمية',
+      'PDF',
+      'البريد',
+    ]);
+    await tester.tap(find.byTooltip('اللغة'));
+    await _pump(tester);
+    expectModules(<String>[
+      'Documents',
+      'Spreadsheets',
+      'Presentations',
+      'PDF',
+      'Mail',
+    ]);
+    expect(tester.takeException(), isNull);
+    await tester.pumpWidget(const SizedBox.shrink());
+    await tester.pump();
+    expect(tester.takeException(), isNull);
+  });
 }

@@ -1,0 +1,50 @@
+{
+  "description": "Portable Node repeats on the same frozen source; counted as executions separately and deduplicated against VM by suite and test name. Does not establish browser behavior.",
+  "groups": [
+    {
+      "name": "arabic-language-node",
+      "cwd": "packages/quds_office_engine",
+      "runner": "dart",
+      "platform": "node",
+      "tests": [
+        "test/proofing/arabic_writing_rules_test.dart",
+        "test/proofing/arabic_extended_rules_test.dart",
+        "test/proofing/arabic_grammar_rules_test.dart",
+        "test/word_complex_script_language_test.dart",
+        "test/word_proofing_language_test.dart",
+        "test/proofing/office_proofing_merge_test.dart"
+      ]
+    },
+    {
+      "name": "hunspell-contracts-node",
+      "cwd": "packages/quds_proofing_hunspell",
+      "runner": "dart",
+      "platform": "node",
+      "tests": [
+        "test/hunspell_provider_test.dart"
+      ]
+    },
+    {
+      "name": "arabic-morphology-contracts-node",
+      "cwd": "packages/quds_arabic_morph",
+      "runner": "dart",
+      "platform": "node",
+      "tests": [
+        "test/arabic_morph_unit_test.dart"
+      ]
+    }
+  ],
+  "analysis": [],
+  "format": [],
+  "extra_inputs": [
+    "tools/mail/check_store.py",
+    "tools/mail/check_reader.py",
+    "docs/validation/document-review-notes-20261118/runtime/restore_runtime.py",
+    "docs/validation/document-review-notes-20261118/test_run_checks.py",
+    "packages/quds_proofing_hunspell/tool/test_build.py",
+    "packages/quds_proofing_hunspell/tool/build.py",
+    "docs/validation/office-resume-main-20261119/final/plan.json",
+    "docs/validation/office-resume-main-20261119/final/node-plan.json"
+  ],
+  "whitespace_preserved_inputs": []
+}

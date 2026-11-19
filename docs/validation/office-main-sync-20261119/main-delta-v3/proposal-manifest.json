@@ -1,0 +1,26 @@
+{
+  "status": "READY_FOR_ROOT_COPY_AND_FREEZE",
+  "source_bases": [
+    "0669ac119da05f5eb777c8cfdbce32e0261df647",
+    "d8b7f1c4a576f727a0901c555dc327562dfff2b2"
+  ],
+  "reviewed_source_overrides": 52,
+  "native_suites": 38,
+  "node_suites": 11,
+  "strict_paths": 88,
+  "python_control_groups": {
+    "bundle": 17,
+    "offline_packaging": 4
+  },
+  "separate_python_controls": 21,
+  "fixture_plan_unchanged": true,
+  "files": {
+    "README.md": "52f56b4db8ba6a3d12bbf216e48951abdf4c0f225ed9aa133e6f53f0a851b8f8",
+    "delta-native-plan.json": "1157fec1e8bed98011142eb2e631c585348c7b80c72c083e7949ededcf93c1d7",
+    "delta-node-plan.json": "488dccbc6a1c6275c4a98014a6cba0893203848773b016cdc1768ce13a26f91e",
+    "fixture-plan.json": "f5daa1c2973d9580c9dfdfb64284d6ffc4c22daa3d3486d81fdbc9112433a0da",
+    "reviewed-source-overrides.json": "8cc0adbb05862f928e899b8c4bf11a9c71f582964105ab6f72be16a8e0b1b58b",
+    "run-delta-validation.py": "d8c8efb0718fa1ca5a29a923d86cbe3be72dd4c7fe19aa4925309fc10823faaf",
+    "verify-delta-continuity.py": "a651f4bacfee48bb5aeb7893586da47f7229c80b44fc59c21151f5f0d947a0ee"
+  }
+}

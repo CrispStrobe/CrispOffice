@@ -1,0 +1,342 @@
+{
+  "schema": 1,
+  "status": "PASS",
+  "audited_at_utc": "2026-11-19T09:29:48.201287+00:00",
+  "source_commit": "fce543dedb1217804f67de088ef9c287e8a2edca",
+  "publication_commit": null,
+  "manifest_sha256": "b9b43c45a58311bdb9702f2279d6188b099679564f28df0b5bfb9d4113530de0",
+  "auditor_sha256": "285a3f767310d9a73cc6d26d90486297666d38c7973d437997270c1dfb428e40",
+  "archive_count": 1,
+  "verified_member_count": 24,
+  "publication_checks": null,
+  "archives": [
+    {
+      "name": "rejected-fce543de-guard-attempt",
+      "archive": "docs/validation/office-main-sync-20261119/main-delta-v3/attempt-fce543de/evidence.tar.xz",
+      "index": "docs/validation/office-main-sync-20261119/main-delta-v3/attempt-fce543de/evidence.index.json",
+      "scope": "Rejected fce543de pre-test continuity guard attempt: missing expected Studio-to-url_launcher dependency edge; accepted_qualification=false, zero application cases and zero Python controls. Original source/runtime receipts, resolver and guard outputs, independent rejection audit and audit script are preserved without reruns.",
+      "source_commit": "fce543dedb1217804f67de088ef9c287e8a2edca",
+      "archive_sha256": "ebdc93549823de17d878a19439925a500590021cccbace16274804535482f821",
+      "index_sha256": "081898115c301eb3d1cb428fb84c7f6540c1e54278dd0542319145364d616627",
+      "checks": {
+        "index_schema": true,
+        "archive_name_matches_index": true,
+        "archive_size_matches_index_and_manifest": true,
+        "archive_hash_matches_index_and_manifest": true,
+        "index_size_matches_manifest": true,
+        "index_hash_matches_manifest": true,
+        "source_identity_matches_manifest": true,
+        "publication_source_matches_manifest": true,
+        "scope_matches_manifest": true,
+        "unique_index_member_paths": true,
+        "indexed_member_count_matches_manifest": true,
+        "unique_archive_member_paths": true,
+        "exact_archive_and_index_member_path_sets": true,
+        "all_indexed_members_verified": true
+      },
+      "member_count": 24,
+      "members": [
+        {
+          "path": "audit-review/audit_fce_guard_failure.py",
+          "original": "/workspace/scratch/79e6ad9e4046/audit-review/audit_fce_guard_failure.py",
+          "bytes": 7349,
+          "sha256": "25615d49e239ab37c9a2c34d6f5531b63a9cafc7b80e0138ca4e7498c7bac33c",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-final-checks/continuity.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-final-checks/continuity.json",
+          "bytes": 148202,
+          "sha256": "77060efd3e2c8039f41627ad1ed54fe722734267719d3ee34daa059e71e4b7bc",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-final-checks/delta-continuity.log",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-final-checks/delta-continuity.log",
+          "bytes": 252,
+          "sha256": "edf3ffa79b9e7547f27526390a5c1282e7b9bcda638062ba2bb045e6b0debe24",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-final-checks/execution.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-final-checks/execution.json",
+          "bytes": 4490,
+          "sha256": "7af3156d28a3bfa13eb6e14479b67c806b217a4a97fad3a620a9a42b9ed12115",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-final-checks/locked-workspace-resolution.log",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-final-checks/locked-workspace-resolution.log",
+          "bytes": 68,
+          "sha256": "d4cb7a3c68b4133b4f6e58c67ff5bfd13725d8021e930388cdc98da8a575919d",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-final-checks/package_config.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-final-checks/package_config.json",
+          "bytes": 27856,
+          "sha256": "18f883d9af9b9d30da6aed9e870ba135afc0fe9a1757f6e9b9da4d92e1985423",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-final-checks/package_graph.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-final-checks/package_graph.json",
+          "bytes": 24412,
+          "sha256": "50f03d7dd6bcc5a9a1f0b41ac21fdd19bd53f5b9081783995b3382ddd706eb90",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-final-checks/prior-execution.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-final-checks/prior-execution.json",
+          "bytes": 5176,
+          "sha256": "beee50ffbf587c41615d42e967e4f65bcb83c8945cc08b0436f1696c6562d6ea",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-final-checks/prior-independent-summary.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-final-checks/prior-independent-summary.json",
+          "bytes": 48821,
+          "sha256": "338f588f5c3ae08ff8fb84c3663911f3cda07f820573fc30f384323da192efea",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-final-checks/prior-resolution/.dart_tool/native_assets.yaml",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-final-checks/prior-resolution/.dart_tool/native_assets.yaml",
+          "bytes": 369,
+          "sha256": "515bb5d5825bd5e510b858bb9c237743cc94e64c4fdee19d5e2e86c53b15d5bd",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-final-checks/prior-resolution/.dart_tool/package_config.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-final-checks/prior-resolution/.dart_tool/package_config.json",
+          "bytes": 27688,
+          "sha256": "d5ea7285c68c37bfdd8a4339462d67f24470d815c6d87adae39ce2bf27980fb1",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-final-checks/prior-resolution/.dart_tool/package_graph.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-final-checks/prior-resolution/.dart_tool/package_graph.json",
+          "bytes": 24007,
+          "sha256": "d3b0ace27d859b5a576a96693e5152e4d1634300fd796c25caea49acafbeca34",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-final-checks/prior-resolution/pubspec.lock",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-final-checks/prior-resolution/pubspec.lock",
+          "bytes": 26074,
+          "sha256": "35d1ef372908f4ab278973355ec6a957cd3240bea115d615056c5b9e398df974",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-final-checks/prior-resolution/pubspec.yaml",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-final-checks/prior-resolution/pubspec.yaml",
+          "bytes": 946,
+          "sha256": "e1a41dca16b70767fcdb747940b1a63de6598d6ee8d62cef3367088f48ccaa1a",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-final-checks/prior-resolution/receipt.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-final-checks/prior-resolution/receipt.json",
+          "bytes": 801,
+          "sha256": "92fa67b46096a437b109f5ed5593d3648c05e9dba2dda6b0c4a2783bf6a3ddae",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-final-checks/prior-runtime-before.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-final-checks/prior-runtime-before.json",
+          "bytes": 1706530,
+          "sha256": "a0a825ebad63dd9799b36a94293f153e60d2940a395d149bfbbffc3ce40f9629",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-final-checks/prior-source-before.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-final-checks/prior-source-before.json",
+          "bytes": 740049,
+          "sha256": "ef4f4a5fe3809c0afb9f3b565ee1a4e241bad3efe5f60f58862d0c8222e77ade",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-final-checks/runtime-after.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-final-checks/runtime-after.json",
+          "bytes": 1708027,
+          "sha256": "4041d1c93c885f0a205f4298e3e53a09a6f6e939bd070e6f39ae54911f8fc573",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-final-checks/runtime-before.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-final-checks/runtime-before.json",
+          "bytes": 1708027,
+          "sha256": "4041d1c93c885f0a205f4298e3e53a09a6f6e939bd070e6f39ae54911f8fc573",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-final-checks/runtime-pre-resolution.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-final-checks/runtime-pre-resolution.json",
+          "bytes": 1707822,
+          "sha256": "93c12bfec5f5df462ca2b349d0ad2ead3e878d4326084d3c22f4bde155c48747",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-final-checks/source-after.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-final-checks/source-after.json",
+          "bytes": 749212,
+          "sha256": "9ba6b5f8c370bf01beeb6980bca62daf4dc9c617d09d8af32a590041257a8981",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-final-checks/source-before.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-final-checks/source-before.json",
+          "bytes": 749212,
+          "sha256": "9ba6b5f8c370bf01beeb6980bca62daf4dc9c617d09d8af32a590041257a8981",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-final-validation.log",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-final-validation.log",
+          "bytes": 137,
+          "sha256": "43a5f88e3ce911b533e277176e9ffad305f1e1ab2eed53b7eb1344ff2be075b4",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-guard-failed-attempt-audit.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-guard-failed-attempt-audit.json",
+          "bytes": 2621,
+          "sha256": "edc32157f43e4d73ead84231ba1c5f6da536f1a778bc9f490f7c96ed12917875",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        }
+      ]
+    }
+  ],
+  "failures": [],
+  "scope": {
+    "exact_member_sets_and_hashes": true,
+    "compared_to_original_files": true,
+    "published_git_blobs_checked": false,
+    "archive_members_extracted_to_disk": false,
+    "application_tests_executed": false,
+    "application_events_recounted": false,
+    "branch_inventories_captured": false,
+    "github_actions_accessed": false,
+    "counts": "Counts describe archives and evidence members only, never application tests."
+  }
+}

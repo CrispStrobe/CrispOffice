@@ -81,6 +81,7 @@ class WebStudioHunspellHost extends StudioHunspellHost {
           throw StateError('Unexpected size for ${artifact.file}.');
         }
         onProgress?.call(received, total);
+        checkCancellation();
       }
       checkCancellation();
       return builder.takeBytes();
