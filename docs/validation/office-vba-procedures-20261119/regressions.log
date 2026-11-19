@@ -1,0 +1,343 @@
+00:00 +0: loading test/office_operations_test.dart
+00:00 +0: test/office_operations_test.dart: formula preflight refuses full-sheet SUM before dependency expansion
+00:00 +1: test/office_operations_test.dart: formula preflight charges named and structured data ranges
+00:00 +2: test/office_operations_test.dart: ordinary SUM and bounded literal text formulas recalculate
+00:00 +3: test/office_macro_runtime_test.dart: macro execution native macro execution preserves XLSM VBA bytes, type, and relationship
+00:00 +4: test/office_macro_runtime_test.dart: macro execution native macro execution preserves XLSM VBA bytes, type, and relationship
+00:00 +5: test/office_macro_runtime_test.dart: macro execution native macro execution preserves XLSM VBA bytes, type, and relationship
+00:00 +6: test/office_macro_runtime_test.dart: macro execution native macro execution preserves XLSM VBA bytes, type, and relationship
+00:00 +7: test/office_macro_runtime_test.dart: macro execution native macro execution preserves XLSM VBA bytes, type, and relationship
+00:00 +8: test/office_macro_runtime_test.dart: macro execution native macro execution preserves XLSM VBA bytes, type, and relationship
+00:00 +9: test/office_macro_runtime_test.dart: macro execution native macro execution preserves XLSM VBA bytes, type, and relationship
+00:00 +10: test/office_macro_runtime_test.dart: macro execution native macro execution preserves XLSM VBA bytes, type, and relationship
+00:00 +11: test/office_macro_runtime_test.dart: macro execution native macro execution preserves XLSM VBA bytes, type, and relationship
+00:00 +12: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +13: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +14: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +15: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +16: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +17: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +18: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +19: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +20: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +21: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +22: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +23: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +24: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +25: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +26: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +27: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +28: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +29: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +30: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +31: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +32: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +33: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +34: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +35: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +36: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +37: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +38: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +39: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +40: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +41: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +42: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +43: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +44: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +45: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +46: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +47: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +48: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +49: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +50: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +51: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +52: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +53: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +54: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +55: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +56: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +57: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +58: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +59: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +60: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +61: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +62: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +63: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +64: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +65: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +66: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +67: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +68: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +69: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +70: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +71: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +72: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +73: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +74: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +75: test/office_macro_language_test.dart: language extensions registered compiler emits real operations through the transactional runtime
+00:00 +76: test/office_macro_language_test.dart: language extensions registered compiler emits real operations through the transactional runtime
+00:00 +77: test/office_macro_language_test.dart: language extensions registered compiler emits real operations through the transactional runtime
+00:00 +78: test/office_macro_language_test.dart: language extensions registered compiler emits real operations through the transactional runtime
+00:00 +79: test/office_macro_language_test.dart: language extensions registered compiler emits real operations through the transactional runtime
+00:00 +80: test/office_macro_language_test.dart: language extensions registered compiler emits real operations through the transactional runtime
+00:00 +81: test/office_macro_language_test.dart: language extensions registered compiler emits real operations through the transactional runtime
+00:00 +82: test/office_macro_language_test.dart: language extensions registered compiler emits real operations through the transactional runtime
+00:00 +83: test/office_macro_language_test.dart: language extensions registered compiler emits real operations through the transactional runtime
+00:00 +84: test/office_macro_language_test.dart: language extensions registered compiler emits real operations through the transactional runtime
+00:00 +85: test/office_macro_language_test.dart: language extensions registered compiler emits real operations through the transactional runtime
+00:00 +86: test/office_macro_language_test.dart: language extensions registered compiler emits real operations through the transactional runtime
+00:00 +87: test/office_macro_language_test.dart: language extensions registered compiler emits real operations through the transactional runtime
+00:00 +88: test/office_macro_language_test.dart: language extensions registered compiler emits real operations through the transactional runtime
+00:00 +89: test/office_macro_language_test.dart: language extensions registered compiler emits real operations through the transactional runtime
+00:00 +90: test/office_macro_language_test.dart: language extensions registered compiler emits real operations through the transactional runtime
+00:00 +91: test/office_macro_language_test.dart: language extensions registered compiler emits real operations through the transactional runtime
+00:00 +92: test/office_macro_language_test.dart: language extensions registered compiler emits real operations through the transactional runtime
+00:00 +93: test/office_macro_language_test.dart: language extensions registered compiler emits real operations through the transactional runtime
+00:01 +94: test/office_operations_test.dart: work budget accumulates table growth using current geometry
+00:01 +95: test/office_operations_test.dart: work budget accumulates table growth using current geometry
+00:01 +96: test/office_vba_language_test.dart: independent compiler resource limits ranges are charged before any enormous cell list is allocated
+00:01 +97: test/office_vba_language_test.dart: independent compiler resource limits ranges are charged before any enormous cell list is allocated
+00:01 +98: test/office_vba_language_test.dart: independent compiler resource limits ranges are charged before any enormous cell list is allocated
+00:01 +99: test/office_vba_language_test.dart: independent compiler resource limits ranges are charged before any enormous cell list is allocated
+00:01 +100: test/office_vba_language_test.dart: independent compiler resource limits ranges are charged before any enormous cell list is allocated
+00:01 +101: test/office_vba_language_test.dart: independent compiler resource limits ranges are charged before any enormous cell list is allocated
+00:01 +102: test/office_vba_language_test.dart: independent compiler resource limits ranges are charged before any enormous cell list is allocated
+00:01 +103: test/office_vba_language_test.dart: independent compiler resource limits ranges are charged before any enormous cell list is allocated
+00:01 +104: test/office_vba_language_test.dart: independent compiler resource limits ranges are charged before any enormous cell list is allocated
+00:01 +105: test/office_vba_language_test.dart: independent compiler resource limits ranges are charged before any enormous cell list is allocated
+00:01 +106: test/office_vba_language_test.dart: independent compiler resource limits ranges are charged before any enormous cell list is allocated
+00:01 +107: test/office_vba_language_test.dart: independent compiler resource limits ranges are charged before any enormous cell list is allocated
+00:01 +108: test/office_vba_language_test.dart: independent compiler resource limits ranges are charged before any enormous cell list is allocated
+00:01 +109: test/office_vba_language_test.dart: independent compiler resource limits ranges are charged before any enormous cell list is allocated
+00:01 +110: test/office_vba_language_test.dart: independent compiler resource limits ranges are charged before any enormous cell list is allocated
+00:01 +111: test/office_vba_language_test.dart: independent compiler resource limits ranges are charged before any enormous cell list is allocated
+00:01 +112: test/office_vba_language_test.dart: independent compiler resource limits ranges are charged before any enormous cell list is allocated
+00:01 +113: test/office_vba_language_test.dart: independent compiler resource limits ranges are charged before any enormous cell list is allocated
+00:01 +114: test/office_operations_test.dart: catalog editing and save preserve opaque VBA bytes and package type
+00:01 +115: test/office_vba_language_test.dart: independent compiler resource limits many small writes and repeated large values use aggregate limits
+00:01 +116: test/office_vba_language_test.dart: independent compiler resource limits source and concatenated strings are bounded before expansion
+00:01 +117: test/office_vba_language_test.dart: independent compiler resource limits lexer, statement count, and parser nesting have independent limits
+00:01 +118: test/office_vba_integration_test.dart: compiled Excel VBA transactions validate and run use real named sheets, formulas, styles, and clearing
+00:01 +119: test/office_vba_integration_test.dart: compiled Excel VBA transactions validate and run use real named sheets, formulas, styles, and clearing
+00:01 +120: test/office_vba_integration_test.dart: compiled Excel VBA transactions validate and run use real named sheets, formulas, styles, and clearing
+00:01 +121: test/office_vba_integration_test.dart: compiled Excel VBA transactions validate and run use real named sheets, formulas, styles, and clearing
+00:01 +122: test/office_vba_integration_test.dart: compiled Excel VBA transactions validate and run use real named sheets, formulas, styles, and clearing
+00:01 +123: test/office_vba_integration_test.dart: compiled Excel VBA transactions validate and run use real named sheets, formulas, styles, and clearing
+00:01 +124: test/office_vba_integration_test.dart: compiled Excel VBA transactions validate and run use real named sheets, formulas, styles, and clearing
+00:01 +125: test/office_vba_integration_test.dart: compiled Excel VBA transactions validate and run use real named sheets, formulas, styles, and clearing
+00:01 +126: test/office_vba_integration_test.dart: compiled Excel VBA transactions validate and run use real named sheets, formulas, styles, and clearing
+00:01 +127: test/office_vba_integration_test.dart: compiled Excel VBA transactions validate and run use real named sheets, formulas, styles, and clearing
+00:01 +128: test/office_vba_integration_test.dart: compiled Excel VBA transactions validate and run use real named sheets, formulas, styles, and clearing
+00:01 +129: test/office_vba_integration_test.dart: compiled Excel VBA transactions validate and run use real named sheets, formulas, styles, and clearing
+00:01 +130: test/office_vba_integration_test.dart: compiled Excel VBA transactions validate and run use real named sheets, formulas, styles, and clearing
+00:01 +131: test/office_vba_integration_test.dart: compiled Excel VBA transactions validate and run use real named sheets, formulas, styles, and clearing
+00:01 +132: test/office_vba_integration_test.dart: compiled Excel VBA transactions validate and run use real named sheets, formulas, styles, and clearing
+00:01 +133: test/office_vba_integration_test.dart: compiled Excel VBA transactions validate and run use real named sheets, formulas, styles, and clearing
+00:01 +134: test/office_vba_integration_test.dart: compiled Excel VBA transactions validate and run use real named sheets, formulas, styles, and clearing
+00:01 +135: test/office_vba_integration_test.dart: compiled Excel VBA transactions validate and run use real named sheets, formulas, styles, and clearing
+00:01 +136: test/office_vba_integration_test.dart: compiled Excel VBA transactions validate and run use real named sheets, formulas, styles, and clearing
+00:01 +137: test/office_vba_integration_test.dart: compiled Excel VBA transactions validate and run use real named sheets, formulas, styles, and clearing
+00:01 +138: test/office_vba_integration_test.dart: compiled Excel VBA transactions validate and run use real named sheets, formulas, styles, and clearing
+00:01 +139: test/office_vba_integration_test.dart: compiled Excel VBA transactions validate and run use real named sheets, formulas, styles, and clearing
+00:01 +140: test/office_vba_integration_test.dart: compiled Excel VBA transactions validate and run use real named sheets, formulas, styles, and clearing
+00:01 +141: test/office_vba_integration_test.dart: compiled Excel VBA transactions validate and run use real named sheets, formulas, styles, and clearing
+00:01 +142: test/office_vba_integration_test.dart: compiled Excel VBA transactions validate and run use real named sheets, formulas, styles, and clearing
+00:01 +143: test/office_vba_integration_test.dart: compiled Excel VBA transactions validate and run use real named sheets, formulas, styles, and clearing
+00:01 +144: test/office_vba_integration_test.dart: compiled Excel VBA transactions validate and run use real named sheets, formulas, styles, and clearing
+00:01 +145: test/office_vba_integration_test.dart: compiled Excel VBA transactions validate and run use real named sheets, formulas, styles, and clearing
+00:01 +146: test/office_vba_integration_test.dart: compiled Excel VBA transactions validate and run use real named sheets, formulas, styles, and clearing
+00:01 +147: test/office_vba_integration_test.dart: compiled Excel VBA transactions validate and run use real named sheets, formulas, styles, and clearing
+00:01 +148: test/office_vba_integration_test.dart: compiled Excel VBA transactions validate and run use real named sheets, formulas, styles, and clearing
+00:01 +149: test/office_vba_integration_test.dart: compiled Excel VBA transactions validate and run use real named sheets, formulas, styles, and clearing
+00:01 +150: test/office_vba_integration_test.dart: compiled Excel VBA transactions validate and run use real named sheets, formulas, styles, and clearing
+00:01 +151: test/office_vba_integration_test.dart: compiled Excel VBA transactions validate and run use real named sheets, formulas, styles, and clearing
+00:01 +152: test/office_vba_integration_test.dart: compiled Excel VBA transactions validate and run use real named sheets, formulas, styles, and clearing
+00:01 +153: test/office_vba_integration_test.dart: compiled Excel VBA transactions validate and run use real named sheets, formulas, styles, and clearing
+00:01 +154: test/office_vba_integration_test.dart: compiled Excel VBA transactions validate and run use real named sheets, formulas, styles, and clearing
+00:01 +155: test/office_vba_integration_test.dart: compiled Excel VBA transactions validate and run use real named sheets, formulas, styles, and clearing
+00:01 +156: test/office_vba_integration_test.dart: compiled Excel VBA transactions validate and run use real named sheets, formulas, styles, and clearing
+00:01 +157: test/office_vba_integration_test.dart: compiled Excel VBA transactions validate and run use real named sheets, formulas, styles, and clearing
+00:01 +158: test/office_vba_integration_test.dart: compiled Excel VBA transactions validate and run use real named sheets, formulas, styles, and clearing
+00:01 +159: test/office_vba_integration_test.dart: compiled Excel VBA transactions validate and run use real named sheets, formulas, styles, and clearing
+00:01 +160: test/office_vba_integration_test.dart: compiled Excel VBA transactions validate and run use real named sheets, formulas, styles, and clearing
+00:01 +161: test/office_vba_procedure_boundaries_test.dart: static call graph and shared budgets empty helper loops consume one work budget across invocations
+00:01 +162: test/office_vba_procedure_boundaries_test.dart: static call graph and shared budgets empty helper loops consume one work budget across invocations
+00:01 +163: test/office_vba_procedures_integration_test.dart: VBA helpers through the atomic runtime committed report compiles, round trips, validates, and runs
+00:01 +164: test/office_vba_procedures_integration_test.dart: VBA helpers through the atomic runtime committed report compiles, round trips, validates, and runs
+00:01 +165: test/office_vba_procedures_integration_test.dart: VBA helpers through the atomic runtime committed report compiles, round trips, validates, and runs
+00:01 +166: test/office_vba_procedures_integration_test.dart: VBA helpers through the atomic runtime committed report compiles, round trips, validates, and runs
+00:01 +167: test/office_vba_procedures_integration_test.dart: VBA helpers through the atomic runtime committed report compiles, round trips, validates, and runs
+00:01 +168: test/office_vba_procedures_integration_test.dart: VBA helpers through the atomic runtime committed report compiles, round trips, validates, and runs
+00:01 +169: test/office_vba_procedures_integration_test.dart: VBA helpers through the atomic runtime committed report compiles, round trips, validates, and runs
+00:01 +170: test/office_vba_procedures_integration_test.dart: VBA helpers through the atomic runtime committed report compiles, round trips, validates, and runs
+00:02 +171: test/office_vba_procedures_integration_test.dart: VBA helpers through the atomic runtime committed report compiles, round trips, validates, and runs
+00:02 +172: test/office_vba_procedures_integration_test.dart: VBA helpers through the atomic runtime committed report compiles, round trips, validates, and runs
+00:02 +173: test/office_vba_procedures_integration_test.dart: VBA helpers through the atomic runtime committed report compiles, round trips, validates, and runs
+00:02 +174: test/office_vba_integration_test.dart: VBA command line committed BAS monthly example calculates the complete report
+00:02 +175: test/office_vba_integration_test.dart: VBA command line committed BAS monthly example calculates the complete report
+00:02 +176: test/office_vba_integration_test.dart: VBA command line committed BAS monthly example calculates the complete report
+00:02 +177: test/office_vba_integration_test.dart: VBA command line committed BAS monthly example calculates the complete report
+00:02 +178: test/office_vba_integration_test.dart: VBA command line committed BAS monthly example calculates the complete report
+00:02 +179: test/office_vba_integration_test.dart: VBA command line committed BAS monthly example calculates the complete report
+00:02 +180: test/office_vba_integration_test.dart: VBA command line committed BAS monthly example calculates the complete report
+00:02 +181: test/office_vba_integration_test.dart: VBA command line committed BAS monthly example calculates the complete report
+00:02 +182: test/office_vba_integration_test.dart: VBA command line committed BAS monthly example calculates the complete report
+00:02 +183: test/office_vba_integration_test.dart: VBA command line committed BAS monthly example calculates the complete report
+00:02 +184: test/office_vba_integration_test.dart: VBA command line committed BAS monthly example calculates the complete report
+00:02 +185: test/office_vba_integration_test.dart: VBA command line committed BAS monthly example calculates the complete report
+00:02 +186: test/office_vba_integration_test.dart: VBA command line committed BAS monthly example calculates the complete report
+00:02 +187: test/office_vba_integration_test.dart: VBA command line committed BAS monthly example calculates the complete report
+00:03 +188: test/office_vba_integration_test.dart: VBA command line committed BAS monthly example calculates the complete report
+00:03 +189: test/office_vba_integration_test.dart: VBA command line committed BAS monthly example calculates the complete report
+00:03 +190: test/office_vba_integration_test.dart: VBA command line committed BAS monthly example calculates the complete report
+00:03 +191: test/office_vba_integration_test.dart: VBA command line committed BAS monthly example calculates the complete report
+00:03 +192: test/office_vba_integration_test.dart: VBA command line committed BAS monthly example calculates the complete report
+00:13 +193: test/office_vba_integration_test.dart: VBA command line committed BAS monthly example calculates the complete report
+00:14 +194: test/office_vba_procedures_integration_test.dart: VBA helpers through actual CLI processes BAS and saved native plans produce the same report
+00:14 +195: test/office_vba_procedures_integration_test.dart: VBA helpers through actual CLI processes BAS and saved native plans produce the same report
+00:23 +196: test/office_vba_procedures_integration_test.dart: VBA helpers through actual CLI processes BAS and saved native plans produce the same report
+00:24 +197: test/office_vba_procedures_integration_test.dart: VBA helpers through actual CLI processes BAS and saved native plans produce the same report
+00:34 +198: test/office_vba_procedures_integration_test.dart: VBA helpers through actual CLI processes BAS and saved native plans produce the same report
+00:35 +199: test/office_vba_procedures_integration_test.dart: VBA helpers through actual CLI processes BAS and saved native plans produce the same report
+00:45 +200: test/office_vba_procedures_integration_test.dart: VBA helpers through actual CLI processes BAS and saved native plans produce the same report
+00:45 +201: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:46 +202: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:46 +203: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:46 +204: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:46 +205: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:46 +206: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:46 +207: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:46 +208: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:46 +209: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:46 +210: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:46 +211: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:46 +212: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:46 +213: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:46 +214: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:46 +215: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:46 +216: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:47 +217: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:47 +218: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:47 +219: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:47 +220: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:47 +221: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:47 +222: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:47 +223: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:47 +224: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:47 +225: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:47 +226: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:47 +227: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:47 +228: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:47 +229: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:47 +230: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:47 +231: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:47 +232: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:47 +233: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:47 +234: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:47 +235: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:47 +236: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:47 +237: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:47 +238: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:47 +239: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:48 +240: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:48 +241: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:48 +242: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:49 +243: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:49 +244: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:49 +245: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:49 +246: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:49 +247: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:49 +248: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:49 +249: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:49 +250: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:49 +251: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:49 +252: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:49 +253: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:49 +254: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:49 +255: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:49 +256: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:49 +257: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:49 +258: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:49 +259: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:49 +260: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:49 +261: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:49 +262: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:49 +263: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:49 +264: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:49 +265: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:49 +266: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:49 +267: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:49 +268: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:49 +269: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:49 +270: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:49 +271: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:49 +272: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:49 +273: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:49 +274: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:49 +275: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:49 +276: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:49 +277: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:49 +278: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:49 +279: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:49 +280: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:49 +281: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:49 +282: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:49 +283: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:49 +284: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:49 +285: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:49 +286: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:49 +287: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:49 +288: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:49 +289: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:49 +290: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:49 +291: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:49 +292: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:49 +293: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:49 +294: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:49 +295: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:49 +296: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:49 +297: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:49 +298: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:49 +299: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:49 +300: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:49 +301: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:49 +302: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:49 +303: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:49 +304: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:49 +305: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:50 +306: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:50 +307: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:50 +308: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:50 +309: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:50 +310: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:50 +311: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:50 +312: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:50 +313: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:50 +314: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:50 +315: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:50 +316: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:50 +317: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:50 +318: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:50 +319: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:50 +320: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:50 +321: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:50 +322: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:50 +323: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:50 +324: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:50 +325: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:50 +326: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:50 +327: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:50 +328: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:50 +329: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:50 +330: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:51 +331: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:51 +332: test/office_vba_integration_test.dart: VBA command line raw BAS compilation and explicit entry point run the same plan
+00:56 +333: test/office_macro_cli_test.dart: Word and presentation examples use the same runnable macro format
+00:58 +334: test/office_macro_cli_test.dart: Word and presentation examples use the same runnable macro format
+00:58 +335: test/office_vba_integration_test.dart: VBA command line failed raw BAS execution preserves existing input and output
+01:04 +336: test/office_vba_procedures_integration_test.dart: VBA helpers through actual CLI processes late helper failure preserves existing input and output files
+01:07 +337: test/office_macro_cli_test.dart: extension mismatch and unsupported VBA compilation do not create files
+01:13 +338: test/office_macro_cli_test.dart: extension mismatch and unsupported VBA compilation do not create files
+01:14 +339: test/office_vba_procedures_integration_test.dart: VBA helpers through actual CLI processes recursive source leaves a previously compiled output untouched
+01:15 +340: test/office_vba_integration_test.dart: VBA command line Excel BAS cannot publish over a Word document
+01:21 +341: All tests passed!

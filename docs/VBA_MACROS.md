@@ -300,10 +300,11 @@ operation is charged against the aggregate encoded byte budget, and compilation
 work is charged even for loops with empty bodies. Strings are bounded before
 concatenation allocates a larger result.
 
-Procedure calls share the same aggregate work, operation, string, and encoded
-output budgets. Invoking an empty helper still consumes work. No budget is
-reset at a procedure boundary. Call-graph depth is checked before evaluation,
-and active frames are also bounded during evaluation.
+Procedure calls share the same aggregate work, operation, and encoded-output
+budgets. The per-string limit remains in effect inside every helper. Invoking
+an empty helper still consumes work. No budget is reset at a procedure
+boundary. Call-graph depth is checked before evaluation, and active frames are
+also bounded during evaluation.
 
 The runtime applies its own policy again. Its default maximum is **1,000
 operations**, so a plan can compile successfully and still exceed a host's
