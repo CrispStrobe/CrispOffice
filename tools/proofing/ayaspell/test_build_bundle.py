@@ -1,9 +1,10 @@
-"""Offline publication and integrity checks for the AyaSpell bundle builder."""
+"""Offline checks for AyaSpell reproducibility, integrity and publication scope."""
 
 from __future__ import annotations
 
 import contextlib
 import fnmatch
+import hashlib
 import importlib.util
 import io
 import json
@@ -32,33 +33,42 @@ class BundleBuilderTest(unittest.TestCase):
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)
         self.output = Path(self.temp.name)
-        self.sources = {
-            "fixture://ar.aff": b"SET UTF-8\n",
-            "fixture://ar.dic": "1\nكتاب\n".encode("utf-8"),
-            "fixture://licence": b"fixture licence\n",
+        self.payloads = {
+            name: f"fixture bytes for {name}\n".encode("utf-8")
+            for name in self.builder.FILES
         }
-        self.builder.BASE = "fixture://"
+        self.payloads["ar.dic"] = "1\nكتاب\n".encode("utf-8")
+        self.licence = b"fixture licence\n"
         self.builder.FILES = {
-            name: (self.builder.sha256(self.sources[f"fixture://{name}"]),
-                   len(self.sources[f"fixture://{name}"]))
-            for name in ("ar.aff", "ar.dic")
+            name: (hashlib.sha256(data).hexdigest(), len(data))
+            for name, data in self.payloads.items()
         }
         self.builder.MPL = (
-            "fixture://licence",
-            self.builder.sha256(self.sources["fixture://licence"]),
+            self.builder.MPL[0], hashlib.sha256(self.licence).hexdigest()
         )
         self.uploaded: dict[str, bytes] = {}
         self.create_calls: list[dict[str, object]] = []
         self.upload_calls: list[dict[str, object]] = []
+        self.bad_download: tuple[str, str] | None = None
         self.corrupt_readback: str | None = None
 
     def fetch(self, url: str) -> bytes:
-        prefix = "https://huggingface.co/test/bundle/resolve/revision123/"
-        if url.startswith(prefix):
-            name = url[len(prefix):]
+        if url == self.builder.MPL[0]:
+            name, data = "MPL-1.1.txt", self.licence
+        elif url.startswith(self.builder.BASE):
+            name = url.removeprefix(self.builder.BASE)
+            data = self.payloads[name]
+        else:
+            prefix = "https://huggingface.co/test/bundle/resolve/revision123/"
+            self.assertTrue(url.startswith(prefix), url)
+            name = url.removeprefix(prefix)
             data = self.uploaded[name]
             return data + b"corrupt" if name == self.corrupt_readback else data
-        return self.sources[url]
+        if self.bad_download is not None and name == self.bad_download[0]:
+            if self.bad_download[1] == "length":
+                return data + b"extra"
+            return b"!" + data[1:]  # Same size, different digest.
+        return data
 
     def fake_api(self) -> SimpleNamespace:
         def create_repo(repo_id: str, **kwargs: object) -> None:
@@ -72,14 +82,14 @@ class BundleBuilderTest(unittest.TestCase):
                 if not path.is_file():
                     continue
                 name = path.relative_to(folder).as_posix()
-                if patterns is None or any(fnmatch.fnmatch(name, p) for p in patterns):
+                if patterns is None or any(fnmatch.fnmatchcase(name, p) for p in patterns):
                     self.uploaded[name] = path.read_bytes()
             return SimpleNamespace(oid="revision123")
 
         return SimpleNamespace(create_repo=create_repo, upload_folder=upload_folder)
 
-    def run_builder(self, *, publish: bool = True) -> int:
-        argv = [str(BUILDER_PATH), "--output", str(self.output)]
+    def run_builder(self, output: Path, *, publish: bool = False) -> int:
+        argv = [str(BUILDER_PATH), "--output", str(output)]
         if publish:
             argv.extend(["--publish", "test/bundle"])
         hub = ModuleType("huggingface_hub")
@@ -93,12 +103,37 @@ class BundleBuilderTest(unittest.TestCase):
         ):
             return self.builder.main()
 
+    def test_local_build_is_deterministic_without_publication(self) -> None:
+        first, second = self.output / "first", self.output / "second"
+        self.assertEqual(self.run_builder(first), 0)
+        self.assertEqual(self.run_builder(second), 0)
+        self.assertEqual(self.create_calls, [])
+        self.assertEqual(self.upload_calls, [])
+        expected = set(self.payloads) | {"MPL-1.1.txt", "README.md", "manifest.json"}
+        self.assertEqual({path.name for path in first.iterdir()}, expected)
+        self.assertEqual({path.name for path in second.iterdir()}, expected)
+        for name in expected:
+            self.assertEqual((first / name).read_bytes(), (second / name).read_bytes())
+        manifest = json.loads((first / "manifest.json").read_text(encoding="utf-8"))
+        self.assertEqual(set(manifest["files"]), expected - {"manifest.json"})
+        for name, entry in manifest["files"].items():
+            data = (first / name).read_bytes()
+            self.assertEqual(entry["bytes"], len(data))
+            self.assertEqual(entry["sha256"], hashlib.sha256(data).hexdigest())
+        card = (first / "README.md").read_text(encoding="utf-8")
+        self.assertTrue(card.startswith(
+            "---\nlicense: other\nlicense_name: mpl-1.1\n"
+            "license_link: https://www.mozilla.org/en-US/MPL/1.1/\n"
+        ))
+        self.assertIn("in-app download are not implemented yet", card)
+
     def test_publish_excludes_unrelated_existing_output_files(self) -> None:
         # These must stay local even when the caller reuses a populated directory.
         extras = {
             ".env": b"HF_TOKEN=not-for-publication\n",
             "private-key.txt": b"not-for-publication\n",
-            "backup/ar.aff": b"old dictionary\n",
+            "notes.txt": b"unrelated local notes\n",
+            "private/ar.aff": b"old dictionary\n",
             "nested/manifest.json": b"old manifest\n",
         }
         for name, data in extras.items():
@@ -106,52 +141,41 @@ class BundleBuilderTest(unittest.TestCase):
             path.parent.mkdir(parents=True, exist_ok=True)
             path.write_bytes(data)
 
-        self.assertEqual(self.run_builder(), 0)
-        expected = {"ar.aff", "ar.dic", "MPL-1.1.txt", "README.md", "manifest.json"}
+        self.assertEqual(self.run_builder(self.output, publish=True), 0)
+        expected = set(self.payloads) | {"MPL-1.1.txt", "README.md", "manifest.json"}
         self.assertEqual(set(self.uploaded), expected)
+        self.assertEqual(len(self.create_calls), 1)
+        self.assertEqual(len(self.upload_calls), 1)
         self.assertEqual(self.upload_calls[0]["allow_patterns"], sorted(expected))
-        manifest = json.loads(self.uploaded["manifest.json"])
-        self.assertEqual(set(manifest["files"]), expected - {"manifest.json"})
-        for name, entry in manifest["files"].items():
-            self.assertEqual(entry["bytes"], len(self.uploaded[name]))
-            self.assertEqual(entry["sha256"], self.builder.sha256(self.uploaded[name]))
+        self.assertEqual(
+            self.uploaded["manifest.json"], (self.output / "manifest.json").read_bytes()
+        )
+        for name in expected:
+            self.assertEqual(self.uploaded[name], (self.output / name).read_bytes())
         for name, data in extras.items():
             self.assertEqual((self.output / name).read_bytes(), data)
 
-    def test_bad_dictionary_digest_stops_before_remote_mutation(self) -> None:
-        self.sources["fixture://ar.aff"] = b"SET UTF-9\n"  # Same size, different digest.
-        self.assertEqual(self.run_builder(), 1)
-        self.assertEqual(self.create_calls, [])
-        self.assertEqual(self.upload_calls, [])
-
-    def test_bad_dictionary_size_stops_before_remote_mutation(self) -> None:
-        self.sources["fixture://ar.aff"] += b"extra\n"
-        self.assertEqual(self.run_builder(), 1)
-        self.assertEqual(self.create_calls, [])
-        self.assertEqual(self.upload_calls, [])
-
-    def test_bad_licence_stops_before_remote_mutation(self) -> None:
-        self.sources["fixture://licence"] = b"unverified licence\n"
-        self.assertEqual(self.run_builder(), 1)
-        self.assertEqual(self.create_calls, [])
-        self.assertEqual(self.upload_calls, [])
+    def test_bad_source_or_licence_stops_before_remote_mutation(self) -> None:
+        for name, mode in (
+            ("ar.aff", "length"),
+            ("ar.dic", "hash"),
+            ("MPL-1.1.txt", "hash"),
+        ):
+            with self.subTest(name=name, mode=mode):
+                self.bad_download = (name, mode)
+                self.assertEqual(self.run_builder(self.output / name, publish=True), 1)
+                self.assertEqual(self.create_calls, [])
+                self.assertEqual(self.upload_calls, [])
 
     def test_content_readback_mismatch_is_rejected(self) -> None:
         self.corrupt_readback = "ar.dic"
-        self.assertEqual(self.run_builder(), 1)
+        self.assertEqual(self.run_builder(self.output, publish=True), 1)
         self.assertEqual(len(self.upload_calls), 1)
 
     def test_manifest_readback_mismatch_is_rejected(self) -> None:
         self.corrupt_readback = "manifest.json"
-        self.assertEqual(self.run_builder(), 1)
+        self.assertEqual(self.run_builder(self.output, publish=True), 1)
         self.assertEqual(len(self.upload_calls), 1)
-
-    def test_local_build_does_not_publish(self) -> None:
-        self.assertEqual(self.run_builder(publish=False), 0)
-        self.assertEqual(self.create_calls, [])
-        self.assertEqual(self.upload_calls, [])
-        card = (self.output / "README.md").read_text(encoding="utf-8")
-        self.assertIn("Hunspell adapter and in-app download integration are planned", card)
 
 
 if __name__ == "__main__":
