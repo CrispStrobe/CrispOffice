@@ -45,18 +45,14 @@ List<WmlRun> _runs(WordEditorController controller) =>
 WmlDocument _reload(WordEditorController controller) =>
     WordDeserializer().readBytes(controller.saveBytes());
 
-void _expectMetadata(
-  WmlDocument document, {
-  required String? directBidi,
-  required String? directLatin,
-}) {
+void _expectMetadata(WmlDocument document, {required String? directBidi}) {
   final xml = XmlDocument.parse(
     document.package!.getPart('/word/document.xml')!.readText(),
   );
   final run = xml.root!.firstChild('body')!.firstChild('p')!.firstChild('r')!;
   final props = run.firstChild('rPr')!;
   final language = props.firstChild('lang')!;
-  expect(language.getAttribute('val'), directLatin);
+  expect(language.getAttribute('val'), 'en-GB');
   expect(language.getAttribute('eastAsia'), 'ja-JP');
   expect(language.getAttribute('bidi'), directBidi);
   expect(props.firstChild('rtl'), isNotNull);
@@ -81,7 +77,7 @@ void main() {
           isTrue,
         );
         expect(controller.textProofingTarget!.language, language);
-        expect(_runs(controller).single.properties.proofingLanguage, language);
+        expect(_runs(controller).single.properties.proofingLanguage, 'en-GB');
         expect(
           _runs(controller).single.properties.complexScriptLanguage,
           language,
@@ -93,7 +89,7 @@ void main() {
         controller.redo();
         expect(controller.textProofingTarget!.language, language);
         final loaded = _reload(controller);
-        _expectMetadata(loaded, directBidi: language, directLatin: language);
+        _expectMetadata(loaded, directBidi: language);
         expect(_controller(loaded).textProofingTarget!.language, language);
       },
     );
@@ -121,7 +117,7 @@ void main() {
           isTrue,
         );
         expect(controller.textProofingTarget!.language, inherited);
-        expect(_runs(controller).single.properties.proofingLanguage, isNull);
+        expect(_runs(controller).single.properties.proofingLanguage, 'en-GB');
         expect(_runs(controller).single.properties.complexScript, isTrue);
         final revision = controller.contentRevision;
         expect(
@@ -138,7 +134,7 @@ void main() {
         controller.redo();
         expect(controller.textProofingTarget!.language, inherited);
         final loaded = _reload(controller);
-        _expectMetadata(loaded, directBidi: null, directLatin: null);
+        _expectMetadata(loaded, directBidi: null);
         final reopened = _controller(loaded);
         expect(reopened.textProofingTarget!.language, inherited);
         if (!paragraphStyle) {
@@ -185,7 +181,7 @@ void main() {
   });
 
   test(
-    'a Latin-only selection changes both overrides without changing the Arabic tail',
+    'a Latin-only selection changes val without changing the Arabic tail',
     () {
       final controller = _controller(_document(text: 'Text فكرة', flags: ''));
       controller.caret
@@ -206,7 +202,7 @@ void main() {
             run.properties.complexScriptLanguage,
           ),
         ),
-        [('Text', 'de-DE', 'de-DE'), (' فكرة', 'en-GB', 'ar-SA')],
+        [('Text', 'de-DE', 'ar-SA'), (' فكرة', 'en-GB', 'ar-SA')],
       );
       expect(controller.textProofingTarget!.language, 'de-DE');
     },
