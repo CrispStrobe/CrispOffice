@@ -5044,6 +5044,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
           providers: [
             GermanSpellingProvider(vocabulary: controller.proofing.vocabulary),
             GermanWritingRulesProvider(),
+            ArabicWritingRulesProvider(),
             HarperProofingProvider(vocabulary: controller.proofing.vocabulary),
           ],
         ),
