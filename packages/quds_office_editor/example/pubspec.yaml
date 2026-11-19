@@ -34,4 +34,5 @@ flutter:
   uses-material-design: true
   assets:
     - assets/al_tahreer/
+    - assets/licenses/hunspell/
     - fonts/

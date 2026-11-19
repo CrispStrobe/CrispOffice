@@ -73,6 +73,22 @@ python3 tool/build.py --native --wasm --output build      # host native + web
 python3 tool/build.py --license-bundle                     # regenerate licenses/
 ```
 
+Host packaging copies only receipt-verified outputs:
+
+```sh
+# Web: worker, module and wasm plus notices under licenses/hunspell/.
+python3 tool/build.py --wasm --install-web ../quds_office_editor/example/web/proofing
+# macOS: library into the app bundle, notices into Resources, then re-sign.
+python3 tool/build.py --native \
+  --install-native <App>.app/Contents/Frameworks \
+  --install-licenses <App>.app/Contents/Resources/hunspell-licenses
+codesign --force --sign <identity> <App>.app/Contents/Frameworks/libquds_proofing_hunspell.dylib
+codesign --force --deep --sign <identity> --entitlements <Release.entitlements> <App>.app
+# Android: arm64-v8a with the NDK (static libc++) into jniLibs.
+python3 tool/build.py --android \
+  --install-android ../quds_office_editor/example/android/app/src/main/jniLibs/arm64-v8a
+```
+
 `build.py` downloads the Hunspell 1.7.2 release tarball, checks its SHA-256
 (`11ddfa39…`) and length before extraction, compiles only the library files
 listed in `licenses/manifest.json` (refusing to build if any differs) and

@@ -123,8 +123,33 @@ def library_name() -> str:
         system, "libquds_proofing_hunspell.so")
 
 
+def android_ndk() -> Path:
+    for key in ("ANDROID_NDK_HOME", "ANDROID_NDK_ROOT"):
+        if os.environ.get(key):
+            return Path(os.environ[key])
+    sdk = Path(os.environ.get("ANDROID_HOME") or Path.home() / "Library/Android/sdk")
+    versions = sorted((sdk / "ndk").glob("*"), key=lambda p: [int(x) for x in p.name.split(".") if x.isdigit()])
+    if not versions:
+        raise SystemExit("Android NDK not found (set ANDROID_NDK_HOME)")
+    return versions[-1]
+
+
 def build(root: Path, output: Path, kind: str, jobs: int) -> list[Path]:
     build_dir = output / f"cmake-{kind}"
+    if kind == "android":
+        # arm64-v8a with static libc++, so the APK needs no libc++_shared.so.
+        ndk = android_ndk()
+        run(["cmake", "-S", NATIVE, "-B", build_dir, "-DCMAKE_BUILD_TYPE=Release", f"-DHUNSPELL_SOURCE_DIR={root}",
+             f"-DCMAKE_TOOLCHAIN_FILE={ndk / 'build/cmake/android.toolchain.cmake'}",
+             "-DANDROID_ABI=arm64-v8a", "-DANDROID_PLATFORM=android-24", "-DANDROID_STL=c++_static"])
+        run(["cmake", "--build", build_dir, "--parallel", str(jobs)])
+        found = [p for p in build_dir.rglob("libquds_proofing_hunspell.so") if p.is_file()]
+        if len(found) != 1:
+            raise SystemExit(f"expected one Android library, found {found}")
+        (output / "android").mkdir(parents=True, exist_ok=True)
+        target = output / "android" / "libquds_proofing_hunspell.so"
+        shutil.copyfile(found[0], target)
+        return [target]
     if kind == "native":
         run(["cmake", "-S", NATIVE, "-B", build_dir, "-DCMAKE_BUILD_TYPE=Release", f"-DHUNSPELL_SOURCE_DIR={root}"])
         run(["cmake", "--build", build_dir, "--config", "Release", "--parallel", str(jobs)])
@@ -150,14 +175,70 @@ def build(root: Path, output: Path, kind: str, jobs: int) -> list[Path]:
     return targets
 
 
+def install_licenses(destination: Path) -> None:
+    """MPL notices, the licence manifest and the exact compiled sources."""
+    destination.mkdir(parents=True, exist_ok=True)
+    for path in sorted((LICENSES / "upstream").iterdir()):
+        shutil.copyfile(path, destination / path.name)
+    for name in ("manifest.json", "hunspell-1.7.2-library-sources.tar.gz"):
+        shutil.copyfile(LICENSES / name, destination / name)
+    shutil.copyfile(PACKAGE / "LICENSE", destination / "LICENSE.adapter")
+
+
+def install(output: Path, kind: str, destination: Path, licenses: bool) -> dict:
+    """Copy one built, receipt-verified backend into a host location.
+
+    Only files named and hashed by this build's receipt are copied, never
+    stale outputs. `kind` is "native" or "web"; with `licenses`, the notices
+    go to `<destination>/licenses/hunspell/` (web hosts serve them next to
+    the worker; native app bundles keep code and notices apart and use
+    --install-licenses instead).
+    """
+    destination = destination.resolve()
+    if destination == (output / kind).resolve():
+        raise SystemExit("Choose a host directory separate from the build output")
+    receipt_path = output / "build-receipt.json"
+    receipt = json.loads(receipt_path.read_text(encoding="utf-8"))
+    names = [name for name in receipt["files"] if name.startswith(kind + "/")]
+    if not names:
+        raise SystemExit(f"this build has no {kind} outputs")
+    for name in names:
+        if sha((output / name).read_bytes()) != receipt["files"][name]:
+            raise SystemExit(f"changed build artifact: {name}")
+    destination.mkdir(parents=True, exist_ok=True)
+    for name in names:
+        shutil.copyfile(output / name, destination / Path(name).name)
+    if licenses:
+        install_licenses(destination / "licenses" / "hunspell")
+        shutil.copyfile(receipt_path, destination / "licenses" / "hunspell" / "build-receipt.json")
+    return {"kind": kind, "destination": str(destination), "files": names}
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--native", action="store_true")
     parser.add_argument("--wasm", action="store_true")
+    parser.add_argument("--android", action="store_true", help="Cross-build arm64-v8a with the Android NDK")
     parser.add_argument("--license-bundle", action="store_true")
     parser.add_argument("--output", type=Path, default=PACKAGE / "build")
     parser.add_argument("--jobs", type=int, default=3)
+    parser.add_argument("--install-native", type=Path,
+                        help="Copy the built library into this host directory (e.g. <App>.app/Contents/Frameworks)")
+    parser.add_argument("--install-web", type=Path,
+                        help="Copy the worker, module and wasm plus notices into this web asset directory "
+                             "(e.g. packages/quds_office_editor/example/web/proofing)")
+    parser.add_argument("--install-android", type=Path,
+                        help="Copy the arm64-v8a library into this jniLibs ABI directory "
+                             "(e.g. android/app/src/main/jniLibs/arm64-v8a)")
+    parser.add_argument("--install-licenses", type=Path,
+                        help="Copy the MPL notices, licence manifest and exact sources into this directory")
     args = parser.parse_args()
+    if args.install_native and not args.native:
+        parser.error("--install-native requires --native")
+    if args.install_web and not args.wasm:
+        parser.error("--install-web requires --wasm")
+    if args.install_android and not args.android:
+        parser.error("--install-android requires --android")
     output = args.output.resolve()
     root = fetch_source(output / "source")
     if args.license_bundle:
@@ -167,6 +248,8 @@ def main() -> int:
         outputs += build(root, output, "native", args.jobs)
     if args.wasm:
         outputs += build(root, output, "wasm", args.jobs)
+    if args.android:
+        outputs += build(root, output, "android", args.jobs)
     if outputs:
         manifest = json.loads((LICENSES / "manifest.json").read_text(encoding="utf-8"))
         for name, digest in manifest["component"]["compiled_files"].items():
@@ -179,6 +262,15 @@ def main() -> int:
         (output / "build-receipt.json").write_text(json.dumps(receipt, indent=2, sort_keys=True) + "\n",
                                                    encoding="utf-8", newline="\n")
         print(json.dumps(receipt["files"], indent=2))
+    if args.install_native:
+        print(json.dumps(install(output, "native", args.install_native, licenses=False)))
+    if args.install_web:
+        print(json.dumps(install(output, "web", args.install_web, licenses=True)))
+    if args.install_android:
+        print(json.dumps(install(output, "android", args.install_android, licenses=False)))
+    if args.install_licenses:
+        install_licenses(args.install_licenses.resolve())
+        print(json.dumps({"licenses": str(args.install_licenses.resolve())}))
     return 0
 
 

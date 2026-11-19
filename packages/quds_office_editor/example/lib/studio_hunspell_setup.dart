@@ -204,6 +204,13 @@ class _StudioHunspellSetupDialogState extends State<StudioHunspellSetupDialog> {
       ),
       actions: [
         TextButton(
+          onPressed: () => showLicensePage(
+            context: context,
+            applicationName: 'Quds Office Studio',
+          ),
+          child: const Text('Licences'),
+        ),
+        TextButton(
           onPressed: () => Navigator.of(context).pop(),
           child: const Text('Close'),
         ),

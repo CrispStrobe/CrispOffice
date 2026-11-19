@@ -1,12 +1,14 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quds_office_editor/quds_office_editor.dart';
 import 'package:quds_office_studio/studio_hunspell_host.dart';
 import 'package:quds_office_studio/studio_hunspell_host_native.dart';
 import 'package:quds_office_studio/studio_hunspell_setup.dart';
+import 'package:quds_office_studio/studio_licenses.dart';
 import 'package:quds_proofing_hunspell/quds_proofing_hunspell.dart';
 
 /// Records host calls; installation completes only when the test allows it.
@@ -127,5 +129,24 @@ void main() {
     expect(host.status(ayaspellArabic).installed, isFalse);
     expect(host.configurationKey, isEmpty);
     expect(host.createProviders(OfficeProofingVocabulary()), isEmpty);
+  });
+
+  licenseTests();
+}
+
+void licenseTests() {
+  testWidgets('the licence page lists the MPL Hunspell engine', (tester) async {
+    registerStudioLicenses();
+    final entries = await LicenseRegistry.licenses.toList();
+    final hunspell = entries
+        .where((entry) => entry.packages.contains('Hunspell 1.7.2 (MPL 1.1)'))
+        .toList();
+    expect(hunspell, hasLength(2));
+    final text = hunspell
+        .expand((entry) => entry.paragraphs)
+        .map((paragraph) => paragraph.text)
+        .join('\n');
+    expect(text, contains('Mozilla Public License'));
+    expect(text, contains('Németh László'));
   });
 }
