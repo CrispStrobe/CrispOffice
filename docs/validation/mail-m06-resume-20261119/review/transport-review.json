@@ -1,10 +1,10 @@
 {
   "schema": 1,
-  "captured_at_utc": "2026-11-19T06:36:02.504813+00:00",
+  "captured_at_utc": "2026-11-19T06:56:10.589433+00:00",
   "reviewer": "recover_repository",
   "worktree": "/workspace/scratch/5c6c66fd3cc3/mail-transport",
   "base_head": "e78d7e91e9c2dc0d86e9cbcf8ab262acb8bc190e",
-  "status": "static-review-open-T12-pending-real-TLS-handshake-ownership",
+  "status": "static-review-resolved-with-reviewed-development-evidence; final-source-bound-qualification-pending",
   "scope": [
     "raw literal byte preservation",
     "response/literal/header and UID work bounds",
@@ -97,25 +97,175 @@
       "id": "T12",
       "title": "Aborting a pending real TLS handshake cannot close detached underlying socket",
       "location": "ClientBase.createConnectionSocket, createSecureConnectionSocket, upgradeToSslSocket and abort",
-      "status": "open-confirmed-by-exact-SDK-source",
+      "status": "resolved-by-static-inspection-and-reviewed-real-loopback-development-evidence",
       "impact": "The provider result can time out or cancel while the real TCP/TLS connection remains open. Generation checks destroy a socket only after the secure future completes, so a peer that never finishes TLS can retain resources across retries. No credential transmission or mutation is claimed in this failure mode.",
       "evidence": "tls-sdk-review.json records the pinned Dart 3.13.7 detachment and handshake-future ownership proof. The controlled TLS seam does not model that transfer.",
-      "required_resolution": "Retain a cancellable raw transport owner during both implicit TLS and STARTTLS, and add a real loopback peer that stalls the handshake; demonstrate closure on timeout/cancellation before marking resolved."
+      "required_resolution": "Retain a cancellable raw transport owner during both implicit TLS and STARTTLS, and add a real loopback peer that stalls the handshake; demonstrate closure on timeout/cancellation before marking resolved.",
+      "resolution": "ClientConnection keeps the original TCP RawSocket accessible across RawSecureSocket.secure and established TLS. Abort closes that TCP owner and races an explicit abort future so the provider settles even if the SDK handshake future does not. Transfer disarms the old wrapper only after the replacement owns TCP; ClientBase generation checks reject late results. Both implicit TLS and STARTTLS are covered by real stalled-peer cancellation/deadline/retry controls.",
+      "resolved_commit": "cdcfe878f01263f52c935d9ae0a90e6113a07e3f",
+      "resolution_evidence": {
+        "receipt": "tls-development-evidence/real-tls-reviewed.json",
+        "log": "tls-development-evidence/real-tls-reviewed.log",
+        "log_sha256": "269c0e7e1f6c2cd27b268bc5fde6c63afecf4f607d05008af72ac70f279ab39e",
+        "observed_terminal_passes": 14,
+        "case_names": [
+          "implicitTls: real stalled handshake closes on cancellation and retries",
+          "implicitTls: operation deadline closes a real stalled handshake",
+          "implicitTls: trusted local TLS authenticates and exchanges IMAP bytes",
+          "implicitTls: default trust rejects the local certificate before login",
+          "implicitTls: trusted certificate still rejects a mismatched hostname",
+          "startTls: real stalled handshake closes on cancellation and retries",
+          "startTls: operation deadline closes a real stalled handshake",
+          "startTls: trusted local TLS authenticates and exchanges IMAP bytes",
+          "startTls: default trust rejects the local certificate before login",
+          "startTls: trusted certificate still rejects a mismatched hostname",
+          "manual socket TLS upgrade rejects before handshake or credentials",
+          "already secure manual sockets retain IMAP read and write behavior",
+          "queued partial writes and final readiness complete before write close",
+          "aborting a blocked partial write rejects its pending flush"
+        ],
+        "qualification_boundary": "Retained author development receipt/log independently inspected. These simple development receipts do not capture the complete source/runtime input set; final integrated source-bound qualification remains the root gate."
+      }
     }
   ],
   "execution_evidence": {
     "reviewer_ran_dart_or_flutter": false,
-    "reviewer_claims_tests_passed": false,
-    "controlled_tests_status": "Authored controls statically inspected. Author reported development passes separately; final root source-bound execution receipt remains required. This reviewer ran no Dart or Flutter.",
-    "no_actions_queries": true
+    "reviewer_claims_final_source_bound_qualification": false,
+    "reviewer_verified_retained_development_receipts": true,
+    "no_actions_queries": true,
+    "development_results": [
+      {
+        "name": "real-tls-reviewed",
+        "receipt_path": "tls-development-evidence/real-tls-reviewed.json",
+        "receipt_sha256": "a18a0c187225d83556ecb48c1876e772225e407e7c6947f42d41bcf788bb8e78",
+        "log_path": "tls-development-evidence/real-tls-reviewed.log",
+        "log_sha256": "269c0e7e1f6c2cd27b268bc5fde6c63afecf4f607d05008af72ac70f279ab39e",
+        "command": [
+          "dart",
+          "--packages=/workspace/scratch/5c6c66fd3cc3/mail-transport/.dart_tool/package_config.json",
+          "/workspace/scratch/5c6c66fd3cc3/toolchains/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+          "--compiler=kernel",
+          "--concurrency=1",
+          "--reporter=expanded",
+          "--timeout=8s",
+          "test/native_tls_test.dart"
+        ],
+        "cwd": "/workspace/scratch/5c6c66fd3cc3/mail-transport/packages/quds_mail_transport",
+        "exit_code": 0,
+        "reported_seconds": 14.724638362000405,
+        "observed_terminal_passes": 14,
+        "original_log_path": "/workspace/scratch/5c6c66fd3cc3/transport-dev/real-tls-reviewed.log"
+      },
+      {
+        "name": "real-tls-native",
+        "receipt_path": "tls-development-evidence/real-tls-native.json",
+        "receipt_sha256": "8626eebf4f05ec694fcee2365091ac2d31838c24e8897574400504d32d022abe",
+        "log_path": "tls-development-evidence/real-tls-native.log",
+        "log_sha256": "67b633a01e13755d2df28ce35ecea9ecea040be333389ad299f12099083ed7bd",
+        "command": [
+          "dart",
+          "--packages=/workspace/scratch/5c6c66fd3cc3/mail-transport/.dart_tool/package_config.json",
+          "/workspace/scratch/5c6c66fd3cc3/toolchains/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+          "--compiler=kernel",
+          "--concurrency=1",
+          "--reporter=expanded",
+          "--timeout=8s",
+          "test/native_tls_test.dart",
+          "test/native_provider_test.dart"
+        ],
+        "cwd": "/workspace/scratch/5c6c66fd3cc3/mail-transport/packages/quds_mail_transport",
+        "exit_code": 0,
+        "reported_seconds": 16.356593559999965,
+        "observed_terminal_passes": 53,
+        "original_log_path": "/workspace/scratch/5c6c66fd3cc3/transport-dev/real-tls-native.log"
+      },
+      {
+        "name": "tls-inherited-connections",
+        "receipt_path": "tls-development-evidence/tls-inherited-connections.json",
+        "receipt_sha256": "205bd41af87836e1153b47443b137f0dc936e00f0498ff648ceb0551f99d7bbd",
+        "log_path": "tls-development-evidence/tls-inherited-connections.log",
+        "log_sha256": "441394d50c84078306111a93230d2151d73a19f6d8e5150fced7b1eb31f403eb",
+        "command": [
+          "dart",
+          "--packages=/workspace/scratch/5c6c66fd3cc3/mail-transport/.dart_tool/package_config.json",
+          "/workspace/scratch/5c6c66fd3cc3/toolchains/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+          "--compiler=kernel",
+          "--concurrency=1",
+          "--reporter=expanded",
+          "--timeout=8s",
+          "test/connection_robustness_test.dart",
+          "test/reconnect_state_test.dart",
+          "test/mail/mail_client_starttls_test.dart"
+        ],
+        "cwd": "/workspace/scratch/5c6c66fd3cc3/mail-transport/third_party/enough_mail",
+        "exit_code": 0,
+        "reported_seconds": 14.345323746999384,
+        "observed_terminal_passes": 17,
+        "original_log_path": "/workspace/scratch/5c6c66fd3cc3/transport-dev/tls-inherited-connections.log"
+      },
+      {
+        "name": "tls-reviewed-analyze",
+        "receipt_path": "tls-development-evidence/tls-reviewed-analyze.json",
+        "receipt_sha256": "5b6268313dffa628a78fa66273b90acf01ec0d923f7efc715e80b7535e6f9643",
+        "log_path": "tls-development-evidence/tls-reviewed-analyze.log",
+        "log_sha256": "30db40cd39f89a81cce790b2c7fa858a21dd201659e982d35e7168449823316b",
+        "command": [
+          "dart",
+          "analyze",
+          "--fatal-infos",
+          "packages/quds_mail_transport",
+          "third_party/enough_mail/lib/imap.dart",
+          "third_party/enough_mail/lib/src/imap/imap_client.dart",
+          "third_party/enough_mail/lib/src/imap/raw_fetch.dart",
+          "third_party/enough_mail/lib/src/private/imap/raw_fetch_parser.dart",
+          "third_party/enough_mail/lib/src/private/imap/imap_response.dart",
+          "third_party/enough_mail/lib/src/private/imap/imap_response_reader.dart",
+          "third_party/enough_mail/lib/src/private/util/client_base.dart",
+          "third_party/enough_mail/lib/src/private/util/client_connection.dart",
+          "third_party/enough_mail/lib/src/private/util/uint8_list_reader.dart",
+          "third_party/enough_mail/lib/src/private/util/protocol_resource_limit.dart"
+        ],
+        "cwd": "/workspace/scratch/5c6c66fd3cc3/mail-transport",
+        "exit_code": 0,
+        "reported_seconds": 5.080553161999887,
+        "observed_terminal_passes": null,
+        "original_log_path": "/workspace/scratch/5c6c66fd3cc3/transport-dev/tls-reviewed-analyze.log"
+      },
+      {
+        "name": "tls-final-format",
+        "receipt_path": "tls-development-evidence/tls-final-format.json",
+        "receipt_sha256": "1ee6534a27714a28f9217ae6dc031ac178817c68d955ae2776ec02d615422bd2",
+        "log_path": "tls-development-evidence/tls-final-format.log",
+        "log_sha256": "3f6a3f991a1f59e9f26975c37bc8644d058aa6f461201bf1e93a50d39cf1708e",
+        "command": [
+          "dart",
+          "format",
+          "--output=none",
+          "--set-exit-if-changed",
+          "third_party/enough_mail/lib/src/private/util/client_base.dart",
+          "third_party/enough_mail/lib/src/private/util/client_connection.dart",
+          "packages/quds_mail_transport/test/native_tls_test.dart",
+          "packages/quds_mail_transport/test/support/imap_fixture.dart",
+          "packages/quds_mail_transport/test/support/tls_server.dart"
+        ],
+        "cwd": "/workspace/scratch/5c6c66fd3cc3/mail-transport",
+        "exit_code": 0,
+        "reported_seconds": 0.1652646820002701,
+        "observed_terminal_passes": null,
+        "original_log_path": "/workspace/scratch/5c6c66fd3cc3/transport-dev/tls-final-format.log"
+      }
+    ],
+    "note": "The 53-case development run contains the earlier assertions for the same 14 TLS scenarios plus native39; the final tightened 14-case TLS run supersedes those assertions. Counts overlap and must not be added as distinct coverage. Final root integrated qualification remains required."
   },
   "limitations": [
-    "The controlled socket fixture exercises actual ClientBase connect/upgrade/abort and enough_mail command/response code, but substitutes socket construction. It does not prove real TLS negotiation, trust-store behavior, certificate hostname rejection, or live account/provider compatibility.",
+    "Real loopback TLS controls now establish local implicit-TLS/STARTTLS success, certificate and hostname rejection, and stalled-handshake closure using the pinned Linux runtime and a labeled local fixture certificate. They do not establish live account/OAuth-provider interoperability or behavior on every operating system.",
     "UID sweeps use numeric windows and tombstones for missing UIDs. The explicit ceiling prevents unbounded sparse scans; scalable discovery/CONDSTORE/QRESYNC remains outside this slice.",
     "MOVE success verifies acknowledged command plus source absence, not a returned destination UID mapping. Reconciliation of destination membership remains a later sync responsibility.",
     "Header parsing accepts partial envelope projections because MailHeaderRecord has no diagnostics field; after envelope-only HEADER.FIELDS this is not a demonstrated corruption blocker. Full-message parsing rejects partial results.",
     "No concrete INBOX-case-alias regression was demonstrated; canonicalization was not added as an unsolicited scope expansion.",
-    "No live OAuth flow, platform keychain, SMTP sending, background retry, or mailbox-wide expunge is qualified here."
+    "No live OAuth flow, platform keychain, SMTP sending, background retry, or mailbox-wide expunge is qualified here.",
+    "Partial-write/backpressure controls use a deterministic RawSocket fixture with three-byte acceptance and controlled readiness. They do not establish OS backpressure behavior or actual Windows execution.",
+    "Manual connect(Socket) preserves ordinary and already-secure I/O, but its default TLS upgrade explicitly rejects because an external SDK Socket cannot expose the detached TCP owner. Native upgrades use connectToServer."
   ],
   "source_manifest": [
     {
@@ -144,9 +294,9 @@
     },
     {
       "path": "packages/quds_mail_transport/CHANGELOG.md",
-      "git_blob_sha1": "19a92c9b6455671e70d40c171c8f19470e3779f0",
-      "sha256": "2d68e6d919e60aca571630b3b9d549237b1da51ca274465936ba4473bb095236",
-      "bytes": 915
+      "git_blob_sha1": "61e4bc7afef4a188d8ee13b52f9ef6fe164df396",
+      "sha256": "eb215218740f24b87d4262a0ce2ce8c2cfd58a2b3512a688e17d160ce9c7f3d3",
+      "bytes": 1199
     },
     {
       "path": "packages/quds_mail_transport/LICENSE",
@@ -156,9 +306,9 @@
     },
     {
       "path": "packages/quds_mail_transport/README.md",
-      "git_blob_sha1": "0cf72b4a0c468b9e5a7a0c0e810df4cae10af86a",
-      "sha256": "11c252b35171bb31eeaa6f1595b3f078d9f3104dffcb8669adfc2562ad9970ef",
-      "bytes": 7187
+      "git_blob_sha1": "8d1e5ef20023c77047da1f85e0f465f0cb911be1",
+      "sha256": "3908f7fc73253f0670fe415a689a6441fdbda65f33e8ca5c3b9eb95846dfdcff",
+      "bytes": 8157
     },
     {
       "path": "packages/quds_mail_transport/analysis_options.yaml",
@@ -215,6 +365,24 @@
       "bytes": 10296
     },
     {
+      "path": "packages/quds_mail_transport/test/fixtures/tls/README.md",
+      "git_blob_sha1": "b7c4159fac0a05cba2b2eaa0df60df44e9d7d998",
+      "sha256": "85fb609005362517696252725cbddf062b412a3cfcca248f6dd526035bfe0579",
+      "bytes": 740
+    },
+    {
+      "path": "packages/quds_mail_transport/test/fixtures/tls/loopback-cert.pem",
+      "git_blob_sha1": "dd7912ff5a96056f4f1298ad091aa9da4b227b8d",
+      "sha256": "543a871246369fd7a102d4141a1bf87dbfbb331c087613efaf6ea64d13b4d586",
+      "bytes": 1180
+    },
+    {
+      "path": "packages/quds_mail_transport/test/fixtures/tls/loopback-key.pem",
+      "git_blob_sha1": "ff7250436bab8665f879e702fa60e6839115b4f8",
+      "sha256": "5b4612de534322c88b096f656e2035c88d559206ddef97720e9f352775551074",
+      "bytes": 1704
+    },
+    {
       "path": "packages/quds_mail_transport/test/host_store_integration_test.dart",
       "git_blob_sha1": "17b9dc31c38ba7ebd8d89a91142c85d1865f68eb",
       "sha256": "bc55659fe20be9629c84c4dfbe1660fd39ff99f28a3f6a1450428e58433e53aa",
@@ -227,10 +395,22 @@
       "bytes": 26710
     },
     {
+      "path": "packages/quds_mail_transport/test/native_tls_test.dart",
+      "git_blob_sha1": "0da376b595c8af09829f0a874aede43aba0569c2",
+      "sha256": "7961dc0c30074e6486d60f42f43eb3f5e14a10820f7a9cab8e5d4b119983d19a",
+      "bytes": 14730
+    },
+    {
       "path": "packages/quds_mail_transport/test/support/imap_fixture.dart",
-      "git_blob_sha1": "b0f72d4177ab46cb4213fd81f3b09730a8540925",
-      "sha256": "cf6a0b90860b5b2bb85d2668b883cc285397a3d73c22c812bceb92c2c8994924",
-      "bytes": 13690
+      "git_blob_sha1": "a5b4d529d61167006c59fd500ccfaab625ff5337",
+      "sha256": "08fa635ef2403d32b1e265a21fd01838c92b56630bd885bd42afb6c066d22231",
+      "bytes": 13838
+    },
+    {
+      "path": "packages/quds_mail_transport/test/support/tls_server.dart",
+      "git_blob_sha1": "4ad8da19038bf7529289b1b17e02e052666f96ab",
+      "sha256": "023ecdccff6f96929608db9ce3be73a8dabba1e7e798af7b3e5c0ae035510d27",
+      "bytes": 5644
     },
     {
       "path": "packages/quds_mail_transport/test/unsupported_test.dart",
@@ -246,9 +426,9 @@
     },
     {
       "path": "third_party/enough_mail/QUDS_PATCHES.md",
-      "git_blob_sha1": "b1352d90b1cce19302a06a4dbf1d6e57c283efd6",
-      "sha256": "e01a90a512053b4c4bc5876f4198f291d1ed7db6e8b737614366eaff2b55ba68",
-      "bytes": 10607
+      "git_blob_sha1": "2f9e667043d89d07207f552302442946ed60b9dc",
+      "sha256": "672ada55606a89b2cbee5d2eaaa5bdd16b1c4c940070d7997a75816f240fab07",
+      "bytes": 11387
     },
     {
       "path": "third_party/enough_mail/lib/imap.dart",
@@ -288,9 +468,15 @@
     },
     {
       "path": "third_party/enough_mail/lib/src/private/util/client_base.dart",
-      "git_blob_sha1": "4ccb837aba7a4152de48b6ecb79176a87379649e",
-      "sha256": "950018c4440b97a93cfc99e4cd4061916162a2b6726b5e1b4218ef7f5fe66a43",
-      "bytes": 16515
+      "git_blob_sha1": "6b75f62439cc9d2cbe8993042a9229185e87a579",
+      "sha256": "c132562605a37f21732a94209bb27520cdb7aac6008f0f5a0c769dfe22975c8a",
+      "bytes": 18686
+    },
+    {
+      "path": "third_party/enough_mail/lib/src/private/util/client_connection.dart",
+      "git_blob_sha1": "28b2299ff95c79bfba3d3acc57c147058440cfff",
+      "sha256": "f380b40cbf1030c24c274dc3b46367143537d958e5e729e5ec01429fd36c3fa3",
+      "bytes": 8553
     },
     {
       "path": "third_party/enough_mail/lib/src/private/util/protocol_resource_limit.dart",
@@ -305,11 +491,11 @@
       "bytes": 9773
     }
   ],
-  "manifest_sha256": "721d6be517169acd4a0dcb1be37f8b9e2226bc4a30ac309c1bd3ec5927a1a0b5",
+  "manifest_sha256": "5dc61c9d20bf2227236b489799b77c2765a24b04e8e7d6f8625e7186a0ebff48",
   "initial_draft_manifest_sha256": "f9a924bd2c4954a0b733aac58713d9133b83720864d2ea0a3cbedccad831f365",
   "initial_draft_review_at_utc": "2026-11-19T06:20:20.903951+00:00",
-  "reviewed_commit": "ca00a8ffb3c0c82c646eaf2e5a134ab7348ae90e",
-  "reviewed_tree": "4e2d8a787be55cfde9dd57adb11ca49bf4d99bd1",
+  "reviewed_commit": "cdcfe878f01263f52c935d9ae0a90e6113a07e3f",
+  "reviewed_tree": "4142493000250add73a374aefea0b038eb6e2c7b",
   "clean_worktree": true,
   "final_refresh_notes": [
     "Reviewed the final manual-connect greeting reset: connect(socket, connectionInformation:...) clears _greetingBytes together with resetting greeting state.",
@@ -319,8 +505,72 @@
     "The complete changed-path manifest includes formatter-only existing Mail core/store tests and package/fork documentation, in addition to transport and fork implementation files.",
     "ca00a8ff makes ProtocolResourceLimit a FormatException subtype while retaining fixed typed messages and quota classification; the inherited literal-size regression remains compatible.",
     "ca00a8ff removes unrelated German-morphology notices from the new original transport package LICENSE; fork MPL notices remain intact.",
-    "Exact pinned-SDK review confirmed successful post-TLS cleanup is safe, but found T12: pending real handshakes lose the closeable Socket owner before completion. Review remains open until a real stalled-handshake regression verifies a repair."
+    "Exact pinned-SDK review confirmed successful post-TLS cleanup is safe, but found T12: pending real handshakes lose the closeable Socket owner before completion. Review remains open until a real stalled-handshake regression verifies a repair.",
+    "cdcfe878 replaces the production Socket handoff with a small owned RawSocket byte-stream adapter. Raw TCP stays available to abort through TLS and late handshake results are destroyed.",
+    "The previous T12 finding and exact SDK proof are retained in review_history and tls-sdk-review.json. The new source resolves the ownership gap; its targeted development evidence is separate from final qualification.",
+    "Reviewed final-write readiness, partial writes, read-event transfer, explicit abort race, generation checks, write-close state, and successful local TLS I/O. Manual greeting test waits for onConnectionEstablished to finish.",
+    "Persisted TLS-E01 through TLS-E03 from the independent evidence review: certificate-specific reasons, nonempty secure LOGIN, and explicit elapsed deadline bound.",
+    "The cumulative source manifest now includes the new helper, TLS test/server, and clearly labeled public fixture certificate/key identities."
   ],
-  "previous_reviewed_commit": "9d4bdf70f0b979a736764daf671f10e4f8b70286",
-  "previous_manifest_sha256": "8fc999c83f52d1bc77a9a88771879a894cc8a88c45b91befaf8e9e8086d7b6ac"
+  "previous_reviewed_commit": "ca00a8ffb3c0c82c646eaf2e5a134ab7348ae90e",
+  "previous_manifest_sha256": "721d6be517169acd4a0dcb1be37f8b9e2226bc4a30ac309c1bd3ec5927a1a0b5",
+  "review_history": [
+    {
+      "reviewed_commit": "ca00a8ffb3c0c82c646eaf2e5a134ab7348ae90e",
+      "reviewed_tree": "4e2d8a787be55cfde9dd57adb11ca49bf4d99bd1",
+      "manifest_sha256": "721d6be517169acd4a0dcb1be37f8b9e2226bc4a30ac309c1bd3ec5927a1a0b5",
+      "status": "static-review-open-T12-pending-real-TLS-handshake-ownership",
+      "reviewed_at_utc": "2026-11-19T06:36:02.504813+00:00",
+      "T12": {
+        "id": "T12",
+        "title": "Aborting a pending real TLS handshake cannot close detached underlying socket",
+        "location": "ClientBase.createConnectionSocket, createSecureConnectionSocket, upgradeToSslSocket and abort",
+        "status": "open-confirmed-by-exact-SDK-source",
+        "impact": "The provider result can time out or cancel while the real TCP/TLS connection remains open. Generation checks destroy a socket only after the secure future completes, so a peer that never finishes TLS can retain resources across retries. No credential transmission or mutation is claimed in this failure mode.",
+        "evidence": "tls-sdk-review.json records the pinned Dart 3.13.7 detachment and handshake-future ownership proof. The controlled TLS seam does not model that transfer.",
+        "required_resolution": "Retain a cancellable raw transport owner during both implicit TLS and STARTTLS, and add a real loopback peer that stalls the handshake; demonstrate closure on timeout/cancellation before marking resolved."
+      }
+    }
+  ],
+  "helper_review_followups": [
+    {
+      "id": "T12-W01",
+      "reviewer": "recover_repository",
+      "title": "Final accepted write could precede platform write completion",
+      "status": "resolved-by-static-inspection-and-deterministic-fixture-log",
+      "resolution": "Every RawSocket.write waits for its next writable event, including the final accepted write. Abort wakes the waiter and the subsequent open-state check rejects the flush. This follows the pinned SDK final-write readiness requirement.",
+      "test": "queued partial writes and final readiness complete before write close"
+    },
+    {
+      "id": "T12-W02",
+      "reviewer": "recover_repository",
+      "title": "Write close initially accepted new queued writes",
+      "status": "resolved-by-static-inspection-and-deterministic-fixture-log",
+      "resolution": "A cached _closing future immediately rejects subsequent add/write calls while previously queued writes drain. Repeated close returns the same future; secure rejects a closing send direction.",
+      "test": "queued partial writes and final readiness complete before write close"
+    }
+  ],
+  "test_review_findings": [
+    {
+      "id": "TLS-E01",
+      "reviewer": "durable_flags",
+      "title": "Generic failure could falsely count as trust or hostname rejection",
+      "status": "resolved-by-static-inspection-and-reviewed-development-log",
+      "resolution": "ObservedImapClient delegates to the production connector and rethrows the original HandshakeException. Trust controls require CERTIFICATE_VERIFY_FAILED with self-signed/local-issuer reason; hostname controls require CERTIFICATE_VERIFY_FAILED with hostname mismatch. No certificate bypass is introduced."
+    },
+    {
+      "id": "TLS-E02",
+      "reviewer": "durable_flags",
+      "title": "everyElement on an empty LOGIN sequence could pass vacuously",
+      "status": "resolved-by-static-inspection-and-reviewed-development-log",
+      "resolution": "Successful local exchange now requires exactly one LOGIN and asserts that its secure marker is true, plus LIST success and no unexpected fixture errors."
+    },
+    {
+      "id": "TLS-E03",
+      "reviewer": "durable_flags",
+      "title": "A deadline case lacked an explicit elapsed-time acceptance bound",
+      "status": "resolved-by-static-inspection-and-reviewed-development-log",
+      "resolution": "The 600 ms operation deadline is checked with a two-second external Future timeout and elapsed time below two seconds, followed by peer-observed closure within one second. This qualifies the bounded local behavior, not an exact 600 ms timing guarantee."
+    }
+  ]
 }

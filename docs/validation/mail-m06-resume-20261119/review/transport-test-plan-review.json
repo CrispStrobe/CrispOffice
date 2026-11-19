@@ -1,27 +1,27 @@
 {
   "schema": 1,
-  "reviewed_at_utc": "2026-11-19T06:36:02.504813+00:00",
+  "reviewed_at_utc": "2026-11-19T06:57:05.350458+00:00",
   "plans": [
     {
       "path": "docs/validation/mail-m06-resume-20261119/native-test-plan.json",
-      "sha256": "aa3701b3b61f78ded058d0fb03943a33a597f7fbc6969822846f1250f66867ba",
+      "sha256": "95a423703ecbd552a840e6fe0d4471875b8e79f88cdee3bc8d2c675ebbb9aa13",
       "groups": [
         {
           "name": "transport-native",
           "cwd": "packages/quds_mail_transport",
           "runner": "dart",
-          "platform": "vm",
           "tests": [
             "test/configuration_test.dart",
             "test/native_provider_test.dart",
-            "test/host_store_integration_test.dart"
-          ]
+            "test/host_store_integration_test.dart",
+            "test/native_tls_test.dart"
+          ],
+          "platform": "vm"
         },
         {
           "name": "fork-protocol-regressions",
           "cwd": "third_party/enough_mail",
           "runner": "dart",
-          "platform": "vm",
           "tests": [
             "test/connection_robustness_test.dart",
             "test/reconnect_state_test.dart",
@@ -44,13 +44,13 @@
             "test/mail/mail_client_starttls_test.dart",
             "test/mail/redaction_test.dart",
             "test/quds_portable_mime_test.dart"
-          ]
+          ],
+          "platform": "vm"
         },
         {
           "name": "mime-vm",
           "cwd": "packages/quds_mail_mime",
           "runner": "dart",
-          "platform": "vm",
           "tests": [
             "test/eml_bytes_test.dart",
             "test/mime_encodings_test.dart",
@@ -58,23 +58,32 @@
             "test/mime_parts_test.dart",
             "test/mime_review_regressions_test.dart",
             "test/portable_import_test.dart"
-          ]
+          ],
+          "platform": "vm"
         },
         {
           "name": "reader-vm",
           "cwd": "packages/quds_mail_ui",
           "runner": "flutter",
-          "platform": "vm",
           "tests": [
             "test/controller_test.dart",
             "test/example_test.dart",
             "test/message_view_test.dart",
             "test/presentation_test.dart"
-          ]
+          ],
+          "platform": "vm"
         }
       ],
-      "test_file_count": 34,
-      "missing_test_paths": []
+      "test_file_count": 35,
+      "missing_test_paths": [],
+      "analysis": {
+        "file_count": 23,
+        "missing_paths": []
+      },
+      "format": {
+        "file_count": 23,
+        "missing_paths": []
+      }
     },
     {
       "path": "docs/validation/mail-m06-resume-20261119/node-test-plan.json",
@@ -115,11 +124,39 @@
         }
       ],
       "test_file_count": 9,
-      "missing_test_paths": []
+      "missing_test_paths": [],
+      "analysis": {
+        "file_count": 0,
+        "missing_paths": []
+      },
+      "format": {
+        "file_count": 0,
+        "missing_paths": []
+      }
     }
   ],
-  "assessment": "The expanded native plan covers 34 files including 21 shared-fork suites; the Node plan covers 9 files. All named files exist. Core/store acceptance is explicitly separate.",
-  "actionable_gap": "T12 requires a real stalled-handshake regression. No listed inherited STARTTLS test covers that ownership transfer; they test missing STARTTLS or controlled TLS sequencing. Add the regression to an included transport suite or add its new file to the plan before freezing.",
+  "assessment": "The final native plan covers 35 files including 21 shared-fork suites and the new real-loopback TLS suite; Node covers 9 files. All tests and all 23 explicit analysis/format paths exist in integrated main. Core/store acceptance remains a separate same-source gate.",
+  "actionable_gap": null,
+  "historical_actionable_gap": "T12 requires a real stalled-handshake regression. No listed inherited STARTTLS test covers that ownership transfer; they test missing STARTTLS or controlled TLS sequencing. Add the regression to an included transport suite or add its new file to the plan before freezing.",
+  "gap_resolution": "T12 real stalled implicit TLS and STARTTLS coverage is registered as transport-native/test/native_tls_test.dart; the final 14 strengthened development cases pass in the retained author log, separately from root final qualification.",
   "no_other_actionable_plan_gap_found": true,
-  "runtime_executed_by_reviewer": false
+  "runtime_executed_by_reviewer": false,
+  "source_binding": {
+    "reviewed_author_commit": "cdcfe878f01263f52c935d9ae0a90e6113a07e3f",
+    "reviewed_author_manifest_sha256": "5dc61c9d20bf2227236b489799b77c2765a24b04e8e7d6f8625e7186a0ebff48",
+    "observed_integrated_main_head": "e1d5bd7162768ff781edbbc4c8b67d236349b42c",
+    "all_37_reviewed_paths_match_integrated_main": true,
+    "all_23_changed_transport_or_fork_dart_files_in_analysis_and_format": true,
+    "tls_fixture_paths": [
+      "packages/quds_mail_transport/test/fixtures/tls/README.md",
+      "packages/quds_mail_transport/test/fixtures/tls/loopback-cert.pem",
+      "packages/quds_mail_transport/test/fixtures/tls/loopback-key.pem"
+    ],
+    "fixture_binding": "run_checks.py binds all tracked packages/, apps/ and third_party/ inputs, including the local TLS certificate, key and README."
+  },
+  "limitations": [
+    "Plan registration and reviewed development logs are not the final source-bound test receipt.",
+    "Local TLS fixtures qualify the pinned Linux runtime only; no live OAuth/account interoperability or Windows execution is inferred.",
+    "Partial-write/backpressure behavior is checked using a deterministic RawSocket fixture, not OS buffer pressure."
+  ]
 }
