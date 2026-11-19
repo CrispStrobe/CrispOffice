@@ -86,8 +86,9 @@ implemented Quds packages outside this directory keep their own MIT license.
     cannot accept an earlier valid prefix. Protocol atoms remain case-insensitive.
 13. Add configurable literal, protocol-line/greeting and aggregate response-byte
     bounds. Deterministic budget failures are latched separately from provider
-    or authentication errors. Strict response iteration suppresses the historical
-    raw-literal warning output; malformed raw responses fail and abort the client.
+    or authentication errors; their typed exception retains `FormatException`
+    compatibility. Strict response iteration suppresses the historical raw-literal
+    warning output; malformed raw responses fail and abort the client.
 14. Frame IMAP greetings across TCP fragmentation/coalescing. Add hard abort,
     connection-generation guards, and late socket/TLS result destruction.
     Production socket creation keeps the existing certificate and hostname trust

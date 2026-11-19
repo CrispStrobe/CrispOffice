@@ -1,0 +1,142 @@
+{
+  "description": "Frozen integrated M06 native protocol, real SQLite coordinator integration, affected inherited protocol/client regressions, MIME and complete saved-message reader. Core/store full native/Node/compile qualification is recorded separately by check_store.py on the same source. Controlled fixture success is not live TLS/OAuth/disposable-account acceptance.",
+  "groups": [
+    {
+      "name": "transport-native",
+      "cwd": "packages/quds_mail_transport",
+      "runner": "dart",
+      "tests": [
+        "test/configuration_test.dart",
+        "test/native_provider_test.dart",
+        "test/host_store_integration_test.dart"
+      ]
+    },
+    {
+      "name": "fork-protocol-regressions",
+      "cwd": "third_party/enough_mail",
+      "runner": "dart",
+      "tests": [
+        "test/connection_robustness_test.dart",
+        "test/reconnect_state_test.dart",
+        "test/write_failure_test.dart",
+        "test/pop/pop_client_test.dart",
+        "test/pop/pop_framing_test.dart",
+        "test/smtp/smtp_client_test.dart",
+        "test/smtp/smtp_framing_test.dart",
+        "test/smtp/smtp_auth_encoding_test.dart",
+        "test/mime_bare_lf_test.dart",
+        "test/imap/imap_client_test.dart",
+        "test/imap/imap_robustness_test.dart",
+        "test/imap/imap_quoting_test.dart",
+        "test/src/imap/imap_response_test.dart",
+        "test/src/imap/imap_response_reader_test.dart",
+        "test/src/imap/imap_response_line_test.dart",
+        "test/src/imap/fetch_parser_test.dart",
+        "test/src/util/uint8_list_reader_test.dart",
+        "test/mail/mail_client_oauth_test.dart",
+        "test/mail/mail_client_starttls_test.dart",
+        "test/mail/redaction_test.dart",
+        "test/quds_portable_mime_test.dart"
+      ]
+    },
+    {
+      "name": "mime-vm",
+      "cwd": "packages/quds_mail_mime",
+      "runner": "dart",
+      "tests": [
+        "test/eml_bytes_test.dart",
+        "test/mime_encodings_test.dart",
+        "test/mime_limits_test.dart",
+        "test/mime_parts_test.dart",
+        "test/mime_review_regressions_test.dart",
+        "test/portable_import_test.dart"
+      ]
+    },
+    {
+      "name": "reader-vm",
+      "cwd": "packages/quds_mail_ui",
+      "runner": "flutter",
+      "tests": [
+        "test/controller_test.dart",
+        "test/example_test.dart",
+        "test/message_view_test.dart",
+        "test/presentation_test.dart"
+      ]
+    }
+  ],
+  "analysis": [
+    "packages/quds_mail_transport/lib/quds_mail_transport.dart",
+    "packages/quds_mail_transport/lib/src/configuration.dart",
+    "packages/quds_mail_transport/lib/src/cursor.dart",
+    "packages/quds_mail_transport/lib/src/native/factory.dart",
+    "packages/quds_mail_transport/lib/src/native/provider.dart",
+    "packages/quds_mail_transport/lib/src/unsupported/provider.dart",
+    "packages/quds_mail_transport/test/configuration_test.dart",
+    "packages/quds_mail_transport/test/host_store_integration_test.dart",
+    "packages/quds_mail_transport/test/native_provider_test.dart",
+    "packages/quds_mail_transport/test/support/imap_fixture.dart",
+    "packages/quds_mail_transport/test/unsupported_test.dart",
+    "third_party/enough_mail/lib/imap.dart",
+    "third_party/enough_mail/lib/src/imap/imap_client.dart",
+    "third_party/enough_mail/lib/src/imap/raw_fetch.dart",
+    "third_party/enough_mail/lib/src/private/imap/imap_response.dart",
+    "third_party/enough_mail/lib/src/private/imap/imap_response_reader.dart",
+    "third_party/enough_mail/lib/src/private/imap/raw_fetch_parser.dart",
+    "third_party/enough_mail/lib/src/private/util/client_base.dart",
+    "third_party/enough_mail/lib/src/private/util/protocol_resource_limit.dart",
+    "third_party/enough_mail/lib/src/private/util/uint8_list_reader.dart"
+  ],
+  "format": [
+    "packages/quds_mail_transport/lib/quds_mail_transport.dart",
+    "packages/quds_mail_transport/lib/src/configuration.dart",
+    "packages/quds_mail_transport/lib/src/cursor.dart",
+    "packages/quds_mail_transport/lib/src/native/factory.dart",
+    "packages/quds_mail_transport/lib/src/native/provider.dart",
+    "packages/quds_mail_transport/lib/src/unsupported/provider.dart",
+    "packages/quds_mail_transport/test/configuration_test.dart",
+    "packages/quds_mail_transport/test/host_store_integration_test.dart",
+    "packages/quds_mail_transport/test/native_provider_test.dart",
+    "packages/quds_mail_transport/test/support/imap_fixture.dart",
+    "packages/quds_mail_transport/test/unsupported_test.dart",
+    "third_party/enough_mail/lib/imap.dart",
+    "third_party/enough_mail/lib/src/imap/imap_client.dart",
+    "third_party/enough_mail/lib/src/imap/raw_fetch.dart",
+    "third_party/enough_mail/lib/src/private/imap/imap_response.dart",
+    "third_party/enough_mail/lib/src/private/imap/imap_response_reader.dart",
+    "third_party/enough_mail/lib/src/private/imap/raw_fetch_parser.dart",
+    "third_party/enough_mail/lib/src/private/util/client_base.dart",
+    "third_party/enough_mail/lib/src/private/util/protocol_resource_limit.dart",
+    "third_party/enough_mail/lib/src/private/util/uint8_list_reader.dart"
+  ],
+  "extra_inputs": [
+    "tools/mail/test_check_store.py",
+    "docs/validation/document-review-notes-20261118/test_run_checks.py"
+  ],
+  "whitespace_preserved_inputs": [
+    {
+      "path": "docs/validation/thesaurus-20261118/resumed-20261119/linguistic/de/notices/CC_BY_SA_4.0.txt",
+      "git_blob": "2d58298e6eda10e7204abb52722efbc840db2390",
+      "reason": "Preserve byte-identical upstream license/notice text captured in the final thesaurus evidence; no product source exception."
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/resumed-20261119/linguistic/de/notices/OPENTHESAURUS_COPYING.txt",
+      "git_blob": "e9a5cbe37f5fa0726cc9283ecfdc099b764e1a46",
+      "reason": "Preserve byte-identical upstream license/notice text captured in the final thesaurus evidence; no product source exception."
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/resumed-20261119/linguistic/en/notices/CC_BY_4.0.txt",
+      "git_blob": "da6ab6cc8f333d7e89a99812866df8f24374d47c",
+      "reason": "Preserve byte-identical upstream license/notice text captured in the final thesaurus evidence; no product source exception."
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/resumed-20261119/linguistic/en/notices/OEWN_LICENSE.md",
+      "git_blob": "fe4d1dce8109caa7016fca97f48e49a9ced36ad4",
+      "reason": "Preserve byte-identical upstream license/notice text captured in the final thesaurus evidence; no product source exception."
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/resumed-20261119/linguistic/en/notices/WNDB_License.txt",
+      "git_blob": "cecbc6cf2dcb20ffbcba84319affc1ed0c6dca6f",
+      "reason": "Preserve byte-identical upstream license/notice text captured in the final thesaurus evidence; no product source exception."
+    }
+  ]
+}

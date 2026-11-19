@@ -1,0 +1,16 @@
+[
+  {
+    "head": "8aa0e6cbe16414bc291f8b285c1d89e59bec5af3",
+    "incoming": "c320f28347f1cd292b848be2cf72998d41f8a6ac",
+    "returncode": 0,
+    "tree": "b17289253ab20e36694989774f476e8b6aa4ff38",
+    "has_conflicts": false
+  },
+  {
+    "head": "8aa0e6cbe16414bc291f8b285c1d89e59bec5af3",
+    "incoming": "df62b58975bab1f650879fc88f850550a3df5c13",
+    "returncode": 0,
+    "tree": "5060425481237ffc4731f9c1d1743af63b146e25",
+    "has_conflicts": false
+  }
+]

@@ -172,7 +172,7 @@ inspection receipt, not a complete dependency or runtime certification.
 
 - [x] Implement the minimal typed models and ports from section 3, with explicit parse/provider error variants.
 - [x] Define raw-message ownership, immutable attachment references, profile/account scoping and cancellation.
-- [x] Define portable capability negotiation and typed unsupported results. Native/web transport dispatch remains M06.
+- [x] Define portable capability negotiation and typed unsupported results. The initial native/web transport dispatch is implemented under M06; integrated qualification remains separate.
 - [x] Add provider-independent state-machine tests for account disposal, stale operations and recipient-level outcomes.
 - [x] Keep mail, calendar and contact capabilities separate; do not imply IMAP implements all three.
 
@@ -233,6 +233,7 @@ inspection receipt, not a complete dependency or runtime certification.
 - [x] Implement Drift/SQLite schema and transactional repository streams using independently resolved approved dependencies.
 - [x] Native app-container store and separately configured browser store; explicit quota/storage-unavailable results. The browser opener compiles; actual browser persistence remains unqualified.
 - [x] Durable drafts and immutable outbox/blob references, atomic page+cursor commits with expected-cursor comparison, tombstones and transactional migration versioning.
+- [x] Add nullable durable standard flag snapshots and additive schema v3 migration from v1/v2. Omitted observations preserve known flags; observed empty snapshots clear them. New flags/migration acceptance remains part of the pending integrated M06 gate.
 - [x] FTS indexing of supported plain text and metadata; cap indexing work, avoid remote fetch as a side effect of local search. HTML-only bodies are not interpreted by search.
 - [x] Account deletion, cache eviction, logout and pending-operation policies, including durable host-vault cleanup and retired local identities.
 - [x] Simulate crash/restart at transaction boundaries and preserve unsent work. Native process-kill and file-backed migration/recovery evidence is retained separately from injected rollback cases.
@@ -240,29 +241,51 @@ inspection receipt, not a complete dependency or runtime certification.
 **Acceptance:** reopen offline and recover drafts/queue; half-applied sync page cannot advance cursor; cache eviction does not lose outgoing attachments; account/profile isolation; browser quota failure is explicit. No secrets or body data in diagnostics.
 
 **Implementation/evidence:** [quds_mail_store](../../../packages/quds_mail_store/README.md)
-and [local store qualification](../../validation/mail-store-20261118/README.md).
-Native persistence and recovery have passing focused Linux x64 tests. The first
-combined local run passed its test cohorts but failed the full gate on two test
-lint infos and one formatting mismatch; the stricter runner and lint repairs
-still require execution after workspace disk exhaustion. See the qualification
-report for the BLOCKED state and exact continuation steps. Browser entry/worker
-compilation and Node error-policy tests do not close actual browser storage,
-Web Locks, reload or quota acceptance. Chromium again failed before
-startup under this executor's socket restriction. Database contents are not
-encrypted; native/container protection and credential-vault separation are
-distinct from encryption. M06/M07 and M04W remain the next functional work.
+and the [19 November continuation](../../validation/mail-m06-resume-20261119/README.md).
+The fresh baseline at `479e1e038af0467b7f07b35d80bac9e4cc60a198` passed its
+complete Mail gate: 186 test executions across core/store VM and Node cohorts,
+42 Python launcher regressions, strict analysis, formatting and compilation
+checks. Its 72-suite Office/reader gate also passed with 1,230 cases. The earlier
+[failed store attempt](../../validation/mail-store-20261118/README.md) remains
+historical evidence; its runner/formatting blockage is resolved for the fresh
+baseline. Those results predate schema v3 and native transport. **Qualification
+of the newly integrated flags/transport source is pending.**
+
+Browser entry/worker compilation and Node error-policy tests do not close actual
+browser storage, Web Locks, reload or quota acceptance. Chromium previously
+failed before startup under this executor's socket restriction. Database contents
+are not encrypted; container protection and credential-vault separation are
+distinct from encryption. M06 is partially implemented; M07 and M04W remain open.
 
 ### M06 — native accounts, authentication and IMAP synchronization
 
 **Depends on:** M01, M02, M05. **Files:** quds_mail_transport native adapter and core sync.
 
-- [ ] Manual IMAP/SMTP account configuration first; bounded discovery only after validation. Never silently downgrade TLS or disable certificate validation.
-- [ ] Host-owned credentials; native system-browser OAuth/PKCE adapters with registered redirect handling. No embedded confidential secret.
-- [ ] Capability-driven folder discovery, header pagination, flags, move/delete/archive, body/attachment fetch-on-demand.
-- [ ] Stable IMAP IDs including UIDVALIDITY; reconnect/full-resync handling; no persisted sequence-number identities.
-- [ ] Use IDLE/CONDSTORE/QRESYNC only when the adapter/server genuinely support them; correct fallback remains mandatory.
-- [ ] Rate/backoff/cancellation and credential-revocation states; foreground/resume sync first.
-- [ ] Web entry reports unsupported generic socket transport without pulling dart:io into the build.
+- [x] Manual IMAP endpoint/account configuration with validated host/port, required STARTTLS or implicit TLS, and no cleartext fallback or certificate bypass. SMTP configuration and bounded discovery are not included.
+- [ ] Add SMTP configuration and optional bounded account discovery after validation; qualify actual TLS/certificate/hostname rejection on the production connector.
+- [x] Load current host-owned password/token bytes for each operation using account/profile/host-scoped vault references. Negotiate XOAUTH2/OAUTHBEARER protocol capability and keep credential material out of ordinary account rows and public diagnostics.
+- [ ] Implement native system-browser OAuth/PKCE, registered redirect handling, token refresh and platform credential-vault hosts. No embedded confidential secret.
+- [x] Discover selectable folders, fetch bounded header/flag UID windows, retrieve exact full-message literals on demand, and apply observed UID flag changes and capability-gated MOVE. Delete marks only `\Deleted`, without mailbox-wide EXPUNGE or CLOSE.
+- [ ] Complete large/sparse mailbox pagination, archive/destination workflows and individual body-part retrieval beyond the initial full-message fetch boundary.
+- [x] Use stable account/mailbox/UIDVALIDITY/UID identities and scoped transactional cursors. Request mailbox reset when UIDVALIDITY changes; never persist sequence-number identities.
+- [x] Implement an explicitly bounded full-sweep fallback that revisits old flags and expunges. Advertise no IDLE/CONDSTORE/QRESYNC behavior that is not implemented.
+- [ ] Add IDLE/CONDSTORE/QRESYNC only with genuine adapter/server support and independent qualification; retain a correct fallback.
+- [x] Enforce finite operation timeouts, account-lease cancellation and typed credential-revocation/ambiguous-mutation outcomes. Do not automatically retry operations.
+- [ ] Add host foreground/resume scheduling and bounded provider rate/backoff policy with recovery controls.
+- [x] Provide a conditional browser entry returning typed unsupported for generic socket transport without accessing the vault/codec or importing the native socket implementation. Actual JavaScript execution is included in the pending integrated gate.
+
+**Implemented foundation and limits:**
+[quds_mail_transport](../../../packages/quds_mail_transport/README.md) is present,
+but M06 is not complete. `maxUidScan` defaults to **10,000** and has an upper
+limit of **100,000**; this bounds the highest numeric UID, not message count.
+Mailboxes with `UIDNEXT - 1` above the bound return `unsupported` before any
+page fetch or commit. Direct on-demand retrieval of a specified high UID remains
+available. Cursors freeze each sweep ceiling, and arrivals beyond it enter the
+next sweep; the fallback is not a server snapshot protocol. MOVE confirms source
+absence but does not expose COPYUID destination identities. Controlled parser,
+SQLite/coordinator, lifecycle and conditional-entry tests have been authored;
+**fresh combined source-bound qualification remains pending**. The 186-case
+Mail and 1,230-case Office passes above apply only to baseline `479e1e03`.
 
 **Acceptance:** controlled IMAP transcripts/local test server cover UIDVALIDITY reset, missing extensions, expunge/move, dropped connections, stale credentials and bounded fetch. Real interoperability uses explicit disposable test accounts and retains no private mail/credentials in fixtures.
 

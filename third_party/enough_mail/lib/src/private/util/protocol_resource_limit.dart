@@ -3,12 +3,10 @@
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 /// A content-free, deterministic protocol input budget failure.
-class ProtocolResourceLimit implements Exception {
+class ProtocolResourceLimit extends FormatException {
   /// Creates a failure with a fixed, content-free explanation.
-  const ProtocolResourceLimit(this.message);
+  const ProtocolResourceLimit(super.message);
 
-  /// Fixed explanation; never includes server payloads.
-  final String message;
   @override
   String toString() => message;
 }

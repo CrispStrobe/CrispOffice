@@ -4,8 +4,8 @@
 
 The continuation restored `eafcd80fdfbd7ff678a7a04fb9a9a98b5330ad00` from
 `codex/mail-reader-20261118`. The previously isolated M06 source had not been
-published. It is being implemented and reviewed separately from the baseline
-qualification below.
+published. The continuation now includes durable flags and a bounded native
+IMAP foundation, with integrated qualification pending as described below.
 
 Three subsequently captured commits from the thesaurus and Zotero branches
 were integrated into published source
@@ -17,6 +17,13 @@ the incoming integration changes only documentation and evidence. See
 [incoming verification](incoming/post-integration-source-verification.json),
 [ref audit](incoming/post-integration-audit.json), and
 [remote readback](incoming/published-readback.json).
+
+A final bounded capture at 06:20 UTC added the Notes and thesaurus evidence
+heads `c320f283` and `df62b589`. Their 68 changed paths are documentation and
+validation evidence only. Published merge `faab20b96e4a51fd6e3cf1a80b1439c4a1b01b9c`
+preserves both parents and accounts for all 389 captured external refs. The
+existing Office source remains byte-identical to its qualified baseline. See
+the [final capture and audit](final-incoming/).
 
 ## Fresh baseline Mail qualification: PASS
 
@@ -58,13 +65,41 @@ unchanged. See the [complete receipt](baseline/office-verification.json),
 [archive/case-list audit](baseline/office-archive-audit.json). Historical counts
 from earlier work are not included in these fresh results.
 
-## Continuation boundaries
+## Integrated M06 qualification: pending
 
 Checkpoint `c2db80d4caacb4818c06d596566e50f25811d28a` preserves nullable
-durable standard flags and schema v3 migration source. Its additional behavior
-tests remain unexecuted at this evidence checkpoint. Bounded native IMAP
-transport is being integrated next, followed by complete local protocol/store
-validation. The baseline test results above apply to source `479e1e03`.
+durable standard flags and schema v3 migration source. Checkpoint
+`fa284f22a7e3ad236bc991a4a796ad83565f11ce` adds the bounded native IMAP adapter,
+exact raw-message fetching, guarded mutations and coordinator/SQLite fixtures.
+The following source also preserves inherited `FormatException` compatibility
+for deterministic resource limits and removes unrelated notices from the new
+MIT package license. Existing MPL fork notices remain intact.
+
+The fresh integrated qualification will use `tools/mail/check_store.py`, the
+[native plan](native-test-plan.json) and the [Node plan](node-test-plan.json)
+against one frozen published source. The native plan covers all new transport
+tests, real coordinator/SQLite integration, affected IMAP/SMTP/POP client and
+framing paths, all MIME suites and all saved-message reader suites. The Node
+plan exercises the conditional unsupported transport and portable MIME paths.
+Development checks and static review do not substitute for this final gate;
+the baseline test results above apply only to source `479e1e03`.
+
+The [exact-SDK review](review/tls-sdk-review.md) found an additional blocker
+before freezing acceptance source: during a real stalled TLS handshake, the
+SDK has transferred socket ownership, and aborting the previous `Socket`
+does not close the pending secure connection. T12 remains open in the
+[transport review](review/transport-review.md). The connection lifecycle fix
+and a real local-socket cancellation regression are in progress. This
+checkpoint preserves the plans and review without claiming a final pass.
+
+## Continuation boundaries
+
+The transport remains a bounded M06 foundation. `maxUidScan` bounds the highest
+numeric UID, default 10,000 and maximum 100,000; it is not a message-count cap.
+Larger or sparse UID spaces require discovered-UID pagination. Controlled
+protocol fixtures do not qualify actual TLS handshakes, certificate/hostname
+rejection or live mailbox interoperability. Mutation uncertainty is surfaced
+for reconciliation, and delete marks `\Deleted` without expunging.
 System-browser OAuth, actual browser storage, live disposable-account
 interoperability, SMTP composition/submission and the account-aware UI retain
 their independent implementation and acceptance gates.

@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "source": "GitHub connected API immutable git/commits readback",
+  "commit": "faab20b96e4a51fd6e3cf1a80b1439c4a1b01b9c",
+  "tree": "d780ffff2bcdd9cb880d94e1105fac5079e3b8e5",
+  "parents": [
+    "fdf4b1ed5fdd252ffd5519d7b8a52c19ebd0c68f",
+    "c320f28347f1cd292b848be2cf72998d41f8a6ac",
+    "df62b58975bab1f650879fc88f850550a3df5c13"
+  ],
+  "message": "Reconcile final bounded incoming evidence and harden local process cleanup [skip ci]",
+  "expected_tree": "d780ffff2bcdd9cb880d94e1105fac5079e3b8e5",
+  "remote_tree_matches_expected": true,
+  "same_tree_as_reviewed_local_integration": "9e084d9495e16628ca7365a3e3fce56486d3ae69"
+}
