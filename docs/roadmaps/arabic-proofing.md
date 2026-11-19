@@ -202,4 +202,3 @@ verb transitivity, number phrases), which need the GPL dictionary.
 most of the Arabic module) whether the Arramooz-derived dictionaries and
 Fareh could be offered under MPL-2.0 or LGPL. That would remove the
 GPL-download separation but would not reduce the engine work.
-
