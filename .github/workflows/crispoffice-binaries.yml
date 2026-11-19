@@ -26,6 +26,7 @@ jobs:
       - name: Resolve workspace
         run: flutter pub get
       - name: Build macOS
+        working-directory: packages/quds_office_editor/example
         run: flutter build macos --release
       - name: Package
         run: |
@@ -49,6 +50,11 @@ jobs:
         shell: pwsh
     steps:
       - uses: actions/checkout@v5
+        with:
+          sparse-checkout: |
+            /*
+            !tools/proofing/spacy/fixtures/development/nul
+          sparse-checkout-cone-mode: false
       - uses: subosito/flutter-action@v2
         with:
           channel: stable
