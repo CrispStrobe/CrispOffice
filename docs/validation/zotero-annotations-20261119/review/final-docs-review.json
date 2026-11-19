@@ -1,0 +1,75 @@
+{
+  "review_kind": "read-only documentation publication review",
+  "qualified_application_commit": "ff06e5544673ce7f70be983299241bcdcef780d3",
+  "qualified_tree": "ee23dc2179d4b3e26eabf3b35e7aa13f95a7963d",
+  "reviewed_document_sha256": {
+    "docs/zotero-support.md": "b70bc2ae4d1e3fb62f5febb2de1895d6720b5d11a60bfa026486db69ae11fbcd",
+    "docs/validation/zotero-annotations-20261119/README.md": "f51203f3e97dc3f88592c7a552c52351d722f5c3588d0075e5571f9203ad29b0"
+  },
+  "outstanding_findings": [],
+  "resolved_findings": [
+    {
+      "id": "annotation-export-boundary",
+      "status": "resolved in reviewed documentation",
+      "resolution": "The guide and report limit the workflow to text annotations, promise atomic refusal of unsupported returned images/structures, and explicitly state that Zotero can substitute a notice or omit unavailable content before Quds receives it. No selected-type validation is claimed.",
+      "resolution_receipt_guide_hash_matches": true
+    }
+  ],
+  "verified_result_claims": {
+    "application_cases": 1611,
+    "python_cases_separate": 66,
+    "distinct_test_files": 98,
+    "analysis_and_format_targets": 33,
+    "all_11_gates_completed_and_accepted": true,
+    "group_totals": {
+      "engine": {
+        "files": 36,
+        "passed": 644
+      },
+      "editor": {
+        "files": 48,
+        "passed": 773
+      },
+      "studio": {
+        "files": 7,
+        "passed": 99
+      },
+      "mail-core": {
+        "files": 1,
+        "passed": 9
+      },
+      "mail-store": {
+        "files": 5,
+        "passed": 75
+      },
+      "mail-ui": {
+        "files": 1,
+        "passed": 11
+      }
+    },
+    "application_sum": 1611,
+    "python_sum": 66,
+    "independent_audit_agrees": true,
+    "report_finish_time_matches": true,
+    "summary_hash_matches_audit": true,
+    "plan_hash_matches_summary_and_audit": true,
+    "runner_hash_matches_summary_and_audit": true
+  },
+  "report_and_replay": {
+    "relative_report_links_checked": 25,
+    "missing_targets": [],
+    "runner_cli_arguments_match_source": true,
+    "ref_audit_cli_arguments_match_source": true,
+    "qualified_checkout_identity_preserved_in_replay": true,
+    "replay_executed_during_this_review": false,
+    "note": "Replay commands were checked against argument definitions and the committed source/plan identities; this documentation review did not rerun tests."
+  },
+  "acceptance_scope": {
+    "installed_application_claims": "The report explicitly excludes a fresh live Zotero session, installed OS shortcut acceptance, actual Word/LibreOffice reopening, and installed older-version acceptance.",
+    "controlled_older_version_scope": "The older-version failure coverage is correctly identified as a model of the inspected native STOP-error callback.",
+    "development_counts_excluded": "Exploratory counts and corrected early expectations remain separate from the final frozen totals."
+  },
+  "product_plan_runner_changes_since_qualified_commit": [],
+  "tracked_files_modified_by_reviewer": false,
+  "accepted": true
+}

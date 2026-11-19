@@ -1,0 +1,1170 @@
+{
+  "base": "15d519599017c9df18ebfba19704998825a2c86e",
+  "comparison": "exact full-tree blob/mode differences, not merge-base diffs",
+  "heads": {
+    "notes": {
+      "head": "bb241a34a1722a44b29f51fdce4be64e0ffc47b9",
+      "tree": "e8c14323b4ff3abe7915869e14757d410a362557",
+      "changed_paths": [
+        {
+          "path": "docs/validation/mail-continue-20261119/README.md",
+          "before": null,
+          "after": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "716f679196be3321ef495c0857dbace661b29e57"
+          }
+        },
+        {
+          "path": "docs/validation/mail-continue-20261119/incoming/audit.json",
+          "before": null,
+          "after": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "70b8f21e9baed3c3d886fa163b36825053518423"
+          }
+        },
+        {
+          "path": "docs/validation/mail-continue-20261119/incoming/audit_refs.py",
+          "before": null,
+          "after": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "717bcf93dad9892034e919c1e391477d9404f228"
+          }
+        },
+        {
+          "path": "docs/validation/mail-continue-20261119/incoming/capture.json",
+          "before": null,
+          "after": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "ce8b2c1e48ab622dcdd4a945154bbfeb68c2a184"
+          }
+        },
+        {
+          "path": "docs/validation/mail-continue-20261119/incoming/historical-proofs.json",
+          "before": null,
+          "after": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "2b49e8d289d57a66e1a47511a7e81723a6465a7b"
+          }
+        },
+        {
+          "path": "docs/validation/mail-continue-20261119/incoming/incoming-changes.json",
+          "before": null,
+          "after": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "b1757f9229f8c77e60c0eac9a9a25feeeb3bb8bb"
+          }
+        },
+        {
+          "path": "docs/validation/mail-continue-20261119/incoming/merge-review.json",
+          "before": null,
+          "after": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "7b00018c98f7bd7022b1f93a8f3aef0ab7b7b3c5"
+          }
+        },
+        {
+          "path": "docs/validation/mail-continue-20261119/incoming/new-commits.json",
+          "before": null,
+          "after": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "47aa9d580399caa1ca5fb81088f327851208d7c6"
+          }
+        },
+        {
+          "path": "docs/validation/mail-continue-20261119/incoming/refs.tsv",
+          "before": null,
+          "after": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "052e153f5bfe82eeb5c352cad6e2cb45026bb712"
+          }
+        },
+        {
+          "path": "docs/validation/mail-continue-20261119/incoming/test-plan.json",
+          "before": null,
+          "after": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "a8972bf0fe224d13e2747e9aa2b44adc6bffbc57"
+          }
+        },
+        {
+          "path": "docs/validation/mail-continue-20261119/incoming/upstream-capture.json",
+          "before": null,
+          "after": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "901d952cc09eba694901a319fedb2c5534d2a217"
+          }
+        },
+        {
+          "path": "docs/validation/thesaurus-20261118/resumed-20261119/evidence/combined-engine-checkpoint-index.json",
+          "before": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "097c34d84f9eb83cc81a76b9b4564190ed3cbb26"
+          },
+          "after": null
+        },
+        {
+          "path": "docs/validation/thesaurus-20261118/resumed-20261119/evidence/combined-engine-checkpoint.tar.xz",
+          "before": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "4159372dbe9cec6184ee0313b9b759ffcbc74046"
+          },
+          "after": null
+        },
+        {
+          "path": "docs/validation/thesaurus-20261118/resumed-20261119/evidence/recovery-audit-and-runner-controls-index.json",
+          "before": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "484be0f724981a11b058efff881fbc71eb2ce51d"
+          },
+          "after": null
+        },
+        {
+          "path": "docs/validation/thesaurus-20261118/resumed-20261119/evidence/recovery-audit-and-runner-controls.tar.xz",
+          "before": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "0779bfbdd8fb1b2bedf5d885b394b00ea8c7949e"
+          },
+          "after": null
+        },
+        {
+          "path": "docs/validation/thesaurus-20261118/resumed-20261119/incoming/audit_selected_scope.py",
+          "before": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "3f2120e155d59f350e8e6eddcd2b70e1eaff4ce1"
+          },
+          "after": null
+        },
+        {
+          "path": "docs/validation/thesaurus-20261118/resumed-20261119/incoming/retained-source-continuity.json",
+          "before": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "e3d21692f8b67b4045c432919f4699e8baf2a70f"
+          },
+          "after": null
+        },
+        {
+          "path": "docs/validation/thesaurus-20261118/resumed-20261119/incoming/selected-plan-review.json",
+          "before": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "42b098bd287d410e09a16bb1d18ff7a895e83d81"
+          },
+          "after": null
+        },
+        {
+          "path": "docs/validation/thesaurus-20261118/resumed-20261119/preparation-summary.json",
+          "before": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "5f7b294c305c031108d1f21ce225d5518b738f0e"
+          },
+          "after": null
+        },
+        {
+          "path": "docs/validation/thesaurus-20261118/resumed-20261119/review/engine-review-and-incoming-zotero-audit.json",
+          "before": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "9f42e99718f4197b48303aa237b2fde864f9348a"
+          },
+          "after": null
+        },
+        {
+          "path": "docs/validation/thesaurus-20261118/resumed-20261119/review/initial-binding-audit.json",
+          "before": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "7fc3e5fc555fc44f378d3a20f51714b11e495664"
+          },
+          "after": null
+        },
+        {
+          "path": "packages/quds_office_editor/CHANGELOG.md",
+          "before": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "7d4fdbc84e66476cd41128a619d991d65652cb6f"
+          },
+          "after": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "9f7f9508f736ef7682d0c481a37c0ba4b4450ceb"
+          }
+        },
+        {
+          "path": "packages/quds_office_editor/lib/src/embed/office_editors.dart",
+          "before": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "f8ac8e363a19bc143880b4b0a4b2292d98162641"
+          },
+          "after": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "45189950fde8dd52a238a9eadb5a243e27589cb8"
+          }
+        },
+        {
+          "path": "packages/quds_office_editor/test/word_notes_proofing_controller_test.dart",
+          "before": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "cda4a31dd514c6828033df98f11489b2bc963b29"
+          },
+          "after": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "efed0b890fbc22e5bee6ae3dc5f3e7d24beb8d83"
+          }
+        },
+        {
+          "path": "packages/quds_office_editor/test/word_notes_proofing_pane_test.dart",
+          "before": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "8caf7516ce6de2ddb2f479ef60c3664b9ded57a3"
+          },
+          "after": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "2ec75c437d7d2f7ccda0a868f5663cf2bb31e9bd"
+          }
+        },
+        {
+          "path": "packages/quds_office_editor/test/word_zotero_notes_pane_test.dart",
+          "before": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "8d0d1eda1a7d8601181e450dbd0b90b76ee093b4"
+          },
+          "after": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "277d20b760362856f528038f67a9cfdeb2b5a6a9"
+          }
+        }
+      ]
+    },
+    "mail": {
+      "head": "db7501ee42c97e8da42b776a4213802cac41a9b0",
+      "tree": "fd285568c15b7f1f0e89ca6ee8bfbb421addf200",
+      "changed_paths": [
+        {
+          "path": "docs/validation/mail-continue-20261119/README.md",
+          "before": null,
+          "after": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "716f679196be3321ef495c0857dbace661b29e57"
+          }
+        },
+        {
+          "path": "docs/validation/mail-continue-20261119/incoming/audit.json",
+          "before": null,
+          "after": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "70b8f21e9baed3c3d886fa163b36825053518423"
+          }
+        },
+        {
+          "path": "docs/validation/mail-continue-20261119/incoming/audit_refs.py",
+          "before": null,
+          "after": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "717bcf93dad9892034e919c1e391477d9404f228"
+          }
+        },
+        {
+          "path": "docs/validation/mail-continue-20261119/incoming/capture.json",
+          "before": null,
+          "after": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "ce8b2c1e48ab622dcdd4a945154bbfeb68c2a184"
+          }
+        },
+        {
+          "path": "docs/validation/mail-continue-20261119/incoming/historical-proofs.json",
+          "before": null,
+          "after": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "2b49e8d289d57a66e1a47511a7e81723a6465a7b"
+          }
+        },
+        {
+          "path": "docs/validation/mail-continue-20261119/incoming/incoming-changes.json",
+          "before": null,
+          "after": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "b1757f9229f8c77e60c0eac9a9a25feeeb3bb8bb"
+          }
+        },
+        {
+          "path": "docs/validation/mail-continue-20261119/incoming/merge-review.json",
+          "before": null,
+          "after": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "7b00018c98f7bd7022b1f93a8f3aef0ab7b7b3c5"
+          }
+        },
+        {
+          "path": "docs/validation/mail-continue-20261119/incoming/new-commits.json",
+          "before": null,
+          "after": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "47aa9d580399caa1ca5fb81088f327851208d7c6"
+          }
+        },
+        {
+          "path": "docs/validation/mail-continue-20261119/incoming/refs.tsv",
+          "before": null,
+          "after": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "052e153f5bfe82eeb5c352cad6e2cb45026bb712"
+          }
+        },
+        {
+          "path": "docs/validation/mail-continue-20261119/incoming/test-plan.json",
+          "before": null,
+          "after": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "a8972bf0fe224d13e2747e9aa2b44adc6bffbc57"
+          }
+        },
+        {
+          "path": "docs/validation/mail-continue-20261119/incoming/upstream-capture.json",
+          "before": null,
+          "after": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "901d952cc09eba694901a319fedb2c5534d2a217"
+          }
+        },
+        {
+          "path": "docs/validation/mail-continue-20261119/runtime/README.md",
+          "before": null,
+          "after": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "71fbdf970bd4d45f291588e174f0dbc62a802927"
+          }
+        },
+        {
+          "path": "docs/validation/mail-continue-20261119/runtime/binding-receipt.json",
+          "before": null,
+          "after": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "040fbaad23359b2d61a931065fdc1bd36a1003a9"
+          }
+        },
+        {
+          "path": "docs/validation/mail-continue-20261119/runtime/index.json",
+          "before": null,
+          "after": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "343323dd3735167cbf579ba158419a96f4c431c1"
+          }
+        },
+        {
+          "path": "docs/validation/mail-continue-20261119/runtime/runtime-complete.json",
+          "before": null,
+          "after": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "f966eabcbd27275558601a03ce15e254f727577c"
+          }
+        },
+        {
+          "path": "docs/validation/mail-continue-20261119/runtime/runtime-evidence.tar.xz",
+          "before": null,
+          "after": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "e8a104c0101d16feb9638e758b5e297e8a793a4e"
+          }
+        },
+        {
+          "path": "docs/validation/thesaurus-20261118/reconciled/plan.json",
+          "before": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "f1141128442a76f2fd781e55d21bf7a8055a3dd4"
+          },
+          "after": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "1ab45d43754d69fe6206a39b86b30deb0a6c3436"
+          }
+        },
+        {
+          "path": "docs/validation/thesaurus-20261118/reconciled/run_targeted.py",
+          "before": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "1dd33dfb4559e712bbfe2cd5873ba6fddc516abb"
+          },
+          "after": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "cdf8f61e2f047d531300f1cdbacd0eb221a55e9e"
+          }
+        },
+        {
+          "path": "docs/validation/thesaurus-20261118/reconciled/test_run_targeted.py",
+          "before": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "caf6e5679202f694ed47860389d597ed79c634d0"
+          },
+          "after": null
+        },
+        {
+          "path": "docs/validation/thesaurus-20261118/resumed-20261119/README.md",
+          "before": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "b4bf9b202011b9657ec804b4fd9bbe1a6b71ac71"
+          },
+          "after": null
+        },
+        {
+          "path": "docs/validation/thesaurus-20261118/resumed-20261119/evidence/combined-engine-checkpoint-index.json",
+          "before": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "097c34d84f9eb83cc81a76b9b4564190ed3cbb26"
+          },
+          "after": null
+        },
+        {
+          "path": "docs/validation/thesaurus-20261118/resumed-20261119/evidence/combined-engine-checkpoint.tar.xz",
+          "before": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "4159372dbe9cec6184ee0313b9b759ffcbc74046"
+          },
+          "after": null
+        },
+        {
+          "path": "docs/validation/thesaurus-20261118/resumed-20261119/evidence/recovery-audit-and-runner-controls-index.json",
+          "before": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "484be0f724981a11b058efff881fbc71eb2ce51d"
+          },
+          "after": null
+        },
+        {
+          "path": "docs/validation/thesaurus-20261118/resumed-20261119/evidence/recovery-audit-and-runner-controls.tar.xz",
+          "before": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "0779bfbdd8fb1b2bedf5d885b394b00ea8c7949e"
+          },
+          "after": null
+        },
+        {
+          "path": "docs/validation/thesaurus-20261118/resumed-20261119/evidence/runtime-recovery-20261119-index.json",
+          "before": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "e9718bbfebe636b0a41ce35f3a3ef03b527b5f0c"
+          },
+          "after": null
+        },
+        {
+          "path": "docs/validation/thesaurus-20261118/resumed-20261119/evidence/runtime-recovery-20261119.tar.xz",
+          "before": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "1f7f91eb0973f13f1dff8464bbc444e4f3faa261"
+          },
+          "after": null
+        },
+        {
+          "path": "docs/validation/thesaurus-20261118/resumed-20261119/incoming/audit_selected_scope.py",
+          "before": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "3f2120e155d59f350e8e6eddcd2b70e1eaff4ce1"
+          },
+          "after": null
+        },
+        {
+          "path": "docs/validation/thesaurus-20261118/resumed-20261119/incoming/captured-refs.json",
+          "before": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "1ebcf55c564cdb56414ac4a67a8c447583be8780"
+          },
+          "after": null
+        },
+        {
+          "path": "docs/validation/thesaurus-20261118/resumed-20261119/incoming/integrated-audit-ff0775cb.json",
+          "before": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "423a94a03c6a0624c4009d87caf827481f4cfdf5"
+          },
+          "after": null
+        },
+        {
+          "path": "docs/validation/thesaurus-20261118/resumed-20261119/incoming/merge-resolution-review.json",
+          "before": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "9d45aa5e164f47cf229c7772dfe381815abb2251"
+          },
+          "after": null
+        },
+        {
+          "path": "docs/validation/thesaurus-20261118/resumed-20261119/incoming/retained-source-continuity.json",
+          "before": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "e3d21692f8b67b4045c432919f4699e8baf2a70f"
+          },
+          "after": null
+        },
+        {
+          "path": "docs/validation/thesaurus-20261118/resumed-20261119/incoming/selected-plan-review.json",
+          "before": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "42b098bd287d410e09a16bb1d18ff7a895e83d81"
+          },
+          "after": null
+        },
+        {
+          "path": "docs/validation/thesaurus-20261118/resumed-20261119/preparation-summary.json",
+          "before": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "5f7b294c305c031108d1f21ce225d5518b738f0e"
+          },
+          "after": null
+        },
+        {
+          "path": "docs/validation/thesaurus-20261118/resumed-20261119/review/engine-review-and-incoming-zotero-audit.json",
+          "before": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "9f42e99718f4197b48303aa237b2fde864f9348a"
+          },
+          "after": null
+        },
+        {
+          "path": "docs/validation/thesaurus-20261118/resumed-20261119/review/initial-binding-audit.json",
+          "before": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "7fc3e5fc555fc44f378d3a20f51714b11e495664"
+          },
+          "after": null
+        },
+        {
+          "path": "packages/quds_office_editor/CHANGELOG.md",
+          "before": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "7d4fdbc84e66476cd41128a619d991d65652cb6f"
+          },
+          "after": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "df1c088aee95af7876e2193875be819e55030459"
+          }
+        },
+        {
+          "path": "packages/quds_office_editor/lib/src/embed/office_editors.dart",
+          "before": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "f8ac8e363a19bc143880b4b0a4b2292d98162641"
+          },
+          "after": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "45189950fde8dd52a238a9eadb5a243e27589cb8"
+          }
+        },
+        {
+          "path": "packages/quds_office_editor/test/word_notes_proofing_controller_test.dart",
+          "before": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "cda4a31dd514c6828033df98f11489b2bc963b29"
+          },
+          "after": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "7d6205c07e608746f460d795eaec42dfd8eda75d"
+          }
+        },
+        {
+          "path": "packages/quds_office_editor/test/word_notes_proofing_pane_test.dart",
+          "before": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "8caf7516ce6de2ddb2f479ef60c3664b9ded57a3"
+          },
+          "after": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "2ec75c437d7d2f7ccda0a868f5663cf2bb31e9bd"
+          }
+        },
+        {
+          "path": "packages/quds_office_editor/test/word_zotero_notes_pane_test.dart",
+          "before": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "8d0d1eda1a7d8601181e450dbd0b90b76ee093b4"
+          },
+          "after": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "ce6f81738ffc6e638e0a63721a1c32341cf84fe8"
+          }
+        }
+      ]
+    },
+    "zotero": {
+      "head": "ff06e5544673ce7f70be983299241bcdcef780d3",
+      "tree": "ee23dc2179d4b3e26eabf3b35e7aa13f95a7963d",
+      "changed_paths": [
+        {
+          "path": "docs/validation/thesaurus-20261118/reconciled/plan.json",
+          "before": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "f1141128442a76f2fd781e55d21bf7a8055a3dd4"
+          },
+          "after": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "1ab45d43754d69fe6206a39b86b30deb0a6c3436"
+          }
+        },
+        {
+          "path": "docs/validation/thesaurus-20261118/reconciled/run_targeted.py",
+          "before": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "1dd33dfb4559e712bbfe2cd5873ba6fddc516abb"
+          },
+          "after": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "cdf8f61e2f047d531300f1cdbacd0eb221a55e9e"
+          }
+        },
+        {
+          "path": "docs/validation/thesaurus-20261118/reconciled/test_run_targeted.py",
+          "before": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "caf6e5679202f694ed47860389d597ed79c634d0"
+          },
+          "after": null
+        },
+        {
+          "path": "docs/validation/thesaurus-20261118/resumed-20261119/README.md",
+          "before": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "b4bf9b202011b9657ec804b4fd9bbe1a6b71ac71"
+          },
+          "after": null
+        },
+        {
+          "path": "docs/validation/thesaurus-20261118/resumed-20261119/evidence/combined-engine-checkpoint-index.json",
+          "before": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "097c34d84f9eb83cc81a76b9b4564190ed3cbb26"
+          },
+          "after": null
+        },
+        {
+          "path": "docs/validation/thesaurus-20261118/resumed-20261119/evidence/combined-engine-checkpoint.tar.xz",
+          "before": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "4159372dbe9cec6184ee0313b9b759ffcbc74046"
+          },
+          "after": null
+        },
+        {
+          "path": "docs/validation/thesaurus-20261118/resumed-20261119/evidence/recovery-audit-and-runner-controls-index.json",
+          "before": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "484be0f724981a11b058efff881fbc71eb2ce51d"
+          },
+          "after": null
+        },
+        {
+          "path": "docs/validation/thesaurus-20261118/resumed-20261119/evidence/recovery-audit-and-runner-controls.tar.xz",
+          "before": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "0779bfbdd8fb1b2bedf5d885b394b00ea8c7949e"
+          },
+          "after": null
+        },
+        {
+          "path": "docs/validation/thesaurus-20261118/resumed-20261119/evidence/runtime-recovery-20261119-index.json",
+          "before": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "e9718bbfebe636b0a41ce35f3a3ef03b527b5f0c"
+          },
+          "after": null
+        },
+        {
+          "path": "docs/validation/thesaurus-20261118/resumed-20261119/evidence/runtime-recovery-20261119.tar.xz",
+          "before": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "1f7f91eb0973f13f1dff8464bbc444e4f3faa261"
+          },
+          "after": null
+        },
+        {
+          "path": "docs/validation/thesaurus-20261118/resumed-20261119/incoming/audit_selected_scope.py",
+          "before": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "3f2120e155d59f350e8e6eddcd2b70e1eaff4ce1"
+          },
+          "after": null
+        },
+        {
+          "path": "docs/validation/thesaurus-20261118/resumed-20261119/incoming/captured-refs.json",
+          "before": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "1ebcf55c564cdb56414ac4a67a8c447583be8780"
+          },
+          "after": null
+        },
+        {
+          "path": "docs/validation/thesaurus-20261118/resumed-20261119/incoming/integrated-audit-ff0775cb.json",
+          "before": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "423a94a03c6a0624c4009d87caf827481f4cfdf5"
+          },
+          "after": null
+        },
+        {
+          "path": "docs/validation/thesaurus-20261118/resumed-20261119/incoming/merge-resolution-review.json",
+          "before": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "9d45aa5e164f47cf229c7772dfe381815abb2251"
+          },
+          "after": null
+        },
+        {
+          "path": "docs/validation/thesaurus-20261118/resumed-20261119/incoming/retained-source-continuity.json",
+          "before": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "e3d21692f8b67b4045c432919f4699e8baf2a70f"
+          },
+          "after": null
+        },
+        {
+          "path": "docs/validation/thesaurus-20261118/resumed-20261119/incoming/selected-plan-review.json",
+          "before": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "42b098bd287d410e09a16bb1d18ff7a895e83d81"
+          },
+          "after": null
+        },
+        {
+          "path": "docs/validation/thesaurus-20261118/resumed-20261119/preparation-summary.json",
+          "before": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "5f7b294c305c031108d1f21ce225d5518b738f0e"
+          },
+          "after": null
+        },
+        {
+          "path": "docs/validation/thesaurus-20261118/resumed-20261119/review/engine-review-and-incoming-zotero-audit.json",
+          "before": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "9f42e99718f4197b48303aa237b2fde864f9348a"
+          },
+          "after": null
+        },
+        {
+          "path": "docs/validation/thesaurus-20261118/resumed-20261119/review/initial-binding-audit.json",
+          "before": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "7fc3e5fc555fc44f378d3a20f51714b11e495664"
+          },
+          "after": null
+        },
+        {
+          "path": "docs/validation/zotero-annotations-20261119/README.md",
+          "before": null,
+          "after": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "5a93514f7eb32425c9db10ec9a5c3abe04c92b1e"
+          }
+        },
+        {
+          "path": "docs/validation/zotero-annotations-20261119/plan.json",
+          "before": null,
+          "after": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "e78b21eb57f0ee781f571d198e0954730028d32e"
+          }
+        },
+        {
+          "path": "docs/validation/zotero-annotations-20261119/reconciliation/audit_published_refs.py",
+          "before": null,
+          "after": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "4c93c69b4f54d887f8b139f74d11d2fb1ff206d3"
+          }
+        },
+        {
+          "path": "docs/validation/zotero-annotations-20261119/reconciliation/local-integration-commits.json",
+          "before": null,
+          "after": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "62dc7635f89d634c50b93b1c1c4433a45d6c612b"
+          }
+        },
+        {
+          "path": "docs/validation/zotero-annotations-20261119/reconciliation/merge-resolution-review.md",
+          "before": null,
+          "after": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "72a0842f15fcfdfc2a56345c513d8cf39d8e70a3"
+          }
+        },
+        {
+          "path": "docs/validation/zotero-annotations-20261119/reconciliation/published-replay-audit.json",
+          "before": null,
+          "after": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "e935672ab40931dc76dcb1e1ea60dd4458c4ccff"
+          }
+        },
+        {
+          "path": "docs/validation/zotero-annotations-20261119/reconciliation/published-source-audit.json",
+          "before": null,
+          "after": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "4acf3c1ccf5cfa74fd9a7d0ca118bba42e3def3c"
+          }
+        },
+        {
+          "path": "docs/validation/zotero-annotations-20261119/reconciliation/remote-snapshot-20261119.json",
+          "before": null,
+          "after": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "51ab3e4f64bdb18b44234160eca102c3ca7b0ffa"
+          }
+        },
+        {
+          "path": "docs/validation/zotero-annotations-20261119/runtime/env.sh",
+          "before": null,
+          "after": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "5b707337455c5bf810e22f7cdb1510525e6092d8"
+          }
+        },
+        {
+          "path": "docs/validation/zotero-annotations-20261119/runtime/prefetch.json",
+          "before": null,
+          "after": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "5a6a7c46f47c6fa1238e2d3a096c140871240361"
+          }
+        },
+        {
+          "path": "docs/validation/zotero-annotations-20261119/runtime/sdk-receipt.json",
+          "before": null,
+          "after": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "d1bf30d483f78da3faf70e3cd9dee48680485933"
+          }
+        },
+        {
+          "path": "docs/validation/zotero-annotations-20261119/runtime/tools-ready.json",
+          "before": null,
+          "after": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "b9055b767f7df263124dd067b1d3e3ded8dd209c"
+          }
+        },
+        {
+          "path": "docs/validation/zotero-annotations-20261119/runtime/workspace-ready.json",
+          "before": null,
+          "after": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "bee7eb4959260190b710deee72eda4db3cbac71d"
+          }
+        },
+        {
+          "path": "docs/zotero-support.md",
+          "before": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "583ae489fcb9a0ef8df295d3c127f26408a28930"
+          },
+          "after": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "8192ddefd450717dd74e38a482c3c6479c4ae801"
+          }
+        },
+        {
+          "path": "packages/quds_office_editor/CHANGELOG.md",
+          "before": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "7d4fdbc84e66476cd41128a619d991d65652cb6f"
+          },
+          "after": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "10c5142e50b97c8747a3ca89e3c144192bad441c"
+          }
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/suite_workspace.dart",
+          "before": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "5bba4d2b2037e2a3fc8ff35ffc36a057d1326747"
+          },
+          "after": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "85d70e8fecbcd7df9cce204825e5b53e91c1f282"
+          }
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+          "before": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "1f83c0bd57bcedfadd7f214fd3788f2d1bb51394"
+          },
+          "after": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "226e657e847852379e223c2b1b8864736b87bf3a"
+          }
+        },
+        {
+          "path": "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+          "before": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "0b397226e4d3af5b528cfcac9d672a833d0cfef6"
+          },
+          "after": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "1d2d67e509ba67f3c8c079fdeeae335911d69835"
+          }
+        },
+        {
+          "path": "packages/quds_office_editor/lib/src/embed/office_editors.dart",
+          "before": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "f8ac8e363a19bc143880b4b0a4b2292d98162641"
+          },
+          "after": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "45189950fde8dd52a238a9eadb5a243e27589cb8"
+          }
+        },
+        {
+          "path": "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart",
+          "before": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "293d136be9d863695e5ea25ad0a7f5b1ee4a436b"
+          },
+          "after": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "5c460d5cd8c74f7a31e269a2ee85825562745254"
+          }
+        },
+        {
+          "path": "packages/quds_office_editor/test/word_notes_proofing_controller_test.dart",
+          "before": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "cda4a31dd514c6828033df98f11489b2bc963b29"
+          },
+          "after": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "5d4e35970c8c990d2d65d2d39c9fe4b9c7580f83"
+          }
+        },
+        {
+          "path": "packages/quds_office_editor/test/word_notes_proofing_pane_test.dart",
+          "before": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "8caf7516ce6de2ddb2f479ef60c3664b9ded57a3"
+          },
+          "after": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "1f7e027941c2488ab4d16a9d5158a435d0e023f0"
+          }
+        },
+        {
+          "path": "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+          "before": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "909e6f32663beba59f7e459c515f6f6af995ae80"
+          },
+          "after": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "0d8869b671df74f333db7ec30ed9b59e2d046364"
+          }
+        },
+        {
+          "path": "packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart",
+          "before": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "fa40b58b1f68dcc81359aaec99447dcf64ac74f9"
+          },
+          "after": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "8ea62cbe3ebd152195a2cf34f395765e1a7d4e6e"
+          }
+        },
+        {
+          "path": "packages/quds_office_editor/test/word_zotero_direct_command_test.dart",
+          "before": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "56dd09ed84193ae8c59426adb117c3a2300955e2"
+          },
+          "after": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "1ba13825985520cae5292d5b4e9ae2ac0e507243"
+          }
+        },
+        {
+          "path": "packages/quds_office_editor/test/word_zotero_notes_pane_test.dart",
+          "before": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "8d0d1eda1a7d8601181e450dbd0b90b76ee093b4"
+          },
+          "after": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "599310d4b14f0c2bfbebc01a19b3d83fc9386410"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/CHANGELOG.md",
+          "before": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "030c3a41d6100f06f76f3bd0e8bbb676482951d7"
+          },
+          "after": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "ef4318a51f95556132e9117ddd3d8ec2fcb56d4b"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/zotero/zotero_citing.dart",
+          "before": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "1e9f66be950e8ca09dff6faf5fb20d35294390d7"
+          },
+          "after": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "3932759d48e180f326c5f1d324fe1abedef529ab"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/test/zotero_add_note_protocol_test.dart",
+          "before": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "8ce85a9a5d0c92adfd8a22941d12b2ff7d08f9ca"
+          },
+          "after": {
+            "mode": "100644",
+            "kind": "blob",
+            "sha": "5c1d577e1a9a9df3bc4618324bf24814feed1327"
+          }
+        }
+      ]
+    }
+  }
+}

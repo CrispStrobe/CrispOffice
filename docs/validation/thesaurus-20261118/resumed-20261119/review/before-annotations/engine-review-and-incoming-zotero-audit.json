@@ -1,0 +1,4362 @@
+{
+  "name": "engine-review-and-incoming-zotero",
+  "status": "passed",
+  "source_stability": {
+    "source_before_equals_after": true,
+    "environment_before_equals_after": true,
+    "changed_current_environment_files": [],
+    "changed_current_harness_files": [],
+    "changed_current_source_files": [],
+    "current_package_config_matches": true,
+    "receipt_evidence_hash_mismatches": [],
+    "source_after_sha256": "cb2822cdd0290b4b3fa11c685077bc8fd7526053bc5edc69fa0b4fbc1f17bade",
+    "environment_after_sha256": "6c13d9b8dbb6c8fe263f410354008c587edffd3647817e64cbc3a4658dc15071"
+  },
+  "passed": 714,
+  "suite_count": 42,
+  "per_suite_cases": {
+    "packages/quds_office_engine/test/list_restart_fidelity_test.dart": 5,
+    "packages/quds_office_engine/test/note_edit_test.dart": 4,
+    "packages/quds_office_engine/test/numbering_collision_test.dart": 8,
+    "packages/quds_office_engine/test/office_features_test.dart": 16,
+    "packages/quds_office_engine/test/office_thesaurus_test.dart": 24,
+    "packages/quds_office_engine/test/rich_note_test.dart": 8,
+    "packages/quds_office_engine/test/scripted_transitions_test.dart": 12,
+    "packages/quds_office_engine/test/word_comment_proofing_styles_test.dart": 4,
+    "packages/quds_office_engine/test/word_field_span_test.dart": 7,
+    "packages/quds_office_engine/test/word_footnote_reference_test.dart": 1,
+    "packages/quds_office_engine/test/word_list_numbering_snapshot_test.dart": 5,
+    "packages/quds_office_engine/test/word_note_bookmark_edit_test.dart": 9,
+    "packages/quds_office_engine/test/word_note_numbering_test.dart": 22,
+    "packages/quds_office_engine/test/word_proofing_inheritance_test.dart": 13,
+    "packages/quds_office_engine/test/word_style_introduction_test.dart": 4,
+    "packages/quds_office_engine/test/word_zotero_add_note_test.dart": 35,
+    "packages/quds_office_engine/test/word_zotero_bibliography_layout_test.dart": 14,
+    "packages/quds_office_engine/test/word_zotero_caret_test.dart": 9,
+    "packages/quds_office_engine/test/word_zotero_citing_test.dart": 59,
+    "packages/quds_office_engine/test/word_zotero_document_data_test.dart": 49,
+    "packages/quds_office_engine/test/word_zotero_formatted_bibliography_test.dart": 11,
+    "packages/quds_office_engine/test/word_zotero_note_insertion_test.dart": 41,
+    "packages/quds_office_engine/test/word_zotero_note_list_test.dart": 28,
+    "packages/quds_office_engine/test/word_zotero_preference_flow_test.dart": 11,
+    "packages/quds_office_engine/test/word_zotero_rich_edit_test.dart": 30,
+    "packages/quds_office_engine/test/word_zotero_scaling_test.dart": 5,
+    "packages/quds_office_engine/test/word_zotero_simple_field_test.dart": 19,
+    "packages/quds_office_engine/test/word_zotero_source_identity_test.dart": 14,
+    "packages/quds_office_engine/test/word_zotero_style_preferences_review_test.dart": 9,
+    "packages/quds_office_engine/test/word_zotero_test.dart": 16,
+    "packages/quds_office_engine/test/zotero_add_note_protocol_test.dart": 13,
+    "packages/quds_office_engine/test/zotero_backoff_state_test.dart": 7,
+    "packages/quds_office_engine/test/zotero_catalog_query_test.dart": 18,
+    "packages/quds_office_engine/test/zotero_citing_test.dart": 41,
+    "packages/quds_office_engine/test/zotero_client_test.dart": 34,
+    "packages/quds_office_engine/test/zotero_formatted_text_test.dart": 21,
+    "packages/quds_office_engine/test/zotero_identity_client_test.dart": 19,
+    "packages/quds_office_engine/test/zotero_item_details_test.dart": 23,
+    "packages/quds_office_engine/test/zotero_metadata_batch_test.dart": 20,
+    "packages/quds_office_engine/test/zotero_paragraph_runs_test.dart": 4,
+    "packages/quds_office_engine/test/zotero_saved_search_test.dart": 8,
+    "packages/quds_office_engine/test/zotero_tag_filter_test.dart": 14
+  },
+  "test_start_count": 756,
+  "test_completion_count": 756,
+  "excluded_lifecycle_count": 42,
+  "failures_including_lifecycle": [],
+  "skips_including_lifecycle": [],
+  "error_events": [],
+  "layout_or_tap_diagnostics": [],
+  "issues": [],
+  "stdout_bytes": 345869,
+  "stderr_bytes": 0,
+  "logs_sha256": {
+    "engine-review-and-incoming-zotero.stdout": "bc0d45b2b697d09ea0cbfc53544d3ee9215b10766d2cf8492e8f1cc076e881fd",
+    "engine-review-and-incoming-zotero.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "exit_code": 0,
+  "cases": [
+    {
+      "suite": "packages/quds_office_engine/test/office_thesaurus_test.dart",
+      "name": "UTF-8 shard vectors match the compiler on VM and JavaScript",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/office_thesaurus_test.dart",
+      "name": "unsupported language and missing pack are distinct",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/office_thesaurus_test.dart",
+      "name": "source meanings, labels and relations remain separate",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_note_insertion_test.dart",
+      "name": "footnote insertion with request type 0 preserves prose and rich text through DOCX",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/office_thesaurus_test.dart",
+      "name": "normalization keeps original source query and phrase spellings",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_note_insertion_test.dart",
+      "name": "footnote insertion with request type 1 preserves prose and rich text through DOCX",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/office_thesaurus_test.dart",
+      "name": "German sharp-s and umlauts are not folded",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/office_thesaurus_test.dart",
+      "name": "source aliases preserve ambiguity and compatible POS",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_note_insertion_test.dart",
+      "name": "footnote insertion before keeps processor order and note numbers",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_note_insertion_test.dart",
+      "name": "footnote insertion between keeps processor order and note numbers",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_note_insertion_test.dart",
+      "name": "footnote insertion after keeps processor order and note numbers",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_caret_test.dart",
+      "name": "native add/edit finds the existing footnote citation at its caret",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/office_thesaurus_test.dart",
+      "name": "German noun fallback normalizes lookup whitespace and soft hyphens",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_note_insertion_test.dart",
+      "name": "footnote insertion later paragraph keeps processor order and note numbers",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/office_thesaurus_test.dart",
+      "name": "detachment fallback cannot import an incompatible POS",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_note_insertion_test.dart",
+      "name": "footnote catalog seed with preference 0 cancels atomically",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_caret_test.dart",
+      "name": "footnote caret boundaries distinguish editing from insertion",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_note_insertion_test.dart",
+      "name": "footnote catalog seed with preference 0 applies atomically",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_note_insertion_test.dart",
+      "name": "footnote catalog seed with preference 1 cancels atomically",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_caret_test.dart",
+      "name": "footnote caret offsets outside the paragraph are rejected",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_note_insertion_test.dart",
+      "name": "footnote catalog seed with preference 1 applies atomically",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_note_insertion_test.dart",
+      "name": "footnote preferences can be chosen before seeding in the same transaction",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/office_thesaurus_test.dart",
+      "name": "no entry remains separate from malformed index",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_caret_test.dart",
+      "name": "native add/edit finds the existing endnote citation at its caret",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_note_insertion_test.dart",
+      "name": "footnote insertion refuses an incompatible note kind and bibliography",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_note_insertion_test.dart",
+      "name": "footnote seed refuses a later incompatible preference without applying",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_caret_test.dart",
+      "name": "endnote caret boundaries distinguish editing from insertion",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/office_thesaurus_test.dart",
+      "name": "null index record is a damaged pack",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_note_insertion_test.dart",
+      "name": "footnote deletion of an old sole citation keeps the newly inserted citation and note",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_caret_test.dart",
+      "name": "endnote caret offsets outside the paragraph are rejected",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/office_thesaurus_test.dart",
+      "name": "a missing referenced meaning is a damaged pack",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_caret_test.dart",
+      "name": "same numeric footnote and endnote IDs select by paragraph identity",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_caret_test.dart",
+      "name": "a detached lookalike paragraph cannot select an anchored citation",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_caret_test.dart",
+      "name": "unanchored note citations remain unsupported",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/office_thesaurus_test.dart",
+      "name": "source identity mismatch fails closed",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_note_insertion_test.dart",
+      "name": "endnote insertion with request type 0 preserves prose and rich text through DOCX",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/office_thesaurus_test.dart",
+      "name": "control characters in literal replacement terms are rejected",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_note_insertion_test.dart",
+      "name": "endnote insertion with request type 2 preserves prose and rich text through DOCX",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/office_thesaurus_test.dart",
+      "name": "pinned manifest rejects modification",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_note_insertion_test.dart",
+      "name": "endnote insertion before keeps processor order and note numbers",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/office_thesaurus_test.dart",
+      "name": "logical digest detects damaged shard bytes",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_note_insertion_test.dart",
+      "name": "endnote insertion between keeps processor order and note numbers",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_note_insertion_test.dart",
+      "name": "endnote insertion after keeps processor order and note numbers",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/office_thesaurus_test.dart",
+      "name": "compressed shards verify both forms and load on demand",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_note_insertion_test.dart",
+      "name": "endnote insertion later paragraph keeps processor order and note numbers",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/office_thesaurus_test.dart",
+      "name": "compressed digest detects damage before decompression",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_note_insertion_test.dart",
+      "name": "endnote catalog seed with preference 0 cancels atomically",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_note_insertion_test.dart",
+      "name": "endnote catalog seed with preference 0 applies atomically",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/office_thesaurus_test.dart",
+      "name": "decompression cannot exceed declared logical size",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_note_insertion_test.dart",
+      "name": "endnote catalog seed with preference 2 cancels atomically",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_note_insertion_test.dart",
+      "name": "endnote catalog seed with preference 2 applies atomically",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_note_insertion_test.dart",
+      "name": "endnote preferences can be chosen before seeding in the same transaction",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_note_insertion_test.dart",
+      "name": "endnote insertion refuses an incompatible note kind and bibliography",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/office_thesaurus_test.dart",
+      "name": "compressed packs require an explicit byte loader",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_note_insertion_test.dart",
+      "name": "endnote seed refuses a later incompatible preference without applying",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/office_thesaurus_test.dart",
+      "name": "missing shard is a failed pack, not missing corpus or no entry",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_note_insertion_test.dart",
+      "name": "endnote deletion of an old sole citation keeps the newly inserted citation and note",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_note_insertion_test.dart",
+      "name": "a staged new citation prevents converting the existing sole-citation note",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/office_thesaurus_test.dart",
+      "name": "pack clear rejects an in-flight result without restoring old caches",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_note_insertion_test.dart",
+      "name": "an already staged note conversion prevents inserting into that note",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/office_thesaurus_test.dart",
+      "name": "cache limits remain bounded and repeated results retain candidate identity",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_note_insertion_test.dart",
+      "name": "a note table cell is an anchored insertion location",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_note_insertion_test.dart",
+      "name": "unanchored and detached note paragraphs do not accept new fields",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/office_thesaurus_test.dart",
+      "name": "pack notices are read through integrity checks",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_note_insertion_test.dart",
+      "name": "locked citation in the destination note prevents native insertion",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_note_insertion_test.dart",
+      "name": "malformed citation in the destination note prevents native insertion",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_note_insertion_test.dart",
+      "name": "a nested note reference is rejected without creating another note",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_note_insertion_test.dart",
+      "name": "remove note after staging rejects stale note insertion",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_note_insertion_test.dart",
+      "name": "replace note after staging rejects stale note insertion",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_note_insertion_test.dart",
+      "name": "detach paragraph after staging rejects stale note insertion",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_note_insertion_test.dart",
+      "name": "reorder paragraphs after staging rejects stale note insertion",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_note_insertion_test.dart",
+      "name": "change note ID after staging rejects stale note insertion",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_note_insertion_test.dart",
+      "name": "replace anchor after staging rejects stale note insertion",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_proofing_inheritance_test.dart",
+      "name": "clearing a direct override restores paragraph style live and after save",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/office_thesaurus_test.dart",
+      "name": "default cache retains high-polysemy meanings across equivalent queries",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_proofing_inheritance_test.dart",
+      "name": "clearing a direct override restores character style live and after save",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_proofing_inheritance_test.dart",
+      "name": "partial reset preserves other runs, pending formatting, unknown XML and explicit noProof",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_proofing_inheritance_test.dart",
+      "name": "already inherited text is a no-op but equal direct overrides are removed",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_proofing_inheritance_test.dart",
+      "name": "a pending unsaved override is removed without changing inherited formatting",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_proofing_inheritance_test.dart",
+      "name": "document and explicit paragraph defaults remain live after reset",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_proofing_inheritance_test.dart",
+      "name": "newly authored language resets after an earlier save without sparse import metadata",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_proofing_inheritance_test.dart",
+      "name": "table condition en-US is restored with source tblLook",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_proofing_inheritance_test.dart",
+      "name": "table condition de-CH is restored with source tblLook",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_proofing_inheritance_test.dart",
+      "name": "table condition de-AT is restored with source tblLook",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_proofing_inheritance_test.dart",
+      "name": "comment inheritance uses its exact story without touching body text",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_proofing_inheritance_test.dart",
+      "name": "shallow detached previews cannot mutate live source properties",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_proofing_inheritance_test.dart",
+      "name": "live, detached-source and invalid-range requests leave source unchanged",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_comment_proofing_styles_test.dart",
+      "name": "comments inherit document, paragraph and character proofing settings on import",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_comment_proofing_styles_test.dart",
+      "name": "inherited and explicit comment proofing values survive three DOCX saves",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_comment_proofing_styles_test.dart",
+      "name": "document language changes remain live for comments without overrides",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_comment_proofing_styles_test.dart",
+      "name": "style refresh updates comments while retaining explicit run settings",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_style_introduction_test.dart",
+      "name": "new TOC link appearance survives its first export",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_style_introduction_test.dart",
+      "name": "unrelated style catalog false retains native paragraph defaults",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_add_note_test.dart",
+      "name": "rich paragraphs, empty paragraphs, soft breaks, and hyperlinks survive",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_style_introduction_test.dart",
+      "name": "unrelated style catalog true retains native paragraph defaults",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_style_introduction_test.dart",
+      "name": "declared defaults still cascade and explicit zero overrides them",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_add_note_protocol_test.dart",
+      "name": "actual pinned Zotero note command sequence returns fields in request order",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_add_note_protocol_test.dart",
+      "name": "malformed insertText arguments are rejected before handler: [native-research-note, 42]",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_add_note_protocol_test.dart",
+      "name": "malformed insertText arguments are rejected before handler: [native-research-note, <p>text</p>, extra]",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_add_note_protocol_test.dart",
+      "name": "invalid placeholder conversion shape is drained: [native-research-note, [ABC123, ABC123], 0, Http]",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_add_note_test.dart",
+      "name": "default Zotero annotation export keeps heading quote comment and active citation",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_add_note_protocol_test.dart",
+      "name": "invalid placeholder conversion shape is drained: [native-research-note, [ABC123], 0, Http]",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_add_note_protocol_test.dart",
+      "name": "invalid placeholder conversion shape is drained: [native-research-note, [ABC123], 3, Http]",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_add_note_test.dart",
+      "name": "custom heading styles retain structural level and explicit character resets",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_add_note_protocol_test.dart",
+      "name": "invalid placeholder conversion shape is drained: [native-research-note, [ABC123], 0, Field]",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_add_note_protocol_test.dart",
+      "name": "invalid placeholder conversion shape is drained: [native-research-note, [ABC/123], 0, Http]",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_add_note_protocol_test.dart",
+      "name": "invalid placeholder conversion shape is drained: [native-research-note, ABC123, 0, Http]",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_add_note_protocol_test.dart",
+      "name": "conversion must return exactly distinct new field identities: []",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_add_note_protocol_test.dart",
+      "name": "conversion must return exactly distinct new field identities: [{id: same, code: TEMP, text: (Citation), noteIndex: 0}, {id: same, code: TEMP, text: (Citation), noteIndex: 0}]",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_add_note_test.dart",
+      "name": "existing ordinary notes count around inserted citation notes",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_add_note_protocol_test.dart",
+      "name": "conversion must return exactly distinct new field identities: [{id: known, code: TEMP, text: (Citation), noteIndex: 0}, {id: new, code: TEMP, text: (Citation), noteIndex: 0}]",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_add_note_protocol_test.dart",
+      "name": "text insertion capability must be a boolean",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_add_note_test.dart",
+      "name": "inserted notes precede converted type 1 note at the same anchor",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_add_note_test.dart",
+      "name": "inserted notes precede converted type 2 note at the same anchor",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_add_note_test.dart",
+      "name": "existing bibliography updates in same transaction as inserted note citations",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_add_note_test.dart",
+      "name": "native note type 0 preserves citation order and DOCX fields",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_add_note_test.dart",
+      "name": "native note type 1 preserves citation order and DOCX fields",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_citing_test.dart",
+      "name": "replays command shapes generated by the pinned Zotero HTTP wrapper",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_citing_test.dart",
+      "name": "refresh follows current object-based protocol and sends literal JSON",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_add_note_test.dart",
+      "name": "native note type 2 preserves citation order and DOCX fields",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_citing_test.dart",
+      "name": "citation insertion registers temporary field and note conversion objects",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_citing_test.dart",
+      "name": "starts the explicit addEditCitation command",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_add_note_test.dart",
+      "name": "plain note without citations is staged and inserted at the body caret",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_add_note_test.dart",
+      "name": "cancelled TEMP field does not count as an inserted research note",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_citing_test.dart",
+      "name": "starts the explicit addEditBibliography command",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_add_note_test.dart",
+      "name": "uncited heading note replaces an empty prefix without extra blank paragraph",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_citing_test.dart",
+      "name": "starts the explicit addNote command",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_citing_test.dart",
+      "name": "starts the explicit refresh command",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_citing_test.dart",
+      "name": "starts the explicit setDocPrefs command",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_citing_test.dart",
+      "name": "starts the explicit removeCodes command",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_add_note_test.dart",
+      "name": "existing fields before and after insertion update without shifting note caret",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_citing_test.dart",
+      "name": "initial 503 never responds to somebody else\u2019s transaction",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_add_note_test.dart",
+      "name": "note citations can be explicitly unlinked or deleted before completion",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_citing_test.dart",
+      "name": "handler error sends safe payload and drains alert/activate/complete",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_add_note_test.dart",
+      "name": "incomplete repeated or unknown placeholder request [] is atomic",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_citing_test.dart",
+      "name": "abort cleanup never approves a question or dispatches mutations",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_add_note_test.dart",
+      "name": "incomplete repeated or unknown placeholder request [ABC123] is atomic",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_add_note_test.dart",
+      "name": "incomplete repeated or unknown placeholder request [ABC123, ABC123] is atomic",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_citing_test.dart",
+      "name": "desktop error buttons=0 answer=1 discards partial work after complete",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_citing_test.dart",
+      "name": "desktop error buttons=2 answer=0 discards partial work after complete",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_add_note_test.dart",
+      "name": "incomplete repeated or unknown placeholder request [ABC123, UNKNOWN] is atomic",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_add_note_test.dart",
+      "name": "unconverted and TEMP placeholders cannot complete",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_citing_test.dart",
+      "name": "desktop error buttons=2 answer=1 discards partial work after complete",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_add_note_test.dart",
+      "name": "repeat conversion and bibliography placeholder type are rejected",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_citing_test.dart",
+      "name": "STOP OK_CANCEL replacement prompt remains a choice: 0",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_add_note_test.dart",
+      "name": "stale body text refuses applying a complete research note",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_citing_test.dart",
+      "name": "STOP OK_CANCEL replacement prompt remains a choice: 1",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_add_note_test.dart",
+      "name": "existing footnote and existing citation do not advertise text insertion",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_citing_test.dart",
+      "name": "failed desktop error acknowledgment is not retried",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_add_note_test.dart",
+      "name": "unsupported or malformed note is refused before edits: <p><a href=\"https://www.zotero.org/?ABC123\">(Old 1)</a> <a href=\"https://www.zotero.org/?ABC123\">(Old 1)</a></p>",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_add_note_test.dart",
+      "name": "unsupported or malformed note is refused before edits: <p><a href=\"https://www.zotero.org/?ABC123\"></a></p>",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_add_note_test.dart",
+      "name": "unsupported or malformed note is refused before edits: <a href=\"https://www.zotero.org/?ABC123\"><p>Cross</p><p>paragraphs</p></a>",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_add_note_test.dart",
+      "name": "unsupported or malformed note is refused before edits: <p><a href=\"https://www.zotero.org/?ABC123#bad\">Bad</a></p>",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_add_note_test.dart",
+      "name": "unsupported or malformed note is refused before edits: <p><a href=\"javascript:alert(1)\">Bad</a></p>",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_add_note_test.dart",
+      "name": "unsupported or malformed note is refused before edits: <p><img src=\"https://example.org/image.png\"/></p>",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_citing_test.dart",
+      "name": "cancelling a desktop error prompt aborts without committing",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_add_note_test.dart",
+      "name": "unsupported or malformed note is refused before edits: <p><span data-citation=\"broken\">Unconverted</span></p>",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_add_note_test.dart",
+      "name": "unsupported or malformed note is refused before edits: <table><tr><td>Layout</td></tr></table>",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_citing_test.dart",
+      "name": "cleanup is bounded and reports unfinished desktop ownership",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_add_note_test.dart",
+      "name": "unsupported or malformed note is refused before edits: <p><span style=\"color:red\">Color</span></p>",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_add_note_test.dart",
+      "name": "unsupported or malformed note is refused before edits: <p><a href=\"https://example.org\" title=\"tooltip\">Extra attributes</a></p>",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_citing_test.dart",
+      "name": "mismatched document is rejected before handler and safely drained",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_add_note_test.dart",
+      "name": "unsupported or malformed note is refused before edits: <p>\ue0000\ue001</p>",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_add_note_test.dart",
+      "name": "unsupported or malformed note is refused before edits: <p>Unclosed",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_citing_test.dart",
+      "name": "wrong terminal document never triggers another response",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_citing_test.dart",
+      "name": "failed completion handler never sends a response after complete",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_citing_test.dart",
+      "name": "unsupported document transfer capability is refused before advertising it",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_citing_test.dart",
+      "name": "stale tuple field response is rejected instead of corrupting Zotero state",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_citing_test.dart",
+      "name": "duplicate field identifiers cannot be advertised to Zotero",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_citing_test.dart",
+      "name": "unknown field cannot be modified or selected",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_citing_test.dart",
+      "name": "bibliography dimensions and display-alert choices retain protocol types",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_citing_test.dart",
+      "name": "invalid alert answer is an error instead of implicit confirmation",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_citing_test.dart",
+      "name": "command limit accepts completion but refuses further document work",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_citing_test.dart",
+      "name": "outgoing JSON limit counts UTF-8 bytes and never submits partial fields",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_citing_test.dart",
+      "name": "incoming JSON nesting and malformed responses are bounded",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_citing_test.dart",
+      "name": "cyclic and non-JSON handler values never escape to transport",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_citing_test.dart",
+      "name": "transport failure never retries POST or blindly sends cleanup",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_citing_test.dart",
+      "name": "request deadline bounds a transport that fails to enforce timeout",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_citing_test.dart",
+      "name": "cancellation before start makes no request",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_citing_test.dart",
+      "name": "cancellation awaits pending native POST then aborts known command",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_citing_test.dart",
+      "name": "cancellation interrupts a pending application dialog and drains",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_citing_test.dart",
+      "name": "guard is rechecked after asynchronous handler before sending data",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_citing_test.dart",
+      "name": "single-flight gate spans instances and releases after completion",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_citing_test.dart",
+      "name": "request diagnostics omit body and headers; catalog defaults unchanged",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_bibliography_layout_test.dart",
+      "name": "entry paragraphs, soft breaks and twip layout survive repeated DOCX saves",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_bibliography_layout_test.dart",
+      "name": "second native refresh preserves layout without another style callback",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_bibliography_layout_test.dart",
+      "name": "style-only change is staged and resets old indent, spacing and tabs",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_bibliography_layout_test.dart",
+      "name": "refresh can shrink entries and keep neighboring paragraphs and identity",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_bibliography_layout_test.dart",
+      "name": "complete bibliography can be unlinked or deleted without losing neighbors",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_bibliography_layout_test.dart",
+      "name": "changed result can be unlinked in the same native transaction",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_bibliography_layout_test.dart",
+      "name": "no citation insertion is permitted inside any bibliography entry",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_bibliography_layout_test.dart",
+      "name": "mixed, locked, nested and cross-container ranges remain refused",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_bibliography_layout_test.dart",
+      "name": "legacy flattened layout is requested again and never falsely marked applied",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_bibliography_layout_test.dart",
+      "name": "identical plain refresh does not certify flattened legacy entry boundaries",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_bibliography_layout_test.dart",
+      "name": "native refresh upgrades flattened legacy bibliography with real entry boundaries",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_bibliography_layout_test.dart",
+      "name": "XML bibliography flag reset preserves unrelated native attributes",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_bibliography_layout_test.dart",
+      "name": "new entries do not repeat first-paragraph page breaks or drop caps",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_bibliography_layout_test.dart",
+      "name": "invalid layout values are rejected before any document mutation",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_citing_test.dart",
+      "name": "application and field objects expose the current HTTP contract",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_citing_test.dart",
+      "name": "reading order follows body and note anchors including noncitation notes",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_citing_test.dart",
+      "name": "body table fields retain reading order with surrounding paragraphs",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_citing_test.dart",
+      "name": "codes results and preferences stay staged until complete and apply",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_document_data_test.dart",
+      "name": "new document has no preference data",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_citing_test.dart",
+      "name": "refresh replaces changing field lengths from the end of the paragraph",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_document_data_test.dart",
+      "name": "XML adaptation retains session, style, locale and unknown data",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_document_data_test.dart",
+      "name": "JSON adaptation preserves unknown objects and boolean preferences",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_document_data_test.dart",
+      "name": "unchanged native XML and JSON retain their exact source text",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_document_data_test.dart",
+      "name": "native override actually replaces a stored HTTP field preference",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_document_data_test.dart",
+      "name": "rejects unsupported field storage Bookmark",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_document_data_test.dart",
+      "name": "rejects unsupported field storage ReferenceMark",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_document_data_test.dart",
+      "name": "rejects unsupported field storage ",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_document_data_test.dart",
+      "name": "rejects unsupported field storage unknown",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_document_data_test.dart",
+      "name": "rejects malformed or ambiguous data 320281097",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_document_data_test.dart",
+      "name": "rejects malformed or ambiguous data 990764120",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_document_data_test.dart",
+      "name": "rejects malformed or ambiguous data 170738677",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_document_data_test.dart",
+      "name": "rejects malformed or ambiguous data 301689213",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_document_data_test.dart",
+      "name": "rejects malformed or ambiguous data 429761685",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_document_data_test.dart",
+      "name": "rejects malformed or ambiguous data 21377468",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_document_data_test.dart",
+      "name": "rejects malformed or ambiguous data 719209435",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_document_data_test.dart",
+      "name": "rejects malformed or ambiguous data 378291332",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_citing_test.dart",
+      "name": "native code and text refresh retires basic formatting",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_citing_test.dart",
+      "name": "native text-only refresh retires basic formatting",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_citing_test.dart",
+      "name": "native code-only refresh retires basic formatting",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_document_data_test.dart",
+      "name": "native property chunks survive save reopen and repeated save",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_citing_test.dart",
+      "name": "new citation inserts as note type 0 and survives DOCX",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_citing_test.dart",
+      "name": "new citation inserts as note type 1 and survives DOCX",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_document_data_test.dart",
+      "name": "preference override crosses isolate save",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_citing_test.dart",
+      "name": "new citation inserts as note type 2 and survives DOCX",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_formatted_bibliography_test.dart",
+      "name": "rich bibliography retains styles and metadata through three direct saves",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_citing_test.dart",
+      "name": "caret follows inserted note type 0 after an earlier citation expands",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_citing_test.dart",
+      "name": "caret follows inserted note type 1 after an earlier citation expands",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_citing_test.dart",
+      "name": "caret follows inserted note type 2 after an earlier citation expands",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_citing_test.dart",
+      "name": "a newly inserted note precedes existing notes in processor order",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_document_data_test.dart",
+      "name": "updates the source-owned nonstandard part and preserves unrelated data",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_citing_test.dart",
+      "name": "a note inserted directly before an existing marker uses its new order",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_document_data_test.dart",
+      "name": "new preferences do not adopt an unowned canonical part",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_citing_test.dart",
+      "name": "a sole citation converts from note type 0 to 1 without losing text",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_document_data_test.dart",
+      "name": "clear and restore remain effective after an intervening save",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_citing_test.dart",
+      "name": "a sole citation converts from note type 0 to 2 without losing text",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_citing_test.dart",
+      "name": "a sole citation converts from note type 1 to 0 without losing text",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_document_data_test.dart",
+      "name": "null override preserves an imported custom part byte for byte",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_citing_test.dart",
+      "name": "a sole citation converts from note type 1 to 2 without losing text",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_formatted_bibliography_test.dart",
+      "name": "rich bibliography retains styles and metadata through three isolate saves",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_citing_test.dart",
+      "name": "a sole citation converts from note type 2 to 0 without losing text",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_document_data_test.dart",
+      "name": "reads UTF-16 custom properties before saving as UTF-8",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_citing_test.dart",
+      "name": "a sole citation converts from note type 2 to 1 without losing text",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_formatted_bibliography_test.dart",
+      "name": "existing sole-run bibliography upgrades to a paragraph-owned rich cache",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_citing_test.dart",
+      "name": "conversion refuses extra note prose without staging earlier conversions",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_formatted_bibliography_test.dart",
+      "name": "rich update preserves a whole-paragraph field and accepts explicit plain fallback",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_document_data_test.dart",
+      "name": "rejects external and duplicate custom-property ownership",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_citing_test.dart",
+      "name": "two citations in one note share the note index and refuse note conversion",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_document_data_test.dart",
+      "name": "damaged native chunk refuses read and replacement 461399787",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_citing_test.dart",
+      "name": "conversion refuses a citation note with an unrelated empty PAGE field",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_citing_test.dart",
+      "name": "deleting a citation keeps its note containing an unrelated empty PAGE field",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_citing_test.dart",
+      "name": "conversion refuses a citation note with two note markers",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_formatted_bibliography_test.dart",
+      "name": "rich replacement of an inline bibliography refuses without touching its neighbors",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_citing_test.dart",
+      "name": "deleting a citation keeps its note containing two note markers",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_document_data_test.dart",
+      "name": "damaged native chunk refuses read and replacement 897672991",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_citing_test.dart",
+      "name": "deleting an explanatory-note citation keeps the note and surrounding prose",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_document_data_test.dart",
+      "name": "damaged native chunk refuses read and replacement 741984463",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_citing_test.dart",
+      "name": "deleting a sole-citation note removes its body reference and updates later note indices",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_citing_test.dart",
+      "name": "unlink retains processor-updated visible text and removes only native code",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_document_data_test.dart",
+      "name": "damaged native chunk refuses read and replacement 597139322",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_document_data_test.dart",
+      "name": "damaged native chunk refuses read and replacement 654379554",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_citing_test.dart",
+      "name": "cancelled TEMP insertion and untouched seeded citation leave no field",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_document_data_test.dart",
+      "name": "damaged native chunk refuses read and replacement 58416057",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_citing_test.dart",
+      "name": "seeded catalog selection is visible to Zotero and inserts only after it updates",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_document_data_test.dart",
+      "name": "damaged native chunk refuses read and replacement 690044080",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_preference_flow_test.dart",
+      "name": "reads native JSON style, locale and placement 0",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_document_data_test.dart",
+      "name": "excessive document data is rejected before persistence",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_document_data_test.dart",
+      "name": "a surrogate pair at the native chunk boundary stays intact",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_citing_test.dart",
+      "name": "catalog seed respects JSON note type 0",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_document_data_test.dart",
+      "name": "all-space native chunks retain significant JSON string whitespace",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_formatted_bibliography_test.dart",
+      "name": "a reopened full-paragraph complex bibliography supports another rich update",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_document_data_test.dart",
+      "name": "XML adaptation retains unknown all-space text and comments",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_document_data_test.dart",
+      "name": "ambiguous or excessive preferences are refused 830213317",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_document_data_test.dart",
+      "name": "ambiguous or excessive preferences are refused 907203696",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_document_data_test.dart",
+      "name": "ambiguous or excessive preferences are refused 309234631",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_document_data_test.dart",
+      "name": "ambiguous or excessive preferences are refused 585809883",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_document_data_test.dart",
+      "name": "ambiguous or excessive preferences are refused 1048441131",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_document_data_test.dart",
+      "name": "JSON strings may contain escaped quotes and nesting characters",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_document_data_test.dart",
+      "name": "invalid XML characters cannot be silently replaced 1",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_citing_test.dart",
+      "name": "catalog seed respects JSON note type 1",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_document_data_test.dart",
+      "name": "invalid XML characters cannot be silently replaced 361688422",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_document_data_test.dart",
+      "name": "invalid XML characters cannot be silently replaced 589417670",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_document_data_test.dart",
+      "name": "invalid XML characters cannot be silently replaced 883780703",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_formatted_bibliography_test.dart",
+      "name": "zero-width wrappers outside a whole-text field prevent rich replacement",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_formatted_bibliography_test.dart",
+      "name": "text mismatch refuses both construction and replacement before mutation",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_document_data_test.dart",
+      "name": "truncated UTF-16 custom properties are refused",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_formatted_bibliography_test.dart",
+      "name": "rich replacement retains stale-handle and locked-field refusal",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_citing_test.dart",
+      "name": "catalog seed respects JSON note type 2",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_document_data_test.dart",
+      "name": "Field adaptation cannot exceed the bounded input size",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_citing_test.dart",
+      "name": "catalog seed respects XML note type 0",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_formatted_bibliography_test.dart",
+      "name": "same-text citation edit preserves complex result runs and foreign formatted metadata",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_formatted_bibliography_test.dart",
+      "name": "same-text whole-paragraph citation edits keep every result run",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_citing_test.dart",
+      "name": "catalog seed respects XML note type 1",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_citing_test.dart",
+      "name": "catalog seed respects XML note type 2",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_citing_test.dart",
+      "name": "native XML with omitted falsey note type seeds an inline citation",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_citing_test.dart",
+      "name": "catalog seeds reject missing or invalid native style data without mutation",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_citing_test.dart",
+      "name": "seed placement 0 refuses silently changed final preference 1",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_citing_test.dart",
+      "name": "seed placement 0 refuses silently changed final preference 2",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_citing_test.dart",
+      "name": "seed placement 1 refuses silently changed final preference 0",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_citing_test.dart",
+      "name": "seed placement 1 refuses silently changed final preference 2",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_citing_test.dart",
+      "name": "seed placement 2 refuses silently changed final preference 0",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_citing_test.dart",
+      "name": "seed placement 2 refuses silently changed final preference 1",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_citing_test.dart",
+      "name": "Zotero can explicitly convert a seed before returning matching preferences",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_citing_test.dart",
+      "name": "unfinished TEMP result refuses completion and leaves the original document intact",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_document_data_test.dart",
+      "name": "custom-property output uses the reader UTF-8 byte limit",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_citing_test.dart",
+      "name": "citation and bibliography wrappers preserve metadata and rich results",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_citing_test.dart",
+      "name": "new bibliography inserts a separate linked paragraph after the anchor",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_citing_test.dart",
+      "name": "uniform superscript survives native result replacement and DOCX reopening",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_citing_test.dart",
+      "name": "mixed inline formatting retains styled runs in one protected field",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_citing_test.dart",
+      "name": "foreign document and field identities and malformed commands are rejected before mutation",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_citing_test.dart",
+      "name": "changed text or replaced citation metadata invalidates a prepared result",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_citing_test.dart",
+      "name": "locked documents and missing or repeated note anchors are refused",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_preference_flow_test.dart",
+      "name": "style then seeded placement 0 remain staged until apply",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_preference_flow_test.dart",
+      "name": "reads native JSON style, locale and placement 1",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_preference_flow_test.dart",
+      "name": "style then seeded placement 1 remain staged until apply",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_preference_flow_test.dart",
+      "name": "reads native JSON style, locale and placement 2",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_citing_test.dart",
+      "name": "real Zotero processor German ibid and locators survive whole-document refresh",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_preference_flow_test.dart",
+      "name": "style then seeded placement 2 remain staged until apply",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_citing_test.dart",
+      "name": "real numeric processor output renumbers existing citations after a preceding insertion",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_preference_flow_test.dart",
+      "name": "native XML summary handles omitted inline placement and locale",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_preference_flow_test.dart",
+      "name": "unset and incomplete styles cannot place catalog seeds",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_citing_test.dart",
+      "name": "real author-year disambiguation updates both existing and newly inserted citations",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_preference_flow_test.dart",
+      "name": "cancelled second picker leaves preferences and sources detached",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_preference_flow_test.dart",
+      "name": "preferences must finish before continuing with catalog sources",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_preference_flow_test.dart",
+      "name": "continuation refuses a changed document before creating a seed",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_rich_edit_test.dart",
+      "name": "native insertion retains mixed citation formatting as one field",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_rich_edit_test.dart",
+      "name": "native replacement upgrades a simple field without losing neighbors",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_rich_edit_test.dart",
+      "name": "a caret inside a mixed citation moves after the complete packet",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_rich_edit_test.dart",
+      "name": "partial mixed citation replacement removes its entire packet: \"\"",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_rich_edit_test.dart",
+      "name": "partial mixed citation replacement removes its entire packet: \"Replacement\"",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_rich_edit_test.dart",
+      "name": "paste at citation position 7 keeps the field packet intact",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_rich_edit_test.dart",
+      "name": "paste at citation position 9 keeps the field packet intact",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_rich_edit_test.dart",
+      "name": "paste at citation position 14 keeps the field packet intact",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_rich_edit_test.dart",
+      "name": "paragraph split at citation edge 7 keeps every marker together",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_rich_edit_test.dart",
+      "name": "paragraph split at citation edge 14 keeps every marker together",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_rich_edit_test.dart",
+      "name": "paragraph split within a mixed citation refuses before mutation",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_rich_edit_test.dart",
+      "name": "formatting a partial citation selects all result runs without splitting it",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_rich_edit_test.dart",
+      "name": "locked Zotero packets refuse generic interior editing without mutation",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_rich_edit_test.dart",
+      "name": "malformed Zotero packets refuse generic interior editing without mutation",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_rich_edit_test.dart",
+      "name": "unbalanced Zotero packets refuse generic interior editing without mutation",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_rich_edit_test.dart",
+      "name": "nested Zotero packets refuse generic interior editing without mutation",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_rich_edit_test.dart",
+      "name": "duplicate separator Zotero packets refuse generic interior editing without mutation",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_rich_edit_test.dart",
+      "name": "late instruction Zotero packets refuse generic interior editing without mutation",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_rich_edit_test.dart",
+      "name": "mixed citation styles survive repeated direct DOCX saves",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_rich_edit_test.dart",
+      "name": "mixed citation styles survive repeated isolate DOCX saves",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_rich_edit_test.dart",
+      "name": "copy range (7, 14) retains one complete linked rich citation",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_rich_edit_test.dart",
+      "name": "copy range (9, 11) retains one complete linked rich citation",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_rich_edit_test.dart",
+      "name": "copying text beside a citation omits all unselected field markers",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_rich_edit_test.dart",
+      "name": "clone split at 7 keeps complete Zotero packets on one side",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_rich_edit_test.dart",
+      "name": "clone split at 9 keeps complete Zotero packets on one side",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_rich_edit_test.dart",
+      "name": "clone split at 14 keeps complete Zotero packets on one side",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_rich_edit_test.dart",
+      "name": "adjacent citations accept paste between packets and delete as complete units",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_rich_edit_test.dart",
+      "name": "empty citation packets are not captured by text inserted at their offset",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_rich_edit_test.dart",
+      "name": "bookmarks and content controls surrounding a deleted citation survive",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_rich_edit_test.dart",
+      "name": "mixed native replacement refuses annotated cache text without losing comment ownership",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_simple_field_test.dart",
+      "name": "rich simple citations retain one linked field and styled cache",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_simple_field_test.dart",
+      "name": "ordinary one-run simple citations keep their atomic representation",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_scaling_test.dart",
+      "name": "large mixed-story field snapshots preserve reading order and guards",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_scaling_test.dart",
+      "name": "note snapshots follow deletes, conversions and new field identities",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_source_identity_test.dart",
+      "name": "late URI bridge joins previously distinct embedded snapshots",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_source_identity_test.dart",
+      "name": "alias groups retain their first snapshot for order [0, 1, 2]",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_source_identity_test.dart",
+      "name": "alias groups retain their first snapshot for order [0, 2, 1]",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_scaling_test.dart",
+      "name": "equal codes in different notes cannot replace original field identity",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_source_identity_test.dart",
+      "name": "alias groups retain their first snapshot for order [1, 0, 2]",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_source_identity_test.dart",
+      "name": "alias groups retain their first snapshot for order [1, 2, 0]",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_source_identity_test.dart",
+      "name": "alias groups retain their first snapshot for order [2, 0, 1]",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_source_identity_test.dart",
+      "name": "alias groups retain their first snapshot for order [2, 1, 0]",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_source_identity_test.dart",
+      "name": "missing-snapshot bridges resolve transitive aliases",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_source_identity_test.dart",
+      "name": "source groups keep first-available-snapshot ordering",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_source_identity_test.dart",
+      "name": "canonical aliases join while unrelated keys and CSL IDs do not",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_source_identity_test.dart",
+      "name": "unknown URI values cannot collide with another identity namespace",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_source_identity_test.dart",
+      "name": "malformed imported URI paths are not normalized into source aliases",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_source_identity_test.dart",
+      "name": "groups without embedded snapshots are omitted",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_simple_field_test.dart",
+      "name": "locked rich simple citations refuse replacement and unlinking",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_scaling_test.dart",
+      "name": "same-length metadata changes cannot hide among duplicate citations",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_scaling_test.dart",
+      "name": "duplicate anchored note IDs remain invalid within their own bucket",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_simple_field_test.dart",
+      "name": "nested simple citations retain both identities and refuse edits",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_simple_field_test.dart",
+      "name": "a generic simple parent does not expose its nested Zotero cache",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_simple_field_test.dart",
+      "name": "simple extension attributes stay opaque through saves: rich=false",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_simple_field_test.dart",
+      "name": "simple extension attributes stay opaque through saves: rich=true",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_simple_field_test.dart",
+      "name": "rich simple bibliographies keep their field metadata and styles",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_style_preferences_review_test.dart",
+      "name": "truly unset style remains distinguishable from damaged preferences",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_simple_field_test.dart",
+      "name": "tracked rich simple cache retains real paragraph revision offsets",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_style_preferences_review_test.dart",
+      "name": "damaged non-object style cannot be treated as an unset document style",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_style_preferences_review_test.dart",
+      "name": "damaged non-string style identity cannot be treated as an unset document style",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_style_preferences_review_test.dart",
+      "name": "damaged non-string locale cannot be treated as an unset document style",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_style_preferences_review_test.dart",
+      "name": "damaged non-integer placement cannot be treated as an unset document style",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_style_preferences_review_test.dart",
+      "name": "damaged negative placement cannot be treated as an unset document style",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_style_preferences_review_test.dart",
+      "name": "damaged unsupported placement cannot be treated as an unset document style",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_simple_field_test.dart",
+      "name": "malformed rich simple metadata stays a preserved uneditable field",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_style_preferences_review_test.dart",
+      "name": "damaged duplicate XML styles cannot be treated as an unset document style",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_style_preferences_review_test.dart",
+      "name": "damaged invalid XML placement cannot be treated as an unset document style",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_simple_field_test.dart",
+      "name": "disjoint imported tracked ranges inside one rich citation remain exact",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_simple_field_test.dart",
+      "name": "page locator does not discard numeric citation cache: isolate=false",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_source_identity_test.dart",
+      "name": "document export resolves aliases without rewriting saved fields",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_simple_field_test.dart",
+      "name": "an earlier PAGE field does not consume later numbers: isolate=false",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_simple_field_test.dart",
+      "name": "page locator does not discard numeric citation cache: isolate=true",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_simple_field_test.dart",
+      "name": "an earlier PAGE field does not consume later numbers: isolate=true",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_simple_field_test.dart",
+      "name": "PAGE used as a field argument keeps its numeric result",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_simple_field_test.dart",
+      "name": "whole-paragraph native PAGE remains a dynamic page field",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_simple_field_test.dart",
+      "name": "a PAGE fragment inside citation JSON is not a PAGE command",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_simple_field_test.dart",
+      "name": "tracked native PAGE cache keeps valid revision text and boundaries",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_test.dart",
+      "name": "CSL citation metadata is immutable and retains unknown fields",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_backoff_state_test.dart",
+      "name": "shared 429 pause survives new credentials and expires exactly",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_backoff_state_test.dart",
+      "name": "successful Backoff also pauses replacement clients and libraries",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_backoff_state_test.dart",
+      "name": "replacement preserves pause for HTTP 429 with {}",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_backoff_state_test.dart",
+      "name": "replacement preserves pause for HTTP 503 with {Retry-After: 20}",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_backoff_state_test.dart",
+      "name": "replacement preserves pause for HTTP 429 with {Retry-After: 20, Backoff: 40}",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_backoff_state_test.dart",
+      "name": "late responses across clients cannot shorten a shared pause",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_backoff_state_test.dart",
+      "name": "online shared state does not pause desktop or independent sessions",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_test.dart",
+      "name": "independent native fields and preferences survive three direct saves",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_catalog_query_test.dart",
+      "name": "default catalog queries preserve the existing wire contract",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_catalog_query_test.dart",
+      "name": "collection full-text and type filters precede pagination",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_catalog_query_test.dart",
+      "name": "desktop saved searches accept the same scoped query options",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_catalog_query_test.dart",
+      "name": "blank search can filter and sort without a quick-search clause",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_catalog_query_test.dart",
+      "name": "dateModified supports ascending ordering",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_test.dart",
+      "name": "independent native fields and preferences survive three isolate saves",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_catalog_query_test.dart",
+      "name": "dateModified supports descending ordering",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_catalog_query_test.dart",
+      "name": "dateAdded supports ascending ordering",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_catalog_query_test.dart",
+      "name": "dateAdded supports descending ordering",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_catalog_query_test.dart",
+      "name": "title supports ascending ordering",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_catalog_query_test.dart",
+      "name": "title supports descending ordering",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_catalog_query_test.dart",
+      "name": "creator supports ascending ordering",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_catalog_query_test.dart",
+      "name": "creator supports descending ordering",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_catalog_query_test.dart",
+      "name": "date supports ascending ordering",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_test.dart",
+      "name": "insert, save, edit and unlink preserve surrounding rich text",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_catalog_query_test.dart",
+      "name": "date supports descending ordering",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_catalog_query_test.dart",
+      "name": "itemType supports ascending ordering",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_catalog_query_test.dart",
+      "name": "itemType supports descending ordering",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_catalog_query_test.dart",
+      "name": "invalid item-type expressions fail before any request",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_catalog_query_test.dart",
+      "name": "search controls remain bounded on saved-search endpoints",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_test.dart",
+      "name": "new complex fields reopen as atomic runs including isolated saves",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_test.dart",
+      "name": "inserting at rich field boundaries does not nest or split fields",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_test.dart",
+      "name": "explicit unlink of a multi-paragraph bibliography keeps its cache",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_test.dart",
+      "name": "malformed, locked, stale, and over-budget metadata are not rewritten",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_test.dart",
+      "name": "new source URIs and contradictory author options are validated",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_test.dart",
+      "name": "new linked sources reject request aliases and malformed identities",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_test.dart",
+      "name": "local profile identities remain distinct through DOCX saves",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_test.dart",
+      "name": "unknown imported source identities are preserved without repair",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_client_test.dart",
+      "name": "key verification uses a header, strips returned secrets and resolves access",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_test.dart",
+      "name": "native field locks survive import and complex-field export",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_client_test.dart",
+      "name": "public library reads omit credentials; empty key cannot verify",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_client_test.dart",
+      "name": "search, collection keys and Unicode metadata survive paginated browse",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_client_test.dart",
+      "name": "pagination falls back to totals and advances requested offset",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_client_test.dart",
+      "name": "a pagination URL cannot redirect credentials or switch libraries",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_client_test.dart",
+      "name": "same item key is distinct in personal and group libraries",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_client_test.dart",
+      "name": "mismatched library or item identifiers are not silently relinked",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_client_test.dart",
+      "name": "collections preserve parent hierarchy; groups use numeric IDs",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_client_test.dart",
+      "name": "individual citation returns CSL and rendered snapshots with style/locale",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_test.dart",
+      "name": "unknown field attributes and instruction-run properties stay opaque",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_client_test.dart",
+      "name": "bibliography makes one globally formatted request and deduplicates keys",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_client_test.dart",
+      "name": "export passes the requested format and returns Unicode unchanged",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_client_test.dart",
+      "name": "CSL retrieval unwraps the Web API v3 items envelope",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_client_test.dart",
+      "name": "CSL retrieval rejects malformed export payloads",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_client_test.dart",
+      "name": "invalid library IDs, keys, page bounds and oversized selections never send",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_test.dart",
+      "name": "canonical URI aliases deduplicate embedded items without rewriting metadata",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_client_test.dart",
+      "name": "successful Backoff is honored without waiting, retries or discarding data",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_client_test.dart",
+      "name": "HTTP errors are typed and never expose response bodies or API keys",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_client_test.dart",
+      "name": "Retry-After and Backoff choose the longer interval and suppress retries",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_client_test.dart",
+      "name": "concurrent responses cannot shorten a requested Backoff",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_client_test.dart",
+      "name": "malformed responses, mismatched keys and transport diagnostics are contained",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_client_test.dart",
+      "name": "desktop local API plain-text handshake pins the server without an API key",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_client_test.dart",
+      "name": "desktop local API older desktops may omit a server ID; API v3 is still required",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_client_test.dart",
+      "name": "desktop local API changed or missing pinned library IDs require reconnecting",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_client_test.dart",
+      "name": "desktop local API invalid server IDs are not echoed into a later request",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_client_test.dart",
+      "name": "desktop local API local groups, collections, query and formats stay on loopback",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_client_test.dart",
+      "name": "desktop local API local routing alias is never accepted by the cloud client",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_client_test.dart",
+      "name": "desktop local API signed-in desktop identity uses the real account, never users/0",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_client_test.dart",
+      "name": "desktop local API unsynced desktop preserves a verified local-user identity",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_test.dart",
+      "name": "citations in notes and header stories retain their ownership on save",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_client_test.dart",
+      "name": "desktop local API a citation key without local identity remains an offline source",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_client_test.dart",
+      "name": "desktop local API single CSL export objects, arrays and envelopes are normalized",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_client_test.dart",
+      "name": "desktop local API malformed and multi-item CSL exports do not pick an arbitrary record",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_client_test.dart",
+      "name": "desktop local API canonical CSL IDs cannot change item, library or identity",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_client_test.dart",
+      "name": "desktop local API users/0 requires a valid matching response library envelope",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_client_test.dart",
+      "name": "desktop local API local pagination cannot leave the selected loopback route",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_client_test.dart",
+      "name": "desktop local API desktop errors explain local setup without exposing diagnostics",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_formatted_text_test.dart",
+      "name": "nested inline emphasis becomes independent supported Word properties",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_formatted_text_test.dart",
+      "name": "explicit CSS resets and closing tags restore inherited emphasis",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_formatted_text_test.dart",
+      "name": "numeric margins stay beside entries while blocks retain line breaks",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_formatted_text_test.dart",
+      "name": "inline whitespace is collapsed without adding space between adjacent tags",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_formatted_text_test.dart",
+      "name": "entities preserve no-break spaces Unicode and literal angle brackets",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_formatted_text_test.dart",
+      "name": "CDATA literals and comments are not rewritten by entity normalization",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_formatted_text_test.dart",
+      "name": "resources active markup and attributes cannot become document objects",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_formatted_text_test.dart",
+      "name": "small caps preserve letters while unsupported layout remains reported",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_formatted_text_test.dart",
+      "name": "result snapshots are immutable and fresh runs do not alias them or the base font",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_formatted_text_test.dart",
+      "name": "malformed or unsupported XHTML fails closed: [60, 105, 62, 117, 110, 99, 108, 111, 115, 101, 100]",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_formatted_text_test.dart",
+      "name": "malformed or unsupported XHTML fails closed: [60, 105, 62, 120, 60, 47, 98, 62]",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_formatted_text_test.dart",
+      "name": "malformed or unsupported XHTML fails closed: [60, 115, 112, 97, 110, 32, 116, 105, 116, 108, 101, 61, 34, 120, 34, 62, 120, 60, 47, 115, 112, 97, 110]",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_formatted_text_test.dart",
+      "name": "malformed or unsupported XHTML fails closed: [60, 115, 112, 97, 110, 32, 99, 108, 97, 115, 115, 61, 34, 97, 34, 32, 99, 108, 97, 115, 115, 61, 34, 98, 34, 62, 120, 60, 47, 115, 112, 97, 110, 62]",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_formatted_text_test.dart",
+      "name": "malformed or unsupported XHTML fails closed: [60, 33, 68, 79, 67, 84, 89, 80, 69, 32, 120, 62, 60, 105, 62, 84, 105, 116, 108, 101, 60, 47, 105, 62]",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_formatted_text_test.dart",
+      "name": "malformed or unsupported XHTML fails closed: [60, 63, 112, 114, 111, 99, 101, 115, 115, 105, 110, 103, 32, 120, 63, 62, 60, 105, 62, 84, 105, 116, 108, 101, 60, 47, 105, 62]",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_formatted_text_test.dart",
+      "name": "malformed or unsupported XHTML fails closed: [60, 105, 62, 38, 117, 110, 107, 110, 111, 119, 110, 59, 60, 47, 105, 62]",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_formatted_text_test.dart",
+      "name": "malformed or unsupported XHTML fails closed: [60, 105, 62, 38, 35, 48, 59, 60, 47, 105, 62]",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_formatted_text_test.dart",
+      "name": "malformed or unsupported XHTML fails closed: [60, 105, 62, 38, 35, 53, 53, 50, 57, 54, 59, 60, 47, 105, 62]",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_formatted_text_test.dart",
+      "name": "malformed or unsupported XHTML fails closed: [60, 105, 62, 0, 60, 47, 105, 62]",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_formatted_text_test.dart",
+      "name": "size bound measures UTF-8 bytes and nesting is bounded",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_identity_client_test.dart",
+      "name": "local preview proves an unsynced identity in the same response",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_identity_client_test.dart",
+      "name": "known URI scheme and hostname aliases normalize consistently",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_identity_client_test.dart",
+      "name": "a colliding key from another local profile cannot refresh or preview",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_identity_client_test.dart",
+      "name": "citation keys and missing CSL IDs cannot prove a linked local identity",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_identity_client_test.dart",
+      "name": "invalid identity arguments fail before any request",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_identity_client_test.dart",
+      "name": "cloud routes refuse local identities before sending credentials",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_identity_client_test.dart",
+      "name": "all export formats verify exact local identities before raw output",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_identity_client_test.dart",
+      "name": "bibliography verifies once then renders one complete selection",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_identity_client_test.dart",
+      "name": "aggregate expectations reject incomplete, extra and mixed profile maps before I/O",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_identity_client_test.dart",
+      "name": "invalid bibliography formatting fails before the identity preflight",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_formatted_text_test.dart",
+      "name": "independent element and span bounds prevent tiny-node expansion",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_identity_client_test.dart",
+      "name": "missing, duplicate, unexpected and substituted records stop before raw output",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_item_details_test.dart",
+      "name": "new metadata defaults preserve existing model callers",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_identity_client_test.dart",
+      "name": "older desktops without a database pin refuse aggregate linked output",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_item_details_test.dart",
+      "name": "model tag names are exact, ordered, detached and immutable",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_identity_client_test.dart",
+      "name": "database changes between preflight and formatting never return output",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_identity_client_test.dart",
+      "name": "preflight backoff prevents an immediate export request",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_identity_client_test.dart",
+      "name": "numeric cloud identities use the same complete-selection verification",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_identity_client_test.dart",
+      "name": "returned CSL identities reject explicit ports before URI normalization",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_identity_client_test.dart",
+      "name": "local aggregate output requires a usable preflight library version",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_identity_client_test.dart",
+      "name": "deletion or modification between verification and output is detected",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_identity_client_test.dart",
+      "name": "metadata refresh requests no style and still proves local identity",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_item_details_test.dart",
+      "name": "online user browse exposes details without extra requests",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_item_details_test.dart",
+      "name": "online group browse exposes details without extra requests",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_item_details_test.dart",
+      "name": "blogPost uses its Zotero publication-title field",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_item_details_test.dart",
+      "name": "bookSection uses its Zotero publication-title field",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_item_details_test.dart",
+      "name": "conferencePaper uses its Zotero publication-title field",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_item_details_test.dart",
+      "name": "dictionaryEntry uses its Zotero publication-title field",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_item_details_test.dart",
+      "name": "encyclopediaArticle uses its Zotero publication-title field",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_item_details_test.dart",
+      "name": "forumPost uses its Zotero publication-title field",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_item_details_test.dart",
+      "name": "presentation uses its Zotero publication-title field",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_item_details_test.dart",
+      "name": "radioBroadcast uses its Zotero publication-title field",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_item_details_test.dart",
+      "name": "tvBroadcast uses its Zotero publication-title field",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_item_details_test.dart",
+      "name": "webpage uses its Zotero publication-title field",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_item_details_test.dart",
+      "name": "publication aliases fall back only to the generic field",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_item_details_test.dart",
+      "name": "missing or malformed optional metadata does not reject a source",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_item_details_test.dart",
+      "name": "invalid tag entries are ignored without normalizing valid names",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_item_details_test.dart",
+      "name": "catalog tag metadata is not limited by the active-filter count",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_item_details_test.dart",
+      "name": "desktop saved searches retain details and their persistent identity",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_item_details_test.dart",
+      "name": "details do not invent a persistent URI for an unlinked desktop item",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_item_details_test.dart",
+      "name": "verified metadata batches expose details without modifying CSL",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_item_details_test.dart",
+      "name": "optional details never weaken response identity checks",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_item_details_test.dart",
+      "name": "child records stay noncitable even when they contain details",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_metadata_batch_test.dart",
+      "name": "fifty sources use one bounded metadata request and retain order",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_metadata_batch_test.dart",
+      "name": "group requests retain their distinct library identity",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_metadata_batch_test.dart",
+      "name": "local metadata proves every profile identity without new-version headers",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_metadata_batch_test.dart",
+      "name": "aliases in expected identities normalize without changing the input",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_metadata_batch_test.dart",
+      "name": "invalid selections fail before any network request",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_metadata_batch_test.dart",
+      "name": "two desktop profiles cannot be combined behind users zero",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_metadata_batch_test.dart",
+      "name": "missing source refuses the whole batch",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_metadata_batch_test.dart",
+      "name": "duplicate source refuses the whole batch",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_metadata_batch_test.dart",
+      "name": "additional source refuses the whole batch",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_metadata_batch_test.dart",
+      "name": "substituted source refuses the whole batch",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_metadata_batch_test.dart",
+      "name": "wrong library kind refuses the whole batch",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_metadata_batch_test.dart",
+      "name": "wrong account refuses the whole batch",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_metadata_batch_test.dart",
+      "name": "malformed entry refuses the whole batch",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_metadata_batch_test.dart",
+      "name": "same item keys from another desktop profile refuse the batch",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_metadata_batch_test.dart",
+      "name": "a local citation key cannot prove a durable identity",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_metadata_batch_test.dart",
+      "name": "inconsistent or malformed result totals refuse complete-looking data",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_metadata_batch_test.dart",
+      "name": "missing CSL remains visible for the host to refuse atomic refresh",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_metadata_batch_test.dart",
+      "name": "argument mutation while waiting cannot change verified identities",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_metadata_batch_test.dart",
+      "name": "metadata requests retain database pinning and reject a switched desktop",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_metadata_batch_test.dart",
+      "name": "server backoff blocks the next batch without retries",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_paragraph_runs_test.dart",
+      "name": "CSL entry blocks split paragraphs while br stays within its entry",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_paragraph_runs_test.dart",
+      "name": "nested and empty outer blocks add no empty paragraphs",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_paragraph_runs_test.dart",
+      "name": "explicit leading, repeated and trailing breaks stay soft",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_paragraph_runs_test.dart",
+      "name": "structural offsets use UTF-16 and splitting does not share properties",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_saved_search_test.dart",
+      "name": "saved searches use the pinned local user library",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_saved_search_test.dart",
+      "name": "saved searches use the pinned local group library",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_saved_search_test.dart",
+      "name": "online connections cannot list or execute the local saved-search workflow",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_saved_search_test.dart",
+      "name": "saved-search keys and query/page limits are checked before transport",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_saved_search_test.dart",
+      "name": "malformed saved searches do not create ambiguous navigation entries",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_saved_search_test.dart",
+      "name": "saved-search pagination cannot change search, library, or destination",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_saved_search_test.dart",
+      "name": "a desktop database switch cannot reuse a saved search key",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_saved_search_test.dart",
+      "name": "deleted searches return a safe actionable error without a cloud retry",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_tag_filter_test.dart",
+      "name": "normalization retains literal identity and returns a detached list",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_tag_filter_test.dart",
+      "name": "empty tag selections preserve the unfiltered request exactly",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_tag_filter_test.dart",
+      "name": "library requests require all tags alongside existing filters",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_tag_filter_test.dart",
+      "name": "collection tags preserve Unicode and URL-reserved literal text",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_tag_filter_test.dart",
+      "name": "leading hyphens are escaped instead of excluding tags",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_tag_filter_test.dart",
+      "name": "tag requests capture caller-owned input before awaiting a response",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_tag_filter_test.dart",
+      "name": "local saved-search tags retain routing and pinned database headers",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_tag_filter_test.dart",
+      "name": "library refuses ambiguous literal tag syntax before transport",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_tag_filter_test.dart",
+      "name": "collection refuses ambiguous literal tag syntax before transport",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_tag_filter_test.dart",
+      "name": "saved search refuses ambiguous literal tag syntax before transport",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_tag_filter_test.dart",
+      "name": "invalid tag text is rejected without exposing input or sending a request",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_tag_filter_test.dart",
+      "name": "entry and aggregate bounds admit their exact boundary",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_tag_filter_test.dart",
+      "name": "tagged saved searches retain the actionable missing-search error",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_tag_filter_test.dart",
+      "name": "tagged responses cannot switch the requested library",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/note_edit_test.dart",
+      "name": "editable note text omits the space after the note number",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/note_edit_test.dart",
+      "name": "editing a rich note keeps formatting, tables, pictures and links",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/note_edit_test.dart",
+      "name": "added and removed lines become styled paragraphs",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/note_edit_test.dart",
+      "name": "edited note text survives save and reopen",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/rich_note_test.dart",
+      "name": "dense body reserves footnotes and continues long notes without loss",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/rich_note_test.dart",
+      "name": "rich note layout retains styles, wraps, tables, pictures and links",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/rich_note_test.dart",
+      "name": "column flow leaves the note band clear",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/rich_note_test.dart",
+      "name": "references in table cells reserve a note band",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/rich_note_test.dart",
+      "name": "body pictures skip pages occupied by continuing footnotes",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_note_numbering_test.dart",
+      "name": "IDs and storage order do not determine body, note, or pane order",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_note_numbering_test.dart",
+      "name": "earlier insertion and deletion immediately change labels without changing IDs",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_note_numbering_test.dart",
+      "name": "shorter display labels retain original reference and following text offsets",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_footnote_reference_test.dart",
+      "name": "imported footnote references are superscript and notes are laid out",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_note_numbering_test.dart",
+      "name": "longer labels remain one source range through narrow contained layout",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_note_numbering_test.dart",
+      "name": "endnotes use their own body order and Word Roman default",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_note_bookmark_edit_test.dart",
+      "name": "footnote rejects orphaned end before earlier paragraph text can change",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_note_bookmark_edit_test.dart",
+      "name": "footnote rejects orphaned start when the retained endpoint is in a table",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/rich_note_test.dart",
+      "name": "rich note blocks, run styles and part-owned media survive editing",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/rich_note_test.dart",
+      "name": "legacy paragraph view edits keep nonparagraph note blocks",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_note_numbering_test.dart",
+      "name": "native endnote ID zero remains a link, not a reserved display number",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/rich_note_test.dart",
+      "name": "a tall cell paragraph splits without losing text or placing its note early",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_note_numbering_test.dart",
+      "name": "tall table slices use full-document labels without duplicating endnote tables",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_note_numbering_test.dart",
+      "name": "RTL paragraphs keep a multi-digit note label in reading order",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_note_bookmark_edit_test.dart",
+      "name": "footnote permits complete cross-paragraph range removal through three exports",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_note_bookmark_edit_test.dart",
+      "name": "endnote rejects orphaned end before earlier paragraph text can change",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_note_numbering_test.dart",
+      "name": "decimal format and non-one start follow native section settings",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_note_bookmark_edit_test.dart",
+      "name": "endnote rejects orphaned start when the retained endpoint is in a table",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_note_numbering_test.dart",
+      "name": "decimalZero format and non-one start follow native section settings",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_note_bookmark_edit_test.dart",
+      "name": "endnote permits complete cross-paragraph range removal through three exports",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_note_bookmark_edit_test.dart",
+      "name": "a complete bookmark in a single removed paragraph remains a legal edit",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_note_numbering_test.dart",
+      "name": "upperLetter format and non-one start follow native section settings",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_note_bookmark_edit_test.dart",
+      "name": "appended paragraphs inherit formatting but clear generated bookmark identity",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_note_bookmark_edit_test.dart",
+      "name": "appended paragraphs inherit formatting but clear native bookmark identity",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_note_numbering_test.dart",
+      "name": "lowerLetter format and non-one start follow native section settings",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_note_numbering_test.dart",
+      "name": "upperRoman format and non-one start follow native section settings",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_note_numbering_test.dart",
+      "name": "lowerRoman format and non-one start follow native section settings",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_note_numbering_test.dart",
+      "name": "section restart and document settings are read without mutation",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_note_numbering_test.dart",
+      "name": "continuous sections carry the preceding counter and only restarts use numStart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_note_numbering_test.dart",
+      "name": "unknown page counters remain limited until an explicit section restart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_note_numbering_test.dart",
+      "name": "unsupported formats and out-of-range counters retain native source IDs safely",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_note_numbering_test.dart",
+      "name": "body tables and transparent controls participate; frames do not",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_note_numbering_test.dart",
+      "name": "unanchored definitions have no invented sequence position",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_note_numbering_test.dart",
+      "name": "unsupported page restart retains native settings and marks preview as limited",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_list_numbering_snapshot_test.dart",
+      "name": "new numbering precedes cleanup metadata, existing false",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_list_numbering_snapshot_test.dart",
+      "name": "new numbering precedes cleanup metadata, existing true",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_list_numbering_snapshot_test.dart",
+      "name": "independent lists share definitions while isolating counters",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_list_numbering_snapshot_test.dart",
+      "name": "absent numbering restore preserves media and unrelated relationships",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_list_numbering_snapshot_test.dart",
+      "name": "existing custom-path numbering bytes and override restore exactly",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_note_numbering_test.dart",
+      "name": "custom marks retain native suppression, adjacent text and do not consume a number",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_field_span_test.dart",
+      "name": "non-text content before a field stays outside its result",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_field_span_test.dart",
+      "name": "a cross-reference inside a sentence stays inside the sentence",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_field_span_test.dart",
+      "name": "two hyperlinks in one paragraph stay two fields",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_field_span_test.dart",
+      "name": "form fields keep their ffData",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_field_span_test.dart",
+      "name": "nested fields keep their structure",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_field_span_test.dart",
+      "name": "a field wrapping the whole paragraph keeps the paragraph model",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_field_span_test.dart",
+      "name": "a field broken by an edit degrades to text, never to a corrupt package",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_note_list_test.dart",
+      "name": "flat lists preserve rich items, empty items, breaks and active links",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_note_list_test.dart",
+      "name": "independent lists retain boundaries, start and surrounding prose",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_note_list_test.dart",
+      "name": "list citations retain active order for note type 0 and DOCX",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/numbering_collision_test.dart",
+      "name": "imported lowerRoman numbering honors start 14",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/numbering_collision_test.dart",
+      "name": "imported upperLetter numbering honors start 27",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/numbering_collision_test.dart",
+      "name": "imported lowerLetter numbering honors start 52",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_note_list_test.dart",
+      "name": "list citations retain active order for note type 1 and DOCX",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/numbering_collision_test.dart",
+      "name": "imported decimalZero numbering honors start 3",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/numbering_collision_test.dart",
+      "name": "imported decimal numbering honors start 0",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_note_list_test.dart",
+      "name": "list citations retain active order for note type 2 and DOCX",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_note_list_test.dart",
+      "name": "list insertion does not continue or restart surrounding document lists",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_note_list_test.dart",
+      "name": "later ordinary numbering stays separate after research list, reopened false",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_note_list_test.dart",
+      "name": "later ordinary numbering stays separate after research list, reopened true",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_note_list_test.dart",
+      "name": "unsupported list refuses complete insertion without package edits: <ul><li>Outer<ul><li>Nested</li></ul></li></ul>",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/list_restart_fidelity_test.dart",
+      "name": "label recomputation retains restart intent and is repeatable",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_note_list_test.dart",
+      "name": "unsupported list refuses complete insertion without package edits: <ol reversed=\"reversed\"><li>Backwards</li></ol>",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_note_list_test.dart",
+      "name": "unsupported list refuses complete insertion without package edits: <ol start=\"0\"><li>Zero</li></ol>",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_note_list_test.dart",
+      "name": "unsupported list refuses complete insertion without package edits: <ol start=\"-1\"><li>Negative</li></ol>",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_note_list_test.dart",
+      "name": "unsupported list refuses complete insertion without package edits: <ol start=\"1000000\"><li>Too large</li></ol>",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_note_list_test.dart",
+      "name": "unsupported list refuses complete insertion without package edits: <ol start=\"one\"><li>Invalid</li></ol>",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_note_list_test.dart",
+      "name": "unsupported list refuses complete insertion without package edits: <ol type=\"A\"><li>Custom</li></ol>",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_note_list_test.dart",
+      "name": "unsupported list refuses complete insertion without package edits: <ol><li value=\"2\">Custom item</li></ol>",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_note_list_test.dart",
+      "name": "unsupported list refuses complete insertion without package edits: <ul><li><p>First</p><p>Second</p></li></ul>",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_note_list_test.dart",
+      "name": "unsupported list refuses complete insertion without package edits: <ul><li>Before<p>Paragraph</p></li></ul>",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_note_list_test.dart",
+      "name": "unsupported list refuses complete insertion without package edits: <ul><li><p>Paragraph</p>After</li></ul>",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_note_list_test.dart",
+      "name": "unsupported list refuses complete insertion without package edits: <ul><li><p>Paragraph</p><b>After</b></li></ul>",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_note_list_test.dart",
+      "name": "unsupported list refuses complete insertion without package edits: <ul><li><div>Wrapped</div></li></ul>",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_note_list_test.dart",
+      "name": "unsupported list refuses complete insertion without package edits: <ul><li><h1>Heading</h1></li></ul>",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_note_list_test.dart",
+      "name": "unsupported list refuses complete insertion without package edits: <ul><p>Not an item</p></ul>",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_note_list_test.dart",
+      "name": "unsupported list refuses complete insertion without package edits: <ul>Loose text<li>Item</li></ul>",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_note_list_test.dart",
+      "name": "unsupported list refuses complete insertion without package edits: <ul></ul>",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_note_list_test.dart",
+      "name": "unsupported list refuses complete insertion without package edits: <li>Orphan</li>",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_note_list_test.dart",
+      "name": "unsupported list refuses complete insertion without package edits: <p><ul><li>Nested paragraph</li></ul></p>",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_note_list_test.dart",
+      "name": "unsupported list refuses complete insertion without package edits: <ul style=\"list-style-type:square\"><li>Custom</li></ul>",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/numbering_collision_test.dart",
+      "name": "new bullet list avoids imported IDs",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/numbering_collision_test.dart",
+      "name": "new numbered list avoids imported IDs",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/numbering_collision_test.dart",
+      "name": "generated list kinds use separate IDs and reuse definitions",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/list_restart_fidelity_test.dart",
+      "name": "restart and continuation survive three asynchronous save cycles",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/list_restart_fidelity_test.dart",
+      "name": "repeated synchronous save reuses instances without consuming undo state",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/list_restart_fidelity_test.dart",
+      "name": "nested restart preserves the current ancestor and later continuation",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/list_restart_fidelity_test.dart",
+      "name": "imported per-instance level overrides do not alter the abstract definition",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/scripted_transitions_test.dart",
+      "name": "list clear suppresses imported numbering for three cycles, inherited=false",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/office_features_test.dart",
+      "name": "finds and replaces across Word workbook and slides",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/scripted_transitions_test.dart",
+      "name": "list clear suppresses imported numbering for three cycles, inherited=true",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/office_features_test.dart",
+      "name": "counts words and writes document properties",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/office_features_test.dart",
+      "name": "applies styles footnotes revisions and captions",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/office_features_test.dart",
+      "name": "aligns slides and names a section",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/scripted_transitions_test.dart",
+      "name": "new styled paragraph keeps explicit list removal during refresh",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/scripted_transitions_test.dart",
+      "name": "runFormat rejects empty ranges and empty paragraphs without typing state",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/scripted_transitions_test.dart",
+      "name": "empty range reports its indexed CLI step and leaves output untouched",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/office_features_test.dart",
+      "name": "evaluates live fields and round-trips a watermark",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/office_features_test.dart",
+      "name": "prints a word document to PDF bytes",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/scripted_transitions_test.dart",
+      "name": "image add is observable before removal and preserves the original",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/scripted_transitions_test.dart",
+      "name": "split retains the right half of a formatted hyperlink run",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/office_features_test.dart",
+      "name": "round-trips first headers notes styles and slide sections",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/scripted_transitions_test.dart",
+      "name": "explicit false and default values survive subsequent style refresh",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/office_features_test.dart",
+      "name": "merges mail compares documents and builds citations",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/scripted_transitions_test.dart",
+      "name": "style edit binds Word namespace in aliased source, existing=false",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/office_features_test.dart",
+      "name": "lays out drop caps line numbers and footnotes",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/office_features_test.dart",
+      "name": "clamps Word print preview to a page range",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/scripted_transitions_test.dart",
+      "name": "style edit binds Word namespace in aliased source, existing=true",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/office_features_test.dart",
+      "name": "round-trips footnote refs revisions styles and VML watermark",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/office_features_test.dart",
+      "name": "writes slide groups and speaker notes parts",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/scripted_transitions_test.dart",
+      "name": "heading split keeps one bookmark identity through three exports",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/scripted_transitions_test.dart",
+      "name": "splitting a restarted list continues numbering in the new paragraph",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/office_features_test.dart",
+      "name": "goal seek power query sparklines mail merge and citations xml",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/office_features_test.dart",
+      "name": "evaluates hyperlink filename author title and merge fields",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/office_features_test.dart",
+      "name": "resolves multilevel list labels and restart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_office_engine/test/office_features_test.dart",
+      "name": "resolves basedOn styles into document styles.xml round-trip",
+      "result": "success",
+      "skipped": false
+    }
+  ]
+}

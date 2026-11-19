@@ -1,0 +1,720 @@
+{
+  "base": "15d519599017c9df18ebfba19704998825a2c86e",
+  "annotation_feature_commit": "ff06e5544673ce7f70be983299241bcdcef780d3",
+  "annotation_feature_parent": "f3b7dc3bf4a994781e40fa89e076ebe485ce3d0d",
+  "annotation_plan": {
+    "baseline": "f3b7dc3bf4a994781e40fa89e076ebe485ce3d0d",
+    "analysis_targets": [
+      "packages/quds_mail_ui/test/support/runtime_network_guard_web.dart",
+      "packages/quds_office_editor/example/lib/studio_chrome.dart",
+      "packages/quds_office_editor/example/lib/suite_workspace.dart",
+      "packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart",
+      "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+      "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+      "packages/quds_office_editor/lib/src/embed/word_notes_pane.dart",
+      "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart",
+      "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+      "packages/quds_office_editor/test/word_zotero_direct_command_test.dart",
+      "packages/quds_office_editor/test/word_zotero_navigation_dialog_test.dart",
+      "packages/quds_office_editor/test/word_zotero_navigation_pane_test.dart",
+      "packages/quds_office_editor/test/word_zotero_navigation_test.dart",
+      "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart",
+      "packages/quds_office_engine/lib/src/word/model/word_zotero_note.dart",
+      "packages/quds_office_engine/lib/src/zotero/zotero_citing.dart",
+      "packages/quds_office_engine/test/word_zotero_add_note_test.dart",
+      "packages/quds_office_engine/test/zotero_add_note_protocol_test.dart",
+      "packages/quds_office_engine/test/zotero_citing_test.dart",
+      "packages/quds_office_editor/lib/src/editor_word/render_word_canvas.dart",
+      "packages/quds_office_editor/lib/src/proofing/word_proofing.dart",
+      "packages/quds_office_editor/test/word_header_footer_navigation_test.dart",
+      "packages/quds_office_editor/test/word_notes_proofing_controller_test.dart",
+      "packages/quds_office_editor/test/word_notes_proofing_pane_test.dart",
+      "packages/quds_office_editor/test/word_live_review_selection_test.dart",
+      "packages/quds_office_editor/test/word_review_controller_test.dart",
+      "packages/quds_mail_store/test/repository_test.dart",
+      "packages/quds_office_engine/lib/src/word/model/word_lists.dart",
+      "packages/quds_office_engine/test/word_zotero_note_list_test.dart",
+      "packages/quds_office_engine/test/word_list_numbering_snapshot_test.dart",
+      "packages/quds_office_editor/test/word_zotero_notes_pane_test.dart",
+      "packages/quds_office_editor/lib/src/embed/office_editors.dart",
+      "packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart"
+    ],
+    "test_gates": {
+      "engine": {
+        "package": "packages/quds_office_engine",
+        "concurrency": 2,
+        "tests": [
+          "test/word_zotero_add_note_test.dart",
+          "test/word_zotero_bibliography_layout_test.dart",
+          "test/word_zotero_caret_test.dart",
+          "test/word_zotero_citing_test.dart",
+          "test/word_zotero_document_data_test.dart",
+          "test/word_zotero_formatted_bibliography_test.dart",
+          "test/word_zotero_note_insertion_test.dart",
+          "test/word_zotero_preference_flow_test.dart",
+          "test/word_zotero_rich_edit_test.dart",
+          "test/word_zotero_scaling_test.dart",
+          "test/word_zotero_simple_field_test.dart",
+          "test/word_zotero_source_identity_test.dart",
+          "test/word_zotero_style_preferences_review_test.dart",
+          "test/word_zotero_test.dart",
+          "test/zotero_add_note_protocol_test.dart",
+          "test/zotero_backoff_state_test.dart",
+          "test/zotero_catalog_query_test.dart",
+          "test/zotero_citing_test.dart",
+          "test/zotero_client_test.dart",
+          "test/zotero_formatted_text_test.dart",
+          "test/zotero_identity_client_test.dart",
+          "test/zotero_item_details_test.dart",
+          "test/zotero_metadata_batch_test.dart",
+          "test/zotero_paragraph_runs_test.dart",
+          "test/zotero_saved_search_test.dart",
+          "test/zotero_tag_filter_test.dart",
+          "test/note_edit_test.dart",
+          "test/rich_note_test.dart",
+          "test/word_note_numbering_test.dart",
+          "test/word_footnote_reference_test.dart",
+          "test/word_note_bookmark_edit_test.dart",
+          "test/word_field_span_test.dart",
+          "test/word_zotero_note_list_test.dart",
+          "test/word_list_numbering_snapshot_test.dart",
+          "test/numbering_collision_test.dart",
+          "test/list_restart_fidelity_test.dart"
+        ]
+      },
+      "editor": {
+        "package": "packages/quds_office_editor",
+        "concurrency": 2,
+        "tests": [
+          "test/word_zotero_add_note_controller_test.dart",
+          "test/word_zotero_backoff_session_test.dart",
+          "test/word_zotero_bibliography_controller_test.dart",
+          "test/word_zotero_catalog_citing_test.dart",
+          "test/word_zotero_catalog_query_test.dart",
+          "test/word_zotero_citing_controller_test.dart",
+          "test/word_zotero_citing_dialog_test.dart",
+          "test/word_zotero_collection_pagination_test.dart",
+          "test/word_zotero_composer_test.dart",
+          "test/word_zotero_connected_alias_test.dart",
+          "test/word_zotero_controller_test.dart",
+          "test/word_zotero_dialog_scaling_test.dart",
+          "test/word_zotero_dialog_test.dart",
+          "test/word_zotero_direct_command_test.dart",
+          "test/word_zotero_document_actions_test.dart",
+          "test/word_zotero_document_reuse_test.dart",
+          "test/word_zotero_document_source_picker_test.dart",
+          "test/word_zotero_document_sources_test.dart",
+          "test/word_zotero_field_at_caret_test.dart",
+          "test/word_zotero_format_test.dart",
+          "test/word_zotero_import_search_test.dart",
+          "test/word_zotero_library_details_test.dart",
+          "test/word_zotero_navigation_dialog_test.dart",
+          "test/word_zotero_navigation_pane_test.dart",
+          "test/word_zotero_navigation_test.dart",
+          "test/word_zotero_note_target_test.dart",
+          "test/word_zotero_notes_pane_test.dart",
+          "test/word_zotero_rich_controller_test.dart",
+          "test/word_zotero_saved_search_test.dart",
+          "test/word_zotero_snapshot_test.dart",
+          "test/word_zotero_source_identity_test.dart",
+          "test/word_zotero_source_resolver_test.dart",
+          "test/word_zotero_stored_details_dialog_test.dart",
+          "test/word_zotero_stored_details_test.dart",
+          "test/word_zotero_tag_filter_test.dart",
+          "test/word_zotero_unlink_all_test.dart",
+          "test/word_notes_editing_test.dart",
+          "test/word_note_numbering_test.dart",
+          "test/word_header_footer_navigation_test.dart",
+          "test/word_notes_proofing_controller_test.dart",
+          "test/word_notes_proofing_pane_test.dart",
+          "test/word_live_review_selection_test.dart",
+          "test/word_review_controller_test.dart",
+          "test/word_manual_proofing_test.dart",
+          "test/word_proofing_session_test.dart",
+          "test/word_thesaurus_controller_test.dart",
+          "test/word_input_focus_test.dart",
+          "test/office_input_ownership_test.dart"
+        ]
+      },
+      "studio": {
+        "package": "packages/quds_office_editor/example",
+        "concurrency": 2,
+        "tests": [
+          "test/studio_zotero_shortcuts_test.dart",
+          "test/studio_zotero_citing_transport_test.dart",
+          "test/studio_comment_draft_proofing_test.dart",
+          "test/studio_comment_keyboard_review_test.dart",
+          "test/studio_comment_review_test.dart",
+          "test/studio_compact_navigation_test.dart",
+          "test/studio_review_pane_test.dart"
+        ]
+      },
+      "mail-core": {
+        "package": "packages/quds_mail_core",
+        "runner": "dart",
+        "concurrency": 2,
+        "tests": [
+          "test/sync_coordinator_test.dart"
+        ]
+      },
+      "mail-store": {
+        "package": "packages/quds_mail_store",
+        "runner": "dart",
+        "concurrency": 2,
+        "tests": [
+          "test/adversarial_store_test.dart",
+          "test/codec_test.dart",
+          "test/native_platform_test.dart",
+          "test/platform_configuration_test.dart",
+          "test/repository_test.dart"
+        ]
+      },
+      "mail-ui": {
+        "package": "packages/quds_mail_ui",
+        "runner": "flutter",
+        "concurrency": 2,
+        "tests": [
+          "test/message_view_test.dart"
+        ]
+      }
+    },
+    "description": "Frozen Add Annotation qualification after the 2026-11-19 incoming integration. Reuse all 98 Zotero/Notes/Studio/Mail suites; new annotation and merge regressions live in existing selected files. Strict formatting and analysis include all new or merged application targets. Whitespace covers this continuation against its published integration checkpoint; integration source whitespace was checked separately against 0abd0e59.",
+    "support_tests": {
+      "runner-accounting": "docs/validation/zotero-word-parity-20261118/test_run_local.py",
+      "mail-runner-accounting": "tools/mail/test_check_store.py"
+    },
+    "fingerprint_inputs": [
+      "tools/mail/check_store.py",
+      "tools/mail/check_reader.py"
+    ],
+    "whitespace_exceptions": []
+  },
+  "mail_plan": {
+    "description": "Fresh local integrated Office and Mail-reader acceptance on the committed 2026-11-19 source. Retains the previous incomplete Office plan, adds independent Zotero research-list and numbering/undo fidelity cases, and executes the merged Notes selection, Review-layout, history, IME and manual-proofing regressions. Core/store/native-crash checks run separately via check_store.py. Previous and repeated runs do not contribute to these case totals.",
+    "groups": [
+      {
+        "name": "engine-review-and-incoming-zotero",
+        "cwd": "packages/quds_office_engine",
+        "runner": "dart",
+        "tests": [
+          "test/word_zotero_note_insertion_test.dart",
+          "test/office_thesaurus_test.dart",
+          "test/word_zotero_caret_test.dart",
+          "test/word_proofing_inheritance_test.dart",
+          "test/word_comment_proofing_styles_test.dart",
+          "test/word_style_introduction_test.dart",
+          "test/word_zotero_add_note_test.dart",
+          "test/zotero_add_note_protocol_test.dart",
+          "test/zotero_citing_test.dart",
+          "test/word_zotero_note_list_test.dart",
+          "test/word_list_numbering_snapshot_test.dart",
+          "test/numbering_collision_test.dart",
+          "test/list_restart_fidelity_test.dart"
+        ]
+      },
+      {
+        "name": "editor-review-notes-headers-and-zotero",
+        "cwd": "packages/quds_office_editor",
+        "runner": "flutter",
+        "tests": [
+          "test/word_draft_proofing_test.dart",
+          "test/word_proofing_priority_test.dart",
+          "test/word_thesaurus_review_integration_test.dart",
+          "test/word_thesaurus_controller_test.dart",
+          "test/word_thesaurus_dialog_test.dart",
+          "test/word_zotero_note_target_test.dart",
+          "test/word_zotero_notes_pane_test.dart",
+          "test/word_text_proofing_controls_test.dart",
+          "test/word_text_proofing_pane_test.dart",
+          "test/word_zotero_composer_test.dart",
+          "test/word_zotero_dialog_test.dart",
+          "test/word_zotero_citing_dialog_test.dart",
+          "test/word_zotero_document_actions_test.dart",
+          "test/word_zotero_field_at_caret_test.dart",
+          "test/word_zotero_unlink_all_test.dart",
+          "test/word_note_numbering_test.dart",
+          "test/word_notes_editing_test.dart",
+          "test/word_keyboard_review_test.dart",
+          "test/word_keyboard_context_geometry_test.dart",
+          "test/word_keyboard_review_identity_test.dart",
+          "test/word_live_proofing_session_test.dart",
+          "test/word_live_review_selection_test.dart",
+          "test/word_live_review_surface_test.dart",
+          "test/word_review_pane_test.dart",
+          "test/word_live_review_changes_test.dart",
+          "test/word_incremental_proofing_test.dart",
+          "test/word_incremental_proofing_menu_test.dart",
+          "test/word_proofing_session_test.dart",
+          "test/word_manual_proofing_test.dart",
+          "test/word_proofing_dialog_test.dart",
+          "test/word_proofing_context_test.dart",
+          "test/word_proofing_geometry_test.dart",
+          "test/word_proofing_navigation_test.dart",
+          "test/word_review_dialog_test.dart",
+          "test/word_revision_story_test.dart",
+          "test/word_review_controller_test.dart",
+          "test/word_input_focus_test.dart",
+          "test/office_input_ownership_test.dart",
+          "test/office_direction_chord_test.dart",
+          "test/editor_test.dart",
+          "test/report_designer_test.dart",
+          "test/word_header_footer_navigation_test.dart",
+          "test/word_notes_proofing_controller_test.dart",
+          "test/word_notes_proofing_pane_test.dart",
+          "test/word_zotero_add_note_controller_test.dart",
+          "test/word_zotero_direct_command_test.dart",
+          "test/word_zotero_navigation_dialog_test.dart",
+          "test/word_zotero_navigation_pane_test.dart",
+          "test/word_zotero_navigation_test.dart"
+        ]
+      },
+      {
+        "name": "studio-review-and-incoming-navigation",
+        "cwd": "packages/quds_office_editor/example",
+        "runner": "flutter",
+        "tests": [
+          "test/studio_comment_draft_proofing_test.dart",
+          "test/studio_comment_keyboard_review_test.dart",
+          "test/studio_zotero_shortcuts_test.dart",
+          "test/studio_comment_review_test.dart",
+          "test/studio_review_pane_test.dart",
+          "test/studio_document_comparison_test.dart",
+          "test/widget_test.dart",
+          "test/studio_sheet_navigation_test.dart",
+          "test/studio_compact_navigation_test.dart"
+        ]
+      },
+      {
+        "name": "incoming-mail-reader",
+        "cwd": "packages/quds_mail_ui",
+        "runner": "flutter",
+        "tests": [
+          "test/message_view_test.dart"
+        ]
+      }
+    ],
+    "analysis": [
+      "packages/quds_office_editor/example/lib/suite_workspace.dart",
+      "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+      "packages/quds_office_editor/lib/src/editor_word/render_word_canvas.dart",
+      "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+      "packages/quds_office_editor/lib/src/embed/office_editors.dart",
+      "packages/quds_office_editor/lib/src/embed/word_notes_pane.dart",
+      "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart",
+      "packages/quds_office_editor/lib/src/proofing/word_proofing.dart",
+      "packages/quds_office_editor/test/support/review_fonts.dart",
+      "packages/quds_office_editor/test/word_header_footer_navigation_test.dart",
+      "packages/quds_office_editor/test/word_live_review_selection_test.dart",
+      "packages/quds_office_editor/test/word_notes_proofing_controller_test.dart",
+      "packages/quds_office_editor/test/word_notes_proofing_pane_test.dart",
+      "packages/quds_office_editor/test/word_review_controller_test.dart",
+      "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+      "packages/quds_office_editor/test/word_zotero_direct_command_test.dart",
+      "packages/quds_office_editor/test/word_zotero_navigation_test.dart",
+      "packages/quds_office_editor/test/word_zotero_notes_pane_test.dart",
+      "packages/quds_office_engine/lib/src/word/model/word_lists.dart",
+      "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart",
+      "packages/quds_office_engine/lib/src/word/model/word_zotero_note.dart",
+      "packages/quds_office_engine/test/word_list_numbering_snapshot_test.dart",
+      "packages/quds_office_engine/test/word_zotero_add_note_test.dart",
+      "packages/quds_office_engine/test/word_zotero_note_list_test.dart"
+    ],
+    "format": [
+      "packages/quds_office_editor/example/lib/suite_workspace.dart",
+      "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+      "packages/quds_office_editor/lib/src/editor_word/render_word_canvas.dart",
+      "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+      "packages/quds_office_editor/lib/src/embed/office_editors.dart",
+      "packages/quds_office_editor/lib/src/embed/word_notes_pane.dart",
+      "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart",
+      "packages/quds_office_editor/lib/src/proofing/word_proofing.dart",
+      "packages/quds_office_editor/test/support/review_fonts.dart",
+      "packages/quds_office_editor/test/word_header_footer_navigation_test.dart",
+      "packages/quds_office_editor/test/word_live_review_selection_test.dart",
+      "packages/quds_office_editor/test/word_notes_proofing_controller_test.dart",
+      "packages/quds_office_editor/test/word_notes_proofing_pane_test.dart",
+      "packages/quds_office_editor/test/word_review_controller_test.dart",
+      "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+      "packages/quds_office_editor/test/word_zotero_direct_command_test.dart",
+      "packages/quds_office_editor/test/word_zotero_navigation_test.dart",
+      "packages/quds_office_editor/test/word_zotero_notes_pane_test.dart",
+      "packages/quds_office_engine/lib/src/word/model/word_lists.dart",
+      "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart",
+      "packages/quds_office_engine/lib/src/word/model/word_zotero_note.dart",
+      "packages/quds_office_engine/test/word_list_numbering_snapshot_test.dart",
+      "packages/quds_office_engine/test/word_zotero_add_note_test.dart",
+      "packages/quds_office_engine/test/word_zotero_note_list_test.dart"
+    ],
+    "extra_inputs": [
+      "docs/validation/document-review-notes-20261118/test_run_checks.py",
+      "tools/mail/check_reader.py",
+      "tools/mail/check_store.py",
+      "tools/mail/test_check_store.py"
+    ],
+    "whitespace_preserved_inputs": [
+      {
+        "path": "docs/validation/thesaurus-20261118/reconciled/linguistic/de/notices/CC_BY_SA_4.0.txt",
+        "git_blob": "2d58298e6eda10e7204abb52722efbc840db2390",
+        "reason": "Verbatim upstream license notice captured with the incoming thesaurus review packet; preserve the original bytes."
+      },
+      {
+        "path": "docs/validation/thesaurus-20261118/reconciled/linguistic/de/notices/OPENTHESAURUS_COPYING.txt",
+        "git_blob": "e9a5cbe37f5fa0726cc9283ecfdc099b764e1a46",
+        "reason": "Verbatim upstream license notice captured with the incoming thesaurus review packet; preserve the original bytes."
+      },
+      {
+        "path": "docs/validation/thesaurus-20261118/reconciled/linguistic/en/notices/CC_BY_4.0.txt",
+        "git_blob": "da6ab6cc8f333d7e89a99812866df8f24374d47c",
+        "reason": "Verbatim upstream license notice captured with the incoming thesaurus review packet; preserve the original bytes."
+      },
+      {
+        "path": "docs/validation/thesaurus-20261118/reconciled/linguistic/en/notices/OEWN_LICENSE.md",
+        "git_blob": "fe4d1dce8109caa7016fca97f48e49a9ced36ad4",
+        "reason": "Verbatim upstream license notice captured with the incoming thesaurus review packet; preserve the original bytes."
+      },
+      {
+        "path": "docs/validation/thesaurus-20261118/reconciled/linguistic/en/notices/WNDB_License.txt",
+        "git_blob": "cecbc6cf2dcb20ffbcba84319affc1ed0c6dca6f",
+        "reason": "Verbatim upstream license notice captured with the incoming thesaurus review packet; preserve the original bytes."
+      }
+    ]
+  },
+  "annotation_files": [
+    {
+      "path": "docs/validation/zotero-annotations-20261119/README.md",
+      "status": "added",
+      "blob": "5a93514f7eb32425c9db10ec9a5c3abe04c92b1e",
+      "additions": 76,
+      "deletions": 0,
+      "changes": 76
+    },
+    {
+      "path": "docs/validation/zotero-annotations-20261119/plan.json",
+      "status": "added",
+      "blob": "e78b21eb57f0ee781f571d198e0954730028d32e",
+      "additions": 187,
+      "deletions": 0,
+      "changes": 187
+    },
+    {
+      "path": "docs/validation/zotero-annotations-20261119/reconciliation/audit_published_refs.py",
+      "status": "added",
+      "blob": "4c93c69b4f54d887f8b139f74d11d2fb1ff206d3",
+      "additions": 246,
+      "deletions": 0,
+      "changes": 246
+    },
+    {
+      "path": "docs/validation/zotero-annotations-20261119/reconciliation/local-integration-commits.json",
+      "status": "added",
+      "blob": "62dc7635f89d634c50b93b1c1c4433a45d6c612b",
+      "additions": 15,
+      "deletions": 0,
+      "changes": 15
+    },
+    {
+      "path": "docs/validation/zotero-annotations-20261119/reconciliation/merge-resolution-review.md",
+      "status": "added",
+      "blob": "72a0842f15fcfdfc2a56345c513d8cf39d8e70a3",
+      "additions": 48,
+      "deletions": 0,
+      "changes": 48
+    },
+    {
+      "path": "docs/validation/zotero-annotations-20261119/reconciliation/published-replay-audit.json",
+      "status": "added",
+      "blob": "e935672ab40931dc76dcb1e1ea60dd4458c4ccff",
+      "additions": 2767,
+      "deletions": 0,
+      "changes": 2767
+    },
+    {
+      "path": "docs/validation/zotero-annotations-20261119/reconciliation/published-source-audit.json",
+      "status": "added",
+      "blob": "4acf3c1ccf5cfa74fd9a7d0ca118bba42e3def3c",
+      "additions": 2779,
+      "deletions": 0,
+      "changes": 2779
+    },
+    {
+      "path": "docs/validation/zotero-annotations-20261119/reconciliation/remote-snapshot-20261119.json",
+      "status": "added",
+      "blob": "51ab3e4f64bdb18b44234160eca102c3ca7b0ffa",
+      "additions": 1694,
+      "deletions": 0,
+      "changes": 1694
+    },
+    {
+      "path": "docs/validation/zotero-annotations-20261119/runtime/env.sh",
+      "status": "added",
+      "blob": "5b707337455c5bf810e22f7cdb1510525e6092d8",
+      "additions": 11,
+      "deletions": 0,
+      "changes": 11
+    },
+    {
+      "path": "docs/validation/zotero-annotations-20261119/runtime/prefetch.json",
+      "status": "added",
+      "blob": "5a6a7c46f47c6fa1238e2d3a096c140871240361",
+      "additions": 1590,
+      "deletions": 0,
+      "changes": 1590
+    },
+    {
+      "path": "docs/validation/zotero-annotations-20261119/runtime/sdk-receipt.json",
+      "status": "added",
+      "blob": "d1bf30d483f78da3faf70e3cd9dee48680485933",
+      "additions": 13,
+      "deletions": 0,
+      "changes": 13
+    },
+    {
+      "path": "docs/validation/zotero-annotations-20261119/runtime/tools-ready.json",
+      "status": "added",
+      "blob": "b9055b767f7df263124dd067b1d3e3ded8dd209c",
+      "additions": 28,
+      "deletions": 0,
+      "changes": 28
+    },
+    {
+      "path": "docs/validation/zotero-annotations-20261119/runtime/workspace-ready.json",
+      "status": "added",
+      "blob": "bee7eb4959260190b710deee72eda4db3cbac71d",
+      "additions": 57,
+      "deletions": 0,
+      "changes": 57
+    },
+    {
+      "path": "docs/zotero-support.md",
+      "status": "modified",
+      "blob": "8192ddefd450717dd74e38a482c3c6479c4ae801",
+      "additions": 48,
+      "deletions": 10,
+      "changes": 58
+    },
+    {
+      "path": "packages/quds_office_editor/CHANGELOG.md",
+      "status": "modified",
+      "blob": "10c5142e50b97c8747a3ca89e3c144192bad441c",
+      "additions": 7,
+      "deletions": 0,
+      "changes": 7
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/suite_workspace.dart",
+      "status": "modified",
+      "blob": "85d70e8fecbcd7df9cce204825e5b53e91c1f282",
+      "additions": 5,
+      "deletions": 0,
+      "changes": 5
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+      "status": "modified",
+      "blob": "226e657e847852379e223c2b1b8864736b87bf3a",
+      "additions": 29,
+      "deletions": 24,
+      "changes": 53
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+      "status": "modified",
+      "blob": "1d2d67e509ba67f3c8c079fdeeae335911d69835",
+      "additions": 4,
+      "deletions": 3,
+      "changes": 7
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart",
+      "status": "modified",
+      "blob": "5c460d5cd8c74f7a31e269a2ee85825562745254",
+      "additions": 26,
+      "deletions": 3,
+      "changes": 29
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+      "status": "modified",
+      "blob": "0d8869b671df74f333db7ec30ed9b59e2d046364",
+      "additions": 407,
+      "deletions": 148,
+      "changes": 555
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart",
+      "status": "modified",
+      "blob": "8ea62cbe3ebd152195a2cf34f395765e1a7d4e6e",
+      "additions": 54,
+      "deletions": 0,
+      "changes": 54
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_zotero_direct_command_test.dart",
+      "status": "modified",
+      "blob": "1ba13825985520cae5292d5b4e9ae2ac0e507243",
+      "additions": 29,
+      "deletions": 0,
+      "changes": 29
+    },
+    {
+      "path": "packages/quds_office_engine/CHANGELOG.md",
+      "status": "modified",
+      "blob": "ef4318a51f95556132e9117ddd3d8ec2fcb56d4b",
+      "additions": 6,
+      "deletions": 0,
+      "changes": 6
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/zotero/zotero_citing.dart",
+      "status": "modified",
+      "blob": "3932759d48e180f326c5f1d324fe1abedef529ab",
+      "additions": 8,
+      "deletions": 1,
+      "changes": 9
+    },
+    {
+      "path": "packages/quds_office_engine/test/zotero_add_note_protocol_test.dart",
+      "status": "modified",
+      "blob": "5c1d577e1a9a9df3bc4618324bf24814feed1327",
+      "additions": 167,
+      "deletions": 76,
+      "changes": 243
+    }
+  ],
+  "source_patches": [
+    {
+      "path": "packages/quds_office_editor/example/lib/suite_workspace.dart",
+      "patch": "@@ -2212,6 +2212,11 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {\n               _arabic ? 'ملاحظة من Zotero' : 'Add Zotero note',\n               ZoteroCitingCommand.addNote,\n             ),\n+            _zoteroCommand(\n+              Icons.format_quote_outlined,\n+              _arabic ? 'تعليق توضيحي من Zotero' : 'Add Zotero annotation',\n+              ZoteroCitingCommand.addAnnotation,\n+            ),\n             _zoteroCommand(\n               Icons.refresh,\n               _arabic ? 'تحديث الاستشهادات' : 'Refresh citations',"
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+      "patch": "@@ -7575,9 +7575,10 @@ class WordEditorController extends OfficeController {\n     }\n     final noteTarget = noteEditingTarget;\n     _assertNoteTargetReady(noteTarget);\n-    if (command == ZoteroCitingCommand.addNote && noteTarget != null) {\n+    final insertsNoteText = command?.insertsNoteText == true;\n+    if (insertsNoteText && noteTarget != null) {\n       throw UnsupportedError(\n-        'Insert Zotero notes from the document body. Citations can still be added inside footnotes and endnotes.',\n+        'Insert Zotero notes and annotations from the document body. Citations can still be added inside footnotes and endnotes.',\n       );\n     }\n     commitNoteEdits();\n@@ -7608,7 +7609,7 @@ class WordEditorController extends OfficeController {\n       selectedField: resolvedField,\n       seedCitation: seedCitation,\n     );\n-    if (command == ZoteroCitingCommand.addNote) {\n+    if (insertsNoteText) {\n       session.assertCanInsertNoteText();\n     }\n     return WordZoteroTransaction._(this, session);"
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart",
+      "patch": "@@ -1146,10 +1146,13 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {\n       _checkTarget();\n       transaction.assertCurrent();\n       final result = transaction.session;\n-      if (command == ZoteroCitingCommand.addNote &&\n-          !result.hasInsertedNoteText) {\n+      if (command.insertsNoteText && !result.hasInsertedNoteText) {\n+        final content = command == ZoteroCitingCommand.addAnnotation\n+            ? 'annotation'\n+            : 'note';\n         setState(\n-          () => _notice = 'No Zotero note was inserted. The document was kept.',\n+          () => _notice =\n+              'No Zotero $content was inserted. The document was kept.',\n         );\n         return;\n       }\n@@ -1271,6 +1274,18 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {\n                     : () => _citeWithDesktop(ZoteroCitingCommand.addNote),\n                 child: const Text('Add note from Zotero…'),\n               ),\n+              Tooltip(\n+                message:\n+                    'Insert text annotations and comments with active citations. Requires Zotero 9 or later.',\n+                child: OutlinedButton(\n+                  key: const ValueKey('zotero-add-annotation'),\n+                  onPressed: _busy || !_canEdit\n+                      ? null\n+                      : () =>\n+                            _citeWithDesktop(ZoteroCitingCommand.addAnnotation),\n+                  child: const Text('Add annotation from Zotero…'),\n+                ),\n+              ),\n               OutlinedButton(\n                 onPressed: _busy || !_canEdit\n                     ? null\n@@ -1735,6 +1750,7 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {\n       ZoteroCitingCommand.addEditCitation => 'Zotero citation',\n       ZoteroCitingCommand.addEditBibliography => 'Zotero bibliography',\n       ZoteroCitingCommand.addNote => 'Add note from Zotero',\n+      ZoteroCitingCommand.addAnnotation => 'Add annotation from Zotero',\n       ZoteroCitingCommand.refresh => 'Refresh Zotero citations',\n       ZoteroCitingCommand.setDocPrefs => 'Zotero document style',\n       ZoteroCitingCommand.removeCodes => 'Unlink Zotero citations',\n@@ -1762,6 +1778,13 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {\n                     'Finish or cancel the open dialog in Zotero. You will return to your document when Zotero finishes.',\n                 key: const ValueKey('zotero-command-status'),\n               ),\n+              if (command == ZoteroCitingCommand.addAnnotation) ...[\n+                const SizedBox(height: 12),\n+                const Text(\n+                  'Requires Zotero 9 or later. Choose text annotations; image and ink annotations are not yet supported.',\n+                  key: ValueKey('zotero-annotation-requirements'),\n+                ),\n+              ],\n             ],\n           ),\n         ),"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/zotero/zotero_citing.dart",
+      "patch": "@@ -8,9 +8,16 @@ enum ZoteroCitingCommand {\n   addEditCitation,\n   addEditBibliography,\n   addNote,\n+\n+  /// Opens Zotero's annotation picker, available in Zotero 9 and later.\n+  addAnnotation,\n   refresh,\n   setDocPrefs,\n-  removeCodes,\n+  removeCodes;\n+\n+  /// These commands must insert research content before staged preferences or\n+  /// temporary fields can be applied. A cancelled picker supplies no text.\n+  bool get insertsNoteText => this == addNote || this == addAnnotation;\n }\n \n typedef ZoteroCitingHandler ="
+    }
+  ],
+  "compare_metadata": {
+    "notes": {
+      "status": "diverged",
+      "ahead_by": 6,
+      "behind_by": 2,
+      "merge_base": "59f13897fd5aafccc234c58f41370dd786703418",
+      "commits": [
+        {
+          "sha": "f3b7dc3bf4a994781e40fa89e076ebe485ce3d0d",
+          "message": "Reconcile recent Mail, Notes and thesaurus before Zotero annotation support [skip ci]\n\nMerge the captured Notes and thesaurus heads, which include the latest Mail head. Preserve Zotero numbering snapshots, Notes composition identity, document history, stable Review layout and visible RTL selection regressions.",
+          "parents": [
+            "0abd0e592ad607a88a6a7db6a5bf235939efa5b9",
+            "840362cd74a3d4b4365cf2bc9a2ae326225009c3",
+            "7e4adc08fce78fb95524f304962f9c1804e18691"
+          ]
+        },
+        {
+          "sha": "7a006981fa0948ac0a39347dbb123d0ef98be128",
+          "message": "Reconcile thesaurus and research-list updates with inline Notes review [skip ci]\n\nPreserve the validated Notes history, language, layout, and real-font regression coverage while retaining incoming numbering and stable Review layout fixes. Local qualification of this combined source is pending.",
+          "parents": [
+            "840362cd74a3d4b4365cf2bc9a2ae326225009c3",
+            "7e4adc08fce78fb95524f304962f9c1804e18691"
+          ]
+        },
+        {
+          "sha": "ff988fdffaf07d9341e5aa43a80c2e7f68b6de88",
+          "message": "Reconcile all captured Notes, Zotero and thesaurus heads with Mail [skip ci]",
+          "parents": [
+            "086e15b7c059edd09cc77dea721f489b5ef97fa9",
+            "840362cd74a3d4b4365cf2bc9a2ae326225009c3",
+            "7e4adc08fce78fb95524f304962f9c1804e18691",
+            "0abd0e592ad607a88a6a7db6a5bf235939efa5b9"
+          ]
+        },
+        {
+          "sha": "2c17906cc52efcaa518a87805de7fc88b05d2d43",
+          "message": "Reconcile final Zotero qualification and retain visible Notes selection [skip ci]\n\nIntegrate the remaining captured Zotero head while preserving the review branch's field identity and focus assertions. Combined 79-suite local qualification remains pending.",
+          "parents": [
+            "7a006981fa0948ac0a39347dbb123d0ef98be128",
+            "0abd0e592ad607a88a6a7db6a5bf235939efa5b9"
+          ]
+        },
+        {
+          "sha": "0ce210973f1c86483ffcea9b91c83bbf067575e0",
+          "message": "Preserve incoming audit and integrated local qualification plan [skip ci]",
+          "parents": [
+            "ff988fdffaf07d9341e5aa43a80c2e7f68b6de88"
+          ]
+        },
+        {
+          "sha": "bb241a34a1722a44b29f51fdce4be64e0ffc47b9",
+          "message": "Integrate the final captured Mail, Zotero and thesaurus reconciliation [skip ci]\n\nBound the final refresh to 2026-11-19T05:30:54.164206Z. Preserve the existing combined product and regression tree after comparing overlapping merge choices; add incoming qualification evidence and targeted-runner hardening. Full combined local qualification is pending.",
+          "parents": [
+            "2c17906cc52efcaa518a87805de7fc88b05d2d43",
+            "0ce210973f1c86483ffcea9b91c83bbf067575e0",
+            "59f13897fd5aafccc234c58f41370dd786703418",
+            "f3b7dc3bf4a994781e40fa89e076ebe485ce3d0d"
+          ]
+        }
+      ]
+    },
+    "mail": {
+      "status": "diverged",
+      "ahead_by": 3,
+      "behind_by": 4,
+      "merge_base": "7e4adc08fce78fb95524f304962f9c1804e18691",
+      "commits": [
+        {
+          "sha": "ff988fdffaf07d9341e5aa43a80c2e7f68b6de88",
+          "message": "Reconcile all captured Notes, Zotero and thesaurus heads with Mail [skip ci]",
+          "parents": [
+            "086e15b7c059edd09cc77dea721f489b5ef97fa9",
+            "840362cd74a3d4b4365cf2bc9a2ae326225009c3",
+            "7e4adc08fce78fb95524f304962f9c1804e18691",
+            "0abd0e592ad607a88a6a7db6a5bf235939efa5b9"
+          ]
+        },
+        {
+          "sha": "0ce210973f1c86483ffcea9b91c83bbf067575e0",
+          "message": "Preserve incoming audit and integrated local qualification plan [skip ci]",
+          "parents": [
+            "ff988fdffaf07d9341e5aa43a80c2e7f68b6de88"
+          ]
+        },
+        {
+          "sha": "db7501ee42c97e8da42b776a4213802cac41a9b0",
+          "message": "Save verified runtime and source bindings before qualification [skip ci]",
+          "parents": [
+            "0ce210973f1c86483ffcea9b91c83bbf067575e0"
+          ]
+        }
+      ]
+    },
+    "zotero": {
+      "status": "diverged",
+      "ahead_by": 2,
+      "behind_by": 4,
+      "merge_base": "7e4adc08fce78fb95524f304962f9c1804e18691",
+      "commits": [
+        {
+          "sha": "f3b7dc3bf4a994781e40fa89e076ebe485ce3d0d",
+          "message": "Reconcile recent Mail, Notes and thesaurus before Zotero annotation support [skip ci]\n\nMerge the captured Notes and thesaurus heads, which include the latest Mail head. Preserve Zotero numbering snapshots, Notes composition identity, document history, stable Review layout and visible RTL selection regressions.",
+          "parents": [
+            "0abd0e592ad607a88a6a7db6a5bf235939efa5b9",
+            "840362cd74a3d4b4365cf2bc9a2ae326225009c3",
+            "7e4adc08fce78fb95524f304962f9c1804e18691"
+          ]
+        },
+        {
+          "sha": "ff06e5544673ce7f70be983299241bcdcef780d3",
+          "message": "Add native Zotero annotations with guarded Word workflows [skip ci]",
+          "parents": [
+            "f3b7dc3bf4a994781e40fa89e076ebe485ce3d0d"
+          ]
+        }
+      ]
+    }
+  }
+}

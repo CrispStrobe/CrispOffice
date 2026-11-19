@@ -1,0 +1,107 @@
+{
+  "review_kind": "read-only final feature review",
+  "reviewer": "/root/zotero_parity_review",
+  "implementation_overlap": "Reviewer implemented the engine enum/controller preflight and their tests; the dialog, ribbon, guide and UI regression changes were authored by root.",
+  "source": {
+    "repository": "CrispStrobe/quds_office_suite",
+    "base_commit": "f3b7dc3bf4a994781e40fa89e076ebe485ce3d0d",
+    "reviewed_commit": "ff06e5544673ce7f70be983299241bcdcef780d3",
+    "tree": "ee23dc2179d4b3e26eabf3b35e7aa13f95a7963d",
+    "reviewed_at_utc": "2026-11-19 05:36:21 UTC",
+    "tracked_files_modified_during_review": false,
+    "git_diff_check": "passed"
+  },
+  "findings": [
+    {
+      "id": "annotation-export-boundary",
+      "severity": "documentation precision",
+      "product_code_change_required": false,
+      "locations": [
+        {
+          "path": "docs/zotero-support.md",
+          "lines": "77-82"
+        },
+        {
+          "path": "docs/validation/zotero-annotations-20261119/README.md",
+          "lines": "66-70"
+        }
+      ],
+      "issue": "The checkpoint text promises atomic refusal by selected annotation type. Quds receives Zotero's exported HTML rather than the annotation objects. Zotero can replace a missing image with a localized text notice, skip a contentless non-image annotation, or skip an annotation whose attachment cannot be resolved. Quds cannot validate selection types absent from that output.",
+      "evidence": {
+        "repository": "zotero/zotero",
+        "path": "chrome/content/zotero/xpcom/editorInstance.js",
+        "blob_sha": "3c769e6ca8e20d4aad449024e406f5d749cffca8",
+        "blob_url": "https://api.github.com/repos/zotero/zotero/git/blobs/3c769e6ca8e20d4aad449024e406f5d749cffca8",
+        "line_ranges": {
+          "missing_attachment_skip": "1704-1708",
+          "empty_non_image_annotation_skip": "1710-1715",
+          "image_markup_and_missing_image_notice": "1797-1807",
+          "image_or_ink_note_template": "1821-1830"
+        }
+      },
+      "agreed_resolution": "State that only text annotations are supported and returned images or unsupported structures are refused atomically. Do not claim Quds validates every selected annotation type. Keep the UI's request to choose text annotations and its image/ink support limitation.",
+      "status": "Root accepted the correction for the documentation-only publication commit after frozen qualification. Not yet applied to the reviewed checkpoint."
+    }
+  ],
+  "product_findings": [],
+  "concrete_review_results": [
+    {
+      "area": "Cancellation",
+      "result": "Both UI routes pass addAnnotation to the controller. The shared insertsNoteText predicate reaches the no-content guard before prepareReview/apply; a cancelled picker therefore discards staged preferences and temporary fields.",
+      "references": [
+        "word_zotero_dialog.dart:_citeWithDesktop",
+        "office_controller.dart:beginZoteroTransaction"
+      ]
+    },
+    {
+      "area": "Older or unavailable desktop",
+      "result": "Command serialization sends addAnnotation without retry or fallback. Existing STOP error-alert handling acknowledges and drains without completing the model session. The annotation-specific protocol regression exercises the STOP/YES_NO path and refuses staged preference application. The direct HTTP-500 UI test is correctly a generic unavailable-command case, not live older-version acceptance.",
+      "references": [
+        "zotero_citing.dart:execute/_drain",
+        "zotero_add_note_protocol_test.dart",
+        "word_zotero_direct_command_test.dart"
+      ]
+    },
+    {
+      "area": "Return to typing",
+      "result": "The new route uses the existing shared dialog wrapper. It requests focus after successful or cancelled direct work only while the original document/current route remains valid and composition is inactive. Studio route coverage verifies return after cancelled completion; shared focused-controller regressions cover successful insertion and resulting caret. No installed-application focus or shortcut acceptance is claimed.",
+      "references": [
+        "word_zotero_dialog.dart:showWordZoteroDialog/_run",
+        "suite_workspace.dart:_openZotero",
+        "studio_zotero_shortcuts_test.dart"
+      ]
+    },
+    {
+      "area": "Privacy and credentials",
+      "result": "The change adds no network endpoint, API key, credential store, logging path, or web fallback. It reuses the existing direct localhost transport, its restricted citing routes, redirect refusal, bounded request bodies and local header allowlist.",
+      "references": [
+        "studio_zotero.dart:StudioZoteroTransport.send/_validateLocalRequest",
+        "studio_zotero_local_io.dart"
+      ]
+    },
+    {
+      "area": "Unsupported returned images",
+      "result": "The bounded note parser rejects unsupported image tags before assigning staged note text. A parser failure leaves the live document untouched; application also retains the controller snapshot/restore boundary. This supports atomic rejection of unsupported returned markup, subject to the documentation finding above.",
+      "references": [
+        "word_zotero_note.dart:WordZoteroNoteText.fromHtml",
+        "word_zotero_citing.dart:_stageNoteText",
+        "office_controller.dart:_applyZoteroTransaction"
+      ]
+    },
+    {
+      "area": "Discoverable user routes",
+      "result": "The native ribbon and persistent Document workspace both expose Add Annotation. The workspace hides native commands without a local transport and uses existing busy/editability guards. Direct error guidance retains the Zotero 9+ requirement. No additional blocking user path was found within the documented body-caret/text-annotation scope.",
+      "references": [
+        "suite_workspace.dart:_wordInsert",
+        "word_zotero_dialog.dart:_desktopTools/_commandDialog",
+        "word_zotero_citing_dialog_test.dart"
+      ]
+    }
+  ],
+  "validation_boundary": {
+    "additional_test_runs_during_frozen_review": 0,
+    "reason": "Kept the active qualification workspace and runtime uncontended; review used committed source and primary Zotero implementation.",
+    "full_qualification": "Owned by root's separate frozen 98-file runner; no development counts included here.",
+    "live_acceptance": "No fresh installed Zotero, OS shortcut or Word/LibreOffice reopening session performed."
+  }
+}

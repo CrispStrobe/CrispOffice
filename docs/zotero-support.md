@@ -75,11 +75,14 @@ text composition, unsupported content or incomplete citation conversion keeps
 the result from being applied.
 
 This command supports **text annotations** and uses the same content limits and
-body-caret requirements as Add Note below. Image and ink annotations are refused
-atomically; they are not silently omitted. Older Zotero versions do not provide
-the annotation command: use **Add Zotero note** to insert supported annotation
-notes, or update Zotero. The command dialog and workspace tooltip identify the
-version requirement.
+body-caret requirements as Add Note below. Returned image content, including
+image and ink annotation images, is refused atomically. Zotero itself can replace
+an unavailable image with explanatory text or omit unavailable content before
+sending the result; Quds cannot restore content absent from that result. Choose
+text annotations for this workflow. Older Zotero versions do not provide the
+annotation command: use **Add Zotero note** to insert supported annotation notes,
+or update Zotero. The command dialog and workspace tooltip identify the version
+requirement.
 
 ### Insert a Zotero research note
 
