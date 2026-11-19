@@ -1,0 +1,1038 @@
+{
+  "audit_checks_passed": true,
+  "issues": [],
+  "source_commit": "aea5d91af0083bc088d599ed767188f0bb071195",
+  "source_tree": "6b487d761c1c618a26d04423e103b23bc5d70704",
+  "audited_at_utc": "2026-11-19T08:35:11.582756+00:00",
+  "recorded_failure_confirmed": true,
+  "accepted_qualification": false,
+  "attempt_status": "FAIL",
+  "failure": "Three native C++ missing-dictionary stderr diagnostics were merged into the JSON reporter stream; strict accounting correctly rejected the native group.",
+  "visible_application_successes": 159,
+  "failed_application_case_events": 0,
+  "skipped_application_case_events": 0,
+  "groups": [
+    {
+      "name": "hunspell-native",
+      "visible_successes": 23,
+      "failed": 0,
+      "skipped": 0,
+      "strict_gate_accepted": false,
+      "malformed_reporter_lines": 3,
+      "raw_sha256": "d6eca53eb37f4aebd098511875cf73e405067b3946ae49564732b380b3246742"
+    },
+    {
+      "name": "cursor-main-merge-vm",
+      "visible_successes": 50,
+      "failed": 0,
+      "skipped": 0,
+      "strict_gate_accepted": true,
+      "malformed_reporter_lines": 0,
+      "raw_sha256": "4dbe032334bea79efe29da35a3b810a058535fc50efe712d03f8238030243ad0"
+    },
+    {
+      "name": "arabic-main-merge-vm",
+      "visible_successes": 84,
+      "failed": 0,
+      "skipped": 0,
+      "strict_gate_accepted": true,
+      "malformed_reporter_lines": 0,
+      "raw_sha256": "4092cc90a7e7eb509d8e44ad06daebd6ce57c755d1b7d91e17b970d9dcf502ba"
+    },
+    {
+      "name": "word-arabic-main-merge-vm",
+      "visible_successes": 2,
+      "failed": 0,
+      "skipped": 0,
+      "strict_gate_accepted": true,
+      "malformed_reporter_lines": 0,
+      "raw_sha256": "1bcc786ba28eb174c695b24d5cf778a2cc25583ab1f7bed921e5b87670fd2a3a"
+    }
+  ],
+  "malformed_reporter_lines": [
+    {
+      "group": "hunspell-native",
+      "line": 46,
+      "text": "error: /missing/ar.aff: cannot open"
+    },
+    {
+      "group": "hunspell-native",
+      "line": 47,
+      "text": "error: /missing/ar.dic: cannot open"
+    },
+    {
+      "group": "hunspell-native",
+      "line": 48,
+      "text": "error: /missing/ar.aff: cannot open"
+    }
+  ],
+  "case_inventory": [
+    {
+      "group": "hunspell-native",
+      "id": 4,
+      "name": "words keep harakat and tatweel inside a word with UTF-16 offsets",
+      "suite_id": 0
+    },
+    {
+      "group": "hunspell-native",
+      "id": 5,
+      "name": "words Latin words in Arabic prose are left to other providers",
+      "suite_id": 0
+    },
+    {
+      "group": "hunspell-native",
+      "id": 6,
+      "name": "words ZWNJ, digits and punctuation end words",
+      "suite_id": 0
+    },
+    {
+      "group": "hunspell-native",
+      "id": 8,
+      "name": "catalog AyaSpell resolves only at its immutable revision",
+      "suite_id": 0
+    },
+    {
+      "group": "hunspell-native",
+      "id": 9,
+      "name": "catalog verified bytes reject anything but the pinned files",
+      "suite_id": 0
+    },
+    {
+      "group": "hunspell-native",
+      "id": 11,
+      "name": "provider reports findings at block offsets with capped suggestions",
+      "suite_id": 0
+    },
+    {
+      "group": "hunspell-native",
+      "id": 12,
+      "name": "provider suggestion budget bounds work but keeps every finding",
+      "suite_id": 0
+    },
+    {
+      "group": "hunspell-native",
+      "id": 13,
+      "name": "provider personal and ignored words are not reported",
+      "suite_id": 0
+    },
+    {
+      "group": "hunspell-native",
+      "id": 14,
+      "name": "provider ignored rule, protected links and other languages",
+      "suite_id": 0
+    },
+    {
+      "group": "hunspell-native",
+      "id": 15,
+      "name": "provider malformed backend output fails, never reports clean",
+      "suite_id": 0
+    },
+    {
+      "group": "hunspell-native",
+      "id": 16,
+      "name": "provider concurrent disposal waits for transport cleanup",
+      "suite_id": 0
+    },
+    {
+      "group": "hunspell-native",
+      "id": 20,
+      "name": "missing native library is unavailable without isolate errors",
+      "suite_id": 17
+    },
+    {
+      "group": "hunspell-native",
+      "id": 22,
+      "name": "real library and AyaSpell known corrections come first",
+      "suite_id": 17
+    },
+    {
+      "group": "hunspell-native",
+      "id": 23,
+      "name": "real library and AyaSpell harakat and tatweel are ignored by the dictionary, offsets kept",
+      "suite_id": 17
+    },
+    {
+      "group": "hunspell-native",
+      "id": 24,
+      "name": "real library and AyaSpell personal vocabulary suppresses a name",
+      "suite_id": 17
+    },
+    {
+      "group": "hunspell-native",
+      "id": 25,
+      "name": "real library and AyaSpell a non-UTF-8 or missing dictionary is unavailable",
+      "suite_id": 17
+    },
+    {
+      "group": "hunspell-native",
+      "id": 27,
+      "name": "installer installs, verifies, reuses and removes the pinned bundle",
+      "suite_id": 17
+    },
+    {
+      "group": "hunspell-native",
+      "id": 28,
+      "name": "installer a changed download is rejected and nothing is installed",
+      "suite_id": 17
+    },
+    {
+      "group": "hunspell-native",
+      "id": 29,
+      "name": "live download from the pinned Hugging Face revision",
+      "suite_id": 17
+    },
+    {
+      "group": "hunspell-native",
+      "id": 35,
+      "name": "native dictionary lifecycle disposal frees an opened dictionary before returning",
+      "suite_id": 30
+    },
+    {
+      "group": "hunspell-native",
+      "id": 36,
+      "name": "native dictionary lifecycle concurrent disposal closes exactly once for every waiter",
+      "suite_id": 30
+    },
+    {
+      "group": "hunspell-native",
+      "id": 37,
+      "name": "native dictionary lifecycle disposal during startup completes without opening a handle",
+      "suite_id": 30
+    },
+    {
+      "group": "hunspell-native",
+      "id": 38,
+      "name": "native dictionary lifecycle timeout disposal waits for pending native work to close",
+      "suite_id": 30
+    },
+    {
+      "group": "cursor-main-merge-vm",
+      "id": 3,
+      "name": "quds-imap-window-v1 keeps its position and migrates from revision zero",
+      "suite_id": 0
+    },
+    {
+      "group": "cursor-main-merge-vm",
+      "id": 4,
+      "name": "quds-imap-discovery-v2 keeps its position and migrates from revision zero",
+      "suite_id": 0
+    },
+    {
+      "group": "cursor-main-merge-vm",
+      "id": 5,
+      "name": "v3 revisions round-trip exactly at the JavaScript integer boundary",
+      "suite_id": 0
+    },
+    {
+      "group": "cursor-main-merge-vm",
+      "id": 6,
+      "name": "v3 rejects invalid revisions instead of rounding or resetting them",
+      "suite_id": 0
+    },
+    {
+      "group": "cursor-main-merge-vm",
+      "id": 7,
+      "name": "cursor versions require their exact shape and mailbox scope",
+      "suite_id": 0
+    },
+    {
+      "group": "cursor-main-merge-vm",
+      "id": 12,
+      "name": "manual server endpoint accepts explicit DNS, IPv4 and unbracketed IPv6 hosts",
+      "suite_id": 8
+    },
+    {
+      "group": "cursor-main-merge-vm",
+      "id": 13,
+      "name": "manual server endpoint rejects address injection, ambiguous IPs and malformed DNS labels",
+      "suite_id": 8
+    },
+    {
+      "group": "cursor-main-merge-vm",
+      "id": 14,
+      "name": "manual server endpoint requires an explicit usable port without a service-port assumption",
+      "suite_id": 8
+    },
+    {
+      "group": "cursor-main-merge-vm",
+      "id": 15,
+      "name": "manual server endpoint port selection never silently downgrades the mandatory TLS policy",
+      "suite_id": 8
+    },
+    {
+      "group": "cursor-main-merge-vm",
+      "id": 17,
+      "name": "host-owned account configuration keeps the login identity, authentication mode and scoped vault locator",
+      "suite_id": 8
+    },
+    {
+      "group": "cursor-main-merge-vm",
+      "id": 18,
+      "name": "host-owned account configuration rejects empty, overlong and control-bearing login identities",
+      "suite_id": 8
+    },
+    {
+      "group": "cursor-main-merge-vm",
+      "id": 19,
+      "name": "host-owned account configuration vault references cannot cross accounts, profiles or host applications",
+      "suite_id": 8
+    },
+    {
+      "group": "cursor-main-merge-vm",
+      "id": 20,
+      "name": "host-owned account configuration vault locators are bounded identifiers rather than protocol lines",
+      "suite_id": 8
+    },
+    {
+      "group": "cursor-main-merge-vm",
+      "id": 22,
+      "name": "finite transport resource bounds validates defaults and supported lower and upper policy boundaries",
+      "suite_id": 8
+    },
+    {
+      "group": "cursor-main-merge-vm",
+      "id": 23,
+      "name": "finite transport resource bounds rejects empty or excessive message, mailbox and UID sweep work",
+      "suite_id": 8
+    },
+    {
+      "group": "cursor-main-merge-vm",
+      "id": 24,
+      "name": "finite transport resource bounds rejects unusable or excessive literal, line, response and credential budgets",
+      "suite_id": 8
+    },
+    {
+      "group": "cursor-main-merge-vm",
+      "id": 25,
+      "name": "finite transport resource bounds rejects unbounded waits, invalid polling and negative backoff",
+      "suite_id": 8
+    },
+    {
+      "group": "cursor-main-merge-vm",
+      "id": 29,
+      "name": "completed sweeps reject stale pages without restoring expunged data",
+      "suite_id": 26
+    },
+    {
+      "group": "cursor-main-merge-vm",
+      "id": 30,
+      "name": "high discovered UID pages preserve flags and resume the durable cursor after reopen",
+      "suite_id": 26
+    },
+    {
+      "group": "cursor-main-merge-vm",
+      "id": 31,
+      "name": "failed store transaction retains the cursor and retries the same UID window",
+      "suite_id": 26
+    },
+    {
+      "group": "cursor-main-merge-vm",
+      "id": 32,
+      "name": "UIDVALIDITY reset replaces only its own account and mailbox membership",
+      "suite_id": 26
+    },
+    {
+      "group": "cursor-main-merge-vm",
+      "id": 33,
+      "name": "account invalidation during a blocked IMAP response cannot commit later",
+      "suite_id": 26
+    },
+    {
+      "group": "cursor-main-merge-vm",
+      "id": 34,
+      "name": "host-scoped credentials are checked before protocol work and on every pull",
+      "suite_id": 26
+    },
+    {
+      "group": "cursor-main-merge-vm",
+      "id": 38,
+      "name": "sparse unordered discovery pages near the 32-bit UID ceiling",
+      "suite_id": 35
+    },
+    {
+      "group": "cursor-main-merge-vm",
+      "id": 39,
+      "name": "page size counts existing messages rather than numeric holes",
+      "suite_id": 35
+    },
+    {
+      "group": "cursor-main-merge-vm",
+      "id": 40,
+      "name": "an empty remaining search confirms its whole range without FETCH",
+      "suite_id": 35
+    },
+    {
+      "group": "cursor-main-merge-vm",
+      "id": 41,
+      "name": "a never-populated mailbox has no invalid zero-UID search range",
+      "suite_id": 35
+    },
+    {
+      "group": "cursor-main-merge-vm",
+      "id": 42,
+      "name": "new arrivals beyond the frozen ceiling enter the next sweep",
+      "suite_id": 35
+    },
+    {
+      "group": "cursor-main-merge-vm",
+      "id": 43,
+      "name": "saved quds-imap-window-v1 cursors resume with a new revision",
+      "suite_id": 35
+    },
+    {
+      "group": "cursor-main-merge-vm",
+      "id": 44,
+      "name": "saved quds-imap-discovery-v2 cursors resume with a new revision",
+      "suite_id": 35
+    },
+    {
+      "group": "cursor-main-merge-vm",
+      "id": 45,
+      "name": "page revisions advance through completed, empty and reset sweeps",
+      "suite_id": 35
+    },
+    {
+      "group": "cursor-main-merge-vm",
+      "id": 46,
+      "name": "revision exhaustion fails before protocol work without wrapping",
+      "suite_id": 35
+    },
+    {
+      "group": "cursor-main-merge-vm",
+      "id": 47,
+      "name": "UIDVALIDITY rollover discards an old high-UID continuation",
+      "suite_id": 35
+    },
+    {
+      "group": "cursor-main-merge-vm",
+      "id": 48,
+      "name": "a backwards UIDNEXT cannot authorize deletion of a saved range",
+      "suite_id": 35
+    },
+    {
+      "group": "cursor-main-merge-vm",
+      "id": 49,
+      "name": "a discovered message expunged before FETCH is absent in its range",
+      "suite_id": 35
+    },
+    {
+      "group": "cursor-main-merge-vm",
+      "id": 50,
+      "name": "an in-range FETCH UID absent from discovery rejects the whole page",
+      "suite_id": 35
+    },
+    {
+      "group": "cursor-main-merge-vm",
+      "id": 51,
+      "name": "missing discovery cannot authorize a page or FETCH",
+      "suite_id": 35
+    },
+    {
+      "group": "cursor-main-merge-vm",
+      "id": 52,
+      "name": "repeated discovery cannot authorize a page or FETCH",
+      "suite_id": 35
+    },
+    {
+      "group": "cursor-main-merge-vm",
+      "id": 53,
+      "name": "duplicate UID discovery cannot authorize a page or FETCH",
+      "suite_id": 35
+    },
+    {
+      "group": "cursor-main-merge-vm",
+      "id": 54,
+      "name": "zero UID discovery cannot authorize a page or FETCH",
+      "suite_id": 35
+    },
+    {
+      "group": "cursor-main-merge-vm",
+      "id": 55,
+      "name": "overflow UID discovery cannot authorize a page or FETCH",
+      "suite_id": 35
+    },
+    {
+      "group": "cursor-main-merge-vm",
+      "id": 56,
+      "name": "out-of-range UID discovery cannot authorize a page or FETCH",
+      "suite_id": 35
+    },
+    {
+      "group": "cursor-main-merge-vm",
+      "id": 57,
+      "name": "malformed suffix discovery cannot authorize a page or FETCH",
+      "suite_id": 35
+    },
+    {
+      "group": "cursor-main-merge-vm",
+      "id": 58,
+      "name": "unrequested ESEARCH discovery cannot authorize a page or FETCH",
+      "suite_id": 35
+    },
+    {
+      "group": "cursor-main-merge-vm",
+      "id": 59,
+      "name": "SEARCH status prose and mixed-case data preserve valid discovery",
+      "suite_id": 35
+    },
+    {
+      "group": "cursor-main-merge-vm",
+      "id": 60,
+      "name": "a tagged SEARCH failure cannot commit a valid result prefix",
+      "suite_id": 35
+    },
+    {
+      "group": "cursor-main-merge-vm",
+      "id": 61,
+      "name": "discovery count limits fail atomically and release the provider",
+      "suite_id": 35
+    },
+    {
+      "group": "cursor-main-merge-vm",
+      "id": 62,
+      "name": "discovery obeys the protocol line budget before parsing a prefix",
+      "suite_id": 35
+    },
+    {
+      "group": "cursor-main-merge-vm",
+      "id": 63,
+      "name": "an explicit legacy numeric ceiling retains its old meaning",
+      "suite_id": 35
+    },
+    {
+      "group": "cursor-main-merge-vm",
+      "id": 64,
+      "name": "cancelling stalled SEARCH prevents FETCH and allows a fresh operation",
+      "suite_id": 35
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 3,
+      "name": "ar.hamza.initial: \u0630\u0647\u0628 \u0627\u0644\u0648\u0644\u062f \u0627\u0644\u0649 \u0627\u0644\u0628\u064a\u062a.",
+      "suite_id": 0
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 4,
+      "name": "ar.hamza.initial: \u0639\u0627\u062f \u0627\u0644\u064a\u0647 \u0628\u0639\u062f \u0633\u0627\u0639\u0629.",
+      "suite_id": 0
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 5,
+      "name": "ar.hamza.initial: \u0647\u0644 \u062a\u0631\u064a\u062f \u0627\u0644\u0634\u0627\u064a \u0627\u0648 \u0627\u0644\u0642\u0647\u0648\u0629\u061f",
+      "suite_id": 0
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 6,
+      "name": "ar.hamza.initial: \u0633\u0623\u062d\u0636\u0631 \u0627\u0630\u0627 \u0633\u0645\u062d \u0627\u0644\u0648\u0642\u062a.",
+      "suite_id": 0
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 7,
+      "name": "ar.hamza.initial: \u0648\u0627\u0630\u0627 \u062a\u0623\u062e\u0631\u062a \u0641\u0627\u062a\u0635\u0644 \u0628\u064a.",
+      "suite_id": 0
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 8,
+      "name": "ar.hamza.initial: \u0623\u0639\u0631\u0641 \u0627\u0646 \u0627\u0644\u0637\u0631\u064a\u0642 \u0637\u0648\u064a\u0644.",
+      "suite_id": 0
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 9,
+      "name": "ar.hamza.initial: \u063a\u0627\u0628 \u0644\u0627\u0646\u0647 \u0645\u0631\u064a\u0636.",
+      "suite_id": 0
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 10,
+      "name": "ar.hamza.initial: \u0627\u064a\u0646 \u0627\u0644\u0643\u062a\u0627\u0628\u061f",
+      "suite_id": 0
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 11,
+      "name": "ar.hamza.initial: \u0647\u0630\u0627 \u0627\u0643\u0628\u0631 \u0628\u064a\u062a \u0641\u064a \u0627\u0644\u062d\u064a.",
+      "suite_id": 0
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 12,
+      "name": "ar.hamza.initial: \u062c\u0627\u0621 \u0627\u0644\u0637\u0644\u0627\u0628 \u0627\u064a\u0636\u0627.",
+      "suite_id": 0
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 13,
+      "name": "ar.hamza.initial: \u0648\u0642\u0641 \u0627\u0645\u0627\u0645 \u0627\u0644\u0628\u0627\u0628.",
+      "suite_id": 0
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 14,
+      "name": "ar.hamza.initial: \u0630\u0647\u0628\u064e \u0627\u0644\u064e\u0649 \u0627\u0644\u0633\u0648\u0642.",
+      "suite_id": 0
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 15,
+      "name": "ar.ta-marbuta.final: \u0630\u0647\u0628\u062a \u0627\u0644\u0649 \u0627\u0644\u0645\u062f\u0631\u0633\u0647 \u0635\u0628\u0627\u062d\u0627.",
+      "suite_id": 0
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 16,
+      "name": "ar.ta-marbuta.final: \u062f\u0631\u0633 \u0641\u064a \u0627\u0644\u062c\u0627\u0645\u0639\u0647 \u0633\u0646\u0648\u0627\u062a.",
+      "suite_id": 0
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 17,
+      "name": "ar.ta-marbuta.final: \u0639\u0627\u062f \u0645\u0646 \u0627\u0644\u0645\u062f\u064a\u0646\u0647 \u0627\u0644\u0643\u0628\u064a\u0631\u0629.",
+      "suite_id": 0
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 18,
+      "name": "ar.ta-marbuta.final: \u0639\u0627\u062f \u0645\u0646 \u0627\u0644\u0645\u062f\u064a\u0646\u0629 \u0627\u0644\u0643\u0628\u064a\u0631\u0647.",
+      "suite_id": 0
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 19,
+      "name": "ar.ta-marbuta.final: \u0630\u0647\u0628 \u0628\u0627\u0644\u0633\u064a\u0627\u0631\u0647.",
+      "suite_id": 0
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 20,
+      "name": "ar.ta-marbuta.final: \u0643\u062a\u0628 \u0631\u0633\u0627\u0644\u0629 \u0644\u0644\u062d\u0643\u0648\u0645\u0647.",
+      "suite_id": 0
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 21,
+      "name": "ar.ta-marbuta.final: \u064a\u062d\u0628 \u0627\u0644\u0644\u063a\u0647 \u0627\u0644\u0639\u0631\u0628\u064a\u0629.",
+      "suite_id": 0
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 22,
+      "name": "ar.ta-marbuta.final: \u064a\u062d\u0628 \u0627\u0644\u0644\u063a\u0629 \u0627\u0644\u0639\u0631\u0628\u064a\u0647.",
+      "suite_id": 0
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 23,
+      "name": "ar.alif-maqsura.final: \u0627\u0646\u062a\u0638\u0631 \u062d\u062a\u064a \u0627\u0644\u0635\u0628\u0627\u062d.",
+      "suite_id": 0
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 24,
+      "name": "ar.alif-maqsura.final: \u0645\u062a\u064a \u064a\u0628\u062f\u0623 \u0627\u0644\u062f\u0631\u0633\u061f",
+      "suite_id": 0
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 25,
+      "name": "ar.alif-maqsura.final: \u0646\u0642\u0644 \u0625\u0644\u0649 \u0627\u0644\u0645\u0633\u062a\u0634\u0641\u064a.",
+      "suite_id": 0
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 26,
+      "name": "ar.ya.final: \u0627\u0644\u0643\u062a\u0627\u0628 \u0641\u0649 \u0627\u0644\u062d\u0642\u064a\u0628\u0629.",
+      "suite_id": 0
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 27,
+      "name": "ar.ya.final: \u0627\u0644\u0631\u062c\u0644 \u0627\u0644\u0630\u0649 \u062c\u0627\u0621.",
+      "suite_id": 0
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 28,
+      "name": "ar.ya.final: \u0647\u0649 \u0645\u0639\u0644\u0645\u0629.",
+      "suite_id": 0
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 29,
+      "name": "ar.punctuation.arabic-mark: \u062c\u0627\u0621 \u0623\u062d\u0645\u062f, \u0648\u0630\u0647\u0628 \u0639\u0644\u064a.",
+      "suite_id": 0
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 30,
+      "name": "ar.punctuation.arabic-mark: \u0647\u0644 \u0623\u0646\u062a \u0628\u062e\u064a\u0631?",
+      "suite_id": 0
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 31,
+      "name": "ar.punctuation.arabic-mark: \u0642\u0631\u0623 \u0627\u0644\u0643\u062a\u0627\u0628; \u062b\u0645 \u0646\u0627\u0645.",
+      "suite_id": 0
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 32,
+      "name": "ar.punctuation.space-before: \u062c\u0627\u0621 \u0623\u062d\u0645\u062f \u060c \u0648\u0630\u0647\u0628 \u0639\u0644\u064a.",
+      "suite_id": 0
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 33,
+      "name": "ar.punctuation.space-before: \u0647\u0644 \u0623\u0646\u062a \u0628\u062e\u064a\u0631 \u061f",
+      "suite_id": 0
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 34,
+      "name": "ar.punctuation.space-after: \u062c\u0627\u0621 \u0623\u062d\u0645\u062f\u060c\u0648\u0630\u0647\u0628 \u0639\u0644\u064a.",
+      "suite_id": 0
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 35,
+      "name": "ar.style.tatweel: \u0647\u0630\u0627 \u0643\u062a\u0640\u0640\u0640\u0627\u0628 \u062c\u0645\u064a\u0644.",
+      "suite_id": 0
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 36,
+      "name": "ar.repetition.word: \u062c\u0644\u0633 \u0641\u064a \u0641\u064a \u0627\u0644\u062d\u062f\u064a\u0642\u0629.",
+      "suite_id": 0
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 37,
+      "name": "ar.repetition.word: \u0647\u0630\u0627 \u0647\u0648 \u0627\u0644\u0643\u062a\u0627\u0628 \u0627\u0644\u0630\u064a \u0627\u0644\u0630\u064a \u0642\u0631\u0623\u062a\u0647.",
+      "suite_id": 0
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 38,
+      "name": "ar.spacing.conjunction-waw: \u062c\u0627\u0621 \u0623\u062d\u0645\u062f \u0648 \u0647\u0648 \u064a\u0628\u062a\u0633\u0645.",
+      "suite_id": 0
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 39,
+      "name": "ar.spacing.conjunction-waw: \u0627\u0634\u062a\u0631\u0649 \u062e\u0628\u0632\u0627 \u0648  \u062d\u0644\u064a\u0628\u0627.",
+      "suite_id": 0
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 40,
+      "name": "ar.digits.mixed: \u0648\u0644\u062f \u0639\u0627\u0645 \u0661\u06699\u0660.",
+      "suite_id": 0
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 41,
+      "name": "ar.digits.mixed: \u0627\u0644\u0635\u0641\u062d\u0629 1\u0662.",
+      "suite_id": 0
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 42,
+      "name": "control has no finding: \u0630\u0647\u0628 \u0627\u0644\u0648\u0644\u062f \u0625\u0644\u0649 \u0627\u0644\u0645\u062f\u0631\u0633\u0629 \u0635\u0628\u0627\u062d\u0627\u060c \u062b\u0645 \u0639\u0627\u062f \u0625\u0644\u0649 \u0627\u0644\u0628\u064a\u062a.",
+      "suite_id": 0
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 43,
+      "name": "control has no finding: \u0623\u0639\u0631\u0641 \u0623\u0646 \u0627\u0644\u0637\u0631\u064a\u0642 \u0637\u0648\u064a\u0644\u060c \u0648\u0625\u0646 \u0643\u0627\u0646 \u0645\u0645\u062a\u0639\u0627.",
+      "suite_id": 0
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 44,
+      "name": "control has no finding: \u0642\u0627\u0644 \u0627\u0628\u0646 \u062e\u0644\u062f\u0648\u0646 \u0625\u0646 \u0627\u0644\u0639\u0645\u0631\u0627\u0646 \u0627\u0644\u0628\u0634\u0631\u064a \u0636\u0631\u0648\u0631\u064a.",
+      "suite_id": 0
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 45,
+      "name": "control has no finding: \u0627\u0633\u062a\u062e\u062f\u0645 \u0627\u0633\u0645 \u0627\u0644\u0645\u0633\u062a\u062e\u062f\u0645 \u0648\u0643\u0644\u0645\u0629 \u0627\u0644\u0645\u0631\u0648\u0631.",
+      "suite_id": 0
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 46,
+      "name": "control has no finding: \u0643\u062a\u0628 \u0627\u0644\u0645\u062f\u0631\u0651\u0633 \u0639\u0644\u0649 \u0627\u0644\u0633\u0628\u0648\u0631\u0629 \u062b\u0645 \u062c\u0644\u0633.",
+      "suite_id": 0
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 47,
+      "name": "control has no finding: \u0627\u0646\u0637\u0644\u0642 \u0627\u0644\u0642\u0637\u0627\u0631 \u0641\u064a \u0627\u0644\u0645\u0648\u0639\u062f\u060c \u0648\u0627\u0633\u062a\u0645\u0631 \u0627\u0644\u0633\u0641\u0631 \u0633\u0627\u0639\u062a\u064a\u0646.",
+      "suite_id": 0
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 48,
+      "name": "control has no finding: \u0627\u0645\u0631\u0623\u0629 \u062a\u0642\u0631\u0623 \u0643\u062a\u0627\u0628\u0627 \u0641\u064a \u0627\u0644\u0645\u0643\u062a\u0628\u0629.",
+      "suite_id": 0
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 49,
+      "name": "control has no finding: \u0632\u0627\u0631 \u0627\u0644\u0637\u0627\u0644\u0628 \u0645\u062f\u0631\u0633\u0647 \u0641\u064a \u0627\u0644\u0628\u064a\u062a.",
+      "suite_id": 0
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 50,
+      "name": "control has no finding: \u062c\u0627\u0621 \u0639\u0644\u064a \u0645\u0639 \u0623\u062e\u064a\u0647.",
+      "suite_id": 0
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 51,
+      "name": "control has no finding: \u0643\u0644 \u0645\u0646 \u0639\u0644\u064a\u0647\u0627 \u0641\u0627\u0646.",
+      "suite_id": 0
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 52,
+      "name": "control has no finding: \u0627\u0644\u062c\u0648 \u062c\u0645\u064a\u0644 \u062c\u062f\u0627 \u062c\u062f\u0627 \u0627\u0644\u064a\u0648\u0645.",
+      "suite_id": 0
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 53,
+      "name": "control has no finding: \u062a\u0642\u062f\u0645 \u0631\u0648\u064a\u062f\u0627 \u0631\u0648\u064a\u062f\u0627.",
+      "suite_id": 0
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 54,
+      "name": "control has no finding: \u062c\u0627\u0621 \u0623\u062d\u0645\u062f \u0648\u0647\u0648 \u064a\u0628\u062a\u0633\u0645.",
+      "suite_id": 0
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 55,
+      "name": "control has no finding: \u0627\u0644\u062e\u064a\u0627\u0631\u0627\u062a: \u0623\u060c \u0628\u060c \u0648.",
+      "suite_id": 0
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 56,
+      "name": "control has no finding: \u0648\u0644\u062f \u0639\u0627\u0645 \u0661\u0669\u0669\u0660\u060c \u0648\u0641\u064a \u0639\u0627\u0645 2024 \u062a\u062e\u0631\u062c.",
+      "suite_id": 0
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 57,
+      "name": "control has no finding: \u0627\u0644\u0633\u0639\u0631 3,5 \u062f\u064a\u0646\u0627\u0631.",
+      "suite_id": 0
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 58,
+      "name": "control has no finding: He said: hello, world? Yes; indeed.",
+      "suite_id": 0
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 59,
+      "name": "control has no finding: \u0632\u0631 \u0627\u0644\u0645\u0648\u0642\u0639 https://example.com/\u0627\u0644\u0649?x=1 \u0627\u0644\u0622\u0646.",
+      "suite_id": 0
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 60,
+      "name": "control has no finding: \u0631\u0627\u0633\u0644 info@example.org \u0627\u0644\u064a\u0648\u0645.",
+      "suite_id": 0
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 61,
+      "name": "control has no finding: \u0646\u0641\u0630 \u0627\u0644\u0623\u0645\u0631 `\u0641\u0649 \u0627\u0644\u0649` \u0641\u064a \u0627\u0644\u0637\u0631\u0641\u064a\u0629.",
+      "suite_id": 0
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 62,
+      "name": "control has no finding: \u0627\u0644\u062d\u064a\u0627\u0629 \u062c\u0645\u064a\u0644\u0629 \u0648\u0627\u0644\u0635\u0644\u0627\u0629 \u0639\u0645\u0627\u062f \u0627\u0644\u062f\u064a\u0646.",
+      "suite_id": 0
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 63,
+      "name": "control has no finding: \u0627\u0644\u0644\u0647 \u0623\u0643\u0628\u0631.",
+      "suite_id": 0
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 64,
+      "name": "control has no finding: \u0627\u0644\u062a\u0648\u062c\u064a\u0647 \u0648\u0627\u0644\u062a\u0646\u0628\u064a\u0647 \u0645\u0647\u0645\u0627\u0646.",
+      "suite_id": 0
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 65,
+      "name": "control has no finding: \u0630\u0647\u0628 \u0627\u0655\u0644\u0649 \u0627\u0644\u0628\u064a\u062a.",
+      "suite_id": 0
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 66,
+      "name": "control has no finding: \u0627\u0654\u0646\u0627 \u0641\u064a \u0627\u0644\u0628\u064a\u062a.",
+      "suite_id": 0
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 67,
+      "name": "control has no finding: \u0627\u0644\u0645\u0639\u0631\u0641 x\u0627\u0644\u0649 \u0648\u0627\u0633\u0645 \u0627\u0644\u0649bar.",
+      "suite_id": 0
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 68,
+      "name": "control has no finding: \u0627\u0644\u0645\u0639\u0631\u0641 123\u0627\u0644\u0649 \u0648\u0622\u062e\u0631 \u0627\u0644\u0649123.",
+      "suite_id": 0
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 69,
+      "name": "control has no finding: \u0627\u0644\u0642\u064a\u0645\u0629 _\u0627\u0644\u0649 \u0623\u0648 \u0627\u0644\u0649_.",
+      "suite_id": 0
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 70,
+      "name": "control has no finding: \u0627\u0644\u0642\u064a\u0645\u0629 x\u200d\u0627\u0644\u0649.",
+      "suite_id": 0
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 71,
+      "name": "control has no finding: foo\u0648 \u0647\u0648",
+      "suite_id": 0
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 72,
+      "name": "control has no finding: \u0648 \u0627\u0644\u0645\u062f\u0631\u0633\u0647X",
+      "suite_id": 0
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 73,
+      "name": "control has no finding: \u0644\u0627\u0646 \u0627\u0644\u062d\u062f\u064a\u062f \u0628\u0627\u0644\u062d\u0631\u0627\u0631\u0629.",
+      "suite_id": 0
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 74,
+      "name": "ambiguous hamza words offer both spellings",
+      "suite_id": 0
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 75,
+      "name": "mixed digits offer both consistent spellings",
+      "suite_id": 0
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 76,
+      "name": "offsets are original UTF-16 offsets plus startOffset",
+      "suite_id": 0
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 77,
+      "name": "ignored rule ids suppress findings",
+      "suite_id": 0
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 78,
+      "name": "language support: Arabic-script Arabic only",
+      "suite_id": 0
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 79,
+      "name": "every rule id is declared",
+      "suite_id": 0
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 80,
+      "name": "disposed provider is unavailable",
+      "suite_id": 0
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 84,
+      "name": "Unicode emails and uppercase URLs retain original UTF-16 positions",
+      "suite_id": 81
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 85,
+      "name": "URL punctuation keeps prose delimiters available to grammar checks",
+      "suite_id": 81
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 86,
+      "name": "decomposed email letters and apostrophes in URL paths stay protected",
+      "suite_id": 81
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 87,
+      "name": "matching backtick runs own nested ticks and multiline contents",
+      "suite_id": 81
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 88,
+      "name": "overlapping links and code merge without hiding following prose",
+      "suite_id": 81
+    },
+    {
+      "group": "arabic-main-merge-vm",
+      "id": 89,
+      "name": "empty input and invalid source intervals have explicit semantics",
+      "suite_id": 81
+    },
+    {
+      "group": "word-arabic-main-merge-vm",
+      "id": 3,
+      "name": "default review checks Arabic runs with the Arabic rules",
+      "suite_id": 0
+    },
+    {
+      "group": "word-arabic-main-merge-vm",
+      "id": 4,
+      "name": "Arabic rules stay silent for German text",
+      "suite_id": 0
+    }
+  ],
+  "separate_python_successes_in_rejected_attempt": 17,
+  "application_cases_added_to_final_totals": 0,
+  "python_controls_added_to_final_totals": 0,
+  "node_started": false,
+  "browser_compile_started": false,
+  "source_inputs_bound_to_immutable_commit": 5119,
+  "source_snapshots_equal": true,
+  "runtime_snapshots_equal": true,
+  "runtime_inputs_in_stable_envelope": 11171,
+  "outer_execution_sha256": "9d35699aabb39251af82cc4ebc9428ec27e35ed80ae22a554ec7a88f48a637aa",
+  "native_receipt_sha256": "a24fea13b3667a34a62c71d4badc4d34fbda7aec54feb8861289eab5b62b4fbf",
+  "audit_script_sha256": "45078c849e72edc396b5b7e03726e1d35a667ba8b60af639c2b72f4440eaa5f4",
+  "method": "Read-only raw valid-event recount with explicit malformed-line inventory, original receipt and snapshot hashes, immutable source object verification. The rejected attempt remains unchanged and contributes zero to accepted totals."
+}

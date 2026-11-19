@@ -390,8 +390,13 @@ final class _Bindings {
     }
   }
 
-  Pointer<Void> open(String aff, String dic) =>
-      _withString(aff, (a) => _withString(dic, (d) => _open(a, d)));
+  Pointer<Void> open(String aff, String dic) {
+    // Hunspell can construct an empty UTF-8 engine when only the .aff exists.
+    // Reject either missing file before FFI rather than accepting that engine
+    // or emitting native diagnostic text during an unavailable result.
+    if (!File(aff).existsSync() || !File(dic).existsSync()) return nullptr;
+    return _withString(aff, (a) => _withString(dic, (d) => _open(a, d)));
+  }
 
   int spell(Pointer<Void> handle, String word) =>
       _withString(word, (w) => _spell(handle, w));

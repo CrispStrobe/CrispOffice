@@ -40,6 +40,14 @@ assertions and macOS network/selected-file capabilities receive scoped repairs.
 The separate merged-source qualification is recorded after its source checkpoint
 is frozen; the 1,372 executions below retain their original `0669ac11` identity.
 
+The [first merged-source attempt](main-delta/attempt-aea5d91a/README.md)
+remains FAIL: native diagnostic lines violated strict reporter admission. Its
+159 observed assertion successes are excluded from accepted totals. Investigation
+also reproduced a valid-affix/missing-dictionary false success. The following
+repair checks both dictionary files before FFI and adds a regression; the result
+parser is unchanged. Current main has since added the CrispOffice Studio update
+and Arabic T1 rules, which are reconciled before the next frozen delta gate.
+
 ## Integrated behavior and review fixes
 
 ### Mail synchronization and connection safety

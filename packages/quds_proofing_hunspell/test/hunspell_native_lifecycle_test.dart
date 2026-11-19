@@ -27,7 +27,11 @@ void main() {
     late int Function() live;
     late int Function() opened;
     late int Function() closed;
+    late Directory files;
     setUpAll(() {
+      files = Directory.systemTemp.createTempSync('hunspell-lifecycle-');
+      File('${files.path}/test.aff').writeAsStringSync('SET UTF-8\n');
+      File('${files.path}/test.dic').writeAsStringSync('1\nهذا\n');
       final library = DynamicLibrary.open(path!);
       live = library.lookupFunction<Int32 Function(), int Function()>(
         'quds_hunspell_test_live_handles',
@@ -39,12 +43,16 @@ void main() {
         'quds_hunspell_test_closed_handles',
       );
     });
+    tearDownAll(() => files.deleteSync(recursive: true));
 
     HunspellProofingProvider provider({
       Duration timeout = const Duration(seconds: 2),
     }) => HunspellProofingProvider(
       bundle: ayaspellArabic,
-      dictionary: const HunspellDictionaryFiles(affPath: 'a', dicPath: 'd'),
+      dictionary: HunspellDictionaryFiles(
+        affPath: '${files.path}/test.aff',
+        dicPath: '${files.path}/test.dic',
+      ),
       nativeLibraryPath: path,
       timeout: timeout,
     );
