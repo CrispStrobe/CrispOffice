@@ -1,0 +1,20 @@
+{
+  "passed_distinct": 33,
+  "failed_distinct": 0,
+  "skipped_distinct": 0,
+  "reporter_success": true,
+  "reporter_done": [
+    {
+      "success": true,
+      "type": "done",
+      "time": 3980
+    }
+  ],
+  "error_events": 0,
+  "non_json_lines": [],
+  "suite_counts": {
+    "packages/quds_office_engine/test/slide_import_fidelity_test.dart": 7,
+    "packages/quds_office_engine/test/slide_test.dart": 20,
+    "packages/quds_office_engine/test/slide_text_fidelity_test.dart": 6
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "commands": [
+    {
+      "name": "focused-tests",
+      "command": [
+        "/workspace/scratch/652d74384990/runtime/flutter/bin/flutter",
+        "--no-version-check",
+        "--suppress-analytics",
+        "test",
+        "--no-pub",
+        "--concurrency=1",
+        "--reporter=json",
+        "test/office_dark_slide_test.dart"
+      ],
+      "cwd": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor",
+      "environment_overrides": {
+        "PUB_CACHE": "/workspace/scratch/652d74384990/runtime/pub-cache",
+        "TMPDIR": "/workspace/scratch/652d74384990/runtime/tmp",
+        "DART_SUPPRESS_ANALYTICS": "true",
+        "FLUTTER_SUPPRESS_ANALYTICS": "true",
+        "CI": "true"
+      },
+      "source_sha256": "8a4bfdcf1a4fb913a2533ed523c05b6250427a49596a2051dc022dad5e262109",
+      "started_at_utc": "2026-11-19T18:33:43.643972+00:00",
+      "exit_code": 1,
+      "elapsed_seconds": 6.193,
+      "source_unchanged": true,
+      "finished_at_utc": "2026-11-19T18:33:49.836771+00:00",
+      "stdout_sha256": "2816178518e75730b990f84b9da8c68c26914c1e7b9c5b2d7dddf129dad4e8cf",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "focused-analysis",
+      "command": [
+        "/workspace/scratch/652d74384990/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "--fatal-warnings",
+        "/workspace/scratch/652d74384990/quds_office_suite/packages/quds_office_editor/test/office_dark_slide_test.dart"
+      ],
+      "cwd": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor",
+      "environment_overrides": {
+        "PUB_CACHE": "/workspace/scratch/652d74384990/runtime/pub-cache",
+        "TMPDIR": "/workspace/scratch/652d74384990/runtime/tmp",
+        "DART_SUPPRESS_ANALYTICS": "true",
+        "FLUTTER_SUPPRESS_ANALYTICS": "true",
+        "CI": "true"
+      },
+      "source_sha256": "8a4bfdcf1a4fb913a2533ed523c05b6250427a49596a2051dc022dad5e262109",
+      "started_at_utc": "2026-11-19T18:33:49.837006+00:00",
+      "exit_code": 3,
+      "elapsed_seconds": 0.839,
+      "source_unchanged": true,
+      "finished_at_utc": "2026-11-19T18:33:50.675993+00:00",
+      "stdout_sha256": "2622765edf9cf7781f1e797635e5f6c2ac537f252c1ef8dbe9877e3ef30f8b61",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "counting": "Focused development checks only; final accepted suite is counted separately."
+}

@@ -303,7 +303,7 @@ List<PmlShape> parseSlideShapes(
           current.fillColor = val;
         } else if (textFillPending) {
           if (currentCell != null) {
-            currentCell.textColor = val;
+            if (currentCell.textColor.isEmpty) currentCell.textColor = val;
           } else {
             current.textColor = val;
           }

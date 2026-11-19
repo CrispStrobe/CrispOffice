@@ -1,0 +1,18 @@
+{
+  "passed_distinct": 0,
+  "failed_distinct": 2,
+  "skipped_distinct": 0,
+  "reporter_success": false,
+  "reporter_done": [
+    {
+      "success": false,
+      "type": "done",
+      "time": 1915
+    }
+  ],
+  "error_events": 2,
+  "non_json_lines": [],
+  "suite_counts": {
+    "packages/quds_office_engine/test/slide_test.dart": 2
+  }
+}
