@@ -1,5 +1,6 @@
+import 'package:enough_mail/enough_mail.dart' as mail;
 import 'package:flutter_test/flutter_test.dart';
-import 'package:quds_office_studio/studio_mail_compose.dart';
+import 'package:quds_office_studio/studio_mail_draft.dart';
 import 'package:quds_office_studio/studio_mail_recipients.dart';
 import 'package:quds_office_studio/studio_mail_submission.dart';
 
@@ -219,4 +220,28 @@ void main() {
       );
     },
   );
+
+  test('100 maximum-length recipients survive folded MIME round trips', () {
+    final domain = '${'a' * 63}.${'b' * 63}.${'c' * 61}';
+    final addresses = [
+      for (var index = 0; index < 100; index++)
+        '${'r$index'.padRight(64, 'a')}@$domain',
+    ];
+    expect(addresses.every((address) => address.length == 254), isTrue);
+    final draft = StudioMailDraft(
+      to: addresses.join(', '),
+      subject: 'Maximum supported recipient list',
+      body: 'Body',
+    );
+    expect(draft.problem, isNull);
+    final wire = buildStudioMailMessage(
+      draft,
+      'sender@example.test',
+    ).renderMessage();
+    expect(wire.codeUnits.every((unit) => unit < 128), isTrue);
+    expect(wire.split('\r\n').every((line) => line.length <= 998), isTrue);
+    final decoded = mail.MimeMessage.parseFromText(wire);
+    expect(decoded.to!.map((address) => address.email), addresses);
+    expect(decoded.bcc, isEmpty);
+  });
 }

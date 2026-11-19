@@ -17,11 +17,10 @@ import 'studio_mail_strings.dart';
 import 'studio_mail_submission.dart';
 import 'studio_strings.dart';
 
-typedef StudioEwsProviderFactory =
-    MailEwsProvider Function(
-      MailEwsConfiguration configuration,
-      MailCredentialStore credentials,
-    );
+typedef StudioEwsProviderFactory = MailEwsProvider Function(
+  MailEwsConfiguration configuration,
+  MailCredentialStore credentials,
+);
 
 typedef StudioCloudAuthorizer =
     Future<MailResult<MailCloudTokenSource>> Function({
@@ -32,12 +31,11 @@ typedef StudioCloudAuthorizer =
       MailCloudLogSink? log,
     });
 
-typedef StudioCloudProviderFactory =
-    MailCloudProvider Function({
-      required MailCloudConfiguration configuration,
-      required MailCloudTokenSource tokenSource,
-      MailCloudLogSink? log,
-    });
+typedef StudioCloudProviderFactory = MailCloudProvider Function({
+  required MailCloudConfiguration configuration,
+  required MailCloudTokenSource tokenSource,
+  MailCloudLogSink? log,
+});
 
 /// Foreground Exchange Server or cloud mailbox host. Credentials, downloaded
 /// messages and unsent drafts are retained only for the current dialog session.

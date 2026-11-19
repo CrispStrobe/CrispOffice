@@ -1,0 +1,19 @@
+{
+  "command": [
+    "git",
+    "diff",
+    "--check",
+    "2170791c",
+    "HEAD",
+    "--",
+    "packages",
+    "docs/roadmaps",
+    ".github",
+    "README.md",
+    "docs/MACROS.md",
+    "docs/VBA_MACROS.md",
+    "pubspec.lock"
+  ],
+  "exitCode": 0,
+  "scope": "Product changes; original validation artifact whitespace retained"
+}

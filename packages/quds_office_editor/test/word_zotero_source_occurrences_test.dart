@@ -144,42 +144,39 @@ void main() {
     },
   );
 
-  test(
-    'multiple fields in one paragraph stay distinct and repeated handles do not',
-    () {
-      final paragraph = _paragraph('first', [
-        _item(uris: [_personal]),
-      ]);
-      WordZotero.insertCitation(
-        paragraph,
-        ZoteroCitation(
-          citationId: 'second',
-          plainCitation: '(second)',
-          items: [
-            _item(uris: [_personal]),
-          ],
-        ),
-      );
-      final document = WmlDocument(
-        sections: [
-          WmlSection(blocks: [paragraph]),
+  test('multiple fields in one paragraph stay distinct and repeated handles do not', () {
+    final paragraph = _paragraph('first', [
+      _item(uris: [_personal]),
+    ]);
+    WordZotero.insertCitation(
+      paragraph,
+      ZoteroCitation(
+        citationId: 'second',
+        plainCitation: '(second)',
+        items: [
+          _item(uris: [_personal]),
         ],
-      );
-      final fields = WordZotero.fields(document);
-      final reference = _references(fields).single;
+      ),
+    );
+    final document = WmlDocument(
+      sections: [
+        WmlSection(blocks: [paragraph]),
+      ],
+    );
+    final fields = WordZotero.fields(document);
+    final reference = _references(fields).single;
 
-      final occurrences = zoteroDocumentCitationOccurrences(document, [
-        ...fields,
-        ...WordZotero.fields(document),
-      ]);
+    final occurrences = zoteroDocumentCitationOccurrences(document, [
+      ...fields,
+      ...WordZotero.fields(document),
+    ]);
 
-      expect(occurrences[reference.selectionKey], hasLength(2));
-      expect(
-        occurrences[reference.selectionKey]!.map((entry) => entry.field),
-        orderedEquals(fields),
-      );
-    },
-  );
+    expect(occurrences[reference.selectionKey], hasLength(2));
+    expect(
+      occurrences[reference.selectionKey]!.map((entry) => entry.field),
+      orderedEquals(fields),
+    );
+  });
 
   test('labels notes with display numbers and retains unsupported stories', () {
     final document = WmlDocument.empty(text: 'Body ');
@@ -240,42 +237,38 @@ void main() {
     );
   });
 
-  test(
-    'orphaned notes use an explicit source ID and bibliographies add no sources',
-    () {
-      final document = WmlDocument.empty(text: 'Body');
-      document.footnotes.add(
-        WmlNote(
-          id: 42,
-          endnote: false,
-          paragraphs: [
-            _paragraph('orphan', [
-              _item(uris: [_personal]),
-            ]),
-          ],
-        ),
-      );
-      document.sections.single.blocks.addAll(
-        WordZotero.nativeBibliographyParagraphs(
-          instruction:
-              ' ADDIN ZOTERO_BIBL {"uncited":[],"omitted":[],"custom":[]} CSL_BIBLIOGRAPHY ',
-          text: 'First entry.\nSecond entry.',
-        ),
-      );
-      final fields = WordZotero.fields(document);
+  test('orphaned notes use an explicit source ID and bibliographies add no sources', () {
+    final document = WmlDocument.empty(text: 'Body');
+    document.footnotes.add(
+      WmlNote(
+        id: 42,
+        endnote: false,
+        paragraphs: [
+          _paragraph('orphan', [
+            _item(uris: [_personal]),
+          ]),
+        ],
+      ),
+    );
+    document.sections.single.blocks.addAll(
+      WordZotero.nativeBibliographyParagraphs(
+        instruction: ' ADDIN ZOTERO_BIBL {"uncited":[],"omitted":[],"custom":[]} CSL_BIBLIOGRAPHY ',
+        text: 'First entry.\nSecond entry.',
+      ),
+    );
+    final fields = WordZotero.fields(document);
 
-      final occurrences = zoteroDocumentCitationOccurrences(document, fields);
+    final occurrences = zoteroDocumentCitationOccurrences(document, fields);
 
-      expect(occurrences, hasLength(1));
-      expect(occurrences.values.single, hasLength(1));
-      expect(
-        occurrences.values.single.single.location,
-        'Footnote (source ID 42) · paragraph 1',
-      );
-      expect(
-        occurrences.values.single.single.field.citation!.citationId,
-        'orphan',
-      );
-    },
-  );
+    expect(occurrences, hasLength(1));
+    expect(occurrences.values.single, hasLength(1));
+    expect(
+      occurrences.values.single.single.location,
+      'Footnote (source ID 42) · paragraph 1',
+    );
+    expect(
+      occurrences.values.single.single.field.citation!.citationId,
+      'orphan',
+    );
+  });
 }

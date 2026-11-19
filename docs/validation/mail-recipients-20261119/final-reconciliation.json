@@ -1,0 +1,135 @@
+{
+  "recordedAtUtc": "2026-11-19T21:40:28.845408+00:00",
+  "productCheckpoint": "7ac278d13f14ffed93f1685e42b4d2a8992d04f2",
+  "productTree": "7f89fef47a470399287f3f5bb62c785350847f2b",
+  "baselineMain": "2170791c9250d72c9df31a065408365f9b50abaa",
+  "finalCapturedMain": "88513f04cfbdec210340f2d70a674cf3f23e31c0",
+  "inventory": "final-vba-reconciliation.json",
+  "earlierInventories": [
+    "remote-inventory.json",
+    "final-remote-inventory.json",
+    "premerge-main-reconciliation.json"
+  ],
+  "branches": [
+    {
+      "name": "codex/crispoffice-layout-theme-20261119",
+      "sha": "cacae8569814e4cb81f58d358734d31431f102be",
+      "result": "ancestor_of_product_checkpoint"
+    },
+    {
+      "name": "codex/mail-archive-resume-20261119",
+      "sha": "482fbd99dd8d3d5aff7d773fa87454f4d324028d",
+      "result": "ancestor_of_product_checkpoint"
+    },
+    {
+      "name": "codex/odt-field-continuation-20261117",
+      "sha": "c34945761e7991f5fe49037d79529acdd260b31c",
+      "result": "complete_original_delta_exactly_equivalent_to_preserved_history",
+      "equivalent": "2c47165d01d01cc883135a434ac9f6591ce6e770",
+      "proof": "initial-reconciliation.json#recomputedHistoricalProofs"
+    },
+    {
+      "name": "codex/vba-arrays-foreach-20261119",
+      "sha": "3abffb94dcf33a2766a4579d296d0ef09c9e35cd",
+      "result": "ancestor_of_product_checkpoint"
+    },
+    {
+      "name": "codex/vba-dynamic-arrays-20261119",
+      "sha": "435bc212401db13efa56483ac852e4bc25bcc5d2",
+      "result": "ancestor_of_product_checkpoint"
+    },
+    {
+      "name": "codex/zotero-workflow-20261119",
+      "sha": "6626ad430a54122e4514cc2870fdcee18760682f",
+      "result": "ancestor_of_product_checkpoint"
+    },
+    {
+      "name": "docs/ods-color-scale",
+      "sha": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+      "result": "complete_original_delta_exactly_equivalent_to_preserved_history",
+      "equivalent": "1ec0a81bc43dc444872fbffffa36a8affce307a5",
+      "proof": "initial-reconciliation.json#recomputedHistoricalProofs"
+    },
+    {
+      "name": "docs/ods-data-bar",
+      "sha": "69d14f84cabd3931b7640c1654b401c89faba766",
+      "result": "complete_original_delta_exactly_equivalent_to_preserved_history",
+      "equivalent": "38abbbb744d1d5dab1eb9162d584370d661fef24",
+      "proof": "initial-reconciliation.json#recomputedHistoricalProofs"
+    },
+    {
+      "name": "feat/ods-color-scale",
+      "sha": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+      "result": "complete_original_delta_exactly_equivalent_to_preserved_history",
+      "equivalent": "4584d5f319aab198f1d705f48b4d6647e6cbabea",
+      "proof": "initial-reconciliation.json#recomputedHistoricalProofs"
+    },
+    {
+      "name": "feat/ods-data-bar",
+      "sha": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+      "result": "complete_original_delta_exactly_equivalent_to_preserved_history",
+      "equivalent": "b3f41eb4b4bca8ca13676b4114891ea6d9185043",
+      "proof": "initial-reconciliation.json#recomputedHistoricalProofs"
+    },
+    {
+      "name": "feat/ods-dynamic-validation-links",
+      "sha": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+      "result": "complete_original_delta_exactly_equivalent_to_preserved_history",
+      "equivalent": "e87494ada0729878981dc0cc60fdb07bcd5116d4",
+      "proof": "initial-reconciliation.json#recomputedHistoricalProofs"
+    },
+    {
+      "name": "feat/ods-icon-sets",
+      "sha": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
+      "result": "complete_original_delta_exactly_equivalent_to_preserved_history",
+      "equivalent": "c84d5e16024c502f6c451fd04b9807b1e65f20d3",
+      "proof": "initial-reconciliation.json#recomputedHistoricalProofs"
+    },
+    {
+      "name": "feat/ods-time-period-conditions",
+      "sha": "7ef09f2408f467c65427700e65907531ecb26acb",
+      "result": "complete_original_delta_exactly_equivalent_to_preserved_history",
+      "equivalent": "6f40365ae7708172c58e9aee38bc363d99327355",
+      "proof": "initial-reconciliation.json#recomputedHistoricalProofs"
+    },
+    {
+      "name": "integrate/macbook-current-20261118",
+      "sha": "f383c826205e321eda3ed3bdbcd584e9a2d4da14",
+      "result": "ancestor_of_product_checkpoint"
+    },
+    {
+      "name": "integrate/office-union-148",
+      "sha": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+      "result": "complete_original_delta_exactly_equivalent_to_preserved_history",
+      "equivalent": "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4",
+      "proof": "initial-reconciliation.json#recomputedHistoricalProofs"
+    },
+    {
+      "name": "integrate/recent-pptx",
+      "sha": "a5ae56c8e3e7f950c37ef491b17b5c32fcd0e13d",
+      "result": "ancestor_of_product_checkpoint"
+    },
+    {
+      "name": "main",
+      "sha": "88513f04cfbdec210340f2d70a674cf3f23e31c0",
+      "result": "ancestor_of_product_checkpoint"
+    },
+    {
+      "name": "work/mail-continuation-20261119",
+      "sha": "2a920225633c782d2a941518ca2812e97ba40184",
+      "result": "ancestor_of_product_checkpoint"
+    },
+    {
+      "name": "work/mail-next-20261119",
+      "sha": "ab833975409abfb207f3a6a1a146183a4a5198fd",
+      "result": "ancestor_of_product_checkpoint"
+    }
+  ],
+  "capturedBranchCount": 19,
+  "recentPullRequestsReviewed": 100,
+  "allCapturedHeadsAccountedFor": true,
+  "initialHistoricalProofsRecomputed": 9,
+  "initialUpstreamMain": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+  "upstreamAncestorOfProduct": true,
+  "actionsQueriedOrAwaited": false
+}

@@ -1,0 +1,156 @@
+{
+  "branch": "work/mail-continuation-20261119",
+  "sourceCheckpoint": "7ac278d13f14ffed93f1685e42b4d2a8992d04f2",
+  "records": [
+    {
+      "sha": "5c3f9d7fd4531dfac7c0e49fba1827c39e17caf6",
+      "tree": "90b62a9154388cd9a809abf8708f20ec7a7d2d9f",
+      "parents": [
+        "2170791c9250d72c9df31a065408365f9b50abaa"
+      ],
+      "message": "Fix PPTX slide backgrounds, crops and rich text fidelity",
+      "kind": "incoming_before_mail_implementation",
+      "publication": "expected previous branch SHA; force false; local and remote Git trees equal"
+    },
+    {
+      "sha": "0ef43e975e9550848ac2e791d004815e91e2b93c",
+      "tree": "3ee784cd9ace798b6464ae12168e6cec793f18f9",
+      "parents": [
+        "5c3f9d7fd4531dfac7c0e49fba1827c39e17caf6"
+      ],
+      "message": "Record incoming reconciliation and mail recipients scope [skip ci]",
+      "kind": "remote_continuation_checkpoint",
+      "publication": "expected previous branch SHA; force false; local and remote Git trees equal"
+    },
+    {
+      "sha": "275f8a346bf3aef00a736e6441c79244b84994c6",
+      "tree": "3b2f720398fc1521f1ac666edaf887f34f5a59d0",
+      "parents": [
+        "0ef43e975e9550848ac2e791d004815e91e2b93c"
+      ],
+      "message": "Add bounded To Cc Bcc composition and Reply all [skip ci]",
+      "kind": "remote_continuation_checkpoint",
+      "publication": "expected previous branch SHA; force false; local and remote Git trees equal"
+    },
+    {
+      "sha": "658095574de89cf3d6f3dfc874fab7e5c479b47e",
+      "tree": "6f1e30bf5c4e9db0879655ca07af7aec97a9bf05",
+      "parents": [
+        "275f8a346bf3aef00a736e6441c79244b84994c6"
+      ],
+      "message": "Preserve incoming PPTX history and restore slide editing compatibility [skip ci]",
+      "kind": "remote_continuation_checkpoint",
+      "publication": "expected previous branch SHA; force false; local and remote Git trees equal"
+    },
+    {
+      "sha": "f78e3004653598f51fb0b0b29578a5f0f7114446",
+      "tree": "0d387a6a3c5f2e7b6a23f91e1acffe3c6ae98917",
+      "parents": [
+        "658095574de89cf3d6f3dfc874fab7e5c479b47e"
+      ],
+      "message": "Preserve recipient snapshots and add host regressions and behavior guide [skip ci]",
+      "kind": "remote_continuation_checkpoint",
+      "publication": "expected previous branch SHA; force false; local and remote Git trees equal"
+    },
+    {
+      "sha": "86ffe580d9a897950664ae8c5d247bb251af7d44",
+      "tree": "ea04e3f466a6ebcbe817c1e6653528605c2476fb",
+      "parents": [
+        "f78e3004653598f51fb0b0b29578a5f0f7114446",
+        "c012a69e4daf7537824c872b061e24d5d6f631df"
+      ],
+      "message": "Reconcile concurrent Zotero VBA and PPTX branches with mail continuation [skip ci]",
+      "kind": "remote_continuation_checkpoint",
+      "publication": "expected previous branch SHA; force false; local and remote Git trees equal"
+    },
+    {
+      "sha": "a0f27b2f61d332ff834d4bda59dadccdad020021",
+      "tree": "43bcbe32f908470560950fc6c83ef0d94f5349f4",
+      "parents": [
+        "86ffe580d9a897950664ae8c5d247bb251af7d44",
+        "9dbba0f7b6581aba4d7a26f7f69ff6492c02b760"
+      ],
+      "message": "Preserve dynamic array history and reconcile slide background ownership [skip ci]",
+      "kind": "remote_continuation_checkpoint",
+      "publication": "expected previous branch SHA; force false; local and remote Git trees equal"
+    },
+    {
+      "sha": "4731ffbd4636d4e7eafe4db9de42c7ef11a8cdf3",
+      "tree": "db87b1a5954af407d3672fbf747622f3a1eaf124",
+      "parents": [
+        "a0f27b2f61d332ff834d4bda59dadccdad020021",
+        "30bf612547fd7a00a5cb2ba525a04fbe27d3d90d"
+      ],
+      "message": "Preserve latest Zotero evidence and explicit rich-text style fix [skip ci]",
+      "kind": "remote_continuation_checkpoint",
+      "publication": "expected previous branch SHA; force false; local and remote Git trees equal"
+    },
+    {
+      "sha": "3279d1ffb0d80c0133fc6edaa2c3854512ac8481",
+      "tree": "e7446d15a2f19ff6d94cb523f1fee4697acc165e",
+      "parents": [
+        "4731ffbd4636d4e7eafe4db9de42c7ef11a8cdf3",
+        "c1b98f12f802863fb602e9919ead524891bfbcc6"
+      ],
+      "message": "Reconcile final VBA merge and preserve slide color adaptation opt-out [skip ci]",
+      "kind": "remote_continuation_checkpoint",
+      "publication": "expected previous branch SHA; force false; local and remote Git trees equal"
+    },
+    {
+      "sha": "5611f1090c09264f9aa75eddee18a6ec5545687d",
+      "tree": "ebdec9710d9e11b40f9705220e591ece93a75938",
+      "parents": [
+        "3279d1ffb0d80c0133fc6edaa2c3854512ac8481",
+        "400fffd04fcceee78959e4c38b4d1dbe89767c2b"
+      ],
+      "message": "Preserve completed incoming Zotero and slide validation records [skip ci]",
+      "kind": "remote_continuation_checkpoint",
+      "publication": "expected previous branch SHA; force false; local and remote Git trees equal"
+    },
+    {
+      "sha": "3a7d8e2dc097f4c235d956dfa4f392f02699b9d7",
+      "tree": "323714e884cb66ed4409291131cc5c9ec893262c",
+      "parents": [
+        "5611f1090c09264f9aa75eddee18a6ec5545687d",
+        "8356fb0ad4630824a39453ea9a5923d9fb2a2101"
+      ],
+      "message": "Preserve additional concurrent mail host regression tests [skip ci]",
+      "kind": "remote_continuation_checkpoint",
+      "publication": "expected previous branch SHA; force false; local and remote Git trees equal"
+    },
+    {
+      "sha": "70c509cc475e325fc7379b68968be36084ef4604",
+      "tree": "5dc8b1bfd39c74534ae5ae0328f736a8ae12114d",
+      "parents": [
+        "3a7d8e2dc097f4c235d956dfa4f392f02699b9d7"
+      ],
+      "message": "Record source-bound mail qualification and complete reconciliation receipts [skip ci]",
+      "kind": "remote_continuation_checkpoint",
+      "publication": "expected previous branch SHA; force false; local and remote Git trees equal"
+    },
+    {
+      "sha": "2a920225633c782d2a941518ca2812e97ba40184",
+      "tree": "89b9a1fa6c05069ac9ea2b5968cf7faac628d987",
+      "parents": [
+        "70c509cc475e325fc7379b68968be36084ef4604",
+        "88513f04cfbdec210340f2d70a674cf3f23e31c0"
+      ],
+      "message": "Reconcile newly merged remote main and preserve incoming qualification [skip ci]",
+      "kind": "remote_continuation_checkpoint",
+      "publication": "expected previous branch SHA; force false; local and remote Git trees equal"
+    },
+    {
+      "sha": "7ac278d13f14ffed93f1685e42b4d2a8992d04f2",
+      "tree": "7f89fef47a470399287f3f5bb62c785350847f2b",
+      "parents": [
+        "2a920225633c782d2a941518ca2812e97ba40184",
+        "435bc212401db13efa56483ac852e4bc25bcc5d2"
+      ],
+      "message": "Preserve final VBA continuation and background compatibility API [skip ci]",
+      "kind": "remote_continuation_checkpoint",
+      "publication": "expected previous branch SHA; force false; local and remote Git trees equal"
+    }
+  ],
+  "continuationCheckpointCount": 13,
+  "finalEvidenceCommit": "follows this record; see PR217 publication receipt"
+}

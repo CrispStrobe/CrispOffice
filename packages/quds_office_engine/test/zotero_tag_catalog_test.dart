@@ -344,8 +344,7 @@ void main() {
           ],
           headers: {
             'Total-Results': '140',
-            'Link':
-                '<https://api.zotero.org/users/7/tags?start=75&limit=25>; rel="next"',
+            'Link': '<https://api.zotero.org/users/7/tags?start=75&limit=25>; rel="next"',
           },
         ),
       );

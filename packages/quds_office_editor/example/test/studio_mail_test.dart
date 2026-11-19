@@ -933,26 +933,27 @@ void main() {
     await _close(tester);
   });
 
-  testWidgets('a failed keychain save keeps Mail connected with fixed feedback', (
-    tester,
-  ) async {
-    final store = _CredentialStore()
-      ..onSave = (_) async =>
-          throw StateError('private-keychain-reply saved-fixture-password');
-    final client = _Client();
-    await _open(tester, (_) => client, credentialStore: store);
-    await _connect(tester);
-    expect(find.text('First message'), findsOneWidget);
-    expect(find.text(_strings.mailAccountSaveFailed), findsOneWidget);
-    expect(find.textContaining('private-keychain-reply'), findsNothing);
-    expect(find.text(_strings.mailConnectionFailed), findsNothing);
-    expect(client.disconnects, 0);
-    await tester.tap(find.byTooltip(_strings.disconnect));
-    await _pump(tester);
-    // Forget remains available for unreadable or still-pending keychain records.
-    expect(find.text(_strings.forgetAccount), findsOneWidget);
-    await _close(tester);
-  });
+  testWidgets(
+    'a failed keychain save keeps Mail connected with fixed feedback',
+    (tester) async {
+      final store = _CredentialStore()
+        ..onSave = (_) async =>
+            throw StateError('private-keychain-reply saved-fixture-password');
+      final client = _Client();
+      await _open(tester, (_) => client, credentialStore: store);
+      await _connect(tester);
+      expect(find.text('First message'), findsOneWidget);
+      expect(find.text(_strings.mailAccountSaveFailed), findsOneWidget);
+      expect(find.textContaining('private-keychain-reply'), findsNothing);
+      expect(find.text(_strings.mailConnectionFailed), findsNothing);
+      expect(client.disconnects, 0);
+      await tester.tap(find.byTooltip(_strings.disconnect));
+      await _pump(tester);
+      // Forget remains available for unreadable or still-pending keychain records.
+      expect(find.text(_strings.forgetAccount), findsOneWidget);
+      await _close(tester);
+    },
+  );
 
   testWidgets('a failed keychain deletion remains visible and can be retried', (
     tester,
@@ -1352,6 +1353,87 @@ void main() {
       expect(find.text(_strings.mailMailboxFailed), findsOneWidget);
       expect(find.textContaining('mailbox load failed'), findsNothing);
       expect(find.text('First message'), findsNothing);
+      await _close(tester);
+    },
+  );
+
+  testWidgets(
+    'SMTP recipient groups stay in the envelope and survive acknowledged retry',
+    (tester) async {
+      final client = _Client()
+        ..onSend = (_) async => throw StateError('controlled send uncertainty');
+      await _open(tester, (_) => client);
+      await _connect(tester);
+      await tester.tap(find.widgetWithText(TextButton, _strings.compose));
+      await _pump(tester);
+      await tester.enterText(
+        _field(_strings.to),
+        'primary@Example.invalid; second@example.invalid',
+      );
+      await tester.tap(find.text(_strings.mailCopyRecipients));
+      await _pump(tester);
+      await tester.enterText(
+        _field(_strings.mailCc),
+        'primary@example.invalid, copy@example.invalid',
+      );
+      await tester.enterText(
+        _field(_strings.mailBcc),
+        'copy@example.invalid; hidden@example.invalid',
+      );
+      await tester.enterText(_field(_strings.subject), 'Recipient privacy');
+      tester
+          .widget<QudsWordEditor>(find.byType(QudsWordEditor))
+          .controller
+          .insertText('A controlled local host fixture.');
+      final send = find.widgetWithText(FilledButton, _strings.send);
+      await tester.ensureVisible(send);
+      await tester.tap(send);
+      await _pump(tester);
+      expect(client.sent, hasLength(1));
+      expect(find.text(_strings.mailSubmissionUncertain), findsOneWidget);
+      await tester.tap(find.widgetWithText(TextButton, _strings.compose));
+      await _pump(tester);
+      expect(
+        tester.widget<TextField>(_field(_strings.mailCc)).controller!.text,
+        'primary@example.invalid, copy@example.invalid',
+      );
+      expect(
+        tester.widget<TextField>(_field(_strings.mailBcc)).controller!.text,
+        'copy@example.invalid; hidden@example.invalid',
+      );
+      expect(tester.widget<FilledButton>(send).onPressed, isNull);
+      expect(client.sent, hasLength(1));
+      client.onSend = null;
+      await tester.ensureVisible(find.byType(CheckboxListTile));
+      await tester.tap(find.byType(CheckboxListTile));
+      await _pump(tester);
+      await tester.ensureVisible(send);
+      await tester.tap(send);
+      await _pump(tester);
+      expect(client.sent, hasLength(2));
+      expect(client.appendRequests, <bool>[false, false]);
+      for (var index = 0; index < client.sent.length; index++) {
+        final message = client.sent[index];
+        expect(client.recipientLists[index]!.map((entry) => entry.email), [
+          'primary@Example.invalid',
+          'second@example.invalid',
+          'copy@example.invalid',
+          'hidden@example.invalid',
+        ]);
+        expect(message.to!.map((entry) => entry.email), [
+          'primary@Example.invalid',
+          'second@example.invalid',
+        ]);
+        expect(message.cc!.map((entry) => entry.email), [
+          'copy@example.invalid',
+        ]);
+        expect(message.bcc, isEmpty);
+        expect(
+          message.renderMessage(),
+          isNot(contains('hidden@example.invalid')),
+        );
+      }
+      expect(tester.takeException(), isNull);
       await _close(tester);
     },
   );

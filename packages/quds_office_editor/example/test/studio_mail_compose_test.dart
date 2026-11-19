@@ -123,30 +123,27 @@ void main() {
     );
   });
 
-  test(
-    'Arabic subject and body produce ASCII-safe MIME with exact decoded content',
-    () {
-      const draft = StudioMailDraft(
-        to: 'reader@example.invalid',
-        subject: 'رسالة اختبار',
-        body: 'مرحبًا <reader> & أهلًا',
-      );
-      final message = buildStudioMailMessage(draft, sender);
-      expect(
-        message.renderMessage().codeUnits.every((unit) => unit < 128),
-        isTrue,
-      );
-      expect(message.decodeSubject(), draft.subject);
-      expect(message.decodeTextPlainPart(), draft.body);
-      expect(message.decodeTextHtmlPart(), contains('&lt;reader&gt; &amp;'));
-      expect(message.to!.single.email, draft.to);
-      expect(message.bcc, isEmpty);
-      expect(
-        () => buildStudioMailMessage(draft, '$sender\r\nX-Extra: bad'),
-        throwsFormatException,
-      );
-    },
-  );
+  test('Arabic subject and body produce ASCII-safe MIME with exact decoded content', () {
+    const draft = StudioMailDraft(
+      to: 'reader@example.invalid',
+      subject: 'رسالة اختبار',
+      body: 'مرحبًا <reader> & أهلًا',
+    );
+    final message = buildStudioMailMessage(draft, sender);
+    expect(
+      message.renderMessage().codeUnits.every((unit) => unit < 128),
+      isTrue,
+    );
+    expect(message.decodeSubject(), draft.subject);
+    expect(message.decodeTextPlainPart(), draft.body);
+    expect(message.decodeTextHtmlPart(), contains('&lt;reader&gt; &amp;'));
+    expect(message.to!.single.email, draft.to);
+    expect(message.bcc, isEmpty);
+    expect(
+      () => buildStudioMailMessage(draft, '$sender\r\nX-Extra: bad'),
+      throwsFormatException,
+    );
+  });
 
   testWidgets(
     'body uses the Word editor and snapshots undoable text before disposal',
@@ -313,6 +310,70 @@ void main() {
       expect(tester.takeException(), isNull);
       await tester.tap(find.text(strings.cancel));
       await _pump(tester);
+      expect(tester.takeException(), isNull);
+    },
+  );
+
+  testWidgets('Cc and Bcc remain editable and sendable in a narrow window', (
+    tester,
+  ) async {
+    StudioMailDraft? snapshot;
+    await _open(
+      tester,
+      (value) => snapshot = value,
+      size: const Size(390, 720),
+    );
+    await tester.tap(find.text(strings.mailCopyRecipients));
+    await _pump(tester);
+    expect(find.byType(TextField), findsNWidgets(4));
+    await tester.enterText(
+      _field(strings.to),
+      'one@example.invalid; two@example.invalid',
+    );
+    await tester.enterText(_field(strings.mailCc), 'copy@example.invalid');
+    await tester.enterText(_field(strings.mailBcc), 'hidden@example.invalid');
+    final body = tester.widget<QudsWordEditor>(find.byType(QudsWordEditor));
+    body.controller.insertText('Group message');
+    final send = find.widgetWithText(FilledButton, strings.send);
+    await tester.ensureVisible(send);
+    await _pump(tester);
+    await tester.tap(send);
+    await _pump(tester);
+    expect(snapshot?.recipients.envelope, [
+      'one@example.invalid',
+      'two@example.invalid',
+      'copy@example.invalid',
+      'hidden@example.invalid',
+    ]);
+    expect(snapshot?.body, 'Group message');
+    expect(body.controller.isDisposed, isTrue);
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets(
+    'invalid hidden recipient blocks submission without losing input',
+    (tester) async {
+      StudioMailDraft? snapshot;
+      await _open(tester, (value) => snapshot = value);
+      await tester.tap(find.text(strings.mailCopyRecipients));
+      await tester.pump();
+      await tester.enterText(_field(strings.to), 'one@example.invalid');
+      await tester.enterText(_field(strings.mailBcc), 'not-an-address');
+      final send = find.widgetWithText(FilledButton, strings.send);
+      await tester.ensureVisible(send);
+      await tester.tap(send);
+      await tester.pump();
+      expect(snapshot, isNull);
+      expect(find.text(strings.mailInvalidRecipient), findsOneWidget);
+      expect(
+        tester.widget<TextField>(_field(strings.mailBcc)).controller!.text,
+        'not-an-address',
+      );
+      await tester.enterText(_field(strings.mailBcc), 'hidden@example.invalid');
+      await tester.ensureVisible(send);
+      await tester.tap(send);
+      await _pump(tester);
+      expect(snapshot?.bcc, 'hidden@example.invalid');
       expect(tester.takeException(), isNull);
     },
   );

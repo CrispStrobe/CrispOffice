@@ -1,0 +1,56 @@
+00:00 +0: loading /workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_mail_core/test/outbox_test.dart
+00:00 +0: /workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_mail_core/test/imap_sync_range_test.dart: inclusive ranges support the full IMAP UID space and single UIDs
+00:00 +1: /workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_mail_core/test/cancellation_test.dart: invalidate rejects old callbacks but allows a new generation
+00:00 +2: /workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_mail_core/test/cancellation_test.dart: invalidate rejects old callbacks but allows a new generation
+00:00 +3: /workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_mail_core/test/cancellation_test.dart: invalidate rejects old callbacks but allows a new generation
+00:00 +4: /workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_mail_core/test/cancellation_test.dart: invalidate rejects old callbacks but allows a new generation
+00:00 +5: /workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_mail_core/test/cancellation_test.dart: invalidate rejects old callbacks but allows a new generation
+00:00 +6: /workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_mail_core/test/cancellation_test.dart: invalidate rejects old callbacks but allows a new generation
+00:00 +7: /workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_mail_core/test/cancellation_test.dart: invalidate rejects old callbacks but allows a new generation
+00:00 +8: /workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_mail_core/test/cancellation_test.dart: invalidate rejects old callbacks but allows a new generation
+00:00 +9: /workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_mail_core/test/cancellation_test.dart: invalidate rejects old callbacks but allows a new generation
+00:00 +10: /workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_mail_core/test/cancellation_test.dart: invalidate rejects old callbacks but allows a new generation
+00:00 +11: /workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_mail_core/test/cancellation_test.dart: invalidate rejects old callbacks but allows a new generation
+00:00 +12: /workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_mail_core/test/cancellation_test.dart: invalidate rejects old callbacks but allows a new generation
+00:00 +13: /workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_mail_core/test/cancellation_test.dart: invalidate rejects old callbacks but allows a new generation
+00:00 +14: /workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_mail_core/test/cancellation_test.dart: invalidate rejects old callbacks but allows a new generation
+00:00 +15: /workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_mail_core/test/cancellation_test.dart: invalidate rejects old callbacks but allows a new generation
+00:00 +16: /workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_mail_core/test/cancellation_test.dart: invalidate rejects old callbacks but allows a new generation
+00:00 +17: /workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_mail_core/test/cancellation_test.dart: invalidate rejects old callbacks but allows a new generation
+00:00 +18: /workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_mail_core/test/cancellation_test.dart: invalidate rejects old callbacks but allows a new generation
+00:00 +19: /workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_mail_core/test/models_test.dart: observed standard flags have value equality and an empty snapshot
+00:00 +20: /workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_mail_core/test/models_test.dart: observed standard flags have value equality and an empty snapshot
+00:00 +21: /workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_mail_core/test/models_test.dart: observed standard flags have value equality and an empty snapshot
+00:00 +22: /workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_mail_core/test/outbox_test.dart: queued revision, wire and envelope remain frozen through submission
+00:00 +23: /workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_mail_core/test/models_test.dart: snapshots own bytes, including buffer views and export copies
+00:00 +24: /workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_mail_core/test/models_test.dart: snapshots own bytes, including buffer views and export copies
+00:00 +25: /workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_mail_core/test/models_test.dart: snapshots own bytes, including buffer views and export copies
+00:00 +26: /workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_mail_core/test/outbox_test.dart: missing recipient responses stay unknown on aggregate failure
+00:00 +27: /workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_mail_core/test/models_test.dart: message headers and attachments do not alias mutable input lists
+00:00 +28: /workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_mail_core/test/models_test.dart: message headers and attachments do not alias mutable input lists
+00:00 +29: /workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_mail_core/test/outbox_test.dart: interrupted submitting state recovers as uncertain, never queued
+00:00 +30: /workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_mail_core/test/outbox_test.dart: interrupted submitting state recovers as uncertain, never queued
+00:00 +31: /workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_mail_core/test/models_test.dart: full and preview budgets preserve planned resource bounds
+00:00 +32: /workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_mail_core/test/models_test.dart: full and preview budgets preserve planned resource bounds
+00:00 +33: /workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_mail_core/test/outbox_test.dart: validated restoration preserves a pending attempt and recovers uncertain
+00:00 +34: /workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_mail_core/test/outbox_test.dart: validated restoration preserves a pending attempt and recovers uncertain
+00:00 +35: /workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_mail_core/test/outbox_test.dart: validated restoration preserves a pending attempt and recovers uncertain
+00:00 +36: /workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_mail_core/test/outbox_test.dart: validated restoration preserves a pending attempt and recovers uncertain
+00:00 +37: /workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_mail_core/test/models_test.dart: mail capability does not imply Calendar, People or sending
+00:00 +38: /workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_mail_core/test/models_test.dart: mail capability does not imply Calendar, People or sending
+00:00 +39: /workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_mail_core/test/models_test.dart: mail capability does not imply Calendar, People or sending
+00:00 +40: /workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_mail_core/test/sync_coordinator_test.dart: fixture pages apply real upserts/tombstones and advance cursor atomically
+00:00 +41: /workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_mail_core/test/ews_identity_test.dart: EWS item IDs retain exact case and opaque punctuation
+00:00 +42: /workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_mail_core/test/ews_identity_test.dart: EWS item IDs retain exact case and opaque punctuation
+00:00 +43: /workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_mail_core/test/ews_identity_test.dart: EWS item IDs retain exact case and opaque punctuation
+00:00 +44: /workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_mail_core/test/ews_identity_test.dart: EWS item IDs retain exact case and opaque punctuation
+00:00 +45: /workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_mail_core/test/ews_identity_test.dart: EWS item IDs retain exact case and opaque punctuation
+00:00 +46: /workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_mail_core/test/ews_identity_test.dart: EWS item IDs retain exact case and opaque punctuation
+00:00 +47: /workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_mail_core/test/sync_coordinator_test.dart: cooperative user cancellation differs from stale account work
+00:00 +48: /workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_mail_core/test/ews_identity_test.dart: equal server IDs remain isolated by host, account and provider
+00:00 +49: /workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_mail_core/test/ews_identity_test.dart: equal server IDs remain isolated by host, account and provider
+00:00 +50: /workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_mail_core/test/sync_coordinator_test.dart: unsupported provider operations are failures rather than empty success
+00:00 +51: /workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_mail_core/test/sync_coordinator_test.dart: unsupported provider operations are failures rather than empty success
+00:00 +52: /workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_mail_core/test/ews_identity_test.dart: EWS identities reject empty values and control characters
+00:00 +53: /workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_mail_core/test/ews_identity_test.dart: cross-account Exchange moves fail before provider work
+00:00 +54: All tests passed!

@@ -66,8 +66,7 @@ class SlideDeserializer {
             rel.targetMode == RelationshipTargetMode.external ||
             package.getPart(presentationRels.resolve(rel))?.contentType !=
                 OfficeContentTypes.slide) {
-          slideRelationshipIssue =
-              'Section membership requires modeled internal slide relationships.';
+          slideRelationshipIssue = 'Section membership requires modeled internal slide relationships.';
         }
         slideUris.add(
           rel != null && rel.type == RelationshipTypes.slide
@@ -110,13 +109,21 @@ class SlideDeserializer {
           colors: layout?.colors ?? templates.defaultColors,
           positioned: positioned,
         );
-        pres.slides[i].background =
-            _backgroundOf(
-              slideXml,
-              layout?.colors ?? templates.defaultColors,
-            ) ??
-            layout?.background ??
-            pres.master.background;
+        final String? slideBackground = _backgroundOf(
+          slideXml,
+          layout?.colors ?? templates.defaultColors,
+        );
+        final String resolvedBackground =
+            slideBackground ?? layout?.background ?? pres.master.background;
+        if (slideBackground == null &&
+            (layout?.inheritsMasterBackground ?? true)) {
+          pres.slides[i].setInheritedBackground(
+            resolvedBackground,
+            masterBackground: pres.master.background,
+          );
+        } else {
+          pres.slides[i].background = resolvedBackground;
+        }
         if (layout != null) {
           pres.slides[i].layoutName = layout.name;
           _inheritPlaceholders(shapes, positioned, <List<PmlShape>>[
@@ -341,6 +348,7 @@ class _SlideTemplate {
     required this.colors,
     required this.placeholders,
     this.background,
+    this.inheritsMasterBackground = false,
     this.master,
   });
 
@@ -348,6 +356,7 @@ class _SlideTemplate {
   final Map<String, String> colors;
   final List<PmlShape> placeholders;
   final String? background;
+  final bool inheritsMasterBackground;
   final _SlideTemplate? master;
 }
 
@@ -421,6 +430,7 @@ class _SlideTemplates {
         <List<PmlShape>>[master.placeholders],
       );
     }
+    final String? background = SlideDeserializer._backgroundOf(xml, colors);
     return _layouts[uri] = _SlideTemplate(
       name: _cSldName(xml) ?? 'Layout',
       colors: colors,
@@ -428,8 +438,8 @@ class _SlideTemplates {
         for (final PmlShape shape in shapes)
           if (shape.placeholder && positioned.contains(shape)) shape,
       ],
-      background:
-          SlideDeserializer._backgroundOf(xml, colors) ?? master?.background,
+      background: background ?? master?.background,
+      inheritsMasterBackground: background == null,
       master: master,
     );
   }

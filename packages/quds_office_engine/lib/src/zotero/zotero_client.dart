@@ -9,8 +9,9 @@ export 'zotero_models.dart';
 /// dart:io or Flutter, and never persists the API key.
 /// Transports must disable redirects, so a custom API-key header cannot be
 /// forwarded to another origin. Honor [ZoteroHttpRequest.followRedirects].
-typedef ZoteroTransport =
-    Future<ZoteroHttpResponse> Function(ZoteroHttpRequest request);
+typedef ZoteroTransport = Future<ZoteroHttpResponse> Function(
+  ZoteroHttpRequest request,
+);
 
 class ZoteroHttpRequest {
   ZoteroHttpRequest({
@@ -400,8 +401,7 @@ class ZoteroClient {
       throw const ZoteroApiException(
         kind: ZoteroApiErrorKind.notFound,
         statusCode: 404,
-        message:
-            'This saved search is no longer available. Refresh saved searches and choose again.',
+        message: 'This saved search is no longer available. Refresh saved searches and choose again.',
       );
     }
   }
@@ -488,9 +488,9 @@ class ZoteroClient {
     };
     final uri = _uri(path, parameters);
     final response = await _request(uri);
-    final items = _array(
-      _decode(response),
-    ).map((json) => _item(_object(json), library)).toList();
+    final items = _array(_decode(response))
+        .map((json) => _item(_object(json), library))
+        .toList();
     return _page(items, response, uri, start, limit);
   }
 
@@ -699,8 +699,7 @@ class ZoteroClient {
     if (isLocal && (_localServerId == null || version == null)) {
       throw const ZoteroApiException(
         kind: ZoteroApiErrorKind.unavailable,
-        message:
-            'This Zotero desktop does not provide a database identity and library version. Use Zotero 10 or later and reconnect to export or format these sources safely. Individual previews and metadata refresh remain available.',
+        message: 'This Zotero desktop does not provide a database identity and library version. Use Zotero 10 or later and reconnect to export or format these sources safely. Individual previews and metadata refresh remain available.',
       );
     }
     return version;
@@ -753,16 +752,14 @@ class ZoteroClient {
             expectedVersion) {
       throw const ZoteroApiException(
         kind: ZoteroApiErrorKind.invalidResponse,
-        message:
-            'The Zotero library changed while preparing the selection. Try again; existing citations were kept.',
+        message: 'The Zotero library changed while preparing the selection. Try again; existing citations were kept.',
       );
     }
   }
 
   static ZoteroApiException _identityMismatch() => const ZoteroApiException(
     kind: ZoteroApiErrorKind.invalidResponse,
-    message:
-        'Zotero did not return the selected source identities. Check the connected library; existing citations were kept.',
+    message: 'Zotero did not return the selected source identities. Check the connected library; existing citations were kept.',
   );
 
   static List<String> _selection(List<String> itemKeys) {
@@ -792,9 +789,8 @@ class ZoteroClient {
         'Use a Zotero citation style identifier, such as apa.',
       );
     }
-    if (!RegExp(
-      r'^[a-zA-Z]{2,3}(?:-[a-zA-Z0-9]{2,8}){0,3}$',
-    ).hasMatch(locale)) {
+    if (!RegExp(r'^[a-zA-Z]{2,3}(?:-[a-zA-Z0-9]{2,8}){0,3}$')
+        .hasMatch(locale)) {
       throw ArgumentError('Use a citation locale such as en-US.');
     }
     return {'style': style, 'locale': locale};

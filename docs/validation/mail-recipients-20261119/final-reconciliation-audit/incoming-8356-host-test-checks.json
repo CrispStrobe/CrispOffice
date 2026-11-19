@@ -1,0 +1,122 @@
+{
+  "incoming_tip": "8356fb0ad4630824a39453ea9a5923d9fb2a2101",
+  "reference_head": "3279d1ffb0d80c0133fc6edaa2c3854512ac8481",
+  "method": "Read-only Dart AST parsing and token comparison; ignore whitespace/comments and optional trailing commas. No tests executed.",
+  "tests_executed": 0,
+  "new_test_declarations": 3,
+  "new_widget_cases": 4,
+  "files": [
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_cloud_test.dart",
+      "new_name_expression": "'${service.name} host keeps hidden recipients out of canonical MIME'",
+      "same_name_count_in_reference_head": 0,
+      "same_name_count_in_current": 1,
+      "incoming_assertion_tokens_retained": true,
+      "normalized_incoming_test_token_sha256": "d06bb1358f406b4506351e8a4c08ba6acebdc76933ef2aacd2040920693589ed",
+      "current_exact_name_duplicates": [],
+      "original_test_names_missing": [],
+      "original_test_bodies_changed_beyond_formatting": [],
+      "imports_unchanged_from_reference_head": true,
+      "imports_unchanged_from_incoming": false,
+      "current_sha256": "b006eb2a58bac48520e5e6fdbcd91a51a9d1fa383bf3e2892bf19af3bcc557c9",
+      "incoming_sha256": "8415c8aef4583b41e07f8eaa80c86f776d9ea62d711ce152cc75b4be0868b241",
+      "duplicate_import_directives": [],
+      "additional_current_imports_vs_incoming": [
+        "import 'package:quds_office_studio/studio_mail_compose.dart';"
+      ],
+      "incoming_imports_missing_in_current": []
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_ews_test.dart",
+      "new_name_expression": "'EWS host preserves visible groups and hides Bcc from canonical MIME'",
+      "same_name_count_in_reference_head": 0,
+      "same_name_count_in_current": 1,
+      "incoming_assertion_tokens_retained": true,
+      "normalized_incoming_test_token_sha256": "20aa45e6f23bed38d3db645cab388e90f416e74f47e874860ee537f71ec8d47d",
+      "current_exact_name_duplicates": [],
+      "original_test_names_missing": [],
+      "original_test_bodies_changed_beyond_formatting": [],
+      "imports_unchanged_from_reference_head": true,
+      "imports_unchanged_from_incoming": true,
+      "current_sha256": "3639feda8510b4625a7c69b9396a4d032ee17e5fe1a9815abc1b8f009ecde7ee",
+      "incoming_sha256": "25cf000a37e912acbe99ce3f721700f6add3d2b251124eaaeaa090cfac2b3135",
+      "duplicate_import_directives": [],
+      "additional_current_imports_vs_incoming": [],
+      "incoming_imports_missing_in_current": []
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_test.dart",
+      "new_name_expression": "'SMTP recipient groups stay in the envelope and survive acknowledged retry'",
+      "same_name_count_in_reference_head": 0,
+      "same_name_count_in_current": 1,
+      "incoming_assertion_tokens_retained": true,
+      "normalized_incoming_test_token_sha256": "1635bac081606c63d655f0d43eae6326141ed289c5f020db1ba8dc0747a347f1",
+      "current_exact_name_duplicates": [],
+      "original_test_names_missing": [],
+      "original_test_bodies_changed_beyond_formatting": [],
+      "imports_unchanged_from_reference_head": true,
+      "imports_unchanged_from_incoming": true,
+      "current_sha256": "dabf42e44ad810bc62a78b187099d660652e6ecfcd018576f35ed6807427e10c",
+      "incoming_sha256": "c7485f7e7b115ebd36a7b8b3261656ce576fb0f22f62765dae44a8ccb03c8a1f",
+      "duplicate_import_directives": [],
+      "additional_current_imports_vs_incoming": [],
+      "incoming_imports_missing_in_current": []
+    }
+  ],
+  "mail_subset_hash_check": [
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_recipients.dart",
+      "match": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_draft.dart",
+      "match": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_reply.dart",
+      "match": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_threading.dart",
+      "match": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_recipients_test.dart",
+      "match": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_reply_test.dart",
+      "match": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_threading_test.dart",
+      "match": true
+    }
+  ],
+  "serial_dark_preservation": {
+    "packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart": {
+      "current_sha256": "29c08a253201a2af73717a20db5810fcdb2087608f46aa8cbe3203a1e0abf81b",
+      "reference_sha256": "29c08a253201a2af73717a20db5810fcdb2087608f46aa8cbe3203a1e0abf81b",
+      "identical_to_reference": true
+    },
+    "packages/quds_office_editor/test/office_dark_slide_test.dart": {
+      "current_sha256": "1360af2ad22071de6f8234ee501f6dbeb5e5390fa16ef4eec1abc96e018e7935",
+      "reference_sha256": "1360af2ad22071de6f8234ee501f6dbeb5e5390fa16ef4eec1abc96e018e7935",
+      "identical_to_reference": true
+    }
+  },
+  "setInheritedBackground_contract_retained": true,
+  "nullable_bcc_review": "MimeMessage.bcc delegates missing-header parsing through decodeHeaderMailAddressValue to MailAddressParser.parseEmailAddresses; null/empty input returns an empty nonnullable list. Incoming expect(message.bcc,isEmpty) is therefore valid for generated canonical messages.",
+  "review_result": "retain_all_three_new_host_test_declarations; no name or import collision found",
+  "runtime_qualification": "The four new widget cases were not executed. Existing57 pure mail cases remain source-bound; seven hashes still match.",
+  "incoming_own_delta": [
+    "58\t0\tpackages/quds_office_editor/example/test/studio_mail_cloud_test.dart",
+    "60\t0\tpackages/quds_office_editor/example/test/studio_mail_ews_test.dart",
+    "81\t0\tpackages/quds_office_editor/example/test/studio_mail_test.dart",
+    "3\t3\tpackages/quds_office_editor/test/office_dark_slide_test.dart",
+    "2\t1\tpackages/quds_office_engine/lib/src/slide/serial/slide_serial.dart"
+  ],
+  "incoming_parent": "c1b98f12f802863fb602e9919ead524891bfbcc6",
+  "merge_base": "c1b98f12f802863fb602e9919ead524891bfbcc6",
+  "comparison_note": "Incoming own serial/dark changes are formatting only. Full incoming serial file predates our inherited-background resolution and must not overwrite our current setInheritedBackground call."
+}

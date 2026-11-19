@@ -1,0 +1,10 @@
+[1/10] Material Fonts                                               5.8s
+[2/10] Gradle Wrapper                                               3.9s
+[3/10] Flutter SDK
+  ├─ [1/5] sky_engine                                               4.4s
+  ├─ [2/5] flutter_gpu                                              3.9s
+  ├─ [3/5] flutter_patched_sdk                                      6.6s
+  ├─ [4/5] flutter_patched_sdk_product                              4.3s
+  └─ [5/5] linux-x64                                                5.0s
+[10/10] linux-x64/font-subset                                       4.2s
+Resolving dependencies...

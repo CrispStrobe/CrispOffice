@@ -3,7 +3,7 @@ import 'dart:typed_data';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quds_mail_core/quds_mail_core.dart';
-import 'package:quds_office_studio/studio_mail_compose.dart';
+import 'package:quds_office_studio/studio_mail_draft.dart';
 import 'package:quds_office_studio/studio_mail_reply.dart';
 import 'package:quds_office_studio/studio_mail_submission.dart';
 
@@ -302,35 +302,32 @@ void main() {
     expect(draft.problem, isNull);
   });
 
-  test(
-    'reply all deduplicates with To precedence and exact local-part case',
-    () {
-      final draft = buildStudioMailReplyAllDraft(
-        _message(
-          replyTo: const [MailAddress('Author@EXAMPLE.invalid')],
-          to: const [
-            MailAddress('Author@example.INVALID'),
-            MailAddress('author@example.invalid'),
-            MailAddress('writer@EXAMPLE.invalid'),
-            MailAddress('Writer@example.invalid'),
-          ],
-          cc: const [
-            MailAddress('Author@example.invalid'),
-            MailAddress('copied@EXAMPLE.invalid'),
-            MailAddress('copied@example.INVALID'),
-            MailAddress('writer@example.invalid'),
-          ],
-        ),
-        sender: 'writer@example.invalid',
-      );
-      expect(
-        draft.to,
-        'Author@EXAMPLE.invalid, author@example.invalid, Writer@example.invalid',
-      );
-      expect(draft.cc, 'copied@EXAMPLE.invalid');
-      expect(draft.problem, isNull);
-    },
-  );
+  test('reply all deduplicates with To precedence and exact local-part case', () {
+    final draft = buildStudioMailReplyAllDraft(
+      _message(
+        replyTo: const [MailAddress('Author@EXAMPLE.invalid')],
+        to: const [
+          MailAddress('Author@example.INVALID'),
+          MailAddress('author@example.invalid'),
+          MailAddress('writer@EXAMPLE.invalid'),
+          MailAddress('Writer@example.invalid'),
+        ],
+        cc: const [
+          MailAddress('Author@example.invalid'),
+          MailAddress('copied@EXAMPLE.invalid'),
+          MailAddress('copied@example.INVALID'),
+          MailAddress('writer@example.invalid'),
+        ],
+      ),
+      sender: 'writer@example.invalid',
+    );
+    expect(
+      draft.to,
+      'Author@EXAMPLE.invalid, author@example.invalid, Writer@example.invalid',
+    );
+    expect(draft.cc, 'copied@EXAMPLE.invalid');
+    expect(draft.problem, isNull);
+  });
 
   test('reply all from a sent message targets its original participants', () {
     final draft = buildStudioMailReplyAllDraft(

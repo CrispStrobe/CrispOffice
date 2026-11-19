@@ -1,6 +1,6 @@
 import 'package:quds_mail_core/quds_mail_core.dart';
 
-import 'studio_mail_compose.dart';
+import 'studio_mail_draft.dart';
 import 'studio_mail_recipients.dart';
 import 'studio_mail_threading.dart';
 

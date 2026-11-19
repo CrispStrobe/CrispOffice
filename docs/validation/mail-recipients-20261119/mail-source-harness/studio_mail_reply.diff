@@ -1,0 +1,198 @@
+--- original/studio_mail_reply_test.dart
++++ offline/studio_mail_reply_offline_test.dart
+@@ -1,11 +1,10 @@
+ import 'dart:convert';
+ import 'dart:typed_data';
+ 
+-import 'package:flutter_test/flutter_test.dart';
++import 'package:test/test.dart';
+ import 'package:quds_mail_core/quds_mail_core.dart';
+-import 'package:quds_office_studio/studio_mail_draft.dart';
+-import 'package:quds_office_studio/studio_mail_reply.dart';
+-import 'package:quds_office_studio/studio_mail_submission.dart';
++import 'file:///workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_office_editor/example/lib/studio_mail_draft.dart';
++import 'file:///workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_office_editor/example/lib/studio_mail_reply.dart';
+ 
+ MailMessage _message({
+   String subject = 'Decoded source subject',
+@@ -125,28 +124,7 @@
+     );
+   }
+ 
+-  test(
+-    'quote cutoff preserves an emoji and explicitly identifies truncation',
+-    () {
+-      final retained = '${''.padRight(7999, 'a')}😀';
+-      final draft = buildStudioMailReplyDraft(
+-        _message(plain: '${retained}Omitted suffix'),
+-        forward: false,
+-        truncationNotice: '[Zitat gekürzt.]',
+-      );
+-      expect(draft.body, endsWith('> $retained\n\n[Zitat gekürzt.]'));
+-      expect(draft.body, isNot(contains('Omitted suffix')));
+-      expect(draft.body, isNot(contains('\uFFFD')));
+-      expect(utf8.decode(utf8.encode(draft.body)), draft.body);
+-      expect(
+-        buildStudioMailMessage(
+-          draft,
+-          'writer@example.invalid',
+-        ).decodeTextPlainPart(),
+-        draft.body.replaceAll('\n', '\r\n'),
+-      );
+-    },
+-  );
++  
+ 
+   test('an exact-boundary quote is preserved without a truncation notice', () {
+     final body = ''.padRight(8000, 'x');
+@@ -180,108 +158,13 @@
+     expect(draft.body, endsWith('> '));
+     expect(draft.body, isNot(contains('HTML fallback')));
+   });
+-  test('reply attaches only the authoritative decoded parent and ancestry', () {
+-    final message = _message(
+-      messageId: '<parent@example.invalid>',
+-      references: const ['<root@example.invalid>'],
+-    );
+-    final draft = buildStudioMailReplyDraft(message, forward: false);
+-    expect(draft.thread.inReplyTo, '<parent@example.invalid>');
+-    expect(
+-      draft.thread.references,
+-      '<root@example.invalid> <parent@example.invalid>',
+-    );
+-    final mime = buildStudioMailMessage(draft, 'writer@example.invalid');
+-    expect(mime.getHeaderValue('in-reply-to'), '<parent@example.invalid>');
+-    expect(
+-      mime.getHeaderValue('references'),
+-      '<root@example.invalid> <parent@example.invalid>',
+-    );
+-    expect(
+-      mime.getHeaderValue('message-id'),
+-      isNot('<parent@example.invalid>'),
+-    );
+-    expect(message.envelope.references, const ['<root@example.invalid>']);
+-  });
+-
+-  test('forwarding starts a new thread even when the source has ancestry', () {
+-    final forwarded = buildStudioMailReplyDraft(
+-      _message(
+-        messageId: '<parent@example.invalid>',
+-        inReplyTo: '<previous@example.invalid>',
+-        references: const ['<root@example.invalid>'],
+-      ),
+-      forward: true,
+-    );
+-    expect(forwarded.thread.inReplyTo, isNull);
+-    expect(forwarded.thread.references, isNull);
+-    final addressed = StudioMailDraft(
+-      to: 'selected@example.invalid',
+-      subject: forwarded.subject,
+-      body: forwarded.body,
+-      thread: forwarded.thread,
+-    );
+-    final mime = buildStudioMailMessage(addressed, 'writer@example.invalid');
+-    expect(mime.getHeaderValue('in-reply-to'), isNull);
+-    expect(mime.getHeaderValue('references'), isNull);
+-    expect(mime.to!.single.email, 'selected@example.invalid');
+-    expect(mime.decodeTextPlainPart(), contains('Decoded source body'));
+-  });
+-
+-  test('invalid parent metadata does not block an otherwise valid reply', () {
+-    final draft = buildStudioMailReplyDraft(
+-      _message(
+-        messageId: '<parent@example.invalid>\r\nBcc: hidden@example.invalid',
+-        references: const ['<root@example.invalid>'],
+-      ),
+-      forward: false,
+-    );
+-    expect(draft.problem, isNull);
+-    expect(draft.thread.inReplyTo, isNull);
+-    expect(draft.thread.references, isNull);
+-    final mime = buildStudioMailMessage(draft, 'writer@example.invalid');
+-    expect(mime.getHeaderValue('in-reply-to'), isNull);
+-    expect(mime.getHeaderValue('references'), isNull);
+-    expect(mime.getHeaderValue('bcc'), isNull);
+-    expect(mime.to!.single.email, 'reply@example.invalid');
+-  });
+-
+-  test('reply all keeps visible recipient roles and excludes the sender', () {
+-    final message = _message(
+-      replyTo: const [
+-        MailAddress('reply@example.invalid'),
+-        MailAddress('second-reply@example.invalid'),
+-      ],
+-      to: const [
+-        MailAddress('writer@EXAMPLE.invalid'),
+-        MailAddress('original-recipient@example.invalid'),
+-      ],
+-      cc: const [MailAddress('copied@example.invalid')],
+-    );
+-    final draft = buildStudioMailReplyAllDraft(
+-      message,
+-      sender: 'writer@example.invalid',
+-    );
+-    expect(
+-      draft.to,
+-      'reply@example.invalid, second-reply@example.invalid, '
+-      'original-recipient@example.invalid',
+-    );
+-    expect(draft.cc, 'copied@example.invalid');
+-    expect(draft.bcc, isEmpty);
+-    expect(draft.problem, isNull);
+-    expect(draft.body, isNot(contains('private-bcc')));
+-    expect(draft.body, isNot(contains('copied@example.invalid')));
+-    expect(message.envelope.to.first.address, 'writer@EXAMPLE.invalid');
+-    final mime = buildStudioMailMessage(draft, 'writer@example.invalid');
+-    expect(mime.to!.map((address) => address.email), [
+-      'reply@example.invalid',
+-      'second-reply@example.invalid',
+-      'original-recipient@example.invalid',
+-    ]);
+-    expect(mime.cc!.single.email, 'copied@example.invalid');
+-    expect(mime.getHeaderValue('bcc'), isNull);
+-  });
++  
++
++  
++
++  
++
++  
+ 
+   test('reply all uses every From mailbox only when Reply-To is absent', () {
+     final draft = buildStudioMailReplyAllDraft(
+@@ -383,33 +266,7 @@
+     expect(draft.body, isNot(contains('private@example.invalid')));
+   });
+ 
+-  test('reply all preserves thread metadata and the bounded plain quote', () {
+-    final message = _message(
+-      plain: '${'x' * 7999}😀suffix',
+-      messageId: '<parent@example.invalid>',
+-      references: const ['<root@example.invalid>'],
+-    );
+-    final draft = buildStudioMailReplyAllDraft(
+-      message,
+-      sender: 'writer@example.invalid',
+-      truncationNotice: '[Quote ended.]',
+-    );
+-    expect(draft.thread.inReplyTo, '<parent@example.invalid>');
+-    expect(
+-      draft.thread.references,
+-      '<root@example.invalid> <parent@example.invalid>',
+-    );
+-    expect(draft.subject, 'Re: Decoded source subject');
+-    expect(draft.body, endsWith('😀\n\n[Quote ended.]'));
+-    expect(draft.body, isNot(contains('suffix')));
+-    expect(utf8.decode(utf8.encode(draft.body)), draft.body);
+-    final mime = buildStudioMailMessage(draft, 'writer@example.invalid');
+-    expect(mime.getHeaderValue('in-reply-to'), '<parent@example.invalid>');
+-    expect(
+-      mime.getHeaderValue('references'),
+-      '<root@example.invalid> <parent@example.invalid>',
+-    );
+-  });
++  
+ 
+   test('reply all refuses HTML-only quotation without a plain fallback', () {
+     expect(

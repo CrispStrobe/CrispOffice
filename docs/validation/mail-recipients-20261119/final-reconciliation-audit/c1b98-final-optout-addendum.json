@@ -1,0 +1,72 @@
+{
+  "recordedAtUtc": "2026-11-19T21:27:46.660806+00:00",
+  "scope": "Read-only final merge verification and OfficeTheme contract review; no source edits, test execution, index updates, commits or remote writes by the reviewer.",
+  "baseCommit": "4731ffbd4636d4e7eafe4db9de42c7ef11a8cdf3",
+  "incomingCommit": "c1b98f12f802863fb602e9919ead524891bfbcc6",
+  "finalMergeCommit": "cfbb5d78c3a5adf72f5b459ede496a8044995614",
+  "finalMergeParents": [
+    "4731ffbd4636d4e7eafe4db9de42c7ef11a8cdf3",
+    "c1b98f12f802863fb602e9919ead524891bfbcc6"
+  ],
+  "finalMergeTree": "e7446d15a2f19ff6d94cb523f1fee4697acc165e",
+  "sixObservedConflictPaths": [
+    "packages/quds_office_editor/CHANGELOG.md",
+    "packages/quds_office_editor/lib/src/editor_slide/render_slide_stage.dart",
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+    "packages/quds_office_editor/test/office_dark_slide_test.dart",
+    "packages/quds_office_engine/CHANGELOG.md",
+    "packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart"
+  ],
+  "actualChangedPathsFromFirstParent": [
+    "packages/quds_office_editor/lib/src/editor_slide/render_slide_stage.dart",
+    "packages/quds_office_editor/test/office_dark_slide_test.dart"
+  ],
+  "finalSourceHashes": {
+    "packages/quds_office_editor/lib/src/editor_slide/render_slide_stage.dart": "4441a34f577559cd4954396cb049041d4be1d547ab6939d4b9e1534961089192",
+    "packages/quds_office_editor/test/office_dark_slide_test.dart": "1360af2ad22071de6f8234ee501f6dbeb5e5390fa16ef4eec1abc96e018e7935"
+  },
+  "unchangedSources": {
+    "packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart": {
+      "baseBlob": "eb9855ac6b027e1cdd162df386e1577d386d495a",
+      "mergedBlob": "eb9855ac6b027e1cdd162df386e1577d386d495a",
+      "sha256": "465a0ceab3d2821232b11c5a4ff2131358c968b4b0617fc6619ead29ee11dfe4"
+    },
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart": {
+      "baseBlob": "541a65628cd1c51e8f477f14e3d72562b1c56150",
+      "mergedBlob": "541a65628cd1c51e8f477f14e3d72562b1c56150",
+      "sha256": "7418d4e4d49cfb0b56ab2cdf0613f976b3a07ad2606587cbe0592849fa4ad9ef"
+    },
+    "packages/quds_office_engine/lib/src/pdf/office_pdf_export.dart": {
+      "baseBlob": "558203f0d022d421296130d6f90922f41ae7614a",
+      "mergedBlob": "558203f0d022d421296130d6f90922f41ae7614a",
+      "sha256": "6e0cd493ee65da8d2f5e66c29d674019ac4f6d0f24b907aa32ae89bd3010c3a7"
+    },
+    "packages/quds_office_editor/lib/src/embed/office_theme.dart": {
+      "baseBlob": "226721a01fa99b532c956a8582e4e66f424bdfda",
+      "mergedBlob": "226721a01fa99b532c956a8582e4e66f424bdfda",
+      "sha256": "d707398a8be0e76573c6074d8e91e5fe50925135f44cace231574833b0aefdbd"
+    }
+  },
+  "mailDirectoryDelta": "",
+  "themeContract": {
+    "source": "packages/quds_office_editor/lib/src/embed/office_theme.dart",
+    "sourceSha256": "d707398a8be0e76573c6074d8e91e5fe50925135f44cace231574833b0aefdbd",
+    "documentedFlagPurpose": "Adapt low-contrast document ink to dark display surfaces; hosts can disable it for exact on-screen colour reproduction.",
+    "implementation": "resolveDocumentColor returns authored ink immediately when adaptDocumentColors is false. _solidTextBackground in the slide renderer likewise disables ink-adaptation background selection when false.",
+    "presetValues": "OfficeTheme.dark and OfficeTheme.highContrast set adaptDocumentColors=true.",
+    "inference": "Applying the same opt-out to inherited white-paper mapping preserves readable authored black ink and matches incoming c1b intent. This is supported by the reproduction contract; the property documentation directly describes ink rather than independently specifying paper policy."
+  },
+  "finalPaperPolicy": {
+    "missingOrUnparseableRgb": "Preserved fallback to theme.slideBackground. No source RGB is available to reproduce.",
+    "inheritedWhiteAndAdaptationTrue": "theme.slideBackground",
+    "inheritedWhiteAndAdaptationFalse": "authored/resolved white",
+    "explicitWhiteEitherFlag": "authored white",
+    "validNonwhiteEitherFlag": "authored/resolved RGB"
+  },
+  "regressionAssertionsAdded": [
+    "Reset an explicit slide background to empty, verify inherited flag, apply a subsequent master color, and verify inherited color update.",
+    "Within the existing dark/high-contrast inherited-white test, turn adaptDocumentColors off and assert that the white background remains white."
+  ],
+  "supersedesEarlierRendererRecommendation": "The initial c1b98 audit advised retaining current inheritance-only white mapping. Final review additionally preserves the incoming adaptation opt-out by requiring both adaptDocumentColors and inheritsMasterBackground. All other initial source-resolution guidance is unchanged.",
+  "executionQualification": "The added widget assertions were source-reviewed but not executed here; Flutter dependency resolution remains unavailable. The final merge does not alter engine slide source files or mail source files."
+}
