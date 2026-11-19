@@ -103,13 +103,24 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
     mail.MailClient? client,
   ) => runStudioMailOperation(() async {
     if (client == null) return;
+    // High-level disconnect can wait behind an in-flight command. Abort the
+    // owned sockets independently so stalled connection/command waits end
+    // (session ownership repair from #193). Each close is settled separately.
+    await Future.wait<void>(<Future<void>>[
+      _settleShutdown(() => client.lowLevelIncomingMailClient.abort()),
+      _settleShutdown(() => client.lowLevelOutgoingMailClient.abort()),
+      _settleShutdown(client.disconnect),
+    ]);
+  });
+
+  static Future<void> _settleShutdown(Future<void> Function() operation) async {
     try {
-      await client.disconnect();
+      await operation();
     } on Object {
       // Cleanup must not create an unhandled asynchronous error, especially
       // after the dialog has gone away. Operation failures retain their own UI.
     }
-  });
+  }
 
   void _retireReader(MailReaderController? reader) {
     if (reader == null) return;

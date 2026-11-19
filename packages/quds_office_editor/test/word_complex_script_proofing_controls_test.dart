@@ -225,4 +225,115 @@ void main() {
     );
     expect(controller.canUndo, isFalse);
   });
+
+  test(
+    'choosing existing Latin metadata retains the selected script boundary through history and save',
+    () {
+      final controller = _controller(_document(text: 'Text فكرة', flags: ''));
+      controller.caret
+        ..selectionAnchor = 0
+        ..logicalIndex = 4;
+      expect(controller.textProofingTarget!.language, 'ar-SA');
+      expect(
+        controller.setTextProofingLanguage(
+          'en-GB',
+          target: controller.textProofingTarget!,
+        ),
+        isTrue,
+      );
+      expect(controller.textProofingTarget!.language, 'en-GB');
+      expect(_runs(controller).map((run) => run.text), ['Text', ' فكرة']);
+      for (final run in _runs(controller)) {
+        expect(run.properties.proofingLanguage, 'en-GB');
+        expect(run.properties.complexScriptLanguage, 'ar-SA');
+        expect(run.properties.complexScript, isNot(isTrue));
+      }
+      final revision = controller.contentRevision;
+      expect(
+        controller.setTextProofingLanguage(
+          'en-GB',
+          target: controller.textProofingTarget!,
+        ),
+        isTrue,
+      );
+      expect(controller.contentRevision, revision);
+      controller.undo();
+      expect(_runs(controller).single.text, 'Text فكرة');
+      expect(controller.textProofingTarget!.language, 'ar-SA');
+      controller.redo();
+      expect(controller.textProofingTarget!.language, 'en-GB');
+      final loaded = _reload(controller);
+      final loadedRuns = loaded.paragraphs.single.inlines
+          .whereType<WmlRun>()
+          .toList();
+      expect(loadedRuns.map((run) => run.text), ['Text', ' فكرة']);
+      for (final run in loadedRuns) {
+        expect(run.properties.proofingLanguage, 'en-GB');
+        expect(run.properties.complexScriptLanguage, 'ar-SA');
+        expect(
+          run.properties.sourcePropertiesXml,
+          contains('eastAsia="ja-JP"'),
+        );
+        expect(run.properties.sourcePropertiesXml, contains('spacing'));
+      }
+      final reopened = _controller(loaded);
+      reopened.caret
+        ..selectionAnchor = 0
+        ..logicalIndex = 4;
+      expect(reopened.textProofingTarget!.language, 'en-GB');
+    },
+  );
+
+  test(
+    'resetting an already inherited Latin slot retains its selected script boundary',
+    () {
+      final document = WmlDocument.empty()..proofingLanguage = 'en-GB';
+      document.paragraphs.single.inlines = [
+        WmlRun(
+          text: 'Text فكرة',
+          properties: WmlRunProps(complexScriptLanguage: 'ar-SA'),
+        ),
+      ];
+      final controller = _controller(document);
+      controller.caret
+        ..selectionAnchor = 0
+        ..logicalIndex = 4;
+      expect(controller.textProofingTarget!.language, 'ar-SA');
+      expect(
+        controller.setTextProofingLanguage(
+          null,
+          target: controller.textProofingTarget!,
+        ),
+        isTrue,
+      );
+      expect(controller.textProofingTarget!.language, 'en-GB');
+      expect(_runs(controller).map((run) => run.text), ['Text', ' فكرة']);
+      for (final run in _runs(controller)) {
+        expect(run.properties.proofingLanguage, isNull);
+        expect(run.properties.complexScriptLanguage, 'ar-SA');
+        expect(run.properties.complexScript, isNull);
+      }
+      final revision = controller.contentRevision;
+      expect(
+        controller.setTextProofingLanguage(
+          null,
+          target: controller.textProofingTarget!,
+        ),
+        isTrue,
+      );
+      expect(controller.contentRevision, revision);
+      controller.undo();
+      expect(_runs(controller).single.text, 'Text فكرة');
+      expect(controller.textProofingTarget!.language, 'ar-SA');
+      controller.redo();
+      expect(controller.textProofingTarget!.language, 'en-GB');
+      final reopened = _controller(_reload(controller));
+      reopened.caret
+        ..selectionAnchor = 0
+        ..logicalIndex = 4;
+      expect(_runs(reopened).map((run) => run.text), ['Text', ' فكرة']);
+      expect(reopened.textProofingTarget!.language, 'en-GB');
+      expect(_runs(reopened).last.properties.complexScriptLanguage, 'ar-SA');
+    },
+  );
 }
