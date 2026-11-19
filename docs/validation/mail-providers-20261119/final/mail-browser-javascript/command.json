@@ -1,0 +1,21 @@
+{
+  "argv": [
+    "/workspace/scratch/61cbd6db9300/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+    "compile",
+    "js",
+    "--platform-binaries=/workspace/scratch/61cbd6db9300/toolchains/flutter/bin/cache/flutter_web_sdk/kernel",
+    "--invoker=flutter_tool",
+    "-Ddart.vm.product=true",
+    "-O1",
+    "--no-source-maps",
+    "-o",
+    "/workspace/scratch/61cbd6db9300/qualification/build/mail-web.js",
+    "/workspace/scratch/61cbd6db9300/qualification/build/mail-web.dill"
+  ],
+  "cwd": "/workspace/scratch/61cbd6db9300/crisp-office",
+  "environment_overrides": {},
+  "kind": "command",
+  "name": "mail-browser-javascript",
+  "started_at_utc": "2026-11-19T14:47:27.459840+00:00",
+  "timeout_seconds": 1200
+}

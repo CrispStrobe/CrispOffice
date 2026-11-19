@@ -1,0 +1,12 @@
+diff --git a/packages/quds_language_id/test/language_id_unit_test.dart b/packages/quds_language_id/test/language_id_unit_test.dart
+index 988189ac..bb250948 100644
+--- a/packages/quds_language_id/test/language_id_unit_test.dart
++++ b/packages/quds_language_id/test/language_id_unit_test.dart
+@@ -203,6 +203,7 @@ void main() {
+         final identifier = Cld3LanguageIdentifier(
+           model: _model(),
+           transport: transport,
++          topK: 3,
+         );
+         expect(await identifier.detect('Paragraph text'), isEmpty);
+         expect(identifier.failure, isA<FormatException>());

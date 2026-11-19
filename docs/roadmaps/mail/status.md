@@ -1,5 +1,33 @@
 # Mail implementation status — 19 November 2026
 
+## Gmail, Microsoft 365 and additional presets
+
+The [cloud providers](cloud-providers.md) add Gmail API and Microsoft Graph,
+desktop browser OAuth/PKCE, bounded reads/sync, confirmed actions, safe MIME
+sending and redacted diagnostics. Studio reuses the guarded foreground mailbox
+and composer. Yahoo, iCloud and Fastmail have explicit TLS presets.
+
+See [source-bound validation](../../validation/mail-providers-20261119/README.md).
+Live accounts, installed desktop packaging, durable cloud accounts/outbox,
+shared mailboxes, Calendar/People and web cloud authorization remain separate.
+Registration client IDs are deployment-owned; none are provisioned by this code.
+
+## On-premises Exchange EWS
+
+The [EWS implementation](exchange-ews.md) adds a native provider and a Studio
+entry with explicit HTTPS configuration, NTLMv2 by default, host-owned
+credentials, folder/header browsing, incremental message sync, on-demand MIME,
+guarded mailbox mutations and EWS sending with Sent filing. Existing opaque
+identities and atomic storage transactions require no schema migration. Browser
+EWS remains explicitly unsupported. The Studio host is session-only.
+
+The [focused validation record](../../validation/mail-ews-20261119/README.md)
+separates new source-bound checks from historical IMAP/Office evidence. No live
+Exchange endpoint was supplied; server interoperability, Calendar/People,
+Kerberos, Autodiscover and the durable mailbox/outbox host are not claimed.
+
+## Previous mail continuations
+
 The current [UID discovery continuation](../../validation/mail-uid-pagination-20261119/README.md)
 adds bounded discovery, atomic stored-range reconciliation and monotonic v3
 cursor revisions. Combined qualification follows the fully retained first

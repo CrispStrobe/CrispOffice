@@ -1,0 +1,33 @@
+{
+  "accepted": false,
+  "argv": [
+    "/workspace/scratch/61cbd6db9300/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+    "--disable-dart-dev",
+    "--packages=/workspace/scratch/61cbd6db9300/crisp-office/.dart_tool/package_config.json",
+    "/workspace/scratch/61cbd6db9300/toolchains/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+    "--platform=vm",
+    "--compiler=kernel",
+    "--reporter=json",
+    "--concurrency=1",
+    "test/language_id_unit_test.dart",
+    "test/language_id_native_transport_test.dart"
+  ],
+  "cwd": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_language_id",
+  "elapsed_seconds": 16.273,
+  "environment_overrides": {
+    "QUDS_LANGUAGE_ID_FIXTURE_LIBRARY": "/workspace/scratch/61cbd6db9300/qualification/build/language-id-fixture.so"
+  },
+  "exit_code": 1,
+  "finished_at_utc": "2026-11-19T14:44:46.608062+00:00",
+  "kind": "tests",
+  "name": "language-id-synthetic",
+  "started_at_utc": "2026-11-19T14:44:30.334743+00:00",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "ad399bf624067fe55751bb92abf437a23d40195ad554ea5442346b4075b9071d",
+  "test_counts": {
+    "failed": 1,
+    "passed": 21,
+    "skipped": 0
+  },
+  "timeout_seconds": 900
+}

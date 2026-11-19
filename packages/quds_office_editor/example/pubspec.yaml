@@ -23,6 +23,8 @@ dependencies:
     path: ../../quds_proofing_hunspell
   quds_arabic_morph:
     path: ../../quds_arabic_morph
+  quds_language_id:
+    path: ../../quds_language_id
   quds_proofing_spacy:
     path: ../../quds_proofing_spacy
   quds_mail_core:
@@ -50,4 +52,5 @@ flutter:
     - assets/branding/
     - assets/licenses/hunspell/
     - assets/licenses/arabic_morph/
+    - assets/licenses/language_id/
     - fonts/

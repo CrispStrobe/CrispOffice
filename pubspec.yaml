@@ -24,6 +24,7 @@ workspace:
   - packages/quds_proofing_spacy
   - packages/quds_proofing_hunspell
   - packages/quds_arabic_morph
+  - packages/quds_language_id
   - packages/quds_office_engine/example
   - packages/quds_reports
   - packages/quds_office_editor

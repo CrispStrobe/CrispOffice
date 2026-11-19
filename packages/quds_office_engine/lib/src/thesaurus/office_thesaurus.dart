@@ -440,6 +440,7 @@ final class OfficeThesaurusService {
         senses.values.toList(),
         epoch,
       );
+      _checkEpoch(epoch);
       final display = sourceForm;
       ordered.sort((a, b) {
         final aExact = a.terms.any((term) => term.text == display);

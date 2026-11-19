@@ -1,0 +1,29 @@
+{
+  "accepted": true,
+  "argv": [
+    "/workspace/scratch/61cbd6db9300/toolchains/flutter/bin/flutter",
+    "test",
+    "--no-pub",
+    "--concurrency=1",
+    "--reporter=json",
+    "test/word_proofing_dialog_test.dart",
+    "test/word_proofing_session_test.dart",
+    "test/word_thesaurus_dialog_test.dart"
+  ],
+  "cwd": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor",
+  "elapsed_seconds": 26.199,
+  "environment_overrides": {},
+  "exit_code": 0,
+  "finished_at_utc": "2026-11-19T14:46:02.885518+00:00",
+  "kind": "tests",
+  "name": "editor-proofing-thesaurus-widgets",
+  "started_at_utc": "2026-11-19T14:45:36.686332+00:00",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "e2fabb94a7c2e88a73e0c3d4c6ad994060fbd805a05394cf278d35d71818c3cd",
+  "test_counts": {
+    "failed": 0,
+    "passed": 75,
+    "skipped": 0
+  },
+  "timeout_seconds": 900
+}

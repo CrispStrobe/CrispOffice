@@ -319,6 +319,41 @@ void main() {
   );
 
   test(
+    'pack clear during relation loading cannot cache stale results',
+    () async {
+      final fixture = PackFixture()
+        ..sense('good', ['good', 'fine'])
+        ..sense('oewn-institution', ['institution']);
+      fixture.senses['good']!['relations'] = [
+        {'type': 'hypernym', 'target': 'oewn-institution'},
+      ];
+      final files = fixture.files();
+      final targetPath = 'en/senses/${thesaurusShard('oewn-institution')}.json';
+      expect(thesaurusShard('good'), isNot(thesaurusShard('oewn-institution')));
+      final started = Completer<void>(), release = Completer<void>();
+      final service = OfficeThesaurusService(
+        loadAsset: (path) async {
+          if (path == targetPath) {
+            started.complete();
+            await release.future;
+          }
+          return files[path];
+        },
+      );
+      final pending = service.lookup(query('good'));
+      await started.future;
+      service.clear();
+      release.complete();
+      final result = await pending;
+      expect(result.status, OfficeThesaurusStatus.failedPack);
+      expect(result.message, contains('pack changed'));
+      expect(service.cachedShardCount, 0);
+      expect(service.cachedResultCount, 0);
+      expect(service.revision, 1);
+    },
+  );
+
+  test(
     'cache limits remain bounded and repeated results retain candidate identity',
     () async {
       final fixture = PackFixture()

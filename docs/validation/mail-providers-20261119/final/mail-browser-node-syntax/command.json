@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+    "--check",
+    "/workspace/scratch/61cbd6db9300/qualification/build/mail-web.js"
+  ],
+  "cwd": "/workspace/scratch/61cbd6db9300/crisp-office",
+  "environment_overrides": {},
+  "kind": "command",
+  "name": "mail-browser-node-syntax",
+  "started_at_utc": "2026-11-19T14:47:40.728872+00:00",
+  "timeout_seconds": 900
+}

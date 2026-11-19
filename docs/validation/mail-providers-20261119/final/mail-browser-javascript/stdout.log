@@ -1,0 +1,6 @@
+../toolchains/flutter/packages/flutter/lib/src/widgets/widget_state.dart:1042:9:
+Hint: This 'noSuchMethod' implementation is guaranteed to throw an exception. The generated code will be smaller if it is rewritten.
+Rewrite to 'noSuchMethod(Invocation i) => super.noSuchMethod(i);'.
+  Never noSuchMethod(Invocation invocation) {
+        ^
+Compiled 52,196,648 input bytes (9,362,087 characters source) to 6,466,892 characters JavaScript in 13.2 seconds

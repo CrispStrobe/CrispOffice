@@ -1,0 +1,320 @@
+{
+  "accepted": true,
+  "done_events": [
+    {
+      "success": true,
+      "time": 3757,
+      "type": "done"
+    }
+  ],
+  "error_events": [],
+  "failed": 0,
+  "hidden_failures": [],
+  "incomplete": [],
+  "non_json_lines": 0,
+  "passed": 36,
+  "skipped": 0,
+  "skipped_cases": [],
+  "suites": [
+    {
+      "id": 0,
+      "path": "test/proofing/language_identification_test.dart",
+      "platform": "vm"
+    },
+    {
+      "id": 19,
+      "path": "test/proofing/language_identification_calibration_test.dart",
+      "platform": "vm"
+    }
+  ],
+  "visible_cases": [
+    {
+      "file": "test/proofing/language_identification_test.dart",
+      "name": "script segments cover UTF-16 text without splitting scalar values",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 3
+    },
+    {
+      "file": "test/proofing/language_identification_test.dart",
+      "name": "digits, punctuation, marks and emoji alone do not create scripts",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 4
+    },
+    {
+      "file": "test/proofing/language_identification_test.dart",
+      "name": "language script honors normalized explicit script subtags",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 5
+    },
+    {
+      "file": "test/proofing/language_identification_test.dart",
+      "name": "Latin detection needs letters, confidence and a matching script",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 6
+    },
+    {
+      "file": "test/proofing/language_identification_test.dart",
+      "name": "short complex-script text has a deterministic script fallback",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 7
+    },
+    {
+      "file": "test/proofing/language_identification_test.dart",
+      "name": "complex-script alternatives require a long confident matching run",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 8
+    },
+    {
+      "file": "test/proofing/language_identification_test.dart",
+      "name": "invalid classifier probabilities cannot certify a language",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 9
+    },
+    {
+      "file": "test/proofing/language_identification_test.dart",
+      "name": "batching deduplicates text and skips short or neutral-only inputs",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 10
+    },
+    {
+      "file": "test/proofing/language_identification_test.dart",
+      "name": "concurrent callers share a pending classification and freeze their list",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 11
+    },
+    {
+      "file": "test/proofing/language_identification_test.dart",
+      "name": "cache reset isolates old completions from a new pending request",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 12
+    },
+    {
+      "file": "test/proofing/language_identification_test.dart",
+      "name": "unavailable, failed and malformed classifiers retain script fallback",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 13
+    },
+    {
+      "file": "test/proofing/language_identification_test.dart",
+      "name": "explicit cache reset uses a newly available classifier",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 14
+    },
+    {
+      "file": "test/proofing/language_identification_test.dart",
+      "name": "cache eviction retains the most recently accessed texts",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 15
+    },
+    {
+      "file": "test/proofing/language_identification_test.dart",
+      "name": "detected languages yield to explicit values and retain default regions",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 16
+    },
+    {
+      "file": "test/proofing/language_identification_test.dart",
+      "name": "Word language slot inspection preserves independent explicit values",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 17
+    },
+    {
+      "file": "test/proofing/language_identification_test.dart",
+      "name": "detected Word tags use known regional defaults without hiding other tags",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 18
+    },
+    {
+      "file": "test/proofing/language_identification_calibration_test.dart",
+      "name": "scriptSegments splits scripts and attaches neutral characters",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 23
+    },
+    {
+      "file": "test/proofing/language_identification_calibration_test.dart",
+      "name": "scriptSegments text without letters has no segments",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 24
+    },
+    {
+      "file": "test/proofing/language_identification_calibration_test.dart",
+      "name": "scriptSegments marks and astral characters keep UTF-16 offsets",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 25
+    },
+    {
+      "file": "test/proofing/language_identification_calibration_test.dart",
+      "name": "LanguageDetectionPolicy Arabic script is ar unless confidently fa/ur/ps/ku/sd/ug",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 27
+    },
+    {
+      "file": "test/proofing/language_identification_calibration_test.dart",
+      "name": "LanguageDetectionPolicy Hebrew script is he unless confidently yi",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 28
+    },
+    {
+      "file": "test/proofing/language_identification_calibration_test.dart",
+      "name": "LanguageDetectionPolicy Latin needs enough letters, confidence and a Latin language",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 29
+    },
+    {
+      "file": "test/proofing/language_identification_calibration_test.dart",
+      "name": "LanguageDetectionPolicy custom thresholds apply",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 30
+    },
+    {
+      "file": "test/proofing/language_identification_calibration_test.dart",
+      "name": "ParagraphLanguageDetector one classifier call for all uncached segments, then cached",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 32
+    },
+    {
+      "file": "test/proofing/language_identification_calibration_test.dart",
+      "name": "ParagraphLanguageDetector concurrent requests share one classifier call",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 33
+    },
+    {
+      "file": "test/proofing/language_identification_calibration_test.dart",
+      "name": "ParagraphLanguageDetector without a classifier only the script decides",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 34
+    },
+    {
+      "file": "test/proofing/language_identification_calibration_test.dart",
+      "name": "ParagraphLanguageDetector a confident Persian paragraph is fa",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 35
+    },
+    {
+      "file": "test/proofing/language_identification_calibration_test.dart",
+      "name": "ParagraphLanguageDetector the cache is bounded",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 36
+    },
+    {
+      "file": "test/proofing/language_identification_calibration_test.dart",
+      "name": "resolveDetectedLanguage an explicit language wins",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 38
+    },
+    {
+      "file": "test/proofing/language_identification_calibration_test.dart",
+      "name": "resolveDetectedLanguage a default yields to a confident detection",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 39
+    },
+    {
+      "file": "test/proofing/language_identification_calibration_test.dart",
+      "name": "resolveDetectedLanguage the same primary language keeps its region",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 40
+    },
+    {
+      "file": "test/proofing/language_identification_calibration_test.dart",
+      "name": "resolveDetectedLanguage a default the classifier still considers is kept",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 41
+    },
+    {
+      "file": "test/proofing/language_identification_calibration_test.dart",
+      "name": "resolveDetectedLanguage no detection keeps the current language",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 42
+    },
+    {
+      "file": "test/proofing/language_identification_calibration_test.dart",
+      "name": "resolveDetectedLanguage a script decision overrides a Latin default",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 43
+    },
+    {
+      "file": "test/proofing/language_identification_calibration_test.dart",
+      "name": "wordRunLanguageSlot unset and docDefault values are defaults; others explicit",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 45
+    },
+    {
+      "file": "test/proofing/language_identification_calibration_test.dart",
+      "name": "wordRunLanguageSlot the complex-script slot reads w:bidi only",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 46
+    }
+  ]
+}

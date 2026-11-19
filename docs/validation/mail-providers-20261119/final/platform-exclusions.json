@@ -1,0 +1,18 @@
+[
+  {
+    "path": "packages/quds_mail_store/test/browser_problem_test.dart",
+    "reason": "Declares non-VM platform; excluded from VM suite selection."
+  },
+  {
+    "path": "packages/quds_mail_transport/test/cloud_unsupported_test.dart",
+    "reason": "Declares non-VM platform; excluded from VM suite selection."
+  },
+  {
+    "path": "packages/quds_mail_transport/test/ews_unsupported_test.dart",
+    "reason": "Declares non-VM platform; excluded from VM suite selection."
+  },
+  {
+    "path": "packages/quds_mail_transport/test/unsupported_test.dart",
+    "reason": "Declares non-VM platform; excluded from VM suite selection."
+  }
+]

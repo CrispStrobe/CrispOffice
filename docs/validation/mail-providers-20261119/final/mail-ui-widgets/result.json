@@ -1,0 +1,27 @@
+{
+  "accepted": true,
+  "argv": [
+    "/workspace/scratch/61cbd6db9300/toolchains/flutter/bin/flutter",
+    "test",
+    "--no-pub",
+    "--concurrency=1",
+    "--reporter=json",
+    "test"
+  ],
+  "cwd": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_ui",
+  "elapsed_seconds": 12.364,
+  "environment_overrides": {},
+  "exit_code": 0,
+  "finished_at_utc": "2026-11-19T14:45:36.684076+00:00",
+  "kind": "tests",
+  "name": "mail-ui-widgets",
+  "started_at_utc": "2026-11-19T14:45:24.319863+00:00",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "2e454378ad5b007e22ef5199b175196381757c77e452850ea2e799b69c4d666f",
+  "test_counts": {
+    "failed": 0,
+    "passed": 33,
+    "skipped": 0
+  },
+  "timeout_seconds": 900
+}

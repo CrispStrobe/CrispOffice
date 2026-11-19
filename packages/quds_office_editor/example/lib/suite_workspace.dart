@@ -25,6 +25,7 @@ import 'studio_pdf_office.dart';
 import 'studio_pdf_tools.dart';
 import 'studio_pdf_surface.dart';
 import 'studio_arabic_morph_host.dart';
+import 'studio_language_id_host.dart';
 import 'studio_hunspell_host.dart';
 import 'studio_hunspell_setup.dart';
 import 'studio_spacy_host.dart';
@@ -203,6 +204,11 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     // network); nothing happens until the user has downloaded it.
     studioArabicMorphHost.addListener(_syncArabicMorph);
     unawaited(studioArabicMorphHost.refresh().catchError((Object _) {}));
+    // The bundled language model (no network): once loaded, proofing routes
+    // paragraphs by their detected language unless the user turns it off.
+    studioLanguageIdHost.addListener(_syncLanguageId);
+    _syncLanguageId();
+    unawaited(studioLanguageIdHost.load().catchError((Object _) {}));
     _slides.onPlayMedia = (PmlShape shape) {
       _toast(
         _arabic ? 'تشغيل ${shape.mediaName}' : 'Playing ${shape.mediaName}',
@@ -329,6 +335,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     studioSpacyHost.removeListener(_syncSpacyGrammar);
     studioHunspellHost.removeListener(_syncHunspell);
     studioArabicMorphHost.removeListener(_syncArabicMorph);
+    studioLanguageIdHost.removeListener(_syncLanguageId);
     _spacyGrammarEpoch++;
     _word
       ..removeListener(_rebuild)
@@ -1069,6 +1076,37 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                       title: Text(_strings.showNotes),
                       value: _showNotes,
                       onChanged: (value) => changed(() => _showNotes = value),
+                    ),
+                    SwitchListTile(
+                      key: const ValueKey<String>(
+                        'studio-setting-detect-language',
+                      ),
+                      contentPadding: EdgeInsets.zero,
+                      title: Text(
+                        _t(
+                          'Detect language automatically',
+                          StudioStrings.de('Detect language automatically'),
+                          'اكتشاف اللغة تلقائياً',
+                        ),
+                      ),
+                      subtitle: Text(
+                        _t(
+                          'Check each paragraph with the spelling and grammar '
+                              'tools for its detected language. The document '
+                              'is not changed.',
+                          StudioStrings.de(
+                            'Check each paragraph with the spelling and '
+                            'grammar tools for its detected language. The '
+                            'document is not changed.',
+                          ),
+                          'تدقيق كل فقرة بأدوات اللغة المكتشفة لها دون تغيير '
+                              'المستند.',
+                        ),
+                      ),
+                      value: _word.proofing.automaticLanguageDetection,
+                      onChanged: (value) => changed(
+                        () => _word.proofing.automaticLanguageDetection = value,
+                      ),
                     ),
                     SwitchListTile(
                       contentPadding: EdgeInsets.zero,
@@ -5757,6 +5795,13 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     _arabicMorphKey = key;
     if (first || !mounted) return;
     _word.proofing.configure(_wordProofingService(_word));
+  }
+
+  /// Gives the Word session the bundled language detector once it loaded.
+  void _syncLanguageId() {
+    final detector = studioLanguageIdHost.detector;
+    if (detector == null || !mounted) return;
+    _word.proofing.configureLanguageDetection(detector);
   }
 
   String? _hunspellKey;

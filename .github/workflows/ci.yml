@@ -8,6 +8,53 @@ on:
 # The pub workspace contains Flutter packages, so every job resolves it with
 # the Flutter SDK (which bundles Dart). The engine itself stays pure Dart.
 jobs:
+  mail:
+    name: ${{ matrix.package }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        package:
+          - quds_mail_core
+          - quds_mail_mime
+          - quds_mail_store
+          - quds_mail_transport
+    defaults:
+      run:
+        working-directory: packages/${{ matrix.package }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version: 3.47.8
+      - name: Resolve workspace
+        working-directory: .
+        run: flutter pub get
+      - run: dart analyze --fatal-infos
+      - run: dart test
+      - name: Verify browser EWS and IMAP boundary
+        if: matrix.package == 'quds_mail_transport'
+        run: dart test --platform node test/ews_unsupported_test.dart test/ews_configuration_test.dart test/unsupported_test.dart test/cloud_unsupported_test.dart
+
+  studio_ews:
+    name: Studio mail providers
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: packages/quds_office_editor/example
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version: 3.47.8
+      - name: Resolve workspace
+        working-directory: .
+        run: flutter pub get
+      - run: flutter analyze lib/studio_mail_ews.dart lib/studio_mail_cloud.dart lib/studio_mail_credentials.dart lib/studio_mail_presets.dart lib/studio_mail_native.dart lib/studio_mail_strings.dart test/studio_mail_ews_test.dart test/studio_mail_cloud_test.dart test/studio_mail_presets_test.dart test/studio_mail_credentials_test.dart
+      - run: flutter test test/studio_mail*_test.dart test/studio_saved_mail_test.dart
+
   engine:
     name: quds_office_engine
     runs-on: ubuntu-latest

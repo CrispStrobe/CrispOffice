@@ -55,6 +55,8 @@ const Map<String, String> studioGerman = <String, String>{
   'Chart editor': 'Diagrammeditor',
   'Charts': 'Diagramme',
   'Check as you type': 'Während der Eingabe prüfen',
+  'Check each paragraph with the spelling and grammar tools for its detected language. The document is not changed.':
+      'Jeden Absatz mit den Rechtschreib- und Grammatikwerkzeugen seiner erkannten Sprache prüfen. Das Dokument wird nicht geändert.',
   'Choose save location': 'Speicherort wählen',
   'Citation': 'Literaturangabe',
   'Citation style': 'Zitierstil',
@@ -92,6 +94,7 @@ const Map<String, String> studioGerman = <String, String>{
   'Delete row': 'Zeile löschen',
   'Delete table': 'Tabelle löschen',
   'Design': 'Design',
+  'Detect language automatically': 'Sprache automatisch erkennen',
   'Diagram': 'Diagramm',
   'Dictionaries': 'Wörterbücher',
   'Document': 'Dokument',

@@ -1,0 +1,49 @@
+{"protocolVersion":"0.1.1","runnerVersion":"1.31.1","pid":666,"type":"start","time":0}
+{"suite":{"id":0,"platform":"node","path":"test/unsupported_test.dart"},"type":"suite","time":0}
+{"test":{"id":1,"name":"loading test/unsupported_test.dart","suiteID":0,"groupIDs":[],"metadata":{"skip":false,"skipReason":null},"line":null,"column":null,"url":null},"type":"testStart","time":1}
+{"count":4,"time":6,"type":"allSuites"}
+{"testID":1,"messageType":"print","message":"Hint: When run on the command-line, the compiled output might require a preamble file located in:\n  <sdk>/lib/_internal/js_runtime/lib/preambles.\nCompiled 8,635,952 input bytes (5,465,530 characters source) to 1,179,817 characters JavaScript in 3.16 seconds\n","type":"print","time":3285}
+{"testID":1,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":3606}
+{"group":{"id":2,"suiteID":0,"parentID":null,"name":"","metadata":{"skip":false,"skipReason":null},"testCount":3,"line":null,"column":null,"url":null},"type":"group","time":3608}
+{"test":{"id":3,"name":"public JavaScript entry returns typed unsupported for every provider method","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":25,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_transport/test/unsupported_test.dart"},"type":"testStart","time":3608}
+{"testID":3,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":3685}
+{"test":{"id":4,"name":"default public factory remains unsupported without requiring a codec","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":69,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_transport/test/unsupported_test.dart"},"type":"testStart","time":3688}
+{"testID":4,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":3733}
+{"test":{"id":5,"name":"unsupported factory still validates bounds without accessing host services","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":88,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_transport/test/unsupported_test.dart"},"type":"testStart","time":3734}
+{"testID":5,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":3777}
+{"suite":{"id":6,"platform":"node","path":"test/ews_configuration_test.dart"},"type":"suite","time":3782}
+{"test":{"id":7,"name":"loading test/ews_configuration_test.dart","suiteID":6,"groupIDs":[],"metadata":{"skip":false,"skipReason":null},"line":null,"column":null,"url":null},"type":"testStart","time":3782}
+{"testID":7,"messageType":"print","message":"Hint: When run on the command-line, the compiled output might require a preamble file located in:\n  <sdk>/lib/_internal/js_runtime/lib/preambles.\nCompiled 8,641,431 input bytes (5,471,009 characters source) to 1,210,832 characters JavaScript in 3.69 seconds\n","type":"print","time":7555}
+{"testID":7,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":7960}
+{"group":{"id":8,"suiteID":6,"parentID":null,"name":"","metadata":{"skip":false,"skipReason":null},"testCount":7,"line":null,"column":null,"url":null},"type":"group","time":7961}
+{"test":{"id":9,"name":"on-prem private names, explicit ports and IPv6 retain verified HTTPS","suiteID":6,"groupIDs":[8],"metadata":{"skip":false,"skipReason":null},"line":22,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_transport/test/ews_configuration_test.dart"},"type":"testStart","time":7961}
+{"testID":9,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":8005}
+{"test":{"id":10,"name":"unsafe or ambiguous endpoints are refused at construction","suiteID":6,"groupIDs":[8],"metadata":{"skip":false,"skipReason":null},"line":39,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_transport/test/ews_configuration_test.dart"},"type":"testStart","time":8006}
+{"testID":10,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":8049}
+{"test":{"id":11,"name":"delegated mailbox uses a separate SMTP-address field","suiteID":6,"groupIDs":[8],"metadata":{"skip":false,"skipReason":null},"line":54,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_transport/test/ews_configuration_test.dart"},"type":"testStart","time":8050}
+{"testID":11,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":8093}
+{"test":{"id":12,"name":"credential reference cannot cross accounts","suiteID":6,"groupIDs":[8],"metadata":{"skip":false,"skipReason":null},"line":77,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_transport/test/ews_configuration_test.dart"},"type":"testStart","time":8094}
+{"testID":12,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":8137}
+{"test":{"id":13,"name":"work bounds reflect EWS and existing store limits","suiteID":6,"groupIDs":[8],"metadata":{"skip":false,"skipReason":null},"line":90,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_transport/test/ews_configuration_test.dart"},"type":"testStart","time":8138}
+{"testID":13,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":8182}
+{"test":{"id":14,"name":"opaque SyncState roundtrips without decoding or normalizing","suiteID":6,"groupIDs":[8],"metadata":{"skip":false,"skipReason":null},"line":104,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_transport/test/ews_configuration_test.dart"},"type":"testStart","time":8182}
+{"testID":14,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":8225}
+{"test":{"id":15,"name":"cursor serialized size cannot exceed durable store admission","suiteID":6,"groupIDs":[8],"metadata":{"skip":false,"skipReason":null},"line":129,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_transport/test/ews_configuration_test.dart"},"type":"testStart","time":8226}
+{"testID":15,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":8269}
+{"suite":{"id":16,"platform":"node","path":"test/ews_unsupported_test.dart"},"type":"suite","time":8270}
+{"test":{"id":17,"name":"loading test/ews_unsupported_test.dart","suiteID":16,"groupIDs":[],"metadata":{"skip":false,"skipReason":null},"line":null,"column":null,"url":null},"type":"testStart","time":8270}
+{"testID":17,"messageType":"print","message":"Hint: When run on the command-line, the compiled output might require a preamble file located in:\n  <sdk>/lib/_internal/js_runtime/lib/preambles.\nCompiled 8,634,974 input bytes (5,464,552 characters source) to 1,176,079 characters JavaScript in 3.38 seconds\n","type":"print","time":11721}
+{"testID":17,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":11935}
+{"group":{"id":18,"suiteID":16,"parentID":null,"name":"","metadata":{"skip":false,"skipReason":null},"testCount":1,"line":null,"column":null,"url":null},"type":"group","time":11935}
+{"test":{"id":19,"name":"public browser EWS import and every operation are vault-free unsupported","suiteID":16,"groupIDs":[18],"metadata":{"skip":false,"skipReason":null},"line":40,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_transport/test/ews_unsupported_test.dart"},"type":"testStart","time":11935}
+{"testID":19,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":11981}
+{"suite":{"id":20,"platform":"node","path":"test/cloud_unsupported_test.dart"},"type":"suite","time":11982}
+{"test":{"id":21,"name":"loading test/cloud_unsupported_test.dart","suiteID":20,"groupIDs":[],"metadata":{"skip":false,"skipReason":null},"line":null,"column":null,"url":null},"type":"testStart","time":11982}
+{"testID":21,"messageType":"print","message":"Hint: When run on the command-line, the compiled output might require a preamble file located in:\n  <sdk>/lib/_internal/js_runtime/lib/preambles.\nCompiled 8,635,275 input bytes (5,464,853 characters source) to 1,173,704 characters JavaScript in 3.05 seconds\n","type":"print","time":15088}
+{"testID":21,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":15303}
+{"group":{"id":22,"suiteID":20,"parentID":null,"name":"","metadata":{"skip":false,"skipReason":null},"testCount":2,"line":null,"column":null,"url":null},"type":"group","time":15304}
+{"test":{"id":23,"name":"gmail public browser boundary is explicitly unsupported","suiteID":20,"groupIDs":[22],"metadata":{"skip":false,"skipReason":null},"line":36,"column":5,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_transport/test/cloud_unsupported_test.dart"},"type":"testStart","time":15304}
+{"testID":23,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":15349}
+{"test":{"id":24,"name":"microsoft365 public browser boundary is explicitly unsupported","suiteID":20,"groupIDs":[22],"metadata":{"skip":false,"skipReason":null},"line":36,"column":5,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_transport/test/cloud_unsupported_test.dart"},"type":"testStart","time":15350}
+{"testID":24,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":15393}
+{"success":true,"type":"done","time":15397}

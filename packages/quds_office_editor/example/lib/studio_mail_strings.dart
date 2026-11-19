@@ -107,6 +107,258 @@ extension StudioMailFeedback on StudioStrings {
   String get forward => _mailText('Forward', 'Weiterleiten', 'إعادة توجيه');
   String get markRead =>
       _mailText('Mark as read', 'Als gelesen markieren', 'وضع علامة كمقروء');
+
+  String get ewsTitle => _mailText(
+    'Exchange Server (EWS)',
+    'Exchange Server (EWS)',
+    'خادم Exchange ‏(EWS)',
+  );
+  String get ewsSetupHelp => _mailText(
+    'Connect directly to your organization’s Exchange Server using its EWS address.',
+    'Direkt über die EWS-Adresse mit dem Exchange-Server Ihrer Organisation verbinden.',
+    'اتصل مباشرة بخادم Exchange لمؤسستك باستخدام عنوان EWS.',
+  );
+  String get ewsEndpoint => _mailText(
+    'EWS address (HTTPS)',
+    'EWS-Adresse (HTTPS)',
+    'عنوان EWS ‏(HTTPS)',
+  );
+  String get ewsLogin => _mailText(
+    'Login (leave blank to use email)',
+    'Anmeldename (leer: E-Mail-Adresse)',
+    'اسم الدخول (اتركه فارغًا لاستخدام البريد)',
+  );
+  String get ewsDomain => _mailText(
+    'Windows domain (optional)',
+    'Windows-Domäne (optional)',
+    'نطاق Windows (اختياري)',
+  );
+  String get ewsAuthentication =>
+      _mailText('Authentication', 'Authentifizierung', 'المصادقة');
+  String get ewsNtlm =>
+      _mailText('Windows (NTLMv2)', 'Windows (NTLMv2)', 'Windows ‏(NTLMv2)');
+  String get ewsBasic =>
+      _mailText('Basic over HTTPS', 'Basic über HTTPS', 'Basic عبر HTTPS');
+  String get ewsSessionNotice => _mailText(
+    'Session only: credentials, downloaded messages and unsent drafts are kept in memory and cleared when you disconnect or close this window.',
+    'Nur für diese Sitzung: Zugangsdaten, geladene Nachrichten und ungesendete Entwürfe bleiben im Arbeitsspeicher und werden beim Trennen oder Schließen gelöscht.',
+    'للجلسة فقط: تُحفظ بيانات الدخول والرسائل المحمّلة والمسودات غير المرسلة في الذاكرة وتُمسح عند قطع الاتصال أو إغلاق النافذة.',
+  );
+  String get ewsInvalidSettings => _mailText(
+    'Enter a valid email address, password and explicit HTTPS EWS address.',
+    'Eine gültige E-Mail-Adresse, ein Passwort und eine vollständige HTTPS-EWS-Adresse eingeben.',
+    'أدخل عنوان بريد صالحًا وكلمة مرور وعنوان EWS كاملًا باستخدام HTTPS.',
+  );
+  String get ewsAuthenticationFailed => _mailText(
+    'Exchange could not authenticate this account. Check the login, domain, password and enabled authentication method.',
+    'Exchange konnte dieses Konto nicht authentifizieren. Anmeldename, Domäne, Passwort und aktivierte Anmeldemethode prüfen.',
+    'تعذرت مصادقة هذا الحساب لدى Exchange. تحقق من اسم الدخول والنطاق وكلمة المرور وطريقة المصادقة المفعّلة.',
+  );
+  String get ewsAccessFailed => _mailText(
+    'Exchange access was refused. Check mailbox permissions and the server’s trusted HTTPS certificate.',
+    'Der Exchange-Zugriff wurde abgelehnt. Postfachberechtigungen und das vertrauenswürdige HTTPS-Zertifikat des Servers prüfen.',
+    'رُفض الوصول إلى Exchange. تحقق من أذونات صندوق البريد وشهادة HTTPS الموثوقة للخادم.',
+  );
+  String get ewsUnsupported => _mailText(
+    'This Exchange server does not support the requested operation or authentication method.',
+    'Dieser Exchange-Server unterstützt den Vorgang oder die Anmeldemethode nicht.',
+    'لا يدعم خادم Exchange هذا العملية المطلوبة أو طريقة المصادقة.',
+  );
+  String get ewsBudgetExceeded => _mailText(
+    'The request exceeded a message or server limit. Try a smaller folder or message.',
+    'Die Anfrage überschritt eine Nachrichten- oder Servergrenze. Einen kleineren Ordner oder eine kleinere Nachricht versuchen.',
+    'تجاوز الطلب حدًا للرسالة أو الخادم. جرّب مجلدًا أو رسالة أصغر.',
+  );
+  String get ewsSearchLoaded => _mailText(
+    'Search loaded messages',
+    'Geladene Nachrichten durchsuchen',
+    'بحث في الرسائل المحمّلة',
+  );
+  String get ewsLoadMore => _mailText(
+    'Load more messages',
+    'Weitere Nachrichten laden',
+    'تحميل المزيد من الرسائل',
+  );
+  String get ewsHeaderLimit => _mailText(
+    'Showing up to 1,000 messages in this folder. Refresh or choose another folder to continue.',
+    'Bis zu 1.000 Nachrichten in diesem Ordner werden angezeigt. Aktualisieren oder einen anderen Ordner wählen.',
+    'تُعرض حتى 1000 رسالة في هذا المجلد. حدّث القائمة أو اختر مجلدًا آخر للمتابعة.',
+  );
+  String get ewsSubmissionAccepted => _mailText(
+    'Exchange accepted the message and saved a copy in Sent Items.',
+    'Exchange hat die Nachricht angenommen und eine Kopie unter „Gesendete Elemente“ gespeichert.',
+    'قبل Exchange الرسالة وحفظ نسخة في العناصر المرسلة.',
+  );
+  String get ewsSubmissionRejected => _mailText(
+    'The message was not submitted. Your draft is retained for this session.',
+    'Die Nachricht wurde nicht übermittelt. Der Entwurf bleibt in dieser Sitzung erhalten.',
+    'لم تُرسل الرسالة. تبقى المسودة محفوظة لهذه الجلسة.',
+  );
+  String get ewsActionConfirmed => _mailText(
+    'Exchange confirmed the change.',
+    'Exchange hat die Änderung bestätigt.',
+    'أكد Exchange التغيير.',
+  );
+  String get ewsFolderChanged => _mailText(
+    'Exchange confirmed the move. Refresh this folder before loading more messages.',
+    'Exchange hat das Verschieben bestätigt. Den Ordner vor dem Laden weiterer Nachrichten aktualisieren.',
+    'أكد Exchange النقل. حدّث هذا المجلد قبل تحميل المزيد من الرسائل.',
+  );
+  String get ewsMutationFailed => _mailText(
+    'The change could not be confirmed. Refresh this folder before trying again.',
+    'Die Änderung konnte nicht bestätigt werden. Den Ordner vor einem erneuten Versuch aktualisieren.',
+    'تعذر تأكيد التغيير. حدّث هذا المجلد قبل المحاولة مجددًا.',
+  );
+  String get ewsMarkUnread => _mailText(
+    'Mark as unread',
+    'Als ungelesen markieren',
+    'وضع علامة كغير مقروء',
+  );
+  String get ewsFlag => _mailText('Flag', 'Kennzeichnen', 'وضع علامة');
+  String get ewsUnflag =>
+      _mailText('Remove flag', 'Kennzeichnung entfernen', 'إزالة العلامة');
+  String get ewsMove =>
+      _mailText('Move to folder', 'In Ordner verschieben', 'نقل إلى مجلد');
+  String get ewsDelete => _mailText(
+    'Move to Deleted Items',
+    'In „Gelöschte Elemente“ verschieben',
+    'نقل إلى العناصر المحذوفة',
+  );
+  String get ewsDeleteExplanation => _mailText(
+    'Move this message to the Exchange Deleted Items folder?',
+    'Diese Nachricht in den Exchange-Ordner „Gelöschte Elemente“ verschieben?',
+    'هل تريد نقل هذه الرسالة إلى مجلد العناصر المحذوفة في Exchange؟',
+  );
+
+  String get mailCloudSetupHelp => _mailText(
+    'Sign in securely in your browser. Enter the email address of the mailbox you will authorize.',
+    'Sicher im Browser anmelden. Die E-Mail-Adresse des freizugebenden Postfachs eingeben.',
+    'سجّل الدخول بأمان في المتصفح. أدخل عنوان صندوق البريد الذي ستسمح بالوصول إليه.',
+  );
+  String get mailCloudClientId => _mailText(
+    'Application client ID',
+    'Client-ID der Anwendung',
+    'معرّف عميل التطبيق',
+  );
+  String get mailCloudClientSecret => _mailText(
+    'Google Desktop client secret (if issued)',
+    'Google-Desktop-Client-Secret (falls ausgestellt)',
+    'سر عميل Google لسطح المكتب (إن وُجد)',
+  );
+  String get mailCloudTenant => _mailText(
+    'Microsoft tenant (common, organizations, consumers, or tenant ID)',
+    'Microsoft-Mandant (common, organizations, consumers oder Mandanten-ID)',
+    'مستأجر Microsoft ‏(common أو organizations أو consumers أو معرّف المستأجر)',
+  );
+  String get mailCloudGoogleRegistration => _mailText(
+    'Use a Google Desktop app registration with Gmail API enabled. Your administrator may need to approve access. Never enter your Google account password here.',
+    'Eine Google-Desktop-App-Registrierung mit aktivierter Gmail API verwenden. Möglicherweise muss die Administration den Zugriff erlauben. Hier niemals das Google-Kontopasswort eingeben.',
+    'استخدم تسجيل تطبيق سطح مكتب من Google مع تفعيل Gmail API. قد يحتاج الوصول إلى موافقة المسؤول. لا تدخل كلمة مرور حساب Google هنا.',
+  );
+  String get mailCloudMicrosoftRegistration => _mailText(
+    'Use a Microsoft public desktop app registration with a loopback redirect and delegated Mail.ReadWrite, Mail.Send and User.Read permissions. Your administrator may need to approve access.',
+    'Eine öffentliche Microsoft-Desktop-App mit Loopback-Umleitung und delegierten Berechtigungen Mail.ReadWrite, Mail.Send und User.Read verwenden. Möglicherweise muss die Administration den Zugriff erlauben.',
+    'استخدم تسجيل تطبيق Microsoft عام لسطح المكتب مع إعادة توجيه محلية وأذونات مفوّضة Mail.ReadWrite وMail.Send وUser.Read. قد يلزم الحصول على موافقة المسؤول.',
+  );
+  String get mailCloudDiagnostics => _mailText(
+    'Verbose diagnostic logs',
+    'Ausführliche Diagnoseprotokolle',
+    'سجلات تشخيص مفصّلة',
+  );
+  String get mailCloudDiagnosticsHelp => _mailText(
+    'Write operation, timing, status and size information to the application log. Addresses, message content and authorization values are excluded.',
+    'Vorgänge, Laufzeiten, Status und Größen im Anwendungsprotokoll erfassen. Adressen, Nachrichteninhalte und Anmeldedaten sind ausgeschlossen.',
+    'سجّل العمليات والأوقات والحالات والأحجام في سجل التطبيق. تُستبعد العناوين ومحتويات الرسائل وقيم المصادقة.',
+  );
+  String get mailCloudBrowserPending => _mailText(
+    'Complete sign-in in your browser. You can cancel here at any time.',
+    'Die Anmeldung im Browser abschließen. Hier kann jederzeit abgebrochen werden.',
+    'أكمل تسجيل الدخول في المتصفح. يمكنك الإلغاء هنا في أي وقت.',
+  );
+  String get mailCloudSignIn => _mailText(
+    'Sign in with browser',
+    'Im Browser anmelden',
+    'تسجيل الدخول بالمتصفح',
+  );
+  String get mailCloudInvalidSettings => _mailText(
+    'Enter a valid mailbox address, application client ID and tenant settings.',
+    'Eine gültige Postfachadresse, Client-ID und Mandanteneinstellungen eingeben.',
+    'أدخل عنوان صندوق بريد صالحًا ومعرّف عميل التطبيق وإعدادات المستأجر.',
+  );
+  String get mailCloudSignInFailed => _mailText(
+    'Sign-in did not complete. Check the app registration and browser, then try again.',
+    'Die Anmeldung wurde nicht abgeschlossen. App-Registrierung und Browser prüfen und erneut versuchen.',
+    'لم يكتمل تسجيل الدخول. تحقق من تسجيل التطبيق والمتصفح، ثم حاول مجددًا.',
+  );
+  String get mailCloudAuthenticationFailed => _mailText(
+    'The account needs authorization. Sign in again with the same mailbox address.',
+    'Das Konto benötigt eine Freigabe. Mit derselben Postfachadresse erneut anmelden.',
+    'يحتاج الحساب إلى تفويض. سجّل الدخول مجددًا بعنوان صندوق البريد نفسه.',
+  );
+  String get mailCloudAccessFailed => _mailText(
+    'Mailbox access was refused. Check that you selected the same account and granted the requested mail permissions.',
+    'Der Postfachzugriff wurde abgelehnt. Dasselbe Konto auswählen und die angeforderten Mail-Berechtigungen freigeben.',
+    'رُفض الوصول إلى صندوق البريد. تحقق من اختيار الحساب نفسه ومنح أذونات البريد المطلوبة.',
+  );
+  String get mailCloudUnsupported => _mailText(
+    'This account or platform does not support the requested mail operation.',
+    'Dieses Konto oder diese Plattform unterstützt den angeforderten Mail-Vorgang nicht.',
+    'لا يدعم هذا الحساب أو هذه المنصة عملية البريد المطلوبة.',
+  );
+  String mailCloudRetryAfter(int seconds) => _mailText(
+    'The mail service asked you to wait $seconds seconds before trying again. This action will not retry automatically.',
+    'Der Mail-Dienst bittet darum, vor dem nächsten Versuch $seconds Sekunden zu warten. Der Vorgang wird nicht automatisch wiederholt.',
+    'طلبت خدمة البريد الانتظار $seconds ثانية قبل المحاولة مجددًا. لن تُعاد هذه العملية تلقائيًا.',
+  );
+  String get mailCloudSubmissionAccepted => _mailText(
+    'The mail service accepted the message for sending. Check Sent for the saved copy; acceptance does not confirm delivery.',
+    'Der Mail-Dienst hat die Nachricht zum Senden angenommen. Die Kopie unter „Gesendet“ prüfen; die Annahme bestätigt keine Zustellung.',
+    'قبلت خدمة البريد الرسالة للإرسال. تحقق من النسخة في البريد المرسل؛ القبول لا يؤكد التسليم.',
+  );
+  String get mailCloudActionConfirmed => _mailText(
+    'The mail service confirmed the change.',
+    'Der Mail-Dienst hat die Änderung bestätigt.',
+    'أكدت خدمة البريد التغيير.',
+  );
+  String get mailCloudFolderChanged => _mailText(
+    'The mail service confirmed the move. Refresh this folder before loading more messages.',
+    'Der Mail-Dienst hat das Verschieben bestätigt. Den Ordner vor dem Laden weiterer Nachrichten aktualisieren.',
+    'أكدت خدمة البريد النقل. حدّث هذا المجلد قبل تحميل المزيد من الرسائل.',
+  );
+  String get mailCloudDelete => _mailText(
+    'Move to Trash / Deleted Items',
+    'In Papierkorb / Gelöschte Elemente verschieben',
+    'نقل إلى المهملات / العناصر المحذوفة',
+  );
+  String get mailCloudDeleteExplanation => _mailText(
+    'Move this message to the account’s trash folder?',
+    'Diese Nachricht in den Papierkorb des Kontos verschieben?',
+    'هل تريد نقل هذه الرسالة إلى مجلد المهملات في الحساب؟',
+  );
+  String get mailProvider =>
+      _mailText('Mail provider', 'Mail-Anbieter', 'مزوّد البريد');
+  String get mailOtherProvider => _mailText(
+    'Other IMAP / SMTP account',
+    'Anderes IMAP-/SMTP-Konto',
+    'حساب IMAP / SMTP آخر',
+  );
+  String get mailAppPassword =>
+      _mailText('App password', 'App-Passwort', 'كلمة مرور التطبيق');
+  String get mailPrimaryLogin => _mailText(
+    'Primary account email (if different)',
+    'Primäre Konto-E-Mail-Adresse (falls abweichend)',
+    'البريد الأساسي للحساب (إن كان مختلفًا)',
+  );
+  String get mailIcloudFullLogin => _mailText(
+    'Use the full email address for iCloud incoming login if the short name fails',
+    'Bei fehlgeschlagenem Kurznamen die vollständige E-Mail-Adresse für die iCloud-Eingangsanmeldung verwenden',
+    'استخدم عنوان البريد الكامل لتسجيل الدخول إلى بريد iCloud الوارد إذا لم يعمل الاسم المختصر',
+  );
+  String get mailPresetPasswordHelp => _mailText(
+    'Create an app password in your provider’s account settings. Fastmail requires a plan with IMAP/SMTP access. For aliases or custom domains, enter the primary account email below.',
+    'In den Kontoeinstellungen des Anbieters ein App-Passwort erstellen. Fastmail benötigt einen Tarif mit IMAP-/SMTP-Zugriff. Für Aliase oder eigene Domains unten die primäre Konto-E-Mail-Adresse eingeben.',
+    'أنشئ كلمة مرور للتطبيق في إعدادات حساب المزوّد. يتطلب Fastmail خطة تدعم IMAP/SMTP. للأسماء المستعارة أو النطاقات الخاصة، أدخل البريد الأساسي للحساب أدناه.',
+  );
   String get useStartTls => _mailText(
     'Use STARTTLS (ports 143/587)',
     'STARTTLS verwenden (Ports 143/587)',
@@ -121,5 +373,15 @@ extension StudioMailFeedback on StudioStrings {
     'Forget saved account',
     'Gespeichertes Konto entfernen',
     'نسيان الحساب المحفوظ',
+  );
+  String get mailKeychainSaveFailed => _mailText(
+    'Connected, but the account could not be saved in the system keychain. This session remains available.',
+    'Verbunden, aber das Konto konnte nicht im Systemschlüsselbund gespeichert werden. Diese Sitzung bleibt verfügbar.',
+    'تم الاتصال، لكن تعذر حفظ الحساب في سلسلة مفاتيح النظام. تبقى هذه الجلسة متاحة.',
+  );
+  String get mailKeychainClearFailed => _mailText(
+    'The saved account could not be removed from the system keychain. Try Forget saved account again.',
+    'Das gespeicherte Konto konnte nicht aus dem Systemschlüsselbund entfernt werden. „Gespeichertes Konto entfernen“ erneut versuchen.',
+    'تعذر إزالة الحساب المحفوظ من سلسلة مفاتيح النظام. حاول نسيان الحساب المحفوظ مجددًا.',
   );
 }

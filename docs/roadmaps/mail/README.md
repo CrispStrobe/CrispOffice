@@ -3,7 +3,7 @@
 **Status:** accepted product scope; the core, MIME codec, account-free reader and
 durable Mail store now have an initial implementation. See [status.md](status.md) for demonstrated
 checks and open gates. The wider product scope remains unchanged.
-**Decision date:** 2026-11-18 (Europe/Berlin).
+**Decision date:** 2026-11-18 (Europe/Berlin); on-premises EWS prioritized 2026-11-19.
 **Canonical repository:** CrispStrobe/quds_office_suite, branch main.
 **Entry point for a fresh coding agent:** read this file, then [implementation-plan.md](implementation-plan.md). The [CrispCloud contract](crispcloud-integration.md) and [licensing/App Store requirements](licensing-and-app-store.md) are part of the same specification. No prior chat is required.
 
@@ -67,7 +67,7 @@ paths below remain planned implementation paths; consult [status.md](status.md).
 | packages/quds_mail_core | Pure-Dart typed domain models, capabilities, operation state machine, provider/storage/host ports and sync coordination. No Flutter, dart:ui, platform paths or sockets. |
 | packages/quds_mail_mime | Byte-oriented parse/compose facade and resource budgets; normalized Quds DTOs. Must compile for native Dart and browser JS. |
 | third_party/enough_mail | Audited MPL fork retaining upstream package name and notices; one parser implementation, portable public MIME surface, native protocol APIs. |
-| packages/quds_mail_transport | Native IMAP/SMTP adapter around the reviewed enough_mail fork; conditional export provides explicit unsupported capability on web. No socket library in the browser import closure. |
+| packages/quds_mail_transport | Native IMAP adapter around the reviewed enough_mail fork and direct on-premises Exchange EWS mail/submission adapter; conditional exports provide explicit unsupported capability on web. No socket library in the browser import closure. |
 | packages/quds_mail_store | Drift/SQLite persistence, migrations, full-text search, cursor transactions and durable outbox. Native and web storage implementations share a typed interface. |
 | packages/quds_mail_ui | Account-free reader plus account-aware workspace, composer, navigation and status. No CrispCloud imports, global navigation or hard-coded storage. |
 | packages/quds_mail_office | Attachment preview/edit/export integration with Quds controllers, safe working-copy handling and Office-to-mail commands. |
@@ -111,7 +111,7 @@ A Rust core remains an optional future alternative behind the same interfaces if
 | R3 — productivity integration | Graph; Gmail plus Calendar/People; standards DAV where available; calendar invitations, recurrence/exceptions, contacts, identities and capability-aware shared workflows. |
 | R4 — distribution qualification | Separate signed Apple build records, source/notice bundles, privacy declarations, sandbox/auth/background results and store review readiness for each eligible host. |
 
-R0/R1 are useful increments, not completion of the whole requested Office+Mail scope. Full Outlook compatibility is not claimed. PST/OST import, public folders, on-premises Exchange, full delegation, protected mail, S/MIME/OpenPGP and add-in compatibility are separately prioritized projects. MSG/MBOX authoring is not part of the first shared reader.
+R0/R1 are useful increments, not completion of the whole requested Office+Mail scope. Full Outlook compatibility is not claimed. [On-premises Exchange EWS](exchange-ews.md) is now a prioritized native mail provider and Studio entry. PST/OST import, public folders, full delegation, protected mail, S/MIME/OpenPGP and add-in compatibility remain separate projects. MSG/MBOX authoring is not part of the first shared reader.
 
 ## 6. Host-neutral behavior contracts
 
@@ -148,7 +148,7 @@ Connected mail fetches headers first and bodies/attachments on demand. A server'
 ## 7. Provider and platform policy
 
 - Generic IMAP/SMTP is the first live-account target. Calendars and contacts are independent providers.
-- Microsoft cloud uses Graph; EWS is not the new cloud foundation. On-premises Exchange is separately scoped.
+- Microsoft cloud uses Graph. On-premises Exchange uses the [EWS provider](exchange-ews.md), with explicit HTTPS and NTLMv2 as the default, plus host-supplied bearer tokens or explicitly selected Basic over TLS.
 - Google uses Gmail/Calendar/People APIs when those adapters land. Restricted-scope verification and any server-side assessment are launch dependencies, not an excuse to embed an application secret.
 - Native OAuth uses system-browser authorization and PKCE. Mailbox login is separate from a host's primary account.
 - Web reader and pure-Dart model/codec support are required. Generic browser IMAP/SMTP is explicitly unsupported without a separately designed user-controlled gateway; do not advertise native socket support on web.

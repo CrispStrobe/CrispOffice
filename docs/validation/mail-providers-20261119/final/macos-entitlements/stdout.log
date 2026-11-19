@@ -1,0 +1,25 @@
+{
+  "checks": [
+    {
+      "path": "packages/quds_office_editor/example/macos/Runner/DebugProfile.entitlements",
+      "key": "com.apple.security.network.client",
+      "passed": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/macos/Runner/DebugProfile.entitlements",
+      "key": "com.apple.security.network.server",
+      "passed": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/macos/Runner/Release.entitlements",
+      "key": "com.apple.security.network.client",
+      "passed": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/macos/Runner/Release.entitlements",
+      "key": "com.apple.security.network.server",
+      "passed": true
+    }
+  ],
+  "passed": true
+}

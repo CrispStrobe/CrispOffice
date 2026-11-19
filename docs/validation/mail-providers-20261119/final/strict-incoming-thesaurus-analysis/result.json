@@ -1,0 +1,22 @@
+{
+  "accepted": true,
+  "argv": [
+    "/workspace/scratch/61cbd6db9300/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+    "analyze",
+    "--fatal-infos",
+    "--fatal-warnings",
+    "lib/src/thesaurus/office_thesaurus.dart",
+    "test/office_thesaurus_test.dart"
+  ],
+  "cwd": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_engine",
+  "elapsed_seconds": 0.768,
+  "environment_overrides": {},
+  "exit_code": 0,
+  "finished_at_utc": "2026-11-19T14:43:49.195754+00:00",
+  "kind": "command",
+  "name": "strict-incoming-thesaurus-analysis",
+  "started_at_utc": "2026-11-19T14:43:48.427630+00:00",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "11467af0602d329dcfb6e677d225addda76cf35160bfcafefae47b1b7624bba9",
+  "timeout_seconds": 900
+}

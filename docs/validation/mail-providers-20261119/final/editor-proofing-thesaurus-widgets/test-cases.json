@@ -1,0 +1,637 @@
+{
+  "accepted": true,
+  "done_events": [
+    {
+      "success": true,
+      "time": 24867,
+      "type": "done"
+    }
+  ],
+  "error_events": [],
+  "failed": 0,
+  "hidden_failures": [],
+  "incomplete": [],
+  "non_json_lines": 0,
+  "passed": 75,
+  "skipped": 0,
+  "skipped_cases": [],
+  "suites": [
+    {
+      "id": 0,
+      "path": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/test/word_proofing_dialog_test.dart",
+      "platform": "vm"
+    },
+    {
+      "id": 26,
+      "path": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/test/word_proofing_session_test.dart",
+      "platform": "vm"
+    },
+    {
+      "id": 60,
+      "path": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/test/word_thesaurus_dialog_test.dart",
+      "platform": "vm"
+    }
+  ],
+  "visible_cases": [
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/test/word_proofing_dialog_test.dart",
+      "name": "native spelling review preserves apostrophes and compounds through undo and redo",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 3
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/test/word_proofing_dialog_test.dart",
+      "name": "German grammar correction preserves source and undo: seid",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 4
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/test/word_proofing_dialog_test.dart",
+      "name": "German grammar correction preserves source and undo: habe",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 5
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/test/word_proofing_dialog_test.dart",
+      "name": "German grammar correction preserves source and undo: gibst",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 6
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/test/word_proofing_dialog_test.dart",
+      "name": "seit-seid ignore can be restored by its visible rule name",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 7
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/test/word_proofing_dialog_test.dart",
+      "name": "spacing correction Insert space is visible and undoable",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 8
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/test/word_proofing_dialog_test.dart",
+      "name": "spacing correction Use space is visible and undoable",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 9
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/test/word_proofing_dialog_test.dart",
+      "name": "ignored words can be restored in their run language without clearing other preferences",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 10
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/test/word_proofing_dialog_test.dart",
+      "name": "an ignored writing rule can be restored from review",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 11
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/test/word_proofing_dialog_test.dart",
+      "name": "ignored occurrences can be reviewed again in a read-only document",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 12
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/test/word_proofing_dialog_test.dart",
+      "name": "swapping the dialog controller checks its document and clears old notices",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 13
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/test/word_proofing_dialog_test.dart",
+      "name": "a previous controller completing its check cannot replace the new results",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 14
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/test/word_proofing_dialog_test.dart",
+      "name": "ignore once dismisses a finding without adding or ignoring its word",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 15
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/test/word_proofing_dialog_test.dart",
+      "name": "opening proofing checks the document and offers undoable corrections",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 16
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/test/word_proofing_dialog_test.dart",
+      "name": "unavailable provider never produces a clean-document message",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 17
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/test/word_proofing_dialog_test.dart",
+      "name": "unsupported provider never produces a clean-document message",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 18
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/test/word_proofing_dialog_test.dart",
+      "name": "failed provider never produces a clean-document message",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 19
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/test/word_proofing_dialog_test.dart",
+      "name": "read-only documents retain review but disable correction and formatting",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 20
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/test/word_proofing_dialog_test.dart",
+      "name": "adding a personal word dismisses its finding without changing document text",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 21
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/test/word_proofing_dialog_test.dart",
+      "name": "ignore word applies to the session and leaves personal words unchanged",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 22
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/test/word_proofing_dialog_test.dart",
+      "name": "language and hyphenation controls save source settings with undo",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 23
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/test/word_proofing_dialog_test.dart",
+      "name": "unsupported existing language and a narrow viewport remain reviewable",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 24
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/test/word_proofing_dialog_test.dart",
+      "name": "show in document selects the current finding and closes review",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 25
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/test/word_proofing_session_test.dart",
+      "name": "closed empty complex fields never reach providers",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 29
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/test/word_proofing_session_test.dart",
+      "name": "empty paragraphs inside and ending a spanning field are excluded while later authored paragraphs are checked",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 30
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/test/word_proofing_session_test.dart",
+      "name": "generated page-number paragraphs never reach providers",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 31
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/test/word_proofing_session_test.dart",
+      "name": "page-number metadata invalidates findings without a text edit",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 32
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/test/word_proofing_session_test.dart",
+      "name": "pending page-number metadata changes discard provider results",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 33
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/test/word_proofing_session_test.dart",
+      "name": "nonempty findings use half-open hit ranges",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 34
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/test/word_proofing_session_test.dart",
+      "name": "a new document reusing the same paragraph gets fresh provider results and no inherited ignore-once state",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 35
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/test/word_proofing_session_test.dart",
+      "name": "language changes inside a combining cluster retain the full cluster and its first language",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 36
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/test/word_proofing_session_test.dart",
+      "name": "a surrogate pair split across runs and languages remains one emoji in provider input",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 37
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/test/word_proofing_session_test.dart",
+      "name": "noProof on part of a combining cluster excludes the entire cluster",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 38
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/test/word_proofing_session_test.dart",
+      "name": "review traverses body, nested tables, frames, all headers/footers, notes and comments",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 39
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/test/word_proofing_session_test.dart",
+      "name": "formatting fragments join while language and noProof boundaries preserve UTF-16 offsets",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 40
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/test/word_proofing_session_test.dart",
+      "name": "run language overrides paragraph language, which overrides the document default",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 41
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/test/word_proofing_session_test.dart",
+      "name": "late results after a revision change never become current findings",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 42
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/test/word_proofing_session_test.dart",
+      "name": "direct model edits during a pending check invalidate its snapshot even without revision notification",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 43
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/test/word_proofing_session_test.dart",
+      "name": "replacing a document with identical text and revision rejects the old document result",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 44
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/test/word_proofing_session_test.dart",
+      "name": "provider reconfiguration cancels pending publication and disposes the previous provider",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 45
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/test/word_proofing_session_test.dart",
+      "name": "unchanged paragraphs reuse results while rebinding findings to the current revision",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 46
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/test/word_proofing_session_test.dart",
+      "name": "provider configuration revisions invalidate otherwise identical cached text",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 47
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/test/word_proofing_session_test.dart",
+      "name": "moving a paragraph between stories invalidates its old finding and cache",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 48
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/test/word_proofing_session_test.dart",
+      "name": "a document with no checkable paragraphs never claims a clean completed check",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 49
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/test/word_proofing_session_test.dart",
+      "name": "no configured provider is visibly unavailable",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 50
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/test/word_proofing_session_test.dart",
+      "name": "unavailable checks are incomplete and can be retried instead of cached as clean",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 51
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/test/word_proofing_session_test.dart",
+      "name": "unsupported checks are incomplete and can be retried instead of cached as clean",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 52
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/test/word_proofing_session_test.dart",
+      "name": "failed checks are incomplete and can be retried instead of cached as clean",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 53
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/test/word_proofing_session_test.dart",
+      "name": "an unsupported document language reports its locale without calling the checker",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 54
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/test/word_proofing_session_test.dart",
+      "name": "opaque body blocks and preserved header stories are explicit coverage gaps",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 55
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/test/word_proofing_session_test.dart",
+      "name": "personal words are language-scoped and host snapshots preserve owner identity",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 56
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/test/word_proofing_session_test.dart",
+      "name": "ignore once suppresses one occurrence and resets when its paragraph text changes",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 57
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/test/word_proofing_session_test.dart",
+      "name": "ignored rules can be restored without changing source text or personal words",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 58
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/test/word_proofing_session_test.dart",
+      "name": "restoring ignored occurrences preserves word and rule preferences",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 59
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/test/word_thesaurus_dialog_test.dart",
+      "name": "lookup is nonmutating, preserves meanings and requires explicit Replace",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 63
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/test/word_thesaurus_dialog_test.dart",
+      "name": "closing lookup adds no undo entry",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 64
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/test/word_thesaurus_dialog_test.dart",
+      "name": "a changed selection disables Replace and explains how to refresh",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 65
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/test/word_thesaurus_dialog_test.dart",
+      "name": "an invalidated pack refuses a previously selected candidate",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 66
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/test/word_thesaurus_dialog_test.dart",
+      "name": "language override uses another pack without changing document language",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 67
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/test/word_thesaurus_dialog_test.dart",
+      "name": "shows distinct noEntry outcome",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 68
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/test/word_thesaurus_dialog_test.dart",
+      "name": "shows distinct unsupportedLanguage outcome",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 69
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/test/word_thesaurus_dialog_test.dart",
+      "name": "shows distinct missingPack outcome",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 70
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/test/word_thesaurus_dialog_test.dart",
+      "name": "shows distinct failedPack outcome",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 71
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/test/word_thesaurus_dialog_test.dart",
+      "name": "empty caret target explains how to select text",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 72
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/test/word_thesaurus_dialog_test.dart",
+      "name": "explicit retry reloads a repaired pack after a failed manifest",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 73
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/test/word_thesaurus_dialog_test.dart",
+      "name": "late lookup completion after closing is ignored safely",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 74
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/test/word_thesaurus_dialog_test.dart",
+      "name": "source view displays verified notices",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 75
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/test/word_thesaurus_dialog_test.dart",
+      "name": "source view reports a damaged notice without an uncaught error",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 76
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/test/word_thesaurus_dialog_test.dart",
+      "name": "narrow screen and large text keep alternatives and actions usable",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 77
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/test/word_thesaurus_dialog_test.dart",
+      "name": "Shift F7 opens thesaurus while F7 keeps the writing review action",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 78
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/test/word_thesaurus_dialog_test.dart",
+      "name": "Shift F7 refuses thesaurus without interrupting active IME",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 79
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/test/word_thesaurus_dialog_test.dart",
+      "name": "an earlier ready capture refuses thesaurus without interrupting active IME",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 80
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/test/word_thesaurus_dialog_test.dart",
+      "name": "a host without Scaffold refuses thesaurus without interrupting active IME",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 81
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/test/word_thesaurus_dialog_test.dart",
+      "name": "review status action opens the selected text",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 82
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/test/word_thesaurus_dialog_test.dart",
+      "name": "context menu retains the captured selection through focus transfer",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 83
+    }
+  ]
+}

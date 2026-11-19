@@ -1,4 +1,33 @@
-# Quds Mail native transport
+# Quds Mail native transports
+
+## Gmail and Microsoft 365 / Outlook
+
+`createMailCloudProvider` provides native Gmail API and Microsoft Graph mail.
+`authorizeMailCloud` supplies desktop browser PKCE and an in-memory refreshable
+token source; embedding hosts can supply their own platform-vault token source.
+Both adapters implement bounded mail reads/sync, confirmed actions, MIME
+submission and structured redacted diagnostics. Studio also has Yahoo, iCloud
+and Fastmail IMAP/SMTP presets.
+
+See the [cloud setup/API guide](../../docs/roadmaps/mail/cloud-providers.md) and
+[read-only probe](example/cloud_probe.dart). Browser cloud operation is explicitly
+unsupported; live acceptance needs the deployment's registration and test mailbox.
+
+## Exchange Server on premises (EWS)
+
+`createMailEwsProvider` provides direct native Exchange mail access with an
+explicit HTTPS endpoint and NTLMv2 by default. It supports folder browsing,
+incremental item synchronization, on-demand MIME, read/flag changes, moves,
+move-to-Deleted-Items and EWS submission with Sent filing. Basic over verified
+HTTPS and host-supplied bearer tokens are opt-in alternatives. The default does
+not need Entra, Graph, IMAP, SMTP or a Quds relay.
+
+See [Exchange setup, API contracts and limitations](../../docs/roadmaps/mail/exchange-ews.md)
+and the [read-only native probe](example/ews_probe.dart). The provider is a native
+mail adapter; Calendar, People, Kerberos/Negotiate, automatic Autodiscover, public
+folders and live-server interoperability qualification are separate work.
+
+## IMAP
 
 This is the first M06 native IMAP implementation. It provides manual account
 configuration, current host-vault credential access, selectable folders, bounded
@@ -11,8 +40,8 @@ Import `package:quds_mail_transport/quds_mail_transport.dart` and construct
 `createMailImapProvider` with a `MailImapConfiguration`, host-owned
 `MailCredentialStore`, and optional `MailCodec` and `MailTransportLimits`.
 The default codec is `QudsMimeCodec`. The result implements the portable
-`MailProvider` interface. No public API exposes enough_mail clients, sockets,
-filesystem paths, or password/token fields.
+`MailProvider` interface. The IMAP configuration API exposes no enough_mail
+clients, sockets, filesystem paths, or password/token fields.
 
 Configuration binds a profile/account, explicit validated DNS/IP host and port,
 username, TLS mode, authentication mechanism, and account-scoped vault reference.

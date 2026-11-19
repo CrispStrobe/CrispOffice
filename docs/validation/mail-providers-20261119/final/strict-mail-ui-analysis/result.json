@@ -1,0 +1,30 @@
+{
+  "accepted": true,
+  "argv": [
+    "/workspace/scratch/61cbd6db9300/toolchains/flutter/bin/flutter",
+    "analyze",
+    "--no-pub",
+    "--fatal-infos",
+    "--fatal-warnings",
+    "lib/quds_mail_ui.dart",
+    "lib/src/reader/controller.dart",
+    "lib/src/reader/message_view.dart",
+    "lib/src/reader/presentation.dart",
+    "lib/src/reader/selection_surface.dart",
+    "test/controller_test.dart",
+    "test/example_test.dart",
+    "test/message_view_test.dart",
+    "test/presentation_test.dart"
+  ],
+  "cwd": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_ui",
+  "elapsed_seconds": 2.223,
+  "environment_overrides": {},
+  "exit_code": 0,
+  "finished_at_utc": "2026-11-19T14:43:43.643998+00:00",
+  "kind": "command",
+  "name": "strict-mail-ui-analysis",
+  "started_at_utc": "2026-11-19T14:43:41.420454+00:00",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "71c941f88036b9c8dd9192213a4f764fceef3ca6d8199b173ab24a705752b9c0",
+  "timeout_seconds": 900
+}

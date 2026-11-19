@@ -1,0 +1,19 @@
+name: quds_language_id
+description: Bundled automatic language identification (CrispASR's CLD3 runtime, MIT, with Google's Apache-2.0 CLD3 model) for Quds Office proofing routing.
+version: 0.1.0
+publish_to: none
+resolution: workspace
+environment:
+  sdk: ^3.12.0
+dependencies:
+  crypto: ^3.0.6
+  quds_office_engine:
+    path: ../quds_office_engine
+  web: ^1.1.1
+dev_dependencies:
+  lints: ^6.0.0
+  test: ^1.26.0
+# Flutter hosts load the model as `packages/quds_language_id/assets/cld3-f16.gguf`.
+flutter:
+  assets:
+    - assets/cld3-f16.gguf
