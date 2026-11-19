@@ -1417,8 +1417,9 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                             ),
                           ],
                           onChanged: (value) {
-                            if (value != null)
+                            if (value != null) {
                               changed(() => _lengthUnit = value);
+                            }
                           },
                         ),
                         const SizedBox(height: 8),
@@ -1710,7 +1711,10 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     return Material(
       color: dark ? const Color(0xFF2A2A2A) : Colors.white,
       child: SizedBox(
-        height: 32 + _extraChromeTextHeight(12),
+        height: (studioChromeLineHeight(context, 13) + 18).ceilToDouble().clamp(
+          32,
+          double.infinity,
+        ),
         child: LayoutBuilder(
           builder: (context, constraints) => Row(
             children: <Widget>[
@@ -7000,11 +7004,30 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   }
 
   WmlParagraph get _activeParagraph {
-    final List<WmlParagraph> paras = _word.document.paragraphs.toList();
-    if (paras.isEmpty) {
-      return WmlParagraph();
+    List<WmlParagraph> paragraphs;
+    var index = _word.documentCaret.paragraphIndex;
+    if (_word.isEditingHeaderFooter) {
+      final sectionIndex = _word.editingSectionIndex;
+      if (sectionIndex < 0 || sectionIndex >= _word.document.sections.length) {
+        return WmlParagraph();
+      }
+      final section = _word.document.sections[sectionIndex];
+      final footer = _word.isEditingFooter;
+      // Read the exact story without creating a placeholder in an empty one.
+      paragraphs = switch (_word.editingHeaderFooterVariant) {
+        WordHeaderFooterVariant.standard =>
+          footer ? section.footer : section.header,
+        WordHeaderFooterVariant.firstPage =>
+          footer ? section.firstFooter : section.firstHeader,
+        WordHeaderFooterVariant.evenPage =>
+          footer ? section.evenFooter : section.evenHeader,
+      };
+      index = _word.headerFooterCaret.paragraphIndex;
+    } else {
+      paragraphs = _word.document.paragraphs.toList();
     }
-    return paras[_word.documentCaret.paragraphIndex.clamp(0, paras.length - 1)];
+    if (paragraphs.isEmpty) return WmlParagraph();
+    return paragraphs[index.clamp(0, paragraphs.length - 1)];
   }
 
   bool get _wordFullFormat => _canMutate && !_word.commentFormatLimited;
