@@ -1,0 +1,245 @@
+{
+  "created_utc": "2026-11-19T16:31:31.797895+00:00",
+  "dart": "Dart SDK version: 3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on linux_x64",
+  "sdk_url": "https://storage.googleapis.com/dart-archive/channels/stable/release/3.13.7/sdk/dartsdk-linux-x64-release.zip",
+  "sdk_archive_sha256": "eb99aed266efbcb615c6ae21c12f52cfe935b9f208bccc5fea7f64c21e867229",
+  "flutter_pin": "3.47.8",
+  "workspace": "/workspace/scratch/8e94e1054d35/validation-workspace",
+  "engine_wrapper": "/workspace/scratch/8e94e1054d35/toolchain/run_engine.sh",
+  "dart_wrapper": "/workspace/scratch/8e94e1054d35/toolchain/run_dart.sh",
+  "package_config": "/workspace/scratch/8e94e1054d35/validation-workspace/.dart_tool/package_config.json",
+  "description": "Reduced engine + legacy parser + engine example workspace, copied manifests and analysis options, source paths linked live; tracked repo manifests/lockfiles unchanged.",
+  "environment": {
+    "PUB_CACHE": "/workspace/scratch/8e94e1054d35/toolchain/pub-cache",
+    "TMPDIR": "/workspace/scratch/8e94e1054d35/toolchain/tmp",
+    "DART_SUPPRESS_ANALYTICS": "true"
+  },
+  "dependency_command": "../toolchain/run_dart.sh pub get",
+  "dependency_cwd": "/workspace/scratch/8e94e1054d35/validation-workspace",
+  "dependency_exit_code": 0,
+  "smoke_command": "toolchain/run_engine.sh test --reporter expanded test/office_macro_language_test.dart",
+  "smoke_exit_code": 0,
+  "smoke_tests_passed": 11,
+  "resolved_dependencies": {
+    "_fe_analyzer_shared": {
+      "version": "111.0.0",
+      "source": "hosted"
+    },
+    "analyzer": {
+      "version": "14.7.0",
+      "source": "hosted"
+    },
+    "archive": {
+      "version": "4.7.1",
+      "source": "hosted"
+    },
+    "args": {
+      "version": "2.7.0",
+      "source": "hosted"
+    },
+    "async": {
+      "version": "2.13.1",
+      "source": "hosted"
+    },
+    "boolean_selector": {
+      "version": "2.1.2",
+      "source": "hosted"
+    },
+    "characters": {
+      "version": "1.4.1",
+      "source": "hosted"
+    },
+    "cli_config": {
+      "version": "0.2.0",
+      "source": "hosted"
+    },
+    "cli_util": {
+      "version": "0.6.0",
+      "source": "hosted"
+    },
+    "collection": {
+      "version": "1.19.1",
+      "source": "hosted"
+    },
+    "convert": {
+      "version": "3.1.2",
+      "source": "hosted"
+    },
+    "coverage": {
+      "version": "1.16.1",
+      "source": "hosted"
+    },
+    "crypto": {
+      "version": "3.0.8",
+      "source": "hosted"
+    },
+    "ffi": {
+      "version": "2.2.0",
+      "source": "hosted"
+    },
+    "file": {
+      "version": "7.0.1",
+      "source": "hosted"
+    },
+    "frontend_server_client": {
+      "version": "4.2.0",
+      "source": "hosted"
+    },
+    "glob": {
+      "version": "2.2.0",
+      "source": "hosted"
+    },
+    "http_multi_server": {
+      "version": "3.2.3",
+      "source": "hosted"
+    },
+    "http_parser": {
+      "version": "4.1.2",
+      "source": "hosted"
+    },
+    "io": {
+      "version": "1.1.0",
+      "source": "hosted"
+    },
+    "lints": {
+      "version": "6.1.0",
+      "source": "hosted"
+    },
+    "logging": {
+      "version": "1.3.0",
+      "source": "hosted"
+    },
+    "matcher": {
+      "version": "0.12.20",
+      "source": "hosted"
+    },
+    "meta": {
+      "version": "1.19.0",
+      "source": "hosted"
+    },
+    "mime": {
+      "version": "2.1.0",
+      "source": "hosted"
+    },
+    "node_preamble": {
+      "version": "2.0.2",
+      "source": "hosted"
+    },
+    "package_config": {
+      "version": "3.0.0",
+      "source": "hosted"
+    },
+    "path": {
+      "version": "1.9.1",
+      "source": "hosted"
+    },
+    "petitparser": {
+      "version": "7.1.0",
+      "source": "hosted"
+    },
+    "pool": {
+      "version": "1.5.3",
+      "source": "hosted"
+    },
+    "posix": {
+      "version": "6.5.4",
+      "source": "hosted"
+    },
+    "pub_semver": {
+      "version": "2.2.1",
+      "source": "hosted"
+    },
+    "shelf": {
+      "version": "1.4.3",
+      "source": "hosted"
+    },
+    "shelf_packages_handler": {
+      "version": "3.0.2",
+      "source": "hosted"
+    },
+    "shelf_static": {
+      "version": "1.2.0",
+      "source": "hosted"
+    },
+    "shelf_web_socket": {
+      "version": "3.0.0",
+      "source": "hosted"
+    },
+    "source_map_stack_trace": {
+      "version": "2.1.2",
+      "source": "hosted"
+    },
+    "source_maps": {
+      "version": "0.10.14",
+      "source": "hosted"
+    },
+    "source_span": {
+      "version": "1.10.2",
+      "source": "hosted"
+    },
+    "stack_trace": {
+      "version": "1.12.2",
+      "source": "hosted"
+    },
+    "stream_channel": {
+      "version": "2.1.4",
+      "source": "hosted"
+    },
+    "string_scanner": {
+      "version": "1.4.1",
+      "source": "hosted"
+    },
+    "term_glyph": {
+      "version": "1.2.2",
+      "source": "hosted"
+    },
+    "test": {
+      "version": "1.33.0",
+      "source": "hosted"
+    },
+    "test_api": {
+      "version": "0.7.15",
+      "source": "hosted"
+    },
+    "test_core": {
+      "version": "0.6.21",
+      "source": "hosted"
+    },
+    "typed_data": {
+      "version": "1.4.0",
+      "source": "hosted"
+    },
+    "vm_service": {
+      "version": "15.4.0",
+      "source": "hosted"
+    },
+    "watcher": {
+      "version": "1.2.1",
+      "source": "hosted"
+    },
+    "web": {
+      "version": "1.1.2",
+      "source": "hosted"
+    },
+    "web_socket": {
+      "version": "1.0.1",
+      "source": "hosted"
+    },
+    "web_socket_channel": {
+      "version": "3.0.3",
+      "source": "hosted"
+    },
+    "webkit_inspection_protocol": {
+      "version": "1.2.1",
+      "source": "hosted"
+    },
+    "xml": {
+      "version": "7.1.0",
+      "source": "hosted"
+    },
+    "yaml": {
+      "version": "3.1.4",
+      "source": "hosted"
+    }
+  }
+}
