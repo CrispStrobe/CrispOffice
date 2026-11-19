@@ -4,6 +4,7 @@ import 'package:crypto/crypto.dart' as crypto;
 import 'package:quds_mail_core/quds_mail_core.dart';
 
 import 'archive_export_models.dart';
+import 'archive_restore_checkpoint_models.dart';
 
 /// A validated preview of an exported selection. Provenance is untrusted
 /// display metadata. Its unsigned digest detects changes, not authenticity.
@@ -14,6 +15,7 @@ final class MailArchiveRestorePlan {
     required this.directoryPath,
     required this.manifestSha256,
     required this.exportPlan,
+    this.checkpoint,
   });
 
   factory MailArchiveRestorePlan.fromManifest({
@@ -33,6 +35,20 @@ final class MailArchiveRestorePlan {
   final String directoryPath;
   final String manifestSha256;
   final MailArchiveExportPlan exportPlan;
+
+  /// Recorded progress in the destination at inspection time. This is a
+  /// preview, not permission to skip work: resume validates each retained
+  /// original and its complete provenance again before confirming a receipt.
+  final MailArchiveRestoreCheckpoint? checkpoint;
+
+  MailArchiveRestorePlan withCheckpoint(
+    MailArchiveRestoreCheckpoint? checkpoint,
+  ) => MailArchiveRestorePlan._(
+    directoryPath: directoryPath,
+    manifestSha256: manifestSha256,
+    exportPlan: exportPlan,
+    checkpoint: checkpoint,
+  );
 
   MailProfileId get sourceProfile => exportPlan.profile;
   DateTime get createdAt => exportPlan.createdAt;
@@ -66,6 +82,9 @@ final class MailArchiveRestoreProgress {
     required this.indexWarnings,
     required this.elapsedMicroseconds,
     required this.observerErrors,
+    this.resumed = 0,
+    this.resumedBytes = 0,
+    this.resumedIndexWarnings = 0,
     this.status,
     this.problem,
   });
@@ -80,6 +99,12 @@ final class MailArchiveRestoreProgress {
   /// Verified committed original bytes this run, including duplicate originals.
   final int bytes;
 
+  /// Previously committed messages verified in the destination this run.
+  /// Their source files are not read or parsed in resume mode.
+  final int resumed;
+  final int resumedBytes;
+  final int resumedIndexWarnings;
+
   /// Successful messages whose parsing or retained index projection is partial.
   final int indexWarnings;
   final int elapsedMicroseconds;
@@ -87,7 +112,7 @@ final class MailArchiveRestoreProgress {
   final MailArchiveRestoreStatus? status;
   final MailProblemCode? problem;
 
-  int get processed => saved + duplicates + failed;
+  int get processed => saved + duplicates + failed + resumed;
 
   Map<String, Object> toJson() => {
     'phase': phase.name,
@@ -97,6 +122,9 @@ final class MailArchiveRestoreProgress {
     'failed': failed,
     'originsAdded': originsAdded,
     'bytes': bytes,
+    'resumed': resumed,
+    'resumedBytes': resumedBytes,
+    'resumedIndexWarnings': resumedIndexWarnings,
     'indexWarnings': indexWarnings,
     'elapsedMicroseconds': elapsedMicroseconds,
     'observerErrors': observerErrors,
@@ -122,6 +150,9 @@ final class MailArchiveRestoreReport {
     required this.observerErrors,
     required List<MailArchiveRestoreFailure> failures,
     required this.droppedFailures,
+    this.resumed = 0,
+    this.resumedBytes = 0,
+    this.resumedIndexWarnings = 0,
     this.problem,
   }) : failures = List.unmodifiable(failures);
 
@@ -132,6 +163,9 @@ final class MailArchiveRestoreReport {
   final int failed;
   final int originsAdded;
   final int bytes;
+  final int resumed;
+  final int resumedBytes;
+  final int resumedIndexWarnings;
   final int indexWarnings;
   final int elapsedMicroseconds;
   final int observerErrors;
@@ -139,5 +173,5 @@ final class MailArchiveRestoreReport {
   final int droppedFailures;
   final MailProblem? problem;
 
-  int get processed => saved + duplicates + failed;
+  int get processed => saved + duplicates + failed + resumed;
 }

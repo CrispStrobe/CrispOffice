@@ -22,6 +22,40 @@ extension StudioMailArchiveRestoreStrings on StudioStrings {
     'استعادة الرسائل',
   );
 
+  String get archiveRestoreResumeStart => _restoreText(
+    'Resume restore',
+    'Wiederherstellung fortsetzen',
+    'متابعة الاستعادة',
+  );
+
+  String get archiveRestoreResume => _restoreText(
+    'Resume unfinished work',
+    'Unvollständige Arbeit fortsetzen',
+    'متابعة العمل غير المكتمل',
+  );
+
+  String get archiveRestoreResumeHelp => _restoreText(
+    'Previously committed messages and source entries are checked in this archive. Their export files are not read again. Clear this option to verify every source file again.',
+    'Bereits gespeicherte Nachrichten und Quellenangaben werden in diesem Archiv geprüft. Ihre Exportdateien werden nicht erneut gelesen. Diese Option deaktivieren, um alle Quelldateien erneut zu prüfen.',
+    'تُفحص الرسائل وسجلات المصادر المحفوظة سابقًا في هذا الأرشيف. لا تُقرأ ملفات تصديرها مرة أخرى. ألغِ هذا الخيار للتحقق من جميع الملفات المصدر مجددًا.',
+  );
+
+  String archiveRestoreExportId(String value) => _restoreText(
+    'Export ID: \u2066$value\u2069',
+    'Export-ID: \u2066$value\u2069',
+    'معرّف التصدير: \u2066$value\u2069',
+  );
+
+  String archiveRestoreRecorded(
+    int completed,
+    int planned,
+    int bytes,
+  ) => _restoreText(
+    '$completed of $planned messages recorded as committed ($bytes bytes).',
+    '$completed von $planned Nachrichten als gespeichert erfasst ($bytes Bytes).',
+    'سُجّل حفظ $completed من $planned رسالة ($bytes بايت).',
+  );
+
   String archiveRestoreSelection(
     int messages,
     int origins,
@@ -52,9 +86,9 @@ extension StudioMailArchiveRestoreStrings on StudioStrings {
   );
 
   String get archiveRestoreHelp => _restoreText(
-    'Existing originals are deduplicated and missing source entries are added. Rerun after an interruption to finish. New messages receive the current archive date. Accounts and saved searches are outside this export.',
-    'Vorhandene Originale werden dedupliziert und fehlende Quellenangaben ergänzt. Nach einer Unterbrechung erneut starten. Neue Nachrichten erhalten das aktuelle Archivierungsdatum. Konten und gespeicherte Suchen sind nicht Teil dieses Exports.',
-    'تُزال ازدواجية الرسائل الأصلية الموجودة وتُضاف سجلات المصادر الناقصة. أعد التشغيل بعد الانقطاع لإكمال الاستعادة. تحصل الرسائل الجديدة على تاريخ الأرشفة الحالي. لا يتضمن هذا التصدير الحسابات وعمليات البحث المحفوظة.',
+    'Existing originals are deduplicated and missing source entries are added. Progress is saved with each message so you can resume after restarting. New messages receive the current archive date. Accounts and saved searches are outside this export.',
+    'Vorhandene Originale werden dedupliziert und fehlende Quellenangaben ergänzt. Der Fortschritt wird mit jeder Nachricht gespeichert und bleibt nach einem Neustart erhalten. Neue Nachrichten erhalten das aktuelle Archivierungsdatum. Konten und gespeicherte Suchen sind nicht Teil dieses Exports.',
+    'تُزال ازدواجية الرسائل الأصلية الموجودة وتُضاف سجلات المصادر الناقصة. يُحفظ التقدم مع كل رسالة لتتمكن من المتابعة بعد إعادة التشغيل. تحصل الرسائل الجديدة على تاريخ الأرشفة الحالي. لا يتضمن هذا التصدير الحسابات وعمليات البحث المحفوظة.',
   );
 
   String archiveRestoreCounts(
@@ -64,12 +98,24 @@ extension StudioMailArchiveRestoreStrings on StudioStrings {
     int planned,
     int originsAdded,
     int bytes,
-    int warnings,
-  ) => _restoreText(
-    '$saved saved · $duplicates already archived · $failed failed · $planned planned\n$originsAdded source entries added · $bytes verified bytes · $warnings indexing warnings',
-    '$saved gespeichert · $duplicates bereits archiviert · $failed fehlgeschlagen · $planned geplant\n$originsAdded Quellenangaben ergänzt · $bytes geprüfte Bytes · $warnings Indizierungswarnungen',
-    '$saved محفوظة · $duplicates مؤرشفة سابقًا · $failed تعذرت · $planned مقررة\n$originsAdded سجلات مصادر مضافة · $bytes بايت تم التحقق منها · $warnings تحذيرات فهرسة',
-  );
+    int warnings, {
+    int resumed = 0,
+    int resumedBytes = 0,
+    int resumedIndexWarnings = 0,
+  }) {
+    final current = _restoreText(
+      '$saved saved · $duplicates already archived · $failed failed · $planned planned\n$originsAdded source entries added · $bytes source bytes verified · $warnings indexing warnings',
+      '$saved gespeichert · $duplicates bereits archiviert · $failed fehlgeschlagen · $planned geplant\n$originsAdded Quellenangaben ergänzt · $bytes geprüfte Quellbytes · $warnings Indizierungswarnungen',
+      '$saved محفوظة · $duplicates مؤرشفة سابقًا · $failed تعذرت · $planned مقررة\n$originsAdded سجلات مصادر مضافة · $bytes بايت مصدر تم التحقق منها · $warnings تحذيرات فهرسة',
+    );
+    if (resumed == 0) return current;
+    final previous = _restoreText(
+      '$resumed previously committed · $resumedBytes archive bytes rechecked · $resumedIndexWarnings earlier indexing warnings',
+      '$resumed zuvor gespeichert · $resumedBytes Archivbytes erneut geprüft · $resumedIndexWarnings frühere Indizierungswarnungen',
+      '$resumed محفوظة سابقًا · $resumedBytes بايت أرشيف أُعيد فحصها · $resumedIndexWarnings تحذيرات فهرسة سابقة',
+    );
+    return '$current\n$previous';
+  }
 
   String archiveRestoreSummary(MailArchiveRestoreReport report) {
     final status = switch (report.status) {
@@ -78,8 +124,35 @@ extension StudioMailArchiveRestoreStrings on StudioStrings {
       MailArchiveRestoreStatus.cancelled => MailArchiveRunStatus.cancelled,
       MailArchiveRestoreStatus.failed => MailArchiveRunStatus.failed,
     };
-    return '${archiveRunStatusLabel(status)}. ${archiveRestoreCounts(report.saved, report.duplicates, report.failed, report.planned, report.originsAdded, report.bytes, report.indexWarnings)}';
+    return '${archiveRunStatusLabel(status)}. ${archiveRestoreCounts(report.saved, report.duplicates, report.failed, report.planned, report.originsAdded, report.bytes, report.indexWarnings, resumed: report.resumed, resumedBytes: report.resumedBytes, resumedIndexWarnings: report.resumedIndexWarnings)}';
   }
+
+  String get archiveRestoreProgress => _restoreText(
+    'Restore progress',
+    'Wiederherstellungsfortschritt',
+    'تقدم الاستعادة',
+  );
+
+  String get archiveRestoreProgressHelp => _restoreText(
+    'Saved progress lets you resume an export after restarting. Match its export ID with the restore preview. Forget progress you no longer need to free space for other restores.',
+    'Gespeicherter Fortschritt ermöglicht das Fortsetzen nach einem Neustart. Die Export-ID steht auch in der Wiederherstellungsvorschau. Nicht mehr benötigten Fortschritt entfernen, um Platz für weitere Wiederherstellungen freizugeben.',
+    'يتيح التقدم المحفوظ متابعة التصدير بعد إعادة التشغيل. طابق معرّف التصدير مع معاينة الاستعادة. احذف التقدم الذي لم تعد تحتاج إليه لإتاحة مساحة لاستعادات أخرى.',
+  );
+
+  String get archiveRestoreProgressEmpty => _restoreText(
+    'No saved restore progress.',
+    'Kein Wiederherstellungsfortschritt gespeichert.',
+    'لا يوجد تقدم استعادة محفوظ.',
+  );
+
+  String get archiveRestoreForget =>
+      _restoreText('Forget progress', 'Fortschritt entfernen', 'حذف التقدم');
+
+  String archiveRestoreForgetConfirmation(String value) => _restoreText(
+    'Forget saved progress for export \u2066$value\u2069? Archived messages and source files are kept. A future restore will verify every source file again.',
+    'Gespeicherten Fortschritt für Export \u2066$value\u2069 entfernen? Archivierte Nachrichten und Quelldateien bleiben erhalten. Bei einer späteren Wiederherstellung wird jede Quelldatei erneut geprüft.',
+    'هل تريد حذف التقدم المحفوظ للتصدير \u2066$value\u2069؟ تبقى الرسائل المؤرشفة والملفات المصدر محفوظة. ستفحص الاستعادة اللاحقة جميع الملفات المصدر مجددًا.',
+  );
 
   String get archiveRestoreFailures => _restoreText(
     'Restore failures',

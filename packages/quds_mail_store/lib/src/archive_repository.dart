@@ -9,6 +9,8 @@ import 'archive_database.dart';
 import 'archive_export_models.dart';
 import 'archive_models.dart';
 import 'archive_query.dart';
+import 'archive_restore_checkpoint_models.dart';
+import 'archive_restore_models.dart';
 import 'archive_text.dart';
 import 'codec.dart';
 import 'errors.dart';
@@ -16,6 +18,7 @@ import 'errors.dart';
 part 'archive_maintenance.dart';
 part 'archive_export_plan.dart';
 part 'archive_settings.dart';
+part 'archive_restore_checkpoints.dart';
 
 /// Durable, profile-scoped original messages, independent of live mail caches.
 /// An injected executor must be exclusively owned for this object's lifetime.
@@ -207,6 +210,8 @@ final class SqliteMailArchive {
     final row = (await _rows('SELECT * FROM archive_totals')).single;
     if (row.read<int>('messages') > limits.maxMessages ||
         row.read<int>('origins') > limits.maxOrigins ||
+        row.read<int>('restore_jobs') > limits.maxRestoreJobs ||
+        row.read<int>('restore_receipts') > limits.maxRestoreReceipts ||
         row.read<int>('logical_bytes') > limits.maxArchiveBytes) {
       _fail(MailProblemCode.quotaExceeded);
     }
@@ -239,9 +244,22 @@ final class SqliteMailArchive {
     bool indexAttachmentText = false,
     MailCancellationToken? cancellation,
     MailOperationLease? lease,
-  }) => _run(MailArchiveOperation.archive, (trace) async {
-    cancellation?.throwIfCancelled();
-    lease?.checkCurrent();
+  }) => _run(
+    MailArchiveOperation.archive,
+    (trace) => _archiveMessageWithOrigins(
+      message,
+      origins: origins,
+      trace: trace,
+      indexAttachmentText: indexAttachmentText,
+      cancellation: cancellation,
+      lease: lease,
+    ),
+  );
+
+  List<MailArchiveOrigin> _normalizedOrigins(
+    List<MailArchiveOrigin> origins, {
+    MailCancellationToken? cancellation,
+  }) {
     if (origins.isEmpty) _fail(MailProblemCode.invalidInput);
     if (origins.length > limits.maxOrigins) {
       _fail(MailProblemCode.quotaExceeded);
@@ -271,6 +289,24 @@ final class SqliteMailArchive {
         );
       }
     }
+    return copiedOrigins;
+  }
+
+  Future<MailArchiveImportResult> _archiveMessageWithOrigins(
+    MailMessage message, {
+    required List<MailArchiveOrigin> origins,
+    required _ArchiveTrace trace,
+    bool indexAttachmentText = false,
+    MailCancellationToken? cancellation,
+    MailOperationLease? lease,
+    Future<void> Function(MailArchiveImportResult result)? afterArchive,
+  }) async {
+    cancellation?.throwIfCancelled();
+    lease?.checkCurrent();
+    final copiedOrigins = _normalizedOrigins(
+      origins,
+      cancellation: cancellation,
+    );
     if (message.raw.length == 0) _fail(MailProblemCode.invalidInput);
     if (message.raw.length > limits.maxMessageBytes) {
       _fail(MailProblemCode.quotaExceeded);
@@ -391,17 +427,21 @@ final class SqliteMailArchive {
           [id],
         )).single;
         trace.items = 1;
-        return MailArchiveImportResult(
+        final result = MailArchiveImportResult(
           entry: _entry(row),
           duplicate: duplicate,
           originAdded: originsAdded > 0,
           originsAdded: originsAdded,
         );
+        // Restore receipts participate in this same content/index/origin
+        // transaction and the same cancellation, fault and quota barrier.
+        await afterArchive?.call(result);
+        return result;
       },
       cancellation: cancellation,
       lease: lease,
     );
-  });
+  }
 
   _ArchiveProjection _projection(MailMessage message, bool attachmentText) {
     final envelope = message.envelope;

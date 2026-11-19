@@ -13,7 +13,7 @@ class _Raster {
   final int height;
   final List<int> bytes;
 
-  int count(ui.Rect area, int rgb) {
+  int count(ui.Rect area, int rgb, {int tolerance = 3}) {
     var found = 0;
     for (
       var y = area.top.floor().clamp(0, height);
@@ -26,9 +26,9 @@ class _Raster {
         x++
       ) {
         final offset = (y * width + x) * 4;
-        if ((bytes[offset] - ((rgb >> 16) & 255)).abs() <= 3 &&
-            (bytes[offset + 1] - ((rgb >> 8) & 255)).abs() <= 3 &&
-            (bytes[offset + 2] - (rgb & 255)).abs() <= 3) {
+        if ((bytes[offset] - ((rgb >> 16) & 255)).abs() <= tolerance &&
+            (bytes[offset + 1] - ((rgb >> 8) & 255)).abs() <= tolerance &&
+            (bytes[offset + 2] - (rgb & 255)).abs() <= tolerance) {
           found++;
         }
       }
@@ -213,7 +213,13 @@ void main() {
         );
       }
       expect(
-        dark.count(const ui.Rect.fromLTWH(384, 33, 290, 25), 0x000000),
+        // The 13px table glyphs are antialiased; this interior crop excludes
+        // borders, and the tolerance still rejects white fill or light ink.
+        dark.count(
+          const ui.Rect.fromLTWH(384, 33, 290, 25),
+          0x000000,
+          tolerance: 64,
+        ),
         greaterThan(15),
       );
       expect(

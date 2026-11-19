@@ -12,7 +12,7 @@ inspected VBA arrays and Studio layout/theme branches (#210 and #211).
 - After cancellation or process termination, resume only unfinished items.
   Revalidate confirmed destination originals and their provenance before
   reporting them as previously committed; do not parse their source EML again.
-- Bind progress to the exact manifest bytes and destination archive. A changed
+- Bind progress to the decoded UTF-8 manifest and destination archive. A changed
   manifest is a different selection. A matching export can be moved without
   losing its progress. Keep source files unchanged.
 - Keep full verification reruns available and distinguish current-run saves,

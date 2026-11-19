@@ -14,6 +14,8 @@ final class MailArchiveLimits {
     this.maxPageSize = 200,
     this.maxSavedSearches = 100,
     this.maxProfiles = 100,
+    this.maxRestoreJobs = 64,
+    this.maxRestoreReceipts = 100000,
   });
 
   final int maxMessageBytes;
@@ -26,6 +28,8 @@ final class MailArchiveLimits {
   final int maxPageSize;
   final int maxSavedSearches;
   final int maxProfiles;
+  final int maxRestoreJobs;
+  final int maxRestoreReceipts;
 
   bool get isValid =>
       maxMessageBytes > 0 &&
@@ -38,7 +42,11 @@ final class MailArchiveLimits {
       maxPageSize > 0 &&
       maxPageSize <= 1000 &&
       maxSavedSearches > 0 &&
-      maxProfiles > 0;
+      maxProfiles > 0 &&
+      maxRestoreJobs > 0 &&
+      maxRestoreJobs <= 10000 &&
+      maxRestoreReceipts > 0 &&
+      maxRestoreReceipts <= 1000000;
 }
 
 /// Provenance is separate from content: the same bytes may occur in multiple
@@ -258,6 +266,11 @@ enum MailArchiveOperation {
   removeProfile,
   verify,
   rebuild,
+  restoreCheckpoint,
+  listRestoreCheckpoints,
+  loadRestoreReceipt,
+  archiveRestoreMessage,
+  forgetRestoreCheckpoint,
   close,
 }
 
