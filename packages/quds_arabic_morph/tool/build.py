@@ -73,6 +73,12 @@ NOTICES = {
     "Unicode-LICENSE.txt": "tools/arabic_morph/notices/Unicode-LICENSE.txt",
     "CPython-LICENSE": "tools/arabic_morph/notices/CPython-LICENSE",
 }
+# Attribution of the user-downloaded data (never compiled in), copied from
+# the pinned noprob bundle so hosts can show it on their licence page.
+DATA_NOTICES = {
+    "camel-morph-msa-NOTICE": ("b10936a72acb6f6dbc246ed75003e45f5f130deb6c7a0003c0a54ec11785bc9f", 1381),
+    "camel-morph-msa-LICENSE": ("214965747a90efe3e5268d367192bb077f1101620662cba71d59d902000b2d94", 442),
+}
 LIBRARY = "quds_arabic_morph"
 
 
@@ -129,6 +135,11 @@ def license_bundle(root: Path) -> dict:
             "files": {path: digest for path, (digest, _) in sorted(SOURCES.items())},
         },
         "notices": {name: sha((upstream / name).read_bytes()) for name in sorted(NOTICES)},
+        "data_notices": {
+            "bundle": "huggingface.co/cstr/camel-morph-msa-v1.0@b31cf4a83f8ad63bb1989cf2879e72f23fadbfb0/noprob",
+            "license": "CC-BY-4.0",
+            "files": {name: digest for name, (digest, _) in sorted(DATA_NOTICES.items())},
+        },
     }
     (LICENSES / "manifest.json").write_text(json.dumps(manifest, indent=2, sort_keys=True) + "\n",
                                             encoding="utf-8", newline="\n")
@@ -192,11 +203,22 @@ def build(root: Path, output: Path, kind: str, jobs: int) -> list[Path]:
     return targets
 
 
+def verify_data_notices() -> None:
+    for name, (digest, size) in DATA_NOTICES.items():
+        data = (LICENSES / "data" / name).read_bytes()
+        if len(data) != size or sha(data) != digest:
+            raise SystemExit(f"data notice differs from its pin: {name}")
+
+
 def install_licenses(destination: Path) -> None:
-    """Code notices (MIT adapter, CrispEmbed, camel_tools, Ryu, Unicode, CPython) and the manifest."""
+    """Code notices (MIT adapter, CrispEmbed, camel_tools, Ryu, Unicode, CPython), the manifest and the
+    CC BY 4.0 attribution of the downloadable data."""
+    verify_data_notices()
     destination.mkdir(parents=True, exist_ok=True)
     for path in sorted((LICENSES / "upstream").iterdir()):
         shutil.copyfile(path, destination / path.name)
+    for name in DATA_NOTICES:
+        shutil.copyfile(LICENSES / "data" / name, destination / name)
     shutil.copyfile(LICENSES / "manifest.json", destination / "manifest.json")
     shutil.copyfile(PACKAGE / "LICENSE", destination / "LICENSE.adapter")
 

@@ -1,0 +1,23 @@
+Camel Morph MSA v1.0 (c) 2024 by New York University Abu Dhabi is licensed under CC BY 4.0.
+
+  Camel Morph MSA v1.0: https://github.com/CAMeL-Lab/camel_morph
+  New York University Abu Dhabi: https://nyuad.nyu.edu
+  CC BY 4.0: https://creativecommons.org/licenses/by/4.0/
+
+Source: https://github.com/CAMeL-Lab/camel_morph at commit aaa39653c2a53ebacf087f0b98e7f7cfb55cca81, file official_releases/lrec-coling2024_release/databases/camel-morph-msa/camel_morph_msa_v1.0.db
+(SHA-256 110e03baa282874062d076e23d9671e985b6f76520b891d58cba4e55de0b8f60).
+
+Citation: Christian Khairallah, Salam Khalifa, Reham Marzouk, Mayar Nassar and
+Nizar Habash. 2024. Camel Morph MSA: A Large-Scale Open-Source Morphological
+Analyzer for Modern Standard Arabic. LREC-COLING 2024.
+https://aclanthology.org/2024.lrec-main.240
+
+Provenance caveat (from the paper and camel_morph's db_maker.py): the lexicon
+was seeded from CALIMA-Star/SAMA and reworked by hand, and the lex_logprob and
+pos_lex_logprob values are estimated from the Penn Arabic Treebank training
+split. The noprob variant removes those values.
+
+Changes in this variant (CC BY 4.0 section 3(a)(1)(B)): every
+pos_logprob/lex_logprob/pos_lex_logprob value was removed from the PREFIXES,
+SUFFIXES and STEMS sections. All other bytes are unchanged; DEFINE, DEFAULT and
+ORDER lines still declare the fields, so an analyzer reports -99.0 for them.

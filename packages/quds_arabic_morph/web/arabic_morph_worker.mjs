@@ -30,7 +30,9 @@ function open(api, files, manifestSha256) {
   try {
     for (const {name, bytes} of files) {
       if (!/^[A-Za-z0-9._-]+$/.test(name)) throw new Error('Invalid bundle file name');
-      api.FS.writeFile(`${BUNDLE}/${name}`, new Uint8Array(bytes));
+      // MEMFS keeps the (transferred) array itself; nothing is copied here.
+      api.FS.writeFile(`${BUNDLE}/${name}`, bytes instanceof Uint8Array ? bytes : new Uint8Array(bytes),
+        {canOwn: true});
       written.push(`${BUNDLE}/${name}`);
     }
     handle = withString(api, `${BUNDLE}/manifest.json`, m => withString(api, manifestSha256,

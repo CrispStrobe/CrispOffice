@@ -39,6 +39,14 @@
     "pull_request": 254,
     "source": "https://github.com/CrispStrobe/CrispEmbed"
   },
+  "data_notices": {
+    "bundle": "huggingface.co/cstr/camel-morph-msa-v1.0@b31cf4a83f8ad63bb1989cf2879e72f23fadbfb0/noprob",
+    "files": {
+      "camel-morph-msa-LICENSE": "214965747a90efe3e5268d367192bb077f1101620662cba71d59d902000b2d94",
+      "camel-morph-msa-NOTICE": "b10936a72acb6f6dbc246ed75003e45f5f130deb6c7a0003c0a54ec11785bc9f"
+    },
+    "license": "CC-BY-4.0"
+  },
   "notices": {
     "CPython-LICENSE": "3b2f81fe21d181c499c59a256c8e1968455d6689d269aa85373bfb6af41da3bf",
     "CrispEmbed-LICENSE": "a70d0ab5fb2dbab83d1a63071776891e6dfc7ba6e3063b3940c21274c1225a3e",

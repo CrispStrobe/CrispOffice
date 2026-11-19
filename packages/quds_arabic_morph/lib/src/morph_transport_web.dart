@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:js_interop';
 import 'dart:js_interop_unsafe';
+import 'dart:typed_data';
 
 import 'package:quds_office_engine/quds_office_engine.dart';
 import 'package:web/web.dart' as web;
@@ -103,7 +104,7 @@ final class _WebTransport implements ArabicMorphTransport {
     _worker = null;
   }
 
-  Future<String> _send(JSObject request) {
+  Future<String> _send(JSObject request, {JSArray<JSObject>? transfer}) {
     if (_disposed) {
       return Future.error(
         const ArabicMorphUnavailableException(
@@ -119,7 +120,11 @@ final class _WebTransport implements ArabicMorphTransport {
       final envelope = JSObject()
         ..setProperty('id'.toJS, id.toJS)
         ..setProperty('request'.toJS, request);
-      worker.postMessage(envelope);
+      if (transfer == null) {
+        worker.postMessage(envelope);
+      } else {
+        worker.postMessage(envelope, transfer);
+      }
     } on Object {
       _fail(
         const ArabicMorphUnavailableException(
@@ -150,18 +155,28 @@ final class _WebTransport implements ArabicMorphTransport {
         'The browser Arabic morphology worker opens verified bundle bytes.',
       );
     }
+    // The buffers are transferred, not copied: the worker owns the only
+    // copy of the 78 MB database bytes from here on.
+    final buffers = <JSObject>[];
     final files = <JSAny>[
       for (final entry in database.files.entries)
         JSObject()
           ..setProperty('name'.toJS, entry.key.toJS)
-          ..setProperty('bytes'.toJS, entry.value.toJS),
+          ..setProperty('bytes'.toJS, _bytes(entry.value, buffers)),
     ].toJS;
     final request = JSObject()
       ..setProperty('op'.toJS, 'open'.toJS)
       ..setProperty('manifestSha256'.toJS, database.bundle.manifest.sha256.toJS)
       ..setProperty('files'.toJS, files);
-    final body = _success(await _send(request));
+    final body = _success(await _send(request, transfer: buffers.toJS));
     return (body['info'] as Map).cast<String, Object?>();
+  }
+
+  static JSUint8Array _bytes(Uint8List data, List<JSObject> buffers) {
+    final array = data.toJS;
+    final buffer = array.getProperty<JSObject>('buffer'.toJS);
+    if (!buffers.any((b) => identical(b, buffer))) buffers.add(buffer);
+    return array;
   }
 
   @override

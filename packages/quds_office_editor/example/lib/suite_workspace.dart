@@ -24,6 +24,7 @@ import 'studio_pdf_gallery_dialog.dart';
 import 'studio_pdf_office.dart';
 import 'studio_pdf_tools.dart';
 import 'studio_pdf_surface.dart';
+import 'studio_arabic_morph_host.dart';
 import 'studio_hunspell_host.dart';
 import 'studio_hunspell_setup.dart';
 import 'studio_spacy_host.dart';
@@ -198,6 +199,10 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     // Re-verifies dictionaries the user installed earlier (no network).
     studioHunspellHost.addListener(_syncHunspell);
     unawaited(studioHunspellHost.refresh().catchError((Object _) {}));
+    // Re-verifies and loads an installed Arabic morphology database (no
+    // network); nothing happens until the user has downloaded it.
+    studioArabicMorphHost.addListener(_syncArabicMorph);
+    unawaited(studioArabicMorphHost.refresh().catchError((Object _) {}));
     _slides.onPlayMedia = (PmlShape shape) {
       _toast(
         _arabic ? 'تشغيل ${shape.mediaName}' : 'Playing ${shape.mediaName}',
@@ -323,6 +328,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     _aboutChannel.setMethodCallHandler(null);
     studioSpacyHost.removeListener(_syncSpacyGrammar);
     studioHunspellHost.removeListener(_syncHunspell);
+    studioArabicMorphHost.removeListener(_syncArabicMorph);
     _spacyGrammarEpoch++;
     _word
       ..removeListener(_rebuild)
@@ -5731,11 +5737,34 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       providers: [
         GermanSpellingProvider(vocabulary: vocabulary),
         GermanWritingRulesProvider(),
-        ArabicWritingRulesProvider(),
+        _arabicWritingRules(studioArabicMorphHost.morphology),
         ...studioHunspellHost.createProviders(vocabulary),
         HarperProofingProvider(vocabulary: vocabulary),
       ],
     );
+  }
+
+  /// The Arabic rules with the shared analyzer: a loaded
+  /// [ArabicMorphology] while the user's Camel Morph database is installed,
+  /// otherwise [UnavailableArabicMorphology], so morphology-based rules stay
+  /// silent.
+  // TODO(arabic-rules): pass `morphology: morphology` once the rules agent
+  // adds that constructor parameter to ArabicWritingRulesProvider; until
+  // then the analyzer is loaded but no rule consumes it.
+  ArabicWritingRulesProvider _arabicWritingRules(ArabicMorphology morphology) =>
+      ArabicWritingRulesProvider();
+
+  String? _arabicMorphKey;
+
+  /// Rebuilds the Word service when the morphology database is installed,
+  /// loaded or removed, so the Arabic rules receive the current analyzer.
+  void _syncArabicMorph() {
+    final key = studioArabicMorphHost.configurationKey;
+    if (key == _arabicMorphKey) return;
+    final first = _arabicMorphKey == null && key.isEmpty;
+    _arabicMorphKey = key;
+    if (first || !mounted) return;
+    _word.proofing.configure(_wordProofingService(_word));
   }
 
   String? _hunspellKey;
@@ -5751,7 +5780,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   }
 
   Future<void> _showHunspellSetup() async {
-    await showStudioHunspellSetup(context);
+    await showStudioHunspellSetup(context, morphHost: studioArabicMorphHost);
     if (mounted) _wordFocus.requestFocus();
   }
 

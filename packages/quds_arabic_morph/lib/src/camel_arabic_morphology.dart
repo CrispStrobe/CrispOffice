@@ -20,20 +20,27 @@ import 'morph_transport_stub.dart'
 /// cached per session (bounded by [cacheWords] distinct words).
 final class CamelArabicMorphology implements ArabicMorphology {
   CamelArabicMorphology({
-    required this.database,
+    required MorphDatabase database,
     String? nativeLibraryPath,
     Uri? workerUrl,
     ArabicMorphTransport? transport,
     this.cacheWords = 4096,
     this.batchWords = 512,
-  }) : _transport =
+  }) : bundle = database.bundle,
+       _database = database,
+       _transport =
            transport ??
            platform.createArabicMorphTransport(
              nativeLibraryPath: nativeLibraryPath,
              workerUrl: workerUrl,
            );
 
-  final MorphDatabase database;
+  /// The pinned bundle this analyzer opens.
+  final MorphBundleDownload bundle;
+
+  /// Released once opened, so browser hosts do not keep the 78 MB of
+  /// verified bytes alive next to the worker's parsed copy.
+  MorphDatabase? _database;
   final ArabicMorphTransport _transport;
 
   /// Distinct words kept in the session cache (least recently used dropped
@@ -68,6 +75,14 @@ final class CamelArabicMorphology implements ArabicMorphology {
   Future<void> load() => _loading ??= _open();
 
   Future<void> _open() async {
+    final database = _database;
+    _database = null;
+    if (database == null) {
+      _failure = const ArabicMorphUnavailableException(
+        'The morphology database was already released.',
+      );
+      return;
+    }
     try {
       _info = await _transport.open(database);
       _available = !_disposed;
