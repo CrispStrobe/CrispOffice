@@ -55,3 +55,13 @@ entries fall back to the valid parent alone. Forward drafts remain unthreaded.
 
 Focused regression authoring and independent source review are in progress.
 Fresh Dart/Flutter tests, analyzer and formatter have not run.
+
+## Independent review correction
+
+The source review found that dropping malformed References tokens individually
+could retain an apparent ID from inside a whitespace-split comment. The helper
+now discards the complete inherited chain on any unsupported token, retaining
+only the validated immediate parent and never activating In-Reply-To fallback
+for a nonempty References list. Absent and empty normalized lists remain
+indistinguishable and are documented explicitly. Regression fixtures include
+raw MIME with a comment containing an unrelated ID.

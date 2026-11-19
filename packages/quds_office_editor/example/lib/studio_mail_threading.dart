@@ -5,7 +5,9 @@ import 'package:quds_mail_core/quds_mail_core.dart';
 /// Only canonical ASCII dot-atom Message-IDs are admitted. Quoted, obsolete,
 /// domain-literal, internationalized, malformed and overlong IDs are omitted
 /// rather than rewritten. An absent or unsupported parent leaves the reply
-/// unthreaded; its recipient, subject and quoted body remain usable.
+/// unthreaded; its recipient, subject and quoted body remain usable. Any
+/// unsupported References token discards that entire ancestor chain, preventing
+/// an ID inside a comment or malformed field from becoming a thread ancestor.
 final class StudioMailThread {
   const StudioMailThread.empty() : inReplyTo = null, references = null;
 
@@ -26,18 +28,22 @@ final class StudioMailThread {
     final ancestors = <String>[];
     final seen = <String>{parent};
     void admit(String candidate) {
-      if (_canonicalMessageId(candidate) && seen.add(candidate)) {
-        ancestors.add(candidate);
-      }
+      if (seen.add(candidate)) ancestors.add(candidate);
     }
 
     if (envelope.references.isEmpty) {
-      // RFC 5322 permits a single In-Reply-To parent as the fallback ancestry
-      // only when References is absent. Do not salvage a multi-ID value.
+      // MailEnvelope represents absent and empty References identically.
+      // Only in this case may one canonical In-Reply-To ID supply ancestry.
+      // Do not salvage a multi-ID value or extract IDs from comments.
       final previous = envelope.inReplyTo;
-      if (previous != null) admit(previous);
+      if (previous != null && _canonicalMessageId(previous)) admit(previous);
     } else {
       for (final candidate in envelope.references) {
+        // The codec splits References on whitespace, so individually dropping
+        // bad tokens could accidentally retain an ID from inside a comment.
+        if (!_canonicalMessageId(candidate)) {
+          return StudioMailThread._(parent, parent);
+        }
         admit(candidate);
       }
     }
