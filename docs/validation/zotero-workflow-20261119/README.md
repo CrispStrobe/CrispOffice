@@ -21,3 +21,13 @@ Validation is in progress. No test success is claimed by this checkpoint.
 Implementation, tests and qualification will be saved in incremental remote
 commits. GitHub Actions will not be queried, polled or awaited; checkpoints use
 `[skip ci]` as requested.
+
+## Completed local checks at the current checkpoint
+
+Source `780422316b4e37989e01ac871dd2956fbd2c8908` passes 602 Zotero engine,
+584 Zotero editor, 23 PPTX engine and 10 PPTX editor cases. The independent
+audit confirms all 75 selected files, all 2,048 input hashes and no failures,
+skips, errors or unfinished cases. Incoming Mail passes 219 host and 6 transport
+cases, with its own source bindings. The VBA qualification and final formatting
+normalization are still in progress. Startup/compiler attempts are retained
+separately and are not accepted results.
