@@ -98,7 +98,9 @@ def main():
             (node if platform and platform.group(1) in ("node", "js") else vm).append(str(path.relative_to(repo / "packages" / package)))
         cohorts.append((package + "-vm", "packages/" + package, vm, "vm"))
         if package == "quds_mail_store":
-            node += ["test/archive_export_manifest_test.dart", "test/archive_query_test.dart"]
+            # The query suite imports native SQLite and already runs on VM.
+            # Only the manifest suite additionally exercises the portable API.
+            node += ["test/archive_export_manifest_test.dart"]
         if node:
             cohorts.append((package + "-node", "packages/" + package, sorted(node), "node"))
     for name, package, pattern in [
@@ -113,7 +115,7 @@ def main():
         "source_head": head, "source_tree": helpers.capture(["git", "rev-parse", "HEAD^{tree}"], repo),
         "cohorts": [{"name": n, "package": p, "files": f, "platform": k} for n, p, f, k in cohorts],
         "analysis_targets": analysis, "formatted_files": changed_dart,
-        "note": "Export-manifest and query suites additionally run on Node to cover the portable public library.",
+        "note": "The export-manifest suite additionally runs on Node to cover the portable public library. Native SQLite query tests run on VM only.",
     })
 
     def step(name, argv, cwd, files=(), env_add=None):
