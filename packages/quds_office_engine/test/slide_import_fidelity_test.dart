@@ -68,6 +68,7 @@ PmlPresentation _deck(
   List<String> slides, {
   List<int>? order,
   String masterBackground = '',
+  String layoutBackground = '',
 }) {
   final OpcPackage package = OpcPackage.create(OpcPackageKind.slide);
   final RelationshipCollection presRels = package.relationshipsFor(
@@ -126,6 +127,7 @@ PmlPresentation _deck(
             _placeholder(3, 'subTitle', idx: 1, text: 'Click to add subtitle'),
         root: 'sldLayout',
         name: 'Title Slide',
+        background: layoutBackground,
       ),
     ),
   );
@@ -276,6 +278,68 @@ void main() {
       );
       expect(deck.master.background, 'F2F2F2');
       expect(deck.slides.single.background, 'F2F2F2');
+      expect(deck.slides.single.inheritsMasterBackground, isTrue);
+      expect(deck.slides.single.copy().inheritsMasterBackground, isTrue);
+    });
+
+    test(
+      'explicit slide and layout fills remain independent of the master',
+      () {
+        const String fill =
+            '<p:bg><p:bgPr><a:solidFill><a:srgbClr val="FFFFFF"/>'
+            '</a:solidFill></p:bgPr></p:bg>';
+        final PmlPresentation slideFill = _deck(<String>[
+          _sld(_textBox(2, 'Own paper'), background: fill),
+        ]);
+        final PmlPresentation layoutFill = _deck(<String>[
+          _sld(_textBox(2, 'Layout paper')),
+        ], layoutBackground: fill);
+        for (final PmlPresentation deck in <PmlPresentation>[
+          slideFill,
+          layoutFill,
+        ]) {
+          expect(deck.slides.single.background, 'FFFFFF');
+          expect(deck.slides.single.inheritsMasterBackground, isFalse);
+          expect(deck.slides.single.copy().inheritsMasterBackground, isFalse);
+        }
+      },
+    );
+
+    test('scalar edits preserve imported rich styles and restore on undo', () {
+      final PmlShape shape = _deck(<String>[
+        _sld(
+          '<p:sp><p:nvSpPr><p:cNvPr id="2" name="Rich"/>'
+          '<p:cNvSpPr/><p:nvPr/></p:nvSpPr><p:spPr>'
+          '${_xfrm(0, 0, 9144000, 914400)}</p:spPr><p:txBody>'
+          '<a:bodyPr/><a:p><a:r><a:rPr sz="1800" b="1"/>'
+          '<a:t>Bold</a:t></a:r><a:r><a:rPr sz="2400" i="1"/>'
+          '<a:t> Italic</a:t></a:r></a:p></p:txBody></p:sp>',
+        ),
+      ]).slides.single.shapes.single;
+      final PmlTextSource source = shape.textSource!;
+      shape
+        ..fontSizePt = 32
+        ..textColor = 'FF0000'
+        ..textAlign = PmlTextAlign.right
+        ..rightToLeft = true;
+      final PmlTextParagraph edited = shape.resolvedRichText.single;
+      expect(edited.runs.map((run) => run.fontSizePt), <double>[32, 32]);
+      expect(edited.runs.map((run) => run.color), <String>['FF0000', 'FF0000']);
+      expect(edited.runs.first.bold, isTrue);
+      expect(edited.runs.last.italic, isTrue);
+      expect(edited.align, PmlTextAlign.right);
+      expect(edited.rightToLeft, isTrue);
+      expect(shape.richText.single.runs.first.fontSizePt, 18);
+      expect(shape.richText.single.runs.last.fontSizePt, 24);
+      expect(shape.textSource, same(source));
+      shape
+        ..fontSizePt = source.fontSizePt
+        ..textColor = source.textColor
+        ..textAlign = source.textAlign
+        ..rightToLeft = source.rightToLeft;
+      expect(shape.resolvedRichText, same(shape.richText));
+      shape.text = 'Replacement';
+      expect(shape.resolvedRichText, isEmpty);
     });
 
     test('scheme colors and p:style refs resolve through the theme', () {

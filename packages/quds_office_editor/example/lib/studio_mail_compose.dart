@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:quds_office_editor/quds_office_editor.dart';
 
+import 'studio_mail_recipients.dart';
 import 'studio_mail_strings.dart';
 import 'studio_mail_threading.dart';
 import 'studio_strings.dart';
@@ -15,43 +16,31 @@ final class StudioMailDraft {
     required this.to,
     required this.subject,
     required this.body,
+    this.cc = '',
+    this.bcc = '',
     this.thread = const StudioMailThread.empty(),
   });
 
   final String to;
+  final String cc;
+  final String bcc;
   final String subject;
   final String body;
   final StudioMailThread thread;
 
   static const maxBodyBytes = 1024 * 1024;
 
-  /// The initial composer supports one ASCII dot-atom mailbox with a DNS host.
-  /// Display-name lists and SMTPUTF8 require a separate envelope contract.
-  static bool isSupportedAddress(String address) {
-    if (address.length > 254 || address.codeUnits.any((unit) => unit > 0x7e)) {
-      return false;
-    }
-    final parts = address.split('@');
-    if (parts.length != 2) return false;
-    final local = parts[0];
-    final domain = parts[1];
-    if (local.isEmpty ||
-        local.length > 64 ||
-        local.startsWith('.') ||
-        local.endsWith('.') ||
-        local.contains('..') ||
-        !RegExp(r"^[A-Za-z0-9.!#$%&'*+/=?^_`{|}~-]+$").hasMatch(local)) {
-      return false;
-    }
-    final labels = domain.split('.');
-    final labelPattern = RegExp(
-      r'^[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?$',
-    );
-    return domain.length <= 253 && labels.every(labelPattern.hasMatch);
-  }
+  static bool isSupportedAddress(String address) =>
+      StudioMailRecipients.isSupportedAddress(address);
+
+  StudioMailRecipients get recipients =>
+      StudioMailRecipients.tryParse(to: to, cc: cc, bcc: bcc) ??
+      (throw const FormatException('Invalid Studio Mail recipients.'));
 
   StudioMailDraftProblem? get problem {
-    if (!isSupportedAddress(to)) return StudioMailDraftProblem.recipient;
+    if (StudioMailRecipients.tryParse(to: to, cc: cc, bcc: bcc) == null) {
+      return StudioMailDraftProblem.recipient;
+    }
     if (subject.length > 512 || subject.contains(RegExp(r'[\x00-\x1f\x7f]'))) {
       return StudioMailDraftProblem.subject;
     }
@@ -87,16 +76,22 @@ class StudioMailComposeDialog extends StatefulWidget {
 
 class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
   late final TextEditingController _to;
+  late final TextEditingController _cc;
+  late final TextEditingController _bcc;
   late final TextEditingController _subject;
   late final WordEditorController _body;
   final _bodyFocus = FocusNode();
   bool _retryAcknowledged = false;
+  late bool _showCopies;
   StudioMailDraftProblem? _problem;
 
   @override
   void initState() {
     super.initState();
     _to = TextEditingController(text: widget.initialDraft?.to ?? '');
+    _cc = TextEditingController(text: widget.initialDraft?.cc ?? '');
+    _bcc = TextEditingController(text: widget.initialDraft?.bcc ?? '');
+    _showCopies = _cc.text.isNotEmpty || _bcc.text.isNotEmpty;
     _subject = TextEditingController(text: widget.initialDraft?.subject ?? '');
     _body = WordEditorController(
       document: WmlDocument.empty(text: widget.initialDraft?.body ?? ''),
@@ -109,6 +104,8 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
   @override
   void dispose() {
     _to.dispose();
+    _cc.dispose();
+    _bcc.dispose();
     _subject.dispose();
     _bodyFocus.dispose();
     _body.dispose();
@@ -119,7 +116,9 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
     if (widget.previousSubmissionUncertain && !_retryAcknowledged) return;
     _body.commitPendingEdits();
     final snapshot = StudioMailDraft(
-      to: _to.text.trim(),
+      to: _to.text,
+      cc: _cc.text,
+      bcc: _bcc.text,
       subject: _subject.text,
       body: _body.document.paragraphs
           .map((paragraph) => paragraph.text)
@@ -169,8 +168,33 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
                   TextField(
                     controller: _to,
                     keyboardType: TextInputType.emailAddress,
-                    decoration: InputDecoration(labelText: strings.to),
+                    decoration: InputDecoration(
+                      labelText: strings.to,
+                      helperText: strings.mailRecipientListHint,
+                      helperMaxLines: 2,
+                      suffixIcon: _showCopies
+                          ? null
+                          : TextButton(
+                              onPressed: () =>
+                                  setState(() => _showCopies = true),
+                              child: Text(strings.mailCopyRecipients),
+                            ),
+                    ),
                   ),
+                  if (_showCopies) ...[
+                    const SizedBox(height: 8),
+                    TextField(
+                      controller: _cc,
+                      keyboardType: TextInputType.emailAddress,
+                      decoration: InputDecoration(labelText: strings.mailCc),
+                    ),
+                    const SizedBox(height: 8),
+                    TextField(
+                      controller: _bcc,
+                      keyboardType: TextInputType.emailAddress,
+                      decoration: InputDecoration(labelText: strings.mailBcc),
+                    ),
+                  ],
                   const SizedBox(height: 8),
                   TextField(
                     controller: _subject,
@@ -183,8 +207,9 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
                     height:
                         (constraints.maxHeight -
                                 (widget.previousSubmissionUncertain
-                                    ? 396
-                                    : 300) -
+                                    ? 436
+                                    : 340) -
+                                (_showCopies ? 128 : 0) -
                                 (feedback == null ? 0 : 64))
                             .clamp(180.0, 440.0),
                     child: DecoratedBox(

@@ -331,17 +331,7 @@ abstract final class OfficePdfExport {
         sink.canvas.clipRect(ox, oy, slideW * scale, slideH * scale);
         sink.canvas.translateScale(ox, oy, scale);
       }
-      sink.canvas.fillRect(
-        0,
-        0,
-        slideW,
-        slideH,
-        slide.background.isEmpty
-            ? (deck.master.background.isEmpty
-                  ? 'FFFFFF'
-                  : deck.master.background)
-            : slide.background,
-      );
+      sink.canvas.fillRect(0, 0, slideW, slideH, _slideBackground(deck, slide));
       for (final PmlShape shape in deck.master.shapes) {
         _paintShape(sink, deck, slide, shape);
       }
@@ -462,11 +452,7 @@ abstract final class OfficePdfExport {
           0,
           slideW,
           slideH,
-          slide.background.isEmpty
-              ? (deck.master.background.isEmpty
-                    ? 'FFFFFF'
-                    : deck.master.background)
-              : slide.background,
+          _slideBackground(deck, slide),
         );
         for (final PmlShape shape in deck.master.shapes) {
           _paintShape(sink, deck, slide, shape);
@@ -1837,6 +1823,11 @@ abstract final class OfficePdfExport {
     }
   }
 
+  static String _slideBackground(PmlPresentation deck, PmlSlide slide) {
+    if (slide.background.isNotEmpty) return slide.background;
+    return deck.master.background.isEmpty ? 'FFFFFF' : deck.master.background;
+  }
+
   static void _paintRichText(
     _PageSink sink,
     PmlShape shape,
@@ -1924,6 +1915,7 @@ abstract final class OfficePdfExport {
       };
       if (text.contains('\t')) {
         final List<String> parts = text.split('\t');
+        final double tabBase = x + paragraph.marginLeftPt;
         var cx = px;
         final double tab = paragraph.defaultTabPt <= 0
             ? 72
@@ -1944,9 +1936,9 @@ abstract final class OfficePdfExport {
             );
             cx += sink.measure(part, size);
           }
-          final double offset = math.max(0, cx - px);
+          final double offset = math.max(0, cx - tabBase);
           final double next = ((offset / tab).floor() + 1) * tab;
-          cx = math.min(px + maxWidth, px + next);
+          cx = math.min(px + maxWidth, tabBase + next);
         }
         cy += size * 1.25;
       } else if (_hasMixedRichStyles(paragraph)) {

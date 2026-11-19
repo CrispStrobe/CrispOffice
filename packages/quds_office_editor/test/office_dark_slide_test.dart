@@ -268,7 +268,11 @@ void main() {
     );
 
     slide.background = 'FFFFFF';
-    final _Raster authored = await _paint(tester, slide);
+    final _Raster authored = await _paint(
+      tester,
+      slide,
+      theme: OfficeTheme.dark.copyWith(adaptDocumentColors: false),
+    );
     expect(authored.count(const ui.Rect.fromLTWH(0, 0, 20, 20), 0xFFFFFF), 400);
     expect(
       authored.contrastPixels(
@@ -344,6 +348,124 @@ void main() {
     );
     expect(adapted.samePixelsIn(textArea, unadapted), isFalse);
     expect(shape.textColor, '000000');
+  });
+
+  test(
+    'master paper edits update inherited slides and preserve explicit fills',
+    () {
+      final inherited = PmlSlide(
+        id: 256,
+        background: 'FFFFFF',
+        inheritsMasterBackground: true,
+      );
+      final explicit = PmlSlide(id: 257, background: 'FFFFFF');
+      final fresh = PmlSlide(id: 258);
+      final controller = SlideEditorController(
+        presentation: PmlPresentation(
+          slides: <PmlSlide>[inherited, explicit, fresh],
+        ),
+      );
+      addTearDown(controller.dispose);
+      controller.applyMasterBackground('112233');
+      expect(controller.presentation.master.background, '112233');
+      expect(inherited.background, '112233');
+      expect(fresh.background, '112233');
+      expect(explicit.background, 'FFFFFF');
+      controller.applyMasterBackground('445566');
+      expect(inherited.background, '445566');
+      expect(fresh.background, '445566');
+      expect(inherited.inheritsMasterBackground, isTrue);
+      inherited.background = 'ABCDEF';
+      expect(inherited.inheritsMasterBackground, isFalse);
+      controller.applyMasterBackground('667788');
+      expect(inherited.background, 'ABCDEF');
+      expect(fresh.background, '667788');
+      expect(explicit.background, 'FFFFFF');
+      inherited.background = '';
+      expect(inherited.inheritsMasterBackground, isTrue);
+      controller.applyMasterBackground('99AABB');
+      expect(inherited.background, '99AABB');
+    },
+  );
+
+  testWidgets('white paper and rich ink honor dark and high contrast display', (
+    tester,
+  ) async {
+    final shape = _shape(2, y: 20, height: 100, text: 'Readable rich text');
+    shape.richText.add(
+      PmlTextParagraph(
+        runs: <PmlTextRun>[
+          PmlTextRun(text: shape.text, fontSizePt: 18, color: '000000'),
+        ],
+      ),
+    );
+    final slide = PmlSlide(
+      id: 256,
+      background: 'FFFFFF',
+      shapes: <PmlShape>[shape],
+    );
+    for (final theme in <OfficeTheme>[
+      OfficeTheme.dark,
+      OfficeTheme.highContrast,
+    ]) {
+      final raster = await _paint(tester, slide, theme: theme);
+      expect(
+        raster.count(
+          const ui.Rect.fromLTWH(400, 150, 100, 100),
+          theme.slideBackground.toARGB32() & 0xFFFFFF,
+        ),
+        greaterThan(9000),
+      );
+      expect(
+        raster.count(
+          const ui.Rect.fromLTWH(38, 28, 280, 60),
+          theme.documentText.toARGB32() & 0xFFFFFF,
+        ),
+        greaterThan(25),
+      );
+    }
+    expect(slide.background, 'FFFFFF');
+    expect(shape.richText.single.runs.single.color, '000000');
+  });
+
+  testWidgets('rich text painting follows font-size edits and undo', (
+    tester,
+  ) async {
+    final shape = _shape(2, y: 20, height: 100, text: 'MMMM');
+    shape
+      ..fontSizePt = 12
+      ..textSource = const PmlTextSource(
+        xml: '',
+        text: 'MMMM',
+        fontSizePt: 12,
+        textColor: '000000',
+        textAlign: PmlTextAlign.left,
+        rightToLeft: null,
+      );
+    shape.richText.add(
+      PmlTextParagraph(
+        runs: <PmlTextRun>[
+          PmlTextRun(text: shape.text, fontSizePt: 12, color: '000000'),
+        ],
+      ),
+    );
+    final slide = PmlSlide(id: 256, shapes: <PmlShape>[shape]);
+    final controller = SlideEditorController(
+      presentation: PmlPresentation(slides: <PmlSlide>[slide]),
+    )..selected = shape;
+    addTearDown(controller.dispose);
+    const area = ui.Rect.fromLTWH(38, 28, 280, 100);
+    final before = await _paint(tester, slide);
+    controller.updateSelected(fontSizePt: 28);
+    final after = await _paint(tester, slide);
+    expect(
+      after.count(area, 0xF2F2F2),
+      greaterThan(before.count(area, 0xF2F2F2)),
+    );
+    controller.undo();
+    final restored = await _paint(tester, slide);
+    expect(restored.samePixelsIn(area, before), isTrue);
+    expect(shape.richText.single.runs.single.fontSizePt, 12);
   });
 
   testWidgets(
@@ -509,9 +631,9 @@ void main() {
       );
       // Verify serialized colors independently of the now-corrected importer.
       final exportedSlide = XmlDocument.parse(
-        OpcPackage.openBytes(
-          savedBytes,
-        ).getPart('/ppt/slides/slide1.xml')!.readText(),
+        OpcPackage.openBytes(savedBytes)
+            .getPart('/ppt/slides/slide1.xml')!
+            .readText(),
       ).root!;
       final cells = _descendants(exportedSlide, 'tc').toList();
       expect(cells, hasLength(2));

@@ -1034,7 +1034,7 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
     )..layout(maxWidth: r.width - 16);
     return PaintRunText.hitIndex(
       painter,
-      Offset(local.dx - r.left - 8, local.dy - r.top - 8),
+      local - _shapeTextOrigin(shape, r, painter),
       shape.text.length,
     );
   }
@@ -1423,13 +1423,7 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
       color,
       background: background,
     )..layout(maxWidth: r.width - 16);
-    final double oy = switch (shape.textAnchor) {
-      PmlTextAnchor.center =>
-        r.top + math.max(4, (r.height - painter.height) / 2),
-      PmlTextAnchor.bottom => r.bottom - painter.height - 8,
-      PmlTextAnchor.top => r.top + 8,
-    };
-    final Offset origin = Offset(r.left + 8, oy);
+    final Offset origin = _shapeTextOrigin(shape, r, painter);
     if (isEdit && editBase != editCaret) {
       final int start = editBase < editCaret ? editBase : editCaret;
       final int end = editBase > editCaret ? editBase : editCaret;
@@ -1465,6 +1459,14 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
     }
     canvas.restore();
   }
+
+  Offset _shapeTextOrigin(PmlShape shape, Rect r, TextPainter painter) =>
+      Offset(r.left + 8, switch (shape.textAnchor) {
+        PmlTextAnchor.center =>
+          r.top + math.max(4, (r.height - painter.height) / 2),
+        PmlTextAnchor.bottom => r.bottom - painter.height - 8,
+        PmlTextAnchor.top => r.top + 8,
+      });
 
   void _paintMorph(
     Canvas canvas,
@@ -1581,7 +1583,10 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
 
   Color _slidePaper(PmlSlide target) {
     final int? rgb = int.tryParse(target.background, radix: 16);
-    return rgb == null
+    // Neutral white paper follows the selected display theme. Authored
+    // colored backgrounds and the stored/exported RGB values stay intact.
+    return rgb == null ||
+            (_theme.adaptDocumentColors && (rgb & 0xFFFFFF) == 0xFFFFFF)
         ? _theme.slideBackground
         : Color(0xFF000000 | (rgb & 0xFFFFFF));
   }

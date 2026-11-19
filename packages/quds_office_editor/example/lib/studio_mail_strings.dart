@@ -9,9 +9,23 @@ extension StudioMailFeedback on StudioStrings {
   };
 
   String get mailInvalidRecipient => _mailText(
-    'Enter one email address, such as person@example.com.',
-    'Eine E-Mail-Adresse eingeben, zum Beispiel person@example.com.',
-    'أدخل عنوان بريد واحدًا، مثل person@example.com.',
+    'Enter 1–100 email addresses without display names, separated by commas or semicolons.',
+    '1–100 E-Mail-Adressen ohne Anzeigenamen eingeben, durch Kommas oder Semikolons getrennt.',
+    'أدخل من 1 إلى 100 عنوان بريد دون أسماء عرض، وافصل بينها بفواصل أو فواصل منقوطة.',
+  );
+  String get mailRecipientListHint => _mailText(
+    'Separate email addresses with commas or semicolons.',
+    'E-Mail-Adressen durch Kommas oder Semikolons trennen.',
+    'افصل عناوين البريد بفواصل أو فواصل منقوطة.',
+  );
+  String get mailCopyRecipients =>
+      _mailText('Cc / Bcc', 'Cc / Bcc', 'نسخة / نسخة مخفية');
+  String get mailCc => _mailText('Cc', 'Cc', 'نسخة');
+  String get mailBcc => _mailText('Bcc', 'Bcc', 'نسخة مخفية');
+  String get mailReplyRecipientsUnavailable => _mailText(
+    'The message has unsupported or too many reply recipients. Use Compose to choose recipients explicitly.',
+    'Die Nachricht enthält nicht unterstützte oder zu viele Antwortadressen. Mit „Verfassen“ die Empfänger ausdrücklich auswählen.',
+    'تحتوي الرسالة على عناوين رد غير مدعومة أو كثيرة جدًا. استخدم إنشاء رسالة لاختيار المستلمين صراحةً.',
   );
   String get mailInvalidSubject => _mailText(
     'Use a subject of at most 512 characters, without line breaks.',
@@ -104,6 +118,8 @@ extension StudioMailFeedback on StudioStrings {
     '[إعادة توجيه النص فقط؛ المرفقات غير مضمنة.]',
   );
   String get reply => _mailText('Reply', 'Antworten', 'رد');
+  String get replyAll =>
+      _mailText('Reply all', 'Allen antworten', 'رد على الجميع');
   String get forward => _mailText('Forward', 'Weiterleiten', 'إعادة توجيه');
   String get markRead =>
       _mailText('Mark as read', 'Als gelesen markieren', 'وضع علامة كمقروء');

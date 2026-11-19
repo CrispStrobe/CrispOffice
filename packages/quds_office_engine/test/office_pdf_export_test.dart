@@ -338,6 +338,75 @@ void main() {
     expect(_ascii(paired), contains('595.28'));
   });
 
+  test(
+    'PPT PDF uses changed master paper and preserves explicit slide fills',
+    () {
+      final PmlPresentation deck = PmlPresentation(
+        slides: <PmlSlide>[
+          PmlSlide(id: 256),
+          PmlSlide(id: 257, background: '0000FF'),
+        ],
+      );
+      for (final int perPage in <int>[1, 2]) {
+        deck.master.background = 'FF0000';
+        final String red = _inflated(
+          OfficePdfExport.presentation(deck, slidesPerPage: perPage),
+        ).join();
+        expect(red, contains('1 0 0 rg'));
+        expect(red, contains('0 0 1 rg'));
+        deck.master.background = '00FF00';
+        final String green = _inflated(
+          OfficePdfExport.presentation(deck, slidesPerPage: perPage),
+        ).join();
+        expect(green, contains('0 1 0 rg'));
+        expect(green, contains('0 0 1 rg'));
+        expect(green, isNot(contains('1 0 0 rg')));
+      }
+    },
+  );
+
+  test('PPT PDF applies scalar font edits to imported rich runs', () {
+    final PmlShape shape = PmlShape(
+      id: 2,
+      name: 'Rich',
+      text: 'Edited font',
+      fontSizePt: 18,
+      textColor: '000000',
+      fillColor: '',
+      transform: const PmlTransform(cx: 4572000, cy: 1270000),
+      textSource: const PmlTextSource(
+        xml: '',
+        text: 'Edited font',
+        fontSizePt: 18,
+        textColor: '000000',
+        textAlign: PmlTextAlign.left,
+        rightToLeft: null,
+      ),
+      richText: <PmlTextParagraph>[
+        PmlTextParagraph(
+          runs: <PmlTextRun>[
+            PmlTextRun(text: 'Edited font', fontSizePt: 18, color: '000000'),
+          ],
+        ),
+      ],
+    );
+    final PmlPresentation deck = PmlPresentation(
+      slides: <PmlSlide>[
+        PmlSlide(id: 256, shapes: <PmlShape>[shape]),
+      ],
+    );
+    final String before = _inflated(OfficePdfExport.presentation(deck)).join();
+    expect(before, contains(RegExp(r'/\S+ 18 Tf')));
+    shape
+      ..fontSizePt = 32
+      ..textColor = 'FF0000';
+    final String after = _inflated(OfficePdfExport.presentation(deck)).join();
+    expect(after, contains(RegExp(r'/\S+ 32 Tf')));
+    expect(after, isNot(contains(RegExp(r'/\S+ 18 Tf'))));
+    expect(after, contains('1 0 0 rg'));
+    expect(shape.richText.single.runs.single.fontSizePt, 18);
+  });
+
   test('fromBytes dispatches Word, Excel, and PowerPoint packages', () {
     final Uint8List docx = WordSerializer().writeBytes(
       WmlDocument.empty(text: 'Export me'),

@@ -441,6 +441,19 @@ class PmlShape {
     return resolved;
   }
 
+  /// Whether the unmodified imported runs still match scalar text formatting.
+  /// Renderers use [resolvedRichText] to apply edits while retaining run styles.
+  bool get hasCurrentRichText {
+    if (richText.isEmpty) return false;
+    final PmlTextSource? source = textSource;
+    return source == null ||
+        (source.text == text &&
+            source.fontSizePt == fontSizePt &&
+            source.textColor == textColor &&
+            source.textAlign == textAlign &&
+            source.rightToLeft == rightToLeft);
+  }
+
   /// Shapes that share a [groupId] move together.
   int? groupId;
 
@@ -527,13 +540,17 @@ class PmlSlide {
     List<PmlShape>? shapes,
     this.layoutName = 'Blank',
     this.masterName = 'Office Theme',
-    this.background = '',
+    String background = '',
+    bool? inheritsMasterBackground,
     this.notes = '',
     this.sourcePartUri,
     this.transition = const PmlSlideTransition(),
     List<PmlShapeAnimation>? animations,
     this.hidden = false,
-  }) : shapes = shapes ?? <PmlShape>[],
+  }) : _background = background,
+       inheritsMasterBackground =
+           inheritsMasterBackground ?? background.isEmpty,
+       shapes = shapes ?? <PmlShape>[],
        animations = animations ?? <PmlShapeAnimation>[];
 
   /// id API.
@@ -550,7 +567,25 @@ class PmlSlide {
 
   /// Resolved solid slide background (`RRGGBB`), inherited from layout/master.
   /// An empty value inherits the master for export and the display theme.
-  String background;
+  String get background => _background;
+
+  /// Assigning a nonempty color makes it an explicit slide fill. Clearing it
+  /// restores inheritance; master refreshes use [updateMasterBackground].
+  set background(String value) {
+    _background = value;
+    inheritsMasterBackground = value.isEmpty;
+  }
+
+  String _background;
+
+  /// Whether a master-background edit should update this slide's paper.
+  /// Explicit slide/layout fills remain independent of master edits.
+  bool inheritsMasterBackground;
+
+  /// Refreshes inherited paper without detaching it from future master edits.
+  void updateMasterBackground(String value) {
+    if (inheritsMasterBackground) _background = value;
+  }
 
   /// Original owning part, retained when slides are reordered.
   String? sourcePartUri;
@@ -574,6 +609,7 @@ class PmlSlide {
       layoutName: layoutName,
       masterName: masterName,
       background: background,
+      inheritsMasterBackground: inheritsMasterBackground,
       notes: notes,
       sourcePartUri: id == null || id == this.id ? sourcePartUri : null,
       transition: transition,

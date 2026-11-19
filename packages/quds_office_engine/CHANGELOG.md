@@ -8,6 +8,11 @@ All notable changes to `quds_office_engine` are documented here.
   Preserve inherited master backgrounds and apply scalar text-format edits to
   imported rich runs consistently in PDF export without changing source runs.
 
+- Add read-only paginated Zotero tag catalogs for libraries and collections,
+  with literal name preservation, containing/prefix searches, optional usage
+  metadata, validated requests and separate online/desktop routes. Keep manual
+  and automatic tag records distinct without combining their usage counts.
+
 - Extend `vba-excel` with local one-dimensional dynamic arrays, `ReDim`,
   `ReDim Preserve`, `Erase`, and module `Option Base 0/1`. Preserve element
   types, source evaluation order, enumeration locks, shared slot/string/work

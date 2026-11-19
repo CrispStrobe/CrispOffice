@@ -15525,6 +15525,9 @@ class SlideEditorController extends OfficeController {
       return;
     }
     presentation.master.background = rgb;
+    for (final PmlSlide slide in presentation.slides) {
+      slide.updateMasterBackground(rgb);
+    }
     notifyListeners();
   }
 }

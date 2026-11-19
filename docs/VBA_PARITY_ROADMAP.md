@@ -76,4 +76,3 @@ Report supported features, tested hosts and explicit missing behavior instead.
 - [ReDim statement](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/redim-statement)
 - [Erase statement](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/erase-statement)
 - [Option Base statement](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/option-base-statement)
-
