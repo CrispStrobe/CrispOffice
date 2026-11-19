@@ -2,24 +2,63 @@
 
 ## Qualification status
 
-**Final acceptance is pending.** Implementation and incremental remote
-checkpoints are recorded below; the combined frozen-source run has not yet
-produced this increment's accepted receipt. No final test total, passing source
-tree, or merge of this mail increment into remote main is claimed here.
+**Passed: 1,750 tests, zero failed, zero skipped**, across **95 selected test
+files and 10 cohorts**. All **20 required gates** passed. The accepted source is
+[`9bdef4895922ae74f6275e421af5665552d18b4e`](https://github.com/CrispStrobe/quds_office_suite/commit/9bdef4895922ae74f6275e421af5665552d18b4e),
+tree `b537d9f6f2c15657b0fc0b70ae825e347be681cd`.
+
+| Fresh cohort | Passed |
+| --- | ---: |
+| Mail core — VM | 54 |
+| Mail MIME — VM | 84 |
+| Mail store — VM | 462 |
+| Mail store — Node | 3 |
+| Mail transport — VM | 373 |
+| Mail transport — Node | 6 |
+| Language-ID synthetic | 22 |
+| Engine macros, VBA and operations | 341 |
+| Shared mail UI | 33 |
+| Studio mail | 372 |
+| **Total** | **1,750** |
+
+Strict analysis of **216 Dart targets**, formatting of **26 changed Dart
+files**, the C++ language-ID fixture build, shell syntax validation, and all
+three macro/VBA JavaScript compile-and-run pairs also passed. Command gates
+are separate from the test count. The run used the unchanged packaged SQLite
+native asset and performed no dependency resolution or manifest override.
+GitHub Actions were not queried or awaited.
+
+The before/after fingerprints match for **4,418 source inputs**, **9,298
+dependency inputs**, and **608 runtime/native files**. Git HEAD, tree,
+root production manifest and lockfile remained unchanged, and the checkout
+was clean at both boundaries. The independent audit matched every raw log,
+case list, planned file and gate; it found no non-JSON reporter lines.
+
+- [Acceptance receipt](receipt.json)
+- [Complete final run](final/receipt.json) and [compact receipt](final/compact-receipt.json)
+- [Independent audit](independent-audit.json)
+- [Publication identity check](publication-check.json)
+- [Frozen remote frontier](remote-frontier.json) and [reconciliation](reconciliation-refresh.json)
+- [Layout screenshots and provenance](screenshots/README.md)
+
+The first frozen attempt stopped at strict analysis on one export-directive
+ordering lint, before any test cohort ran. Its [failed receipt and raw logs](attempts/01-analysis/receipt.json)
+are retained separately. The fix only reordered public exports; the complete
+second run above supplies every accepted test count. Development runs and
+historical receipts are not pooled into this result.
 
 The executable contract is [run-local-validation.py](run-local-validation.py).
-An acceptance receipt is valid only when it records `status: passed`, stable
-inputs, and completion of every required gate with the exact planned test-file
-coverage. Missing, failed, interrupted or incomplete evidence is not a pass.
-Development runs and historical receipts are not added to the final total.
-GitHub Actions are neither queried nor awaited by this gate.
+Missing, failed, interrupted, skipped or incomplete evidence never counts as
+acceptance. The following publication adds documentation and evidence only;
+implementation, test, dependency and executed-harness identities are preserved
+by the publication check.
 
-The product workflows, resource limits and remaining MailStore gaps are in
+The workflows, resource limits and remaining MailStore gaps are in
 [the archive guide](../../roadmaps/mail/archive-search.md). The preceding
 [mail archive/search acceptance](../mail-archive-search-20261119/README.md)
-remains the historical evidence for the durable-storage milestone. The merged
-[VBA procedures acceptance](../office-vba-procedures-20261119/README.md) is also
-retained independently; its prior count does not qualify this combined tree.
+and merged [VBA procedures acceptance](../office-vba-procedures-20261119/README.md)
+remain separate historical evidence. Their previous totals do not qualify
+this combined source tree.
 
 ## Incoming work and preservation
 
@@ -68,7 +107,7 @@ set; remote main must still be checked again before the final merge.
 Work is saved incrementally to
 [`codex/mail-archive-portability-20261119`](https://github.com/CrispStrobe/quds_office_suite/tree/codex/mail-archive-portability-20261119)
 and tracked in [PR #205](https://github.com/CrispStrobe/quds_office_suite/pull/205).
-The following early checkpoints preserve the integration and implementation:
+The following checkpoints preserve integration, implementation and source freezes:
 
 | Checkpoint | Commit |
 | --- | --- |
@@ -78,9 +117,11 @@ The following early checkpoints preserve the integration and implementation:
 | Studio portability interface and core hardening | [`22601092c0c50a784a132c410984b0eeb18292f9`](https://github.com/CrispStrobe/quds_office_suite/commit/22601092c0c50a784a132c410984b0eeb18292f9) |
 | Reconcile published macOS build integration | [`50fca8d3b6eda2fc1827960b0a74101f387e74f7`](https://github.com/CrispStrobe/quds_office_suite/commit/50fca8d3b6eda2fc1827960b0a74101f387e74f7) |
 | Preserve the final integration-only frontier | [`cbeec827481e890340f4889014f1d507c00e08d1`](https://github.com/CrispStrobe/quds_office_suite/commit/cbeec827481e890340f4889014f1d507c00e08d1) |
+| Freeze source, remote frontier and qualification harness | [`5611724b7b40cf0c86aa180f0d3f1316d5a77c9f`](https://github.com/CrispStrobe/quds_office_suite/commit/5611724b7b40cf0c86aa180f0d3f1316d5a77c9f) |
+| Accepted source after export-order lint correction | [`9bdef4895922ae74f6275e421af5665552d18b4e`](https://github.com/CrispStrobe/quds_office_suite/commit/9bdef4895922ae74f6275e421af5665552d18b4e) |
 
 Checkpoints do not replace qualification of the final combined source. The
-acceptance receipt will identify its exact frozen commit and tree. Subsequent
+acceptance receipt identifies its exact frozen commit and tree. Subsequent
 evidence-only publication must preserve the tested implementation and test
 inputs; remote-main consistency must be checked after the final merge.
 
@@ -113,7 +154,7 @@ ownership. `.manifest.pending` and `.pending-*/original.eml` are staging data,
 not completed output. The native regression suite includes a real subprocess
 `SIGKILL` after the first original is published, owner-conflict detection before
 the kill, and two subsequent resumes that check exact output bytes and counts.
-This describes the test scenario; its final result belongs to the pending run.
+This scenario passed in the accepted native suite.
 See the [native exporter](../../../packages/quds_mail_store/lib/src/archive_export_native.dart)
 and its [regression suite](../../../packages/quds_mail_store/test/archive_export_native_test.dart).
 
@@ -257,7 +298,7 @@ choose an output directory that does not already exist:
 ```bash
 python3 docs/validation/mail-archive-portability-20261119/run-local-validation.py \
   --expect-head FULL_40_CHARACTER_COMMIT_SHA \
-  --output /workspace/scratch/b1a98f2b2c3b/portability-final-evidence \
+  --output /workspace/scratch/b1a98f2b2c3b/portability-reproduction-01 \
   --runtime-receipt /workspace/scratch/b1a98f2b2c3b/runtime/runtime.json \
   --readiness-receipt /workspace/scratch/b1a98f2b2c3b/runtime/readiness-receipt.json
 ```

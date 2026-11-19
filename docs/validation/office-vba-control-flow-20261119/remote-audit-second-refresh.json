@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "observed_at_utc": "2026-11-19T17:09:30Z",
+  "local_qualified_head": "983cfc3decfe639f9e5b9033f95617c361f847c8",
+  "integrated_mail_head": "5611724b7b40cf0c86aa180f0d3f1316d5a77c9f",
+  "integrated_gui_head": "e2d2aec69a4a2b6c7da6159c929563f1166ff94d",
+  "prs": [
+    {
+      "number": 205,
+      "state": "open",
+      "draft": true,
+      "merged": false,
+      "head": "9bdef4895922ae74f6275e421af5665552d18b4e",
+      "base": "304d4bff45da24f22cee420ec464882d7c7ce516",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/205"
+    },
+    {
+      "number": 206,
+      "state": "open",
+      "draft": true,
+      "merged": false,
+      "head": "e2d2aec69a4a2b6c7da6159c929563f1166ff94d",
+      "base": "304d4bff45da24f22cee420ec464882d7c7ce516",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/206"
+    }
+  ],
+  "mail_latest_change": {
+    "head": "9bdef4895922ae74f6275e421af5665552d18b4e",
+    "change": "Export-directive ordering only; same correction already in qualified source."
+  },
+  "author_validation": {
+    "mail": "docs/validation/mail-archive-portability-20261119/README.md at 5611724b explicitly says final acceptance pending. No accepted receipt or final count claimed.",
+    "gui": "No final qualification receipt observed at e2d2aec6; PR remains draft."
+  },
+  "gui_review": {
+    "scope": [
+      "studio_desktop_menu.dart",
+      "studio_ribbon_preferences.dart",
+      "studio_ribbon_customization.dart",
+      "studio_chrome.dart",
+      "studio_window.dart",
+      "suite_workspace.dart",
+      "macos/Runner/AppDelegate.swift",
+      "macos/Runner/MainFlutterWindow.swift"
+    ],
+    "result": "No obvious compile/API mismatch found in quick read-only review. Flutter platform menu classes and enum names, text-editing intents and ModalRoute.isCurrentOf checked against official pinned SDK source. No Flutter compilation/widget or AppKit runtime acceptance claimed.",
+    "api_sources": [
+      "https://raw.githubusercontent.com/flutter/flutter/3.47.8/packages/flutter/lib/src/widgets/platform_menu_bar.dart",
+      "https://raw.githubusercontent.com/flutter/flutter/3.47.8/packages/flutter/lib/src/widgets/routes.dart",
+      "https://raw.githubusercontent.com/flutter/flutter/3.47.8/packages/flutter/lib/src/widgets/text_editing_intents.dart"
+    ]
+  }
+}

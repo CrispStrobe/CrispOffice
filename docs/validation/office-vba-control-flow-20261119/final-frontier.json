@@ -1,0 +1,1391 @@
+{
+  "schema_version": 1,
+  "repository": "CrispStrobe/quds_office_suite",
+  "observed_at_utc": "2026-11-19T17:18:45Z",
+  "completed_at_utc": "2026-11-19T17:19:44Z",
+  "method": "Read-only GitHub plugin GET branches, PRs, compare, commits, validation directory and README. Local git status/read only. No CI queries or mutations.",
+  "main": "304d4bff45da24f22cee420ec464882d7c7ce516",
+  "published_macro_head": "6fd1f9765d5ee751b910d24b89a34e08d01251c9",
+  "branches": [
+    {
+      "name": "codex/crispoffice-gui-20261119",
+      "head": "6c10cc30e61f4fd1333b0a385989cf6b3cdf1788",
+      "protected": false
+    },
+    {
+      "name": "codex/mail-archive-portability-20261119",
+      "head": "9bdef4895922ae74f6275e421af5665552d18b4e",
+      "protected": false
+    },
+    {
+      "name": "codex/mail-archive-search-20261119",
+      "head": "aa9fb9de14347ed69182be90f13c99a443a0ecbb",
+      "protected": false
+    },
+    {
+      "name": "codex/mail-providers-20261119",
+      "head": "e00ca1495551ffaf61dd9b3ee7770f8bfde7e897",
+      "protected": false
+    },
+    {
+      "name": "codex/mcp-aligned-macros",
+      "head": "3c1764f5ff8bf9f89e090ef4e04e3142c4ccf90a",
+      "protected": false
+    },
+    {
+      "name": "codex/odt-field-continuation-20261117",
+      "head": "c34945761e7991f5fe49037d79529acdd260b31c",
+      "protected": false
+    },
+    {
+      "name": "codex/office-validation-recovery-20261119",
+      "head": "623057111a9179552eb02b21a753a1728de9905d",
+      "protected": false
+    },
+    {
+      "name": "codex/vba-control-flow-20261119",
+      "head": "6fd1f9765d5ee751b910d24b89a34e08d01251c9",
+      "protected": false
+    },
+    {
+      "name": "codex/vba-excel-macros",
+      "head": "d98c8ae020a60715fbb02f5332b2f3414fb6805b",
+      "protected": false
+    },
+    {
+      "name": "codex/vba-procedures-20261119",
+      "head": "3db248be978b24d0693d1133505d9be200fd1256",
+      "protected": false
+    },
+    {
+      "name": "docs/ods-color-scale",
+      "head": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+      "protected": false
+    },
+    {
+      "name": "docs/ods-data-bar",
+      "head": "69d14f84cabd3931b7640c1654b401c89faba766",
+      "protected": false
+    },
+    {
+      "name": "feat/arabic-morph-binary-20261119",
+      "head": "555fc99fdeb8ef7f3043513203cb16b243a4a9d7",
+      "protected": false
+    },
+    {
+      "name": "feat/ews-on-premises",
+      "head": "f20b3c61d28918cd75526c64852c41fae943acf3",
+      "protected": false
+    },
+    {
+      "name": "feat/ods-color-scale",
+      "head": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+      "protected": false
+    },
+    {
+      "name": "feat/ods-data-bar",
+      "head": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+      "protected": false
+    },
+    {
+      "name": "feat/ods-dynamic-validation-links",
+      "head": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+      "protected": false
+    },
+    {
+      "name": "feat/ods-icon-sets",
+      "head": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
+      "protected": false
+    },
+    {
+      "name": "feat/ods-time-period-conditions",
+      "head": "7ef09f2408f467c65427700e65907531ecb26acb",
+      "protected": false
+    },
+    {
+      "name": "feat/paragraph-language-id-20261119",
+      "head": "ff71fa44c693ee2a30fb0372eac206af257c8477",
+      "protected": false
+    },
+    {
+      "name": "integrate/macbook-build-20261119",
+      "head": "d5abf0e09d9fef6a29821f412f791c1284d62be8",
+      "protected": false
+    },
+    {
+      "name": "integrate/macbook-current-20261118",
+      "head": "f383c826205e321eda3ed3bdbcd584e9a2d4da14",
+      "protected": false
+    },
+    {
+      "name": "integrate/office-union-148",
+      "head": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+      "protected": false
+    },
+    {
+      "name": "main",
+      "head": "304d4bff45da24f22cee420ec464882d7c7ce516",
+      "protected": false
+    }
+  ],
+  "open_prs": [
+    {
+      "number": 207,
+      "title": "Extend bounded VBA macros with conditional loops and Select Case",
+      "state": "open",
+      "draft": true,
+      "head": "6fd1f9765d5ee751b910d24b89a34e08d01251c9",
+      "base": "304d4bff45da24f22cee420ec464882d7c7ce516",
+      "updated_at": "2026-11-19T17:14:23Z"
+    },
+    {
+      "number": 206,
+      "title": "Improve CrispOffice ribbons and native desktop chrome [skip ci]",
+      "state": "open",
+      "draft": true,
+      "head": "6c10cc30e61f4fd1333b0a385989cf6b3cdf1788",
+      "base": "304d4bff45da24f22cee420ec464882d7c7ce516",
+      "updated_at": "2026-11-19T17:14:37Z"
+    },
+    {
+      "number": 205,
+      "title": "Add resumable bulk mail export and recursive archive import [skip ci]",
+      "state": "open",
+      "draft": true,
+      "head": "9bdef4895922ae74f6275e421af5665552d18b4e",
+      "base": "304d4bff45da24f22cee420ec464882d7c7ce516",
+      "updated_at": "2026-11-19T17:07:32Z"
+    }
+  ],
+  "tracked_prs": [
+    {
+      "number": 205,
+      "title": "Add resumable bulk mail export and recursive archive import [skip ci]",
+      "state": "open",
+      "draft": true,
+      "merged": false,
+      "mergeable": true,
+      "base": "main",
+      "base_sha": "304d4bff45da24f22cee420ec464882d7c7ce516",
+      "head": "codex/mail-archive-portability-20261119",
+      "head_sha": "9bdef4895922ae74f6275e421af5665552d18b4e",
+      "updated_at": "2026-11-19T17:07:32Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/205"
+    },
+    {
+      "number": 206,
+      "title": "Improve CrispOffice ribbons and native desktop chrome [skip ci]",
+      "state": "open",
+      "draft": true,
+      "merged": false,
+      "mergeable": true,
+      "base": "main",
+      "base_sha": "304d4bff45da24f22cee420ec464882d7c7ce516",
+      "head": "codex/crispoffice-gui-20261119",
+      "head_sha": "6c10cc30e61f4fd1333b0a385989cf6b3cdf1788",
+      "updated_at": "2026-11-19T17:14:37Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/206"
+    }
+  ],
+  "mail": {
+    "head": "9bdef4895922ae74f6275e421af5665552d18b4e",
+    "new_changes_since_integrated_head": 0,
+    "status": "Unchanged; current macro branch contains this exact head as ancestor.",
+    "relation": {
+      "repository_full_name": "CrispStrobe/quds_office_suite",
+      "base": "9bdef4895922ae74f6275e421af5665552d18b4e",
+      "head": "6fd1f9765d5ee751b910d24b89a34e08d01251c9",
+      "status": "ahead",
+      "ahead_by": 5,
+      "behind_by": 0,
+      "total_commits": 5,
+      "too_large": null,
+      "base_commit": {
+        "sha": "9bdef4895922ae74f6275e421af5665552d18b4e",
+        "url": "https://api.github.com/repos/CrispStrobe/quds_office_suite/commits/9bdef4895922ae74f6275e421af5665552d18b4e",
+        "html_url": "https://github.com/CrispStrobe/quds_office_suite/commit/9bdef4895922ae74f6275e421af5665552d18b4e"
+      },
+      "merge_base_commit": {
+        "sha": "9bdef4895922ae74f6275e421af5665552d18b4e",
+        "url": "https://api.github.com/repos/CrispStrobe/quds_office_suite/commits/9bdef4895922ae74f6275e421af5665552d18b4e",
+        "html_url": "https://github.com/CrispStrobe/quds_office_suite/commit/9bdef4895922ae74f6275e421af5665552d18b4e"
+      },
+      "files": [
+        {
+          "filename": ".github/workflows/office-macros.yml",
+          "status": "modified",
+          "additions": 5,
+          "deletions": 0,
+          "changes": 5,
+          "previous_filename": null
+        },
+        {
+          "filename": "README.md",
+          "status": "modified",
+          "additions": 6,
+          "deletions": 4,
+          "changes": 10,
+          "previous_filename": null
+        },
+        {
+          "filename": "docs/MACROS.md",
+          "status": "modified",
+          "additions": 37,
+          "deletions": 16,
+          "changes": 53,
+          "previous_filename": null
+        },
+        {
+          "filename": "docs/VBA_MACROS.md",
+          "status": "modified",
+          "additions": 100,
+          "deletions": 11,
+          "changes": 111,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_mail_store/lib/src/archive_export_models.dart",
+          "status": "modified",
+          "additions": 43,
+          "deletions": 27,
+          "changes": 70,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_mail_store/test/archive_export_manifest_test.dart",
+          "status": "added",
+          "additions": 70,
+          "deletions": 0,
+          "changes": 70,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_mail_store/test/archive_export_plan_test.dart",
+          "status": "modified",
+          "additions": 21,
+          "deletions": 0,
+          "changes": 21,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_editor/CHANGELOG.md",
+          "status": "modified",
+          "additions": 4,
+          "deletions": 0,
+          "changes": 4,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_editor/example/lib/studio_chrome.dart",
+          "status": "modified",
+          "additions": 297,
+          "deletions": 70,
+          "changes": 367,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_editor/example/lib/studio_desktop_menu.dart",
+          "status": "added",
+          "additions": 180,
+          "deletions": 0,
+          "changes": 180,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_editor/example/lib/studio_hunspell_setup.dart",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 1,
+          "changes": 2,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_editor/example/lib/studio_pdf_flutter_samples.dart",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 1,
+          "changes": 2,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_editor/example/lib/studio_pdf_toc_samples.dart",
+          "status": "modified",
+          "additions": 3,
+          "deletions": 3,
+          "changes": 6,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_editor/example/lib/studio_ribbon_customization.dart",
+          "status": "added",
+          "additions": 339,
+          "deletions": 0,
+          "changes": 339,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_editor/example/lib/studio_ribbon_preferences.dart",
+          "status": "added",
+          "additions": 196,
+          "deletions": 0,
+          "changes": 196,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_editor/example/lib/studio_window.dart",
+          "status": "modified",
+          "additions": 74,
+          "deletions": 6,
+          "changes": 80,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_editor/example/lib/suite_workspace.dart",
+          "status": "modified",
+          "additions": 1255,
+          "deletions": 607,
+          "changes": 1862,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_editor/example/macos/Runner/AppDelegate.swift",
+          "status": "modified",
+          "additions": 30,
+          "deletions": 0,
+          "changes": 30,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_editor/example/macos/Runner/MainFlutterWindow.swift",
+          "status": "modified",
+          "additions": 12,
+          "deletions": 0,
+          "changes": 12,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_editor/example/web/index.html",
+          "status": "modified",
+          "additions": 2,
+          "deletions": 2,
+          "changes": 4,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_editor/example/web/manifest.json",
+          "status": "modified",
+          "additions": 3,
+          "deletions": 3,
+          "changes": 6,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+          "status": "modified",
+          "additions": 7,
+          "deletions": 7,
+          "changes": 14,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_editor/test/word_review_controller_test.dart",
+          "status": "modified",
+          "additions": 35,
+          "deletions": 2,
+          "changes": 37,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_editor/test/word_review_dialog_test.dart",
+          "status": "modified",
+          "additions": 10,
+          "deletions": 0,
+          "changes": 10,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/CHANGELOG.md",
+          "status": "modified",
+          "additions": 4,
+          "deletions": 0,
+          "changes": 4,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/example/macros/control_flow_report.bas",
+          "status": "added",
+          "additions": 53,
+          "deletions": 0,
+          "changes": 53,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+          "status": "modified",
+          "additions": 438,
+          "deletions": 151,
+          "changes": 589,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/lib/src/automation/operations/word_structure_steps.dart",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 1,
+          "changes": 2,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/lib/src/builders/docx_builder.dart",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 1,
+          "changes": 2,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/lib/src/office/office_document_properties.dart",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 1,
+          "changes": 2,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/lib/src/pdf/office_pdf_export.dart",
+          "status": "modified",
+          "additions": 4,
+          "deletions": 4,
+          "changes": 8,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/lib/src/pdf/pdf_document.dart",
+          "status": "modified",
+          "additions": 6,
+          "deletions": 6,
+          "changes": 12,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/lib/src/pdf/pdf_report_builder.dart",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 1,
+          "changes": 2,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/lib/src/pdf/samples/literary_arabic.dart",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 1,
+          "changes": 2,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/lib/src/pdf/samples/widgets_catalog.dart",
+          "status": "modified",
+          "additions": 2,
+          "deletions": 2,
+          "changes": 4,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/lib/src/pdf/widgets/pw_core.dart",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 1,
+          "changes": 2,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/lib/src/reports/report_templates.dart",
+          "status": "modified",
+          "additions": 2,
+          "deletions": 2,
+          "changes": 4,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_reader.dart",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 1,
+          "changes": 2,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 1,
+          "changes": 2,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/lib/src/sheet/model/sml_analysis.dart",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 1,
+          "changes": 2,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/lib/src/slide/serial/odp_presentation_writer.dart",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 1,
+          "changes": 2,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/lib/src/word/model/wml_document.dart",
+          "status": "modified",
+          "additions": 2,
+          "deletions": 2,
+          "changes": 4,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/lib/src/word/model/word_revision.dart",
+          "status": "modified",
+          "additions": 2,
+          "deletions": 2,
+          "changes": 4,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 1,
+          "changes": 2,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 1,
+          "changes": 2,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+          "status": "modified",
+          "additions": 2,
+          "deletions": 2,
+          "changes": 4,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/test/ods_sheet_reader_test.dart",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 1,
+          "changes": 2,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/test/office_vba_control_flow_boundaries_test.dart",
+          "status": "added",
+          "additions": 338,
+          "deletions": 0,
+          "changes": 338,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/test/office_vba_control_flow_integration_test.dart",
+          "status": "added",
+          "additions": 373,
+          "deletions": 0,
+          "changes": 373,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/test/office_vba_control_flow_test.dart",
+          "status": "added",
+          "additions": 559,
+          "deletions": 0,
+          "changes": 559,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/tool/macros/web_vba_control_flow_smoke.dart",
+          "status": "added",
+          "additions": 254,
+          "deletions": 0,
+          "changes": 254,
+          "previous_filename": null
+        }
+      ]
+    },
+    "author_acceptance": "README at this head explicitly says Final acceptance is pending. No final accepted author receipt."
+  },
+  "gui": {
+    "integrated_head": "e2d2aec69a4a2b6c7da6159c929563f1166ff94d",
+    "current_head": "6c10cc30e61f4fd1333b0a385989cf6b3cdf1788",
+    "classification": "New source and tests; not validation-only or docs-only.",
+    "new_nonmerge_commit": {
+      "sha": "6c10cc30e61f4fd1333b0a385989cf6b3cdf1788",
+      "message": "Harden configurable ribbon commands and desktop file lifecycle [skip ci]",
+      "parents": [
+        "4af87c0de2814a9ab25fe678801e24b4e3c6dd29"
+      ],
+      "files": [
+        {
+          "path": "packages/quds_office_editor/CHANGELOG.md",
+          "status": "modified",
+          "additions": 6,
+          "deletions": 0
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/studio_chrome.dart",
+          "status": "modified",
+          "additions": 56,
+          "deletions": 35
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/studio_ribbon_preferences.dart",
+          "status": "modified",
+          "additions": 7,
+          "deletions": 3
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/studio_window.dart",
+          "status": "modified",
+          "additions": 8,
+          "deletions": 0
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/suite_workspace.dart",
+          "status": "modified",
+          "additions": 142,
+          "deletions": 161
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 1
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+          "status": "modified",
+          "additions": 5,
+          "deletions": 5
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_desktop_menu_test.dart",
+          "status": "added",
+          "additions": 298,
+          "deletions": 0
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_file_menu_test.dart",
+          "status": "added",
+          "additions": 243,
+          "deletions": 0
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_review_pane_test.dart",
+          "status": "modified",
+          "additions": 3,
+          "deletions": 3
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_ribbon_customization_test.dart",
+          "status": "added",
+          "additions": 298,
+          "deletions": 0
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_ribbon_preferences_test.dart",
+          "status": "added",
+          "additions": 217,
+          "deletions": 0
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_saved_mail_test.dart",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 1
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_sheet_navigation_test.dart",
+          "status": "modified",
+          "additions": 2,
+          "deletions": 2
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_shots_test.dart",
+          "status": "modified",
+          "additions": 2,
+          "deletions": 2
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+          "status": "modified",
+          "additions": 8,
+          "deletions": 2
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/widget_test.dart",
+          "status": "modified",
+          "additions": 4,
+          "deletions": 4
+        },
+        {
+          "path": "packages/quds_office_editor/lib/src/embed/pdf_controller.dart",
+          "status": "modified",
+          "additions": 113,
+          "deletions": 13
+        },
+        {
+          "path": "packages/quds_office_editor/test/pdf_save_state_test.dart",
+          "status": "added",
+          "additions": 139,
+          "deletions": 0
+        }
+      ]
+    },
+    "integration_commits": [
+      {
+        "sha": "c83a2d6556c0d910fdc1c105521f6f632091994d",
+        "message": "Reconcile latest archive portability before GUI acceptance [skip ci]",
+        "parents": [
+          "e2d2aec69a4a2b6c7da6159c929563f1166ff94d",
+          "9bdef4895922ae74f6275e421af5665552d18b4e"
+        ]
+      },
+      {
+        "sha": "4af87c0de2814a9ab25fe678801e24b4e3c6dd29",
+        "message": "Integrate current VBA control flow and archive validation fixes [skip ci]",
+        "parents": [
+          "c83a2d6556c0d910fdc1c105521f6f632091994d",
+          "7aa6ebbceadc86aa3195560ce2bb7f00533757f8"
+        ]
+      }
+    ],
+    "product_files": [
+      {
+        "path": "packages/quds_office_editor/example/lib/studio_chrome.dart",
+        "additions": 56,
+        "deletions": 35
+      },
+      {
+        "path": "packages/quds_office_editor/example/lib/studio_ribbon_preferences.dart",
+        "additions": 7,
+        "deletions": 3
+      },
+      {
+        "path": "packages/quds_office_editor/example/lib/studio_window.dart",
+        "additions": 8,
+        "deletions": 0
+      },
+      {
+        "path": "packages/quds_office_editor/example/lib/suite_workspace.dart",
+        "additions": 142,
+        "deletions": 161
+      },
+      {
+        "path": "packages/quds_office_editor/lib/src/embed/pdf_controller.dart",
+        "additions": 113,
+        "deletions": 13
+      }
+    ],
+    "test_files": [
+      {
+        "path": "packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 1
+      },
+      {
+        "path": "packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "status": "modified",
+        "additions": 5,
+        "deletions": 5
+      },
+      {
+        "path": "packages/quds_office_editor/example/test/studio_desktop_menu_test.dart",
+        "status": "added",
+        "additions": 298,
+        "deletions": 0
+      },
+      {
+        "path": "packages/quds_office_editor/example/test/studio_file_menu_test.dart",
+        "status": "added",
+        "additions": 243,
+        "deletions": 0
+      },
+      {
+        "path": "packages/quds_office_editor/example/test/studio_review_pane_test.dart",
+        "status": "modified",
+        "additions": 3,
+        "deletions": 3
+      },
+      {
+        "path": "packages/quds_office_editor/example/test/studio_ribbon_customization_test.dart",
+        "status": "added",
+        "additions": 298,
+        "deletions": 0
+      },
+      {
+        "path": "packages/quds_office_editor/example/test/studio_ribbon_preferences_test.dart",
+        "status": "added",
+        "additions": 217,
+        "deletions": 0
+      },
+      {
+        "path": "packages/quds_office_editor/example/test/studio_saved_mail_test.dart",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 1
+      },
+      {
+        "path": "packages/quds_office_editor/example/test/studio_sheet_navigation_test.dart",
+        "status": "modified",
+        "additions": 2,
+        "deletions": 2
+      },
+      {
+        "path": "packages/quds_office_editor/example/test/studio_shots_test.dart",
+        "status": "modified",
+        "additions": 2,
+        "deletions": 2
+      },
+      {
+        "path": "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+        "status": "modified",
+        "additions": 8,
+        "deletions": 2
+      },
+      {
+        "path": "packages/quds_office_editor/example/test/widget_test.dart",
+        "status": "modified",
+        "additions": 4,
+        "deletions": 4
+      },
+      {
+        "path": "packages/quds_office_editor/test/pdf_save_state_test.dart",
+        "status": "added",
+        "additions": 139,
+        "deletions": 0
+      }
+    ],
+    "production_engine_or_mail_changed_by_new_tip": false,
+    "relation_to_macro": {
+      "repository_full_name": "CrispStrobe/quds_office_suite",
+      "base": "6fd1f9765d5ee751b910d24b89a34e08d01251c9",
+      "head": "6c10cc30e61f4fd1333b0a385989cf6b3cdf1788",
+      "status": "diverged",
+      "ahead_by": 3,
+      "behind_by": 2,
+      "total_commits": 3,
+      "too_large": null,
+      "base_commit": {
+        "sha": "6fd1f9765d5ee751b910d24b89a34e08d01251c9",
+        "url": "https://api.github.com/repos/CrispStrobe/quds_office_suite/commits/6fd1f9765d5ee751b910d24b89a34e08d01251c9",
+        "html_url": "https://github.com/CrispStrobe/quds_office_suite/commit/6fd1f9765d5ee751b910d24b89a34e08d01251c9"
+      },
+      "merge_base_commit": {
+        "sha": "9bdef4895922ae74f6275e421af5665552d18b4e",
+        "url": "https://api.github.com/repos/CrispStrobe/quds_office_suite/commits/9bdef4895922ae74f6275e421af5665552d18b4e",
+        "html_url": "https://github.com/CrispStrobe/quds_office_suite/commit/9bdef4895922ae74f6275e421af5665552d18b4e"
+      },
+      "files": [
+        {
+          "filename": "packages/quds_mail_store/lib/src/archive_export_models.dart",
+          "status": "modified",
+          "additions": 43,
+          "deletions": 27,
+          "changes": 70,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_mail_store/test/archive_export_manifest_test.dart",
+          "status": "added",
+          "additions": 70,
+          "deletions": 0,
+          "changes": 70,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_mail_store/test/archive_export_plan_test.dart",
+          "status": "modified",
+          "additions": 21,
+          "deletions": 0,
+          "changes": 21,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_editor/CHANGELOG.md",
+          "status": "modified",
+          "additions": 10,
+          "deletions": 0,
+          "changes": 10,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_editor/example/lib/studio_chrome.dart",
+          "status": "modified",
+          "additions": 344,
+          "deletions": 96,
+          "changes": 440,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_editor/example/lib/studio_desktop_menu.dart",
+          "status": "added",
+          "additions": 180,
+          "deletions": 0,
+          "changes": 180,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_editor/example/lib/studio_hunspell_setup.dart",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 1,
+          "changes": 2,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_editor/example/lib/studio_pdf_flutter_samples.dart",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 1,
+          "changes": 2,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_editor/example/lib/studio_pdf_toc_samples.dart",
+          "status": "modified",
+          "additions": 3,
+          "deletions": 3,
+          "changes": 6,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_editor/example/lib/studio_ribbon_customization.dart",
+          "status": "added",
+          "additions": 339,
+          "deletions": 0,
+          "changes": 339,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_editor/example/lib/studio_ribbon_preferences.dart",
+          "status": "added",
+          "additions": 200,
+          "deletions": 0,
+          "changes": 200,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_editor/example/lib/studio_window.dart",
+          "status": "modified",
+          "additions": 82,
+          "deletions": 6,
+          "changes": 88,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_editor/example/lib/suite_workspace.dart",
+          "status": "modified",
+          "additions": 1376,
+          "deletions": 747,
+          "changes": 2123,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_editor/example/macos/Runner/AppDelegate.swift",
+          "status": "modified",
+          "additions": 30,
+          "deletions": 0,
+          "changes": 30,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_editor/example/macos/Runner/MainFlutterWindow.swift",
+          "status": "modified",
+          "additions": 12,
+          "deletions": 0,
+          "changes": 12,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 1,
+          "changes": 2,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+          "status": "modified",
+          "additions": 5,
+          "deletions": 5,
+          "changes": 10,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_editor/example/test/studio_desktop_menu_test.dart",
+          "status": "added",
+          "additions": 298,
+          "deletions": 0,
+          "changes": 298,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_editor/example/test/studio_file_menu_test.dart",
+          "status": "added",
+          "additions": 243,
+          "deletions": 0,
+          "changes": 243,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_editor/example/test/studio_review_pane_test.dart",
+          "status": "modified",
+          "additions": 3,
+          "deletions": 3,
+          "changes": 6,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_editor/example/test/studio_ribbon_customization_test.dart",
+          "status": "added",
+          "additions": 298,
+          "deletions": 0,
+          "changes": 298,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_editor/example/test/studio_ribbon_preferences_test.dart",
+          "status": "added",
+          "additions": 217,
+          "deletions": 0,
+          "changes": 217,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_editor/example/test/studio_saved_mail_test.dart",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 1,
+          "changes": 2,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_editor/example/test/studio_sheet_navigation_test.dart",
+          "status": "modified",
+          "additions": 2,
+          "deletions": 2,
+          "changes": 4,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_editor/example/test/studio_shots_test.dart",
+          "status": "modified",
+          "additions": 2,
+          "deletions": 2,
+          "changes": 4,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+          "status": "modified",
+          "additions": 8,
+          "deletions": 2,
+          "changes": 10,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_editor/example/test/widget_test.dart",
+          "status": "modified",
+          "additions": 4,
+          "deletions": 4,
+          "changes": 8,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_editor/example/web/index.html",
+          "status": "modified",
+          "additions": 2,
+          "deletions": 2,
+          "changes": 4,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_editor/example/web/manifest.json",
+          "status": "modified",
+          "additions": 3,
+          "deletions": 3,
+          "changes": 6,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+          "status": "modified",
+          "additions": 7,
+          "deletions": 7,
+          "changes": 14,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_editor/lib/src/embed/pdf_controller.dart",
+          "status": "modified",
+          "additions": 113,
+          "deletions": 13,
+          "changes": 126,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_editor/test/pdf_save_state_test.dart",
+          "status": "added",
+          "additions": 139,
+          "deletions": 0,
+          "changes": 139,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_editor/test/word_review_controller_test.dart",
+          "status": "modified",
+          "additions": 35,
+          "deletions": 2,
+          "changes": 37,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_editor/test/word_review_dialog_test.dart",
+          "status": "modified",
+          "additions": 10,
+          "deletions": 0,
+          "changes": 10,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/CHANGELOG.md",
+          "status": "modified",
+          "additions": 4,
+          "deletions": 0,
+          "changes": 4,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/example/macros/control_flow_report.bas",
+          "status": "added",
+          "additions": 53,
+          "deletions": 0,
+          "changes": 53,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+          "status": "modified",
+          "additions": 286,
+          "deletions": 54,
+          "changes": 340,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/lib/src/automation/operations/word_structure_steps.dart",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 1,
+          "changes": 2,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/lib/src/builders/docx_builder.dart",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 1,
+          "changes": 2,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/lib/src/office/office_document_properties.dart",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 1,
+          "changes": 2,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/lib/src/pdf/office_pdf_export.dart",
+          "status": "modified",
+          "additions": 4,
+          "deletions": 4,
+          "changes": 8,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/lib/src/pdf/pdf_document.dart",
+          "status": "modified",
+          "additions": 6,
+          "deletions": 6,
+          "changes": 12,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/lib/src/pdf/pdf_report_builder.dart",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 1,
+          "changes": 2,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/lib/src/pdf/samples/literary_arabic.dart",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 1,
+          "changes": 2,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/lib/src/pdf/samples/widgets_catalog.dart",
+          "status": "modified",
+          "additions": 2,
+          "deletions": 2,
+          "changes": 4,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/lib/src/pdf/widgets/pw_core.dart",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 1,
+          "changes": 2,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/lib/src/reports/report_templates.dart",
+          "status": "modified",
+          "additions": 2,
+          "deletions": 2,
+          "changes": 4,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_reader.dart",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 1,
+          "changes": 2,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 1,
+          "changes": 2,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/lib/src/sheet/model/sml_analysis.dart",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 1,
+          "changes": 2,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/lib/src/slide/serial/odp_presentation_writer.dart",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 1,
+          "changes": 2,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/lib/src/word/model/wml_document.dart",
+          "status": "modified",
+          "additions": 2,
+          "deletions": 2,
+          "changes": 4,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/lib/src/word/model/word_revision.dart",
+          "status": "modified",
+          "additions": 2,
+          "deletions": 2,
+          "changes": 4,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 1,
+          "changes": 2,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 1,
+          "changes": 2,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+          "status": "modified",
+          "additions": 2,
+          "deletions": 2,
+          "changes": 4,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/test/ods_sheet_reader_test.dart",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 1,
+          "changes": 2,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/test/office_vba_control_flow_boundaries_test.dart",
+          "status": "added",
+          "additions": 338,
+          "deletions": 0,
+          "changes": 338,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/test/office_vba_control_flow_integration_test.dart",
+          "status": "added",
+          "additions": 373,
+          "deletions": 0,
+          "changes": 373,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/test/office_vba_control_flow_test.dart",
+          "status": "added",
+          "additions": 523,
+          "deletions": 0,
+          "changes": 523,
+          "previous_filename": null
+        }
+      ]
+    },
+    "comparison_caveat": "The comparison has multiple shared integration histories. Chosen three-dot merge base is 9bdef489; its file list includes source already present on both branches. The genuine new source delta is commit 6c10cc30 relative to parent 4af87c0d; retain the macro branch's newer compiler/docs/tests.",
+    "author_acceptance": "PR remains draft. No dedicated GUI final validation receipt directory observed at this head."
+  },
+  "recommendation": [
+    "Remote main remains 304d4bff; preserve it as an ancestor and re-read immediately before/after final merge.",
+    "Mail source is already incorporated; no additional mail source reconciliation is needed at this observation.",
+    "Integrate the editor-only GUI 6c10 delta preserving the macro branch's newer descendants of 7aa6; parent assigned pinned Flutter targeted validation to macro_compiler.",
+    "Run the five new GUI/PDF tests and relevant changed widget tests on the merged snapshot; existing macro/branding/mail counts do not establish these new UI behaviors.",
+    "Keep active draft PRs open unless their own work has actually completed; do not claim unobserved author acceptance or native macOS runtime qualification."
+  ]
+}

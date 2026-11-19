@@ -1,0 +1,11 @@
+00:00 +0: loading test/office_vba_control_flow_integration_test.dart
+00:00 +0: conditional control flow through the atomic runtime committed report compiles, round trips, validates, and runs
+00:00 +1: conditional control flow through the atomic runtime a failure in a later selected case rolls back every loop write
+00:00 +2: conditional control flow through the atomic runtime loop and case plans retain host policy restrictions
+00:00 +3: conditional control flow through MCP compilation, validation, and saved-plan playback share the new dialect
+00:00 +4: conditional control flow through MCP nonterminating source produces structured bounded diagnostics
+00:00 +5: conditional control flow through actual CLI processes BAS and saved native plans produce the same report
+00:32 +6: conditional control flow through actual CLI processes a custom entry invokes loops and cases in helpers
+00:40 +7: conditional control flow through actual CLI processes late selected-case failure preserves existing input and output files
+00:49 +8: conditional control flow through actual CLI processes a compile work limit preserves a previously saved plan
+00:57 +9: All tests passed!

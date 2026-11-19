@@ -1,0 +1,16 @@
+{
+  "implementation_commit": "8005b04b5144caf38a123c29713142a392d09604",
+  "implementation_tree": "c447dc92c865a84324dbe776b8286a8e7c177eaf",
+  "acceptance_started_from_commit": "6fd1f9765d5ee751b910d24b89a34e08d01251c9",
+  "explanation": "Exact input hashes bind accepted content across incremental publications. The correction receipt retains the 427-test evidence and replaces the two changed test/smoke inputs with their successful targeted rerun. The final incoming GUI merge changed editor files only. Scratch dependency-resolution metadata is recorded in acceptance receipts but is not repository content.",
+  "repository_input_count": 1048,
+  "scratch_input_keys": [
+    "validation-workspace/.dart_tool/package_config.json",
+    "validation-workspace/pubspec.yaml",
+    "validation-workspace/pubspec.lock"
+  ],
+  "local_hash_mismatches": [],
+  "published_commit_hash_mismatches": [],
+  "implementation_matches_recorded_inputs": true,
+  "github_actions_awaited": false
+}

@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+- Add transactional `SqliteMailArchive.planExport` for an immutable selection of
+  every matching original, its size and provenance, independent of paging.
+- Add native bulk EML export and explicit manifest-based resume with profile
+  binding, exact-byte/hash verification, ownership, staging and per-run counts.
+  Preserve conflicting files and refuse plans exceeding configured budgets.
+- Add `enumerateMailArchiveDirectory` for bounded, cancellable EML/MBOX walks,
+  optional recursion, relative provenance paths, link rejection and explicit
+  limits/errors. Skip recognized export staging without importing its manifest.
 - Add a physically separate durable mail archive with exact original bytes,
   SHA-256 deduplication, transactional provenance/index writes, bounded FTS5
   query syntax, filters, saved searches and credentials-free archive profiles.

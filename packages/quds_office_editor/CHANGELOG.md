@@ -14,6 +14,15 @@ All notable changes to `quds_office_editor` are documented here.
   save can mark the document clean without clearing undo or mutating live PDF
   object identifiers while writing.
 
+- Add native Studio bulk export for all matching archive results and explicit
+  resume of an existing export directory. Freeze the selection and provenance,
+  verify exact originals, preserve conflicts and report each run's written,
+  existing and failed counts with cancellation and EN/DE/AR feedback.
+- Add native directory import with optional recursion, explicit MBOX dialect,
+  bounded traversal/parsing and relative-folder provenance. Recheck source
+  files, preserve them unchanged, skip recognized export staging and distinguish
+  completed, partial, limited and cancelled outcomes. Generic EML reimport does
+  not restore exported manifest provenance, profiles or saved searches.
 - Add a native Mail archive with EML/streamed MBOX import, connected-message and
   selected-folder collection, local FTS search and filters, saved searches,
   exact-original EML export, integrity checks and index rebuilding. Include

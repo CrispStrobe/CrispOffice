@@ -1,0 +1,114 @@
+{
+  "base": "4af87c0de2814a9ab25fe678801e24b4e3c6dd29",
+  "head": "6c10cc30e61f4fd1333b0a385989cf6b3cdf1788",
+  "product_files": [
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_chrome.dart",
+      "additions": 56,
+      "deletions": 35
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_ribbon_preferences.dart",
+      "additions": 7,
+      "deletions": 3
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_window.dart",
+      "additions": 8,
+      "deletions": 0
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/suite_workspace.dart",
+      "additions": 142,
+      "deletions": 161
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/pdf_controller.dart",
+      "additions": 113,
+      "deletions": 13
+    }
+  ],
+  "test_files": [
+    {
+      "path": "packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart",
+      "status": "modified",
+      "additions": 1,
+      "deletions": 1
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+      "status": "modified",
+      "additions": 5,
+      "deletions": 5
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_desktop_menu_test.dart",
+      "status": "added",
+      "additions": 298,
+      "deletions": 0
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_file_menu_test.dart",
+      "status": "added",
+      "additions": 243,
+      "deletions": 0
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_review_pane_test.dart",
+      "status": "modified",
+      "additions": 3,
+      "deletions": 3
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_ribbon_customization_test.dart",
+      "status": "added",
+      "additions": 298,
+      "deletions": 0
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_ribbon_preferences_test.dart",
+      "status": "added",
+      "additions": 217,
+      "deletions": 0
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_saved_mail_test.dart",
+      "status": "modified",
+      "additions": 1,
+      "deletions": 1
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_sheet_navigation_test.dart",
+      "status": "modified",
+      "additions": 2,
+      "deletions": 2
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_shots_test.dart",
+      "status": "modified",
+      "additions": 2,
+      "deletions": 2
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+      "status": "modified",
+      "additions": 8,
+      "deletions": 2
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/widget_test.dart",
+      "status": "modified",
+      "additions": 4,
+      "deletions": 4
+    },
+    {
+      "path": "packages/quds_office_editor/test/pdf_save_state_test.dart",
+      "status": "added",
+      "additions": 139,
+      "deletions": 0
+    }
+  ],
+  "other_files": [
+    "packages/quds_office_editor/CHANGELOG.md"
+  ]
+}

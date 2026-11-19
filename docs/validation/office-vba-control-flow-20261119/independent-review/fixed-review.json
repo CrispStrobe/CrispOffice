@@ -1,0 +1,146 @@
+{
+  "recorded_utc": "2026-11-19T17:12:32.508036+00:00",
+  "source_commit": "176530faea5cb539e5eb6d003f6acda5538fdbb4",
+  "compiler_sha256": "63455d9f4b097b8e348bbaafabf62ff924210527736f87813a958282c547aed9",
+  "environment": {
+    "source_root": "/workspace/scratch/e9fb10bfe870/quds_office_suite",
+    "validation_root": "/workspace/scratch/e9fb10bfe870/validation-workspace",
+    "dart": "/workspace/scratch/e9fb10bfe870/toolchains/dart-sdk/bin/dart",
+    "flutter_pin": "3.47.8",
+    "sdk_archive_sha256": "eb99aed266efbcb615c6ae21c12f52cfe935b9f208bccc5fea7f64c21e867229",
+    "workspace_packages": [
+      "legacy_doc_parser",
+      "quds_office_engine",
+      "quds_office_engine_example"
+    ],
+    "tracked_manifest_changes": false,
+    "environment": {
+      "PUB_CACHE": "/workspace/scratch/e9fb10bfe870/toolchains/pub-cache",
+      "TMPDIR": "/workspace/scratch/e9fb10bfe870/toolchains/tmp",
+      "DART_SUPPRESS_ANALYTICS": "true",
+      "CI": "true"
+    },
+    "description": "Reduced workspace uses copied package manifests and analysis options, with symlinks pointing to current tracked source. Root copied lockfile is resolved separately; tracked dependency manifests and lockfile unchanged.",
+    "dart_version": "Dart SDK version: 3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\"",
+    "dependency_resolution": "success",
+    "package_config": "/workspace/scratch/e9fb10bfe870/validation-workspace/.dart_tool/package_config.json",
+    "package_count": 59,
+    "package_config_generator_version": "3.13.7",
+    "dependency_log": "/workspace/scratch/e9fb10bfe870/toolchains/logs/pub-get.log",
+    "analysis_package_config_link": "/workspace/scratch/e9fb10bfe870/quds_office_suite/.dart_tool -> /workspace/scratch/e9fb10bfe870/validation-workspace/.dart_tool",
+    "analysis_link_tracking": "Excluded by local .git/info/exclude; tracked manifests and lockfiles unchanged."
+  },
+  "node_version": "v24.22.3",
+  "note": "Read-only independent review after replacing recursive block execution with explicit continuations. Each probe passes 174 checks on the VM and fresh Node, including 32 active procedure frames, 32 mixed Do/While/Select/With blocks, and 50 or 63 unary operators. Checks are assertions within a standalone probe, not additional dart test cases.",
+  "sha256": {
+    "quds_office_suite/packages/quds_office_engine/lib/src/automation/office_vba_language.dart": "63455d9f4b097b8e348bbaafabf62ff924210527736f87813a958282c547aed9",
+    "validation-workspace/.dart_tool/package_config.json": "eec358ff91c44762aa52eb9b90df4ac7d45c8d4aae8abbec7033a7fafb99fa30",
+    "toolchains/review/control_flow_probe.dart": "cdb32343418685e6530f54d9917c6941a75f8ff5218768d4e687aa806d4928a0",
+    "toolchains/review/control_flow_probe_63.dart": "519ce46806edf9d0259620252a2fa84629cb0596a4cfa8e118984b3ef9a27ea9"
+  },
+  "gates": [
+    {
+      "name": "vm-50",
+      "argv": [
+        "/workspace/scratch/e9fb10bfe870/toolchains/run_dart.sh",
+        "--packages=/workspace/scratch/e9fb10bfe870/validation-workspace/.dart_tool/package_config.json",
+        "/workspace/scratch/e9fb10bfe870/toolchains/review/control_flow_probe.dart"
+      ],
+      "cwd": "/workspace/scratch/e9fb10bfe870",
+      "exit_code": 0,
+      "stdout": "fixed50/vm.stdout.log",
+      "stderr": "fixed50/vm.stderr.log",
+      "stdout_sha256": "d325931d1c6593162543d850dcdbec3f46a9a7817c199f1016e0b79f14833983",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "js-compile-50",
+      "argv": [
+        "/workspace/scratch/e9fb10bfe870/toolchains/run_dart.sh",
+        "compile",
+        "js",
+        "--packages=/workspace/scratch/e9fb10bfe870/validation-workspace/.dart_tool/package_config.json",
+        "-O1",
+        "/workspace/scratch/e9fb10bfe870/toolchains/review/control_flow_probe.dart",
+        "-o",
+        "/workspace/scratch/e9fb10bfe870/toolchains/review/fixed50/probe.js"
+      ],
+      "cwd": "/workspace/scratch/e9fb10bfe870",
+      "exit_code": 0,
+      "stdout": "fixed50/js-compile.stdout.log",
+      "stderr": "fixed50/js-compile.stderr.log",
+      "stdout_sha256": "8b323d34cae9396af898a5ce8f7a704cca7cf7595101c28e643f64e8edd9a6cc",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "js-run-50",
+      "argv": [
+        "node",
+        "-e",
+        "globalThis.self = globalThis; require(\"/workspace/scratch/e9fb10bfe870/toolchains/review/fixed50/probe.js\")"
+      ],
+      "cwd": "/workspace/scratch/e9fb10bfe870",
+      "exit_code": 0,
+      "stdout": "fixed50/js-run.stdout.log",
+      "stderr": "fixed50/js-run.stderr.log",
+      "stdout_sha256": "d325931d1c6593162543d850dcdbec3f46a9a7817c199f1016e0b79f14833983",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "vm-63",
+      "argv": [
+        "/workspace/scratch/e9fb10bfe870/toolchains/run_dart.sh",
+        "--packages=/workspace/scratch/e9fb10bfe870/validation-workspace/.dart_tool/package_config.json",
+        "/workspace/scratch/e9fb10bfe870/toolchains/review/control_flow_probe_63.dart"
+      ],
+      "cwd": "/workspace/scratch/e9fb10bfe870",
+      "exit_code": 0,
+      "stdout": "fixed63/vm.stdout.log",
+      "stderr": "fixed63/vm.stderr.log",
+      "stdout_sha256": "dac5d0c8a9590d3a8054e2c42a8ba8d8f2b8bf992bde4a34645807e5facbf5ba",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "js-compile-63",
+      "argv": [
+        "/workspace/scratch/e9fb10bfe870/toolchains/run_dart.sh",
+        "compile",
+        "js",
+        "--packages=/workspace/scratch/e9fb10bfe870/validation-workspace/.dart_tool/package_config.json",
+        "-O1",
+        "/workspace/scratch/e9fb10bfe870/toolchains/review/control_flow_probe_63.dart",
+        "-o",
+        "/workspace/scratch/e9fb10bfe870/toolchains/review/fixed63/probe.js"
+      ],
+      "cwd": "/workspace/scratch/e9fb10bfe870",
+      "exit_code": 0,
+      "stdout": "fixed63/js-compile.stdout.log",
+      "stderr": "fixed63/js-compile.stderr.log",
+      "stdout_sha256": "91123cedfb22214bb3575645c1b4278499348b7ad91427f1912621211a741ae4",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "js-run-63",
+      "argv": [
+        "node",
+        "-e",
+        "globalThis.self = globalThis; require(\"/workspace/scratch/e9fb10bfe870/toolchains/review/fixed63/probe.js\")"
+      ],
+      "cwd": "/workspace/scratch/e9fb10bfe870",
+      "exit_code": 0,
+      "stdout": "fixed63/js-run.stdout.log",
+      "stderr": "fixed63/js-run.stderr.log",
+      "stdout_sha256": "dac5d0c8a9590d3a8054e2c42a8ba8d8f2b8bf992bde4a34645807e5facbf5ba",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "issues": [
+    {
+      "finding": "Cold JavaScript stack overflow at allowed combined depths",
+      "status": "fixed",
+      "pre_fix_receipt": "pre-fix-review.json",
+      "resolution": "Blocks now execute through explicit continuation frames; procedure and expression bounds remain unchanged."
+    }
+  ],
+  "remaining_findings": []
+}

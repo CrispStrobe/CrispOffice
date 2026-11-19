@@ -1,0 +1,4 @@
+# Preserve raw process output byte-for-byte for the receipt hashes.
+# Source whitespace checks remain enabled outside these evidence logs.
+*.log -whitespace
+**/*.log -whitespace
