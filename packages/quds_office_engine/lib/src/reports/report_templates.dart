@@ -3460,7 +3460,8 @@ const Map<String, String> _featureShowcaseEn = <String, String>{
   'title': 'SALES ORDER',
   'lead': 'We confirm this order under the published terms.',
   'linkLabel': 'Delivery terms',
-  'italicLine': 'Prices include preparation. Delivery follows the schedule below.',
+  'italicLine':
+      'Prices include preparation. Delivery follows the schedule below.',
   'customer': 'Al-Noor Trading',
   'customerHint': 'Customer',
   'po': 'PO-441',
@@ -3494,9 +3495,7 @@ Map<String, Object?> _featureShowcaseData(bool ar) {
       'phone': '+218 21 444 0101',
       'email': 'sales@quds.example',
     },
-    'billTo': <String, Object?>{
-      'city': t('Tripoli', 'طرابلس'),
-    },
+    'billTo': <String, Object?>{'city': t('Tripoli', 'طرابلس')},
     'order': <String, Object?>{
       'number': 'SO-2026-0142',
       'date': DateTime(2026, 10, 10),

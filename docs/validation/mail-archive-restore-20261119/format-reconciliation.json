@@ -1,0 +1,55 @@
+{
+  "source_before": "37ac6ea8a08225a42098c455deb5375837912eec",
+  "reason": "Eight incoming GUI/branding/sample files failed the preserved broad format-only preflight; no tests ran in that attempt. Each new file is exactly the pinned Dart formatter output for the old file.",
+  "dart": "Dart SDK version: 3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\"",
+  "paths": [
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_hunspell_setup.dart",
+      "before_sha256": "4816d25bc9ebe24c832b78b55d08cc82dfdd54f6108ff369174d64ec0626380d",
+      "after_sha256": "fe37501517b1403754d61300975b786eb5d1169acd91e469210985696d7167d0",
+      "matches_official_formatter_output": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_pdf_flutter_samples.dart",
+      "before_sha256": "915dcd2a2debcc5bc171a379cb2b8bcf5956e54b23443d7ae506f8760aeca7d0",
+      "after_sha256": "6d2ff4f9133b021222793ff49bf1a8ec7d97b89c598e6d703a7be9406fd0d74c",
+      "matches_official_formatter_output": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_pdf_toc_samples.dart",
+      "before_sha256": "fe605b144e1e205bab2d61691183e0248c44797fd3f53eb1222a534d1ffcbea4",
+      "after_sha256": "2d535621333a52b370857c3d294160a8b1e2f844f9a27f6a0d9f55208f2cad6f",
+      "matches_official_formatter_output": true
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/office/office_document_properties.dart",
+      "before_sha256": "4c5c8bdac959031c64ca743858aca4e41b45064717678918134278b886646445",
+      "after_sha256": "0213f647fa471eeb454bee7722a64104f5bae363822ab060a3b02e2cdd8af649",
+      "matches_official_formatter_output": true
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/pdf/samples/literary_arabic.dart",
+      "before_sha256": "4e0230dc99d58bef3ee4571949a49433fd24c807acc2e48ffb8a444978604736",
+      "after_sha256": "47a39860484e33b252a3814157776da32ee317b3b8962f517c253a8261c88928",
+      "matches_official_formatter_output": true
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/pdf/samples/widgets_catalog.dart",
+      "before_sha256": "70dd2564c4353f5ce2dead904cd6d23df31a0200e2770efedbad2146914bfea7",
+      "after_sha256": "3893f3a5712889883c0c8a070fb8b4de88a5bdbbd829ee00ad021c37915c89ba",
+      "matches_official_formatter_output": true
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/pdf/widgets/pw_core.dart",
+      "before_sha256": "86d397410745c1180b92a46e5f3098650d6d400cf74f17513a6e8dae7bc35fee",
+      "after_sha256": "e13ef8204a36a06b68d38c97d34ee1271bfca00e46e844d1b0204ff4f1f1ec48",
+      "matches_official_formatter_output": true
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/reports/report_templates.dart",
+      "before_sha256": "23590df1463e109ff59da1decb62a29c7ba90ff61da4c0596904357bb437ad1b",
+      "after_sha256": "c3632ae8959e68edb484a16d9cc1015ffe47f4186d852972f8ec0e46ace8b90c",
+      "matches_official_formatter_output": true
+    }
+  ]
+}
