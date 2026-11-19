@@ -30,7 +30,7 @@
   ],
   "cwd": "/workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_office_editor/example",
   "environment_overrides": {
-    "QUDS_MAIL_PORTABILITY_SHOTS": "/workspace/scratch/8eda9a4e1801/mail-resume-acceptance-final/screenshots"
+    "QUDS_MAIL_PORTABILITY_SHOTS": "/workspace/scratch/8eda9a4e1801/mail-resume-acceptance-v3/screenshots"
   },
   "expected_test_files": [
     "packages/quds_office_editor/example/test/studio_mail_archive_action_test.dart",
@@ -57,5 +57,5 @@
     "packages/quds_office_editor/example/test/studio_saved_mail_test.dart"
   ],
   "name": "studio-mail",
-  "started_at_utc": "2026-11-19T19:03:34.511911+00:00"
+  "started_at_utc": "2026-11-19T19:24:25.287707+00:00"
 }

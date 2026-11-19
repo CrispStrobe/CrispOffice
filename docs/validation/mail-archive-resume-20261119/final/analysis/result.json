@@ -92,9 +92,9 @@
   "environment_overrides": {},
   "exit_code": 0,
   "expected_test_files": [],
-  "finished_at_utc": "2026-11-19T19:02:55.948968+00:00",
+  "finished_at_utc": "2026-11-19T19:23:46.627802+00:00",
   "name": "analysis",
-  "started_at_utc": "2026-11-19T19:02:36.065065+00:00",
+  "started_at_utc": "2026-11-19T19:23:26.743222+00:00",
   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
   "stdout_sha256": "8eb80bb3951ec524e7c17aa0aae4ba04bce0d65a0c445a1d0e6734a200de7734"
 }

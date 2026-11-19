@@ -18,7 +18,7 @@
     "test/portable_import_test.dart"
   ],
   "cwd": "/workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_mail_mime",
-  "elapsed_seconds": 11.597,
+  "elapsed_seconds": 12.718,
   "environment_overrides": {},
   "exit_code": 0,
   "expected_test_files": [
@@ -30,13 +30,13 @@
     "packages/quds_mail_mime/test/mime_review_regressions_test.dart",
     "packages/quds_mail_mime/test/portable_import_test.dart"
   ],
-  "finished_at_utc": "2026-11-19T19:03:07.669267+00:00",
+  "finished_at_utc": "2026-11-19T19:23:59.482655+00:00",
   "missing_files": [],
   "name": "quds_mail_mime-vm",
-  "started_at_utc": "2026-11-19T19:02:56.071809+00:00",
+  "started_at_utc": "2026-11-19T19:23:46.763886+00:00",
   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-  "stdout_sha256": "a9bc6f0c700d3cb212845826588bbbf6acd583daa0ed57d6541affabc36a2f19",
-  "test_cases_sha256": "28a5f405c31fa81f597db8fb221a6d66b506c59945de6c4bae9be1c5975fde3e",
+  "stdout_sha256": "90f9f618bb1090f6537c459464c9ab41a2a28b9b4831d3138f1111d4555dbd7d",
+  "test_cases_sha256": "7c6f71b4a7d6b825c3f4ffae0b7786806127d992b64d5cb104f529db050a7b41",
   "test_counts": {
     "failed": 0,
     "passed": 84,

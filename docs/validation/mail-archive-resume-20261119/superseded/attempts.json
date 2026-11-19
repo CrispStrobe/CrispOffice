@@ -30,6 +30,12 @@
       "accepted": false,
       "accepted_test_counts": 0,
       "reason": "Preflight stopped before tests because retained historical whitespace diagnostics quoted literal trailing spaces. Diagnostic bytes preserved losslessly as gzip; source/harness unchanged."
+    },
+    {
+      "path": "superseded/mail-before-ruler-reference-refresh",
+      "accepted": false,
+      "accepted_test_counts": 0,
+      "reason": "Complete1138-case pass on ec6d source before intentional Linux ruler reference/provenance update. Preserved as supporting evidence; superseded by complete1138-case final-source run on71053."
     }
   ]
 }

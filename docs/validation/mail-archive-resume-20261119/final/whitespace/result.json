@@ -13,13 +13,13 @@
     ":(exclude)packages/quds_proofing_spacy/licenses/notices/de_core_news_sm-LICENSES_SOURCES"
   ],
   "cwd": "/workspace/scratch/8eda9a4e1801/quds_office_suite",
-  "elapsed_seconds": 0.116,
+  "elapsed_seconds": 0.117,
   "environment_overrides": {},
   "exit_code": 0,
   "expected_test_files": [],
-  "finished_at_utc": "2026-11-19T19:02:56.066485+00:00",
+  "finished_at_utc": "2026-11-19T19:23:46.746336+00:00",
   "name": "whitespace",
-  "started_at_utc": "2026-11-19T19:02:55.950613+00:00",
+  "started_at_utc": "2026-11-19T19:23:46.628482+00:00",
   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
   "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
 }

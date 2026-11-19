@@ -1,8 +1,8 @@
 {
   "branch": "codex/mail-archive-resume-20261119",
   "pull_request": 212,
-  "through_source_freeze": "ec6d527e9aaf207e131217ec24c65cd9ae409433",
-  "checkpoint_count": 10,
+  "through_source_freeze": "71053bf61521e093903d55cba890ef4beee039e1",
+  "checkpoint_count": 13,
   "checkpoints": [
     {
       "checkpoint": 1,
@@ -121,6 +121,40 @@
       "message": "Preserve imported license-source bytes in local whitespace validation [skip ci]",
       "publication": "non-forced GitHub ref update with exact expected previous head",
       "in_final_source_history": true
+    },
+    {
+      "checkpoint": 11,
+      "commit": "dd186057a656ad7845edf29a2566fb8091300f41",
+      "tree": "77d8df921471f94d73cdf5420f7b328035c0fc6f",
+      "parents": [
+        "ec6d527e9aaf207e131217ec24c65cd9ae409433"
+      ],
+      "message": "Preserve complete 1,138-case mail acceptance and reviewed resume UI evidence [skip ci]",
+      "publication": "non-forced GitHub ref update with exact expected previous head",
+      "in_final_source_history": true
+    },
+    {
+      "checkpoint": 12,
+      "commit": "be93371b680d8e39365a6b356fb727bda81dbed1",
+      "tree": "4315cdd84432ccbd9fd93e68bc8a701dcbdc9e8d",
+      "parents": [
+        "dd186057a656ad7845edf29a2566fb8091300f41"
+      ],
+      "message": "Refresh exact Linux ruler references for registered fonts and preserve diagnostic proof [skip ci]",
+      "publication": "non-forced GitHub ref update with exact expected previous head",
+      "in_final_source_history": true
+    },
+    {
+      "checkpoint": 13,
+      "commit": "71053bf61521e093903d55cba890ef4beee039e1",
+      "tree": "456cb5169f4359a8dcf4ec958445e918b367cac2",
+      "parents": [
+        "be93371b680d8e39365a6b356fb727bda81dbed1",
+        "4a4ea1f0d8c990cc74ce8f7233545a8a9dc0887c"
+      ],
+      "message": "Integrate latest main without product changes and preserve raw diagnostic bytes [skip ci]",
+      "publication": "non-forced GitHub ref update with exact expected previous head",
+      "in_final_source_history": true
     }
   ],
   "publication_method": "GitHub Git Data API; exact local/remote tree match before reference update; local checkout fetched and aligned after publication",
@@ -130,5 +164,6 @@
       "reason": "Expected-head update rejected; branch remained unchanged. No successful checkpoint or accepted test count."
     }
   ],
-  "later_checkpoints": "Acceptance/audit/publication-only descendants are recorded in Git history and the final PR publication receipt."
+  "later_checkpoints": "Acceptance/audit/publication-only descendants are recorded in Git history and the final PR publication receipt.",
+  "product_and_test_freeze": "be93371b680d8e39365a6b356fb727bda81dbed1"
 }

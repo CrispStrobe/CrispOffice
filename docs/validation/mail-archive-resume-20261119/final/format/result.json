@@ -78,13 +78,13 @@
     "packages/quds_proofing_spacy/test/ner_removal_test.dart"
   ],
   "cwd": "/workspace/scratch/8eda9a4e1801/quds_office_suite",
-  "elapsed_seconds": 1.367,
+  "elapsed_seconds": 1.475,
   "environment_overrides": {},
   "exit_code": 0,
   "expected_test_files": [],
-  "finished_at_utc": "2026-11-19T19:02:36.064516+00:00",
+  "finished_at_utc": "2026-11-19T19:23:26.742634+00:00",
   "name": "format",
-  "started_at_utc": "2026-11-19T19:02:34.696861+00:00",
+  "started_at_utc": "2026-11-19T19:23:25.267051+00:00",
   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-  "stdout_sha256": "7d40746f62050de03b0067698fdc2aadacc93a036bf698c17b22d4c98e497685"
+  "stdout_sha256": "787d97846b801903f62a0e94f7d264b071e62e20c7c1eb28ceb1d83ec53534f5"
 }

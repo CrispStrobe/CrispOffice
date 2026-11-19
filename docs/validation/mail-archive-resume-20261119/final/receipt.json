@@ -3,7 +3,7 @@
   "dependency_digest": "c400b0220ab948cd68a54521cda95e92ec96447acb4ea0c4c487a2fbb28292c2",
   "dependency_inputs": 9298,
   "dependency_resolution_performed": false,
-  "finished_at_utc": "2026-11-19T19:05:54.886578+00:00",
+  "finished_at_utc": "2026-11-19T19:26:16.217455+00:00",
   "github_actions_used": false,
   "inputs_stable": true,
   "runtime_changes": [],
@@ -11,10 +11,10 @@
   "runtime_inputs": 1108,
   "scope": "Linux native SQLite, synthetic/loopback mail and Flutter widgets; declared Node library boundaries. No installed macOS/Windows/mobile, real accounts, enterprise compliance or full repository qualification.",
   "source_changes": [],
-  "source_digest": "74719d2eb5e0392bab0c02285345aff19aaf8d1125bc5b058a5376f068ed7861",
-  "source_head": "ec6d527e9aaf207e131217ec24c65cd9ae409433",
+  "source_digest": "e0af69079a15dfc22640df645dec390b250d61816146672e71282891c4d1f6e5",
+  "source_head": "71053bf61521e093903d55cba890ef4beee039e1",
   "source_inputs": 4493,
-  "source_tree": "5f37164d8a382baaf02425654c102494e2af72d3",
+  "source_tree": "456cb5169f4359a8dcf4ec958445e918b367cac2",
   "sqlite": {
     "fts5": true,
     "path": "/workspace/scratch/8eda9a4e1801/quds_office_suite/.dart_tool/lib/libsqlite3.so",
@@ -103,15 +103,15 @@
         "packages/quds_proofing_spacy/test/ner_removal_test.dart"
       ],
       "cwd": "/workspace/scratch/8eda9a4e1801/quds_office_suite",
-      "elapsed_seconds": 1.367,
+      "elapsed_seconds": 1.475,
       "environment_overrides": {},
       "exit_code": 0,
       "expected_test_files": [],
-      "finished_at_utc": "2026-11-19T19:02:36.064516+00:00",
+      "finished_at_utc": "2026-11-19T19:23:26.742634+00:00",
       "name": "format",
-      "started_at_utc": "2026-11-19T19:02:34.696861+00:00",
+      "started_at_utc": "2026-11-19T19:23:25.267051+00:00",
       "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "stdout_sha256": "7d40746f62050de03b0067698fdc2aadacc93a036bf698c17b22d4c98e497685"
+      "stdout_sha256": "787d97846b801903f62a0e94f7d264b071e62e20c7c1eb28ceb1d83ec53534f5"
     },
     {
       "accepted": true,
@@ -207,9 +207,9 @@
       "environment_overrides": {},
       "exit_code": 0,
       "expected_test_files": [],
-      "finished_at_utc": "2026-11-19T19:02:55.948968+00:00",
+      "finished_at_utc": "2026-11-19T19:23:46.627802+00:00",
       "name": "analysis",
-      "started_at_utc": "2026-11-19T19:02:36.065065+00:00",
+      "started_at_utc": "2026-11-19T19:23:26.743222+00:00",
       "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "stdout_sha256": "8eb80bb3951ec524e7c17aa0aae4ba04bce0d65a0c445a1d0e6734a200de7734"
     },
@@ -228,13 +228,13 @@
         ":(exclude)packages/quds_proofing_spacy/licenses/notices/de_core_news_sm-LICENSES_SOURCES"
       ],
       "cwd": "/workspace/scratch/8eda9a4e1801/quds_office_suite",
-      "elapsed_seconds": 0.116,
+      "elapsed_seconds": 0.117,
       "environment_overrides": {},
       "exit_code": 0,
       "expected_test_files": [],
-      "finished_at_utc": "2026-11-19T19:02:56.066485+00:00",
+      "finished_at_utc": "2026-11-19T19:23:46.746336+00:00",
       "name": "whitespace",
-      "started_at_utc": "2026-11-19T19:02:55.950613+00:00",
+      "started_at_utc": "2026-11-19T19:23:46.628482+00:00",
       "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
@@ -257,7 +257,7 @@
         "test/sync_coordinator_test.dart"
       ],
       "cwd": "/workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_mail_core",
-      "elapsed_seconds": 11.201,
+      "elapsed_seconds": 11.87,
       "environment_overrides": {},
       "exit_code": 0,
       "expected_test_files": [
@@ -268,13 +268,13 @@
         "packages/quds_mail_core/test/outbox_test.dart",
         "packages/quds_mail_core/test/sync_coordinator_test.dart"
       ],
-      "finished_at_utc": "2026-11-19T19:03:07.272579+00:00",
+      "finished_at_utc": "2026-11-19T19:23:58.634328+00:00",
       "missing_files": [],
       "name": "quds_mail_core-vm",
-      "started_at_utc": "2026-11-19T19:02:56.071238+00:00",
+      "started_at_utc": "2026-11-19T19:23:46.763380+00:00",
       "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "stdout_sha256": "35455ec3b662f8a5d69bf39eafc5628bb61e768492d2ecd6d312bf1b8022d729",
-      "test_cases_sha256": "d997c121f639aead33f14568f4d5f8e1f1a0ec7290e2f4adad03f0db5f412e01",
+      "stdout_sha256": "69e6f80280a333c543a45b5a536b61d2c8b3294317d832b38bb66d0012f84a93",
+      "test_cases_sha256": "9d4744ef2280543b9fe3af1ecffa6a1ee6b19589ddacaaf8f867ba10eb01b355",
       "test_counts": {
         "failed": 0,
         "passed": 54,
@@ -302,7 +302,7 @@
         "test/portable_import_test.dart"
       ],
       "cwd": "/workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_mail_mime",
-      "elapsed_seconds": 11.597,
+      "elapsed_seconds": 12.718,
       "environment_overrides": {},
       "exit_code": 0,
       "expected_test_files": [
@@ -314,13 +314,13 @@
         "packages/quds_mail_mime/test/mime_review_regressions_test.dart",
         "packages/quds_mail_mime/test/portable_import_test.dart"
       ],
-      "finished_at_utc": "2026-11-19T19:03:07.669267+00:00",
+      "finished_at_utc": "2026-11-19T19:23:59.482655+00:00",
       "missing_files": [],
       "name": "quds_mail_mime-vm",
-      "started_at_utc": "2026-11-19T19:02:56.071809+00:00",
+      "started_at_utc": "2026-11-19T19:23:46.763886+00:00",
       "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "stdout_sha256": "a9bc6f0c700d3cb212845826588bbbf6acd583daa0ed57d6541affabc36a2f19",
-      "test_cases_sha256": "28a5f405c31fa81f597db8fb221a6d66b506c59945de6c4bae9be1c5975fde3e",
+      "stdout_sha256": "90f9f618bb1090f6537c459464c9ab41a2a28b9b4831d3138f1111d4555dbd7d",
+      "test_cases_sha256": "7c6f71b4a7d6b825c3f4ffae0b7786806127d992b64d5cb104f529db050a7b41",
       "test_counts": {
         "failed": 0,
         "passed": 84,
@@ -363,7 +363,7 @@
         "test/repository_test.dart"
       ],
       "cwd": "/workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_mail_store",
-      "elapsed_seconds": 65.258,
+      "elapsed_seconds": 65.378,
       "environment_overrides": {},
       "exit_code": 0,
       "expected_test_files": [
@@ -390,13 +390,13 @@
         "packages/quds_mail_store/test/platform_configuration_test.dart",
         "packages/quds_mail_store/test/repository_test.dart"
       ],
-      "finished_at_utc": "2026-11-19T19:04:12.536214+00:00",
+      "finished_at_utc": "2026-11-19T19:25:04.017818+00:00",
       "missing_files": [],
       "name": "quds_mail_store-vm",
-      "started_at_utc": "2026-11-19T19:03:07.277945+00:00",
+      "started_at_utc": "2026-11-19T19:23:58.639795+00:00",
       "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "stdout_sha256": "b4b31146f8ec5aa02545afde538582c6fdeedf5244ef1dce0b3ae834fcf71022",
-      "test_cases_sha256": "9b6b2e9b54a5a584cdeb9e1fac0eb1f306222977f633658c161ce1ea17bfdc3e",
+      "stdout_sha256": "8e7074ea892538286df086f0971fa8a5d078484bc23f1d1e57447844e268f444",
+      "test_cases_sha256": "f12b0b3380ad465e53d7d56138231232072a9cd796718d9c27957beeb68010d4",
       "test_counts": {
         "failed": 0,
         "passed": 557,
@@ -419,20 +419,20 @@
         "test/browser_problem_test.dart"
       ],
       "cwd": "/workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_mail_store",
-      "elapsed_seconds": 20.467,
+      "elapsed_seconds": 18.678,
       "environment_overrides": {},
       "exit_code": 0,
       "expected_test_files": [
         "packages/quds_mail_store/test/archive_export_manifest_test.dart",
         "packages/quds_mail_store/test/browser_problem_test.dart"
       ],
-      "finished_at_utc": "2026-11-19T19:03:28.148270+00:00",
+      "finished_at_utc": "2026-11-19T19:24:18.172043+00:00",
       "missing_files": [],
       "name": "quds_mail_store-node",
-      "started_at_utc": "2026-11-19T19:03:07.681328+00:00",
+      "started_at_utc": "2026-11-19T19:23:59.493836+00:00",
       "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "stdout_sha256": "cac98b64ddc073bf79a52c4453e0c80102ec80bf7d2fbb386d0cd788657d4746",
-      "test_cases_sha256": "f2eb4e46e2eda27c6ca41729b5ee2168dc1eeda4d9ee53ca9a90934638550972",
+      "stdout_sha256": "352e6c0e7493c96afc474ed005bf5e158dff14c6d53c0726895c9a979bb031ff",
+      "test_cases_sha256": "27b0e8741ff722b44d695be1b0e004e97bf6f857656a4d2b56296dbd8c60f70b",
       "test_counts": {
         "failed": 0,
         "passed": 9,
@@ -454,7 +454,7 @@
         "test/presentation_test.dart"
       ],
       "cwd": "/workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_mail_ui",
-      "elapsed_seconds": 6.357,
+      "elapsed_seconds": 7.106,
       "environment_overrides": {},
       "exit_code": 0,
       "expected_test_files": [
@@ -463,13 +463,13 @@
         "packages/quds_mail_ui/test/message_view_test.dart",
         "packages/quds_mail_ui/test/presentation_test.dart"
       ],
-      "finished_at_utc": "2026-11-19T19:03:34.508127+00:00",
+      "finished_at_utc": "2026-11-19T19:24:25.283859+00:00",
       "missing_files": [],
       "name": "mail-ui",
-      "started_at_utc": "2026-11-19T19:03:28.151222+00:00",
+      "started_at_utc": "2026-11-19T19:24:18.177464+00:00",
       "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "stdout_sha256": "0f05295d481f34a8ce5ed794b040a4f9b3fb72f6e48ec1abd8c75625084e4ee9",
-      "test_cases_sha256": "4691e957946822d720ef74b9259bbe94fa923c657c02408690087899819e5191",
+      "stdout_sha256": "57f004da3eafe9930e81a027b724471fe811042d7d3e9309a4a2af0756e471ab",
+      "test_cases_sha256": "1e8d3573db15bf1047c891e8cb6d569e7129c252fd296cf49cd4939946873660",
       "test_counts": {
         "failed": 0,
         "passed": 33,
@@ -509,9 +509,9 @@
         "test/studio_saved_mail_test.dart"
       ],
       "cwd": "/workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_office_editor/example",
-      "elapsed_seconds": 135.9,
+      "elapsed_seconds": 107.928,
       "environment_overrides": {
-        "QUDS_MAIL_PORTABILITY_SHOTS": "/workspace/scratch/8eda9a4e1801/mail-resume-acceptance-final/screenshots"
+        "QUDS_MAIL_PORTABILITY_SHOTS": "/workspace/scratch/8eda9a4e1801/mail-resume-acceptance-v3/screenshots"
       },
       "exit_code": 0,
       "expected_test_files": [
@@ -538,13 +538,13 @@
         "packages/quds_office_editor/example/test/studio_mail_web_test.dart",
         "packages/quds_office_editor/example/test/studio_saved_mail_test.dart"
       ],
-      "finished_at_utc": "2026-11-19T19:05:50.411674+00:00",
+      "finished_at_utc": "2026-11-19T19:26:13.216231+00:00",
       "missing_files": [],
       "name": "studio-mail",
-      "started_at_utc": "2026-11-19T19:03:34.511911+00:00",
+      "started_at_utc": "2026-11-19T19:24:25.287707+00:00",
       "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "stdout_sha256": "4e6a844866dc312b98693d131b7efe0e6cc5482d6f23bb1d4f323f9d9912c0ce",
-      "test_cases_sha256": "4cbee45559fd18e270694aa31cec3361a8eb4503566ad26e71accddbdae35911",
+      "stdout_sha256": "f7e051c7318b19897941af2c8d83f81fc93d7feaccadf8584e68ae4f84f5f685",
+      "test_cases_sha256": "66bf00251cd9aae6e226b81aca7c9a1aea0ea37dbd5b54c852be46b2b06453b0",
       "test_counts": {
         "failed": 0,
         "passed": 401,

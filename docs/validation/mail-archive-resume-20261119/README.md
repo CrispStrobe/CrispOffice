@@ -9,8 +9,8 @@ provenance. Full source-verification reruns remain available.
 
 The complete mail acceptance run passed **1,138 test executions across 62 distinct
 test files**, with **zero failures and zero skips**, on preserved source
-`ec6d527e9aaf207e131217ec24c65cd9ae409433` (tree
-`5f37164d8a382baaf02425654c102494e2af72d3`). All nine mail commands passed.
+`71053bf61521e093903d55cba890ef4beee039e1` (tree
+`456cb5169f4359a8dcf4ec958445e918b367cac2`). All nine mail commands passed.
 The before/after inventories agree for **4,493 source inputs, 9,298 dependency
 inputs and 1,108 runtime files**. The root package manifest and lockfile remain
 unchanged, and tests use the default packaged Linux SQLite native asset.
@@ -26,7 +26,7 @@ queried nor awaited.
 - [Executed acceptance harness](run-mail-validation.py)
 - [Independent implementation review](independent-review.md)
 - [Reconciliation and conflict decisions](integration-notes.md)
-- [Reference inventory](reconciliation-final.json)
+- [Reference inventory at integration cutoff](reconciliation-cutoff.json)
 - [Remote source checkpoints](checkpoints.json)
 
 ## Delivered behavior
@@ -87,16 +87,16 @@ The final source incorporates these exact later heads:
 
 | Stream | Incorporated head |
 | --- | --- |
-| Main language review/download management | `9f41e0427734d815b19149eba5eabef202f78ba6` |
+| Latest main ancestry, including language review/download management | `4a4ea1f0d8c990cc74ce8f7233545a8a9dc0887c` |
 | App/runtime packaging fixes | `0e03878b028ec25ed3d84a790633433eafc3bede` |
 | GUI / PR #211 | `ba51c40abc664758df3cfc846625bdeb81e3ac13` |
 | VBA / PR #210 | `d8be43a408473da4b45059561dbc387f5b868d5b` |
 
-Reconciliation accounts for **232 external references: 209 ancestors and 23
+The preserved integration-cutoff reconciliation accounts for **232 external references: 209 ancestors and 23
 historical equivalents, with zero unaccounted references**, from 234 captured
 refs after excluding this branch and PR. All 14 historical equivalence proofs
 were freshly recomputed. Ancestry and content equivalence establish
-incorporation; runtime qualification is recorded separately.
+incorporation; runtime qualification is recorded separately. The later main merge at `4a4ea1f0` adds exactly three validation documents to the integrated tree, with no product/test/harness changes. Later independent draft additions are reviewed explicitly in the publication-frontier record and are outside this accepted source.
 
 The integration preserves the stronger combined slide raster/contrast and XML
 round-trip tests. It retains the table-cell text-color parser repair, themed

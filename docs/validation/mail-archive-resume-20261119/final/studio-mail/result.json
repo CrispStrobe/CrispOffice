@@ -30,9 +30,9 @@
     "test/studio_saved_mail_test.dart"
   ],
   "cwd": "/workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_office_editor/example",
-  "elapsed_seconds": 135.9,
+  "elapsed_seconds": 107.928,
   "environment_overrides": {
-    "QUDS_MAIL_PORTABILITY_SHOTS": "/workspace/scratch/8eda9a4e1801/mail-resume-acceptance-final/screenshots"
+    "QUDS_MAIL_PORTABILITY_SHOTS": "/workspace/scratch/8eda9a4e1801/mail-resume-acceptance-v3/screenshots"
   },
   "exit_code": 0,
   "expected_test_files": [
@@ -59,13 +59,13 @@
     "packages/quds_office_editor/example/test/studio_mail_web_test.dart",
     "packages/quds_office_editor/example/test/studio_saved_mail_test.dart"
   ],
-  "finished_at_utc": "2026-11-19T19:05:50.411674+00:00",
+  "finished_at_utc": "2026-11-19T19:26:13.216231+00:00",
   "missing_files": [],
   "name": "studio-mail",
-  "started_at_utc": "2026-11-19T19:03:34.511911+00:00",
+  "started_at_utc": "2026-11-19T19:24:25.287707+00:00",
   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-  "stdout_sha256": "4e6a844866dc312b98693d131b7efe0e6cc5482d6f23bb1d4f323f9d9912c0ce",
-  "test_cases_sha256": "4cbee45559fd18e270694aa31cec3361a8eb4503566ad26e71accddbdae35911",
+  "stdout_sha256": "f7e051c7318b19897941af2c8d83f81fc93d7feaccadf8584e68ae4f84f5f685",
+  "test_cases_sha256": "66bf00251cd9aae6e226b81aca7c9a1aea0ea37dbd5b54c852be46b2b06453b0",
   "test_counts": {
     "failed": 0,
     "passed": 401,

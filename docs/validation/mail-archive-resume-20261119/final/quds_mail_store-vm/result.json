@@ -33,7 +33,7 @@
     "test/repository_test.dart"
   ],
   "cwd": "/workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_mail_store",
-  "elapsed_seconds": 65.258,
+  "elapsed_seconds": 65.378,
   "environment_overrides": {},
   "exit_code": 0,
   "expected_test_files": [
@@ -60,13 +60,13 @@
     "packages/quds_mail_store/test/platform_configuration_test.dart",
     "packages/quds_mail_store/test/repository_test.dart"
   ],
-  "finished_at_utc": "2026-11-19T19:04:12.536214+00:00",
+  "finished_at_utc": "2026-11-19T19:25:04.017818+00:00",
   "missing_files": [],
   "name": "quds_mail_store-vm",
-  "started_at_utc": "2026-11-19T19:03:07.277945+00:00",
+  "started_at_utc": "2026-11-19T19:23:58.639795+00:00",
   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-  "stdout_sha256": "b4b31146f8ec5aa02545afde538582c6fdeedf5244ef1dce0b3ae834fcf71022",
-  "test_cases_sha256": "9b6b2e9b54a5a584cdeb9e1fac0eb1f306222977f633658c161ce1ea17bfdc3e",
+  "stdout_sha256": "8e7074ea892538286df086f0971fa8a5d078484bc23f1d1e57447844e268f444",
+  "test_cases_sha256": "f12b0b3380ad465e53d7d56138231232072a9cd796718d9c27957beeb68010d4",
   "test_counts": {
     "failed": 0,
     "passed": 557,
