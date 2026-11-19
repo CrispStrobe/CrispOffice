@@ -1,0 +1,373 @@
+{
+  "schema": 1,
+  "remote_observation_started_utc": "2026-11-19 17:29:53 UTC",
+  "main_rechecked_utc": "2026-11-19 17:34:33 UTC",
+  "main": "0c29b5d8a0a92148dcd95f3282b4d43c462be20d",
+  "github_actions_used": false,
+  "prs": [
+    {
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/205",
+      "number": 205,
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "title": "Add resumable bulk mail export and recursive archive import [skip ci]",
+      "base": "main",
+      "base_sha": "304d4bff45da24f22cee420ec464882d7c7ce516",
+      "head": "codex/mail-archive-portability-20261119",
+      "head_sha": "82b20dc8b52d0b95efeff590c6023ed84704fa7a",
+      "merge_commit_sha": "0c29b5d8a0a92148dcd95f3282b4d43c462be20d",
+      "updated_at": "2026-11-19T17:28:05Z",
+      "merged_at": "2026-11-19T17:27:22Z"
+    },
+    {
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/206",
+      "number": 206,
+      "state": "open",
+      "merged": false,
+      "draft": true,
+      "title": "Improve CrispOffice ribbons and native desktop chrome [skip ci]",
+      "base": "main",
+      "base_sha": "304d4bff45da24f22cee420ec464882d7c7ce516",
+      "head": "codex/crispoffice-gui-20261119",
+      "head_sha": "f489cefe48e6fd4b0dcbada8fc4025682733a118",
+      "merge_commit_sha": null,
+      "updated_at": "2026-11-19T17:27:17Z",
+      "merged_at": null
+    }
+  ],
+  "mail": {
+    "accepted_source": "9bdef4895922ae74f6275e421af5665552d18b4e",
+    "publication": "82b20dc8b52d0b95efeff590c6023ed84704fa7a",
+    "merge": "0c29b5d8a0a92148dcd95f3282b4d43c462be20d",
+    "compare_status": "ahead",
+    "total_commits": 1,
+    "file_count": 151,
+    "files": [
+      "docs/validation/mail-archive-portability-20261119/README.md",
+      "docs/validation/mail-archive-portability-20261119/attempts/01-analysis/RETENTION.md",
+      "docs/validation/mail-archive-portability-20261119/attempts/01-analysis/analyze-mail-and-changed-dart/command.json",
+      "docs/validation/mail-archive-portability-20261119/attempts/01-analysis/analyze-mail-and-changed-dart/result.json",
+      "docs/validation/mail-archive-portability-20261119/attempts/01-analysis/analyze-mail-and-changed-dart/stderr.log.gz",
+      "docs/validation/mail-archive-portability-20261119/attempts/01-analysis/analyze-mail-and-changed-dart/stdout.log.gz",
+      "docs/validation/mail-archive-portability-20261119/attempts/01-analysis/build-language-id/command.json",
+      "docs/validation/mail-archive-portability-20261119/attempts/01-analysis/build-language-id/result.json",
+      "docs/validation/mail-archive-portability-20261119/attempts/01-analysis/build-language-id/stderr.log.gz",
+      "docs/validation/mail-archive-portability-20261119/attempts/01-analysis/build-language-id/stdout.log.gz",
+      "docs/validation/mail-archive-portability-20261119/attempts/01-analysis/compact-receipt.json",
+      "docs/validation/mail-archive-portability-20261119/attempts/01-analysis/dependencies-after.json.gz",
+      "docs/validation/mail-archive-portability-20261119/attempts/01-analysis/dependencies-before.json.gz",
+      "docs/validation/mail-archive-portability-20261119/attempts/01-analysis/format-changed-dart/command.json",
+      "docs/validation/mail-archive-portability-20261119/attempts/01-analysis/format-changed-dart/result.json",
+      "docs/validation/mail-archive-portability-20261119/attempts/01-analysis/format-changed-dart/stderr.log.gz",
+      "docs/validation/mail-archive-portability-20261119/attempts/01-analysis/format-changed-dart/stdout.log.gz",
+      "docs/validation/mail-archive-portability-20261119/attempts/01-analysis/macos-build-script-syntax/command.json",
+      "docs/validation/mail-archive-portability-20261119/attempts/01-analysis/macos-build-script-syntax/result.json",
+      "docs/validation/mail-archive-portability-20261119/attempts/01-analysis/macos-build-script-syntax/stderr.log.gz",
+      "docs/validation/mail-archive-portability-20261119/attempts/01-analysis/macos-build-script-syntax/stdout.log.gz",
+      "docs/validation/mail-archive-portability-20261119/attempts/01-analysis/receipt.json",
+      "docs/validation/mail-archive-portability-20261119/attempts/01-analysis/retention.json",
+      "docs/validation/mail-archive-portability-20261119/attempts/01-analysis/run-local-validation.py",
+      "docs/validation/mail-archive-portability-20261119/attempts/01-analysis/runtime-after.json.gz",
+      "docs/validation/mail-archive-portability-20261119/attempts/01-analysis/runtime-before.json.gz",
+      "docs/validation/mail-archive-portability-20261119/attempts/01-analysis/runtime-readiness-receipt.json",
+      "docs/validation/mail-archive-portability-20261119/attempts/01-analysis/runtime-setup-receipt.json",
+      "docs/validation/mail-archive-portability-20261119/attempts/01-analysis/selected-plan.json",
+      "docs/validation/mail-archive-portability-20261119/attempts/01-analysis/source-after.json.gz",
+      "docs/validation/mail-archive-portability-20261119/attempts/01-analysis/source-before.json.gz",
+      "docs/validation/mail-archive-portability-20261119/audit-evidence.py",
+      "docs/validation/mail-archive-portability-20261119/final/RETENTION.md",
+      "docs/validation/mail-archive-portability-20261119/final/analyze-mail-and-changed-dart/command.json",
+      "docs/validation/mail-archive-portability-20261119/final/analyze-mail-and-changed-dart/result.json",
+      "docs/validation/mail-archive-portability-20261119/final/analyze-mail-and-changed-dart/stderr.log.gz",
+      "docs/validation/mail-archive-portability-20261119/final/analyze-mail-and-changed-dart/stdout.log.gz",
+      "docs/validation/mail-archive-portability-20261119/final/build-language-id/command.json",
+      "docs/validation/mail-archive-portability-20261119/final/build-language-id/result.json",
+      "docs/validation/mail-archive-portability-20261119/final/build-language-id/stderr.log.gz",
+      "docs/validation/mail-archive-portability-20261119/final/build-language-id/stdout.log.gz",
+      "docs/validation/mail-archive-portability-20261119/final/compact-receipt.json",
+      "docs/validation/mail-archive-portability-20261119/final/dependencies-after.json.gz",
+      "docs/validation/mail-archive-portability-20261119/final/dependencies-before.json.gz",
+      "docs/validation/mail-archive-portability-20261119/final/engine-incoming-macros-operations/command.json",
+      "docs/validation/mail-archive-portability-20261119/final/engine-incoming-macros-operations/result.json",
+      "docs/validation/mail-archive-portability-20261119/final/engine-incoming-macros-operations/stderr.log.gz",
+      "docs/validation/mail-archive-portability-20261119/final/engine-incoming-macros-operations/stdout.log.gz",
+      "docs/validation/mail-archive-portability-20261119/final/engine-incoming-macros-operations/test-cases.json.gz",
+      "docs/validation/mail-archive-portability-20261119/final/format-changed-dart/command.json",
+      "docs/validation/mail-archive-portability-20261119/final/format-changed-dart/result.json",
+      "docs/validation/mail-archive-portability-20261119/final/format-changed-dart/stderr.log.gz",
+      "docs/validation/mail-archive-portability-20261119/final/format-changed-dart/stdout.log.gz",
+      "docs/validation/mail-archive-portability-20261119/final/language-id-synthetic/command.json",
+      "docs/validation/mail-archive-portability-20261119/final/language-id-synthetic/result.json",
+      "docs/validation/mail-archive-portability-20261119/final/language-id-synthetic/stderr.log.gz",
+      "docs/validation/mail-archive-portability-20261119/final/language-id-synthetic/stdout.log.gz",
+      "docs/validation/mail-archive-portability-20261119/final/language-id-synthetic/test-cases.json.gz",
+      "docs/validation/mail-archive-portability-20261119/final/macos-build-script-syntax/command.json",
+      "docs/validation/mail-archive-portability-20261119/final/macos-build-script-syntax/result.json",
+      "docs/validation/mail-archive-portability-20261119/final/macos-build-script-syntax/stderr.log.gz",
+      "docs/validation/mail-archive-portability-20261119/final/macos-build-script-syntax/stdout.log.gz",
+      "docs/validation/mail-archive-portability-20261119/final/macro-web-compile/command.json",
+      "docs/validation/mail-archive-portability-20261119/final/macro-web-compile/result.json",
+      "docs/validation/mail-archive-portability-20261119/final/macro-web-compile/stderr.log.gz",
+      "docs/validation/mail-archive-portability-20261119/final/macro-web-compile/stdout.log.gz",
+      "docs/validation/mail-archive-portability-20261119/final/macro-web-node/command.json",
+      "docs/validation/mail-archive-portability-20261119/final/macro-web-node/result.json",
+      "docs/validation/mail-archive-portability-20261119/final/macro-web-node/stderr.log.gz",
+      "docs/validation/mail-archive-portability-20261119/final/macro-web-node/stdout.log.gz",
+      "docs/validation/mail-archive-portability-20261119/final/mail-ui-widgets/command.json",
+      "docs/validation/mail-archive-portability-20261119/final/mail-ui-widgets/result.json",
+      "docs/validation/mail-archive-portability-20261119/final/mail-ui-widgets/stderr.log.gz",
+      "docs/validation/mail-archive-portability-20261119/final/mail-ui-widgets/stdout.log.gz",
+      "docs/validation/mail-archive-portability-20261119/final/mail-ui-widgets/test-cases.json.gz",
+      "docs/validation/mail-archive-portability-20261119/final/quds_mail_core-vm/command.json",
+      "docs/validation/mail-archive-portability-20261119/final/quds_mail_core-vm/result.json",
+      "docs/validation/mail-archive-portability-20261119/final/quds_mail_core-vm/stderr.log.gz",
+      "docs/validation/mail-archive-portability-20261119/final/quds_mail_core-vm/stdout.log.gz",
+      "docs/validation/mail-archive-portability-20261119/final/quds_mail_core-vm/test-cases.json.gz",
+      "docs/validation/mail-archive-portability-20261119/final/quds_mail_mime-vm/command.json",
+      "docs/validation/mail-archive-portability-20261119/final/quds_mail_mime-vm/result.json",
+      "docs/validation/mail-archive-portability-20261119/final/quds_mail_mime-vm/stderr.log.gz",
+      "docs/validation/mail-archive-portability-20261119/final/quds_mail_mime-vm/stdout.log.gz",
+      "docs/validation/mail-archive-portability-20261119/final/quds_mail_mime-vm/test-cases.json.gz",
+      "docs/validation/mail-archive-portability-20261119/final/quds_mail_store-node/command.json",
+      "docs/validation/mail-archive-portability-20261119/final/quds_mail_store-node/result.json",
+      "docs/validation/mail-archive-portability-20261119/final/quds_mail_store-node/stderr.log.gz",
+      "docs/validation/mail-archive-portability-20261119/final/quds_mail_store-node/stdout.log.gz",
+      "docs/validation/mail-archive-portability-20261119/final/quds_mail_store-node/test-cases.json.gz",
+      "docs/validation/mail-archive-portability-20261119/final/quds_mail_store-vm/command.json",
+      "docs/validation/mail-archive-portability-20261119/final/quds_mail_store-vm/result.json",
+      "docs/validation/mail-archive-portability-20261119/final/quds_mail_store-vm/stderr.log.gz",
+      "docs/validation/mail-archive-portability-20261119/final/quds_mail_store-vm/stdout.log.gz",
+      "docs/validation/mail-archive-portability-20261119/final/quds_mail_store-vm/test-cases.json.gz",
+      "docs/validation/mail-archive-portability-20261119/final/quds_mail_transport-node/command.json",
+      "docs/validation/mail-archive-portability-20261119/final/quds_mail_transport-node/result.json",
+      "docs/validation/mail-archive-portability-20261119/final/quds_mail_transport-node/stderr.log.gz",
+      "docs/validation/mail-archive-portability-20261119/final/quds_mail_transport-node/stdout.log.gz",
+      "docs/validation/mail-archive-portability-20261119/final/quds_mail_transport-node/test-cases.json.gz",
+      "docs/validation/mail-archive-portability-20261119/final/quds_mail_transport-vm/command.json",
+      "docs/validation/mail-archive-portability-20261119/final/quds_mail_transport-vm/result.json",
+      "docs/validation/mail-archive-portability-20261119/final/quds_mail_transport-vm/stderr.log.gz",
+      "docs/validation/mail-archive-portability-20261119/final/quds_mail_transport-vm/stdout.log.gz",
+      "docs/validation/mail-archive-portability-20261119/final/quds_mail_transport-vm/test-cases.json.gz",
+      "docs/validation/mail-archive-portability-20261119/final/receipt.json",
+      "docs/validation/mail-archive-portability-20261119/final/retention.json",
+      "docs/validation/mail-archive-portability-20261119/final/run-local-validation.py",
+      "docs/validation/mail-archive-portability-20261119/final/runtime-after.json.gz",
+      "docs/validation/mail-archive-portability-20261119/final/runtime-before.json.gz",
+      "docs/validation/mail-archive-portability-20261119/final/runtime-readiness-receipt.json",
+      "docs/validation/mail-archive-portability-20261119/final/runtime-setup-receipt.json",
+      "docs/validation/mail-archive-portability-20261119/final/selected-plan.json",
+      "docs/validation/mail-archive-portability-20261119/final/source-after.json.gz",
+      "docs/validation/mail-archive-portability-20261119/final/source-before.json.gz",
+      "docs/validation/mail-archive-portability-20261119/final/studio-mail-widgets/command.json",
+      "docs/validation/mail-archive-portability-20261119/final/studio-mail-widgets/result.json",
+      "docs/validation/mail-archive-portability-20261119/final/studio-mail-widgets/stderr.log.gz",
+      "docs/validation/mail-archive-portability-20261119/final/studio-mail-widgets/stdout.log.gz",
+      "docs/validation/mail-archive-portability-20261119/final/studio-mail-widgets/test-cases.json.gz",
+      "docs/validation/mail-archive-portability-20261119/final/vba-procedures-web-compile/command.json",
+      "docs/validation/mail-archive-portability-20261119/final/vba-procedures-web-compile/result.json",
+      "docs/validation/mail-archive-portability-20261119/final/vba-procedures-web-compile/stderr.log.gz",
+      "docs/validation/mail-archive-portability-20261119/final/vba-procedures-web-compile/stdout.log.gz",
+      "docs/validation/mail-archive-portability-20261119/final/vba-procedures-web-node/command.json",
+      "docs/validation/mail-archive-portability-20261119/final/vba-procedures-web-node/result.json",
+      "docs/validation/mail-archive-portability-20261119/final/vba-procedures-web-node/stderr.log.gz",
+      "docs/validation/mail-archive-portability-20261119/final/vba-procedures-web-node/stdout.log.gz",
+      "docs/validation/mail-archive-portability-20261119/final/vba-web-compile/command.json",
+      "docs/validation/mail-archive-portability-20261119/final/vba-web-compile/result.json",
+      "docs/validation/mail-archive-portability-20261119/final/vba-web-compile/stderr.log.gz",
+      "docs/validation/mail-archive-portability-20261119/final/vba-web-compile/stdout.log.gz",
+      "docs/validation/mail-archive-portability-20261119/final/vba-web-node/command.json",
+      "docs/validation/mail-archive-portability-20261119/final/vba-web-node/result.json",
+      "docs/validation/mail-archive-portability-20261119/final/vba-web-node/stderr.log.gz",
+      "docs/validation/mail-archive-portability-20261119/final/vba-web-node/stdout.log.gz",
+      "docs/validation/mail-archive-portability-20261119/independent-audit.json",
+      "docs/validation/mail-archive-portability-20261119/publication-check.json",
+      "docs/validation/mail-archive-portability-20261119/receipt.json",
+      "docs/validation/mail-archive-portability-20261119/retain-evidence.py",
+      "docs/validation/mail-archive-portability-20261119/screenshots/README.md",
+      "docs/validation/mail-archive-portability-20261119/screenshots/archive-export-confirmation-ar.png",
+      "docs/validation/mail-archive-portability-20261119/screenshots/archive-export-confirmation-en.png",
+      "docs/validation/mail-archive-portability-20261119/screenshots/archive-export-report-ar.png",
+      "docs/validation/mail-archive-portability-20261119/screenshots/archive-export-report-en.png",
+      "docs/validation/mail-archive-portability-20261119/screenshots/archive-portability-desktop-en.png",
+      "docs/validation/mail-archive-portability-20261119/screenshots/archive-portability-mobile-ar.png",
+      "docs/validation/mail-archive-portability-20261119/screenshots/provenance.json",
+      "packages/quds_mail_store/CHANGELOG.md",
+      "packages/quds_mail_store/README.md",
+      "packages/quds_office_editor/CHANGELOG.md"
+    ],
+    "code_or_test_changes": [],
+    "local_independent_author_evidence_audit": "mail-publication-audit.json",
+    "author_counts": {
+      "passed": 1750,
+      "failed": 0,
+      "skipped": 0,
+      "shared_mail_ui": 33,
+      "studio_mail": 372
+    },
+    "interpretation": "Audited existing author execution at 9bdef; these results are not added to our newly executed test totals. Current shared-mail UI and studio_mail source paths remain byte-identical; studio_saved_mail test has a one-line find.text→find.byTooltip fixture adaptation from incoming GUI. The SuiteWorkspace shell has broader GUI changes requiring separate current GUI qualification."
+  },
+  "gui": {
+    "previous_accepted_frontier": "6c10cc30e61f4fd1333b0a385989cf6b3cdf1788",
+    "frozen_current_source": "f489cefe48e6fd4b0dcbada8fc4025682733a118",
+    "compare_status": "ahead",
+    "total_commits": 6,
+    "commits": [
+      {
+        "sha": "176530faea5cb539e5eb6d003f6acda5538fdbb4",
+        "subject": "Reconcile current Studio and mail work; document VBA control flow [skip ci]"
+      },
+      {
+        "sha": "6fd1f9765d5ee751b910d24b89a34e08d01251c9",
+        "subject": "Keep nested VBA execution within portable host stacks [skip ci]"
+      },
+      {
+        "sha": "ab253c35e424b96e275c9a1ef9cc9fbdcc3fa6a6",
+        "subject": "Complete VBA smoke lint and integration-test formatting [skip ci]"
+      },
+      {
+        "sha": "a3f77faf4b5f1f7c1e05758e4e2e9c64fda59431",
+        "subject": "Integrate current VBA portable-depth fixes before final GUI checks [skip ci]"
+      },
+      {
+        "sha": "92941ac16d43160555fbc58dc360c1dc0322ab4a",
+        "subject": "Polish ribbon keyboard access and native dialogs; save verified previews [skip ci]"
+      },
+      {
+        "sha": "f489cefe48e6fd4b0dcbada8fc4025682733a118",
+        "subject": "Align new comment initials with CrispOffice branding [skip ci]"
+      }
+    ],
+    "unique_gui_commits": [
+      {
+        "sha": "92941ac16d43160555fbc58dc360c1dc0322ab4a",
+        "parents": [
+          "a3f77faf4b5f1f7c1e05758e4e2e9c64fda59431"
+        ],
+        "message": "Polish ribbon keyboard access and native dialogs; save verified previews [skip ci]\n\nMake ribbon menus respond to Escape and keyboard navigation and allow switching controls on the first click. Restore the retained macOS window before About/Settings, preserve native traffic-light spacing on bootstrap fallback, and flush ribbon preferences before closing. Include desktop usage guidance and six reproducible Flutter-rendered previews.",
+        "files": [
+          {
+            "path": "docs/validation/crispoffice-gui-20261119/render_previews.dart",
+            "status": "added",
+            "additions": 120,
+            "deletions": 0
+          },
+          {
+            "path": "docs/validation/crispoffice-gui-20261119/screenshots/customize-ribbon.png",
+            "status": "added",
+            "additions": 0,
+            "deletions": 0
+          },
+          {
+            "path": "docs/validation/crispoffice-gui-20261119/screenshots/insert-desktop.png",
+            "status": "added",
+            "additions": 0,
+            "deletions": 0
+          },
+          {
+            "path": "docs/validation/crispoffice-gui-20261119/screenshots/insert-labels.png",
+            "status": "added",
+            "additions": 0,
+            "deletions": 0
+          },
+          {
+            "path": "docs/validation/crispoffice-gui-20261119/screenshots/insert-narrow-arabic.png",
+            "status": "added",
+            "additions": 0,
+            "deletions": 0
+          },
+          {
+            "path": "docs/validation/crispoffice-gui-20261119/screenshots/insert-narrow-german.png",
+            "status": "added",
+            "additions": 0,
+            "deletions": 0
+          },
+          {
+            "path": "docs/validation/crispoffice-gui-20261119/screenshots/insert-text-menu.png",
+            "status": "added",
+            "additions": 0,
+            "deletions": 0
+          },
+          {
+            "path": "packages/quds_office_editor/example/README.md",
+            "status": "modified",
+            "additions": 35,
+            "deletions": 0
+          },
+          {
+            "path": "packages/quds_office_editor/example/lib/studio_chrome.dart",
+            "status": "modified",
+            "additions": 31,
+            "deletions": 21
+          },
+          {
+            "path": "packages/quds_office_editor/example/lib/studio_window.dart",
+            "status": "modified",
+            "additions": 2,
+            "deletions": 1
+          },
+          {
+            "path": "packages/quds_office_editor/example/lib/suite_workspace.dart",
+            "status": "modified",
+            "additions": 23,
+            "deletions": 4
+          },
+          {
+            "path": "packages/quds_office_editor/example/test/studio_desktop_menu_test.dart",
+            "status": "modified",
+            "additions": 2,
+            "deletions": 0
+          },
+          {
+            "path": "packages/quds_office_editor/example/test/studio_file_menu_test.dart",
+            "status": "modified",
+            "additions": 27,
+            "deletions": 4
+          },
+          {
+            "path": "packages/quds_office_editor/example/test/studio_ribbon_customization_test.dart",
+            "status": "modified",
+            "additions": 52,
+            "deletions": 0
+          },
+          {
+            "path": "packages/quds_office_editor/test/pdf_save_state_test.dart",
+            "status": "modified",
+            "additions": 2,
+            "deletions": 1
+          }
+        ]
+      },
+      {
+        "sha": "f489cefe48e6fd4b0dcbada8fc4025682733a118",
+        "parents": [
+          "92941ac16d43160555fbc58dc360c1dc0322ab4a"
+        ],
+        "message": "Align new comment initials with CrispOffice branding [skip ci]\n\nUse CO for new comments inserted from the workspace and automation. Preserve explicit author and initials values already present in imported documents.",
+        "files": [
+          {
+            "path": "packages/quds_office_editor/example/lib/suite_workspace.dart",
+            "status": "modified",
+            "additions": 1,
+            "deletions": 1
+          },
+          {
+            "path": "packages/quds_office_engine/lib/src/automation/operations/word_structure_steps.dart",
+            "status": "modified",
+            "additions": 1,
+            "deletions": 1
+          }
+        ]
+      }
+    ],
+    "engine_change": "f489 changes word_structure_steps.dart default new-comment initials from QO to CO; prior macro compiler changes in the broader compare are already our branch ancestry.",
+    "coordination": "macro_compiler was notified to refresh current GUI tests/source; parent reported strict Flutter analysis passed and 13 UI/PDF suites running."
+  },
+  "integration": {
+    "parent_reported_published_head": "bba77ddc1a40d5cdb5e8859744306fd3792db996",
+    "preserves_main": "0c29b5d8a0a92148dcd95f3282b4d43c462be20d",
+    "preserves_gui": "f489cefe48e6fd4b0dcbada8fc4025682733a118",
+    "recommendation": "Complete current frozen f489 GUI qualification and narrow engine default-initials check, preserve latest remote main ancestry, then merge existing macro branch. No GitHub Actions wait; no further branch-scope expansion."
+  },
+  "scope": "This refresh records the known PR205 publication and frozen PR206 source. Full fork and upstream branch coverage is retained in remote-audit.json and final-frontier.json; this task does not re-open branch scope."
+}

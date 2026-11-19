@@ -1,0 +1,43 @@
+{
+  "qualified_commit": "dde14aa66d229957352a2f64f77b23d8f91198ae",
+  "qualified_tree": "1ee90818295534b203926953d1874e717a0a9d59",
+  "incoming_gui_publication": "df7f4b4c8df63cbcf80d9087d06707d166a2c678",
+  "incoming_gui_evidence_binding": "bba11ff1b23b2e8c0cdc0d872ce31394ada83bf2",
+  "previous_acceptance_commit": "bc32a14477c9254d0725eb563410c5c9ea059211",
+  "previous_source_manifest": "../source-input-sha256.json",
+  "source_hash_amendments": "changes-from-118-acceptance.json",
+  "source_input_count": 5188,
+  "final_source_matches_base_plus_amendments": true,
+  "final_source_projection_sha256": "a1d8fd8a046036ee1c19726e71e105f369312d78097ffe9c44a9de1f9560dabf",
+  "published_changed_inputs": [
+    {
+      "path": "packages/quds_office_editor/example/README.md",
+      "sha256": "9a3b131f55d79e10f902dd3c9d8b9236b6c94c3f049bbf49058c4e47d1627697",
+      "matches_published_commit": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_file_menu_test.dart",
+      "sha256": "1711ec408a6010421bccd6bf8582ba6e3dab2e141bf1eed669d5f1a6cee36d8a",
+      "matches_published_commit": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_archive_directory_import_test.dart",
+      "sha256": "502daf24c427f95a801a0e6495eadd778096d922c6cdee079f669fd0885341cd",
+      "matches_published_commit": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_sheet_navigation_test.dart",
+      "sha256": "a9bfcef8e060ae945e283dbe2f48a2e97754bdfe2efeb89a4facf224ac510d8e",
+      "matches_published_commit": true
+    }
+  ],
+  "product_source_changes_from_previous_acceptance": [],
+  "repeated_gui_passed": 12,
+  "additional_directory_import_passed": 30,
+  "failed": 0,
+  "skipped": 0,
+  "total_distinct_behavioral_cases_across_both_receipts": 148,
+  "total_skipped_screenshot_generators": 1,
+  "full_suite_rerun_after_publication": false,
+  "scope_note": "Only three test fixtures and Studio README changed within the 5,188 recorded inputs. The product snapshot and all other accepted tests remained identical. Repeat counts are not added to distinct coverage."
+}

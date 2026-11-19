@@ -1,0 +1,13 @@
+{
+  "input_count": 5188,
+  "source_unchanged": true,
+  "source_changes": [],
+  "copy_matches_except_declared_workspace_lock": true,
+  "copy_matched_input_count": 5187,
+  "declared_workspace_override": {
+    "path": "pubspec.lock",
+    "source_sha256": "72a5a52654a1484f4df646c631b4d1ea47e96025a671beff045eecf2b9e78e82",
+    "isolated_sha256": "677c94b8edbfa877657f9ecb56d6726a72b95bdd6812bb61fe06db19cf0736a1",
+    "reason": "The isolated reduced workspace resolved its own dependency lock during setup; tracked root lock and manifests were not modified. Every acceptance command used --no-pub. The raw equality audit intentionally retains this sole expected difference."
+  }
+}

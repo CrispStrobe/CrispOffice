@@ -1,0 +1,58 @@
+00:00 +0: loading /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_desktop_menu_test.dart
+00:00 +0: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_desktop_menu_test.dart: desktop File menu invokes enabled actions and disables busy ones
+00:00 +1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_desktop_menu_test.dart: macOS menu serializes File shortcuts and dispatches native selection (variant: TargetPlatform.macOS)
+00:00 +2: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_desktop_menu_test.dart: native Quit waits for and respects the workspace close decision (variant: TargetPlatform.macOS)
+00:00 +3: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_desktop_menu_test.dart: macOS Close restores prevention and synchronizes fullscreen (variant: TargetPlatform.macOS)
+00:11 +4: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_file_menu_test.dart: Save As cancellation keeps the document, dirty state and undo (variant: TargetPlatform.windows)
+00:13 +5: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_file_menu_test.dart: Save As cancellation keeps the document, dirty state and undo (variant: TargetPlatform.windows)
+00:13 +6: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_file_menu_test.dart: Save As cancellation keeps the document, dirty state and undo (variant: TargetPlatform.windows)
+00:13 +7: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_file_menu_test.dart: Save As cancellation keeps the document, dirty state and undo (variant: TargetPlatform.windows)
+00:13 +8: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_file_menu_test.dart: Save As cancellation keeps the document, dirty state and undo (variant: TargetPlatform.windows)
+00:13 +9: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_file_menu_test.dart: Save As cancellation keeps the document, dirty state and undo (variant: TargetPlatform.windows)
+00:13 +10: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_file_menu_test.dart: Save As cancellation keeps the document, dirty state and undo (variant: TargetPlatform.windows)
+00:14 +11: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_file_menu_test.dart: Save As cancellation keeps the document, dirty state and undo (variant: TargetPlatform.windows)
+00:14 +12: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_file_menu_test.dart: Save As cancellation keeps the document, dirty state and undo (variant: TargetPlatform.windows)
+00:14 +13: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_file_menu_test.dart: Save As cancellation keeps the document, dirty state and undo (variant: TargetPlatform.windows)
+00:14 +14: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_file_menu_test.dart: Save As cancellation keeps the document, dirty state and undo (variant: TargetPlatform.windows)
+00:14 +15: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_ribbon_customization_test.dart: compact Insert menus execute table and footnote commands with undo (variant: TargetPlatform.linux)
+00:15 +16: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_ribbon_customization_test.dart: compact Insert menus execute table and footnote commands with undo (variant: TargetPlatform.linux)
+00:17 +17: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_file_menu_test.dart: Open confirms the destination spreadsheet and cancellation keeps its draft (variant: TargetPlatform.windows)
+00:17 +18: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_ribbon_customization_test.dart: customization hides and orders groups, switches labels, and restores defaults
+00:19 +18: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_file_menu_test.dart: macOS opens native dialogs safely and disables modal File actions (variant: TargetPlatform.macOS)
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: no matching candidates
+  Actual: _TypeWidgetFinder:<Found 1 widget with type "AlertDialog": [
+            AlertDialog(dependencies: [Directionality, InheritedCupertinoTheme, MediaQuery,
+_InheritedTheme, _LocalizationsScope-[GlobalKey#600d3]]),
+          ]>
+   Which: means one was found but none were expected
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_file_menu_test.dart:231:7)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1953:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_file_menu_test.dart line 231
+The test description was:
+  macOS opens native dialogs safely and disables modal File actions (variant: TargetPlatform.macOS)
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:19 +18 -1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_ribbon_customization_test.dart: customization hides and orders groups, switches labels, and restores defaults
+00:19 +18 -1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_file_menu_test.dart: macOS opens native dialogs safely and disables modal File actions (variant: TargetPlatform.macOS) [E]
+  Test failed. See exception logs above.
+  The test description was: macOS opens native dialogs safely and disables modal File actions (variant: TargetPlatform.macOS)
+  
+00:19 +19 -1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_ribbon_customization_test.dart: hidden tabs recover selection and collapsed ribbon can always be expanded
+00:21 +20 -1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_ribbon_customization_test.dart: compact commands and customization work in narrow Arabic at large text scale (variant: TargetPlatform.linux)
+00:22 +21 -1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_ribbon_customization_test.dart: Insert menus support Escape, outside controls and keyboard selection (variant: TargetPlatform.linux)
+00:24 +22 -1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_ribbon_customization_test.dart: all application tabs retain unique reachable groups
+00:26 +23 -1: Some tests failed.
+
+Failing tests:
+  /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_file_menu_test.dart: macOS opens native dialogs safely and disables modal File actions (variant: TargetPlatform.macOS)

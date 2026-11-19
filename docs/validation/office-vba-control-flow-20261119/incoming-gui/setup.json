@@ -1,0 +1,40 @@
+{
+  "source_head": "43129d2e675c9e6bbaf985f9756172d63a634c03",
+  "gui_head": "f489cefe48e6fd4b0dcbada8fc4025682733a118",
+  "packages": [
+    "packages/legacy_doc_parser",
+    "packages/quds_arabic_morph",
+    "packages/quds_language_id",
+    "packages/quds_mail_core",
+    "packages/quds_mail_mime",
+    "packages/quds_mail_store",
+    "packages/quds_mail_transport",
+    "packages/quds_mail_ui",
+    "packages/quds_mail_ui/example",
+    "packages/quds_office_editor",
+    "packages/quds_office_editor/example",
+    "packages/quds_office_engine",
+    "packages/quds_proofing_harper",
+    "packages/quds_proofing_hunspell",
+    "packages/quds_proofing_spacy",
+    "packages/quds_reports",
+    "packages/quds_office_engine/example"
+  ],
+  "input_count": 5188,
+  "copy_kind": "isolated copied source/manifests with reduced root workspace",
+  "resynchronized_files": [
+    ".fvmrc",
+    "packages/quds_mail_store/CHANGELOG.md",
+    "packages/quds_mail_store/README.md",
+    "packages/quds_office_editor/CHANGELOG.md",
+    "packages/quds_office_editor/example/README.md",
+    "packages/quds_office_editor/example/lib/studio_chrome.dart",
+    "packages/quds_office_editor/example/lib/studio_window.dart",
+    "packages/quds_office_editor/example/lib/suite_workspace.dart",
+    "packages/quds_office_editor/example/test/studio_desktop_menu_test.dart",
+    "packages/quds_office_editor/example/test/studio_file_menu_test.dart",
+    "packages/quds_office_editor/example/test/studio_ribbon_customization_test.dart",
+    "packages/quds_office_editor/test/pdf_save_state_test.dart",
+    "packages/quds_office_engine/lib/src/automation/operations/word_structure_steps.dart"
+  ]
+}

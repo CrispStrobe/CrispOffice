@@ -1,0 +1,11 @@
+--- before/packages/quds_office_engine/lib/src/automation/operations/word_structure_steps.dart
++++ after/packages/quds_office_engine/lib/src/automation/operations/word_structure_steps.dart
+@@ -170,7 +170,7 @@
+       id: WordComment.nextId(doc),
+       text: s.string('text'),
+       author: s.string('author', fallback: 'CrispOffice'),
+-      initials: s.string('initials', fallback: 'QO'),
++      initials: s.string('initials', fallback: 'CO'),
+       dateIso: date,
+       parentId: parentId,
+     );

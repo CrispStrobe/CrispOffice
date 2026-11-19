@@ -1,0 +1,28 @@
+{
+  "source_root": "/workspace/scratch/e9fb10bfe870/quds_office_suite",
+  "validation_root": "/workspace/scratch/e9fb10bfe870/validation-workspace",
+  "dart": "/workspace/scratch/e9fb10bfe870/toolchains/dart-sdk/bin/dart",
+  "flutter_pin": "3.47.8",
+  "sdk_archive_sha256": "eb99aed266efbcb615c6ae21c12f52cfe935b9f208bccc5fea7f64c21e867229",
+  "workspace_packages": [
+    "legacy_doc_parser",
+    "quds_office_engine",
+    "quds_office_engine_example"
+  ],
+  "tracked_manifest_changes": false,
+  "environment": {
+    "PUB_CACHE": "/workspace/scratch/e9fb10bfe870/toolchains/pub-cache",
+    "TMPDIR": "/workspace/scratch/e9fb10bfe870/toolchains/tmp",
+    "DART_SUPPRESS_ANALYTICS": "true",
+    "CI": "true"
+  },
+  "description": "Reduced workspace uses copied package manifests and analysis options, with symlinks pointing to current tracked source. Root copied lockfile is resolved separately; tracked dependency manifests and lockfile unchanged.",
+  "dart_version": "Dart SDK version: 3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\"",
+  "dependency_resolution": "success",
+  "package_config": "/workspace/scratch/e9fb10bfe870/validation-workspace/.dart_tool/package_config.json",
+  "package_count": 59,
+  "package_config_generator_version": "3.13.7",
+  "dependency_log": "/workspace/scratch/e9fb10bfe870/toolchains/logs/pub-get.log",
+  "analysis_package_config_link": "/workspace/scratch/e9fb10bfe870/quds_office_suite/.dart_tool -> /workspace/scratch/e9fb10bfe870/validation-workspace/.dart_tool",
+  "analysis_link_tracking": "Excluded by local .git/info/exclude; tracked manifests and lockfiles unchanged."
+}
