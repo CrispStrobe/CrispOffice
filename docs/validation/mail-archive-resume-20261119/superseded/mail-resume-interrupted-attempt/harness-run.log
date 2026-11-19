@@ -1,0 +1,16 @@
+{"started": "format"}
+{"finished": "format", "accepted": true, "counts": null}
+{"started": "analysis"}
+{"finished": "analysis", "accepted": true, "counts": null}
+{"started": "whitespace"}
+{"finished": "whitespace", "accepted": true, "counts": null}
+{"started": "quds_mail_core-vm"}
+{"started": "quds_mail_mime-vm"}
+{"finished": "quds_mail_core-vm", "accepted": true, "counts": {"passed": 54, "failed": 0, "skipped": 0}}
+{"started": "quds_mail_store-vm"}
+{"finished": "quds_mail_mime-vm", "accepted": true, "counts": {"passed": 84, "failed": 0, "skipped": 0}}
+{"started": "quds_mail_store-node"}
+{"finished": "quds_mail_store-node", "accepted": true, "counts": {"passed": 9, "failed": 0, "skipped": 0}}
+{"started": "mail-ui"}
+{"finished": "mail-ui", "accepted": true, "counts": {"passed": 33, "failed": 0, "skipped": 0}}
+{"started": "studio-mail"}

@@ -1,0 +1,92 @@
+{
+  "scope": "Studio durable restore resume UI and local focused qualification",
+  "source_binding": "Seven changed UI/product and fixture inputs match before/after. Repository-wide source/runtime acceptance is owned by the parent task.",
+  "tests": {
+    "command": [
+      "flutter",
+      "test",
+      "--no-pub",
+      "--concurrency=1",
+      "--reporter=json",
+      "test/studio_mail_archive_restore_test.dart",
+      "test/studio_mail_archive_portability_visual_test.dart"
+    ],
+    "cwd": "packages/quds_office_editor/example",
+    "exit_code": 0,
+    "passed": 30,
+    "failed": 0,
+    "skipped": 0,
+    "raw_log": "tests.jsonl"
+  },
+  "analysis": {
+    "command": [
+      "dart",
+      "analyze",
+      "--fatal-infos",
+      "lib/studio_mail_archive_host.dart",
+      "lib/studio_mail_archive_native.dart",
+      "lib/studio_mail_archive_restore.dart",
+      "lib/studio_mail_archive_restore_progress.dart",
+      "lib/studio_mail_archive_restore_strings.dart",
+      "test/studio_mail_archive_restore_test.dart",
+      "test/studio_mail_archive_portability_visual_test.dart"
+    ],
+    "exit_code": 0,
+    "issues": 0,
+    "raw_log": "analysis.log"
+  },
+  "ui_source_stable": true,
+  "visual_review": {
+    "captured_states": 24,
+    "new_resume_states_individually_reviewed": 12,
+    "languages": [
+      "en",
+      "de",
+      "ar"
+    ],
+    "review_notes": [
+      "English and German desktop previews show all confirmation controls, stored progress, indexing option and exact source identity.",
+      "Arabic narrow preview intentionally scrolls its long content; resume and confirmation remain reachable with RTL direction and correct Unicode text.",
+      "New result summaries separate current source bytes and outcomes from prior committed messages revalidated in destination.",
+      "Progress inventory shows all 5 of 5 fixture messages confirmed after completion, with consistent byte total.",
+      "Forget confirmation has bounded desktop width, explicit preservation explanation, and reachable localized actions.",
+      "Narrow English/German/Arabic behavior tests exercise 160% text scaling."
+    ],
+    "reviewed_files": [
+      "archive-resume-forget-confirmation-ar.png",
+      "archive-resume-forget-confirmation-de.png",
+      "archive-resume-forget-confirmation-en.png",
+      "archive-resume-preview-ar.png",
+      "archive-resume-preview-de.png",
+      "archive-resume-preview-en.png",
+      "archive-resume-progress-ar.png",
+      "archive-resume-progress-de.png",
+      "archive-resume-progress-en.png",
+      "archive-resume-result-ar.png",
+      "archive-resume-result-de.png",
+      "archive-resume-result-en.png"
+    ],
+    "identical_previews_reused_from_inspected_attempt2": [
+      "archive-resume-preview-en.png",
+      "archive-resume-preview-de.png",
+      "archive-resume-preview-ar.png"
+    ]
+  },
+  "superseded_attempts": [
+    {
+      "path": "../attempt-1",
+      "status": "not accepted",
+      "summary": "68 successful cases and six progress-dialog layout failures. A lazy list needed a definite height inside AlertDialog; corrected. Three scoped analyzer infos fixed."
+    },
+    {
+      "path": "../attempt-2",
+      "status": "not accepted",
+      "summary": "30 actual cases passed; runner exit 1 because Dart compiler unexpectedly exited. No behavioral assertion failure. Serial reruns succeeded. Screenshots later superseded to correct visual fixture state and confirmation width."
+    },
+    {
+      "path": "../attempt-3",
+      "status": "superseded",
+      "summary": "Serial test exit 0, 30 cases passed. Superseded only by confirmation width and visual fixture corrections, both included in final-ui."
+    }
+  ]
+}

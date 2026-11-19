@@ -1,0 +1,134 @@
+{
+  "branch": "codex/mail-archive-resume-20261119",
+  "pull_request": 212,
+  "through_source_freeze": "ec6d527e9aaf207e131217ec24c65cd9ae409433",
+  "checkpoint_count": 10,
+  "checkpoints": [
+    {
+      "checkpoint": 1,
+      "commit": "9d6cd0504094632825d3a0990a37fffd5c1b2c05",
+      "tree": "337dd1761be775127ca70b503c9b3013729d809c",
+      "parents": [
+        "596430dcb816dd418204d62e78f4dc518afdc0e1"
+      ],
+      "message": "Reconcile current fork work and plan durable mail restoration [skip ci]",
+      "publication": "non-forced GitHub ref update with exact expected previous head",
+      "in_final_source_history": true
+    },
+    {
+      "checkpoint": 2,
+      "commit": "85c8c55186b8eefd242159ee606b2ad1fa61038f",
+      "tree": "28b62e81bfce25844f505cef631fe03e9dba26d9",
+      "parents": [
+        "9d6cd0504094632825d3a0990a37fffd5c1b2c05"
+      ],
+      "message": "Add durable archive restore receipts and Studio resume controls [skip ci]",
+      "publication": "non-forced GitHub ref update with exact expected previous head",
+      "in_final_source_history": true
+    },
+    {
+      "checkpoint": 3,
+      "commit": "81b104e72a676e31d2838b186991b154a8c9dcb7",
+      "tree": "fa9a5dd9b99bdf06ba19398bea6a89a52a87b086",
+      "parents": [
+        "85c8c55186b8eefd242159ee606b2ad1fa61038f",
+        "f6b8638d5c78a2d17e5e1c2fb43620c63a23b90c",
+        "8c6acd04637ef627959fe40f518254ed538ab087"
+      ],
+      "message": "Reconcile updated VBA and Studio layout branches [skip ci]",
+      "publication": "non-forced GitHub ref update with exact expected previous head",
+      "in_final_source_history": true
+    },
+    {
+      "checkpoint": 4,
+      "commit": "2d3ca38b2e9a71ab38a98f112774b4e4659bbdf2",
+      "tree": "839113e3c8cdfec73933b670f84e1245fa1970b7",
+      "parents": [
+        "81b104e72a676e31d2838b186991b154a8c9dcb7"
+      ],
+      "message": "Harden restore cleanup and interruption recovery; preserve table ink [skip ci]",
+      "publication": "non-forced GitHub ref update with exact expected previous head",
+      "in_final_source_history": true
+    },
+    {
+      "checkpoint": 5,
+      "commit": "c32533ce77ae08bcc16fe8443d309cd39c4aa965",
+      "tree": "a2342f9203ad00816ae619af93b0080b2fb97a18",
+      "parents": [
+        "2d3ca38b2e9a71ab38a98f112774b4e4659bbdf2",
+        "61bb3ee42a385c5ffaffa44047693a6f378a8424"
+      ],
+      "message": "Integrate latest VBA parser repair and stronger slide color checks [skip ci]",
+      "publication": "non-forced GitHub ref update with exact expected previous head",
+      "in_final_source_history": true
+    },
+    {
+      "checkpoint": 6,
+      "commit": "11543634c25b639098d177d0add2afa011e3d0d5",
+      "tree": "ad71ea9f6209dd1cb49064675d440d2ae505a014",
+      "parents": [
+        "c32533ce77ae08bcc16fe8443d309cd39c4aa965",
+        "a2c144beaea7b46218d3b8c4932dcdb5681004aa"
+      ],
+      "message": "Reconcile latest GUI fonts and combine slide rendering safeguards [skip ci]",
+      "publication": "non-forced GitHub ref update with exact expected previous head",
+      "in_final_source_history": true
+    },
+    {
+      "checkpoint": 7,
+      "commit": "0401252abac80cd4c2bd1b23a663afb65a113df8",
+      "tree": "c21732ffa3f58918943caef60fb5cfbe6aa453a8",
+      "parents": [
+        "11543634c25b639098d177d0add2afa011e3d0d5"
+      ],
+      "message": "Preserve raw incoming patch evidence during whitespace validation [skip ci]",
+      "publication": "non-forced GitHub ref update with exact expected previous head",
+      "in_final_source_history": true
+    },
+    {
+      "checkpoint": 8,
+      "commit": "bab4a0842cca59d7e58d6be1df448b67cf5338d5",
+      "tree": "c17fb73778e930be1d689de404d5da48caaa75fd",
+      "parents": [
+        "0401252abac80cd4c2bd1b23a663afb65a113df8",
+        "9f41e0427734d815b19149eba5eabef202f78ba6",
+        "0e03878b028ec25ed3d84a790633433eafc3bede",
+        "ba51c40abc664758df3cfc846625bdeb81e3ac13",
+        "d8be43a408473da4b45059561dbc387f5b868d5b"
+      ],
+      "message": "Integrate latest main, GUI, VBA and macOS app fixes before final mail acceptance [skip ci]",
+      "publication": "non-forced GitHub ref update with exact expected previous head",
+      "in_final_source_history": true
+    },
+    {
+      "checkpoint": 9,
+      "commit": "7e13a48c2e591f436123a41211950702c13f8df2",
+      "tree": "f0c565ddeb09a40e1857903217f2ae2cea7e0075",
+      "parents": [
+        "bab4a0842cca59d7e58d6be1df448b67cf5338d5"
+      ],
+      "message": "Reconcile bundled model status and download sizing after current branch integration [skip ci]",
+      "publication": "non-forced GitHub ref update with exact expected previous head",
+      "in_final_source_history": true
+    },
+    {
+      "checkpoint": 10,
+      "commit": "ec6d527e9aaf207e131217ec24c65cd9ae409433",
+      "tree": "5f37164d8a382baaf02425654c102494e2af72d3",
+      "parents": [
+        "7e13a48c2e591f436123a41211950702c13f8df2"
+      ],
+      "message": "Preserve imported license-source bytes in local whitespace validation [skip ci]",
+      "publication": "non-forced GitHub ref update with exact expected previous head",
+      "in_final_source_history": true
+    }
+  ],
+  "publication_method": "GitHub Git Data API; exact local/remote tree match before reference update; local checkout fetched and aligned after publication",
+  "unpublished_attempts_not_counted": [
+    {
+      "commit": "b1b1d18b55be246bb7270db8240bed272ed25c29",
+      "reason": "Expected-head update rejected; branch remained unchanged. No successful checkpoint or accepted test count."
+    }
+  ],
+  "later_checkpoints": "Acceptance/audit/publication-only descendants are recorded in Git history and the final PR publication receipt."
+}

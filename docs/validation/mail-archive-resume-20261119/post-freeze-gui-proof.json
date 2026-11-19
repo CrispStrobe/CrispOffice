@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "frozen_source": "11543634c25b639098d177d0add2afa011e3d0d5",
+  "remote_commit": "8d9d1fe77284f76e71fbd6cb2718d3f6cfb636af",
+  "parents": [
+    "a2c144beaea7b46218d3b8c4932dcdb5681004aa",
+    "85c8c55186b8eefd242159ee606b2ad1fa61038f"
+  ],
+  "parents_already_ancestors": [
+    true,
+    true
+  ],
+  "first_parent_tree": "9d5faf9db2c5b6e999180b286a06b51a8db0e8bf",
+  "first_parent_reconstructed_tree": "9d5faf9db2c5b6e999180b286a06b51a8db0e8bf",
+  "remote_tree": "86d4b9fa8ed4a04fa73996af69fc6097aacd376e",
+  "union_reconstructed_tree": "86d4b9fa8ed4a04fa73996af69fc6097aacd376e",
+  "file_count": 15179,
+  "changed_path_count": 23,
+  "paths": [
+    {
+      "path": "docs/roadmaps/mail/archive-search.md",
+      "blob": "948f263d7e0171b8c57a1fa145d7a5997b9eecbb",
+      "status": "modified",
+      "imported_parent_mode": "100644",
+      "imported_parent_type": "blob",
+      "imported_parent_blob": "948f263d7e0171b8c57a1fa145d7a5997b9eecbb",
+      "equals_imported_parent_blob": true
+    },
+    {
+      "path": "docs/validation/mail-archive-resume-20261119/README.md",
+      "blob": "4c9b211939654184c2077f999f052ca57caebb93",
+      "status": "added",
+      "imported_parent_mode": "100644",
+      "imported_parent_type": "blob",
+      "imported_parent_blob": "4c9b211939654184c2077f999f052ca57caebb93",
+      "equals_imported_parent_blob": true
+    },
+    {
+      "path": "docs/validation/mail-archive-resume-20261119/reconciliation-initial.json",
+      "blob": "4481760400c0ce05120ebda5516452729babe99d",
+      "status": "added",
+      "imported_parent_mode": "100644",
+      "imported_parent_type": "blob",
+      "imported_parent_blob": "4481760400c0ce05120ebda5516452729babe99d",
+      "equals_imported_parent_blob": true
+    },
+    {
+      "path": "docs/validation/mail-archive-resume-20261119/run-mail-validation.py",
+      "blob": "5b6b1bb7a52dd35bc5dfd614b0ce8e94a3e0f855",
+      "status": "added",
+      "imported_parent_mode": "100644",
+      "imported_parent_type": "blob",
+      "imported_parent_blob": "5b6b1bb7a52dd35bc5dfd614b0ce8e94a3e0f855",
+      "equals_imported_parent_blob": true
+    },
+    {
+      "path": "packages/quds_mail_store/lib/quds_mail_store.dart",
+      "blob": "1de0ad31f16fdb76f1c24c45b0c81184dfa59d5d",
+      "status": "modified",
+      "imported_parent_mode": "100644",
+      "imported_parent_type": "blob",
+      "imported_parent_blob": "1de0ad31f16fdb76f1c24c45b0c81184dfa59d5d",
+      "equals_imported_parent_blob": true
+    },
+    {
+      "path": "packages/quds_mail_store/lib/src/archive_database.dart",
+      "blob": "320abe6053370b50c5346caa7c44fb9ce0ffa646",
+      "status": "modified",
+      "imported_parent_mode": "100644",
+      "imported_parent_type": "blob",
+      "imported_parent_blob": "320abe6053370b50c5346caa7c44fb9ce0ffa646",
+      "equals_imported_parent_blob": true
+    },
+    {
+      "path": "packages/quds_mail_store/lib/src/archive_models.dart",
+      "blob": "7d0d2cce436a9bd58e890a0dbd28143ab714bd3c",
+      "status": "modified",
+      "imported_parent_mode": "100644",
+      "imported_parent_type": "blob",
+      "imported_parent_blob": "7d0d2cce436a9bd58e890a0dbd28143ab714bd3c",
+      "equals_imported_parent_blob": true
+    },
+    {
+      "path": "packages/quds_mail_store/lib/src/archive_repository.dart",
+      "blob": "10a8f51cefb081d1a3077d4c34f7bac52c05c36a",
+      "status": "modified",
+      "imported_parent_mode": "100644",
+      "imported_parent_type": "blob",
+      "imported_parent_blob": "10a8f51cefb081d1a3077d4c34f7bac52c05c36a",
+      "equals_imported_parent_blob": true
+    },
+    {
+      "path": "packages/quds_mail_store/lib/src/archive_restore_checkpoint_models.dart",
+      "blob": "55a9513645d9be8b105a08a052c2fae053e33bf8",
+      "status": "added",
+      "imported_parent_mode": "100644",
+      "imported_parent_type": "blob",
+      "imported_parent_blob": "55a9513645d9be8b105a08a052c2fae053e33bf8",
+      "equals_imported_parent_blob": true
+    },
+    {
+      "path": "packages/quds_mail_store/lib/src/archive_restore_checkpoints.dart",
+      "blob": "41ae1348be925d4d71438daf356094c4763c0a1f",
+      "status": "added",
+      "imported_parent_mode": "100644",
+      "imported_parent_type": "blob",
+      "imported_parent_blob": "41ae1348be925d4d71438daf356094c4763c0a1f",
+      "equals_imported_parent_blob": true
+    },
+    {
+      "path": "packages/quds_mail_store/lib/src/archive_restore_models.dart",
+      "blob": "dbde7ecfb9971c591edd16a5c7c4324c7ab0c61d",
+      "status": "modified",
+      "imported_parent_mode": "100644",
+      "imported_parent_type": "blob",
+      "imported_parent_blob": "dbde7ecfb9971c591edd16a5c7c4324c7ab0c61d",
+      "equals_imported_parent_blob": true
+    },
+    {
+      "path": "packages/quds_mail_store/lib/src/archive_restore_native.dart",
+      "blob": "76818bd338f0804685b3947e65cffabaf5c09b68",
+      "status": "modified",
+      "imported_parent_mode": "100644",
+      "imported_parent_type": "blob",
+      "imported_parent_blob": "76818bd338f0804685b3947e65cffabaf5c09b68",
+      "equals_imported_parent_blob": true
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_native_test.dart",
+      "blob": "17d26fe2f02c19a6b2d3f4c76223ad6a9dc5754c",
+      "status": "modified",
+      "imported_parent_mode": "100644",
+      "imported_parent_type": "blob",
+      "imported_parent_blob": "17d26fe2f02c19a6b2d3f4c76223ad6a9dc5754c",
+      "equals_imported_parent_blob": true
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_restore_checkpoint_test.dart",
+      "blob": "c163b1b503ba255c7ee1167b66014904ceb80f3e",
+      "status": "added",
+      "imported_parent_mode": "100644",
+      "imported_parent_type": "blob",
+      "imported_parent_blob": "c163b1b503ba255c7ee1167b66014904ceb80f3e",
+      "equals_imported_parent_blob": true
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_restore_native_test.dart",
+      "blob": "356f9ca14c625767863e5457ae4ab6ca9bc2c711",
+      "status": "modified",
+      "imported_parent_mode": "100644",
+      "imported_parent_type": "blob",
+      "imported_parent_blob": "356f9ca14c625767863e5457ae4ab6ca9bc2c711",
+      "equals_imported_parent_blob": true
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_restore_resume_test.dart",
+      "blob": "b06e2e4d873b70f163f4800dd46878184985cab3",
+      "status": "added",
+      "imported_parent_mode": "100644",
+      "imported_parent_type": "blob",
+      "imported_parent_blob": "b06e2e4d873b70f163f4800dd46878184985cab3",
+      "equals_imported_parent_blob": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_archive_host.dart",
+      "blob": "fa5a9ec4f86ac0433681756dd16c763e1c38a18f",
+      "status": "modified",
+      "imported_parent_mode": "100644",
+      "imported_parent_type": "blob",
+      "imported_parent_blob": "fa5a9ec4f86ac0433681756dd16c763e1c38a18f",
+      "equals_imported_parent_blob": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_archive_native.dart",
+      "blob": "f700c2c32fffdaf93df3a9fca9ca27f2c07b8166",
+      "status": "modified",
+      "imported_parent_mode": "100644",
+      "imported_parent_type": "blob",
+      "imported_parent_blob": "f700c2c32fffdaf93df3a9fca9ca27f2c07b8166",
+      "equals_imported_parent_blob": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_archive_restore.dart",
+      "blob": "624dc9d93b6a28fcbda0b69addc57a6c71d92a3f",
+      "status": "modified",
+      "imported_parent_mode": "100644",
+      "imported_parent_type": "blob",
+      "imported_parent_blob": "624dc9d93b6a28fcbda0b69addc57a6c71d92a3f",
+      "equals_imported_parent_blob": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_archive_restore_progress.dart",
+      "blob": "65f9f9fb736ec4b1ba00d0e78e357cb817fc969f",
+      "status": "added",
+      "imported_parent_mode": "100644",
+      "imported_parent_type": "blob",
+      "imported_parent_blob": "65f9f9fb736ec4b1ba00d0e78e357cb817fc969f",
+      "equals_imported_parent_blob": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_archive_restore_strings.dart",
+      "blob": "69184a1cb70078308cdd297320f6e426ca9f32e2",
+      "status": "modified",
+      "imported_parent_mode": "100644",
+      "imported_parent_type": "blob",
+      "imported_parent_blob": "69184a1cb70078308cdd297320f6e426ca9f32e2",
+      "equals_imported_parent_blob": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_archive_portability_visual_test.dart",
+      "blob": "0f56b4ce8916b5ff07f10a4983b5887b232a3d2e",
+      "status": "modified",
+      "imported_parent_mode": "100644",
+      "imported_parent_type": "blob",
+      "imported_parent_blob": "0f56b4ce8916b5ff07f10a4983b5887b232a3d2e",
+      "equals_imported_parent_blob": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart",
+      "blob": "f303ab2ffef7ba0da1be64b9fbe4ed5dacf7a8c3",
+      "status": "modified",
+      "imported_parent_mode": "100644",
+      "imported_parent_type": "blob",
+      "imported_parent_blob": "f303ab2ffef7ba0da1be64b9fbe4ed5dacf7a8c3",
+      "equals_imported_parent_blob": true
+    }
+  ],
+  "passed": true,
+  "proof": "Complete first-parent tree with exactly the API-listed paths replaced by the second-parent mode/type/blob entries reconstructs the remote Git tree SHA. Both parent commits are ancestors of the frozen source. This proves the remote merge has no content other than the two already integrated parents; it does not claim the remote merge is an ancestor.",
+  "local_ref_or_source_mutation": false,
+  "github_actions_queried_or_awaited": false
+}

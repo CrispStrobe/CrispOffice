@@ -1,0 +1,26 @@
+{
+  "purpose": "Independent targeted regression replay of the destination-unavailable review fix and continued processing after a missing source file. Development evidence, not an additional accepted-suite count.",
+  "command": [
+    "/workspace/scratch/8eda9a4e1801/runtime/bin/dart",
+    "--disable-dart-dev",
+    "--packages=/workspace/scratch/8eda9a4e1801/quds_office_suite/.dart_tool/package_config.json",
+    "/workspace/scratch/8eda9a4e1801/runtime/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+    "--platform=vm",
+    "--compiler=kernel",
+    "--reporter=json",
+    "--concurrency=1",
+    "--name",
+    "losing the destination|sparse successful receipts",
+    "test/archive_restore_resume_test.dart"
+  ],
+  "cwd": "/workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_mail_store",
+  "started_at_utc": "2026-11-19T18:41:00.306260+00:00",
+  "source_before": {
+    "packages/quds_mail_store/lib/src/archive_restore_native.dart": "4d63611f8bc25a8336fe3c262ddf59573ef5afcd4527bc59242b6db889ec1ce1",
+    "packages/quds_mail_store/lib/src/archive_restore_models.dart": "dbc5917710d786ce8b6627121fa86ab12fd73f091d621b18396b5821dc90eb5d",
+    "packages/quds_mail_store/lib/src/archive_repository.dart": "a716eba4d9d3a256e2f7db50aa46246bb1ec80800de1f475e5cdab8fe2008e03",
+    "packages/quds_mail_store/lib/src/archive_restore_checkpoints.dart": "aa7999bb87266bd39033c3bb570659a533cd0d35fc4b963e118aedc5ff03fa46",
+    "packages/quds_mail_store/lib/src/archive_database.dart": "3f029f9394a2f44199aa5afb5458ad2469e55988a4ee2d0eb8e888a7c44dff14",
+    "packages/quds_mail_store/test/archive_restore_resume_test.dart": "52d561200b591a09551e25cb913834eed3f1ba97c758909fe0b920c55fc3ebaf"
+  }
+}

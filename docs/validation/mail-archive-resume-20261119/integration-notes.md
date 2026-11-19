@@ -80,8 +80,11 @@ that a text merge cannot resolve. Bundled and downloaded runtime hosts must
 both propagate verified NER installation/error state, and stale opt-in settings
 must never enable an absent or corrupt NER model. The German download inventory
 must use the model-only byte count when the runtime ships inside the app.
-These corrections and their targeted regressions belong to the next source
-freeze and are covered by the final acceptance record.
+Product checkpoint `7e13a48c` implements the shared NER verification and correct
+byte counts, with five focused regression cases. The final source checkpoint
+`ec6d527e` preserves those product bytes and adds only the documented raw-licence
+whitespace exception. The corrections and regressions are covered by the final
+acceptance record.
 
 The macOS app build and its explicit
 `studio_spacy_bundle_native_gate.dart` require an installed macOS app, signed

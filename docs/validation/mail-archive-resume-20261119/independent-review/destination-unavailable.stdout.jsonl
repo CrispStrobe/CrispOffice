@@ -1,0 +1,11 @@
+{"protocolVersion":"0.1.1","runnerVersion":"1.31.1","pid":6,"type":"start","time":0}
+{"suite":{"id":0,"platform":"vm","path":"test/archive_restore_resume_test.dart"},"type":"suite","time":0}
+{"test":{"id":1,"name":"loading test/archive_restore_resume_test.dart","suiteID":0,"groupIDs":[],"metadata":{"skip":false,"skipReason":null},"line":null,"column":null,"url":null},"type":"testStart","time":1}
+{"count":1,"time":11,"type":"allSuites"}
+{"testID":1,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":1166}
+{"group":{"id":2,"suiteID":0,"parentID":null,"name":"","metadata":{"skip":false,"skipReason":null},"testCount":2,"line":null,"column":null,"url":null},"type":"group","time":1170}
+{"test":{"id":3,"name":"sparse successful receipts retry a failed middle item only","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":176,"column":3,"url":"file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_mail_store/test/archive_restore_resume_test.dart"},"type":"testStart","time":1170}
+{"testID":3,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1579}
+{"test":{"id":4,"name":"losing the destination stops after one failed receipt lookup","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":351,"column":3,"url":"file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_mail_store/test/archive_restore_resume_test.dart"},"type":"testStart","time":1580}
+{"testID":4,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1736}
+{"success":true,"type":"done","time":1782}
