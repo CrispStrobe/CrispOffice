@@ -1,7 +1,9 @@
 # Arabic proofing roadmap
 
 Accepted: 19 November 2026. Scope: Arabic spelling first, then grammar rules,
-then optional model-backed analysis. Nothing here is enabled by default yet.
+then optional model-backed analysis. Built-in Arabic writing rules now run for
+Arabic-script Arabic paragraphs. Downloadable dictionary integration and
+model-backed analysis remain planned; no Arabic resource is downloaded by default.
 
 ## Constraints
 
@@ -86,16 +88,19 @@ then optional model-backed analysis. Nothing here is enabled by default yet.
    - style: immediate repetition of 26 closed-class words;
    - style: numbers that mix Western and Arabic-Indic digits.
 
-   Matching ignores harakat and tatweel. Suggestions keep the writer's
-   harakat. Findings use original UTF-16 offsets, and links, email and code
+   Matching ignores harakat and tatweel while preserving combining maddah and
+   hamza (U+0653–U+0655) as spelling content. Correct decomposed spellings are
+   left unchanged. Suggestions keep the writer's harakat. Findings use original
+   UTF-16 offsets, and links, email and code
    spans are excluded. Ambiguous words are left out on purpose: `علي` (the
    name Ali), `فان` ("perishing"), indefinite `مدرسه` ("his teacher").
 
    Tests:
-   - 69 engine tests: 39 positive cases covering every rule, 23 zero-finding
+   - 73 engine tests: 39 positive cases covering every rule, 23 zero-finding
      controls (hamzat al-wasl words, names, emphatic repetition, consistent
      digits, Latin text, protected spans), plus ambiguity, offset, ignore,
-     language and dispose checks;
+     language and dispose checks, three decomposed hamza/maddah controls and a
+     correction-offset regression that preserves those spellings;
    - 2 editor integration tests: default session on an `ar-SA` run with an
      applied suggestion, and silence on German text.
 

@@ -40,8 +40,9 @@ published separately and downloaded by the user inside the app as data, never
 as executable code) and the resource assessment. First step: the AyaSpell
 Hunspell dictionary under its MPL 1.1 option, built reproducibly by
 `tools/proofing/ayaspell/build_bundle.py` from a pinned LibreOffice packaging,
-then an MPL Hunspell engine adapter, then independently authored Arabic rules.
-Nothing Arabic is enabled or downloaded by default.
+with an MPL Hunspell engine adapter still to be integrated. The independently
+authored Arabic writing rules below are built in and registered by default;
+the downloadable Arabic dictionary is not enabled or downloaded by default.
 
 `ArabicWritingRulesProvider` (`arabic-writing`) implements the first
 independently authored Arabic rule set. It is part of the app (MIT) and needs
