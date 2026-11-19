@@ -1,0 +1,17 @@
+{
+  "created_at_utc": "2026-11-19T06:55:44.427186+00:00",
+  "scope": "Completed historical baseline preserved before newer concurrent parser and TLS work. These results do not qualify later incoming code.",
+  "native_node_source_commit": "57c24597d324426305e12eabd2bdfaea9afac6d3",
+  "store_execution_source_commit": "6be7677993715556cf1704d157dff61a428da5a7",
+  "store_transfer": "The independent audit proves all 53 store-bound inputs identical in the baseline source and excludes native transport/enough_mail from its 60-package dependency closure.",
+  "application_case_executions": 778,
+  "suite_platform_executions": 81,
+  "distinct_test_files": 69,
+  "separate_python_controls": 78,
+  "earlier_diagnostics_counted": 0,
+  "historical_office_cases_counted": 0,
+  "counts_added_to_later_final_qualification": 0,
+  "runtime_store_evidence": "Already preserved separately in publication-runtime-store and remote checkpoint 30e9efce3747ea38bb8e5507c8c8d36931f9b049.",
+  "independent_summary_sha256": "a4c0e1650e57db7b124dcfdd9e1755d3aa9816a4fa8c2589d1dfa518deec8095",
+  "github_actions": "NOT QUERIED OR AWAITED"
+}

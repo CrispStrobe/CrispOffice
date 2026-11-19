@@ -1,0 +1,23 @@
+{
+  "created_at_utc": "2026-11-19T06:55:49.456400+00:00",
+  "scope": "Earlier development/review/qualification observations retained without acceptance credit. Source identities remain in original reports; this is not a qualification of newer incoming code.",
+  "attempts": [
+    {
+      "directory": "qualification-native-attempt-1",
+      "source_commit": "edf2fe7f74a575dfb02f95ed6213b38844e16df8",
+      "result": "failed protocol regression and strict analysis; superseded"
+    },
+    {
+      "directory": "qualification-node-attempt-1",
+      "source_commit": "edf2fe7f74a575dfb02f95ed6213b38844e16df8",
+      "result": "passing earlier source, superseded and excluded"
+    },
+    {
+      "directory": "qualification-node-attempt-2",
+      "source_commit": "57c24597d324426305e12eabd2bdfaea9afac6d3",
+      "result": "index-lock preflight failure before product test commands; excluded"
+    }
+  ],
+  "application_cases_added_to_baseline_or_later_final": 0,
+  "python_cases_added_to_baseline_or_later_final": 0
+}
