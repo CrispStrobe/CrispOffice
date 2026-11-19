@@ -369,7 +369,9 @@ void main() {
     });
   }
 
-  testWidgets('a bundled library lists only the model download', (tester) async {
+  testWidgets('a bundled library lists only the model download', (
+    tester,
+  ) async {
     await tester.pumpWidget(
       MaterialApp(
         home: Scaffold(

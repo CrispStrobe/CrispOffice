@@ -1,0 +1,2 @@
+Warning: Package resolution error when reading "analysis_options.yaml" file for "packages/quds_office_editor/example/test/studio_downloads_manager_test.dart":
+Failed to resolve package URI "package:flutter_lints/flutter.yaml" in include at "/workspace/scratch/f6338d3de284/quds_office_suite/packages/quds_office_editor/example/analysis_options.yaml".
