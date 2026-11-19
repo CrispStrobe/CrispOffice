@@ -61,12 +61,12 @@ void _reject(String source, String code) {
 /// Runs cold depth stress before warming up the JavaScript evaluator, then
 /// checks document execution, shared limits, rollback, and MCP compilation.
 Future<void> main() async {
-  final depth = _compile(_depthProgram(32, 32, 50));
+  final depth = _compile(_depthProgram(32, 32, 63));
   if (depth.steps.length != 1 || depth.steps.single.arguments['value'] != 42) {
     throw StateError('Combined procedure/block/expression depth changed');
   }
-  _reject(_depthProgram(33, 32, 50), 'vba_limit_exceeded');
-  _reject(_depthProgram(32, 33, 50), 'vba_limit_exceeded');
+  _reject(_depthProgram(33, 32, 63), 'vba_limit_exceeded');
+  _reject(_depthProgram(32, 33, 63), 'vba_limit_exceeded');
 
   final builder = XlsxWorkbookBuilder();
   builder.addSheet('Summary').addRow(<Object?>['Before']);
@@ -242,7 +242,7 @@ End Sub
       'steps': macro.steps.length,
       'formulaTotal': sheet.cellA1('C1').value,
       'coldDepthStress':
-          '32 procedure frames / 32 mixed blocks / 50 unary operators',
+          '32 procedure frames / 32 mixed blocks / 63 unary operators',
       'orderedCasesAndEagerRangeBounds': true,
       'sharedLoopWorkBudget': true,
       'staticInactiveChecks': true,
