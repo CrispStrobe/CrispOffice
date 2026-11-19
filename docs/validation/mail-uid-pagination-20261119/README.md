@@ -1,6 +1,6 @@
 # Mail UID discovery continuation — 19 November 2026
 
-## Combined qualification in progress
+## Final integration qualification in progress
 
 The first frozen implementation at `960fb72f` passed **1,000 application
 executions** and **90 Python controls**. Its [complete historical checkpoint](checkpoint-960fb72f/README.md)
@@ -43,6 +43,21 @@ verified-filename upload restriction and hash/readback checks. Its offline
 that the optional adapter exists while host registration/download UI remains
 open. The next complete gate must execute the corrected frozen source; these
 focused controls are not added to its totals.
+
+## Later main and reporter-stream repair
+
+Main advanced again to `b559f6c7` while the frozen `162f53c0` gate ran. The
+[later-main record](late-main/README.md) preserves its Arabic T1 rules,
+CrispOffice Studio and saved-message Mail module, with reviewed lifecycle and
+Unicode fixes and updated label assertions.
+
+The [162f53c0 attempt](attempt-162f53c0/README.md) remains **overall FAIL** because
+native Hunspell standard error contaminated the strict JSON event stream. All
+raw output is retained. The runner now records standard error separately while
+keeping stdout and exit validation strict. An independent scoped audit accepts
+**953 unchanged Mail executions**; the deferred Node plan and affected Office/
+Hunspell checks will run on the final source. The earlier Arabic/Hunspell groups
+are excluded from the final acceptance matrix rather than counted twice.
 
 ## Implemented behavior
 
@@ -98,10 +113,12 @@ backend and hash-verified AyaSpell files. A two-second shutdown fallback can
 terminate a stuck worker, but prompt completion of an active C call or abnormal
 finalizer execution is not established by these tests.
 
-## Expanded local qualification plan
+## Retained 162f53c0 expanded selection
 
-All gates execute sequentially on one committed source. GitHub Actions are not
-queried, awaited, dispatched or used as an acceptance condition.
+The selections below describe the retained `162f53c0` attempt, including its
+reported stream-accounting failure. The current bounded follow-up is described
+below. GitHub Actions are not queried, awaited, dispatched or used as an
+acceptance condition.
 
 | Gate | Selection | Purpose |
 | --- | --- | --- |
@@ -132,33 +149,48 @@ the actual Hunspell backend. No fake backend result qualifies real spelling.
 The incoming macOS runner is preserved and its structured assets parse. This
 Linux-host qualification does not build or execute macOS, iOS, Android or Windows.
 
+## Current committed follow-up
+
+The [tail native plan](tail-native-plan.json) selects **37 suites**: seven Arabic/
+shared-engine suites, eight editor proofing suites, all 19 Studio suites and
+three Hunspell suites. The [tail Node plan](tail-node-plan.json) selects **14
+suites**, including all ten deferred Mail/MIME/fork suites and four Arabic/
+Hunspell suites. Strict analysis and formatting cover **119 Dart paths**, including
+all 23 Dart paths changed by the later main and compatibility repairs.
+
+The [driver](run_tail_validation.py) verifies the independently audited 953-case
+Mail subset, its complete archived evidence, all **399 unchanged Mail/configuration
+inputs** and **11,175 unchanged prior runtime records** before any carryforward.
+The runtime receipt is deliberately augmented with verified Poppler inputs. The
+source and runtime remain bound throughout the new execution. Screenshot output
+is enabled so all Studio suites run; native standard error is preserved separately
+from strict JSON reporter output. Superseded Arabic/Hunspell executions are not
+added to the final matrix.
+
 ## Reproduce
 
-Restore the pinned runtime using the checked-in
-[restorer](../document-review-notes-20261118/runtime/README.md). The current
-[runtime record](runtime/README.md) preserves this session's fresh restoration.
+Use the [original runtime restoration](runtime/README.md), then the additional
+[Hunspell preparation](runtime/combined-README.md) and
+[Studio/Poppler preparation](runtime/tail-README.md). All source, tests, plans and
+drivers must be committed before execution. Keep runtime and output directories
+outside the source checkout and use an empty output directory for every attempt.
 
-Commit all product changes, tests, plans and the driver before qualification.
-Use the reconciled baseline as `BASE_COMMIT`, and the committed implementation
-and plan as `SOURCE_COMMIT`. Both arguments must be full known Git commit IDs.
-Keep runtime and output directories outside the source checkout. The expanded
-[runtime record](runtime/combined-README.md) also records the pinned CMake/native build,
-immutable AyaSpell catalog download and explicit test environment.
+The current bounded gate reuses only the verified unchanged Mail subset:
 
 ```bash
-source /absolute/path/to/runtime/env.sh
-python3 docs/validation/mail-uid-pagination-20261119/run_validation.py \
-  --head SOURCE_COMMIT --base BASE_COMMIT \
+python3 docs/validation/mail-uid-pagination-20261119/run_tail_validation.py \
+  --head FINAL_SOURCE_COMMIT \
+  --base 162f53c0aff2314d88df912f9a64c0838e2a9da4 \
   --runtime /absolute/path/to/runtime \
-  --output /absolute/path/to/empty-validation-output
+  --output /absolute/path/to/empty-results --command-timeout 600
 ```
 
-The wrapper runs shared-runner, restorer and AyaSpell controls, the Hunspell web
-entry compilation, the complete core/store gate, the native plan and then the
-Node plan. It preserves each child receipt,
-raw output and command log, records the final source/runtime snapshots, and
-stops after a failed gate. Use a different empty output directory after repairs;
-do not overwrite an earlier failed attempt.
+For a completely fresh qualification on the current source, add `--replay-mail`.
+That option runs current core/store plus the [five-group native Mail replay
+plan](mail-replay-plan.json) before the tail gates; it does not require rerunning
+the rejected historical attempt. Every case and diagnostic stream is preserved.
+The default gate refuses any changed Mail or previously qualified runtime input;
+use the fresh option when that exact carryforward check cannot be satisfied.
 
 ## Acceptance boundaries
 

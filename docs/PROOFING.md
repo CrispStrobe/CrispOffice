@@ -70,6 +70,21 @@ records why LanguageTool's Arabic rules can only be a separate download: the
 rules are LGPL-2.1, but the POS dictionary is GPL-derived and one list is
 AGPL. Interpreting them natively is a 3–5 week engine task.
 
+The clean-room T1 extension (roadmap step 3b) adds 32 rule ids to the same
+provider, written only from the abstract
+[rule specification](roadmaps/arabic-rule-spec.md) with self-authored lists,
+messages and tests. 19 run by default: doubled and unpaired punctuation,
+whitespace, run-together words, theophoric names, `ىء`, wasl-measure verbal
+nouns, frozen misspellings, per-paragraph spelling consistency, weekday/date
+and implausible-year checks, `هل` incompatibilities, redundancy, fixed
+expressions, colloquial words and content-word repetition. 13 are opt-in via
+`enabledOptionalRuleIds`: prescriptive usage and sentence-position particles,
+wordiness, loanwords, long sentences, tanwin placement, vowelling and ض/ظ
+hints. 195 new tests (81 positive, 84 controls); on the 1,000 UD Arabic-PUD
+sentences the default-on extension produces 1 finding (an unclosed quotation
+continued in the next sentence). Per-rule counts and the deferred T2/T3
+categories are in [step 3b](roadmaps/arabic-proofing.md).
+
 ## Optional Hunspell spelling (Arabic) — 19 November 2026
 
 [`quds_proofing_hunspell`](../packages/quds_proofing_hunspell/README.md) adds a

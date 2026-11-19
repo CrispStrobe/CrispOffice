@@ -149,9 +149,9 @@ void main() {
       await tester.pump();
       expect(tester.widget<StudioCmd>(checkAsYouType).selected, isFalse);
 
-      await tester.tap(find.text('Excel').first);
+      await tester.tap(find.text('Spreadsheets').first);
       await tester.pump();
-      await tester.tap(find.text('Word').first);
+      await tester.tap(find.text('Documents').first);
       await tester.pump();
       expect(controller.proofing.enabled, isFalse);
       await _review(tester);

@@ -1,0 +1,263 @@
+{
+  "schema": "quds.office.arabic_main_tail_provenance.v1",
+  "checked_at_utc": "2026-11-19T08:04:30.769210+00:00",
+  "qualified_mail_execution_source": "5569c055a021c893e941fc54d40499ad9d96a5db",
+  "previous_audited_baseline": "0796cb50155b7bf558fc661dbd6b8d94a553eebd",
+  "incoming_main_parent": "f059065fa622da8cee7824d66d29a2aff414d529",
+  "incoming_main": "f7117a493055008a72e6e16713dd67a4f7c2ad39",
+  "checked_target": {
+    "commit": "ba7c1e26cdc409915e04eba49dd1f1c002280cf8",
+    "tree": "e221e18cd46535c0e54eeac5bcaadab31d241d01"
+  },
+  "exact_reviewed_repair_source": "ba7c1e26cdc409915e04eba49dd1f1c002280cf8",
+  "required_history_included": {
+    "5569c055a021c893e941fc54d40499ad9d96a5db": true,
+    "0796cb50155b7bf558fc661dbd6b8d94a553eebd": true,
+    "f7117a493055008a72e6e16713dd67a4f7c2ad39": true,
+    "ba7c1e26cdc409915e04eba49dd1f1c002280cf8": true
+  },
+  "incoming_delta": {
+    "documentation": [
+      "docs/PROOFING.md",
+      "docs/roadmaps/arabic-proofing.md"
+    ],
+    "existing_office_source": [
+      "packages/quds_office_editor/example/lib/suite_workspace.dart",
+      "packages/quds_office_editor/lib/src/proofing/word_proofing.dart",
+      "packages/quds_office_engine/lib/quds_office_engine.dart"
+    ],
+    "new_office_source_and_tests": [
+      "packages/quds_office_editor/test/word_arabic_writing_integration_test.dart",
+      "packages/quds_office_engine/lib/src/proofing/arabic_writing_rules.dart",
+      "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart"
+    ],
+    "total_paths": 8
+  },
+  "baseline_to_target_delta": [
+    "docs/PROOFING.md",
+    "docs/roadmaps/arabic-proofing.md",
+    "docs/validation/office-main-completion-20261119/arabic-plan.json",
+    "packages/quds_office_editor/example/lib/suite_workspace.dart",
+    "packages/quds_office_editor/lib/src/proofing/word_proofing.dart",
+    "packages/quds_office_editor/test/word_arabic_writing_integration_test.dart",
+    "packages/quds_office_engine/lib/quds_office_engine.dart",
+    "packages/quds_office_engine/lib/src/proofing/arabic_writing_rules.dart",
+    "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart"
+  ],
+  "all_baseline_paths_outside_incoming_and_new_plan_unchanged": true,
+  "incoming_and_reviewed_entries": {
+    "docs/PROOFING.md": {
+      "incoming": {
+        "mode": "100644",
+        "kind": "blob",
+        "git_blob": "3c1a3744cd0bb8e9a242e9dc5627288e1749e51b"
+      },
+      "final": {
+        "mode": "100644",
+        "kind": "blob",
+        "git_blob": "58f2e3e93e3ec4d4421f646fec556522b83051b9"
+      },
+      "reviewed_successor_change": true
+    },
+    "docs/roadmaps/arabic-proofing.md": {
+      "incoming": {
+        "mode": "100644",
+        "kind": "blob",
+        "git_blob": "5572fe3def0443b1560007be71a9aa7ef4e46c75"
+      },
+      "final": {
+        "mode": "100644",
+        "kind": "blob",
+        "git_blob": "0f3f39af10dc437cc4f9299d84e1c7645b5b0f1a"
+      },
+      "reviewed_successor_change": true
+    },
+    "packages/quds_office_editor/example/lib/suite_workspace.dart": {
+      "incoming": {
+        "mode": "100644",
+        "kind": "blob",
+        "git_blob": "e291cb6663a819b13652d89862a9f6764c25314a"
+      },
+      "final": {
+        "mode": "100644",
+        "kind": "blob",
+        "git_blob": "e291cb6663a819b13652d89862a9f6764c25314a"
+      },
+      "reviewed_successor_change": false
+    },
+    "packages/quds_office_editor/lib/src/proofing/word_proofing.dart": {
+      "incoming": {
+        "mode": "100644",
+        "kind": "blob",
+        "git_blob": "8a64c3e463074723feb6bfc36e2b4eaeb1336116"
+      },
+      "final": {
+        "mode": "100644",
+        "kind": "blob",
+        "git_blob": "8a64c3e463074723feb6bfc36e2b4eaeb1336116"
+      },
+      "reviewed_successor_change": false
+    },
+    "packages/quds_office_editor/test/word_arabic_writing_integration_test.dart": {
+      "incoming": {
+        "mode": "100644",
+        "kind": "blob",
+        "git_blob": "2a1c67db6b5a9c82691111f8e7f508a95f246324"
+      },
+      "final": {
+        "mode": "100644",
+        "kind": "blob",
+        "git_blob": "2a1c67db6b5a9c82691111f8e7f508a95f246324"
+      },
+      "reviewed_successor_change": false
+    },
+    "packages/quds_office_engine/lib/quds_office_engine.dart": {
+      "incoming": {
+        "mode": "100644",
+        "kind": "blob",
+        "git_blob": "512a2dc198a30cbf9bf67bf1ec585eb6e8828a63"
+      },
+      "final": {
+        "mode": "100644",
+        "kind": "blob",
+        "git_blob": "512a2dc198a30cbf9bf67bf1ec585eb6e8828a63"
+      },
+      "reviewed_successor_change": false
+    },
+    "packages/quds_office_engine/lib/src/proofing/arabic_writing_rules.dart": {
+      "incoming": {
+        "mode": "100644",
+        "kind": "blob",
+        "git_blob": "a3a4e8b4769e34e3006f04255700f74c3dbb00f2"
+      },
+      "final": {
+        "mode": "100644",
+        "kind": "blob",
+        "git_blob": "af14d68a9749f8519ed02483dffc4144b8625949"
+      },
+      "reviewed_successor_change": true
+    },
+    "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart": {
+      "incoming": {
+        "mode": "100644",
+        "kind": "blob",
+        "git_blob": "c08612b6530ffa6cfd31cf85ea0f39d07b175fd8"
+      },
+      "final": {
+        "mode": "100644",
+        "kind": "blob",
+        "git_blob": "cc754f016a4b886cc28d07e6f3063ce34a30f480"
+      },
+      "reviewed_successor_change": true
+    }
+  },
+  "reviewed_successor_repair_paths": [
+    "docs/PROOFING.md",
+    "docs/roadmaps/arabic-proofing.md",
+    "packages/quds_office_engine/lib/src/proofing/arabic_writing_rules.dart",
+    "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart"
+  ],
+  "separate_arabic_plan": {
+    "path": "docs/validation/office-main-completion-20261119/arabic-plan.json",
+    "git_entry": {
+      "mode": "100644",
+      "kind": "blob",
+      "git_blob": "e69268c9bfcdfe62ec66866158a2bf86423b211c"
+    }
+  },
+  "historical_qualification_input_checks": {
+    "native": {
+      "historical_bound_inputs": 5031,
+      "existing_inputs_identical_to_qualified_source": 5027,
+      "existing_qualified_input_changes": [
+        "packages/quds_mail_store/README.md",
+        "packages/quds_office_editor/example/lib/suite_workspace.dart",
+        "packages/quds_office_editor/lib/src/proofing/word_proofing.dart",
+        "packages/quds_office_engine/lib/quds_office_engine.dart"
+      ],
+      "new_broad_scope_inputs": [
+        "packages/quds_office_editor/test/word_arabic_writing_integration_test.dart",
+        "packages/quds_office_engine/lib/src/proofing/arabic_writing_rules.dart",
+        "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart"
+      ],
+      "current_scope_count_if_reselected": 5034
+    },
+    "node": {
+      "historical_bound_inputs": 5031,
+      "existing_inputs_identical_to_qualified_source": 5027,
+      "existing_qualified_input_changes": [
+        "packages/quds_mail_store/README.md",
+        "packages/quds_office_editor/example/lib/suite_workspace.dart",
+        "packages/quds_office_editor/lib/src/proofing/word_proofing.dart",
+        "packages/quds_office_engine/lib/quds_office_engine.dart"
+      ],
+      "new_broad_scope_inputs": [
+        "packages/quds_office_editor/test/word_arabic_writing_integration_test.dart",
+        "packages/quds_office_engine/lib/src/proofing/arabic_writing_rules.dart",
+        "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart"
+      ],
+      "current_scope_count_if_reselected": 5034
+    },
+    "store": {
+      "historical_bound_inputs": 53,
+      "all_inputs_identical": true,
+      "changed_paths": []
+    },
+    "support": {
+      "historical_bound_inputs": 4,
+      "all_inputs_identical": true,
+      "changed_paths": []
+    }
+  },
+  "historical_distinct_input_union": 5033,
+  "original_inputs_identical_to_qualified_mail_source": 5029,
+  "original_inputs_identical_to_previous_publication": 5030,
+  "original_qualified_input_changes": [
+    "packages/quds_mail_store/README.md",
+    "packages/quds_office_editor/example/lib/suite_workspace.dart",
+    "packages/quds_office_editor/lib/src/proofing/word_proofing.dart",
+    "packages/quds_office_engine/lib/quds_office_engine.dart"
+  ],
+  "new_input_paths": [
+    "packages/quds_office_editor/test/word_arabic_writing_integration_test.dart",
+    "packages/quds_office_engine/lib/src/proofing/arabic_writing_rules.dart",
+    "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart"
+  ],
+  "augmented_input_union_count": 5036,
+  "augmented_input_union_scope": "Historical5033 input paths plus the three newly added Office source/test paths; the separately identified Arabic plan is not included in this count.",
+  "union_including_separate_arabic_plan": 5037,
+  "mail_scope": {
+    "entries_compared": 400,
+    "changed_since_previous_publication": [],
+    "changed_since_qualified_source": [
+      "packages/quds_mail_store/README.md"
+    ],
+    "package_fork_test_inventory_unchanged": true,
+    "mail_executable_test_plan_dependency_changes": []
+  },
+  "retained_output_guard": {
+    "path": "tools/proofing/ayaspell/build_bundle.py",
+    "git_entry": {
+      "mode": "100644",
+      "kind": "blob",
+      "git_blob": "4756954faa2795b46a6768a6f9af81625e329fbe"
+    },
+    "sha256": "8bdcb6e7536184ee0f62f2628cd0294c98f3037e46f61caa8d642430a1acb912",
+    "baseline_byte_identity": true,
+    "existing_isolated_check_count": 7,
+    "checks_reexecuted_by_this_audit": false
+  },
+  "historical_mail_qualification": {
+    "execution_source": "5569c055a021c893e941fc54d40499ad9d96a5db",
+    "application_executions": 836,
+    "separate_python_controls": 78,
+    "original_archive_sha256": "be1818b9a47f8e0aab39f0e54f00731ae83b161630aaab80bab987ce3633d77e",
+    "execution_relabelled_as_final_source": false
+  },
+  "qualification_boundary": "The historical 836/78 Mail result retains its actual source. Mail executable/test/plan/dependency bytes remain unchanged, but the broad Office-containing5033 input union has three changed Office source files and three new source/test inputs, in addition to the earlier Store README documentation change. Arabic/proofing execution requires its separate source-bound receipt and is not established by this provenance audit.",
+  "runtime_scope": "No runtime/dependency source change is introduced. This audit does not reexecute or relabel runtime validation; actual before/after runtime checks belong to the separate qualification receipts.",
+  "new_product_tests_or_ci_executed": false,
+  "audit_script_sha256": "1f478907a51fb9070842f116241390c87b4346ba4c34c1913ce4be7baf72a665",
+  "issues": [],
+  "passed": true
+}

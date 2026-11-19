@@ -79,7 +79,7 @@ Future<SheetEditorController> _studio(WidgetTester tester) async {
   await tester.pump();
   await tester.tap(find.byTooltip('English'));
   await tester.pump();
-  await tester.tap(find.text('Excel').first);
+  await tester.tap(find.text('Spreadsheets').first);
   await tester.pump();
   final editor = tester.widget<QudsSheetEditor>(find.byType(QudsSheetEditor));
   // Embedded input rejects synthetic updates until its editor owns focus.

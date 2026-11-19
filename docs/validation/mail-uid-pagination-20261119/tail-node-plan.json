@@ -1,0 +1,110 @@
+{
+  "description": "Fresh Node coverage on the final combined source: the ten Mail suites not reached by the rejected 162f53c0 aggregate, plus Arabic writing/text-range/extended rules and Hunspell provider. Actual browser/Worker/Wasm execution is separate.",
+  "groups": [
+    {
+      "name": "transport-node",
+      "cwd": "packages/quds_mail_transport",
+      "runner": "dart",
+      "platform": "node",
+      "tests": [
+        "test/configuration_test.dart",
+        "test/unsupported_test.dart",
+        "test/cursor_test.dart"
+      ]
+    },
+    {
+      "name": "mime-consumer-node",
+      "cwd": "packages/quds_mail_mime",
+      "runner": "dart",
+      "platform": "node",
+      "tests": [
+        "test/eml_bytes_test.dart",
+        "test/mime_encodings_test.dart",
+        "test/mime_limits_test.dart",
+        "test/mime_parts_test.dart",
+        "test/mime_review_regressions_test.dart",
+        "test/portable_import_test.dart"
+      ]
+    },
+    {
+      "name": "fork-portable-node",
+      "cwd": "third_party/enough_mail",
+      "runner": "dart",
+      "platform": "node",
+      "tests": [
+        "test/quds_portable_mime_test.dart"
+      ]
+    },
+    {
+      "name": "arabic-unicode-node",
+      "cwd": "packages/quds_office_engine",
+      "runner": "dart",
+      "platform": "node",
+      "tests": [
+        "test/proofing/arabic_writing_rules_test.dart",
+        "test/proofing/proofing_text_ranges_test.dart",
+        "test/proofing/arabic_extended_rules_test.dart"
+      ]
+    },
+    {
+      "name": "hunspell-portable-provider-node",
+      "cwd": "packages/quds_proofing_hunspell",
+      "runner": "dart",
+      "platform": "node",
+      "tests": [
+        "test/hunspell_provider_test.dart"
+      ]
+    }
+  ],
+  "analysis": [],
+  "format": [],
+  "extra_inputs": [
+    "docs/validation/document-review-notes-20261118/runtime/restore_runtime.py",
+    "docs/validation/document-review-notes-20261118/runtime/test_restore_runtime.py",
+    "docs/validation/document-review-notes-20261118/test_run_checks.py",
+    "docs/validation/mail-uid-pagination-20261119/run_validation.py",
+    "docs/validation/mail-uid-pagination-20261119/runtime/combined-runtime.json",
+    "docs/validation/mail-uid-pagination-20261119/runtime/refresh_runtime.py",
+    "docs/validation/mail-uid-pagination-20261119/runtime/runtime.json",
+    "packages/quds_mail_transport/test/fixtures/tls/README.md",
+    "packages/quds_mail_transport/test/fixtures/tls/loopback-cert.pem",
+    "packages/quds_mail_transport/test/fixtures/tls/loopback-key.pem",
+    "packages/quds_mail_transport/test/support/tls/README.md",
+    "packages/quds_mail_transport/test/support/tls/public-test-ca.pem",
+    "packages/quds_mail_transport/test/support/tls/public-test-server-key.pem",
+    "packages/quds_mail_transport/test/support/tls/public-test-server.pem",
+    "tools/mail/check_reader.py",
+    "tools/mail/check_store.py",
+    "tools/mail/test_check_store.py",
+    "docs/validation/mail-uid-pagination-20261119/runtime/upstream-notice-preservation.json",
+    "docs/validation/mail-uid-pagination-20261119/run_tail_validation.py",
+    "docs/validation/mail-uid-pagination-20261119/tail-native-plan.json",
+    "docs/validation/mail-uid-pagination-20261119/tail-node-plan.json",
+    "docs/validation/mail-uid-pagination-20261119/mail-replay-plan.json",
+    "docs/validation/mail-uid-pagination-20261119/runtime/tail-runtime.json",
+    "docs/validation/mail-uid-pagination-20261119/runtime/tail-poppler.json",
+    "docs/validation/mail-uid-pagination-20261119/runtime/refresh_tail_runtime.py",
+    "docs/validation/mail-uid-pagination-20261119/attempt-162f53c0/accepted-mail-audit.json",
+    "docs/validation/mail-uid-pagination-20261119/attempt-162f53c0/accepted-mail-cases.json.gz",
+    "docs/validation/mail-uid-pagination-20261119/attempt-162f53c0/evidence-files.json",
+    "docs/validation/mail-uid-pagination-20261119/attempt-162f53c0/attempt-162f53c0.tar.xz",
+    "docs/validation/mail-uid-pagination-20261119/attempt-162f53c0/attempt-162f53c0.tar.index.json"
+  ],
+  "whitespace_preserved_inputs": [
+    {
+      "path": "packages/quds_proofing_hunspell/licenses/upstream/COPYING.MPL",
+      "git_blob": "7714141d154290f53e9e60c615a8edc9b51a8df7",
+      "reason": "Preserve the exact Hunspell 1.7.2 upstream license notice bytes, verified against the pinned release archive and licenses/manifest.json; see runtime/upstream-notice-preservation.json."
+    },
+    {
+      "path": "packages/quds_proofing_hunspell/licenses/upstream/license.hunspell",
+      "git_blob": "fad5a162300e7d1719ff6b7ba3713aaaa501a4bc",
+      "reason": "Preserve the exact Hunspell 1.7.2 upstream license notice bytes, verified against the pinned release archive and licenses/manifest.json; see runtime/upstream-notice-preservation.json."
+    },
+    {
+      "path": "packages/quds_proofing_hunspell/licenses/upstream/license.myspell",
+      "git_blob": "2da533075026777f93882fdeb11ff02a711d4b81",
+      "reason": "Preserve the exact Hunspell 1.7.2 upstream license notice bytes, verified against the pinned release archive and licenses/manifest.json; see runtime/upstream-notice-preservation.json."
+    }
+  ]
+}

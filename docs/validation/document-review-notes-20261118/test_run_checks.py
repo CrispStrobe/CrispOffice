@@ -5,6 +5,7 @@ import importlib.util
 import json
 import os
 from pathlib import Path
+import sys
 import tempfile
 import unittest
 from urllib.parse import quote
@@ -142,6 +143,51 @@ class ReporterTests(unittest.TestCase):
                 result = self.parse(*events, {"type": "done", "success": True})
                 self.assertTrue(result["protocol_anomalies"])
                 self.assertFalse(gate.reporter_passed(result))
+
+
+class NativeStderrTests(unittest.TestCase):
+    def capture(self, *, malformed=False, exit_code=0):
+        temporary = tempfile.TemporaryDirectory(prefix="reporter streams ")
+        self.addCleanup(temporary.cleanup)
+        cwd = Path(temporary.name)
+        events = [
+            {"type": "start"},
+            {"type": "suite", "suite": {"id": 0, "path": str(cwd / "test/example_test.dart")}},
+            *case(1, "actual user case"),
+            {"type": "done", "success": True},
+        ]
+        stdout_bytes = ("\n".join(json.dumps(event) for event in events) + "\n").encode()
+        if malformed:
+            stdout_bytes = b'{"type":"error",broken}\n' + stdout_bytes
+        stderr_bytes = b'error: /missing/ar.aff: cannot open\nerror: /missing/ar.dic: cannot open\n'
+        program = ("import os,sys; os.write(1," + repr(stdout_bytes) + "); "
+                   "os.write(2," + repr(stderr_bytes) + "); sys.exit(" + str(exit_code) + ")")
+        sys.path.insert(0, str(gate.repository_root() / "tools/mail"))
+        from check_store import execute
+        log, errors = cwd / "stdout.jsonl", cwd / "stderr.log"
+        with log.open("wb") as output, errors.open("wb") as diagnostics:
+            code = execute([sys.executable, "-c", program], cwd=cwd, env=os.environ.copy(),
+                           stdout=output, stderr=diagnostics, timeout=10)
+        self.assertEqual(log.read_bytes(), stdout_bytes)
+        self.assertEqual(errors.read_bytes(), stderr_bytes)
+        return code, gate.parse_reporter(log, cwd, ["test/example_test.dart"])
+
+    def test_native_stderr_is_retained_without_corrupting_reporter_stdout(self):
+        code, result = self.capture()
+        self.assertEqual(code, 0)
+        self.assertEqual(result["passed"], 1)
+        self.assertTrue(gate.reporter_passed(result))
+
+    def test_separate_stderr_does_not_hide_malformed_reporter_stdout(self):
+        code, result = self.capture(malformed=True)
+        self.assertEqual(code, 0)
+        self.assertFalse(gate.reporter_passed(result))
+
+    def test_separate_stderr_preserves_nonzero_exit_with_successful_reporter(self):
+        code, result = self.capture(exit_code=7)
+        self.assertEqual(code, 7)
+        self.assertTrue(gate.reporter_passed(result))
+        self.assertFalse(code == 0 and gate.reporter_passed(result))
 
 
 class CommandTests(unittest.TestCase):

@@ -100,8 +100,8 @@ void main() {
     await tester.runAsync(() => _save(boundaryKey, 'word.png'));
 
     for (final (String tab, String file) in <(String, String)>[
-      ('Excel', 'excel.png'),
-      ('PowerPoint', 'powerpoint.png'),
+      ('جداول البيانات', 'excel.png'),
+      ('العروض التقديمية', 'powerpoint.png'),
       ('PDF', 'pdf.png'),
     ]) {
       await tester.tap(find.text(tab).first);

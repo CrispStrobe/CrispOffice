@@ -8,6 +8,8 @@ The JSON plan contains `groups` with `name`, repository-relative `cwd`,
 `extra_inputs` lists tracked fixtures to bind. `whitespace_preserved_inputs`
 binds exact validation evidence blobs excluded from whitespace normalization.
 All groups run sequentially.
+Test stdout is the strict JSON reporter stream; native stderr is preserved in
+separate raw and compressed logs with hashes. Nonzero exits still reject a run.
 This runner never installs dependencies or contacts GitHub/GitHub Actions.
 """
 
@@ -15,6 +17,7 @@ from __future__ import annotations
 
 import argparse
 from collections import Counter
+from contextlib import ExitStack
 from datetime import datetime, timezone
 import gzip
 import hashlib
@@ -63,7 +66,8 @@ def parse_reporter(log: Path, cwd: Path, requested: list[str]) -> dict:
     expected = {str((cwd / name).resolve()) for name in requested}
     for line_number, line in enumerate(log.read_text(errors="replace").splitlines(), 1):
         # Native build hooks may print progress immediately before a JSON event.
-        # Ordinary prose is allowed, but a malformed event must not disappear.
+        # This pass maps suites/cases; strict validation above also rejects
+        # unrecognized prose or malformed events anywhere on reporter stdout.
         brace = line.find("{")
         if brace < 0:
             continue
@@ -531,17 +535,30 @@ def main() -> int:
         print("START " + name, flush=True)
         started_at = time.monotonic()
         log = checks / (name + (".jsonl" if suites is not None else ".log"))
+        stderr_log = checks / (name + ".stderr.log") if suites is not None else None
         item = {"name": name, "command": command, "cwd": str(cwd.relative_to(repo)) or "."}
-        with log.open("wb") as stream:
+        with ExitStack() as streams:
+            stream = streams.enter_context(log.open("wb"))
+            # Native libraries write diagnostics directly to stderr, outside
+            # Dart's JSON reporter. Retain that stream separately so stdout's
+            # complete event protocol remains strict and independently auditable.
+            stderr = streams.enter_context(stderr_log.open("wb")) if stderr_log else subprocess.STDOUT
             try:
                 item["exit_code"] = execute(command, cwd=cwd, env=env, stdout=stream,
-                                            timeout=args.command_timeout)
+                                            timeout=args.command_timeout, stderr=stderr)
             except (OSError, subprocess.TimeoutExpired) as error:
                 item["exit_code"] = 124 if isinstance(error, subprocess.TimeoutExpired) else 127
                 item["runner_error"] = repr(error)
                 stream.write(("\nRUNNER ERROR: " + repr(error) + "\n").encode())
         item.update(elapsed_seconds=round(time.monotonic() - started_at, 3),
                     log=str(log.relative_to(output)), log_sha256=sha256(log))
+        if stderr_log is not None:
+            compressed_stderr = stderr_log.with_suffix(stderr_log.suffix + ".gz")
+            compressed_stderr.write_bytes(gzip.compress(stderr_log.read_bytes(), mtime=0))
+            item.update(stderr_log=str(stderr_log.relative_to(output)),
+                        stderr_log_sha256=sha256(stderr_log),
+                        stderr_compressed_log=str(compressed_stderr.relative_to(output)),
+                        stderr_compressed_log_sha256=sha256(compressed_stderr))
         if suites is not None:
             parsed = parse_reporter(log, cwd, suites)
             for kind in ("cases", "errors"):

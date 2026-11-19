@@ -451,7 +451,7 @@ void main() {
     final controller = await _studio(tester, desktop);
     final citation = _binding(tester, LogicalKeyboardKey.keyC);
     final refresh = _binding(tester, LogicalKeyboardKey.keyR);
-    for (final app in ['Excel', 'PowerPoint', 'PDF']) {
+    for (final app in ['Spreadsheets', 'Presentations', 'PDF']) {
       await tester.tap(find.text(app).first);
       await _frames(tester);
       await _shortcut(tester, LogicalKeyboardKey.keyR);

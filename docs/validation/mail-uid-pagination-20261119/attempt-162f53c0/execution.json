@@ -1,0 +1,143 @@
+{
+  "status": "FAIL",
+  "source_commit": "162f53c0aff2314d88df912f9a64c0838e2a9da4",
+  "source_base": "c1dc63f934f81e22a41bafd98df1abf22ee6a053",
+  "source_tree": "4c6669ddb9ebafad533ebff3b90a7b175706c8c5",
+  "runs": [
+    {
+      "name": "shared-runner-controls",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/scratch/ab196f483cec/quds_office_suite/docs/validation/document-review-notes-20261118/test_run_checks.py"
+      ],
+      "log": "shared-runner-controls.log",
+      "exit_code": 0,
+      "log_sha256": "e410a713b832918542ee7056f18be4a9dc489580e68bed587b355a036ff0360c",
+      "accepted": true
+    },
+    {
+      "name": "runtime-controls",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/scratch/ab196f483cec/quds_office_suite/docs/validation/document-review-notes-20261118/runtime/test_restore_runtime.py"
+      ],
+      "log": "runtime-controls.log",
+      "exit_code": 0,
+      "log_sha256": "62ee1c18c9f0757951fb8b35f9cff61dd0e96b4184b12620c0c43d6da2f6e4fa",
+      "accepted": true
+    },
+    {
+      "name": "ayaspell-offline-controls",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/proofing/ayaspell",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "log": "ayaspell-offline-controls.log",
+      "exit_code": 0,
+      "log_sha256": "1c4253514d47509bb5f71edc057ddccbb36607b4bdd1c3a97b718d78ca4795bc",
+      "accepted": true
+    },
+    {
+      "name": "hunspell-worker-syntax",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "--check",
+        "/workspace/scratch/ab196f483cec/quds_office_suite/packages/quds_proofing_hunspell/web/hunspell_worker.mjs"
+      ],
+      "log": "hunspell-worker-syntax.log",
+      "exit_code": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "accepted": true
+    },
+    {
+      "name": "hunspell-web-entry",
+      "command": [
+        "/workspace/scratch/ab196f483cec/runtime/bin/dart",
+        "compile",
+        "js",
+        "/workspace/scratch/ab196f483cec/quds_office_suite/packages/quds_proofing_hunspell/tool/web_compile_check.dart",
+        "-o",
+        "/workspace/scratch/ab196f483cec/mail-uid-final-3/hunspell-web-entry.js"
+      ],
+      "log": "hunspell-web-entry.log",
+      "exit_code": 0,
+      "log_sha256": "aa03527857d45c7b17bb55410791ea16add845cd190ff18660f0a4fe0204c660",
+      "accepted": true,
+      "artifacts": {
+        "hunspell-web-entry.js": {
+          "bytes": 282493,
+          "sha256": "3493867c18d939974755b11d5337ccaba6eeeacc448e987ff0d3b064e932661c"
+        }
+      }
+    },
+    {
+      "name": "core-store",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/scratch/ab196f483cec/quds_office_suite/tools/mail/check_store.py",
+        "--flutter-sdk",
+        "/workspace/scratch/ab196f483cec/runtime/flutter",
+        "--offline",
+        "--direct-tests",
+        "--command-timeout",
+        "600",
+        "--output",
+        "/workspace/scratch/ab196f483cec/mail-uid-final-3/core-store"
+      ],
+      "log": "core-store.log",
+      "exit_code": 0,
+      "log_sha256": "f11ff83cd4fbc5401162d6a8543ae6e1043a1b43f9b08e12419e4648efb65a1e",
+      "receipt": "core-store/receipt.json",
+      "receipt_sha256": "266989bcf53c81fae5e0e0b313e3a6036037fbedb2090196998d2b40ab806b54",
+      "accepted": true
+    },
+    {
+      "name": "native",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/scratch/ab196f483cec/quds_office_suite/docs/validation/document-review-notes-20261118/run_checks.py",
+        "--head",
+        "162f53c0aff2314d88df912f9a64c0838e2a9da4",
+        "--base",
+        "c1dc63f934f81e22a41bafd98df1abf22ee6a053",
+        "--runtime",
+        "/workspace/scratch/ab196f483cec/runtime",
+        "--plan",
+        "/workspace/scratch/ab196f483cec/quds_office_suite/docs/validation/mail-uid-pagination-20261119/native-plan.json",
+        "--output",
+        "/workspace/scratch/ab196f483cec/mail-uid-final-3/native",
+        "--command-timeout",
+        "600"
+      ],
+      "log": "native.log",
+      "exit_code": 1,
+      "log_sha256": "6e43f45da421db88b9ec4fca66b8f7388c855529fb7fc1b4cb93443d29f11551",
+      "receipt": "native/verification.json",
+      "receipt_sha256": "527ed6ec2a81f97cfa8833ce4b03da79b02efbfb18d71d1320a0f0fa67d71521",
+      "accepted": false
+    }
+  ],
+  "started_at_utc": "2026-11-19T08:31:34.669508+00:00",
+  "runtime_receipt_sha256": "0b4544ac387f3efa23abacf71f66b834fcddec7d3b02414209c57dab14299729",
+  "qualification_environment": {
+    "QUDS_HUNSPELL_TEST_LIBRARY": "/workspace/scratch/ab196f483cec/runtime/hunspell/build/native/libquds_proofing_hunspell.so",
+    "QUDS_HUNSPELL_TEST_DICTIONARY": "/workspace/scratch/ab196f483cec/runtime/hunspell/ayaspell-e9ace7cca3844bef906d8d9fc5431c4e15bd2740",
+    "QUDS_HUNSPELL_LIFECYCLE_LIBRARY": "/workspace/scratch/ab196f483cec/runtime/hunspell/lifecycle/libquds_hunspell_lifecycle.so",
+    "QUDS_HUNSPELL_LIVE_DOWNLOAD": "1"
+  },
+  "github_actions_queried_or_awaited": false,
+  "error": "RuntimeError('native failed; preserve its raw evidence')",
+  "source_unchanged": true,
+  "runtime_unchanged": true,
+  "source_head_unchanged": true,
+  "tracked_worktree_clean_after": true,
+  "untracked_qualification_inputs_after": [],
+  "finished_at_utc": "2026-11-19T08:39:29.847099+00:00"
+}

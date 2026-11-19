@@ -1,0 +1,30 @@
+test_bad_source_or_licence_stops_before_remote_mutation (test_build_bundle.BundleBuilderTest.test_bad_source_or_licence_stops_before_remote_mutation) ... ok
+test_content_readback_mismatch_is_rejected (test_build_bundle.BundleBuilderTest.test_content_readback_mismatch_is_rejected) ... ok
+test_local_build_is_deterministic_without_publication (test_build_bundle.BundleBuilderTest.test_local_build_is_deterministic_without_publication) ... ok
+test_manifest_readback_mismatch_is_rejected (test_build_bundle.BundleBuilderTest.test_manifest_readback_mismatch_is_rejected) ... ok
+test_publish_excludes_unrelated_existing_output_files (test_build_bundle.BundleBuilderTest.test_publish_excludes_unrelated_existing_output_files) ... ok
+test_bad_dictionary_digest_stops_before_remote_mutation (test_build_bundle_incoming.BundleBuilderTest.test_bad_dictionary_digest_stops_before_remote_mutation) ... ok
+test_bad_dictionary_size_stops_before_remote_mutation (test_build_bundle_incoming.BundleBuilderTest.test_bad_dictionary_size_stops_before_remote_mutation) ... ok
+test_bad_licence_stops_before_remote_mutation (test_build_bundle_incoming.BundleBuilderTest.test_bad_licence_stops_before_remote_mutation) ... ok
+test_content_readback_mismatch_is_rejected (test_build_bundle_incoming.BundleBuilderTest.test_content_readback_mismatch_is_rejected) ... ok
+test_local_build_does_not_publish (test_build_bundle_incoming.BundleBuilderTest.test_local_build_does_not_publish) ... FAIL
+test_manifest_readback_mismatch_is_rejected (test_build_bundle_incoming.BundleBuilderTest.test_manifest_readback_mismatch_is_rejected) ... ok
+test_publish_excludes_unrelated_existing_output_files (test_build_bundle_incoming.BundleBuilderTest.test_publish_excludes_unrelated_existing_output_files) ... ok
+test_build_is_deterministic_and_does_not_publish (test_build_bundle_reproducibility.BundleTest.test_build_is_deterministic_and_does_not_publish) ... ok
+test_changed_file_readback_fails (test_build_bundle_reproducibility.BundleTest.test_changed_file_readback_fails) ... ok
+test_changed_manifest_readback_fails (test_build_bundle_reproducibility.BundleTest.test_changed_manifest_readback_fails) ... ok
+test_changed_source_or_licence_cannot_publish (test_build_bundle_reproducibility.BundleTest.test_changed_source_or_licence_cannot_publish) ... ok
+test_publish_excludes_unrelated_files_and_includes_manifest (test_build_bundle_reproducibility.BundleTest.test_publish_excludes_unrelated_files_and_includes_manifest) ... ok
+
+======================================================================
+FAIL: test_local_build_does_not_publish (test_build_bundle_incoming.BundleBuilderTest.test_local_build_does_not_publish)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/f0520e768bc8/quds_office_suite/tools/proofing/ayaspell/test_build_bundle_incoming.py", line 158, in test_local_build_does_not_publish
+    self.assertIn("Hunspell adapter and in-app download integration are planned",
+AssertionError: 'Hunspell adapter and in-app download integration are planned' not found in '--- license: other license_name: mpl-1.1 license_link: https://www.mozilla.org/en-US/MPL/1.1/ language: - ar tags: - hunspell - spellchecking - arabic --- # AyaSpell Arabic dictionary for Hunspell The AyaSpell Arabic spelling dictionary (`ar.aff`, `ar.dic`) and Arabic thesaurus (`th_ar.dat`, MyThes format), byte-identical to the [LibreOffice dictionaries packaging](https://github.com/LibreOffice/dictionaries/tree/951bb429a4d846699b02e7adb4fc6fca128c6bae/ar) at commit `951bb429a4d846699b02e7adb4fc6fca128c6bae` (AyaSpell 3.5 package). Upstream project: [AyaSpell](http://ayaspell.sourceforge.net/) / [linuxscout/ayaspell](https://github.com/linuxscout/ayaspell). Authors: Mohamed Kebdani (dictionary, 2006–2008), Taha Zerrouki (thesaurus and project, 2006–2009); OpenOffice packaging by Ahmad Farghal. See `AUTHORS.txt` and `README_ar.txt`. ## Licence The original files are offered under a GPL 2.0 / LGPL 2.1 / MPL 1.1 tri-licence, each "or later" (`COPYING.txt`). This distribution is provided under the **Mozilla Public License 1.1** (`MPL-1.1.txt`); the other two options remain available to recipients as stated in `COPYING.txt`. The files are unmodified; their source form is this repository. ## Use Load with any Hunspell-compatible engine, e.g. `hunspell -d ar`. Quds Office plans to offer this bundle as an optional download; the Arabic adapter and in-app download are not implemented yet. The bundle is not part of the application. `manifest.json` lists the SHA-256 of each bundled content file.'
+
+----------------------------------------------------------------------
+Ran 17 tests in 0.090s
+
+FAILED (failures=1)

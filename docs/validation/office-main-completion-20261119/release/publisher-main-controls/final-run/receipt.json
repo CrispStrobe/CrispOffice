@@ -1,0 +1,31 @@
+{
+  "counted_in_earlier_836_78_or_179_results": false,
+  "error_cases": [],
+  "errors": 0,
+  "failed": 0,
+  "failures": [],
+  "helper_git_blob_from_incoming_main": "9257d987fc3a4307a33bc82465fcd03f777f7e28",
+  "historical_seven_fresh_directory_checks": "Superseded by incoming whitelist behavior; not reexecuted",
+  "incoming_main": "b655b8a37fddc874bd42a453c371eed6253e82d8",
+  "network_attempts": 0,
+  "network_or_real_publication_performed": false,
+  "passed": true,
+  "publication_api": "Test-owned in-memory HfApi replacements",
+  "raw_log_sha256": "3e3bba026017d4604343271c3ca9c40178ed9c329ef2c607f642171c8000cc11",
+  "script_sha256": "75311ca9a002263dd71a8cb0305118066b3b51a6aa1d2aa7de951f8ca674a351",
+  "skipped": 0,
+  "source_after": {
+    "tools/proofing/ayaspell/build_bundle.py": "d34d326ff41709fd740f2324487487aaca2c6056381de0fb26c4b973bec12ec0",
+    "tools/proofing/ayaspell/test_build_bundle.py": "ace3e8d193360145c873291863be876533e4ea8ff2c9ad7fc63c44ce1e5646ef",
+    "tools/proofing/ayaspell/test_build_bundle_incoming.py": "3264f0ea59b6df6308bf8bf3e4dd08bdfcb7497570735c0afa9616b570e17524",
+    "tools/proofing/ayaspell/test_build_bundle_reproducibility.py": "9c170dced06105a0b019bb07e426bc82106a9c6bad1629820ab5aec6f72c4096"
+  },
+  "source_before": {
+    "tools/proofing/ayaspell/build_bundle.py": "d34d326ff41709fd740f2324487487aaca2c6056381de0fb26c4b973bec12ec0",
+    "tools/proofing/ayaspell/test_build_bundle.py": "ace3e8d193360145c873291863be876533e4ea8ff2c9ad7fc63c44ce1e5646ef",
+    "tools/proofing/ayaspell/test_build_bundle_incoming.py": "3264f0ea59b6df6308bf8bf3e4dd08bdfcb7497570735c0afa9616b570e17524",
+    "tools/proofing/ayaspell/test_build_bundle_reproducibility.py": "9c170dced06105a0b019bb07e426bc82106a9c6bad1629820ab5aec6f72c4096"
+  },
+  "source_unchanged": true,
+  "tests_run": 17
+}
