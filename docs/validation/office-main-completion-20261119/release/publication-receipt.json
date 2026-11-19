@@ -1,0 +1,16 @@
+{
+  "created_at_utc": "2026-11-19T07:28:07.321542+00:00",
+  "source_commit": "5569c055a021c893e941fc54d40499ad9d96a5db",
+  "archive": {
+    "archive": "local-qualification.tar.xz",
+    "archive_bytes": 1308664,
+    "archive_sha256": "be1818b9a47f8e0aab39f0e54f00731ae83b161630aaab80bab987ce3633d77e",
+    "member_count": 114,
+    "members_verified_against_original_bytes": true
+  },
+  "file_only_operations": true,
+  "git_commands_executed": false,
+  "tests_executed": false,
+  "package_script_sha256": "3abb87240a956da49d9387cbc87e5a3662e52953ad88156cadfcf7eea8ec31ff",
+  "archive_implementation_sha256": "541d038cb10b73fe2a256e165fcd8683615973e9a13645b037055ae38f266532"
+}

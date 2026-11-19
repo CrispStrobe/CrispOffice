@@ -5,7 +5,6 @@ import 'dart:typed_data';
 
 import 'package:crypto/crypto.dart';
 import 'package:enough_mail/enough_mail.dart';
-import 'package:enough_mail/src/private/util/client_connection.dart';
 import 'package:test/test.dart';
 
 const _deadline = Duration(seconds: 10);
@@ -195,10 +194,10 @@ final class _CapturingImapClient extends ImapClient {
   _CapturingImapClient(SecurityContext context)
     : super(securityContext: context);
 
-  ClientConnection? transport;
+  Socket? transport;
 
   @override
-  Future<ClientConnection> createConnectionSocket(
+  Future<Socket> createConnectionSocket(
     String host,
     int port, {
     required bool isSecure,
@@ -213,8 +212,8 @@ final class _CapturingImapClient extends ImapClient {
   }
 
   @override
-  Future<ClientConnection> createSecureConnectionSocket(
-    ClientConnection socket, {
+  Future<Socket> createSecureConnectionSocket(
+    Socket socket, {
     required String host,
   }) async {
     final secured = await super.createSecureConnectionSocket(

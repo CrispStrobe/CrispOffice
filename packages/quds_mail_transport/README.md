@@ -86,17 +86,15 @@ boundary for callers that need detailed partial-parse diagnostics.
 
 One provider instance allows one active operation. Every call opens a fresh
 connection and loads current vault credentials. Operations have a finite total
-timeout and poll the account lease for cancellation. The native connection retains
-the original TCP socket during and after TLS negotiation. Abort closes that
-socket even when the peer never answers ClientHello, settles the pending operation,
-and rejects late socket/TLS completions. The provider never automatically replays
-a command; retry timing is a host decision.
-
-The fork's manual `connect(Socket)` path continues to support ordinary and
-already-secure I/O. A default TLS upgrade of an externally supplied socket is
-explicitly rejected because the SDK hides its TCP owner during the handshake.
-Native upgrades must use `connectToServer`, as this provider does; controlled
-fixtures can inject their connection and upgrade boundaries.
+timeout and poll the account lease for cancellation. The default connector
+retains a cancellable raw transport owner through TCP connection, TLS handshake
+establishment and encrypted operation. Abort closes stalled implicit-TLS and
+STARTTLS connections before their handshakes complete, destroys established
+sockets, and
+rejects late completions. Certificate and hostname verification remain enabled.
+The provider never automatically replays a command; retry timing is a host
+decision. Custom protocol-library socket factories remain responsible for their
+own pending transport ownership.
 
 Read/flagged/delete operations verify the UID exists, use UID STORE, then read
 that same UID's observed flags before reporting success. **Delete only sets
@@ -123,20 +121,21 @@ real SQLite/coordinator transactions. A Node test exercises the public browser
 entry and throwing vault/codec spies. Source-bound acceptance logs are maintained
 in the repository's continuation validation records.
 
-Additional real loopback tests exercise successful implicit TLS and STARTTLS,
-peer-observed connection closure after stalled-handshake cancellation/deadlines,
-default-trust rejection, and hostname mismatch rejection. A clearly labeled local
-certificate is trusted only by injected test clients; production trust is unchanged.
-Partial-write controls check queue ordering, final readiness, graceful close, and
-abort of a blocked flush. Incoming companion suites also cover exact 1 MiB
-encrypted payloads with delayed reads and cancellation of an idle write producer.
-These controls do not qualify live provider
-interoperability or every operating system's socket implementation.
+Separate real Linux loopback tests exercise implicit TLS and STARTTLS. They
+observe a ClientHello, keep the peer's handshake stalled, and require the peer
+to observe connection closure after cancellation or timeout before teardown.
+They also check a fresh same-provider connection, delayed exact 1 MiB encrypted
+payloads and subsequent replies, trust and hostname refusal, credential
+sequencing, partial-write handling, and cancellation of an open write producer.
+The successful handshakes use an isolated test-CA context; no test bypasses
+certificate checks or changes global trust.
 
-OAuth redirect/refresh integration and disposable-account interoperability remain
-separate gates, as do discovered-UID pagination for large/sparse mailboxes,
-IDLE/CONDSTORE/QRESYNC, SMTP/composition, the account-aware mailbox workspace,
-actual browser persistence, and platform credential hosts.
+These local checks do not establish external-provider interoperability,
+all certificate-chain or platform trust-store scenarios, other operating
+systems, OAuth redirect/refresh integration, or disposable-account acceptance.
+Other remaining gates include discovered-UID pagination for large/sparse
+mailboxes, IDLE/CONDSTORE/QRESYNC, SMTP/composition, the account-aware mailbox
+workspace, actual browser persistence, and platform credential hosts.
 
 Original package code is MIT. The native adapter uses the reviewed MPL-2.0
 `third_party/enough_mail` fork; its new raw-fetch and lifecycle additions retain

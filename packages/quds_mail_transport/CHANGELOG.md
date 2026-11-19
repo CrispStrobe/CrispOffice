@@ -14,6 +14,8 @@
 - Add controlled protocol fixtures and provider/coordinator/SQLite integration
   controls, plus real loopback TLS success, trust, hostname, and stalled-handshake
   cancellation/deadline controls with retained TCP ownership.
-- Preserve ordinary/already-secure manual socket I/O; native TLS upgrades require
-  the fork's owned `connectToServer` path. Live-account, OAuth-host, SMTP, broader
+- Preserve ordinary/already-secure manual socket I/O and Socket-returning
+  overrides. The default owned transport provides the pending-TLS cancellation
+  guarantee; custom socket factories retain their lifecycle responsibility.
+  Live-account, OAuth-host, SMTP, broader
   platform interoperability, and mailbox UI gates remain separate and open.
