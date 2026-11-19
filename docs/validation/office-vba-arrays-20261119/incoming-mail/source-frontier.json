@@ -1,0 +1,10 @@
+{
+  "checkout_head_at_start": "21a6b9a5a8ae4956d2829e7b7359f3b06dc55697",
+  "incoming_head": "37ac6ea8a08225a42098c455deb5375837912eec",
+  "native_sqlite_override": false,
+  "qualification_scope": [
+    "packages/quds_mail_core",
+    "packages/quds_mail_store"
+  ],
+  "source_inputs": 168
+}
