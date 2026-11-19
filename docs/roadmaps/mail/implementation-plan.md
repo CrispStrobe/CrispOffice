@@ -6,7 +6,7 @@
 
 ## 1. Start here
 
-A fresh agent can start M00, M01 and M02 without reopening product decisions. Read the current repository instructions first; this plan does not authorize changing existing license headers, deleting unrelated work, publishing a package, submitting an app or using real user mail as fixtures.
+A fresh agent should use [status.md](status.md) to resume the remaining work without reopening product decisions. Read the current repository instructions first; this plan does not authorize changing existing license headers, deleting unrelated work, publishing a package, submitting an app or using real user mail as fixtures.
 
 1. Work in CrispStrobe/quds_office_suite. Record current commit, working-tree changes and toolchain. The inspected planning baseline was 556c55c0ef312eda2cca11600021d293a81ab44b.
 2. Read .cursorrules, CONTRIBUTING.md, docs/MISSION.md and relevant existing editor APIs. Follow the root workspace, not published upstream package examples.
@@ -172,7 +172,7 @@ inspection receipt, not a complete dependency or runtime certification.
 
 - [x] Implement the minimal typed models and ports from section 3, with explicit parse/provider error variants.
 - [x] Define raw-message ownership, immutable attachment references, profile/account scoping and cancellation.
-- [x] Define portable capability negotiation and typed unsupported results. The initial native/web transport dispatch is implemented under M06; integrated qualification remains separate.
+- [x] Define portable capability negotiation and typed unsupported results. The initial native/web transport dispatch is implemented under M06; its integrated local qualification is recorded in [status.md](status.md).
 - [x] Add provider-independent state-machine tests for account disposal, stale operations and recipient-level outcomes.
 - [x] Keep mail, calendar and contact capabilities separate; do not imply IMAP implements all three.
 
@@ -233,7 +233,7 @@ inspection receipt, not a complete dependency or runtime certification.
 - [x] Implement Drift/SQLite schema and transactional repository streams using independently resolved approved dependencies.
 - [x] Native app-container store and separately configured browser store; explicit quota/storage-unavailable results. The browser opener compiles; actual browser persistence remains unqualified.
 - [x] Durable drafts and immutable outbox/blob references, atomic page+cursor commits with expected-cursor comparison, tombstones and transactional migration versioning.
-- [x] Add nullable durable standard flag snapshots and additive schema v3 migration from v1/v2. Omitted observations preserve known flags; observed empty snapshots clear them. New flags/migration acceptance remains part of the pending integrated M06 gate.
+- [x] Add nullable durable standard flag snapshots and additive schema v3 migration from v1/v2. Omitted observations preserve known flags; observed empty snapshots clear them. Flags/migration tests passed in the integrated local qualification linked below.
 - [x] FTS indexing of supported plain text and metadata; cap indexing work, avoid remote fetch as a side effect of local search. HTML-only bodies are not interpreted by search.
 - [x] Account deletion, cache eviction, logout and pending-operation policies, including durable host-vault cleanup and retired local identities.
 - [x] Simulate crash/restart at transaction boundaries and preserve unsent work. Native process-kill and file-backed migration/recovery evidence is retained separately from injected rollback cases.
@@ -248,8 +248,10 @@ complete Mail gate: 186 test executions across core/store VM and Node cohorts,
 checks. Its 72-suite Office/reader gate also passed with 1,230 cases. The earlier
 [failed store attempt](../../validation/mail-store-20261118/README.md) remains
 historical evidence; its runner/formatting blockage is resolved for the fresh
-baseline. Those results predate schema v3 and native transport. **Qualification
-of the newly integrated flags/transport source is pending.**
+baseline. Those results predate schema v3 and native transport. The
+[Office integration report](../../validation/office-main-integration-20261119/README.md)
+records the subsequent passing flags/transport qualification, including the
+retained 199-execution core/store gate and its source-continuity checks.
 
 Browser entry/worker compilation and Node error-policy tests do not close actual
 browser storage, Web Locks, reload or quota acceptance. Chromium previously
@@ -272,7 +274,7 @@ distinct from encryption. M06 is partially implemented; M07 and M04W remain open
 - [ ] Add IDLE/CONDSTORE/QRESYNC only with genuine adapter/server support and independent qualification; retain a correct fallback.
 - [x] Enforce finite operation timeouts, account-lease cancellation and typed credential-revocation/ambiguous-mutation outcomes. Do not automatically retry operations.
 - [ ] Add host foreground/resume scheduling and bounded provider rate/backoff policy with recovery controls.
-- [x] Provide a conditional browser entry returning typed unsupported for generic socket transport without accessing the vault/codec or importing the native socket implementation. Actual JavaScript execution is included in the pending integrated gate.
+- [x] Provide a conditional browser entry returning typed unsupported for generic socket transport without accessing the vault/codec or importing the native socket implementation. The unsupported entry passed three Node cases in the integrated gate; this does not qualify browser socket transport.
 
 **Implemented foundation and limits:**
 [quds_mail_transport](../../../packages/quds_mail_transport/README.md) is present,
@@ -283,9 +285,12 @@ page fetch or commit. Direct on-demand retrieval of a specified high UID remains
 available. Cursors freeze each sweep ceiling, and arrivals beyond it enter the
 next sweep; the fallback is not a server snapshot protocol. MOVE confirms source
 absence but does not expose COPYUID destination identities. Controlled parser,
-SQLite/coordinator, lifecycle and conditional-entry tests have been authored;
-**fresh combined source-bound qualification remains pending**. The 186-case
-Mail and 1,230-case Office passes above apply only to baseline `479e1e03`.
+SQLite/coordinator, lifecycle and conditional-entry tests passed in the
+[32-suite integrated qualification](../../validation/office-main-integration-20261119/README.md)
+at `7d279e084bae438d383630726ad7b0514da77d35`, with 389 focused cases. Actual
+TLS/certificate behavior and disposable-account interoperability remain open.
+The 186-execution Mail and 1,230-case Office passes above retain their separate
+baseline `479e1e03` identity.
 
 **Acceptance:** controlled IMAP transcripts/local test server cover UIDVALIDITY reset, missing extensions, expunge/move, dropped connections, stale credentials and bounded fetch. Real interoperability uses explicit disposable test accounts and retains no private mail/credentials in fixtures.
 

@@ -1,0 +1,4196 @@
+{
+  "schema": 1,
+  "checked_at_utc": "2026-11-19T07:03:16.327610+00:00",
+  "integrated_head": "99dd7307e749854f00266bd5b8bae4dcdf66df20",
+  "integrated_tree": "a273b7fa8f16432d42f50c783b4a037b121a4510",
+  "inputs": [
+    {
+      "path": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "sha256": "96f6e363e1c055f5f76d96070c5658b423b0c286eb0525cf3b6f9371293c7e2d",
+      "upstream": false
+    },
+    {
+      "path": "/workspace/scratch/a7846890f2e1/final-upstream-refs.txt",
+      "sha256": "77e7e8cc2b1515cdb809f70b12b9fff6422cb256a068d33ccce0d5ff827b1eb6",
+      "upstream": true
+    }
+  ],
+  "script_sha256": "4b7566a4fe6182dea7544bea442449c32e1eb169b1b4aed4b0c8d874363a79ab",
+  "counts": {
+    "fork_branch": 213,
+    "pull_request_head": 175,
+    "tag": 17,
+    "peeled_tag_advertisement": 4,
+    "upstream_branch": 4
+  },
+  "total_capture_rows": 413,
+  "actual_ref_count_excluding_aliases_and_peeled_ads": 409,
+  "distinct_captured_objects": 268,
+  "distinct_commit_heads": 264,
+  "classification": {
+    "ancestor": 385,
+    "historical_equivalent": 28
+  },
+  "actual_ref_classification": {
+    "ancestor": 381,
+    "historical_equivalent": 28
+  },
+  "historical_source_record": {
+    "commit": "0e84dc951e7a9e923107d7895fa457cf29a7af71",
+    "path": "docs/validation/thesaurus-20261118/resume/incoming-audit.json",
+    "sha256": "a77527ce274e4e6fcd78edb7799f15f7426c57cc187b4ca9c56b05fb76a70564"
+  },
+  "historical_equivalence_checks": [
+    {
+      "branch": "codex/odt-field-continuation-20261117",
+      "sha": "c34945761e7991f5fe49037d79529acdd260b31c",
+      "disposition": "all_changed_files_identical_in_merged_pr_140",
+      "baseline_is_integrated_ancestor": true,
+      "equivalent_commit": "2c47165d01d01cc883135a434ac9f6591ce6e770",
+      "equivalent_is_integrated_ancestor": true,
+      "recomputed_merge_base": "e3a38789359adaa33b2da1345c952fa1c2d8aebb",
+      "recomputed_complete_delta_paths": [
+        "docs/odf-export-fidelity.md",
+        "docs/validation/german-proofing-recovery-20261117/README.md",
+        "docs/validation/odt-field-continuation-20261117/README.md",
+        "docs/validation/odt-field-continuation-20261117/audit-portability.json",
+        "docs/validation/odt-field-continuation-20261117/audit_recovery.py",
+        "docs/validation/odt-field-continuation-20261117/evidence-index.json",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.inputs.json.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.json",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.stderr.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.stdout.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.inputs.json.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.json",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.stderr.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.stdout.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-node.inputs.json.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-node.json",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-node.stderr.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-node.stdout.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-vm.inputs.json.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-vm.json",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-vm.stderr.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-vm.stdout.gz",
+        "docs/validation/odt-field-continuation-20261117/package-config.json",
+        "docs/validation/odt-field-continuation-20261117/pull-request-draft.md",
+        "docs/validation/odt-field-continuation-20261117/recovered-original-source.commit",
+        "docs/validation/odt-field-continuation-20261117/recovery-audit.json",
+        "docs/validation/odt-field-continuation-20261117/resolved-pubspec.lock",
+        "docs/validation/odt-field-continuation-20261117/run_logged.py",
+        "docs/validation/odt-field-continuation-20261117/runtime.json",
+        "docs/validation/odt-field-continuation-20261117/source-recovery.json",
+        "docs/validation/odt-field-continuation-20261117/test-workspace-pubspec.yaml",
+        "docs/validation/odt-field-continuation-20261117/verification.json",
+        "docs/validation/odt-field-continuation-20261117/verify_evidence.py",
+        "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+        "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+        "packages/quds_office_engine/test/odt_imported_field_fidelity_test.dart",
+        "packages/quds_office_engine/test/odt_page_field_fidelity_test.dart"
+      ],
+      "historical_path_list_matches": true,
+      "file_checks": [
+        {
+          "path": "docs/odf-export-fidelity.md",
+          "original_entry": "100644 blob e0ec6e28f094f9be3101a165bb2f8aba52f10ce7\tdocs/odf-export-fidelity.md",
+          "equivalent_entry": "100644 blob e0ec6e28f094f9be3101a165bb2f8aba52f10ce7\tdocs/odf-export-fidelity.md",
+          "identical": true
+        },
+        {
+          "path": "docs/validation/german-proofing-recovery-20261117/README.md",
+          "original_entry": "100644 blob c645d21a4fecd134bf6a24cd13fa703579846e1c\tdocs/validation/german-proofing-recovery-20261117/README.md",
+          "equivalent_entry": "100644 blob c645d21a4fecd134bf6a24cd13fa703579846e1c\tdocs/validation/german-proofing-recovery-20261117/README.md",
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/README.md",
+          "original_entry": "100644 blob 8146c83246daf3599e662b1dd683cb97300803d6\tdocs/validation/odt-field-continuation-20261117/README.md",
+          "equivalent_entry": "100644 blob 8146c83246daf3599e662b1dd683cb97300803d6\tdocs/validation/odt-field-continuation-20261117/README.md",
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/audit-portability.json",
+          "original_entry": "100644 blob ef170d72cf34c4b3687b5c1e419edb6fc38224c8\tdocs/validation/odt-field-continuation-20261117/audit-portability.json",
+          "equivalent_entry": "100644 blob ef170d72cf34c4b3687b5c1e419edb6fc38224c8\tdocs/validation/odt-field-continuation-20261117/audit-portability.json",
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/audit_recovery.py",
+          "original_entry": "100644 blob a94f21fd4168af21c1fa98032f8de3e22a69fcc6\tdocs/validation/odt-field-continuation-20261117/audit_recovery.py",
+          "equivalent_entry": "100644 blob a94f21fd4168af21c1fa98032f8de3e22a69fcc6\tdocs/validation/odt-field-continuation-20261117/audit_recovery.py",
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence-index.json",
+          "original_entry": "100644 blob acb5422a76561ecf87b900c2b6b5e544d2eb75ca\tdocs/validation/odt-field-continuation-20261117/evidence-index.json",
+          "equivalent_entry": "100644 blob acb5422a76561ecf87b900c2b6b5e544d2eb75ca\tdocs/validation/odt-field-continuation-20261117/evidence-index.json",
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.inputs.json.gz",
+          "original_entry": "100644 blob 33fbc0410ec5a7337be6caa033f949b1cd9267aa\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.inputs.json.gz",
+          "equivalent_entry": "100644 blob 33fbc0410ec5a7337be6caa033f949b1cd9267aa\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.inputs.json.gz",
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.json",
+          "original_entry": "100644 blob 689f4d104e14eaf48b8e2db6b8168a5966e8e3a5\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.json",
+          "equivalent_entry": "100644 blob 689f4d104e14eaf48b8e2db6b8168a5966e8e3a5\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.json",
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.stderr.gz",
+          "original_entry": "100644 blob 86e43ea3218b5890302b754bbf8927f94e79f7ee\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.stderr.gz",
+          "equivalent_entry": "100644 blob 86e43ea3218b5890302b754bbf8927f94e79f7ee\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.stderr.gz",
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.stdout.gz",
+          "original_entry": "100644 blob d3ebc28122aea1ac61bf9583af637de490436639\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.stdout.gz",
+          "equivalent_entry": "100644 blob d3ebc28122aea1ac61bf9583af637de490436639\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.stdout.gz",
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.inputs.json.gz",
+          "original_entry": "100644 blob 7e230ee642d2775c8fedc35ebfacee2007174b8e\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.inputs.json.gz",
+          "equivalent_entry": "100644 blob 7e230ee642d2775c8fedc35ebfacee2007174b8e\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.inputs.json.gz",
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.json",
+          "original_entry": "100644 blob a8f70f98dfe30e6acc0b16f55430c3ac3e4aa12c\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.json",
+          "equivalent_entry": "100644 blob a8f70f98dfe30e6acc0b16f55430c3ac3e4aa12c\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.json",
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.stderr.gz",
+          "original_entry": "100644 blob 86e43ea3218b5890302b754bbf8927f94e79f7ee\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.stderr.gz",
+          "equivalent_entry": "100644 blob 86e43ea3218b5890302b754bbf8927f94e79f7ee\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.stderr.gz",
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.stdout.gz",
+          "original_entry": "100644 blob 532fe3f24fec0cdee150019cd8f9797ecc623b95\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.stdout.gz",
+          "equivalent_entry": "100644 blob 532fe3f24fec0cdee150019cd8f9797ecc623b95\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.stdout.gz",
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-node.inputs.json.gz",
+          "original_entry": "100644 blob 8cc251232eada488fff92cd62468bb351f459a7a\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-node.inputs.json.gz",
+          "equivalent_entry": "100644 blob 8cc251232eada488fff92cd62468bb351f459a7a\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-node.inputs.json.gz",
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-node.json",
+          "original_entry": "100644 blob f121265eeb266c2305a6be1262071259a3091049\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-node.json",
+          "equivalent_entry": "100644 blob f121265eeb266c2305a6be1262071259a3091049\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-node.json",
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-node.stderr.gz",
+          "original_entry": "100644 blob 86e43ea3218b5890302b754bbf8927f94e79f7ee\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-node.stderr.gz",
+          "equivalent_entry": "100644 blob 86e43ea3218b5890302b754bbf8927f94e79f7ee\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-node.stderr.gz",
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-node.stdout.gz",
+          "original_entry": "100644 blob f4280f38fe5539ca4d1696b199be3e000a000bea\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-node.stdout.gz",
+          "equivalent_entry": "100644 blob f4280f38fe5539ca4d1696b199be3e000a000bea\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-node.stdout.gz",
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-vm.inputs.json.gz",
+          "original_entry": "100644 blob bbf6b28978a480d2503ce1b9262a1df67a7f6366\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-vm.inputs.json.gz",
+          "equivalent_entry": "100644 blob bbf6b28978a480d2503ce1b9262a1df67a7f6366\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-vm.inputs.json.gz",
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-vm.json",
+          "original_entry": "100644 blob e9d41011c0f51400af3bb805c770bddb81593627\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-vm.json",
+          "equivalent_entry": "100644 blob e9d41011c0f51400af3bb805c770bddb81593627\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-vm.json",
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-vm.stderr.gz",
+          "original_entry": "100644 blob 86e43ea3218b5890302b754bbf8927f94e79f7ee\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-vm.stderr.gz",
+          "equivalent_entry": "100644 blob 86e43ea3218b5890302b754bbf8927f94e79f7ee\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-vm.stderr.gz",
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-vm.stdout.gz",
+          "original_entry": "100644 blob 9094d230bd90d63ae770fff1879b6a6396691a19\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-vm.stdout.gz",
+          "equivalent_entry": "100644 blob 9094d230bd90d63ae770fff1879b6a6396691a19\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-vm.stdout.gz",
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/package-config.json",
+          "original_entry": "100644 blob 4cd8acc7a9b9090400d8ddb7e1d64dcd604a3235\tdocs/validation/odt-field-continuation-20261117/package-config.json",
+          "equivalent_entry": "100644 blob 4cd8acc7a9b9090400d8ddb7e1d64dcd604a3235\tdocs/validation/odt-field-continuation-20261117/package-config.json",
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/pull-request-draft.md",
+          "original_entry": "100644 blob 01acc165985da7b712c2698679483a74c1f1fd73\tdocs/validation/odt-field-continuation-20261117/pull-request-draft.md",
+          "equivalent_entry": "100644 blob 01acc165985da7b712c2698679483a74c1f1fd73\tdocs/validation/odt-field-continuation-20261117/pull-request-draft.md",
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/recovered-original-source.commit",
+          "original_entry": "100644 blob 416b76ae102bf364ac37e7dca4361e09f5ff008c\tdocs/validation/odt-field-continuation-20261117/recovered-original-source.commit",
+          "equivalent_entry": "100644 blob 416b76ae102bf364ac37e7dca4361e09f5ff008c\tdocs/validation/odt-field-continuation-20261117/recovered-original-source.commit",
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/recovery-audit.json",
+          "original_entry": "100644 blob e3b618b38616277085a71ba3ff11c787f2d1028c\tdocs/validation/odt-field-continuation-20261117/recovery-audit.json",
+          "equivalent_entry": "100644 blob e3b618b38616277085a71ba3ff11c787f2d1028c\tdocs/validation/odt-field-continuation-20261117/recovery-audit.json",
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/resolved-pubspec.lock",
+          "original_entry": "100644 blob 1d3ea1eada7ee8eecf7732a1fc2bcaedc03a76f7\tdocs/validation/odt-field-continuation-20261117/resolved-pubspec.lock",
+          "equivalent_entry": "100644 blob 1d3ea1eada7ee8eecf7732a1fc2bcaedc03a76f7\tdocs/validation/odt-field-continuation-20261117/resolved-pubspec.lock",
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/run_logged.py",
+          "original_entry": "100644 blob b762a1f0cd19c2dac856ec1a8736354492b7d12e\tdocs/validation/odt-field-continuation-20261117/run_logged.py",
+          "equivalent_entry": "100644 blob b762a1f0cd19c2dac856ec1a8736354492b7d12e\tdocs/validation/odt-field-continuation-20261117/run_logged.py",
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/runtime.json",
+          "original_entry": "100644 blob 6067874fc355b418f55b0ca05d7c9e4b5a1cf4cf\tdocs/validation/odt-field-continuation-20261117/runtime.json",
+          "equivalent_entry": "100644 blob 6067874fc355b418f55b0ca05d7c9e4b5a1cf4cf\tdocs/validation/odt-field-continuation-20261117/runtime.json",
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/source-recovery.json",
+          "original_entry": "100644 blob 745160d6bad6db04ee2dc13a8808e5109d0cde18\tdocs/validation/odt-field-continuation-20261117/source-recovery.json",
+          "equivalent_entry": "100644 blob 745160d6bad6db04ee2dc13a8808e5109d0cde18\tdocs/validation/odt-field-continuation-20261117/source-recovery.json",
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/test-workspace-pubspec.yaml",
+          "original_entry": "100644 blob b3237978f2f20b516ea19d47d418c2d9b8c39322\tdocs/validation/odt-field-continuation-20261117/test-workspace-pubspec.yaml",
+          "equivalent_entry": "100644 blob b3237978f2f20b516ea19d47d418c2d9b8c39322\tdocs/validation/odt-field-continuation-20261117/test-workspace-pubspec.yaml",
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/verification.json",
+          "original_entry": "100644 blob b2bed5a868f78d74bfb2ed171afc94da88e880ea\tdocs/validation/odt-field-continuation-20261117/verification.json",
+          "equivalent_entry": "100644 blob b2bed5a868f78d74bfb2ed171afc94da88e880ea\tdocs/validation/odt-field-continuation-20261117/verification.json",
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/verify_evidence.py",
+          "original_entry": "100644 blob 041838e2cf114134d270d427ae3bc2f7f34bcb5e\tdocs/validation/odt-field-continuation-20261117/verify_evidence.py",
+          "equivalent_entry": "100644 blob 041838e2cf114134d270d427ae3bc2f7f34bcb5e\tdocs/validation/odt-field-continuation-20261117/verify_evidence.py",
+          "identical": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+          "original_entry": "100644 blob 06e7d40ce0758a7df17700b94a31e0d184534f18\tpackages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+          "equivalent_entry": "100644 blob 06e7d40ce0758a7df17700b94a31e0d184534f18\tpackages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+          "identical": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+          "original_entry": "100644 blob 4e30fa0fef45350b6d0ad53ebf6e6a75bded48d8\tpackages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+          "equivalent_entry": "100644 blob 4e30fa0fef45350b6d0ad53ebf6e6a75bded48d8\tpackages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+          "identical": true
+        },
+        {
+          "path": "packages/quds_office_engine/test/odt_imported_field_fidelity_test.dart",
+          "original_entry": "100644 blob c1082c3340f375425d11a6b5944a46b8f1751484\tpackages/quds_office_engine/test/odt_imported_field_fidelity_test.dart",
+          "equivalent_entry": "100644 blob c1082c3340f375425d11a6b5944a46b8f1751484\tpackages/quds_office_engine/test/odt_imported_field_fidelity_test.dart",
+          "identical": true
+        },
+        {
+          "path": "packages/quds_office_engine/test/odt_page_field_fidelity_test.dart",
+          "original_entry": "100644 blob 0a4331683f037aa8a23e70b043bc6a7b8af2de62\tpackages/quds_office_engine/test/odt_page_field_fidelity_test.dart",
+          "equivalent_entry": "100644 blob 0a4331683f037aa8a23e70b043bc6a7b8af2de62\tpackages/quds_office_engine/test/odt_page_field_fidelity_test.dart",
+          "identical": true
+        }
+      ],
+      "verified_file_count": 37,
+      "passed": true
+    },
+    {
+      "branch": "docs/aot-removal",
+      "sha": "128a187d69555db80890c2a1945a442b951f9c74",
+      "disposition": "all_commits_patch_equivalent",
+      "baseline_is_integrated_ancestor": true,
+      "fresh_cherry": [
+        "- 128a187d69555db80890c2a1945a442b951f9c74"
+      ],
+      "passed": true
+    },
+    {
+      "branch": "docs/ods-color-scale",
+      "sha": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+      "disposition": "all_commits_patch_equivalent",
+      "baseline_is_integrated_ancestor": true,
+      "fresh_cherry": [
+        "- 58fdddfbcf198a8c0e38e32f6fcc9d6604e95283"
+      ],
+      "passed": true
+    },
+    {
+      "branch": "docs/ods-data-bar",
+      "sha": "69d14f84cabd3931b7640c1654b401c89faba766",
+      "disposition": "all_commits_patch_equivalent",
+      "baseline_is_integrated_ancestor": true,
+      "fresh_cherry": [
+        "- 69d14f84cabd3931b7640c1654b401c89faba766"
+      ],
+      "passed": true
+    },
+    {
+      "branch": "docs/ods-dynamic-validation",
+      "sha": "b8ddaaeb581e010467de304c828764d353149102",
+      "disposition": "all_commits_patch_equivalent",
+      "baseline_is_integrated_ancestor": true,
+      "fresh_cherry": [
+        "- b8ddaaeb581e010467de304c828764d353149102"
+      ],
+      "passed": true
+    },
+    {
+      "branch": "docs/ods-icon-sets",
+      "sha": "a7f144cc983f2df7c16d88f8644ad67a9254c3d0",
+      "disposition": "all_commits_patch_equivalent",
+      "baseline_is_integrated_ancestor": true,
+      "fresh_cherry": [
+        "- a7f144cc983f2df7c16d88f8644ad67a9254c3d0"
+      ],
+      "passed": true
+    },
+    {
+      "branch": "feat/ods-color-scale",
+      "sha": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+      "disposition": "all_commits_patch_equivalent",
+      "baseline_is_integrated_ancestor": true,
+      "fresh_cherry": [
+        "- 74ce9ffb816c70c0d2ae50b91ec52a614f26d688"
+      ],
+      "passed": true
+    },
+    {
+      "branch": "feat/ods-data-bar",
+      "sha": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+      "disposition": "all_commits_patch_equivalent",
+      "baseline_is_integrated_ancestor": true,
+      "fresh_cherry": [
+        "- b8ddaaeb581e010467de304c828764d353149102",
+        "- 0a53b8a70128870f3e1df6d18cdb177bb64290ee"
+      ],
+      "passed": true
+    },
+    {
+      "branch": "feat/ods-dynamic-validation-links",
+      "sha": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+      "disposition": "all_commits_patch_equivalent",
+      "baseline_is_integrated_ancestor": true,
+      "fresh_cherry": [
+        "- 68a0db23408e4c95d6d283219504c79aea33a6fe"
+      ],
+      "passed": true
+    },
+    {
+      "branch": "feat/ods-icon-sets",
+      "sha": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
+      "disposition": "all_commits_patch_equivalent",
+      "baseline_is_integrated_ancestor": true,
+      "fresh_cherry": [
+        "- 005c708e9f747cb46cf02e12c869b0a2f85ac824"
+      ],
+      "passed": true
+    },
+    {
+      "branch": "feat/ods-time-period-conditions",
+      "sha": "7ef09f2408f467c65427700e65907531ecb26acb",
+      "disposition": "all_commits_patch_equivalent",
+      "baseline_is_integrated_ancestor": true,
+      "fresh_cherry": [
+        "- 7ef09f2408f467c65427700e65907531ecb26acb"
+      ],
+      "passed": true
+    },
+    {
+      "branch": "integrate/odt-column-boundary-144",
+      "sha": "cee6e2632f891a3fe21c5c02d6bf508805973051",
+      "disposition": "identical_tree_already_integrated",
+      "baseline_is_integrated_ancestor": true,
+      "equivalent_commit": "bb5556e8cc4cb73e2c668b5319a2844a20c6c50c",
+      "original_tree": "a30201059a62b8034ac747367c1af8de054a2afb",
+      "equivalent_tree": "a30201059a62b8034ac747367c1af8de054a2afb",
+      "equivalent_is_integrated_ancestor": true,
+      "passed": true
+    },
+    {
+      "branch": "integrate/office-union-148",
+      "sha": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+      "disposition": "identical_tree_already_integrated",
+      "baseline_is_integrated_ancestor": true,
+      "equivalent_commit": "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4",
+      "original_tree": "e3adc9e259c6120b4b1e3e03177391f880243e13",
+      "equivalent_tree": "e3adc9e259c6120b4b1e3e03177391f880243e13",
+      "equivalent_is_integrated_ancestor": true,
+      "passed": true
+    },
+    {
+      "branch": "integrate/office-union-150",
+      "sha": "da9c956ec5d65c0e5a9f9ea84c2b0bca98e824a0",
+      "disposition": "identical_tree_already_integrated",
+      "baseline_is_integrated_ancestor": true,
+      "equivalent_commit": "23f3b4204fce45d38a103e3159bdc7f1e8d37c4e",
+      "original_tree": "b73ebcc6f72c49a2883c5749f6450d497c647324",
+      "equivalent_tree": "b73ebcc6f72c49a2883c5749f6450d497c647324",
+      "equivalent_is_integrated_ancestor": true,
+      "passed": true
+    }
+  ],
+  "all_14_historical_equivalences_reverified": true,
+  "api_capture_crosscheck": {
+    "provided": false
+  },
+  "unaccounted_refs": [],
+  "refs": [
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/codex/aot-daemon-free-20261117",
+      "object_sha": "e37ccdb47c047f6a0250585cf5cb20efc17573b4",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "e37ccdb47c047f6a0250585cf5cb20efc17573b4"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/codex/aot-proofing-analysis-20261117",
+      "object_sha": "8b19ead89800f81ed9743ffbaf3279ac88fdd06d",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "8b19ead89800f81ed9743ffbaf3279ac88fdd06d"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/codex/document-review-20261118",
+      "object_sha": "4600c0ebc9ac5e6acabd92935821d1c15315f2c1",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "4600c0ebc9ac5e6acabd92935821d1c15315f2c1"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/codex/document-review-notes-20261118",
+      "object_sha": "c320f28347f1cd292b848be2cf72998d41f8a6ac",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "c320f28347f1cd292b848be2cf72998d41f8a6ac"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/codex/gector-office-resume-20261117",
+      "object_sha": "205e913ec1525b5e5157a6f6d7ff84c883217e48",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "205e913ec1525b5e5157a6f6d7ff84c883217e48"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/codex/german-morphology-20261117",
+      "object_sha": "867df7f257eac69adfe3355c051cdb2f773c53ac",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "867df7f257eac69adfe3355c051cdb2f773c53ac"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/codex/mail-reader-20261118",
+      "object_sha": "7d1adf1636450b3f6040b79856ea62045d03f23d",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "7d1adf1636450b3f6040b79856ea62045d03f23d"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/codex/native-spelling-20261118",
+      "object_sha": "536ee2086ce46ab629d4d77144d1ca22a43e3c19",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "536ee2086ce46ab629d4d77144d1ca22a43e3c19"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/codex/native-spelling-continuation-20261118",
+      "object_sha": "8cbdb9d9a05ff7f0e795efe0ee7848b196f424a3",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "8cbdb9d9a05ff7f0e795efe0ee7848b196f424a3"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/codex/native-spelling-quality-20261118",
+      "object_sha": "9fc211f6c72be9495767bd7cacfd8df51abf2fad",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "9fc211f6c72be9495767bd7cacfd8df51abf2fad"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/codex/native-spelling-resume-20261118",
+      "object_sha": "1cdedeebcae9c4fd1a50a7bfea6f487af5bb688c",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "1cdedeebcae9c4fd1a50a7bfea6f487af5bb688c"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/codex/odf-annotation-visibility-20261117",
+      "object_sha": "0b229004ee928fa1c1206957dbfc0419307cf254",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "0b229004ee928fa1c1206957dbfc0419307cf254"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/codex/odt-column-boundary-followup-20261117",
+      "object_sha": "a1e026b496f91b54bbd3017aae54717bf25a5586",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "a1e026b496f91b54bbd3017aae54717bf25a5586"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/codex/odt-field-continuation-20261117",
+      "object_sha": "c34945761e7991f5fe49037d79529acdd260b31c",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "historical_equivalent",
+      "commit": "c34945761e7991f5fe49037d79529acdd260b31c"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/codex/office-consolidation-20261117",
+      "object_sha": "1138cffdc4a1c909b2b149db80312037c21909d8",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "1138cffdc4a1c909b2b149db80312037c21909d8"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/codex/office-continuation-20261117",
+      "object_sha": "93c832f53982a9f5956f19ae0cb9418f55fac8c0",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "93c832f53982a9f5956f19ae0cb9418f55fac8c0"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/codex/office-continue-20261118",
+      "object_sha": "e397671e815232847d7223314ba946d1d6740f44",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "e397671e815232847d7223314ba946d1d6740f44"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/codex/office-fidelity-20261117",
+      "object_sha": "d1738017afd3696adbd2e895678b1fa7d26065ec",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "d1738017afd3696adbd2e895678b1fa7d26065ec"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/codex/office-fidelity-improvements-20261117-e1978379",
+      "object_sha": "814f165cb24a5b719dde65495f64d85f86563328",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "814f165cb24a5b719dde65495f64d85f86563328"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/codex/office-local-qualification-20261118",
+      "object_sha": "295752ff93b24bafc510e60197b62faa647e2aa3",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "295752ff93b24bafc510e60197b62faa647e2aa3"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/codex/office-main-integration-20261119",
+      "object_sha": "7d279e084bae438d383630726ad7b0514da77d35",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "7d279e084bae438d383630726ad7b0514da77d35"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/codex/office-qualified-resume-20261117",
+      "object_sha": "07926acb46f0d451491046066a35dd6c1227b5a1",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "07926acb46f0d451491046066a35dd6c1227b5a1"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/codex/office-reconciled-20261117",
+      "object_sha": "83f8c380f9271b6bf34a300c3aedc19442cb61f1",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "83f8c380f9271b6bf34a300c3aedc19442cb61f1"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/codex/office-resume-20261118",
+      "object_sha": "8ad80eb29a3984d58d5564c6759e853c0a8ab4af",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "8ad80eb29a3984d58d5564c6759e853c0a8ab4af"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/codex/office-union-qualification-20261117",
+      "object_sha": "16c7b0fb48c72527645678b76e25b5c5cb7b9c22",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "16c7b0fb48c72527645678b76e25b5c5cb7b9c22"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/codex/office-union-resume-20261118",
+      "object_sha": "6d97fedccde17244a917ee7d3372adebe5494089",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "6d97fedccde17244a917ee7d3372adebe5494089"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/codex/offline-thesaurus-20261118",
+      "object_sha": "df62b58975bab1f650879fc88f850550a3df5c13",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "df62b58975bab1f650879fc88f850550a3df5c13"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/codex/proofing-20261116",
+      "object_sha": "c0403890fc00f38c0ee6e1d533f6fef549c6fc03",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "c0403890fc00f38c0ee6e1d533f6fef549c6fc03"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/codex/proofing-20261116-resume",
+      "object_sha": "738f0b6a3f1f46f83585579291d0847613d780c5",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "738f0b6a3f1f46f83585579291d0847613d780c5"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/codex/proofing-en-de-20261116",
+      "object_sha": "7dfcfe9fcbf7e6d0d0abc14de7ed1ed901fa99c2",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "7dfcfe9fcbf7e6d0d0abc14de7ed1ed901fa99c2"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/codex/proofing-en-de-20261117",
+      "object_sha": "5cff80ce4ba85e645f21a31efb4fa4d9043b7e79",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "5cff80ce4ba85e645f21a31efb4fa4d9043b7e79"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/codex/proofing-en-hyphenation-20261116",
+      "object_sha": "ffc672fec2df9919233b4ee5b0ba783ef1758f99",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "ffc672fec2df9919233b4ee5b0ba783ef1758f99"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/codex/proofing-german-quality-20261116",
+      "object_sha": "a916bbf09169f6906a89bd2ca3e3c42120ead466",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "a916bbf09169f6906a89bd2ca3e3c42120ead466"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/codex/proofing-harper-source-20261116",
+      "object_sha": "65d5815e4866549fe7f03b145b626f2c4aaba8e0",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "65d5815e4866549fe7f03b145b626f2c4aaba8e0"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/codex/terminal-integration-ods-20261116",
+      "object_sha": "4fadcc68d52d51e72e8d782765a0dd5086b982c6",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "4fadcc68d52d51e72e8d782765a0dd5086b982c6"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/codex/terminal-recovery-office-20261116",
+      "object_sha": "be2c3a91b0dd5b4abb1b9a7baa8f5e10769bc87a",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "be2c3a91b0dd5b4abb1b9a7baa8f5e10769bc87a"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/codex/terminal-sharing-office-20261116",
+      "object_sha": "4235e690602195cc504438a6b937972c71f1ad39",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "4235e690602195cc504438a6b937972c71f1ad39"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/codex/text-rendering-20261116",
+      "object_sha": "57bc0f98eb94997b73f22cc267bd8d61dccaee59",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "57bc0f98eb94997b73f22cc267bd8d61dccaee59"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/codex/text-rendering-20261116-continuation",
+      "object_sha": "aff69c221f24d2bf9bcab7001f976ac085b4e841",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "aff69c221f24d2bf9bcab7001f976ac085b4e841"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/codex/zotero-capabilities-20261116",
+      "object_sha": "2480f0988167068d9aeddf6573b9c2c6871a8481",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "2480f0988167068d9aeddf6573b9c2c6871a8481"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/codex/zotero-capabilities-20261118",
+      "object_sha": "f4aa218c87293527b3e2b7514500a28d13bd8f70",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "f4aa218c87293527b3e2b7514500a28d13bd8f70"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/codex/zotero-citation-workflow-20261118",
+      "object_sha": "a40a26663f7a2c6b7fb8de91540fd04b9875ed9c",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "a40a26663f7a2c6b7fb8de91540fd04b9875ed9c"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/codex/zotero-continuation-20261118",
+      "object_sha": "fb1fd4dc3edda824c3e043c035dbfad1f0fe0869",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "fb1fd4dc3edda824c3e043c035dbfad1f0fe0869"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/codex/zotero-note-workflow-20261118",
+      "object_sha": "c93fc23b388a053f0b4742b771adb511aaf3578a",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "c93fc23b388a053f0b4742b771adb511aaf3578a"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/codex/zotero-offline-workflow-20261118",
+      "object_sha": "8d74db5da2992e60c7f17b58cd354b874a1ce33a",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "8d74db5da2992e60c7f17b58cd354b874a1ce33a"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/codex/zotero-optimization-20261116",
+      "object_sha": "ca9e4f052d988d77f9ded3a6b13f840f76a26159",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "ca9e4f052d988d77f9ded3a6b13f840f76a26159"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/codex/zotero-recovery-20261116",
+      "object_sha": "1549a9c7884eb688732262398b5d9859a68103eb",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "1549a9c7884eb688732262398b5d9859a68103eb"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/codex/zotero-support-20261115",
+      "object_sha": "fc37658c907edf6687eccb9564d3046283b49a3a",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "fc37658c907edf6687eccb9564d3046283b49a3a"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/codex/zotero-support-20261116",
+      "object_sha": "428679a33381f943a8ae63117d4207f01dd15462",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "428679a33381f943a8ae63117d4207f01dd15462"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/codex/zotero-tags-20261118",
+      "object_sha": "5dd3eb7c1434f0c1063290d5698fa5c760c201e2",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "5dd3eb7c1434f0c1063290d5698fa5c760c201e2"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/codex/zotero-word-parity-20261118",
+      "object_sha": "c634f494b85f7b2118781300a322ad0d9c216a17",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "c634f494b85f7b2118781300a322ad0d9c216a17"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/codex/zotero-wordlike-20261118",
+      "object_sha": "6c993f7406037ba462c6aea32e7e6afeebd28c03",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "6c993f7406037ba462c6aea32e7e6afeebd28c03"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/codex/zotero-workspace-20261118",
+      "object_sha": "acfa3c2bf543debd2fff518304ab514ab677418b",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "acfa3c2bf543debd2fff518304ab514ab677418b"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/docs/aot-removal",
+      "object_sha": "128a187d69555db80890c2a1945a442b951f9c74",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "historical_equivalent",
+      "commit": "128a187d69555db80890c2a1945a442b951f9c74"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/docs/build30-validation-20261117",
+      "object_sha": "16e2477ff93f7a1ec5c6ed78491f2716ce4d1658",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "16e2477ff93f7a1ec5c6ed78491f2716ce4d1658"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/docs/conditional-top-bottom",
+      "object_sha": "5fb8762e771fe68be8bc8025fe26e159d14eda8e",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "5fb8762e771fe68be8bc8025fe26e159d14eda8e"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/docs/current-office-capabilities",
+      "object_sha": "1675bbbb7c03090a87b6df783e3741e2cbc1768f",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "1675bbbb7c03090a87b6df783e3741e2cbc1768f"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/docs/filter-operators",
+      "object_sha": "379fa8663c81f32b4328415f56c776746ccc23bc",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "379fa8663c81f32b4328415f56c776746ccc23bc"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/docs/filters-closed",
+      "object_sha": "4a122b3b71ddc539f8ffda5541b7e6ab0f1dce8f",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "4a122b3b71ddc539f8ffda5541b7e6ab0f1dce8f"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/docs/metadata-closed",
+      "object_sha": "a5febc3362d2fccdb979f012a5296af72e465797",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "a5febc3362d2fccdb979f012a5296af72e465797"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/docs/metadata-complete",
+      "object_sha": "b23ee557ea121774833c7a188a49189e4f80ce70",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "b23ee557ea121774833c7a188a49189e4f80ce70"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/docs/native-spacy-handoff-20261117",
+      "object_sha": "f965fce6a54141b753a22f1e1b6c2fabba44e389",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "f965fce6a54141b753a22f1e1b6c2fabba44e389"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/docs/odp-presentation-writer",
+      "object_sha": "8221b0081b02af33101ca7f58438e69e487d2bf6",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "8221b0081b02af33101ca7f58438e69e487d2bf6"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/docs/odp-transitions",
+      "object_sha": "434a26933501eb288a1b16ffd9f971a5fe3b3bc7",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "434a26933501eb288a1b16ffd9f971a5fe3b3bc7"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/docs/ods-color-scale",
+      "object_sha": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "historical_equivalent",
+      "commit": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/docs/ods-data-bar",
+      "object_sha": "69d14f84cabd3931b7640c1654b401c89faba766",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "historical_equivalent",
+      "commit": "69d14f84cabd3931b7640c1654b401c89faba766"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/docs/ods-dynamic-validation",
+      "object_sha": "b8ddaaeb581e010467de304c828764d353149102",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "historical_equivalent",
+      "commit": "b8ddaaeb581e010467de304c828764d353149102"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/docs/ods-filter-predicates",
+      "object_sha": "bb9866d25bf98e5aa42c10ce4679835dbc8617f1",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "bb9866d25bf98e5aa42c10ce4679835dbc8617f1"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/docs/ods-header-footer",
+      "object_sha": "846c15f0de92a17bb2720e295b9a40412ebcb6fb",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "846c15f0de92a17bb2720e295b9a40412ebcb6fb"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/docs/ods-icon-sets",
+      "object_sha": "a7f144cc983f2df7c16d88f8644ad67a9254c3d0",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "historical_equivalent",
+      "commit": "a7f144cc983f2df7c16d88f8644ad67a9254c3d0"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/docs/ods-row-groups",
+      "object_sha": "06828a5e63365495c86a4a0e1c68ecd113f891e5",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "06828a5e63365495c86a4a0e1c68ecd113f891e5"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/docs/ods-writer-images",
+      "object_sha": "108b4087c15f5640dbc906ad243f3030b7592f3f",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "108b4087c15f5640dbc906ad243f3030b7592f3f"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/docs/odt-frame-size",
+      "object_sha": "6da74faa9160275df9c10a864c758033c92f114d",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "6da74faa9160275df9c10a864c758033c92f114d"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/docs/odt-image-registry",
+      "object_sha": "f27e9b0e7ee9b1db8f6b7393abd752dab67d1ca5",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "f27e9b0e7ee9b1db8f6b7393abd752dab67d1ca5"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/docs/odt-odp-rows",
+      "object_sha": "a733c9f3367b9833f242100fcda0cff9e92767ff",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "a733c9f3367b9833f242100fcda0cff9e92767ff"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/docs/page-setup-fix",
+      "object_sha": "4497c737623c1339d2422487d53941c20472bac9",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "4497c737623c1339d2422487d53941c20472bac9"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/docs/readme-remaining-gaps",
+      "object_sha": "e6fdd16849aaf7ccbaf50f2593d7a92b6a82e630",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "e6fdd16849aaf7ccbaf50f2593d7a92b6a82e630"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/docs/remaining-gaps",
+      "object_sha": "0a26be7f136ad3e57dbe894b0bc4cdb0602addd0",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "0a26be7f136ad3e57dbe894b0bc4cdb0602addd0"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/docs/sheet-page-setup",
+      "object_sha": "eb95211e4d82933ba5b1db23ea7b79938b77909f",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "eb95211e4d82933ba5b1db23ea7b79938b77909f"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/docs/validation-complete",
+      "object_sha": "f5b67cc296b7d27e4f3a480dc46160f472d78694",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "f5b67cc296b7d27e4f3a480dc46160f472d78694"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/docs/validation-operators",
+      "object_sha": "01f62eb1812ca54827cc14e074e03abd82f963d7",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "01f62eb1812ca54827cc14e074e03abd82f963d7"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/feat/conditional-affix",
+      "object_sha": "20681b8658392212c128f51b4c91f0b638942448",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "20681b8658392212c128f51b4c91f0b638942448"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/feat/conditional-between",
+      "object_sha": "b69bad50fb235118a5334b325683cd1524b3e3d1",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "b69bad50fb235118a5334b325683cd1524b3e3d1"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/feat/conditional-dxf",
+      "object_sha": "b0efe6c661009ffa463f2bf6d7945216ce1dae4c",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "b0efe6c661009ffa463f2bf6d7945216ce1dae4c"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/feat/conditional-dxf-styles",
+      "object_sha": "31a26383639dc7f751cfb0ea543ec7454a537ff6",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "31a26383639dc7f751cfb0ea543ec7454a537ff6"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/feat/conditional-operators",
+      "object_sha": "21de3c3963b0334068b87fb1c25c787660cb17cf",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "21de3c3963b0334068b87fb1c25c787660cb17cf"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/feat/conditional-text",
+      "object_sha": "752a94dfddf69522429f3025f9d25702499cb6da",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "752a94dfddf69522429f3025f9d25702499cb6da"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/feat/conditional-top-bottom",
+      "object_sha": "001367e89cb0034cf33467783d7258bb0800deb9",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "001367e89cb0034cf33467783d7258bb0800deb9"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/feat/german-context-20261117",
+      "object_sha": "97f6553c3fdca35be0270a66d6eaeb286c884fef",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "97f6553c3fdca35be0270a66d6eaeb286c884fef"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/feat/german-gector-proofing",
+      "object_sha": "34c70ece1e9c14954398826f93c1bb6aa61007a8",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "34c70ece1e9c14954398826f93c1bb6aa61007a8"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/feat/german-morphology-completion-20261117",
+      "object_sha": "482e08176dea6bd8f5fc80d1c0064d96b712db43",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "482e08176dea6bd8f5fc80d1c0064d96b712db43"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/feat/grammar-release-20261117",
+      "object_sha": "96e65705ad69f969710d3ff6d2897bd4aa38fbf9",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "96e65705ad69f969710d3ff6d2897bd4aa38fbf9"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/feat/native-spacy-reference-20261117",
+      "object_sha": "6df76a0dff0051312faa04317af41d479dd94162",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "6df76a0dff0051312faa04317af41d479dd94162"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/feat/native-spacy-w7-20261118",
+      "object_sha": "2e013f26c7d4db54ecabe2c955117cbce5379408",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "2e013f26c7d4db54ecabe2c955117cbce5379408"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/feat/odf-metadata",
+      "object_sha": "b842ae4b4df892ec5f058f6207589953f3e9dae9",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "b842ae4b4df892ec5f058f6207589953f3e9dae9"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/feat/odf-story-fidelity",
+      "object_sha": "0ecd1615b96d7b90156c1e913e105d467efe9a39",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "0ecd1615b96d7b90156c1e913e105d467efe9a39"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/feat/odp-chart-data",
+      "object_sha": "a86a4ec6a231ed66cd868ea1ece3acc3aea2bb8f",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "a86a4ec6a231ed66cd868ea1ece3acc3aea2bb8f"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/feat/odp-presentation-writer",
+      "object_sha": "5088f3ab7e81f353593f16fcaa86d1467d4e1af9",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "5088f3ab7e81f353593f16fcaa86d1467d4e1af9"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/feat/odp-preset-shapes",
+      "object_sha": "8fae38da39c3c45344e723abca92c9330f15a791",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "8fae38da39c3c45344e723abca92c9330f15a791"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/feat/odp-shape-links",
+      "object_sha": "3ec638bd7de5cb6648774abbf14da1c315f5e418",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "3ec638bd7de5cb6648774abbf14da1c315f5e418"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/feat/odp-transitions",
+      "object_sha": "a920b13aef776e0fb8a2ce3cc32848c2e7c0166a",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "a920b13aef776e0fb8a2ce3cc32848c2e7c0166a"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/feat/ods-color-scale",
+      "object_sha": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "historical_equivalent",
+      "commit": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/feat/ods-conditional",
+      "object_sha": "e59751246a200e7477657d0e4835bf77b153422c",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "e59751246a200e7477657d0e4835bf77b153422c"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/feat/ods-custom-validation",
+      "object_sha": "2e3074c8e1860f9503b059a87870911afc3eee7d",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "2e3074c8e1860f9503b059a87870911afc3eee7d"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/feat/ods-data-bar",
+      "object_sha": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "historical_equivalent",
+      "commit": "0a53b8a70128870f3e1df6d18cdb177bb64290ee"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/feat/ods-default-geometry",
+      "object_sha": "912f26f21446ef9bdbf4f542535438dae0ded9a9",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "912f26f21446ef9bdbf4f542535438dae0ded9a9"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/feat/ods-default-style",
+      "object_sha": "49b447324159595c59e64d8425b54a09f79ec736",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "49b447324159595c59e64d8425b54a09f79ec736"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/feat/ods-dynamic-validation-links",
+      "object_sha": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "historical_equivalent",
+      "commit": "68a0db23408e4c95d6d283219504c79aea33a6fe"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/feat/ods-filter-conditions",
+      "object_sha": "1deb61cf78add61f5d26bea36ff596d769d06a87",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "1deb61cf78add61f5d26bea36ff596d769d06a87"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/feat/ods-filter-operators",
+      "object_sha": "3bb505ce5fea00236238e37c450ace8b18e4e34e",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "3bb505ce5fea00236238e37c450ace8b18e4e34e"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/feat/ods-filter-predicates",
+      "object_sha": "089e53fce443ca2169fc44f3700e1b23780d2c95",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "089e53fce443ca2169fc44f3700e1b23780d2c95"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/feat/ods-header-footer",
+      "object_sha": "331be9688e2de1feb52635490b534042dea10c27",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "331be9688e2de1feb52635490b534042dea10c27"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/feat/ods-hyperlinks",
+      "object_sha": "e5daa20587e10971e8cb97d82a5495584b5c1553",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "e5daa20587e10971e8cb97d82a5495584b5c1553"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/feat/ods-icon-sets",
+      "object_sha": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "historical_equivalent",
+      "commit": "005c708e9f747cb46cf02e12c869b0a2f85ac824"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/feat/ods-images",
+      "object_sha": "7fe296e29e2e1b173580f6854507fc060cb4f080",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "7fe296e29e2e1b173580f6854507fc060cb4f080"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/feat/ods-metadata",
+      "object_sha": "d6d6866c0f4ddbbaa196e1a5eb7ff9e31007fdea",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "d6d6866c0f4ddbbaa196e1a5eb7ff9e31007fdea"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/feat/ods-named-expressions",
+      "object_sha": "864e674795eb422855df2b26ccc375d3255e61a2",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "864e674795eb422855df2b26ccc375d3255e61a2"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/feat/ods-outline",
+      "object_sha": "988f423b9b95037d8f5273ee368b58ceedab0667",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "988f423b9b95037d8f5273ee368b58ceedab0667"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/feat/ods-row-groups",
+      "object_sha": "27137499f8cc1a946bfcdd7446f43945ea81d2be",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "27137499f8cc1a946bfcdd7446f43945ea81d2be"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/feat/ods-tab-color",
+      "object_sha": "0dd9dd9763c2eb6bdc4f6b6e30fb7726035e7d4b",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "0dd9dd9763c2eb6bdc4f6b6e30fb7726035e7d4b"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/feat/ods-time-period-conditions",
+      "object_sha": "7ef09f2408f467c65427700e65907531ecb26acb",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "historical_equivalent",
+      "commit": "7ef09f2408f467c65427700e65907531ecb26acb"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/feat/ods-validation-messages",
+      "object_sha": "49ba086251ba61032f15b3e7b726fc921874fd12",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "49ba086251ba61032f15b3e7b726fc921874fd12"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/feat/ods-validation-operators",
+      "object_sha": "8769019fb8be5483939edd4655dd88005e2515c4",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "8769019fb8be5483939edd4655dd88005e2515c4"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/feat/ods-validations",
+      "object_sha": "b85501b2810e537e21040d82528d8dbaa6fdcf15",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "b85501b2810e537e21040d82528d8dbaa6fdcf15"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/feat/ods-writer",
+      "object_sha": "0ee0a8320875248adac9718cae2e67875b6b932c",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "0ee0a8320875248adac9718cae2e67875b6b932c"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/feat/ods-writer-conditional",
+      "object_sha": "ec94795114d11c73bd8fc689fde364cc110b5cd3",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "ec94795114d11c73bd8fc689fde364cc110b5cd3"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/feat/ods-writer-images",
+      "object_sha": "9ad9ba92133932b0a3824619168f07dd218c2b26",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "9ad9ba92133932b0a3824619168f07dd218c2b26"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/feat/ods-writer-metadata",
+      "object_sha": "82215309dc64ef8c473fec3c4892cf0c9884bc91",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "82215309dc64ef8c473fec3c4892cf0c9884bc91"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/feat/odt-columns",
+      "object_sha": "2c7d58d2e83e542655db7e9bbcc04b6bade44902",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "2c7d58d2e83e542655db7e9bbcc04b6bade44902"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/feat/odt-comments",
+      "object_sha": "e15205c97f0fe0c7fcc5c3441e72cb0e9a3bdc01",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "e15205c97f0fe0c7fcc5c3441e72cb0e9a3bdc01"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/feat/odt-document-writer",
+      "object_sha": "e8cb60efc2360be9bb72db7af8e4c675edf5b76f",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "e8cb60efc2360be9bb72db7af8e4c675edf5b76f"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/feat/odt-fields",
+      "object_sha": "b005a46b32c8b3ec92d60bb99147f2aa3af51f06",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "b005a46b32c8b3ec92d60bb99147f2aa3af51f06"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/feat/odt-first-even-headers",
+      "object_sha": "f87533cdbf9f98e5cfc11d21d8903f8501212ab8",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "f87533cdbf9f98e5cfc11d21d8903f8501212ab8"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/feat/odt-footnotes",
+      "object_sha": "946942a1e30332892aaf19a068ca5a29470d682a",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "946942a1e30332892aaf19a068ca5a29470d682a"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/feat/odt-links-bookmarks",
+      "object_sha": "8471633ed09e2a49ba35ff162a2bac5eb04073c9",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "8471633ed09e2a49ba35ff162a2bac5eb04073c9"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/feat/odt-lists",
+      "object_sha": "f862fe550bc8b7d3afcdb74016ccfefd7477fd20",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "f862fe550bc8b7d3afcdb74016ccfefd7477fd20"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/feat/odt-nested-lists",
+      "object_sha": "7686ec52876288e6799023fd686af79228236826",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "7686ec52876288e6799023fd686af79228236826"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/feat/odt-ordered-lists",
+      "object_sha": "8e94cf878cfbdeb13482f37f7848ef5a400425f3",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "8e94cf878cfbdeb13482f37f7848ef5a400425f3"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/feat/odt-page-fields",
+      "object_sha": "35ae6328a884975c23d2aa5001bf0df05a436f91",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "35ae6328a884975c23d2aa5001bf0df05a436f91"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/feat/odt-paragraph-breaks",
+      "object_sha": "54a3a8593bdb34dd7c1f737960aa732d401fc2da",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "54a3a8593bdb34dd7c1f737960aa732d401fc2da"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/feat/odt-paragraph-shading",
+      "object_sha": "12601a41b6785dcd1d617adba8e13297d9af4bc0",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "12601a41b6785dcd1d617adba8e13297d9af4bc0"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/feat/odt-sections2",
+      "object_sha": "2a6f3a94ce1d4a5ba6cddc1687a075191448da3d",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "2a6f3a94ce1d4a5ba6cddc1687a075191448da3d"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/feat/odt-tab-stops",
+      "object_sha": "4391669c881cbcba372c742d2300c24cdc465a2f",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "4391669c881cbcba372c742d2300c24cdc465a2f"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/feat/odt-table-borders",
+      "object_sha": "b54ef7d2955f44266a87d9067d0e4c332e868c54",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "b54ef7d2955f44266a87d9067d0e4c332e868c54"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/feat/odt-toc",
+      "object_sha": "8b70fdb42fb2d974587c75437b3adb5018190159",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "8b70fdb42fb2d974587c75437b3adb5018190159"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/feat/office-proofing-followup-20261117",
+      "object_sha": "e3a38789359adaa33b2da1345c952fa1c2d8aebb",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "e3a38789359adaa33b2da1345c952fa1c2d8aebb"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/feat/sheet-hidden-sheets",
+      "object_sha": "4c8036bbf16ac224c3fc102b5c44d8913a512b18",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "4c8036bbf16ac224c3fc102b5c44d8913a512b18"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/feat/sheet-hidden-state",
+      "object_sha": "46850ae47e0241733750decb22417a0150e4b0e4",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "46850ae47e0241733750decb22417a0150e4b0e4"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/feat/sheet-page-setup",
+      "object_sha": "5aa16674e64cc01b89aec017c85afd3899cd96d5",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "5aa16674e64cc01b89aec017c85afd3899cd96d5"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/fix/ods-global-validations-20261116",
+      "object_sha": "e5e1e9af6beb0972a010d8208c1690a642809113",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "e5e1e9af6beb0972a010d8208c1690a642809113"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/fix/ods-writer-page-layout",
+      "object_sha": "8a0107cbca4b00766a2a76d43a1db244c006e976",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "8a0107cbca4b00766a2a76d43a1db244c006e976"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/fix/odt-inline-fields",
+      "object_sha": "84076f8ec8e4604a631cbaad9b88b030e508f0bc",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "84076f8ec8e4604a631cbaad9b88b030e508f0bc"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/fix/sdt-multi-section-control",
+      "object_sha": "866c14f0b3a876e11732bc544dc25a05d8f10524",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "866c14f0b3a876e11732bc544dc25a05d8f10524"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/fix/sdt-trailing-section-break",
+      "object_sha": "8fc3d06be36da5c2176feb107c14245f61650d75",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "8fc3d06be36da5c2176feb107c14245f61650d75"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/fix/utf16-custom-xml",
+      "object_sha": "09a05d7d60d2a2e1d2547487ad4545c50472834b",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "09a05d7d60d2a2e1d2547487ad4545c50472834b"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/fix/word-dialog-focus-rendering-20261116",
+      "object_sha": "094d6bacb9cb253e4d04443e9f3c4171e7433c8a",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "094d6bacb9cb253e4d04443e9f3c4171e7433c8a"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/integrate/aot-then-remove-20261117",
+      "object_sha": "bb5a97a8d7c5f9ffa261e64753f53a3c044b610f",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "bb5a97a8d7c5f9ffa261e64753f53a3c044b610f"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/integrate/codex-office-continuation-20261117",
+      "object_sha": "af2a61862d23572b108bd7ef7719c7f575348d83",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "af2a61862d23572b108bd7ef7719c7f575348d83"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/integrate/macbook-current-20261118",
+      "object_sha": "f383c826205e321eda3ed3bdbcd584e9a2d4da14",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "f383c826205e321eda3ed3bdbcd584e9a2d4da14"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/integrate/native-spacy-distribution-20261118",
+      "object_sha": "8f93545eb46c1f1f4c653c7beaf23d28c3307940",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "8f93545eb46c1f1f4c653c7beaf23d28c3307940"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/integrate/odt-column-boundary-144",
+      "object_sha": "cee6e2632f891a3fe21c5c02d6bf508805973051",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "historical_equivalent",
+      "commit": "cee6e2632f891a3fe21c5c02d6bf508805973051"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/integrate/office-union-148",
+      "object_sha": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "historical_equivalent",
+      "commit": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/integrate/office-union-150",
+      "object_sha": "da9c956ec5d65c0e5a9f9ea84c2b0bca98e824a0",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "historical_equivalent",
+      "commit": "da9c956ec5d65c0e5a9f9ea84c2b0bca98e824a0"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/integrate/spacy-en-fr-20261118",
+      "object_sha": "637b67c58482e40a3244c590ce77c08b9fc2740e",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "637b67c58482e40a3244c590ce77c08b9fc2740e"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/integrate/spacy-ner-macos-followup-20261118",
+      "object_sha": "ce4d3d19a21eae96a473291ffb9f47ac3be6a74c",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "ce4d3d19a21eae96a473291ffb9f47ac3be6a74c"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/main",
+      "object_sha": "690e6ac8a1f7d8f5c8d4bea69d989a6728f3b27e",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "690e6ac8a1f7d8f5c8d4bea69d989a6728f3b27e"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/vendor/conditional-dxf-styles",
+      "object_sha": "76c7087c22da8ace85b9a71ca266a90f84faa3ae",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "76c7087c22da8ace85b9a71ca266a90f84faa3ae"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/vendor/conditional-top-bottom",
+      "object_sha": "ea9d16edd489b3a4ccff7a25cc5277b686c4e263",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "ea9d16edd489b3a4ccff7a25cc5277b686c4e263"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/vendor/odf-metadata",
+      "object_sha": "3a5cacc12c23e577903dcb6d9eba085da6e205a9",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "3a5cacc12c23e577903dcb6d9eba085da6e205a9"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/vendor/odp-chart-data",
+      "object_sha": "66273aa2f743ed33f20944a6e1251c1a396af0eb",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "66273aa2f743ed33f20944a6e1251c1a396af0eb"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/vendor/odp-presentation-writer",
+      "object_sha": "578846d395baa0c9dfd1f32a805125f331fda248",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "578846d395baa0c9dfd1f32a805125f331fda248"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/vendor/odp-preset-shapes",
+      "object_sha": "fbc8abbcdd4bf6df90be04fc953e4b490d20c599",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "fbc8abbcdd4bf6df90be04fc953e4b490d20c599"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/vendor/odp-shape-links",
+      "object_sha": "0585fac1a56c3dc5c3d728962794299ddfe50bbb",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "0585fac1a56c3dc5c3d728962794299ddfe50bbb"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/vendor/odp-transitions",
+      "object_sha": "d061a578646493b71ad19f8fd8358f6cc509e8b8",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "d061a578646493b71ad19f8fd8358f6cc509e8b8"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/vendor/ods-custom-validation",
+      "object_sha": "90acedb9835cb5bdef30606301e74482f5977448",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "90acedb9835cb5bdef30606301e74482f5977448"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/vendor/ods-filter-conditions",
+      "object_sha": "928f85483ec1cb85e468ca9381585875137ba8d5",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "928f85483ec1cb85e468ca9381585875137ba8d5"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/vendor/ods-filter-conditions-correct",
+      "object_sha": "817982d580e990a5ca21d74c35135db4817e54b5",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "817982d580e990a5ca21d74c35135db4817e54b5"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/vendor/ods-filter-operators",
+      "object_sha": "777bcb876a9c8cc170586d117fa41f8331ef84ad",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "777bcb876a9c8cc170586d117fa41f8331ef84ad"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/vendor/ods-filter-predicates",
+      "object_sha": "a53a37b0b5c1b55aff20d581f80f1b2027bf3ddb",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "a53a37b0b5c1b55aff20d581f80f1b2027bf3ddb"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/vendor/ods-header-footer",
+      "object_sha": "c6a7eff46bcfcb806ee7c43252636b06c088963c",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "c6a7eff46bcfcb806ee7c43252636b06c088963c"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/vendor/ods-hyperlinks",
+      "object_sha": "95debbcce02c1e24d6e8159cd1f524bbf68afeba",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "95debbcce02c1e24d6e8159cd1f524bbf68afeba"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/vendor/ods-hyperlinks-current",
+      "object_sha": "be6aa3cf2fca1b775c2b1352881e2ca3f9134c13",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "be6aa3cf2fca1b775c2b1352881e2ca3f9134c13"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/vendor/ods-metadata",
+      "object_sha": "18dc693fbf4e39fc6c38e3d655d1e5b35eeef273",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "18dc693fbf4e39fc6c38e3d655d1e5b35eeef273"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/vendor/ods-metadata-zotero",
+      "object_sha": "4fbd1687d3c0ada22d460cf5cadb9586c4f62905",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "4fbd1687d3c0ada22d460cf5cadb9586c4f62905"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/vendor/ods-named-expressions",
+      "object_sha": "388a1c76339507d493bab577424affd80732446c",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "388a1c76339507d493bab577424affd80732446c"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/vendor/ods-outline",
+      "object_sha": "33a0508a502f5809aa997928e8428bdec3e02503",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "33a0508a502f5809aa997928e8428bdec3e02503"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/vendor/ods-row-groups",
+      "object_sha": "891ccc21cf91fb9f49fa0af98143468fbbd3eac7",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "891ccc21cf91fb9f49fa0af98143468fbbd3eac7"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/vendor/ods-tab-color",
+      "object_sha": "375390c3853ce26f43d6ac3f71c592acf3e094dc",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "375390c3853ce26f43d6ac3f71c592acf3e094dc"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/vendor/ods-validation",
+      "object_sha": "c7bb6d6f51885e4082882252f502bbf2de81d552",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "c7bb6d6f51885e4082882252f502bbf2de81d552"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/vendor/ods-validation-current",
+      "object_sha": "4ffdf113803806ba5f8ade4a0846eee85dcfbe68",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "4ffdf113803806ba5f8ade4a0846eee85dcfbe68"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/vendor/ods-validation-messages",
+      "object_sha": "14fde4b1bd2539f0c6168be4569ac1adcc5105cd",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "14fde4b1bd2539f0c6168be4569ac1adcc5105cd"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/vendor/ods-writer",
+      "object_sha": "e14a55b50af4b6870ed1044284f74c36b5f194d9",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "e14a55b50af4b6870ed1044284f74c36b5f194d9"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/vendor/ods-writer-conditional",
+      "object_sha": "abdbc8b576f5327786c8a0f19bf91bef1250de12",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "abdbc8b576f5327786c8a0f19bf91bef1250de12"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/vendor/ods-writer-images",
+      "object_sha": "546368fe3aad7ccb65c72f897b6585513b0199f1",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "546368fe3aad7ccb65c72f897b6585513b0199f1"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/vendor/ods-writer-metadata",
+      "object_sha": "1808f38493d1cf2fddc1761d146432ceaaea70aa",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "1808f38493d1cf2fddc1761d146432ceaaea70aa"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/vendor/ods-writer-page-layout",
+      "object_sha": "2aee95e6aa7021869a198cf19ebbb43a44d7910f",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "2aee95e6aa7021869a198cf19ebbb43a44d7910f"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/vendor/odt-columns",
+      "object_sha": "1f417ad7a61dfb69034704a67f85243eff89830a",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "1f417ad7a61dfb69034704a67f85243eff89830a"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/vendor/odt-comments",
+      "object_sha": "04505306af39c47bd0fe96423d1515ee6ca5027e",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "04505306af39c47bd0fe96423d1515ee6ca5027e"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/vendor/odt-document-writer",
+      "object_sha": "5f019253d247073b715b7a7ae4a82763ceafd02f",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "5f019253d247073b715b7a7ae4a82763ceafd02f"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/vendor/odt-fields",
+      "object_sha": "ec5ecbff742580c0e7d1136507b953e8cc877e4c",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "ec5ecbff742580c0e7d1136507b953e8cc877e4c"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/vendor/odt-footnotes",
+      "object_sha": "f6c9be054b016192673ba82e608ae0ae987b5308",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "f6c9be054b016192673ba82e608ae0ae987b5308"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/vendor/odt-links-bookmarks",
+      "object_sha": "109b49f5c8c0c50c5051a970e6cabbfd2d32af18",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "109b49f5c8c0c50c5051a970e6cabbfd2d32af18"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/vendor/odt-lists",
+      "object_sha": "94532021b720e3035022a2fed08ec88f48340892",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "94532021b720e3035022a2fed08ec88f48340892"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/vendor/odt-nested-lists",
+      "object_sha": "406798f7e47332f92438828dcfc6a2184d4361bb",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "406798f7e47332f92438828dcfc6a2184d4361bb"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/vendor/odt-ordered-lists",
+      "object_sha": "aa346a296e8b19bb937c345f7142c60720c3d6e4",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "aa346a296e8b19bb937c345f7142c60720c3d6e4"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/vendor/odt-ordered-lists2",
+      "object_sha": "0eb60d0fc706a4da54df07ae86df029c1caac074",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "0eb60d0fc706a4da54df07ae86df029c1caac074"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/vendor/odt-page-fields",
+      "object_sha": "5dbe3f5b81d20f9c263b4f2d9ba9c01c9216b1e3",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "5dbe3f5b81d20f9c263b4f2d9ba9c01c9216b1e3"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/vendor/odt-paragraph-breaks",
+      "object_sha": "b990f9041cce78e3768c2ee0190413bf26962431",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "b990f9041cce78e3768c2ee0190413bf26962431"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/vendor/odt-paragraph-shading",
+      "object_sha": "22ce45e70591a6be561a5abee1807455e3df52be",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "22ce45e70591a6be561a5abee1807455e3df52be"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/vendor/odt-sections",
+      "object_sha": "a5cd1f30aa4764e990ed81b9ac8387efe3182f82",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "a5cd1f30aa4764e990ed81b9ac8387efe3182f82"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/vendor/odt-tab-stops",
+      "object_sha": "156cc755df74dcbafec0ebd882945349c40a5005",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "156cc755df74dcbafec0ebd882945349c40a5005"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/vendor/odt-table-borders",
+      "object_sha": "17c6b2a808e39b1a74cb4afb2c3dc7f2c06de70c",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "17c6b2a808e39b1a74cb4afb2c3dc7f2c06de70c"
+    },
+    {
+      "namespace": "fork",
+      "kind": "fork_branch",
+      "ref": "refs/heads/vendor/sheet-page-setup",
+      "object_sha": "f938d7fc3cb9aa42ea8d30b1c2ab50ccca694699",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "f938d7fc3cb9aa42ea8d30b1c2ab50ccca694699"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/1/head",
+      "object_sha": "54f0f8de01416640560519aa9d732f668f603709",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "54f0f8de01416640560519aa9d732f668f603709"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/10/head",
+      "object_sha": "1b1bac125f426b05f868d482e9fbd657d4ffb73a",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "1b1bac125f426b05f868d482e9fbd657d4ffb73a"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/100/head",
+      "object_sha": "946942a1e30332892aaf19a068ca5a29470d682a",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "946942a1e30332892aaf19a068ca5a29470d682a"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/101/head",
+      "object_sha": "cf60a17bcd825dc9b4ecdf840d54e6a0271d3647",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "cf60a17bcd825dc9b4ecdf840d54e6a0271d3647"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/102/head",
+      "object_sha": "1549a9c7884eb688732262398b5d9859a68103eb",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "1549a9c7884eb688732262398b5d9859a68103eb"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/103/head",
+      "object_sha": "e15205c97f0fe0c7fcc5c3441e72cb0e9a3bdc01",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "e15205c97f0fe0c7fcc5c3441e72cb0e9a3bdc01"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/104/head",
+      "object_sha": "2a6f3a94ce1d4a5ba6cddc1687a075191448da3d",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "2a6f3a94ce1d4a5ba6cddc1687a075191448da3d"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/105/head",
+      "object_sha": "6f1abf273bd10d7ebe5641661dd307c492f897c2",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "6f1abf273bd10d7ebe5641661dd307c492f897c2"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/106/head",
+      "object_sha": "7686ec52876288e6799023fd686af79228236826",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "7686ec52876288e6799023fd686af79228236826"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/107/head",
+      "object_sha": "8471633ed09e2a49ba35ff162a2bac5eb04073c9",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "8471633ed09e2a49ba35ff162a2bac5eb04073c9"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/108/head",
+      "object_sha": "3ec638bd7de5cb6648774abbf14da1c315f5e418",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "3ec638bd7de5cb6648774abbf14da1c315f5e418"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/109/head",
+      "object_sha": "b842ae4b4df892ec5f058f6207589953f3e9dae9",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "b842ae4b4df892ec5f058f6207589953f3e9dae9"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/11/head",
+      "object_sha": "5c1ab430c6911bb11f71d29efa35027ead5ac1d5",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "5c1ab430c6911bb11f71d29efa35027ead5ac1d5"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/110/head",
+      "object_sha": "35ae6328a884975c23d2aa5001bf0df05a436f91",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "35ae6328a884975c23d2aa5001bf0df05a436f91"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/111/head",
+      "object_sha": "d1738017afd3696adbd2e895678b1fa7d26065ec",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "d1738017afd3696adbd2e895678b1fa7d26065ec"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/112/head",
+      "object_sha": "12601a41b6785dcd1d617adba8e13297d9af4bc0",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "12601a41b6785dcd1d617adba8e13297d9af4bc0"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/113/head",
+      "object_sha": "93c832f53982a9f5956f19ae0cb9418f55fac8c0",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "93c832f53982a9f5956f19ae0cb9418f55fac8c0"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/114/head",
+      "object_sha": "867df7f257eac69adfe3355c051cdb2f773c53ac",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "867df7f257eac69adfe3355c051cdb2f773c53ac"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/115/head",
+      "object_sha": "b54ef7d2955f44266a87d9067d0e4c332e868c54",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "b54ef7d2955f44266a87d9067d0e4c332e868c54"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/116/head",
+      "object_sha": "6a32a919325d71c121c63e3879cfd1b28d64312e",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "6a32a919325d71c121c63e3879cfd1b28d64312e"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/117/head",
+      "object_sha": "8b19ead89800f81ed9743ffbaf3279ac88fdd06d",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "8b19ead89800f81ed9743ffbaf3279ac88fdd06d"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/118/head",
+      "object_sha": "4391669c881cbcba372c742d2300c24cdc465a2f",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "4391669c881cbcba372c742d2300c24cdc465a2f"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/119/head",
+      "object_sha": "2c7d58d2e83e542655db7e9bbcc04b6bade44902",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "2c7d58d2e83e542655db7e9bbcc04b6bade44902"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/12/head",
+      "object_sha": "579f2105cf7fca61536f7e3f9b59004929bdb6c5",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "579f2105cf7fca61536f7e3f9b59004929bdb6c5"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/120/head",
+      "object_sha": "e37ccdb47c047f6a0250585cf5cb20efc17573b4",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "e37ccdb47c047f6a0250585cf5cb20efc17573b4"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/121/head",
+      "object_sha": "a86a4ec6a231ed66cd868ea1ece3acc3aea2bb8f",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "a86a4ec6a231ed66cd868ea1ece3acc3aea2bb8f"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/122/head",
+      "object_sha": "54a3a8593bdb34dd7c1f737960aa732d401fc2da",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "54a3a8593bdb34dd7c1f737960aa732d401fc2da"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/123/head",
+      "object_sha": "1138cffdc4a1c909b2b149db80312037c21909d8",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "1138cffdc4a1c909b2b149db80312037c21909d8"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/124/head",
+      "object_sha": "b005a46b32c8b3ec92d60bb99147f2aa3af51f06",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "b005a46b32c8b3ec92d60bb99147f2aa3af51f06"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/125/head",
+      "object_sha": "af2a61862d23572b108bd7ef7719c7f575348d83",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "af2a61862d23572b108bd7ef7719c7f575348d83"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/126/head",
+      "object_sha": "8fae38da39c3c45344e723abca92c9330f15a791",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "8fae38da39c3c45344e723abca92c9330f15a791"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/127/head",
+      "object_sha": "8b70fdb42fb2d974587c75437b3adb5018190159",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "8b70fdb42fb2d974587c75437b3adb5018190159"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/128/head",
+      "object_sha": "814f165cb24a5b719dde65495f64d85f86563328",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "814f165cb24a5b719dde65495f64d85f86563328"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/129/head",
+      "object_sha": "bb5a97a8d7c5f9ffa261e64753f53a3c044b610f",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "bb5a97a8d7c5f9ffa261e64753f53a3c044b610f"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/13/head",
+      "object_sha": "73b354efdf0f2e7fbe0e87bc67f332a9dfb4903e",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "73b354efdf0f2e7fbe0e87bc67f332a9dfb4903e"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/130/head",
+      "object_sha": "84076f8ec8e4604a631cbaad9b88b030e508f0bc",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "84076f8ec8e4604a631cbaad9b88b030e508f0bc"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/131/head",
+      "object_sha": "f965fce6a54141b753a22f1e1b6c2fabba44e389",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "f965fce6a54141b753a22f1e1b6c2fabba44e389"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/132/head",
+      "object_sha": "0ecd1615b96d7b90156c1e913e105d467efe9a39",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "0ecd1615b96d7b90156c1e913e105d467efe9a39"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/133/head",
+      "object_sha": "f87533cdbf9f98e5cfc11d21d8903f8501212ab8",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "f87533cdbf9f98e5cfc11d21d8903f8501212ab8"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/134/head",
+      "object_sha": "128a187d69555db80890c2a1945a442b951f9c74",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "historical_equivalent",
+      "commit": "128a187d69555db80890c2a1945a442b951f9c74"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/135/head",
+      "object_sha": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "historical_equivalent",
+      "commit": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/136/head",
+      "object_sha": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "historical_equivalent",
+      "commit": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/137/head",
+      "object_sha": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "historical_equivalent",
+      "commit": "68a0db23408e4c95d6d283219504c79aea33a6fe"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/138/head",
+      "object_sha": "b8ddaaeb581e010467de304c828764d353149102",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "historical_equivalent",
+      "commit": "b8ddaaeb581e010467de304c828764d353149102"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/139/head",
+      "object_sha": "6df76a0dff0051312faa04317af41d479dd94162",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "6df76a0dff0051312faa04317af41d479dd94162"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/14/head",
+      "object_sha": "d4e2a0fcf1fe18e0e5158ac7d86b1f71bf3b70da",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "d4e2a0fcf1fe18e0e5158ac7d86b1f71bf3b70da"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/140/head",
+      "object_sha": "c34945761e7991f5fe49037d79529acdd260b31c",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "historical_equivalent",
+      "commit": "c34945761e7991f5fe49037d79529acdd260b31c"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/141/head",
+      "object_sha": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "historical_equivalent",
+      "commit": "0a53b8a70128870f3e1df6d18cdb177bb64290ee"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/142/head",
+      "object_sha": "69d14f84cabd3931b7640c1654b401c89faba766",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "historical_equivalent",
+      "commit": "69d14f84cabd3931b7640c1654b401c89faba766"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/143/head",
+      "object_sha": "83f8c380f9271b6bf34a300c3aedc19442cb61f1",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "83f8c380f9271b6bf34a300c3aedc19442cb61f1"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/144/head",
+      "object_sha": "a1e026b496f91b54bbd3017aae54717bf25a5586",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "a1e026b496f91b54bbd3017aae54717bf25a5586"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/145/head",
+      "object_sha": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "historical_equivalent",
+      "commit": "005c708e9f747cb46cf02e12c869b0a2f85ac824"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/146/head",
+      "object_sha": "a7f144cc983f2df7c16d88f8644ad67a9254c3d0",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "historical_equivalent",
+      "commit": "a7f144cc983f2df7c16d88f8644ad67a9254c3d0"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/147/head",
+      "object_sha": "cee6e2632f891a3fe21c5c02d6bf508805973051",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "historical_equivalent",
+      "commit": "cee6e2632f891a3fe21c5c02d6bf508805973051"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/148/head",
+      "object_sha": "e3831cdde529aa0c2368845cd72c1b9b65154665",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "e3831cdde529aa0c2368845cd72c1b9b65154665"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/149/head",
+      "object_sha": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "historical_equivalent",
+      "commit": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/15/head",
+      "object_sha": "448eff5aac55054a34eccd4f8a1e79e754909a05",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "448eff5aac55054a34eccd4f8a1e79e754909a05"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/150/head",
+      "object_sha": "6d97fedccde17244a917ee7d3372adebe5494089",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "6d97fedccde17244a917ee7d3372adebe5494089"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/151/head",
+      "object_sha": "7ef09f2408f467c65427700e65907531ecb26acb",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "historical_equivalent",
+      "commit": "7ef09f2408f467c65427700e65907531ecb26acb"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/152/head",
+      "object_sha": "da9c956ec5d65c0e5a9f9ea84c2b0bca98e824a0",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "historical_equivalent",
+      "commit": "da9c956ec5d65c0e5a9f9ea84c2b0bca98e824a0"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/153/head",
+      "object_sha": "2e013f26c7d4db54ecabe2c955117cbce5379408",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "2e013f26c7d4db54ecabe2c955117cbce5379408"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/154/head",
+      "object_sha": "295752ff93b24bafc510e60197b62faa647e2aa3",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "295752ff93b24bafc510e60197b62faa647e2aa3"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/155/head",
+      "object_sha": "536ee2086ce46ab629d4d77144d1ca22a43e3c19",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "536ee2086ce46ab629d4d77144d1ca22a43e3c19"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/156/head",
+      "object_sha": "f4aa218c87293527b3e2b7514500a28d13bd8f70",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "f4aa218c87293527b3e2b7514500a28d13bd8f70"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/157/head",
+      "object_sha": "9fc211f6c72be9495767bd7cacfd8df51abf2fad",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "9fc211f6c72be9495767bd7cacfd8df51abf2fad"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/158/head",
+      "object_sha": "5dd3eb7c1434f0c1063290d5698fa5c760c201e2",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "5dd3eb7c1434f0c1063290d5698fa5c760c201e2"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/159/head",
+      "object_sha": "2292548eb69de2dbb5240ab9da59256f362137c6",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "2292548eb69de2dbb5240ab9da59256f362137c6"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/16/head",
+      "object_sha": "78a7b6f4e613c7d18d4bcc6434cda12b50ed184e",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "78a7b6f4e613c7d18d4bcc6434cda12b50ed184e"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/160/head",
+      "object_sha": "8cbdb9d9a05ff7f0e795efe0ee7848b196f424a3",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "8cbdb9d9a05ff7f0e795efe0ee7848b196f424a3"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/161/head",
+      "object_sha": "acfa3c2bf543debd2fff518304ab514ab677418b",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "acfa3c2bf543debd2fff518304ab514ab677418b"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/162/head",
+      "object_sha": "4600c0ebc9ac5e6acabd92935821d1c15315f2c1",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "4600c0ebc9ac5e6acabd92935821d1c15315f2c1"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/163/head",
+      "object_sha": "ce4d3d19a21eae96a473291ffb9f47ac3be6a74c",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "ce4d3d19a21eae96a473291ffb9f47ac3be6a74c"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/164/head",
+      "object_sha": "fb1fd4dc3edda824c3e043c035dbfad1f0fe0869",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "fb1fd4dc3edda824c3e043c035dbfad1f0fe0869"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/165/head",
+      "object_sha": "8d74db5da2992e60c7f17b58cd354b874a1ce33a",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "8d74db5da2992e60c7f17b58cd354b874a1ce33a"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/166/head",
+      "object_sha": "3668ed92829dfa012ec5b129943a86738ebb7992",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "3668ed92829dfa012ec5b129943a86738ebb7992"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/167/head",
+      "object_sha": "a40a26663f7a2c6b7fb8de91540fd04b9875ed9c",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "a40a26663f7a2c6b7fb8de91540fd04b9875ed9c"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/168/head",
+      "object_sha": "6c993f7406037ba462c6aea32e7e6afeebd28c03",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "6c993f7406037ba462c6aea32e7e6afeebd28c03"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/169/head",
+      "object_sha": "4600c0ebc9ac5e6acabd92935821d1c15315f2c1",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "4600c0ebc9ac5e6acabd92935821d1c15315f2c1"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/17/head",
+      "object_sha": "89c7f06c592edde0c67774e9c7e087d96f52184b",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "89c7f06c592edde0c67774e9c7e087d96f52184b"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/170/head",
+      "object_sha": "ff1518517dd9f67e214ff56fe7eef06349f5223a",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "ff1518517dd9f67e214ff56fe7eef06349f5223a"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/171/head",
+      "object_sha": "637b67c58482e40a3244c590ce77c08b9fc2740e",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "637b67c58482e40a3244c590ce77c08b9fc2740e"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/172/head",
+      "object_sha": "7d1adf1636450b3f6040b79856ea62045d03f23d",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "7d1adf1636450b3f6040b79856ea62045d03f23d"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/173/head",
+      "object_sha": "c634f494b85f7b2118781300a322ad0d9c216a17",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "c634f494b85f7b2118781300a322ad0d9c216a17"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/174/head",
+      "object_sha": "df62b58975bab1f650879fc88f850550a3df5c13",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "df62b58975bab1f650879fc88f850550a3df5c13"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/175/head",
+      "object_sha": "c320f28347f1cd292b848be2cf72998d41f8a6ac",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "c320f28347f1cd292b848be2cf72998d41f8a6ac"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/18/head",
+      "object_sha": "f31cf308013ceb4527e3f4de677785894bb1bfc0",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "f31cf308013ceb4527e3f4de677785894bb1bfc0"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/19/head",
+      "object_sha": "e8227569a3b90fb21db598483690bd13fe74ddef",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "e8227569a3b90fb21db598483690bd13fe74ddef"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/2/head",
+      "object_sha": "08b09485588d2b6270f594a07c983689c087587d",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "08b09485588d2b6270f594a07c983689c087587d"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/20/head",
+      "object_sha": "5278aafd512640608fe06b8f7d357c4cffe8520a",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "5278aafd512640608fe06b8f7d357c4cffe8520a"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/21/head",
+      "object_sha": "1f30a823b30678e3684c98fee6a2cd5c4945c4f2",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "1f30a823b30678e3684c98fee6a2cd5c4945c4f2"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/22/head",
+      "object_sha": "4637ddce4154f4b50105c7322fedc1c75fd02193",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "4637ddce4154f4b50105c7322fedc1c75fd02193"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/23/head",
+      "object_sha": "e002b9584bead9761fac8c7cf818431966d1b1c3",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "e002b9584bead9761fac8c7cf818431966d1b1c3"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/24/head",
+      "object_sha": "9cc8c6e91ff9acf0f52a68aea7c0da69934a2661",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "9cc8c6e91ff9acf0f52a68aea7c0da69934a2661"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/25/head",
+      "object_sha": "b6d27c84a72d622f670a7e646e36ba4bd920cfc8",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "b6d27c84a72d622f670a7e646e36ba4bd920cfc8"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/26/head",
+      "object_sha": "5b9ac71db1934252c4b8ae48ac03d4cd976e15ae",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "5b9ac71db1934252c4b8ae48ac03d4cd976e15ae"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/27/head",
+      "object_sha": "cde05b85bcd00c26d519d43283fcc6b55a1884e7",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "cde05b85bcd00c26d519d43283fcc6b55a1884e7"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/28/head",
+      "object_sha": "a8cd28d8af8ca966e8c4259862587ecc9aade2f4",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "a8cd28d8af8ca966e8c4259862587ecc9aade2f4"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/29/head",
+      "object_sha": "7fe296e29e2e1b173580f6854507fc060cb4f080",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "7fe296e29e2e1b173580f6854507fc060cb4f080"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/3/head",
+      "object_sha": "e550723b0f2a7cd849970f58820d260c36857502",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "e550723b0f2a7cd849970f58820d260c36857502"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/30/head",
+      "object_sha": "49b447324159595c59e64d8425b54a09f79ec736",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "49b447324159595c59e64d8425b54a09f79ec736"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/31/head",
+      "object_sha": "912f26f21446ef9bdbf4f542535438dae0ded9a9",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "912f26f21446ef9bdbf4f542535438dae0ded9a9"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/32/head",
+      "object_sha": "46850ae47e0241733750decb22417a0150e4b0e4",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "46850ae47e0241733750decb22417a0150e4b0e4"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/33/head",
+      "object_sha": "4c8036bbf16ac224c3fc102b5c44d8913a512b18",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "4c8036bbf16ac224c3fc102b5c44d8913a512b18"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/34/head",
+      "object_sha": "09a05d7d60d2a2e1d2547487ad4545c50472834b",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "09a05d7d60d2a2e1d2547487ad4545c50472834b"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/35/head",
+      "object_sha": "e59751246a200e7477657d0e4835bf77b153422c",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "e59751246a200e7477657d0e4835bf77b153422c"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/36/head",
+      "object_sha": "21de3c3963b0334068b87fb1c25c787660cb17cf",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "21de3c3963b0334068b87fb1c25c787660cb17cf"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/37/head",
+      "object_sha": "b0efe6c661009ffa463f2bf6d7945216ce1dae4c",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "b0efe6c661009ffa463f2bf6d7945216ce1dae4c"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/38/head",
+      "object_sha": "752a94dfddf69522429f3025f9d25702499cb6da",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "752a94dfddf69522429f3025f9d25702499cb6da"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/39/head",
+      "object_sha": "b85501b2810e537e21040d82528d8dbaa6fdcf15",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "b85501b2810e537e21040d82528d8dbaa6fdcf15"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/4/head",
+      "object_sha": "09f5ec4b8eba290ff4d65678179854fb6ff6a468",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "09f5ec4b8eba290ff4d65678179854fb6ff6a468"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/40/head",
+      "object_sha": "8855b88a96b5c94349e3b5278c339228a1688c3e",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "8855b88a96b5c94349e3b5278c339228a1688c3e"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/41/head",
+      "object_sha": "b69bad50fb235118a5334b325683cd1524b3e3d1",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "b69bad50fb235118a5334b325683cd1524b3e3d1"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/42/head",
+      "object_sha": "8fc3d06be36da5c2176feb107c14245f61650d75",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "8fc3d06be36da5c2176feb107c14245f61650d75"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/43/head",
+      "object_sha": "20681b8658392212c128f51b4c91f0b638942448",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "20681b8658392212c128f51b4c91f0b638942448"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/44/head",
+      "object_sha": "866c14f0b3a876e11732bc544dc25a05d8f10524",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "866c14f0b3a876e11732bc544dc25a05d8f10524"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/45/head",
+      "object_sha": "0a26be7f136ad3e57dbe894b0bc4cdb0602addd0",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "0a26be7f136ad3e57dbe894b0bc4cdb0602addd0"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/46/head",
+      "object_sha": "e6fdd16849aaf7ccbaf50f2593d7a92b6a82e630",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "e6fdd16849aaf7ccbaf50f2593d7a92b6a82e630"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/47/head",
+      "object_sha": "fc37658c907edf6687eccb9564d3046283b49a3a",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "fc37658c907edf6687eccb9564d3046283b49a3a"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/48/head",
+      "object_sha": "d6d6866c0f4ddbbaa196e1a5eb7ff9e31007fdea",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "d6d6866c0f4ddbbaa196e1a5eb7ff9e31007fdea"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/49/head",
+      "object_sha": "a5febc3362d2fccdb979f012a5296af72e465797",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "a5febc3362d2fccdb979f012a5296af72e465797"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/5/head",
+      "object_sha": "da0979a5c6c4273ea68f360ce9a079bfa747384f",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "da0979a5c6c4273ea68f360ce9a079bfa747384f"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/50/head",
+      "object_sha": "428679a33381f943a8ae63117d4207f01dd15462",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "428679a33381f943a8ae63117d4207f01dd15462"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/51/head",
+      "object_sha": "8769019fb8be5483939edd4655dd88005e2515c4",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "8769019fb8be5483939edd4655dd88005e2515c4"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/52/head",
+      "object_sha": "01f62eb1812ca54827cc14e074e03abd82f963d7",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "01f62eb1812ca54827cc14e074e03abd82f963d7"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/53/head",
+      "object_sha": "2e3074c8e1860f9503b059a87870911afc3eee7d",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "2e3074c8e1860f9503b059a87870911afc3eee7d"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/54/head",
+      "object_sha": "49ba086251ba61032f15b3e7b726fc921874fd12",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "49ba086251ba61032f15b3e7b726fc921874fd12"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/55/head",
+      "object_sha": "f5b67cc296b7d27e4f3a480dc46160f472d78694",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "f5b67cc296b7d27e4f3a480dc46160f472d78694"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/56/head",
+      "object_sha": "ca9e4f052d988d77f9ded3a6b13f840f76a26159",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "ca9e4f052d988d77f9ded3a6b13f840f76a26159"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/57/head",
+      "object_sha": "0dd9dd9763c2eb6bdc4f6b6e30fb7726035e7d4b",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "0dd9dd9763c2eb6bdc4f6b6e30fb7726035e7d4b"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/58/head",
+      "object_sha": "864e674795eb422855df2b26ccc375d3255e61a2",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "864e674795eb422855df2b26ccc375d3255e61a2"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/59/head",
+      "object_sha": "e5daa20587e10971e8cb97d82a5495584b5c1553",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "e5daa20587e10971e8cb97d82a5495584b5c1553"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/6/head",
+      "object_sha": "78ed85f5fd19d44f672dee11420fed261c974f4a",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "78ed85f5fd19d44f672dee11420fed261c974f4a"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/60/head",
+      "object_sha": "988f423b9b95037d8f5273ee368b58ceedab0667",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "988f423b9b95037d8f5273ee368b58ceedab0667"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/61/head",
+      "object_sha": "b23ee557ea121774833c7a188a49189e4f80ce70",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "b23ee557ea121774833c7a188a49189e4f80ce70"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/62/head",
+      "object_sha": "089e53fce443ca2169fc44f3700e1b23780d2c95",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "089e53fce443ca2169fc44f3700e1b23780d2c95"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/63/head",
+      "object_sha": "2480f0988167068d9aeddf6573b9c2c6871a8481",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "2480f0988167068d9aeddf6573b9c2c6871a8481"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/64/head",
+      "object_sha": "4a122b3b71ddc539f8ffda5541b7e6ab0f1dce8f",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "4a122b3b71ddc539f8ffda5541b7e6ab0f1dce8f"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/65/head",
+      "object_sha": "3bb505ce5fea00236238e37c450ace8b18e4e34e",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "3bb505ce5fea00236238e37c450ace8b18e4e34e"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/66/head",
+      "object_sha": "379fa8663c81f32b4328415f56c776746ccc23bc",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "379fa8663c81f32b4328415f56c776746ccc23bc"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/67/head",
+      "object_sha": "0ee0a8320875248adac9718cae2e67875b6b932c",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "0ee0a8320875248adac9718cae2e67875b6b932c"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/68/head",
+      "object_sha": "82215309dc64ef8c473fec3c4892cf0c9884bc91",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "82215309dc64ef8c473fec3c4892cf0c9884bc91"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/69/head",
+      "object_sha": "ec94795114d11c73bd8fc689fde364cc110b5cd3",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "ec94795114d11c73bd8fc689fde364cc110b5cd3"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/7/head",
+      "object_sha": "e82c997b6df8746fe86fb83b9f416a89bb3e3b80",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "e82c997b6df8746fe86fb83b9f416a89bb3e3b80"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/70/head",
+      "object_sha": "9ad9ba92133932b0a3824619168f07dd218c2b26",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "9ad9ba92133932b0a3824619168f07dd218c2b26"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/71/head",
+      "object_sha": "108b4087c15f5640dbc906ad243f3030b7592f3f",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "108b4087c15f5640dbc906ad243f3030b7592f3f"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/72/head",
+      "object_sha": "57bc0f98eb94997b73f22cc267bd8d61dccaee59",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "57bc0f98eb94997b73f22cc267bd8d61dccaee59"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/73/head",
+      "object_sha": "8a0107cbca4b00766a2a76d43a1db244c006e976",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "8a0107cbca4b00766a2a76d43a1db244c006e976"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/74/head",
+      "object_sha": "1675bbbb7c03090a87b6df783e3741e2cbc1768f",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "1675bbbb7c03090a87b6df783e3741e2cbc1768f"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/75/head",
+      "object_sha": "f27e9b0e7ee9b1db8f6b7393abd752dab67d1ca5",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "f27e9b0e7ee9b1db8f6b7393abd752dab67d1ca5"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/76/head",
+      "object_sha": "1deb61cf78add61f5d26bea36ff596d769d06a87",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "1deb61cf78add61f5d26bea36ff596d769d06a87"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/77/head",
+      "object_sha": "bb9866d25bf98e5aa42c10ce4679835dbc8617f1",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "bb9866d25bf98e5aa42c10ce4679835dbc8617f1"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/78/head",
+      "object_sha": "27137499f8cc1a946bfcdd7446f43945ea81d2be",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "27137499f8cc1a946bfcdd7446f43945ea81d2be"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/79/head",
+      "object_sha": "06828a5e63365495c86a4a0e1c68ecd113f891e5",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "06828a5e63365495c86a4a0e1c68ecd113f891e5"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/8/head",
+      "object_sha": "a86a360bf9bd45c729e00b31dd9a97492e23f2e7",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "a86a360bf9bd45c729e00b31dd9a97492e23f2e7"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/80/head",
+      "object_sha": "5aa16674e64cc01b89aec017c85afd3899cd96d5",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "5aa16674e64cc01b89aec017c85afd3899cd96d5"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/81/head",
+      "object_sha": "eb95211e4d82933ba5b1db23ea7b79938b77909f",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "eb95211e4d82933ba5b1db23ea7b79938b77909f"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/82/head",
+      "object_sha": "4497c737623c1339d2422487d53941c20472bac9",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "4497c737623c1339d2422487d53941c20472bac9"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/83/head",
+      "object_sha": "331be9688e2de1feb52635490b534042dea10c27",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "331be9688e2de1feb52635490b534042dea10c27"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/84/head",
+      "object_sha": "846c15f0de92a17bb2720e295b9a40412ebcb6fb",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "846c15f0de92a17bb2720e295b9a40412ebcb6fb"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/85/head",
+      "object_sha": "9f2dbd81c2289a2285521e1491a9c860c4b59646",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "9f2dbd81c2289a2285521e1491a9c860c4b59646"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/86/head",
+      "object_sha": "001367e89cb0034cf33467783d7258bb0800deb9",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "001367e89cb0034cf33467783d7258bb0800deb9"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/87/head",
+      "object_sha": "7dfcfe9fcbf7e6d0d0abc14de7ed1ed901fa99c2",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "7dfcfe9fcbf7e6d0d0abc14de7ed1ed901fa99c2"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/88/head",
+      "object_sha": "5fb8762e771fe68be8bc8025fe26e159d14eda8e",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "5fb8762e771fe68be8bc8025fe26e159d14eda8e"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/89/head",
+      "object_sha": "31a26383639dc7f751cfb0ea543ec7454a537ff6",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "31a26383639dc7f751cfb0ea543ec7454a537ff6"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/9/head",
+      "object_sha": "58de54567d45e38c05dd77064b7607c577374b9d",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "58de54567d45e38c05dd77064b7607c577374b9d"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/90/head",
+      "object_sha": "6da74faa9160275df9c10a864c758033c92f114d",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "6da74faa9160275df9c10a864c758033c92f114d"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/91/head",
+      "object_sha": "5cff80ce4ba85e645f21a31efb4fa4d9043b7e79",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "5cff80ce4ba85e645f21a31efb4fa4d9043b7e79"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/92/head",
+      "object_sha": "e8cb60efc2360be9bb72db7af8e4c675edf5b76f",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "e8cb60efc2360be9bb72db7af8e4c675edf5b76f"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/93/head",
+      "object_sha": "5088f3ab7e81f353593f16fcaa86d1467d4e1af9",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "5088f3ab7e81f353593f16fcaa86d1467d4e1af9"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/94/head",
+      "object_sha": "8221b0081b02af33101ca7f58438e69e487d2bf6",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "8221b0081b02af33101ca7f58438e69e487d2bf6"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/95/head",
+      "object_sha": "f862fe550bc8b7d3afcdb74016ccfefd7477fd20",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "f862fe550bc8b7d3afcdb74016ccfefd7477fd20"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/96/head",
+      "object_sha": "a733c9f3367b9833f242100fcda0cff9e92767ff",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "a733c9f3367b9833f242100fcda0cff9e92767ff"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/97/head",
+      "object_sha": "8e94cf878cfbdeb13482f37f7848ef5a400425f3",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "8e94cf878cfbdeb13482f37f7848ef5a400425f3"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/98/head",
+      "object_sha": "a920b13aef776e0fb8a2ce3cc32848c2e7c0166a",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "a920b13aef776e0fb8a2ce3cc32848c2e7c0166a"
+    },
+    {
+      "namespace": "fork",
+      "kind": "pull_request_head",
+      "ref": "refs/pull/99/head",
+      "object_sha": "434a26933501eb288a1b16ffd9f971a5fe3b3bc7",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "434a26933501eb288a1b16ffd9f971a5fe3b3bc7"
+    },
+    {
+      "namespace": "fork",
+      "kind": "tag",
+      "ref": "refs/tags/crispcloud-build28-office",
+      "object_sha": "b629a97afb8559c1b0ca98bd36eae22cf923e561",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "216e5ba38110349d6a002a5a58e0ae27825c8bef"
+    },
+    {
+      "namespace": "fork",
+      "kind": "peeled_tag_advertisement",
+      "ref": "refs/tags/crispcloud-build28-office^{}",
+      "object_sha": "216e5ba38110349d6a002a5a58e0ae27825c8bef",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "216e5ba38110349d6a002a5a58e0ae27825c8bef"
+    },
+    {
+      "namespace": "fork",
+      "kind": "tag",
+      "ref": "refs/tags/editor-v0.5.1",
+      "object_sha": "6ac50c12f99ced6456897dec390111797cfe2157",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "6ac50c12f99ced6456897dec390111797cfe2157"
+    },
+    {
+      "namespace": "fork",
+      "kind": "tag",
+      "ref": "refs/tags/engine-v0.5.3",
+      "object_sha": "6ac50c12f99ced6456897dec390111797cfe2157",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "6ac50c12f99ced6456897dec390111797cfe2157"
+    },
+    {
+      "namespace": "fork",
+      "kind": "tag",
+      "ref": "refs/tags/studio-v1.0.0",
+      "object_sha": "2f3e1373779a102d68629d09baba83bff80a33ac",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "509e0cfa621775b4bbdb9bf456e8dbe218351226"
+    },
+    {
+      "namespace": "fork",
+      "kind": "peeled_tag_advertisement",
+      "ref": "refs/tags/studio-v1.0.0^{}",
+      "object_sha": "509e0cfa621775b4bbdb9bf456e8dbe218351226",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "509e0cfa621775b4bbdb9bf456e8dbe218351226"
+    },
+    {
+      "namespace": "fork",
+      "kind": "tag",
+      "ref": "refs/tags/studio-v1.1.0",
+      "object_sha": "26a8fcc25c2a3721842a26eeecb1f9971e3638f0",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "26a8fcc25c2a3721842a26eeecb1f9971e3638f0"
+    },
+    {
+      "namespace": "fork",
+      "kind": "tag",
+      "ref": "refs/tags/studio-v1.2.0",
+      "object_sha": "f45099688e7a3f67a1302efdb442830d052f2240",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "f45099688e7a3f67a1302efdb442830d052f2240"
+    },
+    {
+      "namespace": "fork",
+      "kind": "tag",
+      "ref": "refs/tags/studio-v1.4.0",
+      "object_sha": "3eaa2a1f8e9f473b7a65ac4a54199d12ec1b61a3",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "3eaa2a1f8e9f473b7a65ac4a54199d12ec1b61a3"
+    },
+    {
+      "namespace": "fork",
+      "kind": "tag",
+      "ref": "refs/tags/studio-v1.5.0",
+      "object_sha": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba"
+    },
+    {
+      "namespace": "fork",
+      "kind": "tag",
+      "ref": "refs/tags/v0.1.0",
+      "object_sha": "ffab8a719349a3184f1461b61d55411c51949ba2",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "23969a9ec23cb37fc3aa5276a46612d8873e518f"
+    },
+    {
+      "namespace": "fork",
+      "kind": "peeled_tag_advertisement",
+      "ref": "refs/tags/v0.1.0^{}",
+      "object_sha": "23969a9ec23cb37fc3aa5276a46612d8873e518f",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "23969a9ec23cb37fc3aa5276a46612d8873e518f"
+    },
+    {
+      "namespace": "fork",
+      "kind": "tag",
+      "ref": "refs/tags/v0.2.0",
+      "object_sha": "ec2c7dce10a0fc8b155985259152b0b0c9696c90",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "ec2c7dce10a0fc8b155985259152b0b0c9696c90"
+    },
+    {
+      "namespace": "fork",
+      "kind": "tag",
+      "ref": "refs/tags/v0.5.0",
+      "object_sha": "1f0ed0e94fe6e46d94e9d811627c476974080003",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "1f0ed0e94fe6e46d94e9d811627c476974080003"
+    },
+    {
+      "namespace": "fork",
+      "kind": "tag",
+      "ref": "refs/tags/v1.0.0",
+      "object_sha": "1d8b21b840ebf664768d490ee098225344887c4a",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "d101a3308fb046f96e7db6054a1b2b60f1724289"
+    },
+    {
+      "namespace": "fork",
+      "kind": "peeled_tag_advertisement",
+      "ref": "refs/tags/v1.0.0^{}",
+      "object_sha": "d101a3308fb046f96e7db6054a1b2b60f1724289",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "d101a3308fb046f96e7db6054a1b2b60f1724289"
+    },
+    {
+      "namespace": "fork",
+      "kind": "tag",
+      "ref": "refs/tags/v1.1.0",
+      "object_sha": "26a8fcc25c2a3721842a26eeecb1f9971e3638f0",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "26a8fcc25c2a3721842a26eeecb1f9971e3638f0"
+    },
+    {
+      "namespace": "fork",
+      "kind": "tag",
+      "ref": "refs/tags/v1.2.0",
+      "object_sha": "f45099688e7a3f67a1302efdb442830d052f2240",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "f45099688e7a3f67a1302efdb442830d052f2240"
+    },
+    {
+      "namespace": "fork",
+      "kind": "tag",
+      "ref": "refs/tags/v1.3.0",
+      "object_sha": "2188d055fde9d4647bf5995eb96161e3e4cbd365",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "2188d055fde9d4647bf5995eb96161e3e4cbd365"
+    },
+    {
+      "namespace": "fork",
+      "kind": "tag",
+      "ref": "refs/tags/v1.4.0",
+      "object_sha": "3eaa2a1f8e9f473b7a65ac4a54199d12ec1b61a3",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "3eaa2a1f8e9f473b7a65ac4a54199d12ec1b61a3"
+    },
+    {
+      "namespace": "fork",
+      "kind": "tag",
+      "ref": "refs/tags/v1.5.0",
+      "object_sha": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+      "capture": "/workspace/scratch/a7846890f2e1/final-fork-refs.txt",
+      "classification": "ancestor",
+      "commit": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba"
+    },
+    {
+      "namespace": "upstream",
+      "kind": "upstream_branch",
+      "ref": "refs/heads/ci/flutter-workspace",
+      "object_sha": "aca2f66941832bd0b19b436baeab1656a1b7de98",
+      "capture": "/workspace/scratch/a7846890f2e1/final-upstream-refs.txt",
+      "classification": "ancestor",
+      "commit": "aca2f66941832bd0b19b436baeab1656a1b7de98"
+    },
+    {
+      "namespace": "upstream",
+      "kind": "upstream_branch",
+      "ref": "refs/heads/cursor/class-certificates-2db8",
+      "object_sha": "f45099688e7a3f67a1302efdb442830d052f2240",
+      "capture": "/workspace/scratch/a7846890f2e1/final-upstream-refs.txt",
+      "classification": "ancestor",
+      "commit": "f45099688e7a3f67a1302efdb442830d052f2240"
+    },
+    {
+      "namespace": "upstream",
+      "kind": "upstream_branch",
+      "ref": "refs/heads/cursor/cloud-agent-1790580069020-0rk1h",
+      "object_sha": "9930be8df44ffe117fb22778c514eea0ee73ce21",
+      "capture": "/workspace/scratch/a7846890f2e1/final-upstream-refs.txt",
+      "classification": "ancestor",
+      "commit": "9930be8df44ffe117fb22778c514eea0ee73ce21"
+    },
+    {
+      "namespace": "upstream",
+      "kind": "upstream_branch",
+      "ref": "refs/heads/main",
+      "object_sha": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+      "capture": "/workspace/scratch/a7846890f2e1/final-upstream-refs.txt",
+      "classification": "ancestor",
+      "commit": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba"
+    }
+  ],
+  "working_copy_observation": {
+    "before": {
+      "head": "99dd7307e749854f00266bd5b8bae4dcdf66df20",
+      "refs": "d76f750d0fc7e5e5de70299733b428f244e993f422b465679f7f1fca5e85acd5",
+      "index": "de369c32641da36f889dc8c3aeb06036e1265331b38a6da9582dc0c1418579ec"
+    },
+    "after": {
+      "head": "99dd7307e749854f00266bd5b8bae4dcdf66df20",
+      "refs": "d76f750d0fc7e5e5de70299733b428f244e993f422b465679f7f1fca5e85acd5",
+      "index": "de369c32641da36f889dc8c3aeb06036e1265331b38a6da9582dc0c1418579ec"
+    },
+    "unchanged": true
+  },
+  "scope": "Git ancestry and immutable source equivalence only; historical equivalents remain non-ancestors. No current application/runtime acceptance inferred.",
+  "network_calls": 0,
+  "github_actions_calls": 0,
+  "repository_mutations": 0,
+  "passed": true
+}

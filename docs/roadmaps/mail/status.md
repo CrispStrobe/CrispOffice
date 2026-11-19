@@ -1,7 +1,8 @@
 # Mail implementation status — 19 November 2026
 
-Development continues on `codex/mail-reader-20261118` in the canonical Quds
-repository. Fetch that branch when resuming before it is merged into main.
+The current integrated source and qualification are recorded in the
+[19 November Office integration report](../../validation/office-main-integration-20261119/README.md).
+Fetch the canonical repository's current refs before resuming.
 The source of product scope remains [README.md](README.md) and the ordered work
 remains [implementation-plan.md](implementation-plan.md).
 
@@ -11,11 +12,11 @@ remains [implementation-plan.md](implementation-plan.md).
 | --- | --- | --- |
 | M00 baseline | The reader foundation reconciled its captured Office heads; the M05 continuation captures and reconciles incoming main, branch and PR history separately before implementation | Capture-specific dispositions and subsequent changes belong to the dated reconciliation receipts; historical test reports are not new results |
 | M01 fork | Pinned enough_mail 3.0.0 source, retained MPL/provenance, supported public `mime_core.dart`, content-redacted diagnostics, strict charset admission, RFC2231 and date corrections, selected dependency/source inventory | Actual browser execution and per-product shipped dependency/notice clearance remain open |
-| M02 core | Pure-Dart immutable DTOs, exact-byte ownership, profile/account/IMAP identity, nullable standard flag snapshots, budgets/capabilities, typed host/provider/store ports, cancellation leases, cursor compare-and-set and tested outbox state machine | M05 implements persistence; the initial M06 IMAP adapter is present, with combined qualification pending; SMTP remains subsequent work |
+| M02 core | Pure-Dart immutable DTOs, exact-byte ownership, profile/account/IMAP identity, nullable standard flag snapshots, budgets/capabilities, typed host/provider/store ports, cancellation leases, cursor compare-and-set and tested outbox state machine | M05 implements persistence; the initial M06 IMAP adapter passed combined local qualification; SMTP remains subsequent work |
 | M03 codec | Bounded byte-range scanning, public upstream header parsing, strict transfer/charset decoding, exact raw export and attachment snapshots, deterministic multipart alternatives/CID metadata | Synchronous bounded work; no streaming claim or low-memory-device qualification |
 | M04 reader | Account-free full/compact reader, custom RenderBox selection, decoded search/copy, static HTML projection, local bounded CID PNG/JPEG, immutable source/attachment callbacks, policy-approved links, actual MIME example | Browser runtime no-fetch gate remains unqualified; host parity is a separate task |
-| M05 store | Drift/SQLite transactional repository, immutable drafts/outbox blobs, memberships/tombstones/cursor CAS, bounded FTS5, pending-operation and vault-cleanup journals, account/profile retirement, cache/editor pins and schema v3 with nullable durable flags | Fresh baseline qualification passed at `479e1e03`; the new flags/transport integration is pending qualification; browser storage and power-loss durability are unqualified; the database is unencrypted |
-| M06 native foundation | Manual IMAP configuration, scoped host-vault lookup, selectable folders, finite UID-window synchronization, exact on-demand message literals, guarded UID flag/move commands and a conditional unsupported browser entry | Integrated local qualification is pending; OAuth authorization hosts, real TLS/interoperability, large or sparse mailbox pagination, SMTP and the account-aware UI remain open |
+| M05 store | Drift/SQLite transactional repository, immutable drafts/outbox blobs, memberships/tombstones/cursor CAS, bounded FTS5, pending-operation and vault-cleanup journals, account/profile retirement, cache/editor pins and schema v3 with nullable durable flags | Schema v3 and the integrated flags/transport source passed local qualification; browser storage and power-loss durability are unqualified; the database is unencrypted |
+| M06 native foundation | Manual IMAP configuration, scoped host-vault lookup, selectable folders, finite UID-window synchronization, exact on-demand message literals, guarded UID flag/move commands and a conditional unsupported browser entry | Integrated local qualification passed; OAuth authorization hosts, real TLS/interoperability, large or sparse mailbox pagination, SMTP and the account-aware UI remain open |
 
 M06 is partially implemented, not complete. M04W and M07–M13 still require the
 mailbox workspace, composition/SMTP sending, Office attachment editing,
@@ -61,7 +62,7 @@ Read, flagged, answered, draft and deleted are durable; IMAP Recent is not.
 Header listings, streams and search expose the stored snapshot. Existing v2
 FTS data is preserved, and v1 backfill remains explicit and bounded. Unknown
 future schemas are rejected without reset. The added v3 migration/reopen and
-flag transaction tests await the integrated qualification described below.
+flag transaction tests passed in the qualification recorded below.
 
 The passing baseline includes native file-backed migration/recovery and five
 Linux SIGKILL scenarios at transaction boundaries. These results establish the
@@ -110,15 +111,33 @@ timeouts and account-lease cancellation, with no automatic retry. Ambiguous
 mutation outcomes return `conflict` for host reconciliation. The browser entry
 returns typed `unsupported` without accessing the vault or codec.
 
-The integrated transport/flags source and its controlled-parser, SQLite and
-JavaScript tests are present. **Fresh qualification of that combined source is
-pending.** Baseline results below do not validate these additions. Actual
-disposable-account interoperability, OAuth redirects/refresh, real TLS handshakes,
-SMTP, the mailbox UI and actual browser persistence remain separate gates.
+The integrated transport/flags source passed local controlled-parser,
+SQLite/coordinator and Node qualification. Coverage includes unsolicited flag
+notifications, EXPUNGE ambiguity, exact literal bytes, strict FETCH structure and
+decimal UID validation. Actual disposable-account interoperability, OAuth
+redirects/refresh, real TLS handshakes, SMTP, the mailbox UI and actual browser
+persistence remain separate gates.
 
 ## Local verification
 
-### Fresh baseline qualification — PASS; integrated M06 qualification pending
+### Integrated flags and native IMAP qualification — PASS
+
+The [Office integration report](../../validation/office-main-integration-20261119/README.md)
+binds the final **32-suite / 389-case** focused pass to source
+`7d279e084bae438d383630726ad7b0514da77d35`. It covers 80 native transport cases,
+three Node unsupported-entry cases, 244 shared IMAP/POP/SMTP and byte-reader
+regressions, 32 MIME cases and 30 Mail-reader cases. Strict analysis, formatting
+and whitespace checks also passed, with the source and runtime inputs unchanged.
+
+The retained core/store gate records **199 passing executions / 129 distinct
+scenarios**, with source continuity checked for the integrated tree. Its VM/Node
+repetitions are separate executions. The report retains raw events, receipts,
+source/runtime identities, failed reproductions and independent audit records;
+it does not add earlier Office, Notes or thesaurus results to this qualification.
+Controlled streams, Node and Flutter tests do not close actual browser, live TLS,
+installed Studio/OS IME, live Zotero or human linguistic acceptance.
+
+### Earlier baseline qualification — PASS
 
 The [19 November continuation](../../validation/mail-m06-resume-20261119/README.md)
 binds the fresh results to source
@@ -142,9 +161,9 @@ skips: 233 engine, 887 editor, 99 Studio and 11 Mail-reader cases. Raw evidence,
 case lists, archive indexes and source/runtime identity checks are retained in
 that dated record. No historical totals are included in these fresh results.
 
-The old runner/formatting blockage is resolved for that baseline. The newly
-integrated schema v3 flags and M06 adapter require a new source-bound gate;
-their qualification remains **pending** at this documentation checkpoint.
+The old runner/formatting blockage was resolved for that baseline. Its results
+predate schema v3 and the M06 adapter; the integrated qualification above supplies
+the subsequent source-bound evidence.
 
 ### Historical store attempt — failed before recovery
 
@@ -189,7 +208,7 @@ retains the earlier verified Flutter 3.47.8/Dart 3.13.7 setup, SQLite 3.54.1 Lin
 x64 binary, dependency-resolution comparison and platform checks. Incoming
 Office work has [separate reconciliation and regression evidence](../../validation/mail-store-20261118/incoming/).
 Retain this failed-attempt evidence and its recovery limitations separately from
-the newer source-bound baseline pass and the pending integrated M06 gate.
+the newer source-bound baseline and integrated M06 passes.
 
 ### Earlier reader checkpoint
 
@@ -295,7 +314,7 @@ The corrected launcher and its 42 regressions passed in the fresh baseline;
 run them again with the final source when recording a new gate. Native
 transaction-crash cases require an environment that can start and terminate child
 processes. Transport/flags qualification has its own combined source-bound
-record under [the M06 continuation](../../validation/mail-m06-resume-20261119/README.md).
+record under [the Office integration report](../../validation/office-main-integration-20261119/README.md).
 
 For the earlier reader qualification workflow:
 
@@ -322,9 +341,9 @@ harness, not the standalone Office application.
 
 ## Next implementation order
 
-1. Freeze and qualify the integrated schema v3/transport source, preserving fresh
-   raw logs, source/runtime identities and expected-head remote checkpoints.
-   The passed `479e1e03` baseline is not acceptance of those additions.
+1. Preserve the completed integrated qualification and its source/runtime
+   identities. Rerun affected checks for subsequent source changes and retain
+   their raw logs and remote checkpoints separately from earlier evidence.
 2. Continue the remaining M06 work: discovered-UID pagination for large/sparse
    mailboxes, host OAuth/refresh and lifecycle scheduling, real TLS rejection
    controls and authorized disposable-account interoperability. Generic browser
