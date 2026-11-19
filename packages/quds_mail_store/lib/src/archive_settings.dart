@@ -5,13 +5,17 @@ extension MailArchiveSettings on SqliteMailArchive {
     // Table is selected only from fixed internal call sites below.
     final key = table == 'archive_profiles' ? 'id' : 'name';
     final sizes = await _rows(
-      'SELECT length(data) AS n,length($key) AS key_length FROM $table LIMIT ?',
+      'SELECT length(data) AS n,length(CAST(data AS BLOB)) AS bytes, '
+      'length($key) AS key_length,length(CAST($key AS BLOB)) AS key_bytes '
+      'FROM $table LIMIT ?',
       [limit + 1],
     );
     if (sizes.length > limit ||
         sizes.any(
           (row) =>
-              row.read<int>('n') > 16384 || row.read<int>('key_length') > 1024,
+              _archiveExceedsSize(row, 16384) ||
+              row.read<int>('key_length') > 1024 ||
+              row.read<int>('key_bytes') > 3 * 1024,
         )) {
       SqliteMailArchive._fail(MailProblemCode.quotaExceeded);
     }
@@ -41,7 +45,7 @@ extension MailArchiveSettings on SqliteMailArchive {
 
   Future<MailResult<List<MailArchiveSavedSearch>>> listSearches() => _run(
     MailArchiveOperation.listSearches,
-    (trace) async {
+    (trace) => _db.transaction(() async {
       await _settingsBudget('archive_saved_searches', limits.maxSavedSearches);
       final rows = await _rows(
         'SELECT name,data FROM archive_saved_searches ORDER BY name LIMIT ?',
@@ -53,8 +57,8 @@ extension MailArchiveSettings on SqliteMailArchive {
       final result = <MailArchiveSavedSearch>[];
       for (final row in rows) {
         final data = row.read<String>('data');
-        if (data.length > 16384) {
-          SqliteMailArchive._fail(MailProblemCode.storageFailure);
+        if (data.length > 16384 || row.read<String>('name').length > 256) {
+          SqliteMailArchive._fail(MailProblemCode.quotaExceeded);
         }
         final request = _decodeSearch(data);
         _where(request);
@@ -67,7 +71,7 @@ extension MailArchiveSettings on SqliteMailArchive {
       }
       trace.items = result.length;
       return List.unmodifiable(result);
-    },
+    }),
   );
 
   Future<MailResult<MailUnit>> removeSearch(String name) => _run(
@@ -113,44 +117,46 @@ extension MailArchiveSettings on SqliteMailArchive {
     }),
   );
 
-  Future<MailResult<List<MailArchiveProfile>>> listProfiles() =>
-      _run(MailArchiveOperation.listProfiles, (trace) async {
-        await _settingsBudget('archive_profiles', limits.maxProfiles);
-        final rows = await _rows(
-          'SELECT id,data FROM archive_profiles ORDER BY id LIMIT ?',
-          [limits.maxProfiles + 1],
-        );
-        if (rows.length > limits.maxProfiles) {
+  Future<MailResult<List<MailArchiveProfile>>> listProfiles() => _run(
+    MailArchiveOperation.listProfiles,
+    (trace) => _db.transaction(() async {
+      await _settingsBudget('archive_profiles', limits.maxProfiles);
+      final rows = await _rows(
+        'SELECT id,data FROM archive_profiles ORDER BY id LIMIT ?',
+        [limits.maxProfiles + 1],
+      );
+      if (rows.length > limits.maxProfiles) {
+        SqliteMailArchive._fail(MailProblemCode.quotaExceeded);
+      }
+      final result = <MailArchiveProfile>[];
+      for (final row in rows) {
+        final encoded = row.read<String>('data');
+        if (encoded.length > 16384 || row.read<String>('id').length > 1024) {
           SqliteMailArchive._fail(MailProblemCode.quotaExceeded);
         }
-        final result = <MailArchiveProfile>[];
-        for (final row in rows) {
-          final encoded = row.read<String>('data');
-          if (encoded.length > 16384) {
-            SqliteMailArchive._fail(MailProblemCode.storageFailure);
-          }
-          final data = _archiveObject(jsonDecode(encoded));
-          _archiveVersion(data);
-          final profile = MailArchiveProfile(
-            id: row.read<String>('id'),
-            name: _archiveString(data['name']),
-            source: _archiveString(data['source']),
-            kind: MailArchiveProfileKind.values.byName(
-              _archiveString(data['kind']),
-            ),
-            folder: _archiveString(data['folder']),
-            includeSubfolders: _archiveBool(data['includeSubfolders']),
-            indexAttachmentText: _archiveBool(data['indexAttachmentText']),
-          );
-          _label(profile.id);
-          _label(profile.name, max: 256);
-          _label(profile.source);
-          _folder(profile.folder);
-          result.add(profile);
-        }
-        trace.items = result.length;
-        return List.unmodifiable(result);
-      });
+        final data = _archiveObject(jsonDecode(encoded));
+        _archiveVersion(data);
+        final profile = MailArchiveProfile(
+          id: row.read<String>('id'),
+          name: _archiveString(data['name']),
+          source: _archiveString(data['source']),
+          kind: MailArchiveProfileKind.values.byName(
+            _archiveString(data['kind']),
+          ),
+          folder: _archiveString(data['folder']),
+          includeSubfolders: _archiveBool(data['includeSubfolders']),
+          indexAttachmentText: _archiveBool(data['indexAttachmentText']),
+        );
+        _label(profile.id);
+        _label(profile.name, max: 256);
+        _label(profile.source);
+        _folder(profile.folder);
+        result.add(profile);
+      }
+      trace.items = result.length;
+      return List.unmodifiable(result);
+    }),
+  );
 
   /// A profile is configuration only; all messages and provenance are retained.
   Future<MailResult<MailUnit>> removeProfile(String id) => _run(

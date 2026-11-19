@@ -1190,16 +1190,22 @@ void main() {
   );
 
   test(
-    'oversized damaged FTS values are detected without hydrating them',
+    'oversized damaged FTS values stop whole-index work before hydration',
     () async {
       final saved = await add(message('index limit'));
       await archive.close();
       await open(limits: const MailArchiveLimits(maxIndexCodeUnits: 512));
       database.execute('UPDATE archive_fts SET body=?', ['x' * 5000]);
+      failure(await archive.verifyIntegrity(), MailProblemCode.quotaExceeded);
+      failure(await archive.rebuildIndex(), MailProblemCode.quotaExceeded);
       expect(
-        value(await archive.verifyIntegrity()).issues.single.code,
-        MailArchiveIntegrityCode.indexMismatch,
+        database.select('SELECT body FROM archive_fts').single['body'],
+        'x' * 5000,
       );
+      // Explicitly restore a sufficient read budget to repair the damaged
+      // projection; a bounded maintenance call never silently raises limits.
+      await archive.close();
+      await open();
       value(await archive.rebuildIndex());
       expect(await find('budget'), [saved.entry.id]);
     },
@@ -1220,6 +1226,167 @@ void main() {
       failure(await archive.listProfiles(), MailProblemCode.quotaExceeded);
     },
   );
+
+  for (final size in [5000, 16000]) {
+    test(
+      'NUL-prefixed preview of $size units cannot bypass read limits',
+      () async {
+        final item = message('NUL preview $size');
+        await add(item);
+        await archive.close();
+        await open(limits: const MailArchiveLimits(maxMetadataCodeUnits: 4096));
+        database.execute('UPDATE archive_items SET preview=?', [
+          '\u0000${'x' * size}',
+        ]);
+        failure(
+          await archive.search(const MailArchiveSearchRequest()),
+          MailProblemCode.quotaExceeded,
+        );
+        failure(
+          await archive.archiveMessage(item, origin: origin),
+          MailProblemCode.quotaExceeded,
+        );
+        for (final result in [
+          await archive.verifyIntegrity(),
+          await archive.rebuildIndex(),
+        ]) {
+          expect(
+            value(result).issues.single.code,
+            MailArchiveIntegrityCode.exceedsReadLimit,
+          );
+        }
+        expect(
+          value(await archive.loadOriginal(item.raw.sha256))!.bytes,
+          item.raw.bytes,
+        );
+      },
+    );
+  }
+
+  test('NUL-prefixed FTS text cannot bypass whole-index byte limits', () async {
+    final item = message('NUL index');
+    await add(item);
+    await archive.close();
+    await open(limits: const MailArchiveLimits(maxIndexCodeUnits: 512));
+    final damaged = '\u0000${'x' * 5000}';
+    database.execute('UPDATE archive_fts SET body=?', [damaged]);
+    failure(await archive.verifyIntegrity(), MailProblemCode.quotaExceeded);
+    failure(await archive.rebuildIndex(), MailProblemCode.quotaExceeded);
+    expect(
+      database.select('SELECT body FROM archive_fts').single['body'],
+      damaged,
+    );
+    expect(
+      value(await archive.loadOriginal(item.raw.sha256))!.bytes,
+      item.raw.bytes,
+    );
+  });
+
+  test(
+    'astral text uses exact UTF-16 limits after bounded SQLite hydration',
+    () async {
+      final item = message('astral read', plain: '原文 مرحبا 😀');
+      await add(item);
+      expect(value(await archive.verifyIntegrity()).issues, isEmpty);
+      await archive.close();
+      await open(limits: const MailArchiveLimits(maxMetadataCodeUnits: 4096));
+      database.execute('UPDATE archive_items SET preview=?', ['😀' * 2200]);
+      // SQLite counts 2,200 code points; Dart correctly counts 4,400 units.
+      failure(
+        await archive.search(const MailArchiveSearchRequest()),
+        MailProblemCode.quotaExceeded,
+      );
+      expect(
+        value(await archive.rebuildIndex()).issues.single.code,
+        MailArchiveIntegrityCode.exceedsReadLimit,
+      );
+    },
+  );
+
+  test('NUL-prefixed persisted settings and provenance stay bounded', () async {
+    final item = message('NUL stored settings');
+    await add(item);
+    database.execute(
+      'INSERT INTO archive_saved_searches(name,data) VALUES(?,?)',
+      ['large', '\u0000${'x' * 50000}'],
+    );
+    database.execute('INSERT INTO archive_profiles(id,data) VALUES(?,?)', [
+      'large',
+      '\u0000${'x' * 50000}',
+    ]);
+    failure(await archive.listSearches(), MailProblemCode.quotaExceeded);
+    failure(await archive.listProfiles(), MailProblemCode.quotaExceeded);
+    await archive.close();
+    await open(limits: const MailArchiveLimits(maxMetadataCodeUnits: 4096));
+    database.execute('UPDATE archive_origins SET folder=?', [
+      '\u0000${'x' * 16000}',
+    ]);
+    failure(
+      await archive.listOrigins(item.raw.sha256),
+      MailProblemCode.quotaExceeded,
+    );
+  });
+
+  test(
+    'whole-index row quota prevents processing an unbounded damaged index',
+    () async {
+      await add(message('extra index rows'));
+      await archive.close();
+      await open(limits: const MailArchiveLimits(maxMessages: 1));
+      database.execute('INSERT INTO archive_fts(id,body) VALUES(?,?)', [
+        'f' * 64,
+        'orphan',
+      ]);
+      failure(await archive.verifyIntegrity(), MailProblemCode.quotaExceeded);
+      failure(await archive.rebuildIndex(), MailProblemCode.quotaExceeded);
+      expect(
+        database.select('SELECT count(*) AS n FROM archive_fts').single['n'],
+        2,
+      );
+      expect(value(await archive.statistics()).messages, 1);
+    },
+  );
+
+  test('rebuild does not load a damaged BLOB beyond its stored size', () async {
+    final item = message('damaged raw length');
+    await add(item);
+    // Simulate on-disk damage, which ordinary SQL writes are prevented from
+    // creating by the schema's length(raw)=raw_size CHECK constraint.
+    database.execute('PRAGMA ignore_check_constraints=ON');
+    database.execute('UPDATE archive_items SET raw=?', [Uint8List(5000)]);
+    database.execute('PRAGMA ignore_check_constraints=OFF');
+    await archive.close();
+    await open(limits: const MailArchiveLimits(maxMessageBytes: 1024));
+    final report = value(await archive.rebuildIndex());
+    expect(report.issues.single.code, MailArchiveIntegrityCode.rawHashMismatch);
+    expect(
+      database.select('SELECT length(raw) AS n FROM archive_items').single['n'],
+      5000,
+    );
+    failure(
+      await archive.loadOriginal(item.raw.sha256),
+      MailProblemCode.storageFailure,
+    );
+  });
+
+  test('duplicate reindex respects a tighter reopened index budget', () async {
+    final item = message('tighter duplicate', plain: '😀' * 1000);
+    await add(item);
+    await archive.close();
+    await open(limits: const MailArchiveLimits(maxIndexCodeUnits: 512));
+    failure(
+      await archive.archiveMessage(item, origin: origin),
+      MailProblemCode.quotaExceeded,
+    );
+    expect(
+      database.select('SELECT body FROM archive_fts').single['body'],
+      '😀' * 1000,
+    );
+    expect(
+      value(await archive.loadOriginal(item.raw.sha256))!.bytes,
+      item.raw.bytes,
+    );
+  });
 }
 
 final class _Codec implements MailCodec {

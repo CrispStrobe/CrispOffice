@@ -287,14 +287,20 @@ final class SqliteMailArchive {
           final original = await _original(id);
           if (original == null) _fail(MailProblemCode.storageFailure);
           final size = (await _rows(
-            'SELECT length(envelope)+length(index_data)+length(subject)+length(preview) AS n '
+            'SELECT ${_archiveSizeSql(_archiveMetadataColumns)} AS n, '
+            '${_archiveSizeSql(_archiveMetadataColumns, bytes: true)} AS bytes '
             'FROM archive_items WHERE id=?',
             [id],
-          )).single.read<int>('n');
-          if (size > limits.maxMetadataCodeUnits) {
+          )).single;
+          if (_archiveExceedsSize(size, limits.maxMetadataCodeUnits)) {
             _fail(MailProblemCode.quotaExceeded);
           }
-          final fields = _verifiedFields(await _metadata(id));
+          final metadata = await _metadata(id);
+          if (_archiveRowSize(metadata, _archiveMetadataColumns) >
+              limits.maxMetadataCodeUnits) {
+            _fail(MailProblemCode.quotaExceeded);
+          }
+          final fields = _verifiedFields(metadata);
           if (fields == null) _fail(MailProblemCode.storageFailure);
           // Retrying an interrupted import repairs an absent/stale index from
           // its existing, integrity-checked projection, without changing MIME.
@@ -489,6 +495,12 @@ final class SqliteMailArchive {
       512;
 
   Future<void> _index(String id, List<String> fields) async {
+    // Reusing a verified projection under tighter reopened limits must still
+    // honor the current index budget before deleting the existing index row.
+    if (fields.fold<int>(0, (total, field) => total + field.length) >
+        limits.maxIndexCodeUnits) {
+      _fail(MailProblemCode.quotaExceeded);
+    }
     await _db.customStatement('DELETE FROM archive_fts WHERE id=?', [id]);
     await _db.customStatement(
       'INSERT INTO archive_fts(id,subject,sender,recipients_to,recipients_cc,'
@@ -605,14 +617,22 @@ final class SqliteMailArchive {
           'FROM archive_items a WHERE $where ORDER BY $order LIMIT ? OFFSET ?';
       final args = <Object?>[...values, request.limit, request.offset];
       final sizes = await _rows(
-        'SELECT length(envelope)+length(preview) AS n $tail',
+        'SELECT ${_archiveSizeSql(const ['envelope', 'preview'])} AS n, '
+        '${_archiveSizeSql(const ['envelope', 'preview'], bytes: true)} AS bytes $tail',
         args,
       );
-      if (sizes.fold<int>(0, (n, row) => n + row.read<int>('n')) >
-          limits.maxMetadataCodeUnits) {
+      if (_archivePageExceedsSize(sizes, limits.maxMetadataCodeUnits)) {
         _fail(MailProblemCode.quotaExceeded);
       }
       final rows = await _rows('SELECT $_entryColumns,preview $tail', args);
+      if (rows.fold<int>(
+            0,
+            (total, row) =>
+                total + _archiveRowSize(row, const ['envelope', 'preview']),
+          ) >
+          limits.maxMetadataCodeUnits) {
+        _fail(MailProblemCode.quotaExceeded);
+      }
       trace.items = rows.length;
       return MailArchiveSearchPage(
         hits: [
@@ -663,38 +683,48 @@ final class SqliteMailArchive {
     String id, {
     int limit = 200,
     int offset = 0,
-  }) => _run(MailArchiveOperation.origins, (trace) async {
-    _id(id);
-    if (limit < 1 ||
-        limit > limits.maxPageSize ||
-        offset < 0 ||
-        offset > limits.maxOrigins) {
-      _fail(MailProblemCode.invalidInput);
-    }
-    final originSizes = await _rows(
-      'SELECT length(source)+length(folder)+length(source_message_id) AS n FROM archive_origins '
-      'WHERE message=? ORDER BY source,folder,source_message_id LIMIT ? OFFSET ?',
-      [id, limit, offset],
-    );
-    if (originSizes.fold<int>(0, (total, row) => total + row.read<int>('n')) >
-        limits.maxMetadataCodeUnits) {
-      _fail(MailProblemCode.quotaExceeded);
-    }
-    final rows = await _rows(
-      'SELECT source,folder,source_message_id FROM archive_origins '
-      'WHERE message=? ORDER BY source,folder,source_message_id LIMIT ? OFFSET ?',
-      [id, limit, offset],
-    );
-    trace.items = rows.length;
-    return List.unmodifiable([
-      for (final row in rows)
-        MailArchiveOrigin(
-          source: row.read<String>('source'),
-          folder: row.read<String>('folder'),
-          sourceMessageId: row.read<String>('source_message_id'),
-        ),
-    ]);
-  });
+  }) => _run(
+    MailArchiveOperation.origins,
+    (trace) => _db.transaction(() async {
+      _id(id);
+      if (limit < 1 ||
+          limit > limits.maxPageSize ||
+          offset < 0 ||
+          offset > limits.maxOrigins) {
+        _fail(MailProblemCode.invalidInput);
+      }
+      final originSizes = await _rows(
+        'SELECT ${_archiveSizeSql(_archiveOriginColumns)} AS n, '
+        '${_archiveSizeSql(_archiveOriginColumns, bytes: true)} AS bytes FROM archive_origins '
+        'WHERE message=? ORDER BY source,folder,source_message_id LIMIT ? OFFSET ?',
+        [id, limit, offset],
+      );
+      if (_archivePageExceedsSize(originSizes, limits.maxMetadataCodeUnits)) {
+        _fail(MailProblemCode.quotaExceeded);
+      }
+      final rows = await _rows(
+        'SELECT source,folder,source_message_id FROM archive_origins '
+        'WHERE message=? ORDER BY source,folder,source_message_id LIMIT ? OFFSET ?',
+        [id, limit, offset],
+      );
+      if (rows.fold<int>(
+            0,
+            (total, row) => total + _archiveRowSize(row, _archiveOriginColumns),
+          ) >
+          limits.maxMetadataCodeUnits) {
+        _fail(MailProblemCode.quotaExceeded);
+      }
+      trace.items = rows.length;
+      return List.unmodifiable([
+        for (final row in rows)
+          MailArchiveOrigin(
+            source: row.read<String>('source'),
+            folder: row.read<String>('folder'),
+            sourceMessageId: row.read<String>('source_message_id'),
+          ),
+      ]);
+    }),
+  );
 
   Future<MailResult<MailArchiveStats>> statistics() => _run(
     MailArchiveOperation.statistics,
@@ -713,6 +743,46 @@ final class SqliteMailArchive {
     }),
   );
 }
+
+// Only fixed internal column names enter these SQL expressions. SQLite's TEXT
+// length stops at NUL and counts code points, so it is not an allocation guard.
+// UTF-8 needs at most three bytes per UTF-16 code unit. A byte preflight bounds
+// decoding without rejecting valid Arabic/CJK/astral text, followed by the exact
+// Dart code-unit check before parsing or returning any hydrated text.
+const _archiveMetadataColumns = [
+  'envelope',
+  'index_data',
+  'subject',
+  'preview',
+];
+const _archiveOriginColumns = ['source', 'folder', 'source_message_id'];
+const _archiveIndexColumns = [
+  'subject',
+  'sender',
+  'recipients_to',
+  'recipients_cc',
+  'recipients_bcc',
+  'body',
+  'attachment_names',
+  'attachment_text',
+];
+
+String _archiveSizeSql(List<String> columns, {bool bytes = false}) => columns
+    .map(
+      (column) => bytes ? 'length(CAST($column AS BLOB))' : 'length($column)',
+    )
+    .join('+');
+
+int _archiveRowSize(QueryRow row, List<String> columns) =>
+    columns.fold(0, (total, column) => total + row.read<String>(column).length);
+
+bool _archiveExceedsSize(QueryRow row, int limit) =>
+    row.read<int>('n') > limit || row.read<int>('bytes') > 3 * limit;
+
+bool _archivePageExceedsSize(List<QueryRow> rows, int limit) =>
+    rows.fold<int>(0, (total, row) => total + row.read<int>('n')) > limit ||
+    rows.fold<int>(0, (total, row) => total + row.read<int>('bytes')) >
+        3 * limit;
 
 final class _ArchiveProjection {
   _ArchiveProjection(

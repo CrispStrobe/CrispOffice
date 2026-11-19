@@ -10,7 +10,8 @@ extension MailArchiveMaintenance on SqliteMailArchive {
 
   Future<List<QueryRow>> _maintenanceRows(String? afterId, int limit) => _rows(
     'SELECT id,raw_size,length(raw) AS actual,'
-    'length(envelope)+length(index_data)+length(subject)+length(preview) AS metadata_size '
+    '${_archiveSizeSql(_archiveMetadataColumns)} AS n, '
+    '${_archiveSizeSql(_archiveMetadataColumns, bytes: true)} AS bytes '
     'FROM archive_items WHERE id>? ORDER BY id LIMIT ?',
     [afterId ?? '', limit + 1],
   );
@@ -60,8 +61,32 @@ extension MailArchiveMaintenance on SqliteMailArchive {
     }
   }
 
-  /// Read-only verification. Each page is a consistent snapshot, bounded by
-  /// count and per-message byte limits. Call again with nextAfterId to continue.
+  /// Bound all content before SQLite's whole-index tokenization/check commands.
+  /// The byte guard includes NUL suffixes and every UTF-8 byte. It permits at
+  /// most three bytes per configured UTF-16 code unit; paged hydration below
+  /// also applies the exact Dart code-unit limit. No FTS strings enter Dart.
+  Future<void> _wholeIndexBudget() async {
+    final row = (await _rows(
+      'SELECT count(*) AS n, '
+      'coalesce(max(${_archiveSizeSql(_archiveIndexColumns)}),0) AS max_units, '
+      'coalesce(max(${_archiveSizeSql(_archiveIndexColumns, bytes: true)}),0) AS max_bytes, '
+      'coalesce(sum(${_archiveSizeSql(_archiveIndexColumns, bytes: true)}),0) AS total_bytes, '
+      'coalesce(max(length(CAST(id AS BLOB))),0) AS id_bytes '
+      'FROM archive_fts',
+    )).single;
+    if (row.read<int>('n') > limits.maxMessages ||
+        row.read<int>('max_units') > limits.maxIndexCodeUnits ||
+        row.read<int>('max_bytes') > 3 * limits.maxIndexCodeUnits ||
+        row.read<int>('total_bytes') > limits.maxArchiveBytes ||
+        row.read<int>('id_bytes') > 64) {
+      SqliteMailArchive._fail(MailProblemCode.quotaExceeded);
+    }
+  }
+
+  /// Verification never changes originals or stored projections. The first
+  /// page also runs FTS5's whole-index integrity command, which requires a
+  /// write-capable SQLite connection even though it leaves content unchanged.
+  /// Per-message verification is paged; use nextAfterId to continue.
   Future<MailResult<MailArchiveMaintenancePage>> verifyIntegrity({
     String? afterId,
     int limit = 50,
@@ -71,6 +96,14 @@ extension MailArchiveMaintenance on SqliteMailArchive {
     (trace) => _db.transaction(() async {
       _maintenancePage(afterId, limit);
       cancellation?.throwIfCancelled();
+      if (afterId == null) {
+        await _wholeIndexBudget();
+        cancellation?.throwIfCancelled();
+        await _db.customStatement(
+          "INSERT INTO archive_fts(archive_fts) VALUES('integrity-check')",
+        );
+        cancellation?.throwIfCancelled();
+      }
       final candidates = await _maintenanceRows(afterId, limit);
       final rows = candidates.take(limit).toList();
       final issues = <MailArchiveIntegrityIssue>[];
@@ -80,8 +113,7 @@ extension MailArchiveMaintenance on SqliteMailArchive {
         void issue(MailArchiveIntegrityCode code) =>
             issues.add(MailArchiveIntegrityIssue(id: id, code: code));
         if (candidate.read<int>('raw_size') > limits.maxMessageBytes ||
-            candidate.read<int>('metadata_size') >
-                limits.maxMetadataCodeUnits) {
+            _archiveExceedsSize(candidate, limits.maxMetadataCodeUnits)) {
           issue(MailArchiveIntegrityCode.exceedsReadLimit);
           trace.items++;
           continue;
@@ -98,18 +130,25 @@ extension MailArchiveMaintenance on SqliteMailArchive {
           }
           trace.bytes += bytes.length;
         }
-        final fields = _verifiedFields(await _metadata(id));
+        final metadata = await _metadata(id);
+        if (_archiveRowSize(metadata, _archiveMetadataColumns) >
+            limits.maxMetadataCodeUnits) {
+          issue(MailArchiveIntegrityCode.exceedsReadLimit);
+          trace.items++;
+          continue;
+        }
+        final fields = _verifiedFields(metadata);
         if (fields == null) {
           issue(MailArchiveIntegrityCode.metadataHashMismatch);
         }
         final indexSizes = await _rows(
-          'SELECT length(subject)+length(sender)+length(recipients_to)+length(recipients_cc)+'
-          'length(recipients_bcc)+length(body)+length(attachment_names)+length(attachment_text) AS n '
+          'SELECT ${_archiveSizeSql(_archiveIndexColumns)} AS n, '
+          '${_archiveSizeSql(_archiveIndexColumns, bytes: true)} AS bytes '
           'FROM archive_fts WHERE id=? LIMIT 2',
           [id],
         );
         if (indexSizes.any(
-          (row) => row.read<int>('n') > limits.maxIndexCodeUnits,
+          (row) => _archiveExceedsSize(row, limits.maxIndexCodeUnits),
         )) {
           issue(MailArchiveIntegrityCode.indexMismatch);
           trace.items++;
@@ -125,6 +164,8 @@ extension MailArchiveMaintenance on SqliteMailArchive {
         if (indexed.isEmpty) {
           issue(MailArchiveIntegrityCode.missingIndex);
         } else if (indexed.length != 1 ||
+            _archiveRowSize(indexed.single, _archiveIndexColumns) >
+                limits.maxIndexCodeUnits ||
             (fields != null && !_sameFields(indexed.single, fields))) {
           issue(MailArchiveIntegrityCode.indexMismatch);
         }
@@ -150,6 +191,9 @@ extension MailArchiveMaintenance on SqliteMailArchive {
 
   /// Replaces one bounded page atomically. Cancellation/failure preserves every
   /// previous index row in that page. Original MIME bytes are never rewritten.
+  /// The first page also rebuilds the entire FTS5 posting structure, allowing
+  /// recovery when shadow tables are damaged. That SQLite command is whole-index
+  /// work; cancellation is checked immediately before and after it.
   /// Without [codec], verified stored projections are reused. A supplied codec
   /// can refresh extraction and attachment policy from the original bytes.
   Future<MailResult<MailArchiveMaintenancePage>> rebuildIndex({
@@ -169,6 +213,13 @@ extension MailArchiveMaintenance on SqliteMailArchive {
       final rows = candidates.take(limit).toList();
       final issues = <MailArchiveIntegrityIssue>[];
       if (afterId == null) {
+        cancellation?.throwIfCancelled();
+        await _wholeIndexBudget();
+        cancellation?.throwIfCancelled();
+        await _db.customStatement(
+          "INSERT INTO archive_fts(archive_fts) VALUES('rebuild')",
+        );
+        cancellation?.throwIfCancelled();
         await _db.customStatement(
           'DELETE FROM archive_fts WHERE id NOT IN (SELECT id FROM archive_items)',
         );
@@ -178,15 +229,29 @@ extension MailArchiveMaintenance on SqliteMailArchive {
         final id = candidate.read<String>('id');
         MailArchiveIntegrityCode? issue;
         if (candidate.read<int>('raw_size') > limits.maxMessageBytes ||
-            candidate.read<int>('metadata_size') >
-                limits.maxMetadataCodeUnits) {
+            _archiveExceedsSize(candidate, limits.maxMetadataCodeUnits)) {
           issue = MailArchiveIntegrityCode.exceedsReadLimit;
+        } else if (candidate.read<int>('actual') !=
+            candidate.read<int>('raw_size')) {
+          // A damaged size column must never authorize loading a larger BLOB.
+          issue = MailArchiveIntegrityCode.rawHashMismatch;
         } else {
           final row = await _metadata(id);
-          var fields = _verifiedFields(row);
-          if (fields == null) {
-            issue = MailArchiveIntegrityCode.metadataHashMismatch;
+          if (_archiveRowSize(row, _archiveMetadataColumns) >
+              limits.maxMetadataCodeUnits) {
+            issue = MailArchiveIntegrityCode.exceedsReadLimit;
           } else {
+            var fields = _verifiedFields(row);
+            if (fields == null) {
+              issues.add(
+                MailArchiveIntegrityIssue(
+                  id: id,
+                  code: MailArchiveIntegrityCode.metadataHashMismatch,
+                ),
+              );
+              trace.items++;
+              continue;
+            }
             final bytes = (await _rows(
               'SELECT raw FROM archive_items WHERE id=?',
               [id],
