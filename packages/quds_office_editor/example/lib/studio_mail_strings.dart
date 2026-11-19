@@ -229,4 +229,19 @@ extension StudioMailFeedback on StudioStrings {
     'Diese Nachricht in den Exchange-Ordner „Gelöschte Elemente“ verschieben?',
     'هل تريد نقل هذه الرسالة إلى مجلد العناصر المحذوفة في Exchange؟',
   );
+  String get useStartTls => _mailText(
+    'Use STARTTLS (ports 143/587)',
+    'STARTTLS verwenden (Ports 143/587)',
+    'استخدام STARTTLS (المنفذان 143/587)',
+  );
+  String get rememberAccount => _mailText(
+    'Remember this account in the system keychain',
+    'Dieses Konto im Systemschlüsselbund speichern',
+    'حفظ هذا الحساب في سلسلة مفاتيح النظام',
+  );
+  String get forgetAccount => _mailText(
+    'Forget saved account',
+    'Gespeichertes Konto entfernen',
+    'نسيان الحساب المحفوظ',
+  );
 }
