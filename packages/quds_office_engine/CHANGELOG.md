@@ -4,6 +4,11 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Reconcile PPTX slide backgrounds, crop and rich-text fidelity. Distinguish
+  inherited and explicit slide paper, apply scalar rich-text edits in PDF
+  rendering without rewriting source runs, and retain the incoming interlaced
+  PNG support. Full PDF/widget qualification remains tracked separately.
+
 - Extend `vba-excel` with fixed one-dimensional scalar arrays, constant bounds,
   indexed reads/writes, typed defaults, `LBound`/`UBound`, and `For Each` over
   arrays and explicit rectangular ranges. Add read-only range row/column

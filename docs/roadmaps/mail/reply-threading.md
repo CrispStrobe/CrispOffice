@@ -1,8 +1,10 @@
 # Studio mail reply threading
 
 **Scope date:** 2026-11-19. **Implementation:** native Studio replies through the
-shared composer and MIME builder. **Runtime qualification:** pending in this
-continuation; see the [source-review record](../../validation/mail-reply-threading-20261119/README.md).
+shared composer and MIME builder. **Runtime qualification:** a later recipient
+continuation exercised the pure threading subset; MIME and widget cases remain
+open. See its [current record](../../validation/mail-recipients-20261119/README.md)
+and the original [source review](../../validation/mail-reply-threading-20261119/README.md).
 
 ## Behavior
 
@@ -80,8 +82,11 @@ library's automatic reply builder. No dependency or schema change is required.
 Focused regressions cover source parsing, malformed metadata, comment fragments,
 header injection, identifier/chain limits, deduplication, MIME serialization,
 ordinary and forward composition, composer edits and uncertain retries.
-They are committed as tests to run with the repository's pinned Flutter SDK.
-This session has no executor, so Dart/Flutter tests, analyzer and formatter have
-not run. Independent source/API review and Git-tree verification are recorded
-separately and do not establish runtime or live-provider interoperability.
+The initial implementation was source-reviewed without an executor. The later
+recipient continuation installed pinned Flutter 3.47.8 / Dart 3.13.7, formatted
+the changed source/tests, and executed 16 pure threading cases through a separate
+cached dependency graph. Whole MIME-dependent cases were excluded and recorded;
+MIME round trips, composer widgets and full workspace analysis remain unexecuted
+because workspace dependencies could not be resolved. These focused results do
+not establish full-lock workspace or live-provider interoperability.
 GitHub Actions are neither awaited nor used as an acceptance gate.

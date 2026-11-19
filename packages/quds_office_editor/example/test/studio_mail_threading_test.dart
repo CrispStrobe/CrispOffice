@@ -4,7 +4,7 @@ import 'dart:typed_data';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quds_mail_core/quds_mail_core.dart';
 import 'package:quds_mail_mime/quds_mail_mime.dart';
-import 'package:quds_office_studio/studio_mail_compose.dart';
+import 'package:quds_office_studio/studio_mail_draft.dart';
 import 'package:quds_office_studio/studio_mail_submission.dart';
 import 'package:quds_office_studio/studio_mail_threading.dart';
 
@@ -36,9 +36,7 @@ void main() {
   });
 
   test('a canonical parent starts the references chain without repair', () {
-    final thread = StudioMailThread.replyTo(
-      MailEnvelope(messageId: _parent),
-    );
+    final thread = StudioMailThread.replyTo(MailEnvelope(messageId: _parent));
     expect(thread.inReplyTo, _parent);
     expect(thread.references, _parent);
   });
@@ -156,10 +154,7 @@ void main() {
       ),
     );
     expect(thread.inReplyTo, _parent);
-    expect(
-      thread.references,
-      '$_root <middle@example.invalid> $_parent',
-    );
+    expect(thread.references, '$_root <middle@example.invalid> $_parent');
   });
 
   test('message identifiers remain distinct when their case differs', () {
@@ -238,11 +233,7 @@ void main() {
       MailEnvelope(
         messageId: _parent,
         inReplyTo: '<fallback@example.invalid>',
-        references: const [
-          _root,
-          '<a@b><c@d>',
-          '<latest@example.invalid>',
-        ],
+        references: const [_root, '<a@b><c@d>', '<latest@example.invalid>'],
       ),
     );
     expect(thread.inReplyTo, _parent);
@@ -318,10 +309,11 @@ void main() {
     final thread = StudioMailThread.replyTo(
       MailEnvelope(messageId: _parent, references: ancestors),
     );
-    expect(
-      thread.references?.split(' '),
-      [ancestors.first, ...ancestors.sublist(27), _parent],
-    );
+    expect(thread.references?.split(' '), [
+      ancestors.first,
+      ...ancestors.sublist(27),
+      _parent,
+    ]);
     expect(thread.references?.length, 898);
     expect(thread.inReplyTo, _parent);
   });
@@ -451,10 +443,7 @@ void main() {
       expect(separator, greaterThan(0));
       final headers = rendered.substring(0, separator);
       expect(headers.codeUnits.every((unit) => unit < 128), isTrue);
-      expect(
-        headers.split('\r\n').every((line) => line.length <= 998),
-        isTrue,
-      );
+      expect(headers.split('\r\n').every((line) => line.length <= 998), isTrue);
       final decoded = const QudsMimeCodec().parse(
         Uint8List.fromList(utf8.encode(rendered)),
       );

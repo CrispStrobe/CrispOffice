@@ -10,6 +10,7 @@ import 'package:quds_mail_ui/quds_mail_ui.dart';
 import 'package:quds_mail_store/quds_mail_store.dart';
 import 'package:quds_office_editor/quds_office_editor.dart';
 import 'package:quds_office_studio/studio_mail_cloud.dart';
+import 'package:quds_office_studio/studio_mail_compose.dart';
 import 'package:quds_office_studio/studio_mail_native.dart';
 import 'package:quds_office_studio/studio_mail_strings.dart';
 import 'package:quds_office_studio/studio_strings.dart';
@@ -39,6 +40,8 @@ final class _Provider extends Fake implements MailCloudProvider {
   final submissions = <MailPreparedMessage>[];
   final commands = <MailOperation>[];
   MailAccountId? accountOverride;
+  bool replyParticipants = false;
+  MailEnvelope? envelopeOverride;
 
   @override
   MailAccountId get account => accountOverride ?? configuration.account;
@@ -113,7 +116,8 @@ final class _Provider extends Fake implements MailCloudProvider {
         .parse(
           utf8.encode(
             'From: Writer <writer@example.test>\r\n'
-            'To: Reader <reader@example.test>\r\n'
+            'To: Reader <reader@example.test>${replyParticipants ? ', teammate@example.test' : ''}\r\n'
+            '${replyParticipants ? 'Reply-To: author@example.test\r\nCc: copied@example.test\r\nMessage-ID: <parent@example.test>\r\nReferences: <root@example.test>\r\n' : ''}'
             'Subject: Cloud message\r\n'
             'Bcc: hidden@example.test\r\nX-Preserved:  original\r\n\tfolding\r\n'
             'MIME-Version: 1.0\r\nContent-Type: multipart/mixed; boundary=cloud-original\r\n\r\n'
@@ -128,7 +132,7 @@ final class _Provider extends Fake implements MailCloudProvider {
         .message!;
     return MailMessage(
       raw: parsed.raw,
-      envelope: parsed.envelope,
+      envelope: envelopeOverride ?? parsed.envelope,
       body: parsed.body,
       attachments: parsed.attachments,
       localId: MailMessageId('cloud-message'),
@@ -290,10 +294,21 @@ Finder _composeField(String label) => find.byWidgetPredicate(
   (widget) => widget is TextField && widget.decoration?.labelText == label,
 );
 
-Future<void> _send(WidgetTester tester) async {
+Future<void> _send(
+  WidgetTester tester, {
+  String to = 'recipient@example.test',
+  String cc = '',
+  String bcc = '',
+}) async {
   await tester.tap(find.byTooltip(_strings.compose));
   await _pump(tester);
-  await tester.enterText(_composeField(_strings.to), 'recipient@example.test');
+  await tester.enterText(_composeField(_strings.to), to);
+  if (cc.isNotEmpty || bcc.isNotEmpty) {
+    await tester.tap(find.text(_strings.mailCopyRecipients));
+    await _pump(tester);
+    await tester.enterText(_composeField(_strings.mailCc), cc);
+    await tester.enterText(_composeField(_strings.mailBcc), bcc);
+  }
   await tester.enterText(_composeField(_strings.subject), 'Cloud send');
   tester
       .widget<QudsWordEditor>(find.byType(QudsWordEditor))
@@ -652,17 +667,155 @@ void main() {
       await _show(tester, harness);
       await _connect(tester);
       harness.provider!.outcome = MailSubmissionOutcome.uncertain;
-      await _send(tester);
+      await _send(
+        tester,
+        to: 'first@example.test, second@example.test',
+        cc: 'copied@example.test',
+        bcc: 'private@example.test',
+      );
       expect(find.text(_strings.mailSubmissionUncertain), findsOneWidget);
       expect(harness.provider!.submissions, hasLength(1));
       await tester.tap(find.byTooltip(_strings.compose));
       await _pump(tester);
       expect(find.text(_strings.mailRetryAcknowledgement), findsOneWidget);
+      expect(
+        tester.widget<TextField>(_composeField(_strings.to)).controller!.text,
+        'first@example.test, second@example.test',
+      );
+      expect(
+        tester
+            .widget<TextField>(_composeField(_strings.mailCc))
+            .controller!
+            .text,
+        'copied@example.test',
+      );
+      expect(
+        tester
+            .widget<TextField>(_composeField(_strings.mailBcc))
+            .controller!
+            .text,
+        'private@example.test',
+      );
       final send = find.widgetWithText(FilledButton, _strings.send);
       expect(tester.widget<FilledButton>(send).onPressed, isNull);
       expect(harness.provider!.submissions, hasLength(1));
+      harness.provider!.outcome = MailSubmissionOutcome.accepted;
+      await tester.ensureVisible(find.byType(CheckboxListTile));
+      await tester.tap(find.byType(CheckboxListTile));
+      await _pump(tester);
+      await tester.ensureVisible(send);
+      await tester.tap(send);
+      await _pump(tester);
+      expect(harness.provider!.submissions, hasLength(2));
+      for (final submission in harness.provider!.submissions) {
+        expect(submission.envelope.recipients, [
+          'first@example.test',
+          'second@example.test',
+          'copied@example.test',
+          'private@example.test',
+        ]);
+        expect(
+          utf8.decode(submission.wire.bytes),
+          isNot(contains('private@example.test')),
+        );
+      }
+      expect(tester.takeException(), isNull);
     },
   );
+
+  for (final service in MailCloudService.values) {
+    testWidgets(
+      '${service.name} Reply all submits visible groups and explicit Bcc with threading',
+      (tester) async {
+        final harness = _Harness();
+        await _show(tester, harness, service: service);
+        await _connect(tester);
+        final provider = harness.provider!..replyParticipants = true;
+        await tester.tap(find.text('Cloud message'));
+        await _pump(tester);
+        await tester.tap(find.byTooltip(_strings.replyAll));
+        await _pump(tester);
+        expect(find.byType(StudioMailComposeDialog), findsOneWidget);
+        expect(
+          tester.widget<TextField>(_composeField(_strings.to)).controller!.text,
+          'author@example.test, teammate@example.test',
+        );
+        expect(
+          tester
+              .widget<TextField>(_composeField(_strings.mailCc))
+              .controller!
+              .text,
+          'copied@example.test',
+        );
+        expect(
+          tester
+              .widget<TextField>(_composeField(_strings.mailBcc))
+              .controller!
+              .text,
+          isEmpty,
+        );
+        await tester.enterText(
+          _composeField(_strings.mailBcc),
+          'private-copy@example.test',
+        );
+        final send = find.widgetWithText(FilledButton, _strings.send);
+        await tester.ensureVisible(send);
+        await tester.tap(send);
+        await _pump(tester);
+        final submission = provider.submissions.single;
+        expect(submission.envelope.recipients, [
+          'author@example.test',
+          'teammate@example.test',
+          'copied@example.test',
+          'private-copy@example.test',
+        ]);
+        final parsed = const QudsMimeCodec().parse(submission.wire.bytes);
+        expect(parsed.status, MailParseStatus.complete);
+        final message = parsed.message!;
+        expect(message.envelope.to.map((address) => address.address), [
+          'author@example.test',
+          'teammate@example.test',
+        ]);
+        expect(message.envelope.cc.single.address, 'copied@example.test');
+        expect(message.envelope.bcc, isEmpty);
+        expect(message.envelope.inReplyTo, '<parent@example.test>');
+        expect(message.envelope.references, [
+          '<root@example.test>',
+          '<parent@example.test>',
+        ]);
+        final wire = utf8.decode(submission.wire.bytes);
+        expect(wire, isNot(contains('private-copy@example.test')));
+        expect(wire, isNot(contains('hidden@example.test')));
+        expect(find.text(_strings.mailCloudSubmissionAccepted), findsOneWidget);
+        expect(tester.takeException(), isNull);
+      },
+    );
+
+    testWidgets(
+      '${service.name} Reply all refuses an ambiguous source address',
+      (tester) async {
+        final harness = _Harness();
+        await _show(tester, harness, service: service);
+        await _connect(tester);
+        harness.provider!.envelopeOverride = MailEnvelope(
+          subject: 'Cloud message',
+          from: const [MailAddress('writer@example.test')],
+          to: const [MailAddress('first@example.test;second@example.test')],
+        );
+        await tester.tap(find.text('Cloud message'));
+        await _pump(tester);
+        await tester.tap(find.byTooltip(_strings.replyAll));
+        await _pump(tester);
+        expect(find.byType(StudioMailComposeDialog), findsNothing);
+        expect(
+          find.text(_strings.mailReplyRecipientsUnavailable),
+          findsOneWidget,
+        );
+        expect(harness.provider!.submissions, isEmpty);
+        expect(tester.takeException(), isNull);
+      },
+    );
+  }
 
   testWidgets(
     'definite rejected sends retain drafts and show Retry-After without resending',

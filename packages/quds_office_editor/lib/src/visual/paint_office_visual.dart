@@ -7,8 +7,10 @@ import 'package:quds_office_engine/quds_office_engine.dart';
 
 import '../editor_word/paint_run_text.dart';
 
-typedef VisualImageDecoder =
-    void Function(Uint8List bytes, void Function(ui.Image image) onDecoded);
+typedef VisualImageDecoder = void Function(
+  Uint8List bytes,
+  void Function(ui.Image image) onDecoded,
+);
 
 /// Owns decoded pictures for one Office canvas, including pending decodes.
 class VisualImageCache {

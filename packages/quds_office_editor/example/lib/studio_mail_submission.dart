@@ -1,6 +1,6 @@
 import 'package:enough_mail/enough_mail.dart' as mail;
 
-import 'studio_mail_compose.dart';
+import 'studio_mail_draft.dart';
 
 /// Constructs ASCII-safe MIME with visible To/Cc and no Bcc header.
 /// The caller must use the envelope in [StudioMailDraft.recipients], including
