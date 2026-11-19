@@ -155,7 +155,7 @@ class BundleBuilderTest(unittest.TestCase):
         self.assertEqual(self.create_calls, [])
         self.assertEqual(self.upload_calls, [])
         card = (self.output / "README.md").read_text(encoding="utf-8")
-        self.assertIn("Hunspell adapter and in-app download integration are planned",
+        self.assertIn("optional Hunspell adapter package is implemented",
                       " ".join(card.split()))
 
 

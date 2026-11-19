@@ -7,8 +7,10 @@
 The final integrated application, fixtures, execution harness and test-plan
 source is **`ac1e4c8c788ea608402c2260488235c0189efcba`**. Both fresh local
 qualification receipts bind to that same commit: **632 passing test executions,
-562 distinct test cases and 47 distinct suites**. Later publication changes are
-documentation and evidence only.
+562 distinct test cases and 47 distinct suites**. All 5,031 bound application,
+fixture and qualification inputs remain exact in the final reconciliation. The
+subsequent standalone Arabic bundle tooling has separate offline controls;
+those controls are not added to the application case count.
 
 This record accompanies the user-authorized integration into remote `main`
 through PR #174 and PR #173, followed by this qualified cleanup continuation.
@@ -159,6 +161,29 @@ Primary evidence: [focused verification](socket-final/verification.json),
 [35-suite plan](socket-final/plan.json), and
 [raw archive index](socket-final/qualification-evidence.index.json).
 
+## Later Arabic tooling and overlapping continuations
+
+After publication `cd430b22`, main advanced through PR #176 to
+`f059065fa622da8cee7824d66d29a2aff414d529`. PR #177 was captured at
+`c268ce3bceb05f92b7868e90ba8ce7b9a5bbbe1e` and PR #178 at
+`0b8f8f7f78fbf4e2e26671ecf9a0d858c38ca75c`. These additional known heads are
+reconciled by ancestry without changing any of the 5,031 qualified inputs.
+Their incomplete continuation plans retain their checkpoint status and are
+not represented as completed executions.
+
+The new standalone AyaSpell bundle builder and its controls live under
+`tools/proofing/ayaspell`, outside the frozen application-input selection. The
+selected builder retains the published card metadata and restricts uploads to
+manifest members plus `manifest.json`. Unrelated files in reused directories
+are excluded. Complementary incoming controls cover deterministic output,
+unchanged unrelated/nested files, byte counts and digests, rejection before
+publication, and immutable-revision content/manifest readback. The exact source
+and passing result for **seven offline Python controls** are recorded in the
+[Arabic receipt](socket-final/arabic-controls-receipt.json) and
+[exact review archive](socket-final/arabic-controls-evidence.tar.xz). No real
+bundle upload or new live resource download is performed by this continuation.
+The Hunspell adapter and in-app Arabic download workflow remain planned.
+
 ## Earlier qualifications remain separately attributed
 
 The [preserved first TLS report](pre-socket-report.md) records **611 executions /
@@ -211,7 +236,8 @@ the first combined TLS source/publication (`4624218f`, `59e0a7c2`), main merge
 (`d4100033`), latest Mail evidence (`3cd60db2`) and final Socket-compatible source
 (`ac1e4c8c`). The later `55e262ef` main merge contributes documentation and
 evidence; the final publication preserves every qualified input. Commits after
-that final source contain no additional executable/test/harness changes. The remote checkpoint branch is retained.
+that application source preserve its executable/test/harness inputs; the later
+standalone Arabic bundle helper and controls have their own review and receipt. The remote checkpoint branch is retained.
 
 The [qualification archive](socket-final/qualification-evidence.tar.xz) contains raw
 events, receipts, source/runtime snapshots and case inventories. The

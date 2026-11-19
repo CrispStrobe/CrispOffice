@@ -11,8 +11,9 @@ published unmodified.
     HF_TOKEN=... python3 tools/proofing/ayaspell/build_bundle.py \\
         --output /tmp/ayaspell-ar --publish cstr/ayaspell-ar-hunspell
 
-The planned app integration downloads the bundle only at the user's request;
-it is not part of the application binary (docs/roadmaps/arabic-proofing.md).
+Quds provides an optional Hunspell adapter package. Host registration and the
+in-app dictionary download UI remain open; the bundle is not part of the
+application binary (docs/roadmaps/arabic-proofing.md).
 """
 from __future__ import annotations
 
@@ -82,9 +83,10 @@ are unmodified; their source form is this repository.
 ## Use
 
 Load with any Hunspell-compatible engine, e.g. `hunspell -d ar`. Quds Office's
-Hunspell adapter and in-app download integration are planned; this bundle is
-not part of the application. `manifest.json` lists the SHA-256 of every
-bundled file.
+optional Hunspell adapter package is implemented. Host registration and the
+in-app dictionary download UI remain open; no dictionary is downloaded
+automatically. The bundle is not part of the application binary.
+`manifest.json` lists the SHA-256 of each bundled content file.
 """
 
 
@@ -123,11 +125,11 @@ def main() -> int:
         from huggingface_hub import HfApi
         api = HfApi()
         api.create_repo(args.publish, repo_type="model", exist_ok=True)
-        # Reusing an output directory must not publish unrelated local files.
-        # Exact relative names also exclude similarly named nested files.
-        upload_names = sorted([*manifest["files"], "manifest.json"])
+        # --output can already contain unrelated files. Publish only the
+        # verified bundle and its generated manifest, never the whole directory.
+        publish_files = sorted([*manifest["files"], "manifest.json"])
         commit = api.upload_folder(repo_id=args.publish, folder_path=str(out), repo_type="model",
-                                   allow_patterns=upload_names,
+                                   allow_patterns=publish_files,
                                    commit_message=f"AyaSpell Arabic from LibreOffice dictionaries {COMMIT[:10]}")
         print(f"published {args.publish} at {commit.oid}")
         # Read back every file at the new immutable revision.

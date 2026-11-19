@@ -2,8 +2,8 @@
 
 Accepted: 19 November 2026. Scope: Arabic spelling, independently authored
 writing rules, then optional model-backed analysis. The initial writing rules
-are registered for Arabic-language text; the Hunspell adapter and in-app
-dictionary download remain planned.
+are registered for Arabic-language text. The optional Hunspell package is
+implemented; host registration and the in-app dictionary download UI remain open.
 
 ## Constraints
 
@@ -31,7 +31,7 @@ dictionary download remain planned.
 | AyaSpell Hunspell dictionary (`ar.aff`/`ar.dic`, LibreOffice packaging 3.5) | GPL 2.0 / LGPL 2.1 / MPL 1.1 tri-licence ("or later") | **Usable.** We elect MPL 1.1 and publish it as a downloadable dictionary. Step 1. |
 | AyaSpell Arabic thesaurus (`th_ar.dat`, MyThes) | Same package and tri-licence | Usable; published alongside, integration belongs to the [thesaurus roadmap](thesaurus/README.md). |
 | Hunspell engine 1.7.x | GPL / LGPL / MPL 1.1 tri-licence | **Usable in the app under MPL 1.1** (file-level copyleft, App-Store compatible); native library, plus a WebAssembly build for the web target that is part of the app, not downloaded. |
-| LanguageTool Arabic module (~450 XML rules, 16 Java rules) | Code LGPL 2.1; rule resources need per-file verification | Rule XML could be downloaded as data and interpreted by a native rule engine. Needs licence check of the rule files and of the Arabic POS dictionary they depend on. Step 3. |
+| LanguageTool Arabic module v6.8 (454 XML rules, 16 Java rules) | Code and `grammar.xml` LGPL-2.1-or-later; POS/synthesis dictionaries derived from Arramooz (GPL-2.0); replace list from aghlat (AGPL-3.0) | Downloadable as data only; needs a native pattern engine plus the GPL dictionary. See [assessment](#languagetool-arabic-assessment-v68). |
 | Fareh Arabic rule database | GPL-3.0 | Downloadable as data only; format not yet assessed. Ask the author (Taha Zerrouki) about an MPL/MIT dual licence. |
 | CAMeL Tools weights (disambiguator, UD/CATiB parsers, NER, GED/GEC) | Weights tagged MIT/Apache by CAMeL Lab; morphology database GPL v2 | Technically the best fit (BERT + token-classification/biaffine heads, same shape as the native spaCy transformer port). Training data is LDC Penn Arabic Treebank (parsers, disambiguator) or QALB (GEC, research-only terms). Publishing converted weights means accepting that residual risk; owner decision pending. |
 | Stanza / UDPipe Arabic (PADT) | CC BY-NC-SA | Out for a commercial app. |
@@ -47,7 +47,8 @@ dictionary download remain planned.
    adds the MPL 1.1 text, a manifest and a card, and can publish the bundle to
    Hugging Face. Publishing includes only the manifest-listed files and
    `manifest.json`; unrelated files in a reused output directory are excluded.
-   The Hunspell adapter and in-app Arabic download workflow remain planned.
+   The optional Hunspell package is implemented; host registration and the
+   in-app dictionary download UI remain open.
    The upstream GitHub copy (`linuxscout/ayaspell`
    `36a90abb`) is not used: its `.dic` contains file-concatenation separators
    and its `.aff` differs, and Hunspell 1.7.2 rejects common forms such as
@@ -64,27 +65,74 @@ dictionary download remain planned.
    download of `ar.aff`/`ar.dic` from that revision gives the same Hunspell
    results. The Hub's metadata has no `mpl-1.1` identifier, so the card
    declares `license: other` / `license_name: mpl-1.1` and ships the text.
-2. **Hunspell engine in Quds.** An MPL-1.1 Hunspell adapter behind the
-   existing spelling-provider interface: native library for desktop/mobile,
-   WebAssembly for the web build, dictionary bytes from the user's download.
-   Arabic needs right-to-left offsets, tatweel and harakat handling and
-   UTF-16 mapping of findings; the existing provider contract already reports
-   original UTF-16 offsets. Personal vocabulary and ignore controls as for
-   German.
-3. **Arabic writing rules (initial implementation).** The independently
-   authored `ArabicWritingRulesProvider` is registered in default Word proofing
-   and Studio for Arabic-language text. Its closed lists check hamza on alif
-   (أ/إ/ا), definite ta marbuta vs ha (ة/ه), alif maqsura vs ya (ى/ي), Arabic
-   punctuation (، ؛ ؟) and spacing, tatweel, closed-class word repetition,
-   detached conjunction waw and mixed digit systems. Suggestions are advisory;
-   context-dependent forms such as إن/أن offer alternatives rather than a
-   syntactic decision. Matching preserves combining hamza and original UTF-16
-   offsets, respects mixed-script word boundaries, and keeps links, email and
-   closed code spans untouched. A Hunspell dictionary or model is not needed
-   for these initial rules. Broader linguistic acceptance remains separate work. Next,
-   assess the LanguageTool Arabic rules as downloadable data (licence of the
-   XML and of the POS dictionary; which rule features they use) and, if clean,
-   interpret them natively.
+2. **Hunspell engine in Quds (package implemented, host wiring open).**
+   `packages/quds_proofing_hunspell`: MIT adapter + unmodified Hunspell 1.7.2
+   library files (MPL 1.1 option, tarball SHA-256 `11ddfa39…`, every compiled
+   file hashed in `licenses/manifest.json`, exact sources shipped as
+   `licenses/hunspell-1.7.2-library-sources.tar.gz`); native isolate transport
+   and bundled WebAssembly worker; pinned installer with atomic publish and
+   removal. Incoming macOS evidence: identical flagged multiset to the Hunspell CLI on UD
+   Arabic-PUD (795 of 15,676 words) for both native and Wasm; 18 Dart tests
+   with the real library and dictionary; iOS/Android arm64 compile and link.
+   The [Linux continuation](../validation/office-main-sync-20261119/main-delta/README.md)
+   records a direct-compiler native build and source-bound native/portable checks.
+   Open: host registration and download UI, packaging the library/worker into
+   the app targets, CMake packaging, Windows builds and on-device acceptance.
+3. **Arabic grammar rules (first set implemented, 19 November 2026).**
+   `ArabicWritingRulesProvider` (`arabic-writing`) in `quds_office_engine`
+   is independently authored, MIT-licensed and part of the app. It was
+   written from general MSA orthography without reading any LanguageTool or
+   Fareh rule content. It is active only for Arabic-script Arabic paragraphs
+   (`ar`, `ar-SA`, `ar-Arab-…`) and is registered in the default Word
+   proofing service and the Studio example. Eleven rule ids:
+   - spelling: hamzat al-qat' on 35 listed words, with several suggestions
+     where the form depends on syntax (`ان` → `أن`/`إن`);
+   - spelling: ta marbuta, only for definite forms of 44 listed stems (after
+     the article a final ه cannot be the possessive pronoun);
+   - spelling: alif maqsura on 6 listed words;
+   - spelling: detached conjunction waw (`و هو` → `وهو`);
+   - style: final ya written as ى (`فى` → `في`), a regional convention;
+   - style: Latin `, ; ?` after Arabic script, a space before `، ؛ ؟`, or a
+     missing space after `، ؛`;
+   - style: tatweel;
+   - style: immediate repetition of 26 closed-class words;
+   - style: numbers that mix Western and Arabic-Indic digits.
+
+   Matching ignores ordinary vowel marks and tatweel while combining madda
+   and hamza remain part of the spelling. Suggestions keep the writer's
+   harakat. Lexical and detached-waw checks respect mixed-script token
+   boundaries. Findings use original UTF-16 offsets, and links, email and code
+   spans are excluded. Ambiguous words are left out on purpose: `علي` (the
+   name Ali), `فان` ("perishing"), `لان` ("became soft"), and indefinite
+   `مدرسه` ("his teacher"). Broader linguistic acceptance remains separate work.
+
+   Tests:
+   - 78 engine tests: 39 positive cases covering every rule, 32 zero-finding
+     controls (hamzat al-wasl words, names, emphatic repetition, consistent
+     digits, Latin text, protected spans, decomposed hamza, mixed-script token
+     boundaries and valid `لان`), plus ambiguity, offset, ignore, language and
+     dispose checks. Nine controls reproduce and guard the integration fixes;
+   - 2 editor integration tests: default session on an `ar-SA` run with an
+     applied suggestion, and silence on German text.
+
+   **Known gap:** paragraph language comes from `w:lang/@w:val`. Word stores
+   the language of right-to-left text in `w:lang/@w:bidi`, so Arabic in
+   documents written by Word with `w:val="en-US" w:bidi="ar-SA"` is still
+   routed as English. Selecting the complex-script language for `w:rtl`/`w:cs`
+   runs is the next editor change. Documents written by Quds already set
+   `w:val="ar-SA"` on Arabic runs.
+
+   Interpreting LanguageTool's Arabic rules is assessed
+   [below](#languagetool-arabic-assessment-v68).
+3b. **Clean-room extension (19 November 2026).** A separate "dirty-room"
+   agent studied LanguageTool ar v6.8, Fareh, Ghalatawi and the aghlat list and
+   wrote an abstract functional [specification](arabic-rule-spec.md) without
+   any copied lists, messages, examples, IDs or patterns (reviewed: it contains
+   no Arabic script, regexes, rule IDs or tag strings). An independent
+   implementer who has not seen those sources writes the MIT rules from it,
+   tier T1 first (no lexicon); T2 categories wait for the morphology lexicon
+   (Camel Morph MSA, CC BY 4.0, under consideration); T3 categories need a
+   disambiguator and are deferred.
 4. **Model-backed analysis (optional, owner decision).** Either accept the
    CAMeL weights' training-data risk and port them natively like the spaCy
    transformer pipelines, or train our own licence-clean models:
@@ -94,3 +142,83 @@ dictionary download remain planned.
    - a POS/morphology/lemma tagger trained on silver annotations: about 2–4
      weeks plus annotation cost; dependency parsing noticeably weaker.
    Compute is not the bottleneck; licence-clean training data is.
+
+## LanguageTool Arabic assessment (v6.8)
+
+Checked 19 November 2026 against the release tag `v6.8`. The assessment read
+only licence files, file headers, build metadata and the resource README. It
+counted XML element and attribute kinds mechanically, without reading any
+rule bodies.
+
+**Licences**
+- **Module code:** `pom.xml` declares LGPL-2.1, with the comment "The
+  license refers to the source code, resources may be under different
+  licenses".
+- **`grammar.xml`** (418 KB): its header carries an LGPL-2.1-or-later
+  notice, copyright 2019 Taha Zerrouki, Sohaib Afifi and the LanguageTool
+  contributors.
+- **POS dictionary** `resource/ar/arabic.dict` (12.0 MB, morfologik FSA,
+  SUFFIX encoder): generated from **Arramooz**, GPL-2.0 according to its
+  repository; the resource README says GPL. The synthesis dictionary
+  `arabic_synth.dict` (14.9 MB) is used for inflected suggestions; its
+  provenance is presumably the same, not separately stated.
+- **Other components named in the README:** the tag manager
+  (mysam-tagmanager) and common words (Tashkeela) are GPL-3.0. Rules are
+  authored with **Fareh** (GPL-3.0).
+- **`rules/ar/replaces.txt`** (61 KB): its header says "Mainly from
+  aghlat". aghlat is **AGPL-3.0**.
+- **The bundled Hunspell copy** of AyaSpell differs slightly in size from
+  the LibreOffice packaging we publish.
+
+**What the rules need from an engine**
+
+`grammar.xml` has:
+- 454 rules: 40 rule groups in 14 categories, 1,070 examples;
+- 1,055 `token` elements, 455 `pattern`, 42 `antipattern`, 6 `exception`,
+  9 `or`, 1,139 `marker`;
+- 629 `suggestion` and 516 `match` elements;
+- 45 `unify` with 165 `feature` and 11 `equivalence`;
+- 6 Java filters: date check (×2), number phrase, masdar-to-verb,
+  verb-to-maf'ul-mutlaq, adjective-to-exclamation.
+
+Attributes in use:
+- 408 `inflected`, 361 `postag`, 350 `postag_regexp`;
+- 304 `regexp` and 305 `regexp_match`/`regexp_replace` pairs;
+- 151 `skip`, 22 `postag_replace`.
+
+`disambiguation.xml` has 5 rules.
+
+In addition, 16 Java rule classes drive the plain-text lists:
+- homophones, diacritics, darja, wordiness, redundancy, coherency;
+- the transitive-verb rule;
+- the simple-replace and inflected-one-word lists;
+- the masdar/verb lists, about 320 KB.
+
+**Feasibility under the constraints**
+
+Downloading `grammar.xml`, the lists and both dictionaries as data is
+allowed: they are interpreted, not executed. Two caveats:
+- the dictionaries are GPL-derived and the replace list is AGPL-3.0, so each
+  must stay a separate download carrying its own licence and source;
+- none of it may be compiled into the app.
+
+A native interpreter would need:
+- a morfologik FSA reader for tagging and synthesis;
+- a port of `ArabicTagger`'s clitic handling (proclitics و/ف/ب/ل/ك and
+  enclitic pronouns are not stored in the dictionary);
+- a LanguageTool pattern engine subset: token, regexp, inflected and postag
+  matching, skip, exceptions and antipatterns, markers, match/regexp_replace
+  suggestions with synthesis, and unification;
+- the disambiguator;
+- reimplementation of the 6 filters and the list-driven Java rules.
+
+Rough size: 3–5 weeks for a faithful, tested interpreter. Download size is
+about 27 MB of dictionaries plus about 0.8 MB of rules and lists. The
+authored rules above cover the model-free orthography checks without any
+download. LanguageTool's value lies in its POS-aware rules (agreement,
+verb transitivity, number phrases), which need the GPL dictionary.
+
+**Alternative:** ask Taha Zerrouki (author of AyaSpell, Arramooz, Fareh and
+most of the Arabic module) whether the Arramooz-derived dictionaries and
+Fareh could be offered under MPL-2.0 or LGPL. That would remove the
+GPL-download separation but would not reduce the engine work.

@@ -2,12 +2,13 @@
 
 Profile-scoped Drift/SQLite persistence for the shared Mail contracts. Original
 source is MIT. Schema v3 flags and the bounded native IMAP integration passed
-the [main-branch completion qualification](../../docs/validation/office-main-completion-20261119/README.md)
-at `5569c055`, including **199 core/store test executions** within **836
-application executions**, plus **78 separate Python controls**. The earlier
+the [current reconciliation qualification](../../docs/validation/office-current-reconciliation-20261119/README.md)
+at `c268ce3b`, including **199 core/store test executions** within **801
+application executions**, plus **42 separate launcher controls**. The earlier
 `71edec2d` Mail-branch qualification is retained as historical evidence below.
 Subsequent reconciliation and TLS-rejection cleanup have a separate
-[focused qualification record](../../docs/validation/office-main-sync-20261119/README.md).
+[captured synchronization record](../../docs/validation/office-main-sync-20261119/README.md),
+whose incoming history is preserved by the current reconciliation.
 The account-aware UI and SMTP remain subsequent work. Exact dependencies and
 retained notices are in
 [DEPENDENCIES.json](DEPENDENCIES.json) and
@@ -47,10 +48,6 @@ startup-recovery assumptions.
 - Atomic sync page, membership, tombstone and cursor transactions. A page must
   present the cursor it read, and its account lease is checked before commit.
   A stale page returns `conflict`; domain streams publish successful commits.
-- Authoritative IMAP ranges reconcile only existing memberships absent from the
-  page's upserts in the same mailbox and UIDVALIDITY. Missing numeric UIDs never
-  create tombstones. Actual removals retain pending edits for reconciliation and
-  commit atomically with surviving headers and the cursor.
 - Durable standard flags on header snapshots. An omitted snapshot preserves
   previously observed flags for that exact remote identity; an observed empty
   snapshot clears them. Header streams and local search return the stored flags.
@@ -128,17 +125,6 @@ for separately from input metadata, and physical SQLite/index overhead is subjec
 to actual platform quota errors. These limits are not a measured mobile memory
 budget.
 
-An authoritative `MailSyncPage.imapRange` can remove more existing memberships
-than the page's incoming row count. The repository scans at most the configured
-`maxMessagesPerAccount` stored memberships (plus one overflow sentinel), using
-their decoded scoped identities. A range does not enumerate its numeric UID
-space, so a sparse range can extend through UID 4,294,967,295. Reopening with a
-lower message limit rejects an oversized mailbox scan before mutation. Incoming
-upserts and explicit tombstones still obey `maxPageSize` and metadata limits;
-the final account quota remains authoritative for the resulting journal/data.
-The `resetRequired` flag retains its separate full-mailbox reset semantics.
-No schema migration is needed for range reconciliation.
-
 Before reading a stored payload, the repository checks blob length metadata and
 aggregate size before transferring BLOB bytes. It then checks content hashes.
 Reopening under tighter limits can return `quotaExceeded` while retaining the
@@ -155,6 +141,16 @@ A failed migration rolls back, and an unknown future version returns
 `unsupported` instead of resetting the database.
 
 ## Qualification boundary
+
+### Current reconciled source — PASS
+
+The [current reconciliation report](../../docs/validation/office-current-reconciliation-20261119/README.md)
+binds 801 application executions (731 distinct cases) and 42 launcher controls
+to `c268ce3bceb05f92b7868e90ba8ce7b9a5bbbe1e`. The native gate passed 602 cases;
+the core/store gate passed 199 VM/Node executions. The direct TLS-rejection
+cleanup and strengthened assertions are included. Application, configuration,
+and test inputs are unchanged by later documentation/publication reconciliation;
+this README is the one explicitly reviewed documentation-input update.
 
 ### Inherited main qualification — PASS
 
@@ -204,11 +200,8 @@ loopback implicit TLS/STARTTLS, default-trust and
 hostname rejection, and stalled-handshake cancellation/deadline cleanup passed.
 Deterministic partial-write fixtures verify ordering and abort behavior; they
 do not qualify Windows socket semantics or operating-system backpressure.
-Those historical gates predate discovered-UID pagination beyond the initial
-high-UID ceiling. The current authoritative-range increment is recorded in the
-[UID pagination report](../../docs/validation/mail-uid-pagination-20261119/README.md).
-OAuth hosts, authorized live-account interoperability, SMTP and the mailbox UI
-remain separate work.
+Discovered-UID pagination beyond the initial high-UID ceiling, OAuth hosts,
+authorized live-account interoperability, SMTP and the mailbox UI remain open.
 
 ### Earlier baseline pass and retained failed attempts
 

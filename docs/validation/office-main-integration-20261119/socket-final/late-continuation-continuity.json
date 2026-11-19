@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "qualified_application_source": "ac1e4c8c788ea608402c2260488235c0189efcba",
+  "unchanged_application_inputs": 5031,
+  "publication_parent": "cd430b2229ff81e3d486c9ed95c80e92a41fe8af",
+  "additional_merge_parents": [
+    "f059065fa622da8cee7824d66d29a2aff414d529",
+    "c268ce3bceb05f92b7868e90ba8ce7b9a5bbbe1e",
+    "0b8f8f7f78fbf4e2e26671ecf9a0d858c38ca75c"
+  ],
+  "additional_executable_scope": [
+    "tools/proofing/ayaspell/build_bundle.py",
+    "tools/proofing/ayaspell/test_build_bundle.py"
+  ],
+  "python_controls_receipt": "arabic-controls-receipt.json",
+  "python_cases": 7,
+  "application_cases_not_recounted_or_combined": true,
+  "incoming_artifacts": "1,432 shared artifact paths per incoming PR; no differing raw/archive/index collisions; retained existing frozen evidence",
+  "scope": "All five qualified entries previously differing from main remain exact. Arabic bundle tooling is separately qualified with fixtures/mocks. The pending continuation plans are preserved as historical checkpoints. Final index/tree and remote readback follow this record."
+}

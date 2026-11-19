@@ -1,11 +1,13 @@
 # Mail implementation status — 19 November 2026
 
-The inherited main source and qualification are recorded in the
-[19 November completion report](../../validation/office-main-completion-20261119/README.md).
-Subsequent incoming-ref reconciliation and direct TLS-rejection cleanup are
-tracked in the [synchronization report](../../validation/office-main-sync-20261119/README.md),
-with their own focused gate and source identity. Earlier qualification totals
-remain attached to their original source checkpoints.
+The [synchronization report](../../validation/office-main-sync-20261119/README.md)
+records 1,372 application executions and 90 separate Python controls at
+`0669ac11`, including discovered-UID synchronization, cursor freshness and Arabic
+proofing. Later concurrent main additions have their own reconciliation and
+supplemental checks in that report. Earlier records, including the
+[completion report](../../validation/office-main-completion-20261119/README.md)
+and [separate reconciliation](../../validation/office-current-reconciliation-20261119/README.md),
+retain their original source identities and are not added to these totals.
 Fetch the canonical repository's current refs before resuming.
 The source of product scope remains [README.md](README.md) and the ordered work
 remains [implementation-plan.md](implementation-plan.md).
@@ -139,13 +141,13 @@ persistence remain separate gates.
 
 ## Local verification
 
-### Discovered-UID and cursor-freshness continuation — qualification in progress
+### Discovered-UID and cursor-freshness continuation — PASS at `0669ac11`
 
 The [discovery source report](../../validation/mail-uid-pagination-20261119/README.md)
 records the incoming discovery/range implementation. The
 [complete synchronization report](../../validation/office-main-sync-20261119/README.md)
-adds the completed-sweep cursor freshness fix and fresh combined local
-qualification. Earlier counts below retain their original source identities
+adds the completed-sweep cursor freshness fix and records 1,372 application
+executions plus 90 separate Python controls at `0669ac11`. Earlier counts below retain their original source identities
 and are not evidence for this increment.
 
 
@@ -188,7 +190,7 @@ platforms retain their separate acceptance requirements.
 
 ### Earlier integrated flags and native IMAP qualification — PASS
 
-The [earlier Office integration report](../../validation/office-main-integration-20261119/pre-tls-report.md)
+The [Office integration report](../../validation/office-main-integration-20261119/README.md)
 binds the final **32-suite / 389-case** focused pass to source
 `7d279e084bae438d383630726ad7b0514da77d35`. It covers 80 native transport cases,
 three Node unsupported-entry cases, 244 shared IMAP/POP/SMTP and byte-reader
@@ -410,8 +412,8 @@ harness, not the standalone Office application.
 1. Preserve the completed integrated qualification and its source/runtime
    identities. Rerun affected checks for subsequent source changes and retain
    their raw logs and remote checkpoints separately from earlier evidence.
-2. Continue the remaining M06 work: discovery beyond bounded simple SEARCH,
-   host OAuth/refresh and lifecycle scheduling, other-OS TLS coverage
+2. Continue the remaining M06 work: scalable discovery beyond the bounded
+   simple-SEARCH fallback, host OAuth/refresh and lifecycle scheduling, other-OS TLS coverage
    and authorized disposable-account interoperability. Generic browser
    socket transport remains explicitly unsupported; no automatic retry is added
    without its own bounded policy and reconciliation checks.

@@ -41,13 +41,65 @@ as data, never as executable code) and the resource assessment. First step:
 the AyaSpell Hunspell dictionary under its MPL 1.1 option, built reproducibly by
 `tools/proofing/ayaspell/build_bundle.py` from a pinned LibreOffice packaging,
 then an MPL Hunspell engine adapter, then independently authored Arabic rules.
-The initial Arabic writing rules are registered in the default Word proofing
-service and Studio. They run for Arabic-language text and offer advisory
-suggestions from closed word lists, punctuation/spacing checks, repetition,
-tatweel and mixed-digit checks. They preserve original UTF-16 offsets and
-exclude links, email and closed code spans.
-The Hunspell adapter and in-app Arabic download workflow remain planned;
-no Arabic dictionary is downloaded automatically.
+The initial Arabic writing rules are registered in default Word proofing and
+Studio for Arabic-language text and require no dictionary download. The optional
+Hunspell package is implemented; host registration and the in-app dictionary
+download UI remain open. No Arabic dictionary is downloaded automatically.
+
+`ArabicWritingRulesProvider` (`arabic-writing`) implements the first
+independently authored Arabic rule set. It is part of the app (MIT) and needs
+no download. It runs only for Arabic-script Arabic paragraphs, and its eleven
+rule ids are all reviewable suggestions, never automatic rewrites. Spelling
+rules:
+- hamzat al-qat' on listed words;
+- definite ta marbuta;
+- alif maqsura;
+- detached conjunction waw.
+
+Style rules:
+- final ya written as ى;
+- Arabic punctuation and its spacing;
+- tatweel;
+- repetition of closed-class words;
+- mixed digit systems.
+
+Scope, exclusions and tests are in the
+[roadmap's step 3](roadmaps/arabic-proofing.md). Its
+[LanguageTool assessment](roadmaps/arabic-proofing.md#languagetool-arabic-assessment-v68)
+records why LanguageTool's Arabic rules can only be a separate download: the
+rules are LGPL-2.1, but the POS dictionary is GPL-derived and one list is
+AGPL. Interpreting them natively is a 3–5 week engine task.
+
+## Optional Hunspell spelling (Arabic) — 19 November 2026
+
+[`quds_proofing_hunspell`](../packages/quds_proofing_hunspell/README.md) adds a
+Hunspell spelling provider and dictionary installer for host apps, first
+Arabic (AyaSpell, `cstr/ayaspell-ar-hunspell` at `e9ace7cc…`). Host registration
+and the download UI remain open. The engine
+is the MIT adapter plus unmodified Hunspell 1.7.2 library files under their
+MPL 1.1 option, as a native library in a persistent isolate or a bundled
+WebAssembly module in a Web Worker; only dictionary data is downloaded, pinned
+by SHA-256 and installed atomically, with removal. Words keep harakat and
+tatweel inside their original UTF-16 ranges (the dictionary's `IGNORE`
+disregards them); only Arabic-script words are checked; links/e-mail/code
+spans, personal and ignored words are skipped; suggestions are bounded to the
+first 24 distinct misspellings per request.
+
+The incoming package records macOS arm64 / Dart 3.13.7 evidence: on the
+UD Arabic-PUD test (1,000
+sentences, 15,676 Arabic-script words) the native provider and the WebAssembly
+worker each flag 795 words (5.07%), the identical word multiset to the Hunspell
+1.7.2 CLI `-l`; 0.57 s native without suggestions, 0.10 s for the Wasm batch,
+about 50 ms per suggested word. 18 Dart tests pass with the real library and
+dictionary (no skips), including first suggestions `الى`→`إلى`,
+`المدرسه`→`المدرسة`, `هاذا`→`هذا`, harakat/tatweel offsets, vocabulary,
+installer tamper/changed-download rejection and a live download from the
+pinned revision. iOS arm64 and Android arm64 libraries compile and link;
+Those results belong to the incoming macOS checkpoint. The later
+[Linux continuation](validation/office-main-sync-20261119/main-delta/README.md)
+records a direct-compiler native build and separate source-bound checks. CMake
+packaging, Windows builds and on-device acceptance remain open. No host app
+registers the provider or offers the download yet.
 
 ## Native spelling continuation — 18 November 2026
 
@@ -799,8 +851,10 @@ The dialog offers `de-DE`, `de-AT`, `de-CH`, `en-US`, `en-GB`, `en-CA`, `en-AU`
 and `en-IN`, and preserves other imported language tags. Proofing and
 hyphenation share canonicalization for modern EN/DE Latin-script tags, German
 `1996`, and Unicode locale preferences, while retaining the region's available
-coverage. Unknown variants, non-Latin scripts, historical `1901` German and
-unprovided regions remain unsupported. Changing the document default does not overwrite
+coverage. For EN/DE checking, unknown variants, non-Latin script tags,
+historical `1901` German and unprovided regions remain unsupported. Arabic writing
+rules use the separate Arabic provider described above. Changing the document
+default does not overwrite
 explicit paragraph/run languages. Interface translation is independent of
 proofing language. Imported comment paragraphs now participate in the same
 document style cascade, including inherited language/`noProof` and explicit
@@ -937,8 +991,9 @@ source files. A custom `workerUrl` supports a host mounted under a path prefix.
 For native hosts, use `nativeLibraryPath` or the `QUDS_HARPER_LIBRARY` Dart define
 if the platform loader does not search the packaged library directory.
 
-The base editor's default checking providers are German spelling and writing
-rules. English checking remains an optional provider; automatic English
+The base editor's default checking providers are German spelling, German writing
+rules and Arabic writing rules. Each provider runs only for its supported
+language tags. English checking remains an optional provider; automatic English
 hyphenation is part of the engine. A host can opt into English checking after
 adding the package dependency:
 
@@ -949,6 +1004,7 @@ controller.proofing.configure(
   OfficeProofingService(providers: [
     GermanSpellingProvider(vocabulary: controller.proofing.vocabulary),
     GermanWritingRulesProvider(),
+    ArabicWritingRulesProvider(),
     HarperProofingProvider(
       vocabulary: controller.proofing.vocabulary,
       workerUrl: Uri.base.resolve('proofing/harper_worker.mjs'),

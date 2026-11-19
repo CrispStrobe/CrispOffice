@@ -106,8 +106,8 @@ final class MailTransportLimits {
   /// Numeric gaps do not consume this budget. Protocol byte limits also apply.
   final int maxDiscoveredUids;
 
-  /// Optional legacy numeric UID ceiling. Null (the default) admits the full
-  /// protocol UID space. An explicitly supplied old setting retains its numeric
+  /// Optional legacy numeric UID ceiling. Null (the default) imposes no extra
+  /// numeric ceiling beyond SELECT's UIDNEXT. An old setting retains its numeric
   /// meaning; use [maxDiscoveredUids] to bound discovery by message count.
   final int? maxUidScan;
   final int maxHeaderBytes;

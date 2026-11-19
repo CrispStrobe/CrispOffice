@@ -30,6 +30,16 @@ preserves the exact qualified source and evidence first. Subsequent main
 reconciliation and its checks retain separate identities; these 1,372 passes
 are never relabeled as executions against a later source.
 
+## Concurrent main continuation
+
+The [main reconciliation record](main-reconciliation.md) describes preservation
+of incoming `b655b8a3`, including optional Hunspell, the macOS runner, newer
+Arabic guidance and all incoming evidence. The original cursor and Arabic
+repairs remain byte-identical. Native Hunspell disposal, two stale publisher
+assertions and macOS network/selected-file capabilities receive scoped repairs.
+The separate merged-source qualification is recorded after its source checkpoint
+is frozen; the 1,372 executions below retain their original `0669ac11` identity.
+
 ## Integrated behavior and review fixes
 
 ### Mail synchronization and connection safety
@@ -63,7 +73,9 @@ enabled; rejection tests inspect state before teardown.
 The captured Arabic writing provider (`a4b9fc95`) supplies independently authored
 orthographic, punctuation and style checks for Arabic-language text. It is
 registered in default Word proofing and Studio and keeps original UTF-16
-offsets. The Hunspell adapter and in-app dictionary download remain planned.
+offsets. At this frozen source, the Hunspell adapter and in-app dictionary download
+were still planned. Later main adds the optional package; host registration
+and the download UI remain open.
 
 Review reproduced and repaired decomposed-hamza corruption, matches inside
 mixed-script tokens, detached-waw matches across token boundaries and an

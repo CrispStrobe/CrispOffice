@@ -1,15 +1,18 @@
 # Mail M06 continuation — 19 November 2026
 
-This report preserves the historical Mail-branch checkpoint at `71edec2d`.
-Its implementation descriptions and **631 application executions / 66 Python
-controls** apply to that source. The later inherited-main qualification at
-`5569c055`, with **836 application executions / 78 Python controls**, is recorded
-in the [Office completion report](../office-main-completion-20261119/README.md).
-Subsequent reconciliation and direct TLS-rejection cleanup have their own
-[Office synchronization report](../office-main-sync-20261119/README.md).
-The separate [632-execution integration receipt](../office-main-integration-20261119/README.md)
-remains bound to `ac1e4c8c`. The counts from these different source checkpoints
-are kept separate.
+**Historical Mail-branch qualification.** The 631 application executions /
+508 distinct scenarios and 66 Python controls below qualify `71edec2d`, with
+evidence published at `700e5a35`. The [Office completion report](../office-main-completion-20261119/README.md)
+records 836 application executions and 78 Python controls at `5569c055`.
+Its Socket-compatible TLS implementation supersedes the manual socket
+restriction described in this historical report.
+
+The [632-execution integration record](../office-main-integration-20261119/README.md)
+remains bound to `ac1e4c8c`. The [separate reconciliation](../office-current-reconciliation-20261119/README.md)
+retains its own source and results. The [synchronization report](../office-main-sync-20261119/README.md)
+records 1,372 application executions and 90 separate Python controls at
+`0669ac11`, followed by separate reconciliation of later main additions.
+Counts from different checkpoints remain separate.
 
 ## Historical Mail-branch qualification: PASS on `71edec2d`
 

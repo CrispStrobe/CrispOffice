@@ -12,6 +12,43 @@ not run yet.** This preparation record is not passing product evidence.
 The continuation reconciles current incoming work before replacing the numeric
 UID ceiling with bounded discovery and atomic range reconciliation. The
 [incoming record](incoming/README.md) retains its exact captured references.
+The [preflight refresh](preflight-incoming/README.md) preserves the subsequent
+bounded capture, including concurrent Office reconciliation and AyaSpell work.
+
+## Implemented behavior
+
+The native provider discovers existing UIDs with strict simple SEARCH and pages
+by discovered messages. Large numeric gaps do not consume page slots or create
+synthetic tombstones. A typed `MailImapSyncRange` lets SQLite remove only actual
+cached memberships absent from the confirmed range, in the same mailbox and
+UIDVALIDITY. Pending local edits enter reconciliation with their cached evidence
+retained. Upserts, removals, pending state and the cursor commit atomically under
+the existing cursor comparison and account lease.
+
+Version 2 cursors retain a frozen sweep ceiling and accept saved version 1
+cursors. UIDVALIDITY changes reset membership; newly arriving higher UIDs enter
+the next sweep. Discovery requires exactly one complete valid SEARCH response,
+followed by successful tagged completion. Missing, malformed, duplicate,
+extended or over-budget results cannot authorize a deletion or FETCH. A message
+expunged between SEARCH and FETCH becomes absent; an unexpected fetched UID
+rejects the page.
+
+`maxDiscoveredUids` defaults to 10,000 existing UIDs per remaining-range SEARCH
+and supports a maximum of 100,000. Protocol line/response budgets also apply;
+the default 64 KiB line limit can bind first. This fallback repeats discovery
+for each page and does not implement scalable ESEARCH/PARTIAL. An explicitly
+supplied legacy `maxUidScan` retains its numeric meaning; it is unset by default.
+The normal SELECT-derived sweep can reach UID `0xfffffffe` because UIDNEXT is
+validated as a nonzero uint32. Raw discovery and stored identities admit
+`0xffffffff`; exhausted-generation handling remains the server's responsibility.
+Range reconciliation is bounded by stored account-message limits, independently
+of the smaller fetched-page limit. No schema or dependency change is needed.
+
+The incoming AyaSpell publication fix restricts uploads to verified bundle
+filenames. Both independently authored offline suites are retained under
+distinct filenames, including integrity/readback refusal, exclusion of unrelated
+output files and deterministic local builds. No live publication is performed
+by this continuation or its tests.
 
 ## Planned local gates
 
@@ -26,6 +63,7 @@ queried, awaited, dispatched or used as an acceptance condition.
 | MIME and reader consumers | 6 MIME + 4 UI suites | MIME and saved-message reader regression coverage across changed shared dependencies |
 | Portable Node | 9 suites | Transport configuration and browser unsupported boundary, MIME, portable fork import |
 | Python controls | Existing Mail/shared-runner/restorer controls | Fail-closed event accounting, process cleanup and runtime verification |
+| Incoming AyaSpell controls | Two offline unittest suites | Verified-file publication selection and reproducible bundle/integrity behavior using local fixtures |
 
 The [native plan](native-plan.json) contains 63 suites and explicitly lists strict
 analysis and formatting inputs. The [Node plan](node-plan.json) contains nine
