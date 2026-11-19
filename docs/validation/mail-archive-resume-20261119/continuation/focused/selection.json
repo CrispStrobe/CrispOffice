@@ -1,0 +1,15 @@
+{
+  "analysis_and_format_targets": [
+    "packages/quds_office_editor/example/lib/studio_downloads_manager.dart",
+    "packages/quds_office_editor/example/lib/studio_spacy_host_native.dart",
+    "packages/quds_office_editor/example/test/studio_downloads_manager_test.dart",
+    "packages/quds_office_editor/example/test/studio_spacy_setup_test.dart"
+  ],
+  "original_source_input_count": 4493,
+  "source_head": "9b8853667b68c7bebff050e52445b47ea0bbd188",
+  "tests": [
+    "packages/quds_office_editor/example/test/studio_downloads_manager_test.dart",
+    "packages/quds_office_editor/example/test/studio_spacy_setup_test.dart",
+    "packages/quds_office_editor/example/test/studio_linguistic_analysis_test.dart"
+  ]
+}

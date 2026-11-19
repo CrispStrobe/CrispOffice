@@ -2,7 +2,7 @@
   "branch": "codex/mail-archive-resume-20261119",
   "pull_request": 212,
   "through_source_freeze": "71053bf61521e093903d55cba890ef4beee039e1",
-  "checkpoint_count": 17,
+  "checkpoint_count": 20,
   "checkpoints": [
     {
       "checkpoint": 1,
@@ -200,6 +200,40 @@
       "message": "Reconcile latest main labels while preserving accepted restore-resume source [skip ci]",
       "publication": "non-forced GitHub ref update with exact expected previous head",
       "in_final_source_history": true
+    },
+    {
+      "checkpoint": 18,
+      "commit": "9fa5454cd81221d53501c89ed45e328bd3691227",
+      "tree": "160bced600bff2e306a83a5dd57eca766bbe7677",
+      "parents": [
+        "d3e90d0fc0a75e2abfc3efb52e495c032e20683f"
+      ],
+      "message": "Preserve independent replay of published restore-resume acceptance [skip ci]",
+      "publication": "non-forced GitHub ref update with exact expected previous head",
+      "in_final_source_history": true
+    },
+    {
+      "checkpoint": 19,
+      "commit": "2cb7ed411afba8e81e19c28457ac632de78918bc",
+      "tree": "21ae963180ce06c93db962926e4548f6c04f328c",
+      "parents": [
+        "9fa5454cd81221d53501c89ed45e328bd3691227"
+      ],
+      "message": "Preserve incoming test formatting before focused integration acceptance [skip ci]",
+      "publication": "non-forced GitHub ref update with exact expected previous head",
+      "in_final_source_history": true
+    },
+    {
+      "checkpoint": 20,
+      "commit": "9b8853667b68c7bebff050e52445b47ea0bbd188",
+      "tree": "57d90e137f5b6c452a809080d4067f53c8209f09",
+      "parents": [
+        "2cb7ed411afba8e81e19c28457ac632de78918bc",
+        "088d80905e3f76542dd9813e96584cd5c61454ff"
+      ],
+      "message": "Integrate latest main first-analysis verification before final local acceptance [skip ci]",
+      "publication": "non-forced GitHub ref update with exact expected previous head",
+      "in_final_source_history": true
     }
   ],
   "publication_method": "GitHub Git Data API; exact local/remote tree match before reference update; local checkout fetched and aligned after publication",
@@ -211,6 +245,6 @@
   ],
   "later_checkpoints": "Acceptance/audit/publication-only descendants are recorded in Git history and the final PR publication receipt.",
   "product_and_test_freeze": "be93371b680d8e39365a6b356fb727bda81dbed1",
-  "continuation_source_freeze": "d3e90d0fc0a75e2abfc3efb52e495c032e20683f",
-  "continuation_note": "The original accepted source is retained. Checkpoint 17 reconciles main at 9ceb994d8edce3989228f1244cda90ecc9884931 with exactly three explicitly reviewed product/test paths and requires separate focused local qualification. Later evidence-only checkpoints are recorded by Git ancestry and final publication."
+  "continuation_source_freeze": "9b8853667b68c7bebff050e52445b47ea0bbd188",
+  "continuation_note": "The original accepted source and evidence are retained. Checkpoints 17 and 20 reconcile latest main; the final source has exactly four reviewed product/test paths changed from the historical acceptance and passed a separate 50-case local gate. Later evidence-only checkpoints are recorded in Git ancestry and the PR publication receipt."
 }

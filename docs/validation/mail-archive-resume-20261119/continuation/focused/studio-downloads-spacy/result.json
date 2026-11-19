@@ -1,0 +1,32 @@
+{
+  "accepted": true,
+  "argv": [
+    "/workspace/scratch/f6338d3de284/runtime/bin/flutter",
+    "test",
+    "--no-pub",
+    "--concurrency=1",
+    "--reporter=json",
+    "test/studio_downloads_manager_test.dart",
+    "test/studio_spacy_setup_test.dart",
+    "test/studio_linguistic_analysis_test.dart"
+  ],
+  "cwd": "/workspace/scratch/f6338d3de284/quds_office_suite/packages/quds_office_editor/example",
+  "elapsed_seconds": 30.291,
+  "exit_code": 0,
+  "expected_test_files": [
+    "packages/quds_office_editor/example/test/studio_downloads_manager_test.dart",
+    "packages/quds_office_editor/example/test/studio_spacy_setup_test.dart",
+    "packages/quds_office_editor/example/test/studio_linguistic_analysis_test.dart"
+  ],
+  "finished_at_utc": "2026-11-19T20:06:32.719878+00:00",
+  "name": "studio-downloads-spacy",
+  "started_at_utc": "2026-11-19T20:06:02.429162+00:00",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "3b29f402094a74dbff889b6a3bb82b4d7d9fb6ba8c2cdf6f2a9a004c08decade",
+  "test_cases_sha256": "256b07c59d56493f0e2c03673dbe105ed684bd422b308aa856403208544c7ff7",
+  "test_counts": {
+    "failed": 0,
+    "passed": 50,
+    "skipped": 0
+  }
+}

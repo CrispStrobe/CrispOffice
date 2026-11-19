@@ -41,26 +41,29 @@ product commands. Image identity was checked; the original visual judgment was
 not repeated. Superseded, interrupted and development attempts do not contribute
 accepted counts. GitHub Actions were not used.
 
-## Latest-main resolution and merge recommendation
+## Initial PR #214 resolution review
 
 Main `9ceb994d8edce3989228f1244cda90ecc9884931` includes PR #214 after the accepted
 baseline. Its native NER helper is behaviorally equivalent to the already
 accepted `_nerStatus()` implementation. The reviewed continuation preserves the
 accepted native host and all five existing download-size/NER regression cases,
 then incorporates main's model-only label and two additional NER assertions.
-The observed product/test difference from the acceptance baseline is exactly
-three paths:
+At that initial continuation checkpoint, the observed product/test difference
+from the acceptance baseline was exactly three paths:
 
 - `packages/quds_office_editor/example/lib/studio_downloads_manager.dart`
 - `packages/quds_office_editor/example/test/studio_downloads_manager_test.dart`
 - `packages/quds_office_editor/example/test/studio_spacy_setup_test.dart`
 
-No historical acceptance blocker was found. Before merging, bind focused tests,
-strict analysis and formatting for these exact changed inputs to the new
-candidate. Retain the original acceptance/auditor unchanged and record this
-additional qualification separately. The final report should distinguish the
-2,243 historical accepted executions from new scoped executions; adding them
-does not establish a new count of unique cases. Confirm that the published
-candidate preserves both the prior branch and latest main as ancestors, then
-verify the fetched merged tree against that candidate. Update the PR's initial
-draft description to reflect the completed result.
+The subsequent PR #215 integration additionally changes the native host and is
+covered by the separate focused qualification and independent audit at final
+source `9b8853667b68c7bebff050e52445b47ea0bbd188`. That final audit passed 50
+executions across three complete test files and four commands, with all 4,493
+source, 9,298 dependency and 695 declared runtime input hashes stable and
+reverified. It supersedes the initial three-path review as the final integration
+scope while preserving this historical acceptance replay unchanged.
+
+No historical acceptance blocker was found. The final report should distinguish
+the 2,243 historical accepted executions from the 50 fresh scoped executions;
+adding them does not establish a new count of unique cases. Confirm the
+published candidate's ancestry and verify the fetched merged tree against it.

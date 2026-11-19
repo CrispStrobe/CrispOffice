@@ -1,0 +1,18 @@
+{
+  "argv": [
+    "git",
+    "diff",
+    "--check",
+    "b2c05a0afa0ae606b061b13d5e50937c2a8eb1df",
+    "9b8853667b68c7bebff050e52445b47ea0bbd188",
+    "--",
+    "packages/quds_office_editor/example/lib/studio_downloads_manager.dart",
+    "packages/quds_office_editor/example/lib/studio_spacy_host_native.dart",
+    "packages/quds_office_editor/example/test/studio_downloads_manager_test.dart",
+    "packages/quds_office_editor/example/test/studio_spacy_setup_test.dart"
+  ],
+  "cwd": "/workspace/scratch/f6338d3de284/quds_office_suite",
+  "expected_test_files": [],
+  "name": "whitespace",
+  "started_at_utc": "2026-11-19T20:06:02.177446+00:00"
+}

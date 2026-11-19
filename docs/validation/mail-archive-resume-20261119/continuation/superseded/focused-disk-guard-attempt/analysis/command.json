@@ -1,0 +1,16 @@
+{
+  "argv": [
+    "/workspace/scratch/f6338d3de284/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+    "analyze",
+    "--fatal-infos",
+    "--fatal-warnings",
+    "packages/quds_office_editor/example/lib/studio_downloads_manager.dart",
+    "packages/quds_office_editor/example/lib/studio_spacy_host_native.dart",
+    "packages/quds_office_editor/example/test/studio_downloads_manager_test.dart",
+    "packages/quds_office_editor/example/test/studio_spacy_setup_test.dart"
+  ],
+  "cwd": "/workspace/scratch/f6338d3de284/quds_office_suite",
+  "expected_test_files": [],
+  "name": "analysis",
+  "started_at_utc": "2026-11-19T20:01:04.954782+00:00"
+}

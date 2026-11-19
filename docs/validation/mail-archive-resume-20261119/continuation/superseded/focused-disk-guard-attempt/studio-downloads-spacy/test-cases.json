@@ -1,0 +1,53 @@
+{
+  "accepted": false,
+  "cases": [
+    {
+      "file": "packages/quds_office_editor/example/test/studio_downloads_manager_test.dart",
+      "name": "English sample language survives DOCX export and import",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "file": "packages/quds_office_editor/example/test/studio_downloads_manager_test.dart",
+      "name": "workspace language change opens support review before any download",
+      "platform": "vm",
+      "result": "error",
+      "skipped": false
+    }
+  ],
+  "done_events": [],
+  "duplicate_case_keys": 0,
+  "error_events": [
+    {
+      "error": "Bad state: Cannot close sink while adding stream.",
+      "isFailure": false,
+      "stackTrace": "package:stream_channel/src/guarantee_channel.dart 180:7      _GuaranteeSink.close\npackage:flutter_tools/src/test/flutter_platform.dart 765:43  FlutterPlatform._startTest\n",
+      "testID": 1,
+      "time": 22492,
+      "type": "error"
+    }
+  ],
+  "expected_files": [
+    "packages/quds_office_editor/example/test/studio_downloads_manager_test.dart",
+    "packages/quds_office_editor/example/test/studio_spacy_setup_test.dart"
+  ],
+  "failed": 1,
+  "hidden_failures": [
+    {
+      "file": "packages/quds_office_editor/example/test/studio_downloads_manager_test.dart",
+      "name": "loading /workspace/scratch/f6338d3de284/quds_office_suite/packages/quds_office_editor/example/test/studio_downloads_manager_test.dart",
+      "platform": "vm",
+      "result": "error",
+      "skipped": false
+    }
+  ],
+  "incomplete": [],
+  "missing_files": [
+    "packages/quds_office_editor/example/test/studio_spacy_setup_test.dart"
+  ],
+  "non_json_lines": 0,
+  "passed": 1,
+  "skipped": 0,
+  "unexpected_files": []
+}

@@ -7,13 +7,16 @@ provenance. Full source-verification reruns remain available.
 
 ## Continuation and current merge status
 
-Publication resumed from `b2c05a0afa0ae606b061b13d5e50937c2a8eb1df` after
-PR #214 advanced main to `9ceb994d8edce3989228f1244cda90ecc9884931`. Its
-bundled-model labels and assertions are being integrated with the accepted
-mail implementation. The [continuation record](continuation/README.md)
-records the exact three-file source/test delta, fresh verification of the
-saved acceptance, and the additional local qualification required for merge.
-The original results below retain their original source binding.
+Publication resumed from `b2c05a0afa0ae606b061b13d5e50937c2a8eb1df` and
+integrated main through `088d80905e3f76542dd9813e96584cd5c61454ff`, including
+PR #214's bundled-model labels and PR #215's first-analysis verification.
+The final source `9b8853667b68c7bebff050e52445b47ea0bbd188` passed a fresh
+**50-case, three-file, four-command gate**, with zero failures/skips and an
+independent current-input audit. The [continuation record](continuation/README.md)
+records the exact four-file source/test delta, recovered full acceptance,
+227-ref reconciliation, and final publication verification. Mail source/tests
+remain unchanged. The original 2,243 executions below retain their original
+source binding and are not added to the overlapping continuation counts.
 
 ## Original complete acceptance and publication
 

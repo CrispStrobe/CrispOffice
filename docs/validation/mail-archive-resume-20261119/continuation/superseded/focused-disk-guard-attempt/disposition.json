@@ -1,0 +1,6 @@
+{
+  "status": "superseded-interrupted",
+  "accepted_test_executions": 0,
+  "reason": "The150MiB free-space guard stopped the concurrent Flutter worker command after41.828s, well before the600s time limit. Preserve raw events; retry the same two files with concurrency1 on the next reconciled source.",
+  "product_changes_for_attempt": false
+}

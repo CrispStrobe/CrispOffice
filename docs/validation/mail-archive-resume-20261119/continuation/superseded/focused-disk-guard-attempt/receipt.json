@@ -1,0 +1,133 @@
+{
+  "analysis_and_format_targets": [
+    "packages/quds_office_editor/example/lib/studio_downloads_manager.dart",
+    "packages/quds_office_editor/example/lib/studio_spacy_host_native.dart",
+    "packages/quds_office_editor/example/test/studio_downloads_manager_test.dart",
+    "packages/quds_office_editor/example/test/studio_spacy_setup_test.dart"
+  ],
+  "dependency_resolution_during_validation": false,
+  "differences_from_original_accepted_source": [
+    "packages/quds_office_editor/example/lib/studio_downloads_manager.dart",
+    "packages/quds_office_editor/example/test/studio_downloads_manager_test.dart",
+    "packages/quds_office_editor/example/test/studio_spacy_setup_test.dart"
+  ],
+  "error": "RuntimeError('Command did not pass: studio-downloads-spacy')",
+  "event_parser_sha256": "299ce6d8fffae555e9a0381903815156fd7d416046e1dbd66c1a2e4bb344a6a5",
+  "execution_head": "2cb7ed411afba8e81e19c28457ac632de78918bc",
+  "execution_tree": "21ae963180ce06c93db962926e4548f6c04f328c",
+  "finished_at_utc": "2026-11-19T20:02:00.802248+00:00",
+  "free_bytes": 514887680,
+  "github_actions_used": false,
+  "prior_acceptance_counted_again": false,
+  "runner_sha256": "c806b839c507612258a16ca4eca05a8d013e516586cfbbf3279fc644960007f7",
+  "schema": 1,
+  "scope": "Incremental Linux Flutter widget/fixture qualification of bundled language download labels, sizing and NER status after reconciling PR214. No installed macOS/native-model/network interoperability claim. Original 2243-case acceptance is retained separately.",
+  "selected_test_files": [
+    "packages/quds_office_editor/example/test/studio_downloads_manager_test.dart",
+    "packages/quds_office_editor/example/test/studio_spacy_setup_test.dart"
+  ],
+  "source_head": "2cb7ed411afba8e81e19c28457ac632de78918bc",
+  "source_tree": "21ae963180ce06c93db962926e4548f6c04f328c",
+  "started_at_utc": "2026-11-19T20:01:00.054211+00:00",
+  "status": "failed",
+  "steps": [
+    {
+      "accepted": true,
+      "argv": [
+        "/workspace/scratch/f6338d3de284/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+        "format",
+        "--output=none",
+        "--set-exit-if-changed",
+        "packages/quds_office_editor/example/lib/studio_downloads_manager.dart",
+        "packages/quds_office_editor/example/lib/studio_spacy_host_native.dart",
+        "packages/quds_office_editor/example/test/studio_downloads_manager_test.dart",
+        "packages/quds_office_editor/example/test/studio_spacy_setup_test.dart"
+      ],
+      "cwd": "/workspace/scratch/f6338d3de284/quds_office_suite",
+      "elapsed_seconds": 0.251,
+      "exit_code": 0,
+      "expected_test_files": [],
+      "finished_at_utc": "2026-11-19T20:01:04.954262+00:00",
+      "name": "format",
+      "started_at_utc": "2026-11-19T20:01:04.702907+00:00",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "82f9b6d44abe9019c4ef72d3e300c473ba76393f81efdf7076ee7f7a648a23fd"
+    },
+    {
+      "accepted": true,
+      "argv": [
+        "/workspace/scratch/f6338d3de284/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "--fatal-warnings",
+        "packages/quds_office_editor/example/lib/studio_downloads_manager.dart",
+        "packages/quds_office_editor/example/lib/studio_spacy_host_native.dart",
+        "packages/quds_office_editor/example/test/studio_downloads_manager_test.dart",
+        "packages/quds_office_editor/example/test/studio_spacy_setup_test.dart"
+      ],
+      "cwd": "/workspace/scratch/f6338d3de284/quds_office_suite",
+      "elapsed_seconds": 13.765,
+      "exit_code": 0,
+      "expected_test_files": [],
+      "finished_at_utc": "2026-11-19T20:01:18.720294+00:00",
+      "name": "analysis",
+      "started_at_utc": "2026-11-19T20:01:04.954782+00:00",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "b3f49218b6895a83d257ab192111cd3236f729aefcece24184d6f88853cbe599"
+    },
+    {
+      "accepted": true,
+      "argv": [
+        "git",
+        "diff",
+        "--check",
+        "b2c05a0afa0ae606b061b13d5e50937c2a8eb1df",
+        "2cb7ed411afba8e81e19c28457ac632de78918bc",
+        "--",
+        "packages/quds_office_editor/example/lib/studio_downloads_manager.dart",
+        "packages/quds_office_editor/example/lib/studio_spacy_host_native.dart",
+        "packages/quds_office_editor/example/test/studio_downloads_manager_test.dart",
+        "packages/quds_office_editor/example/test/studio_spacy_setup_test.dart"
+      ],
+      "cwd": "/workspace/scratch/f6338d3de284/quds_office_suite",
+      "elapsed_seconds": 0.251,
+      "exit_code": 0,
+      "expected_test_files": [],
+      "finished_at_utc": "2026-11-19T20:01:18.972259+00:00",
+      "name": "whitespace",
+      "started_at_utc": "2026-11-19T20:01:18.721313+00:00",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "accepted": false,
+      "argv": [
+        "/workspace/scratch/f6338d3de284/runtime/bin/flutter",
+        "test",
+        "--no-pub",
+        "--reporter=json",
+        "test/studio_downloads_manager_test.dart",
+        "test/studio_spacy_setup_test.dart"
+      ],
+      "cwd": "/workspace/scratch/f6338d3de284/quds_office_suite/packages/quds_office_editor/example",
+      "elapsed_seconds": 41.828,
+      "exit_code": 0,
+      "expected_test_files": [
+        "packages/quds_office_editor/example/test/studio_downloads_manager_test.dart",
+        "packages/quds_office_editor/example/test/studio_spacy_setup_test.dart"
+      ],
+      "finished_at_utc": "2026-11-19T20:02:00.800868+00:00",
+      "interrupted_reason": "disk-reserve-or-time-budget",
+      "name": "studio-downloads-spacy",
+      "started_at_utc": "2026-11-19T20:01:18.972923+00:00",
+      "stderr_sha256": "49acae29a256c1e8c446b81072671908758ec4abe8a814dcabe66bed937dea8e",
+      "stdout_sha256": "052f21aa5a195086166f0645e9e4dd59c1660d2c5cec9a09d51c1ae882f1e4c1",
+      "test_cases_sha256": "acc255025e64c725cca34c332a1e8c4aac5c1eb20a1d4f42a94110cbe58843c6",
+      "test_counts": {
+        "failed": 1,
+        "passed": 1,
+        "skipped": 0
+      }
+    }
+  ]
+}
