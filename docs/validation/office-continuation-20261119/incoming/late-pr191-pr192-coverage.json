@@ -1,0 +1,455 @@
+{
+  "recorded_at_utc": "2026-11-19T11:24:43.818761+00:00",
+  "scope": "Read-only late audit of two exact observed PR heads, separate from initial 436-ref bounded capture. Recommendations precede parent-managed ancestry merges; not final acceptance.",
+  "observation": {
+    "observed_at_utc": "2026-11-19T11:17:29.369094+00:00",
+    "scope": "Late concurrent PR observation, separate from initial 436-ref bounded capture. Review only; no source changes or CI queries.",
+    "initial_main": "b070e228a749e22cc8ce2098029a76ab5fb8eccb",
+    "local_head": "2e6bc30a87125f3209ce4c58208b3f7bf1d84dd8",
+    "pull_requests": [
+      {
+        "number": 191,
+        "branch": "codex/office-mail-continuation-20261119",
+        "head": "3119a4598e61f061e7b7633ea4a352d841332b9e"
+      },
+      {
+        "number": 192,
+        "branch": "codex/office-resume-main-20261119",
+        "head": "409258f91484039d771d1fe56f097bef6f2d27ea"
+      }
+    ]
+  },
+  "local_head_at_review": "e7a2cfded17ce2efd22b9a52f5e5bd7ef4cd248f",
+  "fetch": "git fetch --no-write-fetch-head origin 3119a4598e61f061e7b7633ea4a352d841332b9e 409258f91484039d771d1fe56f097bef6f2d27ea",
+  "github_actions_status_check_queries": 0,
+  "source_mutations_by_this_audit": [],
+  "material_unique_source": [
+    "PR192 Unicode token boundaries and regression controls",
+    "Both incoming heads correct live inbox noMessage prompts",
+    "PR192 compatible immediate cancellation callback guard and two stronger test assertions"
+  ],
+  "recommendation": "Merge both exact heads for ancestry/doc evidence using parent-owned merge resolution; preserve stronger current Mail, saved reader, compact footer and Word semantics; apply only the compatible additions called out per path. Do not move the original bounded ref audit forward or follow further remote advances during this gate.",
+  "per_path": [
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail.dart",
+      "decision": "retain current implementation",
+      "reason": "Both incoming heads have the same generation-aware Mail implementation. Current additionally aborts both owned low-level transports independently of graceful disconnect, re-closes stale completions, guards pending ownership, captures/discovery-tests settings, excludes a non-selectable INBOX, and exposes the restored saved reader. The 17 complementary incoming cases pass against current source, including reader replacement without post-frame retirement."
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_saved_message.dart",
+      "decision": "retain current implementation and adapted tests",
+      "reason": "Current separate saved-message dialog preserves asynchronous picker/read disposal and error handling. Incoming retains stale saved-reader tests targeting the live StudioMailDialog; equivalent saved cases are already covered by the current 16 saved/workspace executions."
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_lifecycle_test.dart",
+      "decision": "retain current implementation and adapted tests",
+      "reason": "Current separate saved-message dialog preserves asynchronous picker/read disposal and error handling. Incoming retains stale saved-reader tests targeting the live StudioMailDialog; equivalent saved cases are already covered by the current 16 saved/workspace executions."
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_saved_message_test.dart",
+      "decision": "retain current implementation and adapted tests",
+      "reason": "Current separate saved-message dialog preserves asynchronous picker/read disposal and error handling. Incoming retains stale saved-reader tests targeting the live StudioMailDialog; equivalent saved cases are already covered by the current 16 saved/workspace executions."
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_strings.dart",
+      "decision": "take incoming noMessage prompts",
+      "reason": "The live inbox blank reader should say Select a message to read it here (and equivalent German/Arabic), as both incoming heads do. Current saved reader does not use noMessage; the earlier Open an .eml prompt is stale for the live reader."
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/suite_workspace.dart",
+      "decision": "retain current compact-footer implementation and additional tests",
+      "reason": "PR191 workspace matches current. PR192 uses wider text-only footer actions and lacks the compact icon/tooltip variant. Current additionally tests EN/DE/AR at 390px and 820px with text scale 1.4; preserve truthful status and reachable actions."
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_review_status_test.dart",
+      "decision": "retain current compact-footer implementation and additional tests",
+      "reason": "PR191 workspace matches current. PR192 uses wider text-only footer actions and lacks the compact icon/tooltip variant. Current additionally tests EN/DE/AR at 390px and 820px with text scale 1.4; preserve truthful status and reachable actions."
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_test.dart",
+      "decision": "retain current saved/workspace tests and add adapted live supplemental suite",
+      "reason": "Incoming replaces this historical saved-message test path with 26 live tests. Preserve current adapted saved tests here and add 17 distinct incoming cases in studio_live_mail_continuation_test.dart; nine incoming cases are already covered by the stronger session suite."
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_saved_mail_test.dart",
+      "decision": "do not reintroduce stale duplicate suite",
+      "reason": "PR191 copies historical saved-reader tests to this new name but still opens StudioMailDialog. Their six cases are represented by current studio_mail_test.dart adapted to StudioSavedMessageDialog, plus stronger saved-message lifecycle/error tests."
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_session_test.dart",
+      "decision": "retain current 14 session tests",
+      "reason": "Includes transport abort assertions, discovery timing and captured credentials, non-selectable setup, generation isolation, and stale draft not sent, beyond incoming coverage."
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+      "decision": "retain current tested fixture",
+      "reason": "Incoming only re-adds enableStudioSetting(Show notes) before current-field integration. Current fixture already has Notes capability and was corrected/qualified in the recovered host tests; no new behavioral assertion in incoming."
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/widget_test.dart",
+      "decision": "retain current formatting/test content",
+      "reason": "Difference from PR191 is formatter-only; PR192 matches current."
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+      "decision": "retain current active-slot and same-value routing repair",
+      "reason": "PR191 includes earlier active-slot implementation but lacks the selected-fragment no-op/split repair. PR192 retains older both-slot UI semantics and does not have the activeLanguageOnly API/helper. Preserve splitProofingRange, script-aware coalescing, inherited-slot handling, sparse lang:bidi metadata and current history/save regression tests."
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_complex_script_proofing_controls_test.dart",
+      "decision": "retain current active-slot and same-value routing repair",
+      "reason": "PR191 includes earlier active-slot implementation but lacks the selected-fragment no-op/split repair. PR192 retains older both-slot UI semantics and does not have the activeLanguageOnly API/helper. Preserve splitProofingRange, script-aware coalescing, inherited-slot handling, sparse lang:bidi metadata and current history/save regression tests."
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+      "decision": "retain current active-slot and same-value routing repair",
+      "reason": "PR191 includes earlier active-slot implementation but lacks the selected-fragment no-op/split repair. PR192 retains older both-slot UI semantics and does not have the activeLanguageOnly API/helper. Preserve splitProofingRange, script-aware coalescing, inherited-slot handling, sparse lang:bidi metadata and current history/save regression tests."
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/model/wml_run_edit.dart",
+      "decision": "retain current active-slot and same-value routing repair",
+      "reason": "PR191 includes earlier active-slot implementation but lacks the selected-fragment no-op/split repair. PR192 retains older both-slot UI semantics and does not have the activeLanguageOnly API/helper. Preserve splitProofingRange, script-aware coalescing, inherited-slot handling, sparse lang:bidi metadata and current history/save regression tests."
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/model/word_proofing_language.dart",
+      "decision": "retain current active-slot and same-value routing repair",
+      "reason": "PR191 includes earlier active-slot implementation but lacks the selected-fragment no-op/split repair. PR192 retains older both-slot UI semantics and does not have the activeLanguageOnly API/helper. Preserve splitProofingRange, script-aware coalescing, inherited-slot handling, sparse lang:bidi metadata and current history/save regression tests."
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+      "decision": "retain current active-slot and same-value routing repair",
+      "reason": "PR191 includes earlier active-slot implementation but lacks the selected-fragment no-op/split repair. PR192 retains older both-slot UI semantics and does not have the activeLanguageOnly API/helper. Preserve splitProofingRange, script-aware coalescing, inherited-slot handling, sparse lang:bidi metadata and current history/save regression tests."
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/word_style_cascade.dart",
+      "decision": "retain current active-slot and same-value routing repair",
+      "reason": "PR191 includes earlier active-slot implementation but lacks the selected-fragment no-op/split repair. PR192 retains older both-slot UI semantics and does not have the activeLanguageOnly API/helper. Preserve splitProofingRange, script-aware coalescing, inherited-slot handling, sparse lang:bidi metadata and current history/save regression tests."
+    },
+    {
+      "path": "packages/quds_office_engine/test/wml_run_edit_test.dart",
+      "decision": "retain current active-slot and same-value routing repair",
+      "reason": "PR191 includes earlier active-slot implementation but lacks the selected-fragment no-op/split repair. PR192 retains older both-slot UI semantics and does not have the activeLanguageOnly API/helper. Preserve splitProofingRange, script-aware coalescing, inherited-slot handling, sparse lang:bidi metadata and current history/save regression tests."
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/proofing/arabic_extended_rules.dart",
+      "decision": "merge PR192 Unicode token boundaries into current hamza-aware union",
+      "reason": "PR191 differs only by comment/format. PR192 adds full Unicode word continuation boundaries for phrase/date/year/double-future matching and 11 controls. The exact incoming group produces nine failures and two passes on current source. Prepared unique-boundaries.patch preserves _comparisonMark and both existing combining-mark families."
+    },
+    {
+      "path": "packages/quds_office_engine/test/proofing/arabic_extended_rules_test.dart",
+      "decision": "merge PR192 Unicode token boundaries into current hamza-aware union",
+      "reason": "PR191 differs only by comment/format. PR192 adds full Unicode word continuation boundaries for phrase/date/year/double-future matching and 11 controls. The exact incoming group produces nine failures and two passes on current source. Prepared unique-boundaries.patch preserves _comparisonMark and both existing combining-mark families."
+    },
+    {
+      "path": "packages/quds_proofing_hunspell/lib/src/hunspell_installer_io.dart",
+      "decision": "take three compatible PR192 refinements",
+      "reason": "Add immediate cancellation throw after onBytes callback, add successful small pinned-bundle install/verify/removal case, and assert that final-progress cancellation actually reached the final callback. Current already aborts listener/stream and checks after sink close; this is a tighter compatible check, not a replacement architecture."
+    },
+    {
+      "path": "packages/quds_proofing_hunspell/test/hunspell_installer_cancellation_test.dart",
+      "decision": "take three compatible PR192 refinements",
+      "reason": "Add immediate cancellation throw after onBytes callback, add successful small pinned-bundle install/verify/removal case, and assert that final-progress cancellation actually reached the final callback. Current already aborts listener/stream and checks after sink close; this is a tighter compatible check, not a replacement architecture."
+    },
+    {
+      "path": "packages/quds_proofing_hunspell/test/hunspell_installer_cancellation_incoming_test.dart",
+      "decision": "retain current recovered additional suite",
+      "reason": "Present in current/PR191 and absent in PR192; do not drop this existing separate historical cancellation coverage."
+    },
+    {
+      "path": "tools/proofing/ayaspell/build_bundle.py",
+      "decision": "retain current wording and publication behavior",
+      "reason": "PR192 only makes generated README description more explicit about optional adapter/dialog/provider and adjusts string assertions. No unique code behavior; current wording still describes explicit optional workflow and required packaged engines. Keep existing publication allowlist and all stronger tests."
+    },
+    {
+      "path": "tools/proofing/ayaspell/test_build_bundle.py",
+      "decision": "retain current wording and publication behavior",
+      "reason": "PR192 only makes generated README description more explicit about optional adapter/dialog/provider and adjusts string assertions. No unique code behavior; current wording still describes explicit optional workflow and required packaged engines. Keep existing publication allowlist and all stronger tests."
+    },
+    {
+      "path": "tools/proofing/ayaspell/test_build_bundle_incoming.py",
+      "decision": "retain current wording and publication behavior",
+      "reason": "PR192 only makes generated README description more explicit about optional adapter/dialog/provider and adjusts string assertions. No unique code behavior; current wording still describes explicit optional workflow and required packaged engines. Keep existing publication allowlist and all stronger tests."
+    }
+  ],
+  "supplemental_mail_coverage": [
+    {
+      "incoming": "secure manual setup/disconnect",
+      "cases": 1,
+      "action": "add",
+      "supplemental_cases": 1
+    },
+    {
+      "incoming": "close during connect/list/fetch, late success/error",
+      "cases": 6,
+      "action": "add five; existing session test covers connect success with both aborts",
+      "supplemental_cases": 5
+    },
+    {
+      "incoming": "connect/list/fetch failure allows fresh retry",
+      "cases": 3,
+      "action": "add all; existing failure cleanup tests do not assert a successful retry",
+      "supplemental_cases": 3
+    },
+    {
+      "incoming": "no selectable mailbox",
+      "cases": 1,
+      "action": "covered by session no-selectable setup test",
+      "supplemental_cases": 0
+    },
+    {
+      "incoming": "message replacement/disposal and failed-read preservation",
+      "cases": 1,
+      "action": "add",
+      "supplemental_cases": 1
+    },
+    {
+      "incoming": "stale message read success/error after reconnect",
+      "cases": 2,
+      "action": "add error case; session test covers success",
+      "supplemental_cases": 1
+    },
+    {
+      "incoming": "stale select/fetch success/error after disconnect",
+      "cases": 4,
+      "action": "add select error; session tests cover select success and fetch success/error with a replacement session",
+      "supplemental_cases": 1
+    },
+    {
+      "incoming": "active mailbox failure clears prior folder rows",
+      "cases": 1,
+      "action": "add",
+      "supplemental_cases": 1
+    },
+    {
+      "incoming": "compose MIME payload and send success/failure feedback",
+      "cases": 1,
+      "action": "add",
+      "supplemental_cases": 1
+    },
+    {
+      "incoming": "stale send success/error",
+      "cases": 2,
+      "action": "add success; session test covers error against replacement session",
+      "supplemental_cases": 1
+    },
+    {
+      "incoming": "empty sender search",
+      "cases": 1,
+      "action": "covered by session empty-sender search",
+      "supplemental_cases": 0
+    },
+    {
+      "incoming": "cleanup failure on disconnect/close",
+      "cases": 2,
+      "action": "add close; session disconnect test also forces both abort failures",
+      "supplemental_cases": 1
+    },
+    {
+      "incoming": "localized German live Mail controls and prompt",
+      "cases": 1,
+      "action": "add",
+      "supplemental_cases": 1
+    }
+  ],
+  "supplemental_mail_result": {
+    "executed": 17,
+    "passed": 17,
+    "failed": 0,
+    "skipped": 0,
+    "source": "studio_live_mail_continuation_test.dart",
+    "raw": "late-mail-supplemental.jsonl",
+    "diagnostics": "late-mail-supplemental.stderr",
+    "kind": "development authoring verification, not frozen acceptance"
+  },
+  "arabic_red_result": {
+    "executed": 11,
+    "passed": 2,
+    "failed": 9,
+    "skipped": 0,
+    "source": "late-pr192-arabic/incoming_arabic_extended_rules_test.dart",
+    "raw": "late-pr192-arabic/before-direct.jsonl",
+    "diagnostics": "late-pr192-arabic/before-direct.stderr",
+    "patch": "late-pr192-arabic/unique-boundaries.patch",
+    "initial_runner_note": "Initial dart test waited before producing output and was interrupted with exit130. Direct package-config runner completed exit1 with the nine concrete false-positive failures."
+  },
+  "evidence_files": [
+    {
+      "path": "late-concurrent-pr-observation.json",
+      "sha256": "b4b5b27d86a4a0eb22eae54758259c2e111600c2b4711af207cec774a54bb633",
+      "bytes": 640
+    },
+    {
+      "path": "late-concurrent-pr-inventory.json",
+      "sha256": "74aef846cec9a5df7d9edb7fd98df501a514c4f10c54cd138a32fa46d8ed3140",
+      "bytes": 8578
+    },
+    {
+      "path": "pr191-working-source-comparison.json",
+      "sha256": "05b5783a83dcdbdccb84f1b8b495e7f46627edeb513e90ee1250167dce70af57",
+      "bytes": 2966
+    },
+    {
+      "path": "pr192-working-source-comparison.json",
+      "sha256": "9aa2e2106faf794f8b880e474e9296b58fd67a262d3a0eada7316e3cfad3e298",
+      "bytes": 3692
+    },
+    {
+      "path": "pr191-vs-working-source.diff",
+      "sha256": "4b524b39ad61a9fc36281d804498f3d54489888b593f0a0b8fd9c9ae7eb4e574",
+      "bytes": 72582
+    },
+    {
+      "path": "pr192-vs-working-source.diff",
+      "sha256": "ba68ec41d4914da832c4f1fb37660b0e70fb0491c38bdb98276a5f23350400fa",
+      "bytes": 75625
+    },
+    {
+      "path": "pr191-studio-mail-test.dart",
+      "sha256": "22ab13d07d5c8c0759343f87fbaa2ad369915653dd4a62e4eb63b3f35ddfff9a",
+      "bytes": 17695
+    },
+    {
+      "path": "studio_live_mail_continuation_test.dart",
+      "sha256": "3f9a43bbde6014708071189945726475d39ffddcbed7c065853d96496cdab99f",
+      "bytes": 17021
+    },
+    {
+      "path": "late-mail-supplemental.jsonl",
+      "sha256": "0660fca2520c69d8f2ce43a3f023bdb2fca7d70fd41e598d38425514b0720160",
+      "bytes": 9252
+    },
+    {
+      "path": "late-mail-supplemental.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "late-mail-supplemental-format.txt",
+      "sha256": "ebf8691cd9669b02dd9d748aaf543551b337b2beb44f2d128dc7ffbfa0318f03",
+      "bytes": 46
+    },
+    {
+      "path": "late-pr192-arabic/before-direct.jsonl",
+      "sha256": "8a81c8a060eee208052b74ba162302ad7b3159932b86921a2771c1254ba558d7",
+      "bytes": 9314
+    },
+    {
+      "path": "late-pr192-arabic/before-direct.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "late-pr192-arabic/before.jsonl",
+      "sha256": "c8501b7a7e368c0a8cbb0a6d3cfd2988bd3d26254147c5c4bd0e6836744e9cb0",
+      "bytes": 564
+    },
+    {
+      "path": "late-pr192-arabic/before.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "late-pr192-arabic/before_arabic_extended_rules.dart",
+      "sha256": "849086889107df1cbbf88c0cf39bef2580c7274870cb192684e6a6b1fd39b744",
+      "bytes": 140057
+    },
+    {
+      "path": "late-pr192-arabic/incoming_arabic_extended_rules.dart",
+      "sha256": "8b1bd8db8d21bf06bd695bf699ca515cd76cb212285d2639dab5634bd6bdeefd",
+      "bytes": 140460
+    },
+    {
+      "path": "late-pr192-arabic/incoming_arabic_extended_rules_test.dart",
+      "sha256": "912965d98ed9e627b1d079048a19b5a942fe83d6d5e4c27fcbc595ee86a86129",
+      "bytes": 35422
+    },
+    {
+      "path": "late-pr192-arabic/manifest.json",
+      "sha256": "74c3831d442a3667110abf783d55a9cda2e3dd7b4082556b7299d267bde07b82",
+      "bytes": 455
+    },
+    {
+      "path": "late-pr192-arabic/unique-boundaries.patch",
+      "sha256": "2f2b324debc377127b95555aff12ad28cead5bccee3770d6a597854dbaaa876e",
+      "bytes": 5702
+    }
+  ],
+  "post_merge_development_validation": {
+    "recorded_at_utc": "2026-11-19T11:26:36.349086+00:00",
+    "local_head_at_test": "e7a2cfded17ce2efd22b9a52f5e5bd7ef4cd248f",
+    "scope": "After parent-managed late ancestry integration, before final frozen-source acceptance. Source hashes identify exact tested files; do not represent this as the final gate.",
+    "arabic": {
+      "executed": 311,
+      "passed": 311,
+      "failed": 0,
+      "skipped": 0,
+      "raw": "late-pr192-arabic/after.jsonl",
+      "diagnostics": "late-pr192-arabic/after.stderr",
+      "command": "dart --packages=<repo>/.dart_tool/package_config.json <pub-cache>/hosted/pub.dev/test-1.31.1/bin/test.dart test/proofing/arabic_extended_rules_test.dart --reporter json"
+    },
+    "live_mail": {
+      "executed": 31,
+      "passed": 31,
+      "failed": 0,
+      "skipped": 0,
+      "raw": "late-mail-integrated.jsonl",
+      "diagnostics": "late-mail-integrated.stderr",
+      "command": "flutter test --no-pub --reporter json test/studio_live_mail_continuation_test.dart test/studio_mail_session_test.dart"
+    },
+    "analysis": {
+      "targets": 3,
+      "result": "No issues found",
+      "fatal_infos": true,
+      "fatal_warnings": true,
+      "log": "late-source-analysis.txt"
+    },
+    "format": {
+      "files": 3,
+      "changed": 0,
+      "log": "late-source-format.txt"
+    },
+    "diff_check": "passed on three owned source/test paths",
+    "source_after": {
+      "packages/quds_office_engine/lib/src/proofing/arabic_extended_rules.dart": {
+        "sha256": "f3145dc335813de8d8e4ec8650dec25565eb9df078e3d8aa72edbbee02d4affb",
+        "bytes": 140456,
+        "git_blob": "070d750b60274845ae2ce96eefa276d275272eb4"
+      },
+      "packages/quds_office_engine/test/proofing/arabic_extended_rules_test.dart": {
+        "sha256": "912965d98ed9e627b1d079048a19b5a942fe83d6d5e4c27fcbc595ee86a86129",
+        "bytes": 35422,
+        "git_blob": "3b1fbeeabcb583a82427d28d99effbcbb60183fb"
+      },
+      "packages/quds_office_editor/example/lib/studio_mail.dart": {
+        "sha256": "a3bbe4dbf8b393930692b44769a951129abf653587191bccbbece23ecb52cd11",
+        "bytes": 26059,
+        "git_blob": "4c723104e73fa1fb178bb44692318c0b5aa97865"
+      },
+      "packages/quds_office_editor/example/lib/studio_strings.dart": {
+        "sha256": "3aa9a5ebaa326615764c59c66d231eb8cb9521dba9c5b6b72bd0c166094aa3f8",
+        "bytes": 9600,
+        "git_blob": "d8e3d9e32bd98f39ef077d595a55919e151941e4"
+      },
+      "packages/quds_office_editor/example/lib/studio_saved_message.dart": {
+        "sha256": "cc7074de1b6a1703408cc322a42e9cf5e15ca809a877165a2572867c2f357e1d",
+        "bytes": 4259,
+        "git_blob": "2ad70cde5924165a2f5227d5a61a81b755669c04"
+      },
+      "packages/quds_office_editor/example/test/studio_mail_session_test.dart": {
+        "sha256": "f2e3a7b0d5482be9298d708c89aab062c2e41fbd9a3d53b02aa84946573bde5f",
+        "bytes": 15913,
+        "git_blob": "6d29431dc89b6004685ff6782a55b1d4dc0af9f2"
+      },
+      "packages/quds_office_editor/example/test/studio_live_mail_continuation_test.dart": {
+        "sha256": "3f9a43bbde6014708071189945726475d39ffddcbed7c065853d96496cdab99f",
+        "bytes": 17021,
+        "git_blob": "4777dc89dfb2a2b72fe0b0856c9bfd4587a78548"
+      }
+    },
+    "source_actions": [
+      "Arabic source/test auto-merge already retained the exact intended boundary and hamza/maddah union; no manual edit needed.",
+      "Copied 17-case supplemental live Mail test suite into example/test/studio_live_mail_continuation_test.dart.",
+      "Copied late bounded observation, inventory and coverage-map receipts into docs/validation/office-continuation-20261119/incoming."
+    ]
+  }
+}

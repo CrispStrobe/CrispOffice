@@ -4,12 +4,17 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Retain the modular native/browser Mail client and Word-based composer. Quote
+  the loaded message body when replying or forwarding, serialize mark-read with
+  other mailbox operations, and ignore completion from a replaced session.
 - Restore the saved `.eml` reader beside Studio's session-only IMAP/SMTP client.
   Preserve reader ownership and ignore stale account/mailbox/message completions
   after dismissal or reconnect; close stalled transports independently.
 - Report confirmed SMTP submission separately from Sent-copy or cleanup failures.
 - Preserve the default two-slot Word language command and add an explicit
   `activeLanguageOnly` option based on the selected text, including mixed runs.
+  Keep no-op selections out of history and preserve script routing when adjacent
+  runs are joined.
 - Keep localized partial, paused and unchecked Review status and language/change
   actions reachable at narrow widths and increased text scaling.
 

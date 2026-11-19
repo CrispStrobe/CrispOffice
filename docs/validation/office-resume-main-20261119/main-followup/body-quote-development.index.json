@@ -1,0 +1,144 @@
+{
+  "archive": "body-quote-development.tar.xz",
+  "bytes": 9384,
+  "sha256": "909847632014e366a53c7b94f95ab41a12d0b29a9cb2196a51af15a44d8a7440",
+  "members": [
+    {
+      "path": "body-quote/mail-body-quote-analysis-corrected-run.json",
+      "bytes": 836,
+      "sha256": "5396510d7a1ceec94d5ecaa6e7e1e80e720ee2feec7be6815316e3c760706688"
+    },
+    {
+      "path": "body-quote/mail-body-quote-analysis-corrected.log",
+      "bytes": 120,
+      "sha256": "5cd6ca1655d355e8f7009a2a20aa202dc9645c1bf88f775738f708ac5bccc4e2"
+    },
+    {
+      "path": "body-quote/mail-body-quote-analysis-corrected.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "body-quote/mail-body-quote-analysis-run.json",
+      "bytes": 806,
+      "sha256": "7389740468c1bf4b783bcbe92f53ffe0c11eb4827cec49f8f08a364194ddc847"
+    },
+    {
+      "path": "body-quote/mail-body-quote-analysis.log",
+      "bytes": 120,
+      "sha256": "5cd6ca1655d355e8f7009a2a20aa202dc9645c1bf88f775738f708ac5bccc4e2"
+    },
+    {
+      "path": "body-quote/mail-body-quote-analysis.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "body-quote/mail-body-quote-corrected-preflight.json",
+      "bytes": 3614,
+      "sha256": "343a68c7ef4d69cff946bed41300f9a07febeeb974e30166c84b4c76fa471164"
+    },
+    {
+      "path": "body-quote/mail-body-quote-development-receipt.json",
+      "bytes": 21223,
+      "sha256": "09c9ff52dad264b36f146318678a798aed261e7454607e4b5567e4bfc4c645b0"
+    },
+    {
+      "path": "body-quote/mail-body-quote-followup-review.md",
+      "bytes": 3688,
+      "sha256": "dce23fb6474e142269646a3af3101ab8fc6e210400261e00546a13ad8a322d2b"
+    },
+    {
+      "path": "body-quote/mail-body-quote-format-corrected-run.json",
+      "bytes": 833,
+      "sha256": "8e347eae5c00899a541dfb179f1fc2c1318e7961160fc3adfd79e15f1d37c94e"
+    },
+    {
+      "path": "body-quote/mail-body-quote-format-corrected.log",
+      "bytes": 47,
+      "sha256": "10f8a56e6c8a37f26d95681a9703140bc9c26e5dd8291b5385564f2f3675325b"
+    },
+    {
+      "path": "body-quote/mail-body-quote-format-corrected.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "body-quote/mail-body-quote-format-correction.log",
+      "bytes": 46,
+      "sha256": "1685974b88bd671112e17334bdc2abb8ef350e01ae026547459ec7a8307375ec"
+    },
+    {
+      "path": "body-quote/mail-body-quote-format-run.json",
+      "bytes": 803,
+      "sha256": "6394cfc7f168f3c2f44d7ed2d8a95abb81ab891ae1318de6f21e61001702e334"
+    },
+    {
+      "path": "body-quote/mail-body-quote-format-write.log",
+      "bytes": 180,
+      "sha256": "adbb8358405d7536d6041873c9016d1977ea3216f5950ac8916805db6e5aa6d2"
+    },
+    {
+      "path": "body-quote/mail-body-quote-format.log",
+      "bytes": 47,
+      "sha256": "70d9a66c9edc9b037d0258771b8461e5d82172a8a41e4d3e888add746de5a936"
+    },
+    {
+      "path": "body-quote/mail-body-quote-format.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "body-quote/mail-body-quote-preflight.json",
+      "bytes": 4220,
+      "sha256": "3afea231739c6d2e15aed538f986a99eaeb7af031b3e7bbb02e2b230f7241e09"
+    },
+    {
+      "path": "body-quote/mail-body-quote-presentation-corrected-run.json",
+      "bytes": 670,
+      "sha256": "5b16611ad89e607aa6883fac3f6805623bab73cb9a823933b6e4c78b59f09120"
+    },
+    {
+      "path": "body-quote/mail-body-quote-presentation-corrected.jsonl",
+      "bytes": 7670,
+      "sha256": "eea40775f66b6cc3e17e68e691320ad7ad41082f5f7e6d16d464d17c5fd26a97"
+    },
+    {
+      "path": "body-quote/mail-body-quote-presentation-corrected.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "body-quote/mail-body-quote-presentation-run.json",
+      "bytes": 641,
+      "sha256": "f3af30a19f17ca31067c77850111af7d15718b3f4f962357f0324a450489cc6c"
+    },
+    {
+      "path": "body-quote/mail-body-quote-presentation.jsonl",
+      "bytes": 8333,
+      "sha256": "000bdd2e0587e13d283a841cd95a786d2a0d8f4d0c9f5d4fbfb19066fc3a249c"
+    },
+    {
+      "path": "body-quote/mail-body-quote-presentation.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "body-quote/mail-body-quote-studio-run.json",
+      "bytes": 636,
+      "sha256": "2c357d6a89da4a3efb3c8cf51c0ccbdb3a13d34bd0112538c7e1263e0756ba8d"
+    },
+    {
+      "path": "body-quote/mail-body-quote-studio.jsonl",
+      "bytes": 23991,
+      "sha256": "79137c182fc0fb1364451e60f1f8e898a1a2d84323ed0369c25fdd5a9123b3fa"
+    },
+    {
+      "path": "body-quote/mail-body-quote-studio.stderr",
+      "bytes": 67,
+      "sha256": "e79d957dc156378e662f738d5731d4aea7ee13f9d634b349525a57c30a3c9b39"
+    }
+  ],
+  "member_count": 27,
+  "all_members_reopened_and_verified": true
+}

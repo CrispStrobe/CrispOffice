@@ -1,0 +1,77 @@
+{
+  "description": "Combined continuation of the fixed 440-ref capture. Fresh execution on one remotely saved source; earlier 1026/1285 and development passes remain separate. Frozen verified runtime, native libraries and dictionary fixtures. GitHub Actions are not queried or awaited.",
+  "extra_inputs": [
+    ".github/workflows/crispoffice-binaries.yml",
+    "docs/validation/office-finish-20261119/audit_qualification.py",
+    "docs/validation/office-finish-20261119/native-plan.json",
+    "docs/validation/office-finish-20261119/node-plan.json",
+    "docs/validation/office-finish-20261119/run_validation.py",
+    "packages/quds_arabic_morph/tool/build.py",
+    "packages/quds_proofing_hunspell/tool/build.py",
+    "packages/quds_proofing_hunspell/tool/test_build.py",
+    "tools/proofing/ayaspell/build_bundle.py",
+    "tools/proofing/ayaspell/test_build_bundle.py",
+    "tools/proofing/ayaspell/test_build_bundle_incoming.py",
+    "tools/proofing/ayaspell/test_build_bundle_reproducibility.py"
+  ],
+  "whitespace_preserved_inputs": [],
+  "groups": [
+    {
+      "name": "hunspell-provider-node",
+      "cwd": "packages/quds_proofing_hunspell",
+      "runner": "dart",
+      "platform": "node",
+      "tests": [
+        "test/hunspell_provider_test.dart"
+      ]
+    },
+    {
+      "name": "cursor-main-merge-node",
+      "cwd": "packages/quds_mail_transport",
+      "runner": "dart",
+      "platform": "node",
+      "tests": [
+        "test/cursor_test.dart",
+        "test/configuration_test.dart"
+      ]
+    },
+    {
+      "name": "arabic-main-merge-node",
+      "cwd": "packages/quds_office_engine",
+      "runner": "dart",
+      "platform": "node",
+      "tests": [
+        "test/proofing/arabic_writing_rules_test.dart",
+        "test/proofing/proofing_text_ranges_test.dart",
+        "test/proofing/arabic_extended_rules_test.dart",
+        "test/proofing/arabic_grammar_rules_test.dart"
+      ]
+    },
+    {
+      "name": "word-language-and-findings-node",
+      "cwd": "packages/quds_office_engine",
+      "runner": "dart",
+      "platform": "node",
+      "tests": [
+        "test/word_complex_script_language_test.dart",
+        "test/word_proofing_inheritance_test.dart",
+        "test/proofing/office_proofing_merge_test.dart",
+        "test/proofing/proofing_report_merge_test.dart",
+        "test/proofing/office_proofing_test.dart",
+        "test/proofing/word_proofing_language_test.dart",
+        "test/word_proofing_language_test.dart"
+      ]
+    },
+    {
+      "name": "arabic-morph-unit-node",
+      "cwd": "packages/quds_arabic_morph",
+      "runner": "dart",
+      "platform": "node",
+      "tests": [
+        "test/arabic_morph_unit_test.dart"
+      ]
+    }
+  ],
+  "analysis": [],
+  "format": []
+}

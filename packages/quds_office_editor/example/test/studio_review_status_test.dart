@@ -45,6 +45,8 @@ Future<WordEditorController> _studio(
   tester.view.physicalSize = const Size(1440, 900);
   addTearDown(tester.view.resetDevicePixelRatio);
   addTearDown(tester.view.resetPhysicalSize);
+  await tester.binding.setSurfaceSize(const Size(1440, 900));
+  addTearDown(() => tester.binding.setSurfaceSize(null));
   await tester.pumpWidget(const QudsOfficeStudioApp());
   await tester.pump();
   final controller = tester
@@ -194,6 +196,7 @@ void main() {
       expect(controller.proofing.summary.issues, isEmpty);
       final revision = controller.contentRevision;
       tester.view.physicalSize = const Size(390, 1000);
+      await tester.binding.setSurfaceSize(const Size(390, 1000));
       tester.platformDispatcher.textScaleFactorTestValue = 1.4;
       addTearDown(tester.platformDispatcher.clearTextScaleFactorTestValue);
 
@@ -338,6 +341,7 @@ void main() {
         );
 
         tester.view.physicalSize = const Size(390, 900);
+        await tester.binding.setSurfaceSize(const Size(390, 900));
         await tester.pump();
         final status = compactStatus(language.partial);
         expect(status.hitTestable(), findsOneWidget);
@@ -363,6 +367,7 @@ void main() {
         // At the transition to text actions, long translated labels remain
         // bounded, while their full status remains available in a tooltip.
         tester.view.physicalSize = const Size(820, 900);
+        await tester.binding.setSurfaceSize(const Size(820, 900));
         await tester.pump();
         _expectStatus(language.partial, Icons.info_outline);
         expect(_statusButton(language.partial).hitTestable(), findsOneWidget);
@@ -370,6 +375,7 @@ void main() {
 
         controller.proofing.enabled = false;
         tester.view.physicalSize = const Size(390, 900);
+        await tester.binding.setSurfaceSize(const Size(390, 900));
         await tester.pump();
         final paused = compactStatus(language.paused);
         expect(paused.hitTestable(), findsOneWidget);

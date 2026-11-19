@@ -11,6 +11,8 @@ All notable changes to `quds_office_engine` are documented here.
   deciding whether adjacent Word runs may coalesce.
 - Add explicit active-language-only Word override removal while preserving the
   existing low-level reset defaults and unrelated native language metadata.
+- Split proofing ranges without changing unselected text, and retain run
+  boundaries when joining them would change script-dependent language routing.
 
 - Add Zotero's native Add Annotation command for Zotero 9 and later. Selected
   text annotations use the research-note insertion protocol, preserving active

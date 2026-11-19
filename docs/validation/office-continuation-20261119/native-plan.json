@@ -120,7 +120,15 @@
         "test/proofing/word_proofing_language_test.dart",
         "test/proofing/arabic_grammar_rules_test.dart",
         "test/word_proofing_language_test.dart",
-        "test/word_complex_script_language_test.dart"
+        "test/word_complex_script_language_test.dart",
+        "test/word_edit_integrity_test.dart",
+        "test/word_find_replace_atomic_test.dart",
+        "test/inline_field_fidelity_test.dart",
+        "test/word_content_control_fidelity_test.dart",
+        "test/word_revision_story_test.dart",
+        "test/word_zotero_rich_edit_test.dart",
+        "test/word_small_caps_test.dart",
+        "test/note_marker_merge_test.dart"
       ]
     },
     {
@@ -139,7 +147,9 @@
         "test/word_text_proofing_controls_test.dart",
         "test/word_proofing_capture_cache_test.dart",
         "test/word_proofing_priority_test.dart",
-        "test/word_complex_script_proofing_controls_test.dart"
+        "test/word_complex_script_proofing_controls_test.dart",
+        "test/word_revision_rebase_test.dart",
+        "test/word_small_caps_test.dart"
       ]
     },
     {
@@ -162,6 +172,7 @@
         "test/studio_hunspell_web_cancellation_test.dart",
         "test/studio_hunspell_web_host_test.dart",
         "test/studio_linguistic_analysis_test.dart",
+        "test/studio_live_mail_continuation_test.dart",
         "test/studio_mail_lifecycle_test.dart",
         "test/studio_mail_session_test.dart",
         "test/studio_mail_test.dart",
@@ -232,6 +243,7 @@
     "packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart",
     "packages/quds_office_editor/example/test/studio_comment_review_test.dart",
     "packages/quds_office_editor/example/test/studio_hunspell_web_cancellation_test.dart",
+    "packages/quds_office_editor/example/test/studio_live_mail_continuation_test.dart",
     "packages/quds_office_editor/example/test/studio_mail_lifecycle_test.dart",
     "packages/quds_office_editor/example/test/studio_mail_session_test.dart",
     "packages/quds_office_editor/example/test/studio_mail_test.dart",
@@ -259,9 +271,12 @@
     "packages/quds_office_engine/test/proofing/arabic_grammar_fixture.dart",
     "packages/quds_office_engine/test/proofing/arabic_grammar_rules_test.dart",
     "packages/quds_office_engine/test/proofing/office_proofing_merge_test.dart",
+    "packages/quds_office_engine/test/wml_run_edit_test.dart",
     "packages/quds_office_engine/test/word_complex_script_language_test.dart",
     "packages/quds_office_engine/test/word_proofing_language_test.dart",
-    "packages/quds_proofing_hunspell/test/hunspell_installer_cancellation_incoming_test.dart"
+    "packages/quds_proofing_hunspell/lib/src/hunspell_installer_io.dart",
+    "packages/quds_proofing_hunspell/test/hunspell_installer_cancellation_incoming_test.dart",
+    "packages/quds_proofing_hunspell/test/hunspell_installer_cancellation_test.dart"
   ],
   "format": [
     "packages/quds_arabic_morph/lib/installer_io.dart",
@@ -292,6 +307,7 @@
     "packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart",
     "packages/quds_office_editor/example/test/studio_comment_review_test.dart",
     "packages/quds_office_editor/example/test/studio_hunspell_web_cancellation_test.dart",
+    "packages/quds_office_editor/example/test/studio_live_mail_continuation_test.dart",
     "packages/quds_office_editor/example/test/studio_mail_lifecycle_test.dart",
     "packages/quds_office_editor/example/test/studio_mail_session_test.dart",
     "packages/quds_office_editor/example/test/studio_mail_test.dart",
@@ -319,9 +335,12 @@
     "packages/quds_office_engine/test/proofing/arabic_grammar_fixture.dart",
     "packages/quds_office_engine/test/proofing/arabic_grammar_rules_test.dart",
     "packages/quds_office_engine/test/proofing/office_proofing_merge_test.dart",
+    "packages/quds_office_engine/test/wml_run_edit_test.dart",
     "packages/quds_office_engine/test/word_complex_script_language_test.dart",
     "packages/quds_office_engine/test/word_proofing_language_test.dart",
-    "packages/quds_proofing_hunspell/test/hunspell_installer_cancellation_incoming_test.dart"
+    "packages/quds_proofing_hunspell/lib/src/hunspell_installer_io.dart",
+    "packages/quds_proofing_hunspell/test/hunspell_installer_cancellation_incoming_test.dart",
+    "packages/quds_proofing_hunspell/test/hunspell_installer_cancellation_test.dart"
   ],
   "extra_inputs": [
     "docs/validation/office-continuation-20261119/run_validation.py",

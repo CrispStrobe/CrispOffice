@@ -69,8 +69,15 @@ to the new checkout and runtime locations before execution; keep the immutable
 version, length and hash checks intact. Prepare the pinned CMake wheel in that
 scratch directory and place its `cmake/data/bin` directory on `PATH`. Run
 `fetch_dictionary.py` and `fetch_morph.py` to completion before the native build
-helpers, then run `bind_native.py` after the generic restorer is ready. The
-archive includes the CMake download receipt, exact compiler commands and all
+helpers. The binding helper also preserves a first morphology build plus a
+separate clean rebuild. To create those fresh records, copy the first
+`native/morph-build-install.log` and `native/morph-build-verification.json` to
+`native/morph-build-install-initial.log` and
+`native/morph-build-initial-verification.json`; run
+`cmake --build <preparation>/native/morph-build/cmake-native --clean-first --parallel 2`
+into `native/morph-build-clean.log`, then rerun `prepare_morph.py` to verify and
+install that result. Run `bind_native.py` after the generic restorer is ready.
+The archive includes the CMake download receipt, compiler commands and all
 build/install receipts. A new machine gets a new runtime receipt; it must not
 reuse this session's absolute paths or claim this session's execution results.
 

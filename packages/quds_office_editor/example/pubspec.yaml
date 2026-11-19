@@ -27,6 +27,8 @@ dependencies:
     path: ../../quds_proofing_spacy
   quds_mail_core:
     path: ../../quds_mail_core
+  quds_mail_transport:
+    path: ../../quds_mail_transport
   enough_mail:
     path: ../../../third_party/enough_mail
   quds_mail_mime:

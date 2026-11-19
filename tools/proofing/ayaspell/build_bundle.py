@@ -85,12 +85,12 @@ are unmodified; their source form is this repository.
 
 ## Use
 
-Load with any Hunspell-compatible engine, e.g. `hunspell -d ar`. Quds Office's
-optional Hunspell adapter package is implemented. Studio offers an explicit
-dictionary download/install dialog and registers the provider after installation.
-Compatible native or web engine assets must be packaged with each host target.
-Nothing is downloaded by default. The dictionary is not bundled into the
-application. `manifest.json` lists the SHA-256 of each bundled content file.
+Load with any Hunspell-compatible engine, e.g. `hunspell -d ar`. Quds Office
+provides an optional dictionary download workflow in Studio. Compatible native
+or web engine assets must be packaged with each host target. Nothing is
+downloaded by default.
+The dictionary is not bundled into the application. `manifest.json` lists the
+SHA-256 of each bundled content file.
 """
 
 

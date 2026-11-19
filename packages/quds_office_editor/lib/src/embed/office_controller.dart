@@ -9687,8 +9687,11 @@ class WordEditorController extends OfficeController {
     String language,
   ) {
     final range = WmlRunEdit.normalizeRange(preview, start, end);
-    WmlRunEdit.splitAt(preview, range.end);
-    WmlRunEdit.splitAt(preview, range.start);
+    final routingChanged = WmlRunEdit.splitProofingRange(
+      preview,
+      range.start,
+      range.end,
+    );
     // Route each selected fragment after splitting. Unselected letters must
     // not choose its slot, and a mixed fragment can use both language slots.
     final latinProperties = {
@@ -9699,7 +9702,7 @@ class WordEditorController extends OfficeController {
       for (final run in preview.inlines.whereType<WmlRun>())
         if (wordRunUsesComplexScriptLanguage(run)) run.properties,
     };
-    return _prepareTextProofingRuns(
+    final propertiesChanged = _prepareTextProofingRuns(
       preview,
       range.start,
       range.end,
@@ -9717,6 +9720,7 @@ class WordEditorController extends OfficeController {
         }
       },
     );
+    return propertiesChanged || routingChanged;
   }
 
   static bool _prepareTextProofingRuns(

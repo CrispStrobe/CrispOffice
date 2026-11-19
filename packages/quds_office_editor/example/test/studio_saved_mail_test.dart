@@ -11,10 +11,7 @@ import 'package:quds_office_editor/quds_office_editor.dart';
 import 'package:quds_office_studio/main.dart';
 import 'package:quds_office_studio/studio_chrome.dart';
 import 'package:quds_office_studio/studio_mail.dart';
-import 'package:quds_office_studio/studio_saved_mail.dart';
 import 'package:quds_office_studio/studio_strings.dart';
-
-import 'support/studio_mail_fixture.dart' show mailField;
 
 class _DeferredPicker extends FilePicker {
   late final result = Completer<FilePickerResult?>();
@@ -94,7 +91,10 @@ Future<void> _pump(WidgetTester tester) async {
   await tester.pump();
 }
 
-Future<void> _openDialog(WidgetTester tester) async {
+Future<void> _openDialog(
+  WidgetTester tester, {
+  StudioStrings strings = const StudioStrings(StudioLanguage.en),
+}) async {
   await tester.binding.setSurfaceSize(const Size(1440, 900));
   addTearDown(() => tester.binding.setSurfaceSize(null));
   await tester.pumpWidget(
@@ -104,9 +104,7 @@ Future<void> _openDialog(WidgetTester tester) async {
           body: TextButton(
             onPressed: () => showDialog<void>(
               context: context,
-              builder: (_) => const StudioSavedMailDialog(
-                strings: StudioStrings(StudioLanguage.en),
-              ),
+              builder: (_) => StudioMailDialog(strings: strings),
             ),
             child: const Text('Launch Mail'),
           ),
@@ -116,7 +114,31 @@ Future<void> _openDialog(WidgetTester tester) async {
   );
   await tester.tap(find.text('Launch Mail'));
   await _pump(tester);
-  expect(find.byType(StudioSavedMailDialog), findsOneWidget);
+  expect(find.byType(StudioMailDialog), findsOneWidget);
+  expect(find.byType(MailMessageView), findsNothing);
+  await tester.tap(find.byTooltip(strings.savedMessages));
+  await _pump(tester);
+}
+
+Future<void> _beginPathRead(
+  WidgetTester tester,
+  _DeferredPicker picker,
+  _DeferredFile file,
+) async {
+  IOOverrides.runWithIOOverrides(() {
+    tester
+        .widget<TextButton>(
+          find.widgetWithIcon(TextButton, Icons.file_open_outlined),
+        )
+        .onPressed!();
+  }, _DeferredReadOverrides(file));
+  picker.result.complete(
+    FilePickerResult(<PlatformFile>[
+      PlatformFile(name: 'Deferred.eml', size: 1, path: file.path),
+    ]),
+  );
+  await _pump(tester);
+  expect(file.reads, 1);
 }
 
 void main() {
@@ -133,6 +155,7 @@ void main() {
     await _openDialog(tester);
     final initial = _reader(tester);
     expect(initial.mode, MailReaderMode.full);
+    expect(initial.decodedText, contains('local, read-only message.'));
     await tester.tap(find.text('Compact'));
     await _pump(tester);
     final compact = _reader(tester);
@@ -153,8 +176,90 @@ void main() {
     await tester.tap(find.byTooltip('Close'));
     await _pump(tester);
     expect(opened.isDisposed, isTrue);
-    expect(find.byType(StudioSavedMailDialog), findsNothing);
+    expect(find.byType(StudioMailDialog), findsNothing);
     expect(tester.takeException(), isNull);
+  });
+
+  testWidgets(
+    'saved EML keeps exact octets across modes and account navigation',
+    (tester) async {
+      await _openDialog(tester);
+      final bytes = Uint8List.fromList(<int>[
+        ...ascii.encode(
+          'Subject: Exact source\r\n'
+          'Content-Type: text/plain; charset=iso-8859-1\r\n'
+          'Content-Transfer-Encoding: 8bit\r\n\r\n',
+        ),
+        0x43,
+        0x61,
+        0x66,
+        0xe9,
+        0x0d,
+        0x0a,
+      ]);
+      final expected = Uint8List.fromList(bytes);
+      await tester.tap(find.text('Open message'));
+      picker.result.complete(
+        FilePickerResult(<PlatformFile>[
+          PlatformFile(name: 'Exact.eml', size: bytes.length, bytes: bytes),
+        ]),
+      );
+      await _pump(tester);
+      final full = _reader(tester);
+      expect(full.result.original!.bytes, orderedEquals(expected));
+      expect(full.decodedText, contains('Café'));
+      bytes.fillRange(0, bytes.length, 0);
+      expect(full.result.original!.bytes, orderedEquals(expected));
+
+      await tester.tap(find.text('Compact'));
+      await _pump(tester);
+      final compact = _reader(tester);
+      expect(full.isDisposed, isTrue);
+      expect(compact.result.original!.bytes, orderedEquals(expected));
+      await tester.tap(find.byTooltip('Mail accounts'));
+      await _pump(tester);
+      expect(find.byType(MailMessageView), findsNothing);
+      expect(find.widgetWithText(FilledButton, 'Connect'), findsOneWidget);
+      await tester.tap(find.byTooltip('Saved messages'));
+      await _pump(tester);
+      expect(_reader(tester), same(compact));
+      expect(compact.result.original!.bytes, orderedEquals(expected));
+      await tester.tap(find.byTooltip('Close'));
+      await _pump(tester);
+      expect(compact.isDisposed, isTrue);
+      expect(tester.takeException(), isNull);
+    },
+  );
+
+  testWidgets('saved message picker failures retain the current reader', (
+    tester,
+  ) async {
+    await _openDialog(tester);
+    final initial = _reader(tester);
+    await tester.tap(find.text('Open message'));
+    picker.result.completeError(StateError('private path must not be shown'));
+    await _pump(tester);
+    expect(_reader(tester), same(initial));
+    expect(find.text('The message could not be opened.'), findsOneWidget);
+    expect(find.textContaining('private path'), findsNothing);
+    expect(tester.takeException(), isNull);
+    await tester.tap(find.byTooltip('Close'));
+    await _pump(tester);
+  });
+
+  testWidgets('saved reader toolbar fits a narrow enlarged-text window', (
+    tester,
+  ) async {
+    await _openDialog(tester);
+    await tester.binding.setSurfaceSize(const Size(390, 844));
+    tester.platformDispatcher.textScaleFactorTestValue = 1.5;
+    addTearDown(tester.platformDispatcher.clearTextScaleFactorTestValue);
+    await _pump(tester);
+    expect(find.text('Open message'), findsOneWidget);
+    expect(find.text('Compact'), findsOneWidget);
+    expect(tester.takeException(), isNull);
+    await tester.tap(find.byTooltip('Close'));
+    await _pump(tester);
   });
 
   for (final emptyResult in <bool>[false, true]) {
@@ -194,7 +299,7 @@ void main() {
     expect(initial.isDisposed, isTrue);
     picker.result.complete(_pickedMessage());
     await _pump(tester);
-    expect(find.byType(StudioSavedMailDialog), findsNothing);
+    expect(find.byType(StudioMailDialog), findsNothing);
     expect(tester.takeException(), isNull);
   });
 
@@ -223,7 +328,7 @@ void main() {
     expect(initial.isDisposed, isTrue);
     file.result.complete(_message());
     await _pump(tester);
-    expect(find.byType(StudioSavedMailDialog), findsNothing);
+    expect(find.byType(StudioMailDialog), findsNothing);
     expect(tester.takeException(), isNull);
   });
 
@@ -272,31 +377,18 @@ void main() {
     const german = StudioStrings(StudioLanguage.de);
     expect(find.byType(StudioMailDialog), findsOneWidget);
     expect(find.widgetWithText(FilledButton, german.connect), findsOneWidget);
-    expect(mailField(german.emailAddress), findsOneWidget);
-    expect(mailField(german.password), findsOneWidget);
+    expect(find.widgetWithText(TextField, german.emailAddress), findsOneWidget);
+    expect(find.widgetWithText(TextField, german.password), findsOneWidget);
     expect(
       find.widgetWithText(SwitchListTile, german.manualServers),
       findsOneWidget,
     );
     expect(find.text(german.mailSessionNotice), findsOneWidget);
-    expect(find.text('Nachricht öffnen'), findsOneWidget);
-    expect(find.byTooltip(german.openMessage), findsOneWidget);
-    await tester.tap(find.text('Nachricht öffnen'));
+    await tester.tap(find.byTooltip('Gespeicherte Nachrichten'));
     await _pump(tester);
-    expect(find.byType(StudioSavedMailDialog), findsOneWidget);
-    expect(
-      find.descendant(
-        of: find.byType(StudioSavedMailDialog),
-        matching: find.text('Nachricht öffnen'),
-      ),
-      findsOneWidget,
-    );
+    expect(find.text('Nachricht öffnen'), findsOneWidget);
     expect(find.text('Vollständig'), findsOneWidget);
     expect(find.text('Kompakt'), findsOneWidget);
-    await tester.tap(find.byTooltip('Schließen').last);
-    await _pump(tester);
-    expect(find.byType(StudioSavedMailDialog), findsNothing);
-    expect(find.byType(StudioMailDialog), findsOneWidget);
     await tester.tap(find.byTooltip('Schließen').last);
     await _pump(tester);
     expect(find.byType(StudioMailDialog), findsNothing);
@@ -325,6 +417,112 @@ void main() {
     expect(tester.takeException(), isNull);
     await tester.pumpWidget(const SizedBox.shrink());
     await tester.pump();
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets(
+    'a completed path read preserves mode and retires the old reader',
+    (tester) async {
+      await _openDialog(tester);
+      await tester.tap(find.text('Compact'));
+      await _pump(tester);
+      final initial = _reader(tester);
+      final file = _DeferredFile();
+      await _beginPathRead(tester, picker, file);
+      expect(_reader(tester), same(initial));
+      file.result.complete(_message());
+      await _pump(tester);
+      final opened = _reader(tester);
+      expect(opened.mode, MailReaderMode.preview);
+      expect(opened.decodedText, contains('Saved message body.'));
+      expect(initial.isDisposed, isTrue);
+      expect(find.text('CrispOffice Mail · Deferred.eml'), findsOneWidget);
+      await tester.tap(find.byTooltip('Close'));
+      await _pump(tester);
+      expect(opened.isDisposed, isTrue);
+      expect(tester.takeException(), isNull);
+    },
+  );
+
+  testWidgets(
+    'a failed path read retains its reader with localized fixed feedback',
+    (tester) async {
+      const german = StudioStrings(StudioLanguage.de);
+      await _openDialog(tester, strings: german);
+      final initial = _reader(tester);
+      final file = _DeferredFile();
+      await _beginPathRead(tester, picker, file);
+      file.result.completeError(StateError('private file read failure'));
+      await _pump(tester);
+      expect(_reader(tester), same(initial));
+      expect(initial.isDisposed, isFalse);
+      expect(find.text(german.openMessageFailed), findsOneWidget);
+      expect(find.textContaining('private file read failure'), findsNothing);
+      expect(
+        tester
+            .widget<TextButton>(
+              find.widgetWithIcon(TextButton, Icons.file_open_outlined),
+            )
+            .onPressed,
+        isNotNull,
+      );
+      await tester.tap(find.byTooltip(german.close));
+      await _pump(tester);
+      expect(initial.isDisposed, isTrue);
+      expect(tester.takeException(), isNull);
+    },
+  );
+
+  for (final phase in ['picker', 'file']) {
+    testWidgets('a $phase error after closing saved Mail is safely ignored', (
+      tester,
+    ) async {
+      await _openDialog(tester);
+      final initial = _reader(tester);
+      final file = _DeferredFile();
+      if (phase == 'file') {
+        await _beginPathRead(tester, picker, file);
+      } else {
+        await tester.tap(find.text('Open message'));
+        await _pump(tester);
+      }
+      await tester.tap(find.byTooltip('Close'));
+      await _pump(tester);
+      expect(initial.isDisposed, isTrue);
+      if (phase == 'file') {
+        file.result.completeError(StateError('late private file failure'));
+      } else {
+        picker.result.completeError(StateError('late private picker failure'));
+      }
+      await _pump(tester);
+      expect(find.byType(StudioMailDialog), findsNothing);
+      expect(tester.takeException(), isNull);
+    });
+  }
+
+  testWidgets('a picker path after dismissal never starts a file read', (
+    tester,
+  ) async {
+    await _openDialog(tester);
+    final file = _DeferredFile();
+    IOOverrides.runWithIOOverrides(() {
+      tester
+          .widget<TextButton>(
+            find.widgetWithIcon(TextButton, Icons.file_open_outlined),
+          )
+          .onPressed!();
+    }, _DeferredReadOverrides(file));
+    await _pump(tester);
+    await tester.tap(find.byTooltip('Close'));
+    await _pump(tester);
+    picker.result.complete(
+      FilePickerResult(<PlatformFile>[
+        PlatformFile(name: 'Late.eml', size: 1, path: file.path),
+      ]),
+    );
+    await _pump(tester);
+    expect(file.reads, 0);
+    expect(find.byType(StudioMailDialog), findsNothing);
     expect(tester.takeException(), isNull);
   });
 }

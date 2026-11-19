@@ -1,0 +1,29 @@
+{"protocolVersion":"0.1.1","runnerVersion":"1.31.1","pid":47,"type":"start","time":0}
+{"suite":{"id":0,"platform":"vm","path":"packages/quds_proofing_hunspell/test/hunspell_installer_cancellation_test.dart"},"type":"suite","time":0}
+{"test":{"id":1,"name":"loading packages/quds_proofing_hunspell/test/hunspell_installer_cancellation_test.dart","suiteID":0,"groupIDs":[],"metadata":{"skip":false,"skipReason":null},"line":null,"column":null,"url":null},"type":"testStart","time":2}
+{"count":2,"time":12,"type":"allSuites"}
+{"testID":1,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":8049}
+{"group":{"id":2,"suiteID":0,"parentID":null,"name":"","metadata":{"skip":false,"skipReason":null},"testCount":5,"line":null,"column":null,"url":null},"type":"group","time":8054}
+{"test":{"id":3,"name":"an uncancelled small pinned bundle installs, verifies and removes","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":82,"column":3,"url":"file:///workspace/scratch/688e1d3b1ee4/quds_office_suite/packages/quds_proofing_hunspell/test/hunspell_installer_cancellation_test.dart"},"type":"testStart","time":8058}
+{"testID":3,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":8222}
+{"test":{"id":4,"name":"already-cancelled install performs no network or staging work","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":93,"column":3,"url":"file:///workspace/scratch/688e1d3b1ee4/quds_office_suite/packages/quds_proofing_hunspell/test/hunspell_installer_cancellation_test.dart"},"type":"testStart","time":8223}
+{"testID":4,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":8232}
+{"test":{"id":5,"name":"cancelling stalledHeaders aborts and permits a fresh install","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":111,"column":5,"url":"file:///workspace/scratch/688e1d3b1ee4/quds_office_suite/packages/quds_proofing_hunspell/test/hunspell_installer_cancellation_test.dart"},"type":"testStart","time":8233}
+{"testID":5,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":8257}
+{"test":{"id":6,"name":"cancelling stalledBody aborts and permits a fresh install","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":111,"column":5,"url":"file:///workspace/scratch/688e1d3b1ee4/quds_office_suite/packages/quds_proofing_hunspell/test/hunspell_installer_cancellation_test.dart"},"type":"testStart","time":8258}
+{"testID":6,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":8292}
+{"test":{"id":7,"name":"cancellation at the final progress callback prevents publication","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":141,"column":3,"url":"file:///workspace/scratch/688e1d3b1ee4/quds_office_suite/packages/quds_proofing_hunspell/test/hunspell_installer_cancellation_test.dart"},"type":"testStart","time":8293}
+{"testID":7,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":8330}
+{"suite":{"id":8,"platform":"vm","path":"packages/quds_proofing_hunspell/test/hunspell_installer_cancellation_incoming_test.dart"},"type":"suite","time":8341}
+{"test":{"id":9,"name":"loading packages/quds_proofing_hunspell/test/hunspell_installer_cancellation_incoming_test.dart","suiteID":8,"groupIDs":[],"metadata":{"skip":false,"skipReason":null},"line":null,"column":null,"url":null},"type":"testStart","time":8341}
+{"testID":9,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":8762}
+{"group":{"id":10,"suiteID":8,"parentID":null,"name":"","metadata":{"skip":false,"skipReason":null},"testCount":4,"line":null,"column":null,"url":null},"type":"group","time":8762}
+{"test":{"id":11,"name":"an uncancelled small pinned bundle still installs and verifies","suiteID":8,"groupIDs":[10],"metadata":{"skip":false,"skipReason":null},"line":63,"column":3,"url":"file:///workspace/scratch/688e1d3b1ee4/quds_office_suite/packages/quds_proofing_hunspell/test/hunspell_installer_cancellation_incoming_test.dart"},"type":"testStart","time":8763}
+{"testID":11,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":8910}
+{"test":{"id":12,"name":"pre-cancelled install makes no HTTP request or staging directory","suiteID":8,"groupIDs":[10],"metadata":{"skip":false,"skipReason":null},"line":75,"column":3,"url":"file:///workspace/scratch/688e1d3b1ee4/quds_office_suite/packages/quds_proofing_hunspell/test/hunspell_installer_cancellation_incoming_test.dart"},"type":"testStart","time":8911}
+{"testID":12,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":8923}
+{"test":{"id":13,"name":"cancellation at the final progress callback cannot publish","suiteID":8,"groupIDs":[10],"metadata":{"skip":false,"skipReason":null},"line":88,"column":3,"url":"file:///workspace/scratch/688e1d3b1ee4/quds_office_suite/packages/quds_proofing_hunspell/test/hunspell_installer_cancellation_incoming_test.dart"},"type":"testStart","time":8924}
+{"testID":13,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":8942}
+{"test":{"id":14,"name":"cancellation aborts a stalled HTTP response and cleans staging","suiteID":8,"groupIDs":[10],"metadata":{"skip":false,"skipReason":null},"line":110,"column":3,"url":"file:///workspace/scratch/688e1d3b1ee4/quds_office_suite/packages/quds_proofing_hunspell/test/hunspell_installer_cancellation_incoming_test.dart"},"type":"testStart","time":8943}
+{"testID":14,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":8954}
+{"success":true,"type":"done","time":8959}
