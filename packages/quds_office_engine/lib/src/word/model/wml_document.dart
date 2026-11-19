@@ -254,8 +254,8 @@ class WmlComment {
   /// WmlComment API.
   WmlComment({
     required this.id,
-    this.author = 'Quds Office',
-    this.initials = 'QO',
+    this.author = 'CrispOffice',
+    this.initials = 'CO',
     this.dateIso = '',
     String text = '',
     List<WmlParagraph>? paragraphs,

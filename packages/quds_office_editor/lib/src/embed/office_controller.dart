@@ -796,7 +796,7 @@ class WordEditorController extends OfficeController {
     this.layoutEngine,
     OfficeProofingVocabulary? proofingVocabulary,
     OfficeProofingService? proofingService,
-    String revisionAuthor = 'Quds Office',
+    String revisionAuthor = 'CrispOffice',
   }) : document = document ?? WmlDocument.empty(),
        _initialProofingVocabulary = proofingVocabulary,
        _initialProofingService = proofingService,
@@ -819,7 +819,7 @@ class WordEditorController extends OfficeController {
     WordLayoutEngine? layoutEngine,
     OfficeProofingVocabulary? proofingVocabulary,
     OfficeProofingService? proofingService,
-    String revisionAuthor = 'Quds Office',
+    String revisionAuthor = 'CrispOffice',
   }) {
     final WordEditorController controller = WordEditorController(
       config: config,
@@ -1714,8 +1714,8 @@ class WordEditorController extends OfficeController {
   /// insertComment API.
   void insertComment({
     String text = '',
-    String author = 'Quds Office',
-    String initials = 'QO',
+    String author = 'CrispOffice',
+    String initials = 'CO',
     int? parentId,
     List<WmlParagraph>? paragraphs,
     List<WmlVisual>? visuals,
@@ -1832,8 +1832,8 @@ class WordEditorController extends OfficeController {
   void replyToComment(
     int parentId, {
     required String text,
-    String author = 'Quds Office',
-    String initials = 'QO',
+    String author = 'CrispOffice',
+    String initials = 'CO',
   }) {
     final String body = text.trim();
     if (body.isEmpty) {
@@ -13136,7 +13136,7 @@ class SheetEditorController extends OfficeController {
   void setCellComment(
     String text, {
     SmlCellRef? ref,
-    String author = 'Quds Office',
+    String author = 'CrispOffice',
   }) {
     if (!config.allowsMutation) {
       return;

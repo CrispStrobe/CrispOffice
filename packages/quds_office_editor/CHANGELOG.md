@@ -4,6 +4,10 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Make Insert commands compact and configurable, save ribbon layout preferences,
+  simplify the title bar, and provide desktop File menus and native macOS window
+  controls. Use CrispOffice for the default reviewer and newly created comments.
+
 - Add a native Mail archive with EML/streamed MBOX import, connected-message and
   selected-folder collection, local FTS search and filters, saved searches,
   exact-original EML export, integrity checks and index rebuilding. Include

@@ -951,7 +951,7 @@ class MultiPage extends Page {
 class Document {
   /// Document API.
   Document({
-    this.title = 'Quds Office',
+    this.title = 'CrispOffice',
     this.author = '',
     this.theme,
     this.font,
