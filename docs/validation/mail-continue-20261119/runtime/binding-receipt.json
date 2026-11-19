@@ -1,0 +1,18 @@
+{
+  "recorded_at_utc": "2026-11-19T05:28:15.111001+00:00",
+  "status": "ready",
+  "retained_files": 36721,
+  "retained_bytes": 1357694183,
+  "retained_manifest_sha256": "0fac066446b0dfe1d385a88d5b103827d06ff2986fc1f11836835f72911b3a33",
+  "compressed_manifest_sha256": "2f09c567515958a4ec2c1548d96c2da791c03f787f6bb52ce613c3e4b6d450e2",
+  "additional_inputs": {
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node": "acbe4b8d9153b841ed0697cbfc4f93e767386620edb745ab9358306c0a6f31aa",
+    "/workspace/scratch/c45fbe2bea32/quds_office_suite/.dart_tool/native_assets.yaml": "dcb53f646cc608781b593fe4c3bb88f6d84f6b3486b752d2dd1c083bf73046ae",
+    "/workspace/scratch/c45fbe2bea32/quds_office_suite/.dart_tool/lib/libsqlite3.so": "0a65852703763619a7a34633b4959b3b86c4103804a4dfe4e8b27b5de1c0647b"
+  },
+  "node_version": "v24.22.3",
+  "runtime_receipt_sha256": "47dd6181d41b0f6e3e97a7b908bf467df0749860add5ad84c589783cf01d14fc",
+  "workspace_lock_sha256": "35d1ef372908f4ab278973355ec6a957cd3240bea115d615056c5b9e398df974",
+  "free_bytes": 48938930176,
+  "no_github_actions_used": true
+}
