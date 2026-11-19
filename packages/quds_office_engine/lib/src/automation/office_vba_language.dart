@@ -73,6 +73,7 @@ const _maxSteps = 10000;
 const _maxArguments = 16;
 const _maxCalls = 32;
 const _maxExactInteger = 9007199254740991;
+const _comparisonOperators = <String>{'=', '<>', '<', '>', '<=', '>='};
 
 class _Context {
   const _Context(this.source);
@@ -452,6 +453,43 @@ class _For extends _Statement {
   final List<_Statement> body;
 }
 
+class _ConditionalLoop extends _Statement {
+  const _ConditionalLoop(
+    super.token,
+    this.body, {
+    required this.isDo,
+    this.condition,
+    this.until = false,
+    this.testAfter = false,
+  });
+  final List<_Statement> body;
+  final bool isDo;
+  final _Expr? condition;
+  final bool until;
+  final bool testAfter;
+}
+
+class _CaseMatch {
+  const _CaseMatch(this.token, this.first, {this.last, this.operator = '='});
+  final _Token token;
+  final _Expr first;
+  final _Expr? last;
+  final String operator;
+}
+
+class _CaseBranch {
+  const _CaseBranch(this.matches, this.body);
+  final List<_CaseMatch> matches;
+  final List<_Statement> body;
+}
+
+class _Select extends _Statement {
+  const _Select(super.token, this.selector, this.branches, this.otherwise);
+  final _Expr selector;
+  final List<_CaseBranch> branches;
+  final List<_Statement> otherwise;
+}
+
 class _With extends _Statement {
   const _With(super.token, this.target, this.body);
   final _Expr target;
@@ -469,7 +507,7 @@ class _Invoke extends _Statement {
   final List<_Expr> arguments;
 }
 
-enum _ExitKind { sub, function, forLoop }
+enum _ExitKind { sub, function, forLoop, doLoop }
 
 class _Exit extends _Statement {
   const _Exit(super.token, this.kind);
@@ -511,6 +549,9 @@ class _Parser {
       current.lower == text;
   bool _atEnd(String second) =>
       _is('end') && tokens[position + 1].lower == second;
+  bool get _isComparison =>
+      current.kind == _TokenKind.symbol &&
+      _comparisonOperators.contains(current.text);
 
   _Module parse() {
     var explicit = false;
@@ -639,9 +680,11 @@ class _Parser {
             ? _ExitKind.function
             : _take('for')
             ? _ExitKind.forLoop
+            : _take('do')
+            ? _ExitKind.doLoop
             : context.unsupported(
                 current,
-                'Only Exit Sub, Exit Function, and Exit For are supported.',
+                'Only Exit Sub, Exit Function, Exit For, and Exit Do are supported.',
               );
         _endStatement();
         result.add(_Exit(token, kind));
@@ -671,6 +714,107 @@ class _Parser {
         }
         _endStatement();
         result.add(_For(token, counter, start, end, step, body));
+      } else if (_is('do')) {
+        final token = current;
+        position++;
+        _Expr? condition;
+        var until = false;
+        if (_is('while') || _is('until')) {
+          until = _take('until');
+          if (!until) _expect('while');
+          condition = _expression();
+        }
+        _endStatement();
+        final body = _body(depth + 1, () => _is('loop'));
+        _expect('loop');
+        var testAfter = false;
+        if (_is('while') || _is('until')) {
+          if (condition != null) {
+            _syntax('A Do loop may have a condition at Do or Loop, not both.');
+          }
+          testAfter = true;
+          until = _take('until');
+          if (!until) _expect('while');
+          condition = _expression();
+        }
+        _endStatement();
+        result.add(
+          _ConditionalLoop(
+            token,
+            body,
+            isDo: true,
+            condition: condition,
+            until: until,
+            testAfter: testAfter,
+          ),
+        );
+      } else if (_is('while')) {
+        final token = current;
+        position++;
+        final condition = _expression();
+        _endStatement();
+        final body = _body(depth + 1, () => _is('wend'));
+        _expect('wend');
+        _endStatement();
+        result.add(
+          _ConditionalLoop(token, body, isDo: false, condition: condition),
+        );
+      } else if (_is('select')) {
+        final token = current;
+        if (depth + 1 > _maxBlocks) {
+          context.limit(token, 'Blocks exceed $_maxBlocks nesting levels.');
+        }
+        position++;
+        _expect('case');
+        final selector = _expression();
+        _endStatement();
+        final branches = <_CaseBranch>[];
+        var otherwise = <_Statement>[];
+        var hasElse = false;
+        while (!_atEnd('select')) {
+          if (hasElse) _syntax('Case Else must be the final Case clause.');
+          _expect('case');
+          if (++statementCount > _maxStatements) {
+            context.limit(
+              current,
+              'Source exceeds $_maxStatements statements.',
+            );
+          }
+          if (_take('else')) {
+            hasElse = true;
+            _endStatement();
+            otherwise = _body(depth + 1, () => _is('case') || _atEnd('select'));
+          } else {
+            final matches = <_CaseMatch>[];
+            do {
+              final token = current;
+              if (_take('is') || _isComparison) {
+                if (!_isComparison) {
+                  _syntax('Case Is requires a supported comparison operator.');
+                }
+                final operator = current.text;
+                position++;
+                matches.add(
+                  _CaseMatch(token, _expression(), operator: operator),
+                );
+              } else {
+                final first = _expression();
+                final last = _take('to') ? _expression() : null;
+                matches.add(_CaseMatch(token, first, last: last));
+              }
+            } while (_take(','));
+            _endStatement();
+            final body = _body(
+              depth + 1,
+              () => _is('case') || _atEnd('select'),
+            );
+            branches.add(_CaseBranch(matches, body));
+          }
+        }
+        _expect('end');
+        _expect('select');
+        _endStatement();
+        result.add(_Select(token, selector, branches, otherwise));
       } else if (_is('with')) {
         final token = current;
         position++;
@@ -780,7 +924,7 @@ class _Parser {
         } else {
           context.unsupported(
             token,
-            'Only assignments, procedure calls, ClearContents, With, For, block If, and supported Exit statements are supported.',
+            'Only assignments, procedure calls, ClearContents, With, supported loops, block If, Select Case, and supported Exit statements are supported.',
           );
         }
       }
@@ -1005,6 +1149,7 @@ class _Checker {
   Map<String, _Symbol> symbols = <String, _Symbol>{};
   final List<_Kind> withKinds = <_Kind>[];
   final Set<String> counters = <String>{};
+  int doDepth = 0;
   final Map<String, Set<String>> calls = <String, Set<String>>{};
   late _Procedure currentProcedure;
   static const _reserved = <String>{
@@ -1067,6 +1212,7 @@ class _Checker {
     'loop',
     'select',
     'case',
+    'is',
     'until',
     'each',
     'in',
@@ -1105,6 +1251,7 @@ class _Checker {
       symbols = <String, _Symbol>{...globals};
       withKinds.clear();
       counters.clear();
+      doDepth = 0;
       for (final parameter in procedure.parameters) {
         _declare(_Declaration(parameter.name, parameter.type, false, null));
       }
@@ -1256,6 +1403,13 @@ class _Checker {
         case _For():
           variable = statement.counter;
           _implicit(statement.body);
+        case _ConditionalLoop():
+          _implicit(statement.body);
+        case _Select():
+          for (final branch in statement.branches) {
+            _implicit(branch.body);
+          }
+          _implicit(statement.otherwise);
         case _With():
           _implicit(statement.body);
         case _If():
@@ -1362,6 +1516,32 @@ class _Checker {
           }
           _statements(statement.body, nested: true);
           counters.remove(statement.counter.lower);
+        case _ConditionalLoop():
+          if (statement.condition case final condition?) {
+            _compatible(_Kind.boolean, _expression(condition), condition.token);
+          }
+          if (statement.isDo) doDepth++;
+          _statements(statement.body, nested: true);
+          if (statement.isDo) doDepth--;
+        case _Select():
+          final selector = _expression(statement.selector);
+          _scalar(selector, statement.selector.token);
+          for (final branch in statement.branches) {
+            for (final match in branch.matches) {
+              final first = _expression(match.first);
+              _comparisonKinds(selector, first, match.token);
+              if (match.last case final last?) {
+                final lastKind = _expression(last);
+                _comparisonKinds(selector, lastKind, last.token);
+                _comparisonKinds(first, lastKind, last.token);
+                _rangeKind(selector, statement.selector.token);
+                _rangeKind(first, match.first.token);
+                _rangeKind(lastKind, last.token);
+              }
+            }
+            _statements(branch.body, nested: true);
+          }
+          _statements(statement.otherwise, nested: true);
         case _With():
           final kind = _expression(statement.target);
           if (kind != _Kind.worksheet && kind != _Kind.range) {
@@ -1390,11 +1570,12 @@ class _Checker {
             _ExitKind.sub => currentProcedure.returnType == null,
             _ExitKind.function => currentProcedure.returnType != null,
             _ExitKind.forLoop => counters.isNotEmpty,
+            _ExitKind.doLoop => doDepth > 0,
           };
           if (!allowed) {
             context.unsupported(
               statement.token,
-              'Exit does not match an enclosing procedure or For loop.',
+              'Exit does not match an enclosing procedure, For loop, or Do loop.',
             );
           }
       }
@@ -1558,24 +1739,8 @@ class _Checker {
           _compatible(_Kind.boolean, right, expression.right.token);
           return _Kind.boolean;
         }
-        if (const <String>{
-          '=',
-          '<>',
-          '<',
-          '>',
-          '<=',
-          '>=',
-        }.contains(operator)) {
-          _scalar(left, expression.left.token);
-          _scalar(right, expression.right.token);
-          if (left != right &&
-              left != _Kind.variant &&
-              right != _Kind.variant) {
-            context.type(
-              expression.token,
-              'Comparisons require matching scalar types.',
-            );
-          }
+        if (_comparisonOperators.contains(operator)) {
+          _comparisonKinds(left, right, expression.token);
           return _Kind.boolean;
         }
         _compatible(_Kind.number, left, expression.left.token);
@@ -1640,6 +1805,20 @@ class _Checker {
         token,
         'A scalar value is required; object default members are unsupported.',
       );
+    }
+  }
+
+  void _comparisonKinds(_Kind left, _Kind right, _Token token) {
+    _scalar(left, token);
+    _scalar(right, token);
+    if (left != right && left != _Kind.variant && right != _Kind.variant) {
+      context.type(token, 'Comparisons require matching scalar types.');
+    }
+  }
+
+  void _rangeKind(_Kind kind, _Token token) {
+    if (kind != _Kind.number && kind != _Kind.string && kind != _Kind.variant) {
+      context.type(token, 'Case To ranges require numbers or strings.');
     }
   }
 }
@@ -1858,6 +2037,35 @@ class _Evaluator {
             final exit = _execute(statement.otherwise);
             if (exit != null) return exit;
           }
+        case _ConditionalLoop():
+          while (true) {
+            // Charge every attempt, including unconditional empty loops and
+            // final failed tests. Procedure calls share this same budget.
+            _tick(statement.token);
+            if (!statement.testAfter && !_continues(statement)) break;
+            final exit = _execute(statement.body);
+            if (statement.isDo && exit == _ExitKind.doLoop) break;
+            if (exit != null) return exit;
+            if (statement.testAfter && !_continues(statement)) break;
+          }
+        case _Select():
+          final selector = _evaluate(statement.selector);
+          var matched = false;
+          for (final branch in statement.branches) {
+            for (final match in branch.matches) {
+              if (_caseMatches(selector, match)) {
+                final exit = _execute(branch.body);
+                if (exit != null) return exit;
+                matched = true;
+                break;
+              }
+            }
+            if (matched) break;
+          }
+          if (!matched) {
+            final exit = _execute(statement.otherwise);
+            if (exit != null) return exit;
+          }
         case _For():
           final start = _loopInteger(
             _evaluate(statement.start),
@@ -1920,6 +2128,36 @@ class _Evaluator {
       }
     }
     return null;
+  }
+
+  bool _continues(_ConditionalLoop loop) {
+    final condition = loop.condition;
+    if (condition == null) return true;
+    return _boolean(_evaluate(condition), condition.token) != loop.until;
+  }
+
+  bool _caseMatches(Object selector, _CaseMatch match) {
+    _tick(match.token);
+    final first = _evaluate(match.first);
+    final last = match.last;
+    if (last == null) {
+      return _compare(match.operator, selector, first, match.token);
+    }
+    _rangeValue(selector, match.token);
+    _rangeValue(first, match.first.token);
+    final lower = _compare('>=', selector, first, match.token);
+    // VBA defines a range as two comparisons joined by eager And. Evaluate
+    // the upper endpoint even when the lower comparison does not match.
+    final upperValue = _evaluate(last);
+    _rangeValue(upperValue, last.token);
+    final upper = _compare('<=', selector, upperValue, last.token);
+    return lower && upper;
+  }
+
+  void _rangeValue(Object value, _Token token) {
+    if (value is! num && value is! String) {
+      context.type(token, 'Case To ranges require numbers or strings.');
+    }
   }
 
   Object _evaluate(_Expr expression) {
@@ -2016,38 +2254,8 @@ class _Evaluator {
               ? a || b
               : a != b;
         }
-        if (const <String>{
-          '=',
-          '<>',
-          '<',
-          '>',
-          '<=',
-          '>=',
-        }.contains(operator)) {
-          final int comparison;
-          if (left is num && right is num) {
-            // Dart compareTo distinguishes signed zero; VBA numeric equality
-            // and ordering do not distinguish -0.0 from 0.0.
-            comparison = left == right ? 0 : left.compareTo(right);
-          } else if (left is String && right is String) {
-            comparison = left.compareTo(right);
-          } else if (left is bool && right is bool) {
-            // VBA True is -1 and False is 0 when ordering Booleans.
-            comparison = (left ? -1 : 0).compareTo(right ? -1 : 0);
-          } else {
-            context.type(
-              expression.token,
-              'Comparisons require matching scalar types.',
-            );
-          }
-          return switch (operator) {
-            '=' => comparison == 0,
-            '<>' => comparison != 0,
-            '<' => comparison < 0,
-            '>' => comparison > 0,
-            '<=' => comparison <= 0,
-            _ => comparison >= 0,
-          };
+        if (_comparisonOperators.contains(operator)) {
+          return _compare(operator, left, right, expression.token);
         }
         // Use floating-point intermediates before checking the safe-integer
         // magnitude. Native Dart int multiplication can wrap before a later
@@ -2069,6 +2277,30 @@ class _Evaluator {
         }, expression.token);
         return result == result.truncateToDouble() ? result.toInt() : result;
     }
+  }
+
+  bool _compare(String operator, Object left, Object right, _Token token) {
+    final int comparison;
+    if (left is num && right is num) {
+      // Dart compareTo distinguishes signed zero; VBA numeric equality and
+      // ordering do not distinguish -0.0 from 0.0.
+      comparison = left == right ? 0 : left.compareTo(right);
+    } else if (left is String && right is String) {
+      comparison = left.compareTo(right);
+    } else if (left is bool && right is bool) {
+      // VBA True is -1 and False is 0 when ordering Booleans.
+      comparison = (left ? -1 : 0).compareTo(right ? -1 : 0);
+    } else {
+      context.type(token, 'Comparisons require matching scalar types.');
+    }
+    return switch (operator) {
+      '=' => comparison == 0,
+      '<>' => comparison != 0,
+      '<' => comparison < 0,
+      '>' => comparison > 0,
+      '<=' => comparison <= 0,
+      _ => comparison >= 0,
+    };
   }
 
   Object _convert(_Declared type, Object value, _Token token) {
