@@ -3,7 +3,7 @@
 
     dart compile js tool/browser_smoke.dart -o <out>/smoke.js
     python3 tool/browser_smoke.py --script <out>/smoke.js --web build/web \
-        --bundle <noprob bundle dir> --corpus pud.txt [--chrome <binary>]
+        --bundle <proofing-bin bundle dir> --corpus pud.txt [--chrome <binary>]
 
 Serves the page, the compiled smoke script, the built worker/module/wasm,
 the verified bundle and the corpus from one local origin, starts Chrome

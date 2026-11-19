@@ -111,6 +111,34 @@ final class MorphInstaller {
     }
   }
 
+  /// Removes every installed bundle other than [keep] (for example the
+  /// earlier `noprob` text bundle once the binary proofing bundle replaced
+  /// it) and leftovers of interrupted removals. Staging directories of a
+  /// running installation are left alone. Returns the removed entry names.
+  Future<List<String>> removeOtherBundles(MorphBundleDownload keep) async {
+    final parent = Directory('${root.path}/arabic_morph');
+    if (FileSystemEntity.typeSync(parent.path, followLinks: false) !=
+        FileSystemEntityType.directory) {
+      return const [];
+    }
+    final current = '${keep.revision}-${keep.id}';
+    final removed = <String>[];
+    for (final entry in parent.listSync(followLinks: false)) {
+      final name = entry.uri.pathSegments.lastWhere((s) => s.isNotEmpty);
+      if (name == current || name.startsWith('.staging-')) continue;
+      if (name.startsWith('.removing-') ||
+          RegExp(r'^[0-9a-f]{40}-[A-Za-z0-9._-]+$').hasMatch(name)) {
+        try {
+          entry.deleteSync(recursive: true);
+          removed.add(name);
+        } on FileSystemException {
+          // Retried on the next refresh; a stale tree is never opened.
+        }
+      }
+    }
+    return removed;
+  }
+
   /// Removes an installed bundle. Dispose analyzers using it first.
   Future<void> remove(MorphBundleDownload bundle) async {
     final directory = _directory(bundle);

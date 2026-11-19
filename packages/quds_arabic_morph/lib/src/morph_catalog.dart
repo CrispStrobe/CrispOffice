@@ -84,9 +84,56 @@ final class MorphBundleDownload {
   }
 }
 
-/// Camel Morph MSA v1.0 (NYU Abu Dhabi, CC BY 4.0), `noprob` variant: the
-/// unmodified database minus the treebank-derived `*_logprob` values. Rules
-/// reason over all analyses, so no ranking is needed (see the package README).
+/// Camel Morph MSA v1.0 (NYU Abu Dhabi, CC BY 4.0), `proofing-bin` variant:
+/// the `noprob` database (no treebank-derived `*_logprob` values) in
+/// CrispEmbed's memory-mapped binary format, reduced to the features the
+/// proofing rules use (`diac`, `lex`, `root`, `pos`, the clitics `prc0`-`prc3`
+/// and `enc0`-`enc2`, the inflectional features and `source`). Analyses and
+/// those feature values are exactly camel_tools'; 12 MB instead of 78 MB, and
+/// the analyzer maps it instead of parsing it. Rules reason over all analyses,
+/// so no ranking is needed (see the package README).
+const camelMorphMsaProofingBin = MorphBundleDownload(
+  id: 'camel-morph-msa-proofing-bin',
+  displayName: 'Arabic morphology (Camel Morph MSA v1.0)',
+  repository: 'cstr/camel-morph-msa-v1.0',
+  revision: 'd5364e04af7a40b0c9044ed127606e585be15272',
+  directory: 'proofing-bin',
+  license: 'CC-BY-4.0',
+  licenseUrl: 'https://creativecommons.org/licenses/by/4.0/',
+  attribution:
+      'Camel Morph MSA v1.0 (c) 2024 by New York University Abu Dhabi is '
+      'licensed under CC BY 4.0. Changes: the treebank-derived '
+      'pos_logprob/lex_logprob/pos_lex_logprob values and all features other '
+      'than the proofing profile were removed, and the database was converted '
+      'to a binary format.',
+  sourceUrl: 'https://github.com/CAMeL-Lab/camel_morph',
+  manifest: MorphArtifact(
+    'manifest.json',
+    '357540af897af5dd2a0f7fc84518cc875c4481e3e566c30ca0a5043a52290f71',
+    2064,
+  ),
+  database: MorphArtifact(
+    'camel_morph_msa_v1.0.proofing.cmorph',
+    'fc9d9109ddb5430da94def715df05b563cb37ffaec508f3514668ded19438909',
+    12166992,
+  ),
+  notices: [
+    MorphArtifact(
+      'NOTICE',
+      'ce2f9c051786a37e4eb72367e6a6c9ea256b702137d4187bb0bfbda38f860efd',
+      1799,
+    ),
+    MorphArtifact(
+      'LICENSE',
+      '214965747a90efe3e5268d367192bb077f1101620662cba71d59d902000b2d94',
+      442,
+    ),
+  ],
+);
+
+/// The earlier `noprob` text bundle (78 MB ALMOR text, every feature). Still
+/// opened by the analyzer, but no longer offered for download: installs of
+/// it are removed in favour of [camelMorphMsaProofingBin].
 const camelMorphMsaNoprob = MorphBundleDownload(
   id: 'camel-morph-msa-noprob',
   displayName: 'Arabic morphology (Camel Morph MSA v1.0)',
@@ -125,7 +172,7 @@ const camelMorphMsaNoprob = MorphBundleDownload(
 );
 
 /// All morphology databases a host may offer for download.
-const morphCatalog = [camelMorphMsaNoprob];
+const morphCatalog = [camelMorphMsaProofingBin];
 
 /// Database input for a transport: a verified bundle on disk (native) or
 /// verified bytes in memory (web).
