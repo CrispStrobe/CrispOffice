@@ -174,22 +174,57 @@ List<ScriptSegment> scriptSegments(String text) {
 /// policy can be asked about. Unknown tags are treated as Latin unless they
 /// carry an explicit script subtag.
 TextScript languageScript(String language) {
-  final parts = language.split('-');
-  if (parts.length > 1 && parts[1].toLowerCase() == 'latn') {
-    return TextScript.latin;
+  final parts = language.trim().replaceAll('_', '-').toLowerCase().split('-');
+  if (parts.length > 1 && _scriptSubtag.hasMatch(parts[1])) {
+    return switch (parts[1]) {
+      'latn' => TextScript.latin,
+      'arab' => TextScript.arabic,
+      'hebr' => TextScript.hebrew,
+      'cyrl' => TextScript.cyrillic,
+      'grek' => TextScript.greek,
+      _ => TextScript.other,
+    };
   }
   return switch (parts.first) {
     'ar' || 'fa' || 'ur' || 'ps' || 'ku' || 'sd' || 'ug' => TextScript.arabic,
     'he' || 'yi' => TextScript.hebrew,
-    'ru' || 'uk' || 'be' || 'bg' || 'mk' || 'sr' || 'kk' || 'ky' || 'mn' ||
+    'ru' ||
+    'uk' ||
+    'be' ||
+    'bg' ||
+    'mk' ||
+    'sr' ||
+    'kk' ||
+    'ky' ||
+    'mn' ||
     'tg' => TextScript.cyrillic,
     'el' => TextScript.greek,
-    'am' || 'bn' || 'gu' || 'hi' || 'hy' || 'ja' || 'ka' || 'km' || 'kn' ||
-    'ko' || 'lo' || 'ml' || 'mr' || 'my' || 'ne' || 'pa' || 'si' || 'ta' ||
-    'te' || 'th' || 'zh' => TextScript.other,
+    'am' ||
+    'bn' ||
+    'gu' ||
+    'hi' ||
+    'hy' ||
+    'ja' ||
+    'ka' ||
+    'km' ||
+    'kn' ||
+    'ko' ||
+    'lo' ||
+    'ml' ||
+    'mr' ||
+    'my' ||
+    'ne' ||
+    'pa' ||
+    'si' ||
+    'ta' ||
+    'te' ||
+    'th' ||
+    'zh' => TextScript.other,
     _ => TextScript.latin,
   };
 }
+
+final _scriptSubtag = RegExp(r'^[a-z]{4}$');
 
 /// The language decided for one script run.
 final class DetectedSegment {
@@ -259,7 +294,10 @@ final class LanguageDetectionPolicy {
   /// The decision for [segment] given the classifier's [guesses] (empty when
   /// it was not asked or had no answer).
   DetectedSegment decide(ScriptSegment segment, List<LanguageGuess> guesses) {
-    final top = guesses.isEmpty ? null : guesses.first;
+    final first = guesses.isEmpty ? null : guesses.first;
+    final top = first != null && _validConfidence(first.confidence)
+        ? first
+        : null;
     DetectedSegment result(String? language, double confidence, bool script) =>
         DetectedSegment(
           start: segment.start,
@@ -281,7 +319,11 @@ final class LanguageDetectionPolicy {
             alternatives.contains(top.language)) {
           return result(top.language, top.confidence, false);
         }
-        final own = guesses.where((g) => g.language == fallback).firstOrNull;
+        final own = guesses
+            .where(
+              (g) => g.language == fallback && _validConfidence(g.confidence),
+            )
+            .firstOrNull;
         return result(fallback, own?.confidence ?? 1, true);
       case TextScript.latin ||
           TextScript.cyrillic ||
@@ -297,6 +339,9 @@ final class LanguageDetectionPolicy {
     }
   }
 }
+
+bool _validConfidence(double confidence) =>
+    confidence.isFinite && confidence >= 0 && confidence <= 1;
 
 /// The detected languages of one paragraph text.
 final class ParagraphLanguages {
@@ -345,6 +390,7 @@ final class ParagraphLanguageDetector {
   final int cacheSize;
   final LinkedHashMap<String, ParagraphLanguages> _cache = LinkedHashMap();
   final Map<String, Future<ParagraphLanguages>> _running = {};
+  int _cacheGeneration = 0;
 
   /// The cached result for [text], if detection already ran.
   ParagraphLanguages? cached(String text) {
@@ -359,10 +405,11 @@ final class ParagraphLanguageDetector {
 
   /// Detects every text with one classifier call for all uncached ones.
   Future<List<ParagraphLanguages>> detectAll(List<String> texts) async {
+    final input = List<String>.of(texts, growable: false);
     final results = <String, ParagraphLanguages>{};
     final waits = <String, Future<ParagraphLanguages>>{};
     final missing = <String>[];
-    for (final text in texts) {
+    for (final text in input) {
       if (results.containsKey(text) || waits.containsKey(text)) continue;
       final hit = cached(text);
       final running = _running[text];
@@ -375,13 +422,15 @@ final class ParagraphLanguageDetector {
       }
     }
     if (missing.isNotEmpty) {
-      final work = _run(missing);
+      final work = _run(missing, _cacheGeneration);
+      final owned = <String, Future<ParagraphLanguages>>{};
       for (var i = 0; i < missing.length; i++) {
         final position = i;
         final pending = work.then((done) => done[position]);
         // Only concurrent callers listen; an error must not go unhandled.
         pending.ignore();
         _running[missing[i]] = pending;
+        owned[missing[i]] = pending;
       }
       try {
         final done = await work;
@@ -389,16 +438,23 @@ final class ParagraphLanguageDetector {
           results[missing[i]] = done[i];
         }
       } finally {
-        _running.removeWhere((text, _) => missing.contains(text));
+        for (final entry in owned.entries) {
+          if (identical(_running[entry.key], entry.value)) {
+            _running.remove(entry.key)?.ignore();
+          }
+        }
       }
     }
     for (final entry in waits.entries) {
       results[entry.key] = await entry.value;
     }
-    return [for (final text in texts) results[text]!];
+    return [for (final text in input) results[text]!];
   }
 
-  Future<List<ParagraphLanguages>> _run(List<String> texts) async {
+  Future<List<ParagraphLanguages>> _run(
+    List<String> texts,
+    int generation,
+  ) async {
     final segmented = [for (final text in texts) scriptSegments(text)];
     final queries = <String>[];
     final index = <(int, int), int>{};
@@ -431,7 +487,7 @@ final class ParagraphLanguageDetector {
         segments.add(policy.decide(segmented[t][s], guesses));
       }
       final result = ParagraphLanguages(texts[t], segments);
-      _remember(texts[t], result);
+      if (generation == _cacheGeneration) _remember(texts[t], result);
       results.add(result);
     }
     return results;
@@ -446,9 +502,14 @@ final class ParagraphLanguageDetector {
     }
   }
 
-  /// Drops cached results (for example after the classifier became
-  /// available).
-  void clearCache() => _cache.clear();
+  /// Drops cached and in-flight results (for example after the classifier
+  /// became available). Existing callers still receive their result, but
+  /// it cannot refill this cache or replace a new detection of the same text.
+  void clearCache() {
+    _cacheGeneration++;
+    _cache.clear();
+    _running.clear();
+  }
 }
 
 /// Primary language subtag of [tag] (`de-CH` -> `de`), lower case.

@@ -32,7 +32,14 @@ final class Cld3LanguageIdentifier implements LanguageIdentifier {
            platform.createLanguageIdTransport(
              nativeLibraryPath: nativeLibraryPath,
              workerUrl: workerUrl,
-           );
+           ) {
+    if (topK < 1 || topK > 16) {
+      throw RangeError.range(topK, 1, 16, 'topK');
+    }
+    if (batchTexts < 1) {
+      throw RangeError.range(batchTexts, 1, null, 'batchTexts');
+    }
+  }
 
   Uint8List? _model;
   final LanguageIdTransport _transport;
@@ -44,6 +51,7 @@ final class Cld3LanguageIdentifier implements LanguageIdentifier {
   final int batchTexts;
 
   Future<void>? _loading;
+  Future<void>? _disposing;
   bool _available = false;
   bool _disposed = false;
   Object? _failure;
@@ -56,7 +64,8 @@ final class Cld3LanguageIdentifier implements LanguageIdentifier {
 
   /// Opens the model once; later calls return the same future. Completes
   /// normally even when loading fails ([failure] tells why).
-  Future<void> load() => _loading ??= _open();
+  Future<void> load() =>
+      _disposed ? Future<void>.value() : _loading ??= _open();
 
   Future<void> _open() async {
     final model = _model;
@@ -86,43 +95,80 @@ final class Cld3LanguageIdentifier implements LanguageIdentifier {
 
   @override
   Future<List<List<LanguageGuess>>> identify(List<String> texts) async {
-    if (texts.isEmpty) return const [];
+    // The caller may mutate its list while the model or a worker is loading.
+    final input = List<String>.of(texts, growable: false);
+    if (input.isEmpty) return const [];
+    final results = [for (final _ in input) const <LanguageGuess>[]];
+    final positions = [
+      for (var i = 0; i < input.length; i++)
+        if (_letter.hasMatch(input[i])) i,
+    ];
+    if (positions.isEmpty || _disposed) return results;
     await load();
-    if (!isAvailable) return [for (final _ in texts) const <LanguageGuess>[]];
-    final results = <List<LanguageGuess>>[];
-    for (var start = 0; start < texts.length; start += batchTexts) {
-      final end = start + batchTexts < texts.length
+    if (!isAvailable) return results;
+    for (var start = 0; start < positions.length; start += batchTexts) {
+      final end = start + batchTexts < positions.length
           ? start + batchTexts
-          : texts.length;
-      final batch = texts.sublist(start, end);
-      final List<List<(String, double)>> answers;
+          : positions.length;
+      final batch = [for (var i = start; i < end; i++) input[positions[i]]];
       try {
-        answers = await _transport.detect(batch, topK);
+        final answers = await _transport.detect(batch, topK);
+        if (!isAvailable) {
+          return [for (final _ in input) const <LanguageGuess>[]];
+        }
+        if (answers.length != batch.length) {
+          throw const FormatException(
+            'Malformed language identifier response.',
+          );
+        }
+        final converted = <List<LanguageGuess>>[];
+        for (final answer in answers) {
+          if (answer.length > topK) {
+            throw const FormatException(
+              'Malformed language identifier response.',
+            );
+          }
+          var previousProbability = 1.0;
+          final guesses = <LanguageGuess>[];
+          for (final (label, probability) in answer) {
+            final language = cld3LabelToLanguage(label);
+            if (!_languages.contains(language) ||
+                !probability.isFinite ||
+                probability < 0 ||
+                probability > previousProbability) {
+              throw const FormatException(
+                'Malformed language identifier response.',
+              );
+            }
+            previousProbability = probability;
+            guesses.add(LanguageGuess(language, probability));
+          }
+          converted.add(guesses);
+        }
+        for (var i = start; i < end; i++) {
+          results[positions[i]] = converted[i - start];
+        }
       } on Object catch (error) {
+        if (!isAvailable) {
+          return [for (final _ in input) const <LanguageGuess>[]];
+        }
         _failure = error;
         _available = false;
-        while (results.length < texts.length) {
-          results.add(const <LanguageGuess>[]);
-        }
         return results;
-      }
-      if (answers.length != batch.length) {
-        throw const FormatException('Malformed language identifier response.');
-      }
-      for (final answer in answers) {
-        results.add([
-          for (final (label, probability) in answer)
-            LanguageGuess(cld3LabelToLanguage(label), probability),
-        ]);
       }
     }
     return results;
   }
 
-  Future<void> dispose() async {
-    if (_disposed) return;
+  Future<void> dispose() => _disposing ??= _dispose();
+
+  Future<void> _dispose() async {
     _disposed = true;
     _available = false;
+    _model = null;
     await _transport.dispose();
   }
 }
+
+final _letter = RegExp(r'\p{L}', unicode: true);
+final _languages = cld3Labels.map(cld3LabelToLanguage).toSet();

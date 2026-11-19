@@ -30,7 +30,10 @@ final class _NativeTransport implements LanguageIdTransport {
   ReceivePort? _errors;
   Future<SendPort>? _opening;
   Completer<SendPort>? _ready;
+  final _closed = Completer<void>();
+  Future<void>? _disposal;
   bool _disposed = false;
+  bool _aborted = false;
   int _sequence = 0;
 
   Future<SendPort> _start() async {
@@ -40,6 +43,8 @@ final class _NativeTransport implements LanguageIdTransport {
     messages.listen((Object? value) {
       if (value is SendPort) {
         if (!ready.isCompleted) ready.complete(value);
+      } else if (value == 'closed') {
+        if (!_closed.isCompleted) _closed.complete();
       } else if (value case ['result', final int id, final Object? body]) {
         _pending.remove(id)?.complete(body);
       } else if (value case ['error', final int id, final String message]) {
@@ -80,7 +85,7 @@ final class _NativeTransport implements LanguageIdTransport {
           errorsAreFatal: true,
           debugName: 'Quds language identifier',
         ).then((isolate) {
-          if (_disposed) {
+          if (_aborted) {
             isolate.kill(priority: Isolate.immediate);
           } else {
             _isolate = isolate;
@@ -90,24 +95,30 @@ final class _NativeTransport implements LanguageIdTransport {
       ], eagerError: true);
       return results.first! as SendPort;
     } on LanguageIdUnavailableException {
-      await dispose();
       rethrow;
     } on Object {
-      await dispose();
-      throw const LanguageIdUnavailableException(
+      const error = LanguageIdUnavailableException(
         'The local language identifier could not be started.',
       );
+      _fail(error);
+      throw error;
     }
   }
 
   void _fail(Object error) {
     _disposed = true;
+    _aborted = true;
     final ready = _ready;
     if (ready != null && !ready.isCompleted) ready.completeError(error);
     for (final request in _pending.values) {
       request.completeError(error);
     }
     _pending.clear();
+    if (!_closed.isCompleted) _closed.complete();
+    _terminate();
+  }
+
+  void _terminate() {
     _isolate?.kill(priority: Isolate.immediate);
     _isolate = null;
     _messages?.close();
@@ -152,13 +163,35 @@ final class _NativeTransport implements LanguageIdTransport {
   }
 
   @override
-  Future<void> dispose() async {
-    if (_disposed) return;
-    _fail(
-      const LanguageIdUnavailableException(
-        'The language identifier was disposed.',
-      ),
+  Future<void> dispose() => _disposal ??= _dispose();
+
+  Future<void> _dispose() async {
+    _disposed = true;
+    const error = LanguageIdUnavailableException(
+      'The language identifier was disposed.',
     );
+    for (final request in _pending.values) {
+      request.completeError(error);
+    }
+    _pending.clear();
+    try {
+      final opening = _opening;
+      if (opening != null && !_aborted) {
+        // Killing an isolate does not free allocations made by its native
+        // library. Let queued native calls finish, then release the model and
+        // buffers in their owning worker before acknowledging disposal.
+        final port = await opening.timeout(const Duration(seconds: 2));
+        port.send(['dispose']);
+        await _closed.future.timeout(const Duration(seconds: 2));
+      }
+    } on Object {
+      // A crashed or unresponsive worker still must not hold up app shutdown.
+    } finally {
+      _aborted = true;
+      final ready = _ready;
+      if (ready != null && !ready.isCompleted) ready.completeError(error);
+      _terminate();
+    }
   }
 }
 
@@ -184,6 +217,17 @@ void _workerMain(List<Object?> arguments) {
   host.send(input.sendPort);
   Pointer<Void> handle = nullptr;
   input.listen((Object? value) {
+    if (value case ['dispose']) {
+      try {
+        if (handle != nullptr) bindings.close(handle);
+      } finally {
+        handle = nullptr;
+        bindings.dispose();
+        input.close();
+        host.send('closed');
+      }
+      return;
+    }
     if (value is! List || value.isEmpty || value.first is! int) return;
     final id = value.first as int;
     try {
@@ -278,10 +322,14 @@ final class _Bindings {
       'quds_language_id_abi_version',
     );
     if (abi() != 1) throw StateError('Unsupported language identifier ABI.');
-    _out = _allocate(_outCapacity);
-    _error = _allocate(_errorCapacity);
-    _textCapacity = 4096;
-    _text = _allocate(_textCapacity);
+    try {
+      _out = _allocate(_outCapacity);
+      _error = _allocate(_errorCapacity);
+      _text = _allocate(_textCapacity);
+    } on Object {
+      dispose();
+      rethrow;
+    }
   }
 
   final Pointer<Void> Function(Pointer<Uint8>, int, Pointer<Uint8>, int) _open;
@@ -299,10 +347,17 @@ final class _Bindings {
   final void Function(Pointer<Uint8>) _free;
 
   // Buffers owned for the isolate's lifetime (one classifier per isolate).
-  late final Pointer<Uint8> _out;
-  late final Pointer<Uint8> _error;
-  late Pointer<Uint8> _text;
-  late int _textCapacity;
+  Pointer<Uint8> _out = nullptr;
+  Pointer<Uint8> _error = nullptr;
+  Pointer<Uint8> _text = nullptr;
+  int _textCapacity = 4096;
+
+  void dispose() {
+    for (final buffer in [_out, _error, _text]) {
+      if (buffer != nullptr) _free(buffer);
+    }
+    _out = _error = _text = nullptr;
+  }
 
   Pointer<Uint8> _allocate(int bytes) {
     final pointer = _malloc(bytes);
@@ -334,9 +389,10 @@ final class _Bindings {
   String detect(Pointer<Void> handle, String text, int k) {
     final bytes = utf8.encode(text);
     if (bytes.length > _textCapacity) {
+      final replacement = _allocate(bytes.length);
       _free(_text);
       _textCapacity = bytes.length;
-      _text = _allocate(_textCapacity);
+      _text = replacement;
     }
     _text.asTypedList(_textCapacity).setAll(0, bytes);
     _out[0] = 0;
