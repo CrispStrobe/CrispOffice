@@ -95,10 +95,17 @@ certify submission.
 
 Reply and text-only forwarding quote the fetched message's plain-text part,
 preserve complete Unicode characters at their explicit quote limit, and do not
-copy Bcc or attachments. HTML-only quotation and threading headers remain outside
-this increment. A retained uncertain draft cannot be silently replaced by a
-reply/forward; Compose resumes it, and an explicit confirmed discard removes
-only the session draft without cancelling a message already submitted.
+copy Bcc or attachments. Replies now retain bounded, validated `In-Reply-To`
+and `References` metadata through editing, explicit uncertain retries and the
+shared MIME builder; forwards start independent conversations. Unsupported
+parent IDs leave the reply unthreaded, and an unsupported ancestor token drops
+the inherited chain. [Reply threading](reply-threading.md) records the supported
+identifier subset, limits and current qualification: this continuation has
+source review and prepared regressions, but no fresh Dart/Flutter execution.
+HTML-only quotation remains outside this increment. A retained uncertain draft
+cannot be silently replaced by a reply/forward; Compose resumes it, and an
+explicit confirmed discard removes only the session draft without cancelling
+a message already submitted.
 
 This does **not** close M04W or M07: accounts/drafts remain session-only, there is
 no repository-driven mailbox or durable outbox, and no automatic resend is added.

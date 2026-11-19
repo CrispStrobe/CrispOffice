@@ -1,0 +1,610 @@
+[
+  {
+    "file": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "name": "inspection and options chrome never create text or history",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 149
+  },
+  {
+    "file": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "name": "collapsed caret changes the whole paragraph and preserves rich runs",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 186
+  },
+  {
+    "file": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "name": "multiline reversed selection formats complete emoji and combining clusters only",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 250
+  },
+  {
+    "file": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "name": "effective mixed states, inherited languages and no-op history are distinct",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 296
+  },
+  {
+    "file": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "name": "live changes recheck language, suppress findings and reject late results without manual inference",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 345
+  },
+  {
+    "file": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "name": "a captured target refuses stale caret without history",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 406
+  },
+  {
+    "file": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "name": "a captured target refuses stale text without history",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 406
+  },
+  {
+    "file": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "name": "a captured target refuses stale language without history",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 406
+  },
+  {
+    "file": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "name": "a captured target refuses stale complex-script language without history",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 406
+  },
+  {
+    "file": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "name": "a captured target refuses stale run language without history",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 406
+  },
+  {
+    "file": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "name": "a captured target refuses stale run complex-script language without history",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 406
+  },
+  {
+    "file": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "name": "a captured target refuses stale suppression without history",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 406
+  },
+  {
+    "file": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "name": "a captured target refuses stale run replacement without history",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 406
+  },
+  {
+    "file": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "name": "a captured target refuses stale document without history",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 406
+  },
+  {
+    "file": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "name": "a captured target refuses stale paragraph order without history",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 406
+  },
+  {
+    "file": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "name": "a field in a multiline target refuses the entire change",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 463
+  },
+  {
+    "file": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "name": "a note in a multiline target refuses the entire change",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 463
+  },
+  {
+    "file": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "name": "a complex field in a multiline target refuses the entire change",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 463
+  },
+  {
+    "file": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "name": "a generated paragraph in a multiline target refuses the entire change",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 463
+  },
+  {
+    "file": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "name": "a complex field opened in a prior paragraph remains protected",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 494
+  },
+  {
+    "file": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "name": "protected block controls refuse both proofing operations",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 534
+  },
+  {
+    "file": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "name": "protected inline controls refuse both proofing operations",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 534
+  },
+  {
+    "file": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "name": "protected wrapper controls refuse both proofing operations",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 534
+  },
+  {
+    "file": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "name": "protected binding controls refuse both proofing operations",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 534
+  },
+  {
+    "file": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "name": "unlocked control boundaries survive selected formatting and Undo",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 566
+  },
+  {
+    "file": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "name": "formatting leaves tracked insertion/deletion ranges and authors intact",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 596
+  },
+  {
+    "file": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "name": "comment target follows exact ownership and history preserves other story selections",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 643
+  },
+  {
+    "file": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "name": "header target follows exact ownership and history preserves other story selections",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 643
+  },
+  {
+    "file": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "name": "viewing mode, late protection and IME never mutate displayed targets",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 706
+  },
+  {
+    "file": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "name": "explicit both-slot language editing replaces stale metadata and resets both overrides through history and save",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 733
+  },
+  {
+    "file": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "name": "default selection language he-IL preserves inactive slots through history and save",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 816
+  },
+  {
+    "file": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "name": "default selection language de-AT preserves inactive slots through history and save",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 816
+  },
+  {
+    "file": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "name": "default selection language en-US preserves inactive slots through history and save",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 816
+  },
+  {
+    "file": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "name": "partial Latin selection routes its own language slot and preserves the other",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 930
+  },
+  {
+    "file": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "name": "partial Arabic selection routes its own language slot and preserves the other",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 930
+  },
+  {
+    "file": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "name": "default whole mixed selection changes and resets both active slots through history and save",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 1010
+  },
+  {
+    "file": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "name": "language inheritance and explicit checking permission survive DOCX save",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 1092
+  },
+  {
+    "file": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "name": "resetting imported language preserves inactive metadata and style inheritance through history and save",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 1156
+  },
+  {
+    "file": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "name": "a style part replacement makes an already displayed language target stale",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 1242
+  },
+  {
+    "file": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "name": "aliased paragraph ownership cannot modify another story indirectly",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 1253
+  },
+  {
+    "file": "packages/quds_office_editor/test/word_text_proofing_pane_test.dart",
+    "name": "unrelated language providers stay silent in English review",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 183
+  },
+  {
+    "file": "packages/quds_office_editor/test/word_text_proofing_pane_test.dart",
+    "name": "language support is requested only after successful changes, not stale edits or Undo",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 207
+  },
+  {
+    "file": "packages/quds_office_editor/test/word_text_proofing_pane_test.dart",
+    "name": "language status opens paragraph options without a dialog or document edit",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 232
+  },
+  {
+    "file": "packages/quds_office_editor/test/word_text_proofing_pane_test.dart",
+    "name": "selection language updates live checking and preserves the selection with Undo",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 257
+  },
+  {
+    "file": "packages/quds_office_editor/test/word_text_proofing_pane_test.dart",
+    "name": "text checking toggle excludes only the selected text and can restore it",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 292
+  },
+  {
+    "file": "packages/quds_office_editor/test/word_text_proofing_pane_test.dart",
+    "name": "mixed text settings display and enable the full selected range",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 316
+  },
+  {
+    "file": "packages/quds_office_editor/test/word_text_proofing_pane_test.dart",
+    "name": "inherited language follows paragraph defaults and supports Undo",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 351
+  },
+  {
+    "file": "packages/quds_office_editor/test/word_text_proofing_pane_test.dart",
+    "name": "unchanged inherited language does not promise an Undo entry",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 376
+  },
+  {
+    "file": "packages/quds_office_editor/test/word_text_proofing_pane_test.dart",
+    "name": "old dropdown action refuses a different selection",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 388
+  },
+  {
+    "file": "packages/quds_office_editor/test/word_text_proofing_pane_test.dart",
+    "name": "text options cannot mutate through a covering modal",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 406
+  },
+  {
+    "file": "packages/quds_office_editor/test/word_text_proofing_pane_test.dart",
+    "name": "viewing mode keeps inspection and disables text changes",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 430
+  },
+  {
+    "file": "packages/quds_office_editor/test/word_text_proofing_pane_test.dart",
+    "name": "pane follows caret context and keeps its open section across hiding",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 452
+  },
+  {
+    "file": "packages/quds_office_editor/test/word_text_proofing_pane_test.dart",
+    "name": "language status reveals expanded settings again after scrolling",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 485
+  },
+  {
+    "file": "packages/quds_office_editor/test/word_text_proofing_pane_test.dart",
+    "name": "narrow English text options remain usable with large text",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 503
+  },
+  {
+    "file": "packages/quds_office_editor/test/word_text_proofing_pane_test.dart",
+    "name": "narrow RTL text options remain usable with large text",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 503
+  },
+  {
+    "file": "packages/quds_office_editor/test/word_review_pane_test.dart",
+    "name": "editing stays available while live findings update in the pane",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 185
+  },
+  {
+    "file": "packages/quds_office_editor/test/word_review_pane_test.dart",
+    "name": "opening and correcting do not implicitly run manual providers",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 224
+  },
+  {
+    "file": "packages/quds_office_editor/test/word_review_pane_test.dart",
+    "name": "unavailable provider status is not presented as a clean document",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 247
+  },
+  {
+    "file": "packages/quds_office_editor/test/word_review_pane_test.dart",
+    "name": "a suggestion captured before an edit cannot change newer text",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 270
+  },
+  {
+    "file": "packages/quds_office_editor/test/word_review_pane_test.dart",
+    "name": "category filtering navigates only matching findings",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 290
+  },
+  {
+    "file": "packages/quds_office_editor/test/word_review_pane_test.dart",
+    "name": "tracked changes resolve in place and undo restores them",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 308
+  },
+  {
+    "file": "packages/quds_office_editor/test/word_review_pane_test.dart",
+    "name": "reviewer field affects future attribution and leaves document alone",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 337
+  },
+  {
+    "file": "packages/quds_office_editor/test/word_review_pane_test.dart",
+    "name": "viewing mode allows inspection while disabling document mutations",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 368
+  },
+  {
+    "file": "packages/quds_office_editor/test/word_review_pane_test.dart",
+    "name": "stale checks stay pending until a current provider result arrives",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 389
+  },
+  {
+    "file": "packages/quds_office_editor/test/word_review_pane_test.dart",
+    "name": "narrow English pane remains scrollable",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 415
+  },
+  {
+    "file": "packages/quds_office_editor/test/word_review_pane_test.dart",
+    "name": "narrow Arabic pane remains scrollable",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 415
+  },
+  {
+    "file": "packages/quds_office_editor/test/word_page_layout_test.dart",
+    "name": "Page Layout applies every supported setting in one undo step",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 33
+  },
+  {
+    "file": "packages/quds_office_editor/test/word_page_layout_test.dart",
+    "name": "page geometry follows continuous siblings but section options do not",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 90
+  },
+  {
+    "file": "packages/quds_office_editor/test/word_page_layout_test.dart",
+    "name": "whole document applies values while preserving existing section starts",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 125
+  },
+  {
+    "file": "packages/quds_office_editor/test/word_page_layout_test.dart",
+    "name": "invalid drafts are atomic and do not mark the document dirty",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 178
+  },
+  {
+    "file": "packages/quds_office_editor/test/word_page_layout_test.dart",
+    "name": "shared geometry rejects a change that cannot fit a sibling column",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 208
+  },
+  {
+    "file": "packages/quds_office_editor/test/word_page_layout_test.dart",
+    "name": "unchanged exact measurements produce no history or rounding",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 226
+  },
+  {
+    "file": "packages/quds_office_editor/test/word_page_layout_test.dart",
+    "name": "stale document, section, revision and direct layout edits are rejected",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 240
+  },
+  {
+    "file": "packages/quds_office_editor/test/word_page_layout_test.dart",
+    "name": "captured section survives caret movement while the dialog is open",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 277
+  },
+  {
+    "file": "packages/quds_office_editor/test/word_page_layout_test.dart",
+    "name": "DOCX roundtrip keeps all applied modeled values",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 294
+  },
+  {
+    "file": "packages/quds_office_editor/test/word_page_layout_test.dart",
+    "name": "unrelated layout edits preserve imported section XML and custom columns",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 325
+  }
+]

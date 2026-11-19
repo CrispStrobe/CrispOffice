@@ -1,0 +1,154 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-11-19T20:48:28.503Z",
+  "repository": "CrispStrobe/quds_office_suite",
+  "baselineMain": "5715d56053e93dc11e8b5165bd13f8db2a1f3917",
+  "reconciledBaseline": "2638a2c96ea5e66ace5884896fe09de92a7ce380",
+  "sourceCommit": "64613125ab139fcb5fe42cba9a5d7a896e646c0b",
+  "sourceTree": "2cd5c395fde3c82eab21ad5dc72ba8af23967bf8",
+  "status": "source-reviewed; runtime qualification pending",
+  "reviewedFiles": [
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_threading.dart",
+      "sha": "7f9e9352143d55c6a3f090ee7df32fd8deeb6b9c",
+      "characters": 4165,
+      "exactMatch": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_reply.dart",
+      "sha": "ce005fe9b4a0844fec8fe6e2feaf887769766932",
+      "characters": 2924,
+      "exactMatch": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_compose.dart",
+      "sha": "16143eabb091b80ab8600aa4457878513828f7da",
+      "characters": 8916,
+      "exactMatch": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_submission.dart",
+      "sha": "aed48649659f6b4d70337933e0ad7e91a2433f71",
+      "characters": 1328,
+      "exactMatch": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_threading_test.dart",
+      "sha": "0cca259bb5ef33810099052e7f379c62aa7a9402",
+      "characters": 16620,
+      "exactMatch": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_reply_test.dart",
+      "sha": "f004231315b13532af5e23e32ba87101ab78e049",
+      "characters": 8519,
+      "exactMatch": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_compose_test.dart",
+      "sha": "a4063d332404d8e6e461b3205b1dfa17fcdf7a30",
+      "characters": 11619,
+      "exactMatch": true
+    },
+    {
+      "path": "packages/quds_office_editor/CHANGELOG.md",
+      "sha": "b34a22bc508c0c2f7eb2505aa61b51cce6c9511c",
+      "characters": 47322,
+      "exactMatch": true
+    },
+    {
+      "path": "docs/roadmaps/mail/status.md",
+      "sha": "9a97658592fa818bedc4d2e55b347e9e130b2cf1",
+      "characters": 34448,
+      "exactMatch": true
+    },
+    {
+      "path": "docs/roadmaps/mail/reply-threading.md",
+      "sha": "51ed3e1c44a66d83393fb39915d77d400763b154",
+      "characters": 4964,
+      "exactMatch": true
+    }
+  ],
+  "contractsInspected": [
+    {
+      "path": "packages/quds_mail_mime/lib/src/codec.dart",
+      "sha": "1cf156fb90276f42ecece825930ec6cf7152df88"
+    },
+    {
+      "path": "third_party/enough_mail/lib/src/message_builder.dart",
+      "sha": "49311940115f2300a894a872bce2be2d23a5230d"
+    },
+    {
+      "path": "third_party/enough_mail/lib/src/mime_message.dart",
+      "sha": "6f2d822d38f49e4ae7144b2a7c2a187e1210700e"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+      "sha": "3a4948e70e412229ccb60c122724513e09c21b1a"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_ews.dart",
+      "sha": "66fc7ab22cf43beb01bbf6fcadcfb8b17b944aac"
+    }
+  ],
+  "gitAndContentChecks": {
+    "changedPaths": 12,
+    "productFiles": 4,
+    "mailTestFiles": 3,
+    "unexpectedPaths": [],
+    "baselineAncestor": true,
+    "dependencyOrSchemaChanges": [],
+    "preservedOriginalReconciliation": true,
+    "readBackFiles": 10,
+    "allExact": true
+  },
+  "fixtureArithmetic": {
+    "maxId": 254,
+    "overlongId": 255,
+    "exactReferences": 900
+  },
+  "independentSourceReviews": {
+    "implementationReviewed": true,
+    "testsReviewed": true,
+    "commentAncestryDefectFixed": true,
+    "remainingKnownSourceDefects": []
+  },
+  "tests": {
+    "addedDeclarations": 28,
+    "declarationsByFile": [
+      {
+        "path": "packages/quds_office_editor/example/test/studio_mail_threading_test.dart",
+        "oldDeclarations": 0,
+        "newDeclarations": 24,
+        "added": 24
+      },
+      {
+        "path": "packages/quds_office_editor/example/test/studio_mail_reply_test.dart",
+        "oldDeclarations": 9,
+        "newDeclarations": 12,
+        "added": 3
+      },
+      {
+        "path": "packages/quds_office_editor/example/test/studio_mail_compose_test.dart",
+        "oldDeclarations": 9,
+        "newDeclarations": 10,
+        "added": 1
+      }
+    ],
+    "dartFlutterExecutions": 0,
+    "analyzer": "not run",
+    "formatter": "not run",
+    "reason": "Session executor unavailable; no terminal, Dart SDK or Flutter runtime.",
+    "historicalCountsReused": false,
+    "liveProviderInteroperability": "not run"
+  },
+  "githubActions": {
+    "awaited": false,
+    "acceptanceGate": false
+  },
+  "publication": {
+    "method": "PR merge with expected source head; no force updates",
+    "status": "pending",
+    "postMergeReceipt": "The PR body will record exact merge commit, parents and tree readback."
+  }
+}

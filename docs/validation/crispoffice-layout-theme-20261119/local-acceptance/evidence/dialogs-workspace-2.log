@@ -1,0 +1,31 @@
+00:00 +0: loading /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart
+00:00 +0: /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart: Cancel discards spacing, indent and pagination drafts
+00:01 +1: /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart: selected paragraphs apply precisely in one undo and round trip
+00:01 +2: /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart: unit changes and no-op Apply preserve exact imported values
+00:02 +3: /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart: exact line height and first-line indent use point conversion
+00:02 +4: /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart: mixed line rules, indents and pagination remain unchanged
+00:02 +5: /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart: invalid numbers and geometry cannot mutate paragraphs
+00:03 +6: /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart: page and column breaks preserve imported line-keeping properties
+00:03 +7: /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart: a changed document rejects the detached paragraph draft
+00:03 +8: /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart: a changed revision rejects the detached paragraph draft
+00:03 +9: /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart: a changed selection rejects the detached paragraph draft
+00:03 +10: /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart: a changed story rejects the detached paragraph draft
+00:04 +11: /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart: a changed permission rejects the detached paragraph draft
+00:04 +12: /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart: a changed disposed rejects the detached paragraph draft
+00:04 +13: /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart: header paragraph changes stay in the captured header story
+00:04 +14: /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart: inspection of an empty document does not create content
+00:04 +15: /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart: en dialog supports narrow enlarged text and precise local numbers
+00:04 +16: /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart: de dialog supports narrow enlarged text and precise local numbers
+00:04 +17: /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart: ar dialog supports narrow enlarged text and precise local numbers
+00:04 +18: loading /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/example/test/studio_layout_theme_test.dart
+00:10 +18: /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/example/test/studio_layout_theme_test.dart: Layout dropdown commands apply and Undo restores each setting (variant: TargetPlatform.linux)
+00:12 +19: /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/example/test/studio_layout_theme_test.dart: Paragraph presets switch exact spacing back to multiples without truncating custom spacing (variant: TargetPlatform.linux)
+00:14 +20: /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/example/test/studio_layout_theme_test.dart: Page Layout and Paragraph dialogs are reachable from the ribbon (variant: TargetPlatform.linux)
+00:16 +21: /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/example/test/studio_layout_theme_test.dart: Document mode explains restrictions and disables layout editing (variant: TargetPlatform.linux)
+00:17 +22: /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/example/test/studio_layout_theme_test.dart: Dark appearance updates the open Settings dialog and later routes (variant: TargetPlatform.linux)
+00:19 +23: /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/example/test/studio_layout_theme_test.dart: narrow Arabic Layout menus and dialog stay reachable at 160 percent (variant: TargetPlatform.linux)
+00:20 +24: loading /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/example/test/studio_slide_sheet_menus_test.dart
+00:21 +24: /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/example/test/studio_slide_sheet_menus_test.dart: the Function menu inserts SUM in the selected worksheet cell (variant: TargetPlatform.linux)
+00:24 +25: /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/example/test/studio_slide_sheet_menus_test.dart: slide menus select exact effects, durations and advance times (variant: TargetPlatform.linux)
+00:26 +26: /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/example/test/studio_slide_sheet_menus_test.dart: File Document mode disables sheet and slide editing menus (variant: TargetPlatform.linux)
+00:27 +27: All tests passed!

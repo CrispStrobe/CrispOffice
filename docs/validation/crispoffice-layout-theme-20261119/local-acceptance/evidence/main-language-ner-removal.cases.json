@@ -1,0 +1,18 @@
+[
+  {
+    "file": "packages/quds_proofing_spacy/test/ner_removal_test.dart",
+    "name": "removing NER deletes only its content-addressed model, including disabled data",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 7
+  },
+  {
+    "file": "packages/quds_proofing_spacy/test/ner_removal_test.dart",
+    "name": "NER removal refuses invalid model identity and redirected model storage",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 28
+  }
+]

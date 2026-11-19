@@ -1,0 +1,38 @@
+00:00 +0: loading /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/test/office_dark_slide_test.dart
+00:00 +0: (setUpAll)
+00:00 +0: dark Slides adapt explicit ink and preserve automatic and exported colors
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: a value greater than <15>
+  Actual: <3>
+   Which: is not a value greater than <15>
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/test/office_dark_slide_test.dart:215:7)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1953:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/test/office_dark_slide_test.dart line 215
+The test description was:
+  dark Slides adapt explicit ink and preserve automatic and exported colors
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:00 +0 -1: dark Slides adapt explicit ink and preserve automatic and exported colors [E]
+  Test failed. See exception logs above.
+  The test description was: dark Slides adapt explicit ink and preserve automatic and exported colors
+  
+00:00 +0 -1: unfilled Slide text preserves authored ink over picture
+00:00 +1 -1: unfilled Slide text preserves authored ink over chart
+00:00 +2 -1: unfilled Slide text preserves authored ink over partial fill
+00:00 +3 -1: unfilled Slide text preserves authored ink over rotated fill
+00:01 +4 -1: dark Morph ink uses the interpolated fill instead of target fill
+00:01 +5 -1: (tearDownAll)
+00:01 +5 -1: Some tests failed.
+
+Failing tests:
+  /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/test/office_dark_slide_test.dart: dark Slides adapt explicit ink and preserve automatic and exported colors

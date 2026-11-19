@@ -1,0 +1,36 @@
+{
+  "gate": "web_vba_arrays_smoke-node",
+  "emitted_json": {
+    "language": "vba-excel",
+    "revision": 2,
+    "steps": 13,
+    "formulaTotal": 28,
+    "coldDepthStress": "32 procedure frames / 32 For Each blocks / 63 unary operators, then mixed blocks",
+    "liveArraySlotsAndIndependentControlVariables": true,
+    "rangeSnapshotAndRowMajorOrder": true,
+    "exactArrayAllocationAndNegativeBounds": true,
+    "boundedArraysAndRangeIteration": true,
+    "staticInactiveChecks": true,
+    "validationPreservedBytes": true,
+    "lateFailurePreservedBytes": true,
+    "mcpCompileAndRun": true
+  },
+  "assertions": {
+    "liveArraySlotsAndIndependentControlVariables": true,
+    "rangeSnapshotAndRowMajorOrder": true,
+    "exactArrayAllocationAndNegativeBounds": true,
+    "boundedArraysAndRangeIteration": true,
+    "staticInactiveChecks": true,
+    "validationPreservedBytes": true,
+    "lateFailurePreservedBytes": true,
+    "mcpCompileAndRun": true,
+    "coldDepthStress contains 32": true,
+    "coldDepthStress contains 63": true
+  },
+  "all_passed": true,
+  "compiled_artifact_sha256": {
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/incoming-runtime/web_vba_arrays_smoke.js": "21c1efd24042bfb855cdbae50070a58cf0c1b6f967eeb80bee5f984df5ada3b2",
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/incoming-runtime/web_vba_arrays_smoke.js.deps": "3cf7b600d79a676622a975955fc0f1f62ca249323d8daefd926f12621f89eb93",
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/incoming-runtime/web_vba_arrays_smoke.js.map": "67fcd435abf7f55db98326054e17af183093ff806e238c0c3b0062bcdb706d42"
+  }
+}

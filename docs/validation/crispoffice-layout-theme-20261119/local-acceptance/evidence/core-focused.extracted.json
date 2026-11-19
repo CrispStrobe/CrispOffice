@@ -1,0 +1,341 @@
+{
+  "schema_version": 1,
+  "format": "dart-expanded",
+  "context": {
+    "platform": "vm",
+    "exit_code": 0,
+    "repo_root": "/workspace/scratch/9c3338a48b2c/crispoffice",
+    "cwd": "/workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor"
+  },
+  "cases": [
+    {
+      "name": "dark rulers and drag readouts follow chrome colors",
+      "platform": "vm",
+      "platform_source": "caller",
+      "start_line": 2,
+      "result": "passed",
+      "file_source": "description",
+      "file": "packages/quds_office_editor/test/office_chrome_theme_test.dart",
+      "observed_lines": [
+        2
+      ],
+      "result_source": "terminal_summary_and_exact_counter_reconciliation"
+    },
+    {
+      "name": "high contrast rulers and drag readouts follow chrome colors",
+      "platform": "vm",
+      "platform_source": "caller",
+      "start_line": 3,
+      "result": "passed",
+      "file_source": "description",
+      "file": "packages/quds_office_editor/test/office_chrome_theme_test.dart",
+      "observed_lines": [
+        3
+      ],
+      "result_source": "terminal_summary_and_exact_counter_reconciliation"
+    },
+    {
+      "name": "dark chrome with white paper rulers and drag readouts follow chrome colors",
+      "platform": "vm",
+      "platform_source": "caller",
+      "start_line": 4,
+      "result": "passed",
+      "file_source": "description",
+      "file": "packages/quds_office_editor/test/office_chrome_theme_test.dart",
+      "observed_lines": [
+        4
+      ],
+      "result_source": "terminal_summary_and_exact_counter_reconciliation"
+    },
+    {
+      "name": "light ruler surfaces retain their established palette",
+      "platform": "vm",
+      "platform_source": "caller",
+      "start_line": 5,
+      "result": "passed",
+      "file_source": "description",
+      "file": "packages/quds_office_editor/test/office_chrome_theme_test.dart",
+      "observed_lines": [
+        5
+      ],
+      "result_source": "terminal_summary_and_exact_counter_reconciliation"
+    },
+    {
+      "name": "dark ink policy preserves light backgrounds and readable colors",
+      "platform": "vm",
+      "platform_source": "caller",
+      "start_line": 8,
+      "result": "passed",
+      "file_source": "description",
+      "file": "packages/quds_office_editor/test/office_dark_document_test.dart",
+      "observed_lines": [
+        8
+      ],
+      "result_source": "terminal_summary_and_exact_counter_reconciliation"
+    },
+    {
+      "name": "Word dark paper respects fills, highlights and exported ink",
+      "platform": "vm",
+      "platform_source": "caller",
+      "start_line": 9,
+      "result": "passed",
+      "file_source": "description",
+      "file": "packages/quds_office_editor/test/office_dark_document_test.dart",
+      "observed_lines": [
+        9
+      ],
+      "result_source": "terminal_summary_and_exact_counter_reconciliation"
+    },
+    {
+      "name": "Sheet dark ink follows explicit and conditional cell backing",
+      "platform": "vm",
+      "platform_source": "caller",
+      "start_line": 10,
+      "result": "passed",
+      "file_source": "description",
+      "file": "packages/quds_office_editor/test/office_dark_document_test.dart",
+      "observed_lines": [
+        10
+      ],
+      "result_source": "terminal_summary_and_exact_counter_reconciliation"
+    },
+    {
+      "name": "Page Layout applies every supported setting in one undo step",
+      "platform": "vm",
+      "platform_source": "caller",
+      "start_line": 13,
+      "result": "passed",
+      "file_source": "description",
+      "file": "packages/quds_office_editor/test/word_page_layout_test.dart",
+      "observed_lines": [
+        13
+      ],
+      "result_source": "terminal_summary_and_exact_counter_reconciliation"
+    },
+    {
+      "name": "page geometry follows continuous siblings but section options do not",
+      "platform": "vm",
+      "platform_source": "caller",
+      "start_line": 14,
+      "result": "passed",
+      "file_source": "description",
+      "file": "packages/quds_office_editor/test/word_page_layout_test.dart",
+      "observed_lines": [
+        14
+      ],
+      "result_source": "terminal_summary_and_exact_counter_reconciliation"
+    },
+    {
+      "name": "whole document applies values while preserving existing section starts",
+      "platform": "vm",
+      "platform_source": "caller",
+      "start_line": 15,
+      "result": "passed",
+      "file_source": "description",
+      "file": "packages/quds_office_editor/test/word_page_layout_test.dart",
+      "observed_lines": [
+        15
+      ],
+      "result_source": "terminal_summary_and_exact_counter_reconciliation"
+    },
+    {
+      "name": "invalid drafts are atomic and do not mark the document dirty",
+      "platform": "vm",
+      "platform_source": "caller",
+      "start_line": 16,
+      "result": "passed",
+      "file_source": "description",
+      "file": "packages/quds_office_editor/test/word_page_layout_test.dart",
+      "observed_lines": [
+        16
+      ],
+      "result_source": "terminal_summary_and_exact_counter_reconciliation"
+    },
+    {
+      "name": "shared geometry rejects a change that cannot fit a sibling column",
+      "platform": "vm",
+      "platform_source": "caller",
+      "start_line": 17,
+      "result": "passed",
+      "file_source": "description",
+      "file": "packages/quds_office_editor/test/word_page_layout_test.dart",
+      "observed_lines": [
+        17
+      ],
+      "result_source": "terminal_summary_and_exact_counter_reconciliation"
+    },
+    {
+      "name": "unchanged exact measurements produce no history or rounding",
+      "platform": "vm",
+      "platform_source": "caller",
+      "start_line": 18,
+      "result": "passed",
+      "file_source": "description",
+      "file": "packages/quds_office_editor/test/word_page_layout_test.dart",
+      "observed_lines": [
+        18
+      ],
+      "result_source": "terminal_summary_and_exact_counter_reconciliation"
+    },
+    {
+      "name": "stale document, section, revision and direct layout edits are rejected",
+      "platform": "vm",
+      "platform_source": "caller",
+      "start_line": 19,
+      "result": "passed",
+      "file_source": "description",
+      "file": "packages/quds_office_editor/test/word_page_layout_test.dart",
+      "observed_lines": [
+        19
+      ],
+      "result_source": "terminal_summary_and_exact_counter_reconciliation"
+    },
+    {
+      "name": "captured section survives caret movement while the dialog is open",
+      "platform": "vm",
+      "platform_source": "caller",
+      "start_line": 20,
+      "result": "passed",
+      "file_source": "description",
+      "file": "packages/quds_office_editor/test/word_page_layout_test.dart",
+      "observed_lines": [
+        20
+      ],
+      "result_source": "terminal_summary_and_exact_counter_reconciliation"
+    },
+    {
+      "name": "DOCX roundtrip keeps all applied modeled values",
+      "platform": "vm",
+      "platform_source": "caller",
+      "start_line": 21,
+      "result": "passed",
+      "file_source": "description",
+      "file": "packages/quds_office_editor/test/word_page_layout_test.dart",
+      "observed_lines": [
+        21
+      ],
+      "result_source": "terminal_summary_and_exact_counter_reconciliation"
+    },
+    {
+      "name": "unrelated layout edits preserve imported section XML and custom columns",
+      "platform": "vm",
+      "platform_source": "caller",
+      "start_line": 22,
+      "result": "passed",
+      "file_source": "description",
+      "file": "packages/quds_office_editor/test/word_page_layout_test.dart",
+      "observed_lines": [
+        22
+      ],
+      "result_source": "terminal_summary_and_exact_counter_reconciliation"
+    }
+  ],
+  "excluded_events": [
+    {
+      "name": "loading /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/test/office_chrome_theme_test.dart",
+      "platform": "vm",
+      "platform_source": "caller",
+      "start_line": 1,
+      "result": "unknown",
+      "excluded_reason": "loader",
+      "file_source": "description",
+      "file": "packages/quds_office_editor/test/office_chrome_theme_test.dart"
+    },
+    {
+      "name": "loading /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/test/office_dark_document_test.dart",
+      "platform": "vm",
+      "platform_source": "caller",
+      "start_line": 6,
+      "result": "unknown",
+      "excluded_reason": "loader",
+      "file_source": "description",
+      "file": "packages/quds_office_editor/test/office_dark_document_test.dart"
+    },
+    {
+      "name": "(setUpAll)",
+      "platform": "vm",
+      "platform_source": "caller",
+      "start_line": 7,
+      "result": "unknown",
+      "excluded_reason": "setup_or_teardown",
+      "file_source": "description",
+      "file": "packages/quds_office_editor/test/office_dark_document_test.dart"
+    },
+    {
+      "name": "(tearDownAll)",
+      "platform": "vm",
+      "platform_source": "caller",
+      "start_line": 11,
+      "result": "unknown",
+      "excluded_reason": "setup_or_teardown",
+      "file_source": "description",
+      "file": "packages/quds_office_editor/test/office_dark_document_test.dart"
+    },
+    {
+      "name": "loading /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/test/word_page_layout_test.dart",
+      "platform": "vm",
+      "platform_source": "caller",
+      "start_line": 12,
+      "result": "unknown",
+      "excluded_reason": "loader",
+      "file_source": "description",
+      "file": "packages/quds_office_editor/test/word_page_layout_test.dart"
+    }
+  ],
+  "ambiguities": [],
+  "warnings": [],
+  "errors": [],
+  "terminal_success": true,
+  "terminal_count": 1,
+  "terminal_counters": {
+    "passed": 17,
+    "skipped": 0,
+    "failed": 0
+  },
+  "complete": true,
+  "status": "passed",
+  "process_success_confirmed": true,
+  "usable_pass_evidence": true,
+  "scope": "Log/process evidence only; source-revision acceptance must be supplied separately.",
+  "counts": {
+    "visible_case_occurrences": 17,
+    "results": {
+      "passed": 17
+    },
+    "excluded_event_occurrences": 5,
+    "confirmed_pass_occurrences": 17,
+    "distinct_file_name_platform": 17,
+    "distinct_file_name": 17
+  },
+  "per_file": [
+    {
+      "file": "packages/quds_office_editor/test/office_chrome_theme_test.dart",
+      "platform": "vm",
+      "results": {
+        "passed": 4
+      },
+      "total": 4
+    },
+    {
+      "file": "packages/quds_office_editor/test/office_dark_document_test.dart",
+      "platform": "vm",
+      "results": {
+        "passed": 3
+      },
+      "total": 3
+    },
+    {
+      "file": "packages/quds_office_editor/test/word_page_layout_test.dart",
+      "platform": "vm",
+      "results": {
+        "passed": 10
+      },
+      "total": 10
+    }
+  ],
+  "log": {
+    "path": "/workspace/scratch/9c3338a48b2c/validation/layout-theme/core-focused.log",
+    "sha256": "dd80b603c65fc48e80b4f4f14bc33d83ef788ed72f07a8e48e3bf5d10b11e9d6",
+    "bytes": 3721
+  }
+}

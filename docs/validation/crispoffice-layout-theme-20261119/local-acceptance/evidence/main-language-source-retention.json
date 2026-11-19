@@ -1,0 +1,15 @@
+{
+  "accepted_previous_source_commit": "ba51c40abc664758df3cfc846625bdeb81e3ac13",
+  "integrated_main_commit": "9f41e0427734d815b19149eba5eabef202f78ba6",
+  "integration_commit": "a93c78032b043c35edd2632ba3ab7a058299926a",
+  "final_head": "fedabc7079db1c402cadcd9ef15296244979132e",
+  "mail_lib_test_changes": [],
+  "vba_source_retention": "vba-post-integration-retention.json",
+  "accepted_new_gate_receipts": [
+    "main-language-analysis.json",
+    "main-language-example.json",
+    "main-language-core.json",
+    "main-language-ner-removal.json"
+  ],
+  "publication_preview_source_changes_after_run": []
+}

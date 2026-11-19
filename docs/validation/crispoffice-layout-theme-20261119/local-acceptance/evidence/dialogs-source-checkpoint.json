@@ -1,0 +1,6 @@
+{
+  "packages/quds_office_editor/example/lib/studio_paragraph_dialog.dart": "b08ee1cdcad0a438a1630a762a7734c04a5e9d228757f2b7be7b86f3bf7e509c",
+  "packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart": "986d4f430d881291285f891422193c08415cb2edb692196596574c81ac35f409",
+  "packages/quds_office_editor/example/lib/studio_page_layout_dialog.dart": "fba607de80fe949dd72ff136b689d8cb3aa9b581aee06330a654631eadb48e37",
+  "packages/quds_office_editor/example/test/studio_page_layout_dialog_test.dart": "3a9c639b533aab6602f7450e9e7cd05531c6028dbb8ad130cc76b4edd64dc9b8"
+}

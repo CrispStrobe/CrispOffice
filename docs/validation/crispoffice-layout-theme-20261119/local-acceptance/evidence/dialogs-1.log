@@ -1,0 +1,30 @@
+00:00 +0: loading /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart
+00:00 +0: /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart: Cancel discards spacing, indent and pagination drafts
+00:01 +1: /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart: selected paragraphs apply precisely in one undo and round trip
+00:02 +2: /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart: unit changes and no-op Apply preserve exact imported values
+00:02 +3: /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart: exact line height and first-line indent use point conversion
+00:03 +4: /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart: mixed line rules, indents and pagination remain unchanged
+00:03 +5: /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart: invalid numbers and geometry cannot mutate paragraphs
+00:04 +6: /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart: pagination controls turn off existing flags and avoid conflicting breaks
+00:04 +7: /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart: a changed document rejects the detached paragraph draft
+00:04 +8: /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart: a changed revision rejects the detached paragraph draft
+00:04 +9: /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart: a changed selection rejects the detached paragraph draft
+00:04 +10: /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart: a changed story rejects the detached paragraph draft
+00:04 +11: /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart: a changed permission rejects the detached paragraph draft
+00:05 +12: /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart: a changed disposed rejects the detached paragraph draft
+00:05 +13: /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart: header paragraph changes stay in the captured header story
+00:05 +14: /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart: inspection of an empty document does not create content
+00:05 +15: /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart: en dialog supports narrow enlarged text and precise local numbers
+00:05 +16: /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart: de dialog supports narrow enlarged text and precise local numbers
+00:05 +17: /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart: ar dialog supports narrow enlarged text and precise local numbers
+00:05 +18: loading /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/example/test/studio_page_layout_dialog_test.dart
+00:06 +18: /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/example/test/studio_page_layout_dialog_test.dart: Page Layout captures after recording pending note typing
+00:07 +19: /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/example/test/studio_page_layout_dialog_test.dart: Cancel discards the complete Page Layout draft
+00:08 +20: /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/example/test/studio_page_layout_dialog_test.dart: precise numeric settings apply together and Undo restores all tabs
+00:09 +21: /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/example/test/studio_page_layout_dialog_test.dart: unit changes and unchanged Apply preserve original precision
+00:09 +22: /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/example/test/studio_page_layout_dialog_test.dart: whole-document scope applies values without replacing section starts
+00:10 +23: /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/example/test/studio_page_layout_dialog_test.dart: invalid measurements stay in the dialog and leave the document intact
+00:10 +24: /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/example/test/studio_page_layout_dialog_test.dart: a changed document invalidates an open layout draft
+00:10 +25: /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/example/test/studio_page_layout_dialog_test.dart: Page Layout fits narrow enlarged-text de chrome
+00:10 +26: /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/example/test/studio_page_layout_dialog_test.dart: Page Layout fits narrow enlarged-text ar chrome
+00:11 +27: All tests passed!

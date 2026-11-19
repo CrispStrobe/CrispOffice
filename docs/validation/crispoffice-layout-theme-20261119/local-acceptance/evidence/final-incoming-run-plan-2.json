@@ -1,0 +1,194 @@
+{
+  "source_audits": {
+    "audit": {
+      "path": "/workspace/scratch/9c3338a48b2c/validation/layout-theme/audit-for-final-run-2.json",
+      "sha256": "b876c3123838475fc400a73f9e9ffed96d86a90c50b23b3e3a2d46b7fa2803f4"
+    },
+    "publication-audit": {
+      "path": "/workspace/scratch/9c3338a48b2c/validation/layout-theme/publication-audit-for-final-run-2.json",
+      "sha256": "5d96d7c0ebe9c9427c7df3664c8c8fa956be6b29c848ea65654264094f845d55"
+    }
+  },
+  "generated_bundles_destination": "/workspace/scratch/9c3338a48b2c/validation/layout-theme/incoming-runtime",
+  "gates": [
+    {
+      "id": "resume-scoped-analysis",
+      "cwd": "/workspace/scratch/9c3338a48b2c/crispoffice",
+      "argv": [
+        "/workspace/scratch/9c3338a48b2c/toolchain/run_dart.sh",
+        "analyze",
+        "--fatal-infos",
+        "--fatal-warnings",
+        "packages/quds_mail_store/lib/quds_mail_store.dart",
+        "packages/quds_mail_store/lib/src/archive_database.dart",
+        "packages/quds_mail_store/lib/src/archive_models.dart",
+        "packages/quds_mail_store/lib/src/archive_repository.dart",
+        "packages/quds_mail_store/lib/src/archive_restore_checkpoint_models.dart",
+        "packages/quds_mail_store/lib/src/archive_restore_checkpoints.dart",
+        "packages/quds_mail_store/lib/src/archive_restore_models.dart",
+        "packages/quds_mail_store/lib/src/archive_restore_native.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_archive_host.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_archive_native.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_archive_restore.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_archive_restore_progress.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_archive_restore_strings.dart",
+        "packages/quds_mail_store/test/archive_native_test.dart",
+        "packages/quds_mail_store/test/archive_restore_checkpoint_test.dart",
+        "packages/quds_mail_store/test/archive_restore_native_test.dart",
+        "packages/quds_mail_store/test/archive_restore_resume_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_archive_portability_visual_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart",
+        "packages/quds_office_editor/test/embed_test.dart"
+      ],
+      "purpose": "Thirteen changed mail product files, six mail tests and the repaired embed fixture; exclude the already accepted retained dark-slide file.",
+      "run_name": "incoming-resume-scoped-analysis-2"
+    },
+    {
+      "id": "resume-native",
+      "cwd": "/workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_mail_store",
+      "argv": [
+        "/workspace/scratch/9c3338a48b2c/toolchain/run_dart.sh",
+        "--packages=/workspace/scratch/9c3338a48b2c/crispoffice/.dart_tool/package_config.json",
+        "/workspace/scratch/9c3338a48b2c/toolchain/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+        "--platform=vm",
+        "--compiler=kernel",
+        "--concurrency=1",
+        "--reporter=json",
+        "test/archive_restore_checkpoint_test.dart",
+        "test/archive_restore_resume_test.dart",
+        "test/archive_restore_native_test.dart",
+        "test/archive_restore_adversarial_test.dart",
+        "test/archive_native_test.dart",
+        "test/archive_multi_origin_test.dart",
+        "test/archive_repository_test.dart"
+      ],
+      "purpose": "Durable receipts, schema migration, rollback and quota accounting, resume/corruption/interruption, and the existing shared archive write/native contracts.",
+      "run_name": "incoming-resume-native-2"
+    },
+    {
+      "id": "resume-portable",
+      "cwd": "/workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_mail_store",
+      "argv": [
+        "/workspace/scratch/9c3338a48b2c/toolchain/run_dart.sh",
+        "--packages=/workspace/scratch/9c3338a48b2c/crispoffice/.dart_tool/package_config.json",
+        "/workspace/scratch/9c3338a48b2c/toolchain/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+        "--platform=node",
+        "--compiler=dart2js",
+        "--concurrency=1",
+        "--reporter=json",
+        "test/archive_export_manifest_test.dart",
+        "test/browser_problem_test.dart"
+      ],
+      "purpose": "Public model/export compilation and the declared browser boundary after new public checkpoint exports. No SQLite test is selected for Node.",
+      "run_name": "incoming-resume-portable"
+    },
+    {
+      "id": "resume-studio",
+      "cwd": "/workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/example",
+      "argv": [
+        "/workspace/scratch/9c3338a48b2c/toolchain/run_flutter.sh",
+        "test",
+        "--no-pub",
+        "--concurrency=1",
+        "--reporter=json",
+        "test/studio_mail_archive_restore_test.dart",
+        "test/studio_mail_archive_portability_visual_test.dart",
+        "test/studio_mail_archive_restore_native_test.dart"
+      ],
+      "purpose": "Resume/full-verification choice, progress/forget confirmation, cancellation/disposal, localized narrow layouts, and genuine native host integration.",
+      "run_name": "incoming-resume-studio"
+    },
+    {
+      "id": "embed-host-fixture",
+      "cwd": "/workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor",
+      "argv": [
+        "/workspace/scratch/9c3338a48b2c/toolchain/run_flutter.sh",
+        "test",
+        "--no-pub",
+        "--concurrency=1",
+        "--reporter=json",
+        "test/embed_test.dart"
+      ],
+      "purpose": "Validate inherited host Overlay and explicit teardown fixture repair without weakening existing embedding assertions.",
+      "run_name": "incoming-embed-host-fixture"
+    },
+    {
+      "id": "web_vba_arrays_smoke-compile",
+      "cwd": "/workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_engine",
+      "argv": [
+        "/workspace/scratch/9c3338a48b2c/toolchain/run_dart.sh",
+        "compile",
+        "js",
+        "-O1",
+        "tool/macros/web_vba_arrays_smoke.dart",
+        "-o",
+        "/workspace/scratch/9c3338a48b2c/validation/layout-theme/incoming-runtime/web_vba_arrays_smoke.js"
+      ],
+      "purpose": "Compile the portable compiler/runtime path.",
+      "run_name": "incoming-web_vba_arrays_smoke-compile"
+    },
+    {
+      "id": "web_vba_arrays_smoke-node",
+      "cwd": "/workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_engine",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "-e",
+        "globalThis.self = globalThis; require(\"/workspace/scratch/9c3338a48b2c/validation/layout-theme/incoming-runtime/web_vba_arrays_smoke.js\");"
+      ],
+      "purpose": "Execute and inspect the JSON assertions; exit code alone is not sufficient.",
+      "required_json_true_fields": [
+        "liveArraySlotsAndIndependentControlVariables",
+        "rangeSnapshotAndRowMajorOrder",
+        "exactArrayAllocationAndNegativeBounds",
+        "boundedArraysAndRangeIteration",
+        "staticInactiveChecks",
+        "validationPreservedBytes",
+        "lateFailurePreservedBytes",
+        "mcpCompileAndRun"
+      ],
+      "coldDepthStress_contains": [
+        "32",
+        "63"
+      ],
+      "run_name": "incoming-web_vba_arrays_smoke-node"
+    },
+    {
+      "id": "web_vba_control_flow_smoke-compile",
+      "cwd": "/workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_engine",
+      "argv": [
+        "/workspace/scratch/9c3338a48b2c/toolchain/run_dart.sh",
+        "compile",
+        "js",
+        "-O1",
+        "tool/macros/web_vba_control_flow_smoke.dart",
+        "-o",
+        "/workspace/scratch/9c3338a48b2c/validation/layout-theme/incoming-runtime/web_vba_control_flow_smoke.js"
+      ],
+      "purpose": "Compile the portable compiler/runtime path.",
+      "run_name": "incoming-web_vba_control_flow_smoke-compile"
+    },
+    {
+      "id": "web_vba_control_flow_smoke-node",
+      "cwd": "/workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_engine",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "-e",
+        "globalThis.self = globalThis; require(\"/workspace/scratch/9c3338a48b2c/validation/layout-theme/incoming-runtime/web_vba_control_flow_smoke.js\");"
+      ],
+      "purpose": "Execute and inspect the JSON assertions; exit code alone is not sufficient.",
+      "required_json_true_fields": [
+        "orderedCasesAndEagerRangeBounds",
+        "sharedLoopWorkBudget",
+        "staticInactiveChecks",
+        "validationPreservedBytes",
+        "lateFailurePreservedBytes",
+        "mcpCompileAndRun"
+      ],
+      "coldDepthStress_contains": [
+        "32",
+        "63"
+      ],
+      "run_name": "incoming-web_vba_control_flow_smoke-node"
+    }
+  ]
+}

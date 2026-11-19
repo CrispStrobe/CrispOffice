@@ -1,0 +1,1450 @@
+[
+  {
+    "file": "packages/quds_mail_store/test/archive_restore_checkpoint_test.dart",
+    "name": "fresh archive has no checkpoint and reads do not create metadata",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 127
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_restore_checkpoint_test.dart",
+    "name": "one-based noncontiguous receipts survive reopen with exact counts",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 139
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_restore_checkpoint_test.dart",
+    "name": "repeated commits preserve receipt identity and all prior origins",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 170
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_restore_checkpoint_test.dart",
+    "name": "receipts retain warnings from skipped attachment text",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 193
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_restore_checkpoint_test.dart",
+    "name": "invalid one-based ordinal -1 cannot create a receipt",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 214
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_restore_checkpoint_test.dart",
+    "name": "invalid one-based ordinal 0 cannot create a receipt",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 214
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_restore_checkpoint_test.dart",
+    "name": "invalid one-based ordinal 4 cannot create a receipt",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 214
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_restore_checkpoint_test.dart",
+    "name": "mismatched message size or hash cannot satisfy another ordinal",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 235
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_restore_checkpoint_test.dart",
+    "name": "empty selection has no work and cannot manufacture a completion",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 249
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_restore_checkpoint_test.dart",
+    "name": "version-one migration preserves originals, origins and FTS bytes",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 266
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_restore_checkpoint_test.dart",
+    "name": "fault at afterContent rolls back original, index, origins and receipt",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 325
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_restore_checkpoint_test.dart",
+    "name": "fault at afterIndex rolls back original, index, origins and receipt",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 325
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_restore_checkpoint_test.dart",
+    "name": "fault at beforeCommit rolls back original, index, origins and receipt",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 325
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_restore_checkpoint_test.dart",
+    "name": "late cancellation rolls back new origins and receipt on a duplicate",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 351
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_restore_checkpoint_test.dart",
+    "name": "receipt quota rolls back new content and permits duplicate retries",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 379
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_restore_checkpoint_test.dart",
+    "name": "job quota never evicts old progress or adds duplicate provenance",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 405
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_restore_checkpoint_test.dart",
+    "name": "fixed metadata bytes are counted once and released by cleanup",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 425
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_restore_checkpoint_test.dart",
+    "name": "logical byte quota includes receipt metadata atomically",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 441
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_restore_checkpoint_test.dart",
+    "name": "missing expected provenance requires an atomic retry repair",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 461
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_restore_checkpoint_test.dart",
+    "name": "corrupted size metadata never authorizes a completed receipt",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 477
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_restore_checkpoint_test.dart",
+    "name": "corrupted message metadata never authorizes a completed receipt",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 477
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_restore_checkpoint_test.dart",
+    "name": "corrupted ordinal metadata never authorizes a completed receipt",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 477
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_restore_checkpoint_test.dart",
+    "name": "corrupted job metadata never authorizes a completed receipt",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 477
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_restore_checkpoint_test.dart",
+    "name": "damaged destination raw fails receipt reuse",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 516
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_restore_checkpoint_test.dart",
+    "name": "damaged destination metadata fails receipt reuse",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 516
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_restore_checkpoint_test.dart",
+    "name": "damaged destination missing index fails receipt reuse",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 516
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_restore_checkpoint_test.dart",
+    "name": "damaged destination stale index fails receipt reuse",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 516
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_restore_checkpoint_test.dart",
+    "name": "damaged destination duplicate index fails receipt reuse",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 516
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_restore_checkpoint_test.dart",
+    "name": "receipt relation prevents deleting its original",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 541
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_restore_checkpoint_test.dart",
+    "name": "forgetting progress preserves every original, origin and search row",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 550
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_restore_checkpoint_test.dart",
+    "name": "cleanup cancellation preserves the complete checkpoint transaction",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 570
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_restore_checkpoint_test.dart",
+    "name": "explicit cleanup remains possible under tighter reopened limits",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 591
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_restore_checkpoint_test.dart",
+    "name": "cancelled reads report cancellation without modifying receipts",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 618
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_restore_checkpoint_test.dart",
+    "name": "source path changes retain identity while manifest changes isolate work",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 643
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_restore_checkpoint_test.dart",
+    "name": "same exported manifest has independent progress in two destination profiles",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 657
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_restore_checkpoint_test.dart",
+    "name": "overlapping duplicate writes converge on one original and one receipt",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 685
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_restore_checkpoint_test.dart",
+    "name": "checkpoint limits reject invalid zero and unbounded configurations",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 707
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_restore_resume_test.dart",
+    "name": "reopened destination resumes without reading committed source files",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 129
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_restore_resume_test.dart",
+    "name": "sparse successful receipts retry a failed middle item only",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 176
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_restore_resume_test.dart",
+    "name": "moving an unchanged export retains progress, full verification still reads it",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 192
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_restore_resume_test.dart",
+    "name": "a supplied preview count cannot manufacture a destination receipt",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 217
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_restore_resume_test.dart",
+    "name": "resume refuses corrupted destination originals before using their receipt",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 234
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_restore_resume_test.dart",
+    "name": "missing provenance is repaired before the message is confirmed again",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 252
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_restore_resume_test.dart",
+    "name": "forgetting progress preserves originals and makes the next run verify all files",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 274
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_restore_resume_test.dart",
+    "name": "index warnings remain separate for resumed and current messages",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 290
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_restore_resume_test.dart",
+    "name": "cancellation during confirmation preserves durable progress and exact run counts",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 310
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_restore_resume_test.dart",
+    "name": "exact manifest bytes bind progress and a changed confirmed preview is rejected",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 333
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_restore_resume_test.dart",
+    "name": "destination per-message bounds also apply to previously committed items",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 351
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_restore_native_test.dart",
+    "name": "read-only preview identifies the full exported selection",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 162
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_restore_native_test.dart",
+    "name": "restores exact originals and all origins into a different persistent profile",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 179
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_restore_native_test.dart",
+    "name": "rerunning verifies duplicates and never accumulates provenance or counts",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 237
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_restore_native_test.dart",
+    "name": "merges exported origins with an existing destination origin",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 251
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_restore_native_test.dart",
+    "name": "cancel after one commit retains all its origins and a rerun completes",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 269
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_restore_native_test.dart",
+    "name": "missing original reports a partial result and a retry fills the gap",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 293
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_restore_native_test.dart",
+    "name": "wrong hashes and wrong sizes never enter the destination",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 314
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_restore_native_test.dart",
+    "name": "staging and unrelated EML files are ignored",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 333
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_restore_native_test.dart",
+    "name": "observer exceptions cannot alter committed results",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 348
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_restore_native_test.dart",
+    "name": "pre-cancelled inspection and restore leave destination empty",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 359
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_restore_native_test.dart",
+    "name": "new restore limits revalidate a preview without silently truncating",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 377
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_restore_native_test.dart",
+    "name": "invalid UTF-8 and malformed manifests fail safely before mutation",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 394
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_restore_native_test.dart",
+    "name": "partial parsing preserves original and exposes index warnings",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 409
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_restore_native_test.dart",
+    "name": "empty exported selection completes without adding messages",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 427
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_restore_native_test.dart",
+    "name": "SIGKILL preserves a receipt, resumes unfinished originals and verifies reruns",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 449
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_restore_adversarial_test.dart",
+    "name": "a same-size redigested manifest invalidates the confirmed preview",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 181
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_restore_adversarial_test.dart",
+    "name": "a manifest change while parsing stops before the current commit",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 207
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_restore_adversarial_test.dart",
+    "name": "same-size source mutation after decoding does not commit the item",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 246
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_restore_adversarial_test.dart",
+    "name": "a codec cannot replace verified MIME with another original",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 277
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_restore_adversarial_test.dart",
+    "name": "cancellation from confirmed storage diagnostics retains the commit count",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 299
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_restore_adversarial_test.dart",
+    "name": "late cancellation also counts new provenance on a duplicate original",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 348
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_restore_adversarial_test.dart",
+    "name": "cancellation just before commit leaves original, FTS and provenance absent",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 388
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_restore_adversarial_test.dart",
+    "name": "a corrupt existing raw record never receives new provenance",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 418
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_restore_adversarial_test.dart",
+    "name": "a corrupt existing metadata record never receives new provenance",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 418
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_restore_adversarial_test.dart",
+    "name": "restore reapplies tighter limits to a previously valid preview",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 478
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_restore_adversarial_test.dart",
+    "name": "destination quota rolls back all provenance and indexing on a duplicate",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 504
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_restore_adversarial_test.dart",
+    "name": "failure samples stay bounded and observer errors do not expose content",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 544
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_restore_adversarial_test.dart",
+    "name": "two restorer instances cannot overlap on one archive",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 588
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_restore_adversarial_test.dart",
+    "name": "inspection rejects a symbolic-link ancestor of a regular source directory",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 619
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_restore_adversarial_test.dart",
+    "name": "a source directory replaced by a link during parsing cannot commit",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 645
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_native_test.dart",
+    "name": "native restart preserves binary MIME, Unicode headers and provenance",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 209
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_native_test.dart",
+    "name": "exclusive native owner rejects peers and is released by idempotent close",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 269
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_native_test.dart",
+    "name": "native close keeps ownership until the accepted transaction finishes",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 289
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_native_test.dart",
+    "name": "future native schema is refused without alteration or a leaked owner",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 335
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_native_test.dart",
+    "name": "identical profile IDs in different hosts have distinct native archives",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 376
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_native_test.dart",
+    "name": "removing a live account and its cache container preserves the separate archive",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 409
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_native_test.dart",
+    "name": "clean native integrity verification leaves every persisted row unchanged",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 501
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_native_test.dart",
+    "name": "corrupt native FTS postings are detected and rebuilt without changing original bytes",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 518
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_native_test.dart",
+    "name": "failure before native repair commit rolls back the structural FTS rebuild",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 580
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_native_test.dart",
+    "name": "SIGKILL afterContent honors the durable archive transaction boundary",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 632
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_native_test.dart",
+    "name": "SIGKILL afterIndex honors the durable archive transaction boundary",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 632
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_native_test.dart",
+    "name": "SIGKILL beforeCommit honors the durable archive transaction boundary",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 632
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_native_test.dart",
+    "name": "SIGKILL committed honors the durable archive transaction boundary",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 632
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_multi_origin_test.dart",
+    "name": "multi-origin write is one original and one index with exact provenance count",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 69
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_multi_origin_test.dart",
+    "name": "normalized repeated origins coalesce without overcounting",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 91
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_multi_origin_test.dart",
+    "name": "invalid later origin rejects the entire new message",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 113
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_multi_origin_test.dart",
+    "name": "empty provenance is rejected without an orphan original",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 128
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_multi_origin_test.dart",
+    "name": "commit fault rolls back original, all origins and FTS content",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 136
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_multi_origin_test.dart",
+    "name": "late cancellation rolls back every new origin on an existing original",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 161
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_multi_origin_test.dart",
+    "name": "global origin quota rolls back additions on existing content",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 186
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_multi_origin_test.dart",
+    "name": "origin list is copied before asynchronous storage can observe caller edits",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 205
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_multi_origin_test.dart",
+    "name": "single-origin API retains legacy result semantics",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 220
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_repository_test.dart",
+    "name": "archives original bytes, headers, source and searchable data without an account",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 124
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_repository_test.dart",
+    "name": "deduplication is content-based and additional provenance is retained",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 151
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_repository_test.dart",
+    "name": "different original bytes with the same Message-ID remain separate",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 172
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_repository_test.dart",
+    "name": "reopening retains original bytes, search and provenance",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 183
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_repository_test.dart",
+    "name": "a different profile cannot open the existing archive",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 199
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_repository_test.dart",
+    "name": "fielded archive search matches subject:quarterly",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 221
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_repository_test.dart",
+    "name": "fielded archive search matches from:Alice",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 221
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_repository_test.dart",
+    "name": "fielded archive search matches to:Bob",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 221
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_repository_test.dart",
+    "name": "fielded archive search matches cc:copy",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 221
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_repository_test.dart",
+    "name": "fielded archive search matches bcc:hidden",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 221
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_repository_test.dart",
+    "name": "fielded archive search matches bcontent:\"project budget\"",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 221
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_repository_test.dart",
+    "name": "fielded archive search matches [rejected approved]",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 221
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_repository_test.dart",
+    "name": "fielded archive search matches subject:quart* -from:carol",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 221
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_repository_test.dart",
+    "name": "HTML-only bodies index visible text and entities without executable markup",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 227
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_repository_test.dart",
+    "name": "attachment names index by default while text is opt-in",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 256
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_repository_test.dart",
+    "name": "opt-in supported attachment text: text/plain",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 278
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_repository_test.dart",
+    "name": "opt-in supported attachment text: text/csv",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 278
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_repository_test.dart",
+    "name": "opt-in supported attachment text: text/tab-separated-values",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 278
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_repository_test.dart",
+    "name": "opt-in supported attachment text: application/json",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 278
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_repository_test.dart",
+    "name": "opt-in supported attachment text: text/xml",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 278
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_repository_test.dart",
+    "name": "opt-in supported attachment text: application/xml",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 278
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_repository_test.dart",
+    "name": "opt-in supported attachment text: text/html",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 278
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_repository_test.dart",
+    "name": "unsupported binary and malformed text remain archived and visibly skipped",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 297
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_repository_test.dart",
+    "name": "UTF-16 BOM attachment text is decoded without altering originals",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 323
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_repository_test.dart",
+    "name": "attachment extraction has an aggregate byte budget",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 351
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_repository_test.dart",
+    "name": "index truncation is explicit and never truncates original MIME",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 371
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_repository_test.dart",
+    "name": "source and folder filters refer to the same provenance, with literal wildcard characters",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 387
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_repository_test.dart",
+    "name": "date filters normalize UTC with inclusive lower and exclusive upper bounds",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 439
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_repository_test.dart",
+    "name": "archive date and message date are independent filters",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 468
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_repository_test.dart",
+    "name": "size bounds are inclusive and attachment filters distinguish both states",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 486
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_repository_test.dart",
+    "name": "pagination is stable for tied timestamps and contains no duplicates",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 514
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_repository_test.dart",
+    "name": "invalid search request is rejected without SQL leakage (/0/0/null/null/null)",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 558
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_repository_test.dart",
+    "name": "invalid search request is rejected without SQL leakage (/201/0/null/null/null)",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 558
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_repository_test.dart",
+    "name": "invalid search request is rejected without SQL leakage (/50/-1/null/null/null)",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 558
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_repository_test.dart",
+    "name": "invalid search request is rejected without SQL leakage (/50/0/-1/null/null)",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 558
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_repository_test.dart",
+    "name": "invalid search request is rejected without SQL leakage (/50/0/10/null/null)",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 558
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_repository_test.dart",
+    "name": "invalid search request is rejected without SQL leakage (/50/0/null/null/)",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 558
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_repository_test.dart",
+    "name": "invalid search request is rejected without SQL leakage (/50/0/null/../secret/null)",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 558
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_repository_test.dart",
+    "name": "invalid search request is rejected without SQL leakage (unknown:needle/50/0/null/null/null)",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 558
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_repository_test.dart",
+    "name": "invalid search request is rejected without SQL leakage (/50/0/null/null/null)",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 558
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_repository_test.dart",
+    "name": "saved searches retain all criteria across restart and reset pagination",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 566
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_repository_test.dart",
+    "name": "profile changes and deletion preserve archived messages and origins",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 613
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_repository_test.dart",
+    "name": "canonical folder overflow cannot persist unreadable profiles or origins",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 640
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_repository_test.dart",
+    "name": "exact canonical folder boundary survives profile and origin round trips",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 684
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_repository_test.dart",
+    "name": "saved-search and profile limits roll back the attempted insert",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 727
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_repository_test.dart",
+    "name": "unknown saved-search schema fails explicitly and is preserved",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 767
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_repository_test.dart",
+    "name": "message and origin quotas roll back raw content, indexes and provenance",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 782
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_repository_test.dart",
+    "name": "logical-byte quota includes metadata and rolls back a first import",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 810
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_repository_test.dart",
+    "name": "transaction fault at afterContent leaves no partial archive",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 830
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_repository_test.dart",
+    "name": "transaction fault at afterIndex leaves no partial archive",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 830
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_repository_test.dart",
+    "name": "transaction fault at beforeCommit leaves no partial archive",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 830
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_repository_test.dart",
+    "name": "pre-cancelled and cancelled-before-commit imports cannot leave content",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 847
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_repository_test.dart",
+    "name": "close waits for an accepted write and rejects new work",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 875
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_repository_test.dart",
+    "name": "verbose logs have operation boundaries and contain no private content",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 899
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_repository_test.dart",
+    "name": "nonverbose logging records only sanitized failures",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 943
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_repository_test.dart",
+    "name": "raw corruption is detected and cannot be exported or accepted as duplicate",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 958
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_repository_test.dart",
+    "name": "metadata corruption is detected and rebuild preserves the evidence",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 988
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_repository_test.dart",
+    "name": "missing and incorrect index rows are detected and rebuilt from originals",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 1015
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_repository_test.dart",
+    "name": "reindex failure rolls the entire page back to the original index state",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 1041
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_repository_test.dart",
+    "name": "reindex cancellation retains old search rows and original MIME",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 1059
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_repository_test.dart",
+    "name": "maintenance continuation covers each record once",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 1075
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_repository_test.dart",
+    "name": "missing provenance is reported without silently inventing a source",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 1093
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_repository_test.dart",
+    "name": "codec-driven rebuild refreshes extraction but keeps byte-for-byte originals",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 1108
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_repository_test.dart",
+    "name": "codec cannot replace originals during rebuild",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 1132
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_repository_test.dart",
+    "name": "tighter reopening bounds detect oversized content before loading it",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 1145
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_repository_test.dart",
+    "name": "duplicate import rejects corrupt metadata instead of reporting success",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 1166
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_repository_test.dart",
+    "name": "duplicate import restores a missing index without changing original bytes",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 1180
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_repository_test.dart",
+    "name": "provider session invalidation before commit rolls back archival",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 1194
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_repository_test.dart",
+    "name": "empty reference identifiers cannot bypass metadata cardinality limits",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 1215
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_repository_test.dart",
+    "name": "attachment text separators count against the shared index budget",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 1230
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_repository_test.dart",
+    "name": "oversized derived preview is rejected before search hydration",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 1261
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_repository_test.dart",
+    "name": "oversized damaged FTS values stop whole-index work before hydration",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 1279
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_repository_test.dart",
+    "name": "oversized stored search and profile records fail before decoding",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 1301
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_repository_test.dart",
+    "name": "NUL-prefixed preview of 5000 units cannot bypass read limits",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 1318
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_repository_test.dart",
+    "name": "NUL-prefixed preview of 16000 units cannot bypass read limits",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 1318
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_repository_test.dart",
+    "name": "NUL-prefixed FTS text cannot bypass whole-index byte limits",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 1353
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_repository_test.dart",
+    "name": "astral text uses exact UTF-16 limits after bounded SQLite hydration",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 1372
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_repository_test.dart",
+    "name": "NUL-prefixed persisted settings and provenance stay bounded",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 1393
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_repository_test.dart",
+    "name": "whole-index row quota prevents processing an unbounded damaged index",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 1417
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_repository_test.dart",
+    "name": "rebuild does not load a damaged BLOB beyond its stored size",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 1437
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_repository_test.dart",
+    "name": "duplicate reindex respects a tighter reopened index budget",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 1459
+  }
+]

@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quds_office_editor/quds_office_editor.dart';
 import 'package:quds_office_studio/studio_chrome.dart';
+import 'package:quds_office_studio/studio_downloads_manager.dart';
 import 'package:quds_office_studio/studio_ribbon_preferences.dart';
 import 'package:quds_office_studio/suite_workspace.dart';
 
@@ -376,6 +377,45 @@ void main() {
       await tester.sendKeyEvent(LogicalKeyboardKey.escape);
       await _frames(tester);
       expect(find.widgetWithText(MenuItemButton, 'Normal'), findsNothing);
+      expect(tester.takeException(), isNull);
+    },
+    variant: TargetPlatformVariant.only(TargetPlatform.linux),
+  );
+
+  testWidgets(
+    'Language downloads inherits dark Studio appearance from Settings',
+    (tester) async {
+      final word = await _studio(tester);
+      expect(
+        Theme.of(tester.element(find.byType(SuiteWorkspace))).brightness,
+        Brightness.light,
+      );
+      await tester.tap(find.byTooltip('Settings'));
+      await _frames(tester);
+      final appearance = find.byType(DropdownButtonFormField<SuiteLook>);
+      await tester.ensureVisible(appearance);
+      await tester.tap(appearance);
+      await _frames(tester);
+      await tester.tap(find.text('Dark').last);
+      await _frames(tester);
+      _expectDark(tester, find.byType(AlertDialog));
+      expect(word.config.theme.adaptDocumentColors, isTrue);
+
+      final downloads = find.widgetWithText(ListTile, 'Language downloads');
+      expect(downloads, findsOneWidget);
+      await tester.ensureVisible(downloads);
+      await tester.tap(downloads);
+      await _frames(tester);
+      expect(find.byType(StudioDownloadsManager), findsOneWidget);
+      expect(find.byType(DropdownButtonFormField<SuiteLook>), findsNothing);
+      _expectDark(tester, find.byType(StudioDownloadsManager));
+      _expectDark(tester, find.byType(AlertDialog));
+
+      await tester.tap(find.widgetWithText(TextButton, 'Close'));
+      await _frames(tester);
+      expect(find.byType(StudioDownloadsManager), findsNothing);
+      expect(word.document.paragraphs.single.text, 'Keep this paragraph.');
+      expect(word.canUndo, isFalse);
       expect(tester.takeException(), isNull);
     },
     variant: TargetPlatformVariant.only(TargetPlatform.linux),

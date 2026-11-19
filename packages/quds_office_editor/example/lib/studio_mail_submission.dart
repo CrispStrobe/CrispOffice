@@ -25,5 +25,10 @@ mail.MimeMessage buildStudioMailMessage(StudioMailDraft draft, String sender) {
         ..from = <mail.MailAddress>[mail.MailAddress('', sender)]
         ..to = <mail.MailAddress>[mail.MailAddress('', draft.to)]
         ..subject = draft.subject;
+  if (draft.thread.inReplyTo case final parent?) {
+    builder
+      ..setHeader('In-Reply-To', parent)
+      ..setHeader('References', draft.thread.references);
+  }
   return builder.buildMimeMessage();
 }

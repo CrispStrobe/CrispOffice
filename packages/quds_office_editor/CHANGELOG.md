@@ -4,6 +4,10 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Preserve validated reply-thread identifiers through native Studio composition
+  and explicit uncertain-send retries. Emit bounded In-Reply-To/References
+  headers, keep forwards independent, and omit unsupported or unsafe IDs.
+
 - Add a Page Layout dialog for numeric paper, margins, header/footer distances,
   equal columns and section options. Apply validated drafts as one undo step,
   preserve imported section properties, and reject stale document targets.

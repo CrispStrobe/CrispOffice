@@ -1,0 +1,451 @@
+{
+  "schema_version": 1,
+  "format": "dart-expanded",
+  "context": {
+    "platform": "vm",
+    "exit_code": 0,
+    "repo_root": "/workspace/scratch/9c3338a48b2c/crispoffice",
+    "cwd": "/workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/example"
+  },
+  "cases": [
+    {
+      "name": "Cancel discards spacing, indent and pagination drafts",
+      "platform": "vm",
+      "platform_source": "caller",
+      "start_line": 2,
+      "result": "passed",
+      "file_source": "description",
+      "file": "packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart",
+      "observed_lines": [
+        2
+      ],
+      "result_source": "terminal_summary_and_exact_counter_reconciliation"
+    },
+    {
+      "name": "selected paragraphs apply precisely in one undo and round trip",
+      "platform": "vm",
+      "platform_source": "caller",
+      "start_line": 3,
+      "result": "passed",
+      "file_source": "description",
+      "file": "packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart",
+      "observed_lines": [
+        3
+      ],
+      "result_source": "terminal_summary_and_exact_counter_reconciliation"
+    },
+    {
+      "name": "unit changes and no-op Apply preserve exact imported values",
+      "platform": "vm",
+      "platform_source": "caller",
+      "start_line": 4,
+      "result": "passed",
+      "file_source": "description",
+      "file": "packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart",
+      "observed_lines": [
+        4
+      ],
+      "result_source": "terminal_summary_and_exact_counter_reconciliation"
+    },
+    {
+      "name": "exact line height and first-line indent use point conversion",
+      "platform": "vm",
+      "platform_source": "caller",
+      "start_line": 5,
+      "result": "passed",
+      "file_source": "description",
+      "file": "packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart",
+      "observed_lines": [
+        5
+      ],
+      "result_source": "terminal_summary_and_exact_counter_reconciliation"
+    },
+    {
+      "name": "mixed line rules, indents and pagination remain unchanged",
+      "platform": "vm",
+      "platform_source": "caller",
+      "start_line": 6,
+      "result": "passed",
+      "file_source": "description",
+      "file": "packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart",
+      "observed_lines": [
+        6
+      ],
+      "result_source": "terminal_summary_and_exact_counter_reconciliation"
+    },
+    {
+      "name": "invalid numbers and geometry cannot mutate paragraphs",
+      "platform": "vm",
+      "platform_source": "caller",
+      "start_line": 7,
+      "result": "passed",
+      "file_source": "description",
+      "file": "packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart",
+      "observed_lines": [
+        7
+      ],
+      "result_source": "terminal_summary_and_exact_counter_reconciliation"
+    },
+    {
+      "name": "page and column breaks preserve imported line-keeping properties",
+      "platform": "vm",
+      "platform_source": "caller",
+      "start_line": 8,
+      "result": "passed",
+      "file_source": "description",
+      "file": "packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart",
+      "observed_lines": [
+        8
+      ],
+      "result_source": "terminal_summary_and_exact_counter_reconciliation"
+    },
+    {
+      "name": "a changed document rejects the detached paragraph draft",
+      "platform": "vm",
+      "platform_source": "caller",
+      "start_line": 9,
+      "result": "passed",
+      "file_source": "description",
+      "file": "packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart",
+      "observed_lines": [
+        9
+      ],
+      "result_source": "terminal_summary_and_exact_counter_reconciliation"
+    },
+    {
+      "name": "a changed revision rejects the detached paragraph draft",
+      "platform": "vm",
+      "platform_source": "caller",
+      "start_line": 10,
+      "result": "passed",
+      "file_source": "description",
+      "file": "packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart",
+      "observed_lines": [
+        10
+      ],
+      "result_source": "terminal_summary_and_exact_counter_reconciliation"
+    },
+    {
+      "name": "a changed selection rejects the detached paragraph draft",
+      "platform": "vm",
+      "platform_source": "caller",
+      "start_line": 11,
+      "result": "passed",
+      "file_source": "description",
+      "file": "packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart",
+      "observed_lines": [
+        11
+      ],
+      "result_source": "terminal_summary_and_exact_counter_reconciliation"
+    },
+    {
+      "name": "a changed story rejects the detached paragraph draft",
+      "platform": "vm",
+      "platform_source": "caller",
+      "start_line": 12,
+      "result": "passed",
+      "file_source": "description",
+      "file": "packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart",
+      "observed_lines": [
+        12
+      ],
+      "result_source": "terminal_summary_and_exact_counter_reconciliation"
+    },
+    {
+      "name": "a changed permission rejects the detached paragraph draft",
+      "platform": "vm",
+      "platform_source": "caller",
+      "start_line": 13,
+      "result": "passed",
+      "file_source": "description",
+      "file": "packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart",
+      "observed_lines": [
+        13
+      ],
+      "result_source": "terminal_summary_and_exact_counter_reconciliation"
+    },
+    {
+      "name": "a changed disposed rejects the detached paragraph draft",
+      "platform": "vm",
+      "platform_source": "caller",
+      "start_line": 14,
+      "result": "passed",
+      "file_source": "description",
+      "file": "packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart",
+      "observed_lines": [
+        14
+      ],
+      "result_source": "terminal_summary_and_exact_counter_reconciliation"
+    },
+    {
+      "name": "header paragraph changes stay in the captured header story",
+      "platform": "vm",
+      "platform_source": "caller",
+      "start_line": 15,
+      "result": "passed",
+      "file_source": "description",
+      "file": "packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart",
+      "observed_lines": [
+        15
+      ],
+      "result_source": "terminal_summary_and_exact_counter_reconciliation"
+    },
+    {
+      "name": "inspection of an empty document does not create content",
+      "platform": "vm",
+      "platform_source": "caller",
+      "start_line": 16,
+      "result": "passed",
+      "file_source": "description",
+      "file": "packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart",
+      "observed_lines": [
+        16
+      ],
+      "result_source": "terminal_summary_and_exact_counter_reconciliation"
+    },
+    {
+      "name": "en dialog supports narrow enlarged text and precise local numbers",
+      "platform": "vm",
+      "platform_source": "caller",
+      "start_line": 17,
+      "result": "passed",
+      "file_source": "description",
+      "file": "packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart",
+      "observed_lines": [
+        17
+      ],
+      "result_source": "terminal_summary_and_exact_counter_reconciliation"
+    },
+    {
+      "name": "de dialog supports narrow enlarged text and precise local numbers",
+      "platform": "vm",
+      "platform_source": "caller",
+      "start_line": 18,
+      "result": "passed",
+      "file_source": "description",
+      "file": "packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart",
+      "observed_lines": [
+        18
+      ],
+      "result_source": "terminal_summary_and_exact_counter_reconciliation"
+    },
+    {
+      "name": "ar dialog supports narrow enlarged text and precise local numbers",
+      "platform": "vm",
+      "platform_source": "caller",
+      "start_line": 19,
+      "result": "passed",
+      "file_source": "description",
+      "file": "packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart",
+      "observed_lines": [
+        19
+      ],
+      "result_source": "terminal_summary_and_exact_counter_reconciliation"
+    },
+    {
+      "name": "Layout dropdown commands apply and Undo restores each setting (variant: TargetPlatform.linux)",
+      "platform": "vm",
+      "platform_source": "caller",
+      "start_line": 21,
+      "result": "passed",
+      "file_source": "description",
+      "file": "packages/quds_office_editor/example/test/studio_layout_theme_test.dart",
+      "observed_lines": [
+        21
+      ],
+      "result_source": "terminal_summary_and_exact_counter_reconciliation"
+    },
+    {
+      "name": "Paragraph presets switch exact spacing back to multiples without truncating custom spacing (variant: TargetPlatform.linux)",
+      "platform": "vm",
+      "platform_source": "caller",
+      "start_line": 22,
+      "result": "passed",
+      "file_source": "description",
+      "file": "packages/quds_office_editor/example/test/studio_layout_theme_test.dart",
+      "observed_lines": [
+        22
+      ],
+      "result_source": "terminal_summary_and_exact_counter_reconciliation"
+    },
+    {
+      "name": "Page Layout and Paragraph dialogs are reachable from the ribbon (variant: TargetPlatform.linux)",
+      "platform": "vm",
+      "platform_source": "caller",
+      "start_line": 23,
+      "result": "passed",
+      "file_source": "description",
+      "file": "packages/quds_office_editor/example/test/studio_layout_theme_test.dart",
+      "observed_lines": [
+        23
+      ],
+      "result_source": "terminal_summary_and_exact_counter_reconciliation"
+    },
+    {
+      "name": "Document mode explains restrictions and disables layout editing (variant: TargetPlatform.linux)",
+      "platform": "vm",
+      "platform_source": "caller",
+      "start_line": 24,
+      "result": "passed",
+      "file_source": "description",
+      "file": "packages/quds_office_editor/example/test/studio_layout_theme_test.dart",
+      "observed_lines": [
+        24
+      ],
+      "result_source": "terminal_summary_and_exact_counter_reconciliation"
+    },
+    {
+      "name": "Dark appearance updates the open Settings dialog and later routes (variant: TargetPlatform.linux)",
+      "platform": "vm",
+      "platform_source": "caller",
+      "start_line": 25,
+      "result": "passed",
+      "file_source": "description",
+      "file": "packages/quds_office_editor/example/test/studio_layout_theme_test.dart",
+      "observed_lines": [
+        25
+      ],
+      "result_source": "terminal_summary_and_exact_counter_reconciliation"
+    },
+    {
+      "name": "narrow Arabic Layout menus and dialog stay reachable at 160 percent (variant: TargetPlatform.linux)",
+      "platform": "vm",
+      "platform_source": "caller",
+      "start_line": 26,
+      "result": "passed",
+      "file_source": "description",
+      "file": "packages/quds_office_editor/example/test/studio_layout_theme_test.dart",
+      "observed_lines": [
+        26
+      ],
+      "result_source": "terminal_summary_and_exact_counter_reconciliation"
+    },
+    {
+      "name": "the Function menu inserts SUM in the selected worksheet cell (variant: TargetPlatform.linux)",
+      "platform": "vm",
+      "platform_source": "caller",
+      "start_line": 28,
+      "result": "passed",
+      "file_source": "description",
+      "file": "packages/quds_office_editor/example/test/studio_slide_sheet_menus_test.dart",
+      "observed_lines": [
+        28
+      ],
+      "result_source": "terminal_summary_and_exact_counter_reconciliation"
+    },
+    {
+      "name": "slide menus select exact effects, durations and advance times (variant: TargetPlatform.linux)",
+      "platform": "vm",
+      "platform_source": "caller",
+      "start_line": 29,
+      "result": "passed",
+      "file_source": "description",
+      "file": "packages/quds_office_editor/example/test/studio_slide_sheet_menus_test.dart",
+      "observed_lines": [
+        29
+      ],
+      "result_source": "terminal_summary_and_exact_counter_reconciliation"
+    },
+    {
+      "name": "File Document mode disables sheet and slide editing menus (variant: TargetPlatform.linux)",
+      "platform": "vm",
+      "platform_source": "caller",
+      "start_line": 30,
+      "result": "passed",
+      "file_source": "description",
+      "file": "packages/quds_office_editor/example/test/studio_slide_sheet_menus_test.dart",
+      "observed_lines": [
+        30
+      ],
+      "result_source": "terminal_summary_and_exact_counter_reconciliation"
+    }
+  ],
+  "excluded_events": [
+    {
+      "name": "loading /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart",
+      "platform": "vm",
+      "platform_source": "caller",
+      "start_line": 1,
+      "result": "unknown",
+      "excluded_reason": "loader",
+      "file_source": "description",
+      "file": "packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart"
+    },
+    {
+      "name": "loading /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/example/test/studio_layout_theme_test.dart",
+      "platform": "vm",
+      "platform_source": "caller",
+      "start_line": 20,
+      "result": "unknown",
+      "excluded_reason": "loader",
+      "file_source": "description",
+      "file": "packages/quds_office_editor/example/test/studio_layout_theme_test.dart"
+    },
+    {
+      "name": "loading /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/example/test/studio_slide_sheet_menus_test.dart",
+      "platform": "vm",
+      "platform_source": "caller",
+      "start_line": 27,
+      "result": "unknown",
+      "excluded_reason": "loader",
+      "file_source": "description",
+      "file": "packages/quds_office_editor/example/test/studio_slide_sheet_menus_test.dart"
+    }
+  ],
+  "ambiguities": [],
+  "warnings": [],
+  "errors": [],
+  "terminal_success": true,
+  "terminal_count": 1,
+  "terminal_counters": {
+    "passed": 27,
+    "skipped": 0,
+    "failed": 0
+  },
+  "complete": true,
+  "status": "passed",
+  "process_success_confirmed": true,
+  "usable_pass_evidence": true,
+  "scope": "Log/process evidence only; source-revision acceptance must be supplied separately.",
+  "counts": {
+    "visible_case_occurrences": 27,
+    "results": {
+      "passed": 27
+    },
+    "excluded_event_occurrences": 3,
+    "confirmed_pass_occurrences": 27,
+    "distinct_file_name_platform": 27,
+    "distinct_file_name": 27
+  },
+  "per_file": [
+    {
+      "file": "packages/quds_office_editor/example/test/studio_layout_theme_test.dart",
+      "platform": "vm",
+      "results": {
+        "passed": 6
+      },
+      "total": 6
+    },
+    {
+      "file": "packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart",
+      "platform": "vm",
+      "results": {
+        "passed": 18
+      },
+      "total": 18
+    },
+    {
+      "file": "packages/quds_office_editor/example/test/studio_slide_sheet_menus_test.dart",
+      "platform": "vm",
+      "results": {
+        "passed": 3
+      },
+      "total": 3
+    }
+  ],
+  "log": {
+    "path": "/workspace/scratch/9c3338a48b2c/validation/layout-theme/dialogs-workspace-2.log",
+    "sha256": "5eefa03d5e6281896fd2ba90078b189db1cf1ca2671bc0f41fabacc18a40ee53",
+    "bytes": 5893
+  }
+}

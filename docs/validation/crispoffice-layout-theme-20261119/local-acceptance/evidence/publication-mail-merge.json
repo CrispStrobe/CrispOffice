@@ -1,0 +1,155 @@
+{
+  "parent": "a2c144beaea7b46218d3b8c4932dcdb5681004aa",
+  "incoming": "85c8c55186b8eefd242159ee606b2ad1fa61038f",
+  "base_tree": "9d5faf9db2c5b6e999180b286a06b51a8db0e8bf",
+  "tree": "86d4b9fa8ed4a04fa73996af69fc6097aacd376e",
+  "merge_tree_exit_code": 1,
+  "resolutions": [
+    {
+      "path": "packages/quds_office_editor/test/office_dark_slide_test.dart",
+      "retained_from": "a2c144beaea7b46218d3b8c4932dcdb5681004aa",
+      "blob": "657d07fb25b32c26b19f8aa60e488d6ee7264a02",
+      "reason": "Retain the accepted contrast, light-cell raster equivalence and saved-XML regression coverage."
+    }
+  ],
+  "entries": [
+    {
+      "path": "docs/roadmaps/mail/archive-search.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "948f263d7e0171b8c57a1fa145d7a5997b9eecbb"
+    },
+    {
+      "path": "docs/validation/mail-archive-resume-20261119/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4c9b211939654184c2077f999f052ca57caebb93"
+    },
+    {
+      "path": "docs/validation/mail-archive-resume-20261119/reconciliation-initial.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4481760400c0ce05120ebda5516452729babe99d"
+    },
+    {
+      "path": "docs/validation/mail-archive-resume-20261119/run-mail-validation.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5b6b1bb7a52dd35bc5dfd614b0ce8e94a3e0f855"
+    },
+    {
+      "path": "packages/quds_mail_store/lib/quds_mail_store.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1de0ad31f16fdb76f1c24c45b0c81184dfa59d5d"
+    },
+    {
+      "path": "packages/quds_mail_store/lib/src/archive_database.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "320abe6053370b50c5346caa7c44fb9ce0ffa646"
+    },
+    {
+      "path": "packages/quds_mail_store/lib/src/archive_models.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7d0d2cce436a9bd58e890a0dbd28143ab714bd3c"
+    },
+    {
+      "path": "packages/quds_mail_store/lib/src/archive_repository.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "10a8f51cefb081d1a3077d4c34f7bac52c05c36a"
+    },
+    {
+      "path": "packages/quds_mail_store/lib/src/archive_restore_checkpoint_models.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "55a9513645d9be8b105a08a052c2fae053e33bf8"
+    },
+    {
+      "path": "packages/quds_mail_store/lib/src/archive_restore_checkpoints.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "41ae1348be925d4d71438daf356094c4763c0a1f"
+    },
+    {
+      "path": "packages/quds_mail_store/lib/src/archive_restore_models.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dbde7ecfb9971c591edd16a5c7c4324c7ab0c61d"
+    },
+    {
+      "path": "packages/quds_mail_store/lib/src/archive_restore_native.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "76818bd338f0804685b3947e65cffabaf5c09b68"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_native_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "17d26fe2f02c19a6b2d3f4c76223ad6a9dc5754c"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_restore_checkpoint_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c163b1b503ba255c7ee1167b66014904ceb80f3e"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_restore_native_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "356f9ca14c625767863e5457ae4ab6ca9bc2c711"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_restore_resume_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b06e2e4d873b70f163f4800dd46878184985cab3"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_archive_host.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fa5a9ec4f86ac0433681756dd16c763e1c38a18f"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_archive_native.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f700c2c32fffdaf93df3a9fca9ca27f2c07b8166"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_archive_restore.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "624dc9d93b6a28fcbda0b69addc57a6c71d92a3f"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_archive_restore_progress.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "65f9f9fb736ec4b1ba00d0e78e357cb817fc969f"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_archive_restore_strings.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "69184a1cb70078308cdd297320f6e426ca9f32e2"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_archive_portability_visual_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0f56b4ce8916b5ff07f10a4983b5887b232a3d2e"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f303ab2ffef7ba0da1be64b9fbe4ed5dacf7a8c3"
+    }
+  ]
+}

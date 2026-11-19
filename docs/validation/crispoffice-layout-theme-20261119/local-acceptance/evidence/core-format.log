@@ -1,0 +1,8 @@
+Formatted lib/src/editor_sheet/render_sheet_grid.dart
+Formatted lib/src/editor_word/office_ruler.dart
+Formatted lib/src/editor_word/render_word_canvas.dart
+Formatted lib/src/embed/office_theme.dart
+Formatted lib/src/ui_components/office_chrome.dart
+Formatted test/office_chrome_theme_test.dart
+Formatted test/office_dark_document_test.dart
+Formatted 11 files (7 changed) in 0.89 seconds.

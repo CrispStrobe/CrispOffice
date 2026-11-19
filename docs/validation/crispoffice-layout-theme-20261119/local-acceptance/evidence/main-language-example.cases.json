@@ -1,0 +1,362 @@
+[
+  {
+    "file": "packages/quds_office_editor/example/test/studio_downloads_manager_test.dart",
+    "name": "English sample language survives DOCX export and import",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 138
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_downloads_manager_test.dart",
+    "name": "workspace language change opens support review before any download",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 149
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_downloads_manager_test.dart",
+    "name": "language change review lists coverage and never downloads on open or decline",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 212
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_downloads_manager_test.dart",
+    "name": "removing a dictionary leaves models and morphology untouched",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 246
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_downloads_manager_test.dart",
+    "name": "NER removal is offered even when the model is not enabled",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 280
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_layout_theme_test.dart",
+    "name": "Layout dropdown commands apply and Undo restores each setting (variant: TargetPlatform.linux)",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 132
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_layout_theme_test.dart",
+    "name": "Paragraph presets switch exact spacing back to multiples without truncating custom spacing (variant: TargetPlatform.linux)",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 172
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_layout_theme_test.dart",
+    "name": "Paragraph menu reflects the active first-page header and preserves body formatting (variant: TargetPlatform.linux)",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 203
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_layout_theme_test.dart",
+    "name": "Page Layout and Paragraph dialogs are reachable from the ribbon (variant: TargetPlatform.linux)",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 246
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_layout_theme_test.dart",
+    "name": "Document mode explains restrictions and disables layout editing (variant: TargetPlatform.linux)",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 277
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_layout_theme_test.dart",
+    "name": "Dark appearance updates the open Settings dialog and later routes (variant: TargetPlatform.linux)",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 332
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_layout_theme_test.dart",
+    "name": "narrow Arabic Layout menus and dialog stay reachable at 160 percent (variant: TargetPlatform.linux)",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 384
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_page_layout_dialog_test.dart",
+    "name": "Page Layout captures after recording pending note typing",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 96
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_page_layout_dialog_test.dart",
+    "name": "Cancel discards the complete Page Layout draft",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 130
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_page_layout_dialog_test.dart",
+    "name": "precise numeric settings apply together and Undo restores all tabs",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 152
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_page_layout_dialog_test.dart",
+    "name": "unit changes and unchanged Apply preserve original precision",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 202
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_page_layout_dialog_test.dart",
+    "name": "whole-document scope applies values without replacing section starts",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 223
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_page_layout_dialog_test.dart",
+    "name": "invalid measurements stay in the dialog and leave the document intact",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 266
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_page_layout_dialog_test.dart",
+    "name": "a changed document invalidates an open layout draft",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 295
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_page_layout_dialog_test.dart",
+    "name": "Page Layout fits narrow enlarged-text de chrome",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 317
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_page_layout_dialog_test.dart",
+    "name": "Page Layout fits narrow enlarged-text ar chrome",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 317
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart",
+    "name": "Cancel discards spacing, indent and pagination drafts",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 112
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart",
+    "name": "selected paragraphs apply precisely in one undo and round trip",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 134
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart",
+    "name": "unit changes and no-op Apply preserve exact imported values",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 219
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart",
+    "name": "exact line height and first-line indent use point conversion",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 252
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart",
+    "name": "mixed line rules, indents and pagination remain unchanged",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 273
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart",
+    "name": "invalid numbers and geometry cannot mutate paragraphs",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 324
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart",
+    "name": "page and column breaks preserve imported line-keeping properties",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 353
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart",
+    "name": "a changed document rejects the detached paragraph draft",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 390
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart",
+    "name": "a changed revision rejects the detached paragraph draft",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 390
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart",
+    "name": "a changed selection rejects the detached paragraph draft",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 390
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart",
+    "name": "a changed story rejects the detached paragraph draft",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 390
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart",
+    "name": "a changed permission rejects the detached paragraph draft",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 390
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart",
+    "name": "a changed disposed rejects the detached paragraph draft",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 390
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart",
+    "name": "header paragraph changes stay in the captured header story",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 442
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart",
+    "name": "inspection of an empty document does not create content",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 471
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart",
+    "name": "en dialog supports narrow enlarged text and precise local numbers",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 490
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart",
+    "name": "de dialog supports narrow enlarged text and precise local numbers",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 490
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart",
+    "name": "ar dialog supports narrow enlarged text and precise local numbers",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 490
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_ribbon_customization_test.dart",
+    "name": "compact Insert menus execute table and footnote commands with undo (variant: TargetPlatform.linux)",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 87
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_ribbon_customization_test.dart",
+    "name": "customization hides and orders groups, switches labels, and restores defaults",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 165
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_ribbon_customization_test.dart",
+    "name": "hidden tabs recover selection and collapsed ribbon can always be expanded",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 212
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_ribbon_customization_test.dart",
+    "name": "compact commands and customization work in narrow Arabic at large text scale (variant: TargetPlatform.linux)",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 240
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_ribbon_customization_test.dart",
+    "name": "Insert menus support Escape, outside controls and keyboard selection (variant: TargetPlatform.linux)",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 273
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_ribbon_customization_test.dart",
+    "name": "all application tabs retain unique reachable groups",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 324
+  }
+]

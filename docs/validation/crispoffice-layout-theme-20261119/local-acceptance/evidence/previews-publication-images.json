@@ -1,0 +1,97 @@
+{
+  "harness": "docs/validation/crispoffice-layout-theme-20261119/render_previews.dart",
+  "harness_sha256": "5852161c020da5c6e7e537370463075ebe651cb4fee630ae56fee77bc4c8e976",
+  "temporary_test_removed": true,
+  "image_count": 12,
+  "distinct_images": 12,
+  "screenshots": [
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/screenshots-publication/layout-dark-menu.png",
+      "sha256": "2fb24eebe48d362a17737963d45b2c86a362c110162042df2298e8f436f0eb92",
+      "width": 1440,
+      "height": 960,
+      "bytes": 134232
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/screenshots-publication/layout-dark.png",
+      "sha256": "23cfd8580c45e4098fa94951574d1b820df3799f3166a6e9e18abd08f9e4241a",
+      "width": 1440,
+      "height": 960,
+      "bytes": 129312
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/screenshots-publication/layout-light.png",
+      "sha256": "a492b2f46c1db5a15bc7e612710ed2d0bed746f78c6b59f8aa231e77e20075ad",
+      "width": 1440,
+      "height": 960,
+      "bytes": 128655
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/screenshots-publication/layout-margins-menu.png",
+      "sha256": "b6bcdeded57b16781b8803387a2cd7646c2ac7e5661eb70f41668247edfee533",
+      "width": 1440,
+      "height": 960,
+      "bytes": 136684
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/screenshots-publication/layout-narrow-arabic.png",
+      "sha256": "4ac88b4e9343bd44422172ff8196d2fdd243e3da89b9359d483d628048076efe",
+      "width": 900,
+      "height": 760,
+      "bytes": 101947
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/screenshots-publication/layout-narrow-german.png",
+      "sha256": "dcad5262a3dbd17662e9713cb7004b66eda6564737cb870226033d4f74087e26",
+      "width": 900,
+      "height": 760,
+      "bytes": 107573
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/screenshots-publication/page-layout-columns.png",
+      "sha256": "4aeb43729a919b1563c0ae80f27d00c78bbe1a0489c5132affbfbd8b60285eda",
+      "width": 1440,
+      "height": 960,
+      "bytes": 81061
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/screenshots-publication/page-layout-dark.png",
+      "sha256": "f98b3846adafa1b7dc3e6775ade478d76084d4e0241c9b56f7d6ff573d57277d",
+      "width": 1440,
+      "height": 960,
+      "bytes": 87727
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/screenshots-publication/page-layout-margins.png",
+      "sha256": "2857483382127e346434a40eec7c616fe9d459c5bc9dcbbfdeab2595f5ac240b",
+      "width": 1440,
+      "height": 960,
+      "bytes": 87414
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/screenshots-publication/page-layout-paper.png",
+      "sha256": "3a753798e6af65e95a5b02971b03bdc2e8daffb05714d4c29d1621e7b04796f4",
+      "width": 1440,
+      "height": 960,
+      "bytes": 80082
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/screenshots-publication/paragraph-dark.png",
+      "sha256": "59b9eb28624b3a391e5143fad642e2d32f78a06598ba2ecb2e3a33326a710687",
+      "width": 1440,
+      "height": 960,
+      "bytes": 90118
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/screenshots-publication/settings-dark.png",
+      "sha256": "b4ff8ce4b179bd949daf601169db2f1ad7971839783f8d4642375c8332f63f7c",
+      "width": 1440,
+      "height": 960,
+      "bytes": 121471
+    }
+  ],
+  "render_receipt": "previews-publication.json",
+  "source_head": "a93c78032b043c35edd2632ba3ab7a058299926a",
+  "prior_capture_preserved": true,
+  "visual_review": "Pending independent visual review; passing generation is not a visual acceptance claim."
+}

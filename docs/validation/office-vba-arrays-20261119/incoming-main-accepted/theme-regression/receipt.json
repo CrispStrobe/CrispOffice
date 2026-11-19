@@ -1,0 +1,88 @@
+{
+  "commands": [
+    {
+      "command": [
+        "/workspace/scratch/652d74384990/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+        "format",
+        "test/studio_layout_theme_test.dart"
+      ],
+      "cwd": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example",
+      "elapsed_seconds": 0.10948848724365234,
+      "environment_overrides": {
+        "CI": "true",
+        "DART_SUPPRESS_ANALYTICS": "true",
+        "FLUTTER_SUPPRESS_ANALYTICS": "true",
+        "PUB_CACHE": "/workspace/scratch/652d74384990/runtime/pub-cache",
+        "TMPDIR": "/workspace/scratch/652d74384990/runtime/tmp"
+      },
+      "exit_code": 0,
+      "name": "format",
+      "removed_optional_environment": [
+        "QUDS_MAIL_PORTABILITY_SHOTS"
+      ],
+      "started_at_utc": "2026-11-19T19:00:07Z",
+      "stderr": "format.stderr.log",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "format.stdout.log",
+      "stdout_sha256": "201363ae23832375357c5580f6a07ce89f48c2a27211bd100d74e34f26295c71"
+    },
+    {
+      "command": [
+        "/workspace/scratch/652d74384990/runtime/flutter/bin/flutter",
+        "--no-version-check",
+        "--suppress-analytics",
+        "test",
+        "--no-pub",
+        "--concurrency=1",
+        "--reporter=json",
+        "test/studio_layout_theme_test.dart",
+        "--name",
+        "Language downloads inherits dark Studio appearance from Settings"
+      ],
+      "cwd": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example",
+      "elapsed_seconds": 13.537127017974854,
+      "environment_overrides": {
+        "CI": "true",
+        "DART_SUPPRESS_ANALYTICS": "true",
+        "FLUTTER_SUPPRESS_ANALYTICS": "true",
+        "PUB_CACHE": "/workspace/scratch/652d74384990/runtime/pub-cache",
+        "TMPDIR": "/workspace/scratch/652d74384990/runtime/tmp"
+      },
+      "exit_code": 0,
+      "name": "focused-dark-downloads",
+      "removed_optional_environment": [
+        "QUDS_MAIL_PORTABILITY_SHOTS"
+      ],
+      "started_at_utc": "2026-11-19T19:00:07Z",
+      "stderr": "focused-dark-downloads.stderr.log",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "focused-dark-downloads.stdout.log",
+      "stdout_sha256": "106e0fc8aadccfa6944e94008b978e6bab062d16edd9553917973bd8217188d4"
+    }
+  ],
+  "inputs_after": {
+    "packages/quds_office_editor/example/lib/suite_workspace.dart": "043a87d7a20c47819a46cd1cae5d7c61b50571eebfc9ccb9587bcbfe60148613",
+    "packages/quds_office_editor/example/test/studio_layout_theme_test.dart": "c24810edc616d11eb90c7bdfe7e8c57594c660cc34ef8e00bb65b64c546ea6ce"
+  },
+  "inputs_before": {
+    "packages/quds_office_editor/example/lib/suite_workspace.dart": "043a87d7a20c47819a46cd1cae5d7c61b50571eebfc9ccb9587bcbfe60148613",
+    "packages/quds_office_editor/example/test/studio_layout_theme_test.dart": "c24810edc616d11eb90c7bdfe7e8c57594c660cc34ef8e00bb65b64c546ea6ce"
+  },
+  "inputs_unchanged": true,
+  "scope": "One integration regression: app host remains light while the settings-selected Studio theme is dark; the downloads route must inherit the Studio theme, then close without editing the document.",
+  "success": true,
+  "summary": {
+    "done_events": [
+      {
+        "success": true,
+        "time": 11609,
+        "type": "done"
+      }
+    ],
+    "failed": 0,
+    "non_json_stdout_lines": 0,
+    "passed": 1,
+    "skipped": 0,
+    "visible_test_count": 1
+  }
+}
