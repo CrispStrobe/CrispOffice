@@ -11,11 +11,12 @@ published unmodified.
     HF_TOKEN=... python3 tools/proofing/ayaspell/build_bundle.py \\
         --output /tmp/ayaspell-ar-publish --publish cstr/ayaspell-ar-hunspell
 
-Each invocation requires a new output directory that does not already exist.
+Existing output directories are supported. Publication includes only the
+verified bundle filenames and generated manifest; unrelated files stay local.
 
-The bundle is intended for an optional in-app download once the Arabic
-adapter is implemented; it is not part of the application binary
-(docs/roadmaps/arabic-proofing.md).
+The optional Hunspell adapter is implemented. Host registration and the in-app
+download interface remain separate work; dictionary data is not part of the
+application binary (docs/roadmaps/arabic-proofing.md).
 """
 from __future__ import annotations
 
@@ -85,23 +86,20 @@ are unmodified; their source form is this repository.
 ## Use
 
 Load with any Hunspell-compatible engine, e.g. `hunspell -d ar`. Quds Office
-plans to offer this bundle as an optional download; the Arabic adapter and
-in-app download are not implemented yet. The bundle is not part of the
-application. `manifest.json` lists the SHA-256 of each bundled content file.
+implements an optional Hunspell adapter; host registration and the in-app
+download interface remain separate work. The dictionary is not bundled into
+the application. `manifest.json` lists the SHA-256 of each bundled content file.
 """
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--output", type=Path, required=True,
-                        help="New directory to create; must not already exist")
+                        help="Output directory; verified bundle files are replaced, unrelated files are retained")
     parser.add_argument("--publish", metavar="REPO_ID", help="Hugging Face model repo to upload to (needs HF_TOKEN)")
     args = parser.parse_args()
     out = args.output
-    try:
-        out.mkdir(parents=True, exist_ok=False)
-    except FileExistsError:
-        parser.error(f"output path already exists: {out}; choose a new directory for --output")
+    out.mkdir(parents=True, exist_ok=True)
     manifest = {"schema": "quds.proofing.hunspell_bundle.v1", "language": "ar",
                 "source": {"repository": "https://github.com/LibreOffice/dictionaries", "commit": COMMIT,
                            "path": "ar/"},

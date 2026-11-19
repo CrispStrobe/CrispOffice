@@ -1,0 +1,36 @@
+{
+  "kind": "independent-read-only-AyaSpell-review",
+  "base_commit": "8dc76f0cc27721bd5e64eec0f979bac8aeb6ce97",
+  "reviewed_worktree_sources": {
+    "tools/proofing/ayaspell/build_bundle.py": "80edded8aa135c8213dc8ef316d2db45f26edb2c116f882751681b30db685004",
+    "tools/proofing/ayaspell/test_build_bundle.py": "72658a0784a00966ce4f1886ae424825eb54839ac2e6a744ece70b8bc43fa3e9",
+    "tools/proofing/ayaspell/test_build_bundle_incoming.py": "0c37251ea3797276e417ad5ac8e8095904e5b7fd5dbd822436821b62621afcda",
+    "tools/proofing/ayaspell/test_build_bundle_reproducibility.py": "9c170dced06105a0b019bb07e426bc82106a9c6bad1629820ab5aec6f72c4096"
+  },
+  "matches_author_receipt": true,
+  "publish_block_ast_unchanged": true,
+  "publish_block_ast_sha256": "b14151b4505e891d125abbbe4eab82935e6ab79d7dbaddcf4e0dad6e1a2dadee",
+  "test_method_counts": {
+    "tools/proofing/ayaspell/test_build_bundle.py": 5,
+    "tools/proofing/ayaspell/test_build_bundle_incoming.py": 7,
+    "tools/proofing/ayaspell/test_build_bundle_reproducibility.py": 5
+  },
+  "test_methods": 17,
+  "review_findings": [
+    "Restores prior exist_ok=True directory contract; removes new-directory-only parser error",
+    "Exact sorted manifest content filenames plus manifest.json remain the entire allow_patterns list",
+    "Content length/digest checks complete before create_repo/upload_folder; immutable-revision content and manifest readback remain unchanged",
+    "Two card assertions updated to distinguish implemented optional adapter from remaining host UI work; all17 methods retained",
+    "No dictionary catalog pins or real external publication changed"
+  ],
+  "author_run": {
+    "methods": 17,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "log_sha256": "15456f83485f88be2183053f67dba2e53fa8b891940214921c2402bb6fc3122b"
+  },
+  "independent_test_rerun": false,
+  "blocking_findings": [],
+  "passed": true
+}

@@ -30,6 +30,20 @@ bounded capture, including concurrent Office reconciliation and AyaSpell work.
 The [final capture and later-main review](final-incoming/README.md) preserve the
 421-ref accounting and the subsequent 33-path main delta separately.
 
+## Preserved combined attempt and reconciliation repair
+
+The first expanded gate at `8dc76f0c` stopped before Dart execution: shared-runner
+and restorer controls passed, but an incoming AyaSpell directory guard conflicted
+with retained existing-directory publication controls (17 methods, 11 errors).
+The [complete failed attempt](attempt-8dc76f0c/README.md) remains separate.
+
+The repair restores safe existing-directory use while preserving the exact
+verified-filename upload restriction and hash/readback checks. Its offline
+17-control rerun passed. The generated card and two prose assertions now state
+that the optional adapter exists while host registration/download UI remains
+open. The next complete gate must execute the corrected frozen source; these
+focused controls are not added to its totals.
+
 ## Implemented behavior
 
 The native provider discovers existing UIDs with strict simple SEARCH and pages

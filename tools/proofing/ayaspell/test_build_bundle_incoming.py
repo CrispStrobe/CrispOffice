@@ -1,7 +1,7 @@
 """Preserved PR #177 offline controls; card assertion follows current wording.
 
 Imported from c268ce3bceb05f92b7868e90ba8ce7b9a5bbbe1e. The filename and
-planned-adapter wording assertion are adapted; the seven controls remain.
+adapter/host-scope wording assertion are adapted; the seven controls remain.
 """
 
 from __future__ import annotations
@@ -155,8 +155,8 @@ class BundleBuilderTest(unittest.TestCase):
         self.assertEqual(self.create_calls, [])
         self.assertEqual(self.upload_calls, [])
         card = (self.output / "README.md").read_text(encoding="utf-8")
-        self.assertIn("Hunspell adapter and in-app download integration are planned",
-                      " ".join(card.split()))
+        self.assertIn("optional Hunspell adapter", card)
+        self.assertIn("download interface remain separate work", card)
 
 
 if __name__ == "__main__":
