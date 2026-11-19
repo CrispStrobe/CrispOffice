@@ -14,6 +14,13 @@ The independent graph receipt accounts for 467 actual refs: 439 ancestors,
 were recomputed. Four generated GitHub merge-preview refs are preserved in the
 raw capture but are not treated as independent product branches.
 
+Remote main subsequently advanced to `666e9a2e` through the integration branch
+and added Mail reply, forward and mark-read actions. It is an actual parent of
+published checkpoint `e1b94285`. Reconciliation retained all existing stronger
+source and tests: relative to `dfb28229`, the merge initially introduced only
+109 changed lines in `studio_mail_native.dart` and `studio_mail_strings.dart`.
+Follow-up action repairs and regressions are qualified under a later source.
+
 These are preservation checkpoints, not assertions that their incomplete
 combined test/UI adaptations passed. Fresh accepted execution identity and
 results are recorded separately in the final report.

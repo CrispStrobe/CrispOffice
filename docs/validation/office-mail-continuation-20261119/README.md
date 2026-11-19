@@ -17,3 +17,36 @@ Native on-demand reads now use the bounded Quds IMAP provider with a session-own
 The composer uses the shared Word RenderBox editing surface and produces an immutable plain-text draft. Recipient/header/size checks precede submission. MIME uses quoted-printable encoding. SMTP submission passes one explicit recipient and disables concurrent Sent-folder append. Unconfirmed submission retains its draft in the current session and requires an explicit delivery-check acknowledgement before another attempt. No durable outbox or exactly-once delivery is claimed.
 
 Focused development checks and independent review are being completed. They do not yet qualify this combined source. The committed native and Node plans plus run_validation.py define the forthcoming frozen gate. GitHub Actions remain outside the process.
+
+## Preserved qualification attempts
+
+The complete first aggregate attempt at `97393efd` is preserved under
+[`attempt-97393efd/`](attempt-97393efd/README.md). All nine native groups
+completed with 1,859 passing cases and strict Dart analysis/formatting passed,
+but the whitespace gate found one extra blank line at the end of the independent
+auditor. The aggregate failed, and its later Node/Mail browser stages did not run.
+Its native counts are not carried into an accepted later total.
+
+The auditor's single EOF blank line was removed in `dfb28229`; the full baseline
+whitespace check passed before starting another gate. That run was deliberately
+interrupted with external exit 130 when remote main introduced material new Mail
+actions at `666e9a2e`. Its original receipt remains `RUNNING` without rewriting;
+the separate interruption notice records why execution ended. Complete original
+bytes and the interruption record are under
+[`attempt-dfb28229/`](attempt-dfb28229/README.md).
+
+Earlier focused development runs, including failed regression attempts, are
+preserved separately under [`development/`](development/README.md). The 90-file
+archive is independently compared with its original bytes and reproducibly
+rebuilt. Dirty development runs receive no invented exact source commit and
+contribute zero cases to current aggregate acceptance.
+
+## Newer main reconciliation
+
+Checkpoint `e1b94285` retains newer remote main `666e9a2e` as an actual ancestor.
+The only new product changes introduced by that reconciliation are the incoming
+reply, forward and mark-read actions; the newer Word, SMTP, browser, saved-reader
+and lifecycle safeguards on this branch remain intact. PR #191 was reopened
+after the concurrent main integration closed it without merging its remaining
+work. Incoming action repairs and their focused regression cases precede the
+next frozen qualification.
