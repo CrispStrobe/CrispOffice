@@ -3,6 +3,9 @@
 /// Native filesystem and browser worker setup have separate public entries.
 library;
 
+export 'src/archive_models.dart';
+export 'src/archive_query.dart';
+export 'src/archive_repository.dart';
 export 'src/errors.dart' show MailStoreStorageException, mailStoreProblem;
 export 'src/models.dart';
 export 'src/repository.dart';

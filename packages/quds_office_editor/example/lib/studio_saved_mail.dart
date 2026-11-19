@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:quds_mail_mime/quds_mail_mime.dart';
 import 'package:quds_mail_ui/quds_mail_ui.dart';
 
+import 'studio_mail_archive.dart';
+import 'studio_mail_archive_strings.dart';
 import 'studio_mail_file.dart';
 import 'studio_strings.dart';
 
@@ -150,6 +152,17 @@ class _StudioSavedMailViewState extends State<StudioSavedMailView> {
                 selected: <MailReaderMode>{_mode},
                 onSelectionChanged: (value) => _setMode(value.first),
               ),
+              if (studioMailArchiveAvailable)
+                TextButton.icon(
+                  key: const ValueKey('studio-saved-mail-archive'),
+                  onPressed: () => showDialog<void>(
+                    context: context,
+                    builder: (_) =>
+                        StudioMailArchiveDialog(strings: widget.strings),
+                  ),
+                  icon: const Icon(Icons.inventory_2_outlined),
+                  label: Text(widget.strings.archiveTitle),
+                ),
               TextButton.icon(
                 onPressed: _opening ? null : _open,
                 icon: _opening

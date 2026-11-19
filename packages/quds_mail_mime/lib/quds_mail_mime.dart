@@ -2,3 +2,4 @@
 library;
 
 export 'src/codec.dart';
+export 'src/mbox.dart';
