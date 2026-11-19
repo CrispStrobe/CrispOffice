@@ -34,7 +34,7 @@ or complete changed-path mode/type/blob identity. The saved union audit is a
 graph projection only. An actual integrated-head audit and fresh local
 qualification will be recorded before completion.
 
-## Integration decisions in progress
+## Reviewed integration decisions
 
 - Keep main's functional IMAP/SMTP client. Adapt lifecycle and dismissal checks
   to that client; obsolete saved-message UI tests are not valid acceptance for
@@ -47,5 +47,35 @@ qualification will be recorded before completion.
   attempts with their original source attribution. Their case counts are not
   added together or relabelled as fresh validation of this source.
 
-This checkpoint is a saved integration in progress, not a completed release or
-an accepted qualification result.
+The combined source is being frozen for fresh qualification. This checkpoint
+is not yet an accepted qualification result.
+
+
+## Remote checkpoints and validation plan
+
+The first merge is saved at `004b2ad6342cae7b2fe2750dbba5a9fdcebd3413`.
+It retains the complete `c63558c0` history and adapts its Mail lifecycle controls
+to main's current IMAP/SMTP UI. The second merge retains `1b6d280b` and preserves
+main's newer public language and native lifecycle contracts.
+
+The remaining source changes prevent token-interior Arabic phrase matches,
+keep separately formatted complex-script Word runs separate, preserve multiple
+findings from the same provider, honor dictionary cancellation at the final
+progress callback, and distinguish paused, scheduled and partial Review results
+from a completed clean check. Studio Settings/Notes and review fixtures use the
+current UI. The AyaSpell builder's executable AST and pinned constants are
+unchanged; only its generated card and corresponding wording assertions differ.
+
+The [native plan](native-plan.json) selects 33 affected test files; the
+[Node plan](node-plan.json) repeats seven portable engine files. Strict analysis
+and formatting cover every changed application/test Dart path. Three separately
+compiled C ABI libraries expose native lifecycle counters; they contain no real
+Hunspell dictionary. The native web-host tests use controlled HTTP clients and
+do not claim actual browser execution. Offline publisher and packaging controls
+are run separately from application test counts.
+
+The [independent saved-evidence audit](review/saved-evidence-independent-audit.json)
+verified all ten incoming archives and 828 members, including rejected attempts.
+It recounts the historical host run as 1,285 executions / 979 distinct cases and
+the historical sync run as 1,026 executions / 634 distinct cases. Those results
+remain attached to `9833831a` and `5c18db77`, respectively.

@@ -250,17 +250,19 @@ List<OfficeProofingFinding> _mergeAgreeingFindings(
     final kept = all[i];
     if (absorbed.contains(kept)) continue;
     var replacements = kept.replacements;
+    final providers = {kept.providerId};
     for (var j = i + 1; j < all.length; j++) {
       final other = all[j];
       if (other.start != kept.start || other.end != kept.end) break;
       if (absorbed.contains(other) ||
-          other.providerId == kept.providerId ||
+          providers.contains(other.providerId) ||
           other.category != kept.category ||
           other.originalText != kept.originalText ||
           !other.replacements.any(replacements.contains)) {
         continue;
       }
       absorbed.add(other);
+      providers.add(other.providerId);
       replacements = [
         ...replacements,
         for (final value in other.replacements)

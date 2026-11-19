@@ -525,6 +525,8 @@ abstract final class WmlRunEdit {
         a.csFont == b.csFont &&
         a.vertAlign == b.vertAlign &&
         a.proofingLanguage == b.proofingLanguage &&
+        a.complexScriptLanguage == b.complexScriptLanguage &&
+        a.complexScript == b.complexScript &&
         a.noProof == b.noProof;
   }
 }

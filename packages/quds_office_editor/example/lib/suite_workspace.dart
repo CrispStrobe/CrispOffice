@@ -2064,14 +2064,9 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       StudioRibbonGroup(
         title: _t('Mode', StudioStrings.de('Mode'), 'وضع العمل'),
         children: <Widget>[
-          _cmd(
-            Icons.edit,
-            _t('Edit', StudioStrings.de('Edit'), 'تحرير'),
-            () {
-              setState(() => _mode = OfficeInteractionMode.editing);
-            },
-            selected: _mode == OfficeInteractionMode.editing,
-          ),
+          _cmd(Icons.edit, _t('Edit', StudioStrings.de('Edit'), 'تحرير'), () {
+            setState(() => _mode = OfficeInteractionMode.editing);
+          }, selected: _mode == OfficeInteractionMode.editing),
           _cmd(
             Icons.select_all,
             _t('Select', StudioStrings.de('Select'), 'تحديد'),
@@ -10565,98 +10560,130 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   Widget _reviewStrip() => AnimatedBuilder(
     animation: _word,
     builder: (BuildContext context, Widget? _) {
-      final summary = _word.proofing.summary;
+      final session = _word.proofing;
+      final summary = session.summary;
       final pending = _word.document.revisions
           .where((revision) => revision.accepted == null)
           .length;
       final language =
           _word.textProofingTarget?.language ??
           (summary.hasResults ? _t('Mixed', 'Gemischt', 'مختلط') : '');
-      final issues = summary.checking
-          ? _t('Checking…', 'Prüfung läuft …', 'جارٍ التدقيق…')
-          : !summary.hasResults
-          ? _t('Not checked yet', 'Noch nicht geprüft', 'لم يُدقّق بعد')
-          : summary.issues.isEmpty
-          ? _t('No writing issues', 'Keine Schreibhinweise', 'لا توجد ملاحظات')
-          : summary.issues.length == 1
-          ? _t('1 writing issue', '1 Schreibhinweis', 'ملاحظة واحدة')
-          : _t(
-              '${summary.issues.length} writing issues',
-              '${summary.issues.length} Schreibhinweise',
-              '${summary.issues.length} ملاحظات',
-            );
+      final String issues;
+      final IconData issuesIcon;
+      if (summary.checking) {
+        issues = _t('Checking…', 'Prüfung läuft …', 'جارٍ التدقيق…');
+        issuesIcon = Icons.hourglass_top;
+      } else if (summary.scheduled) {
+        issues = _t(
+          'Waiting to check…',
+          'Warten auf Prüfung …',
+          'بانتظار توقف الكتابة…',
+        );
+        issuesIcon = Icons.more_horiz;
+      } else if (!session.enabled) {
+        issues = _t(
+          'Live checking paused',
+          'Automatische Prüfung pausiert',
+          'التدقيق التلقائي متوقف',
+        );
+        issuesIcon = Icons.pause_circle_outline;
+      } else if (!summary.hasResults) {
+        issues = _t('Not checked yet', 'Noch nicht geprüft', 'لم يُدقّق بعد');
+        issuesIcon = Icons.spellcheck;
+      } else if (!summary.complete) {
+        final count = summary.issues.length;
+        issues = _t(
+          '${count == 1 ? '1 issue' : '$count issues'} · partial check',
+          '${count == 1 ? '1 Hinweis' : '$count Hinweise'} · teilweise geprüft',
+          '$count ملاحظات · تدقيق جزئي',
+        );
+        issuesIcon = Icons.info_outline;
+      } else {
+        issues = summary.issues.isEmpty
+            ? _t(
+                'No writing issues',
+                'Keine Schreibhinweise',
+                'لا توجد ملاحظات',
+              )
+            : summary.issues.length == 1
+            ? _t('1 writing issue', '1 Schreibhinweis', 'ملاحظة واحدة')
+            : _t(
+                '${summary.issues.length} writing issues',
+                '${summary.issues.length} Schreibhinweise',
+                '${summary.issues.length} ملاحظات',
+              );
+        issuesIcon = summary.issues.isEmpty
+            ? Icons.check_circle_outline
+            : Icons.spellcheck;
+      }
       final changes = pending == 1
           ? _t('1 change', '1 Änderung', 'تغيير واحد')
           : _t('$pending changes', '$pending Änderungen', '$pending تغييرات');
-      final compact = MediaQuery.sizeOf(context).width < 820;
       Widget action(
         IconData icon,
         String label,
-        String tooltip,
+        Tooltip? tooltip,
         VoidCallback? onTap,
       ) {
-        final button = compact
-            ? IconButton(
-                onPressed: onTap,
-                tooltip: tooltip,
-                visualDensity: VisualDensity.compact,
-                padding: EdgeInsets.zero,
-                constraints: const BoxConstraints.tightFor(
-                  width: 24,
-                  height: 24,
-                ),
-                icon: Icon(icon, size: 14, color: Colors.white),
-              )
-            : TextButton.icon(
-                onPressed: onTap,
-                icon: Icon(icon, size: 14, color: Colors.white),
-                label: Text(
-                  label,
-                  style: const TextStyle(color: Colors.white, fontSize: 10),
-                ),
-                style: TextButton.styleFrom(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 6,
-                    vertical: 0,
-                  ),
-                  minimumSize: const Size(0, 24),
-                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                ),
-              );
-        return compact ? button : Tooltip(message: tooltip, child: button);
+        final button = TextButton.icon(
+          onPressed: onTap,
+          icon: Icon(icon, size: 14, color: Colors.white),
+          label: Text(
+            label,
+            style: const TextStyle(color: Colors.white, fontSize: 10),
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
+          style: TextButton.styleFrom(
+            padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 0),
+            minimumSize: const Size(0, 24),
+            tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+          ),
+        );
+        return tooltip == null
+            ? button
+            : Tooltip(message: tooltip.message, child: button);
       }
 
       return Row(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          action(
-            summary.issues.isEmpty
-                ? Icons.check_circle_outline
-                : Icons.spellcheck,
-            issues,
-            summary.statusMessage,
-            _word.openReviewPane,
+          Flexible(
+            child: action(
+              issuesIcon,
+              issues,
+              Tooltip(message: summary.statusMessage),
+              _word.openReviewPane,
+            ),
           ),
           if (language.isNotEmpty)
-            action(
-              Icons.language,
-              language,
-              _t(
-                'Language and checking',
-                'Sprache und Prüfung',
-                'اللغة والتدقيق',
+            Flexible(
+              child: action(
+                Icons.language,
+                language,
+                Tooltip(
+                  message: _t(
+                    'Language and checking',
+                    'Sprache und Prüfung',
+                    'اللغة والتدقيق',
+                  ),
+                ),
+                _word.showTextProofingOptions,
               ),
-              _word.showTextProofingOptions,
             ),
-          action(
-            Icons.track_changes,
-            changes,
-            _t(
-              'Review tracked changes',
-              'Nachverfolgte Änderungen prüfen',
-              'مراجعة التغييرات المتعقبة',
+          Flexible(
+            child: action(
+              Icons.track_changes,
+              changes,
+              Tooltip(
+                message: _t(
+                  'Review tracked changes',
+                  'Nachverfolgte Änderungen prüfen',
+                  'مراجعة التغييرات المتعقبة',
+                ),
+              ),
+              () => _word.openReviewPane(tab: WordReviewPaneTab.changes),
             ),
-            () => _word.openReviewPane(tab: WordReviewPaneTab.changes),
           ),
         ],
       );
@@ -10728,7 +10755,8 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                         maxLines: 1,
                       ),
                     ),
-                    if (_app == SuiteApp.word) _reviewStrip(),
+                    if (_app == SuiteApp.word)
+                      Flexible(flex: 3, child: _reviewStrip()),
                     InkWell(
                       onTap: () => _setZoom(_viewScale - 0.1),
                       child: const Icon(

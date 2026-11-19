@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "source_commit": "fce543dedb1217804f67de088ef9c287e8a2edca",
+  "created_at_utc": "2026-11-19T09:29:38.203189+00:00",
+  "spec_sha256": "49f423b79dd74665018faa33b67236b9d2ab01db72f346279dc2664e5ff64f43",
+  "packer_sha256": "546a0e6ed43b4258f060811e7d03ba5cfc46f447f556c61b331ecfe519ef87f5",
+  "archives": [
+    {
+      "name": "rejected-fce543de-guard-attempt",
+      "archive": "docs/validation/office-main-sync-20261119/main-delta-v3/attempt-fce543de/evidence.tar.xz",
+      "index": "docs/validation/office-main-sync-20261119/main-delta-v3/attempt-fce543de/evidence.index.json",
+      "scope": "Rejected fce543de pre-test continuity guard attempt: missing expected Studio-to-url_launcher dependency edge; accepted_qualification=false, zero application cases and zero Python controls. Original source/runtime receipts, resolver and guard outputs, independent rejection audit and audit script are preserved without reruns.",
+      "source_commit": "fce543dedb1217804f67de088ef9c287e8a2edca",
+      "archive_bytes": 646816,
+      "archive_sha256": "ebdc93549823de17d878a19439925a500590021cccbace16274804535482f821",
+      "index_bytes": 7669,
+      "index_sha256": "081898115c301eb3d1cb428fb84c7f6540c1e54278dd0542319145364d616627",
+      "member_count": 24
+    }
+  ],
+  "scope": "Byte-preserving evidence publication. Archive/member counts are not application test counts. Historical and development evidence retain their separate scopes."
+}
