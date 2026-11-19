@@ -6,6 +6,14 @@ The next remote checkpoint, `ec8bd9cf`, also retains PR #194 at `4b8b9e2e`,
 PR #193 at `4ed8154a` and PR #192 at `d00bd397` as actual ancestors. Each tree
 was read back from the remote and compared with the intended local tree.
 
+The bounded refresh (11:38:37–11:38:45 UTC) found later PR #193 at `4cf5831d`,
+PR #192 at `79e77725` and `codex/office-final-union-20261119` at `47ce5f72`.
+They are actual ancestors of the next published checkpoint, `b434cf1e`.
+The independent graph receipt accounts for 467 actual refs: 439 ancestors,
+28 historical equivalents and zero unaccounted refs; all 14 historical proofs
+were recomputed. Four generated GitHub merge-preview refs are preserved in the
+raw capture but are not treated as independent product branches.
+
 These are preservation checkpoints, not assertions that their incomplete
 combined test/UI adaptations passed. Fresh accepted execution identity and
 results are recorded separately in the final report.
@@ -28,6 +36,25 @@ PR #194's text-control tests retain active-slot expectations and partial
 Latin/Arabic selection cases; its engine proofing-language tests retain differing
 language/complex-script-marker merge guards. Existing explicit complex-script
 formatting can still merge across scripts when semantics agree.
+
+The later `79e77725` adds an explicit `activeLanguageOnly` option and more precise
+inspection of selected fragments. The reconciled editor defaults that option to
+`true`, preserving the current selected-script behavior. An explicit `false`
+supports intentional two-slot changes/resets. A mixed selection changes both
+slots only when the selected fragments use both; an explicit complex-script
+marker still routes the whole selected fragment through its complex-script slot.
+The lower-level deserializer retains its existing parameter defaults. Incoming
+slot, reset, metadata-preservation and history cases are retained, with deliberate
+two-slot editor cases now explicitly requesting that mode. The 193 split and
+coalescing repairs remain intact.
+
+The final union also retains the About dialog's direct external URL launch and
+four mocked-platform regressions. Capability prechecks no longer suppress the
+launch attempt. Review status tests retain all three languages, enlarged text,
+compact/transition widths, pending and paused state, and reachable pane actions.
+Their fixtures synchronize view metrics and render constraints on resize.
+The merge verification caught incomplete test hunks; the two affected suites
+were reconstructed from their exact incoming bodies before qualification.
 
 The later Arabic token-continuation boundaries, decomposed spelling coverage,
 and Hunspell final-progress cancellation check are retained. Publisher changes

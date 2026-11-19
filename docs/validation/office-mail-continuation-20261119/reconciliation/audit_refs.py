@@ -23,6 +23,9 @@ import sys
 BASELINE = "0e84dc951e7a9e923107d7895fa457cf29a7af71"
 PROOF_PATH = "docs/validation/thesaurus-20261118/resume/incoming-audit.json"
 SHA1 = re.compile(r"[0-9a-f]{40}\Z")
+EXCLUDED_ADVERTISEMENTS = {
+    "head_alias", "peeled_tag_advertisement", "synthetic_pr_merge_advertisement",
+}
 
 
 def digest(data):
@@ -206,6 +209,11 @@ def canonical_ref(ref, upstream):
         return ref, "peeled_tag_advertisement"
     if ref == "HEAD" or ref.endswith("/HEAD"):
         return ref, "head_alias"
+    if re.fullmatch(r"refs/pull/\d+/merge", ref):
+        # GitHub generates these provisional test merges. The actual PR head
+        # is audited independently; retain the advertisement without treating
+        # its synthetic merge as user-authored history requiring integration.
+        return ref, "synthetic_pr_merge_advertisement"
     if upstream:
         if ref.startswith("refs/remotes/upstream/"):
             ref = "refs/heads/" + ref.removeprefix("refs/remotes/upstream/")
@@ -278,6 +286,9 @@ def main():
     by_sha = {row["original_commit"]: row for row in proofs}
     refs, inputs = read_captures(args.refs, args.upstream_refs)
     for row in refs:
+        if row["kind"] in EXCLUDED_ADVERTISEMENTS:
+            row["classification"] = "advertisement_excluded"
+            continue
         try:
             commit = auditor.commit(row["object_sha"])
             heads = auditor.containing_heads(commit)
@@ -290,7 +301,7 @@ def main():
                 row["equivalence_proof_commit"] = commit
         except RuntimeError as exc:
             row.update(classification="missing_or_noncommit_object", error=str(exc))
-    actual = [row for row in refs if row["kind"] not in ("head_alias", "peeled_tag_advertisement")]
+    actual = [row for row in refs if row["kind"] not in EXCLUDED_ADVERTISEMENTS]
     unknown = [row for row in actual if row["classification"] not in (
         "ancestor", "historical_equivalent"
     ) or row["kind"] == "unknown"]
@@ -299,7 +310,7 @@ def main():
     after = auditor.state()
     mode = "integrated_commit" if args.head else "anticipated_union"
     report = {
-        "schema": 2, "checked_at_utc": datetime.now(timezone.utc).isoformat(),
+        "schema": 3, "checked_at_utc": datetime.now(timezone.utc).isoformat(),
         "target_mode": mode,
         "targets": [{"commit": h, "tree": auditor.text("rev-parse", h + "^{tree}")} for h in auditor.heads],
         "inputs": inputs, "script_sha256": digest(Path(__file__).read_bytes()),
@@ -307,7 +318,15 @@ def main():
         "actual_reference_count": len(actual),
         "expected_reference_count": args.expected_total,
         "expected_reference_count_matches": count_matches,
-        "alias_and_peeled_rows_excluded": len(refs) - len(actual),
+        "alias_and_peeled_rows_excluded": sum(
+            row["kind"] in ("head_alias", "peeled_tag_advertisement") for row in refs
+        ),
+        "synthetic_pr_merge_rows_excluded": sum(
+            row["kind"] == "synthetic_pr_merge_advertisement" for row in refs
+        ),
+        "excluded_advertisements": [
+            row for row in refs if row["kind"] in EXCLUDED_ADVERTISEMENTS
+        ],
         "distinct_object_count": len({r["object_sha"] for r in actual}),
         "distinct_commit_count": len({r["commit"] for r in actual if "commit" in r}),
         "classification": dict(Counter(row["classification"] for row in actual)),

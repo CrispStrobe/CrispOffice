@@ -187,6 +187,10 @@ class _StyleCascade {
       range.start,
       range.end,
     );
+    final latinProperties = {
+      for (final run in prepared.inlines.whereType<WmlRun>())
+        if (wordRunUsesLatinScriptLanguage(run)) run.properties,
+    };
     final complexProperties = {
       for (final run in prepared.inlines.whereType<WmlRun>())
         if (wordRunUsesComplexScriptLanguage(run)) run.properties,
@@ -194,7 +198,10 @@ class _StyleCascade {
     var changed = activeLanguageOnly && routingChanged;
     WmlRunEdit.applyRange(prepared, range.start, range.end, (props) {
       final attributes = activeLanguageOnly
-          ? [complexProperties.contains(props) ? 'bidi' : 'val']
+          ? [
+              if (latinProperties.contains(props)) 'val',
+              if (complexProperties.contains(props)) 'bidi',
+            ]
           : ['val', if (includeComplexScript) 'bidi'];
       final inheritedLanguage = merged('rPr', [
         for (final layer in tableLayers!) layer.firstChild('rPr'),

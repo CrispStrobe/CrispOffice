@@ -74,11 +74,8 @@ final class StudioStrings {
   );
   String get mailTitle =>
       _t('CrispOffice Mail', 'CrispOffice Mail', 'بريد CrispOffice');
-  String get savedMessages => _t(
-    'Saved messages',
-    'Gespeicherte Nachrichten',
-    'الرسائل المحفوظة',
-  );
+  String get savedMessages =>
+      _t('Saved messages', 'Gespeicherte Nachrichten', 'الرسائل المحفوظة');
   String get mailAccounts =>
       _t('Mail accounts', 'E-Mail-Konten', 'حسابات البريد');
   String get mailAccountsUnavailable => _t(
@@ -86,11 +83,8 @@ final class StudioStrings {
     'Für E-Mail-Konten benötigen Sie die Desktop-App. Gespeicherte Nachrichten können Sie hier öffnen.',
     'تتطلب حسابات البريد تطبيق سطح المكتب. يمكنك فتح الرسائل المحفوظة هنا.',
   );
-  String get backToMessages => _t(
-    'Back to messages',
-    'Zurück zu Nachrichten',
-    'العودة إلى الرسائل',
-  );
+  String get backToMessages =>
+      _t('Back to messages', 'Zurück zu Nachrichten', 'العودة إلى الرسائل');
   String get openMessage => _t('Open message', 'Nachricht öffnen', 'فتح رسالة');
   String get openMessageFailed => _t(
     'The message could not be opened.',
