@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quds_office_editor/quds_office_editor.dart';
 import 'package:quds_office_studio/studio_chrome.dart';
@@ -264,6 +265,57 @@ void main() {
       expect(tester.takeException(), isNull);
       await tester.tap(find.widgetWithText(FilledButton, 'تم'));
       await _frames(tester);
+      expect(tester.takeException(), isNull);
+    },
+    variant: TargetPlatformVariant.only(TargetPlatform.linux),
+  );
+
+  testWidgets(
+    'Insert menus support Escape, outside controls and keyboard selection',
+    (tester) async {
+      final preferences = StudioRibbonPreferences(persist: false);
+      final word = await _studio(tester, preferences);
+      await _selectInsert(tester);
+      final editor = tester.widget<QudsWordEditor>(find.byType(QudsWordEditor));
+      editor.focusNode!.requestFocus();
+      await _frames(tester);
+      final textMenu = _key('ribbon-menu-word-insert-text');
+      await tester.ensureVisible(textMenu);
+      await tester.tap(textMenu);
+      await _frames(tester);
+      expect(find.widgetWithText(MenuItemButton, 'Heading 1'), findsOneWidget);
+      await tester.sendKeyEvent(LogicalKeyboardKey.escape);
+      await _frames(tester);
+      expect(find.widgetWithText(MenuItemButton, 'Heading 1'), findsNothing);
+      expect(word.document.paragraphs.single.text, 'Insert here.');
+      await tester.tap(_key('studio-customize-ribbon'));
+      await _frames(tester);
+      expect(_key('studio-ribbon-customization'), findsOneWidget);
+      await tester.tap(find.widgetWithText(FilledButton, 'Done'));
+      await _frames(tester);
+
+      // A direct click on another ribbon control should also act immediately.
+      await tester.tap(textMenu);
+      await _frames(tester);
+      await tester.tap(_key('studio-customize-ribbon'));
+      await _frames(tester);
+      expect(_key('studio-ribbon-customization'), findsOneWidget);
+      expect(find.widgetWithText(MenuItemButton, 'Heading 1'), findsNothing);
+      await tester.tap(find.widgetWithText(FilledButton, 'Done'));
+      await _frames(tester);
+
+      await tester.tap(textMenu);
+      await _frames(tester);
+      await tester.sendKeyEvent(LogicalKeyboardKey.arrowDown);
+      await tester.sendKeyEvent(LogicalKeyboardKey.enter);
+      await _frames(tester);
+      expect(
+        word.document.paragraphs.any(
+          (paragraph) => paragraph.text == 'New subheading',
+        ),
+        isTrue,
+      );
+      expect(find.widgetWithText(MenuItemButton, 'Heading 2'), findsNothing);
       expect(tester.takeException(), isNull);
     },
     variant: TargetPlatformVariant.only(TargetPlatform.linux),

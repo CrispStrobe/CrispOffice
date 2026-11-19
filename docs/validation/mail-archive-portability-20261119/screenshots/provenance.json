@@ -1,0 +1,42 @@
+{
+  "purpose": "Development layout QA with synthetic fixtures; not live-account or installed-app screenshots.",
+  "source_checkpoint": "22601092c0c50a784a132c410984b0eeb18292f9",
+  "matched_acceptance_candidate": "9bdef4895922ae74f6275e421af5665552d18b4e",
+  "matched_git_blobs": {
+    "packages/quds_office_editor/example/lib/studio_mail_archive_native.dart": "4d26340519d2fa4a08ca0608e96f31e1155433dd",
+    "packages/quds_office_editor/example/lib/studio_mail_archive_strings.dart": "1c2204dfcd7a55806e0f27850d8dfda705a6609e",
+    "packages/quds_office_editor/example/test/studio_mail_archive_portability_visual_test.dart": "b499ae4dc73a1e0a3e7fb149c4f15130eb8c7f4c"
+  },
+  "images": [
+    {
+      "file": "archive-export-confirmation-ar.png",
+      "bytes": 79255,
+      "sha256": "9d4e178b70bf941c8bce5bda00bbdbbca520e31f4aaadd5b119d34d5858048eb"
+    },
+    {
+      "file": "archive-export-confirmation-en.png",
+      "bytes": 113933,
+      "sha256": "7e1dab5aaecb2051ef29b53147112ef1251dc07e3da4db7f92c6dd14918dcd81"
+    },
+    {
+      "file": "archive-export-report-ar.png",
+      "bytes": 75791,
+      "sha256": "c8d39fadb8c0655480f7715e7b7ddec6fc5c5faf28b8d193ec3bb2596673ebc8"
+    },
+    {
+      "file": "archive-export-report-en.png",
+      "bytes": 107959,
+      "sha256": "60389b30f481ea04557f4d52767b6d3081f8790092058f1749b97bf9528a04cd"
+    },
+    {
+      "file": "archive-portability-desktop-en.png",
+      "bytes": 101324,
+      "sha256": "466dcb186b55945a1e8dad95984957bb4cb76d8ad8a57c06145694febc02a96d"
+    },
+    {
+      "file": "archive-portability-mobile-ar.png",
+      "bytes": 73626,
+      "sha256": "abfc332230b2e4930b83fce18a648add36f8a810b403cf5bb7958743db0377fd"
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "argv": [
+    "/workspace/scratch/b1a98f2b2c3b/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+    "compile",
+    "js",
+    "--packages=/workspace/scratch/b1a98f2b2c3b/quds_office_suite/.dart_tool/package_config.json",
+    "-O1",
+    "tool/macros/web_smoke.dart",
+    "-o",
+    "/workspace/scratch/b1a98f2b2c3b/portability-final-evidence-02/macro-web-smoke.js"
+  ],
+  "cwd": "/workspace/scratch/b1a98f2b2c3b/quds_office_suite/packages/quds_office_engine",
+  "environment_overrides": {
+    "CI": "true",
+    "DART_SUPPRESS_ANALYTICS": "true",
+    "DASH__SUPPRESS_ANALYTICS": "true",
+    "FLUTTER_SUPPRESS_ANALYTICS": "true"
+  },
+  "expected_test_files": [],
+  "kind": "command",
+  "name": "macro-web-compile",
+  "runtime_environment": {
+    "FLUTTER_ROOT": "/workspace/scratch/b1a98f2b2c3b/runtime/flutter",
+    "PUB_CACHE": "/workspace/scratch/b1a98f2b2c3b/runtime/pub-cache",
+    "TMPDIR": "/workspace/scratch/b1a98f2b2c3b/runtime/tmp",
+    "XDG_CACHE_HOME": "/workspace/scratch/b1a98f2b2c3b/runtime/cache",
+    "XDG_CONFIG_HOME": "/workspace/scratch/b1a98f2b2c3b/runtime/config",
+    "XDG_DATA_HOME": "/workspace/scratch/b1a98f2b2c3b/runtime/data"
+  },
+  "started_at_utc": "2026-11-19T17:18:24.106807+00:00",
+  "timeout_seconds": 900
+}

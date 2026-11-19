@@ -1,0 +1,783 @@
+{
+  "source_head": "9bdef4895922ae74f6275e421af5665552d18b4e",
+  "source_tree": "b537d9f6f2c15657b0fc0b70ae825e347be681cd",
+  "run_status": "passed",
+  "retained": [
+    {
+      "path": "analyze-mail-and-changed-dart/command.json",
+      "bytes": 15365,
+      "sha256": "593fa959b801ca5ff1afd5bec04720b3235d4ac5c88ecfd475ab602c7e58f90d",
+      "retained_as": "analyze-mail-and-changed-dart/command.json",
+      "encoding": "unchanged"
+    },
+    {
+      "path": "analyze-mail-and-changed-dart/result.json",
+      "bytes": 15708,
+      "sha256": "47032137a53c3d1f0335e52720eb2cb1d6bdbb8428e858d1cba5ceef07fc6b20",
+      "retained_as": "analyze-mail-and-changed-dart/result.json",
+      "encoding": "unchanged"
+    },
+    {
+      "path": "analyze-mail-and-changed-dart/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_as": "analyze-mail-and-changed-dart/stderr.log.gz",
+      "encoding": "gzip; hashes describe decompressed original bytes"
+    },
+    {
+      "path": "analyze-mail-and-changed-dart/stdout.log",
+      "bytes": 5382,
+      "sha256": "b86fdfcee68c1a498cf13bca0a11d169f1e45e46d03086a94e9b2da72cebb204",
+      "retained_as": "analyze-mail-and-changed-dart/stdout.log.gz",
+      "encoding": "gzip; hashes describe decompressed original bytes"
+    },
+    {
+      "path": "build-language-id/command.json",
+      "bytes": 1204,
+      "sha256": "ebb676099a334e5514fc1b518cb0818338bab8bd1b88d6383238ba9e2b4cdcf0",
+      "retained_as": "build-language-id/command.json",
+      "encoding": "unchanged"
+    },
+    {
+      "path": "build-language-id/result.json",
+      "bytes": 1543,
+      "sha256": "c422522b4e48607afe965c4867b6d88af653f97c52ec6cf8f0f213f40c037f56",
+      "retained_as": "build-language-id/result.json",
+      "encoding": "unchanged"
+    },
+    {
+      "path": "build-language-id/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_as": "build-language-id/stderr.log.gz",
+      "encoding": "gzip; hashes describe decompressed original bytes"
+    },
+    {
+      "path": "build-language-id/stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_as": "build-language-id/stdout.log.gz",
+      "encoding": "gzip; hashes describe decompressed original bytes"
+    },
+    {
+      "path": "compact-receipt.json",
+      "bytes": 15995,
+      "sha256": "e43e93806d15b464330f910e97fd0d1f4464b663745b4b95e15624462e06e745",
+      "retained_as": "compact-receipt.json",
+      "encoding": "unchanged"
+    },
+    {
+      "path": "dependencies-after.json.gz",
+      "bytes": 474940,
+      "sha256": "3f5a536ba8c53e4bb7d0bffc5e238aa369d8c640e92bb6d7d50d99d255e23676",
+      "retained_as": "dependencies-after.json.gz",
+      "encoding": "unchanged"
+    },
+    {
+      "path": "dependencies-before.json.gz",
+      "bytes": 474940,
+      "sha256": "3f5a536ba8c53e4bb7d0bffc5e238aa369d8c640e92bb6d7d50d99d255e23676",
+      "retained_as": "dependencies-before.json.gz",
+      "encoding": "unchanged"
+    },
+    {
+      "path": "engine-incoming-macros-operations/command.json",
+      "bytes": 3388,
+      "sha256": "b7b3b583bef17d8a36295efda6bc6c35b726168b26ad5e793a544da7e296b237",
+      "retained_as": "engine-incoming-macros-operations/command.json",
+      "encoding": "unchanged"
+    },
+    {
+      "path": "engine-incoming-macros-operations/result.json",
+      "bytes": 3960,
+      "sha256": "753564675dd095d0a5e8e77549f38c5b387f9958d27c6ad850b72f9f5975fdcf",
+      "retained_as": "engine-incoming-macros-operations/result.json",
+      "encoding": "unchanged"
+    },
+    {
+      "path": "engine-incoming-macros-operations/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_as": "engine-incoming-macros-operations/stderr.log.gz",
+      "encoding": "gzip; hashes describe decompressed original bytes"
+    },
+    {
+      "path": "engine-incoming-macros-operations/stdout.log",
+      "bytes": 177748,
+      "sha256": "9fbee552ee12b29836cd139b5f66e5b33bf62cec99a78fb4c47077f0545a1d51",
+      "retained_as": "engine-incoming-macros-operations/stdout.log.gz",
+      "encoding": "gzip; hashes describe decompressed original bytes"
+    },
+    {
+      "path": "engine-incoming-macros-operations/test-cases.json.gz",
+      "bytes": 8690,
+      "sha256": "1524decc5e13fccda1a71af75db7bae6e17d5bae1c7e8417ef86f97121b71de5",
+      "retained_as": "engine-incoming-macros-operations/test-cases.json.gz",
+      "encoding": "unchanged"
+    },
+    {
+      "path": "format-changed-dart/command.json",
+      "bytes": 2947,
+      "sha256": "f6d7b011d49a0f370ea43812ee4577e9b8d622a1d8535c18cc09ff5df756d266",
+      "retained_as": "format-changed-dart/command.json",
+      "encoding": "unchanged"
+    },
+    {
+      "path": "format-changed-dart/result.json",
+      "bytes": 3287,
+      "sha256": "5ee2cece79e3e645fcf3cbd615e3c968728407142f74774b3d51837b8b481da4",
+      "retained_as": "format-changed-dart/result.json",
+      "encoding": "unchanged"
+    },
+    {
+      "path": "format-changed-dart/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_as": "format-changed-dart/stderr.log.gz",
+      "encoding": "gzip; hashes describe decompressed original bytes"
+    },
+    {
+      "path": "format-changed-dart/stdout.log",
+      "bytes": 48,
+      "sha256": "79c8c194c9afffc28b4ea058d01d76c925fbe20edcc53a14e0b036325778e610",
+      "retained_as": "format-changed-dart/stdout.log.gz",
+      "encoding": "gzip; hashes describe decompressed original bytes"
+    },
+    {
+      "path": "language-id-synthetic/command.json",
+      "bytes": 1651,
+      "sha256": "a899c23decd0198002f1bcfd3717520b25657b25f6986ebdf7b997b00c85e5c7",
+      "retained_as": "language-id-synthetic/command.json",
+      "encoding": "unchanged"
+    },
+    {
+      "path": "language-id-synthetic/result.json",
+      "bytes": 2221,
+      "sha256": "30f95cbcaef4ac51adc6a99a45ac29f678032dd5abb7eca46a4a0d5d29622682",
+      "retained_as": "language-id-synthetic/result.json",
+      "encoding": "unchanged"
+    },
+    {
+      "path": "language-id-synthetic/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_as": "language-id-synthetic/stderr.log.gz",
+      "encoding": "gzip; hashes describe decompressed original bytes"
+    },
+    {
+      "path": "language-id-synthetic/stdout.log",
+      "bytes": 11473,
+      "sha256": "84c3cb11b7050661c74d59fd734f5eb2d2aa4d78176fddc7c8d224adaa8a5c26",
+      "retained_as": "language-id-synthetic/stdout.log.gz",
+      "encoding": "gzip; hashes describe decompressed original bytes"
+    },
+    {
+      "path": "language-id-synthetic/test-cases.json.gz",
+      "bytes": 967,
+      "sha256": "65f40eeeee12b69f125d0c69b345bcddbca783250cdd0542f502906ef60d4ded",
+      "retained_as": "language-id-synthetic/test-cases.json.gz",
+      "encoding": "unchanged"
+    },
+    {
+      "path": "macos-build-script-syntax/command.json",
+      "bytes": 1002,
+      "sha256": "0d65df3ad5f592d09a2c60fc788f1edbad8940821d3be9680c2a44cd0e1542f3",
+      "retained_as": "macos-build-script-syntax/command.json",
+      "encoding": "unchanged"
+    },
+    {
+      "path": "macos-build-script-syntax/result.json",
+      "bytes": 1341,
+      "sha256": "7d77e0ffdf265adbc24cd6edf965717f5d7cd7a3a59b4fff6ab5f13b95d478e1",
+      "retained_as": "macos-build-script-syntax/result.json",
+      "encoding": "unchanged"
+    },
+    {
+      "path": "macos-build-script-syntax/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_as": "macos-build-script-syntax/stderr.log.gz",
+      "encoding": "gzip; hashes describe decompressed original bytes"
+    },
+    {
+      "path": "macos-build-script-syntax/stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_as": "macos-build-script-syntax/stdout.log.gz",
+      "encoding": "gzip; hashes describe decompressed original bytes"
+    },
+    {
+      "path": "macro-web-compile/command.json",
+      "bytes": 1240,
+      "sha256": "4ad00398c2879e581011756ef8da2984724f0fde6de38d7671692eb58bd5e473",
+      "retained_as": "macro-web-compile/command.json",
+      "encoding": "unchanged"
+    },
+    {
+      "path": "macro-web-compile/result.json",
+      "bytes": 1581,
+      "sha256": "85913f08058c1994b7fb3dda481bca4d151ee551308b6ddafc9439d1377ecb8d",
+      "retained_as": "macro-web-compile/result.json",
+      "encoding": "unchanged"
+    },
+    {
+      "path": "macro-web-compile/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_as": "macro-web-compile/stderr.log.gz",
+      "encoding": "gzip; hashes describe decompressed original bytes"
+    },
+    {
+      "path": "macro-web-compile/stdout.log",
+      "bytes": 114,
+      "sha256": "25006e43912f95e6e0683dc477d257065d5f5757a6105699c0fa65b6b0205ec1",
+      "retained_as": "macro-web-compile/stdout.log.gz",
+      "encoding": "gzip; hashes describe decompressed original bytes"
+    },
+    {
+      "path": "macro-web-node/command.json",
+      "bytes": 1099,
+      "sha256": "e2b83611198fe09d4fa61c3fdf7a5b0ab8b0bd8bbc10fe5cc9dda92a5212a47c",
+      "retained_as": "macro-web-node/command.json",
+      "encoding": "unchanged"
+    },
+    {
+      "path": "macro-web-node/result.json",
+      "bytes": 1572,
+      "sha256": "f832329fa25dd5c990fdf547b805366135fdea432494bd4c3e71d70f67998c3d",
+      "retained_as": "macro-web-node/result.json",
+      "encoding": "unchanged"
+    },
+    {
+      "path": "macro-web-node/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_as": "macro-web-node/stderr.log.gz",
+      "encoding": "gzip; hashes describe decompressed original bytes"
+    },
+    {
+      "path": "macro-web-node/stdout.log",
+      "bytes": 85,
+      "sha256": "733f79b8c8c236f674a733d3c205f6f46c6a52d4a6da005729755db94d853971",
+      "retained_as": "macro-web-node/stdout.log.gz",
+      "encoding": "gzip; hashes describe decompressed original bytes"
+    },
+    {
+      "path": "mail-ui-widgets/command.json",
+      "bytes": 1370,
+      "sha256": "34d46bc470b71fe7fea43ba5838f054e1e45f829bcce3bdfa76cd45f7aa35dcb",
+      "retained_as": "mail-ui-widgets/command.json",
+      "encoding": "unchanged"
+    },
+    {
+      "path": "mail-ui-widgets/result.json",
+      "bytes": 1940,
+      "sha256": "d940d00f11a6e5ad47d8110a5540253eaf9d9bef9fb852cc468bd40037525c83",
+      "retained_as": "mail-ui-widgets/result.json",
+      "encoding": "unchanged"
+    },
+    {
+      "path": "mail-ui-widgets/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_as": "mail-ui-widgets/stderr.log.gz",
+      "encoding": "gzip; hashes describe decompressed original bytes"
+    },
+    {
+      "path": "mail-ui-widgets/stdout.log",
+      "bytes": 18186,
+      "sha256": "90601f3ef1e9bd9795f5a5820f0f1d408d7f0c55dbfe7d76c331c7bb2affba23",
+      "retained_as": "mail-ui-widgets/stdout.log.gz",
+      "encoding": "gzip; hashes describe decompressed original bytes"
+    },
+    {
+      "path": "mail-ui-widgets/test-cases.json.gz",
+      "bytes": 1428,
+      "sha256": "d65d2a75de81f75472ef8a562221dd79cf0366d38750c44ceca9de6feeb2f835",
+      "retained_as": "mail-ui-widgets/test-cases.json.gz",
+      "encoding": "unchanged"
+    },
+    {
+      "path": "quds_mail_core-vm/command.json",
+      "bytes": 1838,
+      "sha256": "3bfa42d1fe1621d7a1f6f74bcb0fe7aa80ea5bf267dfe4a6a13bb180db4c70af",
+      "retained_as": "quds_mail_core-vm/command.json",
+      "encoding": "unchanged"
+    },
+    {
+      "path": "quds_mail_core-vm/result.json",
+      "bytes": 2407,
+      "sha256": "476674bad9ba209d5c1d11bbad15afe78dced1c56b286e5a92157c112c12638c",
+      "retained_as": "quds_mail_core-vm/result.json",
+      "encoding": "unchanged"
+    },
+    {
+      "path": "quds_mail_core-vm/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_as": "quds_mail_core-vm/stderr.log.gz",
+      "encoding": "gzip; hashes describe decompressed original bytes"
+    },
+    {
+      "path": "quds_mail_core-vm/stdout.log",
+      "bytes": 26342,
+      "sha256": "cbce069726f5b9431378b71e2c6b29a22f98afa28a4a6857fb18aff123d88aa5",
+      "retained_as": "quds_mail_core-vm/stdout.log.gz",
+      "encoding": "gzip; hashes describe decompressed original bytes"
+    },
+    {
+      "path": "quds_mail_core-vm/test-cases.json.gz",
+      "bytes": 1737,
+      "sha256": "0c147571509799f193d17c127bff27586d02747eebcc7d9e7f28a69198a156e5",
+      "retained_as": "quds_mail_core-vm/test-cases.json.gz",
+      "encoding": "unchanged"
+    },
+    {
+      "path": "quds_mail_mime-vm/command.json",
+      "bytes": 1946,
+      "sha256": "9743de4bec989c8032cd861867443e75455a59850d726404c5e4c4c5d009384f",
+      "retained_as": "quds_mail_mime-vm/command.json",
+      "encoding": "unchanged"
+    },
+    {
+      "path": "quds_mail_mime-vm/result.json",
+      "bytes": 2516,
+      "sha256": "50e86012b88c355a1bb6ca6cd6b08e099e96f29ece8e88fead754b7074f56155",
+      "retained_as": "quds_mail_mime-vm/result.json",
+      "encoding": "unchanged"
+    },
+    {
+      "path": "quds_mail_mime-vm/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_as": "quds_mail_mime-vm/stderr.log.gz",
+      "encoding": "gzip; hashes describe decompressed original bytes"
+    },
+    {
+      "path": "quds_mail_mime-vm/stdout.log",
+      "bytes": 42540,
+      "sha256": "b1daf64b564c1bdca7e2bc49a3c7ebdd3a071f502e3ca245165cc744cbf6af6d",
+      "retained_as": "quds_mail_mime-vm/stdout.log.gz",
+      "encoding": "gzip; hashes describe decompressed original bytes"
+    },
+    {
+      "path": "quds_mail_mime-vm/test-cases.json.gz",
+      "bytes": 2450,
+      "sha256": "dc5235e3b4d675fa809477cb7f0e6e6a720ab6ab501e6ddbf170c670f35f624e",
+      "retained_as": "quds_mail_mime-vm/test-cases.json.gz",
+      "encoding": "unchanged"
+    },
+    {
+      "path": "quds_mail_store-node/command.json",
+      "bytes": 1392,
+      "sha256": "6798dc97a4dea1b086d691e29c26cefa46def96506a2d05f258900a40e12c63d",
+      "retained_as": "quds_mail_store-node/command.json",
+      "encoding": "unchanged"
+    },
+    {
+      "path": "quds_mail_store-node/result.json",
+      "bytes": 1960,
+      "sha256": "a75185d8cc335c166b816d0b77d8a8b3edcc71f706b687603b5cd7249a57da59",
+      "retained_as": "quds_mail_store-node/result.json",
+      "encoding": "unchanged"
+    },
+    {
+      "path": "quds_mail_store-node/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_as": "quds_mail_store-node/stderr.log.gz",
+      "encoding": "gzip; hashes describe decompressed original bytes"
+    },
+    {
+      "path": "quds_mail_store-node/stdout.log",
+      "bytes": 2354,
+      "sha256": "0f602d5f98da16e9f9d3b258ff87c3c25acbd8aced4c78ef9bef335564584200",
+      "retained_as": "quds_mail_store-node/stdout.log.gz",
+      "encoding": "gzip; hashes describe decompressed original bytes"
+    },
+    {
+      "path": "quds_mail_store-node/test-cases.json.gz",
+      "bytes": 384,
+      "sha256": "cd0949502a79a746dbe95f09f5c514a3fe719b847d4b55ae878817e3c78ef253",
+      "retained_as": "quds_mail_store-node/test-cases.json.gz",
+      "encoding": "unchanged"
+    },
+    {
+      "path": "quds_mail_store-vm/command.json",
+      "bytes": 2900,
+      "sha256": "6fce230ff753a0754b882e8f130267cc39b2c731832f88e1cb3527641c48fcf7",
+      "retained_as": "quds_mail_store-vm/command.json",
+      "encoding": "unchanged"
+    },
+    {
+      "path": "quds_mail_store-vm/result.json",
+      "bytes": 3472,
+      "sha256": "53e8b034a6a07eba0aa0a3e8b672a14a80e15401ad5afa9d027771c4d125efb1",
+      "retained_as": "quds_mail_store-vm/result.json",
+      "encoding": "unchanged"
+    },
+    {
+      "path": "quds_mail_store-vm/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_as": "quds_mail_store-vm/stderr.log.gz",
+      "encoding": "gzip; hashes describe decompressed original bytes"
+    },
+    {
+      "path": "quds_mail_store-vm/stdout.log",
+      "bytes": 228546,
+      "sha256": "6e490f37aaaee466003f694a78b85054b06b2b470cbaa282bc81407cad08297a",
+      "retained_as": "quds_mail_store-vm/stdout.log.gz",
+      "encoding": "gzip; hashes describe decompressed original bytes"
+    },
+    {
+      "path": "quds_mail_store-vm/test-cases.json.gz",
+      "bytes": 10355,
+      "sha256": "b709de922f5ca19fdbc518346610b833bd8dd214379a1f80fe053985b0470084",
+      "retained_as": "quds_mail_store-vm/test-cases.json.gz",
+      "encoding": "unchanged"
+    },
+    {
+      "path": "quds_mail_transport-node/command.json",
+      "bytes": 1610,
+      "sha256": "d94bf41b4bae2bd00aff7c5f203f4777d5d8aeba7c67077264536c2d979d56e0",
+      "retained_as": "quds_mail_transport-node/command.json",
+      "encoding": "unchanged"
+    },
+    {
+      "path": "quds_mail_transport-node/result.json",
+      "bytes": 2178,
+      "sha256": "6a221fbb287b2984a5ebb66e667f4592c5c4c4917da5a37daf7d7adfe0c8c999",
+      "retained_as": "quds_mail_transport-node/result.json",
+      "encoding": "unchanged"
+    },
+    {
+      "path": "quds_mail_transport-node/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_as": "quds_mail_transport-node/stderr.log.gz",
+      "encoding": "gzip; hashes describe decompressed original bytes"
+    },
+    {
+      "path": "quds_mail_transport-node/stdout.log",
+      "bytes": 5542,
+      "sha256": "61f2b7dc9599c19c1bc0917b5ae46b093ec72f5657727fc2eea5b4a95866b1aa",
+      "retained_as": "quds_mail_transport-node/stdout.log.gz",
+      "encoding": "gzip; hashes describe decompressed original bytes"
+    },
+    {
+      "path": "quds_mail_transport-node/test-cases.json.gz",
+      "bytes": 481,
+      "sha256": "79d57b4670701f522d926d6468ac6b7f11af61665ee9303efbfb660735853310",
+      "retained_as": "quds_mail_transport-node/test-cases.json.gz",
+      "encoding": "unchanged"
+    },
+    {
+      "path": "quds_mail_transport-vm/command.json",
+      "bytes": 3128,
+      "sha256": "670d2296a48dbdde7f4cff2455fa33331e3f6b0defd76225bb80ee24297b1b23",
+      "retained_as": "quds_mail_transport-vm/command.json",
+      "encoding": "unchanged"
+    },
+    {
+      "path": "quds_mail_transport-vm/result.json",
+      "bytes": 3700,
+      "sha256": "b4aab51a8bd5e7fa86d9af8ef755568eb231a4d56607d3f12d0ea36bbd707447",
+      "retained_as": "quds_mail_transport-vm/result.json",
+      "encoding": "unchanged"
+    },
+    {
+      "path": "quds_mail_transport-vm/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_as": "quds_mail_transport-vm/stderr.log.gz",
+      "encoding": "gzip; hashes describe decompressed original bytes"
+    },
+    {
+      "path": "quds_mail_transport-vm/stdout.log",
+      "bytes": 183214,
+      "sha256": "a50e1ad396e90f520d2459f9f92a66c50711fd03d5a4467f6cf973c210392535",
+      "retained_as": "quds_mail_transport-vm/stdout.log.gz",
+      "encoding": "gzip; hashes describe decompressed original bytes"
+    },
+    {
+      "path": "quds_mail_transport-vm/test-cases.json.gz",
+      "bytes": 9201,
+      "sha256": "2e24aafb9515ad314495e329ad5b6b9e00e37a400965d7eb0fda183493cc667b",
+      "retained_as": "quds_mail_transport-vm/test-cases.json.gz",
+      "encoding": "unchanged"
+    },
+    {
+      "path": "receipt.json",
+      "bytes": 72685,
+      "sha256": "5fe060db60ee164af4fcb93c6a55abc2f250fd976827a898b0b01fe308775797",
+      "retained_as": "receipt.json",
+      "encoding": "unchanged"
+    },
+    {
+      "path": "run-local-validation.py",
+      "bytes": 47946,
+      "sha256": "299ce6d8fffae555e9a0381903815156fd7d416046e1dbd66c1a2e4bb344a6a5",
+      "retained_as": "run-local-validation.py",
+      "encoding": "unchanged"
+    },
+    {
+      "path": "runtime-after.json.gz",
+      "bytes": 32165,
+      "sha256": "4b91bee25afb80465cd039f998fbd4db0f034c4f44e6233b25595beb461614b9",
+      "retained_as": "runtime-after.json.gz",
+      "encoding": "unchanged"
+    },
+    {
+      "path": "runtime-before.json.gz",
+      "bytes": 32165,
+      "sha256": "4b91bee25afb80465cd039f998fbd4db0f034c4f44e6233b25595beb461614b9",
+      "retained_as": "runtime-before.json.gz",
+      "encoding": "unchanged"
+    },
+    {
+      "path": "runtime-readiness-receipt.json",
+      "bytes": 2822,
+      "sha256": "d94e20a59813bbba6844f6dedf4982c68bfe3708279e885aa89315525ab12e66",
+      "retained_as": "runtime-readiness-receipt.json",
+      "encoding": "unchanged"
+    },
+    {
+      "path": "runtime-setup-receipt.json",
+      "bytes": 3417,
+      "sha256": "84b7ca30e5c69247df994d01b163ccdf4b93658957896b34802b2135d1c2d403",
+      "retained_as": "runtime-setup-receipt.json",
+      "encoding": "unchanged"
+    },
+    {
+      "path": "selected-plan.json",
+      "bytes": 27359,
+      "sha256": "921902325f93f2bea74ce0ba7be9b9e204f78dfa8bb1af48512dd3871466416d",
+      "retained_as": "selected-plan.json",
+      "encoding": "unchanged"
+    },
+    {
+      "path": "source-after.json.gz",
+      "bytes": 221022,
+      "sha256": "091126c17feb33fd0648cf1ec4442c3928f05fdf54686351acf7098fbe50b216",
+      "retained_as": "source-after.json.gz",
+      "encoding": "unchanged"
+    },
+    {
+      "path": "source-before.json.gz",
+      "bytes": 221022,
+      "sha256": "091126c17feb33fd0648cf1ec4442c3928f05fdf54686351acf7098fbe50b216",
+      "retained_as": "source-before.json.gz",
+      "encoding": "unchanged"
+    },
+    {
+      "path": "studio-mail-widgets/command.json",
+      "bytes": 3548,
+      "sha256": "cf9c3a6525b214767bf4eeb65c9b374ca67a0cb979411dab748512e985f50d78",
+      "retained_as": "studio-mail-widgets/command.json",
+      "encoding": "unchanged"
+    },
+    {
+      "path": "studio-mail-widgets/result.json",
+      "bytes": 4121,
+      "sha256": "30acce41b35f19a8514ecaf4a2228ab85b5bbc309dfc3d797cd98f2be4fb7e5a",
+      "retained_as": "studio-mail-widgets/result.json",
+      "encoding": "unchanged"
+    },
+    {
+      "path": "studio-mail-widgets/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_as": "studio-mail-widgets/stderr.log.gz",
+      "encoding": "gzip; hashes describe decompressed original bytes"
+    },
+    {
+      "path": "studio-mail-widgets/stdout.log",
+      "bytes": 207021,
+      "sha256": "abd92dbe081d84fd48915ce63712ecf0752da982147a4481eea7e2c2fb03a5d4",
+      "retained_as": "studio-mail-widgets/stdout.log.gz",
+      "encoding": "gzip; hashes describe decompressed original bytes"
+    },
+    {
+      "path": "studio-mail-widgets/test-cases.json.gz",
+      "bytes": 8891,
+      "sha256": "62898d707b3a6d1ed77a0408f59404c8b5cc08390af9e11636c70429894c197f",
+      "retained_as": "studio-mail-widgets/test-cases.json.gz",
+      "encoding": "unchanged"
+    },
+    {
+      "path": "vba-procedures-web-compile/command.json",
+      "bytes": 1273,
+      "sha256": "2f4748c8db630afc8baf0bda5cd89ce993977ea2de4c3bfe99a71b02f089c54f",
+      "retained_as": "vba-procedures-web-compile/command.json",
+      "encoding": "unchanged"
+    },
+    {
+      "path": "vba-procedures-web-compile/result.json",
+      "bytes": 1613,
+      "sha256": "b7832b9b2b334c7de7d7832d608ed83bc3f30602b32e6615ca822b6c9301ef9f",
+      "retained_as": "vba-procedures-web-compile/result.json",
+      "encoding": "unchanged"
+    },
+    {
+      "path": "vba-procedures-web-compile/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_as": "vba-procedures-web-compile/stderr.log.gz",
+      "encoding": "gzip; hashes describe decompressed original bytes"
+    },
+    {
+      "path": "vba-procedures-web-compile/stdout.log",
+      "bytes": 114,
+      "sha256": "9260548f93ea6cc49d65ab197e42ac4a57b878656c76c295db90f075b06c901e",
+      "retained_as": "vba-procedures-web-compile/stdout.log.gz",
+      "encoding": "gzip; hashes describe decompressed original bytes"
+    },
+    {
+      "path": "vba-procedures-web-node/command.json",
+      "bytes": 1126,
+      "sha256": "d5883a9297b2359a9ffb0ad134cc625229a1a1a9c8a2dbd3209ca2dbb8fa246d",
+      "retained_as": "vba-procedures-web-node/command.json",
+      "encoding": "unchanged"
+    },
+    {
+      "path": "vba-procedures-web-node/result.json",
+      "bytes": 1862,
+      "sha256": "0c3e2f5cccb47074aded3ded8163e46046fdd0366a0734912fb84a8bd4c3e316",
+      "retained_as": "vba-procedures-web-node/result.json",
+      "encoding": "unchanged"
+    },
+    {
+      "path": "vba-procedures-web-node/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_as": "vba-procedures-web-node/stderr.log.gz",
+      "encoding": "gzip; hashes describe decompressed original bytes"
+    },
+    {
+      "path": "vba-procedures-web-node/stdout.log",
+      "bytes": 299,
+      "sha256": "b97b85b585bbc40e339293fec350fa8cd8f916aa6861fabf8fb3326d7235a3d4",
+      "retained_as": "vba-procedures-web-node/stdout.log.gz",
+      "encoding": "gzip; hashes describe decompressed original bytes"
+    },
+    {
+      "path": "vba-web-compile/command.json",
+      "bytes": 1240,
+      "sha256": "c0950d09253e7135d90301c3fa2ed52424f48074fc93f2c79004f609843f3b4a",
+      "retained_as": "vba-web-compile/command.json",
+      "encoding": "unchanged"
+    },
+    {
+      "path": "vba-web-compile/result.json",
+      "bytes": 1581,
+      "sha256": "473ad481f3086c1e13fc33d2a32da12217c10c0d1d3957178f070a4b67f56ce0",
+      "retained_as": "vba-web-compile/result.json",
+      "encoding": "unchanged"
+    },
+    {
+      "path": "vba-web-compile/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_as": "vba-web-compile/stderr.log.gz",
+      "encoding": "gzip; hashes describe decompressed original bytes"
+    },
+    {
+      "path": "vba-web-compile/stdout.log",
+      "bytes": 114,
+      "sha256": "f2b41c2ceb884fb2a49cf6191eccabdf7b3ff9b280248ad6713485858d48e3cd",
+      "retained_as": "vba-web-compile/stdout.log.gz",
+      "encoding": "gzip; hashes describe decompressed original bytes"
+    },
+    {
+      "path": "vba-web-node/command.json",
+      "bytes": 1093,
+      "sha256": "46684175f56b544f683a49b5ee3091ccbe7ab3e73dd59e3222e3f4b89defea58",
+      "retained_as": "vba-web-node/command.json",
+      "encoding": "unchanged"
+    },
+    {
+      "path": "vba-web-node/result.json",
+      "bytes": 1699,
+      "sha256": "f145e260a056dd5951c4b4c25f7470dadf81796b4514e57c29075b6fc3fac813",
+      "retained_as": "vba-web-node/result.json",
+      "encoding": "unchanged"
+    },
+    {
+      "path": "vba-web-node/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_as": "vba-web-node/stderr.log.gz",
+      "encoding": "gzip; hashes describe decompressed original bytes"
+    },
+    {
+      "path": "vba-web-node/stdout.log",
+      "bytes": 193,
+      "sha256": "3a1c1b101e95e74f978cbb811033185b9a34908200d38d509e6a907b746eefc8",
+      "retained_as": "vba-web-node/stdout.log.gz",
+      "encoding": "gzip; hashes describe decompressed original bytes"
+    }
+  ],
+  "omitted_build_products": [
+    {
+      "path": "fixtures/language-id.so",
+      "bytes": 16440,
+      "sha256": "96276c57a50696f30e950fd1957adfdf95df21c9000bda24c191ed03ee887aba",
+      "reason": "Generated native fixture or JavaScript build product; reproduce using retained command.json and frozen source."
+    },
+    {
+      "path": "macro-web-smoke.js",
+      "bytes": 2543953,
+      "sha256": "5a16bea78e4f181c4dc0a1a09ae878cad004cf64b8660f2de1d4033e5654f912",
+      "reason": "Generated native fixture or JavaScript build product; reproduce using retained command.json and frozen source."
+    },
+    {
+      "path": "macro-web-smoke.js.deps",
+      "bytes": 80130,
+      "sha256": "fe26b8444dfb3bfe3654bf26f1d92f12665f081706f2df42aac64d0faf31ed4c",
+      "reason": "Generated native fixture or JavaScript build product; reproduce using retained command.json and frozen source."
+    },
+    {
+      "path": "macro-web-smoke.js.map",
+      "bytes": 896298,
+      "sha256": "97702636645a8430e8d0cfb3a44939e7a24ac4b97d9557bf6bbd14bbd64a7ee7",
+      "reason": "Generated native fixture or JavaScript build product; reproduce using retained command.json and frozen source."
+    },
+    {
+      "path": "vba-procedures-web-smoke.js",
+      "bytes": 2665200,
+      "sha256": "28e121082030957dcaf59fef33ad5e64f5c39ac6d381422401e5af659756a5cd",
+      "reason": "Generated native fixture or JavaScript build product; reproduce using retained command.json and frozen source."
+    },
+    {
+      "path": "vba-procedures-web-smoke.js.deps",
+      "bytes": 80145,
+      "sha256": "ab12872814d79a02466cb7e003fdf1b620cb6030f4f20c17a56a47f3ae568ab7",
+      "reason": "Generated native fixture or JavaScript build product; reproduce using retained command.json and frozen source."
+    },
+    {
+      "path": "vba-procedures-web-smoke.js.map",
+      "bytes": 938934,
+      "sha256": "0a7cdedcb4d9bce5586d700c1f91539342d325380c7f588bf69cf01e405de841",
+      "reason": "Generated native fixture or JavaScript build product; reproduce using retained command.json and frozen source."
+    },
+    {
+      "path": "vba-web-smoke.js",
+      "bytes": 2663699,
+      "sha256": "6bacd895b8adc18dd2865225b3c1e10d37358150b8077393a13743e31931cdf1",
+      "reason": "Generated native fixture or JavaScript build product; reproduce using retained command.json and frozen source."
+    },
+    {
+      "path": "vba-web-smoke.js.deps",
+      "bytes": 80134,
+      "sha256": "568742aa372df14f0a4fbc0e8c96eb1376f92134dc5b40dd8960b88f80d66e1b",
+      "reason": "Generated native fixture or JavaScript build product; reproduce using retained command.json and frozen source."
+    },
+    {
+      "path": "vba-web-smoke.js.map",
+      "bytes": 938590,
+      "sha256": "bbd6f682ab0814ece95717040370795ba20f2ea9f575d2bba574f923841b3670",
+      "reason": "Generated native fixture or JavaScript build product; reproduce using retained command.json and frozen source."
+    }
+  ]
+}

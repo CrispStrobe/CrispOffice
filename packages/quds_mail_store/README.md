@@ -30,8 +30,46 @@ typed error codes, with optional verbose progress and no mail text or secrets.
 
 See the [archive guide and MailStore parity matrix](../../docs/roadmaps/mail/archive-search.md)
 for syntax, defaults, host examples and remaining gaps. The
-[archive validation report](../../docs/validation/mail-archive-search-20261119/README.md)
-records current local evidence separately from historical cache qualifications.
+[archive/search validation report](../../docs/validation/mail-archive-search-20261119/README.md)
+records the original durable-archive milestone. The
+[portability validation report](../../docs/validation/mail-archive-portability-20261119/README.md)
+records the extended scope and its qualification status; historical cache
+qualifications remain separate below.
+
+### Bulk export and directory import
+
+`SqliteMailArchive.planExport` freezes all matching search/filter results in one
+transaction, ignoring page limit/offset. The immutable `MailArchiveExportPlan`
+contains ordered original IDs, byte sizes and provenance; later imports cannot
+shift the selection. It contains neither message bodies nor the search query.
+
+Import `quds_mail_archive_native.dart` for `NativeMailArchiveExporter`.
+`exportPlan` creates a unique destination with exact `<SHA-256>.eml` originals
+and a versioned `manifest.json`; `resume` explicitly continues that manifest's
+selection from the same archive profile. Each run verifies original lengths
+and hashes, reports `planned`, `written`, verified `existing` and `failed`
+counts, and never overwrites conflicting originals. The manifest's digest is
+unsigned. Ownership and staging files support cooperating-process exclusion
+and interrupted-export recovery; this is not a database backup or mailbox
+restore. Default export limits are 10,000 messages, 1 GiB of raw originals,
+32 MiB per message, 16 MiB of manifest data and 20,000 provenance records.
+
+`enumerateMailArchiveDirectory` streams EML/MBOX entries without loading their
+contents, with optional recursive traversal and cancellation. It rejects links,
+checks ancestors and reports skipped/error/limited outcomes. Defaults allow
+10,000 files, 100,000 inspected entries, 32 nested levels and 4 GiB of accepted
+source-file sizes, with a 32 MiB EML limit. Export `.pending-*` directories are
+skipped only when their immediate parent has a regular, non-link
+`manifest.json` marker. The importing host must still revalidate each file and
+bound its reads; enumeration does not reserve a filesystem snapshot.
+
+Studio's native directory-import action supplies those bounded readers,
+explicit `mboxrd`/`mboxo` selection, relative-folder provenance and source IDs
+combining full relative path hashes with record ordinals. It limits processed
+message outcomes to 100,000 by default and reports partial, limited and
+cancelled work separately. Source files are unchanged. Generic reimport of an
+exported EML directory does not restore manifest provenance, archive profiles
+or saved searches.
 
 ## Live account cache
 
