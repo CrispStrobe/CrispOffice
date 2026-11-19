@@ -1,0 +1,874 @@
+{
+  "accepted": true,
+  "audited_at_utc": "2026-11-19T09:41:30.448403+00:00",
+  "qualified_source": "9833831a013c98a8ce5c3f5e6f45de36593cb7df",
+  "qualified_tree": "946667e34d796f5e0bf4e2904759b5e1d9e02d34",
+  "audit_method": "Read-only Git/blob/live-file verification and independent raw reporter reconstruction; no test or build re-execution, remote refresh, or GitHub Actions access.",
+  "counts": {
+    "main_executions": 979,
+    "main_distinct_scenarios": 979,
+    "node_executions": 306,
+    "node_distinct_scenarios": 306,
+    "total_current_executions": 1285,
+    "total_current_distinct_scenarios": 979,
+    "repeated_current_executions": 306,
+    "distinct_current_suites": 56,
+    "suite_platform_executions": 61,
+    "failed": 0,
+    "skipped": 0,
+    "errors": 0,
+    "incomplete": 0,
+    "historical_test_counts_added": false,
+    "forecast_used": false
+  },
+  "phases": [
+    {
+      "name": "MAIN",
+      "directory": "/workspace/scratch/a7846890f2e1/qualification/host-final-2",
+      "receipt_sha256": "1ca51b235a6de91f7cb399b26a9da8e22463c91436fe02f3faf8be1e56f350ed",
+      "plan": "docs/validation/office-main-integration-20261119/host-final/plan.json",
+      "plan_sha256": "1ef2e1a810489cdfb85e976270cce948588889bf358550d02f8765672e7316c6",
+      "suites": [
+        "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+        "packages/quds_office_engine/test/proofing/office_proofing_test.dart",
+        "packages/quds_office_engine/test/proofing/proofing_locale_test.dart",
+        "packages/quds_office_engine/test/proofing/proofing_text_ranges_test.dart",
+        "packages/quds_office_engine/test/proofing/proofing_report_merge_test.dart",
+        "packages/quds_office_engine/test/proofing/german_writing_rules_test.dart",
+        "packages/quds_office_engine/test/proofing/german_spelling_test.dart",
+        "packages/quds_office_engine/test/word_proofing_inheritance_test.dart",
+        "packages/quds_office_engine/test/word_comment_proofing_styles_test.dart",
+        "packages/quds_office_engine/test/proofing/arabic_extended_rules_test.dart",
+        "packages/quds_office_engine/test/proofing/office_proofing_merge_test.dart",
+        "packages/quds_office_engine/test/style_cascade_test.dart",
+        "packages/quds_office_engine/test/word_referenced_styles_and_breaks_test.dart",
+        "packages/quds_office_engine/test/word_proofing_language_test.dart",
+        "packages/quds_proofing_harper/test/harper_provider_test.dart",
+        "packages/quds_proofing_harper/test/harper_source_contract_test.dart",
+        "packages/quds_proofing_harper/test/harper_source_text_test.dart",
+        "packages/quds_office_editor/test/word_arabic_writing_integration_test.dart",
+        "packages/quds_office_editor/test/word_draft_proofing_test.dart",
+        "packages/quds_office_editor/test/word_german_grammar_integration_test.dart",
+        "packages/quds_office_editor/test/word_incremental_proofing_menu_test.dart",
+        "packages/quds_office_editor/test/word_incremental_proofing_test.dart",
+        "packages/quds_office_editor/test/word_live_proofing_session_test.dart",
+        "packages/quds_office_editor/test/word_manual_proofing_test.dart",
+        "packages/quds_office_editor/test/word_notes_proofing_controller_test.dart",
+        "packages/quds_office_editor/test/word_notes_proofing_pane_test.dart",
+        "packages/quds_office_editor/test/word_proofing_capture_cache_test.dart",
+        "packages/quds_office_editor/test/word_proofing_context_test.dart",
+        "packages/quds_office_editor/test/word_proofing_correction_test.dart",
+        "packages/quds_office_editor/test/word_proofing_dialog_test.dart",
+        "packages/quds_office_editor/test/word_proofing_geometry_test.dart",
+        "packages/quds_office_editor/test/word_proofing_navigation_test.dart",
+        "packages/quds_office_editor/test/word_proofing_priority_test.dart",
+        "packages/quds_office_editor/test/word_proofing_session_test.dart",
+        "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+        "packages/quds_office_editor/test/word_text_proofing_pane_test.dart",
+        "packages/quds_office_editor/example/test/pdf_gallery_faces_test.dart",
+        "packages/quds_office_editor/example/test/pdf_gallery_smoke_test.dart",
+        "packages/quds_office_editor/example/test/pdf_showcase_test.dart",
+        "packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart",
+        "packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart",
+        "packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "packages/quds_office_editor/example/test/studio_compact_navigation_test.dart",
+        "packages/quds_office_editor/example/test/studio_document_comparison_test.dart",
+        "packages/quds_office_editor/example/test/studio_hunspell_setup_test.dart",
+        "packages/quds_office_editor/example/test/studio_linguistic_analysis_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_test.dart",
+        "packages/quds_office_editor/example/test/studio_review_pane_test.dart",
+        "packages/quds_office_editor/example/test/studio_sheet_navigation_test.dart",
+        "packages/quds_office_editor/example/test/studio_spacy_setup_test.dart",
+        "packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart",
+        "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+        "packages/quds_office_editor/example/test/widget_test.dart",
+        "packages/quds_office_editor/example/test/word_pdf_face_export_test.dart",
+        "packages/quds_proofing_hunspell/test/hunspell_provider_test.dart",
+        "packages/quds_proofing_hunspell/test/hunspell_native_lifecycle_test.dart"
+      ],
+      "executions": 979,
+      "analysis_paths": [
+        "packages/quds_office_editor/example/lib/crisp_office_sample.dart",
+        "packages/quds_office_editor/example/lib/main.dart",
+        "packages/quds_office_editor/example/lib/sample_library.dart",
+        "packages/quds_office_editor/example/lib/studio_chrome.dart",
+        "packages/quds_office_editor/example/lib/studio_hunspell_host.dart",
+        "packages/quds_office_editor/example/lib/studio_hunspell_host_native.dart",
+        "packages/quds_office_editor/example/lib/studio_hunspell_host_web.dart",
+        "packages/quds_office_editor/example/lib/studio_hunspell_setup.dart",
+        "packages/quds_office_editor/example/lib/studio_licenses.dart",
+        "packages/quds_office_editor/example/lib/studio_mail.dart",
+        "packages/quds_office_editor/example/lib/studio_pdf_face_samples.dart",
+        "packages/quds_office_editor/example/lib/studio_pdf_gallery.dart",
+        "packages/quds_office_editor/example/lib/studio_pdf_rich_samples.dart",
+        "packages/quds_office_editor/example/lib/studio_pdf_showcase.dart",
+        "packages/quds_office_editor/example/lib/studio_sample_pdf.dart",
+        "packages/quds_office_editor/example/lib/studio_strings.dart",
+        "packages/quds_office_editor/example/lib/studio_window.dart",
+        "packages/quds_office_editor/example/lib/suite_workspace.dart",
+        "packages/quds_office_editor/example/test/pdf_gallery_faces_test.dart",
+        "packages/quds_office_editor/example/test/pdf_gallery_smoke_test.dart",
+        "packages/quds_office_editor/example/test/studio_arabic_proofing_native_test.dart",
+        "packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart",
+        "packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart",
+        "packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "packages/quds_office_editor/example/test/studio_compact_navigation_test.dart",
+        "packages/quds_office_editor/example/test/studio_hunspell_setup_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_test.dart",
+        "packages/quds_office_editor/example/test/studio_review_pane_test.dart",
+        "packages/quds_office_editor/example/test/studio_sheet_navigation_test.dart",
+        "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+        "packages/quds_office_editor/example/test/support/studio_test_settings.dart",
+        "packages/quds_office_editor/example/test/widget_test.dart",
+        "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+        "packages/quds_office_editor/lib/src/proofing/word_proofing.dart",
+        "packages/quds_office_editor/test/word_arabic_writing_integration_test.dart",
+        "packages/quds_office_engine/lib/quds_office_engine.dart",
+        "packages/quds_office_engine/lib/src/proofing/arabic_extended_rules.dart",
+        "packages/quds_office_engine/lib/src/proofing/arabic_writing_rules.dart",
+        "packages/quds_office_engine/lib/src/proofing/office_proofing.dart",
+        "packages/quds_office_engine/lib/src/word/model/wml_document.dart",
+        "packages/quds_office_engine/lib/src/word/model/word_proofing_language.dart",
+        "packages/quds_office_engine/lib/src/word/properties/wml_properties.dart",
+        "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+        "packages/quds_office_engine/test/proofing/arabic_extended_rules_test.dart",
+        "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+        "packages/quds_office_engine/test/proofing/office_proofing_merge_test.dart",
+        "packages/quds_office_engine/test/word_proofing_language_test.dart",
+        "packages/quds_proofing_hunspell/lib/src/hunspell_transport_native.dart",
+        "packages/quds_proofing_hunspell/test/hunspell_native_lifecycle_test.dart",
+        "packages/quds_proofing_hunspell/test/hunspell_native_test.dart",
+        "packages/quds_proofing_hunspell/test/hunspell_provider_test.dart"
+      ],
+      "format_paths": [
+        "packages/quds_office_editor/example/lib/crisp_office_sample.dart",
+        "packages/quds_office_editor/example/lib/main.dart",
+        "packages/quds_office_editor/example/lib/sample_library.dart",
+        "packages/quds_office_editor/example/lib/studio_chrome.dart",
+        "packages/quds_office_editor/example/lib/studio_hunspell_host.dart",
+        "packages/quds_office_editor/example/lib/studio_hunspell_host_native.dart",
+        "packages/quds_office_editor/example/lib/studio_hunspell_host_web.dart",
+        "packages/quds_office_editor/example/lib/studio_hunspell_setup.dart",
+        "packages/quds_office_editor/example/lib/studio_licenses.dart",
+        "packages/quds_office_editor/example/lib/studio_mail.dart",
+        "packages/quds_office_editor/example/lib/studio_pdf_face_samples.dart",
+        "packages/quds_office_editor/example/lib/studio_pdf_gallery.dart",
+        "packages/quds_office_editor/example/lib/studio_pdf_rich_samples.dart",
+        "packages/quds_office_editor/example/lib/studio_pdf_showcase.dart",
+        "packages/quds_office_editor/example/lib/studio_sample_pdf.dart",
+        "packages/quds_office_editor/example/lib/studio_strings.dart",
+        "packages/quds_office_editor/example/lib/studio_window.dart",
+        "packages/quds_office_editor/example/lib/suite_workspace.dart",
+        "packages/quds_office_editor/example/test/pdf_gallery_faces_test.dart",
+        "packages/quds_office_editor/example/test/pdf_gallery_smoke_test.dart",
+        "packages/quds_office_editor/example/test/studio_arabic_proofing_native_test.dart",
+        "packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart",
+        "packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart",
+        "packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "packages/quds_office_editor/example/test/studio_compact_navigation_test.dart",
+        "packages/quds_office_editor/example/test/studio_hunspell_setup_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_test.dart",
+        "packages/quds_office_editor/example/test/studio_review_pane_test.dart",
+        "packages/quds_office_editor/example/test/studio_sheet_navigation_test.dart",
+        "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+        "packages/quds_office_editor/example/test/support/studio_test_settings.dart",
+        "packages/quds_office_editor/example/test/widget_test.dart",
+        "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+        "packages/quds_office_editor/lib/src/proofing/word_proofing.dart",
+        "packages/quds_office_editor/test/word_arabic_writing_integration_test.dart",
+        "packages/quds_office_engine/lib/quds_office_engine.dart",
+        "packages/quds_office_engine/lib/src/proofing/arabic_extended_rules.dart",
+        "packages/quds_office_engine/lib/src/proofing/arabic_writing_rules.dart",
+        "packages/quds_office_engine/lib/src/proofing/office_proofing.dart",
+        "packages/quds_office_engine/lib/src/word/model/wml_document.dart",
+        "packages/quds_office_engine/lib/src/word/model/word_proofing_language.dart",
+        "packages/quds_office_engine/lib/src/word/properties/wml_properties.dart",
+        "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+        "packages/quds_office_engine/test/proofing/arabic_extended_rules_test.dart",
+        "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+        "packages/quds_office_engine/test/proofing/office_proofing_merge_test.dart",
+        "packages/quds_office_engine/test/word_proofing_language_test.dart",
+        "packages/quds_proofing_hunspell/lib/src/hunspell_transport_native.dart",
+        "packages/quds_proofing_hunspell/test/hunspell_native_lifecycle_test.dart",
+        "packages/quds_proofing_hunspell/test/hunspell_native_test.dart",
+        "packages/quds_proofing_hunspell/test/hunspell_provider_test.dart"
+      ],
+      "source_input_records": 5092,
+      "runtime_input_records": 11166
+    },
+    {
+      "name": "NODE",
+      "directory": "/workspace/scratch/a7846890f2e1/qualification/host-node-2",
+      "receipt_sha256": "5c84b6e9a95bf1cfbac33a2e6e14529d417a6b72e202c039f11b3e34bc67856c",
+      "plan": "docs/validation/office-main-integration-20261119/host-final/node-plan.json",
+      "plan_sha256": "e4ef6c9d64bcee99338a64b1e381c8726b5ed07eae70d52760e52bcd314a6727",
+      "suites": [
+        "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+        "packages/quds_office_engine/test/proofing/arabic_extended_rules_test.dart",
+        "packages/quds_office_engine/test/proofing/office_proofing_merge_test.dart",
+        "packages/quds_office_engine/test/word_proofing_language_test.dart",
+        "packages/quds_proofing_hunspell/test/hunspell_provider_test.dart"
+      ],
+      "executions": 306,
+      "analysis_paths": [],
+      "format_paths": [],
+      "source_input_records": 5092,
+      "runtime_input_records": 11163
+    }
+  ],
+  "cohorts": [
+    {
+      "phase": "MAIN",
+      "name": "office-proofing-engine-vm",
+      "runner": "dart",
+      "platform": "vm",
+      "passed_executions": 442,
+      "suites": 14,
+      "failed": 0,
+      "skipped": 0,
+      "errors": 0,
+      "incomplete": 0,
+      "exact_suite_coverage": true,
+      "terminal_success": true,
+      "complete_starts_and_completions": true,
+      "duplicate_case_identities": 0,
+      "layout_tap_and_disposal_diagnostics": 0,
+      "excluded_successful_lifecycle_events": 14,
+      "known_native_hook_prefixes": 0,
+      "per_suite": {
+        "packages/quds_office_engine/test/proofing/arabic_extended_rules_test.dart": 200,
+        "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart": 78,
+        "packages/quds_office_engine/test/proofing/german_spelling_test.dart": 39,
+        "packages/quds_office_engine/test/proofing/german_writing_rules_test.dart": 37,
+        "packages/quds_office_engine/test/proofing/office_proofing_merge_test.dart": 5,
+        "packages/quds_office_engine/test/proofing/office_proofing_test.dart": 14,
+        "packages/quds_office_engine/test/proofing/proofing_locale_test.dart": 6,
+        "packages/quds_office_engine/test/proofing/proofing_report_merge_test.dart": 20,
+        "packages/quds_office_engine/test/proofing/proofing_text_ranges_test.dart": 6,
+        "packages/quds_office_engine/test/style_cascade_test.dart": 5,
+        "packages/quds_office_engine/test/word_comment_proofing_styles_test.dart": 4,
+        "packages/quds_office_engine/test/word_proofing_inheritance_test.dart": 13,
+        "packages/quds_office_engine/test/word_proofing_language_test.dart": 13,
+        "packages/quds_office_engine/test/word_referenced_styles_and_breaks_test.dart": 2
+      },
+      "warnings": []
+    },
+    {
+      "phase": "MAIN",
+      "name": "english-proofing-contracts-vm",
+      "runner": "dart",
+      "platform": "vm",
+      "passed_executions": 29,
+      "suites": 3,
+      "failed": 0,
+      "skipped": 0,
+      "errors": 0,
+      "incomplete": 0,
+      "exact_suite_coverage": true,
+      "terminal_success": true,
+      "complete_starts_and_completions": true,
+      "duplicate_case_identities": 0,
+      "layout_tap_and_disposal_diagnostics": 0,
+      "excluded_successful_lifecycle_events": 3,
+      "known_native_hook_prefixes": 0,
+      "per_suite": {
+        "packages/quds_proofing_harper/test/harper_provider_test.dart": 10,
+        "packages/quds_proofing_harper/test/harper_source_contract_test.dart": 12,
+        "packages/quds_proofing_harper/test/harper_source_text_test.dart": 7
+      },
+      "warnings": []
+    },
+    {
+      "phase": "MAIN",
+      "name": "office-proofing-editor",
+      "runner": "flutter",
+      "platform": "vm",
+      "passed_executions": 321,
+      "suites": 19,
+      "failed": 0,
+      "skipped": 0,
+      "errors": 0,
+      "incomplete": 0,
+      "exact_suite_coverage": true,
+      "terminal_success": true,
+      "complete_starts_and_completions": true,
+      "duplicate_case_identities": 0,
+      "layout_tap_and_disposal_diagnostics": 0,
+      "excluded_successful_lifecycle_events": 27,
+      "known_native_hook_prefixes": 0,
+      "per_suite": {
+        "packages/quds_office_editor/test/word_arabic_writing_integration_test.dart": 3,
+        "packages/quds_office_editor/test/word_draft_proofing_test.dart": 19,
+        "packages/quds_office_editor/test/word_german_grammar_integration_test.dart": 36,
+        "packages/quds_office_editor/test/word_incremental_proofing_menu_test.dart": 1,
+        "packages/quds_office_editor/test/word_incremental_proofing_test.dart": 15,
+        "packages/quds_office_editor/test/word_live_proofing_session_test.dart": 9,
+        "packages/quds_office_editor/test/word_manual_proofing_test.dart": 11,
+        "packages/quds_office_editor/test/word_notes_proofing_controller_test.dart": 46,
+        "packages/quds_office_editor/test/word_notes_proofing_pane_test.dart": 15,
+        "packages/quds_office_editor/test/word_proofing_capture_cache_test.dart": 4,
+        "packages/quds_office_editor/test/word_proofing_context_test.dart": 5,
+        "packages/quds_office_editor/test/word_proofing_correction_test.dart": 33,
+        "packages/quds_office_editor/test/word_proofing_dialog_test.dart": 23,
+        "packages/quds_office_editor/test/word_proofing_geometry_test.dart": 13,
+        "packages/quds_office_editor/test/word_proofing_navigation_test.dart": 6,
+        "packages/quds_office_editor/test/word_proofing_priority_test.dart": 7,
+        "packages/quds_office_editor/test/word_proofing_session_test.dart": 31,
+        "packages/quds_office_editor/test/word_text_proofing_controls_test.dart": 31,
+        "packages/quds_office_editor/test/word_text_proofing_pane_test.dart": 13
+      },
+      "warnings": []
+    },
+    {
+      "phase": "MAIN",
+      "name": "studio-functional-host-integration",
+      "runner": "flutter",
+      "platform": "vm",
+      "passed_executions": 171,
+      "suites": 18,
+      "failed": 0,
+      "skipped": 0,
+      "errors": 0,
+      "incomplete": 0,
+      "exact_suite_coverage": true,
+      "terminal_success": true,
+      "complete_starts_and_completions": true,
+      "duplicate_case_identities": 0,
+      "layout_tap_and_disposal_diagnostics": 0,
+      "excluded_successful_lifecycle_events": 18,
+      "known_native_hook_prefixes": 0,
+      "per_suite": {
+        "packages/quds_office_editor/example/test/pdf_gallery_faces_test.dart": 1,
+        "packages/quds_office_editor/example/test/pdf_gallery_smoke_test.dart": 1,
+        "packages/quds_office_editor/example/test/pdf_showcase_test.dart": 1,
+        "packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart": 15,
+        "packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart": 9,
+        "packages/quds_office_editor/example/test/studio_comment_review_test.dart": 38,
+        "packages/quds_office_editor/example/test/studio_compact_navigation_test.dart": 1,
+        "packages/quds_office_editor/example/test/studio_document_comparison_test.dart": 8,
+        "packages/quds_office_editor/example/test/studio_hunspell_setup_test.dart": 4,
+        "packages/quds_office_editor/example/test/studio_linguistic_analysis_test.dart": 24,
+        "packages/quds_office_editor/example/test/studio_mail_test.dart": 9,
+        "packages/quds_office_editor/example/test/studio_review_pane_test.dart": 3,
+        "packages/quds_office_editor/example/test/studio_sheet_navigation_test.dart": 8,
+        "packages/quds_office_editor/example/test/studio_spacy_setup_test.dart": 11,
+        "packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart": 18,
+        "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart": 15,
+        "packages/quds_office_editor/example/test/widget_test.dart": 3,
+        "packages/quds_office_editor/example/test/word_pdf_face_export_test.dart": 2
+      },
+      "warnings": []
+    },
+    {
+      "phase": "MAIN",
+      "name": "hunspell-provider-vm",
+      "runner": "dart",
+      "platform": "vm",
+      "passed_executions": 10,
+      "suites": 1,
+      "failed": 0,
+      "skipped": 0,
+      "errors": 0,
+      "incomplete": 0,
+      "exact_suite_coverage": true,
+      "terminal_success": true,
+      "complete_starts_and_completions": true,
+      "duplicate_case_identities": 0,
+      "layout_tap_and_disposal_diagnostics": 0,
+      "excluded_successful_lifecycle_events": 1,
+      "known_native_hook_prefixes": 0,
+      "per_suite": {
+        "packages/quds_proofing_hunspell/test/hunspell_provider_test.dart": 10
+      },
+      "warnings": []
+    },
+    {
+      "phase": "MAIN",
+      "name": "hunspell-native-lifecycle-vm",
+      "runner": "dart",
+      "platform": "vm",
+      "passed_executions": 6,
+      "suites": 1,
+      "failed": 0,
+      "skipped": 0,
+      "errors": 0,
+      "incomplete": 0,
+      "exact_suite_coverage": true,
+      "terminal_success": true,
+      "complete_starts_and_completions": true,
+      "duplicate_case_identities": 0,
+      "layout_tap_and_disposal_diagnostics": 0,
+      "excluded_successful_lifecycle_events": 1,
+      "known_native_hook_prefixes": 0,
+      "per_suite": {
+        "packages/quds_proofing_hunspell/test/hunspell_native_lifecycle_test.dart": 6
+      },
+      "warnings": []
+    },
+    {
+      "phase": "NODE",
+      "name": "arabic-writing-node",
+      "runner": "dart",
+      "platform": "node",
+      "passed_executions": 78,
+      "suites": 1,
+      "failed": 0,
+      "skipped": 0,
+      "errors": 0,
+      "incomplete": 0,
+      "exact_suite_coverage": true,
+      "terminal_success": true,
+      "complete_starts_and_completions": true,
+      "duplicate_case_identities": 0,
+      "layout_tap_and_disposal_diagnostics": 0,
+      "excluded_successful_lifecycle_events": 1,
+      "known_native_hook_prefixes": 0,
+      "per_suite": {
+        "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart": 78
+      },
+      "warnings": []
+    },
+    {
+      "phase": "NODE",
+      "name": "arabic-extended-node",
+      "runner": "dart",
+      "platform": "node",
+      "passed_executions": 200,
+      "suites": 1,
+      "failed": 0,
+      "skipped": 0,
+      "errors": 0,
+      "incomplete": 0,
+      "exact_suite_coverage": true,
+      "terminal_success": true,
+      "complete_starts_and_completions": true,
+      "duplicate_case_identities": 0,
+      "layout_tap_and_disposal_diagnostics": 0,
+      "excluded_successful_lifecycle_events": 1,
+      "known_native_hook_prefixes": 0,
+      "per_suite": {
+        "packages/quds_office_engine/test/proofing/arabic_extended_rules_test.dart": 200
+      },
+      "warnings": []
+    },
+    {
+      "phase": "NODE",
+      "name": "proofing-merge-node",
+      "runner": "dart",
+      "platform": "node",
+      "passed_executions": 5,
+      "suites": 1,
+      "failed": 0,
+      "skipped": 0,
+      "errors": 0,
+      "incomplete": 0,
+      "exact_suite_coverage": true,
+      "terminal_success": true,
+      "complete_starts_and_completions": true,
+      "duplicate_case_identities": 0,
+      "layout_tap_and_disposal_diagnostics": 0,
+      "excluded_successful_lifecycle_events": 1,
+      "known_native_hook_prefixes": 0,
+      "per_suite": {
+        "packages/quds_office_engine/test/proofing/office_proofing_merge_test.dart": 5
+      },
+      "warnings": []
+    },
+    {
+      "phase": "NODE",
+      "name": "complex-script-routing-node",
+      "runner": "dart",
+      "platform": "node",
+      "passed_executions": 13,
+      "suites": 1,
+      "failed": 0,
+      "skipped": 0,
+      "errors": 0,
+      "incomplete": 0,
+      "exact_suite_coverage": true,
+      "terminal_success": true,
+      "complete_starts_and_completions": true,
+      "duplicate_case_identities": 0,
+      "layout_tap_and_disposal_diagnostics": 0,
+      "excluded_successful_lifecycle_events": 1,
+      "known_native_hook_prefixes": 0,
+      "per_suite": {
+        "packages/quds_office_engine/test/word_proofing_language_test.dart": 13
+      },
+      "warnings": []
+    },
+    {
+      "phase": "NODE",
+      "name": "hunspell-provider-node",
+      "runner": "dart",
+      "platform": "node",
+      "passed_executions": 10,
+      "suites": 1,
+      "failed": 0,
+      "skipped": 0,
+      "errors": 0,
+      "incomplete": 0,
+      "exact_suite_coverage": true,
+      "terminal_success": true,
+      "complete_starts_and_completions": true,
+      "duplicate_case_identities": 0,
+      "layout_tap_and_disposal_diagnostics": 0,
+      "excluded_successful_lifecycle_events": 1,
+      "known_native_hook_prefixes": 0,
+      "per_suite": {
+        "packages/quds_proofing_hunspell/test/hunspell_provider_test.dart": 10
+      },
+      "warnings": []
+    }
+  ],
+  "suite_counts": {
+    "packages/quds_office_editor/example/test/pdf_gallery_faces_test.dart": {
+      "distinct_cases": 1,
+      "executions": 1
+    },
+    "packages/quds_office_editor/example/test/pdf_gallery_smoke_test.dart": {
+      "distinct_cases": 1,
+      "executions": 1
+    },
+    "packages/quds_office_editor/example/test/pdf_showcase_test.dart": {
+      "distinct_cases": 1,
+      "executions": 1
+    },
+    "packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart": {
+      "distinct_cases": 15,
+      "executions": 15
+    },
+    "packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart": {
+      "distinct_cases": 9,
+      "executions": 9
+    },
+    "packages/quds_office_editor/example/test/studio_comment_review_test.dart": {
+      "distinct_cases": 38,
+      "executions": 38
+    },
+    "packages/quds_office_editor/example/test/studio_compact_navigation_test.dart": {
+      "distinct_cases": 1,
+      "executions": 1
+    },
+    "packages/quds_office_editor/example/test/studio_document_comparison_test.dart": {
+      "distinct_cases": 8,
+      "executions": 8
+    },
+    "packages/quds_office_editor/example/test/studio_hunspell_setup_test.dart": {
+      "distinct_cases": 4,
+      "executions": 4
+    },
+    "packages/quds_office_editor/example/test/studio_linguistic_analysis_test.dart": {
+      "distinct_cases": 24,
+      "executions": 24
+    },
+    "packages/quds_office_editor/example/test/studio_mail_test.dart": {
+      "distinct_cases": 9,
+      "executions": 9
+    },
+    "packages/quds_office_editor/example/test/studio_review_pane_test.dart": {
+      "distinct_cases": 3,
+      "executions": 3
+    },
+    "packages/quds_office_editor/example/test/studio_sheet_navigation_test.dart": {
+      "distinct_cases": 8,
+      "executions": 8
+    },
+    "packages/quds_office_editor/example/test/studio_spacy_setup_test.dart": {
+      "distinct_cases": 11,
+      "executions": 11
+    },
+    "packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart": {
+      "distinct_cases": 18,
+      "executions": 18
+    },
+    "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart": {
+      "distinct_cases": 15,
+      "executions": 15
+    },
+    "packages/quds_office_editor/example/test/widget_test.dart": {
+      "distinct_cases": 3,
+      "executions": 3
+    },
+    "packages/quds_office_editor/example/test/word_pdf_face_export_test.dart": {
+      "distinct_cases": 2,
+      "executions": 2
+    },
+    "packages/quds_office_editor/test/word_arabic_writing_integration_test.dart": {
+      "distinct_cases": 3,
+      "executions": 3
+    },
+    "packages/quds_office_editor/test/word_draft_proofing_test.dart": {
+      "distinct_cases": 19,
+      "executions": 19
+    },
+    "packages/quds_office_editor/test/word_german_grammar_integration_test.dart": {
+      "distinct_cases": 36,
+      "executions": 36
+    },
+    "packages/quds_office_editor/test/word_incremental_proofing_menu_test.dart": {
+      "distinct_cases": 1,
+      "executions": 1
+    },
+    "packages/quds_office_editor/test/word_incremental_proofing_test.dart": {
+      "distinct_cases": 15,
+      "executions": 15
+    },
+    "packages/quds_office_editor/test/word_live_proofing_session_test.dart": {
+      "distinct_cases": 9,
+      "executions": 9
+    },
+    "packages/quds_office_editor/test/word_manual_proofing_test.dart": {
+      "distinct_cases": 11,
+      "executions": 11
+    },
+    "packages/quds_office_editor/test/word_notes_proofing_controller_test.dart": {
+      "distinct_cases": 46,
+      "executions": 46
+    },
+    "packages/quds_office_editor/test/word_notes_proofing_pane_test.dart": {
+      "distinct_cases": 15,
+      "executions": 15
+    },
+    "packages/quds_office_editor/test/word_proofing_capture_cache_test.dart": {
+      "distinct_cases": 4,
+      "executions": 4
+    },
+    "packages/quds_office_editor/test/word_proofing_context_test.dart": {
+      "distinct_cases": 5,
+      "executions": 5
+    },
+    "packages/quds_office_editor/test/word_proofing_correction_test.dart": {
+      "distinct_cases": 33,
+      "executions": 33
+    },
+    "packages/quds_office_editor/test/word_proofing_dialog_test.dart": {
+      "distinct_cases": 23,
+      "executions": 23
+    },
+    "packages/quds_office_editor/test/word_proofing_geometry_test.dart": {
+      "distinct_cases": 13,
+      "executions": 13
+    },
+    "packages/quds_office_editor/test/word_proofing_navigation_test.dart": {
+      "distinct_cases": 6,
+      "executions": 6
+    },
+    "packages/quds_office_editor/test/word_proofing_priority_test.dart": {
+      "distinct_cases": 7,
+      "executions": 7
+    },
+    "packages/quds_office_editor/test/word_proofing_session_test.dart": {
+      "distinct_cases": 31,
+      "executions": 31
+    },
+    "packages/quds_office_editor/test/word_text_proofing_controls_test.dart": {
+      "distinct_cases": 31,
+      "executions": 31
+    },
+    "packages/quds_office_editor/test/word_text_proofing_pane_test.dart": {
+      "distinct_cases": 13,
+      "executions": 13
+    },
+    "packages/quds_office_engine/test/proofing/arabic_extended_rules_test.dart": {
+      "distinct_cases": 200,
+      "executions": 400
+    },
+    "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart": {
+      "distinct_cases": 78,
+      "executions": 156
+    },
+    "packages/quds_office_engine/test/proofing/german_spelling_test.dart": {
+      "distinct_cases": 39,
+      "executions": 39
+    },
+    "packages/quds_office_engine/test/proofing/german_writing_rules_test.dart": {
+      "distinct_cases": 37,
+      "executions": 37
+    },
+    "packages/quds_office_engine/test/proofing/office_proofing_merge_test.dart": {
+      "distinct_cases": 5,
+      "executions": 10
+    },
+    "packages/quds_office_engine/test/proofing/office_proofing_test.dart": {
+      "distinct_cases": 14,
+      "executions": 14
+    },
+    "packages/quds_office_engine/test/proofing/proofing_locale_test.dart": {
+      "distinct_cases": 6,
+      "executions": 6
+    },
+    "packages/quds_office_engine/test/proofing/proofing_report_merge_test.dart": {
+      "distinct_cases": 20,
+      "executions": 20
+    },
+    "packages/quds_office_engine/test/proofing/proofing_text_ranges_test.dart": {
+      "distinct_cases": 6,
+      "executions": 6
+    },
+    "packages/quds_office_engine/test/style_cascade_test.dart": {
+      "distinct_cases": 5,
+      "executions": 5
+    },
+    "packages/quds_office_engine/test/word_comment_proofing_styles_test.dart": {
+      "distinct_cases": 4,
+      "executions": 4
+    },
+    "packages/quds_office_engine/test/word_proofing_inheritance_test.dart": {
+      "distinct_cases": 13,
+      "executions": 13
+    },
+    "packages/quds_office_engine/test/word_proofing_language_test.dart": {
+      "distinct_cases": 13,
+      "executions": 26
+    },
+    "packages/quds_office_engine/test/word_referenced_styles_and_breaks_test.dart": {
+      "distinct_cases": 2,
+      "executions": 2
+    },
+    "packages/quds_proofing_harper/test/harper_provider_test.dart": {
+      "distinct_cases": 10,
+      "executions": 10
+    },
+    "packages/quds_proofing_harper/test/harper_source_contract_test.dart": {
+      "distinct_cases": 12,
+      "executions": 12
+    },
+    "packages/quds_proofing_harper/test/harper_source_text_test.dart": {
+      "distinct_cases": 7,
+      "executions": 7
+    },
+    "packages/quds_proofing_hunspell/test/hunspell_native_lifecycle_test.dart": {
+      "distinct_cases": 6,
+      "executions": 6
+    },
+    "packages/quds_proofing_hunspell/test/hunspell_provider_test.dart": {
+      "distinct_cases": 10,
+      "executions": 20
+    }
+  },
+  "platform_repeats": [
+    {
+      "suite": "packages/quds_office_engine/test/proofing/arabic_extended_rules_test.dart",
+      "main_cases": 200,
+      "node_cases": 200,
+      "same_case_identities": true
+    },
+    {
+      "suite": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+      "main_cases": 78,
+      "node_cases": 78,
+      "same_case_identities": true
+    },
+    {
+      "suite": "packages/quds_office_engine/test/proofing/office_proofing_merge_test.dart",
+      "main_cases": 5,
+      "node_cases": 5,
+      "same_case_identities": true
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_proofing_language_test.dart",
+      "main_cases": 13,
+      "node_cases": 13,
+      "same_case_identities": true
+    },
+    {
+      "suite": "packages/quds_proofing_hunspell/test/hunspell_provider_test.dart",
+      "main_cases": 10,
+      "node_cases": 10,
+      "same_case_identities": true
+    }
+  ],
+  "source_binding": {
+    "all_phase_before_after_manifests_identical": true,
+    "full_source_selection_reconstructed_from_frozen_plans": true,
+    "git_modes_blobs_sha256_and_live_bytes_verified": true,
+    "union_source_records": 5092,
+    "main_node_source_manifests_identical": true,
+    "checkout_unchanged_during_readonly_audit": true,
+    "checkout_head_during_audit": "9833831a013c98a8ce5c3f5e6f45de36593cb7df"
+  },
+  "runtime_binding": {
+    "all_phase_before_after_manifests_identical": true,
+    "complete_runtime_selection_reconstructed": true,
+    "all_recorded_values_match_live_readback": true,
+    "union_runtime_records": 11166,
+    "retained_restore_files_sha256_and_size_verified_live": 11142,
+    "official_sdk_archive_verified_in_original_restore_receipt": true,
+    "verified_hosted_archives_in_original_restore_receipt": 176,
+    "package_test_launcher_bound_to_verified_hosted_package": true,
+    "dependency_lock_unchanged": true,
+    "scope": "Both saved host phases captured their complete declared runtime inputs before/after their own intervals. Live readback verifies all those values and all retained restore files; the original download is not repeated."
+  },
+  "native_runtime_binding": {
+    "descriptor": "docs/validation/office-main-integration-20261119/latest-final/native-runtime-inputs.json",
+    "descriptor_sha256": "8417b7e404589406eaf31cab0d56e5427e07906c8a4e1f99229f8e22d2abb6b9",
+    "assets": {
+      "library": {
+        "path": "/workspace/scratch/a7846890f2e1/runtime-recovery/toolchains/local-validation/hunspell/libquds_hunspell_lifecycle_real.so",
+        "bytes": 892096,
+        "sha256": "46c7956036645284408a2017a9b025dfef3983dceb17a8fec203f8acfdb918cc",
+        "main_node_before_after_and_live_match": true
+      },
+      "build_receipt": {
+        "path": "/workspace/scratch/a7846890f2e1/runtime-recovery/toolchains/local-validation/hunspell/lifecycle-instrumented-build-receipt.json",
+        "bytes": 2199,
+        "sha256": "0c318b509b5b6105a9bedcb71d63a585c82e56106c5918f02717fd8d8b69b5c5",
+        "main_node_before_after_and_live_match": true
+      }
+    },
+    "production_matches_frozen_git": true,
+    "instrumented_adapter_and_build_match_replay_archive": true,
+    "replay_archive_sha256": "395e07b1e33dbdb11158b0986e931c23f904486a6adf02ecc76509bbcb3d5fb8",
+    "declared_environment": {
+      "QUDS_HUNSPELL_LIFECYCLE_LIBRARY": "/workspace/scratch/a7846890f2e1/runtime-recovery/toolchains/local-validation/hunspell/libquds_hunspell_lifecycle_real.so"
+    },
+    "environment_scope": "The descriptor declares the replay variable. Library/build bytes are captured before/after both runs; the runner does not serialize each child process environment value.",
+    "acceptance_scope": "Counter/delay-instrumented real Hunspell with a synthetic dictionary. No real AyaSpell installation/download, linguistic review, or other OS acceptance."
+  },
+  "historical_mail_carryforward": {
+    "report": "/workspace/scratch/a7846890f2e1/post_29dd_mail_continuity.json",
+    "report_sha256": "3bb7287cfe55e6fa23ffbbdd79a14f9412a3ef894146fca085421eafd1d9d9d7",
+    "original_execution_source": "29dd23a6edd0a0fbb916b3d9f73861a8aa4f435e",
+    "incoming_continuity_target": "be641457c8c7d1acc25091b31c87c73eaa3c9c2a",
+    "final_readback_source": "9833831a013c98a8ce5c3f5e6f45de36593cb7df",
+    "unchanged_input_records_verified_against_original_incoming_final_git_and_live": 403,
+    "final_mail_package_records": 394,
+    "final_mail_package_records_unchanged_from_original": 394,
+    "final_mail_package_changes_from_original": [],
+    "captured_incoming_analysis_scope_exceptions": [
+      "packages/quds_mail_ui/analysis_options.yaml"
+    ],
+    "final_analysis_scope_exceptions": [],
+    "reviewed_incoming_exceptions_resolved_to_original_at_final_merge": [
+      "packages/quds_mail_ui/analysis_options.yaml"
+    ],
+    "current_runs_include_historical_mail_counts": false,
+    "claim": "The 29dd Mail runs remain historical executions. Their declared unchanged inputs are retained in this frozen source. They are not re-executed or added to this audit's current MAIN/NODE counts."
+  },
+  "validation": {
+    "strict_analysis_format_whitespace_commands_match_committed_plans": true,
+    "all_raw_compressed_case_error_and_manifest_hashes_verified": true,
+    "compressed_logs_match_raw_bytes": true,
+    "exact_nonempty_suite_coverage": true,
+    "layout_tap_and_disposal_diagnostics": 0,
+    "actual_browser_execution": false,
+    "actual_ayaspell_download_or_installer_acceptance": false,
+    "retained_flutter_web_sdk_preflight": {
+      "directory": "/workspace/scratch/a7846890f2e1/runtime-recovery/toolchains/flutter/bin/cache/flutter_web_sdk",
+      "exists": true,
+      "compiler_input_matches": []
+    },
+    "full_studio_web_compile": "Not launched: retained flutter_web_sdk directory lacks .dill/.snapshot/libraries.json compiler artifacts. No runtime expansion or download attempted.",
+    "web_scope": "Node tests cover their portable Dart inputs; strict analysis covers selected web host paths. Flutter browser rendering, worker/Wasm initialization, CSP, offline lifecycle and real dictionary acceptance remain open."
+  },
+  "case_inventory": {
+    "file": "host_qualification_audit-cases.json",
+    "sha256": "96223efca8ae29db3044f3900e5063a3c887895073585364befbdaeb3532fb24"
+  },
+  "auditor": {
+    "file": "/workspace/scratch/a7846890f2e1/audit_host_qualification.py",
+    "sha256": "15a33b05cdeb1a36ac8da3b753484da8447b60d96986c4650a330cfe450667c8"
+  },
+  "github_actions": "NOT QUERIED OR AWAITED"
+}

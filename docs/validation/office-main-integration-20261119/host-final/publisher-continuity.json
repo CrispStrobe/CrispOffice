@@ -1,0 +1,20 @@
+{
+  "target_source": "9833831a013c98a8ce5c3f5e6f45de36593cb7df",
+  "qualified_control_source": "4681760c542eb2a3473b72605ebb7606e0e7b4a3",
+  "passed_controls": 17,
+  "input_hashes": {
+    "tools/proofing/ayaspell/build_bundle.py": "3a524e68dcff06d15542921fe18364877650b614f2c9ba7a30f2fa33f314e5e7",
+    "tools/proofing/ayaspell/test_build_bundle.py": "9866d0e3806050f9939ccabee58e10051c40e657fc4561f9dc29f210ecd219cf",
+    "tools/proofing/ayaspell/test_build_bundle_incoming.py": "be5ac77a9c72fd1308fc63a4875a8d39a64b9ab00f555ec93bb0b755ecb1c1cd",
+    "tools/proofing/ayaspell/test_build_bundle_reproducibility.py": "9c170dced06105a0b019bb07e426bc82106a9c6bad1629820ab5aec6f72c4096",
+    "packages/quds_proofing_hunspell/lib/src/hunspell_catalog.dart": "a8ae5aac4a07afd95c009cd2ed42369b0a883865846992e6f5790c2f74d0e32c"
+  },
+  "all_inputs_unchanged": true,
+  "new_execution": false,
+  "actual_publication": false,
+  "original_receipt_sha256": "d7a25bc678819fb5770567abb657c0618de946ff99974b0b6507d7cf640aa5ca",
+  "native_environment_declaration": {
+    "QUDS_HUNSPELL_LIFECYCLE_LIBRARY": "/workspace/scratch/a7846890f2e1/runtime-recovery/toolchains/local-validation/hunspell/libquds_hunspell_lifecycle_real.so"
+  },
+  "declaration_scope": "Operator launch declaration; the runner independently binds native asset hashes before and after, but does not serialize the child environment."
+}
