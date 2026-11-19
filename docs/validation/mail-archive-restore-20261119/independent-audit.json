@@ -1,0 +1,739 @@
+{
+  "accepted_gate_counts": {
+    "combined": 22,
+    "incoming": 13,
+    "mail": 9
+  },
+  "audited_at_utc": "2026-11-19T18:09:51.071391+00:00",
+  "auditor_sha256": "ded107807bb741b0250b628e2a6878b96591ffe94c9f8e2da625336e1cd93bff",
+  "combined_counts": {
+    "failed": 0,
+    "passed": 1640,
+    "skipped": 0
+  },
+  "combined_unique_test_files": 90,
+  "current_head": "0c77b3488eb534868a7f98271ba2923d06759b8d",
+  "failures": [],
+  "frozen_source_head": "0c77b3488eb534868a7f98271ba2923d06759b8d",
+  "frozen_source_tree": "8e21cf2370f18ee6f02836cb6b465799a6512004",
+  "incoming_counts": {
+    "failed": 0,
+    "passed": 564,
+    "skipped": 0
+  },
+  "incoming_phases": [
+    {
+      "counts": {
+        "failed": 0,
+        "passed": 485,
+        "skipped": 0
+      },
+      "dependencies": {
+        "before_after_equal": true,
+        "current_mismatches": [],
+        "digest": "c400b0220ab948cd68a54521cda95e92ec96447acb4ea0c4c487a2fbb28292c2",
+        "frozen_commit_mismatches": [],
+        "inputs": 9298
+      },
+      "head_at_finish": "0c77b3488eb534868a7f98271ba2923d06759b8d",
+      "head_at_start": "358544a48466c942873a4718a87fa9d1c2be11f7",
+      "javascript_sha256_verified": {
+        "web_smoke": "ecc722ec603213e4ed14a38e0d6d0d34b65086e00a7621790a76d29aa4d8aab2",
+        "web_vba_control_flow_smoke": "4c8c2de1f145ec7367ea72ef09805e5e0ffae4f27268bddc5704fd2db0f56556",
+        "web_vba_procedures_smoke": "cdc38bf2653dbbe0ea15f170bf4b462d8e08f81ab868d063c2d1299857c76f27",
+        "web_vba_smoke": "171325606f2154ea162d1572ef6e038f0f8b24f82091868e180c71a29aa4d7c2"
+      },
+      "phase": "engine",
+      "receipt_sha256": "842590ad175697b9399a9f68eb6562427097be15069fb371dbde33da84125200",
+      "source_commit_relationship": "Observed heads must be ancestors of final source; every recorded source input is independently required to match the final frozen Git blob and current bytes.",
+      "steps": [
+        {
+          "counts": {
+            "failed": 0,
+            "passed": 269,
+            "skipped": 0
+          },
+          "exit_code": 0,
+          "files": [
+            "packages/quds_office_engine/test/office_macro_cli_test.dart",
+            "packages/quds_office_engine/test/office_macro_expansion_test.dart",
+            "packages/quds_office_engine/test/office_macro_language_test.dart",
+            "packages/quds_office_engine/test/office_macro_mcp_test.dart",
+            "packages/quds_office_engine/test/office_macro_runtime_test.dart",
+            "packages/quds_office_engine/test/office_vba_control_flow_boundaries_test.dart",
+            "packages/quds_office_engine/test/office_vba_control_flow_integration_test.dart",
+            "packages/quds_office_engine/test/office_vba_control_flow_test.dart",
+            "packages/quds_office_engine/test/office_vba_integration_test.dart",
+            "packages/quds_office_engine/test/office_vba_language_test.dart",
+            "packages/quds_office_engine/test/office_vba_procedure_boundaries_test.dart",
+            "packages/quds_office_engine/test/office_vba_procedures_integration_test.dart",
+            "packages/quds_office_engine/test/office_vba_procedures_test.dart"
+          ],
+          "independently_parsed_cases_sha256": "e357010cc56e021f327f2f968e80915595c355b1b63354809640482781158611",
+          "missing_files": [],
+          "name": "macros-vba",
+          "source_binding": {
+            "before_after_equal": true,
+            "current_mismatches": [],
+            "digest": "220c174d676ed780132944aeb541220e6198fa361fc0c06646b4a0e5e666c045",
+            "frozen_commit_mismatches": [],
+            "inputs": 1761
+          },
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_sha256": "7f497e00a1aa9d22a764a796c7d511d4cdb9ab22f5272dfc3a76ed5eac5d8ec1",
+          "unexpected_files": []
+        },
+        {
+          "counts": {
+            "failed": 0,
+            "passed": 216,
+            "skipped": 0
+          },
+          "exit_code": 0,
+          "files": [
+            "packages/quds_office_engine/test/comment_thread_fidelity_test.dart",
+            "packages/quds_office_engine/test/ods_sheet_reader_test.dart",
+            "packages/quds_office_engine/test/odt_comment_fidelity_test.dart",
+            "packages/quds_office_engine/test/word_comment_test.dart",
+            "packages/quds_office_engine/test/word_revision_story_test.dart",
+            "packages/quds_office_engine/test/word_revision_validation_test.dart",
+            "packages/quds_office_engine/test/word_step_atomicity_test.dart",
+            "packages/quds_office_engine/test/word_structure_steps_test.dart"
+          ],
+          "independently_parsed_cases_sha256": "60d9f8a79791782fe5b7588eb09ba528dc350dd254143f0bcb9d7b02a98d79aa",
+          "missing_files": [],
+          "name": "branding-and-structure",
+          "source_binding": {
+            "before_after_equal": true,
+            "current_mismatches": [],
+            "digest": "220c174d676ed780132944aeb541220e6198fa361fc0c06646b4a0e5e666c045",
+            "frozen_commit_mismatches": [],
+            "inputs": 1761
+          },
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_sha256": "aa46e90412dd72fd70e7ff46e0633c3bb48bee15d7a35df58c9877b6aa480f18",
+          "unexpected_files": []
+        },
+        {
+          "exit_code": 0,
+          "name": "web_smoke-compile",
+          "source_binding": {
+            "before_after_equal": true,
+            "current_mismatches": [],
+            "digest": "220c174d676ed780132944aeb541220e6198fa361fc0c06646b4a0e5e666c045",
+            "frozen_commit_mismatches": [],
+            "inputs": 1761
+          },
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_sha256": "136db76bee27bae3c39024bc93e9803e7be221d9ef0d094750bcd2442d648476"
+        },
+        {
+          "exit_code": 0,
+          "name": "web_smoke-node",
+          "source_binding": {
+            "before_after_equal": true,
+            "current_mismatches": [],
+            "digest": "220c174d676ed780132944aeb541220e6198fa361fc0c06646b4a0e5e666c045",
+            "frozen_commit_mismatches": [],
+            "inputs": 1761
+          },
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_sha256": "733f79b8c8c236f674a733d3c205f6f46c6a52d4a6da005729755db94d853971",
+          "verified_smoke_result": {
+            "A1": 42,
+            "A2": 84,
+            "lateFailurePreservedBytes": true,
+            "mcpInspection": true,
+            "revision": 1
+          }
+        },
+        {
+          "exit_code": 0,
+          "name": "web_vba_smoke-compile",
+          "source_binding": {
+            "before_after_equal": true,
+            "current_mismatches": [],
+            "digest": "220c174d676ed780132944aeb541220e6198fa361fc0c06646b4a0e5e666c045",
+            "frozen_commit_mismatches": [],
+            "inputs": 1761
+          },
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_sha256": "78fbe88a3f273f03f5c7d1651761f43b171baff210c01ac2b6e7a97ce628fd58"
+        },
+        {
+          "exit_code": 0,
+          "name": "web_vba_smoke-node",
+          "source_binding": {
+            "before_after_equal": true,
+            "current_mismatches": [],
+            "digest": "220c174d676ed780132944aeb541220e6198fa361fc0c06646b4a0e5e666c045",
+            "frozen_commit_mismatches": [],
+            "inputs": 1761
+          },
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_sha256": "3a1c1b101e95e74f978cbb811033185b9a34908200d38d509e6a907b746eefc8",
+          "verified_smoke_result": {
+            "A3": 42,
+            "B1": 84,
+            "fill": "0A141E",
+            "language": "vba-excel",
+            "lateFailurePreservedBytes": true,
+            "mcpCompileAndRun": true,
+            "numericBoundsAndPrecedence": true,
+            "revision": 2,
+            "validationPreservedBytes": true
+          }
+        },
+        {
+          "exit_code": 0,
+          "name": "web_vba_procedures_smoke-compile",
+          "source_binding": {
+            "before_after_equal": true,
+            "current_mismatches": [],
+            "digest": "220c174d676ed780132944aeb541220e6198fa361fc0c06646b4a0e5e666c045",
+            "frozen_commit_mismatches": [],
+            "inputs": 1761
+          },
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_sha256": "56295ca89386040db8dd1323f5c69709a903fff8fb784ea2a061e5a9cfc12f60"
+        },
+        {
+          "exit_code": 0,
+          "name": "web_vba_procedures_smoke-node",
+          "source_binding": {
+            "before_after_equal": true,
+            "current_mismatches": [],
+            "digest": "220c174d676ed780132944aeb541220e6198fa361fc0c06646b4a0e5e666c045",
+            "frozen_commit_mismatches": [],
+            "inputs": 1761
+          },
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_sha256": "b97b85b585bbc40e339293fec350fa8cd8f916aa6861fabf8fb3326d7235a3d4",
+          "verified_smoke_result": {
+            "byValCallerAmount": 21,
+            "exitForCounter": 4,
+            "formulaTotal": 126,
+            "language": "vba-excel",
+            "lateFailurePreservedBytes": true,
+            "mcpCompileAndRun": true,
+            "numericBounds": true,
+            "procedureScopesAndExits": true,
+            "recursionRejected": true,
+            "revision": 2,
+            "sharedWorkBudget": true,
+            "steps": 6,
+            "validationPreservedBytes": true
+          }
+        },
+        {
+          "exit_code": 0,
+          "name": "web_vba_control_flow_smoke-compile",
+          "source_binding": {
+            "before_after_equal": true,
+            "current_mismatches": [],
+            "digest": "220c174d676ed780132944aeb541220e6198fa361fc0c06646b4a0e5e666c045",
+            "frozen_commit_mismatches": [],
+            "inputs": 1761
+          },
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_sha256": "b0be7a1a84a1074813e3c9b7e868ec663bb8a234777b60b2b797ed7e84a06039"
+        },
+        {
+          "exit_code": 0,
+          "name": "web_vba_control_flow_smoke-node",
+          "source_binding": {
+            "before_after_equal": true,
+            "current_mismatches": [],
+            "digest": "220c174d676ed780132944aeb541220e6198fa361fc0c06646b4a0e5e666c045",
+            "frozen_commit_mismatches": [],
+            "inputs": 1761
+          },
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_sha256": "4cbea514876f652fac9ad4cb832d003ebc99ecc02015a62686e495a6afc731fb",
+          "verified_smoke_result": {
+            "coldDepthStress": "32 procedure frames / 32 mixed blocks / 63 unary operators",
+            "formulaTotal": 100,
+            "language": "vba-excel",
+            "lateFailurePreservedBytes": true,
+            "mcpCompileAndRun": true,
+            "orderedCasesAndEagerRangeBounds": true,
+            "revision": 2,
+            "sharedLoopWorkBudget": true,
+            "staticInactiveChecks": true,
+            "steps": 9,
+            "validationPreservedBytes": true
+          }
+        },
+        {
+          "exit_code": 0,
+          "name": "macos-build-script-syntax",
+          "source_binding": {
+            "before_after_equal": true,
+            "current_mismatches": [],
+            "digest": "220c174d676ed780132944aeb541220e6198fa361fc0c06646b4a0e5e666c045",
+            "frozen_commit_mismatches": [],
+            "inputs": 1761
+          },
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "counts": {
+        "failed": 0,
+        "passed": 52,
+        "skipped": 0
+      },
+      "dependencies": {
+        "before_after_equal": true,
+        "current_mismatches": [],
+        "digest": "c400b0220ab948cd68a54521cda95e92ec96447acb4ea0c4c487a2fbb28292c2",
+        "frozen_commit_mismatches": [],
+        "inputs": 9298
+      },
+      "head_at_finish": "358544a48466c942873a4718a87fa9d1c2be11f7",
+      "head_at_start": "358544a48466c942873a4718a87fa9d1c2be11f7",
+      "javascript_sha256_verified": {},
+      "phase": "editor",
+      "receipt_sha256": "af86a38956916a0030724bb18c956a4a5947473f299befe1ae15623fd131ae5f",
+      "source_commit_relationship": "Observed heads must be ancestors of final source; every recorded source input is independently required to match the final frozen Git blob and current bytes.",
+      "steps": [
+        {
+          "counts": {
+            "failed": 0,
+            "passed": 52,
+            "skipped": 0
+          },
+          "exit_code": 0,
+          "files": [
+            "packages/quds_office_editor/test/pdf_save_state_test.dart",
+            "packages/quds_office_editor/test/pdf_surface_test.dart",
+            "packages/quds_office_editor/test/word_review_controller_test.dart",
+            "packages/quds_office_editor/test/word_review_dialog_test.dart"
+          ],
+          "independently_parsed_cases_sha256": "38442f9db8d6107d746ddb8ae1c0bbd39dd1987ca0e120bc7bf7801eae65f238",
+          "missing_files": [],
+          "name": "pdf-and-review",
+          "source_binding": {
+            "before_after_equal": true,
+            "current_mismatches": [],
+            "digest": "08e3c67a191a7674a8d2e0e87697b6b90d33a2a9ed105a2b1a07b68f73a0ce86",
+            "frozen_commit_mismatches": [],
+            "inputs": 3157
+          },
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_sha256": "7e8941d54f6354f89779ebc2a7b9a7e1dad35f41eb011a040c5bf06f7574e743",
+          "unexpected_files": []
+        }
+      ]
+    },
+    {
+      "counts": {
+        "failed": 0,
+        "passed": 27,
+        "skipped": 0
+      },
+      "dependencies": {
+        "before_after_equal": true,
+        "current_mismatches": [],
+        "digest": "c400b0220ab948cd68a54521cda95e92ec96447acb4ea0c4c487a2fbb28292c2",
+        "frozen_commit_mismatches": [],
+        "inputs": 9298
+      },
+      "head_at_finish": "358544a48466c942873a4718a87fa9d1c2be11f7",
+      "head_at_start": "358544a48466c942873a4718a87fa9d1c2be11f7",
+      "javascript_sha256_verified": {},
+      "phase": "studio",
+      "receipt_sha256": "105c2f7c63ac4e961217a15b5f5c13560af258ef1fbe0f4d6d293dade04795c2",
+      "source_commit_relationship": "Observed heads must be ancestors of final source; every recorded source input is independently required to match the final frozen Git blob and current bytes.",
+      "steps": [
+        {
+          "counts": {
+            "failed": 0,
+            "passed": 27,
+            "skipped": 0
+          },
+          "exit_code": 0,
+          "files": [
+            "packages/quds_office_editor/example/test/studio_desktop_menu_test.dart",
+            "packages/quds_office_editor/example/test/studio_file_menu_test.dart",
+            "packages/quds_office_editor/example/test/studio_ribbon_customization_test.dart",
+            "packages/quds_office_editor/example/test/studio_ribbon_preferences_test.dart",
+            "packages/quds_office_editor/example/test/widget_test.dart"
+          ],
+          "independently_parsed_cases_sha256": "64112c132eb17fd0db12ea750129ff9d9607385b8b242ddc8a0bba43a32d4ae5",
+          "missing_files": [],
+          "name": "desktop-ribbon-lifecycle",
+          "source_binding": {
+            "before_after_equal": true,
+            "current_mismatches": [],
+            "digest": "927cb6318aebf714aa8cb7252ed463821aa41de9caed763dc4c26a5f8bb1154b",
+            "frozen_commit_mismatches": [],
+            "inputs": 2210
+          },
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_sha256": "fb236d8080895f6b9152b94ab004c9efc18f2b080231e54057ee65219e476e7a",
+          "unexpected_files": []
+        }
+      ]
+    }
+  ],
+  "incoming_runtime_identity": {
+    "executables_sha256": {
+      "/workspace/scratch/f815a4ae580f/runtime/flutter/bin/cache/artifacts/engine/linux-x64/flutter_tester": "800f4ca182df7dd2fb46a42dea5d76277b9dbc5e8cd2915e02bcbc978681b45f",
+      "/workspace/scratch/f815a4ae580f/runtime/flutter/bin/cache/dart-sdk/bin/dart": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb"
+    },
+    "matches_current": true,
+    "readiness_receipt_sha256": "886302d11ac73dfa56ead721bd07941f085e3379e018e9bee3c062116fa07d37",
+    "runtime_receipt_sha256": "42740899a85b0df93963eb420bb8e0640b62d026739cd405537ed228de0a0161",
+    "scope": "Incoming phases retain the same prepared runtime/readiness receipts before and after each phase. Both SDK executable hashes, root manifest/lock and SQLite are rechecked here; the mail run additionally binds its full runtime file manifest before and after execution.",
+    "sqlite_sha256": "0a65852703763619a7a34633b4959b3b86c4103804a4dfe4e8b27b5de1c0647b"
+  },
+  "incoming_unique_test_files": 30,
+  "independent_review_cases": {
+    "added_again_to_totals": false,
+    "count": 15,
+    "included_in_mail_store_cohort": true
+  },
+  "mail_counts": {
+    "failed": 0,
+    "passed": 1076,
+    "skipped": 0
+  },
+  "mail_gates": [
+    {
+      "exit_code": 0,
+      "name": "format",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "e998a4c3e82820a0a9d155b5e1d78aad2bed1fe75e63b31a17155f1e37515b97"
+    },
+    {
+      "exit_code": 0,
+      "name": "analysis",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "cfb6574a183d5884cfbead447dcaff75acca5f33030f96a8ae4d3d9616d69088"
+    },
+    {
+      "exit_code": 0,
+      "name": "whitespace",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "counts": {
+        "failed": 0,
+        "passed": 54,
+        "skipped": 0
+      },
+      "exit_code": 0,
+      "files": [
+        "packages/quds_mail_core/test/cancellation_test.dart",
+        "packages/quds_mail_core/test/ews_identity_test.dart",
+        "packages/quds_mail_core/test/imap_sync_range_test.dart",
+        "packages/quds_mail_core/test/models_test.dart",
+        "packages/quds_mail_core/test/outbox_test.dart",
+        "packages/quds_mail_core/test/sync_coordinator_test.dart"
+      ],
+      "independently_parsed_cases_sha256": "230766ec2d3129093290198a389902ef806a67b4919383fc11113bbac44c2ee0",
+      "missing_files": [],
+      "name": "quds_mail_core-vm",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "98e6a37e67f8ce8d91ab7532fafcbe5f1ee484efdf080f10fd2e1aeaaf42f426",
+      "unexpected_files": []
+    },
+    {
+      "counts": {
+        "failed": 0,
+        "passed": 84,
+        "skipped": 0
+      },
+      "exit_code": 0,
+      "files": [
+        "packages/quds_mail_mime/test/eml_bytes_test.dart",
+        "packages/quds_mail_mime/test/mbox_test.dart",
+        "packages/quds_mail_mime/test/mime_encodings_test.dart",
+        "packages/quds_mail_mime/test/mime_limits_test.dart",
+        "packages/quds_mail_mime/test/mime_parts_test.dart",
+        "packages/quds_mail_mime/test/mime_review_regressions_test.dart",
+        "packages/quds_mail_mime/test/portable_import_test.dart"
+      ],
+      "independently_parsed_cases_sha256": "5f0892d72af27adc6f7e9c50fdce293b67476e4e7c9f02077e9dc6005a2e0768",
+      "missing_files": [],
+      "name": "quds_mail_mime-vm",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "246918befd74497ffe74c8870d31b8fe8a4b810a54e90cab9f857014174ac192",
+      "unexpected_files": []
+    },
+    {
+      "counts": {
+        "failed": 0,
+        "passed": 508,
+        "skipped": 0
+      },
+      "exit_code": 0,
+      "files": [
+        "packages/quds_mail_store/test/adversarial_store_test.dart",
+        "packages/quds_mail_store/test/archive_directory_native_test.dart",
+        "packages/quds_mail_store/test/archive_export_manifest_test.dart",
+        "packages/quds_mail_store/test/archive_export_native_test.dart",
+        "packages/quds_mail_store/test/archive_export_plan_test.dart",
+        "packages/quds_mail_store/test/archive_multi_origin_test.dart",
+        "packages/quds_mail_store/test/archive_native_test.dart",
+        "packages/quds_mail_store/test/archive_query_test.dart",
+        "packages/quds_mail_store/test/archive_repository_test.dart",
+        "packages/quds_mail_store/test/archive_restore_adversarial_test.dart",
+        "packages/quds_mail_store/test/archive_restore_native_test.dart",
+        "packages/quds_mail_store/test/archive_runner_test.dart",
+        "packages/quds_mail_store/test/codec_test.dart",
+        "packages/quds_mail_store/test/crash_recovery_test.dart",
+        "packages/quds_mail_store/test/ews_store_test.dart",
+        "packages/quds_mail_store/test/imap_sync_range_test.dart",
+        "packages/quds_mail_store/test/migration_test.dart",
+        "packages/quds_mail_store/test/native_platform_test.dart",
+        "packages/quds_mail_store/test/platform_configuration_test.dart",
+        "packages/quds_mail_store/test/repository_test.dart"
+      ],
+      "independently_parsed_cases_sha256": "7f811505b05ea4120bff351e72e8278a91d5394cf28083c2bb31c88090a933b7",
+      "missing_files": [],
+      "name": "quds_mail_store-vm",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "b8d910a6e6c412a904ccdf9713bf108f01f8da977ffadc3f8808a729a288805b",
+      "unexpected_files": []
+    },
+    {
+      "counts": {
+        "failed": 0,
+        "passed": 9,
+        "skipped": 0
+      },
+      "exit_code": 0,
+      "files": [
+        "packages/quds_mail_store/test/archive_export_manifest_test.dart",
+        "packages/quds_mail_store/test/browser_problem_test.dart"
+      ],
+      "independently_parsed_cases_sha256": "da0bfb8b7a7795219e6a958e3f1431f73e8bd10d19c9528c8c98b5145b0ff463",
+      "missing_files": [],
+      "name": "quds_mail_store-node",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "46f63e6a347b6ba414bc8dfe1c6e3769ac7e8a095b6d3272a588ae365a9af5e8",
+      "unexpected_files": []
+    },
+    {
+      "counts": {
+        "failed": 0,
+        "passed": 33,
+        "skipped": 0
+      },
+      "exit_code": 0,
+      "files": [
+        "packages/quds_mail_ui/test/controller_test.dart",
+        "packages/quds_mail_ui/test/example_test.dart",
+        "packages/quds_mail_ui/test/message_view_test.dart",
+        "packages/quds_mail_ui/test/presentation_test.dart"
+      ],
+      "independently_parsed_cases_sha256": "ad218223ef8844a336a39e7fd56add3a416b0dc253e3ec1d3a01c671767baf12",
+      "missing_files": [],
+      "name": "mail-ui",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "3e29a77ba97e9f96787a11990ab25f3e63bc4499b586e349391439966f15b282",
+      "unexpected_files": []
+    },
+    {
+      "counts": {
+        "failed": 0,
+        "passed": 388,
+        "skipped": 0
+      },
+      "exit_code": 0,
+      "files": [
+        "packages/quds_office_editor/example/test/studio_mail_archive_action_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_archive_directory_import_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_archive_folder_action_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_archive_host_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_archive_portability_visual_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_archive_restore_native_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_archive_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_cloud_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_compose_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_credentials_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_discovery_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_ews_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_lifecycle_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_operation_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_presets_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_reply_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_session_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_web_test.dart",
+        "packages/quds_office_editor/example/test/studio_saved_mail_test.dart"
+      ],
+      "independently_parsed_cases_sha256": "99b42a59e9c2aa1348a372811608d3e64440270fbac49d02f07e1326b79f590f",
+      "missing_files": [],
+      "name": "studio-mail",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "a50e29f2cbf89befdfe8795b04b27505042c83664983e20a0486b24bd42f5cb1",
+      "unexpected_files": []
+    }
+  ],
+  "mail_input_identity": {
+    "dependency": {
+      "before_after_equal": true,
+      "current_mismatches": [],
+      "digest": "c400b0220ab948cd68a54521cda95e92ec96447acb4ea0c4c487a2fbb28292c2",
+      "frozen_commit_mismatches": [],
+      "inputs": 9298
+    },
+    "runtime": {
+      "before_after_equal": true,
+      "current_mismatches": [],
+      "digest": "f096a387327697a8f9ea1fcbbdaa46146c744d3e0d092ce70946a1f54eef564e",
+      "frozen_commit_mismatches": [],
+      "inputs": 1108
+    },
+    "source": {
+      "before_after_equal": true,
+      "current_mismatches": [],
+      "digest": "2c2c8baf02dd851d786676b1566954cbd61d491ffae94d4a293788b5d6e7754c",
+      "frozen_commit_mismatches": [],
+      "inputs": 4441
+    }
+  },
+  "mail_receipt_sha256": "43ccfff8afae97aa4170459fc10c3ea05991698778f8e065fe1145bc3ff5d990",
+  "mail_unique_test_files": 60,
+  "method": "Independent JSON event parser and direct current-file hashing; no acceptance helper imports or repeated product tests.",
+  "overlapping_case_identities": [],
+  "runtime_version": {
+    "dart": "3.13.7",
+    "flutter": "3.47.8",
+    "matches_repository_pin": true
+  },
+  "screenshots": {
+    "files": [
+      {
+        "file": "archive-export-confirmation-ar.png",
+        "height": 844,
+        "published_copy_matches": true,
+        "sha256": "dfb6fc7f821f0725fbbad667dbe8d2fc790c420fa67ecf684f4b592a5ad1edf4",
+        "width": 390
+      },
+      {
+        "file": "archive-export-confirmation-en.png",
+        "height": 900,
+        "published_copy_matches": true,
+        "sha256": "65d7aceddddb2dcf6679aa57158c3488a200aae85843f601007fa401f74ee43d",
+        "width": 1280
+      },
+      {
+        "file": "archive-export-report-ar.png",
+        "height": 844,
+        "published_copy_matches": true,
+        "sha256": "c8d39fadb8c0655480f7715e7b7ddec6fc5c5faf28b8d193ec3bb2596673ebc8",
+        "width": 390
+      },
+      {
+        "file": "archive-export-report-en.png",
+        "height": 900,
+        "published_copy_matches": true,
+        "sha256": "591c920c6b8bef10cff77e7c188492ec567d0cfe9f23389f783bdaa4debde906",
+        "width": 1280
+      },
+      {
+        "file": "archive-portability-desktop-en.png",
+        "height": 900,
+        "published_copy_matches": true,
+        "sha256": "01998400b40bdadbdd7270fe4fe9dc1dd9b853b157f00acd084a011b0918ba2b",
+        "width": 1280
+      },
+      {
+        "file": "archive-portability-mobile-ar.png",
+        "height": 844,
+        "published_copy_matches": true,
+        "sha256": "cb15cc1802d1c8b34f204ccacd5c4640a8bbd89eadcda788ba1d7739b6592c73",
+        "width": 390
+      },
+      {
+        "file": "archive-restore-preview-ar.png",
+        "height": 844,
+        "published_copy_matches": true,
+        "sha256": "b72e63cb4853125cc9d226eeea7feaf1a25fab42d7683cdb14beccd123d2f96a",
+        "width": 390
+      },
+      {
+        "file": "archive-restore-preview-de.png",
+        "height": 900,
+        "published_copy_matches": true,
+        "sha256": "70f69adc3c114b13525b243864fbb7cc6dab9991d8e4eed574df18fbfb9e7257",
+        "width": 1280
+      },
+      {
+        "file": "archive-restore-preview-en.png",
+        "height": 900,
+        "published_copy_matches": true,
+        "sha256": "d6f84e99cef04770197ca0701e85003ac484cb7c0d38ca4c8248267050ec4305",
+        "width": 1280
+      },
+      {
+        "file": "archive-restore-result-ar.png",
+        "height": 844,
+        "published_copy_matches": true,
+        "sha256": "fa88a17c4764ee771baf677fe7efd6faaa100c5fe4aa93efb03073642cd3cbe5",
+        "width": 390
+      },
+      {
+        "file": "archive-restore-result-de.png",
+        "height": 900,
+        "published_copy_matches": true,
+        "sha256": "40631d2bdbc42668e85f76267be638e774dfa6068359965f349ec414618f37cb",
+        "width": 1280
+      },
+      {
+        "file": "archive-restore-result-en.png",
+        "height": 900,
+        "published_copy_matches": true,
+        "sha256": "c66830d933eae6672296cf0ff0ebb0c99825d3565ca8dbb94f87aac76fb815f3",
+        "width": 1280
+      }
+    ],
+    "fixture": "packages/quds_office_editor/example/test/studio_mail_archive_portability_visual_test.dart",
+    "fixture_sha256": "04af65f840add6859a8121d612e4a4c3542d6d3ad8caa3114721ea11fabed16c",
+    "method": "Accepted Flutter RepaintBoundary captures of the product StudioMailArchiveDialog with injected synthetic store/files; no native AppKit capture or live-account claim."
+  },
+  "sqlite_native_mapping": [
+    "absolute",
+    "/workspace/scratch/f815a4ae580f/quds_office_suite/.dart_tool/lib/libsqlite3.so"
+  ],
+  "status": "passed",
+  "superseded_mail_attempts": [
+    {
+      "counts_included_in_acceptance": 0,
+      "directory": "docs/validation/mail-archive-restore-20261119/attempts/mail-format",
+      "failed_gates": [
+        "format"
+      ],
+      "raw_reported_counts": {
+        "failed": 0,
+        "passed": 0,
+        "skipped": 0
+      },
+      "receipt_sha256": "1f99cdbd2914f3c487f46d01b62f2182a94d17f7c8486c9ee5dedd60d0dd2720",
+      "status": "failed"
+    },
+    {
+      "counts_included_in_acceptance": 0,
+      "directory": "docs/validation/mail-archive-restore-20261119/attempts/mail-node-selection",
+      "failed_gates": [
+        "quds_mail_store-node"
+      ],
+      "raw_reported_counts": {
+        "failed": 1,
+        "passed": 1076,
+        "skipped": 0
+      },
+      "receipt_sha256": "b884f8206e3e5fd483de8f2eebdd9bb0f130610154aa5f7f793fe5f0e8f12ec2",
+      "status": "failed"
+    }
+  ]
+}

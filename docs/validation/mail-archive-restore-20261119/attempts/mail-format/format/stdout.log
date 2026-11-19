@@ -1,0 +1,9 @@
+Changed packages/quds_office_editor/example/lib/studio_hunspell_setup.dart
+Changed packages/quds_office_editor/example/lib/studio_pdf_flutter_samples.dart
+Changed packages/quds_office_editor/example/lib/studio_pdf_toc_samples.dart
+Changed packages/quds_office_engine/lib/src/office/office_document_properties.dart
+Changed packages/quds_office_engine/lib/src/pdf/samples/literary_arabic.dart
+Changed packages/quds_office_engine/lib/src/pdf/samples/widgets_catalog.dart
+Changed packages/quds_office_engine/lib/src/pdf/widgets/pw_core.dart
+Changed packages/quds_office_engine/lib/src/reports/report_templates.dart
+Formatted 72 files (8 changed) in 1.52 seconds.

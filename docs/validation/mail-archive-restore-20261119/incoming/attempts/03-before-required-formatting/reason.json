@@ -1,0 +1,4 @@
+{
+  "reason": "Root final mail formatting gate found eight pre-existing incoming branding/sample Dart files. Root is applying dart format only and freezing a new source. All incoming cohorts/gates will rerun against that source; these earlier successful cases must not be double counted.",
+  "audit_detection": "Before final publication, current-source binding rejected the changed office_document_properties.dart hash."
+}
