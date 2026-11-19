@@ -1,0 +1,16 @@
+{
+  "created_at_utc": "2026-11-19T07:09:10.664482+00:00",
+  "source_commit": "54c36e40daa7b17d73801dac1fd12f110b24017f",
+  "archive": {
+    "archive": "native-node-support.tar.xz",
+    "archive_bytes": 893856,
+    "archive_sha256": "325ce78d9abac36bdee2ab4f1e97aa27d258cfa145d27928374a24e0aee745e5",
+    "member_count": 77,
+    "members_verified_against_original_bytes": true
+  },
+  "file_only_operations": true,
+  "git_commands_executed": false,
+  "tests_executed": false,
+  "package_script_sha256": "49ad225e8fba7501789761869818e9b52c1bd3b81c1bfc7b81743ba6e2d69b9c",
+  "archive_implementation_sha256": "541d038cb10b73fe2a256e165fcd8683615973e9a13645b037055ae38f266532"
+}

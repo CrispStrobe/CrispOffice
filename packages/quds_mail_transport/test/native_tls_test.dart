@@ -8,7 +8,6 @@ import 'dart:typed_data';
 
 import 'package:enough_mail/imap.dart' as imap;
 import 'package:enough_mail/src/private/util/client_base.dart';
-import 'package:enough_mail/src/private/util/client_connection.dart';
 import 'package:quds_mail_core/quds_mail_core.dart';
 import 'package:quds_mail_mime/quds_mail_mime.dart';
 import 'package:quds_mail_transport/quds_mail_transport.dart';
@@ -31,6 +30,7 @@ NativeMailImapProvider _provider(
   String host = '127.0.0.1',
   Duration timeout = const Duration(seconds: 3),
   List<HandshakeException>? handshakeFailures,
+  List<imap.ImapClient>? clients,
 }) => NativeMailImapProvider(
   configuration: MailImapConfiguration(
     account: _account,
@@ -49,19 +49,19 @@ NativeMailImapProvider _provider(
   codec: const QudsMimeCodec(),
   limits: MailTransportLimits(operationTimeout: timeout),
   clientFactory:
-      ({
-        required maxLiteralBytes,
-        required maxResponseBytes,
-        required limits,
-      }) => _ObservedImapClient(
-        handshakeFailures: handshakeFailures ?? [],
-        securityContext: trustFixture ? localTlsTrustContext() : null,
-        defaultResponseTimeout: limits.operationTimeout,
-        defaultWriteTimeout: limits.operationTimeout,
-        maxLiteralSize: maxLiteralBytes,
-        maxResponseBytes: maxResponseBytes,
-        maxProtocolLineBytes: limits.maxProtocolLineBytes,
-      ),
+      ({required maxLiteralBytes, required maxResponseBytes, required limits}) {
+        final client = _ObservedImapClient(
+          handshakeFailures: handshakeFailures ?? [],
+          securityContext: trustFixture ? localTlsTrustContext() : null,
+          defaultResponseTimeout: limits.operationTimeout,
+          defaultWriteTimeout: limits.operationTimeout,
+          maxLiteralSize: maxLiteralBytes,
+          maxResponseBytes: maxResponseBytes,
+          maxProtocolLineBytes: limits.maxProtocolLineBytes,
+        );
+        clients?.add(client);
+        return client;
+      },
 );
 
 MailProblemCode _code<T>(MailResult<T> result) =>
@@ -69,6 +69,50 @@ MailProblemCode _code<T>(MailResult<T> result) =>
 
 void main() {
   for (final mode in MailTlsMode.values) {
+    test(
+      '${mode.name}: direct pending TLS operation settles when aborted',
+      () async {
+        final server = await LocalTlsServer.bind(
+          mode: mode,
+          stallHandshake: true,
+        );
+        addTearDown(server.close);
+        final client = imap.ImapClient();
+        addTearDown(client.abort);
+        final pending = () async {
+          await client.connectToServer(
+            '127.0.0.1',
+            server.port,
+            isSecure: mode == MailTlsMode.implicitTls,
+            timeout: const Duration(seconds: 30),
+          );
+          if (mode == MailTlsMode.startTls) {
+            await client.capability();
+            await client.startTls();
+          }
+        }();
+        // Observe the original direct API future before aborting. The native
+        // provider's independent cancellation race cannot settle this future.
+        final failure = pending.then<Object?>(
+          (_) => null,
+          onError: (Object error, StackTrace _) => error,
+        );
+        final peer = await server.peer(0);
+        await peer.clientHello.future.timeout(const Duration(seconds: 2));
+        await client.abort().timeout(const Duration(seconds: 1));
+        expect(
+          await failure.timeout(const Duration(seconds: 1)),
+          anyOf(isA<imap.ImapException>(), isA<SocketException>()),
+        );
+        await peer.closed.future.timeout(const Duration(seconds: 1));
+        expect(client.isConnected, isFalse);
+        expect(
+          peer.commands.any((entry) => entry.$2.startsWith('LOGIN ')),
+          isFalse,
+        );
+      },
+    );
+
     test(
       '${mode.name}: real stalled handshake closes on cancellation and retries',
       () async {
@@ -149,13 +193,18 @@ void main() {
       () async {
         final server = await LocalTlsServer.bind(mode: mode);
         addTearDown(server.close);
-        final result = await _provider(server).listMailboxes(_lease());
+        final clients = <imap.ImapClient>[];
+        final result = await _provider(
+          server,
+          clients: clients,
+        ).listMailboxes(_lease());
         expect(
           (result as MailSuccess<List<MailMailbox>>).value.single.id.value,
           'INBOX',
         );
         final peer = await server.peer(0);
         expect(peer.secure, isTrue);
+        expect(clients.single.connectionInfo.isSecure, isTrue);
         final logins = peer.commands.where(
           (entry) => entry.$2.startsWith('LOGIN '),
         );
@@ -229,18 +278,12 @@ void main() {
   }
 
   test(
-    'manual socket TLS upgrade rejects before handshake or credentials',
+    'manual socket TLS upgrade preserves trust and secure connection metadata',
     () async {
-      final server = await ServerSocket.bind(InternetAddress.loopbackIPv4, 0);
+      final server = await LocalTlsServer.bind(mode: MailTlsMode.startTls);
       addTearDown(server.close);
-      final accepted = server.first;
       final socket = await Socket.connect('127.0.0.1', server.port);
-      final peer = await accepted;
-      addTearDown(peer.destroy);
-      final bytes = <int>[];
-      final closed = Completer<void>();
-      peer.listen(bytes.addAll, onDone: closed.complete);
-      final client = imap.ImapClient()
+      final client = _ManualImapClient(securityContext: localTlsTrustContext())
         ..connect(
           socket,
           connectionInformation: ConnectionInfo(
@@ -249,13 +292,25 @@ void main() {
             isSecure: false,
           ),
         );
-      await expectLater(
-        client.upgradeToSslSocket(),
-        throwsA(isA<imap.ImapException>()),
+      addTearDown(client.abort);
+      await client.greeting.future.timeout(const Duration(seconds: 1));
+      expect(client.connectionInfo.isSecure, isFalse);
+      await client.capability();
+      await client.startTls().timeout(const Duration(seconds: 2));
+      expect(client.connectionInfo.isSecure, isTrue);
+      await client.login('manual-reader', 'test-only-password');
+      await client.noop();
+      final peer = await server.peer(0);
+      final logins = peer.commands.where(
+        (entry) => entry.$2.startsWith('LOGIN '),
       );
-      await closed.future.timeout(const Duration(seconds: 1));
-      expect(bytes, isEmpty);
-      expect(client.isConnected, isFalse);
+      expect(logins, hasLength(1));
+      expect(logins.single.$1, isTrue);
+      expect(
+        peer.commands.any((entry) => entry.$1 && entry.$2 == 'NOOP'),
+        isTrue,
+      );
+      expect(peer.unexpectedErrors, isEmpty);
     },
   );
 
@@ -294,7 +349,7 @@ void main() {
     'queued partial writes and final readiness complete before write close',
     () async {
       final raw = _PartialRawSocket();
-      final connection = RawClientConnection(raw);
+      final connection = createOwnedRawSocket(raw);
       addTearDown(connection.destroy);
       connection.write('first:');
       connection.add(List<int>.generate(16384, (index) => index % 256));
@@ -318,7 +373,7 @@ void main() {
 
   test('aborting a blocked partial write rejects its pending flush', () async {
     final raw = _PartialRawSocket()..releaseReadiness = false;
-    final connection = RawClientConnection(raw);
+    final connection = createOwnedRawSocket(raw);
     connection.add(List<int>.filled(100, 42));
     final flushed = expectLater(
       connection.flush(),
@@ -328,6 +383,26 @@ void main() {
     connection.destroy();
     await flushed.timeout(const Duration(seconds: 1));
     expect(raw.destroyed, isTrue);
+  });
+
+  test('hard abort closes retained TCP before a stalled secure close', () {
+    final closed = <String>[];
+    final transport = _CloseProbeRawSocket('tcp', closed);
+    final secure = _CloseProbeRawSocket('tls', closed, stallClose: true);
+    final connection = createOwnedRawSocket(secure, transport: transport);
+    addTearDown(() {
+      secure.releaseClose();
+      transport.dispose();
+      secure.dispose();
+    });
+
+    connection.destroy();
+    // No peer drain, timer, or asynchronous secure-close completion is needed
+    // before the original TCP owner receives its hard-close request.
+    expect(closed, ['tcp', 'tls']);
+    expect(secure.closeFinished, isFalse);
+    connection.destroy();
+    expect(closed, ['tcp', 'tls']);
   });
 }
 
@@ -345,9 +420,7 @@ final class _ObservedImapClient extends imap.ImapClient {
 
   final List<HandshakeException> handshakeFailures;
 
-  Future<ClientConnection> _observe(
-    Future<ClientConnection> Function() connect,
-  ) async {
+  Future<Socket> _observe(Future<Socket> Function() connect) async {
     try {
       return await connect();
     } on HandshakeException catch (error) {
@@ -357,7 +430,7 @@ final class _ObservedImapClient extends imap.ImapClient {
   }
 
   @override
-  Future<ClientConnection> createConnectionSocket(
+  Future<Socket> createConnectionSocket(
     String host,
     int port, {
     required bool isSecure,
@@ -366,13 +439,15 @@ final class _ObservedImapClient extends imap.ImapClient {
   );
 
   @override
-  Future<ClientConnection> createSecureConnectionSocket(
-    ClientConnection socket, {
+  Future<Socket> createSecureConnectionSocket(
+    Socket socket, {
     required String host,
   }) => _observe(() => super.createSecureConnectionSocket(socket, host: host));
 }
 
 final class _ManualImapClient extends imap.ImapClient {
+  _ManualImapClient({super.securityContext});
+
   final Completer<void> greeting = Completer<void>();
 
   @override
@@ -383,6 +458,58 @@ final class _ManualImapClient extends imap.ImapClient {
     await super.onConnectionEstablished(connectionInfo, serverGreeting);
     greeting.complete();
   }
+}
+
+/// Separates the TCP hard-close request from a secure wrapper whose close
+/// cannot finish until pending encrypted output drains.
+final class _CloseProbeRawSocket extends Stream<RawSocketEvent>
+    implements RawSocket {
+  _CloseProbeRawSocket(this.name, this.closed, {this.stallClose = false});
+
+  final String name;
+  final List<String> closed;
+  final bool stallClose;
+  final _events = StreamController<RawSocketEvent>();
+  final _close = Completer<RawSocket>();
+
+  bool get closeFinished => _close.isCompleted;
+
+  @override
+  bool readEventsEnabled = false;
+  @override
+  bool writeEventsEnabled = false;
+
+  @override
+  Future<RawSocket> close() {
+    closed.add(name);
+    if (!stallClose) releaseClose();
+    return _close.future;
+  }
+
+  void releaseClose() {
+    if (!_close.isCompleted) _close.complete(this);
+  }
+
+  void dispose() {
+    unawaited(_events.close());
+  }
+
+  @override
+  StreamSubscription<RawSocketEvent> listen(
+    void Function(RawSocketEvent)? onData, {
+    Function? onError,
+    void Function()? onDone,
+    bool? cancelOnError,
+  }) => _events.stream.listen(
+    onData,
+    onError: onError,
+    onDone: onDone,
+    cancelOnError: cancelOnError,
+  );
+
+  @override
+  dynamic noSuchMethod(Invocation invocation) =>
+      throw UnsupportedError('Not used by the distinct-owner close fixture');
 }
 
 /// A bounded writer that accepts three bytes per event, including an asynchronous
