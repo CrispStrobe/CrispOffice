@@ -4,6 +4,22 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Preserve imported slide rich-text formatting only while its scalar snapshot
+  still matches. Respect explicit plain runs and inherited backgrounds, restore
+  the established 16 pt fallback, and retain PDF text tab-stop alignment.
+
+- Add read-only paginated Zotero tag catalogs for libraries and collections,
+  with literal name preservation, containing/prefix searches, optional usage
+  metadata, validated requests and separate online/desktop routes. Keep manual
+  and automatic tag records distinct without combining their usage counts.
+
+- Extend `vba-excel` with local one-dimensional dynamic arrays, `ReDim`,
+  `ReDim Preserve`, `Erase`, and module `Option Base 0/1`. Preserve element
+  types, source evaluation order, enumeration locks, shared slot/string/work
+  bounds, and the existing native-plan transaction and policy boundary.
+- Add dynamic array report, lifecycle/boundary, CLI/MCP and JavaScript
+  regressions, and a staged Word/Excel/PowerPoint VBA parity roadmap.
+
 - Extend `vba-excel` with fixed one-dimensional scalar arrays, constant bounds,
   indexed reads/writes, typed defaults, `LBound`/`UBound`, and `For Each` over
   arrays and explicit rectangular ranges. Add read-only range row/column

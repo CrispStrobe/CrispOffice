@@ -1,5 +1,37 @@
 # Zotero validation
 
+## 19 November 2026 — tag discovery and source citation locations
+
+Qualified product source: **`780422316b4e37989e01ac871dd2956fbd2c8908`**, on
+`codex/zotero-workflow-20261119`, [PR #218](https://github.com/CrispStrobe/quds_office_suite/pull/218).
+
+**Search options → Browse tags…** searches and pages through library or
+collection tags while staging selections across searches. Apply retains selected
+references and unfinished input. **Document → Cited references… → Show
+citations → Go to citation** navigates offline to distinct body, footnote or
+endnote citation fields, preserves source identity aliases and rejects stale
+document targets. Both workflows have completed controller/widget coverage.
+
+**1,808 distinct local application tests pass across 93 files**: 602 Zotero
+engine, 584 Zotero editor, 33 PPTX, 225 Mail and 364 VBA. The 59 new Zotero cases
+are included once. All 40 changed Dart targets pass strict analysis and format
+checks, with zero failures, skips, errors or unfinished cases in accepted runs.
+Three later Mail formatting changes preserve identical parsed Dart output and
+have a separate before/after receipt and fresh targeted analysis.
+
+The initial 216 PR heads and bounded 19-branch refresh are reconciled by ancestry
+or independently verified historical equivalence. The recent PPTX, VBA dynamic
+array and Mail recipient heads are preserved as original merge ancestors.
+Incoming PPTX renderer/formatting regressions are repaired and covered. All work
+is saved incrementally to the remote branch; GitHub Actions are not queried or
+awaited.
+
+The [complete report](validation/zotero-workflow-20261119/README.md) contains the
+source/runtime fingerprints, independent audits, raw results, diagnostic
+attempts, exact reconciliation refs and reproduction commands. Acceptance is
+local model/controller/widget, serializer and controlled transport; this adds
+no installed-device, live-account or Word/LibreOffice interoperability claim.
+
 ## 18 November 2026 — research notes, native lists and completed Word-style workflows
 
 Qualified source: **`356a3c75c645a9e91d41af0b151d773eb938f3fc`**, on `codex/zotero-word-parity-20261118`, [PR #173](https://github.com/CrispStrobe/quds_office_suite/pull/173).

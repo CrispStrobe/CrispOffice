@@ -61,7 +61,7 @@ Future<void> _open(
 void main() {
   for (final address in <String>[
     '',
-    'a@example.invalid,b@example.invalid',
+    'a@example.invalid,,b@example.invalid',
     'Name <a@example.invalid>',
     'a@',
     '@example.invalid',
@@ -202,6 +202,8 @@ void main() {
       );
       final initial = StudioMailDraft(
         to: sender,
+        cc: 'copy@example.invalid',
+        bcc: 'hidden@example.invalid',
         subject: 'Retained',
         body: 'Do not lose this.',
         thread: thread,
@@ -219,16 +221,28 @@ void main() {
         tester.widget<TextField>(_field(strings.to)).controller!.text,
         initial.to,
       );
+      expect(
+        tester.widget<TextField>(_field(strings.mailCc)).controller!.text,
+        initial.cc,
+      );
+      expect(
+        tester.widget<TextField>(_field(strings.mailBcc)).controller!.text,
+        initial.bcc,
+      );
       final body = tester
           .widget<QudsWordEditor>(find.byType(QudsWordEditor))
           .controller;
       expect(body.document.paragraphs.single.text, initial.body);
+      await tester.ensureVisible(find.byType(CheckboxListTile));
       await tester.tap(find.byType(CheckboxListTile));
       await tester.pump();
       expect(tester.widget<FilledButton>(send).onPressed, isNotNull);
+      await tester.ensureVisible(send);
       await tester.tap(send);
       await _pump(tester);
       expect(snapshot?.body, initial.body);
+      expect(snapshot?.cc, initial.cc);
+      expect(snapshot?.bcc, initial.bcc);
       expect(snapshot?.thread, same(thread));
       final message = buildStudioMailMessage(snapshot!, sender);
       expect(message.getHeaderValue('in-reply-to'), '<parent@example.invalid>');
@@ -252,6 +266,8 @@ void main() {
     );
     final initial = StudioMailDraft(
       to: sender,
+      cc: 'copy@example.invalid',
+      bcc: 'hidden@example.invalid',
       subject: 'Re: Original subject',
       body: 'Initial body',
       thread: thread,
@@ -259,19 +275,29 @@ void main() {
     StudioMailDraft? snapshot;
     await _open(tester, (value) => snapshot = value, initial: initial);
     await tester.enterText(_field(strings.to), 'different@example.invalid');
+    await tester.enterText(_field(strings.mailCc), 'new-copy@example.invalid');
+    await tester.enterText(
+      _field(strings.mailBcc),
+      'new-hidden@example.invalid',
+    );
     await tester.enterText(_field(strings.subject), 'Edited subject');
     final body = tester
         .widget<QudsWordEditor>(find.byType(QudsWordEditor))
         .controller;
     body.insertText('Added text ');
     await tester.pump();
+    await tester.ensureVisible(find.widgetWithText(FilledButton, strings.send));
     await tester.tap(find.widgetWithText(FilledButton, strings.send));
     await _pump(tester);
     expect(snapshot?.to, 'different@example.invalid');
+    expect(snapshot?.cc, 'new-copy@example.invalid');
+    expect(snapshot?.bcc, 'new-hidden@example.invalid');
     expect(snapshot?.subject, 'Edited subject');
     expect(snapshot?.body, contains('Added text '));
     expect(snapshot?.thread, same(thread));
     expect(initial.to, sender);
+    expect(initial.cc, 'copy@example.invalid');
+    expect(initial.bcc, 'hidden@example.invalid');
     expect(initial.subject, 'Re: Original subject');
     expect(initial.body, 'Initial body');
     expect(body.isDisposed, isTrue);

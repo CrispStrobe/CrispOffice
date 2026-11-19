@@ -1034,7 +1034,7 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
     )..layout(maxWidth: r.width - 16);
     return PaintRunText.hitIndex(
       painter,
-      Offset(local.dx - r.left - 8, local.dy - r.top - 8),
+      local - _shapeTextOrigin(shape, r, painter),
       shape.text.length,
     );
   }
@@ -1078,7 +1078,7 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
     final Rect textBounds = _growsWithText(rect)
         ? Rect.fromLTWH(rect.left, rect.top, rect.width, 208)
         : rect;
-    Color? background = _theme.slideBackground;
+    Color? background = _slidePaper(target);
     for (final previous in target.shapes) {
       if (identical(previous, shape)) break;
       if (skipIds?.contains(previous.id) ?? false) continue;
@@ -1149,9 +1149,10 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
   }
 
   TextPainter _shapePainter(PmlShape shape, String text, Rect r, Color color) {
+    final double baseSize = shape.fontSizePt > 0 ? shape.fontSizePt : 16;
     final int lines = _growsWithText(r)
-        ? 12
-        : ((r.height - 12) / 18).floor().clamp(1, 12);
+        ? 32
+        : (r.height / (baseSize * 1.2)).ceil().clamp(1, 32);
     final bool rtl = shape.rightToLeft ?? PaintRunText.looksRtl(text);
     final TextAlign align = switch (shape.textAlign) {
       PmlTextAlign.center => TextAlign.center,
@@ -1160,14 +1161,92 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
       PmlTextAlign.left =>
         shape.rightToLeft == null && rtl ? TextAlign.right : TextAlign.left,
     };
+    if (shape.hasCurrentRichText && text == shape.text) {
+      return _richShapePainter(shape, r, color, lines, align, rtl);
+    }
     return PaintRunText.plain(
       text: text,
-      fontSize: 16,
+      fontSize: baseSize,
       color: color,
       themeFamily: _theme.fontFamily,
       maxLines: lines,
       align: align,
       rtl: rtl,
+      bold: false,
+    );
+  }
+
+  TextPainter _richShapePainter(
+    PmlShape shape,
+    Rect r,
+    Color color,
+    int maxLines,
+    TextAlign align,
+    bool rtl,
+  ) {
+    final List<InlineSpan> spans = <InlineSpan>[];
+    for (final PmlTextParagraph paragraph in shape.richText) {
+      for (final PmlTextRun run in paragraph.runs) {
+        final String runText = run.text.replaceAll('\t', '    ');
+        if (runText.isEmpty) continue;
+        final double size = run.fontSizePt > 0
+            ? run.fontSizePt
+            : (shape.fontSizePt > 0 ? shape.fontSizePt : 16);
+        final Color runColor = run.color.isEmpty
+            ? color
+            : _hexColor(run.color, color);
+        final String? family = run.fontFamily.isEmpty
+            ? _theme.fontFamily
+            : run.fontFamily;
+        spans.add(
+          TextSpan(
+            text: runText,
+            style: TextStyle(
+              fontSize: size,
+              height: 1.0,
+              color: runColor,
+              fontWeight:
+                  run.bold &&
+                      !run.fontFamily.toLowerCase().contains(
+                        'microsoft sans serif',
+                      )
+                  ? FontWeight.bold
+                  : FontWeight.normal,
+              fontStyle: run.italic ? FontStyle.italic : FontStyle.normal,
+              decoration: run.underline || run.strike
+                  ? TextDecoration.combine(<TextDecoration>[
+                      if (run.underline) TextDecoration.underline,
+                      if (run.strike) TextDecoration.lineThrough,
+                    ])
+                  : null,
+              fontFamily: PaintRunText.familyFor(
+                text: runText,
+                runFamily: family,
+                themeFamily: _theme.fontFamily,
+              ),
+              fontFamilyFallback: PaintRunText.fallbacksFor(
+                runText,
+                runFamily: family,
+              ),
+            ),
+          ),
+        );
+      }
+      final double blankSize = paragraph.defaultFontSizePt > 0
+          ? paragraph.defaultFontSizePt
+          : (shape.fontSizePt > 0 ? shape.fontSizePt : 16);
+      spans.add(
+        TextSpan(
+          text: '\n',
+          style: TextStyle(fontSize: blankSize),
+        ),
+      );
+    }
+    return TextPainter(
+      text: TextSpan(children: spans),
+      textDirection: rtl ? TextDirection.rtl : TextDirection.ltr,
+      textAlign: align,
+      maxLines: maxLines,
     );
   }
 
@@ -1312,7 +1391,7 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
     final Color color = _textColor(shape, background: background);
     final TextPainter painter = _shapePainter(shape, body, r, color)
       ..layout(maxWidth: r.width - 16);
-    final Offset origin = Offset(r.left + 8, r.top + 8);
+    final Offset origin = _shapeTextOrigin(shape, r, painter);
     if (isEdit && editBase != editCaret) {
       final int start = editBase < editCaret ? editBase : editCaret;
       final int end = editBase > editCaret ? editBase : editCaret;
@@ -1348,6 +1427,14 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
     }
     canvas.restore();
   }
+
+  Offset _shapeTextOrigin(PmlShape shape, Rect r, TextPainter painter) =>
+      Offset(r.left + 8, switch (shape.textAnchor) {
+        PmlTextAnchor.center =>
+          r.top + math.max(4, (r.height - painter.height) / 2),
+        PmlTextAnchor.bottom => r.bottom - painter.height - 8,
+        PmlTextAnchor.top => r.top + 8,
+      });
 
   void _paintMorph(
     Canvas canvas,
@@ -1462,6 +1549,13 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
     );
   }
 
+  Color _slidePaper(PmlSlide target) {
+    final int? rgb = int.tryParse(target.background, radix: 16);
+    return rgb == null
+        ? _theme.slideBackground
+        : Color(0xFF000000 | (rgb & 0xFFFFFF));
+  }
+
   void _paintSlideBody(
     Canvas canvas,
     PmlSlide target, {
@@ -1470,7 +1564,7 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
   }) {
     canvas.drawRect(
       Offset.zero & _slideSize,
-      Paint()..color = _theme.slideBackground,
+      Paint()..color = _slidePaper(target),
     );
     for (final PmlShape shape in target.shapes) {
       if (skipIds != null && skipIds.contains(shape.id)) {

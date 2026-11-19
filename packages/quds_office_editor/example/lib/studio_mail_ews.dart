@@ -783,7 +783,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
             wire: MailBytes(utf8.encode(wire)),
             envelope: MailTransportEnvelope(
               sender: _sender,
-              recipients: [draft.to],
+              recipients: draft.recipients.envelope,
             ),
           );
           lease.checkCurrent();
@@ -831,18 +831,28 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
         }
       });
 
-  Future<void> _reply({required bool forward}) async {
+  Future<void> _reply({required bool forward, bool replyAll = false}) async {
     final message = _reader?.result.message;
     if (message == null || !_canSend || _blocked) return;
     try {
       await _compose(
-        buildStudioMailReplyDraft(
-          message,
-          forward: forward,
-          truncationNotice: widget.strings.mailQuotedTextTruncated,
-          forwardNotice: widget.strings.mailTextOnlyForward,
-        ),
+        replyAll
+            ? buildStudioMailReplyAllDraft(
+                message,
+                sender: _sender,
+                truncationNotice: widget.strings.mailQuotedTextTruncated,
+              )
+            : buildStudioMailReplyDraft(
+                message,
+                forward: forward,
+                truncationNotice: widget.strings.mailQuotedTextTruncated,
+                forwardNotice: widget.strings.mailTextOnlyForward,
+              ),
       );
+    } on StudioMailReplyRecipientsUnavailable {
+      if (mounted) {
+        setState(() => _error = widget.strings.mailReplyRecipientsUnavailable);
+      }
     } on StudioMailReplyUnavailable {
       if (mounted) {
         setState(() => _error = widget.strings.mailPlainTextUnavailable);
@@ -1427,6 +1437,13 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
             onPressed: _blocked || !_canSend
                 ? null
                 : () => _reply(forward: false),
+          ),
+          IconButton(
+            tooltip: widget.strings.replyAll,
+            icon: const Icon(Icons.reply_all_outlined),
+            onPressed: _blocked || !_canSend
+                ? null
+                : () => _reply(forward: false, replyAll: true),
           ),
           IconButton(
             tooltip: widget.strings.forward,

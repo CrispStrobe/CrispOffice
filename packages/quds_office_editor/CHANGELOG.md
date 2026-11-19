@@ -4,6 +4,19 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Render slide text from current scalar edits when imported rich text is stale,
+  keep painting and caret hit testing aligned for anchored text, and preserve
+  inherited backgrounds and the established 16 pt fallback.
+
+- Add a searchable Zotero tag browser with paginated results, staged filters,
+  exact-name validation and selection across searches. Applying filters retains
+  selected sources and unfinished input, and restarts the submitted reference
+  search; cancellation and stale connections preserve the existing filters.
+- Navigate from a cited source to its distinct citation fields, with cached
+  text and body/note location labels. Preserve source identity aliases and
+  read-only document state, retain source-picker drafts on Back, and reject
+  changed destinations before moving the caret.
+
 - Preserve validated reply-thread identifiers through native Studio composition
   and explicit uncertain-send retries. Emit bounded In-Reply-To/References
   headers, keep forwards independent, and omit unsupported or unsafe IDs.

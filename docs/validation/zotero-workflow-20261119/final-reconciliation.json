@@ -1,0 +1,502 @@
+{
+  "repository": "CrispStrobe/quds_office_suite",
+  "snapshotKind": "Bounded incoming work before final reconciliation",
+  "capturedAt": "2026-11-19",
+  "initialMain": "2170791c9250d72c9df31a065408365f9b50abaa",
+  "mainAtRemoteInventory": "2170791c9250d72c9df31a065408365f9b50abaa",
+  "workingHeadAtRemoteInventory": "94e032f983ebac8351bdf3b44c522af53bf3d302",
+  "branches": [
+    {
+      "name": "codex/crispoffice-layout-theme-20261119",
+      "sha": "cacae8569814e4cb81f58d358734d31431f102be",
+      "ancestorOfCapturedWorkingHead": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "name": "codex/mail-archive-resume-20261119",
+      "sha": "482fbd99dd8d3d5aff7d773fa87454f4d324028d",
+      "ancestorOfCapturedWorkingHead": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "name": "codex/odt-field-continuation-20261117",
+      "sha": "c34945761e7991f5fe49037d79529acdd260b31c",
+      "ancestorOfCapturedWorkingHead": false,
+      "disposition": "included by previously verified complete delta/tree equivalence",
+      "equivalent": "2c47165d01d01cc883135a434ac9f6591ce6e770",
+      "equivalentAncestorOfCapturedWorkingHead": true
+    },
+    {
+      "name": "codex/vba-arrays-foreach-20261119",
+      "sha": "3abffb94dcf33a2766a4579d296d0ef09c9e35cd",
+      "ancestorOfCapturedWorkingHead": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "name": "codex/vba-dynamic-arrays-20261119",
+      "sha": "1580807e1eb99a40d6c8620e93ebd039b9a01132",
+      "ancestorOfCapturedWorkingHead": false,
+      "disposition": "new work captured for reconciliation"
+    },
+    {
+      "name": "codex/zotero-workflow-20261119",
+      "sha": "94e032f983ebac8351bdf3b44c522af53bf3d302",
+      "ancestorOfCapturedWorkingHead": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "name": "docs/ods-color-scale",
+      "sha": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+      "ancestorOfCapturedWorkingHead": false,
+      "disposition": "included by previously verified complete delta/tree equivalence",
+      "equivalent": "1ec0a81bc43dc444872fbffffa36a8affce307a5",
+      "equivalentAncestorOfCapturedWorkingHead": true
+    },
+    {
+      "name": "docs/ods-data-bar",
+      "sha": "69d14f84cabd3931b7640c1654b401c89faba766",
+      "ancestorOfCapturedWorkingHead": false,
+      "disposition": "included by previously verified complete delta/tree equivalence",
+      "equivalent": "38abbbb744d1d5dab1eb9162d584370d661fef24",
+      "equivalentAncestorOfCapturedWorkingHead": true
+    },
+    {
+      "name": "feat/ods-color-scale",
+      "sha": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+      "ancestorOfCapturedWorkingHead": false,
+      "disposition": "included by previously verified complete delta/tree equivalence",
+      "equivalent": "4584d5f319aab198f1d705f48b4d6647e6cbabea",
+      "equivalentAncestorOfCapturedWorkingHead": true
+    },
+    {
+      "name": "feat/ods-data-bar",
+      "sha": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+      "ancestorOfCapturedWorkingHead": false,
+      "disposition": "included by previously verified complete delta/tree equivalence",
+      "equivalent": "b3f41eb4b4bca8ca13676b4114891ea6d9185043",
+      "equivalentAncestorOfCapturedWorkingHead": true
+    },
+    {
+      "name": "feat/ods-dynamic-validation-links",
+      "sha": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+      "ancestorOfCapturedWorkingHead": false,
+      "disposition": "included by previously verified complete delta/tree equivalence",
+      "equivalent": "e87494ada0729878981dc0cc60fdb07bcd5116d4",
+      "equivalentAncestorOfCapturedWorkingHead": true
+    },
+    {
+      "name": "feat/ods-icon-sets",
+      "sha": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
+      "ancestorOfCapturedWorkingHead": false,
+      "disposition": "included by previously verified complete delta/tree equivalence",
+      "equivalent": "c84d5e16024c502f6c451fd04b9807b1e65f20d3",
+      "equivalentAncestorOfCapturedWorkingHead": true
+    },
+    {
+      "name": "feat/ods-time-period-conditions",
+      "sha": "7ef09f2408f467c65427700e65907531ecb26acb",
+      "ancestorOfCapturedWorkingHead": false,
+      "disposition": "included by previously verified complete delta/tree equivalence",
+      "equivalent": "6f40365ae7708172c58e9aee38bc363d99327355",
+      "equivalentAncestorOfCapturedWorkingHead": true
+    },
+    {
+      "name": "integrate/macbook-current-20261118",
+      "sha": "f383c826205e321eda3ed3bdbcd584e9a2d4da14",
+      "ancestorOfCapturedWorkingHead": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "name": "integrate/office-union-148",
+      "sha": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+      "ancestorOfCapturedWorkingHead": false,
+      "disposition": "included by previously verified complete delta/tree equivalence",
+      "equivalent": "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4",
+      "equivalentAncestorOfCapturedWorkingHead": true
+    },
+    {
+      "name": "integrate/recent-pptx",
+      "sha": "a5ae56c8e3e7f950c37ef491b17b5c32fcd0e13d",
+      "ancestorOfCapturedWorkingHead": false,
+      "disposition": "new work captured for reconciliation"
+    },
+    {
+      "name": "main",
+      "sha": "2170791c9250d72c9df31a065408365f9b50abaa",
+      "ancestorOfCapturedWorkingHead": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "name": "work/mail-continuation-20261119",
+      "sha": "275f8a346bf3aef00a736e6441c79244b84994c6",
+      "ancestorOfCapturedWorkingHead": false,
+      "disposition": "new work captured for reconciliation"
+    },
+    {
+      "name": "work/mail-next-20261119",
+      "sha": "ab833975409abfb207f3a6a1a146183a4a5198fd",
+      "ancestorOfCapturedWorkingHead": true,
+      "disposition": "included by ancestry"
+    }
+  ],
+  "pullRequests": {
+    "latestUpdatedPageCount": 100,
+    "maxNumber": 216,
+    "newSince216": [],
+    "explicitOpenCount": 0,
+    "latestUpdate": "2026-11-19T20:51:02Z",
+    "checkedEndpoints": [
+      "https://api.github.com/repos/CrispStrobe/quds_office_suite/branches?per_page=100",
+      "https://api.github.com/repos/CrispStrobe/quds_office_suite/pulls?state=all&sort=updated&direction=desc&per_page=100",
+      "https://api.github.com/repos/CrispStrobe/quds_office_suite/pulls?state=open&per_page=100"
+    ]
+  },
+  "incoming": [
+    {
+      "name": "integrate/recent-pptx",
+      "sha": "a5ae56c8e3e7f950c37ef491b17b5c32fcd0e13d",
+      "priorTip": "5c3f9d7fd4531dfac7c0e49fba1827c39e17caf6",
+      "owner": "runtime_setup",
+      "note": "One PDF text tab-stop inset change; preserve both latest PDF adjustment and regression repairs.",
+      "mergeBase": "5c3f9d7fd4531dfac7c0e49fba1827c39e17caf6",
+      "unintegratedCommits": [
+        {
+          "sha": "a5ae56c8e3e7f950c37ef491b17b5c32fcd0e13d",
+          "authorDate": "2026-11-19T21:59:21+01:00",
+          "subject": "Align DrawingML tab stops with slide text insets"
+        }
+      ],
+      "changedPathsSinceMergeBase": [
+        "M\tpackages/quds_office_engine/lib/src/pdf/office_pdf_export.dart"
+      ],
+      "tree": "4503233f9f5f4545c6d82573665aeb8b6cfbd026"
+    },
+    {
+      "name": "codex/vba-dynamic-arrays-20261119",
+      "sha": "1580807e1eb99a40d6c8620e93ebd039b9a01132",
+      "owner": "zotero_scope",
+      "note": "Two checkpoints: initial reconciliation/roadmap then implementation. Source review found no blocking issue; README explicitly has no executed runtime qualification yet.",
+      "mergeBase": "5c3f9d7fd4531dfac7c0e49fba1827c39e17caf6",
+      "unintegratedCommits": [
+        {
+          "sha": "1580807e1eb99a40d6c8620e93ebd039b9a01132",
+          "authorDate": "2026-11-19T22:05:16+01:00",
+          "subject": "Add bounded VBA dynamic array lifecycle and Option Base [skip ci]"
+        },
+        {
+          "sha": "73319103cef9bc93ae19dc95f844d52cd3830427",
+          "authorDate": "2026-11-19T22:01:34+01:00",
+          "subject": "Reconcile incoming PPTX work and stage VBA parity roadmap [skip ci]"
+        }
+      ],
+      "changedPathsSinceMergeBase": [
+        "A\tdocs/VBA_PARITY_ROADMAP.md",
+        "A\tdocs/validation/office-vba-dynamic-arrays-20261119/README.md",
+        "A\tdocs/validation/office-vba-dynamic-arrays-20261119/initial-reconciliation.json",
+        "M\tpackages/quds_office_engine/CHANGELOG.md",
+        "A\tpackages/quds_office_engine/example/macros/dynamic_array_report.bas",
+        "M\tpackages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+        "M\tpackages/quds_office_engine/test/office_vba_arrays_boundaries_test.dart",
+        "A\tpackages/quds_office_engine/test/office_vba_dynamic_arrays_test.dart",
+        "M\tpackages/quds_office_engine/test/office_vba_language_test.dart"
+      ],
+      "tree": "9fe1ce643b816209c1042bc9eb2a48a48353533d"
+    },
+    {
+      "name": "work/mail-continuation-20261119",
+      "sha": "275f8a346bf3aef00a736e6441c79244b84994c6",
+      "owner": "audit_remote",
+      "note": "Two checkpoints: incoming inventory then To/Cc/Bcc and Reply all. README explicitly says validation in progress; focused local tests required.",
+      "mergeBase": "5c3f9d7fd4531dfac7c0e49fba1827c39e17caf6",
+      "unintegratedCommits": [
+        {
+          "sha": "275f8a346bf3aef00a736e6441c79244b84994c6",
+          "authorDate": "2026-11-19T22:04:06+01:00",
+          "subject": "Add bounded To Cc Bcc composition and Reply all [skip ci]"
+        },
+        {
+          "sha": "0ef43e975e9550848ac2e791d004815e91e2b93c",
+          "authorDate": "2026-11-19T22:02:18+01:00",
+          "subject": "Record incoming reconciliation and mail recipients scope [skip ci]"
+        }
+      ],
+      "changedPathsSinceMergeBase": [
+        "A\tdocs/validation/mail-recipients-20261119/README.md",
+        "A\tdocs/validation/mail-recipients-20261119/remote-inventory.json",
+        "M\tpackages/quds_office_editor/example/lib/studio_mail_compose.dart",
+        "M\tpackages/quds_office_editor/example/lib/studio_mail_ews.dart",
+        "M\tpackages/quds_office_editor/example/lib/studio_mail_native.dart",
+        "A\tpackages/quds_office_editor/example/lib/studio_mail_recipients.dart",
+        "M\tpackages/quds_office_editor/example/lib/studio_mail_reply.dart",
+        "M\tpackages/quds_office_editor/example/lib/studio_mail_strings.dart",
+        "M\tpackages/quds_office_editor/example/lib/studio_mail_submission.dart",
+        "M\tpackages/quds_office_editor/example/test/studio_mail_compose_test.dart",
+        "A\tpackages/quds_office_editor/example/test/studio_mail_recipients_test.dart",
+        "M\tpackages/quds_office_editor/example/test/studio_mail_reply_test.dart"
+      ],
+      "tree": "3b2f720398fc1521f1ac666edaf887f34f5a59d0"
+    }
+  ],
+  "policy": {
+    "ciActionsQueried": false,
+    "ciActionsAwaited": false,
+    "fixedIncomingSet": true,
+    "finalMainLeaseStillRequired": true
+  },
+  "initialAuditFile": "initial-reconciliation.json",
+  "historicalEquivalenceProofs": [
+    {
+      "original": "c34945761e7991f5fe49037d79529acdd260b31c",
+      "equivalent": "2c47165d01d01cc883135a434ac9f6591ce6e770",
+      "method": "exact_complete_delta_path_mode_type_blob_identity",
+      "freshIdentityCheck": true,
+      "equivalentAncestorOfCapturedWorkingHead": true
+    },
+    {
+      "original": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+      "equivalent": "1ec0a81bc43dc444872fbffffa36a8affce307a5",
+      "method": "exact_complete_delta_path_mode_type_blob_identity",
+      "freshIdentityCheck": true,
+      "equivalentAncestorOfCapturedWorkingHead": true
+    },
+    {
+      "original": "69d14f84cabd3931b7640c1654b401c89faba766",
+      "equivalent": "38abbbb744d1d5dab1eb9162d584370d661fef24",
+      "method": "exact_complete_delta_path_mode_type_blob_identity",
+      "freshIdentityCheck": true,
+      "equivalentAncestorOfCapturedWorkingHead": true
+    },
+    {
+      "original": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+      "equivalent": "4584d5f319aab198f1d705f48b4d6647e6cbabea",
+      "method": "exact_complete_delta_path_mode_type_blob_identity",
+      "freshIdentityCheck": true,
+      "equivalentAncestorOfCapturedWorkingHead": true
+    },
+    {
+      "original": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+      "equivalent": "b3f41eb4b4bca8ca13676b4114891ea6d9185043",
+      "method": "exact_complete_delta_path_mode_type_blob_identity",
+      "freshIdentityCheck": true,
+      "equivalentAncestorOfCapturedWorkingHead": true
+    },
+    {
+      "original": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+      "equivalent": "e87494ada0729878981dc0cc60fdb07bcd5116d4",
+      "method": "exact_complete_delta_path_mode_type_blob_identity",
+      "freshIdentityCheck": true,
+      "equivalentAncestorOfCapturedWorkingHead": true
+    },
+    {
+      "original": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
+      "equivalent": "c84d5e16024c502f6c451fd04b9807b1e65f20d3",
+      "method": "exact_complete_delta_path_mode_type_blob_identity",
+      "freshIdentityCheck": true,
+      "equivalentAncestorOfCapturedWorkingHead": true
+    },
+    {
+      "original": "7ef09f2408f467c65427700e65907531ecb26acb",
+      "equivalent": "6f40365ae7708172c58e9aee38bc363d99327355",
+      "method": "exact_complete_delta_path_mode_type_blob_identity",
+      "freshIdentityCheck": true,
+      "equivalentAncestorOfCapturedWorkingHead": true
+    },
+    {
+      "original": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+      "equivalent": "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4",
+      "method": "exact_complete_tree_identity",
+      "freshIdentityCheck": true,
+      "equivalentAncestorOfCapturedWorkingHead": true
+    },
+    {
+      "original": "128a187d69555db80890c2a1945a442b951f9c74",
+      "equivalent": "d790bca444eef0e160a75ce3d8cb555af541004f",
+      "method": "exact_complete_delta_path_mode_type_blob_identity",
+      "freshIdentityCheck": true,
+      "equivalentAncestorOfCapturedWorkingHead": true
+    },
+    {
+      "original": "b8ddaaeb581e010467de304c828764d353149102",
+      "equivalent": "e87494ada0729878981dc0cc60fdb07bcd5116d4",
+      "method": "exact_complete_delta_path_mode_type_blob_identity",
+      "freshIdentityCheck": true,
+      "equivalentAncestorOfCapturedWorkingHead": true
+    },
+    {
+      "original": "a7f144cc983f2df7c16d88f8644ad67a9254c3d0",
+      "equivalent": "c08fdc703acd986850ce6d1c079a0576fd438046",
+      "method": "exact_complete_delta_path_mode_type_blob_identity",
+      "freshIdentityCheck": true,
+      "equivalentAncestorOfCapturedWorkingHead": true
+    },
+    {
+      "original": "cee6e2632f891a3fe21c5c02d6bf508805973051",
+      "equivalent": "bb5556e8cc4cb73e2c668b5319a2844a20c6c50c",
+      "method": "exact_complete_tree_identity",
+      "freshIdentityCheck": true,
+      "equivalentAncestorOfCapturedWorkingHead": true
+    },
+    {
+      "original": "da9c956ec5d65c0e5a9f9ea84c2b0bca98e824a0",
+      "equivalent": "23f3b4204fce45d38a103e3159bdc7f1e8d37c4e",
+      "method": "exact_complete_tree_identity",
+      "freshIdentityCheck": true,
+      "equivalentAncestorOfCapturedWorkingHead": true
+    }
+  ],
+  "initialPrHeadCoverage": {
+    "total": 216,
+    "ancestor": 202,
+    "historicalEquivalent": 14
+  },
+  "upstreamRefAudit": [
+    {
+      "ref": "ci/flutter-workspace",
+      "sha": "aca2f66941832bd0b19b436baeab1656a1b7de98",
+      "isAncestor": true
+    },
+    {
+      "ref": "cursor/class-certificates-2db8",
+      "sha": "f45099688e7a3f67a1302efdb442830d052f2240",
+      "isAncestor": true
+    },
+    {
+      "ref": "cursor/cloud-agent-1790580069020-0rk1h",
+      "sha": "9930be8df44ffe117fb22778c514eea0ee73ce21",
+      "isAncestor": true
+    },
+    {
+      "ref": "main",
+      "sha": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+      "isAncestor": true
+    },
+    {
+      "ref": "pull/1",
+      "sha": "48c5156f459597ce3f8ec486b3c9a20fc5543807",
+      "isAncestor": true
+    }
+  ],
+  "snapshotWrittenAt": "2026-11-19T21:10:16.919946+00:00",
+  "integrationResult": {
+    "qualifiedProductSource": "780422316b4e37989e01ac871dd2956fbd2c8908",
+    "branchResults": [
+      {
+        "name": "codex/crispoffice-layout-theme-20261119",
+        "capturedHead": "cacae8569814e4cb81f58d358734d31431f102be",
+        "checkedAncestor": "cacae8569814e4cb81f58d358734d31431f102be",
+        "included": true
+      },
+      {
+        "name": "codex/mail-archive-resume-20261119",
+        "capturedHead": "482fbd99dd8d3d5aff7d773fa87454f4d324028d",
+        "checkedAncestor": "482fbd99dd8d3d5aff7d773fa87454f4d324028d",
+        "included": true
+      },
+      {
+        "name": "codex/odt-field-continuation-20261117",
+        "capturedHead": "c34945761e7991f5fe49037d79529acdd260b31c",
+        "checkedAncestor": "2c47165d01d01cc883135a434ac9f6591ce6e770",
+        "included": true
+      },
+      {
+        "name": "codex/vba-arrays-foreach-20261119",
+        "capturedHead": "3abffb94dcf33a2766a4579d296d0ef09c9e35cd",
+        "checkedAncestor": "3abffb94dcf33a2766a4579d296d0ef09c9e35cd",
+        "included": true
+      },
+      {
+        "name": "codex/vba-dynamic-arrays-20261119",
+        "capturedHead": "1580807e1eb99a40d6c8620e93ebd039b9a01132",
+        "checkedAncestor": "1580807e1eb99a40d6c8620e93ebd039b9a01132",
+        "included": true
+      },
+      {
+        "name": "codex/zotero-workflow-20261119",
+        "capturedHead": "94e032f983ebac8351bdf3b44c522af53bf3d302",
+        "checkedAncestor": "94e032f983ebac8351bdf3b44c522af53bf3d302",
+        "included": true
+      },
+      {
+        "name": "docs/ods-color-scale",
+        "capturedHead": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+        "checkedAncestor": "1ec0a81bc43dc444872fbffffa36a8affce307a5",
+        "included": true
+      },
+      {
+        "name": "docs/ods-data-bar",
+        "capturedHead": "69d14f84cabd3931b7640c1654b401c89faba766",
+        "checkedAncestor": "38abbbb744d1d5dab1eb9162d584370d661fef24",
+        "included": true
+      },
+      {
+        "name": "feat/ods-color-scale",
+        "capturedHead": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+        "checkedAncestor": "4584d5f319aab198f1d705f48b4d6647e6cbabea",
+        "included": true
+      },
+      {
+        "name": "feat/ods-data-bar",
+        "capturedHead": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+        "checkedAncestor": "b3f41eb4b4bca8ca13676b4114891ea6d9185043",
+        "included": true
+      },
+      {
+        "name": "feat/ods-dynamic-validation-links",
+        "capturedHead": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+        "checkedAncestor": "e87494ada0729878981dc0cc60fdb07bcd5116d4",
+        "included": true
+      },
+      {
+        "name": "feat/ods-icon-sets",
+        "capturedHead": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
+        "checkedAncestor": "c84d5e16024c502f6c451fd04b9807b1e65f20d3",
+        "included": true
+      },
+      {
+        "name": "feat/ods-time-period-conditions",
+        "capturedHead": "7ef09f2408f467c65427700e65907531ecb26acb",
+        "checkedAncestor": "6f40365ae7708172c58e9aee38bc363d99327355",
+        "included": true
+      },
+      {
+        "name": "integrate/macbook-current-20261118",
+        "capturedHead": "f383c826205e321eda3ed3bdbcd584e9a2d4da14",
+        "checkedAncestor": "f383c826205e321eda3ed3bdbcd584e9a2d4da14",
+        "included": true
+      },
+      {
+        "name": "integrate/office-union-148",
+        "capturedHead": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+        "checkedAncestor": "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4",
+        "included": true
+      },
+      {
+        "name": "integrate/recent-pptx",
+        "capturedHead": "a5ae56c8e3e7f950c37ef491b17b5c32fcd0e13d",
+        "checkedAncestor": "a5ae56c8e3e7f950c37ef491b17b5c32fcd0e13d",
+        "included": true
+      },
+      {
+        "name": "main",
+        "capturedHead": "2170791c9250d72c9df31a065408365f9b50abaa",
+        "checkedAncestor": "2170791c9250d72c9df31a065408365f9b50abaa",
+        "included": true
+      },
+      {
+        "name": "work/mail-continuation-20261119",
+        "capturedHead": "275f8a346bf3aef00a736e6441c79244b84994c6",
+        "checkedAncestor": "275f8a346bf3aef00a736e6441c79244b84994c6",
+        "included": true
+      },
+      {
+        "name": "work/mail-next-20261119",
+        "capturedHead": "ab833975409abfb207f3a6a1a146183a4a5198fd",
+        "checkedAncestor": "ab833975409abfb207f3a6a1a146183a4a5198fd",
+        "included": true
+      }
+    ],
+    "capturedBranches": 19,
+    "unaccountedBranches": 0,
+    "newIncomingHeadsPreservedByAncestry": true
+  }
+}
