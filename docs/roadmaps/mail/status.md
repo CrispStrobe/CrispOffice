@@ -150,8 +150,8 @@ persistence remain separate gates.
 The [discovery source report](../../validation/mail-uid-pagination-20261119/README.md)
 records the incoming discovery/range implementation. The
 [complete synchronization report](../../validation/office-main-sync-20261119/README.md)
-adds the completed-sweep cursor freshness fix and fresh combined local
-qualification. Earlier counts below retain their original source identities
+adds the completed-sweep cursor freshness fix and records 1,372 application
+executions plus 90 separate Python controls at `0669ac11`. Earlier counts below retain their original source identities
 and are not evidence for this increment.
 
 

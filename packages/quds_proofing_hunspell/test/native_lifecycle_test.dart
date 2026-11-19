@@ -11,7 +11,6 @@ import 'package:quds_proofing_hunspell/src/hunspell_transport.dart';
 import 'package:quds_proofing_hunspell/src/hunspell_transport_native.dart';
 import 'package:test/test.dart';
 
-const _dictionary = HunspellDictionaryFiles(affPath: 'aff', dicPath: 'dic');
 
 void main() {
   final libraryPath = Platform.environment['QUDS_HUNSPELL_LIFECYCLE_LIBRARY'];
@@ -27,6 +26,19 @@ void main() {
   }
   final fixture = _Fixture(DynamicLibrary.open(libraryPath));
   late HunspellTransport transport;
+  late Directory files;
+  late HunspellDictionaryFiles dictionary;
+  setUpAll(() {
+    files = Directory.systemTemp.createTempSync('hunspell-owned-fixture-');
+    File('${files.path}/fixture.aff').writeAsStringSync('SET UTF-8\n');
+    File('${files.path}/fixture.dic').writeAsStringSync('1\nword\n');
+    File('${files.path}/reject-open.aff').writeAsStringSync('SET UTF-8\n');
+    dictionary = HunspellDictionaryFiles(
+      affPath: '${files.path}/fixture.aff',
+      dicPath: '${files.path}/fixture.dic',
+    );
+  });
+  tearDownAll(() => files.deleteSync(recursive: true));
 
   setUp(() {
     expect(
@@ -42,7 +54,7 @@ void main() {
   });
 
   test('dispose closes the native handle before completing', () async {
-    await transport.open(_dictionary);
+    await transport.open(dictionary);
     expect(fixture.counter(2), 1);
     await transport.dispose();
     expect(fixture.counter(1), 1);
@@ -51,7 +63,7 @@ void main() {
   });
 
   test('concurrent and repeated disposal closes exactly once', () async {
-    await transport.open(_dictionary);
+    await transport.open(dictionary);
     await Future.wait([transport.dispose(), transport.dispose()]);
     await transport.dispose();
     expect(fixture.counter(1), 1);
@@ -64,8 +76,8 @@ void main() {
   });
 
   test('reopening closes each owned handle exactly once', () async {
-    await transport.open(_dictionary);
-    await transport.open(_dictionary);
+    await transport.open(dictionary);
+    await transport.open(dictionary);
     expect(fixture.counter(0), 2);
     expect(fixture.counter(1), 1);
     expect(fixture.counter(2), 1);
@@ -76,10 +88,10 @@ void main() {
   });
 
   test('failed reopen does not retain or reuse the freed handle', () async {
-    await transport.open(_dictionary);
+    await transport.open(dictionary);
     fixture.failAllocations(1);
     await expectLater(
-      transport.open(_dictionary),
+      transport.open(dictionary),
       throwsA(isA<HunspellUnavailableException>()),
     );
     expect(fixture.counter(1), 1);
@@ -87,7 +99,7 @@ void main() {
     final response = jsonDecode(await transport.check(['word'], [false]));
     expect((response as Map<String, Object?>)['status'], 'unavailable');
     expect(fixture.counter(3), 0);
-    await transport.open(_dictionary);
+    await transport.open(dictionary);
     await transport.dispose();
     expect(fixture.counter(1), 2);
     expect(fixture.counter(4), 0);
@@ -96,7 +108,7 @@ void main() {
   test(
     'dispose rejects pending work then closes after its native call',
     () async {
-      await transport.open(_dictionary);
+      await transport.open(dictionary);
       fixture.block(1);
       final pending = expectLater(
         transport.check(['word'], [false]),
@@ -132,7 +144,7 @@ void main() {
 
   test('dispose during startup prevents a late dictionary open', () async {
     final opening = expectLater(
-      transport.open(_dictionary),
+      transport.open(dictionary),
       throwsA(isA<HunspellUnavailableException>()),
     );
     await transport.dispose();
@@ -145,7 +157,7 @@ void main() {
   test('disposing an unused transport never opens a handle', () async {
     await transport.dispose();
     await expectLater(
-      transport.open(_dictionary),
+      transport.open(dictionary),
       throwsA(isA<HunspellUnavailableException>()),
     );
     expect(fixture.counter(0), 0);
@@ -154,7 +166,10 @@ void main() {
   test('native open rejection has no handle to close', () async {
     await expectLater(
       transport.open(
-        const HunspellDictionaryFiles(affPath: 'missing', dicPath: 'dic'),
+        HunspellDictionaryFiles(
+          affPath: '${files.path}/reject-open.aff',
+          dicPath: dictionary.dicPath,
+        ),
       ),
       throwsA(isA<HunspellUnavailableException>()),
     );

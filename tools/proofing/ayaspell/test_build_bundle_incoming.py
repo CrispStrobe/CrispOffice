@@ -155,8 +155,8 @@ class BundleBuilderTest(unittest.TestCase):
         self.assertEqual(self.create_calls, [])
         self.assertEqual(self.upload_calls, [])
         card = (self.output / "README.md").read_text(encoding="utf-8")
-        self.assertIn("optional Hunspell adapter", card)
-        self.assertIn("download interface remain separate work", card)
+        self.assertIn("optional dictionary download workflow in Studio", " ".join(card.split()))
+        self.assertIn("Nothing is downloaded by default", " ".join(card.split()))
 
 
 if __name__ == "__main__":

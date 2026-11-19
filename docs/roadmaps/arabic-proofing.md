@@ -49,8 +49,8 @@ below. No Arabic resource is downloaded by default.
    adds the MPL 1.1 text, a manifest and a card, and can publish the bundle to
    Hugging Face. Publishing includes only the manifest-listed files and
    `manifest.json`; unrelated files in a reused output directory are excluded.
-   The Hunspell adapter package is implemented (step 2); host registration and
-   the in-app Arabic download workflow remain open.
+   The Hunspell adapter package and Studio dictionary workflow are implemented
+   (step 2); packaging and installed-platform acceptance remain target-specific.
    The upstream GitHub copy (`linuxscout/ayaspell`
    `36a90abb`) is not used: its `.dic` contains file-concatenation separators
    and its `.aff` differs, and Hunspell 1.7.2 rejects common forms such as
@@ -73,7 +73,7 @@ below. No Arabic resource is downloaded by default.
    file hashed in `licenses/manifest.json`, exact sources shipped as
    `licenses/hunspell-1.7.2-library-sources.tar.gz`); native isolate transport
    and bundled WebAssembly worker; pinned installer with atomic publish and
-   removal. Evidence: identical flagged multiset to the Hunspell CLI on UD
+   removal. Incoming implementation evidence reports an identical flagged multiset to the Hunspell CLI on UD
    Arabic-PUD (795 of 15,676 words) for both native and Wasm; 18 Dart tests
    with the real library and dictionary; iOS/Android arm64 compile and link.
    **Host wiring (19 November 2026, branch `feat/arabic-host-wiring-20261119`):**
@@ -113,7 +113,7 @@ below. No Arabic resource is downloaded by default.
      `flutter build apk --release --target-platform android-arm64` packages it
      as `lib/arm64-v8a/libquds_proofing_hunspell.so` (1.6 MB, stripped) in a
      69.8 MB release APK. Not yet run on a device.
-   - Open: Linux/Windows builds, iOS packaging (the example has no iOS
+   - Open: installed Linux/Windows application builds, iOS packaging (the example has no iOS
      runner), running on real devices, persisting the web download across
      sessions, signing with a release identity.
 3. **Arabic writing rules (first set implemented, 19 November 2026).**
@@ -125,13 +125,13 @@ below. No Arabic resource is downloaded by default.
    proofing service and the Studio example. Eleven rule ids:
    - spelling: hamzat al-qat' on a closed list, with several suggestions
      where the form depends on syntax (`ان` → `أن`/`إن`);
-   - spelling: ta marbuta, only for definite forms of 43 listed stems (after
+   - spelling: ta marbuta, only for definite forms of 44 listed stems (after
      the article a final ه cannot be the possessive pronoun);
    - spelling: alif maqsura on 6 listed words;
    - spelling: detached conjunction waw (`و هو` → `وهو`);
    - style: final ya written as ى (`فى` → `في`), a regional convention;
-   - style: Latin `, ; ?` after Arabic script, a space before or a missing
-     space after `، ؛ ؟`;
+   - style: Latin `, ; ?` after Arabic script, a space before `، ؛ ؟`, or a
+     missing space after `، ؛`;
    - style: tatweel;
    - style: immediate repetition of 26 closed-class words;
    - style: numbers that mix Western and Arabic-Indic digits.
@@ -236,11 +236,18 @@ below. No Arabic resource is downloaded by default.
    Tests: 195 new engine tests (81 positive cases, 68 default and 16 opt-in
    zero-finding controls, 21 "off by default" checks, plus RTL offset tests
    with an emoji and harakat, a phrase found on the harakat-free text, an
-   Arabic-Indic date, protected spans, ignore and opt-in filtering). The 69
-   step-3 tests are unchanged; the engine proofing suite passes 1,384 tests
-   (1,189 before) and the two editor integration tests pass.
+   Arabic-Indic date, protected spans, ignore and opt-in filtering). The incoming
+   T1 checkpoint reported 1,384 engine proofing tests
+   (1,189 before) and two editor integration tests passing. These are historical
+   incoming results, separate from this reconciliation. The merged step-3
+   file retains all 82 tests from both continuations; the final source-bound
+   gate reports their acceptance together with the extension.
 
-   **False-positive check on UD Arabic-PUD** (r2.14 test, 1,000 `# text =`
+   This reconciliation adds 11 controls for phrase/date checks inside mixed-script
+   identifiers and for combining hamza at phrase-token boundaries. The extension
+   file now contains 206 cases; all 195 incoming T1 cases remain.
+
+   **Incoming T1 false-positive check on UD Arabic-PUD** (r2.14 test, 1,000 `# text =`
    news sentences, CC BY-SA, evaluation only, not committed), every rule
    enabled:
    - **default-on extension: 1 finding in total** —

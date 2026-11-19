@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:typed_data';
 
@@ -195,7 +196,42 @@ void main() {
       final disposed = await provider.check(_request('الى'));
       expect(disposed.status, OfficeProofingStatus.unavailable);
     });
+
+    test('concurrent disposal waits for transport cleanup', () async {
+      final transport = _DelayedCloseTransport();
+      final provider = HunspellProofingProvider(
+        bundle: ayaspellArabic,
+        dictionary: const HunspellDictionaryFiles(affPath: 'a', dicPath: 'd'),
+        transport: transport,
+      );
+      final first = provider.dispose();
+      var secondCompleted = false;
+      final second = provider.dispose().then((_) => secondCompleted = true);
+      await Future<void>.delayed(Duration.zero);
+      expect(secondCompleted, isFalse);
+      expect(transport.closeCalls, 1);
+      transport.closed.complete();
+      await Future.wait([first, second]);
+      expect(secondCompleted, isTrue);
+      await provider.dispose();
+      expect(transport.closeCalls, 1);
+    });
   });
+}
+
+final class _DelayedCloseTransport implements HunspellTransport {
+  final closed = Completer<void>();
+  int closeCalls = 0;
+  @override
+  Future<void> open(HunspellDictionary dictionary) async {}
+  @override
+  Future<String> check(List<String> words, List<bool> suggest) async =>
+      '{"status":"success","results":[]}';
+  @override
+  Future<void> dispose() {
+    closeCalls++;
+    return closed.future;
+  }
 }
 
 final class _BrokenTransport implements HunspellTransport {

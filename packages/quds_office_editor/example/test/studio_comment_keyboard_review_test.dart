@@ -77,7 +77,7 @@ Future<WordEditorController> _studio(WidgetTester tester) async {
   addTearDown(() => tester.binding.setSurfaceSize(null));
   await tester.pumpWidget(const QudsOfficeStudioApp());
   await _pump(tester);
-  await tester.tap(find.byTooltip('English'));
+  await tester.tap(find.byTooltip('اللغة'));
   await _pump(tester);
   final controller = _editor(tester).controller;
   controller.proofing.enabled = false;

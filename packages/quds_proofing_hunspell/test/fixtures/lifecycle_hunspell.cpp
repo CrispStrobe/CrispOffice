@@ -38,7 +38,7 @@ EXPORT void* quds_hunspell_alloc(std::size_t size) {
 }
 EXPORT void quds_hunspell_free(void* pointer) { std::free(pointer); }
 EXPORT void* quds_hunspell_open(const char* aff, const char*) {
-    if (std::strcmp(aff, "missing") == 0) return nullptr;
+    if (std::strstr(aff, "reject-open.aff") != nullptr) return nullptr;
     std::lock_guard<std::mutex> lock(mutex);
     auto* handle = new Handle();
     handles.insert(handle);

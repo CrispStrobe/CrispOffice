@@ -271,6 +271,50 @@ void main() {
     expect(seen, ArabicWritingRulesProvider.ruleIds);
   });
 
+  // These marks form letters; erasing them can invent a missing-hamza error
+  // and then preserve the original mark alongside a second, precomposed hamza.
+  for (final (String mark, String text) in <(String, String)>[
+    ('U+0653 madda', 'ا\u0653نا'),
+    ('U+0654 hamza above', 'ا\u0654ن'),
+    ('U+0655 hamza below', 'ا\u0655لى'),
+  ]) {
+    test('lexical matching preserves $mark', () async {
+      final List<OfficeProofingFinding> findings = await check(text);
+      expect(
+        findings.map((f) => '${f.ruleId}:${f.replacements}').toList(),
+        isEmpty,
+      );
+    });
+  }
+
+  test(
+    'decomposed letters preserve adjacent correction UTF-16 offsets',
+    () async {
+      const String text = '😀 ا\u0655لى، الَى';
+      final List<OfficeProofingFinding> findings = await check(
+        text,
+        startOffset: 100,
+      );
+      expect(findings, hasLength(1));
+      final OfficeProofingFinding finding = findings.single;
+      expect(finding.ruleId, 'ar.hamza.initial');
+      expect(finding.originalText, 'الَى');
+      expect(finding.start, 100 + text.indexOf('الَى'));
+      expect(finding.end, 100 + text.length);
+      expect(finding.replacements, <String>['إلَى']);
+    },
+  );
+
+  test('semantic combining marks still allow punctuation checks', () async {
+    final List<OfficeProofingFinding> findings = await check(
+      'جاء النبا\u0654?',
+    );
+    expect(findings, hasLength(1));
+    expect(findings.single.ruleId, 'ar.punctuation.arabic-mark');
+    expect(findings.single.originalText, '?');
+    expect(findings.single.replacements, <String>['؟']);
+  });
+
   test('disposed provider is unavailable', () async {
     final ArabicWritingRulesProvider provider = ArabicWritingRulesProvider();
     await provider.dispose();

@@ -1,0 +1,158 @@
+{
+  "started_at_utc": "2026-11-19T08:09:15.519113+00:00",
+  "source_commit": "e41679f85c511bc8cf42447d3d1af0931884dee2",
+  "source_tree": "9cdc66213dc329265057a8511357ce53f4583604",
+  "source_base": "5ec15bdd4c5016b320f0fe8edff36b1da69fa44f",
+  "plan": "docs/validation/office-main-integration-20261119/arabic-final/node-plan.json",
+  "plan_sha256": "24b6b1aeabdb222f5a2cfb6cfdc7801a0ff4a7db94cf2cc0fa87956c7eddef60",
+  "source_input_count": 5035,
+  "materialized_source_inputs": 5035,
+  "sparse_source_omissions": [],
+  "runtime_input_count": 11160,
+  "runtime": {
+    "frameworkVersion": "3.47.8",
+    "channel": "stable",
+    "repositoryUrl": "https://github.com/flutter/flutter.git",
+    "frameworkRevision": "737ba8f885dc774b53b442759999a312c9461e4e",
+    "frameworkCommitDate": "2026-10-22 21:37:31 -0700",
+    "engineRevision": "cf636b1dfb818dd6a3ff16e390e93b1a036969c8",
+    "engineCommitDate": "2026-10-23 02:13:38.000Z",
+    "engineContentHash": "dfd2e6cb7d319db05e3bf1503f3e2ac60f6288a2",
+    "engineBuildDate": "2026-10-22 20:34:48.330",
+    "dartSdkVersion": "3.13.7",
+    "devToolsVersion": "2.60.0",
+    "flutterVersion": "3.47.8",
+    "flutterRoot": "/workspace/scratch/a7846890f2e1/runtime-recovery/toolchains/flutter"
+  },
+  "workspace_lock_sha256": "35d1ef372908f4ab278973355ec6a957cd3240bea115d615056c5b9e398df974",
+  "runtime_receipt_sha256": "0da554a2520d2527bc83bd29ba6ca8d33199f3ef3f448d682816397a3db0dc75",
+  "test_launcher": "/workspace/scratch/a7846890f2e1/runtime-recovery/toolchains/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+  "package_config": "/workspace/scratch/a7846890f2e1/quds_office_suite/.dart_tool/package_config.json",
+  "additional_runtime_inputs": {
+    "/workspace/scratch/a7846890f2e1/quds_office_suite/.dart_tool/native_assets.yaml": "58640f5df92e0506f834eaa277e74620f06c6b695fce080ed5203fef3758a0ad",
+    "/workspace/scratch/a7846890f2e1/quds_office_suite/.dart_tool/lib/libsqlite3.so": "0a65852703763619a7a34633b4959b3b86c4103804a4dfe4e8b27b5de1c0647b",
+    "/workspace/scratch/a7846890f2e1/quds_office_suite/.dart_tool/hooks_runner/shared/sqlite3/build/download-0a658527/libsqlite3.so": "0a65852703763619a7a34633b4959b3b86c4103804a4dfe4e8b27b5de1c0647b",
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node": "acbe4b8d9153b841ed0697cbfc4f93e767386620edb745ab9358306c0a6f31aa"
+  },
+  "whitespace_preserved_inputs": [],
+  "planned_groups": [
+    {
+      "name": "arabic-writing-node",
+      "cwd": "packages/quds_office_engine",
+      "runner": "dart",
+      "platform": "node",
+      "tests": [
+        "test/proofing/arabic_writing_rules_test.dart"
+      ]
+    }
+  ],
+  "analysis_files": [],
+  "formatted_files": [],
+  "tracked_worktree_clean_before": true,
+  "runs": [
+    {
+      "name": "arabic-writing-node",
+      "command": [
+        "/workspace/scratch/a7846890f2e1/runtime-recovery/toolchains/bin/dart",
+        "--disable-dart-dev",
+        "--packages=/workspace/scratch/a7846890f2e1/quds_office_suite/.dart_tool/package_config.json",
+        "/workspace/scratch/a7846890f2e1/runtime-recovery/toolchains/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+        "--platform=node",
+        "--concurrency=1",
+        "--reporter=json",
+        "test/proofing/arabic_writing_rules_test.dart"
+      ],
+      "cwd": "packages/quds_office_engine",
+      "exit_code": 0,
+      "elapsed_seconds": 21.955,
+      "log": "checks/arabic-writing-node.jsonl",
+      "log_sha256": "4ca32b7445a347720972155dca0eb499a0f4bd60d70827efa4f7d2519259512d",
+      "cases_file": "checks/arabic-writing-node-cases.json",
+      "cases_sha256": "0f6d02943409dbf18192ebad2d8c2f167045d1be9305b3fbc5ec2fb9dbcc116a",
+      "errors_file": "checks/arabic-writing-node-errors.json",
+      "errors_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "passed": 74,
+      "failed": 0,
+      "skipped": 0,
+      "per_suite": {
+        "/workspace/scratch/a7846890f2e1/quds_office_suite/packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart": {
+          "passed": 74,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      "excluded_events": {
+        "hidden": 1
+      },
+      "reporter_success": true,
+      "runner_start_events": 1,
+      "terminal_events": 1,
+      "missing_requested_suites": [],
+      "unexpected_suites": [],
+      "empty_requested_suites": [],
+      "unfinished_reporter_events": [],
+      "reporter_error_count": 0,
+      "protocol_anomalies": [],
+      "strict_event_accounting": {
+        "passed": 74,
+        "skipped": 0,
+        "failed": 0,
+        "errors": 0,
+        "all_failed": 0,
+        "all_skipped": 0,
+        "excluded_failed": 0,
+        "excluded_skipped": 0,
+        "terminal_success": true,
+        "start_events": 1,
+        "terminal_events": 1,
+        "incomplete": 0,
+        "protocol_errors": 0,
+        "protocol_issues": [],
+        "valid": true
+      },
+      "accepted": true,
+      "compressed_log": "checks/arabic-writing-node.jsonl.gz",
+      "compressed_log_sha256": "6efe7b780c74590e3046bbc8c6472e7d3643a875c7459f6df002853cb651703e"
+    },
+    {
+      "name": "whitespace",
+      "command": [
+        "git",
+        "diff",
+        "--check",
+        "5ec15bdd4c5016b320f0fe8edff36b1da69fa44f",
+        "e41679f85c511bc8cf42447d3d1af0931884dee2",
+        "--",
+        "."
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "elapsed_seconds": 0.016,
+      "log": "checks/whitespace.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "accepted": true,
+      "compressed_log": "checks/whitespace.log.gz",
+      "compressed_log_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    }
+  ],
+  "github_actions_queried_or_awaited": false,
+  "source_unchanged": true,
+  "environment_unchanged": true,
+  "source_mismatches": [],
+  "environment_mismatches": [],
+  "source_head_unchanged": true,
+  "source_index_unchanged": true,
+  "tracked_worktree_clean_after": true,
+  "unexpected_native_mappings_after": [],
+  "passed": 74,
+  "failed": 0,
+  "skipped": 0,
+  "finished_at_utc": "2026-11-19T08:09:39.181359+00:00",
+  "manifest_sha256": {
+    "source-before.json": "840e7ff4f4e7f2555b1eeeda59ae1c92105ef7b3d9e9b7af7505e82abe7af084",
+    "source-after.json": "840e7ff4f4e7f2555b1eeeda59ae1c92105ef7b3d9e9b7af7505e82abe7af084",
+    "environment-before.json": "f17cb9ec9dbcd1555639db44dca57110a0dc30c00be431a04fc85f3e67dae627",
+    "environment-after.json": "f17cb9ec9dbcd1555639db44dca57110a0dc30c00be431a04fc85f3e67dae627"
+  },
+  "success": true
+}

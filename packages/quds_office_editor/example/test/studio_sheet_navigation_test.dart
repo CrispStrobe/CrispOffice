@@ -77,7 +77,7 @@ Future<SheetEditorController> _studio(WidgetTester tester) async {
   addTearDown(() => tester.binding.setSurfaceSize(null));
   await tester.pumpWidget(const QudsOfficeStudioApp());
   await tester.pump();
-  await tester.tap(find.byTooltip('English'));
+  await tester.tap(find.byTooltip('اللغة'));
   await tester.pump();
   await tester.tap(find.text('Spreadsheets').first);
   await tester.pump();

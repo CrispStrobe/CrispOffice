@@ -1,18 +1,21 @@
 # Office integration for remote main — 19 November 2026
 
-> Captured concurrent continuation at `84aa6f96`; its pending state below is
-> preserved. The [UID discovery continuation](../mail-uid-pagination-20261119/README.md)
-> reconciles this source with the cursor-freshness and Hunspell additions and
-> records its own combined local qualification. Earlier execution counts remain
-> attached to the source named in the preserved report.
+The [UID, Hunspell and Arabic qualification](latest-final/README.md) is complete
+at **`29dd23a6edd0a0fbb916b3d9f73861a8aa4f435e`**: **784 passing executions /
+600 distinct scenarios / 37 distinct suites**, 34 strict static targets,
+42 runner controls and 17 separate publisher controls. Independent raw-event,
+source and runtime verification passed. Its source and evidence are saved
+incrementally.
 
-The latest main merge `f7117a49` adds Arabic writing rules and editor integration.
-The combined source is being frozen for fresh expanded local qualification.
-The [previous complete report](pre-arabic-report.md) preserves the prior
-632-execution application qualification, separate seven-control Arabic bundle
-checks, reconciliation and all release boundaries.
+At the final merge guard, main had advanced to `be641457`, adding Arabic host
+wiring/download UI, additional Arabic rules and CrispOffice defaults/branding.
+PR #179 had been merged at the earlier `5ec15bdd` checkpoint by another session.
+Those later changes are being reviewed separately before the follow-up merge;
+they are not relabeled as execution on `29dd23a6`.
 
-See the [current merge scope](arabic-final/merge-review.md). This source checkpoint
-does not represent pending results as passes. Code and evidence continue to be
-saved incrementally to the remote integration branch. GitHub Actions are not
+The [expanded Arabic and Mail qualification](arabic-final/README.md) retains
+1,286 executions / 1,142 distinct cases / 80 suites at `e41679f8`.
+The [prior report](pre-arabic-report.md) retains the earlier 632-execution
+qualification at `ac1e4c8c`. All original logs, case identities, source bindings
+and acceptance boundaries remain separately attributed. No GitHub Actions are
 queried, dispatched or awaited.

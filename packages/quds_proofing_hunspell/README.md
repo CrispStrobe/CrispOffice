@@ -1,7 +1,10 @@
 # Optional local Hunspell spelling
 
-This package adds Hunspell spelling to Quds Office for languages whose
-dictionary the **user downloads from inside the app**. The first dictionary is
+This package provides optional Hunspell spelling infrastructure for Quds hosts.
+The Studio example offers an explicit dictionary download workflow and registers
+the provider after installation. Each host target must package compatible engine
+assets and complete its platform acceptance. A host must offer an explicit user
+choice before downloading dictionary data. The first dictionary is
 Arabic: the AyaSpell bundle published unmodified at
 [`cstr/ayaspell-ar-hunspell`](https://huggingface.co/cstr/ayaspell-ar-hunspell/tree/e9ace7cca3844bef906d8d9fc5431c4e15bd2740)
 (immutable revision `e9ace7cc…`). Nothing is downloaded or enabled by default.
@@ -146,4 +149,15 @@ QUDS_HUNSPELL_TEST_DICTIONARY=/path/to/verified/bundle \
 QUDS_HUNSPELL_LIVE_DOWNLOAD=1 dart test
 dart run tool/corpus_check.dart <library> <bundle dir> corpus.txt cli-flagged.txt
 node tool/web_smoke.mjs build/web <bundle dir> corpus.txt cli-flagged.txt
+```
+
+The separate native lifecycle suite uses a compiled C ABI allocation-counter
+fixture. It checks actual handle closure, concurrent disposal, startup and
+timeout cleanup without treating the fixture as a spelling engine. On Linux:
+
+```sh
+c++ -std=c++14 -fPIC -fvisibility=hidden -shared -O2 -pthread \
+  test/support/hunspell_lifecycle_shim.cpp -o /tmp/libhunspell_lifecycle_shim.so
+QUDS_HUNSPELL_LIFECYCLE_LIBRARY=/tmp/libhunspell_lifecycle_shim.so \
+  dart test test/hunspell_native_lifecycle_test.dart
 ```

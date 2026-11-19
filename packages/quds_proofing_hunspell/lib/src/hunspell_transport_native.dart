@@ -110,7 +110,9 @@ final class _NativeTransport implements HunspellTransport {
   }
 
   void _terminate() {
-    _isolate?.kill(priority: Isolate.immediate);
+    // Let an active FFI call return and attach its native owner before exit.
+    // Immediate termination between open() and attachment can lose a handle.
+    _isolate?.kill(priority: Isolate.beforeNextEvent);
     _isolate = null;
     _workerPort = null;
     _messages?.close();
@@ -396,8 +398,12 @@ final class _Bindings {
     }
   }
 
-  Pointer<Void> open(String aff, String dic) =>
-      _withString(aff, (a) => _withString(dic, (d) => _open(a, d)));
+  Pointer<Void> open(String aff, String dic) {
+    // An existing affix file without its dictionary can create an empty engine.
+    // Admit neither missing input as a usable spelling backend.
+    if (!File(aff).existsSync() || !File(dic).existsSync()) return nullptr;
+    return _withString(aff, (a) => _withString(dic, (d) => _open(a, d)));
+  }
 
   int spell(Pointer<Void> handle, String word) =>
       _withString(word, (w) => _spell(handle, w));

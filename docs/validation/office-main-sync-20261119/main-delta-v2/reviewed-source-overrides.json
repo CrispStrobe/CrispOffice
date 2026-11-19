@@ -1,0 +1,93 @@
+{
+  "prior_qualified_source": "0669ac119da05f5eb777c8cfdbce32e0261df647",
+  "incoming_main_source": "b559f6c764fbfac143f593e89ddc1096ad8b5c4e",
+  "paths": [
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail.dart",
+      "after_sha256": "f1dae49946a6ebeef254dcf51a059b1f76c668d0812ccbdf85ca2418aed56e36",
+      "reason": "Prevent setState after either picker or file-read completion when the Mail dialog is already disposed.",
+      "incoming_sha256": "15d140b251f4255d2bdf7ef02fb745917410fa58cbbcc7611a6f280758f704c9"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart",
+      "after_sha256": "bb3d13e089ea5186b3fd1774c0f2daee66e64c7f37358c2b97742d18a16ad139",
+      "reason": "Preserve every existing behavior assertion while updating selectors to the intended localized/branded Studio labels.",
+      "incoming_sha256": "ab67b95eca6ea7ed597df8b5df241dc2ed46f89808e6b8d4b1ae753ee732dac5"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart",
+      "after_sha256": "d533a1caf9c3996dc9dcd6489d50704958a955848891ff53a3510bea78b2feb7",
+      "reason": "Preserve every existing behavior assertion while updating selectors to the intended localized/branded Studio labels.",
+      "incoming_sha256": "6602840c2be7d7135f745cc75b23a1b2c47ca31b02b934c9d01c6c6231fe1806"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+      "after_sha256": "58364503e4c3adfca86fb03328f09c0f414b69baad501de0ba7a872f361e72f5",
+      "reason": "Preserve every existing behavior assertion while updating selectors to the intended localized/branded Studio labels.",
+      "incoming_sha256": "7974c9cc6c62f273bfdf635d85ecd715800de8dbf0762458ed0919fcd1138588"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_compact_navigation_test.dart",
+      "after_sha256": "ef4b737c967fae6ec95a4a282cb6fcc63aacc9c8f06a1e30ba125bcb0d5ee8fc",
+      "reason": "Preserve every existing behavior assertion while updating selectors to the intended localized/branded Studio labels.",
+      "incoming_sha256": "5536eb45dda41bfffdee16395165f2e29ea1878a900c7fca1a9f489277827156"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_test.dart",
+      "after_sha256": "0015970b2ed140ebcf96a9f423148cd15658a85d78cae3636c4c4dee5937c272",
+      "reason": "Six behavior regressions for delayed picker/file disposal, local messages, cancellation/empty results, mode switching and localization."
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_review_pane_test.dart",
+      "after_sha256": "bd54f1edd034fa2bb2dbccbecaca771049e920f97fe7add3a5c1adb217a75f36",
+      "reason": "Preserve every existing behavior assertion while updating selectors to the intended localized/branded Studio labels.",
+      "incoming_sha256": "0db14563c309aedb65250dd87cf7d07478827c42119e4462c06a4c47f5dfe8fa"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_sheet_navigation_test.dart",
+      "after_sha256": "ec63b32cd4e6df55b1f5f19fa53c84c2c12c02ece610a1f3910400cc8ee270ff",
+      "reason": "Preserve every existing behavior assertion while updating selectors to the intended localized/branded Studio labels.",
+      "incoming_sha256": "91e8098243192ee4595ff285de5fdae80438f51934e0a91e52aed9bf3f120bc7"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+      "after_sha256": "1d03709077d1c48fbecb4da3c78b82edefb3bccc58753e933e77de42ce3f8336",
+      "reason": "Preserve every existing behavior assertion while updating selectors to the intended localized/branded Studio labels.",
+      "incoming_sha256": "27916e7a920fa463e0f06c4fdfcf5903fbfb70bf503db3b83775792b5b2a1e1c"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/widget_test.dart",
+      "after_sha256": "e27b4b3a33efe53292d1ceee7feda5a10c409e7d8f64484c6083de198016ecde",
+      "reason": "Preserve every existing behavior assertion while updating selectors to the intended localized/branded Studio labels.",
+      "incoming_sha256": "37b8f1f8373932e3242324191d1ad77ac168452199fb75c5b7345fbf8ec7cb72"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/proofing/arabic_extended_rules.dart",
+      "incoming_sha256": "8f92ca7e8400c828d4f6245a7a51f5802b8cad04f74ea25bd67462feaacdc207",
+      "after_sha256": "e5eea6d461a90a694bd70299bea1766f133812a8087fe5692797f65effc98219",
+      "reason": "Reviewed merge of all prior and incoming Arabic controls, with identifier/orthographic boundary safeguards; fresh VM and Node suites required."
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/proofing/arabic_writing_rules.dart",
+      "incoming_sha256": "137ab2f071ca60a7512612dcf05f09bb84721610b784c52a79cf94ac5bed955e",
+      "after_sha256": "66bdcbe946c17508786981a644e4cf1f138696cd55fa7c00e54f3d1631f3b0ca",
+      "reason": "Reviewed merge of all prior and incoming Arabic controls, with identifier/orthographic boundary safeguards; fresh VM and Node suites required."
+    },
+    {
+      "path": "packages/quds_office_engine/test/proofing/arabic_extended_rules_test.dart",
+      "incoming_sha256": "61a9335eef69a39fa2562aabc7523e4d0ffefe6f65427d9fe9d9ded9aaa3f751",
+      "after_sha256": "c591de6a69be97b3fe5cad335d885531d155e99630416476dcbe7a45dc3395ea",
+      "reason": "Reviewed merge of all prior and incoming Arabic controls, with identifier/orthographic boundary safeguards; fresh VM and Node suites required."
+    },
+    {
+      "path": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+      "incoming_sha256": "2013b4b910a496fad7ea227db197da431669269ca8c0b0ff4571b463ad6c83cf",
+      "after_sha256": "141524cbb9923f2de5eee36e454312080db0c12d21d90ed535ae25935c0bea91",
+      "reason": "Reviewed merge of all prior and incoming Arabic controls, with identifier/orthographic boundary safeguards; fresh VM and Node suites required."
+    }
+  ],
+  "status": "REVIEWED",
+  "arabic_review_receipt_sha256": "8f895d9d7053d46c20abddc21875b203fa913183c5ca9b9c9c4e9333ae1ffcc8",
+  "studio_candidate_manifest_sha256": "c89a889970fa6c101725e3d1010693a62d48f9529d9c4bb2d6d886f98f7eef46",
+  "studio_independent_source_review_sha256": "9489884fd4564d94f64949bfe6e035d4da2fd68c61c3f606906bbc29bc5af6bf"
+}
