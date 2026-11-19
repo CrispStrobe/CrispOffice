@@ -58,4 +58,6 @@ flutter:
     - assets/licenses/hunspell/
     - assets/licenses/arabic_morph/
     - assets/licenses/language_id/
+    - assets/licenses/harper/
+    - assets/licenses/spacy/
     - fonts/

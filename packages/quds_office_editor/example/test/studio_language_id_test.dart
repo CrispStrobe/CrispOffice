@@ -177,22 +177,48 @@ void main() {
     );
   });
 
-  testWidgets('the licence page lists CLD3 (Apache-2.0) and CrispASR', (
-    tester,
-  ) async {
-    registerStudioLicenses();
-    final entries = await LicenseRegistry.licenses.toList();
-    String textOf(String package) => entries
-        .where((entry) => entry.packages.contains(package))
-        .expand((entry) => entry.paragraphs)
-        .map((paragraph) => paragraph.text)
-        .join('\n');
-    final model = textOf('CLD3 language detection model (Apache-2.0)');
-    expect(model, contains('Copyright 2016 Google Inc.'));
-    expect(model, contains('Apache License'));
-    expect(
-      textOf('Language identification runtime (CrispASR, MIT)'),
-      contains('MIT License'),
-    );
-  });
+  testWidgets(
+    'the licence page lists CLD3, CrispASR, Harper, AyaSpell and spaCy',
+    (tester) async {
+      registerStudioLicenses();
+      final entries = await LicenseRegistry.licenses.toList();
+      String textOf(String package) => entries
+          .where((entry) => entry.packages.contains(package))
+          .expand((entry) => entry.paragraphs)
+          .map((paragraph) => paragraph.text)
+          .join('\n');
+      final model = textOf('CLD3 language detection model (Apache-2.0)');
+      expect(model, contains('Copyright 2016 Google Inc.'));
+      expect(model, contains('Apache License'));
+      expect(
+        textOf('Language identification runtime (CrispASR, MIT)'),
+        contains('MIT License'),
+      );
+      // Harper, AyaSpell and the spaCy runtime are registered the same way.
+      final harper = textOf(
+        'Harper 3.2.0 English grammar checker (Apache-2.0)',
+      );
+      expect(harper, contains('Apache License'));
+      expect(harper, contains('226 crates'));
+      final ayaspell = textOf(
+        'AyaSpell Arabic dictionary (MPL 1.1, downloaded data)',
+      );
+      expect(ayaspell, contains('MPL 1.1 option'));
+      expect(ayaspell, contains('Mozilla Public License'));
+      expect(
+        textOf('Local text analysis runtime (CrispEmbed spaCy, MIT)'),
+        contains('MIT License'),
+      );
+      expect(textOf('PCRE2 10.46 (BSD)'), contains('PCRE2'));
+      expect(textOf('ggml (MIT)'), contains('MIT License'));
+      expect(
+        textOf('spaCy models de/en/fr_core_*_sm 3.8.0 (downloaded data)'),
+        contains('ExplosionAI GmbH'),
+      );
+      expect(
+        textOf('Camel Morph MSA v1.0 (CC BY 4.0, downloaded data)'),
+        contains('Attribution 4.0'),
+      );
+    },
+  );
 }

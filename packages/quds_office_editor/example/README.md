@@ -51,15 +51,28 @@ available from the Dock; Quit checks all open workspaces before exiting.
 packages/quds_office_editor/example/tool/build_macos_app.sh
 ```
 
-Builds the pinned Hunspell, Arabic morphology (Camel Morph), CLD3 language-ID
-and Harper (English) libraries, runs `flutter build macos --release`, installs
+Builds the pinned Hunspell, Arabic morphology (Camel Morph), CLD3 language-ID,
+Harper (English) and CrispEmbed spaCy analysis libraries, runs
+`flutter build macos --release`, installs
 the libraries into `Contents/Frameworks` and their notices into
 `Contents/Resources/*-licenses`, re-signs ad hoc with `Release.entitlements`
 (sandbox, network client, user-selected files) and checks the signature, the
 libraries' load commands and that each library opens from the bundle.
-`QUDS_SKIP_HARPER=1` leaves Harper (needs Rust) out. The AyaSpell dictionary
-and the Camel Morph database are downloaded in the app: Review › Proofing ›
-Dictionaries and language data.
+`QUDS_SKIP_HARPER=1` leaves Harper (needs Rust) out and `QUDS_SKIP_SPACY=1`
+leaves the spaCy runtime (needs CMake and Git) out. Cargo builds into
+`$HOME/.cache/shared-cargo-target` unless `CARGO_TARGET_DIR` is set, and a
+Cargo home that is missing or under a temporary directory is replaced for the
+build by a persistent cache. The AyaSpell dictionary and the Camel Morph
+database are downloaded in the app: Review › Proofing › Dictionaries and
+language data.
+
+The spaCy runtime (`packages/quds_proofing_spacy/tool/build.py`, built from
+the pinned CrispEmbed v2 runtime source with static PCRE2) is signed inside
+the app; its digest is recorded in `Contents/Resources/spacy-native.json`.
+Studio then downloads only the verified model files: Review › Analysis setup
+› Download and install (German), and the English/French buttons below it.
+Start the app with `QUDS_SPACY_BUNDLED=0` to ignore the bundled library and
+use the downloadable platform package instead.
 
 `test/studio_macos_bundle_native_gate.dart` is an explicit acceptance gate for
 the built app: it boots Studio with the libraries inside the `.app` and the

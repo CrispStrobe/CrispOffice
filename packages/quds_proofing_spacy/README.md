@@ -46,8 +46,14 @@ CrispEmbed `tools/spacy/distribution.py`, verifies every member against the
 authenticated manifest and the fixed bundle pins, stages privately, publishes
 `packages/<archive sha256>` with one rename and re-verifies the closed tree.
 `installBundle()` fetches only the five model files for hosts that ship a signed
-native library inside the app (App Store, iOS, Android); downloading executable
-code is never offered there. A `mirror` can redirect transport but cannot change
+native library inside the app (App Store, iOS, Android, and the sandboxed
+Studio macOS build); downloading executable code is never offered there.
+`tool/build.py --native` builds that library for macOS arm64 from the pinned
+CrispEmbed v2 runtime source (static PCRE2, system libc++ only) with a
+receipt; `SpacyNativeBackendFactory(hostBundled: true)` opens it from the
+app's `Contents/Frameworks` (the digest is still verified before loading).
+Such a host build is a new binary: it has no recorded qualification of its own
+and the grammar planner refuses it. A `mirror` can redirect transport but cannot change
 what is accepted.
 
 Claims are recorded per exact library digest (`spacyQualificationFor`). The

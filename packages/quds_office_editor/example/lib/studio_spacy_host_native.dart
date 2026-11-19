@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'dart:ffi' show Abi;
 import 'dart:io';
 
+import 'package:flutter/foundation.dart' show immutable;
+
 import 'package:quds_proofing_spacy/quds_proofing_spacy_install.dart';
 
 import 'studio_spacy_host.dart';
@@ -10,6 +12,55 @@ StudioSpacyHost createHost() => NativeStudioSpacyHost(
   root: Directory(studioSpacyDataDirectory()),
   environment: Platform.environment,
 );
+
+/// The CrispEmbed spaCy library shipped inside this app's signed bundle.
+@immutable
+class StudioSpacyBundledLibrary {
+  const StudioSpacyBundledLibrary({required this.path, required this.sha256});
+
+  final String path;
+
+  /// Digest recorded at build time (after signing) in
+  /// `Contents/Resources/spacy-native.json`; re-verified before every load.
+  final String sha256;
+}
+
+const _offValues = ['0', 'false', 'off', 'no'];
+
+/// Finds the library a macOS release build installs into
+/// `Contents/Frameworks` (packages/quds_office_editor/example/tool/
+/// build_macos_app.sh), described by `Contents/Resources/spacy-native.json`.
+/// `QUDS_SPACY_BUNDLED=0` ignores it and keeps the downloadable package.
+StudioSpacyBundledLibrary? detectBundledSpacyLibrary(
+  Map<String, String> environment, {
+  String? executable,
+}) {
+  final gate = environment['QUDS_SPACY_BUNDLED'];
+  if (gate != null && _offValues.contains(gate.toLowerCase())) return null;
+  if (!Platform.isMacOS && executable == null) return null;
+  try {
+    final contents = File(
+      executable ?? Platform.resolvedExecutable,
+    ).parent.parent.path;
+    final description = File('$contents/Resources/spacy-native.json');
+    if (!description.existsSync()) return null;
+    final decoded = jsonDecode(description.readAsStringSync());
+    if (decoded is! Map<String, Object?>) return null;
+    final name = decoded['library'];
+    final digest = decoded['sha256'];
+    if (name is! String ||
+        name.contains('/') ||
+        digest is! String ||
+        !RegExp(r'^[0-9a-f]{64}$').hasMatch(digest)) {
+      return null;
+    }
+    final library = File('$contents/Frameworks/$name');
+    if (!library.existsSync()) return null;
+    return StudioSpacyBundledLibrary(path: library.path, sha256: digest);
+  } on Object {
+    return null;
+  }
+}
 
 SpacyPlatform? _currentPlatform() => switch (Abi.current()) {
   Abi.linuxX64 => SpacyPlatform.linuxX64,
@@ -45,10 +96,21 @@ class NativeStudioSpacyHost extends StudioSpacyHost {
     SpacyPackageInstaller? installer,
     SpacyPlatform? platform,
     bool detectPlatform = true,
+    StudioSpacyBundledLibrary? bundledLibrary,
+    bool detectBundledLibrary = true,
   }) : _installer = installer ?? SpacyPackageInstaller(root: root),
-       _platform = platform ?? (detectPlatform ? _currentPlatform() : null) {
+       _platform = platform ?? (detectPlatform ? _currentPlatform() : null),
+       _bundled =
+           bundledLibrary ??
+           (detectBundledLibrary
+               ? detectBundledSpacyLibrary(environment)
+               : null) {
     _status = _initialStatus();
   }
+
+  /// The app's own signed library, when shipped; then only model files are
+  /// downloaded and the downloadable package is not used.
+  final StudioSpacyBundledLibrary? _bundled;
 
   final Directory root;
   final Map<String, String> environment;
@@ -71,13 +133,17 @@ class NativeStudioSpacyHost extends StudioSpacyHost {
     final availability = platform == null
         ? null
         : spacyPlatformStatus(platform);
+    final bundled = _bundled != null && !_developerConfigured;
     return StudioSpacyStatus(
       platformLabel: platform?.id ?? Abi.current().toString(),
       source: _developerConfigured
           ? StudioSpacySource.developer
           : StudioSpacySource.none,
       package: availability?.package,
-      unavailableReason: platform == null
+      bundledLibrary: bundled,
+      unavailableReason: bundled
+          ? null
+          : platform == null
           ? 'This platform has no native analysis build.'
           : availability!.reason,
       librarySha256: _developerConfigured
@@ -90,6 +156,46 @@ class NativeStudioSpacyHost extends StudioSpacyHost {
           : null,
       analysisEnabled: _developerConfigured,
     );
+  }
+
+  /// Bundled library: the verified model-only installation.
+  Future<void> _refreshBundled(
+    StudioSpacyStatus base,
+    List<StudioSpacyLanguageStatus> languages,
+  ) async {
+    final settings = _readSettings();
+    final bundled = _bundled!;
+    SpacyInstallation? installation;
+    String? problem;
+    try {
+      installation = await _installer.installedBundle();
+    } on SpacyInstallException catch (error) {
+      problem =
+          'The installed analysis files failed verification '
+          '(${error.message}). Remove and install them again.';
+    }
+    final configured = installation != null || problem != null;
+    final qualification = spacyQualificationFor(bundled.sha256);
+    _status = StudioSpacyStatus(
+      platformLabel: base.platformLabel,
+      source: configured ? StudioSpacySource.installed : StudioSpacySource.none,
+      package: base.package,
+      bundledLibrary: true,
+      installedDirectory: installation?.directory,
+      librarySha256: bundled.sha256,
+      qualification: qualification,
+      problem: problem,
+      analysisEnabled: installation != null && settings.analysis,
+      nerOffered: installation != null && spacyNerDownload != null,
+      nerEnabled:
+          installation != null && settings.ner && spacyNerDownload != null,
+      grammarEnabled:
+          installation != null &&
+          settings.grammar &&
+          (qualification?.grammarQualified ?? false),
+      languages: languages,
+    );
+    notifyListeners();
   }
 
   ({bool analysis, bool grammar, bool ner}) _readSettings() {
@@ -150,6 +256,7 @@ class NativeStudioSpacyHost extends StudioSpacyHost {
       return;
     }
     final languages = await _languageStatuses();
+    if (base.bundledLibrary) return _refreshBundled(base, languages);
     final package = base.package;
     SpacyInstallation? installation;
     String? problem;
@@ -196,6 +303,31 @@ class NativeStudioSpacyHost extends StudioSpacyHost {
     ]) {
       final download = spacyLanguageDownload(language);
       final runtime = platform == null ? null : spacyRuntimePackage(platform);
+      if (download != null && _bundled != null && !_developerConfigured) {
+        // The bundled library is built from the v2 runtime source and opens
+        // the separately published bundles; only model files download.
+        var installed = false;
+        String? problem;
+        try {
+          installed = await _installer.hasLanguageBundle(download);
+        } on SpacyInstallException catch (error) {
+          problem =
+              'The installed ${language.displayName} analysis files failed '
+              'verification (${error.message}). Remove and install them again.';
+        }
+        result.add(
+          StudioSpacyLanguageStatus(
+            language: language,
+            download: download,
+            runtime: runtime,
+            installed: installed,
+            runtimeInstalled: true,
+            bundledRuntime: true,
+            problem: problem,
+          ),
+        );
+        continue;
+      }
       if (download == null || runtime == null) {
         result.add(
           StudioSpacyLanguageStatus(
@@ -251,6 +383,15 @@ class NativeStudioSpacyHost extends StudioSpacyHost {
     }
     final token = SpacyInstallCancellation();
     cancellation?.addListener(token.cancel);
+    if (item.bundledRuntime) {
+      await _installer.installLanguageBundle(
+        item.download!,
+        onProgress: onProgress,
+        cancellation: token,
+      );
+      await refresh();
+      return;
+    }
     await _installer.installLanguage(
       item.download!,
       item.runtime!,
@@ -275,6 +416,27 @@ class NativeStudioSpacyHost extends StudioSpacyHost {
       throw SpacyUnavailableException(
         'Local ${language.displayName} analysis is not set up. Use '
         '“Analysis setup” to download and verify it.',
+      );
+    }
+    if (item.bundledRuntime) {
+      final bundled = _bundled!;
+      final directory = await _installer.installedLanguageBundle(
+        item.download!,
+      );
+      if (directory == null) {
+        throw SpacyUnavailableException(
+          'The local ${language.displayName} analysis files are missing. '
+          'Install them again.',
+        );
+      }
+      return startSpacyWorker(
+        bundle: item.download!.bundle,
+        backendFactory: SpacyNativeBackendFactory(
+          bundleDirectory: directory,
+          libraryPath: bundled.path,
+          librarySha256: bundled.sha256,
+          hostBundled: true,
+        ),
       );
     }
     // Re-verify the bundle and the native package before every worker start.
@@ -305,7 +467,7 @@ class NativeStudioSpacyHost extends StudioSpacyHost {
     StudioSpacyInstallCancellation? cancellation,
   }) async {
     final package = _status.package;
-    if (package == null) {
+    if (!_status.bundledLibrary && package == null) {
       throw SpacyInstallException(
         _status.unavailableReason ??
             'No package is published for this platform.',
@@ -313,11 +475,19 @@ class NativeStudioSpacyHost extends StudioSpacyHost {
     }
     final token = SpacyInstallCancellation();
     cancellation?.addListener(token.cancel);
-    await _installer.install(
-      package,
-      onProgress: onProgress,
-      cancellation: token,
-    );
+    if (_status.bundledLibrary) {
+      // The app ships the signed library: download the model files only.
+      await _installer.installBundle(
+        onProgress: onProgress,
+        cancellation: token,
+      );
+    } else {
+      await _installer.install(
+        package!,
+        onProgress: onProgress,
+        cancellation: token,
+      );
+    }
     // Installing is the explicit opt-in to the analysis view; grammar stays
     // off until separately enabled.
     _writeSettings(analysis: true, grammar: _readSettings().grammar);
@@ -328,7 +498,11 @@ class NativeStudioSpacyHost extends StudioSpacyHost {
   Future<void> remove() async {
     final package = _status.package;
     _writeSettings(analysis: false, grammar: false, ner: false);
-    if (package != null) await _installer.remove(package);
+    if (_status.bundledLibrary) {
+      await _installer.removeBundle();
+    } else if (package != null) {
+      await _installer.remove(package);
+    }
     await refresh();
   }
 
@@ -383,8 +557,11 @@ class NativeStudioSpacyHost extends StudioSpacyHost {
       );
     }
     final package = _status.package;
+    final bundled = _status.bundledLibrary ? _bundled : null;
     // Re-verify the complete installation before every worker start.
-    final installation = package == null
+    final installation = bundled != null
+        ? await _installer.installedBundle()
+        : package == null
         ? null
         : await _installer.installed(package);
     if (installation == null) {
@@ -399,6 +576,19 @@ class NativeStudioSpacyHost extends StudioSpacyHost {
     // The worker enables the exact library it opens through
     // crispembed_spacy_set_enabled (process environment untouched); only
     // libraries without that export fall back to the POSIX setenv gate.
+    if (bundled != null) {
+      return startSpacyWorker(
+        bundle: const SpacyBundle.germanF32(),
+        backendFactory: SpacyNativeBackendFactory(
+          bundleDirectory: installation.bundleDirectory,
+          libraryPath: bundled.path,
+          librarySha256: bundled.sha256,
+          nerPath: nerPath,
+          nerSha256: nerPath == null ? null : ner!.sha256,
+          hostBundled: true,
+        ),
+      );
+    }
     return startSpacyWorker(
       bundle: const SpacyBundle.germanF32(),
       backendFactory: nerPath == null

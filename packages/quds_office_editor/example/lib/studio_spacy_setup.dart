@@ -125,7 +125,7 @@ class _StudioSpacySetupDialogState extends State<StudioSpacySetupDialog> {
       final runtime = item.runtime;
       final name = item.language.displayName;
       widgets.add(const SizedBox(height: 8));
-      if (!item.offered || download == null || runtime == null) {
+      if (!item.offered || download == null) {
         widgets.add(
           Text(
             '$name: ${item.unavailableReason ?? 'not available here.'}',
@@ -160,7 +160,11 @@ class _StudioSpacySetupDialogState extends State<StudioSpacySetupDialog> {
               child: SelectableText(
                 'Source: https://huggingface.co/${download.repository} at '
                 'revision ${download.revision}\n$files\n'
-                '${item.runtimeInstalled ? 'Native package already installed' : 'Also downloads the native package ${runtime.url} (${_megabytes(runtime.archiveBytes)} · SHA-256 ${runtime.archiveSha256})'}.\n'
+                '${item.bundledRuntime
+                    ? 'Opened by the analysis library built into this app; only these model files are downloaded'
+                    : item.runtimeInstalled
+                    ? 'Native package already installed'
+                    : 'Also downloads the native package ${runtime!.url} (${_megabytes(runtime.archiveBytes)} · SHA-256 ${runtime.archiveSha256})'}.\n'
                 'Every file is checked against its compiled-in digest before use.\n\n'
                 'License: ${download.license}\n\n'
                 'Qualification: ${download.qualification}',
@@ -224,6 +228,31 @@ class _StudioSpacySetupDialogState extends State<StudioSpacySetupDialog> {
           '(${_short(status.librarySha256 ?? '')}).',
         ),
       ]);
+    } else if (!status.configured && status.bundledLibrary) {
+      final files = SpacyBundleDownload.files
+          .map(
+            (file) =>
+                '${file.file} ${_megabytes(file.bytes)} · SHA-256 ${file.sha256}',
+          )
+          .join('\n');
+      children.addAll([
+        Text('Download', style: theme.textTheme.titleSmall),
+        SelectableText(
+          'The analysis library is built into this app '
+          '(${_short(status.librarySha256 ?? '')}). Only the model files are '
+          'downloaded, from '
+          'https://huggingface.co/$spacyHuggingFaceRepository at revision '
+          '${spacyBundleDownload.revision}:\n$files\n'
+          'Every file is checked against its compiled-in digest before use.',
+          key: const Key('spacy-setup-source'),
+        ),
+        const SizedBox(height: 8),
+        const Text(
+          'Licenses: spaCy model de_core_news_sm (MIT; source data notices '
+          'included, installed with the files). The library\'s notices '
+          '(CrispEmbed and ggml MIT, PCRE2 BSD, Unicode data) are in Licences.',
+        ),
+      ]);
     } else if (!status.configured) {
       if (package == null) {
         children.add(
@@ -268,7 +297,10 @@ class _StudioSpacySetupDialogState extends State<StudioSpacySetupDialog> {
             style: TextStyle(color: theme.colorScheme.error),
           ),
         if (status.librarySha256 != null)
-          Text('Native build ${_short(status.librarySha256!)}'),
+          Text(
+            'Native build ${_short(status.librarySha256!)}'
+            '${status.bundledLibrary ? ' (built into this app)' : ''}',
+          ),
       ]);
     }
     if (!_loading && status.configured && status.problem == null) {
@@ -370,12 +402,12 @@ class _StudioSpacySetupDialogState extends State<StudioSpacySetupDialog> {
           ),
         if (!_loading &&
             status.source == StudioSpacySource.none &&
-            package != null)
+            status.installOffered)
           FilledButton(
             key: const Key('spacy-setup-install'),
             onPressed: _working ? null : _install,
             child: Text(
-              'Download and install (${_megabytes(package.archiveBytes)})',
+              'Download and install (${_megabytes(status.downloadBytes)})',
             ),
           ),
         if (!_loading && status.source == StudioSpacySource.installed)
