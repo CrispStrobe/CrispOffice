@@ -1,5 +1,24 @@
 # Mail implementation status — 19 November 2026
 
+## Durable archive, indexing and search
+
+The [archive guide and parity matrix](archive-search.md) describe the new
+independent native archive and Studio workflows. Exact original MIME bytes,
+source provenance and FTS5 projections commit atomically. EML/streamed MBOX
+imports, selected-message and selected-folder collection, field/Boolean/phrase
+search, filters, saved searches, EML export, integrity verification and index
+rebuilding are implemented. Repeated collection deduplicates identical bytes;
+account/cache removal leaves explicit archived copies intact.
+
+Read limits, quotas, session leases, cancellation, redacted structured logs,
+corruption handling and real process-crash tests are part of this increment.
+The [local validation record](../../validation/mail-archive-search-20261119/README.md)
+binds the fresh checks to their source and runtime. Full MailStore parity,
+PST/MSG ingestion, general PDF/Office attachment extraction, automatic schedules,
+recursive collection and enterprise retention/legal-hold/access controls remain
+open. Browser archive persistence and live account interoperability are separate
+qualification boundaries.
+
 ## Gmail, Microsoft 365 and additional presets
 
 The [cloud providers](cloud-providers.md) add Gmail API and Microsoft Graph,
@@ -19,7 +38,8 @@ entry with explicit HTTPS configuration, NTLMv2 by default, host-owned
 credentials, folder/header browsing, incremental message sync, on-demand MIME,
 guarded mailbox mutations and EWS sending with Sent filing. Existing opaque
 identities and atomic storage transactions require no schema migration. Browser
-EWS remains explicitly unsupported. The Studio host is session-only.
+EWS remains explicitly unsupported. Connection and draft state remain
+session-only; explicit archived copies use the independent durable archive.
 
 The [focused validation record](../../validation/mail-ews-20261119/README.md)
 separates new source-bound checks from historical IMAP/Office evidence. No live

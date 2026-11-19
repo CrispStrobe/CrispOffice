@@ -3,6 +3,8 @@
 **Status:** accepted product scope; the core, MIME codec, account-free reader and
 durable Mail store now have an initial implementation. See [status.md](status.md) for demonstrated
 checks and open gates. The wider product scope remains unchanged.
+The [archive and search guide](archive-search.md) tracks the independent durable
+archive, Studio workflows and remaining MailStore parity work.
 **Decision date:** 2026-11-18 (Europe/Berlin); on-premises EWS prioritized 2026-11-19.
 **Canonical repository:** CrispStrobe/quds_office_suite, branch main.
 **Entry point for a fresh coding agent:** read this file, then [implementation-plan.md](implementation-plan.md). The [CrispCloud contract](crispcloud-integration.md) and [licensing/App Store requirements](licensing-and-app-store.md) are part of the same specification. No prior chat is required.

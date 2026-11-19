@@ -528,6 +528,14 @@ The implementation now provides [typed Mail core](packages/quds_mail_core),
 [account-free Flutter reader](packages/quds_mail_ui) with a real MIME preview
 harness, [Drift/SQLite storage and recovery](packages/quds_mail_store), and an
 initial [native IMAP transport](packages/quds_mail_transport).
+
+CrispOffice now also includes a native [durable mail archive](docs/roadmaps/mail/archive-search.md):
+import EML or MBOX, archive selected messages or connected folders, search indexed
+headers/body/attachment names with saved filters, export original EML, and verify
+or rebuild the index. Explicit archived copies survive account disconnection and
+cache removal. The guide records supported text-attachment extraction and the
+remaining MailStore parity work; [local validation](docs/validation/mail-archive-search-20261119/README.md)
+includes transactional failures, cancellation and actual process-crash recovery.
 Original message and attachment bytes remain immutable. The reviewed
 MPL fork exposes a portable public MIME entry without socket/filesystem imports.
 The native store persists drafts, frozen outgoing payloads, mailbox changes,
