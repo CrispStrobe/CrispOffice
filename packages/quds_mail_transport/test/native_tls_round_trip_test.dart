@@ -5,7 +5,6 @@ import 'dart:typed_data';
 
 import 'package:crypto/crypto.dart';
 import 'package:enough_mail/enough_mail.dart';
-import 'package:enough_mail/src/private/util/client_connection.dart';
 import 'package:test/test.dart';
 
 const _deadline = Duration(seconds: 10);
@@ -125,6 +124,9 @@ void main() {
           await peer.handshakeFinished.future.timeout(_deadline);
           expect(peer.secureSocket, isNull);
           expect(peer.handshakeError, isA<HandshakeException>());
+          // Check rejection cleanup before finally calls abort itself.
+          expect(client.isConnected, isFalse);
+          expect(client.isLoggedIn, isFalse);
           expect(peer.unexpectedCommands, isEmpty);
         } finally {
           await client.abort().timeout(_deadline);
@@ -195,10 +197,10 @@ final class _CapturingImapClient extends ImapClient {
   _CapturingImapClient(SecurityContext context)
     : super(securityContext: context);
 
-  ClientConnection? transport;
+  Socket? transport;
 
   @override
-  Future<ClientConnection> createConnectionSocket(
+  Future<Socket> createConnectionSocket(
     String host,
     int port, {
     required bool isSecure,
@@ -213,8 +215,8 @@ final class _CapturingImapClient extends ImapClient {
   }
 
   @override
-  Future<ClientConnection> createSecureConnectionSocket(
-    ClientConnection socket, {
+  Future<Socket> createSecureConnectionSocket(
+    Socket socket, {
     required String host,
   }) async {
     final secured = await super.createSecureConnectionSocket(

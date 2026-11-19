@@ -1,5 +1,10 @@
 # Mail M06 continuation — 19 November 2026
 
+This report preserves the separate Mail-branch checkpoint at `71edec2d`.
+Its counts are not added to subsequent integration runs. The
+[Office integration report](../office-main-integration-20261119/README.md)
+records the current combined source and qualification.
+
 ## Final integrated qualification: PASS
 
 The durable flags and bounded native IMAP foundation passed the complete local

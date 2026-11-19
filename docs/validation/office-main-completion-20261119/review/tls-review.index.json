@@ -1,0 +1,476 @@
+{
+  "archive": "tls-review.tar.xz",
+  "archive_bytes": 88536,
+  "archive_sha256": "f9f01897170af11e9ff5400654f66942d18f017e3d2229d2cf2ebd2c06f3628a",
+  "independent_rebuild_byte_identical": true,
+  "member_count": 77,
+  "members": [
+    {
+      "bytes": 8030,
+      "mode": "0o644",
+      "path": "tls-review/README.md",
+      "sha256": "a0a32eae237cfbde9e0c2d30e49b037a50434bf8ef87a478914270401cba419e"
+    },
+    {
+      "bytes": 3730,
+      "mode": "0o755",
+      "path": "tls-review/replay/build_archive.py",
+      "sha256": "695b00a0a2c775fb8e8d3228ddcef2a2387b961b50a9d062f17d651d5a567617"
+    },
+    {
+      "bytes": 7227,
+      "mode": "0o644",
+      "path": "tls-review/replay/native_tls_cancellation_baseline_test.dart",
+      "sha256": "660fb82db4d848f970e434d98d7ea05c1cc39cbb2007dd1c74c6c8d16b79f44b"
+    },
+    {
+      "bytes": 140,
+      "mode": "0o644",
+      "path": "tls-review/replay/original-external-analysis_options.yaml",
+      "sha256": "4f81df7733df22a4734e70a7af950dea7547c134fad68d5b7cdafa435d337d00"
+    },
+    {
+      "bytes": 77,
+      "mode": "0o644",
+      "path": "tls-review/replay/original-external-pubspec.yaml",
+      "sha256": "ae6023d17a9674225d6c96888918d2ed4c614a0fb6b368de48854cdb3f3188ab"
+    },
+    {
+      "bytes": 8996,
+      "mode": "0o755",
+      "path": "tls-review/replay/replay.py",
+      "sha256": "0b3ce20caa9f8c921f35c1f4e84f9421c2481c2af1b2c61abb2cdacea22b8563"
+    },
+    {
+      "bytes": 1026,
+      "mode": "0o644",
+      "path": "tls-review/review/FETCH-delimiter/baseline-inputs.json",
+      "sha256": "7d77ef3d9370c33aafcec3e4b1dc042eb4de1ef994a4d5d0e5d21028a2079b06"
+    },
+    {
+      "bytes": 28087,
+      "mode": "0o644",
+      "path": "tls-review/review/FETCH-delimiter/baseline-package-config.json",
+      "sha256": "4d6e21f15de6e1dfc36560de14d8789899464e43588dd6eef527dc29a5bbaa26"
+    },
+    {
+      "bytes": 15166,
+      "mode": "0o644",
+      "path": "tls-review/review/FETCH-delimiter/baseline.jsonl",
+      "sha256": "30603b7c11c237be8b0c065cb1049f6c4213ea3e309127743a6bb0787307fc28"
+    },
+    {
+      "bytes": 0,
+      "mode": "0o644",
+      "path": "tls-review/review/FETCH-delimiter/baseline.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 7516,
+      "mode": "0o644",
+      "path": "tls-review/review/FETCH-delimiter/final-fetch-review.json",
+      "sha256": "51a6c0c1bf07c494a2393d7b4d2f7e253cef36d124ca93276bb460d7c325726d"
+    },
+    {
+      "bytes": 1164,
+      "mode": "0o644",
+      "path": "tls-review/review/FETCH-delimiter/imap_fixture-final.patch",
+      "sha256": "71b611ed5f5bb27e3d7b0a21470b7c1f102b5cf0a03cc061c12a10fe180fb5a7"
+    },
+    {
+      "bytes": 1609,
+      "mode": "0o644",
+      "path": "tls-review/review/FETCH-delimiter/native_provider_test-final.patch",
+      "sha256": "1719f68db3dbc3acfac5cce5dd65c0ff03f73c89c84c4e79583df68f7683e176"
+    },
+    {
+      "bytes": 887,
+      "mode": "0o644",
+      "path": "tls-review/review/FETCH-delimiter/raw_fetch_parser-final.patch",
+      "sha256": "fd43639df5e736af5872953c618884014c48916e33a1084c39a12e0a385c6962"
+    },
+    {
+      "bytes": 2615,
+      "mode": "0o644",
+      "path": "tls-review/review/FETCH-delimiter/raw_fetch_parser_test-final.patch",
+      "sha256": "4999a123865b120c8785cb05ce72d0e9402efb238a384a26bff1ade249f64d33"
+    },
+    {
+      "bytes": 28075,
+      "mode": "0o644",
+      "path": "tls-review/review/TLS/baseline-package-config.json",
+      "sha256": "3991f29c5f61a735b77c9bd70f4ca8cfe0f55d851a6666f1ce255d65ad47286c"
+    },
+    {
+      "bytes": 1488,
+      "mode": "0o644",
+      "path": "tls-review/review/TLS/baseline-reproduction.json",
+      "sha256": "ff73d40b03cff631b527072dff0b984b0bed2cb6e2d1b3999a99f173e1655548"
+    },
+    {
+      "bytes": 103,
+      "mode": "0o644",
+      "path": "tls-review/review/TLS/baseline-source.txt",
+      "sha256": "70be4c6dd264b23d9d6ff7fbc20edadb00cce51d5c2d4ade698fafec047c1a4d"
+    },
+    {
+      "bytes": 3522,
+      "mode": "0o644",
+      "path": "tls-review/review/TLS/baseline-stalled-handshake.jsonl",
+      "sha256": "26c35fb8a0b7bf5bab57b85537fadfb1f71f99dc7cc321667e811b8883394db8"
+    },
+    {
+      "bytes": 0,
+      "mode": "0o644",
+      "path": "tls-review/review/TLS/baseline-stalled-handshake.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 2502,
+      "mode": "0o644",
+      "path": "tls-review/review/TLS/committed-source-verification.json",
+      "sha256": "c82caf0f2bf47e658ce6d8ecf42874351df1eb6dafbdab8d34f752e0e370d119"
+    },
+    {
+      "bytes": 539,
+      "mode": "0o644",
+      "path": "tls-review/review/TLS/development-direct-abort-baseline-inputs.json",
+      "sha256": "75e0819ac13a0e9a3ba19b3891a709c83b34b6d96cc5a41b531137cd29c42d10"
+    },
+    {
+      "bytes": 2066,
+      "mode": "0o644",
+      "path": "tls-review/review/TLS/development-direct-abort-baseline.jsonl",
+      "sha256": "71bc9d73593e018afa1abe154a3a4cb5edf49bdad4c28d0df10298059129d26b"
+    },
+    {
+      "bytes": 8114,
+      "mode": "0o644",
+      "path": "tls-review/review/TLS/development-incoming-tls-adapted-final.jsonl",
+      "sha256": "a669a0825b0c1acea22ad6ed7c6b0eaa187e0a7f0ebbb8247c3d41b521689022"
+    },
+    {
+      "bytes": 7265,
+      "mode": "0o644",
+      "path": "tls-review/review/TLS/development-incoming-tls-adapted.jsonl",
+      "sha256": "3ba7a10b31c6fecc85cc8d49a4bcec4f6820e6c5dff8e167378eaea45948c608"
+    },
+    {
+      "bytes": 1247,
+      "mode": "0o644",
+      "path": "tls-review/review/TLS/development-tls-idle-producer.jsonl",
+      "sha256": "39911fdb346989b576ede56ba51863264211f18e4e46b66c9cd9b053c51b5af5"
+    },
+    {
+      "bytes": 4625,
+      "mode": "0o644",
+      "path": "tls-review/review/TLS/development-tls-tests-env.jsonl",
+      "sha256": "12d6cd0eb77e3d69a0900c67f99a504dc4272127741fcd5d9d1206d4177482bd"
+    },
+    {
+      "bytes": 5092,
+      "mode": "0o644",
+      "path": "tls-review/review/TLS/development-tls-tests-repository.jsonl",
+      "sha256": "8b226dddc63cabd20d0dcc3db118bdeb9b98864bde635b52221ec5928113f2e0"
+    },
+    {
+      "bytes": 81,
+      "mode": "0o644",
+      "path": "tls-review/review/TLS/development-tls-tests.jsonl",
+      "sha256": "c1a1fb9d088399d1e02c351bce31f07770ffc1e2fea38e012487af6cccc61514"
+    },
+    {
+      "bytes": 140,
+      "mode": "0o644",
+      "path": "tls-review/review/TLS/final-development-analysis.log",
+      "sha256": "19e434db8e169bdb0b68f9163d414fe77e8d146c52fd0570e302729ae7ab09f7"
+    },
+    {
+      "bytes": 47,
+      "mode": "0o644",
+      "path": "tls-review/review/TLS/final-development-format.log",
+      "sha256": "32af0bda87e046566b8b0cd70d7bf261160165770f08bc7aac5b7c000ecff6af"
+    },
+    {
+      "bytes": 5528,
+      "mode": "0o644",
+      "path": "tls-review/review/TLS/final-development-tls-nine.jsonl",
+      "sha256": "241ab918098e556848b9090222bfe97924e7ad463e036e40603de77835e6cc06"
+    },
+    {
+      "bytes": 0,
+      "mode": "0o644",
+      "path": "tls-review/review/TLS/final-development-tls-nine.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 144,
+      "mode": "0o644",
+      "path": "tls-review/review/TLS/final-union-analysis.log",
+      "sha256": "a56597a6d928403f54886fedf8cfbdc2ef46c5b2c92b2da57a6c46d308b5a48d"
+    },
+    {
+      "bytes": 59221,
+      "mode": "0o644",
+      "path": "tls-review/review/TLS/final-union-focused-development.jsonl",
+      "sha256": "52015c57fc70bf8ac9155dee0481be50db0bf3499052cc0e55974352b837a964"
+    },
+    {
+      "bytes": 0,
+      "mode": "0o644",
+      "path": "tls-review/review/TLS/final-union-focused-development.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 48,
+      "mode": "0o644",
+      "path": "tls-review/review/TLS/final-union-format.log",
+      "sha256": "03cc5eae1017a41f68de970df6d2f71ee27bc48d22dbd1ae68c2d2035d9d12ff"
+    },
+    {
+      "bytes": 9756,
+      "mode": "0o644",
+      "path": "tls-review/review/TLS/incoming-tls-review.json",
+      "sha256": "38dfccff90cdd1c5ffebfb28574aa6fcded21433269f99b2f6f2e17c4956d165"
+    },
+    {
+      "bytes": 10393,
+      "mode": "0o644",
+      "path": "tls-review/review/TLS/mail-loopback-after-raw-helper.jsonl",
+      "sha256": "ee482fdcd0b9bc2ec6238b3f2d4d0dad532b097c53c5cc5af0968e156736595e"
+    },
+    {
+      "bytes": 0,
+      "mode": "0o644",
+      "path": "tls-review/review/TLS/mail-loopback-after-raw-helper.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 28504,
+      "mode": "0o644",
+      "path": "tls-review/review/TLS/native-provider-after-raw-helper.jsonl",
+      "sha256": "4ae6edc87ce82ff499c2f95401c49b29698ba0bf61f475b473ad235f205f5902"
+    },
+    {
+      "bytes": 0,
+      "mode": "0o644",
+      "path": "tls-review/review/TLS/native-provider-after-raw-helper.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 4846,
+      "mode": "0o644",
+      "path": "tls-review/review/TLS/test-design-report.json",
+      "sha256": "fabf151c0098e5b8bdbeca07a7554976bcb300156b6119bc5d0bc7fd5e625ec1"
+    },
+    {
+      "bytes": 5074,
+      "mode": "0o644",
+      "path": "tls-review/review/TLS/tls-lifecycle-review.json",
+      "sha256": "835b1a971dc9c1995e2657cc8138ebc87aa909fc294e2c8b0c2289169a363676"
+    },
+    {
+      "bytes": 5774,
+      "mode": "0o644",
+      "path": "tls-review/review/TLS/tls-test-review.json",
+      "sha256": "c1f3e1170a0ea240fbc76ffda059201aa8cf1364c115aa1a2411acb809c99514"
+    },
+    {
+      "bytes": 22759,
+      "mode": "0o644",
+      "path": "tls-review/review/final-source-review.json",
+      "sha256": "69cd1c1b05d0dd7ee1449cd4cb53e96824b8ace74aabdd4a5888231d874560d4"
+    },
+    {
+      "bytes": 19048,
+      "mode": "0o644",
+      "path": "tls-review/source/baseline/client_base-before-abort-signal.dart",
+      "sha256": "55ebf8d8d3b2ebec6a0c08b6b632175e356e508d8c32dca1313d34a9628f28a3"
+    },
+    {
+      "bytes": 16515,
+      "mode": "0o644",
+      "path": "tls-review/source/baseline/client_base-c634f494.dart",
+      "sha256": "950018c4440b97a93cfc99e4cd4061916162a2b6726b5e1b4218ef7f5fe66a43"
+    },
+    {
+      "bytes": 10357,
+      "mode": "0o644",
+      "path": "tls-review/source/baseline/raw_fetch_parser-99dd7307.dart",
+      "sha256": "d59335ccf9f6a39f1fa5f4dd5239af3a17fbecd57ef772d344499c38d85ddedc"
+    },
+    {
+      "bytes": 20968,
+      "mode": "0o644",
+      "path": "tls-review/source/fixed/packages/quds_mail_transport/lib/src/native/provider.dart",
+      "sha256": "324a188b2f7994d6c5b03d9481dd83b967c5178036eeb1d90d0864af2c79a0db"
+    },
+    {
+      "bytes": 740,
+      "mode": "0o644",
+      "path": "tls-review/source/fixed/packages/quds_mail_transport/test/fixtures/tls/README.md",
+      "sha256": "85fb609005362517696252725cbddf062b412a3cfcca248f6dd526035bfe0579"
+    },
+    {
+      "bytes": 1180,
+      "mode": "0o644",
+      "path": "tls-review/source/fixed/packages/quds_mail_transport/test/fixtures/tls/loopback-cert.pem",
+      "sha256": "543a871246369fd7a102d4141a1bf87dbfbb331c087613efaf6ea64d13b4d586"
+    },
+    {
+      "bytes": 1704,
+      "mode": "0o644",
+      "path": "tls-review/source/fixed/packages/quds_mail_transport/test/fixtures/tls/loopback-key.pem",
+      "sha256": "5b4612de534322c88b096f656e2035c88d559206ddef97720e9f352775551074"
+    },
+    {
+      "bytes": 35508,
+      "mode": "0o644",
+      "path": "tls-review/source/fixed/packages/quds_mail_transport/test/native_provider_test.dart",
+      "sha256": "26963abad3c4739bbaa6fa018d1f84f36938147bd15b7d74b15835ce099683de"
+    },
+    {
+      "bytes": 7225,
+      "mode": "0o644",
+      "path": "tls-review/source/fixed/packages/quds_mail_transport/test/native_tls_cancellation_test.dart",
+      "sha256": "95f834e0d0927f2e6fc13efdceaee4d8ac00f9174a95ed4b982b46764f13dc17"
+    },
+    {
+      "bytes": 11440,
+      "mode": "0o644",
+      "path": "tls-review/source/fixed/packages/quds_mail_transport/test/native_tls_round_trip_test.dart",
+      "sha256": "2cea38334656ca5de18a768496611d67c7a1913789293c4dc59e34d784377507"
+    },
+    {
+      "bytes": 18928,
+      "mode": "0o644",
+      "path": "tls-review/source/fixed/packages/quds_mail_transport/test/native_tls_test.dart",
+      "sha256": "7f14585950394c1f326b8653e842f78da6078dfdecf1d3c0a41cca5fb817e9b3"
+    },
+    {
+      "bytes": 14259,
+      "mode": "0o644",
+      "path": "tls-review/source/fixed/packages/quds_mail_transport/test/support/imap_fixture.dart",
+      "sha256": "d8b81c7b5bac319c25d5b55fc24ce492222f6825d0a2792085d38433413e0fd0"
+    },
+    {
+      "bytes": 845,
+      "mode": "0o644",
+      "path": "tls-review/source/fixed/packages/quds_mail_transport/test/support/tls/README.md",
+      "sha256": "9a64bcd08459e9e779d597c406d4a3826bc4305ff90f299ce6029bcbc45cd259"
+    },
+    {
+      "bytes": 1127,
+      "mode": "0o644",
+      "path": "tls-review/source/fixed/packages/quds_mail_transport/test/support/tls/public-test-ca.pem",
+      "sha256": "5eebead5c4c193eeace0a635398a305ab768b9fff1257235ec8b063cde55f94f"
+    },
+    {
+      "bytes": 1700,
+      "mode": "0o644",
+      "path": "tls-review/source/fixed/packages/quds_mail_transport/test/support/tls/public-test-server-key.pem",
+      "sha256": "a1513697cebd55d6823c836a2a4a50d605572ba413e73ad3df5b3f6d5d9dc787"
+    },
+    {
+      "bytes": 1188,
+      "mode": "0o644",
+      "path": "tls-review/source/fixed/packages/quds_mail_transport/test/support/tls/public-test-server.pem",
+      "sha256": "d698b3fdfd9bbf19c328dbe5edea880ba50cf547837b7dc188a95828421f260d"
+    },
+    {
+      "bytes": 6161,
+      "mode": "0o644",
+      "path": "tls-review/source/fixed/packages/quds_mail_transport/test/support/tls_server.dart",
+      "sha256": "7478e9366b7d41a1ea7b2261e9a59f7fb09490af1575d39a3e92757bed3dc3a3"
+    },
+    {
+      "bytes": 111313,
+      "mode": "0o644",
+      "path": "tls-review/source/fixed/third_party/enough_mail/lib/src/imap/imap_client.dart",
+      "sha256": "8dbed96103e23bea2e8859dde649d5c66927f927a3a462a2158ff639e8f522a4"
+    },
+    {
+      "bytes": 9703,
+      "mode": "0o644",
+      "path": "tls-review/source/fixed/third_party/enough_mail/lib/src/private/imap/imap_response.dart",
+      "sha256": "c1827d2455240dbdad01e6be1735901256a73af8001deb6cc0e08d9b10f0ad1e"
+    },
+    {
+      "bytes": 2293,
+      "mode": "0o644",
+      "path": "tls-review/source/fixed/third_party/enough_mail/lib/src/private/imap/imap_response_line.dart",
+      "sha256": "24827b5075922c3d7a26c7b9525142b704c9ae0117713ab41102ea87df6af00a"
+    },
+    {
+      "bytes": 4004,
+      "mode": "0o644",
+      "path": "tls-review/source/fixed/third_party/enough_mail/lib/src/private/imap/imap_response_reader.dart",
+      "sha256": "f355e1e5788d58b5c877f0916b2d07af74efcc88137b96af9a558a5c6feb005d"
+    },
+    {
+      "bytes": 10786,
+      "mode": "0o644",
+      "path": "tls-review/source/fixed/third_party/enough_mail/lib/src/private/imap/raw_fetch_parser.dart",
+      "sha256": "bf66f6d6e3c885359604e988618883647c8b5c4de558f377b2b4a64aa86562aa"
+    },
+    {
+      "bytes": 9183,
+      "mode": "0o644",
+      "path": "tls-review/source/fixed/third_party/enough_mail/lib/src/private/util/cancellable_socket.dart",
+      "sha256": "8d444dfb5af02330051839938b8477f1c01b3455418d9b910881a8d41e357fa8"
+    },
+    {
+      "bytes": 20516,
+      "mode": "0o644",
+      "path": "tls-review/source/fixed/third_party/enough_mail/lib/src/private/util/client_base.dart",
+      "sha256": "d9c739f9e85643368ea1e192625991d28e8a04b75e76e21e59b51eb80769f290"
+    },
+    {
+      "bytes": 2190,
+      "mode": "0o644",
+      "path": "tls-review/source/fixed/third_party/enough_mail/test/mail/mail_client_delete_test.dart",
+      "sha256": "2314a4862261239a1c5984ce22ff7b1d09cb813c941c01ed400a59ea2c5322b3"
+    },
+    {
+      "bytes": 2753,
+      "mode": "0o644",
+      "path": "tls-review/source/fixed/third_party/enough_mail/test/mail/mail_client_oauth_test.dart",
+      "sha256": "39877eaada6b354a53423b318d5a746b61a3828cb6eb644d07741b0489019438"
+    },
+    {
+      "bytes": 5998,
+      "mode": "0o644",
+      "path": "tls-review/source/fixed/third_party/enough_mail/test/mail/mail_client_pop_test.dart",
+      "sha256": "1447c08acfe9e18c1eb43b85d2e4ff43bc8af7c79acff5b816e177ee879ac50a"
+    },
+    {
+      "bytes": 1840,
+      "mode": "0o644",
+      "path": "tls-review/source/fixed/third_party/enough_mail/test/mail/mail_client_reconnect_test.dart",
+      "sha256": "dfa71c78fe374276093990de6fad6321767f88971810d73d5f654e10d4138468"
+    },
+    {
+      "bytes": 2282,
+      "mode": "0o644",
+      "path": "tls-review/source/fixed/third_party/enough_mail/test/mail/mail_client_send_test.dart",
+      "sha256": "56091640deb44621bf621ee635ea3d0a1f4d8812d1d2e6e951c9e91bb9c57270"
+    },
+    {
+      "bytes": 3925,
+      "mode": "0o644",
+      "path": "tls-review/source/fixed/third_party/enough_mail/test/mail/mail_client_starttls_test.dart",
+      "sha256": "ff2a741bf1eb1e01ccc54202c4e913358f4e90dbd9d952a7ab2dec23281ff312"
+    },
+    {
+      "bytes": 9066,
+      "mode": "0o644",
+      "path": "tls-review/source/fixed/third_party/enough_mail/test/src/imap/raw_fetch_parser_test.dart",
+      "sha256": "0457830a1302de146027335ecdfd07de37e8b53c7eb1d8e3cc13655136735b85"
+    }
+  ],
+  "reopened_all_members_verified": true,
+  "schema": "quds-tls-review-evidence-v1",
+  "scope": "Independent review and development evidence; excluded from final qualification counts",
+  "source_commit": "5569c055a021c893e941fc54d40499ad9d96a5db",
+  "source_tree": "9d2c815eda61378fbc4b234124e8e7c9cfeacb5b"
+}

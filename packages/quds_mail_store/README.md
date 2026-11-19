@@ -4,6 +4,9 @@ Profile-scoped Drift/SQLite persistence for the shared Mail contracts. Original
 source is MIT. Schema v3 flags and the bounded native IMAP integration passed
 combined local qualification at `71edec2d`, including **199 core/store test
 executions** and five transport/coordinator tests using actual SQLite.
+That is the retained Mail-branch checkpoint; the
+[Office integration report](../../docs/validation/office-main-integration-20261119/README.md)
+records the subsequent combined source and its separately counted qualification.
 The account-aware UI and SMTP remain subsequent work. Exact dependencies and
 retained notices are in
 [DEPENDENCIES.json](DEPENDENCIES.json) and
