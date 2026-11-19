@@ -1,0 +1,1058 @@
+{
+  "schema": 1,
+  "recorded_at_utc": "2026-11-19 14:02:06 UTC",
+  "kind": "Independent bounded read-only remote review before root-managed integration and qualification; not runtime acceptance",
+  "repository": "CrispStrobe/quds_office_suite",
+  "comparison_source": "abe177f353bbdfd0f697c95e934b8a2563ab11ae",
+  "main": "0336116d6a07a16f5b46dbe07583b47ee9dcec83",
+  "open_pr_numbers": [
+    196,
+    197,
+    198
+  ],
+  "branch_count": 15,
+  "branch_pages_complete": true,
+  "new_prs": [
+    {
+      "number": 196,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/196",
+      "title": "Arabic morphology: binary proofing bundle and compact ABI",
+      "state": "open",
+      "draft": false,
+      "merged": false,
+      "base": "main",
+      "base_sha": "0336116d6a07a16f5b46dbe07583b47ee9dcec83",
+      "head": "feat/arabic-morph-binary-20261119",
+      "head_sha": "555fc99fdeb8ef7f3043513203cb16b243a4a9d7",
+      "mergeable": true,
+      "commits": 2,
+      "changed_files": 31,
+      "additions": 1018,
+      "deletions": 249,
+      "created_at": "2026-11-19T13:47:36Z",
+      "updated_at": "2026-11-19T13:47:36Z"
+    },
+    {
+      "number": 197,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/197",
+      "title": "Add on-premises Exchange EWS support",
+      "state": "open",
+      "draft": false,
+      "merged": false,
+      "base": "main",
+      "base_sha": "0336116d6a07a16f5b46dbe07583b47ee9dcec83",
+      "head": "feat/ews-on-premises",
+      "head_sha": "f20b3c61d28918cd75526c64852c41fae943acf3",
+      "mergeable": true,
+      "commits": 1,
+      "changed_files": 51,
+      "additions": 10870,
+      "deletions": 9,
+      "created_at": "2026-11-19T13:57:43Z",
+      "updated_at": "2026-11-19T13:57:43Z"
+    }
+  ],
+  "comparisons": [
+    {
+      "repository_full_name": "CrispStrobe/quds_office_suite",
+      "base": "0336116d6a07a16f5b46dbe07583b47ee9dcec83",
+      "head": "555fc99fdeb8ef7f3043513203cb16b243a4a9d7",
+      "status": "ahead",
+      "ahead_by": 2,
+      "behind_by": 0,
+      "total_commits": 2,
+      "too_large": null,
+      "base_commit": {
+        "sha": "0336116d6a07a16f5b46dbe07583b47ee9dcec83",
+        "url": "https://api.github.com/repos/CrispStrobe/quds_office_suite/commits/0336116d6a07a16f5b46dbe07583b47ee9dcec83",
+        "html_url": "https://github.com/CrispStrobe/quds_office_suite/commit/0336116d6a07a16f5b46dbe07583b47ee9dcec83"
+      },
+      "merge_base_commit": {
+        "sha": "0336116d6a07a16f5b46dbe07583b47ee9dcec83",
+        "url": "https://api.github.com/repos/CrispStrobe/quds_office_suite/commits/0336116d6a07a16f5b46dbe07583b47ee9dcec83",
+        "html_url": "https://github.com/CrispStrobe/quds_office_suite/commit/0336116d6a07a16f5b46dbe07583b47ee9dcec83"
+      },
+      "files": [
+        {
+          "filename": "docs/PROOFING.md",
+          "status": "modified",
+          "additions": 21,
+          "deletions": 12,
+          "changes": 33,
+          "previous_filename": null
+        },
+        {
+          "filename": "docs/roadmaps/arabic-proofing.md",
+          "status": "modified",
+          "additions": 22,
+          "deletions": 3,
+          "changes": 25,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_arabic_morph/CHANGELOG.md",
+          "status": "modified",
+          "additions": 16,
+          "deletions": 0,
+          "changes": 16,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_arabic_morph/README.md",
+          "status": "modified",
+          "additions": 72,
+          "deletions": 42,
+          "changes": 114,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_arabic_morph/lib/src/camel_arabic_morphology.dart",
+          "status": "modified",
+          "additions": 6,
+          "deletions": 5,
+          "changes": 11,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_arabic_morph/lib/src/morph_analysis.dart",
+          "status": "modified",
+          "additions": 185,
+          "deletions": 0,
+          "changes": 185,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_arabic_morph/lib/src/morph_catalog.dart",
+          "status": "modified",
+          "additions": 51,
+          "deletions": 4,
+          "changes": 55,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_arabic_morph/lib/src/morph_installer_io.dart",
+          "status": "modified",
+          "additions": 28,
+          "deletions": 0,
+          "changes": 28,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_arabic_morph/lib/src/morph_transport_native.dart",
+          "status": "modified",
+          "additions": 115,
+          "deletions": 49,
+          "changes": 164,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_arabic_morph/lib/src/morph_transport_web.dart",
+          "status": "modified",
+          "additions": 25,
+          "deletions": 14,
+          "changes": 39,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_arabic_morph/licenses/data/camel-morph-msa-NOTICE",
+          "status": "modified",
+          "additions": 10,
+          "deletions": 4,
+          "changes": 14,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_arabic_morph/licenses/manifest.json",
+          "status": "modified",
+          "additions": 6,
+          "deletions": 6,
+          "changes": 12,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_arabic_morph/native/CMakeLists.txt",
+          "status": "modified",
+          "additions": 4,
+          "deletions": 3,
+          "changes": 7,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_arabic_morph/pubspec.yaml",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 1,
+          "changes": 2,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_arabic_morph/test/arabic_morph_native_test.dart",
+          "status": "modified",
+          "additions": 87,
+          "deletions": 32,
+          "changes": 119,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_arabic_morph/test/arabic_morph_unit_test.dart",
+          "status": "modified",
+          "additions": 152,
+          "deletions": 1,
+          "changes": 153,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_arabic_morph/test/arabic_rules_e2e_test.dart",
+          "status": "modified",
+          "additions": 2,
+          "deletions": 2,
+          "changes": 4,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_arabic_morph/tool/browser_smoke.dart",
+          "status": "modified",
+          "additions": 4,
+          "deletions": 4,
+          "changes": 8,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_arabic_morph/tool/browser_smoke.py",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 1,
+          "changes": 2,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_arabic_morph/tool/build.py",
+          "status": "modified",
+          "additions": 7,
+          "deletions": 7,
+          "changes": 14,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_arabic_morph/tool/pud_benchmark.dart",
+          "status": "modified",
+          "additions": 26,
+          "deletions": 6,
+          "changes": 32,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_arabic_morph/tool/pud_rule_findings.dart",
+          "status": "added",
+          "additions": 61,
+          "deletions": 0,
+          "changes": 61,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_arabic_morph/tool/web_smoke.mjs",
+          "status": "modified",
+          "additions": 53,
+          "deletions": 7,
+          "changes": 60,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_arabic_morph/web/arabic_morph_worker.mjs",
+          "status": "modified",
+          "additions": 29,
+          "deletions": 21,
+          "changes": 50,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_editor/example/assets/licenses/arabic_morph/camel-morph-msa-NOTICE",
+          "status": "modified",
+          "additions": 10,
+          "deletions": 4,
+          "changes": 14,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_editor/example/assets/licenses/arabic_morph/manifest.json",
+          "status": "modified",
+          "additions": 6,
+          "deletions": 6,
+          "changes": 12,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_editor/example/lib/studio_arabic_morph_host_native.dart",
+          "status": "modified",
+          "additions": 4,
+          "deletions": 1,
+          "changes": 5,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_editor/example/lib/studio_arabic_morph_host_web.dart",
+          "status": "modified",
+          "additions": 5,
+          "deletions": 5,
+          "changes": 10,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_editor/example/lib/studio_hunspell_setup.dart",
+          "status": "modified",
+          "additions": 2,
+          "deletions": 2,
+          "changes": 4,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_editor/example/test/studio_arabic_morph_native_test.dart",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 1,
+          "changes": 2,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_editor/example/test/studio_arabic_morph_setup_test.dart",
+          "status": "modified",
+          "additions": 6,
+          "deletions": 6,
+          "changes": 12,
+          "previous_filename": null
+        }
+      ]
+    },
+    {
+      "repository_full_name": "CrispStrobe/quds_office_suite",
+      "base": "0336116d6a07a16f5b46dbe07583b47ee9dcec83",
+      "head": "f20b3c61d28918cd75526c64852c41fae943acf3",
+      "status": "ahead",
+      "ahead_by": 1,
+      "behind_by": 0,
+      "total_commits": 1,
+      "too_large": null,
+      "base_commit": {
+        "sha": "0336116d6a07a16f5b46dbe07583b47ee9dcec83",
+        "url": "https://api.github.com/repos/CrispStrobe/quds_office_suite/commits/0336116d6a07a16f5b46dbe07583b47ee9dcec83",
+        "html_url": "https://github.com/CrispStrobe/quds_office_suite/commit/0336116d6a07a16f5b46dbe07583b47ee9dcec83"
+      },
+      "merge_base_commit": {
+        "sha": "0336116d6a07a16f5b46dbe07583b47ee9dcec83",
+        "url": "https://api.github.com/repos/CrispStrobe/quds_office_suite/commits/0336116d6a07a16f5b46dbe07583b47ee9dcec83",
+        "html_url": "https://github.com/CrispStrobe/quds_office_suite/commit/0336116d6a07a16f5b46dbe07583b47ee9dcec83"
+      },
+      "files": [
+        {
+          "filename": ".github/workflows/ci.yml",
+          "status": "modified",
+          "additions": 47,
+          "deletions": 0,
+          "changes": 47,
+          "previous_filename": null
+        },
+        {
+          "filename": "docs/ROADMAP.md",
+          "status": "modified",
+          "additions": 6,
+          "deletions": 0,
+          "changes": 6,
+          "previous_filename": null
+        },
+        {
+          "filename": "docs/roadmaps/mail/README.md",
+          "status": "modified",
+          "additions": 4,
+          "deletions": 4,
+          "changes": 8,
+          "previous_filename": null
+        },
+        {
+          "filename": "docs/roadmaps/mail/exchange-ews.md",
+          "status": "added",
+          "additions": 147,
+          "deletions": 0,
+          "changes": 147,
+          "previous_filename": null
+        },
+        {
+          "filename": "docs/roadmaps/mail/implementation-plan.md",
+          "status": "modified",
+          "additions": 4,
+          "deletions": 1,
+          "changes": 5,
+          "previous_filename": null
+        },
+        {
+          "filename": "docs/roadmaps/mail/status.md",
+          "status": "modified",
+          "additions": 16,
+          "deletions": 0,
+          "changes": 16,
+          "previous_filename": null
+        },
+        {
+          "filename": "docs/validation/mail-ews-20261119/README.md",
+          "status": "added",
+          "additions": 98,
+          "deletions": 0,
+          "changes": 98,
+          "previous_filename": null
+        },
+        {
+          "filename": "docs/validation/mail-ews-20261119/dependencies.json",
+          "status": "added",
+          "additions": 1677,
+          "deletions": 0,
+          "changes": 1677,
+          "previous_filename": null
+        },
+        {
+          "filename": "docs/validation/mail-ews-20261119/logs/ews-core-store-analyze.log.gz",
+          "status": "added",
+          "additions": 0,
+          "deletions": 0,
+          "changes": 0,
+          "previous_filename": null
+        },
+        {
+          "filename": "docs/validation/mail-ews-20261119/logs/ews-core-tests.log.gz",
+          "status": "added",
+          "additions": 0,
+          "deletions": 0,
+          "changes": 0,
+          "previous_filename": null
+        },
+        {
+          "filename": "docs/validation/mail-ews-20261119/logs/ews-mime-analyze.log.gz",
+          "status": "added",
+          "additions": 0,
+          "deletions": 0,
+          "changes": 0,
+          "previous_filename": null
+        },
+        {
+          "filename": "docs/validation/mail-ews-20261119/logs/ews-mime-tests.log.gz",
+          "status": "added",
+          "additions": 0,
+          "deletions": 0,
+          "changes": 0,
+          "previous_filename": null
+        },
+        {
+          "filename": "docs/validation/mail-ews-20261119/logs/ews-store-analyze.log.gz",
+          "status": "added",
+          "additions": 0,
+          "deletions": 0,
+          "changes": 0,
+          "previous_filename": null
+        },
+        {
+          "filename": "docs/validation/mail-ews-20261119/logs/ews-store-tests.log.gz",
+          "status": "added",
+          "additions": 0,
+          "deletions": 0,
+          "changes": 0,
+          "previous_filename": null
+        },
+        {
+          "filename": "docs/validation/mail-ews-20261119/logs/ews-studio-analyze.log.gz",
+          "status": "added",
+          "additions": 0,
+          "deletions": 0,
+          "changes": 0,
+          "previous_filename": null
+        },
+        {
+          "filename": "docs/validation/mail-ews-20261119/logs/ews-studio-regression.log.gz",
+          "status": "added",
+          "additions": 0,
+          "deletions": 0,
+          "changes": 0,
+          "previous_filename": null
+        },
+        {
+          "filename": "docs/validation/mail-ews-20261119/logs/ews-studio-tests.log.gz",
+          "status": "added",
+          "additions": 0,
+          "deletions": 0,
+          "changes": 0,
+          "previous_filename": null
+        },
+        {
+          "filename": "docs/validation/mail-ews-20261119/logs/ews-transport-analyze.log.gz",
+          "status": "added",
+          "additions": 0,
+          "deletions": 0,
+          "changes": 0,
+          "previous_filename": null
+        },
+        {
+          "filename": "docs/validation/mail-ews-20261119/logs/ews-transport-tests.jsonl.gz",
+          "status": "added",
+          "additions": 0,
+          "deletions": 0,
+          "changes": 0,
+          "previous_filename": null
+        },
+        {
+          "filename": "docs/validation/mail-ews-20261119/ntlm-interop-receipt.json",
+          "status": "added",
+          "additions": 40,
+          "deletions": 0,
+          "changes": 40,
+          "previous_filename": null
+        },
+        {
+          "filename": "docs/validation/mail-ews-20261119/receipt.json",
+          "status": "added",
+          "additions": 130,
+          "deletions": 0,
+          "changes": 130,
+          "previous_filename": null
+        },
+        {
+          "filename": "docs/validation/mail-ews-20261119/source-sha256.json",
+          "status": "added",
+          "additions": 141,
+          "deletions": 0,
+          "changes": 141,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_mail_core/CHANGELOG.md",
+          "status": "modified",
+          "additions": 3,
+          "deletions": 0,
+          "changes": 3,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_mail_core/lib/src/model/identity.dart",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 1,
+          "changes": 2,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_mail_core/test/ews_identity_test.dart",
+          "status": "added",
+          "additions": 66,
+          "deletions": 0,
+          "changes": 66,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_mail_store/test/ews_store_test.dart",
+          "status": "added",
+          "additions": 378,
+          "deletions": 0,
+          "changes": 378,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_mail_transport/CHANGELOG.md",
+          "status": "modified",
+          "additions": 15,
+          "deletions": 0,
+          "changes": 15,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_mail_transport/README.md",
+          "status": "modified",
+          "additions": 17,
+          "deletions": 1,
+          "changes": 18,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_mail_transport/example/ews_probe.dart",
+          "status": "added",
+          "additions": 160,
+          "deletions": 0,
+          "changes": 160,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_mail_transport/lib/quds_mail_transport.dart",
+          "status": "modified",
+          "additions": 4,
+          "deletions": 1,
+          "changes": 5,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_mail_transport/lib/src/ews/configuration.dart",
+          "status": "added",
+          "additions": 151,
+          "deletions": 0,
+          "changes": 151,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_mail_transport/lib/src/ews/cursor.dart",
+          "status": "added",
+          "additions": 145,
+          "deletions": 0,
+          "changes": 145,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_mail_transport/lib/src/ews/errors.dart",
+          "status": "added",
+          "additions": 16,
+          "deletions": 0,
+          "changes": 16,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_mail_transport/lib/src/ews/native/factory.dart",
+          "status": "added",
+          "additions": 19,
+          "deletions": 0,
+          "changes": 19,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_mail_transport/lib/src/ews/native/http_client.dart",
+          "status": "added",
+          "additions": 672,
+          "deletions": 0,
+          "changes": 672,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_mail_transport/lib/src/ews/native/ntlm.dart",
+          "status": "added",
+          "additions": 449,
+          "deletions": 0,
+          "changes": 449,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_mail_transport/lib/src/ews/native/provider.dart",
+          "status": "added",
+          "additions": 666,
+          "deletions": 0,
+          "changes": 666,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_mail_transport/lib/src/ews/soap.dart",
+          "status": "added",
+          "additions": 1036,
+          "deletions": 0,
+          "changes": 1036,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_mail_transport/lib/src/ews/unsupported.dart",
+          "status": "added",
+          "additions": 75,
+          "deletions": 0,
+          "changes": 75,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_mail_transport/pubspec.yaml",
+          "status": "modified",
+          "additions": 3,
+          "deletions": 1,
+          "changes": 4,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_mail_transport/test/ews_configuration_test.dart",
+          "status": "added",
+          "additions": 146,
+          "deletions": 0,
+          "changes": 146,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_mail_transport/test/ews_http_test.dart",
+          "status": "added",
+          "additions": 614,
+          "deletions": 0,
+          "changes": 614,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_mail_transport/test/ews_ntlm_test.dart",
+          "status": "added",
+          "additions": 269,
+          "deletions": 0,
+          "changes": 269,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_mail_transport/test/ews_provider_test.dart",
+          "status": "added",
+          "additions": 872,
+          "deletions": 0,
+          "changes": 872,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_mail_transport/test/ews_soap_test.dart",
+          "status": "added",
+          "additions": 676,
+          "deletions": 0,
+          "changes": 676,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_mail_transport/test/ews_unsupported_test.dart",
+          "status": "added",
+          "additions": 107,
+          "deletions": 0,
+          "changes": 107,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_editor/CHANGELOG.md",
+          "status": "modified",
+          "additions": 7,
+          "deletions": 0,
+          "changes": 7,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_editor/example/lib/studio_mail_ews.dart",
+          "status": "added",
+          "additions": 1144,
+          "deletions": 0,
+          "changes": 1144,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+          "status": "modified",
+          "additions": 14,
+          "deletions": 0,
+          "changes": 14,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_editor/example/lib/studio_mail_strings.dart",
+          "status": "modified",
+          "additions": 122,
+          "deletions": 0,
+          "changes": 122,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_editor/example/test/studio_mail_ews_test.dart",
+          "status": "added",
+          "additions": 713,
+          "deletions": 0,
+          "changes": 713,
+          "previous_filename": null
+        }
+      ]
+    },
+    {
+      "repository_full_name": "CrispStrobe/quds_office_suite",
+      "base": "40c3351e961f181564945eb8fa1a22895df5295a",
+      "head": "a14ab774476c518735b9fe2814f82c47ae917379",
+      "status": "ahead",
+      "ahead_by": 3,
+      "behind_by": 0,
+      "total_commits": 3,
+      "too_large": null,
+      "base_commit": {
+        "sha": "40c3351e961f181564945eb8fa1a22895df5295a",
+        "url": "https://api.github.com/repos/CrispStrobe/quds_office_suite/commits/40c3351e961f181564945eb8fa1a22895df5295a",
+        "html_url": "https://github.com/CrispStrobe/quds_office_suite/commit/40c3351e961f181564945eb8fa1a22895df5295a"
+      },
+      "merge_base_commit": {
+        "sha": "40c3351e961f181564945eb8fa1a22895df5295a",
+        "url": "https://api.github.com/repos/CrispStrobe/quds_office_suite/commits/40c3351e961f181564945eb8fa1a22895df5295a",
+        "html_url": "https://github.com/CrispStrobe/quds_office_suite/commit/40c3351e961f181564945eb8fa1a22895df5295a"
+      },
+      "files": [
+        {
+          "filename": "docs/evidence/language-id-ud-r2.14.json",
+          "status": "added",
+          "additions": 773,
+          "deletions": 0,
+          "changes": 773,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_language_id/lib/src/cld3_language_identifier.dart",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 1,
+          "changes": 2,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_language_id/tool/ud_evaluation.dart",
+          "status": "added",
+          "additions": 338,
+          "deletions": 0,
+          "changes": 338,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_language_id/tool/web_smoke.mjs",
+          "status": "added",
+          "additions": 62,
+          "deletions": 0,
+          "changes": 62,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_editor/example/assets/licenses/language_id/CLD3-LICENSE",
+          "status": "added",
+          "additions": 203,
+          "deletions": 0,
+          "changes": 203,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_editor/example/assets/licenses/language_id/CrispASR-LICENSE",
+          "status": "added",
+          "additions": 22,
+          "deletions": 0,
+          "changes": 22,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_editor/example/assets/licenses/language_id/LICENSE.adapter",
+          "status": "added",
+          "additions": 21,
+          "deletions": 0,
+          "changes": 21,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_editor/example/assets/licenses/language_id/cld3-GGUF-README.md",
+          "status": "added",
+          "additions": 184,
+          "deletions": 0,
+          "changes": 184,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_editor/example/assets/licenses/language_id/manifest.json",
+          "status": "added",
+          "additions": 38,
+          "deletions": 0,
+          "changes": 38,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_editor/example/lib/studio_de_strings.dart",
+          "status": "modified",
+          "additions": 3,
+          "deletions": 0,
+          "changes": 3,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_editor/example/lib/studio_language_id_host.dart",
+          "status": "added",
+          "additions": 101,
+          "deletions": 0,
+          "changes": 101,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_editor/example/lib/studio_language_id_host_native.dart",
+          "status": "added",
+          "additions": 35,
+          "deletions": 0,
+          "changes": 35,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_editor/example/lib/studio_language_id_host_web.dart",
+          "status": "added",
+          "additions": 9,
+          "deletions": 0,
+          "changes": 9,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_editor/example/lib/studio_licenses.dart",
+          "status": "modified",
+          "additions": 17,
+          "deletions": 0,
+          "changes": 17,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_editor/example/lib/suite_workspace.dart",
+          "status": "modified",
+          "additions": 45,
+          "deletions": 0,
+          "changes": 45,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_editor/example/pubspec.yaml",
+          "status": "modified",
+          "additions": 3,
+          "deletions": 0,
+          "changes": 3,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+          "status": "modified",
+          "additions": 177,
+          "deletions": 0,
+          "changes": 177,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_editor/lib/src/embed/word_review_pane.dart",
+          "status": "modified",
+          "additions": 99,
+          "deletions": 0,
+          "changes": 99,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_editor/lib/src/proofing/word_proofing.dart",
+          "status": "modified",
+          "additions": 177,
+          "deletions": 4,
+          "changes": 181,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_editor/test/word_language_detection_test.dart",
+          "status": "added",
+          "additions": 386,
+          "deletions": 0,
+          "changes": 386,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/lib/src/proofing/language_identification.dart",
+          "status": "modified",
+          "additions": 77,
+          "deletions": 15,
+          "changes": 92,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/test/proofing/language_identification_test.dart",
+          "status": "added",
+          "additions": 442,
+          "deletions": 0,
+          "changes": 442,
+          "previous_filename": null
+        }
+      ]
+    }
+  ],
+  "newly_advanced_language_branch": {
+    "branch": "feat/paragraph-language-id-20261119",
+    "previous_head": "40c3351e961f181564945eb8fa1a22895df5295a",
+    "head": "a14ab774476c518735b9fe2814f82c47ae917379",
+    "commits": [
+      "ddcbb009",
+      "5a988f59",
+      "a14ab774"
+    ],
+    "source_of_exact_head": "Root-fetched local remote-tracking refs; delta independently read through GitHub compare",
+    "changes": "Calibrated thresholds and evaluation tools; Studio model host and notices; detected-language paragraph proofing routing, display and Apply action; editor and engine tests",
+    "overlapping_paths": [
+      "packages/quds_language_id/lib/src/cld3_language_identifier.dart",
+      "packages/quds_office_engine/lib/src/proofing/language_identification.dart",
+      "packages/quds_office_engine/test/proofing/language_identification_test.dart"
+    ]
+  },
+  "conflict_assessment": {
+    "pr196_vs_abe177": "No changed-path intersection against common main033; no textual conflict expected.",
+    "pr197_vs_abe177": "No changed-path intersection against common main033; no textual conflict expected.",
+    "pr196_vs_pr197": "Disjoint changed paths; no textual conflict expected.",
+    "language_branch": "Direct product overlap and add/add engine test path require deliberate reconciliation; preserve current disposal, malformed-response and cache-ownership repairs plus incoming calibrated policy and UI.",
+    "actual_merge_performed_by_this_review": false
+  },
+  "recommendation": "Integrate the three exact incoming heads before freezing, retain both independently useful engine test suites and current lifecycle safeguards, extend native/Node/static/browser gate for the new source, and preserve each historical result under its own source.",
+  "qualification_implications": [
+    "PR196 changes morphology transport to compact binary ABI2 and default pinned database; preserve prior portable numeric fixes, add compact-decoder native/Node selection, and distinguish optional backend acceptance from scripted fixtures.",
+    "PR197 adds EWS provider, NTLM, SOAP, core/store tests and Studio tests; current Store all-suite launcher and native/Node plans must include new suites and strict targets.",
+    "PR197 root lockfile unchanged; pointycastle/xml are now direct transport dependencies without locked archive changes. Offline enforced workspace resolution still required.",
+    "Advanced language branch changes active Word proofing, not only a dormant package; include its editor/engine cases, host imports and browser compilation.",
+    "Earlier EWS/source-specific validation and morphology benchmark claims do not substitute for combined-source qualification.",
+    "No live Exchange endpoint acceptance is present in incoming EWS evidence."
+  ],
+  "github_actions_queries": 0,
+  "tests_executed_by_this_review": 0,
+  "source_edits_by_this_review": [],
+  "evidence_sources": [
+    "https://github.com/CrispStrobe/quds_office_suite/pull/196",
+    "https://github.com/CrispStrobe/quds_office_suite/pull/197",
+    "https://github.com/CrispStrobe/quds_office_suite/blob/f20b3c61d28918cd75526c64852c41fae943acf3/docs/validation/mail-ews-20261119/README.md",
+    "https://github.com/CrispStrobe/quds_office_suite/compare/40c3351e961f181564945eb8fa1a22895df5295a...a14ab774476c518735b9fe2814f82c47ae917379"
+  ],
+  "focused_integration_review": {
+    "scope": "Read-only inspection of exact PR196/197 source; not runtime, cryptographic, or real-provider acceptance.",
+    "ews_blocking_findings": [],
+    "ews_reviewed_boundaries": [
+      "MailProviderKind.ews is appended; store codec/repository use provider.name and exact opaque identity, not enum ordinals.",
+      "Public EWS factory does not expose a certificate-bypass or custom trust seam.",
+      "HTTPS endpoint is validated before credential use; redirects, proxies, reconnects and automatic authentication replay are prohibited by the native client.",
+      "NTLM uses body-free HEAD negotiation on the same connection with MIC/channel-binding code; no claim of independent cryptographic validation in this review.",
+      "Provider reloads scoped credentials per operation and checks lease ownership around async completions; stopped late work cannot acquire a new client after timeout.",
+      "MutationStarted makes uncertain writes conservative; submit does not auto-retry and cleanup cannot overwrite a confirmed accepted result.",
+      "Studio clears session credentials on disconnect/disposal and gates late results by current provider plus lease; mutation failure requires fresh headers before another write."
+    ],
+    "lock_identity": {
+      "git_blob": "13f6b3ddf846de813c4d19893c05919b67c8cd12",
+      "identical_at": [
+        "0336116d6a07a16f5b46dbe07583b47ee9dcec83",
+        "555fc99fdeb8ef7f3043513203cb16b243a4a9d7",
+        "f20b3c61d28918cd75526c64852c41fae943acf3",
+        "a14ab774476c518735b9fe2814f82c47ae917379"
+      ],
+      "already_locked": {
+        "pointycastle": "4.0.0",
+        "xml": "7.1.0"
+      }
+    },
+    "ews_test_platforms": {
+      "packages/quds_mail_core/test/ews_identity_test.dart": "portable VM/Node",
+      "packages/quds_mail_store/test/ews_store_test.dart": "VM native SQLite",
+      "packages/quds_mail_transport/test/ews_configuration_test.dart": "portable VM/Node",
+      "packages/quds_mail_transport/test/ews_soap_test.dart": "portable VM/Node",
+      "packages/quds_mail_transport/test/ews_unsupported_test.dart": "JS only",
+      "packages/quds_mail_transport/test/ews_http_test.dart": "VM local TLS fixtures",
+      "packages/quds_mail_transport/test/ews_ntlm_test.dart": "VM certificate fixtures",
+      "packages/quds_mail_transport/test/ews_provider_test.dart": "VM provider fixtures",
+      "packages/quds_office_editor/example/test/studio_mail_ews_test.dart": "Flutter VM fake provider and in-memory credentials"
+    },
+    "ews_live_credentials_required_for_selected_tests": false,
+    "morphology_boundaries": [
+      "Original portable numeric conversion in morph_analysis.dart is retained; compact decoder is additive.",
+      "Default catalog/host moves to proofing-bin and native ABI2; existing binary/runtime qualification cannot be silently reused.",
+      "Native/e2e/Studio native suites require QUDS_ARABIC_MORPH_TEST_LIBRARY and QUDS_ARABIC_MORPH_TEST_BUNDLE; live download has its separate explicit environment gate.",
+      "Automatic removeOtherBundles migration is intentional incoming behavior; only recognized revision-named owned bundle trees/removal leftovers are removed and staging paths are retained."
+    ],
+    "source_level_followups_reported_to_root": [
+      {
+        "path": "packages/quds_arabic_morph/lib/src/morph_transport_native.dart",
+        "area": "_NativeTransport.dispose / _workerMain",
+        "finding": "Normal disposal still immediately kills the isolate without explicit model free or persistent-buffer cleanup. This lifecycle pattern predates PR196; the compact path adds more persistent buffers.",
+        "proof_kind": "Source inspection; no allocation-counter experiment conducted for morphology."
+      },
+      {
+        "path": "packages/quds_arabic_morph/lib/src/morph_transport_native.dart",
+        "area": "_Bindings._chunk",
+        "finding": "The text allocation precedes the lengths allocation and both precede try/finally. If lengths allocation throws, the already allocated text buffer is not freed.",
+        "proof_kind": "Direct exception-path source reasoning; no forced-OOM experiment conducted."
+      }
+    ],
+    "tests_run_by_this_review": 0,
+    "product_edits_by_this_review": [],
+    "github_actions_queries": 0
+  }
+}
