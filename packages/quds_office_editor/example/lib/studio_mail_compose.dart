@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:quds_office_editor/quds_office_editor.dart';
 
 import 'studio_mail_strings.dart';
+import 'studio_mail_threading.dart';
 import 'studio_strings.dart';
 
 enum StudioMailDraftProblem { recipient, subject, body }
@@ -14,11 +15,13 @@ final class StudioMailDraft {
     required this.to,
     required this.subject,
     required this.body,
+    this.thread = const StudioMailThread.empty(),
   });
 
   final String to;
   final String subject;
   final String body;
+  final StudioMailThread thread;
 
   static const maxBodyBytes = 1024 * 1024;
 
@@ -121,6 +124,7 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
       body: _body.document.paragraphs
           .map((paragraph) => paragraph.text)
           .join('\n'),
+      thread: widget.initialDraft?.thread ?? const StudioMailThread.empty(),
     );
     final problem = snapshot.problem;
     if (problem != null) {

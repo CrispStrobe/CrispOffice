@@ -42,3 +42,16 @@ as such, separate from unexecuted Dart/Flutter tests and earlier author evidence
 
 The final merge disposition and remaining runtime qualification will be recorded
 explicitly; this initial checkpoint does not claim either is complete.
+
+## Implementation checkpoint
+
+The immutable thread helper, reply builder, composer snapshot and shared MIME
+submission builder are now implemented. Supported parent IDs are exact ASCII
+angle-bracketed dot-atoms, at most 254 characters. A missing or unsupported
+parent leaves the draft unthreaded. References are deduplicated exactly and
+bounded to 900 ASCII value bytes, keeping the first valid ancestor and newest
+contiguous tail before the current parent. More than 1,024 source reference
+entries fall back to the valid parent alone. Forward drafts remain unthreaded.
+
+Focused regression authoring and independent source review are in progress.
+Fresh Dart/Flutter tests, analyzer and formatter have not run.

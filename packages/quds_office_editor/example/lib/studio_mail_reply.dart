@@ -1,6 +1,7 @@
 import 'package:quds_mail_core/quds_mail_core.dart';
 
 import 'studio_mail_compose.dart';
+import 'studio_mail_threading.dart';
 
 /// An HTML-only or unsupported body cannot become a plain-text quote silently.
 final class StudioMailReplyUnavailable implements Exception {
@@ -15,8 +16,9 @@ final class StudioMailReplyUnavailable implements Exception {
 /// Only the plain body is quoted. Reader presentation headers, Bcc addresses,
 /// HTML and attachment names/content are never used as a fallback. Forwarding
 /// requires the user to choose a recipient and explicitly identifies the
-/// text-only boundary. Threading metadata and attachment forwarding are outside
-/// this draft contract. Attribution dates use UTC to avoid host-zone ambiguity.
+/// text-only boundary. Replies carry bounded, validated thread identifiers;
+/// forwards never inherit them. Attachment forwarding remains outside this
+/// draft contract. Attribution dates use UTC to avoid host-zone ambiguity.
 StudioMailDraft buildStudioMailReplyDraft(
   MailMessage message, {
   required bool forward,
@@ -66,6 +68,9 @@ StudioMailDraft buildStudioMailReplyDraft(
       : 'On $date, $sender wrote:\n';
   return StudioMailDraft(
     to: recipient,
+    thread: forward
+        ? const StudioMailThread.empty()
+        : StudioMailThread.replyTo(envelope),
     subject: subject.toLowerCase().startsWith(prefix.trim().toLowerCase())
         ? subject
         : '$prefix$subject',
