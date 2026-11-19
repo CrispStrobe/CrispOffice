@@ -47,6 +47,10 @@ startup-recovery assumptions.
 - Atomic sync page, membership, tombstone and cursor transactions. A page must
   present the cursor it read, and its account lease is checked before commit.
   A stale page returns `conflict`; domain streams publish successful commits.
+- Authoritative IMAP ranges reconcile only existing memberships absent from the
+  page's upserts in the same mailbox and UIDVALIDITY. Missing numeric UIDs never
+  create tombstones. Actual removals retain pending edits for reconciliation and
+  commit atomically with surviving headers and the cursor.
 - Durable standard flags on header snapshots. An omitted snapshot preserves
   previously observed flags for that exact remote identity; an observed empty
   snapshot clears them. Header streams and local search return the stored flags.
@@ -124,6 +128,17 @@ for separately from input metadata, and physical SQLite/index overhead is subjec
 to actual platform quota errors. These limits are not a measured mobile memory
 budget.
 
+An authoritative `MailSyncPage.imapRange` can remove more existing memberships
+than the page's incoming row count. The repository scans at most the configured
+`maxMessagesPerAccount` stored memberships (plus one overflow sentinel), using
+their decoded scoped identities. A range does not enumerate its numeric UID
+space, so a sparse range can extend through UID 4,294,967,295. Reopening with a
+lower message limit rejects an oversized mailbox scan before mutation. Incoming
+upserts and explicit tombstones still obey `maxPageSize` and metadata limits;
+the final account quota remains authoritative for the resulting journal/data.
+The `resetRequired` flag retains its separate full-mailbox reset semantics.
+No schema migration is needed for range reconciliation.
+
 Before reading a stored payload, the repository checks blob length metadata and
 aggregate size before transferring BLOB bytes. It then checks content hashes.
 Reopening under tighter limits can return `quotaExceeded` while retaining the
@@ -189,8 +204,11 @@ loopback implicit TLS/STARTTLS, default-trust and
 hostname rejection, and stalled-handshake cancellation/deadline cleanup passed.
 Deterministic partial-write fixtures verify ordering and abort behavior; they
 do not qualify Windows socket semantics or operating-system backpressure.
-Discovered-UID pagination beyond the initial high-UID ceiling, OAuth hosts,
-authorized live-account interoperability, SMTP and the mailbox UI remain open.
+Those historical gates predate discovered-UID pagination beyond the initial
+high-UID ceiling. The current authoritative-range increment is recorded in the
+[UID pagination report](../../docs/validation/mail-uid-pagination-20261119/README.md).
+OAuth hosts, authorized live-account interoperability, SMTP and the mailbox UI
+remain separate work.
 
 ### Earlier baseline pass and retained failed attempts
 

@@ -1,0 +1,120 @@
+{
+  "reviewed_at_utc": "2026-11-19T07:43:49.852631+00:00",
+  "status": "only_expected_qualified_input_differences",
+  "frozen_source": "ac1e4c8c788ea608402c2260488235c0189efcba",
+  "concurrent_main": "55e262ef269634a0d618c0b5102dc9be5430a5f3",
+  "concurrent_pr173_head": "b0a9bd3f1b46ac89021d1b7e49c32980ca4d181e",
+  "review_scope": "Read-only Git-tree comparison and frozen gate manifest comparison. No checkout, index, Git refs, runtime or tracked files modified.",
+  "qualification_manifest": {
+    "path": "/workspace/scratch/a7846890f2e1/qualification/socket-final/source-before.json",
+    "sha256": "58d68a4303b2295a760c454a1e589e2d120d0d10af0813106b5df95bdaf5a601",
+    "source_after_sha256": "58d68a4303b2295a760c454a1e589e2d120d0d10af0813106b5df95bdaf5a601",
+    "records": 5031,
+    "before_after_identical": true,
+    "all_records_match_ac1_tree_modes_and_blobs": true,
+    "verification_path": "/workspace/scratch/a7846890f2e1/qualification/socket-final/verification.json",
+    "verification_sha256": "d4e8e397038c512a16c2f28431ed8496512fb3c55af324cd4afa937206065d82"
+  },
+  "late_main_comparison": {
+    "unchanged_qualified_records": 5026,
+    "changed_or_absent_qualified_records": 5,
+    "entries": [
+      {
+        "path": "docs/validation/office-main-integration-20261119/socket-final/plan.json",
+        "qualified": {
+          "mode": "100644",
+          "git_blob": "f9dab65e06811ed1ce1631ea1b9be2aff15c6ad6"
+        },
+        "qualified_sha256": "c746e44833e9bfa6c8c125fccbb747de19e1d05eaa88f4e903816a29b7f4787f",
+        "late_main": null,
+        "disposition": "retain_exact_ac1_entry",
+        "reason": "Frozen source-bound execution plan; absent from concurrent main and must be retained."
+      },
+      {
+        "path": "packages/quds_mail_core/test/models_test.dart",
+        "qualified": {
+          "mode": "100644",
+          "git_blob": "dd9172e8aed55f976baf698ce9e5ed52d8cc0c02"
+        },
+        "qualified_sha256": "5e75bad48d82ac454af5d48cccb2350054a5a8a58ce0746cdeb077f5db9a9834",
+        "late_main": {
+          "mode": "100644",
+          "git_blob": "dd08deb81d4f005ae31edc68cb56d66fa97a2a36"
+        },
+        "disposition": "retain_exact_ac1_entry",
+        "reason": "Retain qualified Set.add equality fixture syntax; incoming equivalent constant-set form is not the frozen input."
+      },
+      {
+        "path": "packages/quds_mail_store/README.md",
+        "qualified": {
+          "mode": "100644",
+          "git_blob": "529b56802d11b36aaaa8a276ddef570b44782739"
+        },
+        "qualified_sha256": "5f44e34ac9dd94ea015b3ddf6609cb0bdd879ff84ae3acb1f870a1382148c221",
+        "late_main": {
+          "mode": "100644",
+          "git_blob": "8e61c309be36dfd18261cf592b3cd99a457817f4"
+        },
+        "disposition": "retain_exact_ac1_entry",
+        "reason": "Documentation is part of the source inventory; retain the selected Mail checkpoint text and historical report links."
+      },
+      {
+        "path": "packages/quds_mail_transport/test/native_tls_round_trip_test.dart",
+        "qualified": {
+          "mode": "100644",
+          "git_blob": "9bd37e825627d4b2b13d48ab2ab8dda8d7c7beff"
+        },
+        "qualified_sha256": "160629605c10a07e28e24317794231c389634aae8d23fd53bd5df350551b4b21",
+        "late_main": {
+          "mode": "100644",
+          "git_blob": "d091fc1ebfdd2895b86cbdf510057c758ebd8de4"
+        },
+        "disposition": "retain_exact_ac1_entry",
+        "reason": "Retain disconnected/logged-out assertions before finally cleanup in existing trust-rejection cases."
+      },
+      {
+        "path": "third_party/enough_mail/lib/src/private/util/client_base.dart",
+        "qualified": {
+          "mode": "100644",
+          "git_blob": "302aacaf249d66a2da6b3c633bef20cd2adbd9df"
+        },
+        "qualified_sha256": "660c7780730a1621934fa529840c6158cfbe8dea8d86ba1fc9aa9412e5baf286",
+        "late_main": {
+          "mode": "100644",
+          "git_blob": "5210195461fe4c74c21a32dbf3e9cd3442ba8480"
+        },
+        "disposition": "retain_exact_ac1_entry",
+        "reason": "Retain generation-guarded rejected-upgrade abort and original exception propagation."
+      }
+    ],
+    "new_source_paths": [],
+    "non_documentation_product_test_harness_deltas": [
+      "packages/quds_mail_core/test/models_test.dart",
+      "packages/quds_mail_transport/test/native_tls_round_trip_test.dart",
+      "third_party/enough_mail/lib/src/private/util/client_base.dart"
+    ],
+    "all_added_paths": [
+      "docs/validation/office-main-completion-20261119/release/audit_publication_inputs.py",
+      "docs/validation/office-main-completion-20261119/release/coverage-summary.json",
+      "docs/validation/office-main-completion-20261119/release/independent-archive-audit.json",
+      "docs/validation/office-main-completion-20261119/release/independent-summary.json",
+      "docs/validation/office-main-completion-20261119/release/local-qualification.index.json",
+      "docs/validation/office-main-completion-20261119/release/local-qualification.tar.xz",
+      "docs/validation/office-main-completion-20261119/release/manifest.json",
+      "docs/validation/office-main-completion-20261119/release/post-cutoff-main-review.json",
+      "docs/validation/office-main-completion-20261119/release/post-cutoff-reconciliation-audit.json",
+      "docs/validation/office-main-completion-20261119/release/publication-continuity.json",
+      "docs/validation/office-main-completion-20261119/release/publication-receipt.json",
+      "docs/validation/office-main-completion-20261119/release/reconciliation-summary.json"
+    ]
+  },
+  "preservation_model": {
+    "status": "can_preserve_all_5031_inputs",
+    "candidate_is_actual_merged_tree": false,
+    "rule": "Retain the five listed exact ac1 mode/blob entries and retain the remaining matching frozen input entries; union incoming evidence/documentation outside the qualified manifest.",
+    "preserved_qualified_records": 5031,
+    "matching_mode_and_blob_records": 5031,
+    "remaining_gate": "After the real merge, verify its tree against all 5031 records before claiming qualification continuity."
+  },
+  "concrete_discrepancies_beyond_expected": []
+}

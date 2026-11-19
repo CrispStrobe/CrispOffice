@@ -7,7 +7,9 @@ controls** apply to that source. The later inherited-main qualification at
 in the [Office completion report](../office-main-completion-20261119/README.md).
 Subsequent reconciliation and direct TLS-rejection cleanup have their own
 [Office synchronization report](../office-main-sync-20261119/README.md).
-The counts from these different source checkpoints are kept separate.
+The separate [632-execution integration receipt](../office-main-integration-20261119/README.md)
+remains bound to `ac1e4c8c`. The counts from these different source checkpoints
+are kept separate.
 
 ## Historical Mail-branch qualification: PASS on `71edec2d`
 

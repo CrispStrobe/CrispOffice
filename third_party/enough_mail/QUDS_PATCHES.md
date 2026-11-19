@@ -131,6 +131,17 @@ implemented Quds packages outside this directory keep their own MIT license.
     trust refusal and hostname checks, without claiming external-service or
     other-OS acceptance. Ordinary and already-secure manual `connect(Socket)`
     use and existing Socket-returning override signatures remain compatible.
+17. Add `ImapClient.uidSearchRaw` for bounded UID discovery over a closed
+    numeric interval. A dedicated strict parser requires exactly one complete
+    simple SEARCH result and a successful tagged response, returning sorted
+    immutable UIDs. It rejects missing/repeated/extended responses, non-decimal,
+    duplicate and out-of-range UIDs, literals and malformed response shapes.
+    UID-count exhaustion uses the existing resource-limit classification;
+    protocol-line and aggregate response-byte limits remain enforced. Parser
+    errors abort the operation instead of accepting a prefix as deletion
+    authority. The existing general `SearchParser` remains unchanged. This
+    primitive does not itself provide ESEARCH/PARTIAL, an unbounded mailbox
+    snapshot or server-side count-limited pagination.
 
 These native additions are covered by MPL-2.0. `UPSTREAM.json` remains the
 unchanged original-source inventory; local additions and modifications are

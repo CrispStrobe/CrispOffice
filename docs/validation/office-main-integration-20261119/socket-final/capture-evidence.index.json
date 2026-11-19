@@ -1,0 +1,11 @@
+{
+  "archive_bytes": 9276,
+  "archive_sha256": "4562077891f1d943107cd9badde316e3a4630c2c362bfbf77efd679dd37d58e0",
+  "members": [
+    {
+      "path": "socket_local_refs.tsv",
+      "bytes": 42233,
+      "sha256": "25fdac9c7eedafffd9e8ce343c42f33e7bc54f9004f074c7c3c7ee516e0a6c25"
+    }
+  ]
+}

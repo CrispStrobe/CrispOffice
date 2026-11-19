@@ -304,6 +304,9 @@ final class SqliteMailRepository implements MailRepository {
         _fail(MailProblemCode.conflict);
       }
       final provider = row.read<String>('provider');
+      if (page.imapRange != null && provider != MailProviderKind.imap.name) {
+        _fail(MailProblemCode.invalidInput);
+      }
       final remotes = <String>{};
       final ids = <String>{};
       var metadataWork = 0;
@@ -324,6 +327,36 @@ final class SqliteMailRepository implements MailRepository {
       }
       if (metadataWork > limits.maxMetadataCodeUnits) {
         _fail(MailProblemCode.quotaExceeded);
+      }
+      final absent = <(String, String)>[];
+      if (page.imapRange case final range? when !page.resetRequired) {
+        // Scan stored identities, never the numeric UID space. This preflight
+        // also refuses a reopened mailbox exceeding its configured work bound.
+        final stored = await _rows(
+          'SELECT m.id,m.remote FROM messages m JOIN memberships s '
+          'ON s.account=m.account AND s.message=m.id '
+          'WHERE s.account=? AND s.mailbox=? LIMIT ?',
+          [account.value, page.mailbox.value, limits.maxMessagesPerAccount + 1],
+        );
+        if (stored.length > limits.maxMessagesPerAccount) {
+          _fail(MailProblemCode.quotaExceeded);
+        }
+        for (final old in stored) {
+          final remote = old.read<String>('remote');
+          final identity = MailStoreCodec.decodeRemote(
+            remote,
+            account: account,
+          );
+          if (identity is MailImapIdentity &&
+              identity.mailbox == range.mailbox &&
+              identity.uidValidity == range.uidValidity &&
+              identity.uid >= range.firstUid &&
+              identity.uid <= range.lastUid &&
+              !remotes.contains(remote)) {
+            // Explicit tombstones are handled once by the ordinary loop below.
+            absent.add((old.read<String>('id'), remote));
+          }
+        }
       }
       await _db.customStatement(
         'INSERT INTO mailboxes(account,id,display_name) VALUES(?,?,?) ON CONFLICT DO NOTHING',
@@ -393,6 +426,13 @@ final class SqliteMailRepository implements MailRepository {
           'DELETE FROM memberships WHERE account=? AND mailbox=? AND message IN '
           '(SELECT id FROM messages WHERE account=? AND remote=?)',
           [account.value, page.mailbox.value, account.value, remote],
+        );
+      }
+      for (final (id, remote) in absent) {
+        await _recordTombstone(account, page.mailbox, remote);
+        await _db.customStatement(
+          'DELETE FROM memberships WHERE account=? AND mailbox=? AND message=?',
+          [account.value, page.mailbox.value, id],
         );
       }
       await _db.fault(MailStoreCheckpoint.afterSyncRecords);

@@ -524,10 +524,12 @@ browser storage, quota and reload behavior remain unqualified. The database is
 unencrypted, and process-crash tests do not establish power-loss durability.
 
 The integrated flags/schema-v3 and native IMAP foundation passed local automated
-qualification. The [19 November completion report](docs/validation/office-main-completion-20261119/README.md)
-records 836 fresh application test executions and 78 separate Python controls on
-the final reconciled source, with strict analysis, formatting and independent
-source/runtime audits. Earlier attempts retain their own historical identities.
+qualification. The [current Office integration report](docs/validation/office-main-integration-20261119/README.md)
+records 632 passing executions / 562 distinct cases at `ac1e4c8c`, including
+actual loopback TLS and the rejected-upgrade cleanup, with strict analysis,
+formatting and independent source/runtime audits. The
+[836-execution checkpoint](docs/validation/office-main-completion-20261119/README.md)
+and earlier results retain their own source identities and are not added.
 
 The initial IMAP adapter provides bounded UID-window synchronization, exact
 message retrieval and guarded flag/move operations with required TLS. Real Linux

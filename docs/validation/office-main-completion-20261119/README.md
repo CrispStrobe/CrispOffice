@@ -1,5 +1,10 @@
 # Quds Office reconciliation and local qualification — 19 November 2026
 
+This report preserves the qualification at `5569c055` and PR #173. The
+[subsequent combined integration](../office-main-integration-20261119/README.md)
+adds the rejected-upgrade cleanup and retains these original counts and evidence
+separately; they are not added to the later run.
+
 ## Qualified source and publication scope
 
 The completed local qualification is bound to application commit

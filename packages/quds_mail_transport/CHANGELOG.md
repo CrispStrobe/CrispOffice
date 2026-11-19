@@ -2,10 +2,15 @@
 
 ## 0.1.0
 
+- Page bounded synchronization by strictly discovered UIDs across sparse/high
+  UID spaces, retaining v1 cursor continuation and fixed sweep ceilings.
+- Reconcile typed UID ranges atomically through storage without invented-hole
+  tombstones. Bound discovery by existing UID count and protocol bytes; retain
+  an explicitly configured legacy numeric ceiling without applying one by default.
 - Add manual account-scoped IMAP configuration, required TLS, current host-vault
   credential access, and capability-gated password/token authentication.
-- Add bounded UID-window envelope synchronization with scoped durable cursors,
-  UIDVALIDITY reset, nullable standard flags, and explicit high-UID scan limits.
+- Add bounded envelope synchronization with scoped durable cursors,
+  UIDVALIDITY reset and nullable standard flags.
 - Retain exact on-demand message literals through the MPL fork's strict raw UID
   FETCH API, with header/literal/line/response limits and fail-closed parsing.
 - Add verified UID flag changes, mark-deleted behavior, capability-gated MOVE,

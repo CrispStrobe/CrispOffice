@@ -20,7 +20,8 @@ MailMessageId imapMessageId(MailImapIdentity identity) => MailMessageId(
   'imap:${mailboxScope(identity.mailbox)}:${identity.uidValidity}:${identity.uid}',
 );
 
-/// A bounded full-refresh sweep. UID windows also reconcile old flags/expunges.
+/// A bounded full-refresh sweep over discovered UIDs. Confirmed closed ranges
+/// also reconcile old flags/expunges without enumerating numeric UID holes.
 final class ImapScanCursor {
   const ImapScanCursor({
     required this.uidValidity,
@@ -35,7 +36,7 @@ final class ImapScanCursor {
   MailCursor encode(MailMailboxId mailbox) => MailCursor(
     mailbox: mailbox,
     value: jsonEncode(<Object>[
-      'quds-imap-window-v1',
+      'quds-imap-discovery-v2',
       mailboxScope(mailbox),
       uidValidity,
       nextUid,
@@ -51,7 +52,8 @@ final class ImapScanCursor {
     final Object? value = jsonDecode(cursor.value);
     if (value is! List<Object?> ||
         value.length != 5 ||
-        value[0] != 'quds-imap-window-v1' ||
+        (value[0] != 'quds-imap-window-v1' &&
+            value[0] != 'quds-imap-discovery-v2') ||
         value[1] != mailboxScope(mailbox)) {
       throw const FormatException('Invalid IMAP cursor');
     }

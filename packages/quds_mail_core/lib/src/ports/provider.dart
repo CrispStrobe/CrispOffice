@@ -47,6 +47,37 @@ final class MailHeaderPage {
   final MailCursor? next;
 }
 
+/// A completely observed, inclusive UID range in one IMAP mailbox generation.
+///
+/// When attached to a [MailSyncPage], that page's upserts are the authoritative
+/// surviving identities in this range. Repositories reconcile only existing
+/// memberships; unused numeric UIDs do not require invented tombstones.
+final class MailImapSyncRange {
+  MailImapSyncRange({
+    required this.mailbox,
+    required this.uidValidity,
+    required this.firstUid,
+    required this.lastUid,
+  }) {
+    if (uidValidity < 1 ||
+        uidValidity > 0xffffffff ||
+        firstUid < 1 ||
+        firstUid > 0xffffffff ||
+        lastUid < firstUid ||
+        lastUid > 0xffffffff) {
+      throw ArgumentError(
+        'IMAP sync ranges require ordered unsigned nonzero 32-bit UIDs '
+        'and UIDVALIDITY.',
+      );
+    }
+  }
+
+  final MailMailboxId mailbox;
+  final int uidValidity;
+  final int firstUid;
+  final int lastUid;
+}
+
 /// A page and its next cursor must be persisted as a single transaction.
 final class MailSyncPage {
   MailSyncPage({
@@ -56,9 +87,11 @@ final class MailSyncPage {
     required this.next,
     required this.hasMore,
     this.resetRequired = false,
+    this.imapRange,
   }) : upserts = List.unmodifiable(upserts),
        tombstones = List.unmodifiable(tombstones) {
     if (next.mailbox != mailbox ||
+        (imapRange != null && imapRange!.mailbox != mailbox) ||
         upserts.any((record) => record.remote.account != mailbox.account) ||
         tombstones.any((identity) => identity.account != mailbox.account)) {
       throw ArgumentError(
@@ -74,6 +107,17 @@ final class MailSyncPage {
           'IMAP sync identity belongs to a different mailbox.',
         );
       }
+      if (imapRange case final range?) {
+        if (identity is! MailImapIdentity ||
+            identity.uidValidity != range.uidValidity ||
+            identity.uid < range.firstUid ||
+            identity.uid > range.lastUid) {
+          throw ArgumentError(
+            'IMAP range records must belong to the observed UID range '
+            'and UIDVALIDITY.',
+          );
+        }
+      }
     }
   }
   final MailMailboxId mailbox;
@@ -82,6 +126,12 @@ final class MailSyncPage {
   final MailCursor next;
   final bool hasMore;
   final bool resetRequired;
+
+  /// All surviving identities in this closed range are present in [upserts].
+  /// A repository removes only absent existing memberships in the same mailbox
+  /// and UIDVALIDITY, atomically with this page and its cursor. [resetRequired]
+  /// retains its independent full-mailbox reset and pending-edit semantics.
+  final MailImapSyncRange? imapRange;
 }
 
 sealed class MailOperation {

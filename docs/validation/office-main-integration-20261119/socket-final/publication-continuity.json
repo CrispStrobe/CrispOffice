@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "qualified_source": "ac1e4c8c788ea608402c2260488235c0189efcba",
+  "qualified_tree": "0ef943f525bfda5d04bddfce55d6c3b4bd3f581a",
+  "publication_parent": "ac1e4c8c788ea608402c2260488235c0189efcba",
+  "additional_merge_parent": "55e262ef269634a0d618c0b5102dc9be5430a5f3",
+  "additional_parent_tree": "fa3818ce5202cc8fbeb0a1a0555589edbcef9c96",
+  "all_qualified_source_records_preserved": 5031,
+  "all_modes_and_git_blobs_equal": true,
+  "all_working_bytes_equal": true,
+  "qualified_plan_sha256": "c746e44833e9bfa6c8c125fccbb747de19e1d05eaa88f4e903816a29b7f4787f",
+  "changed_paths_scope": "README.md and docs/ only relative to qualified source",
+  "new_incoming_release_files_preserved_byte_exact": 12,
+  "mail_added_evidence_preserved_byte_exact": 36,
+  "expected_final_merge_base": "55e262ef269634a0d618c0b5102dc9be5430a5f3",
+  "historical_counts_not_added": true,
+  "github_actions": "Not queried, dispatched or awaited",
+  "scope": "Staged publication continuity, checked before adding this record; final fetched commit/tree and main readback are checked separately."
+}
