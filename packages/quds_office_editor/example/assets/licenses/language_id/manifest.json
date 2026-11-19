@@ -1,0 +1,38 @@
+{
+  "component": {
+    "commit": "19d86f9b8c6b46bb35bef789c44ea403004f807c",
+    "files": {
+      "LICENSE": "aa918fb53ff1948e12cdae8136e045210fb6db222a1f6f0c14bad48e6de2100e",
+      "crisp_lid/src/lid_cld3.cpp": "586133c1aa1432180b052f7aa2009965029b74f43dfc41d3b511b783ceb66acd",
+      "crisp_lid/src/lid_cld3.h": "f5403cb6da0349c26d85902d8a55b22d1d0af69e4a7a0e33fc012e8ce976d8c7"
+    },
+    "license": "MIT",
+    "name": "crispasr-crisp_lid-cld3",
+    "source": "https://github.com/CrispStrobe/CrispASR"
+  },
+  "model": {
+    "bytes": 439712,
+    "file": "cld3-f16.gguf",
+    "license": "Apache-2.0",
+    "repository": "https://huggingface.co/cstr/cld3-GGUF",
+    "revision": "56e8a57d479faa184dceede5f985d08d9816e999",
+    "sha256": "900813b635fa7f472beac213f521d57dd12378099b0623a8a36de0310b6bf892",
+    "upstream": "https://github.com/google/cld3 (b48dc46512566f5a2d41118c8c1116c4f96dc661)"
+  },
+  "notices": {
+    "CLD3-LICENSE": {
+      "path": "model/CLD3-LICENSE",
+      "sha256": "c2d13ec3b431617beb314705c0f42d17ca579eed00032ed8a13dbcd23fc9bdd5"
+    },
+    "CrispASR-LICENSE": {
+      "path": "upstream/CrispASR-LICENSE",
+      "sha256": "aa918fb53ff1948e12cdae8136e045210fb6db222a1f6f0c14bad48e6de2100e"
+    },
+    "cld3-GGUF-README.md": {
+      "path": "model/cld3-GGUF-README.md",
+      "sha256": "03b940d625abc68595c4d011b0e771db8a4d07ba4f1a4048890e43c04f14f070"
+    }
+  },
+  "policy": "MIT adapter and GGUF shim; MIT CrispASR CLD3 runtime (a port of Apache-2.0 google/cld3); the bundled CLD3 model is Apache-2.0 (Google Inc.). No ggml, no GPL/LGPL code.",
+  "schema_version": 1
+}

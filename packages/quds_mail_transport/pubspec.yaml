@@ -1,5 +1,5 @@
 name: quds_mail_transport
-description: Bounded native IMAP transport with host-owned credentials.
+description: Bounded native IMAP and on-premises Exchange EWS transports.
 version: 0.1.0
 publish_to: none
 resolution: workspace
@@ -9,6 +9,8 @@ environment:
 
 dependencies:
   crypto: ^3.0.6
+  pointycastle: ^4.0.0
+  xml: ">=6.0.0 <8.0.0"
   enough_mail:
     path: ../../third_party/enough_mail
   quds_mail_core:

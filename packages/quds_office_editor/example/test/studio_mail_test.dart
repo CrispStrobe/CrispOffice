@@ -480,6 +480,68 @@ void main() {
     await _close(tester);
   });
 
+  testWidgets('failed mark-read allows an explicit successful retry', (
+    tester,
+  ) async {
+    final client = _Client();
+    final firstGate = Completer<void>();
+    final retryGate = Completer<void>();
+    var attempts = 0;
+    final loader = _Loader(client)
+      ..onMarkRead = (_, _) =>
+          ++attempts == 1 ? firstGate.future : retryGate.future;
+    await _open(tester, (_) => client, loaderFactory: (_) => loader);
+    await _connect(tester);
+    await tester.tap(find.text('First message'));
+    await _pump(tester);
+    final reader = _reader(tester);
+    await tester.tap(find.byTooltip(_strings.markRead));
+    await _pump(tester);
+    expect(loader.marked, hasLength(1));
+    expect(client.messages.first.isSeen, isFalse);
+
+    firstGate.completeError(StateError('private first-write response'));
+    await _pump(tester);
+    expect(client.messages.first.isSeen, isFalse);
+    expect(loader.marked, hasLength(1));
+    expect(find.text(_strings.mailMarkReadFailed), findsOneWidget);
+    expect(find.textContaining('private first-write response'), findsNothing);
+    expect(find.byType(LinearProgressIndicator), findsNothing);
+    expect(
+      tester.widget<IconButton>(_iconButton(_strings.markRead)).onPressed,
+      isNotNull,
+    );
+
+    await tester.tap(find.byTooltip(_strings.markRead));
+    await _pump(tester);
+    expect(loader.marked, hasLength(2));
+    expect(attempts, 2);
+    expect(client.messages.first.isSeen, isFalse);
+    expect(find.text(_strings.mailMarkReadFailed), findsNothing);
+    expect(find.byType(LinearProgressIndicator), findsOneWidget);
+    expect(
+      tester.widget<IconButton>(_iconButton(_strings.markRead)).onPressed,
+      isNull,
+    );
+    for (final (mailbox, header) in loader.marked) {
+      expect(mailbox.path, 'INBOX');
+      expect(mailbox.uidValidity, 41);
+      expect(header.uid, 7);
+    }
+
+    retryGate.complete();
+    await _pump(tester);
+    expect(client.messages.first.isSeen, isTrue);
+    expect(client.messages[1].isSeen, isFalse);
+    expect(loader.marked, hasLength(2));
+    expect(_reader(tester), same(reader));
+    expect(reader.isDisposed, isFalse);
+    expect(find.text(_strings.mailMarkReadFailed), findsNothing);
+    expect(find.byType(LinearProgressIndicator), findsNothing);
+    expect(tester.takeException(), isNull);
+    await _close(tester);
+  });
+
   testWidgets('mark-read completion cannot mark a header whose UID changed', (
     tester,
   ) async {
@@ -536,6 +598,97 @@ void main() {
         expect(find.textContaining('late mark-read failure'), findsNothing);
         expect(find.byType(MailMessageView), findsNothing);
         expect(find.text('First message'), findsOneWidget);
+        expect(tester.takeException(), isNull);
+        await _close(tester);
+      },
+    );
+
+    testWidgets(
+      'mark-read late ${fail ? 'failure' : 'success'} preserves a replacement pending request',
+      (tester) async {
+        final first = _Client();
+        final second = _Client();
+        second.messages[0] = _message('Replacement message')..uid = 17;
+        final clients = [first, second];
+        final firstGate = Completer<void>();
+        final secondGate = Completer<void>();
+        final firstLoader = _Loader(first)
+          ..onMarkRead = (_, _) => firstGate.future;
+        final secondLoader = _Loader(second)
+          ..onMarkRead = (_, _) => secondGate.future;
+        await _open(
+          tester,
+          (_) => clients.removeAt(0),
+          loaderFactory: (client) =>
+              identical(client, first) ? firstLoader : secondLoader,
+        );
+        await _connect(tester);
+        await tester.tap(find.text('First message'));
+        await _pump(tester);
+        final firstReader = _reader(tester);
+        await tester.tap(find.byTooltip(_strings.markRead));
+        await _pump(tester);
+        expect(firstLoader.marked, hasLength(1));
+
+        await tester.tap(find.byTooltip(_strings.disconnect));
+        await _pump(tester);
+        await _connect(tester);
+        await tester.tap(find.text('Replacement message'));
+        await _pump(tester);
+        final secondReader = _reader(tester);
+        final secondAction = tester
+            .widget<IconButton>(_iconButton(_strings.markRead))
+            .onPressed!;
+        secondAction();
+        await _pump(tester);
+        expect(secondLoader.marked, hasLength(1));
+        expect(secondLoader.marked.single.$2.uid, 17);
+        expect(secondGate.isCompleted, isFalse);
+
+        if (fail) {
+          firstGate.completeError(StateError('private stale-write response'));
+        } else {
+          firstGate.complete();
+        }
+        await _pump(tester);
+        expect(firstLoader.disposed, isTrue);
+        expect(firstReader.isDisposed, isTrue);
+        expect(secondLoader.disposed, isFalse);
+        expect(_reader(tester), same(secondReader));
+        expect(secondReader.isDisposed, isFalse);
+        expect(first.messages.first.isSeen, isFalse);
+        expect(second.messages.first.isSeen, isFalse);
+        expect(find.text(_strings.mailMarkReadFailed), findsNothing);
+        expect(
+          find.textContaining('private stale-write response'),
+          findsNothing,
+        );
+        expect(find.byType(LinearProgressIndicator), findsOneWidget);
+        expect(
+          tester.widget<IconButton>(_iconButton(_strings.markRead)).onPressed,
+          isNull,
+        );
+
+        // A stale completion must not release the replacement operation's busy
+        // ownership, even to an activation captured before the new request.
+        secondAction();
+        await tester.tap(find.text('Archive'));
+        await _pump(tester);
+        expect(secondLoader.marked, hasLength(1));
+        expect(second.selections, 0);
+        expect(secondGate.isCompleted, isFalse);
+        expect(second.messages.first.isSeen, isFalse);
+        expect(find.byType(LinearProgressIndicator), findsOneWidget);
+
+        secondGate.complete();
+        await _pump(tester);
+        expect(first.messages.first.isSeen, isFalse);
+        expect(second.messages.first.isSeen, isTrue);
+        expect(firstLoader.marked, hasLength(1));
+        expect(secondLoader.marked, hasLength(1));
+        expect(_reader(tester), same(secondReader));
+        expect(find.text(_strings.mailMarkReadFailed), findsNothing);
+        expect(find.byType(LinearProgressIndicator), findsNothing);
         expect(tester.takeException(), isNull);
         await _close(tester);
       },

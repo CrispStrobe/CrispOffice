@@ -1,3 +1,4 @@
+import '../../proofing/office_proofing.dart';
 import 'wml_document.dart';
 
 final _complexScriptLetter = RegExp(
@@ -55,4 +56,39 @@ String? wordRunProofingLanguage(
   return run.properties.proofingLanguage ??
       paragraph.properties.proofingLanguage ??
       documentLanguage;
+}
+
+/// One of the run's two Word language slots: its value (run, then
+/// paragraph for the Latin slot; run only for the complex-script slot) and
+/// whether that value is only a *default*.
+///
+/// A slot is a default when it is unset (no `w:lang/@w:val` or
+/// `w:lang/@w:bidi` reaches the run) or equal to the document default from
+/// `w:docDefaults` ([documentLanguage] / [documentComplexScriptLanguage]),
+/// compared after [normalizeProofingLanguage]. Word writes the document
+/// default onto ordinary text, so such a value says nothing about what the
+/// text is; a confident automatic detection may override it for proofing
+/// (see `resolveDetectedLanguage`). Any other value is explicit and wins.
+({String? language, bool isDefault}) wordRunLanguageSlot(
+  WmlRun run,
+  WmlParagraph paragraph, {
+  required bool complexScript,
+  String? documentLanguage,
+  String? documentComplexScriptLanguage,
+}) {
+  final value = complexScript
+      ? run.properties.complexScriptLanguage
+      : run.properties.proofingLanguage ?? paragraph.properties.proofingLanguage;
+  final fallback = complexScript
+      ? documentComplexScriptLanguage
+      : documentLanguage;
+  if (value == null || value.trim().isEmpty) {
+    return (language: null, isDefault: true);
+  }
+  return (
+    language: value,
+    isDefault:
+        fallback != null &&
+        normalizeProofingLanguage(value) == normalizeProofingLanguage(fallback),
+  );
 }

@@ -1,5 +1,20 @@
 # Changelog
 
+## Unreleased
+
+- Add `createMailEwsProvider` for Exchange Server on premises with explicit HTTPS
+  configuration, NTLMv2/MIC/TLS channel binding, optional Basic or host-supplied
+  bearer tokens, and current host-vault credential access per operation.
+- Add bounded folder browsing, header retrieval, incremental `SyncFolderItems`,
+  scoped revisioned cursors, expired-state recovery, and on-demand MIME reading.
+- Add fresh-ChangeKey read/flag changes, move and move-to-Deleted-Items operations
+  with post-write confirmation and no automatic replay.
+- Submit prepared MIME through EWS `SendAndSaveCopy`, preserving Bcc envelope
+  recipients and reporting uncertain writes without automatic retries.
+- Keep browser EWS explicitly unsupported without vault or codec access. Add
+  a password-prompted, read-only native endpoint probe and dedicated protocol,
+  HTTP/TLS, NTLM, storage, lifecycle and JavaScript regression tests.
+
 ## 0.1.0
 
 - Page bounded synchronization by strictly discovered UIDs across sparse/high

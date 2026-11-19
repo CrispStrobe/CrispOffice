@@ -65,6 +65,7 @@ export 'src/pdf/pdf_save_options.dart';
 export 'src/pdf/pdf_stream.dart';
 export 'src/proofing/arabic_morphology.dart';
 export 'src/proofing/arabic_writing_rules.dart';
+export 'src/proofing/language_identification.dart';
 export 'src/proofing/german_literal_ranges.dart';
 export 'src/proofing/german_spelling.dart';
 export 'src/proofing/german_writing_rules.dart';

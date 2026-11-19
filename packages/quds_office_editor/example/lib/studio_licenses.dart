@@ -14,6 +14,10 @@ import 'package:flutter/services.dart';
 /// character tables (`packages/quds_arabic_morph/licenses/`). Its Camel Morph
 /// MSA database is CC BY 4.0 data the user downloads; its attribution is
 /// listed here and in the Dictionaries dialog.
+///
+/// Automatic language detection compiles CrispASR's MIT CLD3 runtime and
+/// bundles Google's CLD3 model (Apache-2.0) as an app asset
+/// (`packages/quds_language_id/licenses/`).
 void registerStudioLicenses() {
   LicenseRegistry.addLicense(() async* {
     const base = 'assets/licenses/hunspell';
@@ -24,6 +28,19 @@ void registerStudioLicenses() {
       'Hunspell 1.7.2 (MPL 1.1)',
     ], '$notice\n\n$myspell');
     yield LicenseEntryWithLineBreaks(const ['Hunspell 1.7.2 (MPL 1.1)'], mpl);
+  });
+  LicenseRegistry.addLicense(() async* {
+    const base = 'assets/licenses/language_id';
+    Future<String> load(String name) => rootBundle.loadString('$base/$name');
+    yield LicenseEntryWithLineBreaks(
+      const ['CLD3 language detection model (Apache-2.0)'],
+      'Google CLD3 (Compact Language Detector v3), Copyright 2016 Google '
+      'Inc. The bundled model is cstr/cld3-GGUF revision 56e8a57d, a format '
+      'conversion of the upstream weights.\n\n${await load('CLD3-LICENSE')}',
+    );
+    yield LicenseEntryWithLineBreaks(const [
+      'Language identification runtime (CrispASR, MIT)',
+    ], await load('CrispASR-LICENSE'));
   });
   LicenseRegistry.addLicense(() async* {
     const base = 'assets/licenses/arabic_morph';

@@ -4,6 +4,13 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Add a native Studio Exchange Server (EWS) account window with explicit HTTPS
+  configuration, NTLMv2 by default and optional Basic authentication. Browse
+  folders and bounded message pages, read MIME bodies and attachment details,
+  change read/flag state, move messages and use Deleted Items. Compose, reply and
+  forward through EWS with explicit uncertainty acknowledgement before retry.
+  This foreground host clears credentials, downloaded messages and retained
+  drafts on disconnect or close; it does not provide a durable outbox.
 - Restore Studio's saved EML reader alongside native Mail accounts, preserving
   original message bytes, full/compact reading and safe delayed file selection.
   Keep native account transports outside the browser Mail entry and use a

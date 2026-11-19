@@ -6,6 +6,7 @@ import 'package:quds_mail_mime/quds_mail_mime.dart';
 import 'package:quds_mail_ui/quds_mail_ui.dart';
 
 import 'studio_mail_compose.dart';
+import 'studio_mail_ews.dart';
 import 'studio_mail_message_loader.dart';
 import 'studio_mail_operation.dart';
 import 'studio_mail_reply.dart';
@@ -693,6 +694,19 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
                   style: Theme.of(context).textTheme.headlineSmall,
                 ),
                 const SizedBox(height: 8),
+                OutlinedButton.icon(
+                  key: const ValueKey<String>('studio-mail-open-ews'),
+                  onPressed: _connecting
+                      ? null
+                      : () => showDialog<void>(
+                          context: context,
+                          builder: (_) =>
+                              StudioMailEwsDialog(strings: widget.strings),
+                        ),
+                  icon: const Icon(Icons.dns_outlined),
+                  label: Text(widget.strings.ewsTitle),
+                ),
+                const SizedBox(height: 12),
                 Text(widget.strings.mailSetupHelp, textAlign: TextAlign.center),
                 const SizedBox(height: 20),
                 TextField(
