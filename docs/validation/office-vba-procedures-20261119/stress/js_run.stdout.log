@@ -1,0 +1,3 @@
+{"case":"32 frames and 50 unary operators","sourceBytes":4732,"operations":1,"value":1,"status":"passed"}
+{"case":"32 frames and 20 nested blocks","sourceBytes":20764,"operations":1,"value":1,"status":"passed"}
+{"case":"32 frames, 50 unary operators, 20 nested blocks","sourceBytes":23932,"operations":1,"value":1,"status":"passed"}

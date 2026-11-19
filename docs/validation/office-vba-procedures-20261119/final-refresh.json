@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "repository": "CrispStrobe/quds_office_suite",
+  "observed_at_utc": "2026-11-19T16:44:03Z",
+  "main": "81ae98688860599f118748afca19bdb2ec45da37",
+  "accepted_macro_head": "24eee8145f4edb19a33a95156a7e0a94093a8f75",
+  "incoming": {
+    "branch": "codex/mail-archive-portability-20261119",
+    "head": "de8ab2e93cc5f2139e89ba72d117bf9b18ba4cae",
+    "tree": "b03067c83a5c274f75ff6f7fb9135b9ad3690301",
+    "parents": [
+      "81ae98688860599f118748afca19bdb2ec45da37",
+      "f0ce86842452ee7397afcf21b93c73e126d7d07e"
+    ],
+    "subject": "Reconcile published incoming work before mail portability [skip ci]",
+    "pr": 205,
+    "pr_url": "https://github.com/CrispStrobe/quds_office_suite/pull/205",
+    "draft": true,
+    "pr_status": "Implementation and final local acceptance explicitly pending; preparation checkpoint only.",
+    "diff_from_main": [
+      "packages/quds_language_id/test/language_id_native_test.dart"
+    ],
+    "already_integrated_equivalent_commit": "f0ce86842452ee7397afcf21b93c73e126d7d07e",
+    "equivalent_commit_tree": "b03067c83a5c274f75ff6f7fb9135b9ad3690301",
+    "novel_paths_relative_to_macro_branch": [],
+    "novel_implementation_commits": [],
+    "novel_validation_evidence": [],
+    "unshared_history_only": [
+      "de8ab2e93cc5f2139e89ba72d117bf9b18ba4cae"
+    ]
+  },
+  "open_prs": [
+    {
+      "number": 205,
+      "head": "de8ab2e93cc5f2139e89ba72d117bf9b18ba4cae",
+      "branch": "codex/mail-archive-portability-20261119",
+      "base": "main",
+      "draft": true
+    },
+    {
+      "number": 204,
+      "head": "24eee8145f4edb19a33a95156a7e0a94093a8f75",
+      "branch": "codex/vba-procedures-20261119",
+      "base": "main",
+      "draft": true
+    },
+    {
+      "number": 202,
+      "head": "d98c8ae020a60715fbb02f5332b2f3414fb6805b",
+      "branch": "codex/vba-excel-macros",
+      "base": "codex/mcp-aligned-macros",
+      "draft": true
+    }
+  ],
+  "recommendation": "Preserve PR #205 as active work. Its entire published source tree is already incorporated in macro branch ancestry through f0ce8684. Do not merge its preparatory merge commit merely to mark ancestry, since that could prematurely mark the active draft merged. Merge accepted macro PR #204 after ordinary latest-main verification.",
+  "minimal_verification": "Read-only git ancestry and tree equality prove no new product changes. No additional tests are required for this preparation-only branch; tests for its future mail extension remain its own acceptance responsibility.",
+  "ci_queried_or_awaited": false,
+  "shared_repository_modified": false
+}

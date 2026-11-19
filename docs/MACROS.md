@@ -9,6 +9,9 @@ The portable entry point is
 This is a headless engine capability with a command-line runner and an MCP
 stdio bridge. The bundled [`vba-excel` dialect](VBA_MACROS.md) compiles a bounded
 Excel VBA subset from explicitly selected source into the same native plans.
+The subset includes reusable in-module procedures, scalar functions, explicit
+`ByVal` arguments, bounded loops, and early exits. Its compiler evaluates those
+constructs before execution; workbook values are not available to source logic.
 It does not add a ribbon editor, a full VBA interpreter, document-open events,
 or editor undo integration. Existing opaque VBA project bytes remain inert and
 are preserved by the Office serializers.
@@ -103,7 +106,8 @@ Use the inspection tool to obtain valid targets.
 Each macro targets one document and contains an ordered list of calls; branching,
 loops, recursive macro calls, timers, and application events are not part of
 the native version 1 plan. The Excel VBA compiler expands supported loops and
-evaluates supported conditions before returning that finite plan.
+evaluates supported conditions and procedure calls before returning that finite
+plan. Helper calls share the compiler's budgets and cannot raise host limits.
 
 ## Command line
 
@@ -142,6 +146,8 @@ dart run tool/macros/office_macro.dart run-vba \
 These commands default to the parameterless `Main` procedure and accept a final
 optional entry-point name. The [VBA dialect guide](VBA_MACROS.md) specifies the
 supported syntax, object members, compiler limits, and deliberate exclusions.
+The `example/macros/procedural_report.bas` example demonstrates shared heading
+and row helpers, `Worksheet`/`Range` arguments, and nested scalar functions.
 
 ## Dart embedding and recording
 
