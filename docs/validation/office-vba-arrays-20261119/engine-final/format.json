@@ -1,0 +1,30 @@
+{
+  "name": "format",
+  "command": [
+    "/workspace/scratch/652d74384990/runtime/dart-sdk/bin/dart",
+    "format",
+    "--output=none",
+    "--set-exit-if-changed",
+    "lib/src/automation/office_vba_language.dart",
+    "test/office_vba_arrays_test.dart",
+    "test/office_vba_arrays_boundaries_test.dart",
+    "test/office_vba_arrays_integration_test.dart",
+    "tool/macros/web_vba_arrays_smoke.dart"
+  ],
+  "cwd": "/workspace/scratch/652d74384990/validation-workspace/packages/quds_office_engine",
+  "started_utc": "2026-11-19T18:10:56.303251+00:00",
+  "completed_utc": "2026-11-19T18:10:56.468407+00:00",
+  "elapsed_seconds": 0.165,
+  "exit_code": 0,
+  "timed_out": false,
+  "stdout": {
+    "path": "logs/format.stdout.log",
+    "sha256": "834c404b53e5dc7097c0f5a3799cc5a1e529a3a1d7754caa6eb0f826c37772e0",
+    "bytes": 47
+  },
+  "stderr": {
+    "path": "logs/format.stderr.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  }
+}

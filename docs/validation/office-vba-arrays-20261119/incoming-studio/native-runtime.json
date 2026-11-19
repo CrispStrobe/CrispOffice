@@ -1,0 +1,44 @@
+{
+  "downloaded_library_sha256": "0a65852703763619a7a34633b4959b3b86c4103804a4dfe4e8b27b5de1c0647b",
+  "hook_input": {
+    "assets": {},
+    "config": {
+      "build_asset_types": [
+        "code_assets/code"
+      ],
+      "extensions": {
+        "code_assets": {
+          "link_mode_preference": "dynamic",
+          "target_architecture": "x64",
+          "target_os": "linux"
+        }
+      },
+      "linking_enabled": false
+    },
+    "out_dir_shared": "/workspace/scratch/652d74384990/flutter-validation-workspace/.dart_tool/hooks_runner/shared/sqlite3/build/",
+    "out_file": "/workspace/scratch/652d74384990/flutter-validation-workspace/.dart_tool/hooks_runner/sqlite3/6b4ebf10e7/output.json",
+    "package_name": "sqlite3",
+    "package_root": "/workspace/scratch/652d74384990/runtime/pub-cache/hosted/pub.dev/sqlite3-3.9.1/",
+    "user_defines": {}
+  },
+  "hook_output": {
+    "assets": [
+      {
+        "encoding": {
+          "file": "/workspace/scratch/652d74384990/flutter-validation-workspace/.dart_tool/hooks_runner/shared/sqlite3/build/download-0a658527/libsqlite3.so",
+          "id": "package:sqlite3/src/ffi/libsqlite3.g.dart",
+          "link_mode": {
+            "type": "dynamic_loading_bundle"
+          }
+        },
+        "type": "code_assets/code"
+      }
+    ],
+    "assets_for_linking": {},
+    "status": "success",
+    "timestamp": "2026-11-19 19:09:19.000"
+  },
+  "package": "sqlite3",
+  "user_defines_empty": true,
+  "version": "3.9.1"
+}

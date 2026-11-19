@@ -1,0 +1,37 @@
+{
+  "checkout_head_at_start": "ac9de9e000274718145659da0abc7c8cadb9e8c3",
+  "copied_manifests_match_repository": {
+    "apps/quds_report_studio/pubspec.yaml": true,
+    "packages/legacy_doc_parser/pubspec.yaml": true,
+    "packages/quds_arabic_morph/pubspec.yaml": true,
+    "packages/quds_language_id/pubspec.yaml": true,
+    "packages/quds_mail_core/pubspec.yaml": true,
+    "packages/quds_mail_mime/pubspec.yaml": true,
+    "packages/quds_mail_store/pubspec.yaml": true,
+    "packages/quds_mail_transport/pubspec.yaml": true,
+    "packages/quds_mail_ui/example/pubspec.yaml": true,
+    "packages/quds_mail_ui/pubspec.yaml": true,
+    "packages/quds_office_editor/example/pubspec.yaml": true,
+    "packages/quds_office_editor/pubspec.yaml": true,
+    "packages/quds_office_engine/example/pubspec.yaml": true,
+    "packages/quds_office_engine/pubspec.yaml": true,
+    "packages/quds_proofing_gector/pubspec.yaml": true,
+    "packages/quds_proofing_harper/pubspec.yaml": true,
+    "packages/quds_proofing_hunspell/pubspec.yaml": true,
+    "packages/quds_proofing_spacy/pubspec.yaml": true,
+    "packages/quds_reports/pubspec.yaml": true,
+    "pubspec.yaml": true
+  },
+  "engine_snapshot_manifest_sha256": "502acb35e1810de246bfe8b8c1beb95de7433db182a0284bbb721075cab12bd0",
+  "engine_sources": "Isolated byte-verified snapshot; see engine-snapshot.json",
+  "incoming_head": "358544a48466c942873a4718a87fa9d1c2be11f7",
+  "layout_assertions_enabled": true,
+  "optional_portability_test_exists": false,
+  "optional_screenshot_capture_enabled": false,
+  "selected_tests": [
+    "test/studio_mail_archive_restore_test.dart",
+    "test/studio_mail_archive_restore_native_test.dart",
+    "test/studio_mail_archive_portability_visual_test.dart"
+  ],
+  "source_inputs": 2197
+}
