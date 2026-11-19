@@ -27,6 +27,16 @@ abstract interface class StudioMailArchiveStore {
     MailArchiveExportLimits exportLimits = const MailArchiveExportLimits(),
     MailCancellationToken? cancellation,
   });
+  Future<MailResult<MailArchiveRestorePlan>> inspectRestore(
+    String directoryPath, {
+    MailCancellationToken? cancellation,
+  });
+  Future<MailArchiveRestoreReport> restoreExport(
+    MailArchiveRestorePlan plan, {
+    bool indexAttachmentText = false,
+    MailCancellationToken? cancellation,
+    MailArchiveRestoreProgressSink? onProgress,
+  });
   Future<MailResult<List<MailArchiveOrigin>>> listOrigins(String id);
   Future<MailResult<MailArchiveStats>> statistics();
   Future<MailResult<MailUnit>> saveSearch(MailArchiveSavedSearch search);
@@ -135,6 +145,28 @@ final class _ArchiveStore implements StudioMailArchiveStore {
     request,
     exportLimits: exportLimits,
     cancellation: cancellation,
+  );
+
+  NativeMailArchiveRestorer get _restorer =>
+      NativeMailArchiveRestorer(archive: archive, codec: const QudsMimeCodec());
+
+  @override
+  Future<MailResult<MailArchiveRestorePlan>> inspectRestore(
+    String directoryPath, {
+    MailCancellationToken? cancellation,
+  }) => _restorer.inspect(Directory(directoryPath), cancellation: cancellation);
+
+  @override
+  Future<MailArchiveRestoreReport> restoreExport(
+    MailArchiveRestorePlan plan, {
+    bool indexAttachmentText = false,
+    MailCancellationToken? cancellation,
+    MailArchiveRestoreProgressSink? onProgress,
+  }) => _restorer.restore(
+    plan,
+    indexAttachmentText: indexAttachmentText,
+    cancellation: cancellation,
+    onProgress: onProgress,
   );
 
   @override
