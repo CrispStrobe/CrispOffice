@@ -1,51 +1,39 @@
 # Office continuation and final main reconciliation — 19 November 2026
 
-## Continuation scope
+The complementary Office continuations have been integrated with captured main
+`b070e228a749e22cc8ce2098029a76ab5fb8eccb` and qualified at **`0bd53e3e2b0d75ae48a4d7807dcddd123ab477f9`**.
+The final selected gates passed **1,898 executions / 1,327
+distinct cases / 68 suites**, with zero failures or skips.
 
-The supplied unfinished handoff was published as `a4b73fe40387d62c27477bb640f14a2694d031d8`
-on `codex/office-current-reconciliation-20261119` and is already an ancestor of
-captured main `b070e228a749e22cc8ce2098029a76ab5fb8eccb`.
-Its 801-execution qualification remains historical evidence at its recorded
-source. This continuation preserves newer main, including the functional
-IMAP/SMTP Studio client, Arabic T2 rules and native Camel Morph integration.
+See the **[complete final qualification and integration report](final/README.md)**
+for exact source/runtime bindings, behavior changes, raw evidence, replay
+commands, retained failures and acceptance boundaries. The
+[independent audit](final/review/qualification-audit-accepted.json) reconstructs
+all accepted totals. Node repeats are not counted as new distinct scenarios.
 
-The user requested complete recent-reference reconciliation, incremental remote
-checkpoints and a final merge to main. No GitHub Actions run, job, status or
-queue is queried, dispatched or awaited. Existing release acceptance boundaries
-remain explicit; local tests do not establish external-service or installed-app
-acceptance.
+The [final recovery audit](final/review/recovery-audit-0bd53e3e.json) accounts for
+460 captured fork/upstream refs through ancestry and reverified historical
+equivalence. Both continuation histories and their 132 retained historical
+evidence files remain preserved. Historical counts retain their source revisions
+and are not added to the final run.
 
-## Bounded reference capture
+Incremental remote checkpoints on `codex/office-final-union-20261119` are
+`911d8f43` (union), `47ce5f72` (boundary/fixture repairs), and `0bd53e3e`
+(portable numeric decoding and final frozen plan). The current publication adds
+the final reports and evidence only. Git history and the merged PR record the
+actual publication and remote-main outcome.
 
-The [initial immutable audit](reconciliation/reference-audit-current-main.json)
-accounts for 459 actual references: 228 fork branches, 190 fork PR heads,
-17 fork tags, four upstream branches, four upstream PR heads and 16 upstream
-tags. Seven peeled-tag advertisements are excluded. At captured main there are
-429 ancestors, 28 freshly verified historical equivalents and exactly two
-unmerged references:
+The earlier [459-ref checkpoint audit](reconciliation/reference-audit-current-main.json)
+is retained as historical evidence. Its in-progress findings are superseded by
+the final 460-ref audit, not silently rewritten. The attached handoff records
+host source `9833831a`, published as `c63558c0`, which this continuation recovers.
+The separately captured reconciliation checkpoint
+`a4b73fe40387d62c27477bb640f14a2694d031d8` is already an ancestor of captured
+main. Current functional Mail, Arabic T2 rules, native morphology wiring and
+CrispOffice branding are preserved.
 
-| Branch | Captured head |
-| --- | --- |
-| `codex/office-main-integration-20261119` | `c63558c0b3bc713361771cc29b0d89ecf2fa09a7` |
-| `codex/office-main-sync-20261119` | `1b6d280b6ed41a1e01736a88f6d02431057c8611` |
+Main subsequently advanced to `76fe761f1c97c31ca8d8add405aa54c436a336aa`.
+Its newer modular Mail and related changes are being reconciled separately;
+this checkpoint does not claim that newer main was executed by the frozen run.
 
-All 14 historical equivalence proofs were recomputed through exact complete-tree
-or complete changed-path mode/type/blob identity. The saved union audit is a
-graph projection only. An actual integrated-head audit and fresh local
-qualification will be recorded before completion.
-
-## Integration decisions in progress
-
-- Keep main's functional IMAP/SMTP client. Adapt lifecycle and dismissal checks
-  to that client; obsolete saved-message UI tests are not valid acceptance for
-  the current dialog.
-- Preserve newer Arabic T1/T2 tables, native morphology wiring, Unicode script
-  detection and established two-slot Word language controls.
-- Retain incoming semantic-mark regressions and prevent phrase matching from
-  deleting combining maddah and hamza spelling content.
-- Preserve both branches' complete historical qualification records and failed
-  attempts with their original source attribution. Their case counts are not
-  added together or relabelled as fresh validation of this source.
-
-This checkpoint is a saved integration in progress, not a completed release or
-an accepted qualification result.
+No GitHub Actions runs, jobs or queues were queried, dispatched or awaited.
