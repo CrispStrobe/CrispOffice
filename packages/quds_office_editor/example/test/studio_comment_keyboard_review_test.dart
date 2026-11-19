@@ -79,11 +79,12 @@ Future<WordEditorController> _studio(WidgetTester tester) async {
   addTearDown(() => tester.binding.setSurfaceSize(null));
   await tester.pumpWidget(const QudsOfficeStudioApp());
   await _pump(tester);
-  await configureStudioForTest(tester, showComments: true);
-  await _pump(tester);
   final controller = _editor(tester).controller;
   controller.proofing.enabled = false;
   controller.proofing.configure(OfficeProofingService(providers: []));
+  // Settings advances animations beyond the initial proofing debounce.
+  await configureStudioForTest(tester, showComments: true);
+  await _pump(tester);
   controller.document = _document();
   controller.refresh();
   controller.beginCommentEdit(1);

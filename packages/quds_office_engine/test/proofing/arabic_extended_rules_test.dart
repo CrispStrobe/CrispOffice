@@ -296,7 +296,7 @@ void main() {
       ('hamza below', '\u0655'),
     ]) {
       test('phrase matching retains $name', () async {
-        final String text = 'ا${mark}ختار بين كتابين.';
+        final String text = 'ا$markختار بين كتابين.';
         expect(
           await check(text, optional: <String>{'ar.usage.expression'}),
           isEmpty,
