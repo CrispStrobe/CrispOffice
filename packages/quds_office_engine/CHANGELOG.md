@@ -9,6 +9,13 @@ All notable changes to `quds_office_engine` are documented here.
   metadata, validated requests and separate online/desktop routes. Keep manual
   and automatic tag records distinct without combining their usage counts.
 
+- Extend `vba-excel` with local one-dimensional dynamic arrays, `ReDim`,
+  `ReDim Preserve`, `Erase`, and module `Option Base 0/1`. Preserve element
+  types, source evaluation order, enumeration locks, shared slot/string/work
+  bounds, and the existing native-plan transaction and policy boundary.
+- Add dynamic array report, lifecycle/boundary, CLI/MCP and JavaScript
+  regressions, and a staged Word/Excel/PowerPoint VBA parity roadmap.
+
 - Extend `vba-excel` with fixed one-dimensional scalar arrays, constant bounds,
   indexed reads/writes, typed defaults, `LBound`/`UBound`, and `For Each` over
   arrays and explicit rectangular ranges. Add read-only range row/column
