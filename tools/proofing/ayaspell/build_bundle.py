@@ -47,7 +47,9 @@ def sha256(data: bytes) -> str:
 
 
 CARD = """---
-license: mpl-1.1
+license: other
+license_name: mpl-1.1
+license_link: https://www.mozilla.org/en-US/MPL/1.1/
 language:
 - ar
 tags:
