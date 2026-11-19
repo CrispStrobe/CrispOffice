@@ -1,0 +1,98 @@
+{
+  "observedAt": "2026-11-19T20:42:44.315Z",
+  "repository": "CrispStrobe/quds_office_suite",
+  "baselineMain": "5715d56053e93dc11e8b5165bd13f8db2a1f3917",
+  "baselineBranch": "2638a2c96ea5e66ace5884896fe09de92a7ce380",
+  "branches": [
+    {
+      "name": "codex/crispoffice-layout-theme-20261119",
+      "sha": "cacae8569814e4cb81f58d358734d31431f102be"
+    },
+    {
+      "name": "codex/mail-archive-resume-20261119",
+      "sha": "482fbd99dd8d3d5aff7d773fa87454f4d324028d"
+    },
+    {
+      "name": "codex/odt-field-continuation-20261117",
+      "sha": "c34945761e7991f5fe49037d79529acdd260b31c"
+    },
+    {
+      "name": "codex/vba-arrays-foreach-20261119",
+      "sha": "3abffb94dcf33a2766a4579d296d0ef09c9e35cd"
+    },
+    {
+      "name": "docs/ods-color-scale",
+      "sha": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283"
+    },
+    {
+      "name": "docs/ods-data-bar",
+      "sha": "69d14f84cabd3931b7640c1654b401c89faba766"
+    },
+    {
+      "name": "feat/ods-color-scale",
+      "sha": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688"
+    },
+    {
+      "name": "feat/ods-data-bar",
+      "sha": "0a53b8a70128870f3e1df6d18cdb177bb64290ee"
+    },
+    {
+      "name": "feat/ods-dynamic-validation-links",
+      "sha": "68a0db23408e4c95d6d283219504c79aea33a6fe"
+    },
+    {
+      "name": "feat/ods-icon-sets",
+      "sha": "005c708e9f747cb46cf02e12c869b0a2f85ac824"
+    },
+    {
+      "name": "feat/ods-time-period-conditions",
+      "sha": "7ef09f2408f467c65427700e65907531ecb26acb"
+    },
+    {
+      "name": "integrate/macbook-current-20261118",
+      "sha": "f383c826205e321eda3ed3bdbcd584e9a2d4da14"
+    },
+    {
+      "name": "integrate/office-union-148",
+      "sha": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9"
+    },
+    {
+      "name": "main",
+      "sha": "5715d56053e93dc11e8b5165bd13f8db2a1f3917"
+    },
+    {
+      "name": "work/mail-next-20261119",
+      "sha": "2638a2c96ea5e66ace5884896fe09de92a7ce380"
+    }
+  ],
+  "openPullRequests": [
+    {
+      "number": 216,
+      "title": "Reconcile incoming work before next mail increment",
+      "draft": true,
+      "head": "2638a2c96ea5e66ace5884896fe09de92a7ce380",
+      "base": "5715d56053e93dc11e8b5165bd13f8db2a1f3917",
+      "updatedAt": "2026-11-19T20:38:12Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/216"
+    },
+    {
+      "number": 211,
+      "title": "Make Layout precise and compact, fix dark appearance, clarify document modes",
+      "draft": true,
+      "head": "cacae8569814e4cb81f58d358734d31431f102be",
+      "base": "9f41e0427734d815b19149eba5eabef202f78ba6",
+      "updatedAt": "2026-11-19T19:24:02Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/211"
+    },
+    {
+      "number": 210,
+      "title": "Extend VBA macros with bounded arrays and For Each; reconcile fork work",
+      "draft": true,
+      "head": "3abffb94dcf33a2766a4579d296d0ef09c9e35cd",
+      "base": "9f41e0427734d815b19149eba5eabef202f78ba6",
+      "updatedAt": "2026-11-19T19:04:23Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/210"
+    }
+  ],
+  "qualification": "Remote read and ancestry review only; no fresh Dart/Flutter execution."
+}
