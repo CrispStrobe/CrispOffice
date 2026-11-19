@@ -26,12 +26,21 @@ identity; it is not inferred from commit messages or patch titles.
 
 A fresh remote check found PR 201 / `codex/mcp-aligned-macros` at
 `3c1764f5ff8bf9f89e090ef4e04e3142c4ccf90a`. That work was merged before the final
-freeze. The [refreshed reconciliation](reconciliation-refresh.json) accounts for
-**223 advertised refs**: 200 ancestor refs and 23 historical-equivalent refs,
-with no gaps in that captured frontier. Fourteen distinct historical proof
+first freeze. That reconciliation captured **223 advertised refs**: 200 ancestor
+refs and 23 historical-equivalent refs, with no gaps in that frontier.
+Fourteen distinct historical proof
 records also verify the common base, complete original delta and ancestry of
 the equivalent commit. Ref counts include branch/PR aliases and are not counts
 of unique new commits.
+
+A subsequent check found PR 202 / `codex/vba-excel-macros` at
+`d98c8ae020a60715fbb02f5332b2f3414fb6805b`, stacked on PR 201. It was merged
+before the replacement qualification run. The latest
+[refreshed reconciliation](reconciliation-refresh.json) records **226 advertised
+refs**: 203 ancestor refs and 23 historical-equivalent refs, including the task's
+own feature branch and PR 203. These extra aliases do not add independent test
+coverage. The VBA language/integration suites and its public JavaScript smoke
+are explicitly included in the fresh gate.
 
 Work was saved incrementally to the remote
 `codex/mail-archive-search-20261119` branch:
@@ -43,6 +52,8 @@ Work was saved incrementally to the remote
 | Archive runner, native crash tests and bounds hardening | `8ef489f67e22280df79b4f214af4785104f708a3` |
 | Incoming macro/operations reconciliation | `9f87eff5e9c3ade6a13f5a816b7b42313e5a9f74` |
 | Connected message/folder UI and final profile bounds | `232171ca828a1f62e69d6c033f60c706c8979970` |
+| First source freeze; stopped by formatting gate | `750eba1e856ee4b524186cb95feadad1727c2763` |
+| Incoming Excel VBA subset and formatting correction | `2cd623b7f78634c5118f1f434dd847222bccde4f` |
 
 These checkpoints preserve progress; they are not substitutes for testing the
 final combined tree. The executing receipt supplies the later frozen commit,
@@ -66,8 +77,9 @@ archive or Studio mail test files present at the freeze are included. The
 | Engine regressions | Explicit language-ID, Arabic synthetic grammar/writing, proofing merge/range/language and thesaurus tests |
 | Language-ID/Hunspell lifecycle | Checked-in counter-only C++ fixtures compiled locally; real Dart FFI ownership, failure and cancellation paths with synthetic native implementations |
 | Arabic morphology unit tests | Portable models, configuration and mocked behavior; no external morphology model |
-| Incoming Office macros | Macro/operation tests plus the incoming receipt's fidelity step, word structure, table grid and VBA preservation regressions |
+| Incoming Office macros | Macro/operation and VBA language/integration tests plus the incoming receipt's fidelity step, word structure, table grid and VBA preservation regressions |
 | Portable macro smoke | Compile `packages/quds_office_engine/tool/macros/web_smoke.dart` to JavaScript, execute it on Node and verify recalculation, failed-transaction byte preservation and MCP inspection |
+| Portable Excel VBA smoke | Compile `packages/quds_office_engine/tool/macros/web_vba_smoke.dart` to JavaScript and require numeric bounds/precedence, recalculation/style, validation/rollback byte preservation and MCP compilation/playback |
 
 The final plan currently selects roughly 140 test files; the exact count and
 per-cohort file list are captured in `selected-plan.json`, not inferred from an
@@ -81,12 +93,28 @@ readability. They are visual QA of fixture data, not live-account acceptance:
 [Arabic mobile archive](screenshots/archive-mobile-ar.png), and
 [selected-folder progress](screenshots/archive-folder-desktop-progress.png).
 
-The incoming Office macro receipt's earlier 217 successes are historical. They
-are not credited to this run. The same rule applies to development archive,
+The incoming Office macro receipt's earlier 217 successes and VBA work's earlier
+286 successes are historical. They are not credited to this run. The same rule applies to development archive,
 query, UI and inherited regression results. A failed development fixture that
 attempted to violate SQLite's `length(raw)=raw_size` constraint remains a failed
 attempt; the corrected corruption test explicitly enables and then restores
 `ignore_check_constraints`. Neither development run is pooled into final totals.
+
+### First final-gate attempt
+
+`archive-final-validation-01` tested the input identity at
+`750eba1e856ee4b524186cb95feadad1727c2763` (tree
+`98e1129f0e5f961bb43913f9220af276519579c1`) and stopped at the formatting gate.
+All four local fixture builds passed. The format command exited 1 because
+`studio_mail_credentials_test.dart` needed two invocation line wraps. It used
+`--output=none`, so it did not edit source. **Zero tests executed**, and all 15
+test cohorts remained unexecuted. Independent audit confirmed identical
+before/after manifests for 4,394 source files, 4,556 hosted dependency inputs and
+29 runtime inputs, and verified every preserved step log hash.
+
+The correction was formatted and checkpointed together with the incoming VBA
+work. Attempt 01 remains a failed attempt; it supplies no passing tests to a
+later run. The replacement gate uses a new frozen HEAD and output directory.
 
 ## Explicit exclusions
 
@@ -99,7 +127,7 @@ attempt; the corrected corruption test explicitly enables and then restores
 - Installed macOS/Windows/mobile apps, signing, native Keychain integration and
   real OAuth account callbacks.
 - Browser interaction, full web application compilation and browser archival.
-  Node executes declared JS transport boundaries and the portable macro smoke.
+  Node executes declared JS transport boundaries and the portable macro/VBA smokes.
 - Repository-wide tests, large-volume performance, remote point-in-time mailbox
   completeness, backup recovery qualification and compliance certification.
 
@@ -188,7 +216,7 @@ source /workspace/scratch/77e1c27b6c6f/toolchains/env.sh
 python3 docs/validation/mail-archive-search-20261119/run-local-validation.py \
   --base-ref e00ca1495551ffaf61dd9b3ee7770f8bfde7e897 \
   --expect-head FROZEN_COMMIT_SHA \
-  --output /workspace/scratch/77e1c27b6c6f/archive-final-validation-01 \
+  --output /workspace/scratch/77e1c27b6c6f/archive-final-validation-02 \
   --runtime-receipt /workspace/scratch/77e1c27b6c6f/toolchains/runtime.json \
   --production-manifest /workspace/scratch/77e1c27b6c6f/toolchains/pubspec.production.yaml \
   --sqlite-library /lib/x86_64-linux-gnu/libsqlite3.so.0.8.6
@@ -236,7 +264,7 @@ A selected test cohort passes only when the process exits zero, exactly one
 successful terminal JSON event appears, at least one visible test passes, every
 started test finishes, and there are no failures, error events, unexpected skips,
 hidden loader failures or duplicate case identities. Hidden loader successes
-are not added to test totals. Macro compilation/runtime checks are command gates
+are not added to test totals. Macro/VBA compilation/runtime checks are command gates
 and do not inflate unit-test counts.
 
 Final acceptance also requires stable source, dependency, runtime and lock

@@ -1,0 +1,186 @@
+{
+  "acceptance_limits": [
+    "No live IMAP, SMTP, EWS, Gmail or Microsoft 365 credentials or service requests; transport tests use injected fakes or local loopback servers.",
+    "No external model or dictionary downloads, and no real language/Arabic/Hunspell model acceptance.",
+    "Node tests cover declared JavaScript transport boundaries; no browser interaction, browser archive, or full web build is claimed.",
+    "Linux native SQLite and actual POSIX crash tests only; no installed macOS/Windows/mobile application, signing, Keychain, or OAuth account acceptance.",
+    "The system SQLite used here is recorded independently from sqlite3's default downloaded binary; packaged native binaries on other platforms are not qualified by this run.",
+    "No full-repository test claim, performance benchmark, remote mailbox snapshot guarantee, compliance certification, or GitHub Actions result."
+  ],
+  "cohorts": [
+    {
+      "accepted": true,
+      "elapsed_seconds": 0.315,
+      "exit_code": 0,
+      "name": "build-language-id",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test_cases_sha256": null,
+      "test_counts": null
+    },
+    {
+      "accepted": true,
+      "elapsed_seconds": 0.315,
+      "exit_code": 0,
+      "name": "build-hunspell-ownership",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test_cases_sha256": null,
+      "test_counts": null
+    },
+    {
+      "accepted": true,
+      "elapsed_seconds": 0.616,
+      "exit_code": 0,
+      "name": "build-hunspell-lifecycle",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test_cases_sha256": null,
+      "test_counts": null
+    },
+    {
+      "accepted": true,
+      "elapsed_seconds": 0.318,
+      "exit_code": 0,
+      "name": "build-hunspell-provider",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test_cases_sha256": null,
+      "test_counts": null
+    },
+    {
+      "accepted": false,
+      "elapsed_seconds": 0.766,
+      "exit_code": 1,
+      "name": "format-changed-dart",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "1757a7ab8c72a22992f438352cfbf078961e2b05a6d803d700c43172c055feb5",
+      "test_cases_sha256": null,
+      "test_counts": null
+    }
+  ],
+  "dependencies_after_sha256": "f25457fc5bb3e9473406fe883ba90c564f94ba6022349bc3c2e2c22c3a55327e",
+  "dependencies_before_sha256": "f25457fc5bb3e9473406fe883ba90c564f94ba6022349bc3c2e2c22c3a55327e",
+  "dependencies_changed_paths": [],
+  "dependency_file_count": 4556,
+  "dependency_resolution_performed": false,
+  "error": "RuntimeError: Required step failed: format-changed-dart; see its preserved stdout/stderr",
+  "evidence_directory": "/workspace/scratch/77e1c27b6c6f/archive-final-validation-01",
+  "excluded_files": [
+    {
+      "path": "packages/quds_language_id/test/language_id_native_test.dart",
+      "reason": "Needs the real external language classifier; counter fixture is lifecycle evidence only."
+    },
+    {
+      "path": "packages/quds_arabic_morph/test/arabic_morph_native_test.dart",
+      "reason": "Needs the real native analyzer and verified morphology model bundle."
+    },
+    {
+      "path": "packages/quds_arabic_morph/test/arabic_rules_e2e_test.dart",
+      "reason": "Needs the real native analyzer and verified morphology model bundle."
+    },
+    {
+      "path": "packages/quds_arabic_morph/test/arabic_morph_live_download_test.dart",
+      "reason": "Explicitly performs external model downloads."
+    },
+    {
+      "path": "packages/quds_proofing_hunspell/test/hunspell_native_test.dart",
+      "reason": "Needs a real native dictionary installation and includes live-download acceptance."
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_arabic_morph_native_test.dart",
+      "reason": "Needs the real native analyzer and verified morphology model bundle."
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_arabic_proofing_native_test.dart",
+      "reason": "Needs a real Hunspell native library and Arabic dictionary."
+    }
+  ],
+  "expected_head": "750eba1e856ee4b524186cb95feadad1727c2763",
+  "finished_at_utc": "2026-11-19T16:05:51.054685+00:00",
+  "github_actions_used": false,
+  "head_after": "750eba1e856ee4b524186cb95feadad1727c2763",
+  "inputs_stable": true,
+  "lock_sha256": "72a5a52654a1484f4df646c631b4d1ea47e96025a671beff045eecf2b9e78e82",
+  "lock_sha256_after": "72a5a52654a1484f4df646c631b4d1ea47e96025a671beff045eecf2b9e78e82",
+  "plan_sha256": "3762c8afe2ebceff7a4128bcae2336c75fc31773e2c18568cfbeda2db17ca97a",
+  "production_manifest_sha256": "453a1f8ab62db1c5577c424b058b50033a8d3b49b99c83862ab58a7e1108f74f",
+  "receipt_sha256": "38773b12a7a513eea0eb7393302f195dcb1065d209d0f23936be27a150585b57",
+  "runner_sha256": "a05ff97f021a5761735a458067c9536ad2ca06cbdd960a0f3eb7dd7c3242539b",
+  "runtime_after_sha256": "eeb330e10213a8e7a14b5cb7595116b970942e13d267dd752cfc89f5b53ce4e6",
+  "runtime_before_sha256": "eeb330e10213a8e7a14b5cb7595116b970942e13d267dd752cfc89f5b53ce4e6",
+  "runtime_changed_paths": [],
+  "runtime_provenance": {
+    "archive": {
+      "bytes": 1581444364,
+      "sha256": "baf7dcc5a3dbba60fe863bf493a6cf203195621f7786eaa5a1bba02cd0d87dd2",
+      "url": "https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.47.8-stable.tar.xz",
+      "verified": true
+    },
+    "hosted_archives_verified": 194,
+    "runtime": {
+      "channel": "stable",
+      "dartSdkVersion": "3.13.7",
+      "devToolsVersion": "2.60.0",
+      "engineBuildDate": "2026-10-22 20:34:48.330",
+      "engineCommitDate": "2026-10-23 02:13:38.000Z",
+      "engineContentHash": "dfd2e6cb7d319db05e3bf1503f3e2ac60f6288a2",
+      "engineRevision": "cf636b1dfb818dd6a3ff16e390e93b1a036969c8",
+      "flutterRoot": "/workspace/scratch/77e1c27b6c6f/toolchains/flutter",
+      "flutterVersion": "3.47.8",
+      "frameworkCommitDate": "2026-10-22 21:37:31 -0700",
+      "frameworkRevision": "737ba8f885dc774b53b442759999a312c9461e4e",
+      "frameworkVersion": "3.47.8",
+      "repositoryUrl": "https://github.com/flutter/flutter.git"
+    },
+    "status": "ready-system-sqlite"
+  },
+  "runtime_receipt_sha256": "bcb2c187656fd3cc548d49a8e323c2049347c7ca14b28d126d40710ceaaf132f",
+  "schema": 1,
+  "selected_test_files": 137,
+  "source_after_sha256": "43c4ad7489e083dd367204088bf5c5790c7c276d057d2a3e70f1b30bc6aafbd5",
+  "source_baseline": "e00ca1495551ffaf61dd9b3ee7770f8bfde7e897",
+  "source_before_sha256": "43c4ad7489e083dd367204088bf5c5790c7c276d057d2a3e70f1b30bc6aafbd5",
+  "source_changed_paths": [],
+  "source_file_count": 4394,
+  "source_head": "750eba1e856ee4b524186cb95feadad1727c2763",
+  "source_tree": "98e1129f0e5f961bb43913f9220af276519579c1",
+  "sqlite": {
+    "fts5": true,
+    "path": "/lib/x86_64-linux-gnu/libsqlite3.so.0.8.6",
+    "sha256": "14c4418a06c5c2e30f5fb57bc8add93762236ae17898c6708984cf15e680ca71",
+    "version": "3.46.1"
+  },
+  "started_at_utc": "2026-11-19T16:05:43.881256+00:00",
+  "status": "failed",
+  "temporary_hook": "Documented sqlite3 user_defines source=system; not a production manifest change",
+  "test_totals": {
+    "failed": 0,
+    "passed": 0,
+    "skipped": 0
+  },
+  "tested_manifest_sha256": "cfe75153a0caa2da8b07c43e72a8777ffe82d33eeb2900dcd980d25536814a36",
+  "unexecuted_cohorts": [
+    "quds_mail_core-vm",
+    "quds_mail_mime-vm",
+    "quds_mail_store-vm",
+    "quds_mail_store-node",
+    "quds_mail_transport-vm",
+    "quds_mail_transport-node",
+    "language-id-synthetic",
+    "hunspell-synthetic",
+    "arabic-morph-unit",
+    "engine-language-arabic-proofing",
+    "engine-incoming-macros-operations",
+    "mail-ui-widgets",
+    "editor-proofing-language-widgets",
+    "studio-mail-widgets",
+    "studio-language-proofing-widgets"
+  ],
+  "versions": {
+    "compiler": "x86_64-linux-gnu-g++-14 (Debian 14.2.0-19) 14.2.0\nCopyright (C) 2024 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.",
+    "dart": "Dart SDK version: 3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\"",
+    "node": "v24.22.3",
+    "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]"
+  }
+}

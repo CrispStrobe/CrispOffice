@@ -197,6 +197,7 @@ def plan(repo, base):
     add("engine-incoming-macros-operations", "packages/quds_office_engine", [
         *[str(path.relative_to(engine)) for path in (engine / "test").glob("office_macro_*_test.dart")],
         "test/office_operations_test.dart", "test/office_steps_test.dart",
+        "test/office_vba_integration_test.dart", "test/office_vba_language_test.dart",
         "test/word_step_atomicity_test.dart", "test/word_steps_vocabulary_test.dart",
         "test/word_structure_steps_test.dart", "test/table_grid_steps_test.dart",
         "test/word_table_grid_addressing_test.dart", "test/sheet_macro_preservation_test.dart",
@@ -242,6 +243,9 @@ def plan(repo, base):
             {"name": "macro-web-compile", "source": "packages/quds_office_engine/tool/macros/web_smoke.dart",
              "purpose": "Compile the public macro/operations path to JavaScript with the real SDK."},
             {"name": "macro-web-node", "purpose": "Execute emitted JavaScript and require recalculation, atomic rollback and MCP inspection results."},
+            {"name": "vba-web-compile", "source": "packages/quds_office_engine/tool/macros/web_vba_smoke.dart",
+             "purpose": "Compile the portable Excel VBA subset to JavaScript with the real SDK."},
+            {"name": "vba-web-node", "purpose": "Require numeric bounds/precedence, recalculation/style, validation/rollback byte preservation and MCP compile/playback results."},
         ],
         "excluded_files": EXCLUSIONS, "acceptance_limits": ACCEPTANCE_LIMITS,
     }
@@ -379,6 +383,7 @@ class Runner:
                      self.args.production_manifest, self.args.runtime_receipt, self.args.sqlite_library,
                      self.repo / ".dart_tool/native_assets.yaml",
                      self.repo / "packages/quds_office_engine/tool/macros/web_smoke.dart",
+                     self.repo / "packages/quds_office_engine/tool/macros/web_vba_smoke.dart",
                      self.flutter / "bin/cache/artifacts/engine/linux-x64/flutter_tester"):
             if not path.is_file():
                 raise RuntimeError(f"Required runtime input is missing: {path}")
@@ -494,16 +499,21 @@ class Runner:
             record["test_counts"] = {key: parsed[key] for key in ("passed", "failed", "skipped")}
             record["accepted"] &= parsed["accepted"]
             record["test_cases_sha256"] = sha(directory / "test-cases.json.gz")
-        elif kind == "macro-smoke":
+        elif kind in ("macro-smoke", "vba-smoke"):
             try:
                 value = json.loads((directory / "stdout.log").read_text())
-                expected = {"revision": 1, "A1": 42, "A2": 84,
-                            "lateFailurePreservedBytes": True, "mcpInspection": True}
+                expected = ({"revision": 1, "A1": 42, "A2": 84,
+                             "lateFailurePreservedBytes": True, "mcpInspection": True}
+                            if kind == "macro-smoke" else
+                            {"language": "vba-excel", "revision": 2, "A3": 42, "B1": 84,
+                             "fill": "0A141E", "validationPreservedBytes": True,
+                             "lateFailurePreservedBytes": True, "mcpCompileAndRun": True,
+                             "numericBoundsAndPrecedence": True})
                 record["observed"] = value
                 record["accepted"] &= value == expected
             except (ValueError, UnicodeError):
                 record["accepted"] = False
-                record["parse_error"] = "Macro smoke did not emit its required JSON result"
+                record["parse_error"] = "Portable smoke did not emit its required JSON result"
         write_json(directory / "result.json", record)
         self.steps.append(record)
         self.save()
@@ -573,6 +583,13 @@ class Runner:
             self.step("macro-web-node", [self.node, "-e",
                       "globalThis.self = globalThis; require(process.argv[1])", javascript], kind="macro-smoke")
             self.receipt["macro_javascript_sha256"] = sha(javascript)
+            vba_javascript = self.output / "vba-web-smoke.js"
+            self.step("vba-web-compile", [self.dart, "compile", "js", "--packages=" + str(self.config),
+                      "-O1", "tool/macros/web_vba_smoke.dart", "-o", vba_javascript],
+                      cwd=self.repo / "packages/quds_office_engine")
+            self.step("vba-web-node", [self.node, "-e",
+                      "globalThis.self = globalThis; require(process.argv[1])", vba_javascript], kind="vba-smoke")
+            self.receipt["vba_javascript_sha256"] = sha(vba_javascript)
             self.receipt["status"] = "passed" if all(item["accepted"] for item in self.steps) else "failed"
         except KeyboardInterrupt:
             self.receipt.update(status="interrupted", error="Operator interrupted local validation")

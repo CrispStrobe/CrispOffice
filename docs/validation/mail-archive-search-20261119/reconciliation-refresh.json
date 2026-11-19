@@ -1,7 +1,7 @@
 {
-  "captured_at_utc": "2026-11-19T16:00:28.101638+00:00",
-  "integration_head": "9f87eff5e9c3ade6a13f5a816b7b42313e5a9f74",
-  "integration_tree": "e357da78748c1fcbeb5a7d18f5efadeb76c59d22",
+  "captured_at_utc": "2026-11-19T16:08:35.871156+00:00",
+  "integration_head": "2cd623b7f78634c5118f1f434dd847222bccde4f",
+  "integration_tree": "6cac1919db6641b343d516adda9272c056cf45e4",
   "main": "e00ca1495551ffaf61dd9b3ee7770f8bfde7e897",
   "scope": "Every advertised fork branch and PR head, plus every advertised upstream branch; no Actions queried or awaited.",
   "new_incoming": [
@@ -10,10 +10,16 @@
       "head": "3c1764f5ff8bf9f89e090ef4e04e3142c4ccf90a",
       "merged_in": "9f87eff5e9c3ade6a13f5a816b7b42313e5a9f74",
       "method": "conflict-free ordinary three-way merge; focused tests included in final gate"
+    },
+    {
+      "pr": 202,
+      "head": "d98c8ae020a60715fbb02f5332b2f3414fb6805b",
+      "merged_in": "2cd623b7f78634c5118f1f434dd847222bccde4f",
+      "method": "conflict-free ordinary three-way merge; VBA compiler and integration tests included in final gate"
     }
   ],
   "counts": {
-    "ancestor": 200,
+    "ancestor": 203,
     "historical_equivalent": 23
   },
   "historical_proofs": [
@@ -148,7 +154,7 @@
     {
       "remote": "origin",
       "ref": "refs/heads/codex/mail-archive-search-20261119",
-      "sha": "9f87eff5e9c3ade6a13f5a816b7b42313e5a9f74",
+      "sha": "2cd623b7f78634c5118f1f434dd847222bccde4f",
       "disposition": "ancestor"
     },
     {
@@ -174,6 +180,12 @@
       "remote": "origin",
       "ref": "refs/heads/codex/office-validation-recovery-20261119",
       "sha": "623057111a9179552eb02b21a753a1728de9905d",
+      "disposition": "ancestor"
+    },
+    {
+      "remote": "origin",
+      "ref": "refs/heads/codex/vba-excel-macros",
+      "sha": "d98c8ae020a60715fbb02f5332b2f3414fb6805b",
       "disposition": "ancestor"
     },
     {
@@ -964,6 +976,18 @@
       "remote": "origin",
       "ref": "refs/pull/201/head",
       "sha": "3c1764f5ff8bf9f89e090ef4e04e3142c4ccf90a",
+      "disposition": "ancestor"
+    },
+    {
+      "remote": "origin",
+      "ref": "refs/pull/202/head",
+      "sha": "d98c8ae020a60715fbb02f5332b2f3414fb6805b",
+      "disposition": "ancestor"
+    },
+    {
+      "remote": "origin",
+      "ref": "refs/pull/203/head",
+      "sha": "2cd623b7f78634c5118f1f434dd847222bccde4f",
       "disposition": "ancestor"
     },
     {
