@@ -1,0 +1,31 @@
+{
+  "captured_at_utc": "2026-11-19T18:45:47.044241+00:00",
+  "counts": {
+    "dependencies": 9298,
+    "harnesses": 11,
+    "runtime": 1116,
+    "source": 4466
+  },
+  "environment": {
+    "CI": "true",
+    "DART_SUPPRESS_ANALYTICS": "true",
+    "DASH__SUPPRESS_ANALYTICS": "true",
+    "FLUTTER_ROOT": "/workspace/scratch/8eda9a4e1801/runtime/flutter",
+    "FLUTTER_SUPPRESS_ANALYTICS": "true",
+    "PUB_CACHE": "/workspace/scratch/8eda9a4e1801/runtime/pub-cache",
+    "TMPDIR": "/workspace/scratch/8eda9a4e1801/runtime/tmp",
+    "XDG_CACHE_HOME": "/workspace/scratch/8eda9a4e1801/runtime/cache",
+    "XDG_CONFIG_HOME": "/workspace/scratch/8eda9a4e1801/runtime/config",
+    "XDG_DATA_HOME": "/workspace/scratch/8eda9a4e1801/runtime/data"
+  },
+  "executed_capture_sha256": "1714306cba73d2e9ed35bc0d1f4653fcbbdf6e6cd6db175479df0fa363e1249a",
+  "head": "11543634c25b639098d177d0add2afa011e3d0d5",
+  "phase": "before",
+  "sqlite": {
+    "fts5": true,
+    "path": "/workspace/scratch/8eda9a4e1801/quds_office_suite/.dart_tool/lib/libsqlite3.so",
+    "sha256": "0a65852703763619a7a34633b4959b3b86c4103804a4dfe4e8b27b5de1c0647b",
+    "version": "3.54.1"
+  },
+  "tree": "ad71ea9f6209dd1cb49064675d440d2ae505a014"
+}

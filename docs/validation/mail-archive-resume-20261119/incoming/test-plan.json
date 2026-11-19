@@ -1,0 +1,86 @@
+{
+  "engine_tests": [
+    "test/office_operations_test.dart",
+    "test/office_macro_runtime_test.dart",
+    "test/office_macro_language_test.dart",
+    "test/office_vba_language_test.dart",
+    "test/office_vba_integration_test.dart",
+    "test/office_vba_procedures_test.dart",
+    "test/office_vba_procedure_boundaries_test.dart",
+    "test/office_vba_procedures_integration_test.dart",
+    "test/office_vba_control_flow_test.dart",
+    "test/office_vba_control_flow_boundaries_test.dart",
+    "test/office_vba_control_flow_integration_test.dart",
+    "test/office_vba_arrays_test.dart",
+    "test/office_vba_arrays_boundaries_test.dart",
+    "test/office_vba_arrays_integration_test.dart",
+    "test/office_macro_expansion_test.dart",
+    "test/office_macro_mcp_test.dart",
+    "test/office_macro_cli_test.dart",
+    "test/office_steps_test.dart",
+    "test/word_step_atomicity_test.dart",
+    "test/word_steps_vocabulary_test.dart",
+    "test/word_structure_steps_test.dart",
+    "test/table_grid_steps_test.dart",
+    "test/word_table_grid_addressing_test.dart",
+    "test/sheet_macro_preservation_test.dart"
+  ],
+  "engine_javascript_smokes": [
+    "tool/macros/web_smoke.dart",
+    "tool/macros/web_vba_smoke.dart",
+    "tool/macros/web_vba_procedures_smoke.dart",
+    "tool/macros/web_vba_control_flow_smoke.dart",
+    "tool/macros/web_vba_arrays_smoke.dart"
+  ],
+  "editor_tests": [
+    "test/office_chrome_theme_test.dart",
+    "test/office_dark_document_test.dart",
+    "test/office_dark_slide_test.dart",
+    "test/word_page_layout_test.dart",
+    "test/embed_test.dart",
+    "test/word_tab_stops_editor_test.dart",
+    "test/sheet_conditional_rendering_test.dart",
+    "test/word_selection_paint_test.dart",
+    "test/word_header_footer_navigation_test.dart",
+    "test/editor_test.dart",
+    "test/word_text_proofing_pane_test.dart"
+  ],
+  "studio_tests": [
+    "test/studio_layout_theme_test.dart",
+    "test/studio_page_layout_dialog_test.dart",
+    "test/studio_paragraph_dialog_test.dart",
+    "test/studio_comment_keyboard_review_test.dart",
+    "test/studio_comment_review_test.dart",
+    "test/studio_review_pane_test.dart",
+    "test/studio_slide_sheet_menus_test.dart",
+    "test/studio_zotero_shortcuts_test.dart",
+    "test/studio_downloads_manager_test.dart",
+    "test/studio_spacy_setup_test.dart",
+    "test/studio_language_id_test.dart"
+  ],
+  "spacy_tests": [
+    "test/analysis_test.dart",
+    "test/bundle_test.dart",
+    "test/distribution_test.dart",
+    "test/grammar_evaluation_harness_test.dart",
+    "test/grammar_planner_test.dart",
+    "test/grammar_provider_test.dart",
+    "test/language_catalog_test.dart",
+    "test/ner_removal_test.dart",
+    "test/worker_test.dart"
+  ],
+  "spacy_javascript_smokes": [
+    "test/studio_spacy_web_import_gate.dart"
+  ],
+  "execution_exclusions": [
+    {
+      "path": "packages/quds_office_editor/example/test/studio_spacy_bundle_native_gate.dart",
+      "reason": "Requires an installed macOS app with bundled native libraries and verified downloaded models; Linux synthetic/native-status checks do not qualify that application."
+    }
+  ],
+  "spacy_analysis_targets": [
+    "lib",
+    "test"
+  ],
+  "analysis_scope_note": "Strict spaCy analysis covers all library code and tests, including incoming installer/backend changes. The unchanged distribution-consumption CLI is outside this requested integration scope; nine pre-existing informational lints from an exploratory package-wide run are preserved in excluded spacy-accepted evidence."
+}

@@ -1,0 +1,30 @@
+{
+  "name": "tests",
+  "command": [
+    "/workspace/scratch/8eda9a4e1801/runtime/bin/dart",
+    "--disable-dart-dev",
+    "--packages=/workspace/scratch/8eda9a4e1801/quds_office_suite/.dart_tool/package_config.json",
+    "/workspace/scratch/8eda9a4e1801/runtime/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+    "--platform=vm",
+    "--compiler=kernel",
+    "--reporter=json",
+    "--concurrency=2",
+    "test/analysis_test.dart",
+    "test/bundle_test.dart",
+    "test/distribution_test.dart",
+    "test/grammar_evaluation_harness_test.dart",
+    "test/grammar_planner_test.dart",
+    "test/grammar_provider_test.dart",
+    "test/language_catalog_test.dart",
+    "test/ner_removal_test.dart",
+    "test/worker_test.dart"
+  ],
+  "cwd": "/workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_proofing_spacy",
+  "started_at_utc": "2026-11-19T19:12:09.469001+00:00",
+  "finished_at_utc": "2026-11-19T19:12:27.964900+00:00",
+  "elapsed_seconds": 18.496,
+  "exit_code": 0,
+  "timed_out": false,
+  "stdout_sha256": "c3d0f5105e0c34449636dca4ebe710d58ad1e5d3e06dc43750bb2aeb353ae1cc",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

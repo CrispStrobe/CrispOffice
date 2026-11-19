@@ -1,0 +1,217 @@
+{
+  "success": false,
+  "started_at_utc": "2026-11-19T19:12:09.465665+00:00",
+  "finished_at_utc": "2026-11-19T19:12:33.468014+00:00",
+  "source_commit_before": "dd186057a656ad7845edf29a2566fb8091300f41",
+  "source_commit_after": "dd186057a656ad7845edf29a2566fb8091300f41",
+  "commands": [
+    {
+      "name": "tests",
+      "command": [
+        "/workspace/scratch/8eda9a4e1801/runtime/bin/dart",
+        "--disable-dart-dev",
+        "--packages=/workspace/scratch/8eda9a4e1801/quds_office_suite/.dart_tool/package_config.json",
+        "/workspace/scratch/8eda9a4e1801/runtime/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+        "--platform=vm",
+        "--compiler=kernel",
+        "--reporter=json",
+        "--concurrency=2",
+        "test/analysis_test.dart",
+        "test/bundle_test.dart",
+        "test/distribution_test.dart",
+        "test/grammar_evaluation_harness_test.dart",
+        "test/grammar_planner_test.dart",
+        "test/grammar_provider_test.dart",
+        "test/language_catalog_test.dart",
+        "test/ner_removal_test.dart",
+        "test/worker_test.dart"
+      ],
+      "cwd": "/workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_proofing_spacy",
+      "started_at_utc": "2026-11-19T19:12:09.469001+00:00",
+      "finished_at_utc": "2026-11-19T19:12:27.964900+00:00",
+      "elapsed_seconds": 18.496,
+      "exit_code": 0,
+      "timed_out": false,
+      "stdout_sha256": "c3d0f5105e0c34449636dca4ebe710d58ad1e5d3e06dc43750bb2aeb353ae1cc",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "analysis",
+      "command": [
+        "/workspace/scratch/8eda9a4e1801/runtime/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "--fatal-warnings"
+      ],
+      "cwd": "/workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_proofing_spacy",
+      "started_at_utc": "2026-11-19T19:12:27.965932+00:00",
+      "finished_at_utc": "2026-11-19T19:12:32.563644+00:00",
+      "elapsed_seconds": 4.598,
+      "exit_code": 1,
+      "timed_out": false,
+      "stdout_sha256": "3a59315acea650ac7edb3640846dee9b906545a373b5d89134f0cf4ef4cb5546",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "format",
+      "command": [
+        "/workspace/scratch/8eda9a4e1801/runtime/bin/dart",
+        "format",
+        "--output=none",
+        "--set-exit-if-changed",
+        "lib/src/installer_io.dart",
+        "lib/src/native_backend.dart",
+        "lib/src/native_backend_unsupported.dart",
+        "test/ner_removal_test.dart"
+      ],
+      "cwd": "/workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_proofing_spacy",
+      "started_at_utc": "2026-11-19T19:12:32.564195+00:00",
+      "finished_at_utc": "2026-11-19T19:12:32.628678+00:00",
+      "elapsed_seconds": 0.064,
+      "exit_code": 0,
+      "timed_out": false,
+      "stdout_sha256": "32af0bda87e046566b8b0cd70d7bf261160165770f08bc7aac5b7c000ecff6af",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "web-compile",
+      "command": [
+        "/workspace/scratch/8eda9a4e1801/runtime/bin/dart",
+        "compile",
+        "js",
+        "-O1",
+        "test/studio_spacy_web_import_gate.dart",
+        "-o",
+        "/workspace/scratch/8eda9a4e1801/incoming-validation/spacy-accepted/studio_spacy_web_import_gate.js"
+      ],
+      "cwd": "/workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_office_editor/example",
+      "started_at_utc": "2026-11-19T19:12:32.629333+00:00",
+      "finished_at_utc": "2026-11-19T19:12:33.197747+00:00",
+      "elapsed_seconds": 0.568,
+      "exit_code": 0,
+      "timed_out": false,
+      "stdout_sha256": "fce56ff25f3f1a9bbc84b0698a07ade6ec0da4cefbcb73fc620e0089e0a9049b",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "web-run",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "-e",
+        "globalThis.self = globalThis; require(\"/workspace/scratch/8eda9a4e1801/incoming-validation/spacy-accepted/studio_spacy_web_import_gate.js\");"
+      ],
+      "cwd": "/workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_office_editor/example",
+      "started_at_utc": "2026-11-19T19:12:33.198438+00:00",
+      "finished_at_utc": "2026-11-19T19:12:33.312977+00:00",
+      "elapsed_seconds": 0.115,
+      "exit_code": 0,
+      "timed_out": false,
+      "stdout_sha256": "e2f09d0e35af80e1ea518720e6c3fcbc6d5764883e4e6ab7b30837c32875cc66",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "summary": {
+    "success": true,
+    "passed_distinct": 97,
+    "failed_distinct": 0,
+    "skipped_distinct": 0,
+    "visible_completed_events": 97,
+    "duplicate_suite_name_pairs": 0,
+    "by_suite": {
+      "analysis_test.dart": {
+        "passed": 12,
+        "failed": 0,
+        "skipped": 0
+      },
+      "bundle_test.dart": {
+        "passed": 3,
+        "failed": 0,
+        "skipped": 0
+      },
+      "distribution_test.dart": {
+        "passed": 14,
+        "failed": 0,
+        "skipped": 0
+      },
+      "grammar_evaluation_harness_test.dart": {
+        "passed": 9,
+        "failed": 0,
+        "skipped": 0
+      },
+      "grammar_planner_test.dart": {
+        "passed": 19,
+        "failed": 0,
+        "skipped": 0
+      },
+      "grammar_provider_test.dart": {
+        "passed": 16,
+        "failed": 0,
+        "skipped": 0
+      },
+      "language_catalog_test.dart": {
+        "passed": 8,
+        "failed": 0,
+        "skipped": 0
+      },
+      "ner_removal_test.dart": {
+        "passed": 2,
+        "failed": 0,
+        "skipped": 0
+      },
+      "worker_test.dart": {
+        "passed": 14,
+        "failed": 0,
+        "skipped": 0
+      }
+    },
+    "missing_suites": [],
+    "reporter_done": [
+      {
+        "success": true,
+        "type": "done",
+        "time": 6694
+      }
+    ],
+    "reporter_errors": [],
+    "unparsed_lines": []
+  },
+  "test_selection": [
+    "test/analysis_test.dart",
+    "test/bundle_test.dart",
+    "test/distribution_test.dart",
+    "test/grammar_evaluation_harness_test.dart",
+    "test/grammar_planner_test.dart",
+    "test/grammar_provider_test.dart",
+    "test/language_catalog_test.dart",
+    "test/ner_removal_test.dart",
+    "test/worker_test.dart"
+  ],
+  "format_targets": [
+    "lib/src/installer_io.dart",
+    "lib/src/native_backend.dart",
+    "lib/src/native_backend_unsupported.dart",
+    "test/ner_removal_test.dart"
+  ],
+  "source_inputs": 903,
+  "dependency_inputs": 12,
+  "changed_source_inputs": [],
+  "changed_dependency_inputs": [],
+  "executed_runner": {
+    "sha256": "74cd2206bc0e3d48cc15c44a881e860fd741381bf77c070b6097308e3f918259",
+    "bytes": 6111
+  },
+  "generated_javascript": {
+    "path": "/workspace/scratch/8eda9a4e1801/incoming-validation/spacy-accepted/studio_spacy_web_import_gate.js",
+    "sha256": "b45db8ce2401c6eac70fdd2aa58528371840b749d0b31cda3385818b0eba3455",
+    "bytes": 155378
+  },
+  "web_assertion": {
+    "required_output": "Local text analysis is unavailable in this browser.",
+    "actual_output": "Local text analysis is unavailable in this browser.",
+    "passed": true
+  },
+  "limits": [
+    "Synthetic installer/worker fixtures and Linux status checks; no installed macOS application or real model inference.",
+    "The JavaScript program verifies the explicit unsupported browser boundary only."
+  ]
+}

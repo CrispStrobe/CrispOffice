@@ -1,0 +1,15 @@
+{"check": "dart-version", "exit_code": 0, "elapsed_seconds": 0.004}
+{"check": "node-version", "exit_code": 0, "elapsed_seconds": 0.008}
+{"check": "engine-analysis", "exit_code": 0, "elapsed_seconds": 12.391}
+{"check": "format", "exit_code": 0, "elapsed_seconds": 0.116}
+{"check": "whitespace", "exit_code": 0, "elapsed_seconds": 0.016}
+{"check": "web_smoke-compile", "exit_code": 0, "elapsed_seconds": 10.239}
+{"check": "web_smoke-run", "exit_code": 0, "elapsed_seconds": 0.315}
+{"check": "web_vba_smoke-compile", "exit_code": 0, "elapsed_seconds": 9.943}
+{"check": "web_vba_smoke-run", "exit_code": 0, "elapsed_seconds": 0.274}
+{"check": "web_vba_procedures_smoke-compile", "exit_code": 0, "elapsed_seconds": 10.841}
+{"check": "web_vba_procedures_smoke-run", "exit_code": 0, "elapsed_seconds": 0.316}
+{"check": "web_vba_control_flow_smoke-compile", "exit_code": 0, "elapsed_seconds": 13.042}
+{"check": "web_vba_control_flow_smoke-run", "exit_code": 0, "elapsed_seconds": 0.518}
+{"check": "web_vba_arrays_smoke-compile", "exit_code": 0, "elapsed_seconds": 11.146}
+{"check": "web_vba_arrays_smoke-run", "exit_code": 0, "elapsed_seconds": 0.516}

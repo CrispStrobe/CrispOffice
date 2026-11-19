@@ -1,0 +1,133 @@
+{
+  "schema": 1,
+  "status": "superseded",
+  "window": "final-window-v2",
+  "accepted_groups": [
+    {
+      "name": "engine",
+      "path": "engine-accepted-v2",
+      "kind": "engine",
+      "executed_runner": "run-engine-validation-direct.py"
+    },
+    {
+      "name": "slide-parser",
+      "path": "slide-parser-accepted-v2",
+      "kind": "commands",
+      "executed_runner": "run-slide-validation-accepted.py"
+    },
+    {
+      "name": "editor",
+      "path": "editor-final-v2",
+      "kind": "ui-tests",
+      "executed_runner": "run-ui-validation.py"
+    },
+    {
+      "name": "studio",
+      "path": "studio-final-v2",
+      "kind": "ui-tests",
+      "executed_runner": "run-ui-validation.py"
+    },
+    {
+      "name": "editor-analysis",
+      "path": "editor-analysis-final-v2",
+      "kind": "commands",
+      "executed_runner": "run-ui-analysis.py"
+    },
+    {
+      "name": "studio-analysis",
+      "path": "studio-analysis-final-v2",
+      "kind": "commands",
+      "executed_runner": "run-ui-analysis.py"
+    },
+    {
+      "name": "spacy",
+      "path": "spacy-accepted",
+      "kind": "spacy",
+      "executed_runner": "run-spacy-validation.py"
+    },
+    {
+      "name": "static",
+      "path": "static-accepted",
+      "kind": "static",
+      "executed_runner": "run-static-validation.py"
+    }
+  ],
+  "excluded_groups": [
+    {
+      "path": "engine",
+      "reason": "Incomplete plain Dart CLI startup; interrupted with no test events. All required commands superseded by direct-entrypoint final qualification."
+    },
+    {
+      "path": "engine-final",
+      "reason": "Successful development replay on pre-parser/pre-latest-GUI source; superseded by fresh final-window engine acceptance."
+    },
+    {
+      "path": "editor",
+      "reason": "Initial development run exposed near-solid black-pixel assertion failure in incoming dark-slide test."
+    },
+    {
+      "path": "editor-dark-slide-final",
+      "reason": "Narrow raster correction exposed actual table-cell color import defect; not accepted."
+    },
+    {
+      "path": "editor-analysis",
+      "reason": "Development analysis on earlier source; superseded by editor-analysis-final."
+    },
+    {
+      "path": "slide-parser-final",
+      "reason": "Successful focused development proof before latest incoming parser/raster/ruler commits; superseded by slide-parser-accepted."
+    },
+    {
+      "path": "engine-accepted",
+      "reason": "Superseded before latest main/app-gaps integration; original final window was incomplete after session loss. No accepted executions from this directory."
+    },
+    {
+      "path": "slide-parser-accepted",
+      "reason": "Superseded before latest main/app-gaps integration; original final window was incomplete after session loss. No accepted executions from this directory."
+    },
+    {
+      "path": "editor-final",
+      "reason": "Superseded before latest main/app-gaps integration; original final window was incomplete after session loss. No accepted executions from this directory."
+    },
+    {
+      "path": "studio-final",
+      "reason": "Superseded before latest main/app-gaps integration; original final window was incomplete after session loss. No accepted executions from this directory."
+    },
+    {
+      "path": "editor-analysis-final",
+      "reason": "Superseded before latest main/app-gaps integration; original final window was incomplete after session loss. No accepted executions from this directory."
+    },
+    {
+      "path": "studio-analysis-final",
+      "reason": "Superseded before latest main/app-gaps integration; original final window was incomplete after session loss. No accepted executions from this directory."
+    },
+    {
+      "path": "final-window",
+      "reason": "Initial capture only; enclosing run was interrupted and latest external source integration superseded this source."
+    }
+  ],
+  "excluded_diagnostics": [
+    "dark-slide-probe.log",
+    "dark-slide-probe.png",
+    "table-color-before.log",
+    "table-color-before-in-package.log",
+    "abandoned-vba-cli-GOYJGA.tar.gz",
+    "abandoned-vba-cli-GOYJGA.json"
+  ],
+  "counting": "Only explicit accepted_groups inside the enclosing final window contribute accepted counts. Development passes, incomplete runs and expected failing probes are excluded.",
+  "window_runner": "capture-final-window.py",
+  "source_head": "ec6d527e9aaf207e131217ec24c65cd9ae409433",
+  "execution_exclusions": [
+    {
+      "path": "packages/quds_office_editor/example/test/studio_spacy_bundle_native_gate.dart",
+      "reason": "Requires an installed macOS app with bundled native libraries and verified downloaded models; Linux synthetic/native-status checks do not qualify that application."
+    }
+  ],
+  "test_plan": {
+    "path": "test-plan.json",
+    "sha256": "3392ee0f313277e20458673f2b9f0f238e2153eba1b9e3da2547e7406a70248c",
+    "runtime_original": "runtime/incoming-test-plan.json"
+  },
+  "frozen_head": "ec6d527e9aaf207e131217ec24c65cd9ae409433",
+  "superseded_reason": "Two ruler-label golden baselines require an intentional reviewed refresh. Full spaCy package analysis also exposed unchanged distribution CLI info lints; final strict gate is lib and test. All original logs remain; zero accepted v2 counts."
+}

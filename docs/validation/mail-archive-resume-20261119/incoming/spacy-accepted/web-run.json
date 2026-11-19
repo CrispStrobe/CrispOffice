@@ -1,0 +1,16 @@
+{
+  "name": "web-run",
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+    "-e",
+    "globalThis.self = globalThis; require(\"/workspace/scratch/8eda9a4e1801/incoming-validation/spacy-accepted/studio_spacy_web_import_gate.js\");"
+  ],
+  "cwd": "/workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_office_editor/example",
+  "started_at_utc": "2026-11-19T19:12:33.198438+00:00",
+  "finished_at_utc": "2026-11-19T19:12:33.312977+00:00",
+  "elapsed_seconds": 0.115,
+  "exit_code": 0,
+  "timed_out": false,
+  "stdout_sha256": "e2f09d0e35af80e1ea518720e6c3fcbc6d5764883e4e6ab7b30837c32875cc66",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

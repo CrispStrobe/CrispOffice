@@ -1,46 +1,46 @@
 {
   "schema_version": 1,
-  "replayed_at_utc": "2026-11-19T19:17:39.896689+00:00",
+  "replayed_at_utc": "2026-11-19T19:39:48.774539+00:00",
   "scope": "Every advertised fork branch/PR head and upstream branch in the named captures. The replay performs no network read, fetch, ref update or Actions operation.",
   "repository": "CrispStrobe/quds_office_suite",
   "upstream": "MohammedAsaadAsaad/quds_office_suite",
-  "checked_local_head": "be93371b680d8e39365a6b356fb727bda81dbed1",
+  "checked_local_head": "906b8bc90ea352f03dfdab5f9bc50f3aafc359de",
   "initial_main": "caf378f40fd5bda50f504a6816404d01d8bbb8f8",
-  "status": "pending_external_integration",
+  "status": "accounted",
   "counts": {
-    "ancestor": 205,
-    "unaccounted": 6,
-    "historical_equivalent": 23
+    "ancestor": 209,
+    "historical_equivalent": 23,
+    "unaccounted": 0
   },
-  "external_reference_count": 234,
-  "captured_reference_count": 236,
-  "fork_branch_count": 19,
-  "fork_pr_head_count": 213,
+  "external_reference_count": 232,
+  "captured_reference_count": 234,
+  "fork_branch_count": 18,
+  "fork_pr_head_count": 212,
   "upstream_branch_count": 4,
   "excluded_own_references": [
     {
       "source": "fork",
       "ref": "refs/heads/codex/mail-archive-resume-20261119",
-      "sha": "be93371b680d8e39365a6b356fb727bda81dbed1",
+      "sha": "0401252abac80cd4c2bd1b23a663afb65a113df8",
       "reason": "Current mail resume branch/PR; excluded from external incoming work.",
       "ancestor_of_checked_head": true
     },
     {
       "source": "fork",
       "ref": "refs/pull/212/head",
-      "sha": "be93371b680d8e39365a6b356fb727bda81dbed1",
+      "sha": "0401252abac80cd4c2bd1b23a663afb65a113df8",
       "reason": "Current mail resume branch/PR; excluded from external incoming work.",
       "ancestor_of_checked_head": true
     }
   ],
   "live_captures": [
     {
-      "file": "reconciliation-remote-final.txt",
-      "sha256": "7492fbf0fff85a207f8dd84be4ba425b1a5f58f1211df051ce952748af9be167",
-      "bytes": 14189
+      "file": "reconciliation-remote-cutoff.txt",
+      "sha256": "621e7309a6f18033324f0a2bb4d0a46071786363cc40b3afbebc20276278341e",
+      "bytes": 14046
     },
     {
-      "file": "reconciliation-upstream-final.txt",
+      "file": "reconciliation-upstream-cutoff.txt",
       "sha256": "77e7e8cc2b1515cdb809f70b12b9fff6422cb256a068d33ccce0d5ff827b1eb6",
       "bytes": 304
     }
@@ -61,7 +61,7 @@
       "complete_original_delta_paths": 37,
       "equivalent_is_ancestor": true,
       "passed": true,
-      "fresh_checked_head": "be93371b680d8e39365a6b356fb727bda81dbed1",
+      "fresh_checked_head": "906b8bc90ea352f03dfdab5f9bc50f3aafc359de",
       "fresh_common_base": "e3a38789359adaa33b2da1345c952fa1c2d8aebb",
       "fresh_delta_paths": 37,
       "fresh_delta_mismatches": [],
@@ -77,7 +77,7 @@
       "complete_original_delta_paths": 1,
       "equivalent_is_ancestor": true,
       "passed": true,
-      "fresh_checked_head": "be93371b680d8e39365a6b356fb727bda81dbed1",
+      "fresh_checked_head": "906b8bc90ea352f03dfdab5f9bc50f3aafc359de",
       "fresh_common_base": "4584d5f319aab198f1d705f48b4d6647e6cbabea",
       "fresh_delta_paths": 1,
       "fresh_delta_mismatches": [],
@@ -93,7 +93,7 @@
       "complete_original_delta_paths": 1,
       "equivalent_is_ancestor": true,
       "passed": true,
-      "fresh_checked_head": "be93371b680d8e39365a6b356fb727bda81dbed1",
+      "fresh_checked_head": "906b8bc90ea352f03dfdab5f9bc50f3aafc359de",
       "fresh_common_base": "b3f41eb4b4bca8ca13676b4114891ea6d9185043",
       "fresh_delta_paths": 1,
       "fresh_delta_mismatches": [],
@@ -109,7 +109,7 @@
       "complete_original_delta_paths": 7,
       "equivalent_is_ancestor": true,
       "passed": true,
-      "fresh_checked_head": "be93371b680d8e39365a6b356fb727bda81dbed1",
+      "fresh_checked_head": "906b8bc90ea352f03dfdab5f9bc50f3aafc359de",
       "fresh_common_base": "e3a38789359adaa33b2da1345c952fa1c2d8aebb",
       "fresh_delta_paths": 7,
       "fresh_delta_mismatches": [],
@@ -125,7 +125,7 @@
       "complete_original_delta_paths": 8,
       "equivalent_is_ancestor": true,
       "passed": true,
-      "fresh_checked_head": "be93371b680d8e39365a6b356fb727bda81dbed1",
+      "fresh_checked_head": "906b8bc90ea352f03dfdab5f9bc50f3aafc359de",
       "fresh_common_base": "d754bf15b07a24c8a86c8dce339ca749fecd9531",
       "fresh_delta_paths": 8,
       "fresh_delta_mismatches": [],
@@ -141,7 +141,7 @@
       "complete_original_delta_paths": 4,
       "equivalent_is_ancestor": true,
       "passed": true,
-      "fresh_checked_head": "be93371b680d8e39365a6b356fb727bda81dbed1",
+      "fresh_checked_head": "906b8bc90ea352f03dfdab5f9bc50f3aafc359de",
       "fresh_common_base": "4eaca83b192897edad82658107dfeb5bcbed0920",
       "fresh_delta_paths": 4,
       "fresh_delta_mismatches": [],
@@ -157,7 +157,7 @@
       "complete_original_delta_paths": 7,
       "equivalent_is_ancestor": true,
       "passed": true,
-      "fresh_checked_head": "be93371b680d8e39365a6b356fb727bda81dbed1",
+      "fresh_checked_head": "906b8bc90ea352f03dfdab5f9bc50f3aafc359de",
       "fresh_common_base": "16e2477ff93f7a1ec5c6ed78491f2716ce4d1658",
       "fresh_delta_paths": 7,
       "fresh_delta_mismatches": [],
@@ -173,7 +173,7 @@
       "complete_original_delta_paths": 7,
       "equivalent_is_ancestor": true,
       "passed": true,
-      "fresh_checked_head": "be93371b680d8e39365a6b356fb727bda81dbed1",
+      "fresh_checked_head": "906b8bc90ea352f03dfdab5f9bc50f3aafc359de",
       "fresh_common_base": "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4",
       "fresh_delta_paths": 7,
       "fresh_delta_mismatches": [],
@@ -189,7 +189,7 @@
       "complete_original_delta_paths": 221,
       "equivalent_is_ancestor": true,
       "passed": true,
-      "fresh_checked_head": "be93371b680d8e39365a6b356fb727bda81dbed1",
+      "fresh_checked_head": "906b8bc90ea352f03dfdab5f9bc50f3aafc359de",
       "fresh_common_base": "bb5556e8cc4cb73e2c668b5319a2844a20c6c50c",
       "fresh_delta_paths": 221,
       "fresh_delta_mismatches": [],
@@ -206,7 +206,7 @@
       "complete_original_delta_paths": 1,
       "equivalent_is_ancestor": true,
       "passed": true,
-      "fresh_checked_head": "be93371b680d8e39365a6b356fb727bda81dbed1",
+      "fresh_checked_head": "906b8bc90ea352f03dfdab5f9bc50f3aafc359de",
       "fresh_common_base": "fdec8c24fde94fbffee212a7541b0cb236f682e4",
       "fresh_delta_paths": 1,
       "fresh_delta_mismatches": [],
@@ -222,7 +222,7 @@
       "complete_original_delta_paths": 1,
       "equivalent_is_ancestor": true,
       "passed": true,
-      "fresh_checked_head": "be93371b680d8e39365a6b356fb727bda81dbed1",
+      "fresh_checked_head": "906b8bc90ea352f03dfdab5f9bc50f3aafc359de",
       "fresh_common_base": "d754bf15b07a24c8a86c8dce339ca749fecd9531",
       "fresh_delta_paths": 1,
       "fresh_delta_mismatches": [],
@@ -238,7 +238,7 @@
       "complete_original_delta_paths": 1,
       "equivalent_is_ancestor": true,
       "passed": true,
-      "fresh_checked_head": "be93371b680d8e39365a6b356fb727bda81dbed1",
+      "fresh_checked_head": "906b8bc90ea352f03dfdab5f9bc50f3aafc359de",
       "fresh_common_base": "c84d5e16024c502f6c451fd04b9807b1e65f20d3",
       "fresh_delta_paths": 1,
       "fresh_delta_mismatches": [],
@@ -254,7 +254,7 @@
       "complete_original_delta_paths": 105,
       "equivalent_is_ancestor": true,
       "passed": true,
-      "fresh_checked_head": "be93371b680d8e39365a6b356fb727bda81dbed1",
+      "fresh_checked_head": "906b8bc90ea352f03dfdab5f9bc50f3aafc359de",
       "fresh_common_base": "0ff7d23929e4640af6c1d57f87c7ac71b73d2ed4",
       "fresh_delta_paths": 105,
       "fresh_delta_mismatches": [],
@@ -271,7 +271,7 @@
       "complete_original_delta_paths": 79,
       "equivalent_is_ancestor": true,
       "passed": true,
-      "fresh_checked_head": "be93371b680d8e39365a6b356fb727bda81dbed1",
+      "fresh_checked_head": "906b8bc90ea352f03dfdab5f9bc50f3aafc359de",
       "fresh_common_base": "34dc6b6806869570e9ec342e4d7ee0d6951c0ba6",
       "fresh_delta_paths": 79,
       "fresh_delta_mismatches": [],
@@ -290,9 +290,8 @@
     {
       "source": "fork",
       "ref": "refs/heads/codex/crispoffice-layout-theme-20261119",
-      "sha": "fedabc7079db1c402cadcd9ef15296244979132e",
-      "classification": "unaccounted",
-      "object_present": false
+      "sha": "ba51c40abc664758df3cfc846625bdeb81e3ac13",
+      "classification": "ancestor"
     },
     {
       "source": "fork",
@@ -311,9 +310,8 @@
     {
       "source": "fork",
       "ref": "refs/heads/codex/vba-arrays-foreach-20261119",
-      "sha": "3abffb94dcf33a2766a4579d296d0ef09c9e35cd",
-      "classification": "unaccounted",
-      "object_present": false
+      "sha": "d8be43a408473da4b45059561dbc387f5b868d5b",
+      "classification": "ancestor"
     },
     {
       "source": "fork",
@@ -385,13 +383,6 @@
     },
     {
       "source": "fork",
-      "ref": "refs/heads/fix/spacy-bundled-ner-20261119",
-      "sha": "dc93a176f8efc98feff9c25565fb036175793a54",
-      "classification": "unaccounted",
-      "object_present": false
-    },
-    {
-      "source": "fork",
       "ref": "refs/heads/integrate/macbook-current-20261118",
       "sha": "f383c826205e321eda3ed3bdbcd584e9a2d4da14",
       "classification": "ancestor"
@@ -407,9 +398,8 @@
     {
       "source": "fork",
       "ref": "refs/heads/main",
-      "sha": "4a4ea1f0d8c990cc74ce8f7233545a8a9dc0887c",
-      "classification": "unaccounted",
-      "object_present": false
+      "sha": "9f41e0427734d815b19149eba5eabef202f78ba6",
+      "classification": "ancestor"
     },
     {
       "source": "fork",
@@ -1186,21 +1176,13 @@
     {
       "source": "fork",
       "ref": "refs/pull/210/head",
-      "sha": "3abffb94dcf33a2766a4579d296d0ef09c9e35cd",
-      "classification": "unaccounted",
-      "object_present": false
+      "sha": "d8be43a408473da4b45059561dbc387f5b868d5b",
+      "classification": "ancestor"
     },
     {
       "source": "fork",
       "ref": "refs/pull/211/head",
-      "sha": "fedabc7079db1c402cadcd9ef15296244979132e",
-      "classification": "unaccounted",
-      "object_present": false
-    },
-    {
-      "source": "fork",
-      "ref": "refs/pull/213/head",
-      "sha": "0e03878b028ec25ed3d84a790633433eafc3bede",
+      "sha": "ba51c40abc664758df3cfc846625bdeb81e3ac13",
       "classification": "ancestor"
     },
     {
@@ -1738,6 +1720,7 @@
       "classification": "ancestor"
     }
   ],
+  "post_cutoff_review_basis": null,
   "observation_limits": [
     "Git ref advertisements and any separate API reads are not one atomic snapshot.",
     "Ancestry establishes incorporation, not runtime correctness; acceptance is separate.",

@@ -1,0 +1,50 @@
+{
+  "purpose": "Lossless copies of the five executed engine JavaScript artifacts; no additional commands or test counts.",
+  "entries": [
+    {
+      "program": "web_smoke",
+      "original_path": "/workspace/scratch/8eda9a4e1801/runtime/tmp/vba-arrays-acceptance-1795116393660376065/web_smoke.js",
+      "archived_path": "web_smoke.js.gz",
+      "uncompressed_sha256": "7b15c90731924c5c73d8927cf4cb251155cd254e31beb66ca754b2ba159215fe",
+      "uncompressed_bytes": 2544194,
+      "archive_sha256": "35b1a64e8e8d1ac0ac02cb4e49a3d8763fb4ff538cb04ff45107260224c1f3d8",
+      "archive_bytes": 466340
+    },
+    {
+      "program": "web_vba_smoke",
+      "original_path": "/workspace/scratch/8eda9a4e1801/runtime/tmp/vba-arrays-acceptance-1795116393660376065/web_vba_smoke.js",
+      "archived_path": "web_vba_smoke.js.gz",
+      "uncompressed_sha256": "351b5b6f1767a653c35fbcda6ed468268615f9c0749cf0a065c69d5bfcc72213",
+      "uncompressed_bytes": 2702529,
+      "archive_sha256": "6193aaf55280be0a4da5462a983cd8406bd04e253c04d38504d40fac1a868f88",
+      "archive_bytes": 495570
+    },
+    {
+      "program": "web_vba_procedures_smoke",
+      "original_path": "/workspace/scratch/8eda9a4e1801/runtime/tmp/vba-arrays-acceptance-1795116393660376065/web_vba_procedures_smoke.js",
+      "archived_path": "web_vba_procedures_smoke.js.gz",
+      "uncompressed_sha256": "f285335c7a4d4e9419b1c39fb36cdf8e0eec33f5bcba82724eabd1300fbcd3a6",
+      "uncompressed_bytes": 2704030,
+      "archive_sha256": "6ea616a62d6527470792cd868211b107ca0e355863122431a82c19d925fc3383",
+      "archive_bytes": 495977
+    },
+    {
+      "program": "web_vba_control_flow_smoke",
+      "original_path": "/workspace/scratch/8eda9a4e1801/runtime/tmp/vba-arrays-acceptance-1795116393660376065/web_vba_control_flow_smoke.js",
+      "archived_path": "web_vba_control_flow_smoke.js.gz",
+      "uncompressed_sha256": "1a0fca3b5ee04c03322d8a476b08e84ef7b3b9e6497beac0520914e007bdb7fd",
+      "uncompressed_bytes": 2705711,
+      "archive_sha256": "d533d9acc4b8d7d403b72953e8d92ca50c1c8e6a1897d85c7406a961ee1051a2",
+      "archive_bytes": 496553
+    },
+    {
+      "program": "web_vba_arrays_smoke",
+      "original_path": "/workspace/scratch/8eda9a4e1801/runtime/tmp/vba-arrays-acceptance-1795116393660376065/web_vba_arrays_smoke.js",
+      "archived_path": "web_vba_arrays_smoke.js.gz",
+      "uncompressed_sha256": "372d7ce858813dc54f8e6cd7a9204126710a9bf23b0b36c9550b49f36c15ca0a",
+      "uncompressed_bytes": 2707824,
+      "archive_sha256": "34cca7056ec2405186754d98701818e33c401a5be4750c5d2c1aa8284d02d7b6",
+      "archive_bytes": 497163
+    }
+  ]
+}

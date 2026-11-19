@@ -1,7 +1,7 @@
 bba11ff1b23b2e8c0cdc0d872ce31394ada83bf2	refs/heads/codex/crispoffice-gui-20261119
-fedabc7079db1c402cadcd9ef15296244979132e	refs/heads/codex/crispoffice-layout-theme-20261119
+cacae8569814e4cb81f58d358734d31431f102be	refs/heads/codex/crispoffice-layout-theme-20261119
 6275d21246040e03f6264b27171992c88d1474a2	refs/heads/codex/mail-archive-restore-20261119
-be93371b680d8e39365a6b356fb727bda81dbed1	refs/heads/codex/mail-archive-resume-20261119
+906b8bc90ea352f03dfdab5f9bc50f3aafc359de	refs/heads/codex/mail-archive-resume-20261119
 c34945761e7991f5fe49037d79529acdd260b31c	refs/heads/codex/odt-field-continuation-20261117
 3abffb94dcf33a2766a4579d296d0ef09c9e35cd	refs/heads/codex/vba-arrays-foreach-20261119
 dde2b56066746223b2b313cbfb0ce8dba55dc6bd	refs/heads/codex/vba-control-flow-20261119
@@ -142,8 +142,8 @@ de9d21f9014060c14263ce17fe323d5fdb063d11	refs/pull/208/head
 6275d21246040e03f6264b27171992c88d1474a2	refs/pull/209/head
 1f30a823b30678e3684c98fee6a2cd5c4945c4f2	refs/pull/21/head
 3abffb94dcf33a2766a4579d296d0ef09c9e35cd	refs/pull/210/head
-fedabc7079db1c402cadcd9ef15296244979132e	refs/pull/211/head
-be93371b680d8e39365a6b356fb727bda81dbed1	refs/pull/212/head
+cacae8569814e4cb81f58d358734d31431f102be	refs/pull/211/head
+906b8bc90ea352f03dfdab5f9bc50f3aafc359de	refs/pull/212/head
 0e03878b028ec25ed3d84a790633433eafc3bede	refs/pull/213/head
 4637ddce4154f4b50105c7322fedc1c75fd02193	refs/pull/22/head
 e002b9584bead9761fac8c7cf818431966d1b1c3	refs/pull/23/head

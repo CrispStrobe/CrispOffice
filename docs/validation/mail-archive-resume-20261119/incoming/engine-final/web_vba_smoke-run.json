@@ -1,0 +1,24 @@
+{
+  "name": "web_vba_smoke-run",
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+    "-e",
+    "globalThis.self = globalThis; require(\"/workspace/scratch/8eda9a4e1801/runtime/tmp/vba-arrays-acceptance-1795113267897041619/web_vba_smoke.js\");"
+  ],
+  "cwd": "/workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_office_engine",
+  "started_utc": "2026-11-19T18:35:05.805181+00:00",
+  "completed_utc": "2026-11-19T18:35:06.120351+00:00",
+  "elapsed_seconds": 0.315,
+  "exit_code": 0,
+  "timed_out": false,
+  "stdout": {
+    "path": "logs/web_vba_smoke-run.stdout.log",
+    "sha256": "3a1c1b101e95e74f978cbb811033185b9a34908200d38d509e6a907b746eefc8",
+    "bytes": 193
+  },
+  "stderr": {
+    "path": "logs/web_vba_smoke-run.stderr.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  }
+}

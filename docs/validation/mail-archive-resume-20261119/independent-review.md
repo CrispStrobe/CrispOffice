@@ -205,13 +205,21 @@ missing/corrupt model data and three bundled/downloaded size configurations;
 their final execution belongs to the shared acceptance inventory. Installed
 macOS/native-model execution is outside the Linux acceptance scope.
 
-At source checkpoint `ec6d527e9aaf207e131217ec24c65cd9ae409433`, the captured
+At publication checkpoint `71053bf61521e093903d55cba890ef4beee039e1`, the captured
 frontier reconciles **232 external references: 209 ancestors, 23 freshly
 reverified historical equivalents, and zero unaccounted references**. The
 capture contains 18 fork branches, 212 PR heads and four upstream branches;
 the current mail branch and PR are excluded from external counts.
 
-The static incoming gate ran inside the final incoming source window and passed
+The separately refreshed publication inventory accounts for **234 external
+references: 206 ancestors, 23 historical equivalents and five explicitly
+reviewed independent post-cutoff references**, with zero unaccounted. The later
+GUI/VBA draft heads and bundled-NER branch are not claimed as integrated. The
+[publication frontier](publication-frontier.md) records their exact states and
+paths and proves that the latest observed main is incorporated with accepted
+product, test and harness bytes unchanged.
+
+The static incoming gate ran inside final incoming source window v3 and passed
 three commands: macOS shell syntax, Python AST/in-memory compilation, and
 licence manifest/source-pin verification. All 25 scoped source inputs and 61
 execution dependencies remained unchanged. Thirteen manifest notices and nine
@@ -219,6 +227,8 @@ Studio mirrors matched their recorded bytes. The raw
 `de_core_news_sm-LICENSES_SOURCES` notice also matched its original `0e03878b`
 Git blob and SHA-256, including the preserved trailing blank line. These checks
 contribute no behavioral test counts and do not build or execute macOS code.
+The prior v2 static run is retained as superseded evidence and is excluded from
+accepted counts.
 
 No further blocking mail correctness issue was identified in this source
 review. Final acceptance and publication must refer to the final reconciled

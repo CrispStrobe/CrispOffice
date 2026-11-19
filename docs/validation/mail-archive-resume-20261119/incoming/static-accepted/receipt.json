@@ -1,0 +1,105 @@
+{
+  "changed_dependency_inputs": [],
+  "changed_source_inputs": [],
+  "commands": [
+    {
+      "argv": [
+        "/usr/bin/bash",
+        "-n",
+        "packages/quds_office_editor/example/tool/build_macos_app.sh"
+      ],
+      "cwd": "/workspace/scratch/8eda9a4e1801/quds_office_suite",
+      "elapsed_seconds": 0.0036,
+      "exit_code": 0,
+      "finished_at_utc": "2026-11-19T19:03:41.205639+00:00",
+      "interrupted": false,
+      "name": "macos-shell-syntax",
+      "started_at_utc": "2026-11-19T19:03:41.202036+00:00",
+      "stderr": {
+        "bytes": 0,
+        "path": "macos-shell-syntax.stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout": {
+        "bytes": 0,
+        "path": "macos-shell-syntax.stdout.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "timed_out": false
+    },
+    {
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "/workspace/scratch/8eda9a4e1801/incoming-validation/run-static-validation.py",
+        "--repo",
+        "/workspace/scratch/8eda9a4e1801/quds_office_suite",
+        "--check",
+        "python-build-syntax"
+      ],
+      "cwd": "/workspace/scratch/8eda9a4e1801/quds_office_suite",
+      "elapsed_seconds": 0.113952,
+      "exit_code": 0,
+      "finished_at_utc": "2026-11-19T19:03:41.319664+00:00",
+      "interrupted": false,
+      "name": "python-build-syntax",
+      "started_at_utc": "2026-11-19T19:03:41.205718+00:00",
+      "stderr": {
+        "bytes": 0,
+        "path": "python-build-syntax.stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout": {
+        "bytes": 160,
+        "path": "python-build-syntax.stdout.log",
+        "sha256": "e478ac24456a568da7c28628e8222522824cb26a8aa441e733bc11b6d4de8986"
+      },
+      "timed_out": false
+    },
+    {
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "/workspace/scratch/8eda9a4e1801/incoming-validation/run-static-validation.py",
+        "--repo",
+        "/workspace/scratch/8eda9a4e1801/quds_office_suite",
+        "--check",
+        "license-manifest"
+      ],
+      "cwd": "/workspace/scratch/8eda9a4e1801/quds_office_suite",
+      "elapsed_seconds": 0.114094,
+      "exit_code": 0,
+      "finished_at_utc": "2026-11-19T19:03:41.433850+00:00",
+      "interrupted": false,
+      "name": "license-manifest",
+      "started_at_utc": "2026-11-19T19:03:41.319763+00:00",
+      "stderr": {
+        "bytes": 0,
+        "path": "license-manifest.stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout": {
+        "bytes": 4367,
+        "path": "license-manifest.stdout.log",
+        "sha256": "d71d8b196431265587477c4cb7821b4af5089ddac87dea5b3353a68381079add"
+      },
+      "timed_out": false
+    }
+  ],
+  "dependency_input_count": 61,
+  "executed_runner": {
+    "bytes": 9049,
+    "path": "executed-runner.py",
+    "sha256": "3b0a7a67a00a8745a1abfb259d33228da6672f2cb3173cdd2671382ff9e0a7bb"
+  },
+  "github_actions_used": false,
+  "schema_version": 1,
+  "scope": "Shell syntax, Python AST/in-memory compilation, manifest source pins, 13 licence notice hashes and their Studio asset mirrors only. No macOS build, codesign, dynamic library load or native model execution.",
+  "source_head": "ec6d527e9aaf207e131217ec24c65cd9ae409433",
+  "source_head_after": "ec6d527e9aaf207e131217ec24c65cd9ae409433",
+  "source_input_count": 25,
+  "success": true,
+  "test_counts": {
+    "failed": 0,
+    "passed": 0,
+    "skipped": 0
+  }
+}

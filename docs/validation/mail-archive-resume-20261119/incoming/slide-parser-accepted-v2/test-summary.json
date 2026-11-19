@@ -1,0 +1,258 @@
+{
+  "success": true,
+  "passed_distinct": 36,
+  "failed_distinct": 0,
+  "skipped_distinct": 0,
+  "visible_completed_events": 36,
+  "duplicate_suite_name_pairs": 0,
+  "by_suite": {
+    "slide_import_fidelity_test.dart": {
+      "passed": 7,
+      "failed": 0,
+      "skipped": 0
+    },
+    "slide_table_cell_color_test.dart": {
+      "passed": 3,
+      "failed": 0,
+      "skipped": 0
+    },
+    "slide_test.dart": {
+      "passed": 20,
+      "failed": 0,
+      "skipped": 0
+    },
+    "slide_text_fidelity_test.dart": {
+      "passed": 6,
+      "failed": 0,
+      "skipped": 0
+    }
+  },
+  "missing_suites": [],
+  "reporter_done": [
+    {
+      "success": true,
+      "type": "done",
+      "time": 4836
+    }
+  ],
+  "reporter_errors": [],
+  "unparsed_lines": [],
+  "tests": [
+    {
+      "suite": "slide_import_fidelity_test.dart",
+      "name": "layouts and placeholders layouts are listed without their prompt text",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "slide_import_fidelity_test.dart",
+      "name": "layouts and placeholders placeholders inherit layout geometry, then master geometry",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "slide_import_fidelity_test.dart",
+      "name": "shape import extLst a:ext never overrides the xfrm extents",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "slide_import_fidelity_test.dart",
+      "name": "shape import scheme colors and p:style refs resolve through the theme",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "slide_import_fidelity_test.dart",
+      "name": "shape import text boxes stay text; only p:pic becomes a picture",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "slide_import_fidelity_test.dart",
+      "name": "slide order follows sldIdLst through presentation.xml.rels",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "slide_import_fidelity_test.dart",
+      "name": "slide order saving keeps the order and points sldId at real relationships",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "slide_table_cell_color_test.dart",
+      "name": "DrawingML keeps table-cell ink separate from fills and shape ink",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "slide_table_cell_color_test.dart",
+      "name": "PPTX save and reopen preserve each table-cell color repeatedly",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "slide_table_cell_color_test.dart",
+      "name": "table-cell theme ink resolves independently from theme fill",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "slide_test.dart",
+      "name": "Morph ignores shapes that exist only on another slide column of ids",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "slide_test.dart",
+      "name": "Morph pairs unique names and interpolates position size and rotation",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "slide_test.dart",
+      "name": "animation preview plays click groups in sequence then can restart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "slide_test.dart",
+      "name": "hidden slides persist and are skipped in a slide show",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "slide_test.dart",
+      "name": "parseChartVisual reads pie points and colors",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "slide_test.dart",
+      "name": "parseSlideShapes keeps noFill and run ink separate from shape fill",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "slide_test.dart",
+      "name": "parseSlideShapes keeps table cell text colors separate from fills",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "slide_test.dart",
+      "name": "preview-only slideshow never advances to the next slide",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "slide_test.dart",
+      "name": "round-trips an inserted slide table",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "slide_test.dart",
+      "name": "round-trips shape text direction and alignment",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "slide_test.dart",
+      "name": "round-trips slide table cell colors without leaking into shapes",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "slide_test.dart",
+      "name": "round-trips slide transitions and shape animations",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "slide_test.dart",
+      "name": "round-trips the Morph transition and reads prstTrans",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "slide_test.dart",
+      "name": "serializes and reopens a slide with DrawingML geometry",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "slide_test.dart",
+      "name": "slideshow back during a slide transition reverses the remaining motion",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "slide_test.dart",
+      "name": "slideshow back from a finished slide reverses that slide transition",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "slide_test.dart",
+      "name": "slideshow back reverses fly-in along the same path",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "slide_test.dart",
+      "name": "slideshow back reverses later group items before earlier ones",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "slide_test.dart",
+      "name": "slideshow back rewinds the last click animation",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "slide_test.dart",
+      "name": "slideshow hides entrance shapes until the click fires",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "slide_text_fidelity_test.dart",
+      "name": "chart frames transitions and source axis IDs have valid schema values",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "slide_text_fidelity_test.dart",
+      "name": "moving rich text keeps run formats body settings and bullets",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "slide_text_fidelity_test.dart",
+      "name": "multiline text replacement retains first-run styling and paragraph boundaries",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "slide_text_fidelity_test.dart",
+      "name": "native text point sizes survive unchanged asynchronous export",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "slide_text_fidelity_test.dart",
+      "name": "scalar font color and alignment edits keep other imported run properties",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "slide_text_fidelity_test.dart",
+      "name": "spaces blank paragraphs and hard breaks survive text round trips",
+      "result": "success",
+      "skipped": false
+    }
+  ]
+}

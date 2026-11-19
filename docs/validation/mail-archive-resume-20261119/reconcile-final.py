@@ -21,6 +21,9 @@ def main():
                         default=here / "reconciliation-upstream-final.txt")
     parser.add_argument("--output", type=pathlib.Path,
                         default=here / "reconciliation-final.json")
+    parser.add_argument("--post-cutoff-review", type=pathlib.Path,
+                        help="Exact-ref/SHA review of independent post-cutoff work; "
+                             "records it separately from incorporated ancestry")
     args = parser.parse_args()
 
     def git(*arguments, check=True):
@@ -60,6 +63,27 @@ def main():
             proof.get("fresh_tree_equal", True))
         proofs[original] = proof
 
+    post_cutoff, post_cutoff_basis = {}, None
+    if args.post_cutoff_review:
+        review_raw = args.post_cutoff_review.read_bytes()
+        review = json.loads(review_raw)
+        post_cutoff_basis = {
+            "path": args.post_cutoff_review.name,
+            "sha256": hashlib.sha256(review_raw).hexdigest(),
+            "note": "Exact reviewed refs are accounted separately; they are not "
+                    "claimed to be ancestors or part of accepted source/testing.",
+        }
+        for stream in review["post_cutoff_streams"]:
+            if not stream["status"].startswith("reviewed_independent_post_cutoff"):
+                raise ValueError("Unreviewed post-cutoff stream")
+            if stream["prerequisite_for_mail_resume"] is not False:
+                raise ValueError("A prerequisite cannot be deferred as independent")
+            names = ["refs/heads/" + stream["branch"]]
+            if "pr" in stream:
+                names.append("refs/pull/" + str(stream["pr"]) + "/head")
+            for name in names:
+                post_cutoff[(name, stream["head"])] = stream
+
     references, excluded, captures = [], [], []
     own_refs = {"refs/heads/codex/mail-archive-resume-20261119", "refs/pull/212/head"}
     for source, path in (("fork", args.fork_refs), ("upstream", args.upstream_refs)):
@@ -85,6 +109,13 @@ def main():
                 record.update(classification="historical_equivalent",
                               equivalent=proofs[sha]["equivalent"],
                               proof_method=proofs[sha]["method"])
+            elif source == "fork" and (ref, sha) in post_cutoff:
+                review = post_cutoff[(ref, sha)]
+                record.update(classification="reviewed_post_cutoff",
+                              accepted_source_includes_this_head=False,
+                              prerequisite_for_mail_resume=False,
+                              review_status=review["status"],
+                              decision=review["decision"])
             else:
                 record.update(classification="unaccounted", object_present=(
                     git("cat-file", "-e", sha + "^{commit}", check=False).returncode == 0))
@@ -101,7 +132,9 @@ def main():
         "repository": "CrispStrobe/quds_office_suite",
         "upstream": "MohammedAsaadAsaad/quds_office_suite",
         "checked_local_head": head, "initial_main": initial,
-        "status": "pending_external_integration" if counts["unaccounted"] else "accounted",
+        "status": "pending_external_integration" if counts["unaccounted"] else (
+            "accounted_with_reviewed_post_cutoff" if counts["reviewed_post_cutoff"]
+            else "accounted"),
         "counts": dict(counts), "external_reference_count": len(references),
         "captured_reference_count": len(all_refs),
         "fork_branch_count": sum(r["source"] == "fork" and r["ref"].startswith("refs/heads/")
@@ -116,6 +149,7 @@ def main():
             "note": "Inherited mappings; all 14 original/equivalent proofs freshly recomputed "
                     "from available Git objects. No unavailable-original proof reused."},
         "historical_proofs": list(proofs.values()), "references": references,
+        "post_cutoff_review_basis": post_cutoff_basis,
         "observation_limits": [
             "Git ref advertisements and any separate API reads are not one atomic snapshot.",
             "Ancestry establishes incorporation, not runtime correctness; acceptance is separate.",

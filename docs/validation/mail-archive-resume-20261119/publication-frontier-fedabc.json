@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "recorded_at_utc": "2026-11-19T19:22:54.172Z",
+  "accepted_source_freeze": "be93371b680d8e39365a6b356fb727bda81dbed1",
+  "cutoff_inventory": "reconciliation-final.json",
+  "current_ref_inventory": "publication-ref-inventory.json",
+  "scope": "Post-cutoff read-only publication review. The captured integration cutoff remains fully accounted; later independent draft/branch work is recorded separately and does not expand this accepted source or its test counts.",
+  "main": {
+    "sha": "4a4ea1f0d8c990cc74ce8f7233545a8a9dc0887c",
+    "tree": "58e10de36f44e4926467fb45c4dbf47a8128c02d",
+    "parents": [
+      "d9bee6e507f6b631aee55bb8a89187119410847f",
+      "0e03878b028ec25ed3d84a790633433eafc3bede"
+    ],
+    "status": "incorporated_with_accepted_source_unchanged",
+    "proof": "publication-main-proof.json",
+    "novel_runtime_code": false,
+    "description": "A documentation-only commit atop already integrated9f41 plus a merge of already integratedapp-gaps0e038. Current frozen code already includes stronger shared NER verification; retain it.",
+    "integration_commit": "71053bf61521e093903d55cba890ef4beee039e1",
+    "accepted_product_test_and_harness_tree_unchanged": true
+  },
+  "post_cutoff_streams": [
+    {
+      "name": "GUI layout/theme",
+      "branch": "codex/crispoffice-layout-theme-20261119",
+      "pr": 211,
+      "head": "fedabc7079db1c402cadcd9ef15296244979132e",
+      "parents": [
+        "a93c78032b043c35edd2632ba3ab7a058299926a"
+      ],
+      "draft": true,
+      "status": "reviewed_independent_post_cutoff_draft",
+      "already_incorporated": "Integration of main9f41 and themed Settings/download routing is already in the frozen source.",
+      "novel_delta": "Adds dark-appearance assertions to the downloads-manager widget regression.",
+      "prerequisite_for_mail_resume": false,
+      "accepted_test_counts_from_this_head": 0,
+      "decision": "Keep outside this accepted source; qualification proceeds in its own work stream.",
+      "pr_state": "open",
+      "pr_draft": true,
+      "pr_metadata_updated_at": "2026-11-19T19:14:12Z",
+      "pr_url": "https://github.com/CrispStrobe/quds_office_suite/pull/211",
+      "reviewed_unintegrated_paths": [
+        "packages/quds_office_editor/example/test/studio_downloads_manager_test.dart"
+      ]
+    },
+    {
+      "name": "VBA arrays/For Each",
+      "branch": "codex/vba-arrays-foreach-20261119",
+      "pr": 210,
+      "head": "3abffb94dcf33a2766a4579d296d0ef09c9e35cd",
+      "parents": [
+        "d8be43a408473da4b45059561dbc387f5b868d5b",
+        "9f41e0427734d815b19149eba5eabef202f78ba6"
+      ],
+      "draft": true,
+      "status": "reviewed_independent_post_cutoff_draft",
+      "already_incorporated": "Main9f41 runtime behavior and themed Settings/download routing are already in the frozen source.",
+      "novel_delta": "Adds an independent Settings-to-downloads dark-dialog/no-document-mutation regression and separate publication evidence.",
+      "prerequisite_for_mail_resume": false,
+      "accepted_test_counts_from_this_head": 0,
+      "decision": "Keep outside this accepted source; retain earlier integrated VBA implementation and evidence.",
+      "pr_state": "open",
+      "pr_draft": true,
+      "pr_metadata_updated_at": "2026-11-19T19:04:23Z",
+      "pr_url": "https://github.com/CrispStrobe/quds_office_suite/pull/210",
+      "reviewed_unintegrated_paths": [
+        "packages/quds_office_editor/example/test/studio_layout_theme_test.dart",
+        "docs/validation/office-vba-arrays-20261119/.gitattributes",
+        "docs/validation/office-vba-arrays-20261119/incoming-main-accepted/finalize.py",
+        "docs/validation/office-vba-arrays-20261119/incoming-main-accepted/qualify.py",
+        "docs/validation/office-vba-arrays-20261119/incoming-main-accepted/theme-regression/focused-dark-downloads-summary.json",
+        "docs/validation/office-vba-arrays-20261119/incoming-main-accepted/theme-regression/focused-dark-downloads.json",
+        "docs/validation/office-vba-arrays-20261119/incoming-main-accepted/theme-regression/focused-dark-downloads.stderr.log",
+        "docs/validation/office-vba-arrays-20261119/incoming-main-accepted/theme-regression/focused-dark-downloads.stdout.log",
+        "docs/validation/office-vba-arrays-20261119/incoming-main-accepted/theme-regression/format.json",
+        "docs/validation/office-vba-arrays-20261119/incoming-main-accepted/theme-regression/format.stderr.log",
+        "docs/validation/office-vba-arrays-20261119/incoming-main-accepted/theme-regression/format.stdout.log",
+        "docs/validation/office-vba-arrays-20261119/incoming-main-accepted/theme-regression/receipt.json",
+        "docs/validation/office-vba-arrays-20261119/incoming-main-accepted/theme-regression/regression.diff",
+        "docs/validation/office-vba-arrays-20261119/late-main-integration/integration.json",
+        "docs/validation/office-vba-arrays-20261119/late-main-integration/studio-conflict.diff",
+        "docs/validation/office-vba-arrays-20261119/late-main-integration/studio-resolution-vs-main.diff",
+        "docs/validation/office-vba-arrays-20261119/late-main-integration/studio-resolution-vs-pr.diff",
+        "docs/validation/office-vba-arrays-20261119/publication-binding-main.py"
+      ]
+    },
+    {
+      "name": "Bundled spaCy NER follow-up",
+      "branch": "fix/spacy-bundled-ner-20261119",
+      "head": "dc93a176f8efc98feff9c25565fb036175793a54",
+      "parents": [
+        "4a4ea1f0d8c990cc74ce8f7233545a8a9dc0887c"
+      ],
+      "status": "reviewed_independent_post_cutoff_branch",
+      "already_incorporated": "Shared installed-NER verification, error/enablement fields and model-only byte counts are already implemented and covered by five focused cases at7e13.",
+      "novel_delta": "Names the bundled row 'German spaCy analysis model', adds model-only explanatory text, a label regression and two absent-NER assertions.",
+      "prerequisite_for_mail_resume": false,
+      "accepted_test_counts_from_this_head": 0,
+      "decision": "Keep label/test additions outside this accepted source; no missing correctness prerequisite found.",
+      "reviewed_unintegrated_paths": [
+        "packages/quds_office_editor/example/lib/studio_downloads_manager.dart",
+        "packages/quds_office_editor/example/test/studio_downloads_manager_test.dart",
+        "packages/quds_office_editor/example/test/studio_spacy_setup_test.dart"
+      ],
+      "semantically_covered_path": "packages/quds_office_editor/example/lib/studio_spacy_host_native.dart"
+    }
+  ],
+  "evidence_sources": [
+    "https://api.github.com/repos/CrispStrobe/quds_office_suite/compare/ba51c40abc664758df3cfc846625bdeb81e3ac13...fedabc7079db1c402cadcd9ef15296244979132e",
+    "https://api.github.com/repos/CrispStrobe/quds_office_suite/compare/d8be43a408473da4b45059561dbc387f5b868d5b...3abffb94dcf33a2766a4579d296d0ef09c9e35cd",
+    "https://api.github.com/repos/CrispStrobe/quds_office_suite/compare/4a4ea1f0d8c990cc74ce8f7233545a8a9dc0887c...dc93a176f8efc98feff9c25565fb036175793a54",
+    "https://api.github.com/repos/CrispStrobe/quds_office_suite/compare/9f41e0427734d815b19149eba5eabef202f78ba6...4a4ea1f0d8c990cc74ce8f7233545a8a9dc0887c",
+    "https://api.github.com/repos/CrispStrobe/quds_office_suite/pulls/212",
+    "https://api.github.com/repos/CrispStrobe/quds_office_suite/pulls/211",
+    "https://api.github.com/repos/CrispStrobe/quds_office_suite/pulls/210"
+  ],
+  "github_actions_queried_or_awaited": false,
+  "git_refs_or_product_source_changed_by_review": false,
+  "observation_limit": "Git advertisements and API metadata were observed separately, not atomically. Root must check expected remote main again at publication; new independent draft work does not invalidate the recorded cutoff.",
+  "publication_integration_head": "71053bf61521e093903d55cba890ef4beee039e1",
+  "original_cutoff_inventory": "reconciliation-cutoff.json",
+  "integrated_pr213": {
+    "number": 213,
+    "state": "closed",
+    "draft": false,
+    "merged": true,
+    "merged_at": "2026-11-19T19:15:39Z",
+    "head": "0e03878b028ec25ed3d84a790633433eafc3bede",
+    "branch": "fix/app-gaps-20261119",
+    "base": "d9bee6e507f6b631aee55bb8a89187119410847f",
+    "merge_commit_sha": "4a4ea1f0d8c990cc74ce8f7233545a8a9dc0887c",
+    "url": "https://github.com/CrispStrobe/quds_office_suite/pull/213"
+  }
+}

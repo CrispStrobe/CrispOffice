@@ -1,0 +1,17 @@
+{
+  "name": "analysis",
+  "command": [
+    "/workspace/scratch/8eda9a4e1801/runtime/bin/dart",
+    "analyze",
+    "--fatal-infos",
+    "--fatal-warnings"
+  ],
+  "cwd": "/workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_proofing_spacy",
+  "started_at_utc": "2026-11-19T19:12:27.965932+00:00",
+  "finished_at_utc": "2026-11-19T19:12:32.563644+00:00",
+  "elapsed_seconds": 4.598,
+  "exit_code": 1,
+  "timed_out": false,
+  "stdout_sha256": "3a59315acea650ac7edb3640846dee9b906545a373b5d89134f0cf4ef4cb5546",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

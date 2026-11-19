@@ -1,0 +1,21 @@
+{
+  "reason": "Verified abandoned synthetic CLI fixture matching office_vba_integration_test.dart, archived after all local macro commands completed",
+  "files": {
+    "Report.bas": {
+      "bytes": 144,
+      "sha256": "9adf75561442a8a1d6e884c8073ab35f349f6aa6f0b5b0ecfb9a0e9c9dac2dce"
+    },
+    "compiled.json": {
+      "bytes": 384,
+      "sha256": "47d961e2626e89e6298cf455874c3ee40702f48e4ddf6976b479efa6c2ef9226"
+    },
+    "input.xlsx": {
+      "bytes": 3046,
+      "sha256": "b068fc19dc27a098ffeb71ac14516d635cfd6a153baf8b18c0ddcb5901a7df5b"
+    },
+    "native.xlsx": {
+      "bytes": 3958,
+      "sha256": "dd9d6029815520bd3e0b3fcb5c0219bc9ce228983fdd4907205992827e266b53"
+    }
+  }
+}

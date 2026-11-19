@@ -15,19 +15,31 @@ The before/after inventories agree for **4,493 source inputs, 9,298 dependency
 inputs and 1,108 runtime files**. The root package manifest and lockfile remain
 unchanged, and tests use the default packaged Linux SQLite native asset.
 
-The combined incoming-work qualification and independent audit are still in
-progress at this evidence checkpoint. Their final receipt replaces this status
-before publication to main. Historical author evidence and development passes
-are excluded from the fresh acceptance totals. GitHub Actions are neither
-queried nor awaited.
+The complete combined acceptance and independent replay passed **2,243 test
+executions and distinct case identities across 121 files and 11 test cohorts**,
+with **zero failures and zero skips**. All **42 required commands** and all
+**six JavaScript programs** passed. The independent audit found no discrepancies.
+Incoming qualification additionally binds 4,494 source inputs, 9,298 dependencies,
+1,118 runtime files and 13 executed harness/selection inputs. Historical author
+evidence, interrupted runs, focused development passes and superseded v2 runs
+contribute no accepted executions. GitHub Actions are neither queried nor awaited.
 
+The exact published/merged commit and final remote verification are recorded in
+[PR #212](https://github.com/CrispStrobe/quds_office_suite/pull/212). Publication
+requires the accepted source inputs to match the candidate's Git blobs and
+permits only validation-document changes after the accepted source.
+
+- [Combined acceptance receipt](acceptance.json)
+- [Independent raw-event and identity audit](independent-audit.json)
 - [Mail acceptance receipt](final/receipt.json)
+- [Exact incoming acceptance inventory](incoming/acceptance-inventory.json)
 - [Exact selection and strict-analysis targets](final/selection.json)
 - [Executed acceptance harness](run-mail-validation.py)
 - [Independent implementation review](independent-review.md)
 - [Reconciliation and conflict decisions](integration-notes.md)
 - [Reference inventory at integration cutoff](reconciliation-cutoff.json)
 - [Remote source checkpoints](checkpoints.json)
+- [Publication frontier and latest-main review](publication-frontier.md)
 
 ## Delivered behavior
 
@@ -105,7 +117,36 @@ spaCy hosts now share verified optional NER status, and the download manager
 reports model-only size when the runtime is bundled. Five focused regression
 cases protect that cross-branch interaction.
 
-## Mail validation detail
+## Complete validation results
+
+| Area | Passed |
+| --- | ---: |
+| Mail core and MIME | 138 |
+| Native archive and portable Node boundaries | 566 |
+| Shared mail UI and Studio mail | 434 |
+| Engine/macros/VBA and slide parsing | 650 |
+| Incoming editor and Studio integration | 358 |
+| spaCy package fixtures | 97 |
+| **Total** | **2,243** |
+
+All 24 captured mail UI images match the retained review hashes; the 12 new
+resume, result, progress and forget-confirmation states were individually
+reviewed across English, German and Arabic. Exact Linux ruler image comparisons
+pass after the documented reference correction; selection and document pixels
+remain unchanged. Strict analysis covers 81 mail/incoming targets, the engine,
+16 editor and 24 Studio targets, and the spaCy library/tests. Formatting checks
+cover all 71 changed Dart files plus the recorded incoming scopes. Static checks
+verify shell/Python syntax, 13 licence notices, nine Studio mirrors and exact
+originating notice bytes. Those checks add no behavioral cases.
+
+The final publication inventory separately accounts for **234 external refs:
+206 ancestors, 23 historical equivalents and five explicitly reviewed
+post-cutoff refs, with zero unaccounted references**. The later GUI/VBA draft
+head additions and bundled-NER follow-up are not represented as merged or tested
+in this acceptance. Their exact heads, statuses and independent scope are in
+[the publication-frontier record](publication-frontier.md).
+
+### Mail validation detail
 
 | Cohort | Passed |
 | --- | ---: |
@@ -156,3 +197,5 @@ collection, scheduling, recursive account traversal, PST/MSG ingestion,
 PDF/Office attachment extraction, provider-mailbox restoration and enterprise
 ACL, retention, legal-hold, audit, backup and key-management controls remain
 separate roadmap items.
+
+One editor command started during publication of a local documentation checkpoint. Its local and canonical GitHub commit share the exact complete tree and parent; the [raw commit and mapping](local-execution-commits/mapping.json) preserve that metadata identity. No source, test or runtime input differed.

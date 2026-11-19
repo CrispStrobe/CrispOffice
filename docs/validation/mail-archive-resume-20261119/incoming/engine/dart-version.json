@@ -1,0 +1,23 @@
+{
+  "name": "dart-version",
+  "command": [
+    "/workspace/scratch/8eda9a4e1801/runtime/bin/dart",
+    "--version"
+  ],
+  "cwd": "/workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_office_engine",
+  "started_utc": "2026-11-19T18:31:01.185530+00:00",
+  "completed_utc": "2026-11-19T18:31:01.193472+00:00",
+  "elapsed_seconds": 0.008,
+  "exit_code": 0,
+  "timed_out": false,
+  "stdout": {
+    "path": "logs/dart-version.stdout.log",
+    "sha256": "945e6a359e53647f8fd753347245ed78bc06c2808919b2d7749817181d010ff4",
+    "bytes": 82
+  },
+  "stderr": {
+    "path": "logs/dart-version.stderr.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  }
+}

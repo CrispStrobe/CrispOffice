@@ -1,0 +1,35 @@
+{
+  "name": "whitespace",
+  "command": [
+    "git",
+    "diff",
+    "--check",
+    "caf378f40fd5bda50f504a6816404d01d8bbb8f8",
+    "--",
+    "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+    "packages/quds_office_engine/test/office_vba_arrays_test.dart",
+    "packages/quds_office_engine/test/office_vba_arrays_boundaries_test.dart",
+    "packages/quds_office_engine/test/office_vba_arrays_integration_test.dart",
+    "packages/quds_office_engine/tool/macros/web_vba_arrays_smoke.dart",
+    "packages/quds_office_engine/example/macros/array_report.bas",
+    "docs/MACROS.md",
+    "docs/VBA_MACROS.md",
+    ".github/workflows/office-macros.yml"
+  ],
+  "cwd": "/workspace/scratch/8eda9a4e1801/quds_office_suite",
+  "started_utc": "2026-11-19T18:46:13.463369+00:00",
+  "completed_utc": "2026-11-19T18:46:13.479496+00:00",
+  "elapsed_seconds": 0.016,
+  "exit_code": 0,
+  "timed_out": false,
+  "stdout": {
+    "path": "logs/whitespace.stdout.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  },
+  "stderr": {
+    "path": "logs/whitespace.stderr.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  }
+}

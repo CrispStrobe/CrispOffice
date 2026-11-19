@@ -1,0 +1,3826 @@
+{
+  "success": true,
+  "passed_distinct": 614,
+  "failed_distinct": 0,
+  "skipped_distinct": 0,
+  "visible_completed_events": 614,
+  "duplicate_suite_name_pairs": 0,
+  "by_suite": {
+    "office_macro_cli_test.dart": {
+      "passed": 5,
+      "failed": 0,
+      "skipped": 0
+    },
+    "office_macro_expansion_test.dart": {
+      "passed": 5,
+      "failed": 0,
+      "skipped": 0
+    },
+    "office_macro_language_test.dart": {
+      "passed": 11,
+      "failed": 0,
+      "skipped": 0
+    },
+    "office_macro_mcp_test.dart": {
+      "passed": 15,
+      "failed": 0,
+      "skipped": 0
+    },
+    "office_macro_runtime_test.dart": {
+      "passed": 25,
+      "failed": 0,
+      "skipped": 0
+    },
+    "office_operations_test.dart": {
+      "passed": 27,
+      "failed": 0,
+      "skipped": 0
+    },
+    "office_steps_test.dart": {
+      "passed": 6,
+      "failed": 0,
+      "skipped": 0
+    },
+    "office_vba_arrays_boundaries_test.dart": {
+      "passed": 144,
+      "failed": 0,
+      "skipped": 0
+    },
+    "office_vba_arrays_integration_test.dart": {
+      "passed": 11,
+      "failed": 0,
+      "skipped": 0
+    },
+    "office_vba_arrays_test.dart": {
+      "passed": 32,
+      "failed": 0,
+      "skipped": 0
+    },
+    "office_vba_control_flow_boundaries_test.dart": {
+      "passed": 42,
+      "failed": 0,
+      "skipped": 0
+    },
+    "office_vba_control_flow_integration_test.dart": {
+      "passed": 9,
+      "failed": 0,
+      "skipped": 0
+    },
+    "office_vba_control_flow_test.dart": {
+      "passed": 35,
+      "failed": 0,
+      "skipped": 0
+    },
+    "office_vba_integration_test.dart": {
+      "passed": 12,
+      "failed": 0,
+      "skipped": 0
+    },
+    "office_vba_language_test.dart": {
+      "passed": 55,
+      "failed": 0,
+      "skipped": 0
+    },
+    "office_vba_procedure_boundaries_test.dart": {
+      "passed": 19,
+      "failed": 0,
+      "skipped": 0
+    },
+    "office_vba_procedures_integration_test.dart": {
+      "passed": 10,
+      "failed": 0,
+      "skipped": 0
+    },
+    "office_vba_procedures_test.dart": {
+      "passed": 26,
+      "failed": 0,
+      "skipped": 0
+    },
+    "sheet_macro_preservation_test.dart": {
+      "passed": 2,
+      "failed": 0,
+      "skipped": 0
+    },
+    "table_grid_steps_test.dart": {
+      "passed": 46,
+      "failed": 0,
+      "skipped": 0
+    },
+    "word_step_atomicity_test.dart": {
+      "passed": 31,
+      "failed": 0,
+      "skipped": 0
+    },
+    "word_steps_vocabulary_test.dart": {
+      "passed": 4,
+      "failed": 0,
+      "skipped": 0
+    },
+    "word_structure_steps_test.dart": {
+      "passed": 20,
+      "failed": 0,
+      "skipped": 0
+    },
+    "word_table_grid_addressing_test.dart": {
+      "passed": 22,
+      "failed": 0,
+      "skipped": 0
+    }
+  },
+  "missing_suites": [],
+  "reporter_done": [
+    {
+      "success": true,
+      "type": "done",
+      "time": 274809
+    }
+  ],
+  "reporter_errors": [],
+  "unparsed_lines": [],
+  "tests": [
+    {
+      "suite": "office_macro_cli_test.dart",
+      "name": "Word and presentation examples use the same runnable macro format",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_macro_cli_test.dart",
+      "name": "committed monthly example runs and recalculates its net formula",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_macro_cli_test.dart",
+      "name": "extension mismatch and unsupported VBA compilation do not create files",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_macro_cli_test.dart",
+      "name": "later invalid step preserves existing input and output bytes",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_macro_cli_test.dart",
+      "name": "validate succeeds without changing the source or creating output",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_macro_expansion_test.dart",
+      "name": "argument copying stops before traversing an already oversized tail",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_macro_expansion_test.dart",
+      "name": "default serialization round-trips a valid plan near the byte ceiling",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_macro_expansion_test.dart",
+      "name": "many expanded calls stop at the first cumulative byte overflow",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_macro_expansion_test.dart",
+      "name": "one expanded call cannot multiply a bounded parameter past 1 MiB",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_macro_expansion_test.dart",
+      "name": "programmatic plans enforce aggregate bytes before encoding",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_macro_language_test.dart",
+      "name": "language extensions compiled plans retain host tool permissions and do not partially publish",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_macro_language_test.dart",
+      "name": "language extensions compiler format mismatches and failures return actionable domain errors",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_macro_language_test.dart",
+      "name": "language extensions language registration and source metadata are strict and bounded",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_macro_language_test.dart",
+      "name": "language extensions native JSON and the Excel subset are installed without full VBA",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_macro_language_test.dart",
+      "name": "language extensions registered compiler emits real operations through the transactional runtime",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_macro_language_test.dart",
+      "name": "native macro format JSON round-trip preserves parameters, literal values, and calls",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_macro_language_test.dart",
+      "name": "native macro format enforces serialized bytes, JSON nodes, steps, and parameter count limits",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_macro_language_test.dart",
+      "name": "native macro format host-supplied cycles and excessive depth fail with bounded domain errors",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_macro_language_test.dart",
+      "name": "native macro format rejects non-JSON host values and non-finite numbers",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_macro_language_test.dart",
+      "name": "native macro format rejects unsupported versions rather than guessing compatibility",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_macro_language_test.dart",
+      "name": "native macro format strictly rejects malformed JSON, unknown schema fields, and bad identifiers",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_macro_mcp_test.dart",
+      "name": "MCP JSON-RPC lifecycle handshake negotiates a supported version and activates tools",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_macro_mcp_test.dart",
+      "name": "MCP JSON-RPC lifecycle malformed requests, unknown tools and domain errors stay distinct",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_macro_mcp_test.dart",
+      "name": "MCP macro tools catalog schemas and policy use the same operation names",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_macro_mcp_test.dart",
+      "name": "MCP macro tools compile is non-mutating and unregistered VBA fails explicitly",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_macro_mcp_test.dart",
+      "name": "MCP macro tools direct calls and macro replay produce the same document",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_macro_mcp_test.dart",
+      "name": "MCP macro tools extra management arguments cannot smuggle a document path",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_macro_mcp_test.dart",
+      "name": "MCP macro tools failed later operation leaves the complete document unchanged",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_macro_mcp_test.dart",
+      "name": "MCP macro tools macro tool cannot bypass a restricted operation policy",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_macro_mcp_test.dart",
+      "name": "MCP macro tools recording excludes failures and macro management calls",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_macro_mcp_test.dart",
+      "name": "MCP macro tools unknown operation is protocol error; invalid arguments are tool error",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_macro_mcp_test.dart",
+      "name": "MCP macro tools validate runs without publishing or advancing the revision",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_macro_mcp_test.dart",
+      "name": "stdio bridge input/output extension mismatch fails before protocol output",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_macro_mcp_test.dart",
+      "name": "stdio bridge persistence failure returns an error and stops before later requests",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_macro_mcp_test.dart",
+      "name": "stdio bridge real stdio handshake, JSON errors, and mutation persist valid output",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_macro_mcp_test.dart",
+      "name": "stdio bridge validation alone does not create an output file",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_macro_runtime_test.dart",
+      "name": "macro authorization and limits cell work is cumulative within a run and resets for the next run",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_macro_runtime_test.dart",
+      "name": "macro authorization and limits empty or oversized documents and invalid policies are rejected",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_macro_runtime_test.dart",
+      "name": "macro authorization and limits expanded input and package part limits reject without publication",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_macro_runtime_test.dart",
+      "name": "macro authorization and limits expanded output growth fails before publishing bytes or revision",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_macro_runtime_test.dart",
+      "name": "macro authorization and limits full-sheet merge exhausts the work budget before allocating cells",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_macro_runtime_test.dart",
+      "name": "macro authorization and limits host allowlist is copied and cannot be widened by macro or caller",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_macro_runtime_test.dart",
+      "name": "macro authorization and limits read-only policy permits inspection and denies run, validation, and recording",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_macro_runtime_test.dart",
+      "name": "macro authorization and limits step and expanded byte limits reject work before publication",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_macro_runtime_test.dart",
+      "name": "macro authorization and limits unknown tools, cross-format calls, and undeclared fields are rejected",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_macro_runtime_test.dart",
+      "name": "macro execution asset callback failure rolls back preceding document edits",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_macro_runtime_test.dart",
+      "name": "macro execution cancellation between operations rolls back and refuses overlapping work",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_macro_runtime_test.dart",
+      "name": "macro execution empty plans still validate input and preserve valid document bytes",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_macro_runtime_test.dart",
+      "name": "macro execution later semantic failure retains exact original bytes and revision",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_macro_runtime_test.dart",
+      "name": "macro execution native macro execution preserves XLSM VBA bytes, type, and relationship",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_macro_runtime_test.dart",
+      "name": "macro execution parameter objects are data and cannot inject another reference",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_macro_runtime_test.dart",
+      "name": "macro execution parameters are required, reject extras, and never coerce types",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_macro_runtime_test.dart",
+      "name": "macro execution pre-cancelled requests never publish and do not leave the session busy",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_macro_runtime_test.dart",
+      "name": "macro execution session owns its input and returned byte buffers",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_macro_runtime_test.dart",
+      "name": "macro execution typed parameters produce real values, formatting, and formulas",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_macro_runtime_test.dart",
+      "name": "macro execution undeclared and malformed references fail before publication",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_macro_runtime_test.dart",
+      "name": "macro execution validation executes semantic checks without publishing or recording",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_macro_runtime_test.dart",
+      "name": "macro recording aggregate recording byte limit rejects the next call before publication",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_macro_runtime_test.dart",
+      "name": "macro recording only successful direct calls are recorded, with immutable captured arguments",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_macro_runtime_test.dart",
+      "name": "macro recording recording capacity fails before a second call can mutate the document",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_macro_runtime_test.dart",
+      "name": "macro recording standalone recorder freezes nested values and escapes reference-looking objects",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_operations_test.dart",
+      "name": "LET bindings do not resolve shadowed enormous named ranges",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_operations_test.dart",
+      "name": "SEQUENCE charges its engine ceiling before calculation",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_operations_test.dart",
+      "name": "catalog and legacy steps retain the same worksheet vocabulary",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_operations_test.dart",
+      "name": "catalog editing and save preserve opaque VBA bytes and package type",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_operations_test.dart",
+      "name": "format-only operations preserve existing dynamic formula caches",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_operations_test.dart",
+      "name": "formula preflight bounds source, parser tokens, and nesting",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_operations_test.dart",
+      "name": "formula preflight charges named and structured data ranges",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_operations_test.dart",
+      "name": "formula preflight refuses dynamic references and unbounded generators",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_operations_test.dart",
+      "name": "formula preflight refuses full-sheet SUM before dependency expansion",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_operations_test.dart",
+      "name": "image arguments are host keys and deny implicit file access",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_operations_test.dart",
+      "name": "merge budget rejects an enormous legal Excel range before allocation",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_operations_test.dart",
+      "name": "model protections and tracked changes deny macro editing",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_operations_test.dart",
+      "name": "named worksheet selectors follow renames and reordering",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_operations_test.dart",
+      "name": "native password-to-modify and workbook protection are not bypassed",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_operations_test.dart",
+      "name": "newly authored locked content controls are refused without a package",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_operations_test.dart",
+      "name": "open checks document family and keeps signature admission",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_operations_test.dart",
+      "name": "ordinary SUM and bounded literal text formulas recalculate",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_operations_test.dart",
+      "name": "ordinary unsupported formulas retain native caches on semantic edits",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_operations_test.dart",
+      "name": "package preflight bounds actual inflation when declared length is zero",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_operations_test.dart",
+      "name": "package preflight enforces expanded byte and part limits",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_operations_test.dart",
+      "name": "package preflight rejects duplicate ZIP names",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_operations_test.dart",
+      "name": "private document enforces expanded byte limits on serialized output",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_operations_test.dart",
+      "name": "private operation document edits native PPTX without decoding binary parts as XML",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_operations_test.dart",
+      "name": "private operation document preserves catalog semantics and recalculation",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_operations_test.dart",
+      "name": "unknown fields and cross-family tool names fail before editing",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_operations_test.dart",
+      "name": "work budget accumulates table growth using current geometry",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_operations_test.dart",
+      "name": "worksheet selectors reject missing ambiguous and invalid targets",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_steps_test.dart",
+      "name": "failing later script step leaves existing output intact and no temporary file",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_steps_test.dart",
+      "name": "image replacement preserves pixels and dimensions through async saves",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_steps_test.dart",
+      "name": "script can delete notes without altering bracketed text",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_steps_test.dart",
+      "name": "scripted multi-feature edits survive export and reopen",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_steps_test.dart",
+      "name": "successful CLI export replaces output with a complete package",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_steps_test.dart",
+      "name": "unknown steps and note ids fail explicitly",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "For Each keeps typed controls and captures its collection Option Explicit requires a declared For Each controller",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "For Each keeps typed controls and captures its collection Range collection function arguments execute once before traversal",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "For Each keeps typed controls and captures its collection Range loop preserves readonly/write-only boundaries: Set copy = cell",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "For Each keeps typed controls and captures its collection Range loop preserves readonly/write-only boundaries: Worksheets(1).Range(\"A1\").Value2 = cell.Formula",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "For Each keeps typed controls and captures its collection Range loop preserves readonly/write-only boundaries: Worksheets(1).Range(\"A1\").Value2 = cell.Value2",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "For Each keeps typed controls and captures its collection Range loop preserves readonly/write-only boundaries: cell.Column = 1",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "For Each keeps typed controls and captures its collection Range loop preserves readonly/write-only boundaries: cell.Row = 1",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "For Each keeps typed controls and captures its collection Range loop preserves readonly/write-only boundaries: copy = cell",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "For Each keeps typed controls and captures its collection Range source is captured before source and controller rebinding",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "For Each keeps typed controls and captures its collection Range traversal requires an explicitly typed Range: ",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "For Each keeps typed controls and captures its collection Range traversal requires an explicitly typed Range: Dim cell As Variant",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "For Each keeps typed controls and captures its collection Range traversal requires an explicitly typed Range: Dim cell As Worksheet",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "For Each keeps typed controls and captures its collection array control itself cannot be an array or a constant",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "For Each keeps typed controls and captures its collection array iteration rejects Boolean controller even on dead path",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "For Each keeps typed controls and captures its collection array iteration rejects Double controller even on dead path",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "For Each keeps typed controls and captures its collection array iteration rejects Long controller even on dead path",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "For Each keeps typed controls and captures its collection array iteration rejects Range controller even on dead path",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "For Each keeps typed controls and captures its collection array iteration rejects String controller even on dead path",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "For Each keeps typed controls and captures its collection controller assignment is a copy while future slots remain live",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "For Each keeps typed controls and captures its collection implicit array controllers are scalar Variants",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "For Each keeps typed controls and captures its collection unsupported iteration collection is rejected: \"A1:B2\"",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "For Each keeps typed controls and captures its collection unsupported iteration collection is rejected: 1",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "For Each keeps typed controls and captures its collection unsupported iteration collection is rejected: Worksheets(1)",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "For Each keeps typed controls and captures its collection unsupported iteration collection is rejected: Worksheets(1).Range(\"A1\").Value2",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "For Each keeps typed controls and captures its collection unsupported iteration collection is rejected: values(0)",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "active loop controls and procedure frames unwind consistently Exit Do unwinds inner each and With then permits controller reuse",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "active loop controls and procedure frames unwind consistently Exit For targets nearest mixed loop and retains outer iteration",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "active loop controls and procedure frames unwind consistently callee can reuse caller names and Exit Sub restores caller With",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "active loop controls and procedure frames unwind consistently callee cannot target caller each with Exit For",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "active loop controls and procedure frames unwind consistently index function edges participate in unused recursion validation",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "active loop controls and procedure frames unwind consistently nested reuse is rejected even when inactive: For Each item In values\nDo While False\nFor Each ITEM In values\nNext ITEM\nLoop\nNext item",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "active loop controls and procedure frames unwind consistently nested reuse is rejected even when inactive: For Each item In values\nFor Each item In values\nNext item\nNext item",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "active loop controls and procedure frames unwind consistently nested reuse is rejected even when inactive: For Each item In values\nFor item = 1 To 2\nNext item\nNext item",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "active loop controls and procedure frames unwind consistently nested reuse is rejected even when inactive: For item = 1 To 2\nFor Each item In values\nNext item\nNext item",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "active loop controls and procedure frames unwind consistently numeric For counter is not assignable inside an array traversal",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "active loop controls and procedure frames unwind consistently separate invocations receive fresh scalar array storage",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "array bounds are finite portable constant shapes array declaration cannot be global or hidden inside a dead block",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "array bounds are finite portable constant shapes bound builtin LBound cannot be shadowed",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "array bounds are finite portable constant shapes bound builtin uBoUnD cannot be shadowed",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "array bounds are finite portable constant shapes bounds cannot call a user function even if it returns a constant",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "array bounds are finite portable constant shapes exact 4096-slot array supports its last slot and full traversal",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "array bounds are finite portable constant shapes invalid constant bounds \"0\" To 2 fail in unused code",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "array bounds are finite portable constant shapes invalid constant bounds -1 fail in unused code",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "array bounds are finite portable constant shapes invalid constant bounds -2147483649 To -2147483648 fail in unused code",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "array bounds are finite portable constant shapes invalid constant bounds 0 To 2.5 fail in unused code",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "array bounds are finite portable constant shapes invalid constant bounds 0 To True fail in unused code",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "array bounds are finite portable constant shapes invalid constant bounds 0.5 To 2 fail in unused code",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "array bounds are finite portable constant shapes invalid constant bounds 2 To 1 fail in unused code",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "array bounds are finite portable constant shapes invalid constant bounds 2147483647 To 2147483648 fail in unused code",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "array bounds are finite portable constant shapes narrow arrays retain both signed 32-bit endpoint indexes",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "array bounds are finite portable constant shapes nonconstant declaration shape is rejected: Dim count As Long\nDim values(count) As Long",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "array bounds are finite portable constant shapes nonconstant declaration shape is rejected: Dim values(LBound(other)) As Long\nDim other(2) As Long",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "array bounds are finite portable constant shapes nonconstant declaration shape is rejected: Dim values(Later) As Long\nConst Later As Long = 2",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "array bounds are finite portable constant shapes nonconstant declaration shape is rejected: Dim values(Worksheets(1).Range(\"A1\").Value2) As Long",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "array bounds are finite portable constant shapes oversized -2048 To 2048 is rejected even in unused procedure",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "array bounds are finite portable constant shapes oversized -2147483648 To -2147479552 is rejected even in unused procedure",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "array bounds are finite portable constant shapes oversized -2147483648 To 2147483647 is rejected even in unused procedure",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "array bounds are finite portable constant shapes oversized 0 To 2147483647 is rejected even in unused procedure",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "array bounds are finite portable constant shapes oversized 0 To 4096 is rejected even in unused procedure",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "array bounds are finite portable constant shapes prior constant expressions determine signed bounds exactly",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "array bounds are finite portable constant shapes unsupported declaration is rejected: Const values(1 To 2) As Long = 0",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "array bounds are finite portable constant shapes unsupported declaration is rejected: Dim values() As Long",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "array bounds are finite portable constant shapes unsupported declaration is rejected: Dim values(1 To 2) As Range",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "array bounds are finite portable constant shapes unsupported declaration is rejected: Dim values(1 To 2) As Worksheet",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "array bounds are finite portable constant shapes unsupported declaration is rejected: Dim values(1 To 2, 1 To 2) As Long",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "array indexing has explicit diagnostics and scalar storage Boolean slot rejects incompatible 1",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "array indexing has explicit diagnostics and scalar storage Double slot rejects incompatible True",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "array indexing has explicit diagnostics and scalar storage For Each binding reads an Empty Variant even if its body does not",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "array indexing has explicit diagnostics and scalar storage Long slot rejects incompatible \"1\"",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "array indexing has explicit diagnostics and scalar storage Long slot rejects incompatible 1.5",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "array indexing has explicit diagnostics and scalar storage Long slot rejects incompatible 2147483648",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "array indexing has explicit diagnostics and scalar storage String slot rejects incompatible 1",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "array indexing has explicit diagnostics and scalar storage Variant slot rejects incompatible Worksheets(1)",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "array indexing has explicit diagnostics and scalar storage Variant slot rejects incompatible Worksheets(1).Range(\"A1\")",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "array indexing has explicit diagnostics and scalar storage early Exit For does not read later uninitialized Variant slots",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "array indexing has explicit diagnostics and scalar storage index \"1\" is not coerced to an integer",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "array indexing has explicit diagnostics and scalar storage index 1.5 is not coerced to an integer",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "array indexing has explicit diagnostics and scalar storage index True is not coerced to an integer",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "array indexing has explicit diagnostics and scalar storage integral doubles and negative zero are valid indexes",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "array indexing has explicit diagnostics and scalar storage invalid index/object shape remains checked after Exit: Set values(0) = Worksheets(1).Range(\"A1\")",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "array indexing has explicit diagnostics and scalar storage invalid index/object shape remains checked after Exit: Worksheets(1).Range(\"A1\").Value2 = values()",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "array indexing has explicit diagnostics and scalar storage invalid index/object shape remains checked after Exit: Worksheets(1).Range(\"A1\").Value2 = values(0, 1)",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "array indexing has explicit diagnostics and scalar storage invalid index/object shape remains checked after Exit: values() = 1",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "array indexing has explicit diagnostics and scalar storage invalid index/object shape remains checked after Exit: values(0).Value2 = 7",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "array indexing has explicit diagnostics and scalar storage invalid index/object shape remains checked after Exit: values(0, 1) = 1",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "array indexing has explicit diagnostics and scalar storage read and write index functions each execute once",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "array indexing has explicit diagnostics and scalar storage read index -2147483648 outside 1..2 fails",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "array indexing has explicit diagnostics and scalar storage read index 0 outside 1..2 fails",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "array indexing has explicit diagnostics and scalar storage read index 2147483647 outside 1..2 fails",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "array indexing has explicit diagnostics and scalar storage read index 3 outside 1..2 fails",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "array indexing has explicit diagnostics and scalar storage unused code still checks element assignment types and names",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "array indexing has explicit diagnostics and scalar storage write index -2147483648 outside 1..2 fails",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "array indexing has explicit diagnostics and scalar storage write index 0 outside 1..2 fails",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "array indexing has explicit diagnostics and scalar storage write index 2147483647 outside 1..2 fails",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "array indexing has explicit diagnostics and scalar storage write index 3 outside 1..2 fails",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "arrays and iteration share compilation resource limits 16384 active slots across four frames work; a fifth frame fails",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "arrays and iteration share compilation resource limits 32 frames with 32 each blocks and 63 unary operators compose",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "arrays and iteration share compilation resource limits 33 For Each blocks fail the shared nesting boundary",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "arrays and iteration share compilation resource limits 33 procedure frames fail before any array traversal executes",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "arrays and iteration share compilation resource limits For Each emitted operations retain the shared 10000-step cap",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "arrays and iteration share compilation resource limits String slots honor exact aggregate string bound and one over",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "arrays and iteration share compilation resource limits Variant slots honor exact aggregate string bound and one over",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "arrays and iteration share compilation resource limits array iteration retains the encoded-plan byte cap",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "arrays and iteration share compilation resource limits array string budget counts UTF-16 units, including surrogate pairs",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "arrays and iteration share compilation resource limits array string occupancy is shared across frames and released on exit",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "arrays and iteration share compilation resource limits array strings do not bypass the per-string limit",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "arrays and iteration share compilation resource limits empty-body iteration still consumes cumulative work",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "arrays and iteration share compilation resource limits one procedure may use four 4096-slot arrays but not five",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "arrays and iteration share compilation resource limits oversized range A1:A100001 fails even with empty body",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "arrays and iteration share compilation resource limits oversized range A1:XFD1048576 fails even with empty body",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "arrays and iteration share compilation resource limits same-value writes preserve budget and replacing a slot frees it",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "arrays and iteration share compilation resource limits sequential early returns release slots while allocations charge work",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "arrays and iteration share compilation resource limits unused procedures do not allocate active array storage",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "arrays cannot escape through scalar or object APIs array escape stays invalid in inactive code: Erase values",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "arrays cannot escape through scalar or object APIs array escape stays invalid in inactive code: If values = other Then\nEnd If",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "arrays cannot escape through scalar or object APIs array escape stays invalid in inactive code: If values Then\nEnd If",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "arrays cannot escape through scalar or object APIs array escape stays invalid in inactive code: ReDim values(4)",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "arrays cannot escape through scalar or object APIs array escape stays invalid in inactive code: Select Case values\nCase Else\nEnd Select",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "arrays cannot escape through scalar or object APIs array escape stays invalid in inactive code: Set target = values",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "arrays cannot escape through scalar or object APIs array escape stays invalid in inactive code: With values\nEnd With",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "arrays cannot escape through scalar or object APIs array escape stays invalid in inactive code: Worksheets(1).Range(\"A1\").Value2 = values",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "arrays cannot escape through scalar or object APIs array escape stays invalid in inactive code: Worksheets(1).Range(\"A1\").Value2 = values & \"\"",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "arrays cannot escape through scalar or object APIs array escape stays invalid in inactive code: copy = LBound",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "arrays cannot escape through scalar or object APIs array escape stays invalid in inactive code: copy = values",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "arrays cannot escape through scalar or object APIs array escape stays invalid in inactive code: values = 1",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "arrays cannot escape through scalar or object APIs array escape stays invalid in inactive code: values = other",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "arrays cannot escape through scalar or object APIs array escape stays invalid in inactive code: values(0) = other",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "arrays cannot escape through scalar or object APIs array parameter syntax is unsupported in unused helpers",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "arrays cannot escape through scalar or object APIs dimension \"1\" cannot be coerced",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "arrays cannot escape through scalar or object APIs dimension 1.5 cannot be coerced",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "arrays cannot escape through scalar or object APIs dimension True cannot be coerced",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "arrays cannot escape through scalar or object APIs invalid bound query is statically checked: LBound()",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "arrays cannot escape through scalar or object APIs invalid bound query is statically checked: LBound(1)",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "arrays cannot escape through scalar or object APIs invalid bound query is statically checked: LBound(values(0))",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "arrays cannot escape through scalar or object APIs invalid bound query is statically checked: UBound(\"values\")",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "arrays cannot escape through scalar or object APIs invalid bound query is statically checked: UBound(Worksheets(1).Range(\"A1\"))",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "arrays cannot escape through scalar or object APIs invalid bound query is statically checked: UBound(values, 1, 1)",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "arrays cannot escape through scalar or object APIs nonexistent dimension -1 has subscript diagnostic",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "arrays cannot escape through scalar or object APIs nonexistent dimension 0 has subscript diagnostic",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "arrays cannot escape through scalar or object APIs nonexistent dimension 2 has subscript diagnostic",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "arrays cannot escape through scalar or object APIs nonexistent dimension 2147483647 has subscript diagnostic",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "arrays cannot escape through scalar or object APIs scalar element arguments remain isolated ByVal copies",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "arrays cannot escape through scalar or object APIs whole arrays cannot be passed ByVal as Variant or typed scalar",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_boundaries_test.dart",
+      "name": "arrays cannot escape through scalar or object APIs whole arrays cannot be returned by a Variant function",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_integration_test.dart",
+      "name": "array and For Each plans through the atomic runtime a late array-selected sheet failure rolls back all writes",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_integration_test.dart",
+      "name": "array and For Each plans through the atomic runtime array and range expansion retain host policy restrictions",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_integration_test.dart",
+      "name": "array and For Each plans through the atomic runtime committed report round trips, validates, and runs",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_integration_test.dart",
+      "name": "array and For Each source through MCP array bounds failures retain structured source diagnostics",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_integration_test.dart",
+      "name": "array and For Each source through MCP compile, validate, and saved-plan playback share the dialect",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_integration_test.dart",
+      "name": "array and For Each source through MCP oversized arrays fail before a partial native plan is returned",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_integration_test.dart",
+      "name": "array and For Each source through actual CLI processes BAS and saved native plans produce the same report",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_integration_test.dart",
+      "name": "array and For Each source through actual CLI processes a custom entry can use local arrays in reusable helpers",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_integration_test.dart",
+      "name": "array and For Each source through actual CLI processes an array allocation limit preserves a previously saved plan",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_integration_test.dart",
+      "name": "array and For Each source through actual CLI processes an indexed-write compile failure preserves workbook files",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_integration_test.dart",
+      "name": "array and For Each source through actual CLI processes late sheet failure preserves existing input and output files",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_test.dart",
+      "name": "For Each arrays Exit Do crosses a For Each and restores enclosing execution",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_test.dart",
+      "name": "For Each arrays Exit For skips later uninitialized slots and preserves the current item",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_test.dart",
+      "name": "For Each arrays Exit For traverses Do, Select and With then restores outer With",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_test.dart",
+      "name": "For Each arrays For Each and counted For exits select the nearest For kind",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_test.dart",
+      "name": "For Each arrays Variant iteration can change scalar types between elements",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_test.dart",
+      "name": "For Each arrays an array inside a Function can be iterated before early return",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_test.dart",
+      "name": "For Each arrays implicit Variant iteration variable follows Option Explicit rules",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_test.dart",
+      "name": "For Each arrays reads future mutated slots live without writing back control changes",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_test.dart",
+      "name": "For Each arrays visits ascending subscripts and retains the last scalar item",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_test.dart",
+      "name": "For Each explicit ranges and metadata a range control variable is a normal ByVal Range helper argument",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_test.dart",
+      "name": "For Each explicit ranges and metadata captures the source range once across rebinding of source and control",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_test.dart",
+      "name": "For Each explicit ranges and metadata evaluates source selector helpers once before range iteration",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_test.dart",
+      "name": "For Each explicit ranges and metadata nested With range metadata retains outer worksheet after exit",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_test.dart",
+      "name": "For Each explicit ranges and metadata normalizes reversed range endpoints for metadata and iteration",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_test.dart",
+      "name": "For Each explicit ranges and metadata visits a rectangle row-major with one-based source coordinates",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_test.dart",
+      "name": "fixed scalar arrays Variant array elements hold independent supported scalar types",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_test.dart",
+      "name": "fixed scalar arrays a long constant dependency chain uses ordered bounded evaluation",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_test.dart",
+      "name": "fixed scalar arrays array elements pass to ByVal helpers and return as scalar results",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_test.dart",
+      "name": "fixed scalar arrays assignment evaluates index once before RHS and subsequent reads",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_test.dart",
+      "name": "fixed scalar arrays bound helpers evaluate the dimension argument once",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_test.dart",
+      "name": "fixed scalar arrays constant values resolve independently in different helpers",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_test.dart",
+      "name": "fixed scalar arrays counted loops use bounds without exposing the entire array",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_test.dart",
+      "name": "fixed scalar arrays declared arrays accept parenthesized assignment subscripts",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_test.dart",
+      "name": "fixed scalar arrays does not evaluate unrelated unused constant values while checking bounds",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_test.dart",
+      "name": "fixed scalar arrays helper calls allocate fresh local arrays for every invocation",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_test.dart",
+      "name": "fixed scalar arrays indexed assignment lookahead ignores parentheses inside strings",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_test.dart",
+      "name": "fixed scalar arrays indexes read/write with optional Let and case-insensitive names",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_test.dart",
+      "name": "fixed scalar arrays initializes all typed element kinds and leaves scalars independent",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_test.dart",
+      "name": "fixed scalar arrays preserves bare helper calls with parenthesized comparison arguments",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_test.dart",
+      "name": "fixed scalar arrays procedure returns release occupied array string units",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_test.dart",
+      "name": "fixed scalar arrays replacing strings or Variant slots releases occupied string units",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_arrays_test.dart",
+      "name": "fixed scalar arrays uses prior module and local constant expressions for bounds",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_boundaries_test.dart",
+      "name": "conditional control flow resource bounds Case expressions retain the expression-depth bound",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_boundaries_test.dart",
+      "name": "conditional control flow resource bounds Do While False honors the shared block nesting boundary",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_boundaries_test.dart",
+      "name": "conditional control flow resource bounds Select Case 0\nCase 0 honors the shared block nesting boundary",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_boundaries_test.dart",
+      "name": "conditional control flow resource bounds While False honors the shared block nesting boundary",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_boundaries_test.dart",
+      "name": "conditional control flow resource bounds case clauses count toward the statement budget",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_boundaries_test.dart",
+      "name": "conditional control flow resource bounds empty Do / Loop Until False exhausts shared work",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_boundaries_test.dart",
+      "name": "conditional control flow resource bounds empty Do / Loop While True exhausts shared work",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_boundaries_test.dart",
+      "name": "conditional control flow resource bounds empty Do / Loop exhausts shared work",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_boundaries_test.dart",
+      "name": "conditional control flow resource bounds empty Do Until False / Loop exhausts shared work",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_boundaries_test.dart",
+      "name": "conditional control flow resource bounds empty Do While True / Loop exhausts shared work",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_boundaries_test.dart",
+      "name": "conditional control flow resource bounds empty While True / Wend exhausts shared work",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_boundaries_test.dart",
+      "name": "conditional control flow resource bounds nonmatching comma alternatives consume work in empty cases",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_boundaries_test.dart",
+      "name": "conditional control flow resource bounds operation and encoded-byte budgets are shared across cases",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_boundaries_test.dart",
+      "name": "conditional control flow resource bounds work accumulates across sequential loops and procedure calls",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_boundaries_test.dart",
+      "name": "control-flow structure rejects malformed source Do ending with Wend",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_boundaries_test.dart",
+      "name": "control-flow structure rejects malformed source While ending with Loop",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_boundaries_test.dart",
+      "name": "control-flow structure rejects malformed source duplicate fallback",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_boundaries_test.dart",
+      "name": "control-flow structure rejects malformed source fallback with an alternative",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_boundaries_test.dart",
+      "name": "control-flow structure rejects malformed source missing Case alternative",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_boundaries_test.dart",
+      "name": "control-flow structure rejects malformed source missing Case keyword",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_boundaries_test.dart",
+      "name": "control-flow structure rejects malformed source missing Do condition",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_boundaries_test.dart",
+      "name": "control-flow structure rejects malformed source missing Is operator",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_boundaries_test.dart",
+      "name": "control-flow structure rejects malformed source missing range upper bound",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_boundaries_test.dart",
+      "name": "control-flow structure rejects malformed source missing selector",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_boundaries_test.dart",
+      "name": "control-flow structure rejects malformed source non-clause before first Case",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_boundaries_test.dart",
+      "name": "control-flow structure rejects malformed source nonfinal fallback",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_boundaries_test.dart",
+      "name": "control-flow structure rejects malformed source orphan Case",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_boundaries_test.dart",
+      "name": "control-flow structure rejects malformed source orphan End Select",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_boundaries_test.dart",
+      "name": "control-flow structure rejects malformed source orphan Loop",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_boundaries_test.dart",
+      "name": "control-flow structure rejects malformed source orphan Wend",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_boundaries_test.dart",
+      "name": "control-flow structure rejects malformed source trailing alternative comma",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_boundaries_test.dart",
+      "name": "control-flow structure rejects malformed source two Do conditions",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_boundaries_test.dart",
+      "name": "control-flow structure rejects malformed source unsupported End While",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_boundaries_test.dart",
+      "name": "control-flow structure rejects malformed source unsupported Exit While",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_boundaries_test.dart",
+      "name": "whole-module checks include inactive new constructs a helper cannot exit a caller loop or inherit its With binding",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_boundaries_test.dart",
+      "name": "whole-module checks include inactive new constructs calls in untaken Case bounds count toward call-graph depth",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_boundaries_test.dart",
+      "name": "whole-module checks include inactive new constructs invalid exits after an early return are still checked",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_boundaries_test.dart",
+      "name": "whole-module checks include inactive new constructs new nested blocks do not allow declarations or counter writes",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_boundaries_test.dart",
+      "name": "whole-module checks include inactive new constructs recursion in an unselected case alternative is still rejected",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_boundaries_test.dart",
+      "name": "whole-module checks include inactive new constructs typed conditions and comparisons are checked in unused helpers",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_boundaries_test.dart",
+      "name": "whole-module checks include inactive new constructs unknown names in skipped loops and later cases are rejected",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_boundaries_test.dart",
+      "name": "whole-module checks include inactive new constructs unsupported calls and workbook reads remain invalid after a match",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_integration_test.dart",
+      "name": "conditional control flow through MCP compilation, validation, and saved-plan playback share the new dialect",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_integration_test.dart",
+      "name": "conditional control flow through MCP nonterminating source produces structured bounded diagnostics",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_integration_test.dart",
+      "name": "conditional control flow through actual CLI processes BAS and saved native plans produce the same report",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_integration_test.dart",
+      "name": "conditional control flow through actual CLI processes a compile work limit preserves a previously saved plan",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_integration_test.dart",
+      "name": "conditional control flow through actual CLI processes a custom entry invokes loops and cases in helpers",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_integration_test.dart",
+      "name": "conditional control flow through actual CLI processes late selected-case failure preserves existing input and output files",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_integration_test.dart",
+      "name": "conditional control flow through the atomic runtime a failure in a later selected case rolls back every loop write",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_integration_test.dart",
+      "name": "conditional control flow through the atomic runtime committed report compiles, round trips, validates, and runs",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_integration_test.dart",
+      "name": "conditional control flow through the atomic runtime loop and case plans retain host policy restrictions",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_test.dart",
+      "name": "Select Case Boolean equality and ordering retain True-before-False behavior",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_test.dart",
+      "name": "Select Case Case Is < uses the existing scalar ordering",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_test.dart",
+      "name": "Select Case Case Is <= uses the existing scalar ordering",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_test.dart",
+      "name": "Select Case Case Is <> uses the existing scalar ordering",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_test.dart",
+      "name": "Select Case Case Is = uses the existing scalar ordering",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_test.dart",
+      "name": "Select Case Case Is > uses the existing scalar ordering",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_test.dart",
+      "name": "Select Case Case Is >= uses the existing scalar ordering",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_test.dart",
+      "name": "Select Case Variant selectors are checked against actual scalar case types",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_test.dart",
+      "name": "Select Case allows the documented omission of Is before a comparison",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_test.dart",
+      "name": "Select Case comparison-shaped string literals remain ordinary case values",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_test.dart",
+      "name": "Select Case empty selections and unmatched selections continue after End Select",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_test.dart",
+      "name": "Select Case evaluates both range bounds even when its lower bound fails",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_test.dart",
+      "name": "Select Case evaluates the selector once and stops after the first alternative",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_test.dart",
+      "name": "Select Case mixes inclusive ranges and values with a final fallback",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_test.dart",
+      "name": "Select Case nested selections keep independent selectors and With bindings",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_test.dart",
+      "name": "Select Case overlapping clauses use the first match without fallthrough",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_test.dart",
+      "name": "Select Case reversed ranges simply do not match",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_test.dart",
+      "name": "Select Case signed zero matches both equality and an inclusive zero range",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_test.dart",
+      "name": "Select Case strings retain binary case-sensitive ordering and ranges",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_test.dart",
+      "name": "all published nesting bounds compose without recursive block frames",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_test.dart",
+      "name": "conditional VBA loops Do / Loop Until n = 3 reevaluates the changing local condition",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_test.dart",
+      "name": "conditional VBA loops Do / Loop While n < 3 reevaluates the changing local condition",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_test.dart",
+      "name": "conditional VBA loops Do Until n = 3 / Loop reevaluates the changing local condition",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_test.dart",
+      "name": "conditional VBA loops Do While n < 3 / Loop reevaluates the changing local condition",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_test.dart",
+      "name": "conditional VBA loops Exit Do chooses the nearest Do and allows the outer loop to run",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_test.dart",
+      "name": "conditional VBA loops Exit Do skips a posttest helper with source effects",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_test.dart",
+      "name": "conditional VBA loops Exit Do unwinds Select, With, While, and For to its own loop",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_test.dart",
+      "name": "conditional VBA loops Exit For crosses a Do and While without exiting the outer Do",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_test.dart",
+      "name": "conditional VBA loops Exit Function propagates out of mixed new control blocks",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_test.dart",
+      "name": "conditional VBA loops While n < 3 / Wend reevaluates the changing local condition",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_test.dart",
+      "name": "conditional VBA loops an unconditional loop can exit after mutable source work",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_test.dart",
+      "name": "conditional VBA loops conditions invoke helpers in order including the final test",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_test.dart",
+      "name": "conditional VBA loops implicit variables are discovered within new block bodies",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_test.dart",
+      "name": "conditional VBA loops keywords are case-insensitive and support statement separators",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_control_flow_test.dart",
+      "name": "conditional VBA loops pretests may skip bodies and posttests execute at least once",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_integration_test.dart",
+      "name": "VBA command line Excel BAS cannot publish over a Word document",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_integration_test.dart",
+      "name": "VBA command line committed BAS monthly example calculates the complete report",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_integration_test.dart",
+      "name": "VBA command line failed raw BAS execution preserves existing input and output",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_integration_test.dart",
+      "name": "VBA command line raw BAS compilation and explicit entry point run the same plan",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_integration_test.dart",
+      "name": "VBA command line unsupported BAS preserves an existing compiled output",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_integration_test.dart",
+      "name": "VBA through MCP compiler source diagnostics reach MCP clients without mutation",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_integration_test.dart",
+      "name": "VBA through MCP default compiler advertises, compiles, validates, and runs VBA",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_integration_test.dart",
+      "name": "compiled Excel VBA transactions VBA compilation keeps embedded project bytes inert and intact",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_integration_test.dart",
+      "name": "compiled Excel VBA transactions compiled plans retain host permissions and operation limits",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_integration_test.dart",
+      "name": "compiled Excel VBA transactions late worksheet lookup failure rolls back every prior edit",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_integration_test.dart",
+      "name": "compiled Excel VBA transactions named worksheets use the same native and MCP operation path",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_integration_test.dart",
+      "name": "compiled Excel VBA transactions validate and run use real named sheets, formulas, styles, and clearing",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_language_test.dart",
+      "name": "VBA source and native plan accepts BOM, exported module header, comments, and empty Sub",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_language_test.dart",
+      "name": "VBA source and native plan binds explicit Worksheet and Range objects and restores nested With",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_language_test.dart",
+      "name": "VBA source and native plan initializes scalar declarations and permits implicit scalar assignments",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_language_test.dart",
+      "name": "VBA source and native plan lexes literal quotes, apostrophes, colons, and continued expressions",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_language_test.dart",
+      "name": "VBA source and native plan lowers writes, repeated formulas, formatting, RGB, and clear",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_language_test.dart",
+      "name": "VBA source and native plan resolves module and procedure constants without document access",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_language_test.dart",
+      "name": "VBA source and native plan selects exactly one case-insensitive parameterless entry point",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_language_test.dart",
+      "name": "VBA source and native plan translates one-based coordinates and normalizes A1 rectangles",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_language_test.dart",
+      "name": "bounded compile-time control flow And and Or evaluate both operands",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_language_test.dart",
+      "name": "bounded compile-time control flow For snapshots bounds and step before executing its body",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_language_test.dart",
+      "name": "bounded compile-time control flow VBA precedence puts comparison before Not and Or before Xor",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_language_test.dart",
+      "name": "bounded compile-time control flow block If evaluates the chosen ElseIf and otherwise branch",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_language_test.dart",
+      "name": "bounded compile-time control flow empty and nested loops use ordinary VBA counter behavior",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_language_test.dart",
+      "name": "bounded compile-time control flow loops are inclusive, have optional counters, and retain final value",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_language_test.dart",
+      "name": "bounded compile-time control flow numeric comparisons treat signed zero as the same value",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_language_test.dart",
+      "name": "diagnostics and rejected semantics Option Explicit rejects undeclared writes and misspelled names",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_language_test.dart",
+      "name": "diagnostics and rejected semantics coordinate and scalar constraints fail before document execution",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_language_test.dart",
+      "name": "diagnostics and rejected semantics diagnostics retain physical lines through continuations",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_language_test.dart",
+      "name": "diagnostics and rejected semantics format, missing entry point, and duplicate procedure errors are explicit",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_language_test.dart",
+      "name": "diagnostics and rejected semantics malformed source is never partly interpreted",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_language_test.dart",
+      "name": "diagnostics and rejected semantics quoted text never acts as syntax or an operator",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_language_test.dart",
+      "name": "diagnostics and rejected semantics rejects COM creation",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_language_test.dart",
+      "name": "diagnostics and rejected semantics rejects Set scalar",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_language_test.dart",
+      "name": "diagnostics and rejected semantics rejects active sheet",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_language_test.dart",
+      "name": "diagnostics and rejected semantics rejects arbitrary function",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_language_test.dart",
+      "name": "diagnostics and rejected semantics rejects block declaration",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_language_test.dart",
+      "name": "diagnostics and rejected semantics rejects column width units",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_language_test.dart",
+      "name": "diagnostics and rejected semantics rejects constant function call",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_language_test.dart",
+      "name": "diagnostics and rejected semantics rejects constant mutation",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_language_test.dart",
+      "name": "diagnostics and rejected semantics rejects constant uses mutable",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_language_test.dart",
+      "name": "diagnostics and rejected semantics rejects default range property",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_language_test.dart",
+      "name": "diagnostics and rejected semantics rejects document getter",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_language_test.dart",
+      "name": "diagnostics and rejected semantics rejects external workbook",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_language_test.dart",
+      "name": "diagnostics and rejected semantics rejects formula implicit constant",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_language_test.dart",
+      "name": "diagnostics and rejected semantics rejects formula through Value",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_language_test.dart",
+      "name": "diagnostics and rejected semantics rejects implicit Range",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_language_test.dart",
+      "name": "diagnostics and rejected semantics rejects implicit conversion",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_language_test.dart",
+      "name": "diagnostics and rejected semantics rejects late declaration",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_language_test.dart",
+      "name": "diagnostics and rejected semantics rejects merge fidelity",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_language_test.dart",
+      "name": "diagnostics and rejected semantics rejects missing Set",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_language_test.dart",
+      "name": "diagnostics and rejected semantics rejects property invocation",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_language_test.dart",
+      "name": "diagnostics and rejected semantics rejects reassigned counter",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_language_test.dart",
+      "name": "diagnostics and rejected semantics rejects reused counter",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_language_test.dart",
+      "name": "diagnostics and rejected semantics rejects single line If",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_language_test.dart",
+      "name": "diagnostics and rejected semantics rejects system colors",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_language_test.dart",
+      "name": "diagnostics and rejected semantics rejects uninitialized Variant",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_language_test.dart",
+      "name": "diagnostics and rejected semantics rejects uninitialized object",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_language_test.dart",
+      "name": "diagnostics and rejected semantics unknown operations are rejected in skipped branches and procedures",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_language_test.dart",
+      "name": "independent compiler resource limits Long counter increment overflow fails explicitly",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_language_test.dart",
+      "name": "independent compiler resource limits large numeric literals and overflowing products are portable refusals",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_language_test.dart",
+      "name": "independent compiler resource limits lexer, statement count, and parser nesting have independent limits",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_language_test.dart",
+      "name": "independent compiler resource limits loops emitting no operations are still bounded",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_language_test.dart",
+      "name": "independent compiler resource limits many small writes and repeated large values use aggregate limits",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_language_test.dart",
+      "name": "independent compiler resource limits ranges are charged before any enormous cell list is allocated",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_language_test.dart",
+      "name": "independent compiler resource limits source and concatenated strings are bounded before expansion",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_procedure_boundaries_test.dart",
+      "name": "procedure isolation and control transfer ByVal rebinding isolates scalars, objects, With, and loop counters",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_procedure_boundaries_test.dart",
+      "name": "procedure isolation and control transfer Exit For stops only the innermost loop without increment overflow",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_procedure_boundaries_test.dart",
+      "name": "procedure isolation and control transfer Exit Sub unwinds callee loops and With without exiting the caller",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_procedure_boundaries_test.dart",
+      "name": "procedure isolation and control transfer completed invocations do not accumulate active frames",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_procedure_boundaries_test.dart",
+      "name": "procedure isolation and control transfer discarded Variant results are legal but cannot become cell values",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_procedure_boundaries_test.dart",
+      "name": "procedure isolation and control transfer function result slots are fresh on every invocation and early exit",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_procedure_boundaries_test.dart",
+      "name": "procedure isolation and control transfer nested argument functions run once and in left-to-right order",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_procedure_boundaries_test.dart",
+      "name": "static call graph and shared budgets 16 parameters and arguments work while 17 fail before execution",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_procedure_boundaries_test.dart",
+      "name": "static call graph and shared budgets 32 frames includes entry and 33 are rejected even unreachable",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_procedure_boundaries_test.dart",
+      "name": "static call graph and shared budgets cycles are rejected even unused, after Exit, or only in arguments",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_procedure_boundaries_test.dart",
+      "name": "static call graph and shared budgets empty helper loops consume one work budget across invocations",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_procedure_boundaries_test.dart",
+      "name": "static call graph and shared budgets large values share the encoded-byte budget across invocations",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_procedure_boundaries_test.dart",
+      "name": "static call graph and shared budgets range operations share the emitted-step budget across invocations",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_procedure_boundaries_test.dart",
+      "name": "whole-module lexical checks Exit For in a callee cannot target a caller loop",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_procedure_boundaries_test.dart",
+      "name": "whole-module lexical checks callee cannot read caller locals or inherit the caller With target",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_procedure_boundaries_test.dart",
+      "name": "whole-module lexical checks dead calls still check arity and scalar versus object types",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_procedure_boundaries_test.dart",
+      "name": "whole-module lexical checks parameter names cannot obscure procedure names case-insensitively",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_procedure_boundaries_test.dart",
+      "name": "whole-module lexical checks unsupported argument conventions cannot hide in unused signatures",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_procedure_boundaries_test.dart",
+      "name": "whole-module lexical checks unused procedures and text after Exit retain static checks",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_procedures_integration_test.dart",
+      "name": "VBA helpers through MCP MCP compilation, validation, and playback accept helper modules",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_procedures_integration_test.dart",
+      "name": "VBA helpers through MCP an unsupported unused helper produces structured MCP diagnostics",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_procedures_integration_test.dart",
+      "name": "VBA helpers through actual CLI processes BAS and saved native plans produce the same report",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_procedures_integration_test.dart",
+      "name": "VBA helpers through actual CLI processes custom entry selection can invoke parameterized helpers",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_procedures_integration_test.dart",
+      "name": "VBA helpers through actual CLI processes late helper failure preserves existing input and output files",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_procedures_integration_test.dart",
+      "name": "VBA helpers through actual CLI processes recursive source leaves a previously compiled output untouched",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_procedures_integration_test.dart",
+      "name": "VBA helpers through the atomic runtime a late failure inside a helper rolls back all helper writes",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_procedures_integration_test.dart",
+      "name": "VBA helpers through the atomic runtime committed report compiles, round trips, validates, and runs",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_procedures_integration_test.dart",
+      "name": "VBA helpers through the atomic runtime function side effects are ordinary ordered native operations",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_procedures_integration_test.dart",
+      "name": "VBA helpers through the atomic runtime helper-generated plans retain every host policy restriction",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_procedures_test.dart",
+      "name": "procedure source diagnostics Call requires parentheses around nonempty arguments",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_procedures_test.dart",
+      "name": "procedure source diagnostics Function object return types remain explicitly unsupported",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_procedures_test.dart",
+      "name": "procedure source diagnostics bare multiargument parentheses do not silently change VBA syntax",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_procedures_test.dart",
+      "name": "procedure source diagnostics explicit zero-argument calls remain valid before colon separators",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_procedures_test.dart",
+      "name": "procedure source diagnostics helper errors retain module, entry point, and source coordinates",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_procedures_test.dart",
+      "name": "procedure source diagnostics labels are rejected in unused procedures as well",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_procedures_test.dart",
+      "name": "procedure source diagnostics labels never invoke same-named helper procedures",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_procedures_test.dart",
+      "name": "procedure source diagnostics parameters and local variables cannot duplicate one another",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_procedures_test.dart",
+      "name": "procedure source diagnostics procedure calls remain unavailable in constant expressions",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_procedures_test.dart",
+      "name": "reusable VBA procedures Range parameters preserve exact explicit target bindings",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_procedures_test.dart",
+      "name": "reusable VBA procedures calls forward Sub definitions with positional typed arguments",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_procedures_test.dart",
+      "name": "reusable VBA procedures custom entry selection remains parameterless Sub only",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_procedures_test.dart",
+      "name": "reusable VBA procedures each invocation initializes its own locals and constants",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_procedures_test.dart",
+      "name": "reusable VBA procedures implicit local variables are isolated across procedures and calls",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_procedures_test.dart",
+      "name": "reusable VBA procedures supports bare calls, grouped expressions, and statement separators",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_procedures_test.dart",
+      "name": "reusable VBA procedures supports case-insensitive zero-argument invocation forms",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_procedures_test.dart",
+      "name": "scalar VBA functions composes typed functions and reads the current return variable",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_procedures_test.dart",
+      "name": "scalar VBA functions function calls work in conditions, bounds, and object selectors",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_procedures_test.dart",
+      "name": "scalar VBA functions functions may emit ordinary operations and have results discarded",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_procedures_test.dart",
+      "name": "scalar VBA functions return conversion retains the strict existing numeric rules",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_procedures_test.dart",
+      "name": "scalar VBA functions returns all supported scalar types and omitted Variant types",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_procedures_test.dart",
+      "name": "scalar VBA functions typed result defaults match the existing scalar defaults",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_procedures_test.dart",
+      "name": "structured early exits Exit For retains the current counter and only exits innermost loop",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_procedures_test.dart",
+      "name": "structured early exits Exit Function returns the current result from nested blocks",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_procedures_test.dart",
+      "name": "structured early exits Exit Sub unwinds nested loops and With to the caller",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "office_vba_procedures_test.dart",
+      "name": "structured early exits an Exit For at the Long boundary avoids post-loop overflow",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "sheet_macro_preservation_test.dart",
+      "name": "editing an xlsm keeps the macro project and main content type",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "sheet_macro_preservation_test.dart",
+      "name": "editing an xltx keeps the template main content type",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "table_grid_steps_test.dart",
+      "name": "CLI rejects an invalid logical edit without replacing an existing output",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "table_grid_steps_test.dart",
+      "name": "cell replacement rejects cross-cell bookmarks before discarding content",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "table_grid_steps_test.dart",
+      "name": "cell replacement rejects pending revisions without changing ownership",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "table_grid_steps_test.dart",
+      "name": "direct authored grid scripts survive three saves",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "table_grid_steps_test.dart",
+      "name": "duplicate current native widths reject instead of choosing one",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "table_grid_steps_test.dart",
+      "name": "historical or foreign width cannot replace the current native width: <e:tcW xmlns:e=\"urn:extension\" e:w=\"9000\" e:type=\"pct\"/>",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "table_grid_steps_test.dart",
+      "name": "historical or foreign width cannot replace the current native width: <w:tcPrChange w:id=\"15\" w:author=\"Author\"><w:tcPr><w:tcW w:w=\"7200\" w:type=\"dxa\"/></w:tcPr></w:tcPrChange>",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "table_grid_steps_test.dart",
+      "name": "inspect exposes physical cells, logical ranges and merge owners",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "table_grid_steps_test.dart",
+      "name": "inspect retains omitted-grid coordinates while logical edits reject",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "table_grid_steps_test.dart",
+      "name": "invalid preferred width -1.0 rejects before mutating package parts",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "table_grid_steps_test.dart",
+      "name": "invalid preferred width Infinity rejects before mutating package parts",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "table_grid_steps_test.dart",
+      "name": "invalid preferred width NaN rejects before mutating package parts",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "table_grid_steps_test.dart",
+      "name": "isolate authored grid scripts survive three saves",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "table_grid_steps_test.dart",
+      "name": "logical edit rejects missing geometry and leaves the model intact",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "table_grid_steps_test.dart",
+      "name": "logical edit rejects nonpositive geometry and leaves the model intact",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "table_grid_steps_test.dart",
+      "name": "logical edit rejects orphan geometry and leaves the model intact",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "table_grid_steps_test.dart",
+      "name": "logical edit rejects span geometry and leaves the model intact",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "table_grid_steps_test.dart",
+      "name": "logical edit rejects start geometry and leaves the model intact",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "table_grid_steps_test.dart",
+      "name": "logical selection edits the visible owner and nested actual cells",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "table_grid_steps_test.dart",
+      "name": "merge produces the combined logical-grid preferred width",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "table_grid_steps_test.dart",
+      "name": "native preferred cell widths survive import and deep clone",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "table_grid_steps_test.dart",
+      "name": "native width namespace does not depend on the w prefix",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "table_grid_steps_test.dart",
+      "name": "physical column retains its original meaning after a leading span",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "table_grid_steps_test.dart",
+      "name": "tableCellFormat rejects ambiguous or invalid selector {column: 0, gridColumn: 0} atomically",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "table_grid_steps_test.dart",
+      "name": "tableCellFormat rejects ambiguous or invalid selector {gridColumn: -1} atomically",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "table_grid_steps_test.dart",
+      "name": "tableCellFormat rejects ambiguous or invalid selector {gridColumn: 0.5} atomically",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "table_grid_steps_test.dart",
+      "name": "tableCellFormat rejects ambiguous or invalid selector {gridColumn: 1} atomically",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "table_grid_steps_test.dart",
+      "name": "tableCellFormat rejects ambiguous or invalid selector {gridColumn: 3} atomically",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "table_grid_steps_test.dart",
+      "name": "tableCellFormat rejects ambiguous or invalid selector {gridColumn: null} atomically",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "table_grid_steps_test.dart",
+      "name": "tableCellFormat rejects ambiguous or invalid selector {} atomically",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "table_grid_steps_test.dart",
+      "name": "tableCellText rejects ambiguous or invalid selector {column: 0, gridColumn: 0} atomically",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "table_grid_steps_test.dart",
+      "name": "tableCellText rejects ambiguous or invalid selector {gridColumn: -1} atomically",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "table_grid_steps_test.dart",
+      "name": "tableCellText rejects ambiguous or invalid selector {gridColumn: 0.5} atomically",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "table_grid_steps_test.dart",
+      "name": "tableCellText rejects ambiguous or invalid selector {gridColumn: 1} atomically",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "table_grid_steps_test.dart",
+      "name": "tableCellText rejects ambiguous or invalid selector {gridColumn: 3} atomically",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "table_grid_steps_test.dart",
+      "name": "tableCellText rejects ambiguous or invalid selector {gridColumn: null} atomically",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "table_grid_steps_test.dart",
+      "name": "tableCellText rejects ambiguous or invalid selector {} atomically",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "table_grid_steps_test.dart",
+      "name": "tableUnmerge rejects ambiguous or invalid selector {column: 0, gridColumn: 0} atomically",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "table_grid_steps_test.dart",
+      "name": "tableUnmerge rejects ambiguous or invalid selector {gridColumn: -1} atomically",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "table_grid_steps_test.dart",
+      "name": "tableUnmerge rejects ambiguous or invalid selector {gridColumn: 0.5} atomically",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "table_grid_steps_test.dart",
+      "name": "tableUnmerge rejects ambiguous or invalid selector {gridColumn: 1} atomically",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "table_grid_steps_test.dart",
+      "name": "tableUnmerge rejects ambiguous or invalid selector {gridColumn: 3} atomically",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "table_grid_steps_test.dart",
+      "name": "tableUnmerge rejects ambiguous or invalid selector {gridColumn: null} atomically",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "table_grid_steps_test.dart",
+      "name": "tableUnmerge rejects ambiguous or invalid selector {} atomically",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "table_grid_steps_test.dart",
+      "name": "unmerge accepts any covered logical coordinate and retains rich blocks",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "table_grid_steps_test.dart",
+      "name": "unmerge redistributes preferred widths from the logical grid",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "word_step_atomicity_test.dart",
+      "name": "a rejected scripted control edit leaves revision metadata and live tokens unchanged",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "word_step_atomicity_test.dart",
+      "name": "a scripted edit inside a tracked span records a conflict before export",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "word_step_atomicity_test.dart",
+      "name": "addNote rejects a boundary inside an atomic cached field",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "word_step_atomicity_test.dart",
+      "name": "an empty REF result clears the stale cache through update and three exports",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "word_step_atomicity_test.dart",
+      "name": "commentAdd rejects a boundary inside an atomic cached field",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "word_step_atomicity_test.dart",
+      "name": "direct scripted replacement rebases the original repeated revision span",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "word_step_atomicity_test.dart",
+      "name": "explicit TOC page visibility clears imported partial omission only when supplied",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "word_step_atomicity_test.dart",
+      "name": "generated bookmark names remain valid and unique after truncation",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "word_step_atomicity_test.dart",
+      "name": "headerFooterText rejects invalid text before appending a paragraph",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "word_step_atomicity_test.dart",
+      "name": "imageSize validates both dimensions before changing either",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "word_step_atomicity_test.dart",
+      "name": "isolate scripted replacement rebases the original repeated revision span",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "word_step_atomicity_test.dart",
+      "name": "native headings receive unique stable TOC targets without stealing imported names",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "word_step_atomicity_test.dart",
+      "name": "paragraphSplit rejects a boundary inside an atomic cached field",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "word_step_atomicity_test.dart",
+      "name": "replaceText rejects a boundary inside an atomic cached field",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "word_step_atomicity_test.dart",
+      "name": "runFormat rejects a boundary inside an atomic cached field",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "word_step_atomicity_test.dart",
+      "name": "runFormat rejects {color: invalid} before splitting or touching source properties",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "word_step_atomicity_test.dart",
+      "name": "runFormat rejects {font: 123} before splitting or touching source properties",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "word_step_atomicity_test.dart",
+      "name": "runFormat rejects {highlight: red} before splitting or touching source properties",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "word_step_atomicity_test.dart",
+      "name": "runFormat rejects {italic: true} before splitting or touching source properties",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "word_step_atomicity_test.dart",
+      "name": "runFormat rejects {size: NaN} before splitting or touching source properties",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "word_step_atomicity_test.dart",
+      "name": "runFormat rejects {underline: unknown} before splitting or touching source properties",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "word_step_atomicity_test.dart",
+      "name": "scripted deletion before a revision shifts it and a later edit leaves it fixed",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "word_step_atomicity_test.dart",
+      "name": "scripted duplicate headings are disambiguated and heading changes keep references",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "word_step_atomicity_test.dart",
+      "name": "sectionFormat rejects {breakKind: unknown} before replacing geometry",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "word_step_atomicity_test.dart",
+      "name": "sectionFormat rejects {columnSep: true} before replacing geometry",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "word_step_atomicity_test.dart",
+      "name": "sectionFormat rejects {differentFirstPage: true} before replacing geometry",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "word_step_atomicity_test.dart",
+      "name": "sectionFormat rejects {differentOddEven: false} before replacing geometry",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "word_step_atomicity_test.dart",
+      "name": "stamp distinguishes omitted and explicitly empty cached results",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "word_step_atomicity_test.dart",
+      "name": "successful run patch preserves unrelated imported formatting",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "word_step_atomicity_test.dart",
+      "name": "tableCellText rejects invalid text without removing the cell story",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "word_step_atomicity_test.dart",
+      "name": "updating a formerly populated REF clears its cache when the target empties",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "word_steps_vocabulary_test.dart",
+      "name": "alignment accepts both, start and end",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "word_steps_vocabulary_test.dart",
+      "name": "every Word underline style survives a save",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "word_steps_vocabulary_test.dart",
+      "name": "text in a paragraph split off at the end keeps the run format",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "word_steps_vocabulary_test.dart",
+      "name": "underline steps accept Dart and OOXML names",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "word_structure_steps_test.dart",
+      "name": "authored structural scripts retain each phase across async exports",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "word_structure_steps_test.dart",
+      "name": "comment range cannot cut an emoji or atomic note reference",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "word_structure_steps_test.dart",
+      "name": "failed late structural step cannot replace an existing output",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "word_structure_steps_test.dart",
+      "name": "reject bookmarkSet invalid fields without modifying the model: {op: bookmarkSet, paragraph: 1, name: invalid name}",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "word_structure_steps_test.dart",
+      "name": "reject commentAdd invalid fields without modifying the model: {op: commentAdd, paragraph: 1, start: 2, end: 2, text: unanchored}",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "word_structure_steps_test.dart",
+      "name": "reject commentAdd invalid fields without modifying the model: {op: commentAdd, paragraph: 1, text: x, date: not a date}",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "word_structure_steps_test.dart",
+      "name": "reject commentReply invalid fields without modifying the model: {op: commentReply, id: 999, text: orphan}",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "word_structure_steps_test.dart",
+      "name": "reject commentResolve invalid fields without modifying the model: {op: commentResolve, id: 999, resolved: true}",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "word_structure_steps_test.dart",
+      "name": "reject frameAdd invalid fields without modifying the model: {op: frameAdd, text: x, width: 0}",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "word_structure_steps_test.dart",
+      "name": "reject frameAdd invalid fields without modifying the model: {op: frameAdd, text: x, wrap: tight}",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "word_structure_steps_test.dart",
+      "name": "reject paragraphFormat invalid fields without modifying the model: {op: paragraphFormat, paragraph: 1, left: 12, firstLine: 2, hanging: 2}",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "word_structure_steps_test.dart",
+      "name": "reject paragraphFormat invalid fields without modifying the model: {op: paragraphFormat, paragraph: 1, tabs: [{position: 12, alginment: right}]}",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "word_structure_steps_test.dart",
+      "name": "reject paragraphFormat invalid fields without modifying the model: {op: paragraphFormat, paragraph: 1, tabs: [{position: 12}, {position: 12}]}",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "word_structure_steps_test.dart",
+      "name": "reject reference invalid fields without modifying the model: {op: reference, paragraph: 1, bookmark: Missing}",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "word_structure_steps_test.dart",
+      "name": "reject tableAdd invalid fields without modifying the model: {op: tableAdd, rows: 0, columns: 2, width: 100}",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "word_structure_steps_test.dart",
+      "name": "reject tableAdd invalid fields without modifying the model: {op: tableAdd, rows: 2, columns: 0, width: 100}",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "word_structure_steps_test.dart",
+      "name": "reject tableAdd invalid fields without modifying the model: {op: tableAdd, rows: 2, columns: 2, width: 100, index: 100}",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "word_structure_steps_test.dart",
+      "name": "reject tableAdd invalid fields without modifying the model: {op: tableAdd, rows: 2, columns: 2, width: NaN}",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "word_structure_steps_test.dart",
+      "name": "reject tocAdd invalid fields without modifying the model: {op: tocAdd, minLevel: 3, maxLevel: 2}",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "word_structure_steps_test.dart",
+      "name": "structural table edits reject merged grids until explicitly unmerged",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "word_table_grid_addressing_test.dart",
+      "name": "a containing merge preserves ordered content and untouched neighbors",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "word_table_grid_addressing_test.dart",
+      "name": "all slots in a native two-dimensional merge resolve to its master",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "word_table_grid_addressing_test.dart",
+      "name": "column story replacement preflights a cross-cell bookmark",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "word_table_grid_addressing_test.dart",
+      "name": "current row omissions do not come from nested prior row properties",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "word_table_grid_addressing_test.dart",
+      "name": "gridColumn story replacement preflights a cross-cell bookmark",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "word_table_grid_addressing_test.dart",
+      "name": "inspect exposes both coordinate systems without changing physical cell order",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "word_table_grid_addressing_test.dart",
+      "name": "invalid cell properties leave resolved native masters unchanged",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "word_table_grid_addressing_test.dart",
+      "name": "invalid span topology rejects grid access and unmerge before mutation",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "word_table_grid_addressing_test.dart",
+      "name": "logical edit and continuation unmerge survive three direct/isolate saves",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "word_table_grid_addressing_test.dart",
+      "name": "native omitted-grid source remains unchanged through three saves",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "word_table_grid_addressing_test.dart",
+      "name": "orphan topology rejects grid access and unmerge before mutation",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "word_table_grid_addressing_test.dart",
+      "name": "partial vertical merge rectangles reject without stranding continuations",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "word_table_grid_addressing_test.dart",
+      "name": "pending revisions cannot be detached and legacy later targets stay bound",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "word_table_grid_addressing_test.dart",
+      "name": "physical selectors retain their meaning while logical selectors edit masters",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "word_table_grid_addressing_test.dart",
+      "name": "physical text edits preserve omitted-grid metadata through three saves",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "word_table_grid_addressing_test.dart",
+      "name": "ragged topology rejects grid access and unmerge before mutation",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "word_table_grid_addressing_test.dart",
+      "name": "shifted continuation topology rejects grid access and unmerge before mutation",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "word_table_grid_addressing_test.dart",
+      "name": "span mismatch topology rejects grid access and unmerge before mutation",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "word_table_grid_addressing_test.dart",
+      "name": "tableCellFormat rejects ambiguous and invalid logical selectors atomically",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "word_table_grid_addressing_test.dart",
+      "name": "tableCellText rejects ambiguous and invalid logical selectors atomically",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "word_table_grid_addressing_test.dart",
+      "name": "tableUnmerge rejects ambiguous and invalid logical selectors atomically",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "word_table_grid_addressing_test.dart",
+      "name": "whole in-cell bookmarks can be removed without dangling identities",
+      "result": "success",
+      "skipped": false
+    }
+  ]
+}

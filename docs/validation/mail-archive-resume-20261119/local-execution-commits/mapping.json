@@ -1,0 +1,14 @@
+{
+  "status": "passed",
+  "observed_local_commit": "38c62c93042bd7595e2c27e3fbad72934c1a564f",
+  "canonical_published_commit": "906b8bc90ea352f03dfdab5f9bc50f3aafc359de",
+  "exact_shared_tree": "89dba4595a77783fd57e7726e088ec6da973bcc5",
+  "exact_shared_parents": [
+    "71053bf61521e093903d55cba890ef4beee039e1"
+  ],
+  "raw_commit_body_file": "38c62c93042bd7595e2c27e3fbad72934c1a564f.txt",
+  "raw_commit_body_sha256": "c2203fb99ca8e3fdd796d63c0906c121c35c3d94460832f42c6cb2ff9f42e19a",
+  "reconstructed_git_commit_object_id": "38c62c93042bd7595e2c27e3fbad72934c1a564f",
+  "receipt": "incoming/editor-final-v3/receipt.json",
+  "explanation": "The editor run began while documentation checkpoint14 existed locally, before the Git Data API published the same tree and parent with GitHub commit metadata. The observed local commit is exactly reconstructible from this raw body; its tree and parent are published through the canonical commit. Source/dependency/runtime bindings were unchanged and independently audited."
+}

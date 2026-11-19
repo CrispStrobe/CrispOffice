@@ -1,0 +1,23 @@
+{
+  "name": "node-version",
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+    "--version"
+  ],
+  "cwd": "/workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_office_engine",
+  "started_utc": "2026-11-19T18:46:00.946120+00:00",
+  "completed_utc": "2026-11-19T18:46:00.954450+00:00",
+  "elapsed_seconds": 0.008,
+  "exit_code": 0,
+  "timed_out": false,
+  "stdout": {
+    "path": "logs/node-version.stdout.log",
+    "sha256": "4409d3bfa08b82f385bd424eeda65fc63b756129f0e89e82df77f1fecafccc14",
+    "bytes": 9
+  },
+  "stderr": {
+    "path": "logs/node-version.stderr.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "changed_dependency_inputs": [],
+  "changed_source_inputs": [],
+  "command": [
+    "/workspace/scratch/8eda9a4e1801/runtime/bin/flutter",
+    "test",
+    "--no-pub",
+    "--concurrency=1",
+    "--reporter=json",
+    "test/office_chrome_theme_test.dart",
+    "test/office_dark_document_test.dart",
+    "test/office_dark_slide_test.dart",
+    "test/word_page_layout_test.dart",
+    "test/embed_test.dart",
+    "test/word_tab_stops_editor_test.dart",
+    "test/sheet_conditional_rendering_test.dart",
+    "test/word_selection_paint_test.dart",
+    "test/word_header_footer_navigation_test.dart",
+    "test/editor_test.dart",
+    "test/word_text_proofing_pane_test.dart"
+  ],
+  "cwd": "/workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_office_editor",
+  "dependency_inputs": 5972,
+  "elapsed_seconds": 36.8,
+  "environment": {
+    "CI": "true",
+    "FLUTTER_ROOT": "/workspace/scratch/8eda9a4e1801/runtime/flutter",
+    "PUB_CACHE": "/workspace/scratch/8eda9a4e1801/runtime/pub-cache",
+    "TMPDIR": "/workspace/scratch/8eda9a4e1801/runtime/tmp",
+    "XDG_CACHE_HOME": "/workspace/scratch/8eda9a4e1801/runtime/cache",
+    "XDG_CONFIG_HOME": "/workspace/scratch/8eda9a4e1801/runtime/config",
+    "XDG_DATA_HOME": "/workspace/scratch/8eda9a4e1801/runtime/data"
+  },
+  "executed_runner_sha256": "cccf5daa0691b497fd3172199612721262dfdbdc0ea54f9db678682c74a1c93f",
+  "exit_code": 0,
+  "finished_at_utc": "2026-11-19T19:28:42.962641+00:00",
+  "group": "editor",
+  "source_commit_after": "906b8bc90ea352f03dfdab5f9bc50f3aafc359de",
+  "source_commit_before": "38c62c93042bd7595e2c27e3fbad72934c1a564f",
+  "source_inputs": 1673,
+  "started_at_utc": "2026-11-19T19:28:06.162666+00:00",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "78eb754c8ef015ebb78364ef35110576f1b86c5a5ed7a06dc0f196bd47840a9a",
+  "success": true,
+  "test_summary": {
+    "distinct_suites": 11,
+    "done_events": [
+      {
+        "success": true,
+        "time": 34414,
+        "type": "done"
+      }
+    ],
+    "failed": 0,
+    "missing_suites": [],
+    "passed": 228,
+    "reporter_errors": [],
+    "skipped": 0,
+    "success": true
+  }
+}
