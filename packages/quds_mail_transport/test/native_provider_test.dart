@@ -531,6 +531,29 @@ void main() {
     },
   );
 
+  for (final entry in <(String, String, bool)>[
+    ('OK before literal', '* OK [ALERT] FETCH cache is refreshing', false),
+    ('mixed-case OK after literal', '* oK FETCH response is complete', true),
+    ('NO after literal', '* NO [ALERT] FETCH cache is unavailable', true),
+    ('BAD before literal', '* BAD FETCH warning has no command tag', false),
+  ]) {
+    test('status text containing FETCH: ${entry.$1}', () async {
+      final fixture = ImapFixture(uidNext: 2, messages: {1: _message()});
+      (entry.$3 ? fixture.afterFetchResponses : fixture.beforeFetchResponses)
+          .add(entry.$2);
+      final result = await fixture.provider().pullChanges(
+        fixture.mailbox,
+        limit: 1,
+        lease: _lease(fixture),
+      );
+      final page = (result as MailSuccess<MailSyncPage>).value;
+      expect(page.upserts, hasLength(1));
+      expect((page.upserts.single.remote as MailImapIdentity).uid, 1);
+      expect(page.tombstones, isEmpty);
+      expect(fixture.clients.single.socket.errors, isEmpty);
+    });
+  }
+
   test(
     'forged cross-mailbox cursor is rejected before vault or connection work',
     () async {

@@ -112,6 +112,15 @@ class RawFetchParser extends ResponseParser<RawImapFetchResult> {
       throw const FormatException('Invalid raw FETCH response');
     }
     final line = imapResponse.first.line ?? '';
+    // Generic status responses carry human-readable text, which can contain
+    // the word FETCH without being a FETCH data response. Leave status/closure
+    // handling to the client instead of interpreting that text as a data prefix.
+    if (RegExp(
+      r'^\* +(?:OK|NO|BAD|PREAUTH|BYE)(?: |$)',
+      caseSensitive: false,
+    ).hasMatch(line)) {
+      return false;
+    }
     if (RegExp(
       r'^\* +[1-9][0-9]* +EXPUNGE(?: |$)',
       caseSensitive: false,
