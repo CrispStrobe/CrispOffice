@@ -1,0 +1,75 @@
+{
+  "source_commit": "5569c055a021c893e941fc54d40499ad9d96a5db",
+  "source_tree": "9d2c815eda61378fbc4b234124e8e7c9cfeacb5b",
+  "baseline_commit": "39843ed4874c7b56572c7aa8195716e5892aeca2",
+  "changed_dart_files": 35,
+  "changed_dart_paths": [
+    "packages/quds_mail_core/lib/src/model/message.dart",
+    "packages/quds_mail_core/lib/src/ports/provider.dart",
+    "packages/quds_mail_core/test/models_test.dart",
+    "packages/quds_mail_store/lib/src/codec.dart",
+    "packages/quds_mail_store/lib/src/repository.dart",
+    "packages/quds_mail_store/lib/src/schema/database.dart",
+    "packages/quds_mail_store/test/codec_test.dart",
+    "packages/quds_mail_store/test/migration_test.dart",
+    "packages/quds_mail_store/test/repository_test.dart",
+    "packages/quds_mail_transport/lib/quds_mail_transport.dart",
+    "packages/quds_mail_transport/lib/src/configuration.dart",
+    "packages/quds_mail_transport/lib/src/cursor.dart",
+    "packages/quds_mail_transport/lib/src/native/factory.dart",
+    "packages/quds_mail_transport/lib/src/native/provider.dart",
+    "packages/quds_mail_transport/lib/src/unsupported/provider.dart",
+    "packages/quds_mail_transport/test/configuration_test.dart",
+    "packages/quds_mail_transport/test/host_store_integration_test.dart",
+    "packages/quds_mail_transport/test/native_provider_test.dart",
+    "packages/quds_mail_transport/test/native_tls_cancellation_test.dart",
+    "packages/quds_mail_transport/test/native_tls_round_trip_test.dart",
+    "packages/quds_mail_transport/test/native_tls_test.dart",
+    "packages/quds_mail_transport/test/support/imap_fixture.dart",
+    "packages/quds_mail_transport/test/support/tls_server.dart",
+    "packages/quds_mail_transport/test/unsupported_test.dart",
+    "third_party/enough_mail/lib/imap.dart",
+    "third_party/enough_mail/lib/src/imap/imap_client.dart",
+    "third_party/enough_mail/lib/src/imap/raw_fetch.dart",
+    "third_party/enough_mail/lib/src/private/imap/imap_response.dart",
+    "third_party/enough_mail/lib/src/private/imap/imap_response_reader.dart",
+    "third_party/enough_mail/lib/src/private/imap/raw_fetch_parser.dart",
+    "third_party/enough_mail/lib/src/private/util/cancellable_socket.dart",
+    "third_party/enough_mail/lib/src/private/util/client_base.dart",
+    "third_party/enough_mail/lib/src/private/util/protocol_resource_limit.dart",
+    "third_party/enough_mail/lib/src/private/util/uint8_list_reader.dart",
+    "third_party/enough_mail/test/src/imap/raw_fetch_parser_test.dart"
+  ],
+  "analysis_targets": 35,
+  "format_targets": 35,
+  "static_coverage_exact": true,
+  "native_suites": 60,
+  "node_suites": 7,
+  "plan_hashes": {
+    "native": {
+      "path": "docs/validation/office-main-completion-20261119/native-plan.json",
+      "sha256": "bb812ae7b92fabb5233231b0e773ff61f4e4962dabc2568b09bc76b7ca4c4328"
+    },
+    "node": {
+      "path": "docs/validation/office-main-completion-20261119/node-plan.json",
+      "sha256": "8995b723957a078ad9cadea2bad1bc88869bfd2e4cc0dc447bfd96be4c9ba602"
+    }
+  },
+  "office_continuity": {
+    "scope": [
+      "packages/quds_office_engine",
+      "packages/quds_office_editor",
+      "apps/quds_report_studio"
+    ],
+    "comparison_commit": "39843ed4874c7b56572c7aa8195716e5892aeca2",
+    "entries": 2622,
+    "identical_tree_entries": true,
+    "source_tree_listing_sha256": "420cda5f6b5820ea18e604ac6b34256b58c6b0bcf0b34b939451daab3bbf5c80",
+    "comparison_tree_listing_sha256": "420cda5f6b5820ea18e604ac6b34256b58c6b0bcf0b34b939451daab3bbf5c80",
+    "changed_paths": [],
+    "historical_office_test_cases_added_to_fresh_totals": 0
+  },
+  "complete_audit_member": "reconciliation-audit/release-5569c055/source-plan-continuity-audit.json",
+  "complete_audit_sha256": "7808f5d3482c5d4610b73f782a9de69b5021ff5aadd27ca8933bf1d0e21ce4fd",
+  "passed": true
+}

@@ -6,12 +6,23 @@ import 'dart:typed_data';
 import 'package:quds_mail_transport/quds_mail_transport.dart';
 
 SecurityContext localTlsServerContext() => SecurityContext()
-  ..useCertificateChain('test/fixtures/tls/loopback-cert.pem')
-  ..usePrivateKey('test/fixtures/tls/loopback-key.pem');
+  ..useCertificateChain(_fixture('loopback-cert.pem').path)
+  ..usePrivateKey(_fixture('loopback-key.pem').path);
 
 SecurityContext localTlsTrustContext() =>
     SecurityContext(withTrustedRoots: false)
-      ..setTrustedCertificates('test/fixtures/tls/loopback-cert.pem');
+      ..setTrustedCertificates(_fixture('loopback-cert.pem').path);
+
+File _fixture(String name) {
+  for (final directory in [
+    'test/fixtures/tls',
+    'packages/quds_mail_transport/test/fixtures/tls',
+  ]) {
+    final file = File('$directory/$name');
+    if (file.existsSync()) return file;
+  }
+  throw FileSystemException('Public loopback TLS fixture was not found.', name);
+}
 
 /// A real loopback peer. Stalled mode accepts ClientHello and sends no TLS reply.
 final class LocalTlsServer {
@@ -118,10 +129,15 @@ final class LocalTlsPeer {
 
   void _data(Uint8List bytes) {
     if (_awaitingHandshake) {
+      if (handshakeBytes.length + bytes.length > 64 * 1024) {
+        throw StateError('Unexpectedly large stalled TLS handshake');
+      }
       handshakeBytes.addAll(bytes);
       if (!clientHello.isCompleted &&
           handshakeBytes.length >= 6 &&
-          handshakeBytes.first == 22) {
+          handshakeBytes.first == 22 &&
+          handshakeBytes[1] == 3 &&
+          handshakeBytes[5] == 1) {
         clientHello.complete();
       }
       return;

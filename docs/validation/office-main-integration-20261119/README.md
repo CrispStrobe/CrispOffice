@@ -1,5 +1,13 @@
 # Office integration for remote main — 19 November 2026
 
+**Historical PR #174 receipt.** This 611-execution record belongs to source
+`4624218f` and was merged into main as `d4100033`. The later
+[completion report](../office-main-completion-20261119/README.md) records the
+final Socket-compatible TLS/parser resolution and 836 fresh application
+executions plus 78 Python controls at `5569c055`, carried through PR #173.
+The original evidence and counts below retain their own source identity and
+are not added to the final totals.
+
 The final integrated application, fixtures, execution harness and test-plan
 source is **`4624218f9468eeeac07f1f100ac0e4bb6b050a17`**. Both fresh local
 qualification receipts bind to that same commit: **611 passing test executions,

@@ -130,7 +130,16 @@ class RawFetchParser extends ResponseParser<RawImapFetchResult> {
       _bodyUidsBySequence.clear();
       return false;
     }
-    if (!RegExp(r'(?:^| )FETCH(?: |$)', caseSensitive: false).hasMatch(line)) {
+    // Recognize FETCH at the untagged response position, including malformed
+    // structural delimiters. RFC 3501 section 9 defines these atom-specials;
+    // FETCHX remains a different atom, and FETCH inside unrelated data is not
+    // a response prefix. Strict parsing below rejects non-SP delimiters.
+    if (!RegExp(
+      r'^\*[\x00-\x20\x7f]+'
+      r'(?:[^\x00-\x20\x7f]+[\x00-\x20\x7f]+)?'
+      r'FETCH(?=[\x00-\x20\x7f(){\x22\x5c%*\x5d]|$)',
+      caseSensitive: false,
+    ).hasMatch(line)) {
       return false;
     }
     final prefix = RegExp(
