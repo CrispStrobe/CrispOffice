@@ -157,6 +157,32 @@ their complex-script language (`w:lang/@w:bidi`, with `w:rtl`/`w:cs` or
 Arabic/Hebrew letters). Evidence and packaging steps are in the
 [roadmap](roadmaps/arabic-proofing.md) step 2.
 
+## Optional Arabic morphology (Camel Morph MSA) — 19 November 2026
+
+[`quds_arabic_morph`](../packages/quds_arabic_morph/README.md) implements
+`ArabicMorphology` with CrispEmbed's native port of the camel_tools 1.6.0
+analyzer (MIT; Ryu Apache-2.0). It runs in a persistent FFI isolate natively
+and as a bundled WebAssembly worker on the web. The data is the Camel Morph
+MSA v1.0 `noprob` bundle (CC BY 4.0, NYU Abu Dhabi), which the user downloads
+from the Dictionaries dialog. It is pinned to `cstr/camel-morph-msa-v1.0` at
+`b31cf4a8…`, verified by SHA-256 and installed atomically.
+
+`noprob` drops only the Penn-Treebank-derived probabilities, so analyses are
+unordered. Rules must reason over every analysis, and a top-1 analysis must
+not be used (see [step 3c](roadmaps/arabic-proofing.md)). The Studio passes
+one long-lived analyzer to the Arabic rules' construction site (the
+`morphology:` parameter is pending in the rules work).
+
+Local evidence on UD Arabic-PUD (7,419 distinct words), macOS arm64:
+
+| Path | Load | Throughput | Memory |
+| --- | ---: | ---: | --- |
+| Native | 1.2–1.4 s | about 1,300 words/s | 250 MB RSS |
+| Web worker in Chrome | 1.5–2.0 s | 600–890 words/s | 320 MB Wasm heap |
+
+The package has 22 tests and the Studio 10, all with the real library and
+database and none skipped.
+
 ## Native spelling continuation — 18 November 2026
 
 PR #159 is merged, including the spelling shortlist changes from #157,
@@ -1274,6 +1300,9 @@ an unqualified grammar-coverage claim on the evidence recorded here.
 - [DANTE word-list licensing](https://wiki.dante.de/trennmuster/korpora)
 - [Wortliste source](https://repo.or.cz/wortliste.git)
 - [Hunspell alternative license grant](https://github.com/hunspell/hunspell/blob/master/license.hunspell)
+- [Camel Morph MSA v1.0 (CC BY 4.0 data)](https://github.com/CAMeL-Lab/camel_morph)
+- [camel_tools (MIT)](https://github.com/CAMeL-Lab/camel_tools)
+- [Published noprob bundle at the pinned revision](https://huggingface.co/cstr/camel-morph-msa-v1.0/tree/b31cf4a83f8ad63bb1989cf2879e72f23fadbfb0/noprob)
 - [German dictionary GPL data / MIT wrapper distinction](https://github.com/wooorm/dictionaries/blob/main/dictionaries/de/readme.md)
 - [Harper](https://github.com/Automattic/harper)
 - [Harper span convention](https://writewithharper.com/docs/harperjs/spans)
