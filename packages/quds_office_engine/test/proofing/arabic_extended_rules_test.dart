@@ -367,6 +367,65 @@ const List<String> optionalControls = <String>[
 ];
 
 void main() {
+  group('semantic combining marks in phrase matching', () {
+    for (final (String name, String mark) in <(String, String)>[
+      ('maddah above', '\u0653'),
+      ('hamza above', '\u0654'),
+      ('hamza below', '\u0655'),
+    ]) {
+      test('phrase matching retains $name', () async {
+        final String text = 'ا$markختار بين كتابين.';
+        expect(
+          await check(text, optional: <String>{'ar.usage.expression'}),
+          isEmpty,
+        );
+      });
+    }
+
+    test(
+      'precomposed phrase controls still produce the intended suggestion',
+      () async {
+        for (final String text in <String>[
+          'أختار بين كتابين.',
+          'أَختارُ بينَ كتابين.',
+        ]) {
+          final List<OfficeProofingFinding> findings = await check(
+            text,
+            optional: <String>{'ar.usage.expression'},
+          );
+          expect(findings, hasLength(1));
+          expect(findings.single.ruleId, 'ar.usage.expression');
+          expect(findings.single.replacements, <String>['أختار من بين']);
+        }
+      },
+    );
+
+    test('adjacent phrase keeps UTF-16 offsets after semantic marks', () async {
+      const String text = '😀 ا\u0654ختار بين كتابين؛ درس كل حالة على حدى.';
+      const int startOffset = 100;
+      final List<OfficeProofingFinding> findings = await check(
+        text,
+        startOffset: startOffset,
+        optional: <String>{'ar.usage.expression'},
+      );
+      expect(findings, hasLength(1));
+      final OfficeProofingFinding finding = findings.single;
+      expect(finding.ruleId, 'ar.expression.error');
+      expect(finding.originalText, 'على حدى');
+      expect(finding.start, startOffset + text.indexOf('على حدى'));
+      expect(finding.end, finding.start + 'على حدى'.length);
+      expect(finding.replacements, <String>['على حدة']);
+      expect(
+        text.replaceRange(
+          finding.start - startOffset,
+          finding.end - startOffset,
+          finding.replacements.single,
+        ),
+        '😀 ا\u0654ختار بين كتابين؛ درس كل حالة على حدة.',
+      );
+    });
+  });
+
   void positives(List<Positive> cases, {required bool optional}) {
     for (final (String text, String rule, String original, String? first)
         in cases) {

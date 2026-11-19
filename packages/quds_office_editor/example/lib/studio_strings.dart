@@ -75,12 +75,17 @@ final class StudioStrings {
   String get mailTitle =>
       _t('CrispOffice Mail', 'CrispOffice Mail', 'بريد CrispOffice');
   String get openMessage => _t('Open message', 'Nachricht öffnen', 'فتح رسالة');
+  String get openMessageFailed => _t(
+    'The message could not be opened.',
+    'Die Nachricht konnte nicht geöffnet werden.',
+    'تعذّر فتح الرسالة.',
+  );
   String get fullView => _t('Full', 'Vollständig', 'كامل');
   String get compactView => _t('Compact', 'Kompakt', 'مختصر');
   String get noMessage => _t(
-    'Open an .eml message to read it here.',
-    'Öffnen Sie eine .eml-Nachricht, um sie hier zu lesen.',
-    'افتح رسالة .eml لقراءتها هنا.',
+    'Select a message to read it here.',
+    'Wählen Sie eine Nachricht aus, um sie hier zu lesen.',
+    'اختر رسالة لقراءتها هنا.',
   );
   String get viewLicences =>
       _t('View licences', 'Lizenzen anzeigen', 'عرض التراخيص');
