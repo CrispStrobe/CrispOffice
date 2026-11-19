@@ -6,7 +6,8 @@ This continuation starts from remote main at
 `55e262ef269634a0d618c0b5102dc9be5430a5f3`, after the Zotero, Notes and
 thesaurus work merged through PRs #173–175. It preserves subsequent main and
 branch history and publishes incremental checkpoints on
-`codex/office-main-sync-20261119` through PR #178.
+`codex/office-main-sync-20261119`. PR #178 tracked its initial checkpoint and
+was later closed after an older head was integrated directly into main.
 
 The final reconciliation scope is the direct remote advertisement at
 **08:51:46.468061 CET on 19 November 2026** (07:51:46.468061 UTC): **401 refs**,
@@ -48,6 +49,19 @@ also reproduced a valid-affix/missing-dictionary false success. The following
 repair checks both dictionary files before FFI and adds a regression; the result
 parser is unchanged. Current main has since added the CrispOffice Studio update
 and Arabic T1 rules, which are reconciled before the next frozen delta gate.
+
+The [second merged-source attempt](main-delta-v2/attempt-c0c71a26/README.md)
+at `c0c71a26` also remains FAIL: three stale Studio selectors and three strict
+formatting discrepancies were rejected. Its 469 observed successful application
+events and 17 Python controls contribute zero to accepted totals. All raw output,
+source/runtime envelopes and the independent failed-attempt audit are preserved.
+The [additional review packet](main-delta-v2/reviews/evidence.tar.xz) preserves
+reviewed native binaries, pinned dictionaries and scoped development evidence.
+
+During this run, current main advanced again to `be641457`, adding Word complex-
+script language routing, agreeing-finding merging, Studio dictionary setup and
+new defaults/settings. That head is reviewed separately before the next source
+checkpoint; the completed `0669ac11` results keep their original identity.
 
 ## Integrated behavior and review fixes
 
