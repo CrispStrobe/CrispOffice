@@ -35,10 +35,10 @@ jobs:
       - run: dart test
       - name: Verify browser EWS and IMAP boundary
         if: matrix.package == 'quds_mail_transport'
-        run: dart test --platform node test/ews_unsupported_test.dart test/ews_configuration_test.dart test/unsupported_test.dart
+        run: dart test --platform node test/ews_unsupported_test.dart test/ews_configuration_test.dart test/unsupported_test.dart test/cloud_unsupported_test.dart
 
   studio_ews:
-    name: Studio Exchange mail
+    name: Studio mail providers
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -52,7 +52,7 @@ jobs:
       - name: Resolve workspace
         working-directory: .
         run: flutter pub get
-      - run: flutter analyze lib/studio_mail_ews.dart lib/studio_mail_native.dart lib/studio_mail_strings.dart test/studio_mail_ews_test.dart
+      - run: flutter analyze lib/studio_mail_ews.dart lib/studio_mail_cloud.dart lib/studio_mail_credentials.dart lib/studio_mail_presets.dart lib/studio_mail_native.dart lib/studio_mail_strings.dart test/studio_mail_ews_test.dart test/studio_mail_cloud_test.dart test/studio_mail_presets_test.dart test/studio_mail_credentials_test.dart
       - run: flutter test test/studio_mail*_test.dart test/studio_saved_mail_test.dart
 
   engine:

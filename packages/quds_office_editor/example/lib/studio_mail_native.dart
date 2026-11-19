@@ -8,6 +8,7 @@ import 'package:quds_mail_ui/quds_mail_ui.dart';
 
 import 'studio_mail_cloud.dart';
 import 'studio_mail_compose.dart';
+import 'studio_mail_credentials.dart';
 import 'studio_mail_ews.dart';
 import 'studio_mail_message_loader.dart';
 import 'studio_mail_operation.dart';
@@ -18,10 +19,10 @@ import 'studio_mail_submission.dart';
 import 'studio_saved_mail.dart';
 import 'studio_strings.dart';
 
-/// Session-only IMAP/SMTP client used by the Studio Mail module.
+/// IMAP/SMTP client with optional platform-keychain account persistence.
 ///
-/// Credentials are never written to disk by this example. The account setup is
-/// explicit, auto-discovery is followed by an SSL-only account, and every
+/// Account setup is explicit; remembered credentials use the platform keychain.
+/// Discovery and provider presets require verified encrypted transports. Every
 /// network operation reports its own failure instead of presenting an empty
 /// inbox.
 class StudioMailDialog extends StatefulWidget {
@@ -31,9 +32,13 @@ class StudioMailDialog extends StatefulWidget {
     this.clientFactory,
     this.messageLoaderFactory,
     this.accountDiscovery,
+    this.credentialStore,
   });
 
   final StudioStrings strings;
+
+  /// Tests supply the keychain boundary without reading a platform credential.
+  final StudioMailCredentialStore? credentialStore;
 
   /// Creates a fresh client for each connection attempt. Tests use this seam
   /// to control network completions without contacting an external account.
@@ -60,6 +65,13 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
   final _primaryLogin = TextEditingController();
   StudioMailImapPreset? _preset;
   bool _icloudFullAddressLogin = false;
+  late final StudioMailCredentialStore _credentials;
+  bool _remember = true;
+  bool _startTls = false;
+  bool _hasSavedCredentials = false;
+  bool _credentialPending = false;
+  int _settingsRevision = 0;
+  int _credentialGeneration = 0;
 
   mail.MailClient? _client;
   mail.MailClient? _pendingClient;
@@ -86,8 +98,118 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
   String? _notice;
 
   @override
+  void initState() {
+    super.initState();
+    _credentials = widget.credentialStore ?? StudioMailCredentialStore();
+    for (final controller in [
+      _email,
+      _password,
+      _imapHost,
+      _smtpHost,
+      _primaryLogin,
+    ]) {
+      controller.addListener(_settingsEdited);
+    }
+    unawaited(_loadCredentials());
+  }
+
+  void _settingsEdited() => _settingsRevision++;
+
+  Future<void> _loadCredentials() async {
+    final generation = _sessionGeneration;
+    final settings = _settingsRevision;
+    final credentialGeneration = _credentialGeneration;
+    StudioMailCredentials? saved;
+    try {
+      saved = await _credentials.load();
+    } on Object {
+      // Missing or locked keychains do not prevent explicit account setup.
+      return;
+    }
+    if (!_currentAttempt(generation) ||
+        saved == null ||
+        _connecting ||
+        _client != null ||
+        settings != _settingsRevision ||
+        credentialGeneration != _credentialGeneration) {
+      return;
+    }
+    setState(() {
+      _email.text = saved!.email;
+      _password.text = saved.password;
+      _imapHost.text = saved.imapHost;
+      _smtpHost.text = saved.smtpHost;
+      _manual = saved.manual;
+      _startTls = saved.startTls;
+      _preset = saved.preset;
+      _primaryLogin.text = saved.primaryLogin;
+      _icloudFullAddressLogin = saved.icloudFullAddressLogin;
+      _hasSavedCredentials = true;
+    });
+  }
+
+  Future<void> _persistCredentials(
+    mail.MailClient client,
+    int sessionGeneration,
+    StudioMailCredentials credentials,
+    bool remember,
+  ) async {
+    if (!_currentSession(client, sessionGeneration)) return;
+    final generation = ++_credentialGeneration;
+    setState(() => _credentialPending = true);
+    bool success;
+    try {
+      success = remember
+          ? await _credentials.save(credentials)
+          : await _credentials.clear();
+    } on Object {
+      success = false;
+    }
+    if (!mounted || generation != _credentialGeneration) return;
+    setState(() {
+      _credentialPending = false;
+      if (success) {
+        _hasSavedCredentials = remember;
+      } else if (_currentSession(client, sessionGeneration)) {
+        _notice = remember
+            ? widget.strings.mailKeychainSaveFailed
+            : widget.strings.mailKeychainClearFailed;
+      }
+    });
+  }
+
+  Future<void> _forgetCredentials() async {
+    if (_connecting) return;
+    final generation = ++_credentialGeneration;
+    final session = _sessionGeneration;
+    final settings = _settingsRevision;
+    setState(() => _credentialPending = true);
+    bool success;
+    try {
+      success = await _credentials.clear();
+    } on Object {
+      success = false;
+    }
+    if (!mounted || generation != _credentialGeneration) return;
+    setState(() {
+      _credentialPending = false;
+      if (success) {
+        _hasSavedCredentials = false;
+        if (_error == widget.strings.mailKeychainClearFailed) _error = null;
+        if (session == _sessionGeneration && settings == _settingsRevision) {
+          _password.clear();
+        }
+      } else if (session == _sessionGeneration &&
+          settings == _settingsRevision) {
+        _error = widget.strings.mailKeychainClearFailed;
+      }
+    });
+  }
+
+  @override
   void dispose() {
     _sessionGeneration++;
+    _credentialGeneration++;
     _email.dispose();
     _password.dispose();
     _imapHost.dispose();
@@ -147,6 +269,8 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
     final domain = email.contains('@') ? email.split('@').last : '';
     final password = _password.text;
     final manual = _manual;
+    final startTls = _startTls;
+    final remember = _remember;
     final preset = _preset;
     final primaryLogin = _primaryLogin.text.trim();
     final icloudFullAddressLogin = _icloudFullAddressLogin;
@@ -172,6 +296,26 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
           incomingHost: imapHost,
           outgoingHost: smtpHost,
           password: password,
+          incomingPort: startTls ? 143 : 993,
+          outgoingPort: startTls ? 587 : 465,
+          incomingSocketType: startTls
+              ? mail.SocketType.starttls
+              : mail.SocketType.ssl,
+          outgoingSocketType: startTls
+              ? mail.SocketType.starttls
+              : mail.SocketType.ssl,
+        );
+      } else if (domain.toLowerCase() == 'mailbox.org') {
+        account = mail.MailAccount.fromManualSettings(
+          name: email,
+          email: email,
+          incomingHost: 'imap.mailbox.org',
+          outgoingHost: 'smtp.mailbox.org',
+          password: password,
+          incomingPort: 143,
+          outgoingPort: 587,
+          incomingSocketType: mail.SocketType.starttls,
+          outgoingSocketType: mail.SocketType.starttls,
         );
       } else {
         final config =
@@ -238,6 +382,25 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
       });
       adopted = true;
       _retireReader(previous);
+      await _persistCredentials(
+        client,
+        generation,
+        StudioMailCredentials(
+          email: email,
+          password: password,
+          imapHost: account.incoming.serverConfig.hostname,
+          smtpHost: account.outgoing.serverConfig.hostname,
+          manual:
+              manual || preset == null && domain.toLowerCase() == 'mailbox.org',
+          startTls:
+              account.incoming.serverConfig.socketType ==
+              mail.SocketType.starttls,
+          preset: preset,
+          primaryLogin: primaryLogin,
+          icloudFullAddressLogin: icloudFullAddressLogin,
+        ),
+        remember,
+      );
     } on Object {
       if (!_currentAttempt(generation)) return;
       setState(() {
@@ -247,6 +410,7 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
           _imapHost.text = 'imap.$domain';
           _smtpHost.text = 'smtp.$domain';
           _manual = true;
+          if (domain.toLowerCase() == 'mailbox.org') _startTls = true;
         }
       });
     } finally {
@@ -747,36 +911,39 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
                   label: Text(widget.strings.ewsTitle),
                 ),
                 const SizedBox(height: 12),
-                DropdownButtonFormField<String>(
+                KeyedSubtree(
                   key: const ValueKey('studio-mail-provider-preset'),
-                  initialValue: _preset?.name ?? 'other',
-                  isExpanded: true,
-                  decoration: InputDecoration(
-                    labelText: widget.strings.mailProvider,
-                  ),
-                  items: [
-                    DropdownMenuItem(
-                      value: 'other',
-                      child: Text(widget.strings.mailOtherProvider),
+                  child: DropdownButtonFormField<String>(
+                    key: ValueKey(_preset?.name ?? 'other'),
+                    initialValue: _preset?.name ?? 'other',
+                    isExpanded: true,
+                    decoration: InputDecoration(
+                      labelText: widget.strings.mailProvider,
                     ),
-                    for (final preset in StudioMailImapPreset.values)
+                    items: [
                       DropdownMenuItem(
-                        value: preset.name,
-                        child: Text(preset.label),
+                        value: 'other',
+                        child: Text(widget.strings.mailOtherProvider),
                       ),
-                  ],
-                  onChanged: _connecting
-                      ? null
-                      : (value) => setState(() {
-                          _preset = StudioMailImapPreset.values
-                              .where((entry) => entry.name == value)
-                              .firstOrNull;
-                          _manual = false;
-                          _password.clear();
-                          _primaryLogin.clear();
-                          _icloudFullAddressLogin = false;
-                          _error = null;
-                        }),
+                      for (final preset in StudioMailImapPreset.values)
+                        DropdownMenuItem(
+                          value: preset.name,
+                          child: Text(preset.label),
+                        ),
+                    ],
+                    onChanged: _connecting
+                        ? null
+                        : (value) => setState(() {
+                            _preset = StudioMailImapPreset.values
+                                .where((entry) => entry.name == value)
+                                .firstOrNull;
+                            _manual = false;
+                            _password.clear();
+                            _primaryLogin.clear();
+                            _icloudFullAddressLogin = false;
+                            _error = null;
+                          }),
+                  ),
                 ),
                 const SizedBox(height: 12),
                 Text(
@@ -847,7 +1014,10 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
                     value: _manual,
                     onChanged: _connecting
                         ? null
-                        : (value) => setState(() => _manual = value),
+                        : (value) => setState(() {
+                            _settingsEdited();
+                            _manual = value;
+                          }),
                   ),
                 if (_manual) ...<Widget>[
                   TextField(
@@ -865,8 +1035,45 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
                       hintText: 'smtp.example.com',
                     ),
                   ),
+                  SwitchListTile(
+                    key: const ValueKey('studio-mail-starttls'),
+                    contentPadding: EdgeInsets.zero,
+                    title: Text(widget.strings.useStartTls),
+                    value: _startTls,
+                    onChanged: _connecting
+                        ? null
+                        : (value) => setState(() {
+                            _settingsEdited();
+                            _startTls = value;
+                          }),
+                  ),
                   const SizedBox(height: 12),
                 ],
+                SwitchListTile(
+                  key: const ValueKey('studio-mail-remember'),
+                  contentPadding: EdgeInsets.zero,
+                  title: Text(widget.strings.rememberAccount),
+                  value: _remember,
+                  onChanged: _connecting
+                      ? null
+                      : (value) => setState(() {
+                          _settingsEdited();
+                          _remember = value;
+                        }),
+                ),
+                TextButton.icon(
+                  key: const ValueKey('studio-mail-forget'),
+                  onPressed: _connecting ? null : _forgetCredentials,
+                  icon: Icon(
+                    _credentialPending
+                        ? Icons.hourglass_empty
+                        : _hasSavedCredentials
+                        ? Icons.key_off_outlined
+                        : Icons.delete_outline,
+                    size: 18,
+                  ),
+                  label: Text(widget.strings.forgetAccount),
+                ),
                 if (_error != null)
                   Padding(
                     padding: const EdgeInsets.only(bottom: 12),

@@ -359,4 +359,29 @@ extension StudioMailFeedback on StudioStrings {
     'In den Kontoeinstellungen des Anbieters ein App-Passwort erstellen. Fastmail benötigt einen Tarif mit IMAP-/SMTP-Zugriff. Für Aliase oder eigene Domains unten die primäre Konto-E-Mail-Adresse eingeben.',
     'أنشئ كلمة مرور للتطبيق في إعدادات حساب المزوّد. يتطلب Fastmail خطة تدعم IMAP/SMTP. للأسماء المستعارة أو النطاقات الخاصة، أدخل البريد الأساسي للحساب أدناه.',
   );
+  String get useStartTls => _mailText(
+    'Use STARTTLS (ports 143/587)',
+    'STARTTLS verwenden (Ports 143/587)',
+    'استخدام STARTTLS (المنفذان 143/587)',
+  );
+  String get rememberAccount => _mailText(
+    'Remember this account in the system keychain',
+    'Dieses Konto im Systemschlüsselbund speichern',
+    'حفظ هذا الحساب في سلسلة مفاتيح النظام',
+  );
+  String get forgetAccount => _mailText(
+    'Forget saved account',
+    'Gespeichertes Konto entfernen',
+    'نسيان الحساب المحفوظ',
+  );
+  String get mailKeychainSaveFailed => _mailText(
+    'Connected, but the account could not be saved in the system keychain. This session remains available.',
+    'Verbunden, aber das Konto konnte nicht im Systemschlüsselbund gespeichert werden. Diese Sitzung bleibt verfügbar.',
+    'تم الاتصال، لكن تعذر حفظ الحساب في سلسلة مفاتيح النظام. تبقى هذه الجلسة متاحة.',
+  );
+  String get mailKeychainClearFailed => _mailText(
+    'The saved account could not be removed from the system keychain. Try Forget saved account again.',
+    'Das gespeicherte Konto konnte nicht aus dem Systemschlüsselbund entfernt werden. „Gespeichertes Konto entfernen“ erneut versuchen.',
+    'تعذر إزالة الحساب المحفوظ من سلسلة مفاتيح النظام. حاول نسيان الحساب المحفوظ مجددًا.',
+  );
 }

@@ -75,6 +75,11 @@ The interactive helper supports Linux, macOS and Windows desktop registrations.
 It returns typed unsupported on mobile/web. Native embedding hosts may supply
 their own token source for other supported environments.
 
+The macOS Studio release entitlement includes incoming network connections for
+the ephemeral OAuth listener, matching the existing debug entitlement. The
+implementation binds only to loopback and closes the listener on completion or
+cancellation. Installed signing/sandbox acceptance remains a deployment check.
+
 ### Preconfigure the client IDs
 
 Both fields can be entered at setup or supplied to a desktop build:
@@ -204,3 +209,4 @@ for exact tested sources, commands and results.
 - [Microsoft authorization code flow](https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-auth-code-flow), [redirect URI restrictions](https://learn.microsoft.com/en-us/entra/identity-platform/reply-url)
 - [Graph immutable IDs](https://learn.microsoft.com/en-us/graph/outlook-immutable-id), [delta](https://learn.microsoft.com/en-us/graph/delta-query-messages), [sendMail](https://learn.microsoft.com/en-us/graph/api/user-sendmail?view=graph-rest-1.0), [throttling](https://learn.microsoft.com/en-us/graph/throttling)
 - [Apple settings](https://support.apple.com/en-ie/102525), [Yahoo settings](https://help.yahoo.com/kb/imap-settings-sln4075.html), [Fastmail settings](https://www.fastmail.help/hc/en-us/articles/1500000278342-Server-names-and-ports)
+- [Apple network listener entitlement](https://developer.apple.com/documentation/bundleresources/entitlements/com.apple.security.network.server)

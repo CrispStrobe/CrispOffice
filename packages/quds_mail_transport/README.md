@@ -40,8 +40,8 @@ Import `package:quds_mail_transport/quds_mail_transport.dart` and construct
 `createMailImapProvider` with a `MailImapConfiguration`, host-owned
 `MailCredentialStore`, and optional `MailCodec` and `MailTransportLimits`.
 The default codec is `QudsMimeCodec`. The result implements the portable
-`MailProvider` interface. No public API exposes enough_mail clients, sockets,
-filesystem paths, or password/token fields.
+`MailProvider` interface. The IMAP configuration API exposes no enough_mail
+clients, sockets, filesystem paths, or password/token fields.
 
 Configuration binds a profile/account, explicit validated DNS/IP host and port,
 username, TLS mode, authentication mechanism, and account-scoped vault reference.

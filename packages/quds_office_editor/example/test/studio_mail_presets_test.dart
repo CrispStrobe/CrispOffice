@@ -156,7 +156,7 @@ void main() {
         find.textContaining('smtp.mail.me.com:587 STARTTLS'),
         findsOneWidget,
       );
-      expect(find.byType(SwitchListTile), findsNothing);
+      expect(find.text(_strings.manualServers), findsNothing);
       expect(tester.takeException(), isNull);
     },
   );

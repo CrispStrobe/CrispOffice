@@ -112,6 +112,8 @@ page (`--install-licenses`); the Studio registers them in
 ```sh
 QUDS_LANGUAGE_ID_TEST_LIBRARY=build/native/libquds_language_id.dylib dart test
 node tool/web_smoke.mjs build/web assets/cld3-f16.gguf ud-sentences.txt
+dart compile js -O2 tool/browser_smoke.dart -o out/smoke.js
+python3 tool/browser_smoke.py --script out/smoke.js --web build/web --corpus ud-sentences.txt
 dart compile exe tool/ud_evaluation.dart -o ud_eval
 ./ud_eval build/native/libquds_language_id.dylib <UD r2.14 test files> out.json
 ```
