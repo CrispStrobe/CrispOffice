@@ -1861,6 +1861,32 @@ class _Interior {
   final _Range range;
 }
 
+sealed class _ExecutionFrame {}
+
+class _BodyFrame extends _ExecutionFrame {
+  _BodyFrame(this.statements);
+  final List<_Statement> statements;
+  int position = 0;
+}
+
+class _WithFrame extends _ExecutionFrame {}
+
+class _ConditionalFrame extends _ExecutionFrame {
+  _ConditionalFrame(this.loop);
+  final _ConditionalLoop loop;
+  bool afterBody = false;
+}
+
+class _ForFrame extends _ExecutionFrame {
+  _ForFrame(this.loop, this.type, this.counter, this.step, this.remaining);
+  final _For loop;
+  final _Declared type;
+  int counter;
+  final int step;
+  int remaining;
+  bool afterBody = false;
+}
+
 class _Evaluator {
   _Evaluator(this.context, this.module, this.checker);
   final _Context context;
@@ -1993,141 +2019,170 @@ class _Evaluator {
   }
 
   _ExitKind? _execute(List<_Statement> statements) {
-    for (final statement in statements) {
-      _tick(statement.token);
-      switch (statement) {
-        case _Declaration():
-          _initialize(statement);
-        case _Assignment():
-          final value = _evaluate(statement.value);
-          if (statement.target case final _Name name) {
-            values[name.token.lower] = _convert(
-              symbols[name.token.lower]!.type,
-              value,
-              name.token,
+    // Block nesting must not multiply the host call stack by procedure depth.
+    // Explicit continuations also identify exactly which loop owns an exit.
+    final frames = <_ExecutionFrame>[_BodyFrame(statements)];
+    final initialWithDepth = withValues.length;
+    try {
+      while (frames.isNotEmpty) {
+        final frame = frames.last;
+        if (frame is _WithFrame) {
+          frames.removeLast();
+          withValues.removeLast();
+          continue;
+        }
+        if (frame is _ForFrame) {
+          if (frame.afterBody) {
+            frame.counter += frame.step;
+            values[frame.loop.counter.lower] = _convert(
+              frame.type,
+              frame.counter,
+              frame.loop.counter,
             );
-          } else {
-            _write(statement.target as _Member, value);
           }
-        case _Clear():
-          final range = _evaluate(statement.target.receiver) as _Range;
-          _emitRange(range, 'cellValue', <String, Object?>{
-            'value': null,
-          }, statement.token);
-        case _With():
-          final target = _evaluate(statement.target);
-          withValues.add(target);
-          try {
-            final exit = _execute(statement.body);
-            if (exit != null) return exit;
-          } finally {
-            withValues.removeLast();
+          if (frame.remaining == 0) {
+            frames.removeLast();
+            continue;
           }
-        case _If():
-          var matched = false;
-          for (final branch in statement.branches) {
-            if (_boolean(_evaluate(branch.$1), branch.$1.token)) {
-              final exit = _execute(branch.$2);
-              if (exit != null) return exit;
-              matched = true;
-              break;
+          _tick(frame.loop.token);
+          frame.remaining--;
+          frame.afterBody = true;
+          frames.add(_BodyFrame(frame.loop.body));
+          continue;
+        }
+        if (frame is _ConditionalFrame) {
+          final loop = frame.loop;
+          if (frame.afterBody && loop.testAfter && !_continues(loop)) {
+            frames.removeLast();
+            continue;
+          }
+          // Charge every attempt, including unconditional empty loops and
+          // failed pretests. Procedure calls share this same budget.
+          _tick(loop.token);
+          if (!loop.testAfter && !_continues(loop)) {
+            frames.removeLast();
+            continue;
+          }
+          frame.afterBody = true;
+          frames.add(_BodyFrame(loop.body));
+          continue;
+        }
+        final body = frame as _BodyFrame;
+        if (body.position == body.statements.length) {
+          frames.removeLast();
+          continue;
+        }
+        final statement = body.statements[body.position++];
+        _tick(statement.token);
+        switch (statement) {
+          case _Declaration():
+            _initialize(statement);
+          case _Assignment():
+            final value = _evaluate(statement.value);
+            if (statement.target case final _Name name) {
+              values[name.token.lower] = _convert(
+                symbols[name.token.lower]!.type,
+                value,
+                name.token,
+              );
+            } else {
+              _write(statement.target as _Member, value);
             }
-          }
-          if (!matched) {
-            final exit = _execute(statement.otherwise);
-            if (exit != null) return exit;
-          }
-        case _ConditionalLoop():
-          while (true) {
-            // Charge every attempt, including unconditional empty loops and
-            // final failed tests. Procedure calls share this same budget.
-            _tick(statement.token);
-            if (!statement.testAfter && !_continues(statement)) break;
-            final exit = _execute(statement.body);
-            if (statement.isDo && exit == _ExitKind.doLoop) break;
-            if (exit != null) return exit;
-            if (statement.testAfter && !_continues(statement)) break;
-          }
-        case _Select():
-          final selector = _evaluate(statement.selector);
-          var matched = false;
-          for (final branch in statement.branches) {
-            for (final match in branch.matches) {
-              if (_caseMatches(selector, match)) {
-                final exit = _execute(branch.body);
-                if (exit != null) return exit;
-                matched = true;
+          case _Clear():
+            final range = _evaluate(statement.target.receiver) as _Range;
+            _emitRange(range, 'cellValue', <String, Object?>{
+              'value': null,
+            }, statement.token);
+          case _With():
+            withValues.add(_evaluate(statement.target));
+            frames.add(_WithFrame());
+            frames.add(_BodyFrame(statement.body));
+          case _If():
+            var selected = statement.otherwise;
+            for (final branch in statement.branches) {
+              if (_boolean(_evaluate(branch.$1), branch.$1.token)) {
+                selected = branch.$2;
                 break;
               }
             }
-            if (matched) break;
-          }
-          if (!matched) {
-            final exit = _execute(statement.otherwise);
-            if (exit != null) return exit;
-          }
-        case _For():
-          final start = _loopInteger(
-            _evaluate(statement.start),
-            statement.start.token,
-          );
-          final end = _loopInteger(
-            _evaluate(statement.end),
-            statement.end.token,
-          );
-          final step = _loopInteger(
-            _evaluate(statement.step),
-            statement.step.token,
-          );
-          if (step == 0) {
-            context.unsupported(
-              statement.step.token,
-              'Step 0 is unsupported because it does not bound iteration.',
-            );
-          }
-          final count = step > 0
-              ? (start > end ? 0 : (end - start) ~/ step + 1)
-              : (start < end ? 0 : (start - end) ~/ -step + 1);
-          if (count > _maxWork - work) {
-            context.limit(
+            frames.add(_BodyFrame(selected));
+          case _ConditionalLoop():
+            frames.add(_ConditionalFrame(statement));
+          case _Select():
+            final selector = _evaluate(statement.selector);
+            var selected = statement.otherwise;
+            var matched = false;
+            for (final branch in statement.branches) {
+              for (final match in branch.matches) {
+                if (_caseMatches(selector, match)) {
+                  selected = branch.body;
+                  matched = true;
+                  break;
+                }
+              }
+              if (matched) break;
+            }
+            frames.add(_BodyFrame(selected));
+          case _For():
+            frames.add(_startFor(statement));
+          case _Invoke():
+            final arguments = <Object>[
+              for (final argument in statement.arguments) _evaluate(argument),
+            ];
+            _invoke(
+              module.procedures[statement.token.lower]!,
+              arguments,
               statement.token,
-              'For loop exceeds the remaining compilation work budget.',
+              needsResult: false,
             );
-          }
-          final type = symbols[statement.counter.lower]!.type;
-          var counter = start;
-          values[statement.counter.lower] = _convert(
-            type,
-            counter,
-            statement.counter,
-          );
-          for (var iteration = 0; iteration < count; iteration++) {
-            _tick(statement.token);
-            final exit = _execute(statement.body);
-            if (exit == _ExitKind.forLoop) break;
-            if (exit != null) return exit;
-            counter += step;
-            values[statement.counter.lower] = _convert(
-              type,
-              counter,
-              statement.counter,
-            );
-          }
-        case _Invoke():
-          final arguments = <Object>[
-            for (final argument in statement.arguments) _evaluate(argument),
-          ];
-          _invoke(
-            module.procedures[statement.token.lower]!,
-            arguments,
-            statement.token,
-            needsResult: false,
-          );
-        case _Exit():
-          return statement.kind;
+          case _Exit():
+            if (!_leaveLoop(frames, statement.kind)) return statement.kind;
+        }
+      }
+      return null;
+    } finally {
+      // Also restore context if expression evaluation or a budget check fails.
+      withValues.length = initialWithDepth;
+    }
+  }
+
+  _ForFrame _startFor(_For loop) {
+    final start = _loopInteger(_evaluate(loop.start), loop.start.token);
+    final end = _loopInteger(_evaluate(loop.end), loop.end.token);
+    final step = _loopInteger(_evaluate(loop.step), loop.step.token);
+    if (step == 0) {
+      context.unsupported(
+        loop.step.token,
+        'Step 0 is unsupported because it does not bound iteration.',
+      );
+    }
+    final count = step > 0
+        ? (start > end ? 0 : (end - start) ~/ step + 1)
+        : (start < end ? 0 : (start - end) ~/ -step + 1);
+    if (count > _maxWork - work) {
+      context.limit(
+        loop.token,
+        'For loop exceeds the remaining compilation work budget.',
+      );
+    }
+    final type = symbols[loop.counter.lower]!.type;
+    values[loop.counter.lower] = _convert(type, start, loop.counter);
+    return _ForFrame(loop, type, start, step, count);
+  }
+
+  bool _leaveLoop(List<_ExecutionFrame> frames, _ExitKind kind) {
+    if (kind != _ExitKind.forLoop && kind != _ExitKind.doLoop) return false;
+    while (frames.isNotEmpty) {
+      final frame = frames.removeLast();
+      if (frame is _WithFrame) withValues.removeLast();
+      if (kind == _ExitKind.forLoop && frame is _ForFrame) return true;
+      if (kind == _ExitKind.doLoop &&
+          frame is _ConditionalFrame &&
+          frame.loop.isDo) {
+        return true;
       }
     }
-    return null;
+    return false;
   }
 
   bool _continues(_ConditionalLoop loop) {
