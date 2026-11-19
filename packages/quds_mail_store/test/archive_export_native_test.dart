@@ -591,6 +591,116 @@ void main() {
       },
     );
 
+    for (final literal in ['{}', '[]', '0', '""', 'true', 'null']) {
+      test(
+        'preflight bounds shallow $literal values before JSON allocation',
+        () {
+          // Deliberately incomplete JSON: jsonDecode would report invalidInput.
+          // quotaExceeded proves the structural guard runs before decoding.
+          final input =
+              '{"format":"crispoffice-mail-export","version":1,"payload":'
+              '{"hostId":"host","profileId":"profile","createdAtMs":0,'
+              '"items":[${List<String>.filled(100, literal).join(',')}';
+          expect(
+            () => decodeMailArchiveExportManifest(
+              input,
+              const MailArchiveExportLimits(maxMessages: 1, maxOrigins: 1),
+            ),
+            _throwsCode(MailProblemCode.quotaExceeded),
+          );
+        },
+      );
+    }
+
+    test(
+      'preflight permits the exact legitimate message and origin budgets',
+      () {
+        final plan = MailArchiveExportPlan(
+          profile: _profile,
+          createdAt: DateTime.utc(2026, 11, 19),
+          items: [
+            for (var i = 0; i < originals.length; i++)
+              MailArchiveExportItem(
+                id: originals[i].sha256,
+                byteLength: originals[i].length,
+                origins: [
+                  const MailArchiveOrigin(source: r'JSON {"x":[0,{},""]} \\'),
+                  if (i == 0)
+                    const MailArchiveOrigin(source: 'Second', folder: '/Other'),
+                ],
+              ),
+          ],
+        );
+        final limits = MailArchiveExportLimits(
+          maxMessages: originals.length,
+          maxOrigins: originals.length + 1,
+        );
+        final encoded = encodeMailArchiveExportManifest(plan, limits);
+        final decoded = decodeMailArchiveExportManifest(encoded, limits);
+        expect(decoded.items.length, limits.maxMessages);
+        expect(
+          decoded.items.fold<int>(0, (n, item) => n + item.origins.length),
+          limits.maxOrigins,
+        );
+        expect(encodeMailArchiveExportManifest(decoded, limits), encoded);
+      },
+    );
+
+    test(
+      'preflight accepts the longest folder written with Unicode escapes',
+      () {
+        final plan = MailArchiveExportPlan(
+          profile: _profile,
+          createdAt: DateTime.utc(2026, 11, 19),
+          items: [
+            MailArchiveExportItem(
+              id: originals.first.sha256,
+              byteLength: originals.first.length,
+              origins: [
+                MailArchiveOrigin(source: 'Source', folder: '/${'ä' * 4095}'),
+              ],
+            ),
+          ],
+        );
+        final encoded = encodeMailArchiveExportManifest(
+          plan,
+          _limits,
+        ).replaceAll('ä', r'\u00e4');
+        final decoded = decodeMailArchiveExportManifest(encoded, _limits);
+        expect(
+          decoded.items.single.origins.single.folder,
+          plan.items.single.origins.single.folder,
+        );
+      },
+    );
+
+    test(
+      'preflight bounds an oversized unterminated string before decoding',
+      () {
+        final input = '{"x":"${'a' * (6 * 4096 + 2)}';
+        expect(
+          () => decodeMailArchiveExportManifest(input, _limits),
+          _throwsCode(MailProblemCode.quotaExceeded),
+        );
+      },
+    );
+
+    test('preflight bounds UTF-8 bytes without materializing an encoding', () {
+      for (final input in [
+        '"${'ä' * 90}',
+        '"${'😀' * 50}',
+        '"${'\ud800' * 90}',
+      ]) {
+        expect(
+          () => decodeMailArchiveExportManifest(
+            input,
+            const MailArchiveExportLimits(maxManifestBytes: 150),
+          ),
+          _throwsCode(MailProblemCode.quotaExceeded),
+        );
+      }
+    });
+
     test('invalid configuration and deep or malformed JSON are rejected', () {
       expect(
         () => encodeMailArchiveExportManifest(

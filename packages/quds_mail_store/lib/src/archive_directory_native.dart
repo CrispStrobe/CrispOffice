@@ -66,6 +66,7 @@ enum MailArchiveDirectoryIssue {
   symbolicLink,
   unsupportedFile,
   nonRegularFile,
+  exportStaging,
   recursionDisabled,
   invalidMetadata,
   entryLimit,
@@ -148,6 +149,9 @@ final class MailArchiveDirectoryEntry {
 /// ancestor components. Ancestors are rechecked before directory advancement
 /// and before/after file metadata reads. Unsupported files remain visible as
 /// skipped entries; their contents are never read.
+/// Export scratch directories named '.pending-*' are explicitly skipped when
+/// their parent contains a regular, non-link 'manifest.json' marker. The marker
+/// is not parsed or imported, and unrelated hidden directories are still walked.
 ///
 /// Dart path APIs do not offer an atomic open-relative-to-directory operation.
 /// These checks do not defend against hostile concurrent replacement between
@@ -205,6 +209,17 @@ Stream<MailArchiveDirectoryEntry> enumerateMailArchiveDirectory(
             ? MailArchiveDirectoryOutcome.skipped
             : MailArchiveDirectoryOutcome.error,
         issue: issue,
+        terminal: true,
+      );
+      return;
+    }
+    if (await _isExportStagingDirectory(absoluteRoot, cancellation)) {
+      yield walk.event(
+        MailArchiveDirectoryOutcome.skipped,
+        issue: MailArchiveDirectoryIssue.exportStaging,
+        absolutePath: absoluteRoot,
+        relativePath: '',
+        relativeFolder: '',
         terminal: true,
       );
       return;
@@ -315,6 +330,16 @@ Stream<MailArchiveDirectoryEntry> enumerateMailArchiveDirectory(
         continue;
       }
       if (type.type == FileSystemEntityType.directory) {
+        if (await _isExportStagingDirectory(absolutePath, cancellation)) {
+          yield walk.event(
+            MailArchiveDirectoryOutcome.skipped,
+            issue: MailArchiveDirectoryIssue.exportStaging,
+            absolutePath: absolutePath,
+            relativePath: relativePath,
+            relativeFolder: frame.relativePath,
+          );
+          continue;
+        }
         final issue = !recursive
             ? MailArchiveDirectoryIssue.recursionDisabled
             : frame.depth >= limits.maxDepth
@@ -509,6 +534,18 @@ bool _isMetadataLimit(MailArchiveDirectoryIssue issue) =>
 String _parentRelative(String path) {
   final separator = path.lastIndexOf('/');
   return separator < 0 ? '' : path.substring(0, separator);
+}
+
+Future<bool> _isExportStagingDirectory(
+  String path,
+  MailCancellationToken? cancellation,
+) async {
+  if (!p.basename(path).startsWith('.pending-')) return false;
+  final marker = await _checkedType(
+    p.join(p.dirname(path), 'manifest.json'),
+    cancellation,
+  );
+  return marker.issue == null && marker.type == FileSystemEntityType.file;
 }
 
 Future<({FileSystemEntityType? type, MailArchiveDirectoryIssue? issue})>
