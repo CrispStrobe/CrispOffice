@@ -337,6 +337,8 @@ void main() {
     () async {
       await _seed(directory);
       var database = sqlite.sqlite3.open(_archivePath(directory));
+      final originalVersion =
+          database.select('PRAGMA user_version').single.values.single as int;
       final before = database
           .select('SELECT id,raw,metadata_hash FROM archive_items')
           .single;
@@ -358,7 +360,7 @@ void main() {
         expect(after['id'], before['id']);
         expect(after['raw'], before['raw']);
         expect(after['metadata_hash'], before['metadata_hash']);
-        database.execute('PRAGMA user_version=1');
+        database.execute('PRAGMA user_version=$originalVersion');
       } finally {
         database.close();
       }

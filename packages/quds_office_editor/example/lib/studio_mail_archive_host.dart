@@ -34,8 +34,15 @@ abstract interface class StudioMailArchiveStore {
   Future<MailArchiveRestoreReport> restoreExport(
     MailArchiveRestorePlan plan, {
     bool indexAttachmentText = false,
+    bool resume = false,
     MailCancellationToken? cancellation,
     MailArchiveRestoreProgressSink? onProgress,
+  });
+  Future<MailResult<List<MailArchiveRestoreCheckpoint>>>
+  listRestoreCheckpoints();
+  Future<MailResult<MailUnit>> forgetRestoreCheckpoint(
+    String manifestSha256, {
+    MailCancellationToken? cancellation,
   });
   Future<MailResult<List<MailArchiveOrigin>>> listOrigins(String id);
   Future<MailResult<MailArchiveStats>> statistics();
@@ -160,13 +167,28 @@ final class _ArchiveStore implements StudioMailArchiveStore {
   Future<MailArchiveRestoreReport> restoreExport(
     MailArchiveRestorePlan plan, {
     bool indexAttachmentText = false,
+    bool resume = false,
     MailCancellationToken? cancellation,
     MailArchiveRestoreProgressSink? onProgress,
   }) => _restorer.restore(
     plan,
     indexAttachmentText: indexAttachmentText,
+    resume: resume,
     cancellation: cancellation,
     onProgress: onProgress,
+  );
+
+  @override
+  Future<MailResult<List<MailArchiveRestoreCheckpoint>>>
+  listRestoreCheckpoints() => archive.listRestoreCheckpoints();
+
+  @override
+  Future<MailResult<MailUnit>> forgetRestoreCheckpoint(
+    String manifestSha256, {
+    MailCancellationToken? cancellation,
+  }) => archive.forgetRestoreCheckpoint(
+    manifestSha256,
+    cancellation: cancellation,
   );
 
   @override

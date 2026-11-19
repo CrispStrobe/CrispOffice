@@ -1,0 +1,797 @@
+{
+  "schema_version": 1,
+  "repository": "CrispStrobe/quds_office_suite",
+  "upstream_repository": "MohammedAsaadAsaad/quds_office_suite",
+  "reviewed_at_utc": "2026-11-19T18:29:01.747Z",
+  "scope": "Read-only initial reconciliation review for next mail archive milestone. GitHub API branch/open PR/recent PR and upstream reads, corroborated by local Git. This record does not itself integrate or qualify source.",
+  "initial_main": "caf378f40fd5bda50f504a6816404d01d8bbb8f8",
+  "recommended_integration_head": "596430dcb816dd418204d62e78f4dc518afdc0e1",
+  "fork_branches": [
+    {
+      "ref": "refs/heads/codex/crispoffice-gui-20261119",
+      "sha": "bba11ff1b23b2e8c0cdc0d872ce31394ada83bf2",
+      "object_present_locally": true,
+      "ancestor_of_initial_main": true,
+      "ancestor_of_recommended_head": true,
+      "classification": "ancestor"
+    },
+    {
+      "ref": "refs/heads/codex/crispoffice-layout-theme-20261119",
+      "sha": "2d7360a217b51c34ccf72eb5ed78c82ccd20bae5",
+      "object_present_locally": true,
+      "ancestor_of_initial_main": false,
+      "ancestor_of_recommended_head": true,
+      "classification": "ancestor"
+    },
+    {
+      "ref": "refs/heads/codex/mail-archive-restore-20261119",
+      "sha": "6275d21246040e03f6264b27171992c88d1474a2",
+      "object_present_locally": true,
+      "ancestor_of_initial_main": true,
+      "ancestor_of_recommended_head": true,
+      "classification": "ancestor"
+    },
+    {
+      "ref": "refs/heads/codex/odt-field-continuation-20261117",
+      "sha": "c34945761e7991f5fe49037d79529acdd260b31c",
+      "object_present_locally": true,
+      "ancestor_of_initial_main": false,
+      "ancestor_of_recommended_head": false,
+      "classification": "historical_equivalent",
+      "equivalent": "2c47165d01d01cc883135a434ac9f6591ce6e770",
+      "fresh_delta_blob_proof_passed": true
+    },
+    {
+      "ref": "refs/heads/codex/vba-arrays-foreach-20261119",
+      "sha": "596430dcb816dd418204d62e78f4dc518afdc0e1",
+      "object_present_locally": true,
+      "ancestor_of_initial_main": false,
+      "ancestor_of_recommended_head": true,
+      "classification": "ancestor"
+    },
+    {
+      "ref": "refs/heads/codex/vba-control-flow-20261119",
+      "sha": "dde2b56066746223b2b313cbfb0ce8dba55dc6bd",
+      "object_present_locally": true,
+      "ancestor_of_initial_main": true,
+      "ancestor_of_recommended_head": true,
+      "classification": "ancestor"
+    },
+    {
+      "ref": "refs/heads/docs/ods-color-scale",
+      "sha": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+      "object_present_locally": true,
+      "ancestor_of_initial_main": false,
+      "ancestor_of_recommended_head": false,
+      "classification": "historical_equivalent",
+      "equivalent": "1ec0a81bc43dc444872fbffffa36a8affce307a5",
+      "fresh_delta_blob_proof_passed": true
+    },
+    {
+      "ref": "refs/heads/docs/ods-data-bar",
+      "sha": "69d14f84cabd3931b7640c1654b401c89faba766",
+      "object_present_locally": true,
+      "ancestor_of_initial_main": false,
+      "ancestor_of_recommended_head": false,
+      "classification": "historical_equivalent",
+      "equivalent": "38abbbb744d1d5dab1eb9162d584370d661fef24",
+      "fresh_delta_blob_proof_passed": true
+    },
+    {
+      "ref": "refs/heads/feat/ods-color-scale",
+      "sha": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+      "object_present_locally": true,
+      "ancestor_of_initial_main": false,
+      "ancestor_of_recommended_head": false,
+      "classification": "historical_equivalent",
+      "equivalent": "4584d5f319aab198f1d705f48b4d6647e6cbabea",
+      "fresh_delta_blob_proof_passed": true
+    },
+    {
+      "ref": "refs/heads/feat/ods-data-bar",
+      "sha": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+      "object_present_locally": true,
+      "ancestor_of_initial_main": false,
+      "ancestor_of_recommended_head": false,
+      "classification": "historical_equivalent",
+      "equivalent": "b3f41eb4b4bca8ca13676b4114891ea6d9185043",
+      "fresh_delta_blob_proof_passed": true
+    },
+    {
+      "ref": "refs/heads/feat/ods-dynamic-validation-links",
+      "sha": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+      "object_present_locally": true,
+      "ancestor_of_initial_main": false,
+      "ancestor_of_recommended_head": false,
+      "classification": "historical_equivalent",
+      "equivalent": "e87494ada0729878981dc0cc60fdb07bcd5116d4",
+      "fresh_delta_blob_proof_passed": true
+    },
+    {
+      "ref": "refs/heads/feat/ods-icon-sets",
+      "sha": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
+      "object_present_locally": true,
+      "ancestor_of_initial_main": false,
+      "ancestor_of_recommended_head": false,
+      "classification": "historical_equivalent",
+      "equivalent": "c84d5e16024c502f6c451fd04b9807b1e65f20d3",
+      "fresh_delta_blob_proof_passed": true
+    },
+    {
+      "ref": "refs/heads/feat/ods-time-period-conditions",
+      "sha": "7ef09f2408f467c65427700e65907531ecb26acb",
+      "object_present_locally": true,
+      "ancestor_of_initial_main": false,
+      "ancestor_of_recommended_head": false,
+      "classification": "historical_equivalent",
+      "equivalent": "6f40365ae7708172c58e9aee38bc363d99327355",
+      "fresh_delta_blob_proof_passed": true
+    },
+    {
+      "ref": "refs/heads/integrate/macbook-current-20261118",
+      "sha": "f383c826205e321eda3ed3bdbcd584e9a2d4da14",
+      "object_present_locally": true,
+      "ancestor_of_initial_main": true,
+      "ancestor_of_recommended_head": true,
+      "classification": "ancestor"
+    },
+    {
+      "ref": "refs/heads/integrate/office-union-148",
+      "sha": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+      "object_present_locally": true,
+      "ancestor_of_initial_main": false,
+      "ancestor_of_recommended_head": false,
+      "classification": "historical_equivalent",
+      "equivalent": "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4",
+      "fresh_delta_blob_proof_passed": true
+    },
+    {
+      "ref": "refs/heads/main",
+      "sha": "caf378f40fd5bda50f504a6816404d01d8bbb8f8",
+      "object_present_locally": true,
+      "ancestor_of_initial_main": true,
+      "ancestor_of_recommended_head": true,
+      "classification": "ancestor"
+    }
+  ],
+  "upstream_branches": [
+    {
+      "ref": "refs/heads/ci/flutter-workspace",
+      "sha": "aca2f66941832bd0b19b436baeab1656a1b7de98",
+      "object_present_locally": true,
+      "ancestor_of_initial_main": true,
+      "ancestor_of_recommended_head": true,
+      "classification": "ancestor"
+    },
+    {
+      "ref": "refs/heads/cursor/class-certificates-2db8",
+      "sha": "f45099688e7a3f67a1302efdb442830d052f2240",
+      "object_present_locally": true,
+      "ancestor_of_initial_main": true,
+      "ancestor_of_recommended_head": true,
+      "classification": "ancestor"
+    },
+    {
+      "ref": "refs/heads/cursor/cloud-agent-1790580069020-0rk1h",
+      "sha": "9930be8df44ffe117fb22778c514eea0ee73ce21",
+      "object_present_locally": true,
+      "ancestor_of_initial_main": true,
+      "ancestor_of_recommended_head": true,
+      "classification": "ancestor"
+    },
+    {
+      "ref": "refs/heads/main",
+      "sha": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+      "object_present_locally": true,
+      "ancestor_of_initial_main": true,
+      "ancestor_of_recommended_head": true,
+      "classification": "ancestor"
+    }
+  ],
+  "open_prs": [
+    {
+      "number": 211,
+      "title": "Make Layout precise and compact, fix dark appearance, clarify document modes",
+      "state": "open",
+      "draft": true,
+      "head_ref": "codex/crispoffice-layout-theme-20261119",
+      "head_sha": "2d7360a217b51c34ccf72eb5ed78c82ccd20bae5",
+      "base_sha": "cf59efa99232a3fd26cf21ce7f2382402e576f9b",
+      "updated_at_utc": "2026-11-19T18:21:07Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/211",
+      "ancestor_of_recommended_head": true,
+      "ancestor_of_initial_main": false
+    },
+    {
+      "number": 210,
+      "title": "Extend bounded VBA macros with typed arrays and For Each",
+      "state": "open",
+      "draft": true,
+      "head_ref": "codex/vba-arrays-foreach-20261119",
+      "head_sha": "596430dcb816dd418204d62e78f4dc518afdc0e1",
+      "base_sha": "caf378f40fd5bda50f504a6816404d01d8bbb8f8",
+      "updated_at_utc": "2026-11-19T18:26:31Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/210",
+      "ancestor_of_recommended_head": true,
+      "ancestor_of_initial_main": false
+    }
+  ],
+  "recent_prs": [
+    {
+      "number": 210,
+      "title": "Extend bounded VBA macros with typed arrays and For Each",
+      "state": "open",
+      "draft": true,
+      "head_ref": "codex/vba-arrays-foreach-20261119",
+      "head_sha": "596430dcb816dd418204d62e78f4dc518afdc0e1",
+      "merged_at_utc": null,
+      "merge_sha": "cc737ed9cfb59c05394afd1c7c4f8859835494e4",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/210"
+    },
+    {
+      "number": 211,
+      "title": "Make Layout precise and compact, fix dark appearance, clarify document modes",
+      "state": "open",
+      "draft": true,
+      "head_ref": "codex/crispoffice-layout-theme-20261119",
+      "head_sha": "2d7360a217b51c34ccf72eb5ed78c82ccd20bae5",
+      "merged_at_utc": null,
+      "merge_sha": "bfa8a0a96d376fcc52dfdbeed95e57bbd48eb06b",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/211"
+    },
+    {
+      "number": 209,
+      "title": "Restore exported mail archives with verified originals and provenance",
+      "state": "closed",
+      "draft": false,
+      "head_ref": "codex/mail-archive-restore-20261119",
+      "head_sha": "6275d21246040e03f6264b27171992c88d1474a2",
+      "merged_at_utc": "2026-11-19T18:16:42Z",
+      "merge_sha": "caf378f40fd5bda50f504a6816404d01d8bbb8f8",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/209"
+    },
+    {
+      "number": 207,
+      "title": "Extend bounded VBA macros with conditional loops and Select Case",
+      "state": "closed",
+      "draft": false,
+      "head_ref": "codex/vba-control-flow-20261119",
+      "head_sha": "dde2b56066746223b2b313cbfb0ce8dba55dc6bd",
+      "merged_at_utc": "2026-11-19T17:49:23Z",
+      "merge_sha": "cf59efa99232a3fd26cf21ce7f2382402e576f9b",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/207"
+    },
+    {
+      "number": 208,
+      "title": "[skip ci] MacBook build integration: resolve temp folder in Studio directory-import tests",
+      "state": "closed",
+      "draft": false,
+      "head_ref": "integrate/macbook-build-20261119",
+      "head_sha": "de9d21f9014060c14263ce17fe323d5fdb063d11",
+      "merged_at_utc": "2026-11-19T17:39:56Z",
+      "merge_sha": "bcb061e163834f9a5a6e0b61571ffda909bdd61e",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/208"
+    },
+    {
+      "number": 204,
+      "title": "Extend VBA macros with reusable procedures and scalar functions",
+      "state": "closed",
+      "draft": false,
+      "head_ref": "codex/vba-procedures-20261119",
+      "head_sha": "3db248be978b24d0693d1133505d9be200fd1256",
+      "merged_at_utc": "2026-11-19T16:48:52Z",
+      "merge_sha": "304d4bff45da24f22cee420ec464882d7c7ce516",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/204"
+    },
+    {
+      "number": 202,
+      "title": "Extend Office macros with a bounded Excel VBA compiler",
+      "state": "closed",
+      "draft": true,
+      "head_ref": "codex/vba-excel-macros",
+      "head_sha": "d98c8ae020a60715fbb02f5332b2f3414fb6805b",
+      "merged_at_utc": null,
+      "merge_sha": "2309cb3ca7d482bf741d891515216ce6306bf8aa",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/202"
+    },
+    {
+      "number": 197,
+      "title": "Add on-premises Exchange EWS support",
+      "state": "closed",
+      "draft": false,
+      "head_ref": "feat/ews-on-premises",
+      "head_sha": "f20b3c61d28918cd75526c64852c41fae943acf3",
+      "merged_at_utc": "2026-11-19T14:56:01Z",
+      "merge_sha": "f2131f3813d042fc6f3b16813c5ba0937e6ff0ec",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/197"
+    },
+    {
+      "number": 196,
+      "title": "Arabic morphology: binary proofing bundle and compact ABI",
+      "state": "closed",
+      "draft": false,
+      "head_ref": "feat/arabic-morph-binary-20261119",
+      "head_sha": "555fc99fdeb8ef7f3043513203cb16b243a4a9d7",
+      "merged_at_utc": "2026-11-19T14:04:12Z",
+      "merge_sha": "1427f69d2599fd507e68c7b23e6d278de94c8737",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/196"
+    },
+    {
+      "number": 205,
+      "title": "Add resumable bulk mail export and recursive archive import [skip ci]",
+      "state": "closed",
+      "draft": false,
+      "head_ref": "codex/mail-archive-portability-20261119",
+      "head_sha": "82b20dc8b52d0b95efeff590c6023ed84704fa7a",
+      "merged_at_utc": "2026-11-19T17:27:22Z",
+      "merge_sha": "0c29b5d8a0a92148dcd95f3282b4d43c462be20d",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/205"
+    },
+    {
+      "number": 203,
+      "title": "Add durable mail archiving, indexing and search [skip ci]",
+      "state": "closed",
+      "draft": false,
+      "head_ref": "codex/mail-archive-search-20261119",
+      "head_sha": "aa9fb9de14347ed69182be90f13c99a443a0ecbb",
+      "merged_at_utc": "2026-11-19T16:26:50Z",
+      "merge_sha": "81ae98688860599f118748afca19bdb2ec45da37",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/203"
+    },
+    {
+      "number": 201,
+      "title": "Add Office macros with shared MCP commands and language adapters",
+      "state": "closed",
+      "draft": true,
+      "head_ref": "codex/mcp-aligned-macros",
+      "head_sha": "3c1764f5ff8bf9f89e090ef4e04e3142c4ccf90a",
+      "merged_at_utc": "2026-11-19T16:26:52Z",
+      "merge_sha": "9f87eff5e9c3ade6a13f5a816b7b42313e5a9f74",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/201"
+    }
+  ],
+  "integration_recommendation": {
+    "action": "Integrate immutable head 596430dcb816dd418204d62e78f4dc518afdc0e1 with its complete ancestry before new mail changes; this already includes the latest inspected PR211 head and main.",
+    "merge_parents": [
+      "2aff66a8540beb2015e606e67e46d228d7bf695e",
+      "2d7360a217b51c34ccf72eb5ed78c82ccd20bae5",
+      "caf378f40fd5bda50f504a6816404d01d8bbb8f8"
+    ],
+    "ahead_of_initial_main": 15,
+    "behind_initial_main": 0,
+    "production_scope": "Bounded VBA fixed arrays and For Each, precise Word page/paragraph dialogs and compact ribbon choices, dark document rendering and Studio theme, document mode presentation.",
+    "fixture_scope": "Latest commit adds MaterialApp Overlay hosts and explicit controller cleanup for eight existing embed_test.dart fixtures, retaining assertions; requires local qualification.",
+    "refresh_before_publish": true
+  },
+  "qualification": {
+    "actions_or_status_endpoints_queried": false,
+    "both_open_prs_remain_draft": true,
+    "reviews_at_observation": {
+      "210": [],
+      "211": []
+    },
+    "authored_engine_final": {
+      "source_commit": "c3eaf57c85d363b1453f2a3407ba62768b0e2c08",
+      "success": true,
+      "completed_at_utc": "2026-11-19T18:13:38.737199+00:00",
+      "source_inputs_changed": false,
+      "scope": "614-test macro acceptance and five JS smokes recorded by author; full raw-event replay was not performed by this review."
+    },
+    "authored_gui_initial": {
+      "passed": 199,
+      "failed": 8,
+      "skipped": 0,
+      "classification": "Explicit historical failed qualification, not final acceptance; eight Overlay fixture failures reproduced on baseline."
+    },
+    "authored_fixture_probe": {
+      "passed": 8,
+      "failed": 0,
+      "skipped": 0,
+      "limitation": "README reports focused reporter success; shell exit statuses were not separately captured. Full final cohort is still necessary."
+    },
+    "final_gui_receipt_present_at_inspected_head": false,
+    "missing_final_gui_path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-final",
+    "suggested_local_acceptance": [
+      "VBA arrays/compiler/runtime/MCP/CLI suites and JavaScript smoke",
+      "Word page layout transaction and dark-document/slide/chrome suites",
+      "Existing embed, selection, tabs, conditional-sheet, headers/footers, editor regressions",
+      "New Studio layout/theme, page layout, paragraph, slide/sheet menus and affected comment/review/document-mode suites",
+      "Existing mail archive/import/restore suites on combined source"
+    ],
+    "source_review_limit": "This review establishes inventory and provenance, not correctness. Existing author receipts should be attributed and not counted as newly executed tests."
+  },
+  "sources": [
+    "https://api.github.com/repos/CrispStrobe/quds_office_suite/branches?per_page=100",
+    "https://api.github.com/repos/CrispStrobe/quds_office_suite/pulls?state=open&per_page=100",
+    "https://api.github.com/repos/CrispStrobe/quds_office_suite/pulls?state=all&sort=updated&direction=desc&per_page=12",
+    "https://api.github.com/repos/MohammedAsaadAsaad/quds_office_suite/branches?per_page=100",
+    "https://github.com/CrispStrobe/quds_office_suite/pull/210",
+    "https://github.com/CrispStrobe/quds_office_suite/pull/211",
+    "https://github.com/CrispStrobe/quds_office_suite/blob/596430dcb816dd418204d62e78f4dc518afdc0e1/docs/validation/office-vba-arrays-20261119/incoming-layout-theme/README.md"
+  ],
+  "recent_pr_local_checks": [
+    {
+      "number": 210,
+      "head_sha": "596430dcb816dd418204d62e78f4dc518afdc0e1",
+      "object_present_locally": true,
+      "ancestor_of_recommended_head": true
+    },
+    {
+      "number": 211,
+      "head_sha": "2d7360a217b51c34ccf72eb5ed78c82ccd20bae5",
+      "object_present_locally": true,
+      "ancestor_of_recommended_head": true
+    },
+    {
+      "number": 209,
+      "head_sha": "6275d21246040e03f6264b27171992c88d1474a2",
+      "object_present_locally": true,
+      "ancestor_of_recommended_head": true
+    },
+    {
+      "number": 207,
+      "head_sha": "dde2b56066746223b2b313cbfb0ce8dba55dc6bd",
+      "object_present_locally": true,
+      "ancestor_of_recommended_head": true
+    },
+    {
+      "number": 208,
+      "head_sha": "de9d21f9014060c14263ce17fe323d5fdb063d11",
+      "object_present_locally": true,
+      "ancestor_of_recommended_head": true
+    },
+    {
+      "number": 204,
+      "head_sha": "3db248be978b24d0693d1133505d9be200fd1256",
+      "object_present_locally": true,
+      "ancestor_of_recommended_head": true
+    },
+    {
+      "number": 202,
+      "head_sha": "d98c8ae020a60715fbb02f5332b2f3414fb6805b",
+      "object_present_locally": true,
+      "ancestor_of_recommended_head": true
+    },
+    {
+      "number": 197,
+      "head_sha": "f20b3c61d28918cd75526c64852c41fae943acf3",
+      "object_present_locally": true,
+      "ancestor_of_recommended_head": true
+    },
+    {
+      "number": 196,
+      "head_sha": "555fc99fdeb8ef7f3043513203cb16b243a4a9d7",
+      "object_present_locally": true,
+      "ancestor_of_recommended_head": true
+    },
+    {
+      "number": 205,
+      "head_sha": "82b20dc8b52d0b95efeff590c6023ed84704fa7a",
+      "object_present_locally": true,
+      "ancestor_of_recommended_head": true
+    },
+    {
+      "number": 203,
+      "head_sha": "aa9fb9de14347ed69182be90f13c99a443a0ecbb",
+      "object_present_locally": true,
+      "ancestor_of_recommended_head": true
+    },
+    {
+      "number": 201,
+      "head_sha": "3c1764f5ff8bf9f89e090ef4e04e3142c4ccf90a",
+      "object_present_locally": true,
+      "ancestor_of_recommended_head": true
+    }
+  ],
+  "historical_equivalence": {
+    "basis_path": "docs/validation/mail-archive-restore-20261119/reconciliation.json",
+    "basis_commit": "caf378f40fd5bda50f504a6816404d01d8bbb8f8",
+    "basis_sha256": "6b27ff7c6427b99818800ff8df0b289d56a6f9653c8257d292d9ae66c7d00724",
+    "method": "Reuse exact inherited SHA mappings; freshly compare complete changed path/mode/type/blob entries when original commits are locally present; always recheck equivalent ancestry. No obsolete payload is reapplied.",
+    "proofs": [
+      {
+        "original": "c34945761e7991f5fe49037d79529acdd260b31c",
+        "equivalent": "2c47165d01d01cc883135a434ac9f6591ce6e770",
+        "method": "exact_complete_delta_path_mode_type_blob_identity",
+        "common_base": "e3a38789359adaa33b2da1345c952fa1c2d8aebb",
+        "common_base_matches_prior": true,
+        "complete_original_delta_paths": 37,
+        "equivalent_is_ancestor": true,
+        "passed": true,
+        "inherited_basis": "docs/validation/mail-archive-restore-20261119/reconciliation.json",
+        "inherited_basis_sha256": "6b27ff7c6427b99818800ff8df0b289d56a6f9653c8257d292d9ae66c7d00724",
+        "equivalent_ancestor_of_initial_main": true,
+        "equivalent_ancestor_of_recommended_head": true,
+        "original_commit_available_locally": true,
+        "fresh_common_base": "e3a38789359adaa33b2da1345c952fa1c2d8aebb",
+        "fresh_common_base_matches": true,
+        "fresh_complete_delta_path_count": 37,
+        "fresh_delta_blob_mismatches": [],
+        "fresh_proof_passed": true
+      },
+      {
+        "original": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+        "equivalent": "1ec0a81bc43dc444872fbffffa36a8affce307a5",
+        "method": "exact_complete_delta_path_mode_type_blob_identity",
+        "common_base": "4584d5f319aab198f1d705f48b4d6647e6cbabea",
+        "common_base_matches_prior": true,
+        "complete_original_delta_paths": 1,
+        "equivalent_is_ancestor": true,
+        "passed": true,
+        "inherited_basis": "docs/validation/mail-archive-restore-20261119/reconciliation.json",
+        "inherited_basis_sha256": "6b27ff7c6427b99818800ff8df0b289d56a6f9653c8257d292d9ae66c7d00724",
+        "equivalent_ancestor_of_initial_main": true,
+        "equivalent_ancestor_of_recommended_head": true,
+        "original_commit_available_locally": true,
+        "fresh_common_base": "4584d5f319aab198f1d705f48b4d6647e6cbabea",
+        "fresh_common_base_matches": true,
+        "fresh_complete_delta_path_count": 1,
+        "fresh_delta_blob_mismatches": [],
+        "fresh_proof_passed": true
+      },
+      {
+        "original": "69d14f84cabd3931b7640c1654b401c89faba766",
+        "equivalent": "38abbbb744d1d5dab1eb9162d584370d661fef24",
+        "method": "exact_complete_delta_path_mode_type_blob_identity",
+        "common_base": "b3f41eb4b4bca8ca13676b4114891ea6d9185043",
+        "common_base_matches_prior": true,
+        "complete_original_delta_paths": 1,
+        "equivalent_is_ancestor": true,
+        "passed": true,
+        "inherited_basis": "docs/validation/mail-archive-restore-20261119/reconciliation.json",
+        "inherited_basis_sha256": "6b27ff7c6427b99818800ff8df0b289d56a6f9653c8257d292d9ae66c7d00724",
+        "equivalent_ancestor_of_initial_main": true,
+        "equivalent_ancestor_of_recommended_head": true,
+        "original_commit_available_locally": true,
+        "fresh_common_base": "b3f41eb4b4bca8ca13676b4114891ea6d9185043",
+        "fresh_common_base_matches": true,
+        "fresh_complete_delta_path_count": 1,
+        "fresh_delta_blob_mismatches": [],
+        "fresh_proof_passed": true
+      },
+      {
+        "original": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+        "equivalent": "4584d5f319aab198f1d705f48b4d6647e6cbabea",
+        "method": "exact_complete_delta_path_mode_type_blob_identity",
+        "common_base": "e3a38789359adaa33b2da1345c952fa1c2d8aebb",
+        "common_base_matches_prior": true,
+        "complete_original_delta_paths": 7,
+        "equivalent_is_ancestor": true,
+        "passed": true,
+        "inherited_basis": "docs/validation/mail-archive-restore-20261119/reconciliation.json",
+        "inherited_basis_sha256": "6b27ff7c6427b99818800ff8df0b289d56a6f9653c8257d292d9ae66c7d00724",
+        "equivalent_ancestor_of_initial_main": true,
+        "equivalent_ancestor_of_recommended_head": true,
+        "original_commit_available_locally": true,
+        "fresh_common_base": "e3a38789359adaa33b2da1345c952fa1c2d8aebb",
+        "fresh_common_base_matches": true,
+        "fresh_complete_delta_path_count": 7,
+        "fresh_delta_blob_mismatches": [],
+        "fresh_proof_passed": true
+      },
+      {
+        "original": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+        "equivalent": "b3f41eb4b4bca8ca13676b4114891ea6d9185043",
+        "method": "exact_complete_delta_path_mode_type_blob_identity",
+        "common_base": "d754bf15b07a24c8a86c8dce339ca749fecd9531",
+        "common_base_matches_prior": true,
+        "complete_original_delta_paths": 8,
+        "equivalent_is_ancestor": true,
+        "passed": true,
+        "inherited_basis": "docs/validation/mail-archive-restore-20261119/reconciliation.json",
+        "inherited_basis_sha256": "6b27ff7c6427b99818800ff8df0b289d56a6f9653c8257d292d9ae66c7d00724",
+        "equivalent_ancestor_of_initial_main": true,
+        "equivalent_ancestor_of_recommended_head": true,
+        "original_commit_available_locally": true,
+        "fresh_common_base": "d754bf15b07a24c8a86c8dce339ca749fecd9531",
+        "fresh_common_base_matches": true,
+        "fresh_complete_delta_path_count": 8,
+        "fresh_delta_blob_mismatches": [],
+        "fresh_proof_passed": true
+      },
+      {
+        "original": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+        "equivalent": "e87494ada0729878981dc0cc60fdb07bcd5116d4",
+        "method": "exact_complete_delta_path_mode_type_blob_identity",
+        "common_base": "4eaca83b192897edad82658107dfeb5bcbed0920",
+        "common_base_matches_prior": true,
+        "complete_original_delta_paths": 4,
+        "equivalent_is_ancestor": true,
+        "passed": true,
+        "inherited_basis": "docs/validation/mail-archive-restore-20261119/reconciliation.json",
+        "inherited_basis_sha256": "6b27ff7c6427b99818800ff8df0b289d56a6f9653c8257d292d9ae66c7d00724",
+        "equivalent_ancestor_of_initial_main": true,
+        "equivalent_ancestor_of_recommended_head": true,
+        "original_commit_available_locally": true,
+        "fresh_common_base": "4eaca83b192897edad82658107dfeb5bcbed0920",
+        "fresh_common_base_matches": true,
+        "fresh_complete_delta_path_count": 4,
+        "fresh_delta_blob_mismatches": [],
+        "fresh_proof_passed": true
+      },
+      {
+        "original": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
+        "equivalent": "c84d5e16024c502f6c451fd04b9807b1e65f20d3",
+        "method": "exact_complete_delta_path_mode_type_blob_identity",
+        "common_base": "16e2477ff93f7a1ec5c6ed78491f2716ce4d1658",
+        "common_base_matches_prior": true,
+        "complete_original_delta_paths": 7,
+        "equivalent_is_ancestor": true,
+        "passed": true,
+        "inherited_basis": "docs/validation/mail-archive-restore-20261119/reconciliation.json",
+        "inherited_basis_sha256": "6b27ff7c6427b99818800ff8df0b289d56a6f9653c8257d292d9ae66c7d00724",
+        "equivalent_ancestor_of_initial_main": true,
+        "equivalent_ancestor_of_recommended_head": true,
+        "original_commit_available_locally": true,
+        "fresh_common_base": "16e2477ff93f7a1ec5c6ed78491f2716ce4d1658",
+        "fresh_common_base_matches": true,
+        "fresh_complete_delta_path_count": 7,
+        "fresh_delta_blob_mismatches": [],
+        "fresh_proof_passed": true
+      },
+      {
+        "original": "7ef09f2408f467c65427700e65907531ecb26acb",
+        "equivalent": "6f40365ae7708172c58e9aee38bc363d99327355",
+        "method": "exact_complete_delta_path_mode_type_blob_identity",
+        "common_base": "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4",
+        "common_base_matches_prior": true,
+        "complete_original_delta_paths": 7,
+        "equivalent_is_ancestor": true,
+        "passed": true,
+        "inherited_basis": "docs/validation/mail-archive-restore-20261119/reconciliation.json",
+        "inherited_basis_sha256": "6b27ff7c6427b99818800ff8df0b289d56a6f9653c8257d292d9ae66c7d00724",
+        "equivalent_ancestor_of_initial_main": true,
+        "equivalent_ancestor_of_recommended_head": true,
+        "original_commit_available_locally": true,
+        "fresh_common_base": "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4",
+        "fresh_common_base_matches": true,
+        "fresh_complete_delta_path_count": 7,
+        "fresh_delta_blob_mismatches": [],
+        "fresh_proof_passed": true
+      },
+      {
+        "original": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+        "equivalent": "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4",
+        "method": "exact_complete_tree_identity",
+        "common_base": "bb5556e8cc4cb73e2c668b5319a2844a20c6c50c",
+        "common_base_matches_prior": true,
+        "complete_original_delta_paths": 221,
+        "equivalent_is_ancestor": true,
+        "passed": true,
+        "inherited_basis": "docs/validation/mail-archive-restore-20261119/reconciliation.json",
+        "inherited_basis_sha256": "6b27ff7c6427b99818800ff8df0b289d56a6f9653c8257d292d9ae66c7d00724",
+        "equivalent_ancestor_of_initial_main": true,
+        "equivalent_ancestor_of_recommended_head": true,
+        "original_commit_available_locally": true,
+        "fresh_common_base": "bb5556e8cc4cb73e2c668b5319a2844a20c6c50c",
+        "fresh_common_base_matches": true,
+        "fresh_complete_delta_path_count": 221,
+        "fresh_delta_blob_mismatches": [],
+        "fresh_complete_tree_equal": true,
+        "fresh_proof_passed": true
+      },
+      {
+        "original": "128a187d69555db80890c2a1945a442b951f9c74",
+        "equivalent": "d790bca444eef0e160a75ce3d8cb555af541004f",
+        "method": "exact_complete_delta_path_mode_type_blob_identity",
+        "common_base": "fdec8c24fde94fbffee212a7541b0cb236f682e4",
+        "common_base_matches_prior": true,
+        "complete_original_delta_paths": 1,
+        "equivalent_is_ancestor": true,
+        "passed": true,
+        "inherited_basis": "docs/validation/mail-archive-restore-20261119/reconciliation.json",
+        "inherited_basis_sha256": "6b27ff7c6427b99818800ff8df0b289d56a6f9653c8257d292d9ae66c7d00724",
+        "equivalent_ancestor_of_initial_main": true,
+        "equivalent_ancestor_of_recommended_head": true,
+        "original_commit_available_locally": true,
+        "fresh_common_base": "fdec8c24fde94fbffee212a7541b0cb236f682e4",
+        "fresh_common_base_matches": true,
+        "fresh_complete_delta_path_count": 1,
+        "fresh_delta_blob_mismatches": [],
+        "fresh_proof_passed": true
+      },
+      {
+        "original": "b8ddaaeb581e010467de304c828764d353149102",
+        "equivalent": "e87494ada0729878981dc0cc60fdb07bcd5116d4",
+        "method": "exact_complete_delta_path_mode_type_blob_identity",
+        "common_base": "d754bf15b07a24c8a86c8dce339ca749fecd9531",
+        "common_base_matches_prior": true,
+        "complete_original_delta_paths": 1,
+        "equivalent_is_ancestor": true,
+        "passed": true,
+        "inherited_basis": "docs/validation/mail-archive-restore-20261119/reconciliation.json",
+        "inherited_basis_sha256": "6b27ff7c6427b99818800ff8df0b289d56a6f9653c8257d292d9ae66c7d00724",
+        "equivalent_ancestor_of_initial_main": true,
+        "equivalent_ancestor_of_recommended_head": true,
+        "original_commit_available_locally": true,
+        "fresh_common_base": "d754bf15b07a24c8a86c8dce339ca749fecd9531",
+        "fresh_common_base_matches": true,
+        "fresh_complete_delta_path_count": 1,
+        "fresh_delta_blob_mismatches": [],
+        "fresh_proof_passed": true
+      },
+      {
+        "original": "a7f144cc983f2df7c16d88f8644ad67a9254c3d0",
+        "equivalent": "c08fdc703acd986850ce6d1c079a0576fd438046",
+        "method": "exact_complete_delta_path_mode_type_blob_identity",
+        "common_base": "c84d5e16024c502f6c451fd04b9807b1e65f20d3",
+        "common_base_matches_prior": true,
+        "complete_original_delta_paths": 1,
+        "equivalent_is_ancestor": true,
+        "passed": true,
+        "inherited_basis": "docs/validation/mail-archive-restore-20261119/reconciliation.json",
+        "inherited_basis_sha256": "6b27ff7c6427b99818800ff8df0b289d56a6f9653c8257d292d9ae66c7d00724",
+        "equivalent_ancestor_of_initial_main": true,
+        "equivalent_ancestor_of_recommended_head": true,
+        "original_commit_available_locally": true,
+        "fresh_common_base": "c84d5e16024c502f6c451fd04b9807b1e65f20d3",
+        "fresh_common_base_matches": true,
+        "fresh_complete_delta_path_count": 1,
+        "fresh_delta_blob_mismatches": [],
+        "fresh_proof_passed": true
+      },
+      {
+        "original": "cee6e2632f891a3fe21c5c02d6bf508805973051",
+        "equivalent": "bb5556e8cc4cb73e2c668b5319a2844a20c6c50c",
+        "method": "exact_complete_tree_identity",
+        "common_base": "0ff7d23929e4640af6c1d57f87c7ac71b73d2ed4",
+        "common_base_matches_prior": true,
+        "complete_original_delta_paths": 105,
+        "equivalent_is_ancestor": true,
+        "passed": true,
+        "inherited_basis": "docs/validation/mail-archive-restore-20261119/reconciliation.json",
+        "inherited_basis_sha256": "6b27ff7c6427b99818800ff8df0b289d56a6f9653c8257d292d9ae66c7d00724",
+        "equivalent_ancestor_of_initial_main": true,
+        "equivalent_ancestor_of_recommended_head": true,
+        "original_commit_available_locally": true,
+        "fresh_common_base": "0ff7d23929e4640af6c1d57f87c7ac71b73d2ed4",
+        "fresh_common_base_matches": true,
+        "fresh_complete_delta_path_count": 105,
+        "fresh_delta_blob_mismatches": [],
+        "fresh_complete_tree_equal": true,
+        "fresh_proof_passed": true
+      },
+      {
+        "original": "da9c956ec5d65c0e5a9f9ea84c2b0bca98e824a0",
+        "equivalent": "23f3b4204fce45d38a103e3159bdc7f1e8d37c4e",
+        "method": "exact_complete_tree_identity",
+        "common_base": "34dc6b6806869570e9ec342e4d7ee0d6951c0ba6",
+        "common_base_matches_prior": true,
+        "complete_original_delta_paths": 79,
+        "equivalent_is_ancestor": true,
+        "passed": true,
+        "inherited_basis": "docs/validation/mail-archive-restore-20261119/reconciliation.json",
+        "inherited_basis_sha256": "6b27ff7c6427b99818800ff8df0b289d56a6f9653c8257d292d9ae66c7d00724",
+        "equivalent_ancestor_of_initial_main": true,
+        "equivalent_ancestor_of_recommended_head": true,
+        "original_commit_available_locally": true,
+        "fresh_common_base": "34dc6b6806869570e9ec342e4d7ee0d6951c0ba6",
+        "fresh_common_base_matches": true,
+        "fresh_complete_delta_path_count": 79,
+        "fresh_delta_blob_mismatches": [],
+        "fresh_complete_tree_equal": true,
+        "fresh_proof_passed": true
+      }
+    ]
+  },
+  "initial_reference_counts": {
+    "fork_branches": {
+      "ancestor": 7,
+      "historical_equivalent": 9
+    },
+    "upstream_branches": {
+      "ancestor": 4
+    }
+  },
+  "new_frontier_checks": {
+    "main_is_ancestor": true,
+    "gui_head_is_ancestor": true,
+    "ahead_behind": "0\t15",
+    "parents": [
+      "2aff66a8540beb2015e606e67e46d228d7bf695e",
+      "2d7360a217b51c34ccf72eb5ed78c82ccd20bae5",
+      "caf378f40fd5bda50f504a6816404d01d8bbb8f8"
+    ]
+  },
+  "local_checked_at_utc": "2026-11-19T18:29:23.455800+00:00"
+}

@@ -24,7 +24,7 @@ const _destination =
     '20261119-final-verified-original-messages-7fa9b13e';
 
 final class _VisualStore extends Fake implements StudioMailArchiveStore {
-  _VisualStore() {
+  _VisualStore({this.restored = 0}) {
     for (final subject in [
       'Project Atlas — approved contract and next steps',
       'November invoice · Rechnung für November',
@@ -73,6 +73,7 @@ final class _VisualStore extends Fake implements StudioMailArchiveStore {
   final profile = MailProfileId('visual-fixture', hostId: 'studio-tests');
   final entries = <MailArchiveSearchHit>[];
   final originals = <String, MailBytes>{};
+  final int restored;
 
   @override
   set diagnostics(MailArchiveDiagnostics? value) {}
@@ -141,31 +142,64 @@ final class _VisualStore extends Fake implements StudioMailArchiveStore {
   }) async {
     final result = await planExport(const MailArchiveSearchRequest());
     final plan = (result as MailSuccess<MailArchiveExportPlan>).value;
-    return MailSuccess(
-      MailArchiveRestorePlan.fromManifest(
-        directoryPath: _destination,
-        manifest: encodeMailArchiveExportManifest(
-          plan,
-          const MailArchiveExportLimits(),
-        ),
+    final restorePlan = MailArchiveRestorePlan.fromManifest(
+      directoryPath: _destination,
+      manifest: encodeMailArchiveExportManifest(
+        plan,
+        const MailArchiveExportLimits(),
       ),
     );
+    return MailSuccess(
+      restored == 0
+          ? restorePlan
+          : restorePlan.withCheckpoint(
+              MailArchiveRestoreCheckpoint(
+                manifestSha256: restorePlan.manifestSha256,
+                planned: restorePlan.messageCount,
+                totalBytes: restorePlan.totalBytes,
+                completedMessages: restored,
+                completedBytes: restoredBytes,
+              ),
+            ),
+    );
   }
+
+  int get restoredBytes =>
+      entries.take(restored).fold(0, (sum, hit) => sum + hit.entry.byteLength);
+
+  @override
+  Future<MailResult<List<MailArchiveRestoreCheckpoint>>>
+  listRestoreCheckpoints() async {
+    final plan =
+        (await inspectRestore(_destination)
+                as MailSuccess<MailArchiveRestorePlan>)
+            .value;
+    return MailSuccess([?plan.checkpoint]);
+  }
+
+  @override
+  Future<MailResult<MailUnit>> forgetRestoreCheckpoint(
+    String manifestSha256, {
+    MailCancellationToken? cancellation,
+  }) async => const MailSuccess(MailUnit.value);
 
   @override
   Future<MailArchiveRestoreReport> restoreExport(
     MailArchiveRestorePlan plan, {
     bool indexAttachmentText = false,
+    bool resume = false,
     MailCancellationToken? cancellation,
     MailArchiveRestoreProgressSink? onProgress,
   }) async => MailArchiveRestoreReport(
     status: MailArchiveRestoreStatus.completed,
     planned: plan.messageCount,
     saved: 3,
-    duplicates: 2,
+    duplicates: resume ? 0 : 2,
     failed: 0,
     originsAdded: 4,
-    bytes: plan.totalBytes,
+    bytes: plan.totalBytes - (resume ? restoredBytes : 0),
+    resumed: resume ? restored : 0,
+    resumedBytes: resume ? restoredBytes : 0,
     indexWarnings: 0,
     elapsedMicroseconds: 15000,
     observerErrors: 0,
@@ -241,8 +275,9 @@ Future<void> _capture(WidgetTester tester, GlobalKey key, String name) async {
 Future<GlobalKey> _show(
   WidgetTester tester,
   StudioLanguage language,
-  Size size,
-) async {
+  Size size, {
+  int restored = 0,
+}) async {
   await tester.runAsync(_loadFonts);
   tester.view.devicePixelRatio = 1;
   tester.view.physicalSize = size;
@@ -262,7 +297,7 @@ Future<GlobalKey> _show(
         ),
         home: StudioMailArchiveDialog(
           strings: StudioStrings(language),
-          store: _VisualStore(),
+          store: _VisualStore(restored: restored),
           files: _VisualFiles(),
         ),
       ),
@@ -283,6 +318,56 @@ Future<void> _tap(WidgetTester tester, String key) async {
 
 void main() {
   for (final language in StudioLanguage.values) {
+    testWidgets(
+      'resumable restore preview, result and progress management in $language',
+      (tester) async {
+        final capture = await _show(
+          tester,
+          language,
+          language == StudioLanguage.ar
+              ? const Size(390, 844)
+              : const Size(1280, 900),
+          restored: 2,
+        );
+        await _tap(tester, 'archive-restore-export');
+        await tester.ensureVisible(_key('archive-restore-resume'));
+        await _pump(tester);
+        expect(
+          tester.widget<CheckboxListTile>(_key('archive-restore-resume')).value,
+          isTrue,
+        );
+        await _capture(
+          tester,
+          capture,
+          'archive-resume-preview-${language.name}',
+        );
+        await _tap(tester, 'archive-restore-confirm');
+        await tester.ensureVisible(_key('archive-notice'));
+        await _pump(tester);
+        expect(_key('archive-error'), findsNothing);
+        await _capture(
+          tester,
+          capture,
+          'archive-resume-result-${language.name}',
+        );
+        await _tap(tester, 'archive-restore-progress');
+        expect(_key('archive-restore-forget-0'), findsOneWidget);
+        await _capture(
+          tester,
+          capture,
+          'archive-resume-progress-${language.name}',
+        );
+        await _tap(tester, 'archive-restore-forget-0');
+        await _capture(
+          tester,
+          capture,
+          'archive-resume-forget-confirmation-${language.name}',
+        );
+        await _tap(tester, 'archive-restore-forget-dismiss');
+        await _tap(tester, 'archive-restore-progress-close');
+      },
+    );
+
     testWidgets('restore preview and result in $language', (tester) async {
       final capture = await _show(
         tester,
