@@ -85,3 +85,25 @@ was created. The separate arm64 Runtime Preview passed deep signature validation
 and a 20-second startup. See [bundled-runtime-acceptance.json](bundled-runtime-acceptance.json)
 and [native gate output](bundled-runtime-native-gate.txt). Existing open previews
 and user documents were not replaced.
+
+## Independent DOCX reader/writer check
+
+The locally installed LibreOffice Writer imported and re-saved the tracked-story
+fixture in a separate headless profile. Quds imported that DOCX, preserved all
+14 linked body and six header/footer story insertions/deletions with their
+author/date, exported and reopened it, and resolved every change with both
+accept-all and reject-all. The synthetic fixture's notes and comments have no
+body anchors; Writer omits those unreferenced stories. They are not included in
+this external-reader claim. Native Quds tests separately qualify those stories.
+Three comment tests passed, including range anchors, replies and resolved state.
+
+See [external-reader receipt](docx-writer-acceptance.json) and the
+[check script](docx-writer-check.dart). This was **LibreOffice, not Microsoft
+Word**; a Microsoft Word application round trip has not been performed.
+PR #215's first-analysis saved-setup verification also passed all 15 setup tests.
+
+Final preview source is `088d8090`, incorporating PR #215. It passed the
+20-second startup/signature check and the native German/English worker gate
+against its own bundled runtime. See [final preview receipt](final-preview-acceptance.json)
+and [final native gate](final-native-gate.txt). Model tests use a scratch data
+root; no real user download preferences or datasets were changed.
