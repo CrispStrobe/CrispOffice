@@ -23,9 +23,11 @@ parameterized calls across 67 shared Word, spreadsheet, and presentation
 operations, with complete-output publication and a local MCP stdio bridge.
 The bundled [Excel VBA subset](docs/VBA_MACROS.md) compiles explicitly selected
 `.bas` source into the same bounded command plan, including reusable procedures
-and scalar functions, `For`/`Do`/`While` loops, `Select Case`, worksheet/range
-bindings, cell writes, formulas, and formatting. Source logic uses values known
-during compilation; worksheet formulas run against the detached workbook.
+and scalar functions, fixed scalar arrays, `For`/`For Each`/`Do`/`While` loops,
+`Select Case`, worksheet/range bindings, cell writes, formulas, and formatting.
+Arrays support indexed access and `LBound`/`UBound`; explicit ranges support
+cell enumeration and read-only row/column coordinates. Source logic uses values
+known during compilation; worksheet formulas run against the detached workbook.
 VBA projects remain inert and preserved; full VBA execution and macro ribbon
 UI are not included.
 

@@ -1,0 +1,1049 @@
+{
+  "distinct_passing_cases_in_this_run": 347,
+  "historical_mail_cases_repeated": 18,
+  "identity": "Repository suite path and test name",
+  "passing_cases_beyond_historical_mail": 329,
+  "tests": {
+    "packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart::IME composition blocks keyboard comment menus without changing composition": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart::Menu key keeps the explicitly selected overlapping comment finding": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart::Select mode offers keyboard Copy without enabling comment edits": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart::comment Shift+F10 opens in place and Escape restores focus": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart::comment Shift+F10 opens in place and Tab restores focus": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart::comment keyboard context rejects a canvas from the prior thread before rebuild": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart::covered modal blocks a captured keyboard comment correction": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart::keyboard context uses the selected comment paragraph": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart::stale keyboard comment menu cannot mutate a replaced document with reused ids": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_comment_review_test.dart::Reply focuses the inline draft without posting or a dialog": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_comment_review_test.dart::Select mode exposes real pointer comment selection and Copy": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_comment_review_test.dart::a replaced thread cannot inherit a draft through its reused ID": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_comment_review_test.dart::a stale post callback cannot send into another document": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_comment_review_test.dart::comment context Cut leaves a previously selected body frame intact": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_comment_review_test.dart::comment context Cut leaves a previously selected body table intact": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_comment_review_test.dart::comment context Cut owns the comment rather than a body selection": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_comment_review_test.dart::comment context Paste leaves a previously selected body frame intact": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_comment_review_test.dart::comment context Paste leaves a previously selected body table intact": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_comment_review_test.dart::comment context menus combine corrections and thread actions": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_comment_review_test.dart::comment marks follow the existing Writing pane": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_comment_review_test.dart::comment menu Add to personal words respects the current finding": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_comment_review_test.dart::comment menu Ignore once respects the current finding": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_comment_review_test.dart::comment menu Ignore this word respects the current finding": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_comment_review_test.dart::comment menu mutations respect a later viewing-mode change": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_comment_review_test.dart::comment menus dismiss on changed source or selected thread": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_comment_review_test.dart::comment menus preserve IME and cannot act through a modal": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_comment_review_test.dart::comment suggestions survive unrelated in-flight check progress": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_comment_review_test.dart::comment writing marks offer focused inline corrections": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_comment_review_test.dart::delayed comment Cut validates its context after caret change": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_comment_review_test.dart::delayed comment Cut validates its context after document change": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_comment_review_test.dart::delayed comment Cut validates its context after none change": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_comment_review_test.dart::delayed comment Cut validates its context after source change": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_comment_review_test.dart::delayed comment Paste validates its context after caret change": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_comment_review_test.dart::delayed comment Paste validates its context after document change": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_comment_review_test.dart::delayed comment Paste validates its context after none change": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_comment_review_test.dart::delayed comment Paste validates its context after source change": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_comment_review_test.dart::hiding comments preserves drafts and Reply restores inline focus": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_comment_review_test.dart::invalid clipboard guards stop before system clipboard access": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_comment_review_test.dart::narrow Arabic comments stay below the editor": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_comment_review_test.dart::narrow English comments stay below the editor": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_comment_review_test.dart::posting waits until IME composition is complete": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_comment_review_test.dart::read-only comment Copy and Select all own the comment selection": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_comment_review_test.dart::read-only empty comments never materialize stored paragraphs": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_comment_review_test.dart::resolved reply context offers Reopen for its whole thread": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_comment_review_test.dart::stale comment menus cannot act on another document or reused ID": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_comment_review_test.dart::thread drafts survive switching and explicit posts are undoable": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_comment_review_test.dart::viewing mode keeps comments inspectable without reply controls": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_desktop_menu_test.dart::desktop File menu invokes enabled actions and disables busy ones": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_desktop_menu_test.dart::macOS Close restores prevention and synchronizes fullscreen (variant: TargetPlatform.macOS)": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_desktop_menu_test.dart::macOS menu serializes File shortcuts and dispatches native selection (variant: TargetPlatform.macOS)": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_desktop_menu_test.dart::native Quit waits for and respects the workspace close decision (variant: TargetPlatform.macOS)": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_file_menu_test.dart::New confirms dirty work and clears the previous history only after discard (variant: TargetPlatform.windows)": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_file_menu_test.dart::Open confirms the destination spreadsheet and cancellation keeps its draft (variant: TargetPlatform.windows)": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_file_menu_test.dart::Save As cancellation keeps the document, dirty state and undo (variant: TargetPlatform.windows)": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_file_menu_test.dart::macOS opens native dialogs safely and disables modal File actions (variant: TargetPlatform.macOS)": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_layout_theme_test.dart::Dark appearance updates the open Settings dialog and later routes (variant: TargetPlatform.linux)": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_layout_theme_test.dart::Document mode explains restrictions and disables layout editing (variant: TargetPlatform.linux)": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_layout_theme_test.dart::Layout dropdown commands apply and Undo restores each setting (variant: TargetPlatform.linux)": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_layout_theme_test.dart::Page Layout and Paragraph dialogs are reachable from the ribbon (variant: TargetPlatform.linux)": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_layout_theme_test.dart::Paragraph menu reflects the active first-page header and preserves body formatting (variant: TargetPlatform.linux)": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_layout_theme_test.dart::Paragraph presets switch exact spacing back to multiples without truncating custom spacing (variant: TargetPlatform.linux)": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_layout_theme_test.dart::narrow Arabic Layout menus and dialog stay reachable at 160 percent (variant: TargetPlatform.linux)": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_mail_archive_portability_visual_test.dart::desktop portability controls, export confirmation and long destination": [
+      "repeated-studio-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_mail_archive_portability_visual_test.dart::narrow Arabic portability controls and export report remain usable": [
+      "repeated-studio-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_mail_archive_portability_visual_test.dart::restore preview and result in StudioLanguage.ar": [
+      "repeated-studio-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_mail_archive_portability_visual_test.dart::restore preview and result in StudioLanguage.de": [
+      "repeated-studio-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_mail_archive_portability_visual_test.dart::restore preview and result in StudioLanguage.en": [
+      "repeated-studio-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_mail_archive_restore_native_test.dart::real MIME export restores exact originals, origins and searchable text": [
+      "repeated-studio-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart::cancellation awaits confirmed counts and keeps earlier saves": [
+      "repeated-studio-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart::cancelling the folder picker performs no inspection": [
+      "repeated-studio-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart::dismissing preview performs no restore": [
+      "repeated-studio-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart::disposing during inspection cancels and drops late preview": [
+      "repeated-studio-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart::disposing during restore ignores late progress and result": [
+      "repeated-studio-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart::invalid export is reported before showing the preview": [
+      "repeated-studio-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart::narrow StudioLanguage.ar preview supports long profile labels": [
+      "repeated-studio-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart::narrow StudioLanguage.de preview supports long profile labels": [
+      "repeated-studio-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart::narrow StudioLanguage.en preview supports long profile labels": [
+      "repeated-studio-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart::partial restore exposes bounded item failures": [
+      "repeated-studio-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart::preview requires confirmation and preserves the selection": [
+      "repeated-studio-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart::unexpected inspection exceptions are sanitized": [
+      "repeated-studio-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_page_layout_dialog_test.dart::Cancel discards the complete Page Layout draft": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_page_layout_dialog_test.dart::Page Layout captures after recording pending note typing": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_page_layout_dialog_test.dart::Page Layout fits narrow enlarged-text ar chrome": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_page_layout_dialog_test.dart::Page Layout fits narrow enlarged-text de chrome": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_page_layout_dialog_test.dart::a changed document invalidates an open layout draft": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_page_layout_dialog_test.dart::invalid measurements stay in the dialog and leave the document intact": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_page_layout_dialog_test.dart::precise numeric settings apply together and Undo restores all tabs": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_page_layout_dialog_test.dart::unit changes and unchanged Apply preserve original precision": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_page_layout_dialog_test.dart::whole-document scope applies values without replacing section starts": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart::Cancel discards spacing, indent and pagination drafts": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart::a changed disposed rejects the detached paragraph draft": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart::a changed document rejects the detached paragraph draft": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart::a changed permission rejects the detached paragraph draft": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart::a changed revision rejects the detached paragraph draft": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart::a changed selection rejects the detached paragraph draft": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart::a changed story rejects the detached paragraph draft": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart::ar dialog supports narrow enlarged text and precise local numbers": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart::de dialog supports narrow enlarged text and precise local numbers": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart::en dialog supports narrow enlarged text and precise local numbers": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart::exact line height and first-line indent use point conversion": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart::header paragraph changes stay in the captured header story": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart::inspection of an empty document does not create content": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart::invalid numbers and geometry cannot mutate paragraphs": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart::mixed line rules, indents and pagination remain unchanged": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart::page and column breaks preserve imported line-keeping properties": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart::selected paragraphs apply precisely in one undo and round trip": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart::unit changes and no-op Apply preserve exact imported values": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_review_pane_test.dart::F7 opens live review and only explicit checks run manual grammar": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_review_pane_test.dart::review commands remain nonmodal and read-only in viewing mode": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_review_pane_test.dart::typing check preference survives switching Studio applications": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_ribbon_customization_test.dart::Insert menus support Escape, outside controls and keyboard selection (variant: TargetPlatform.linux)": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_ribbon_customization_test.dart::all application tabs retain unique reachable groups": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_ribbon_customization_test.dart::compact Insert menus execute table and footnote commands with undo (variant: TargetPlatform.linux)": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_ribbon_customization_test.dart::compact commands and customization work in narrow Arabic at large text scale (variant: TargetPlatform.linux)": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_ribbon_customization_test.dart::customization hides and orders groups, switches labels, and restores defaults": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_ribbon_customization_test.dart::hidden tabs recover selection and collapsed ribbon can always be expanded": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_slide_sheet_menus_test.dart::File Document mode disables sheet and slide editing menus (variant: TargetPlatform.linux)": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_slide_sheet_menus_test.dart::slide menus select exact effects, durations and advance times (variant: TargetPlatform.linux)": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_slide_sheet_menus_test.dart::the Function menu inserts SUM in the selected worksheet cell (variant: TargetPlatform.linux)": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart::Add Zotero annotation ribbon invokes its native picker": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart::Add Zotero note ribbon invokes its native picker": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart::Cmd Alt C dispatches addEditCitation from the Word caret": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart::Cmd Alt R dispatches refresh from the Word caret": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart::Ctrl Alt C dispatches addEditCitation from the Word caret": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart::Ctrl Alt C finds the citation in the focused Notes editor": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart::Ctrl Alt R dispatches refresh from the Word caret": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart::a covering modal blocks Zotero even when Word retains focus": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart::body composition blocks shortcuts and saved ribbon callbacks": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart::citation commands stay inactive in other Studio applications": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart::citation ribbon shows shortcuts for linux": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart::citation ribbon shows shortcuts for macOS": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart::citation shortcuts and saved ribbon callbacks respect viewing mode": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart::rapid ribbon and shortcut activation opens one Zotero workspace": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart::successive shortcuts return directly to the writing caret": [
+      "studio-theme-tests"
+    ],
+    "packages/quds_office_editor/test/editor_test.dart::Slide stage mounts as a RenderBox": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/editor_test.dart::Word canvas and sheet grid mount as RenderBoxes": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/editor_test.dart::Word canvas cursor follows handles, objects, and text": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/editor_test.dart::Word canvas pans from a trackpad swipe": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/editor_test.dart::Word comments can be inserted, edited, and deleted": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/editor_test.dart::Word controller inserts and edits an equation": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/editor_test.dart::Word equation cells navigate and stay editable after reopen": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/editor_test.dart::Word headings feed a live table of contents": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/editor_test.dart::Word picture handles resize, move, and crop on the canvas": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/editor_test.dart::Word text frame can be selected, moved, and resized": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/editor_test.dart::Word text frame edit mode keeps the box and hides transform": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/editor_test.dart::caret X snaps to TextPainter glyph edges after fitLine": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/editor_test.dart::caret covers a contiguous range of table paragraphs": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/editor_test.dart::caret coversIndex includes the selected range": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/editor_test.dart::caret selects a word and a paragraph": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/editor_test.dart::caret stays on an RTL line whose visual order is reversed": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/editor_test.dart::clicking an equation cell routes IME into that cell": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/editor_test.dart::command pipeline undo/redo insert and delete": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/editor_test.dart::dragging a column header edge resizes the column": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/editor_test.dart::dragging a row header edge resizes the row": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/editor_test.dart::embedded host unpacks a nested workbook": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/editor_test.dart::equation arrows move by character and cross cells at the edges": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/editor_test.dart::equation backspace deletes letters then the empty tool": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/editor_test.dart::flagged caret points with the writing direction": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/editor_test.dart::frozen column stays put and hides scrolled columns under it": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/editor_test.dart::frozen row stays put after vertical scroll": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/editor_test.dart::header drag keeps whole columns and whole rows": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/editor_test.dart::header edit paints a usable header band": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/editor_test.dart::justified caret and selection share the same word X": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/editor_test.dart::justified hitTest and range rects stay on word edges": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/editor_test.dart::leaving slide text edit does not rotate the shape": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/editor_test.dart::paint fit keeps justified wrapped lines flush to the column": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/editor_test.dart::paint fit places glyphs next to each other without justify gaps": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/editor_test.dart::paint run rebuilds logical Arabic for HarfBuzz": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/editor_test.dart::rejected native TOC refresh preserves heading aliases, selection and history": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/editor_test.dart::ribbon formatting bolds only the selected comment range": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/editor_test.dart::right click inside a text selection keeps the range": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/editor_test.dart::right click keeps a multi-cell table selection": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/editor_test.dart::right click outside a text selection keeps the range": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/editor_test.dart::rtl sheet places column A on the right": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/editor_test.dart::ruler drag guide follows the active marker": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/editor_test.dart::ruler first-line drag sets firstLine and hanging stays exclusive": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/editor_test.dart::ruler focus line follows the active page caret": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/editor_test.dart::ruler hanging drag keeps the first-line page position": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/editor_test.dart::ruler left-indent square moves both markers together": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/editor_test.dart::ruler paragraph box follows page, cell, column, and frame": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/editor_test.dart::ruler selected frame follows native insets and the laid-out width": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/editor_test.dart::ruler tab alignment cycles left-center-right-decimal": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/editor_test.dart::ruler zero sits at the content origin": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/editor_test.dart::script runs stay in their own paint group and sit off the baseline": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/editor_test.dart::selection matrix and table resizer": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/editor_test.dart::sheet drag extends a contiguous cell range": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/editor_test.dart::sheet scroll and hit-test reach past the used-range window": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/editor_test.dart::slide snap guidelines and transform handles": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/editor_test.dart::styled runs do not overlap after paint fit": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/editor_test.dart::viewport clamp stops endless scrolling": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/editor_test.dart::word canvas click hits the second table cell": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::Ctrl+F requests find from the word surface": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::F5 starts and ends a slide show": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::Morph preview uses the previous slide as the outgoing pair": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::QudsOfficeHost embeds a word editor with custom chrome": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::QudsSheetEditor and QudsSlideEditor mount": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::backspace at the start of a paragraph joins the previous one": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::backspace deletes a selected table column or row": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::backspace on an empty paragraph moves to the previous end": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::choosing a transition or animation starts a quick preview": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::controllers expose find replace stats print and styles": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::delete at the end of a paragraph joins the next one": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::find next wraps and revealFindHit moves the word caret": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::freeze panes follow the Excel selection rules": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::grid display uses the cell number format": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::header edit on a zero-margin then landscape section stays usable": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::insertSectionBreak and header edit target the active section": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::landscape applies to the whole continuous section group": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::linked sheet chart follows evaluated cells including zero": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::merge and center joins the selection and can undo": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::merged cells select as one named origin": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::office context menu builds table actions": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::office context menu dismiss is safe to call twice": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::reorderSlide moves a deck card and keeps the active index": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::rtl sheet inverts horizontal arrow keys": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::selectTable covers every cell paragraph": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::selectTableBand selects a column or row without the whole table": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::selection fill covers every selected cell and undoes": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::sheet Ctrl+arrow jumps by same occupancy": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::sheet Ctrl+arrow keys follow same occupancy": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::sheet arrow keys move between cells": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::sheet cell display evaluates formulas and edits in place": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::sheet chart drag on the canvas moves the drawing": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::sheet clipboard copies a range and pastes values": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::sheet commit evaluates formula and recalculates dependents": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::sheet controller clears the selected cell": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::sheet controller ctrl+a selects the used range": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::sheet controller edits a cell and can save bytes": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::sheet controller inserts rows and columns with undo": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::sheet controller selects a drawing and can delete it": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::sheet controller toggles rightToLeft and moves selection": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::sheet edit backspace deletes and function suggestions apply": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::sheet edit click points at another cell instead of committing": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::sheet extras and slide media": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::sheet navigation follows Excel limits and keeps the cell in view": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::shift arrows grow and shrink an RTL selection": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::shift arrows grow and shrink the character selection": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::slide clipboard duplicates a selected shape": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::slide controller applies transitions, animations, and slideshow clicks": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::slide controller edits a picture visual": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::slide controller edits shape text in place": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::slide controller loads builder deck notes and word builder bytes": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::slide controller nudges a shape via undoable transform": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::slide controller selectAll selects text while editing": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::slide ctrl-select nudges together and groups as one unit": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::slide editor places the navigation and notes builders": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::slide sorter copy pastes a clone after any thumbnail": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::slide sorter hide and show actions toggle hidden with undo": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::slide text edit keeps the shape rotation": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::slide text edit selects a word, paragraph, and drag range": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::studio ribbon APIs mutate word sheet and slides": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::tapping another cell inserts a formula reference": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::tapping the canvas reattaches IME after another client steals it": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::theme copyWith and Arabic strings stay typed": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::word arrows move the caret along a line": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::word caret lands on a chart between paragraphs and can delete it": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::word clipboard pastes source formatting or plain text": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::word controller applies font face and size at the caret run": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::word controller deletes with backspace and delete": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::word controller extends selection across table cells": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::word controller formats only the selected range": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::word controller inserts and deletes table rows and columns": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::word controller inserts, undoes, and respects viewing mode": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::word cut paste restores heading style and table structure": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::word delete of a spanning selection removes the table": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::word delete removes a selected table instead of emptying it": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::word editor backspace key deletes a character": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::word editor ctrl+a selects the whole document": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::word editor ctrl+z undoes and ctrl+y redoes": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::word editor shift arrows grow and shrink the selection": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::word editor tab key inserts a tab": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::word lines laid out with paint metrics fit the column": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::word merge and split consecutive table cells": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::word notes pane APIs jump and header flags": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::word page margins and orientation update layout": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::word range selection includes a chart between paragraphs": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::word ruler indent preview commits as one undo": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::word tab inserts a half-inch gap": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/embed_test.dart::word tab walks table cells across then down": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/office_chrome_theme_test.dart::dark chrome with white paper rulers and drag readouts follow chrome colors": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/office_chrome_theme_test.dart::dark rulers and drag readouts follow chrome colors": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/office_chrome_theme_test.dart::high contrast rulers and drag readouts follow chrome colors": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/office_chrome_theme_test.dart::light ruler surfaces retain their established palette": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/office_dark_document_test.dart::Sheet dark ink follows explicit and conditional cell backing": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/office_dark_document_test.dart::Word dark paper respects fills, highlights and exported ink": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/office_dark_document_test.dart::dark ink policy preserves light backgrounds and readable colors": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/office_dark_slide_test.dart::dark Morph ink uses the interpolated fill instead of target fill": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/office_dark_slide_test.dart::dark Slides adapt explicit ink and preserve automatic and exported colors": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/office_dark_slide_test.dart::unfilled Slide text preserves authored ink over chart": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/office_dark_slide_test.dart::unfilled Slide text preserves authored ink over partial fill": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/office_dark_slide_test.dart::unfilled Slide text preserves authored ink over picture": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/office_dark_slide_test.dart::unfilled Slide text preserves authored ink over rotated fill": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/sheet_conditional_rendering_test.dart::cross-sheet expression colors absent cells without creating them": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/sheet_conditional_rendering_test.dart::data bars visibly paint without changing cell values": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/sheet_conditional_rendering_test.dart::editor supplies workbook scope to the rendered sheet": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/sheet_conditional_rendering_test.dart::font-only rule retains ordinary cell fill": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/sheet_conditional_rendering_test.dart::grid paints priority and independent property cascade": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/sheet_conditional_rendering_test.dart::grid refresh observes later referenced cell edits": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/sheet_conditional_rendering_test.dart::icon sets visibly paint without mutating values or rules": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/sheet_conditional_rendering_test.dart::merged frozen cells use their anchor conditional style": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/sheet_conditional_rendering_test.dart::unstyled stopping rule keeps ordinary fill and font": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/word_header_footer_navigation_test.dart::a captured language action expires after switching variants at the same offsets": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/word_header_footer_navigation_test.dart::alternate header selection remains visible below its text": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/word_header_footer_navigation_test.dart::evenPage footer reveals, edits and undoes its exact source": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/word_header_footer_navigation_test.dart::evenPage header reveals, edits and undoes its exact source": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/word_header_footer_navigation_test.dart::evenPage typing and language controls stay in that story": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/word_header_footer_navigation_test.dart::first-page selection takes precedence in a later even-numbered section": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/word_header_footer_navigation_test.dart::firstPage footer reveals, edits and undoes its exact source": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/word_header_footer_navigation_test.dart::firstPage header reveals, edits and undoes its exact source": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/word_header_footer_navigation_test.dart::firstPage typing and language controls stay in that story": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/word_header_footer_navigation_test.dart::hidden variants do not change page settings or redirect to the default story": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/word_header_footer_navigation_test.dart::inspecting an empty header in select-only mode creates no paragraph": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/word_header_footer_navigation_test.dart::pointer switches first/even stories and keyboard hit uses actual text geometry": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/word_header_footer_navigation_test.dart::protected variant navigation preserves source": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/word_header_footer_navigation_test.dart::select-only variant navigation preserves source": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/word_header_footer_navigation_test.dart::selecting footer paragraphs leaves body table cells unselected": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/word_header_footer_navigation_test.dart::selecting header paragraphs leaves body table cells unselected": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/word_header_footer_navigation_test.dart::standard footer reveals, edits and undoes its exact source": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/word_header_footer_navigation_test.dart::standard header reveals, edits and undoes its exact source": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/word_header_footer_navigation_test.dart::tracked changes reveal the exact alternate story and survive DOCX save": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/word_page_layout_test.dart::DOCX roundtrip keeps all applied modeled values": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/word_page_layout_test.dart::Page Layout applies every supported setting in one undo step": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/word_page_layout_test.dart::captured section survives caret movement while the dialog is open": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/word_page_layout_test.dart::invalid drafts are atomic and do not mark the document dirty": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/word_page_layout_test.dart::page geometry follows continuous siblings but section options do not": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/word_page_layout_test.dart::shared geometry rejects a change that cannot fit a sibling column": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/word_page_layout_test.dart::stale document, section, revision and direct layout edits are rejected": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/word_page_layout_test.dart::unchanged exact measurements produce no history or rounding": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/word_page_layout_test.dart::unrelated layout edits preserve imported section XML and custom columns": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/word_page_layout_test.dart::whole document applies values while preserving existing section starts": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/word_selection_paint_test.dart::Word-like selection golden (Windows grey) (variant: TargetPlatform.windows)": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/word_selection_paint_test.dart::Word-like selection golden (variant: TargetPlatform.macOS)": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/word_selection_paint_test.dart::selection band geometry a line with mixed font sizes gets one even band": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/word_selection_paint_test.dart::selection band geometry a selection ending at the paragraph end leaves the mark out": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/word_selection_paint_test.dart::selection band geometry an empty paragraph shows only its mark block": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/word_selection_paint_test.dart::selection band geometry multi-line selection is seamless, stops at the text and adds a paragraph-mark block": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/word_selection_paint_test.dart::selection band geometry paragraph spacing before and after is not highlighted": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/word_selection_paint_test.dart::selection band geometry right-to-left paragraphs show the mark on the left": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/word_selection_paint_test.dart::selection colour defaults to Word's colour per platform and stays configurable": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/word_selection_paint_test.dart::whole cells are filled; a selection inside one cell is not": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/word_tab_stops_editor_test.dart::alignment and leader controls export native values through history and three saves": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/word_tab_stops_editor_test.dart::disabled controls and a controller made read-only cannot change tabs": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/word_tab_stops_editor_test.dart::invalid and duplicate native positions retain draft text and prevent apply": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/word_tab_stops_editor_test.dart::invalid tab drafts do not commit or discard an unrelated pending note": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/word_tab_stops_editor_test.dart::opening and discarding typed tab drafts never mutates imported stops": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/word_tab_stops_editor_test.dart::removing invalid or final rows yields valid immutable drafts": [
+      "editor-tests"
+    ],
+    "packages/quds_office_editor/test/word_tab_stops_editor_test.dart::translated controls fit narrow RTL layouts with enlarged text": [
+      "editor-tests"
+    ]
+  }
+}

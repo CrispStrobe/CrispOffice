@@ -1,0 +1,3844 @@
+{
+  "done_events": [
+    {
+      "success": true,
+      "time": 182161,
+      "type": "done"
+    }
+  ],
+  "failed": 0,
+  "non_json_stdout_lines": 0,
+  "passed": 116,
+  "skipped": 0,
+  "tests": [
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 3,
+        "time": 15194,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 0,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_layout_theme_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          2
+        ],
+        "id": 3,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "Layout dropdown commands apply and Undo restores each setting (variant: TargetPlatform.linux)",
+        "root_column": 3,
+        "root_line": 132,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_layout_theme_test.dart",
+        "suiteID": 0,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 4,
+        "time": 17614,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 0,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_layout_theme_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          2
+        ],
+        "id": 4,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "Paragraph presets switch exact spacing back to multiples without truncating custom spacing (variant: TargetPlatform.linux)",
+        "root_column": 3,
+        "root_line": 172,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_layout_theme_test.dart",
+        "suiteID": 0,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 5,
+        "time": 19660,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 0,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_layout_theme_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          2
+        ],
+        "id": 5,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "Paragraph menu reflects the active first-page header and preserves body formatting (variant: TargetPlatform.linux)",
+        "root_column": 3,
+        "root_line": 203,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_layout_theme_test.dart",
+        "suiteID": 0,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 6,
+        "time": 23651,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 0,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_layout_theme_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          2
+        ],
+        "id": 6,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "Page Layout and Paragraph dialogs are reachable from the ribbon (variant: TargetPlatform.linux)",
+        "root_column": 3,
+        "root_line": 246,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_layout_theme_test.dart",
+        "suiteID": 0,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 7,
+        "time": 26648,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 0,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_layout_theme_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          2
+        ],
+        "id": 7,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "Document mode explains restrictions and disables layout editing (variant: TargetPlatform.linux)",
+        "root_column": 3,
+        "root_line": 277,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_layout_theme_test.dart",
+        "suiteID": 0,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 8,
+        "time": 29171,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 0,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_layout_theme_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          2
+        ],
+        "id": 8,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "Dark appearance updates the open Settings dialog and later routes (variant: TargetPlatform.linux)",
+        "root_column": 3,
+        "root_line": 332,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_layout_theme_test.dart",
+        "suiteID": 0,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 9,
+        "time": 31706,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 0,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_layout_theme_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          2
+        ],
+        "id": 9,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "narrow Arabic Layout menus and dialog stay reachable at 160 percent (variant: TargetPlatform.linux)",
+        "root_column": 3,
+        "root_line": 384,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_layout_theme_test.dart",
+        "suiteID": 0,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 13,
+        "time": 34479,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 10,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_page_layout_dialog_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          12
+        ],
+        "id": 13,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "Page Layout captures after recording pending note typing",
+        "root_column": 3,
+        "root_line": 96,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_page_layout_dialog_test.dart",
+        "suiteID": 10,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 14,
+        "time": 35805,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 10,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_page_layout_dialog_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          12
+        ],
+        "id": 14,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "Cancel discards the complete Page Layout draft",
+        "root_column": 3,
+        "root_line": 130,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_page_layout_dialog_test.dart",
+        "suiteID": 10,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 15,
+        "time": 37370,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 10,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_page_layout_dialog_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          12
+        ],
+        "id": 15,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "precise numeric settings apply together and Undo restores all tabs",
+        "root_column": 3,
+        "root_line": 152,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_page_layout_dialog_test.dart",
+        "suiteID": 10,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 16,
+        "time": 37762,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 10,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_page_layout_dialog_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          12
+        ],
+        "id": 16,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "unit changes and unchanged Apply preserve original precision",
+        "root_column": 3,
+        "root_line": 202,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_page_layout_dialog_test.dart",
+        "suiteID": 10,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 17,
+        "time": 38057,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 10,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_page_layout_dialog_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          12
+        ],
+        "id": 17,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "whole-document scope applies values without replacing section starts",
+        "root_column": 3,
+        "root_line": 223,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_page_layout_dialog_test.dart",
+        "suiteID": 10,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 18,
+        "time": 38775,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 10,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_page_layout_dialog_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          12
+        ],
+        "id": 18,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "invalid measurements stay in the dialog and leave the document intact",
+        "root_column": 3,
+        "root_line": 266,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_page_layout_dialog_test.dart",
+        "suiteID": 10,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 19,
+        "time": 39070,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 10,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_page_layout_dialog_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          12
+        ],
+        "id": 19,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "a changed document invalidates an open layout draft",
+        "root_column": 3,
+        "root_line": 295,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_page_layout_dialog_test.dart",
+        "suiteID": 10,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 20,
+        "time": 39438,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 10,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_page_layout_dialog_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          12
+        ],
+        "id": 20,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "Page Layout fits narrow enlarged-text de chrome",
+        "root_column": 5,
+        "root_line": 317,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_page_layout_dialog_test.dart",
+        "suiteID": 10,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 21,
+        "time": 39819,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 10,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_page_layout_dialog_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          12
+        ],
+        "id": 21,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "Page Layout fits narrow enlarged-text ar chrome",
+        "root_column": 5,
+        "root_line": 317,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_page_layout_dialog_test.dart",
+        "suiteID": 10,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 25,
+        "time": 43625,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 22,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          24
+        ],
+        "id": 25,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "Cancel discards spacing, indent and pagination drafts",
+        "root_column": 3,
+        "root_line": 112,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart",
+        "suiteID": 22,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 26,
+        "time": 44568,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 22,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          24
+        ],
+        "id": 26,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "selected paragraphs apply precisely in one undo and round trip",
+        "root_column": 3,
+        "root_line": 134,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart",
+        "suiteID": 22,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 27,
+        "time": 45064,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 22,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          24
+        ],
+        "id": 27,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "unit changes and no-op Apply preserve exact imported values",
+        "root_column": 3,
+        "root_line": 219,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart",
+        "suiteID": 22,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 28,
+        "time": 45539,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 22,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          24
+        ],
+        "id": 28,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "exact line height and first-line indent use point conversion",
+        "root_column": 3,
+        "root_line": 252,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart",
+        "suiteID": 22,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 29,
+        "time": 46129,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 22,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          24
+        ],
+        "id": 29,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "mixed line rules, indents and pagination remain unchanged",
+        "root_column": 3,
+        "root_line": 273,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart",
+        "suiteID": 22,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 30,
+        "time": 47117,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 22,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          24
+        ],
+        "id": 30,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "invalid numbers and geometry cannot mutate paragraphs",
+        "root_column": 3,
+        "root_line": 324,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart",
+        "suiteID": 22,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 31,
+        "time": 47332,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 22,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          24
+        ],
+        "id": 31,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "page and column breaks preserve imported line-keeping properties",
+        "root_column": 3,
+        "root_line": 353,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart",
+        "suiteID": 22,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 32,
+        "time": 47652,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 22,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          24
+        ],
+        "id": 32,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "a changed document rejects the detached paragraph draft",
+        "root_column": 5,
+        "root_line": 390,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart",
+        "suiteID": 22,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 33,
+        "time": 47867,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 22,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          24
+        ],
+        "id": 33,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "a changed revision rejects the detached paragraph draft",
+        "root_column": 5,
+        "root_line": 390,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart",
+        "suiteID": 22,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 34,
+        "time": 48059,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 22,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          24
+        ],
+        "id": 34,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "a changed selection rejects the detached paragraph draft",
+        "root_column": 5,
+        "root_line": 390,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart",
+        "suiteID": 22,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 35,
+        "time": 48565,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 22,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          24
+        ],
+        "id": 35,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "a changed story rejects the detached paragraph draft",
+        "root_column": 5,
+        "root_line": 390,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart",
+        "suiteID": 22,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 36,
+        "time": 49088,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 22,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          24
+        ],
+        "id": 36,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "a changed permission rejects the detached paragraph draft",
+        "root_column": 5,
+        "root_line": 390,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart",
+        "suiteID": 22,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 37,
+        "time": 49316,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 22,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          24
+        ],
+        "id": 37,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "a changed disposed rejects the detached paragraph draft",
+        "root_column": 5,
+        "root_line": 390,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart",
+        "suiteID": 22,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 38,
+        "time": 49493,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 22,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          24
+        ],
+        "id": 38,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "header paragraph changes stay in the captured header story",
+        "root_column": 3,
+        "root_line": 442,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart",
+        "suiteID": 22,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 39,
+        "time": 49555,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 22,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          24
+        ],
+        "id": 39,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "inspection of an empty document does not create content",
+        "root_column": 3,
+        "root_line": 471,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart",
+        "suiteID": 22,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 40,
+        "time": 49762,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 22,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          24
+        ],
+        "id": 40,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "en dialog supports narrow enlarged text and precise local numbers",
+        "root_column": 5,
+        "root_line": 490,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart",
+        "suiteID": 22,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 41,
+        "time": 50016,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 22,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          24
+        ],
+        "id": 41,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "de dialog supports narrow enlarged text and precise local numbers",
+        "root_column": 5,
+        "root_line": 490,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart",
+        "suiteID": 22,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 42,
+        "time": 50235,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 22,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          24
+        ],
+        "id": 42,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "ar dialog supports narrow enlarged text and precise local numbers",
+        "root_column": 5,
+        "root_line": 490,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart",
+        "suiteID": 22,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 46,
+        "time": 55031,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 43,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_slide_sheet_menus_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          45
+        ],
+        "id": 46,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "the Function menu inserts SUM in the selected worksheet cell (variant: TargetPlatform.linux)",
+        "root_column": 3,
+        "root_line": 86,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_slide_sheet_menus_test.dart",
+        "suiteID": 43,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 47,
+        "time": 58784,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 43,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_slide_sheet_menus_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          45
+        ],
+        "id": 47,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "slide menus select exact effects, durations and advance times (variant: TargetPlatform.linux)",
+        "root_column": 3,
+        "root_line": 135,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_slide_sheet_menus_test.dart",
+        "suiteID": 43,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 48,
+        "time": 60532,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 43,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_slide_sheet_menus_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          45
+        ],
+        "id": 48,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "File Document mode disables sheet and slide editing menus (variant: TargetPlatform.linux)",
+        "root_column": 3,
+        "root_line": 185,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_slide_sheet_menus_test.dart",
+        "suiteID": 43,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 52,
+        "time": 66809,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 49,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          51
+        ],
+        "id": 52,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "comment Shift+F10 opens in place and Escape restores focus",
+        "root_column": 5,
+        "root_line": 147,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart",
+        "suiteID": 49,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 53,
+        "time": 68520,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 49,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          51
+        ],
+        "id": 53,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "comment Shift+F10 opens in place and Tab restores focus",
+        "root_column": 5,
+        "root_line": 147,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart",
+        "suiteID": 49,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 54,
+        "time": 70054,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 49,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          51
+        ],
+        "id": 54,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "Menu key keeps the explicitly selected overlapping comment finding",
+        "root_column": 3,
+        "root_line": 185,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart",
+        "suiteID": 49,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 55,
+        "time": 71752,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 49,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          51
+        ],
+        "id": 55,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "keyboard context uses the selected comment paragraph",
+        "root_column": 3,
+        "root_line": 220,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart",
+        "suiteID": 49,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 56,
+        "time": 73852,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 49,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          51
+        ],
+        "id": 56,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "Select mode offers keyboard Copy without enabling comment edits",
+        "root_column": 3,
+        "root_line": 246,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart",
+        "suiteID": 49,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 57,
+        "time": 75348,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 49,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          51
+        ],
+        "id": 57,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "IME composition blocks keyboard comment menus without changing composition",
+        "root_column": 3,
+        "root_line": 294,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart",
+        "suiteID": 49,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 58,
+        "time": 77074,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 49,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          51
+        ],
+        "id": 58,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "covered modal blocks a captured keyboard comment correction",
+        "root_column": 3,
+        "root_line": 313,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart",
+        "suiteID": 49,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 59,
+        "time": 78641,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 49,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          51
+        ],
+        "id": 59,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "stale keyboard comment menu cannot mutate a replaced document with reused ids",
+        "root_column": 3,
+        "root_line": 342,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart",
+        "suiteID": 49,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 60,
+        "time": 79768,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 49,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          51
+        ],
+        "id": 60,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "comment keyboard context rejects a canvas from the prior thread before rebuild",
+        "root_column": 3,
+        "root_line": 365,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart",
+        "suiteID": 49,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 64,
+        "time": 85611,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 61,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          63
+        ],
+        "id": 64,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "Reply focuses the inline draft without posting or a dialog",
+        "root_column": 3,
+        "root_line": 213,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "suiteID": 61,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 65,
+        "time": 87839,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 61,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          63
+        ],
+        "id": 65,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "thread drafts survive switching and explicit posts are undoable",
+        "root_column": 3,
+        "root_line": 234,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "suiteID": 61,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 66,
+        "time": 89062,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 61,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          63
+        ],
+        "id": 66,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "hiding comments preserves drafts and Reply restores inline focus",
+        "root_column": 3,
+        "root_line": 284,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "suiteID": 61,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 67,
+        "time": 90384,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 61,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          63
+        ],
+        "id": 67,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "a replaced thread cannot inherit a draft through its reused ID",
+        "root_column": 3,
+        "root_line": 302,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "suiteID": 61,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 68,
+        "time": 91442,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 61,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          63
+        ],
+        "id": 68,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "a stale post callback cannot send into another document",
+        "root_column": 3,
+        "root_line": 321,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "suiteID": 61,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 69,
+        "time": 92585,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 61,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          63
+        ],
+        "id": 69,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "posting waits until IME composition is complete",
+        "root_column": 3,
+        "root_line": 338,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "suiteID": 61,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 70,
+        "time": 93975,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 61,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          63
+        ],
+        "id": 70,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "viewing mode keeps comments inspectable without reply controls",
+        "root_column": 3,
+        "root_line": 363,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "suiteID": 61,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 71,
+        "time": 95423,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 61,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          63
+        ],
+        "id": 71,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "comment writing marks offer focused inline corrections",
+        "root_column": 3,
+        "root_line": 384,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "suiteID": 61,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 72,
+        "time": 96921,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 61,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          63
+        ],
+        "id": 72,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "comment marks follow the existing Writing pane",
+        "root_column": 3,
+        "root_line": 493,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "suiteID": 61,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 73,
+        "time": 98053,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 61,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          63
+        ],
+        "id": 73,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "comment context menus combine corrections and thread actions",
+        "root_column": 3,
+        "root_line": 510,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "suiteID": 61,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 74,
+        "time": 99090,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 61,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          63
+        ],
+        "id": 74,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "comment context Cut owns the comment rather than a body selection",
+        "root_column": 3,
+        "root_line": 529,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "suiteID": 61,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 75,
+        "time": 100006,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 61,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          63
+        ],
+        "id": 75,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "comment context Cut leaves a previously selected body table intact",
+        "root_column": 7,
+        "root_line": 580,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "suiteID": 61,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 76,
+        "time": 101054,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 61,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          63
+        ],
+        "id": 76,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "comment context Paste leaves a previously selected body table intact",
+        "root_column": 7,
+        "root_line": 580,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "suiteID": 61,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 77,
+        "time": 101812,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 61,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          63
+        ],
+        "id": 77,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "comment context Cut leaves a previously selected body frame intact",
+        "root_column": 7,
+        "root_line": 580,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "suiteID": 61,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 78,
+        "time": 102732,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 61,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          63
+        ],
+        "id": 78,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "comment context Paste leaves a previously selected body frame intact",
+        "root_column": 7,
+        "root_line": 580,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "suiteID": 61,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 79,
+        "time": 104251,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 61,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          63
+        ],
+        "id": 79,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "Select mode exposes real pointer comment selection and Copy",
+        "root_column": 3,
+        "root_line": 679,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "suiteID": 61,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 80,
+        "time": 105209,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 61,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          63
+        ],
+        "id": 80,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "read-only comment Copy and Select all own the comment selection",
+        "root_column": 3,
+        "root_line": 797,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "suiteID": 61,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 81,
+        "time": 106563,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 61,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          63
+        ],
+        "id": 81,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "read-only empty comments never materialize stored paragraphs",
+        "root_column": 3,
+        "root_line": 862,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "suiteID": 61,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 82,
+        "time": 107350,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 61,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          63
+        ],
+        "id": 82,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "delayed comment Cut validates its context after none change",
+        "root_column": 7,
+        "root_line": 891,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "suiteID": 61,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 83,
+        "time": 108530,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 61,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          63
+        ],
+        "id": 83,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "delayed comment Cut validates its context after source change",
+        "root_column": 7,
+        "root_line": 891,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "suiteID": 61,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 84,
+        "time": 109207,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 61,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          63
+        ],
+        "id": 84,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "delayed comment Cut validates its context after caret change",
+        "root_column": 7,
+        "root_line": 891,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "suiteID": 61,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 85,
+        "time": 110003,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 61,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          63
+        ],
+        "id": 85,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "delayed comment Cut validates its context after document change",
+        "root_column": 7,
+        "root_line": 891,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "suiteID": 61,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 86,
+        "time": 111128,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 61,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          63
+        ],
+        "id": 86,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "delayed comment Paste validates its context after none change",
+        "root_column": 7,
+        "root_line": 891,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "suiteID": 61,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 87,
+        "time": 111791,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 61,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          63
+        ],
+        "id": 87,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "delayed comment Paste validates its context after source change",
+        "root_column": 7,
+        "root_line": 891,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "suiteID": 61,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 88,
+        "time": 112590,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 61,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          63
+        ],
+        "id": 88,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "delayed comment Paste validates its context after caret change",
+        "root_column": 7,
+        "root_line": 891,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "suiteID": 61,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 89,
+        "time": 113897,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 61,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          63
+        ],
+        "id": 89,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "delayed comment Paste validates its context after document change",
+        "root_column": 7,
+        "root_line": 891,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "suiteID": 61,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 90,
+        "time": 114504,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 61,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          63
+        ],
+        "id": 90,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "invalid clipboard guards stop before system clipboard access",
+        "root_column": 3,
+        "root_line": 993,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "suiteID": 61,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 91,
+        "time": 115728,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 61,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          63
+        ],
+        "id": 91,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "comment menu Ignore once respects the current finding",
+        "root_column": 5,
+        "root_line": 1035,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "suiteID": 61,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 92,
+        "time": 116705,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 61,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          63
+        ],
+        "id": 92,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "comment menu Ignore this word respects the current finding",
+        "root_column": 5,
+        "root_line": 1035,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "suiteID": 61,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 93,
+        "time": 117736,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 61,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          63
+        ],
+        "id": 93,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "comment menu Add to personal words respects the current finding",
+        "root_column": 5,
+        "root_line": 1035,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "suiteID": 61,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 94,
+        "time": 118696,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 61,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          63
+        ],
+        "id": 94,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "comment suggestions survive unrelated in-flight check progress",
+        "root_column": 3,
+        "root_line": 1076,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "suiteID": 61,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 95,
+        "time": 119670,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 61,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          63
+        ],
+        "id": 95,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "stale comment menus cannot act on another document or reused ID",
+        "root_column": 3,
+        "root_line": 1123,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "suiteID": 61,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 96,
+        "time": 120767,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 61,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          63
+        ],
+        "id": 96,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "comment menus dismiss on changed source or selected thread",
+        "root_column": 3,
+        "root_line": 1164,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "suiteID": 61,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 97,
+        "time": 121698,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 61,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          63
+        ],
+        "id": 97,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "comment menus preserve IME and cannot act through a modal",
+        "root_column": 3,
+        "root_line": 1186,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "suiteID": 61,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 98,
+        "time": 122966,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 61,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          63
+        ],
+        "id": 98,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "resolved reply context offers Reopen for its whole thread",
+        "root_column": 3,
+        "root_line": 1222,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "suiteID": 61,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 99,
+        "time": 123708,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 61,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          63
+        ],
+        "id": 99,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "narrow English comments stay below the editor",
+        "root_column": 5,
+        "root_line": 1243,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "suiteID": 61,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 100,
+        "time": 125125,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 61,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          63
+        ],
+        "id": 100,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "narrow Arabic comments stay below the editor",
+        "root_column": 5,
+        "root_line": 1243,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "suiteID": 61,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 101,
+        "time": 126221,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 61,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          63
+        ],
+        "id": 101,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "comment menu mutations respect a later viewing-mode change",
+        "root_column": 3,
+        "root_line": 1275,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "suiteID": 61,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 105,
+        "time": 130730,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 102,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_review_pane_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          104
+        ],
+        "id": 105,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "F7 opens live review and only explicit checks run manual grammar",
+        "root_column": 3,
+        "root_line": 86,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_review_pane_test.dart",
+        "suiteID": 102,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 106,
+        "time": 132413,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 102,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_review_pane_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          104
+        ],
+        "id": 106,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "typing check preference survives switching Studio applications",
+        "root_column": 3,
+        "root_line": 141,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_review_pane_test.dart",
+        "suiteID": 102,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 107,
+        "time": 133848,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 102,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_review_pane_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          104
+        ],
+        "id": 107,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "review commands remain nonmodal and read-only in viewing mode",
+        "root_column": 3,
+        "root_line": 166,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_review_pane_test.dart",
+        "suiteID": 102,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 111,
+        "time": 138123,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 108,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          110
+        ],
+        "id": 111,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "Ctrl Alt C dispatches addEditCitation from the Word caret",
+        "root_column": 7,
+        "root_line": 222,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+        "suiteID": 108,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 112,
+        "time": 139707,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 108,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          110
+        ],
+        "id": 112,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "Ctrl Alt R dispatches refresh from the Word caret",
+        "root_column": 7,
+        "root_line": 222,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+        "suiteID": 108,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 113,
+        "time": 140846,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 108,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          110
+        ],
+        "id": 113,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "Cmd Alt C dispatches addEditCitation from the Word caret",
+        "root_column": 7,
+        "root_line": 222,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+        "suiteID": 108,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 114,
+        "time": 142108,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 108,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          110
+        ],
+        "id": 114,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "Cmd Alt R dispatches refresh from the Word caret",
+        "root_column": 7,
+        "root_line": 222,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+        "suiteID": 108,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 115,
+        "time": 143061,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 108,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          110
+        ],
+        "id": 115,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "body composition blocks shortcuts and saved ribbon callbacks",
+        "root_column": 3,
+        "root_line": 269,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+        "suiteID": 108,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 116,
+        "time": 144385,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 108,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          110
+        ],
+        "id": 116,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "successive shortcuts return directly to the writing caret",
+        "root_column": 3,
+        "root_line": 302,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+        "suiteID": 108,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 117,
+        "time": 145491,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 108,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          110
+        ],
+        "id": 117,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "Add Zotero note ribbon invokes its native picker",
+        "root_column": 5,
+        "root_line": 332,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+        "suiteID": 108,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 118,
+        "time": 146829,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 108,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          110
+        ],
+        "id": 118,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "Add Zotero annotation ribbon invokes its native picker",
+        "root_column": 5,
+        "root_line": 332,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+        "suiteID": 108,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 119,
+        "time": 148124,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 108,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          110
+        ],
+        "id": 119,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "Ctrl Alt C finds the citation in the focused Notes editor",
+        "root_column": 3,
+        "root_line": 358,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+        "suiteID": 108,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 120,
+        "time": 149632,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 108,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          110
+        ],
+        "id": 120,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "citation shortcuts and saved ribbon callbacks respect viewing mode",
+        "root_column": 3,
+        "root_line": 408,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+        "suiteID": 108,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 121,
+        "time": 151764,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 108,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          110
+        ],
+        "id": 121,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "citation commands stay inactive in other Studio applications",
+        "root_column": 3,
+        "root_line": 456,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+        "suiteID": 108,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 122,
+        "time": 152999,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 108,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          110
+        ],
+        "id": 122,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "a covering modal blocks Zotero even when Word retains focus",
+        "root_column": 3,
+        "root_line": 477,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+        "suiteID": 108,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 123,
+        "time": 154195,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 108,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          110
+        ],
+        "id": 123,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "rapid ribbon and shortcut activation opens one Zotero workspace",
+        "root_column": 3,
+        "root_line": 509,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+        "suiteID": 108,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 124,
+        "time": 155203,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 108,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          110
+        ],
+        "id": 124,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "citation ribbon shows shortcuts for linux",
+        "root_column": 5,
+        "root_line": 548,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+        "suiteID": 108,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 125,
+        "time": 155994,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 108,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          110
+        ],
+        "id": 125,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "citation ribbon shows shortcuts for macOS",
+        "root_column": 5,
+        "root_line": 548,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+        "suiteID": 108,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 129,
+        "time": 159543,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 126,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_file_menu_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          128
+        ],
+        "id": 129,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "Save As cancellation keeps the document, dirty state and undo (variant: TargetPlatform.windows)",
+        "root_column": 3,
+        "root_line": 98,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_file_menu_test.dart",
+        "suiteID": 126,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 130,
+        "time": 161087,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 126,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_file_menu_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          128
+        ],
+        "id": 130,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "New confirms dirty work and clears the previous history only after discard (variant: TargetPlatform.windows)",
+        "root_column": 3,
+        "root_line": 121,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_file_menu_test.dart",
+        "suiteID": 126,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 131,
+        "time": 162592,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 126,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_file_menu_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          128
+        ],
+        "id": 131,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "Open confirms the destination spreadsheet and cancellation keeps its draft (variant: TargetPlatform.windows)",
+        "root_column": 3,
+        "root_line": 146,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_file_menu_test.dart",
+        "suiteID": 126,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 132,
+        "time": 163874,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 126,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_file_menu_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          128
+        ],
+        "id": 132,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "macOS opens native dialogs safely and disables modal File actions (variant: TargetPlatform.macOS)",
+        "root_column": 3,
+        "root_line": 187,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_file_menu_test.dart",
+        "suiteID": 126,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 136,
+        "time": 165218,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 133,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_desktop_menu_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          135
+        ],
+        "id": 136,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "desktop File menu invokes enabled actions and disables busy ones",
+        "root_column": 3,
+        "root_line": 49,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_desktop_menu_test.dart",
+        "suiteID": 133,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 137,
+        "time": 165271,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 133,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_desktop_menu_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          135
+        ],
+        "id": 137,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "macOS menu serializes File shortcuts and dispatches native selection (variant: TargetPlatform.macOS)",
+        "root_column": 3,
+        "root_line": 99,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_desktop_menu_test.dart",
+        "suiteID": 133,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 138,
+        "time": 165293,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 133,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_desktop_menu_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          135
+        ],
+        "id": 138,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "native Quit waits for and respects the workspace close decision (variant: TargetPlatform.macOS)",
+        "root_column": 3,
+        "root_line": 189,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_desktop_menu_test.dart",
+        "suiteID": 133,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 139,
+        "time": 165308,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 133,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_desktop_menu_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          135
+        ],
+        "id": 139,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "macOS Close restores prevention and synchronizes fullscreen (variant: TargetPlatform.macOS)",
+        "root_column": 3,
+        "root_line": 227,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_desktop_menu_test.dart",
+        "suiteID": 133,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 143,
+        "time": 171711,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 140,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_ribbon_customization_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          142
+        ],
+        "id": 143,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "compact Insert menus execute table and footnote commands with undo (variant: TargetPlatform.linux)",
+        "root_column": 3,
+        "root_line": 87,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_ribbon_customization_test.dart",
+        "suiteID": 140,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 144,
+        "time": 174374,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 140,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_ribbon_customization_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          142
+        ],
+        "id": 144,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "customization hides and orders groups, switches labels, and restores defaults",
+        "root_column": 3,
+        "root_line": 165,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_ribbon_customization_test.dart",
+        "suiteID": 140,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 145,
+        "time": 175760,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 140,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_ribbon_customization_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          142
+        ],
+        "id": 145,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "hidden tabs recover selection and collapsed ribbon can always be expanded",
+        "root_column": 3,
+        "root_line": 212,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_ribbon_customization_test.dart",
+        "suiteID": 140,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 146,
+        "time": 177389,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 140,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_ribbon_customization_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          142
+        ],
+        "id": 146,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "compact commands and customization work in narrow Arabic at large text scale (variant: TargetPlatform.linux)",
+        "root_column": 3,
+        "root_line": 240,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_ribbon_customization_test.dart",
+        "suiteID": 140,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 147,
+        "time": 178905,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 140,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_ribbon_customization_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          142
+        ],
+        "id": 147,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "Insert menus support Escape, outside controls and keyboard selection (variant: TargetPlatform.linux)",
+        "root_column": 3,
+        "root_line": 273,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_ribbon_customization_test.dart",
+        "suiteID": 140,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 148,
+        "time": 182130,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 140,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_ribbon_customization_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          142
+        ],
+        "id": 148,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "all application tabs retain unique reachable groups",
+        "root_column": 3,
+        "root_line": 324,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_ribbon_customization_test.dart",
+        "suiteID": 140,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    }
+  ],
+  "visible_test_count": 116
+}
