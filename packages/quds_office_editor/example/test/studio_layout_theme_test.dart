@@ -169,6 +169,37 @@ void main() {
   }, variant: TargetPlatformVariant.only(TargetPlatform.linux));
 
   testWidgets(
+    'Paragraph presets switch exact spacing back to multiples without truncating custom spacing',
+    (tester) async {
+      final word = await _studio(tester);
+      final props = word.document.paragraphs.single.properties;
+      props.lineSpacing = 24;
+      props.lineSpacingRule = WmlLineSpacingRule.exact;
+      props.spacingAfter = 96;
+      word.refresh();
+      await _tab(tester, 'layout');
+      await _menu(tester, 'paragraph', '1.5');
+      expect(word.document.paragraphs.single.properties.lineSpacing, 1.5);
+      expect(
+        word.document.paragraphs.single.properties.lineSpacingRule,
+        WmlLineSpacingRule.auto,
+      );
+      await _undo(tester);
+      expect(word.document.paragraphs.single.properties.lineSpacing, 24);
+      expect(
+        word.document.paragraphs.single.properties.lineSpacingRule,
+        WmlLineSpacingRule.exact,
+      );
+      await _menu(tester, 'paragraph', 'After+');
+      expect(word.document.paragraphs.single.properties.spacingAfter, 102);
+      await _undo(tester);
+      expect(word.document.paragraphs.single.properties.spacingAfter, 96);
+      expect(tester.takeException(), isNull);
+    },
+    variant: TargetPlatformVariant.only(TargetPlatform.linux),
+  );
+
+  testWidgets(
     'Page Layout and Paragraph dialogs are reachable from the ribbon',
     (tester) async {
       final word = await _studio(tester);
@@ -307,7 +338,28 @@ void main() {
         size: const Size(520, 900),
         textScale: 1.6,
       );
-      await configureStudioForTest(tester, language: StudioLanguage.ar);
+      await tester.tap(find.byTooltip('Settings'));
+      await _frames(tester);
+      final language = find.byType(DropdownButtonFormField<StudioLanguage>);
+      await tester.ensureVisible(language);
+      await tester.tap(language);
+      await _frames(tester);
+      await tester.tap(find.text('العربية').last);
+      await _frames(tester);
+      expect(
+        Directionality.of(tester.element(find.byType(AlertDialog))),
+        TextDirection.rtl,
+      );
+      await tester.tap(find.widgetWithText(TextButton, 'إغلاق'));
+      await _frames(tester);
+      await tester.tap(find.byTooltip('الإعدادات'));
+      await _frames(tester);
+      expect(
+        Directionality.of(tester.element(find.byType(AlertDialog))),
+        TextDirection.rtl,
+      );
+      await tester.tap(find.widgetWithText(TextButton, 'إغلاق'));
+      await _frames(tester);
       await _tab(tester, 'layout');
       await _menu(tester, 'margins', 'ضيق');
       expect(word.pageMargins.matches(WmlPageMargins.narrow), isTrue);

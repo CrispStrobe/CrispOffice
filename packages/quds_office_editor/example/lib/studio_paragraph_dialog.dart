@@ -31,7 +31,7 @@ enum _Metric { before, after, left, right, line, special }
 
 enum _SpecialIndent { none, firstLine, hanging }
 
-enum _Pagination { keepLines, pageBreak, columnBreak }
+enum _Pagination { pageBreak, columnBreak }
 
 String _translate(StudioLanguage language, String en, String de, String ar) =>
     switch (language) {
@@ -295,8 +295,6 @@ final class _ParagraphPatch {
       final value = _pagination[setting];
       if (value == null) continue;
       switch (setting) {
-        case _Pagination.keepLines:
-          props.keepTogether = value;
         case _Pagination.pageBreak:
           props.pageBreakBefore = value;
         case _Pagination.columnBreak:
@@ -361,7 +359,6 @@ class _StudioParagraphDialogState extends State<_StudioParagraphDialog> {
     _lineRule = _common((props) => props.lineSpacingRule);
     _special = _common<_SpecialIndent?>(_specialOf);
     _pagination.addAll({
-      _Pagination.keepLines: _common((props) => props.keepTogether),
       _Pagination.pageBreak: _common((props) => props.pageBreakBefore),
       _Pagination.columnBreak: _common((props) => props.columnBreakBefore),
     });
@@ -816,14 +813,6 @@ class _StudioParagraphDialogState extends State<_StudioParagraphDialog> {
                         _t('Pagination', 'Seitenumbruch', 'تقسيم الصفحات'),
                       ),
                       _check(
-                        _Pagination.keepLines,
-                        _t(
-                          'Keep lines together',
-                          'Absatz nicht trennen',
-                          'إبقاء أسطر الفقرة معاً',
-                        ),
-                      ),
-                      _check(
                         _Pagination.pageBreak,
                         _t(
                           'Page break before',
@@ -1000,7 +989,7 @@ class _StudioParagraphDialogState extends State<_StudioParagraphDialog> {
     onChanged: (value) => _changed(() {
       _pagination[setting] = value;
       _paginationEdited.add(setting);
-      if (value == true && setting != _Pagination.keepLines) {
+      if (value == true) {
         final other = setting == _Pagination.pageBreak
             ? _Pagination.columnBreak
             : _Pagination.pageBreak;

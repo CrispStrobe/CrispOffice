@@ -134,7 +134,10 @@ void main() {
   testWidgets(
     'selected paragraphs apply precisely in one undo and round trip',
     (tester) async {
-      final first = _paragraph('First', WmlParagraphProps(spacingAfter: 7));
+      final first = _paragraph(
+        'First',
+        WmlParagraphProps(spacingAfter: 7, keepTogether: true),
+      );
       final second = _paragraph('Second', WmlParagraphProps(spacingAfter: 19));
       final last = _paragraph('Not selected');
       final document = WmlDocument(
@@ -164,7 +167,6 @@ void main() {
       await _type(tester, 'right', '0.25 in');
       await _pick(tester, 'special-kind', 'Hanging');
       await _type(tester, 'special', '9 pt');
-      await _check(tester, 'keepLines');
       await _check(tester, 'pageBreak');
       await tester.tap(_key('apply'));
       await _frames(tester);
@@ -181,7 +183,6 @@ void main() {
         expect(props.indent.right, 18);
         expect(props.indent.firstLine, 0);
         expect(props.indent.hanging, 9);
-        expect(props.keepTogether, isTrue);
         expect(props.pageBreakBefore, isTrue);
         expect(props.explicitSpacingBefore, isTrue);
         expect(props.explicitSpacingAfter, isFalse);
@@ -190,6 +191,8 @@ void main() {
       }
       expect(first.properties.spacingAfter, 7);
       expect(second.properties.spacingAfter, 19);
+      expect(first.properties.keepTogether, isTrue);
+      expect(second.properties.keepTogether, isFalse);
       expect(_format(last.properties), initial.last);
       expect(controller.contentRevision, revision + 1);
       final saved = WordDeserializer().readBytes(
@@ -348,7 +351,7 @@ void main() {
   });
 
   testWidgets(
-    'pagination controls turn off existing flags and avoid conflicting breaks',
+    'page and column breaks preserve imported line-keeping properties',
     (tester) async {
       final paragraph = _paragraph(
         'Breaks',
@@ -362,11 +365,11 @@ void main() {
           ],
         ),
       );
-      await _check(tester, 'keepLines');
+      expect(find.text('Keep lines together'), findsNothing);
       await _check(tester, 'columnBreak');
       await tester.tap(_key('apply'));
       await _frames(tester);
-      expect(paragraph.properties.keepTogether, isFalse);
+      expect(paragraph.properties.keepTogether, isTrue);
       expect(paragraph.properties.pageBreakBefore, isFalse);
       expect(paragraph.properties.columnBreakBefore, isTrue);
       controller.undo();

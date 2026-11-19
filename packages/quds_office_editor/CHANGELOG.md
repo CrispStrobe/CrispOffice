@@ -7,6 +7,13 @@ All notable changes to `quds_office_editor` are documented here.
 - Add a Page Layout dialog for numeric paper, margins, header/footer distances,
   equal columns and section options. Apply validated drafts as one undo step,
   preserve imported section properties, and reject stale document targets.
+- Consolidate Layout, equation, function, shape and motion presets into menus
+  with selected-value feedback. Add a precise Paragraph dialog with mixed-value
+  preservation, unit-aware spacing and indentation, and one-step Undo.
+- Move document interaction choices to File/View as Edit document, Read and
+  copy, and Preview only; theme Material dialogs, menus and fields with the
+  selected appearance. Show explicit slide timing choices and disable their
+  mutations in read-only modes.
 
 - Make Insert commands compact and configurable, save ribbon layout preferences,
   simplify the title bar, and provide desktop File menus and native macOS window

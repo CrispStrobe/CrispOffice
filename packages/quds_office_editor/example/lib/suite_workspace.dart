@@ -1329,174 +1329,187 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
 
           return Theme(
             data: _materialTheme,
-            child: AlertDialog(
-              title: Text(_strings.settings),
-              content: SizedBox(
-                width: 460,
-                child: SingleChildScrollView(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      DropdownButtonFormField<SuiteLook>(
-                        isExpanded: true,
-                        initialValue: _look,
-                        decoration: InputDecoration(labelText: _strings.look),
-                        items: <DropdownMenuItem<SuiteLook>>[
-                          for (final value in SuiteLook.values)
+            child: Directionality(
+              textDirection: _arabic ? TextDirection.rtl : TextDirection.ltr,
+              child: AlertDialog(
+                title: Text(_strings.settings),
+                content: SizedBox(
+                  width: 460,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        DropdownButtonFormField<SuiteLook>(
+                          isExpanded: true,
+                          initialValue: _look,
+                          decoration: InputDecoration(labelText: _strings.look),
+                          items: <DropdownMenuItem<SuiteLook>>[
+                            for (final value in SuiteLook.values)
+                              DropdownMenuItem(
+                                value: value,
+                                child: Text(switch (value) {
+                                  SuiteLook.light => _t(
+                                    'Light',
+                                    'Hell',
+                                    'فاتح',
+                                  ),
+                                  SuiteLook.dark => _t(
+                                    'Dark',
+                                    'Dunkel',
+                                    'داكن',
+                                  ),
+                                  SuiteLook.highContrast => _t(
+                                    'High contrast',
+                                    'Hoher Kontrast',
+                                    'تباين عالٍ',
+                                  ),
+                                }),
+                              ),
+                          ],
+                          onChanged: (value) {
+                            if (value != null) changed(() => _look = value);
+                          },
+                        ),
+                        const SizedBox(height: 12),
+                        DropdownButtonFormField<StudioLanguage>(
+                          isExpanded: true,
+                          initialValue: _language,
+                          decoration: InputDecoration(
+                            labelText: _strings.languageLabel,
+                          ),
+                          items: const <DropdownMenuItem<StudioLanguage>>[
                             DropdownMenuItem(
-                              value: value,
-                              child: Text(switch (value) {
-                                SuiteLook.light => _t('Light', 'Hell', 'فاتح'),
-                                SuiteLook.dark => _t('Dark', 'Dunkel', 'داكن'),
-                                SuiteLook.highContrast => _t(
-                                  'High contrast',
-                                  'Hoher Kontrast',
-                                  'تباين عالٍ',
-                                ),
-                              }),
+                              value: StudioLanguage.en,
+                              child: Text('English'),
                             ),
-                        ],
-                        onChanged: (value) {
-                          if (value != null) changed(() => _look = value);
-                        },
-                      ),
-                      const SizedBox(height: 12),
-                      DropdownButtonFormField<StudioLanguage>(
-                        isExpanded: true,
-                        initialValue: _language,
-                        decoration: InputDecoration(
-                          labelText: _strings.languageLabel,
-                        ),
-                        items: const <DropdownMenuItem<StudioLanguage>>[
-                          DropdownMenuItem(
-                            value: StudioLanguage.en,
-                            child: Text('English'),
-                          ),
-                          DropdownMenuItem(
-                            value: StudioLanguage.de,
-                            child: Text('Deutsch'),
-                          ),
-                          DropdownMenuItem(
-                            value: StudioLanguage.ar,
-                            child: Text('العربية'),
-                          ),
-                        ],
-                        onChanged: (value) {
-                          if (value != null) changed(() => _language = value);
-                        },
-                      ),
-                      const SizedBox(height: 12),
-                      DropdownButtonFormField<OfficeLengthUnit>(
-                        isExpanded: true,
-                        initialValue: _lengthUnit,
-                        decoration: InputDecoration(
-                          labelText: _strings.measurement,
-                        ),
-                        items: <DropdownMenuItem<OfficeLengthUnit>>[
-                          DropdownMenuItem(
-                            value: OfficeLengthUnit.inches,
-                            child: Text(_t('Inches', 'Zoll', 'بوصة')),
-                          ),
-                          DropdownMenuItem(
-                            value: OfficeLengthUnit.millimeters,
-                            child: Text(_strings.millimetres),
-                          ),
-                          DropdownMenuItem(
-                            value: OfficeLengthUnit.centimeters,
-                            child: Text(_strings.centimetres),
-                          ),
-                        ],
-                        onChanged: (value) {
-                          if (value != null) changed(() => _lengthUnit = value);
-                        },
-                      ),
-                      const SizedBox(height: 8),
-                      SwitchListTile(
-                        contentPadding: EdgeInsets.zero,
-                        title: Text(_strings.showOutline),
-                        value: _showOutline,
-                        onChanged: (value) =>
-                            changed(() => _showOutline = value),
-                      ),
-                      SwitchListTile(
-                        contentPadding: EdgeInsets.zero,
-                        title: Text(_strings.showComments),
-                        value: _showComments,
-                        onChanged: (value) =>
-                            changed(() => _showComments = value),
-                      ),
-                      SwitchListTile(
-                        contentPadding: EdgeInsets.zero,
-                        title: Text(_strings.showNotes),
-                        value: _showNotes,
-                        onChanged: (value) => changed(() => _showNotes = value),
-                      ),
-                      SwitchListTile(
-                        key: const ValueKey<String>(
-                          'studio-setting-detect-language',
-                        ),
-                        contentPadding: EdgeInsets.zero,
-                        title: Text(
-                          _t(
-                            'Detect language automatically',
-                            StudioStrings.de('Detect language automatically'),
-                            'اكتشاف اللغة تلقائياً',
-                          ),
-                        ),
-                        subtitle: Text(
-                          _t(
-                            'Check each paragraph with the spelling and grammar '
-                                'tools for its detected language. The document '
-                                'is not changed.',
-                            StudioStrings.de(
-                              'Check each paragraph with the spelling and '
-                              'grammar tools for its detected language. The '
-                              'document is not changed.',
+                            DropdownMenuItem(
+                              value: StudioLanguage.de,
+                              child: Text('Deutsch'),
                             ),
-                            'تدقيق كل فقرة بأدوات اللغة المكتشفة لها دون تغيير '
-                                'المستند.',
+                            DropdownMenuItem(
+                              value: StudioLanguage.ar,
+                              child: Text('العربية'),
+                            ),
+                          ],
+                          onChanged: (value) {
+                            if (value != null) changed(() => _language = value);
+                          },
+                        ),
+                        const SizedBox(height: 12),
+                        DropdownButtonFormField<OfficeLengthUnit>(
+                          isExpanded: true,
+                          initialValue: _lengthUnit,
+                          decoration: InputDecoration(
+                            labelText: _strings.measurement,
+                          ),
+                          items: <DropdownMenuItem<OfficeLengthUnit>>[
+                            DropdownMenuItem(
+                              value: OfficeLengthUnit.inches,
+                              child: Text(_t('Inches', 'Zoll', 'بوصة')),
+                            ),
+                            DropdownMenuItem(
+                              value: OfficeLengthUnit.millimeters,
+                              child: Text(_strings.millimetres),
+                            ),
+                            DropdownMenuItem(
+                              value: OfficeLengthUnit.centimeters,
+                              child: Text(_strings.centimetres),
+                            ),
+                          ],
+                          onChanged: (value) {
+                            if (value != null)
+                              changed(() => _lengthUnit = value);
+                          },
+                        ),
+                        const SizedBox(height: 8),
+                        SwitchListTile(
+                          contentPadding: EdgeInsets.zero,
+                          title: Text(_strings.showOutline),
+                          value: _showOutline,
+                          onChanged: (value) =>
+                              changed(() => _showOutline = value),
+                        ),
+                        SwitchListTile(
+                          contentPadding: EdgeInsets.zero,
+                          title: Text(_strings.showComments),
+                          value: _showComments,
+                          onChanged: (value) =>
+                              changed(() => _showComments = value),
+                        ),
+                        SwitchListTile(
+                          contentPadding: EdgeInsets.zero,
+                          title: Text(_strings.showNotes),
+                          value: _showNotes,
+                          onChanged: (value) =>
+                              changed(() => _showNotes = value),
+                        ),
+                        SwitchListTile(
+                          key: const ValueKey<String>(
+                            'studio-setting-detect-language',
+                          ),
+                          contentPadding: EdgeInsets.zero,
+                          title: Text(
+                            _t(
+                              'Detect language automatically',
+                              StudioStrings.de('Detect language automatically'),
+                              'اكتشاف اللغة تلقائياً',
+                            ),
+                          ),
+                          subtitle: Text(
+                            _t(
+                              'Check each paragraph with the spelling and grammar '
+                                  'tools for its detected language. The document '
+                                  'is not changed.',
+                              StudioStrings.de(
+                                'Check each paragraph with the spelling and '
+                                'grammar tools for its detected language. The '
+                                'document is not changed.',
+                              ),
+                              'تدقيق كل فقرة بأدوات اللغة المكتشفة لها دون تغيير '
+                                  'المستند.',
+                            ),
+                          ),
+                          value: _word.proofing.automaticLanguageDetection,
+                          onChanged: (value) => changed(
+                            () => _word.proofing.automaticLanguageDetection =
+                                value,
                           ),
                         ),
-                        value: _word.proofing.automaticLanguageDetection,
-                        onChanged: (value) => changed(
-                          () =>
-                              _word.proofing.automaticLanguageDetection = value,
-                        ),
-                      ),
-                      SwitchListTile(
-                        contentPadding: EdgeInsets.zero,
-                        title: Text(_strings.showRibbonLabels),
-                        value: _ribbonPreferences.showGroupLabels,
-                        onChanged: (value) => changed(
-                          () => _ribbonPreferences.setShowGroupLabels(value),
-                        ),
-                      ),
-                      ListTile(
-                        contentPadding: EdgeInsets.zero,
-                        leading: const Icon(Icons.tune),
-                        title: Text(
-                          _t(
-                            'Customize Ribbon',
-                            'Menüband anpassen',
-                            'تخصيص الشريط',
+                        SwitchListTile(
+                          contentPadding: EdgeInsets.zero,
+                          title: Text(_strings.showRibbonLabels),
+                          value: _ribbonPreferences.showGroupLabels,
+                          onChanged: (value) => changed(
+                            () => _ribbonPreferences.setShowGroupLabels(value),
                           ),
                         ),
-                        trailing: const Icon(Icons.chevron_right),
-                        onTap: () {
-                          Navigator.pop(dialogContext);
-                          _customizeRibbon();
-                        },
-                      ),
-                    ],
+                        ListTile(
+                          contentPadding: EdgeInsets.zero,
+                          leading: const Icon(Icons.tune),
+                          title: Text(
+                            _t(
+                              'Customize Ribbon',
+                              'Menüband anpassen',
+                              'تخصيص الشريط',
+                            ),
+                          ),
+                          trailing: const Icon(Icons.chevron_right),
+                          onTap: () {
+                            Navigator.pop(dialogContext);
+                            _customizeRibbon();
+                          },
+                        ),
+                      ],
+                    ),
                   ),
                 ),
+                actions: <Widget>[
+                  TextButton(
+                    onPressed: () => Navigator.pop(dialogContext),
+                    child: Text(_strings.close),
+                  ),
+                ],
               ),
-              actions: <Widget>[
-                TextButton(
-                  onPressed: () => Navigator.pop(dialogContext),
-                  child: Text(_strings.close),
-                ),
-              ],
             ),
           );
         },
@@ -2028,10 +2041,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       final commands = group.children.whereType<StudioCmd>().toList();
       if (!compact ||
           commands.isEmpty ||
-          (commands.length != group.children.length &&
-              !(_app == SuiteApp.word &&
-                  tab == _RibbonTab.layout &&
-                  group.id == 'margins'))) {
+          commands.length != group.children.length) {
         result.add(group);
         continue;
       }
@@ -3793,19 +3803,6 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         id: 'margins',
         title: _t('Margins', StudioStrings.de('Margins'), 'الهوامش'),
         children: <Widget>[
-          StudioCombo<String>(
-            value: _marginPresetId(margins),
-            items: const <String>['normal', 'narrow', 'moderate', 'wide'],
-            labelOf: _marginPresetLabel,
-            width: 118,
-            enabled: _canMutate,
-            tooltip: _t(
-              'Page margins',
-              StudioStrings.de('Page margins'),
-              'هوامش الصفحة',
-            ),
-            onSelected: _canMutate ? _applyMarginPreset : null,
-          ),
           _cmd(
             Icons.border_outer,
             _t('Normal', StudioStrings.de('Normal'), 'عادي'),
@@ -3963,25 +3960,33 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
             Icons.format_line_spacing,
             '1.0',
             _canMutate ? () => _setLineSpacing(1.0) : null,
-            selected: para.lineSpacing == 1.0,
+            selected:
+                para.lineSpacingRule == WmlLineSpacingRule.auto &&
+                para.lineSpacing == 1.0,
           ),
           _cmd(
             Icons.format_line_spacing,
             '1.15',
             _canMutate ? () => _setLineSpacing(1.15) : null,
-            selected: para.lineSpacing == 1.15,
+            selected:
+                para.lineSpacingRule == WmlLineSpacingRule.auto &&
+                para.lineSpacing == 1.15,
           ),
           _cmd(
             Icons.format_line_spacing,
             '1.5',
             _canMutate ? () => _setLineSpacing(1.5) : null,
-            selected: para.lineSpacing == 1.5,
+            selected:
+                para.lineSpacingRule == WmlLineSpacingRule.auto &&
+                para.lineSpacing == 1.5,
           ),
           _cmd(
             Icons.format_line_spacing,
             '2.0',
             _canMutate ? () => _setLineSpacing(2.0) : null,
-            selected: para.lineSpacing == 2.0,
+            selected:
+                para.lineSpacingRule == WmlLineSpacingRule.auto &&
+                para.lineSpacing == 2.0,
           ),
           _cmd(
             Icons.vertical_align_top,
@@ -8673,13 +8678,17 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   }
 
   void _setLineSpacing(double value) {
-    _word.applyParagraphFormat((WmlParagraphProps p) => p.lineSpacing = value);
+    _word.applyParagraphFormat((WmlParagraphProps p) {
+      p.lineSpacing = value;
+      p.lineSpacingRule = WmlLineSpacingRule.auto;
+      p.explicitLineSpacing = true;
+    });
   }
 
   void _nudgeParagraphSpacing({double before = 0, double after = 0}) {
     _word.applyParagraphFormat((WmlParagraphProps p) {
-      p.spacingBefore = (p.spacingBefore + before).clamp(0, 72);
-      p.spacingAfter = (p.spacingAfter + after).clamp(0, 72);
+      p.spacingBefore = (p.spacingBefore + before).clamp(0, double.infinity);
+      p.spacingAfter = (p.spacingAfter + after).clamp(0, double.infinity);
     });
   }
 
@@ -8704,43 +8713,6 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         firstLine: 0,
         hanging: cur.hanging > 0 ? 0 : 36,
       );
-    });
-  }
-
-  String _marginPresetId(WmlPageMargins margins) {
-    if (margins.matches(WmlPageMargins.narrow)) {
-      return 'narrow';
-    }
-    if (margins.matches(WmlPageMargins.moderate)) {
-      return 'moderate';
-    }
-    if (margins.matches(WmlPageMargins.wide)) {
-      return 'wide';
-    }
-    return 'normal';
-  }
-
-  String _marginPresetLabel(String id) => switch (id) {
-    'narrow' => _t(
-      'Narrow (0.5")',
-      StudioStrings.de('Narrow (0.5")'),
-      'ضيق (0.5")',
-    ),
-    'moderate' => _t(
-      'Moderate (0.75")',
-      StudioStrings.de('Moderate (0.75")'),
-      'متوسط (0.75")',
-    ),
-    'wide' => _t('Wide (2")', StudioStrings.de('Wide (2")'), 'واسع (2")'),
-    _ => _t('Normal (1")', StudioStrings.de('Normal (1")'), 'عادي (1")'),
-  };
-
-  void _applyMarginPreset(String id) {
-    _word.setPageMargins(switch (id) {
-      'narrow' => WmlPageMargins.narrow,
-      'moderate' => WmlPageMargins.moderate,
-      'wide' => WmlPageMargins.wide,
-      _ => WmlPageMargins.normal,
     });
   }
 
