@@ -1,0 +1,51 @@
+{
+  "accepted": true,
+  "argv": [
+    "/workspace/scratch/b1a98f2b2c3b/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+    "--disable-dart-dev",
+    "--packages=/workspace/scratch/b1a98f2b2c3b/quds_office_suite/.dart_tool/package_config.json",
+    "/workspace/scratch/b1a98f2b2c3b/runtime/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+    "--platform=node",
+    "--compiler=dart2js",
+    "--reporter=json",
+    "--concurrency=1",
+    "test/browser_problem_test.dart"
+  ],
+  "cwd": "/workspace/scratch/b1a98f2b2c3b/quds_office_suite/packages/quds_mail_store",
+  "elapsed_seconds": 19.243,
+  "environment_overrides": {
+    "CI": "true",
+    "DART_SUPPRESS_ANALYTICS": "true",
+    "DASH__SUPPRESS_ANALYTICS": "true",
+    "FLUTTER_SUPPRESS_ANALYTICS": "true"
+  },
+  "exit_code": 0,
+  "expected_test_files": [
+    "packages/quds_mail_store/test/browser_problem_test.dart"
+  ],
+  "finished_at_utc": "2026-11-19T17:09:52.466788+00:00",
+  "kind": "tests",
+  "missing_test_files": [],
+  "name": "quds_mail_store-node",
+  "runtime_environment": {
+    "FLUTTER_ROOT": "/workspace/scratch/b1a98f2b2c3b/runtime/flutter",
+    "PUB_CACHE": "/workspace/scratch/b1a98f2b2c3b/runtime/pub-cache",
+    "TMPDIR": "/workspace/scratch/b1a98f2b2c3b/runtime/tmp",
+    "XDG_CACHE_HOME": "/workspace/scratch/b1a98f2b2c3b/runtime/cache",
+    "XDG_CONFIG_HOME": "/workspace/scratch/b1a98f2b2c3b/runtime/config",
+    "XDG_DATA_HOME": "/workspace/scratch/b1a98f2b2c3b/runtime/data"
+  },
+  "started_at_utc": "2026-11-19T17:09:33.224080+00:00",
+  "stderr_bytes": 0,
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_bytes": 2354,
+  "stdout_sha256": "0f602d5f98da16e9f9d3b258ff87c3c25acbd8aced4c78ef9bef335564584200",
+  "test_cases_sha256": "cd0949502a79a746dbe95f09f5c514a3fe719b847d4b55ae878817e3c78ef253",
+  "test_counts": {
+    "failed": 0,
+    "passed": 3,
+    "skipped": 0
+  },
+  "timeout_seconds": 900,
+  "unexpected_test_files": []
+}

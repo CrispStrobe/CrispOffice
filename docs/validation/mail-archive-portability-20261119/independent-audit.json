@@ -1,0 +1,464 @@
+{
+  "acceptance_limits": [
+    "No live IMAP, SMTP, EWS, Gmail or Microsoft 365 credentials or service requests; transport tests use injected fakes or local loopback servers.",
+    "Language-ID synthetic unit and native transport/lifecycle checks do not qualify the real classifier or model-card accuracy; the changed real-model smoke test is explicitly excluded from execution.",
+    "Node tests cover declared JavaScript boundaries and portable macro/VBA execution; no browser interaction, browser archive, or full web build is claimed.",
+    "Linux native SQLite and actual POSIX crash tests only; no installed macOS/Windows/mobile application, signing, Keychain, or OAuth account acceptance.",
+    "The incoming macOS build script receives bash -n syntax validation only; no macOS build, dylib loading, signing, entitlement or installed proofing-data execution is performed.",
+    "The unmodified sqlite3 3.9.1 default Linux x64 packaged library is verified by its pinned SHA-256. Other native platform binaries are not qualified by this run.",
+    "No full-repository test claim, performance benchmark, remote mailbox snapshot guarantee, compliance certification, or GitHub Actions result."
+  ],
+  "analysis_target_count": 216,
+  "audit_script_sha256": "a8f4485feaa943ee7c888f617776c89cd5dcd0c4b6c081545f1e9d656007f327",
+  "audited_at_utc": "2026-11-19T17:20:00.036819+00:00",
+  "cohort_count": 10,
+  "cohorts": [
+    {
+      "counts": {
+        "failed": 0,
+        "passed": 54,
+        "skipped": 0
+      },
+      "hidden_successes": 6,
+      "name": "quds_mail_core-vm",
+      "non_json_lines": [],
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "cbce069726f5b9431378b71e2c6b29a22f98afa28a4a6857fb18aff123d88aa5",
+      "test_cases_sha256": "0c147571509799f193d17c127bff27586d02747eebcc7d9e7f28a69198a156e5",
+      "test_files": [
+        "packages/quds_mail_core/test/cancellation_test.dart",
+        "packages/quds_mail_core/test/ews_identity_test.dart",
+        "packages/quds_mail_core/test/imap_sync_range_test.dart",
+        "packages/quds_mail_core/test/models_test.dart",
+        "packages/quds_mail_core/test/outbox_test.dart",
+        "packages/quds_mail_core/test/sync_coordinator_test.dart"
+      ]
+    },
+    {
+      "counts": {
+        "failed": 0,
+        "passed": 84,
+        "skipped": 0
+      },
+      "hidden_successes": 7,
+      "name": "quds_mail_mime-vm",
+      "non_json_lines": [],
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "b1daf64b564c1bdca7e2bc49a3c7ebdd3a071f502e3ca245165cc744cbf6af6d",
+      "test_cases_sha256": "dc5235e3b4d675fa809477cb7f0e6e6a720ab6ab501e6ddbf170c670f35f624e",
+      "test_files": [
+        "packages/quds_mail_mime/test/eml_bytes_test.dart",
+        "packages/quds_mail_mime/test/mbox_test.dart",
+        "packages/quds_mail_mime/test/mime_encodings_test.dart",
+        "packages/quds_mail_mime/test/mime_limits_test.dart",
+        "packages/quds_mail_mime/test/mime_parts_test.dart",
+        "packages/quds_mail_mime/test/mime_review_regressions_test.dart",
+        "packages/quds_mail_mime/test/portable_import_test.dart"
+      ]
+    },
+    {
+      "counts": {
+        "failed": 0,
+        "passed": 462,
+        "skipped": 0
+      },
+      "hidden_successes": 16,
+      "name": "quds_mail_store-vm",
+      "non_json_lines": [],
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "6e490f37aaaee466003f694a78b85054b06b2b470cbaa282bc81407cad08297a",
+      "test_cases_sha256": "b709de922f5ca19fdbc518346610b833bd8dd214379a1f80fe053985b0470084",
+      "test_files": [
+        "packages/quds_mail_store/test/adversarial_store_test.dart",
+        "packages/quds_mail_store/test/archive_directory_native_test.dart",
+        "packages/quds_mail_store/test/archive_export_native_test.dart",
+        "packages/quds_mail_store/test/archive_export_plan_test.dart",
+        "packages/quds_mail_store/test/archive_native_test.dart",
+        "packages/quds_mail_store/test/archive_query_test.dart",
+        "packages/quds_mail_store/test/archive_repository_test.dart",
+        "packages/quds_mail_store/test/archive_runner_test.dart",
+        "packages/quds_mail_store/test/codec_test.dart",
+        "packages/quds_mail_store/test/crash_recovery_test.dart",
+        "packages/quds_mail_store/test/ews_store_test.dart",
+        "packages/quds_mail_store/test/imap_sync_range_test.dart",
+        "packages/quds_mail_store/test/migration_test.dart",
+        "packages/quds_mail_store/test/native_platform_test.dart",
+        "packages/quds_mail_store/test/platform_configuration_test.dart",
+        "packages/quds_mail_store/test/repository_test.dart"
+      ]
+    },
+    {
+      "counts": {
+        "failed": 0,
+        "passed": 3,
+        "skipped": 0
+      },
+      "hidden_successes": 1,
+      "name": "quds_mail_store-node",
+      "non_json_lines": [],
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "0f602d5f98da16e9f9d3b258ff87c3c25acbd8aced4c78ef9bef335564584200",
+      "test_cases_sha256": "cd0949502a79a746dbe95f09f5c514a3fe719b847d4b55ae878817e3c78ef253",
+      "test_files": [
+        "packages/quds_mail_store/test/browser_problem_test.dart"
+      ]
+    },
+    {
+      "counts": {
+        "failed": 0,
+        "passed": 373,
+        "skipped": 0
+      },
+      "hidden_successes": 18,
+      "name": "quds_mail_transport-vm",
+      "non_json_lines": [],
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "a50e1ad396e90f520d2459f9f92a66c50711fd03d5a4467f6cf973c210392535",
+      "test_cases_sha256": "2e24aafb9515ad314495e329ad5b6b9e00e37a400965d7eb0fda183493cc667b",
+      "test_files": [
+        "packages/quds_mail_transport/test/cloud_http_test.dart",
+        "packages/quds_mail_transport/test/cloud_oauth_loopback_test.dart",
+        "packages/quds_mail_transport/test/cloud_oauth_test.dart",
+        "packages/quds_mail_transport/test/cloud_provider_test.dart",
+        "packages/quds_mail_transport/test/cloud_store_test.dart",
+        "packages/quds_mail_transport/test/configuration_test.dart",
+        "packages/quds_mail_transport/test/cursor_test.dart",
+        "packages/quds_mail_transport/test/ews_configuration_test.dart",
+        "packages/quds_mail_transport/test/ews_http_test.dart",
+        "packages/quds_mail_transport/test/ews_ntlm_test.dart",
+        "packages/quds_mail_transport/test/ews_provider_test.dart",
+        "packages/quds_mail_transport/test/ews_soap_test.dart",
+        "packages/quds_mail_transport/test/host_store_integration_test.dart",
+        "packages/quds_mail_transport/test/native_provider_test.dart",
+        "packages/quds_mail_transport/test/native_tls_cancellation_test.dart",
+        "packages/quds_mail_transport/test/native_tls_round_trip_test.dart",
+        "packages/quds_mail_transport/test/native_tls_test.dart",
+        "packages/quds_mail_transport/test/uid_discovery_test.dart"
+      ]
+    },
+    {
+      "counts": {
+        "failed": 0,
+        "passed": 6,
+        "skipped": 0
+      },
+      "hidden_successes": 3,
+      "name": "quds_mail_transport-node",
+      "non_json_lines": [],
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "61f2b7dc9599c19c1bc0917b5ae46b093ec72f5657727fc2eea5b4a95866b1aa",
+      "test_cases_sha256": "79d57b4670701f522d926d6468ac6b7f11af61665ee9303efbfb660735853310",
+      "test_files": [
+        "packages/quds_mail_transport/test/cloud_unsupported_test.dart",
+        "packages/quds_mail_transport/test/ews_unsupported_test.dart",
+        "packages/quds_mail_transport/test/unsupported_test.dart"
+      ]
+    },
+    {
+      "counts": {
+        "failed": 0,
+        "passed": 22,
+        "skipped": 0
+      },
+      "hidden_successes": 4,
+      "name": "language-id-synthetic",
+      "non_json_lines": [],
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "84c3cb11b7050661c74d59fd734f5eb2d2aa4d78176fddc7c8d224adaa8a5c26",
+      "test_cases_sha256": "65f40eeeee12b69f125d0c69b345bcddbca783250cdd0542f502906ef60d4ded",
+      "test_files": [
+        "packages/quds_language_id/test/language_id_native_transport_test.dart",
+        "packages/quds_language_id/test/language_id_unit_test.dart"
+      ]
+    },
+    {
+      "counts": {
+        "failed": 0,
+        "passed": 341,
+        "skipped": 0
+      },
+      "hidden_successes": 18,
+      "name": "engine-incoming-macros-operations",
+      "non_json_lines": [],
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "9fbee552ee12b29836cd139b5f66e5b33bf62cec99a78fb4c47077f0545a1d51",
+      "test_cases_sha256": "1524decc5e13fccda1a71af75db7bae6e17d5bae1c7e8417ef86f97121b71de5",
+      "test_files": [
+        "packages/quds_office_engine/test/office_macro_cli_test.dart",
+        "packages/quds_office_engine/test/office_macro_expansion_test.dart",
+        "packages/quds_office_engine/test/office_macro_language_test.dart",
+        "packages/quds_office_engine/test/office_macro_mcp_test.dart",
+        "packages/quds_office_engine/test/office_macro_runtime_test.dart",
+        "packages/quds_office_engine/test/office_operations_test.dart",
+        "packages/quds_office_engine/test/office_steps_test.dart",
+        "packages/quds_office_engine/test/office_vba_integration_test.dart",
+        "packages/quds_office_engine/test/office_vba_language_test.dart",
+        "packages/quds_office_engine/test/office_vba_procedure_boundaries_test.dart",
+        "packages/quds_office_engine/test/office_vba_procedures_integration_test.dart",
+        "packages/quds_office_engine/test/office_vba_procedures_test.dart",
+        "packages/quds_office_engine/test/sheet_macro_preservation_test.dart",
+        "packages/quds_office_engine/test/table_grid_steps_test.dart",
+        "packages/quds_office_engine/test/word_step_atomicity_test.dart",
+        "packages/quds_office_engine/test/word_steps_vocabulary_test.dart",
+        "packages/quds_office_engine/test/word_structure_steps_test.dart",
+        "packages/quds_office_engine/test/word_table_grid_addressing_test.dart"
+      ]
+    },
+    {
+      "counts": {
+        "failed": 0,
+        "passed": 33,
+        "skipped": 0
+      },
+      "hidden_successes": 4,
+      "name": "mail-ui-widgets",
+      "non_json_lines": [],
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "90601f3ef1e9bd9795f5a5820f0f1d408d7f0c55dbfe7d76c331c7bb2affba23",
+      "test_cases_sha256": "d65d2a75de81f75472ef8a562221dd79cf0366d38750c44ceca9de6feeb2f835",
+      "test_files": [
+        "packages/quds_mail_ui/test/controller_test.dart",
+        "packages/quds_mail_ui/test/example_test.dart",
+        "packages/quds_mail_ui/test/message_view_test.dart",
+        "packages/quds_mail_ui/test/presentation_test.dart"
+      ]
+    },
+    {
+      "counts": {
+        "failed": 0,
+        "passed": 372,
+        "skipped": 0
+      },
+      "hidden_successes": 20,
+      "name": "studio-mail-widgets",
+      "non_json_lines": [],
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "abd92dbe081d84fd48915ce63712ecf0752da982147a4481eea7e2c2fb03a5d4",
+      "test_cases_sha256": "62898d707b3a6d1ed77a0408f59404c8b5cc08390af9e11636c70429894c197f",
+      "test_files": [
+        "packages/quds_office_editor/example/test/studio_mail_archive_action_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_archive_directory_import_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_archive_folder_action_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_archive_host_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_archive_portability_visual_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_archive_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_cloud_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_compose_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_credentials_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_discovery_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_ews_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_lifecycle_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_operation_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_presets_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_reply_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_session_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_web_test.dart",
+        "packages/quds_office_editor/example/test/studio_saved_mail_test.dart"
+      ]
+    }
+  ],
+  "evidence_directory": "/workspace/scratch/b1a98f2b2c3b/portability-final-evidence-02",
+  "excluded_files": [
+    {
+      "path": "packages/quds_language_id/test/language_id_native_test.dart",
+      "reason": "Incoming changes correct the real model smoke expectation. This suite requires the real native CLD3 classifier and verified model, not the allocation-counter fixture. It is formatted and analyzed, but no real-model acceptance is claimed."
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_macos_bundle_native_gate.dart",
+      "reason": "Manual installed-macOS bundle gate. It is formatted and analyzed, but execution requires macOS, the built application with all four native libraries and verified CLD3 model, and installed AyaSpell/CamelMorph data. Linux validation does not qualify that bundle."
+    }
+  ],
+  "findings": [],
+  "fingerprints": {
+    "dependencies": {
+      "after_artifact_sha256": "3f5a536ba8c53e4bb7d0bffc5e238aa369d8c640e92bb6d7d50d99d255e23676",
+      "before_artifact_sha256": "3f5a536ba8c53e4bb7d0bffc5e238aa369d8c640e92bb6d7d50d99d255e23676",
+      "bytes": 116789632,
+      "canonical_sha256": "c400b0220ab948cd68a54521cda95e92ec96447acb4ea0c4c487a2fbb28292c2",
+      "files": 9298,
+      "unchanged": true
+    },
+    "runtime": {
+      "after_artifact_sha256": "4b91bee25afb80465cd039f998fbd4db0f034c4f44e6233b25595beb461614b9",
+      "before_artifact_sha256": "4b91bee25afb80465cd039f998fbd4db0f034c4f44e6233b25595beb461614b9",
+      "bytes": 958593662,
+      "canonical_sha256": "ebed93b8498809bca204d9a9c69915286166e970ccec4870467804168c68c1b3",
+      "files": 608,
+      "unchanged": true
+    },
+    "source": {
+      "after_artifact_sha256": "091126c17feb33fd0648cf1ec4442c3928f05fdf54686351acf7098fbe50b216",
+      "before_artifact_sha256": "091126c17feb33fd0648cf1ec4442c3928f05fdf54686351acf7098fbe50b216",
+      "bytes": 121373033,
+      "canonical_sha256": "4ec4cf7c3d702f4d1534c84a399c02ee4fc493f80fd5e441c85b631752fcf613",
+      "files": 4418,
+      "unchanged": true
+    }
+  },
+  "format_target_count": 26,
+  "frozen_frontier": {
+    "captured_at_utc": "2026-11-19T17:03:22.044540+00:00",
+    "counts": {
+      "ancestor": 211,
+      "historical_equivalent": 23
+    },
+    "frontier_sha256": "9155292674c67b313c358bac91328b1e971687acfa2e1f14f54ed087ebc88e54",
+    "historical_proofs_revalidated": 14,
+    "reconciliation_sha256": "36511d87cd5686a5cbdfedd7f169c67f3caafd66ba804c2f4eec6dcf9554d664",
+    "references": 234
+  },
+  "gate_count": 20,
+  "gates": [
+    {
+      "command_sha256": "ebb676099a334e5514fc1b518cb0818338bab8bd1b88d6383238ba9e2b4cdcf0",
+      "kind": "command",
+      "name": "build-language-id",
+      "result_sha256": "c422522b4e48607afe965c4867b6d88af653f97c52ec6cf8f0f213f40c037f56"
+    },
+    {
+      "command_sha256": "0d65df3ad5f592d09a2c60fc788f1edbad8940821d3be9680c2a44cd0e1542f3",
+      "kind": "command",
+      "name": "macos-build-script-syntax",
+      "result_sha256": "7d77e0ffdf265adbc24cd6edf965717f5d7cd7a3a59b4fff6ab5f13b95d478e1"
+    },
+    {
+      "command_sha256": "f6d7b011d49a0f370ea43812ee4577e9b8d622a1d8535c18cc09ff5df756d266",
+      "kind": "command",
+      "name": "format-changed-dart",
+      "result_sha256": "5ee2cece79e3e645fcf3cbd615e3c968728407142f74774b3d51837b8b481da4"
+    },
+    {
+      "command_sha256": "593fa959b801ca5ff1afd5bec04720b3235d4ac5c88ecfd475ab602c7e58f90d",
+      "kind": "command",
+      "name": "analyze-mail-and-changed-dart",
+      "result_sha256": "47032137a53c3d1f0335e52720eb2cb1d6bdbb8428e858d1cba5ceef07fc6b20"
+    },
+    {
+      "command_sha256": "3bfa42d1fe1621d7a1f6f74bcb0fe7aa80ea5bf267dfe4a6a13bb180db4c70af",
+      "kind": "tests",
+      "name": "quds_mail_core-vm",
+      "result_sha256": "476674bad9ba209d5c1d11bbad15afe78dced1c56b286e5a92157c112c12638c"
+    },
+    {
+      "command_sha256": "9743de4bec989c8032cd861867443e75455a59850d726404c5e4c4c5d009384f",
+      "kind": "tests",
+      "name": "quds_mail_mime-vm",
+      "result_sha256": "50e86012b88c355a1bb6ca6cd6b08e099e96f29ece8e88fead754b7074f56155"
+    },
+    {
+      "command_sha256": "6fce230ff753a0754b882e8f130267cc39b2c731832f88e1cb3527641c48fcf7",
+      "kind": "tests",
+      "name": "quds_mail_store-vm",
+      "result_sha256": "53e8b034a6a07eba0aa0a3e8b672a14a80e15401ad5afa9d027771c4d125efb1"
+    },
+    {
+      "command_sha256": "6798dc97a4dea1b086d691e29c26cefa46def96506a2d05f258900a40e12c63d",
+      "kind": "tests",
+      "name": "quds_mail_store-node",
+      "result_sha256": "a75185d8cc335c166b816d0b77d8a8b3edcc71f706b687603b5cd7249a57da59"
+    },
+    {
+      "command_sha256": "670d2296a48dbdde7f4cff2455fa33331e3f6b0defd76225bb80ee24297b1b23",
+      "kind": "tests",
+      "name": "quds_mail_transport-vm",
+      "result_sha256": "b4aab51a8bd5e7fa86d9af8ef755568eb231a4d56607d3f12d0ea36bbd707447"
+    },
+    {
+      "command_sha256": "d94bf41b4bae2bd00aff7c5f203f4777d5d8aeba7c67077264536c2d979d56e0",
+      "kind": "tests",
+      "name": "quds_mail_transport-node",
+      "result_sha256": "6a221fbb287b2984a5ebb66e667f4592c5c4c4917da5a37daf7d7adfe0c8c999"
+    },
+    {
+      "command_sha256": "a899c23decd0198002f1bcfd3717520b25657b25f6986ebdf7b997b00c85e5c7",
+      "kind": "tests",
+      "name": "language-id-synthetic",
+      "result_sha256": "30f95cbcaef4ac51adc6a99a45ac29f678032dd5abb7eca46a4a0d5d29622682"
+    },
+    {
+      "command_sha256": "b7b3b583bef17d8a36295efda6bc6c35b726168b26ad5e793a544da7e296b237",
+      "kind": "tests",
+      "name": "engine-incoming-macros-operations",
+      "result_sha256": "753564675dd095d0a5e8e77549f38c5b387f9958d27c6ad850b72f9f5975fdcf"
+    },
+    {
+      "command_sha256": "34d46bc470b71fe7fea43ba5838f054e1e45f829bcce3bdfa76cd45f7aa35dcb",
+      "kind": "tests",
+      "name": "mail-ui-widgets",
+      "result_sha256": "d940d00f11a6e5ad47d8110a5540253eaf9d9bef9fb852cc468bd40037525c83"
+    },
+    {
+      "command_sha256": "cf9c3a6525b214767bf4eeb65c9b374ca67a0cb979411dab748512e985f50d78",
+      "kind": "tests",
+      "name": "studio-mail-widgets",
+      "result_sha256": "30acce41b35f19a8514ecaf4a2228ab85b5bbc309dfc3d797cd98f2be4fb7e5a"
+    },
+    {
+      "command_sha256": "4ad00398c2879e581011756ef8da2984724f0fde6de38d7671692eb58bd5e473",
+      "kind": "command",
+      "name": "macro-web-compile",
+      "result_sha256": "85913f08058c1994b7fb3dda481bca4d151ee551308b6ddafc9439d1377ecb8d"
+    },
+    {
+      "command_sha256": "e2b83611198fe09d4fa61c3fdf7a5b0ab8b0bd8bbc10fe5cc9dda92a5212a47c",
+      "kind": "macro-smoke",
+      "name": "macro-web-node",
+      "result_sha256": "f832329fa25dd5c990fdf547b805366135fdea432494bd4c3e71d70f67998c3d"
+    },
+    {
+      "command_sha256": "c0950d09253e7135d90301c3fa2ed52424f48074fc93f2c79004f609843f3b4a",
+      "kind": "command",
+      "name": "vba-web-compile",
+      "result_sha256": "473ad481f3086c1e13fc33d2a32da12217c10c0d1d3957178f070a4b67f56ce0"
+    },
+    {
+      "command_sha256": "46684175f56b544f683a49b5ee3091ccbe7ab3e73dd59e3222e3f4b89defea58",
+      "kind": "vba-smoke",
+      "name": "vba-web-node",
+      "result_sha256": "f145e260a056dd5951c4b4c25f7470dadf81796b4514e57c29075b6fc3fac813"
+    },
+    {
+      "command_sha256": "2f4748c8db630afc8baf0bda5cd89ce993977ea2de4c3bfe99a71b02f089c54f",
+      "kind": "command",
+      "name": "vba-procedures-web-compile",
+      "result_sha256": "b7832b9b2b334c7de7d7832d608ed83bc3f30602b32e6615ca822b6c9301ef9f"
+    },
+    {
+      "command_sha256": "d5883a9297b2359a9ffb0ad134cc625229a1a1a9c8a2dbd3209ca2dbb8fa246d",
+      "kind": "vba-procedures-smoke",
+      "name": "vba-procedures-web-node",
+      "result_sha256": "0c3e2f5cccb47074aded3ded8163e46046fdd0366a0734912fb84a8bd4c3e316"
+    }
+  ],
+  "method": "Independent raw reporter parse, exact case/file/gate comparison, raw artifact hashing, before/after and current file checks, frozen Git blob binding, and historical frontier revalidation.",
+  "prior_attempt": {
+    "directory": "portability-final-evidence",
+    "included_in_final_totals": false,
+    "receipt_sha256": "983013059bb5d58caeb82104094201488367f9646c944df44a4a32f367617214",
+    "status": "failed",
+    "test_totals": {
+      "failed": 0,
+      "passed": 0,
+      "skipped": 0
+    }
+  },
+  "receipt_sha256": "5fe060db60ee164af4fcb93c6a55abc2f250fd976827a898b0b01fe308775797",
+  "retained_prior_dart_evidence": [
+    {
+      "path": "docs/validation/office-vba-procedures-20261119/stress/procedure_depth.dart",
+      "reason": "Retained prior evidence from a reduced workspace. Its original formatting and package context are preserved; the root-workspace dependency lint does not apply to that archived environment. This exact file is hashed, but excluded from fresh formatting and analysis. Current package procedure suites and the procedures JavaScript smoke are executed afresh."
+    }
+  ],
+  "schema": 1,
+  "source_head": "9bdef4895922ae74f6275e421af5665552d18b4e",
+  "source_tree": "b537d9f6f2c15657b0fc0b70ae825e347be681cd",
+  "status": "passed",
+  "test_file_count": 95,
+  "test_totals": {
+    "failed": 0,
+    "passed": 1750,
+    "skipped": 0
+  }
+}

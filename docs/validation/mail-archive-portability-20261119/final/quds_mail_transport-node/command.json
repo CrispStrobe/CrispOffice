@@ -1,0 +1,39 @@
+{
+  "argv": [
+    "/workspace/scratch/b1a98f2b2c3b/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+    "--disable-dart-dev",
+    "--packages=/workspace/scratch/b1a98f2b2c3b/quds_office_suite/.dart_tool/package_config.json",
+    "/workspace/scratch/b1a98f2b2c3b/runtime/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+    "--platform=node",
+    "--compiler=dart2js",
+    "--reporter=json",
+    "--concurrency=1",
+    "test/cloud_unsupported_test.dart",
+    "test/ews_unsupported_test.dart",
+    "test/unsupported_test.dart"
+  ],
+  "cwd": "/workspace/scratch/b1a98f2b2c3b/quds_office_suite/packages/quds_mail_transport",
+  "environment_overrides": {
+    "CI": "true",
+    "DART_SUPPRESS_ANALYTICS": "true",
+    "DASH__SUPPRESS_ANALYTICS": "true",
+    "FLUTTER_SUPPRESS_ANALYTICS": "true"
+  },
+  "expected_test_files": [
+    "packages/quds_mail_transport/test/cloud_unsupported_test.dart",
+    "packages/quds_mail_transport/test/ews_unsupported_test.dart",
+    "packages/quds_mail_transport/test/unsupported_test.dart"
+  ],
+  "kind": "tests",
+  "name": "quds_mail_transport-node",
+  "runtime_environment": {
+    "FLUTTER_ROOT": "/workspace/scratch/b1a98f2b2c3b/runtime/flutter",
+    "PUB_CACHE": "/workspace/scratch/b1a98f2b2c3b/runtime/pub-cache",
+    "TMPDIR": "/workspace/scratch/b1a98f2b2c3b/runtime/tmp",
+    "XDG_CACHE_HOME": "/workspace/scratch/b1a98f2b2c3b/runtime/cache",
+    "XDG_CONFIG_HOME": "/workspace/scratch/b1a98f2b2c3b/runtime/config",
+    "XDG_DATA_HOME": "/workspace/scratch/b1a98f2b2c3b/runtime/data"
+  },
+  "started_at_utc": "2026-11-19T17:10:28.661744+00:00",
+  "timeout_seconds": 900
+}

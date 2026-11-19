@@ -10,6 +10,28 @@ cd packages/quds_office_editor/example
 flutter run
 ```
 
+## macOS release app with the native proofing libraries
+
+```bash
+packages/quds_office_editor/example/tool/build_macos_app.sh
+```
+
+Builds the pinned Hunspell, Arabic morphology (Camel Morph), CLD3 language-ID
+and Harper (English) libraries, runs `flutter build macos --release`, installs
+the libraries into `Contents/Frameworks` and their notices into
+`Contents/Resources/*-licenses`, re-signs ad hoc with `Release.entitlements`
+(sandbox, network client, user-selected files) and checks the signature, the
+libraries' load commands and that each library opens from the bundle.
+`QUDS_SKIP_HARPER=1` leaves Harper (needs Rust) out. The AyaSpell dictionary
+and the Camel Morph database are downloaded in the app: Review › Proofing ›
+Dictionaries and language data.
+
+`test/studio_macos_bundle_native_gate.dart` is an explicit acceptance gate for
+the built app: it boots Studio with the libraries inside the `.app` and the
+installed data and checks Arabic (rules, AyaSpell, morphology), German and
+English findings plus the detected-language display and Apply action. The
+command is in the file header.
+
 ## What to try
 
 ### Documents

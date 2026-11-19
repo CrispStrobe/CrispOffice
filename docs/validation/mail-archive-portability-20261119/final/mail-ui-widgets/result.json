@@ -1,0 +1,54 @@
+{
+  "accepted": true,
+  "argv": [
+    "/workspace/scratch/b1a98f2b2c3b/runtime/bin/flutter",
+    "test",
+    "--no-pub",
+    "--concurrency=1",
+    "--reporter=json",
+    "test/controller_test.dart",
+    "test/example_test.dart",
+    "test/message_view_test.dart",
+    "test/presentation_test.dart"
+  ],
+  "cwd": "/workspace/scratch/b1a98f2b2c3b/quds_office_suite/packages/quds_mail_ui",
+  "elapsed_seconds": 15.754,
+  "environment_overrides": {
+    "CI": "true",
+    "DART_SUPPRESS_ANALYTICS": "true",
+    "DASH__SUPPRESS_ANALYTICS": "true",
+    "FLUTTER_SUPPRESS_ANALYTICS": "true"
+  },
+  "exit_code": 0,
+  "expected_test_files": [
+    "packages/quds_mail_ui/test/controller_test.dart",
+    "packages/quds_mail_ui/test/example_test.dart",
+    "packages/quds_mail_ui/test/message_view_test.dart",
+    "packages/quds_mail_ui/test/presentation_test.dart"
+  ],
+  "finished_at_utc": "2026-11-19T17:16:32.204170+00:00",
+  "kind": "tests",
+  "missing_test_files": [],
+  "name": "mail-ui-widgets",
+  "runtime_environment": {
+    "FLUTTER_ROOT": "/workspace/scratch/b1a98f2b2c3b/runtime/flutter",
+    "PUB_CACHE": "/workspace/scratch/b1a98f2b2c3b/runtime/pub-cache",
+    "TMPDIR": "/workspace/scratch/b1a98f2b2c3b/runtime/tmp",
+    "XDG_CACHE_HOME": "/workspace/scratch/b1a98f2b2c3b/runtime/cache",
+    "XDG_CONFIG_HOME": "/workspace/scratch/b1a98f2b2c3b/runtime/config",
+    "XDG_DATA_HOME": "/workspace/scratch/b1a98f2b2c3b/runtime/data"
+  },
+  "started_at_utc": "2026-11-19T17:16:16.449876+00:00",
+  "stderr_bytes": 0,
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_bytes": 18186,
+  "stdout_sha256": "90601f3ef1e9bd9795f5a5820f0f1d408d7f0c55dbfe7d76c331c7bb2affba23",
+  "test_cases_sha256": "d65d2a75de81f75472ef8a562221dd79cf0366d38750c44ceca9de6feeb2f835",
+  "test_counts": {
+    "failed": 0,
+    "passed": 33,
+    "skipped": 0
+  },
+  "timeout_seconds": 1200,
+  "unexpected_test_files": []
+}

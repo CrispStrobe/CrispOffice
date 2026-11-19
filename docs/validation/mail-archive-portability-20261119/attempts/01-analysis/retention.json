@@ -1,0 +1,211 @@
+{
+  "source_head": "5611724b7b40cf0c86aa180f0d3f1316d5a77c9f",
+  "source_tree": "5f1fe85596a99fa1d05145016a449b1e5f29869d",
+  "run_status": "failed",
+  "retained": [
+    {
+      "path": "analyze-mail-and-changed-dart/command.json",
+      "bytes": 15365,
+      "sha256": "6085affc4bb493315d09b59e98a1694674dd7049f16ff6ef29596725cd40bebd",
+      "retained_as": "analyze-mail-and-changed-dart/command.json",
+      "encoding": "unchanged"
+    },
+    {
+      "path": "analyze-mail-and-changed-dart/result.json",
+      "bytes": 15709,
+      "sha256": "9e9e0d0ad62a8e0c4bb1dfac7b8d4e93076246e28e0f50488a4f2586d1233d4f",
+      "retained_as": "analyze-mail-and-changed-dart/result.json",
+      "encoding": "unchanged"
+    },
+    {
+      "path": "analyze-mail-and-changed-dart/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_as": "analyze-mail-and-changed-dart/stderr.log.gz",
+      "encoding": "gzip; hashes describe decompressed original bytes"
+    },
+    {
+      "path": "analyze-mail-and-changed-dart/stdout.log",
+      "bytes": 5538,
+      "sha256": "186241eff88440d6185defa209ed4affcf048b38037985879f0afe1b97d107c8",
+      "retained_as": "analyze-mail-and-changed-dart/stdout.log.gz",
+      "encoding": "gzip; hashes describe decompressed original bytes"
+    },
+    {
+      "path": "build-language-id/command.json",
+      "bytes": 1201,
+      "sha256": "219cde897ac7b47095f2e3b8b274248c865cfe5f4e781cb7ada3bce7d4e27fe4",
+      "retained_as": "build-language-id/command.json",
+      "encoding": "unchanged"
+    },
+    {
+      "path": "build-language-id/result.json",
+      "bytes": 1540,
+      "sha256": "488e8a66380b3f65bef1ff2e9ce569044b59e2df722bce4ca4d1881bc312cbbb",
+      "retained_as": "build-language-id/result.json",
+      "encoding": "unchanged"
+    },
+    {
+      "path": "build-language-id/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_as": "build-language-id/stderr.log.gz",
+      "encoding": "gzip; hashes describe decompressed original bytes"
+    },
+    {
+      "path": "build-language-id/stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_as": "build-language-id/stdout.log.gz",
+      "encoding": "gzip; hashes describe decompressed original bytes"
+    },
+    {
+      "path": "compact-receipt.json",
+      "bytes": 9302,
+      "sha256": "0f1a6fda3639002cfb036589b4cd2c6eb3aa3968c1167a96afc5fad76c6561bb",
+      "retained_as": "compact-receipt.json",
+      "encoding": "unchanged"
+    },
+    {
+      "path": "dependencies-after.json.gz",
+      "bytes": 474940,
+      "sha256": "3f5a536ba8c53e4bb7d0bffc5e238aa369d8c640e92bb6d7d50d99d255e23676",
+      "retained_as": "dependencies-after.json.gz",
+      "encoding": "unchanged"
+    },
+    {
+      "path": "dependencies-before.json.gz",
+      "bytes": 474940,
+      "sha256": "3f5a536ba8c53e4bb7d0bffc5e238aa369d8c640e92bb6d7d50d99d255e23676",
+      "retained_as": "dependencies-before.json.gz",
+      "encoding": "unchanged"
+    },
+    {
+      "path": "format-changed-dart/command.json",
+      "bytes": 2947,
+      "sha256": "5db93546f1556ac0294d107b27380aa5ec7ea96716ad1ae99a644f7fb64c3b2f",
+      "retained_as": "format-changed-dart/command.json",
+      "encoding": "unchanged"
+    },
+    {
+      "path": "format-changed-dart/result.json",
+      "bytes": 3287,
+      "sha256": "609fb0a66123939dfda7831a68d17023532bb986e91117b56674cc8a1937589a",
+      "retained_as": "format-changed-dart/result.json",
+      "encoding": "unchanged"
+    },
+    {
+      "path": "format-changed-dart/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_as": "format-changed-dart/stderr.log.gz",
+      "encoding": "gzip; hashes describe decompressed original bytes"
+    },
+    {
+      "path": "format-changed-dart/stdout.log",
+      "bytes": 48,
+      "sha256": "706c51fa4ee1d2e35bc30328785c61f9897f320d856f01d73ac17075979b3e63",
+      "retained_as": "format-changed-dart/stdout.log.gz",
+      "encoding": "gzip; hashes describe decompressed original bytes"
+    },
+    {
+      "path": "macos-build-script-syntax/command.json",
+      "bytes": 1002,
+      "sha256": "c1e2aa1ca5ea6ca29966f3824a1288c2e179062ff7913325cb36b4fcd5673b4d",
+      "retained_as": "macos-build-script-syntax/command.json",
+      "encoding": "unchanged"
+    },
+    {
+      "path": "macos-build-script-syntax/result.json",
+      "bytes": 1341,
+      "sha256": "39490796684efa872e320ca90533a41a432ea9e7e677b4c5e40cf192d11401f1",
+      "retained_as": "macos-build-script-syntax/result.json",
+      "encoding": "unchanged"
+    },
+    {
+      "path": "macos-build-script-syntax/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_as": "macos-build-script-syntax/stderr.log.gz",
+      "encoding": "gzip; hashes describe decompressed original bytes"
+    },
+    {
+      "path": "macos-build-script-syntax/stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_as": "macos-build-script-syntax/stdout.log.gz",
+      "encoding": "gzip; hashes describe decompressed original bytes"
+    },
+    {
+      "path": "receipt.json",
+      "bytes": 31083,
+      "sha256": "983013059bb5d58caeb82104094201488367f9646c944df44a4a32f367617214",
+      "retained_as": "receipt.json",
+      "encoding": "unchanged"
+    },
+    {
+      "path": "run-local-validation.py",
+      "bytes": 47946,
+      "sha256": "299ce6d8fffae555e9a0381903815156fd7d416046e1dbd66c1a2e4bb344a6a5",
+      "retained_as": "run-local-validation.py",
+      "encoding": "unchanged"
+    },
+    {
+      "path": "runtime-after.json.gz",
+      "bytes": 32162,
+      "sha256": "2c697ddf73b5bf19aeeafdf64b3ab2f714c9c96a2b4335690c0a874a49352c13",
+      "retained_as": "runtime-after.json.gz",
+      "encoding": "unchanged"
+    },
+    {
+      "path": "runtime-before.json.gz",
+      "bytes": 32162,
+      "sha256": "2c697ddf73b5bf19aeeafdf64b3ab2f714c9c96a2b4335690c0a874a49352c13",
+      "retained_as": "runtime-before.json.gz",
+      "encoding": "unchanged"
+    },
+    {
+      "path": "runtime-readiness-receipt.json",
+      "bytes": 2822,
+      "sha256": "d94e20a59813bbba6844f6dedf4982c68bfe3708279e885aa89315525ab12e66",
+      "retained_as": "runtime-readiness-receipt.json",
+      "encoding": "unchanged"
+    },
+    {
+      "path": "runtime-setup-receipt.json",
+      "bytes": 3417,
+      "sha256": "84b7ca30e5c69247df994d01b163ccdf4b93658957896b34802b2135d1c2d403",
+      "retained_as": "runtime-setup-receipt.json",
+      "encoding": "unchanged"
+    },
+    {
+      "path": "selected-plan.json",
+      "bytes": 27359,
+      "sha256": "921902325f93f2bea74ce0ba7be9b9e204f78dfa8bb1af48512dd3871466416d",
+      "retained_as": "selected-plan.json",
+      "encoding": "unchanged"
+    },
+    {
+      "path": "source-after.json.gz",
+      "bytes": 221022,
+      "sha256": "569edf7edcdc30285eb1c884de90e25217cb03f0b1636717aff47a6726ed3709",
+      "retained_as": "source-after.json.gz",
+      "encoding": "unchanged"
+    },
+    {
+      "path": "source-before.json.gz",
+      "bytes": 221022,
+      "sha256": "569edf7edcdc30285eb1c884de90e25217cb03f0b1636717aff47a6726ed3709",
+      "retained_as": "source-before.json.gz",
+      "encoding": "unchanged"
+    }
+  ],
+  "omitted_build_products": [
+    {
+      "path": "fixtures/language-id.so",
+      "bytes": 16440,
+      "sha256": "96276c57a50696f30e950fd1957adfdf95df21c9000bda24c191ed03ee887aba",
+      "reason": "Generated native fixture or JavaScript build product; reproduce using retained command.json and frozen source."
+    }
+  ]
+}
