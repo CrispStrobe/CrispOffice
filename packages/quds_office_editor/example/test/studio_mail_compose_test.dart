@@ -2,10 +2,12 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:quds_mail_core/quds_mail_core.dart';
 import 'package:quds_office_editor/quds_office_editor.dart';
 import 'package:quds_office_studio/studio_mail_compose.dart';
 import 'package:quds_office_studio/studio_mail_strings.dart';
 import 'package:quds_office_studio/studio_mail_submission.dart';
+import 'package:quds_office_studio/studio_mail_threading.dart';
 import 'package:quds_office_studio/studio_strings.dart';
 
 const strings = StudioStrings(StudioLanguage.en);
@@ -166,6 +168,8 @@ void main() {
       await _pump(tester);
       expect(snapshot?.body, 'Hello مرحبًا');
       expect(snapshot?.subject, 'Snapshot');
+      expect(snapshot?.thread.inReplyTo, isNull);
+      expect(snapshot?.thread.references, isNull);
       expect(body.isDisposed, isTrue);
       expect(tester.takeException(), isNull);
     },
@@ -190,10 +194,17 @@ void main() {
   testWidgets(
     'uncertain draft is retained and requires explicit resend acknowledgement',
     (tester) async {
-      const initial = StudioMailDraft(
+      final thread = StudioMailThread.replyTo(
+        MailEnvelope(
+          messageId: '<parent@example.invalid>',
+          references: const ['<root@example.invalid>'],
+        ),
+      );
+      final initial = StudioMailDraft(
         to: sender,
         subject: 'Retained',
         body: 'Do not lose this.',
+        thread: thread,
       );
       StudioMailDraft? snapshot;
       await _open(
@@ -218,10 +229,54 @@ void main() {
       await tester.tap(send);
       await _pump(tester);
       expect(snapshot?.body, initial.body);
+      expect(snapshot?.thread, same(thread));
+      final message = buildStudioMailMessage(snapshot!, sender);
+      expect(message.getHeaderValue('in-reply-to'), '<parent@example.invalid>');
+      expect(
+        message.getHeaderValue('references'),
+        '<root@example.invalid> <parent@example.invalid>',
+      );
       expect(body.isDisposed, isTrue);
       expect(tester.takeException(), isNull);
     },
   );
+
+  testWidgets('editing a reply preserves its immutable thread snapshot', (
+    tester,
+  ) async {
+    final thread = StudioMailThread.replyTo(
+      MailEnvelope(
+        messageId: '<parent@example.invalid>',
+        references: const ['<root@example.invalid>'],
+      ),
+    );
+    final initial = StudioMailDraft(
+      to: sender,
+      subject: 'Re: Original subject',
+      body: 'Initial body',
+      thread: thread,
+    );
+    StudioMailDraft? snapshot;
+    await _open(tester, (value) => snapshot = value, initial: initial);
+    await tester.enterText(_field(strings.to), 'different@example.invalid');
+    await tester.enterText(_field(strings.subject), 'Edited subject');
+    final body = tester
+        .widget<QudsWordEditor>(find.byType(QudsWordEditor))
+        .controller;
+    body.insertText('Added text ');
+    await tester.pump();
+    await tester.tap(find.widgetWithText(FilledButton, strings.send));
+    await _pump(tester);
+    expect(snapshot?.to, 'different@example.invalid');
+    expect(snapshot?.subject, 'Edited subject');
+    expect(snapshot?.body, contains('Added text '));
+    expect(snapshot?.thread, same(thread));
+    expect(initial.to, sender);
+    expect(initial.subject, 'Re: Original subject');
+    expect(initial.body, 'Initial body');
+    expect(body.isDisposed, isTrue);
+    expect(tester.takeException(), isNull);
+  });
 
   testWidgets(
     'composer fits a narrow window without substituting a body text field',

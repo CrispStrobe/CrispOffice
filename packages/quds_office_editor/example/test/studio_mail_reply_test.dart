@@ -13,6 +13,9 @@ MailMessage _message({
   List<MailAddress> from = const [MailAddress('sender@example.invalid')],
   List<MailAddress> replyTo = const [MailAddress('reply@example.invalid')],
   DateTime? sentAt,
+  String? messageId,
+  String? inReplyTo,
+  List<String> references = const [],
 }) => MailMessage(
   raw: MailBytes(Uint8List.fromList([1, 2, 3])),
   envelope: MailEnvelope(
@@ -22,6 +25,9 @@ MailMessage _message({
     to: const [MailAddress('original-recipient@example.invalid')],
     bcc: const [MailAddress('private-bcc@example.invalid')],
     sentAt: sentAt,
+    messageId: messageId,
+    inReplyTo: inReplyTo,
+    references: references,
   ),
   body: MailBody(plainText: plain, html: '<p>HTML fallback must stay out</p>'),
   attachments: [
@@ -168,4 +174,67 @@ void main() {
     expect(draft.body, endsWith('> '));
     expect(draft.body, isNot(contains('HTML fallback')));
   });
+  test('reply attaches only the authoritative decoded parent and ancestry', () {
+    final message = _message(
+      messageId: '<parent@example.invalid>',
+      references: const ['<root@example.invalid>'],
+    );
+    final draft = buildStudioMailReplyDraft(message, forward: false);
+    expect(draft.thread.inReplyTo, '<parent@example.invalid>');
+    expect(
+      draft.thread.references,
+      '<root@example.invalid> <parent@example.invalid>',
+    );
+    final mime = buildStudioMailMessage(draft, 'writer@example.invalid');
+    expect(mime.getHeaderValue('in-reply-to'), '<parent@example.invalid>');
+    expect(
+      mime.getHeaderValue('references'),
+      '<root@example.invalid> <parent@example.invalid>',
+    );
+    expect(mime.getHeaderValue('message-id'), isNot('<parent@example.invalid>'));
+    expect(message.envelope.references, const ['<root@example.invalid>']);
+  });
+
+  test('forwarding starts a new thread even when the source has ancestry', () {
+    final forwarded = buildStudioMailReplyDraft(
+      _message(
+        messageId: '<parent@example.invalid>',
+        inReplyTo: '<previous@example.invalid>',
+        references: const ['<root@example.invalid>'],
+      ),
+      forward: true,
+    );
+    expect(forwarded.thread.inReplyTo, isNull);
+    expect(forwarded.thread.references, isNull);
+    final addressed = StudioMailDraft(
+      to: 'selected@example.invalid',
+      subject: forwarded.subject,
+      body: forwarded.body,
+      thread: forwarded.thread,
+    );
+    final mime = buildStudioMailMessage(addressed, 'writer@example.invalid');
+    expect(mime.getHeaderValue('in-reply-to'), isNull);
+    expect(mime.getHeaderValue('references'), isNull);
+    expect(mime.to!.single.email, 'selected@example.invalid');
+    expect(mime.decodeTextPlainPart(), contains('Decoded source body'));
+  });
+
+  test('invalid parent metadata does not block an otherwise valid reply', () {
+    final draft = buildStudioMailReplyDraft(
+      _message(
+        messageId: '<parent@example.invalid>\r\nBcc: hidden@example.invalid',
+        references: const ['<root@example.invalid>'],
+      ),
+      forward: false,
+    );
+    expect(draft.problem, isNull);
+    expect(draft.thread.inReplyTo, isNull);
+    expect(draft.thread.references, isNull);
+    final mime = buildStudioMailMessage(draft, 'writer@example.invalid');
+    expect(mime.getHeaderValue('in-reply-to'), isNull);
+    expect(mime.getHeaderValue('references'), isNull);
+    expect(mime.getHeaderValue('bcc'), isNull);
+    expect(mime.to!.single.email, 'reply@example.invalid');
+  });
+
 }

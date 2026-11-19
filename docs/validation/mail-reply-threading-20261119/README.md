@@ -65,3 +65,12 @@ only the validated immediate parent and never activating In-Reply-To fallback
 for a nonempty References list. Absent and empty normalized lists remain
 indistinguishable and are documented explicitly. Regression fixtures include
 raw MIME with a comment containing an unrelated ID.
+
+## Regression checkpoint
+
+Added 28 focused regression declarations across the threading, reply and compose
+suites, and strengthened two existing composer cases. Coverage includes exact
+900-byte chains, maximum 254-byte parent/ancestor MIME round trips, adjacent-ID
+rejection, source decoding, comment/injection rejection, ordinary/forward
+isolation, edits and uncertain retries. All new and existing Dart/Flutter tests
+remain unexecuted in this session. No prior execution count is reused.
