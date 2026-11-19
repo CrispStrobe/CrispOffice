@@ -1,11 +1,15 @@
 # Mail M06 continuation — 19 November 2026
 
-This report preserves the separate Mail-branch checkpoint at `71edec2d`.
-Its counts are not added to subsequent integration runs. The
-[Office integration report](../office-main-integration-20261119/README.md)
-records the current combined source and qualification.
+This report preserves the historical Mail-branch checkpoint at `71edec2d`.
+Its implementation descriptions and **631 application executions / 66 Python
+controls** apply to that source. The later inherited-main qualification at
+`5569c055`, with **836 application executions / 78 Python controls**, is recorded
+in the [Office completion report](../office-main-completion-20261119/README.md).
+Subsequent reconciliation and direct TLS-rejection cleanup have their own
+[Office synchronization report](../office-main-sync-20261119/README.md).
+The counts from these different source checkpoints are kept separate.
 
-## Final integrated qualification: PASS
+## Historical Mail-branch qualification: PASS on `71edec2d`
 
 The durable flags and bounded native IMAP foundation passed the complete local
 qualification on published source

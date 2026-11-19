@@ -39,11 +39,14 @@ then optional model-backed analysis. Nothing here is enabled by default yet.
 
 ## Steps
 
-1. **AyaSpell download (in progress).** `tools/proofing/ayaspell/build_bundle.py`
+1. **AyaSpell download (published).** `tools/proofing/ayaspell/build_bundle.py`
    pins LibreOffice `dictionaries` commit
    `951bb429a4d846699b02e7adb4fc6fca128c6bae` (`ar/`), verifies every byte,
    adds the MPL 1.1 text, a manifest and a card, and can publish the bundle to
-   Hugging Face. The upstream GitHub copy (`linuxscout/ayaspell`
+   Hugging Face. Publishing includes only the manifest-listed files and
+   `manifest.json`; unrelated files in a reused output directory are excluded.
+   The Hunspell adapter and in-app Arabic download workflow remain planned.
+   The upstream GitHub copy (`linuxscout/ayaspell`
    `36a90abb`) is not used: its `.dic` contains file-concatenation separators
    and its `.aff` differs, and Hunspell 1.7.2 rejects common forms such as
    `الولد` and `المدرسة` with it.
@@ -52,6 +55,13 @@ then optional model-backed analysis. Nothing here is enabled by default yet.
    proper names (personal vocabulary covers these); typical errors are caught
    with the expected first suggestion (`الى`→`إلى`, `المدرسه`→`المدرسة`,
    `هاذا`→`هذا`). Load takes about 1.5 s and 39 MB RSS on macOS arm64.
+   **Published** 19 November 2026 as
+   [`cstr/ayaspell-ar-hunspell`](https://huggingface.co/cstr/ayaspell-ar-hunspell/tree/e9ace7cca3844bef906d8d9fc5431c4e15bd2740)
+   at immutable revision `e9ace7cca3844bef906d8d9fc5431c4e15bd2740`; all eight
+   files read back with matching SHA-256 (the builder's readback), and a fresh
+   download of `ar.aff`/`ar.dic` from that revision gives the same Hunspell
+   results. The Hub's metadata has no `mpl-1.1` identifier, so the card
+   declares `license: other` / `license_name: mpl-1.1` and ships the text.
 2. **Hunspell engine in Quds.** An MPL-1.1 Hunspell adapter behind the
    existing spelling-provider interface: native library for desktop/mobile,
    WebAssembly for the web build, dictionary bytes from the user's download.
