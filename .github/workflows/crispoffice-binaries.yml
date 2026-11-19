@@ -67,7 +67,7 @@ jobs:
         with:
           sparse-checkout: |
             /*
-            !tools/proofing/spacy/fixtures/development/nul
+            !tools/proofing/spacy/**
           sparse-checkout-cone-mode: false
       - uses: actions/setup-python@v5
         with:
