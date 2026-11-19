@@ -12,8 +12,8 @@ flutter run
 
 ## Ribbon and desktop menus
 
-The ribbon starts with compact icon buttons. Hover or focus a button for its
-full name. Insert groups related commands under Pages, Table, Chart, Diagram,
+The ribbon starts with compact icon buttons. Hover a button for its full name;
+accessible labels also identify every command. Insert groups related commands under Pages, Table, Chart, Diagram,
 Text, Links, Notes, Fields, Contents, References and Zotero tools; common Picture
 and Equation commands remain directly accessible. Tables, pictures and diagrams
 use the same undo history as other document edits.

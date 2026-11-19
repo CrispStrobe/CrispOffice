@@ -194,6 +194,9 @@ void main() {
       final windowCalls = <String>[];
       messenger.setMockMethodCallHandler(windowChannel, (call) async {
         windowCalls.add(call.method);
+        if (call.method == 'isMinimized') {
+          return false;
+        }
         if (call.method == 'show') {
           await shown.future;
         }
@@ -228,6 +231,7 @@ void main() {
       );
       before.onSettings();
       await _frames(tester);
+      expect(windowCalls.where((method) => method == 'show'), hasLength(1));
       expect(find.byType(AlertDialog), findsNothing);
       before.onAbout();
       expect(windowCalls.where((method) => method == 'show'), hasLength(1));

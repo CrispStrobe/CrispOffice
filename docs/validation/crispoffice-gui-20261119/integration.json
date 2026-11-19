@@ -1,0 +1,32 @@
+{
+  "parent": "f489cefe48e6fd4b0dcbada8fc4025682733a118",
+  "additional_parents": [
+    "0c29b5d8a0a92148dcd95f3282b4d43c462be20d",
+    "ca536ee071ff27dd88e574dac1fbc5fe08d1437e",
+    "515d960fc5ea83787659f4c773d793a8b7e9f05f"
+  ],
+  "tree": "6f4ee2e82cbad23f4b2a759b0cafac8bfdccc915",
+  "merges": [
+    {
+      "incoming": "0c29b5d8a0a92148dcd95f3282b4d43c462be20d",
+      "tree": "5b0036268701bde039271bae73070bfe073706b7",
+      "conflicts": [
+        {
+          "path": "packages/quds_office_editor/CHANGELOG.md",
+          "resolution": "Retain both independent Unreleased additions."
+        }
+      ]
+    },
+    {
+      "incoming": "ca536ee071ff27dd88e574dac1fbc5fe08d1437e",
+      "tree": "6f4ee2e82cbad23f4b2a759b0cafac8bfdccc915",
+      "conflicts": []
+    },
+    {
+      "incoming": "515d960fc5ea83787659f4c773d793a8b7e9f05f",
+      "tree": "6f4ee2e82cbad23f4b2a759b0cafac8bfdccc915",
+      "conflicts": []
+    }
+  ],
+  "product_paths_changed": []
+}
