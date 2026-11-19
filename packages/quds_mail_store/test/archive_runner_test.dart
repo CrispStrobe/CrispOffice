@@ -921,6 +921,67 @@ void main() {
     },
   );
 
+  test(
+    'canonical folder overflow is rejected before any provider fetch',
+    () async {
+      configure(1);
+      final report = await runner.archiveMailbox(
+        _mailbox,
+        profile: MailArchiveProfile(
+          id: _profile.id,
+          name: _profile.name,
+          source: _profile.source,
+          kind: MailArchiveProfileKind.mailbox,
+          includeSubfolders: false,
+          folder: 'x' * 4096,
+        ),
+      );
+      expect(report.status, MailArchiveRunStatus.failed);
+      expect(report.problem?.code, MailProblemCode.invalidInput);
+      expect(report.processed, 0);
+      expect(provider.headers, isEmpty);
+      expect(provider.fetches, isEmpty);
+      expect((await stats()).messages, 0);
+    },
+  );
+
+  test(
+    'exact canonical folder boundary remains archivable and searchable',
+    () async {
+      configure(1);
+      final relative = 'x' * 4095;
+      final canonical = '/$relative';
+      for (final folder in [relative, canonical]) {
+        final report = await runner.archiveMailbox(
+          _mailbox,
+          profile: MailArchiveProfile(
+            id: _profile.id,
+            name: _profile.name,
+            source: _profile.source,
+            kind: MailArchiveProfileKind.mailbox,
+            includeSubfolders: false,
+            folder: folder,
+          ),
+        );
+        expect(report.status, MailArchiveRunStatus.completed);
+        expect(report.saved + report.duplicates, 1);
+      }
+      final result = _value(
+        await archive.search(
+          MailArchiveSearchRequest(folder: canonical, includeSubfolders: false),
+        ),
+      );
+      expect(result.total, 1);
+      expect(
+        _value(
+          await archive.listOrigins(result.hits.single.entry.id),
+        ).single.folder,
+        canonical,
+      );
+      expect((await stats()).origins, 1);
+    },
+  );
+
   test('account mismatch is rejected before provider calls', () async {
     final otherMailbox = MailMailbox(
       id: MailMailboxId('inbox', account: _otherAccount),

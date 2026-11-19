@@ -7,11 +7,15 @@ import 'package:quds_mail_core/quds_mail_core.dart';
 import 'package:quds_mail_mime/quds_mail_mime.dart';
 import 'package:quds_mail_transport/quds_mail_transport.dart';
 import 'package:quds_mail_ui/quds_mail_ui.dart';
+import 'package:quds_mail_store/quds_mail_store.dart';
 import 'package:quds_office_editor/quds_office_editor.dart';
 import 'package:quds_office_studio/studio_mail_cloud.dart';
 import 'package:quds_office_studio/studio_mail_native.dart';
 import 'package:quds_office_studio/studio_mail_strings.dart';
 import 'package:quds_office_studio/studio_strings.dart';
+import 'package:quds_office_studio/studio_mail_archive_action.dart';
+import 'package:quds_office_studio/studio_mail_archive_folder_action.dart';
+import 'package:quds_office_studio/studio_mail_archive_strings.dart';
 
 const _strings = StudioStrings(StudioLanguage.en);
 
@@ -111,8 +115,14 @@ final class _Provider extends Fake implements MailCloudProvider {
             'From: Writer <writer@example.test>\r\n'
             'To: Reader <reader@example.test>\r\n'
             'Subject: Cloud message\r\n'
-            'Content-Type: text/plain; charset=utf-8\r\n\r\n'
-            'Body from cloud provider.\r\n',
+            'Bcc: hidden@example.test\r\nX-Preserved:  original\r\n\tfolding\r\n'
+            'MIME-Version: 1.0\r\nContent-Type: multipart/mixed; boundary=cloud-original\r\n\r\n'
+            '--cloud-original\r\nContent-Type: text/plain; charset=utf-8\r\n\r\n'
+            'Body from cloud provider.\r\n'
+            '--cloud-original\r\nContent-Type: application/octet-stream\r\n'
+            'Content-Disposition: attachment; filename=cloud.bin\r\n'
+            'Content-Transfer-Encoding: base64\r\n\r\nAAEC/w0K\r\n'
+            '--cloud-original--\r\n',
           ),
         )
         .message!;
@@ -232,6 +242,8 @@ Future<void> _show(
   _Harness harness, {
   MailCloudService service = MailCloudService.gmail,
   Size size = const Size(1280, 900),
+  StudioMailArchiveWriter? archiveWriter,
+  StudioMailArchiveFolderWriter? archiveFolderWriter,
 }) async {
   tester.view
     ..physicalSize = size
@@ -252,6 +264,8 @@ Future<void> _show(
                 providerFactory: harness.create,
                 initialClientId: 'test-desktop-client',
                 openBrowser: (_) async => true,
+                archiveWriter: archiveWriter,
+                archiveFolderWriter: archiveFolderWriter,
               ),
             ),
             child: const Text('Open cloud'),
@@ -291,6 +305,38 @@ Future<void> _send(WidgetTester tester) async {
   await tester.tap(send);
   await _pump(tester);
 }
+
+MailResult<MailArchiveImportResult> _archiveSuccess(MailMessage message) =>
+    MailSuccess(
+      MailArchiveImportResult(
+        entry: MailArchiveEntry(
+          id: message.raw.sha256,
+          envelope: message.envelope,
+          archivedAt: DateTime.utc(2026, 11, 19),
+          byteLength: message.raw.length,
+          attachmentCount: message.attachments.length,
+          indexTruncated: false,
+          attachmentTextIndexed: 0,
+          attachmentTextSkipped: 0,
+        ),
+        duplicate: false,
+        originAdded: true,
+      ),
+    );
+
+MailArchiveRunReport _folderReport() => MailArchiveRunReport(
+  status: MailArchiveRunStatus.completed,
+  pages: 2,
+  processed: 4,
+  saved: 3,
+  duplicates: 1,
+  failed: 0,
+  bytes: 300,
+  elapsedMicroseconds: 1000,
+  observerErrors: 0,
+  failures: const [],
+  droppedFailures: 0,
+);
 
 void main() {
   testWidgets('native setup offers Gmail, Microsoft 365 and Exchange', (
@@ -666,4 +712,99 @@ void main() {
     expect(find.byTooltip(_strings.mailCloudDelete), findsOneWidget);
     expect(tester.takeException(), isNull);
   });
+
+  for (final service in MailCloudService.values) {
+    testWidgets(
+      '${service.name} archive action preserves the exact fetched original and provider provenance',
+      (tester) async {
+        final harness = _Harness();
+        MailMessage? archived;
+        var archiveCalls = 0;
+        MailArchiveOrigin? provenance;
+        await _show(
+          tester,
+          harness,
+          service: service,
+          archiveWriter: (message, {required origin, cancellation}) async {
+            archiveCalls++;
+            archived = message;
+            provenance = origin;
+            return _archiveSuccess(message);
+          },
+        );
+        await _connect(tester);
+        final provider = harness.provider!;
+        final original = provider.message();
+        provider.messageGate = Completer<MailResult<MailMessage>>();
+        await tester.tap(find.text('Cloud message'));
+        await _pump(tester);
+        expect(archived, isNull);
+        provider.messageGate!.complete(MailSuccess(original));
+        await _pump(tester);
+        await tester.tap(find.byTooltip(_strings.archiveCurrentMessage));
+        await _pump(tester);
+        expect(archived, same(original));
+        expect(archived!.raw.bytes, orderedEquals(original.raw.bytes));
+        expect(archived!.envelope.bcc.single.address, 'hidden@example.test');
+        expect(archived!.attachments.single.displayName, 'cloud.bin');
+        expect(
+          archived!.attachments.single.content.bytes,
+          orderedEquals([0, 1, 2, 255, 13, 10]),
+        );
+        expect(provenance!.source, '${service.name} · reader@example.test');
+        expect(provenance!.folder, 'Inbox');
+        expect(provenance!.sourceMessageId, 'remote-message');
+        expect(provider.reads, 1);
+        expect(provider.commands, isEmpty);
+        expect(provider.submissions, isEmpty);
+        expect(archiveCalls, 1);
+        expect(find.text(_strings.archiveMessageStored), findsWidgets);
+        expect(tester.takeException(), isNull);
+      },
+    );
+  }
+
+  for (final service in MailCloudService.values) {
+    testWidgets(
+      '${service.name} folder archive receives the selected account and folder',
+      (tester) async {
+        final harness = _Harness();
+        MailArchiveProfile? profile;
+        await _show(
+          tester,
+          harness,
+          service: service,
+          archiveFolderWriter:
+              (
+                value, {
+                required cancellation,
+                onProgress,
+                required verboseDiagnostics,
+              }) async {
+                profile = value;
+                return _folderReport();
+              },
+        );
+        await _connect(tester);
+        await tester.tap(find.byTooltip(_strings.archiveSelectedFolder));
+        await _pump(tester);
+        expect(profile, isNull);
+        await tester.tap(find.byKey(const ValueKey('archive-folder-start')));
+        await _pump(tester);
+        expect(profile!.source, '${service.name} · reader@example.test');
+        expect(profile!.folder, 'Inbox');
+        expect(profile!.kind, MailArchiveProfileKind.mailbox);
+        expect(profile!.includeSubfolders, isFalse);
+        expect(profile!.id, startsWith('studio-mailbox:'));
+        expect(harness.provider!.reads, 0);
+        expect(harness.provider!.commands, isEmpty);
+        expect(harness.provider!.submissions, isEmpty);
+        expect(
+          find.text(_strings.archiveFolderCounts(3, 1, 0, 2, 300)),
+          findsOneWidget,
+        );
+        expect(tester.takeException(), isNull);
+      },
+    );
+  }
 }

@@ -3,10 +3,13 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:quds_mail_core/quds_mail_core.dart';
+import 'package:quds_mail_store/quds_mail_store.dart';
 import 'package:quds_mail_transport/quds_mail_transport.dart';
 import 'package:quds_mail_ui/quds_mail_ui.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import 'studio_mail_archive_action.dart';
+import 'studio_mail_archive_folder_action.dart';
 import 'studio_mail_compose.dart';
 import 'studio_mail_operation.dart';
 import 'studio_mail_reply.dart';
@@ -43,6 +46,8 @@ class StudioMailEwsDialog extends StatefulWidget {
     super.key,
     required this.strings,
     this.providerFactory,
+    this.archiveWriter,
+    this.archiveFolderWriter,
   }) : cloudService = null,
        cloudAuthorizer = null,
        cloudProviderFactory = null,
@@ -57,6 +62,8 @@ class StudioMailEwsDialog extends StatefulWidget {
     this.cloudProviderFactory,
     this.openBrowser,
     this.initialClientId,
+    this.archiveWriter,
+    this.archiveFolderWriter,
   }) : cloudService = service,
        providerFactory = null;
 
@@ -69,6 +76,8 @@ class StudioMailEwsDialog extends StatefulWidget {
   final StudioCloudProviderFactory? cloudProviderFactory;
   final Future<bool> Function(Uri)? openBrowser;
   final String? initialClientId;
+  final StudioMailArchiveWriter? archiveWriter;
+  final StudioMailArchiveFolderWriter? archiveFolderWriter;
 
   @override
   State<StudioMailEwsDialog> createState() => _StudioMailEwsDialogState();
@@ -1133,9 +1142,61 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
     ),
   );
 
+  Widget _folderArchiveAction() {
+    final provider = _provider;
+    final session = _session;
+    final mailbox = _mailbox;
+    if (provider == null || session == null || mailbox == null) {
+      return const SizedBox.shrink();
+    }
+    final source = '${widget.cloudService?.name ?? 'Exchange'} · $_sender';
+    return Padding(
+      padding: const EdgeInsetsDirectional.only(start: 16, end: 8),
+      child: Row(
+        children: [
+          Expanded(
+            child: Text(
+              mailbox.displayName,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+          StudioArchiveFolderButton(
+            strings: widget.strings,
+            source: source,
+            folder: mailbox.displayName,
+            profileId: studioArchiveFolderProfileId(
+              widget.cloudService?.name ?? 'ews:${_endpoint.text.trim()}',
+              source,
+              mailbox.id.value,
+            ),
+            sessionKey: session,
+            enabled: !_blocked && !_needsRefresh,
+            writer: widget.archiveFolderWriter,
+            onDialogChanged: (open) {
+              if (mounted) setState(() => _dialogOpen = open);
+            },
+            runner: (archive, profile, {cancellation, onProgress}) =>
+                MailArchiveRunner(
+                  archive: archive,
+                  provider: provider,
+                  session: session,
+                ).archiveMailbox(
+                  mailbox,
+                  profile: profile,
+                  cancellation: cancellation,
+                  onProgress: onProgress,
+                ),
+          ),
+        ],
+      ),
+    );
+  }
+
   Widget _inbox() => Column(
     children: [
       if (_busy) const LinearProgressIndicator(minHeight: 2),
+      _folderArchiveAction(),
       if (_error != null || _notice != null)
         Material(
           color: _error == null
@@ -1343,6 +1404,23 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
               icon: const Icon(Icons.arrow_back),
               onPressed: () => setState(() => _showMessage = false),
             ),
+          StudioArchiveMessageButton(
+            strings: widget.strings,
+            message: _blocked ? null : _reader?.result.message,
+            origin: MailArchiveOrigin(
+              source: '${widget.cloudService?.name ?? 'Exchange'} · $_sender',
+              folder: _mailbox?.displayName ?? '/',
+              sourceMessageId: switch (selected?.remote) {
+                final MailOpaqueIdentity remote => studioArchiveSourceMessageId(
+                  remote.value,
+                ),
+                final MailImapIdentity remote =>
+                  'imap:${remote.uidValidity}:${remote.uid}',
+                _ => '',
+              },
+            ),
+            writer: widget.archiveWriter,
+          ),
           IconButton(
             tooltip: widget.strings.reply,
             icon: const Icon(Icons.reply_outlined),

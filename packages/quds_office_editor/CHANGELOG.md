@@ -4,6 +4,11 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Add a native Mail archive with EML/streamed MBOX import, connected-message and
+  selected-folder collection, local FTS search and filters, saved searches,
+  exact-original EML export, integrity checks and index rebuilding. Include
+  EN/DE/AR controls, narrow layouts, cancellation and opt-in redacted diagnostics.
+  Explicit archived copies survive account disconnection and cache removal.
 - Add Gmail and Microsoft 365 / Outlook browser sign-in to native Studio Mail,
   reusing the guarded mailbox reader/actions/composer. Include session cleanup,
   optional redacted diagnostics and localized permission/throttle feedback.
@@ -14,8 +19,9 @@ All notable changes to `quds_office_editor` are documented here.
   folders and bounded message pages, read MIME bodies and attachment details,
   change read/flag state, move messages and use Deleted Items. Compose, reply and
   forward through EWS with explicit uncertainty acknowledgement before retry.
-  This foreground host clears credentials, downloaded messages and retained
-  drafts on disconnect or close; it does not provide a durable outbox.
+  This foreground host clears credentials, transient downloaded messages and
+  retained drafts on disconnect or close; explicit archived copies are kept
+  separately. It does not provide a durable outbox.
 - Restore Studio's saved EML reader alongside native Mail accounts, preserving
   original message bytes, full/compact reading and safe delayed file selection.
   Keep native account transports outside the browser Mail entry and use a

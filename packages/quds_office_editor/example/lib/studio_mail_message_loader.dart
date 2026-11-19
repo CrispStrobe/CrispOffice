@@ -4,6 +4,7 @@ import 'dart:typed_data';
 
 import 'package:enough_mail/enough_mail.dart' as mail;
 import 'package:quds_mail_core/quds_mail_core.dart';
+import 'package:quds_mail_store/quds_mail_store.dart';
 import 'package:quds_mail_transport/quds_mail_transport.dart';
 
 /// Owns bounded message operations for one foreground Studio account session.
@@ -21,6 +22,18 @@ abstract interface class StudioMailMessageLoader {
 
   /// Cancels operations and releases this session's in-memory credentials.
   void dispose();
+}
+
+/// Optional folder archiving capability, separate from existing reader fakes.
+/// Hosts supply a stable mailbox profile and own the archive's lifetime.
+abstract interface class StudioMailMailboxArchiver {
+  Future<MailArchiveRunReport> archiveMailbox(
+    mail.Mailbox selectedMailbox, {
+    required SqliteMailArchive archive,
+    required MailArchiveProfile profile,
+    MailCancellationToken? cancellation,
+    void Function(MailArchiveRunProgress)? onProgress,
+  });
 }
 
 /// An injection seam for deterministic tests; production uses the bounded IMAP
@@ -71,7 +84,8 @@ final class StudioMailMessageLoadException implements Exception {
 /// The selected path, UIDVALIDITY and UID are frozen before any asynchronous
 /// operation, and the provider checks the server's current UIDVALIDITY before
 /// reading the exact UID. Original octets are never rendered back into a string.
-final class NativeStudioMailMessageLoader implements StudioMailMessageLoader {
+final class NativeStudioMailMessageLoader
+    implements StudioMailMessageLoader, StudioMailMailboxArchiver {
   factory NativeStudioMailMessageLoader(
     mail.MailAccount account, {
     StudioMailProviderFactory? providerFactory,
@@ -169,32 +183,46 @@ final class NativeStudioMailMessageLoader implements StudioMailMessageLoader {
   _MessageOperation? _active;
   int _nextOperation = 0;
 
-  MailImapIdentity _identity(
-    mail.Mailbox selectedMailbox,
-    mail.MimeMessage header,
-  ) {
+  (MailMailboxId, int) _selectedMailbox(mail.Mailbox selectedMailbox) {
     if (_session.isDisposed) {
       throw const StudioMailMessageLoadException(
         MailProblemCode.staleOperation,
       );
     }
+    try {
+      final path = selectedMailbox.path;
+      final validity = selectedMailbox.uidValidity;
+      if (selectedMailbox.isNotSelectable ||
+          path.trim().isEmpty ||
+          path.length > 1024 ||
+          validity == null ||
+          validity < 1 ||
+          validity > 0xffffffff) {
+        throw const StudioMailMessageLoadException(
+          MailProblemCode.invalidInput,
+        );
+      }
+      return (MailMailboxId(path, account: _configuration.account), validity);
+    } on ArgumentError {
+      throw const StudioMailMessageLoadException(MailProblemCode.invalidInput);
+    }
+  }
+
+  MailImapIdentity _identity(
+    mail.Mailbox selectedMailbox,
+    mail.MimeMessage header,
+  ) {
+    final (mailbox, uidValidity) = _selectedMailbox(selectedMailbox);
     final MailImapIdentity identity;
     try {
-      final uidValidity = selectedMailbox.uidValidity;
       final uid = header.uid;
-      if (uidValidity == null ||
-          uid == null ||
-          selectedMailbox.isNotSelectable ||
-          selectedMailbox.path.length > 1024) {
+      if (uid == null) {
         throw const StudioMailMessageLoadException(
           MailProblemCode.invalidInput,
         );
       }
       identity = MailImapIdentity(
-        mailbox: MailMailboxId(
-          selectedMailbox.path,
-          account: _configuration.account,
-        ),
+        mailbox: mailbox,
         uidValidity: uidValidity,
         uid: uid,
       );
@@ -254,6 +282,87 @@ final class NativeStudioMailMessageLoader implements StudioMailMessageLoader {
         lease,
       ),
     );
+  }
+
+  @override
+  Future<MailArchiveRunReport> archiveMailbox(
+    mail.Mailbox selectedMailbox, {
+    required SqliteMailArchive archive,
+    required MailArchiveProfile profile,
+    MailCancellationToken? cancellation,
+    void Function(MailArchiveRunProgress)? onProgress,
+  }) async {
+    final watch = Stopwatch()..start();
+    _MessageOperation? operation;
+    Timer? externalCancellation;
+    try {
+      final (mailbox, validity) = _selectedMailbox(selectedMailbox);
+      cancellation?.throwIfCancelled();
+      cancel();
+      final active = _MessageOperation();
+      operation = active;
+      _active = active;
+      final provider = _providerFactory(
+        configuration: _configuration,
+        credentialStore: _credentials,
+        limits: limits,
+      );
+      if (provider.account != _configuration.account) {
+        throw const StudioMailMessageLoadException(
+          MailProblemCode.invalidInput,
+        );
+      }
+      final source = _SelectedArchiveProvider(
+        provider,
+        mailbox,
+        validity,
+        active,
+        cancellation,
+      );
+      if (cancellation != null) {
+        externalCancellation = Timer.periodic(
+          limits.cancellationPollInterval,
+          (_) => source.checkCancellation(),
+        );
+      }
+      source.checkCancellation();
+      return await MailArchiveRunner(
+        archive: archive,
+        provider: source,
+        session: _session,
+      ).archiveMailbox(
+        MailMailbox(id: mailbox, displayName: mailbox.value),
+        profile: profile,
+        pageSize: limits.maxPageSize < 100 ? limits.maxPageSize : 100,
+        budget: budget,
+        cancellation: active.cancellation.token,
+        onProgress: (progress) {
+          source.checkCancellation();
+          try {
+            if (identical(_active, active) && !_session.isDisposed) {
+              onProgress?.call(progress);
+            }
+          } finally {
+            source.checkCancellation();
+          }
+        },
+      );
+    } on StudioMailMessageLoadException catch (error) {
+      return _archiveFailure(error.code, watch.elapsedMicroseconds);
+    } on MailCancelled catch (error) {
+      return _archiveFailure(
+        _archiveCancellationCode(error.reason),
+        watch.elapsedMicroseconds,
+      );
+    } on Object {
+      return _archiveFailure(
+        MailProblemCode.providerFailure,
+        watch.elapsedMicroseconds,
+      );
+    } finally {
+      externalCancellation?.cancel();
+      if (operation != null && identical(_active, operation)) _active = null;
+    }
   }
 
   Future<T> _run<T>(
@@ -318,6 +427,159 @@ final class NativeStudioMailMessageLoader implements StudioMailMessageLoader {
     _active = null;
     _credentials.dispose();
   }
+}
+
+MailProblemCode _archiveCancellationCode(MailCancellationReason? reason) =>
+    reason == MailCancellationReason.user ||
+        reason == MailCancellationReason.budgetExpired
+    ? MailProblemCode.cancelled
+    : MailProblemCode.staleOperation;
+
+MailArchiveRunReport _archiveFailure(MailProblemCode code, int elapsed) =>
+    MailArchiveRunReport(
+      status:
+          code == MailProblemCode.cancelled ||
+              code == MailProblemCode.staleOperation
+          ? MailArchiveRunStatus.cancelled
+          : MailArchiveRunStatus.failed,
+      pages: 0,
+      processed: 0,
+      saved: 0,
+      duplicates: 0,
+      failed: 0,
+      bytes: 0,
+      elapsedMicroseconds: elapsed,
+      observerErrors: 0,
+      failures: const [],
+      droppedFailures: 0,
+      problem: MailProblem(code),
+    );
+
+/// Frozen mailbox generation and cancellation boundary for archive reads.
+/// A cancelled network future remains observed; it cannot reach archive writes.
+/// Storage is awaited by the runner so its confirmed committed counts stay true.
+final class _SelectedArchiveProvider implements MailProvider {
+  _SelectedArchiveProvider(
+    this.delegate,
+    this.mailbox,
+    this.uidValidity,
+    this.operation,
+    this.externalCancellation,
+  );
+
+  final MailProvider delegate;
+  final MailMailboxId mailbox;
+  final int uidValidity;
+  final _MessageOperation operation;
+  final MailCancellationToken? externalCancellation;
+
+  @override
+  MailAccountId get account => mailbox.account;
+
+  void checkCancellation() {
+    if (externalCancellation?.isCancelled ?? false) {
+      operation.cancel(_archiveCancellationCode(externalCancellation!.reason));
+    }
+  }
+
+  Future<MailResult<T>> _read<T>(
+    Future<MailResult<T>> Function() action,
+    MailOperationLease lease,
+  ) async {
+    checkCancellation();
+    lease.checkCurrent();
+    final result = await Future.any<MailResult<T>>([
+      Future<MailResult<T>>.sync(action),
+      operation.cancelled.future.then(
+        (code) => MailFailure<T>(MailProblem(code)),
+      ),
+    ]);
+    checkCancellation();
+    lease.checkCurrent();
+    return result;
+  }
+
+  @override
+  Future<MailResult<MailHeaderPage>> fetchHeaders(
+    MailMailboxId requested, {
+    MailCursor? cursor,
+    required int limit,
+    required MailOperationLease lease,
+  }) async {
+    if (requested != mailbox || lease.account != account) {
+      return const MailFailure(MailProblem(MailProblemCode.invalidInput));
+    }
+    final result = await _read(
+      () => delegate.fetchHeaders(
+        mailbox,
+        cursor: cursor,
+        limit: limit,
+        lease: lease,
+      ),
+      lease,
+    );
+    if (result case MailSuccess<MailHeaderPage>(:final value)) {
+      if (value.messages.length > limit) {
+        return const MailFailure(MailProblem(MailProblemCode.providerFailure));
+      }
+      for (final header in value.messages) {
+        final remote = header.remote;
+        if (remote is! MailImapIdentity || remote.mailbox != mailbox) {
+          return const MailFailure(
+            MailProblem(MailProblemCode.providerFailure),
+          );
+        }
+        if (remote.uidValidity != uidValidity) {
+          return const MailFailure(MailProblem(MailProblemCode.conflict));
+        }
+      }
+    }
+    return result;
+  }
+
+  @override
+  Future<MailResult<MailMessage>> fetchMessage(
+    MailRemoteIdentity identity, {
+    required MailReadBudget budget,
+    required MailOperationLease lease,
+  }) {
+    if (identity is! MailImapIdentity ||
+        identity.mailbox != mailbox ||
+        identity.uidValidity != uidValidity ||
+        lease.account != account) {
+      return Future.value(
+        const MailFailure(MailProblem(MailProblemCode.invalidInput)),
+      );
+    }
+    return _read(
+      () => delegate.fetchMessage(identity, budget: budget, lease: lease),
+      lease,
+    );
+  }
+
+  @override
+  Future<MailResult<MailCapabilities>> capabilities(
+    MailOperationLease lease,
+  ) async => const MailFailure(MailProblem(MailProblemCode.unsupported));
+
+  @override
+  Future<MailResult<List<MailMailbox>>> listMailboxes(
+    MailOperationLease lease,
+  ) async => const MailFailure(MailProblem(MailProblemCode.unsupported));
+
+  @override
+  Future<MailResult<MailSyncPage>> pullChanges(
+    MailMailboxId mailbox, {
+    MailCursor? cursor,
+    required int limit,
+    required MailOperationLease lease,
+  }) async => const MailFailure(MailProblem(MailProblemCode.unsupported));
+
+  @override
+  Future<MailResult<MailUnit>> apply(
+    MailOperation operation,
+    MailOperationLease lease,
+  ) async => const MailFailure(MailProblem(MailProblemCode.unsupported));
 }
 
 final class _MessageOperation {

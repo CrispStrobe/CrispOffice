@@ -196,7 +196,9 @@ final class SqliteMailArchive {
     if (parts.any((part) => part == '.' || part == '..')) {
       _fail(MailProblemCode.invalidInput);
     }
-    return '/${parts.where((part) => part.isNotEmpty).join('/')}';
+    final normalized = '/${parts.where((part) => part.isNotEmpty).join('/')}';
+    if (normalized.length > 4096) _fail(MailProblemCode.invalidInput);
+    return normalized;
   }
 
   Future<void> _quota() async {

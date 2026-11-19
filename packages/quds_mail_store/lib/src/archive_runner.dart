@@ -421,12 +421,13 @@ bool _identifier(String value, {int max = 4096}) =>
     value.length <= max &&
     !RegExp(r'[\x00-\x1f\x7f]').hasMatch(value);
 
-bool _folder(String value) =>
-    _identifier(value) &&
-    !value
-        .replaceAll('\\', '/')
-        .split('/')
-        .any((part) => part == '.' || part == '..');
+bool _folder(String value) {
+  if (!_identifier(value)) return false;
+  final parts = value.replaceAll('\\', '/').split('/');
+  if (parts.any((part) => part == '.' || part == '..')) return false;
+  final normalized = '/${parts.where((part) => part.isNotEmpty).join('/')}';
+  return normalized.length <= 4096;
+}
 
 bool _validPage(
   MailHeaderPage page,

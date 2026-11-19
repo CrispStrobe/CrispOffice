@@ -7,12 +7,16 @@ import 'package:quds_mail_core/quds_mail_core.dart';
 import 'package:quds_mail_mime/quds_mail_mime.dart';
 import 'package:quds_mail_transport/quds_mail_transport.dart';
 import 'package:quds_mail_ui/quds_mail_ui.dart';
+import 'package:quds_mail_store/quds_mail_store.dart';
 import 'package:quds_office_editor/quds_office_editor.dart';
 import 'package:quds_office_studio/studio_mail_compose.dart';
 import 'package:quds_office_studio/studio_mail_ews.dart';
 import 'package:quds_office_studio/studio_mail_native.dart';
 import 'package:quds_office_studio/studio_mail_strings.dart';
 import 'package:quds_office_studio/studio_strings.dart';
+import 'package:quds_office_studio/studio_mail_archive_action.dart';
+import 'package:quds_office_studio/studio_mail_archive_folder_action.dart';
+import 'package:quds_office_studio/studio_mail_archive_strings.dart';
 
 const _strings = StudioStrings(StudioLanguage.en);
 
@@ -35,6 +39,7 @@ final class _Provider extends Fake implements MailEwsProvider {
   int connects = 0;
   int lists = 0;
   int reads = 0;
+  String firstMessageId = 'one';
   final List<MailCursor?> cursors = [];
   final List<MailOperation> commands = [];
   final List<MailPreparedMessage> submissions = [];
@@ -64,6 +69,7 @@ final class _Provider extends Fake implements MailEwsProvider {
     final bytes = utf8.encode(
       'From: Writer <writer@example.test>\r\n'
       'To: Reader <reader@example.test>\r\nSubject: First Exchange message\r\n'
+      'Bcc: hidden@example.test\r\nX-Preserved:  original\r\n\tfolding\r\n'
       'MIME-Version: 1.0\r\nContent-Type: multipart/mixed; boundary=fixture\r\n'
       '\r\n--fixture\r\nContent-Type: text/plain; charset=utf-8\r\n'
       '\r\nA message from Exchange.\r\n'
@@ -78,8 +84,8 @@ final class _Provider extends Fake implements MailEwsProvider {
       envelope: parsed.envelope,
       body: parsed.body,
       attachments: parsed.attachments,
-      remoteIdentity: identity('one'),
-      localId: MailMessageId('one'),
+      remoteIdentity: identity(firstMessageId),
+      localId: MailMessageId(firstMessageId),
     );
   }
 
@@ -128,7 +134,7 @@ final class _Provider extends Fake implements MailEwsProvider {
       MailHeaderPage(
         messages: [
           cursor == null
-              ? header('one', 'First Exchange message')
+              ? header(firstMessageId, 'First Exchange message')
               : header('two', 'Second Exchange message'),
         ],
         next: cursor == null
@@ -193,6 +199,8 @@ Future<void> _show(
   WidgetTester tester,
   StudioEwsProviderFactory factory, {
   Size size = const Size(1280, 900),
+  StudioMailArchiveWriter? archiveWriter,
+  StudioMailArchiveFolderWriter? archiveFolderWriter,
 }) async {
   tester.view
     ..physicalSize = size
@@ -209,6 +217,8 @@ Future<void> _show(
               builder: (_) => StudioMailEwsDialog(
                 strings: _strings,
                 providerFactory: factory,
+                archiveWriter: archiveWriter,
+                archiveFolderWriter: archiveFolderWriter,
               ),
             ),
             child: const Text('Open Exchange'),
@@ -257,6 +267,38 @@ Future<void> _compose(WidgetTester tester) async {
   await tester.tap(find.widgetWithText(FilledButton, _strings.send));
   await _pump(tester);
 }
+
+MailResult<MailArchiveImportResult> _archiveSuccess(MailMessage message) =>
+    MailSuccess(
+      MailArchiveImportResult(
+        entry: MailArchiveEntry(
+          id: message.raw.sha256,
+          envelope: message.envelope,
+          archivedAt: DateTime.utc(2026, 11, 19),
+          byteLength: message.raw.length,
+          attachmentCount: message.attachments.length,
+          indexTruncated: false,
+          attachmentTextIndexed: 0,
+          attachmentTextSkipped: 0,
+        ),
+        duplicate: false,
+        originAdded: true,
+      ),
+    );
+
+MailArchiveRunReport _folderReport() => MailArchiveRunReport(
+  status: MailArchiveRunStatus.completed,
+  pages: 2,
+  processed: 4,
+  saved: 3,
+  duplicates: 1,
+  failed: 0,
+  bytes: 300,
+  elapsedMicroseconds: 1000,
+  observerErrors: 0,
+  failures: const [],
+  droppedFailures: 0,
+);
 
 void main() {
   testWidgets('native account setup exposes the Exchange Server entry', (
@@ -710,4 +752,121 @@ void main() {
       expect(tester.takeException(), isNull);
     },
   );
+
+  testWidgets(
+    'EWS archive action preserves the fetched original and provenance without sending or mutating',
+    (tester) async {
+      late _Provider provider;
+      MailMessage? archived;
+      var archiveCalls = 0;
+      MailArchiveOrigin? provenance;
+      await _show(
+        tester,
+        (configuration, credentials) =>
+            provider = _Provider(configuration, credentials),
+        archiveWriter: (message, {required origin, cancellation}) async {
+          archiveCalls++;
+          archived = message;
+          provenance = origin;
+          return _archiveSuccess(message);
+        },
+      );
+      await _connect(tester);
+      final original = provider.message();
+      provider.messageGate = Completer<MailResult<MailMessage>>();
+      await tester.tap(find.text('First Exchange message'));
+      await _pump(tester);
+      expect(archived, isNull);
+      provider.messageGate!.complete(MailSuccess(original));
+      await _pump(tester);
+      await tester.tap(find.byTooltip(_strings.archiveCurrentMessage));
+      await _pump(tester);
+      expect(archived, same(original));
+      expect(archived!.raw.bytes, orderedEquals(original.raw.bytes));
+      expect(archived!.envelope.bcc.single.address, 'hidden@example.test');
+      expect(archived!.attachments.single.displayName, 'example.txt');
+      expect(
+        archived!.attachments.single.content.bytes,
+        orderedEquals(utf8.encode('example')),
+      );
+      expect(provenance!.source, 'Exchange · reader@example.test');
+      expect(provenance!.folder, 'Inbox');
+      expect(provenance!.sourceMessageId, 'one');
+      expect(provider.reads, 1);
+      expect(provider.commands, isEmpty);
+      expect(provider.submissions, isEmpty);
+      expect(archiveCalls, 1);
+      expect(find.text(_strings.archiveMessageStored), findsWidgets);
+      expect(tester.takeException(), isNull);
+    },
+  );
+
+  testWidgets(
+    'EWS folder archive uses the selected mailbox and a stable profile',
+    (tester) async {
+      late _Provider provider;
+      MailArchiveProfile? profile;
+      await _show(
+        tester,
+        (configuration, credentials) =>
+            provider = _Provider(configuration, credentials),
+        archiveFolderWriter:
+            (
+              value, {
+              required cancellation,
+              onProgress,
+              required verboseDiagnostics,
+            }) async {
+              profile = value;
+              return _folderReport();
+            },
+      );
+      await _connect(tester);
+      await tester.tap(find.byTooltip(_strings.archiveSelectedFolder));
+      await _pump(tester);
+      expect(profile, isNull);
+      await tester.tap(find.byKey(const ValueKey('archive-folder-start')));
+      await _pump(tester);
+      expect(profile!.source, 'Exchange · reader@example.test');
+      expect(profile!.folder, 'Inbox');
+      expect(profile!.kind, MailArchiveProfileKind.mailbox);
+      expect(profile!.includeSubfolders, isFalse);
+      expect(profile!.id, startsWith('studio-mailbox:'));
+      expect(provider.reads, 0);
+      expect(provider.commands, isEmpty);
+      expect(provider.submissions, isEmpty);
+      expect(
+        find.text(_strings.archiveFolderCounts(3, 1, 0, 2, 300)),
+        findsOneWidget,
+      );
+      expect(tester.takeException(), isNull);
+    },
+  );
+
+  testWidgets('EWS selected message hashes an overlong opaque source ID', (
+    tester,
+  ) async {
+    final originalId = 'opaque-EWS-value' * 160;
+    MailArchiveOrigin? receivedOrigin;
+    await _show(
+      tester,
+      (configuration, credentials) =>
+          _Provider(configuration, credentials)..firstMessageId = originalId,
+      archiveWriter: (message, {required origin, cancellation}) async {
+        receivedOrigin = origin;
+        return _archiveSuccess(message);
+      },
+    );
+    await _connect(tester);
+    await tester.tap(find.text('First Exchange message'));
+    await _pump(tester);
+    await tester.tap(find.byTooltip(_strings.archiveCurrentMessage));
+    await _pump(tester);
+    expect(
+      receivedOrigin!.sourceMessageId,
+      studioArchiveSourceMessageId(originalId),
+    );
+    expect(receivedOrigin!.sourceMessageId.length, 71);
+    expect(tester.takeException(), isNull);
+  });
 }

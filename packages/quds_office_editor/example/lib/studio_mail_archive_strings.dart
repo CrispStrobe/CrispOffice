@@ -11,6 +11,96 @@ extension StudioMailArchiveStrings on StudioStrings {
     StudioLanguage.ar => ar,
   };
 
+  String get archiveSelectedFolder => _archiveText(
+    'Archive selected folder',
+    'Ausgewählten Ordner archivieren',
+    'أرشفة المجلد المحدد',
+  );
+  String get archiveFolderStart =>
+      _archiveText('Start archiving', 'Archivierung starten', 'بدء الأرشفة');
+  String get archiveFolderHelp => _archiveText(
+    'Save original messages from this folder locally. Other folders are not included. Messages already archived are skipped; the live mailbox is unchanged.',
+    'Originalnachrichten aus diesem Ordner lokal speichern. Andere Ordner werden nicht einbezogen. Bereits archivierte Nachrichten werden übersprungen; das Live-Postfach bleibt unverändert.',
+    'احفظ الرسائل الأصلية من هذا المجلد محليًا. لا تُضمَّن المجلدات الأخرى. تُتجاوز الرسائل المؤرشفة سابقًا؛ ويبقى صندوق البريد المباشر دون تغيير.',
+  );
+  String get archiveFolderLimits => _archiveText(
+    'Each run reads up to 100,000 messages in 1,000 pages. Limits and unreadable messages are reported. Rerunning starts at the beginning and skips existing originals.',
+    'Jeder Durchlauf liest bis zu 100.000 Nachrichten auf 1.000 Seiten. Erreichte Grenzen und unlesbare Nachrichten werden gemeldet. Ein neuer Durchlauf beginnt am Anfang und überspringt vorhandene Originale.',
+    'تقرأ كل عملية حتى 100000 رسالة في 1000 صفحة. تُعرض الحدود والرسائل غير القابلة للقراءة. تبدأ الإعادة من البداية وتتجاوز النسخ الأصلية المحفوظة.',
+  );
+  String get archiveFolderCancelling => _archiveText(
+    'Cancelling… waiting for the final committed counts.',
+    'Wird abgebrochen … endgültige Speicherzahlen werden ermittelt.',
+    'جارٍ الإلغاء… بانتظار الأعداد النهائية للرسائل المحفوظة.',
+  );
+  String archiveFolderCounts(
+    int saved,
+    int duplicates,
+    int failed,
+    int pages,
+    int bytes,
+  ) => _archiveText(
+    '$saved saved · $duplicates already archived · $failed failed\n$pages pages read · $bytes original bytes saved',
+    '$saved gespeichert · $duplicates bereits archiviert · $failed fehlgeschlagen\n$pages Seiten gelesen · $bytes Originalbytes gespeichert',
+    '$saved محفوظة · $duplicates مؤرشفة سابقًا · $failed تعذرت\n$pages صفحات مقروءة · $bytes بايت أصلية محفوظة',
+  );
+  String archiveFolderStatus(MailArchiveRunStatus status) => switch (status) {
+    MailArchiveRunStatus.completed => _archiveText(
+      'Folder run completed. All messages returned by the server were processed.',
+      'Ordnerdurchlauf abgeschlossen. Alle vom Server gelieferten Nachrichten wurden verarbeitet.',
+      'اكتملت العملية. عولجت جميع الرسائل التي أعادها الخادم.',
+    ),
+    MailArchiveRunStatus.partial => _archiveText(
+      'The folder was only partly archived. Saved messages remain available; review the reported failures and rerun when ready.',
+      'Der Ordner wurde nur teilweise archiviert. Gespeicherte Nachrichten bleiben verfügbar; Fehler prüfen und bei Bedarf erneut starten.',
+      'أُرشف المجلد جزئيًا. تبقى الرسائل المحفوظة متاحة؛ راجع الأخطاء ثم أعد المحاولة.',
+    ),
+    MailArchiveRunStatus.cancelled => _archiveText(
+      'Archiving was cancelled. Messages already saved remain in the archive.',
+      'Die Archivierung wurde abgebrochen. Bereits gespeicherte Nachrichten bleiben im Archiv.',
+      'أُلغيت الأرشفة. تبقى الرسائل المحفوظة سابقًا في الأرشيف.',
+    ),
+    MailArchiveRunStatus.limited => _archiveText(
+      'A run limit was reached. The folder is not fully archived; messages already saved remain available.',
+      'Eine Durchlaufgrenze wurde erreicht. Der Ordner ist nicht vollständig archiviert; gespeicherte Nachrichten bleiben verfügbar.',
+      'بلغت العملية أحد الحدود. لم يُؤرشف المجلد بالكامل؛ وتبقى الرسائل المحفوظة متاحة.',
+    ),
+    MailArchiveRunStatus.failed => _archiveText(
+      'The folder run could not complete. Review the reported problem before trying again.',
+      'Der Ordnerdurchlauf konnte nicht abgeschlossen werden. Das gemeldete Problem vor einem erneuten Versuch prüfen.',
+      'تعذر إكمال العملية. راجع المشكلة المعروضة قبل إعادة المحاولة.',
+    ),
+  };
+  String archiveFolderItemFailures(int retained, int dropped) => _archiveText(
+    '$retained item failures recorded · $dropped additional failure details omitted.',
+    '$retained Nachrichtenfehler erfasst · $dropped weitere Fehlerdetails ausgelassen.',
+    'سُجلت تفاصيل $retained أخطاء رسائل · حُذفت تفاصيل $dropped أخطاء إضافية.',
+  );
+  String archiveFolderFailure(int ordinal, MailArchiveRunStage stage) {
+    final operation = switch (stage) {
+      MailArchiveRunStage.fetch => _archiveText(
+        'Read message',
+        'Nachricht lesen',
+        'قراءة الرسالة',
+      ),
+      MailArchiveRunStage.identity => _archiveText(
+        'Check message identity',
+        'Nachrichtenidentität prüfen',
+        'التحقق من هوية الرسالة',
+      ),
+      MailArchiveRunStage.store => _archiveText(
+        'Save original',
+        'Original speichern',
+        'حفظ النسخة الأصلية',
+      ),
+    };
+    return _archiveText(
+      'Item $ordinal · $operation',
+      'Nachricht $ordinal · $operation',
+      'الرسالة $ordinal · $operation',
+    );
+  }
+
   String get archiveCurrentMessage =>
       _archiveText('Archive message', 'Nachricht archivieren', 'أرشفة الرسالة');
   String get archiveMessageStored => _archiveText(

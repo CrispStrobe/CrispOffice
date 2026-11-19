@@ -638,6 +638,93 @@ void main() {
   );
 
   test(
+    'canonical folder overflow cannot persist unreadable profiles or origins',
+    () async {
+      const existing = MailArchiveProfile(
+        id: 'bounded',
+        name: 'Bounded',
+        source: 'Personal',
+        folder: '/Inbox',
+      );
+      value(await archive.saveProfile(existing));
+      final oversized = 'x' * 4096;
+      failure(
+        await archive.saveProfile(
+          MailArchiveProfile(
+            id: existing.id,
+            name: existing.name,
+            source: existing.source,
+            folder: oversized,
+          ),
+        ),
+        MailProblemCode.invalidInput,
+      );
+      expect(value(await archive.listProfiles()).single.folder, '/Inbox');
+      failure(
+        await archive.archiveMessage(
+          message('oversized folder'),
+          origin: MailArchiveOrigin(source: 'Personal', folder: oversized),
+        ),
+        MailProblemCode.invalidInput,
+      );
+      failure(
+        await archive.saveSearch(
+          MailArchiveSavedSearch(
+            name: 'Oversized folder',
+            request: MailArchiveSearchRequest(folder: oversized),
+          ),
+        ),
+        MailProblemCode.invalidInput,
+      );
+      expect(value(await archive.statistics()).messages, 0);
+      expect(value(await archive.listSearches()), isEmpty);
+    },
+  );
+
+  test(
+    'exact canonical folder boundary survives profile and origin round trips',
+    () async {
+      final relative = 'x' * 4095;
+      final canonical = '/$relative';
+      expect(canonical.length, 4096);
+      for (final folder in [relative, canonical]) {
+        value(
+          await archive.saveProfile(
+            MailArchiveProfile(
+              id: 'bounded',
+              name: 'Bounded',
+              source: 'Personal',
+              folder: folder,
+            ),
+          ),
+        );
+        final saved = await add(
+          message('bounded folder'),
+          source: MailArchiveOrigin(source: 'Personal', folder: folder),
+        );
+        expect(
+          value(await archive.listOrigins(saved.entry.id)).single.folder,
+          canonical,
+        );
+        expect(
+          await find(
+            '',
+            request: MailArchiveSearchRequest(
+              folder: canonical,
+              includeSubfolders: false,
+            ),
+          ),
+          [saved.entry.id],
+        );
+      }
+      await archive.close();
+      await open();
+      expect(value(await archive.listProfiles()).single.folder, canonical);
+      expect(value(await archive.statistics()).origins, 1);
+    },
+  );
+
+  test(
     'saved-search and profile limits roll back the attempted insert',
     () async {
       await archive.close();

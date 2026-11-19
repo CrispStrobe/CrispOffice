@@ -5,7 +5,9 @@ import 'dart:typed_data';
 import 'package:enough_mail/enough_mail.dart' as mail;
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:quds_mail_core/quds_mail_core.dart';
 import 'package:quds_mail_ui/quds_mail_ui.dart';
+import 'package:quds_mail_store/quds_mail_store.dart';
 import 'package:quds_office_editor/quds_office_editor.dart';
 import 'package:quds_office_studio/studio_mail_message_loader.dart';
 import 'package:quds_office_studio/studio_mail_compose.dart';
@@ -13,6 +15,9 @@ import 'package:quds_office_studio/studio_mail_credentials.dart';
 import 'package:quds_office_studio/studio_mail_strings.dart';
 import 'package:quds_office_studio/studio_mail_native.dart';
 import 'package:quds_office_studio/studio_strings.dart';
+import 'package:quds_office_studio/studio_mail_archive_action.dart';
+import 'package:quds_office_studio/studio_mail_archive_folder_action.dart';
+import 'package:quds_office_studio/studio_mail_archive_strings.dart';
 
 const _strings = StudioStrings(StudioLanguage.en);
 
@@ -195,6 +200,20 @@ final class _Loader implements StudioMailMessageLoader {
   void dispose() => disposed = true;
 }
 
+final class _ArchivingLoader extends _Loader
+    implements StudioMailMailboxArchiver {
+  _ArchivingLoader(super.client);
+
+  @override
+  Future<MailArchiveRunReport> archiveMailbox(
+    mail.Mailbox selectedMailbox, {
+    required SqliteMailArchive archive,
+    required MailArchiveProfile profile,
+    MailCancellationToken? cancellation,
+    void Function(MailArchiveRunProgress)? onProgress,
+  }) => throw StateError('Injected folder writer should own the operation.');
+}
+
 Finder _iconButton(String tooltip) => find.byWidgetPredicate(
   (widget) => widget is IconButton && widget.tooltip == tooltip,
 );
@@ -218,6 +237,8 @@ Future<void> _open(
   Future<mail.ClientConfig?> Function(String)? accountDiscovery,
   bool fillForm = true,
   bool nativeLoader = false,
+  StudioMailArchiveWriter? archiveWriter,
+  StudioMailArchiveFolderWriter? archiveFolderWriter,
 }) async {
   await tester.binding.setSurfaceSize(const Size(1440, 1000));
   addTearDown(() => tester.binding.setSurfaceSize(null));
@@ -240,6 +261,8 @@ Future<void> _open(
                           _Loader(createdClient!),
                 credentialStore: credentialStore ?? _CredentialStore(),
                 accountDiscovery: accountDiscovery,
+                archiveWriter: archiveWriter,
+                archiveFolderWriter: archiveFolderWriter,
               ),
             ),
             child: const Text('Launch Mail'),
@@ -302,6 +325,38 @@ Future<void> _compose(
 
 MailReaderController _reader(WidgetTester tester) =>
     tester.widget<MailMessageView>(find.byType(MailMessageView)).controller;
+
+MailResult<MailArchiveImportResult> _archiveSuccess(MailMessage message) =>
+    MailSuccess(
+      MailArchiveImportResult(
+        entry: MailArchiveEntry(
+          id: message.raw.sha256,
+          envelope: message.envelope,
+          archivedAt: DateTime.utc(2026, 11, 19),
+          byteLength: message.raw.length,
+          attachmentCount: message.attachments.length,
+          indexTruncated: false,
+          attachmentTextIndexed: 0,
+          attachmentTextSkipped: 0,
+        ),
+        duplicate: false,
+        originAdded: true,
+      ),
+    );
+
+MailArchiveRunReport _folderReport() => MailArchiveRunReport(
+  status: MailArchiveRunStatus.completed,
+  pages: 2,
+  processed: 4,
+  saved: 3,
+  duplicates: 1,
+  failed: 0,
+  bytes: 300,
+  elapsedMicroseconds: 1000,
+  observerErrors: 0,
+  failures: const [],
+  droppedFailures: 0,
+);
 
 void main() {
   for (final forward in [false, true]) {
@@ -878,27 +933,26 @@ void main() {
     await _close(tester);
   });
 
-  testWidgets(
-    'a failed keychain save keeps Mail connected with fixed feedback',
-    (tester) async {
-      final store = _CredentialStore()
-        ..onSave = (_) async =>
-            throw StateError('private-keychain-reply saved-fixture-password');
-      final client = _Client();
-      await _open(tester, (_) => client, credentialStore: store);
-      await _connect(tester);
-      expect(find.text('First message'), findsOneWidget);
-      expect(find.text(_strings.mailAccountSaveFailed), findsOneWidget);
-      expect(find.textContaining('private-keychain-reply'), findsNothing);
-      expect(find.text(_strings.mailConnectionFailed), findsNothing);
-      expect(client.disconnects, 0);
-      await tester.tap(find.byTooltip(_strings.disconnect));
-      await _pump(tester);
-      // Forget remains available for unreadable or still-pending keychain records.
-      expect(find.text(_strings.forgetAccount), findsOneWidget);
-      await _close(tester);
-    },
-  );
+  testWidgets('a failed keychain save keeps Mail connected with fixed feedback', (
+    tester,
+  ) async {
+    final store = _CredentialStore()
+      ..onSave = (_) async =>
+          throw StateError('private-keychain-reply saved-fixture-password');
+    final client = _Client();
+    await _open(tester, (_) => client, credentialStore: store);
+    await _connect(tester);
+    expect(find.text('First message'), findsOneWidget);
+    expect(find.text(_strings.mailAccountSaveFailed), findsOneWidget);
+    expect(find.textContaining('private-keychain-reply'), findsNothing);
+    expect(find.text(_strings.mailConnectionFailed), findsNothing);
+    expect(client.disconnects, 0);
+    await tester.tap(find.byTooltip(_strings.disconnect));
+    await _pump(tester);
+    // Forget remains available for unreadable or still-pending keychain records.
+    expect(find.text(_strings.forgetAccount), findsOneWidget);
+    await _close(tester);
+  });
 
   testWidgets('a failed keychain deletion remains visible and can be retried', (
     tester,
@@ -1574,4 +1628,177 @@ void main() {
     expect(saved.isDisposed, isTrue);
     expect(client.disconnects, 1);
   });
+
+  testWidgets(
+    'IMAP archive action stores the loaded original with Bcc and attachments without touching the mailbox',
+    (tester) async {
+      final client = _Client();
+      final raw = Uint8List.fromList(
+        utf8.encode(
+          [
+            'From: Original <original@example.invalid>',
+            'To: Reader <reader@example.invalid>',
+            'Bcc: Hidden <hidden@example.invalid>',
+            'Subject: Full MIME original, not the fetched header',
+            'X-Preserved:  unusual',
+            '\tspacing',
+            'MIME-Version: 1.0',
+            'Content-Type: multipart/mixed; boundary=archive-fixture',
+            '',
+            '--archive-fixture',
+            'Content-Type: text/plain; charset=utf-8',
+            '',
+            'Exact original body.',
+            '--archive-fixture',
+            'Content-Type: application/octet-stream',
+            'Content-Disposition: attachment; filename=original.bin',
+            'Content-Transfer-Encoding: base64',
+            '',
+            'AAEC/w0K',
+            '--archive-fixture--',
+            '',
+          ].join('\r\n'),
+        ),
+      );
+      late _Loader loader;
+      MailMessage? archived;
+      var archiveCalls = 0;
+      MailArchiveOrigin? provenance;
+      await _open(
+        tester,
+        (_) => client,
+        loaderFactory: (value) =>
+            loader = _Loader(value)..onFetch = (_, _) async => raw,
+        archiveWriter: (message, {required origin, cancellation}) async {
+          archiveCalls++;
+          archived = message;
+          provenance = origin;
+          return _archiveSuccess(message);
+        },
+      );
+      await _connect(tester);
+      expect(archived, isNull);
+      await tester.tap(find.text('First message'));
+      await _pump(tester);
+      await tester.tap(find.byTooltip(_strings.archiveCurrentMessage));
+      await _pump(tester);
+      expect(archived!.raw.bytes, orderedEquals(raw));
+      expect(
+        archived!.envelope.subject,
+        'Full MIME original, not the fetched header',
+      );
+      expect(archived!.envelope.bcc.single.address, 'hidden@example.invalid');
+      expect(archived!.attachments.single.displayName, 'original.bin');
+      expect(
+        archived!.attachments.single.content.bytes,
+        orderedEquals([0, 1, 2, 255, 13, 10]),
+      );
+      expect(provenance!.source, 'reader@example.invalid');
+      expect(provenance!.folder, 'INBOX');
+      expect(provenance!.sourceMessageId, 'imap:41:7');
+      expect(loader.marked, isEmpty);
+      expect(client.sent, isEmpty);
+      expect(client.selections, 0);
+      expect(client.fetches, 1);
+      expect(archiveCalls, 1);
+      expect(find.text(_strings.archiveMessageStored), findsWidgets);
+      await _close(tester);
+    },
+  );
+
+  testWidgets(
+    'disconnecting IMAP cancels a pending archive and suppresses its late feedback',
+    (tester) async {
+      final client = _Client();
+      final saved = Completer<MailResult<MailArchiveImportResult>>();
+      MailCancellationToken? token;
+      await _open(
+        tester,
+        (_) => client,
+        archiveWriter: (message, {required origin, cancellation}) {
+          token = cancellation;
+          return saved.future;
+        },
+      );
+      await _connect(tester);
+      await tester.tap(find.text('First message'));
+      await _pump(tester);
+      await tester.tap(find.byTooltip(_strings.archiveCurrentMessage));
+      await _pump(tester);
+      await tester.tap(find.byTooltip(_strings.disconnect));
+      await _pump(tester);
+      expect(token!.isCancelled, isTrue);
+      saved.complete(
+        const MailFailure(MailProblem(MailProblemCode.permissionDenied)),
+      );
+      await _pump(tester);
+      expect(
+        find.text(_strings.archiveProblem(MailProblemCode.permissionDenied)),
+        findsNothing,
+      );
+      expect(find.byType(StudioArchiveMessageButton), findsNothing);
+      expect(client.sent, isEmpty);
+      expect(client.disconnects, 1);
+      await _close(tester);
+    },
+  );
+
+  testWidgets('IMAP folder archiving requires an explicit loader capability', (
+    tester,
+  ) async {
+    await _open(tester, (_) => _Client());
+    await _connect(tester);
+    expect(find.byType(StudioArchiveFolderButton), findsNothing);
+    await _close(tester);
+  });
+
+  testWidgets(
+    'IMAP selected-folder action freezes source and folder without changing the mailbox',
+    (tester) async {
+      final client = _Client();
+      late _ArchivingLoader loader;
+      MailArchiveProfile? profile;
+      var runs = 0;
+      await _open(
+        tester,
+        (_) => client,
+        loaderFactory: (client) => loader = _ArchivingLoader(client),
+        archiveFolderWriter:
+            (
+              value, {
+              required cancellation,
+              onProgress,
+              required verboseDiagnostics,
+            }) async {
+              runs++;
+              profile = value;
+              return _folderReport();
+            },
+      );
+      await _connect(tester);
+      await tester.tap(find.byTooltip(_strings.archiveSelectedFolder));
+      await _pump(tester);
+      expect(runs, 0);
+      await tester.tap(find.byKey(const ValueKey('archive-folder-start')));
+      await _pump(tester);
+      expect(runs, 1);
+      expect(profile!.source, 'reader@example.invalid');
+      expect(profile!.folder, 'INBOX');
+      expect(profile!.kind, MailArchiveProfileKind.mailbox);
+      expect(profile!.includeSubfolders, isFalse);
+      expect(profile!.indexAttachmentText, isFalse);
+      expect(profile!.id, startsWith('studio-mailbox:'));
+      expect(loader.marked, isEmpty);
+      expect(client.sent, isEmpty);
+      expect(client.selections, 0);
+      expect(client.fetches, 1);
+      expect(
+        find.text(_strings.archiveFolderCounts(3, 1, 0, 2, 300)),
+        findsOneWidget,
+      );
+      await tester.tap(find.byKey(const ValueKey('archive-folder-close')));
+      await _pump(tester);
+      await _close(tester);
+    },
+  );
 }

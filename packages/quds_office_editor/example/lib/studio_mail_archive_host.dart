@@ -43,15 +43,28 @@ abstract interface class StudioMailArchiveStore {
 typedef StudioMailArchiveOpener =
     Future<MailResult<StudioMailArchiveStore>> Function();
 
+/// Shared durable namespace for file imports and foreground mailbox runs.
+Future<MailResult<SqliteMailArchive>> openStudioMailSqliteArchive({
+  MailArchiveLimits limits = const MailArchiveLimits(),
+  MailArchiveDiagnostics? diagnostics,
+}) async {
+  try {
+    return await openNativeMailArchive(
+      appDirectory: await getApplicationSupportDirectory(),
+      profile: MailProfileId('studio-local-archive', hostId: 'crispoffice'),
+      limits: limits,
+      diagnostics: diagnostics,
+    );
+  } on Object {
+    return const MailFailure(MailProblem(MailProblemCode.storageFailure));
+  }
+}
+
 Future<MailResult<StudioMailArchiveStore>> openStudioMailArchive({
   MailArchiveLimits limits = const MailArchiveLimits(),
 }) async {
   try {
-    final result = await openNativeMailArchive(
-      appDirectory: await getApplicationSupportDirectory(),
-      profile: MailProfileId('studio-local-archive', hostId: 'crispoffice'),
-      limits: limits,
-    );
+    final result = await openStudioMailSqliteArchive(limits: limits);
     return switch (result) {
       MailSuccess(value: final archive) => MailSuccess(_ArchiveStore(archive)),
       MailFailure(problem: final problem) => MailFailure(problem),
