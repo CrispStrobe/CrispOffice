@@ -13,6 +13,10 @@ void main() {
       addTearDown(() => tester.binding.setSurfaceSize(null));
       await tester.pumpWidget(const QudsOfficeStudioApp());
       await tester.pump();
+      final controller = tester
+          .widget<QudsWordEditor>(find.byType(QudsWordEditor))
+          .controller;
+      controller.proofing.configure(OfficeProofingService(providers: []));
       await configureStudioForTest(tester, language: StudioLanguage.ar);
       await tester.tap(find.text('مراجعة'));
       await tester.pump();

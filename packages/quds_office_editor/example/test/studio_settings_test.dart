@@ -35,9 +35,10 @@ void main() {
     await tester.binding.setSurfaceSize(const Size(1440, 1000));
     addTearDown(() => tester.binding.setSurfaceSize(null));
     await tester.pumpWidget(const QudsOfficeStudioApp());
-    await _pump(tester);
+    await tester.pump();
     final controller = _editor(tester).controller;
     controller.proofing.enabled = false;
+    controller.proofing.configure(OfficeProofingService(providers: []));
     final note = WmlNote(
       id: 1,
       endnote: false,
