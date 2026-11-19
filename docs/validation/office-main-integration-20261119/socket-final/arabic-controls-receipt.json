@@ -1,0 +1,40 @@
+{
+  "status": "PASS",
+  "selected_builder_commit": "0b8f8f7f78fbf4e2e26671ecf9a0d858c38ca75c",
+  "combined_test_patch_sha256": "3fb63f019a2d6b11afe2f22135e6df6c5f2cf7cb0c2e77ff37367477a56b3cf4",
+  "tests": 7,
+  "failed": 0,
+  "errors": 0,
+  "skipped": 0,
+  "command": "python3 -B -m unittest discover -s tools/proofing/ayaspell -p test_build_bundle.py -v",
+  "inputs": {
+    "tools/proofing/ayaspell/build_bundle.py": {
+      "sha256": "998765c1c0d066c80e6fa2b10cc54718cc97a79d221fb536a97547ce5b49460a",
+      "git_blob": "19901f37f82b7fff8840f84cfefbec641baa99d7"
+    },
+    "tools/proofing/ayaspell/test_build_bundle.py": {
+      "sha256": "8802480f09bee98eab88d3a7ff420a2ca767526b027b49132b2319494a37f986",
+      "git_blob": "fa18b63431cec2a695940000ec631df072d571b2"
+    }
+  },
+  "checkout_log_sha256": "68039537636ed3b9f10ce8d5a053be3efb82d7b0f7dce55fb42eb024fcee0879",
+  "agent_offline_run": {
+    "tests_run": 7,
+    "case_ids": [
+      "combined_ayaspell_controls.BundleTest.test_bad_dictionary_digest_stops_before_remote_mutation",
+      "combined_ayaspell_controls.BundleTest.test_bad_dictionary_size_stops_before_remote_mutation",
+      "combined_ayaspell_controls.BundleTest.test_bad_licence_stops_before_remote_mutation",
+      "combined_ayaspell_controls.BundleTest.test_build_is_deterministic_and_does_not_publish",
+      "combined_ayaspell_controls.BundleTest.test_changed_file_readback_fails",
+      "combined_ayaspell_controls.BundleTest.test_changed_manifest_readback_fails",
+      "combined_ayaspell_controls.BundleTest.test_publish_excludes_unrelated_files_and_includes_manifest"
+    ],
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "successful": true,
+    "network_policy": "urlopen, socket.create_connection and socket.connect fail on invocation",
+    "publication": "mock HfApi only; no remote calls or credentials"
+  },
+  "application_count_scope": "Separate from the 632 application executions; repeated review and checkout runs are not summed."
+}

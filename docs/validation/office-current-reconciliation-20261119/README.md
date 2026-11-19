@@ -1,5 +1,10 @@
 # Current Office reconciliation — 19 November 2026
 
+This is the captured continuation-plan checkpoint from PR #177/#178. Its
+pending statements remain historical observations. The
+[current combined integration](../office-main-integration-20261119/README.md)
+records completed qualification and subsequent reconciliation separately.
+
 ## Scope and progress
 
 The user requested all recent fork work be reconciled, saved incrementally to a

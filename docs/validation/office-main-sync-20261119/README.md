@@ -1,5 +1,10 @@
 # Quds Office final branch synchronization — 19 November 2026
 
+This is the captured continuation-plan checkpoint from PR #177/#178. Its
+pending statements remain historical observations. The
+[current combined integration](../office-main-integration-20261119/README.md)
+records completed qualification and subsequent reconciliation separately.
+
 ## Scope and checkpoint state
 
 This continuation starts from remote `main` at
