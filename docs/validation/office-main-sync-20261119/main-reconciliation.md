@@ -39,8 +39,8 @@ cursor freshness instead of reverting to the historical numeric-window limit.
 The M06 historical report retains the identities and boundaries of its earlier
 qualification, with links to the later records.
 
-The earlier cursor, provider and Arabic implementation/test blobs remain exact
-copies of `0669ac11`. The incoming change to transport configuration is comment
+At the first incoming-main merge (`aea5d91a`), the earlier cursor, provider and
+Arabic implementation/test blobs remained exact copies of `0669ac11`. The incoming change to transport configuration is comment
 wording only. The optional package adds one workspace member without changing
 any dependency version: enforced offline resolution leaves all 131 previous
 package mappings identical, adds only `quds_proofing_hunspell`, and retains the
@@ -82,3 +82,25 @@ listed by CMake. Every source and pinned dictionary input is verified. This is
 not a CMake, Emscripten/Wasm or macOS build claim. macOS signing, sandboxed launch,
 real file/network acceptance, host download UI and independent linguistic
 acceptance remain separate from these Linux qualification results.
+
+## Later current main at `b559f6c7`
+
+Before the repaired gate was frozen, a new direct read found current main at
+`b559f6c764fbfac143f593e89ddc1096ad8b5c4e`. That head adds the CrispOffice Studio
+branding, localized module navigation, a saved-message Mail reader, refreshed
+sample/PDF content, and the T1 Arabic rule set with additional Unicode controls.
+Those changes are preserved, including the intentional deletion of the old
+Al Tahreer sample and its 35 assets. Their original blobs remain in Git history.
+
+The new Arabic source is reconciled with the existing hamza, mixed-script token,
+detached-waw and ambiguous-word safeguards. Native Hunspell disposal and
+missing-dictionary repairs remain included. The original 1,372-run qualification
+keeps its `0669ac11` identity; the expanded merged-source gate covers T1 rules,
+the affected Studio modules/samples and the prior selected Mail/Hunspell paths.
+Incoming historical evidence is retained without adding its results to the new
+counts. The saved-message Mail surface does not complete an account-aware mailbox
+workspace or SMTP composition.
+
+The new Studio dependencies are three packages already in this workspace.
+No locked dependency versions change. The package mappings stay stable; the
+Studio dependency-graph entry is reconciled explicitly with those three additions.

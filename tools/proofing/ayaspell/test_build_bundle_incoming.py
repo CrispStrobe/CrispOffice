@@ -1,7 +1,7 @@
 """Preserved PR #177 offline controls; card assertion follows current wording.
 
 Imported from c268ce3bceb05f92b7868e90ba8ce7b9a5bbbe1e. The filename and
-planned-adapter wording assertion are adapted; the seven controls remain.
+card-status wording assertion are adapted; the seven controls remain.
 """
 
 from __future__ import annotations

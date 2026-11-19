@@ -39,7 +39,7 @@ void main() {
     expect(cairoPdf, isNot(contains('Liberation')));
     _expectBilingualPages(
       cairoBytes,
-      english: 'Al Tahreer',
+      english: 'Harbour District',
       arabicFirst: true,
     );
     _expectBilingualPages(
@@ -55,12 +55,16 @@ void main() {
       'widgets-arabic-contents',
     ]) {
       final PdfFile file = PdfFile.open(
-        StudioPdfGallery.all.firstWhere((StudioPdfSample s) => s.id == id).build(),
+        StudioPdfGallery.all
+            .firstWhere((StudioPdfSample s) => s.id == id)
+            .build(),
       );
       expect(file.pageCount, greaterThan(2), reason: id);
       final List<PdfAnnot> jumps = file
           .annotsOn(0)
-          .where((PdfAnnot annot) => annot.goToPage != null && annot.goToPage! > 0)
+          .where(
+            (PdfAnnot annot) => annot.goToPage != null && annot.goToPage! > 0,
+          )
           .toList();
       expect(jumps.length, greaterThanOrEqualTo(3), reason: id);
     }

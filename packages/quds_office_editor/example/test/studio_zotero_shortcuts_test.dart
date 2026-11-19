@@ -125,7 +125,7 @@ Future<WordEditorController> _studio(
   controller.proofing.configure(OfficeProofingService(providers: []));
   controller.document = WmlDocument.empty(text: 'A citation belongs here.');
   controller.refresh();
-  await tester.tap(find.byTooltip('English'));
+  await tester.tap(find.byTooltip('اللغة'));
   await _frames(tester);
   editor.focusNode!.requestFocus();
   await _frames(tester);

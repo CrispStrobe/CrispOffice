@@ -19,25 +19,26 @@ void main() {
     },
   );
 
-  testWidgets('studio hosts Word, Excel, and PowerPoint workspaces', (
-    WidgetTester tester,
-  ) async {
-    await tester.binding.setSurfaceSize(const Size(1440, 900));
-    addTearDown(() => tester.binding.setSurfaceSize(null));
-    await tester.pumpWidget(const QudsOfficeStudioApp());
-    await tester.pump();
+  testWidgets(
+    'studio hosts document, spreadsheet, and presentation workspaces',
+    (WidgetTester tester) async {
+      await tester.binding.setSurfaceSize(const Size(1440, 900));
+      addTearDown(() => tester.binding.setSurfaceSize(null));
+      await tester.pumpWidget(const QudsOfficeStudioApp());
+      await tester.pump();
 
-    expect(find.text('Quds Office Studio'), findsOneWidget);
-    expect(find.text('Word'), findsWidgets);
+      expect(find.text('CrispOffice Studio'), findsOneWidget);
+      expect(find.text('المستندات'), findsWidgets);
 
-    await tester.tap(find.text('Excel').first);
-    await tester.pump();
-    expect(find.text('Budget'), findsWidgets);
-    expect(find.text('Roster'), findsWidgets);
+      await tester.tap(find.text('جداول البيانات').first);
+      await tester.pump();
+      expect(find.text('Budget'), findsWidgets);
+      expect(find.text('Roster'), findsWidgets);
 
-    await tester.tap(find.text('PowerPoint').first);
-    await tester.pump();
-    expect(find.textContaining('.pptx'), findsWidgets);
-    expect(tester.takeException(), isNull);
-  });
+      await tester.tap(find.text('العروض التقديمية').first);
+      await tester.pump();
+      expect(find.textContaining('.pptx'), findsWidgets);
+      expect(tester.takeException(), isNull);
+    },
+  );
 }

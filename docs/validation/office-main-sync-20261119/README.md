@@ -34,8 +34,9 @@ are never relabeled as executions against a later source.
 
 The [main reconciliation record](main-reconciliation.md) describes preservation
 of incoming `b655b8a3`, including optional Hunspell, the macOS runner, newer
-Arabic guidance and all incoming evidence. The original cursor and Arabic
-repairs remain byte-identical. Native Hunspell disposal, two stale publisher
+Arabic guidance and all incoming evidence. At that first main merge, the original cursor and Arabic repairs remained
+byte-identical. The later Arabic T1 merge preserves their behavior while
+extending the provider and its regression coverage. Native Hunspell disposal, two stale publisher
 assertions and macOS network/selected-file capabilities receive scoped repairs.
 The separate merged-source qualification is recorded after its source checkpoint
 is frozen; the 1,372 executions below retain their original `0669ac11` identity.

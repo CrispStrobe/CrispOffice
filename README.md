@@ -565,7 +565,7 @@ cd apps/quds_report_studio
 flutter run -d linux     # or windows, macos
 ```
 
-**Quds Office Studio**: the editor example, a desktop workspace with ribbons, samples, and OS window chrome:
+**CrispOffice Studio**: the editor example, a desktop workspace with ribbons, samples, and OS window chrome:
 
 ```bash
 cd packages/quds_office_editor/example
@@ -625,7 +625,7 @@ quds_office_suite/
 │   ├── quds_office_engine/     ← publish this to pub.dev
 │   ├── quds_reports/           ← publish this to pub.dev
 │   └── quds_office_editor/     ← publish this to pub.dev
-│       └── example/            Quds Office Studio (not published)
+│       └── example/            CrispOffice Studio (not published)
 ├── apps/
 │   └── quds_report_studio/     standalone report editor (not published)
 ├── docs/                       MISSION, STANDARDS (limits), PDF, PUBLISHING,

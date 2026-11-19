@@ -1,0 +1,46 @@
+{
+  "description": "Separate bounded qualification of concurrent main PR180 Arabic writing rules, the decomposed hamza/madda repair, and shared proofing integration. This does not rerun or add to the 836 Mail application executions or 78 Python controls at 5569c055. Existing Mail source remains unchanged; these nine files cover new Arabic rules, locale/text ranges and service behavior, and editor session/correction/context/live integration. No external mail, dictionary/model download, installed-app, or independent linguistic acceptance is claimed.",
+  "groups": [
+    {
+      "name": "arabic-engine-proofing",
+      "cwd": "packages/quds_office_engine",
+      "runner": "dart",
+      "tests": [
+        "test/proofing/arabic_writing_rules_test.dart",
+        "test/proofing/office_proofing_test.dart",
+        "test/proofing/proofing_locale_test.dart",
+        "test/proofing/proofing_text_ranges_test.dart"
+      ]
+    },
+    {
+      "name": "arabic-editor-proofing",
+      "cwd": "packages/quds_office_editor",
+      "runner": "flutter",
+      "tests": [
+        "test/word_arabic_writing_integration_test.dart",
+        "test/word_proofing_session_test.dart",
+        "test/word_proofing_correction_test.dart",
+        "test/word_proofing_context_test.dart",
+        "test/word_live_proofing_session_test.dart"
+      ]
+    }
+  ],
+  "analysis": [
+    "packages/quds_office_editor/example/lib/suite_workspace.dart",
+    "packages/quds_office_editor/lib/src/proofing/word_proofing.dart",
+    "packages/quds_office_editor/test/word_arabic_writing_integration_test.dart",
+    "packages/quds_office_engine/lib/quds_office_engine.dart",
+    "packages/quds_office_engine/lib/src/proofing/arabic_writing_rules.dart",
+    "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart"
+  ],
+  "format": [
+    "packages/quds_office_editor/example/lib/suite_workspace.dart",
+    "packages/quds_office_editor/lib/src/proofing/word_proofing.dart",
+    "packages/quds_office_editor/test/word_arabic_writing_integration_test.dart",
+    "packages/quds_office_engine/lib/quds_office_engine.dart",
+    "packages/quds_office_engine/lib/src/proofing/arabic_writing_rules.dart",
+    "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart"
+  ],
+  "extra_inputs": [".fvmrc"],
+  "whitespace_preserved_inputs": []
+}
