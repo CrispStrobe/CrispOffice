@@ -14,7 +14,7 @@ const String _arabicBody =
     'التحقق الميداني في منتصف أيلول.';
 
 const String _englishBody =
-    'This quarterly note follows the same Al Tahreer programme in English. '
+    'This quarterly note follows the same Harbour District programme in English. '
     'Water access reached 73 percent, partially damaged shelters were '
     'stabilized, and a small set of cases remains open for field verification '
     'in mid-September.';
@@ -23,7 +23,7 @@ const String _englishBody =
 Uint8List studioCairoQuarterlyPdf() {
   final pw.Document doc = pw.Document(
     title: '$studioQuarterlyPhrase — Cairo',
-    author: 'Quds Studio',
+    author: 'CrispOffice Studio',
     font: StudioPdfFaces.cairo(),
   );
   doc.addPage(
@@ -32,60 +32,60 @@ Uint8List studioCairoQuarterlyPdf() {
       margin: const pw.EdgeInsets.all(40),
       textDirection: pw.TextDirection.rtl,
       build: (pw.Context context) => <pw.Widget>[
-          _band(
-            kicker: 'QUDS OFFICE  ·  CAIRO',
-            face: 'Cairo',
+        _band(
+          kicker: 'QUDS OFFICE  ·  CAIRO',
+          face: 'Cairo',
+          color: '0F6E56',
+          ink: 'D1FAE5',
+        ),
+        pw.SizedBox(height: 18),
+        pw.Text(
+          studioQuarterlyPhrase,
+          textAlign: pw.TextAlign.start,
+          style: const pw.TextStyle(
+            fontSize: 28,
             color: '0F6E56',
-            ink: 'D1FAE5',
+            height: 1.25,
           ),
-          pw.SizedBox(height: 18),
-          pw.Text(
-            studioQuarterlyPhrase,
-            textAlign: pw.TextAlign.start,
-            style: const pw.TextStyle(
-              fontSize: 28,
-              color: '0F6E56',
-              height: 1.25,
-            ),
+        ),
+        pw.Header(
+          level: 1,
+          text: 'ملخص الربع الثالث',
+          textStyle: const pw.TextStyle(
+            fontSize: 16,
+            fontWeight: pw.FontWeight.normal,
+            color: '134E4A',
           ),
-          pw.Header(
-            level: 1,
-            text: 'ملخص الربع الثالث',
-            textStyle: const pw.TextStyle(
-              fontSize: 16,
-              fontWeight: pw.FontWeight.normal,
-              color: '134E4A',
-            ),
+        ),
+        pw.Text(
+          _arabicBody,
+          textAlign: pw.TextAlign.start,
+          style: const pw.TextStyle(
+            fontSize: 12,
+            color: '292524',
+            height: 1.55,
           ),
-          pw.Text(
-            _arabicBody,
-            textAlign: pw.TextAlign.start,
-            style: const pw.TextStyle(
-              fontSize: 12,
-              color: '292524',
-              height: 1.55,
-            ),
-          ),
-          pw.SizedBox(height: 16),
-          _facts(
+        ),
+        pw.SizedBox(height: 16),
+        _facts(
+          accent: '0F6E56',
+          wash: 'ECFDF5',
+          items: const <(String, String)>[
+            ('الوصول إلى المياه', '73%'),
+            ('استقرار الملاجئ', '61%'),
+            ('ملفات مفتوحة', '19'),
+          ],
+        ),
+        pw.NewPage(),
+        pw.Directionality(
+          textDirection: pw.TextDirection.ltr,
+          child: _englishPanel(
             accent: '0F6E56',
-            wash: 'ECFDF5',
-            items: const <(String, String)>[
-              ('الوصول إلى المياه', '73%'),
-              ('استقرار الملاجئ', '61%'),
-              ('ملفات مفتوحة', '19'),
-            ],
+            wash: 'F0FDFA',
+            heading: 'Field note',
           ),
-          pw.NewPage(),
-          pw.Directionality(
-            textDirection: pw.TextDirection.ltr,
-            child: _englishPanel(
-              accent: '0F6E56',
-              wash: 'F0FDFA',
-              heading: 'Field note',
-            ),
-          ),
-        ],
+        ),
+      ],
     ),
   );
   return doc.save();
@@ -95,7 +95,7 @@ Uint8List studioCairoQuarterlyPdf() {
 Uint8List studioTajawalBriefingPdf() {
   final pw.Document doc = pw.Document(
     title: 'Quarterly briefing — $studioQuarterlyPhrase',
-    author: 'Quds Studio',
+    author: 'CrispOffice Studio',
     font: StudioPdfFaces.tajawal(),
     fontBold: StudioPdfFaces.tajawalBold(),
   );
@@ -105,96 +105,96 @@ Uint8List studioTajawalBriefingPdf() {
       margin: const pw.EdgeInsets.all(40),
       textDirection: pw.TextDirection.ltr,
       build: (pw.Context context) => <pw.Widget>[
-          _band(
-            kicker: 'QUDS OFFICE  ·  TAJAWAL',
-            face: 'Tajawal',
+        _band(
+          kicker: 'QUDS OFFICE  ·  TAJAWAL',
+          face: 'Tajawal',
+          color: '9A3412',
+          ink: 'FFEDD5',
+        ),
+        pw.SizedBox(height: 18),
+        pw.Text(
+          'Quarterly briefing',
+          style: const pw.TextStyle(
+            fontSize: 28,
+            fontWeight: pw.FontWeight.bold,
             color: '9A3412',
-            ink: 'FFEDD5',
+            height: 1.15,
           ),
-          pw.SizedBox(height: 18),
-          pw.Text(
-            'Quarterly briefing',
-            style: const pw.TextStyle(
-              fontSize: 28,
-              fontWeight: pw.FontWeight.bold,
-              color: '9A3412',
-              height: 1.15,
+        ),
+        pw.Header(
+          level: 1,
+          text: 'Service access',
+          textStyle: const pw.TextStyle(
+            fontSize: 16,
+            fontWeight: pw.FontWeight.bold,
+            color: '7C2D12',
+          ),
+        ),
+        pw.Text(
+          _englishBody,
+          style: const pw.TextStyle(
+            fontSize: 12,
+            color: '292524',
+            height: 1.55,
+          ),
+        ),
+        pw.SizedBox(height: 16),
+        _facts(
+          accent: '9A3412',
+          wash: 'FFF7ED',
+          items: const <(String, String)>[
+            ('Water access', '73%'),
+            ('Shelters stable', '61%'),
+            ('Open cases', '19'),
+          ],
+        ),
+        pw.NewPage(),
+        pw.Directionality(
+          textDirection: pw.TextDirection.rtl,
+          child: pw.Container(
+            padding: const pw.EdgeInsets.fromLTRB(16, 14, 16, 16),
+            decoration: pw.BoxDecoration(
+              color: 'FFF7ED',
+              borderRadius: 6,
+              border: pw.Border.all(color: 'FDBA74', width: 0.8),
             ),
-          ),
-          pw.Header(
-            level: 1,
-            text: 'Service access',
-            textStyle: const pw.TextStyle(
-              fontSize: 16,
-              fontWeight: pw.FontWeight.bold,
-              color: '7C2D12',
-            ),
-          ),
-          pw.Text(
-            _englishBody,
-            style: const pw.TextStyle(
-              fontSize: 12,
-              color: '292524',
-              height: 1.55,
-            ),
-          ),
-          pw.SizedBox(height: 16),
-          _facts(
-            accent: '9A3412',
-            wash: 'FFF7ED',
-            items: const <(String, String)>[
-              ('Water access', '73%'),
-              ('Shelters stable', '61%'),
-              ('Open cases', '19'),
-            ],
-          ),
-          pw.NewPage(),
-          pw.Directionality(
-            textDirection: pw.TextDirection.rtl,
-            child: pw.Container(
-              padding: const pw.EdgeInsets.fromLTRB(16, 14, 16, 16),
-              decoration: pw.BoxDecoration(
-                color: 'FFF7ED',
-                borderRadius: 6,
-                border: pw.Border.all(color: 'FDBA74', width: 0.8),
-              ),
-              child: pw.Column(
-                crossAxisAlignment: pw.CrossAxisAlignment.stretch,
-                children: <pw.Widget>[
-                  pw.Text(
-                    'ARABIC  ·  RTL',
-                    textAlign: pw.TextAlign.start,
-                    style: const pw.TextStyle(
-                      fontSize: 8,
-                      fontWeight: pw.FontWeight.bold,
-                      color: 'C2410C',
-                      letterSpacing: 1.1,
-                    ),
+            child: pw.Column(
+              crossAxisAlignment: pw.CrossAxisAlignment.stretch,
+              children: <pw.Widget>[
+                pw.Text(
+                  'ARABIC  ·  RTL',
+                  textAlign: pw.TextAlign.start,
+                  style: const pw.TextStyle(
+                    fontSize: 8,
+                    fontWeight: pw.FontWeight.bold,
+                    color: 'C2410C',
+                    letterSpacing: 1.1,
                   ),
-                  pw.SizedBox(height: 6),
-                  pw.Header(
-                    level: 2,
-                    text: studioQuarterlyPhrase,
-                    textStyle: const pw.TextStyle(
-                      fontSize: 18,
-                      fontWeight: pw.FontWeight.bold,
-                      color: '9A3412',
-                    ),
+                ),
+                pw.SizedBox(height: 6),
+                pw.Header(
+                  level: 2,
+                  text: studioQuarterlyPhrase,
+                  textStyle: const pw.TextStyle(
+                    fontSize: 18,
+                    fontWeight: pw.FontWeight.bold,
+                    color: '9A3412',
                   ),
-                  pw.Text(
-                    _arabicBody,
-                    textAlign: pw.TextAlign.start,
-                    style: const pw.TextStyle(
-                      fontSize: 12,
-                      color: '44403C',
-                      height: 1.55,
-                    ),
+                ),
+                pw.Text(
+                  _arabicBody,
+                  textAlign: pw.TextAlign.start,
+                  style: const pw.TextStyle(
+                    fontSize: 12,
+                    color: '44403C',
+                    height: 1.55,
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
-        ],
+        ),
+      ],
     ),
   );
   return doc.save();
@@ -267,10 +267,7 @@ pw.Widget _factTile(String label, String value, String accent, String wash) {
           ),
         ),
         pw.SizedBox(height: 4),
-        pw.Text(
-          label,
-          style: const pw.TextStyle(fontSize: 9, color: '57534E'),
-        ),
+        pw.Text(label, style: const pw.TextStyle(fontSize: 9, color: '57534E')),
       ],
     ),
   );
@@ -312,11 +309,7 @@ pw.Widget _englishPanel({
         pw.SizedBox(height: 6),
         pw.Text(
           _englishBody,
-          style: const pw.TextStyle(
-            fontSize: 11,
-            color: '44403C',
-            height: 1.5,
-          ),
+          style: const pw.TextStyle(fontSize: 11, color: '44403C', height: 1.5),
         ),
       ],
     ),

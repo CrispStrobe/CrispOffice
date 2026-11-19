@@ -1,26 +1,12 @@
-import 'package:flutter/services.dart';
 import 'package:quds_office_editor/quds_office_editor.dart';
 
-import 'al_tahreer_sample.dart';
+import 'crisp_office_sample.dart';
 
 /// In-memory sample documents that exercise the studio toolbars.
 abstract final class SampleLibrary {
-  static final Map<String, Uint8List> images = <String, Uint8List>{};
+  static Future<void> preload() async {}
 
-  static Future<void> preload() async {
-    if (images.isNotEmpty) {
-      return;
-    }
-    for (final String name in AlTahreerSample.imageFiles) {
-      final ByteData data = await rootBundle.load('assets/al_tahreer/$name');
-      images[name] = data.buffer.asUint8List();
-    }
-  }
-
-  static WmlDocument wordBriefing() {
-    return AlTahreerSample.build(images);
-  }
-
+  static WmlDocument wordBriefing() => CrispOfficeSample.build();
 
   static SmlWorkbook excelBudget() {
     final SmlWorksheet budget = SmlWorksheet(name: 'Budget', sheetId: 1);
@@ -192,7 +178,7 @@ abstract final class SampleLibrary {
             box(
               id: 3,
               name: 'Title',
-              text: 'Quds Office Suite',
+              text: 'CrispOffice',
               fill: '2B579A',
               x: 600000,
               y: 1500000,
@@ -234,7 +220,11 @@ abstract final class SampleLibrary {
             direction: PmlTransitionDir.left,
           ),
           animations: <PmlShapeAnimation>[
-            PmlShapeAnimation(shapeId: 2, preset: PmlAnimPreset.wipe, direction: PmlTransitionDir.left),
+            PmlShapeAnimation(
+              shapeId: 2,
+              preset: PmlAnimPreset.wipe,
+              direction: PmlTransitionDir.left,
+            ),
             PmlShapeAnimation(
               shapeId: 3,
               preset: PmlAnimPreset.peekIn,
@@ -290,7 +280,8 @@ abstract final class SampleLibrary {
             box(
               id: 5,
               name: 'Rev',
-              text: 'Review + View: select all / word / paragraph · rulers · zoom',
+              text:
+                  'Review + View: select all / word / paragraph · rulers · zoom',
               fill: '5B9BD5',
               x: 400000,
               y: 3000000,
@@ -345,7 +336,8 @@ abstract final class SampleLibrary {
             box(
               id: 4,
               name: 'Grid',
-              text: 'View: gridlines headers freeze row 1 · three sample sheets',
+              text:
+                  'View: gridlines headers freeze row 1 · three sample sheets',
               fill: '70AD47',
               x: 400000,
               y: 2900000,
@@ -547,7 +539,11 @@ abstract final class SampleLibrary {
             durationMs: 900,
           ),
           animations: <PmlShapeAnimation>[
-            PmlShapeAnimation(shapeId: 2, preset: PmlAnimPreset.floatIn, direction: PmlTransitionDir.up),
+            PmlShapeAnimation(
+              shapeId: 2,
+              preset: PmlAnimPreset.floatIn,
+              direction: PmlTransitionDir.up,
+            ),
           ],
           shapes: <PmlShape>[
             box(

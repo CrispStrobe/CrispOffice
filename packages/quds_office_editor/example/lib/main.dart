@@ -19,7 +19,7 @@ class QudsOfficeStudioApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Quds Office Studio',
+      title: 'CrispOffice Studio',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: true,

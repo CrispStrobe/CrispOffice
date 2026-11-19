@@ -1,0 +1,28 @@
+{
+  "qualified_source": "ba7c1e26cdc409915e04eba49dd1f1c002280cf8",
+  "qualified_source_tree": "e221e18cd46535c0e54eeac5bcaadab31d241d01",
+  "checked_target": "Fully staged publication index before adding this receipt",
+  "bound_source_inputs": 5031,
+  "bound_source_inputs_unchanged": true,
+  "source_mismatches": [],
+  "bound_git_entries_sha256": "5cc1c6c26ff3dec4badc0d84ecadab9cd05796d175a18791f803260ec62df5de",
+  "publication_paths_without_this_receipt": [
+    "docs/validation/office-main-completion-20261119/README.md",
+    "docs/validation/office-main-completion-20261119/release/arabic-archive-audit.json",
+    "docs/validation/office-main-completion-20261119/release/arabic-audit-adapter-review.json",
+    "docs/validation/office-main-completion-20261119/release/arabic-main-tail-review.json",
+    "docs/validation/office-main-completion-20261119/release/arabic-proofing.index.json",
+    "docs/validation/office-main-completion-20261119/release/arabic-proofing.tar.xz",
+    "docs/validation/office-main-completion-20261119/release/audit_arabic_main_tail.py",
+    "docs/validation/office-main-completion-20261119/release/audit_arabic_qualification.py",
+    "docs/validation/office-main-completion-20261119/release/build_arabic_archive.py",
+    "docs/validation/office-main-completion-20261119/release/independent-arabic-summary.json"
+  ],
+  "publication_delta_is_report_and_evidence_only": true,
+  "archive_git_blob": "2e9b2481c132d657742b7c4d1b15735e17ef57a9",
+  "archive_sha256": "34dcc1763a0317498d49966abbb054c28f46ae0b710a6fe139b3f848c8344a96",
+  "archive_members": 45,
+  "application_tests_rerun_for_publication": false,
+  "github_actions_queried_or_awaited": false,
+  "passed": true
+}

@@ -1,6 +1,6 @@
-# Quds Office Studio
+# CrispOffice Studio
 
-Host example for `quds_office_editor`: a Word / Excel / PowerPoint workspace
+Host example for `quds_office_editor`: a Documents / Spreadsheets / Presentations workspace
 with ribbons, sample documents, and the custom RenderBox canvases.
 
 ## Run
@@ -12,7 +12,7 @@ flutter run
 
 ## What to try
 
-### Word
+### Documents
 - **Home** — select a range, then bold / italic / underline / strike / superscript /
   subscript / color / highlight / grow-shrink. Alignment, lists, indent.
 - **Insert** — heading, paragraph, quote, page break, tables 2×2 / 3×3 / 4×4,
@@ -22,7 +22,7 @@ flutter run
 - **View** — rulers and zoom. Double-click a word, triple-click a paragraph,
   drag across a table. `Ctrl+Z` / `Ctrl+Y`.
 
-### Excel
+### Spreadsheets
 - Three sample sheets: Budget (SUM / AVERAGE / MAX), Roster (COUNTA), Catalog.
 - **Home** — F2 edit, clear selection, select row / column, insert column / pie chart
   from the selected cells.
@@ -31,7 +31,7 @@ flutter run
 - **Data** — insert / delete sheets; column / pie / line charts. Formula bar above
   the grid. Freeze header row.
 
-### PowerPoint
+### Presentations
 - Five-slide tour of the suite tools.
 - **Home** — new / duplicate / delete slide, nudge, bring forward / send back.
 - **Insert** — card, title, accent, picture, column / pie charts, process diagram.
