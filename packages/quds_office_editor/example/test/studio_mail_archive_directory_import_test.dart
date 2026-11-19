@@ -135,9 +135,12 @@ void main() {
   late MailCancellationSource cancellation;
 
   setUp(() async {
-    temporary = await Directory.systemTemp.createTemp(
-      'archive-directory-host-',
-    );
+    // Resolve the system temporary directory once, as the quds_mail_store
+    // tests do: macOS exposes it through `/var -> /private/var`, and directory
+    // import deliberately rejects links in the chosen root's ancestors.
+    temporary = await Directory(
+      await Directory.systemTemp.resolveSymbolicLinks(),
+    ).createTemp('archive-directory-host-');
     input = await Directory(p.join(temporary.path, 'source')).create();
     final opened = await openNativeMailArchive(
       appDirectory: Directory(p.join(temporary.path, 'archive')),
