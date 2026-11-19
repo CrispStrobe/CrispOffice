@@ -2,7 +2,7 @@
   "branch": "codex/mail-archive-resume-20261119",
   "pull_request": 212,
   "through_source_freeze": "71053bf61521e093903d55cba890ef4beee039e1",
-  "checkpoint_count": 20,
+  "checkpoint_count": 21,
   "checkpoints": [
     {
       "checkpoint": 1,
@@ -232,6 +232,17 @@
         "088d80905e3f76542dd9813e96584cd5c61454ff"
       ],
       "message": "Integrate latest main first-analysis verification before final local acceptance [skip ci]",
+      "publication": "non-forced GitHub ref update with exact expected previous head",
+      "in_final_source_history": true
+    },
+    {
+      "checkpoint": 21,
+      "commit": "c7a7153191d5b6d3c87bdbb5477b5820f8405adb",
+      "tree": "7ba6c844e1b761117136afe6024cb8df473c5912",
+      "parents": [
+        "9b8853667b68c7bebff050e52445b47ea0bbd188"
+      ],
+      "message": "Publish independently audited continuation acceptance and preserved runtime evidence [skip ci]",
       "publication": "non-forced GitHub ref update with exact expected previous head",
       "in_final_source_history": true
     }

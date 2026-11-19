@@ -23,7 +23,8 @@ CONTINUATION = PREFIX + "continuation/"
 BASELINE = "b2c05a0afa0ae606b061b13d5e50937c2a8eb1df"
 SOURCE = "9b8853667b68c7bebff050e52445b47ea0bbd188"
 SOURCE_TREE = "57d90e137f5b6c452a809080d4067f53c8209f09"
-MAIN = "088d80905e3f76542dd9813e96584cd5c61454ff"
+MAIN = "756885bc9cb1612f8d400889f8d3020cec9ad945"
+QUALIFIED_MAIN = "088d80905e3f76542dd9813e96584cd5c61454ff"
 CHANGED = {
     "packages/quds_office_editor/example/lib/studio_downloads_manager.dart",
     "packages/quds_office_editor/example/lib/studio_spacy_host_native.dart",
@@ -39,6 +40,14 @@ INCOMING_DOCS = {
     "docs/validation/language-downloads-20261119/bundled-runtime-acceptance.json",
     "docs/validation/language-downloads-20261119/bundled-runtime-native-gate.txt",
 }
+LATE_MAIN_DOCS = {
+    "docs/validation/language-downloads-20261119/README.md",
+    "docs/validation/language-downloads-20261119/docx-writer-acceptance.json",
+    "docs/validation/language-downloads-20261119/docx-writer-check.dart",
+    "docs/validation/language-downloads-20261119/final-native-gate.txt",
+    "docs/validation/language-downloads-20261119/final-preview-acceptance.json",
+}
+INCOMING_DOCS |= LATE_MAIN_DOCS
 COMMANDS = ["format", "analysis", "whitespace", "studio-downloads-spacy"]
 
 
@@ -94,8 +103,11 @@ def main():
                 or path.startswith(CONTINUATION) for path in changes),
             "Historical evidence or another unreviewed path changed")
     subsequent = git("diff", "--name-only", SOURCE, candidate).decode().splitlines()
-    require(all(path in allowed_existing_docs or path.startswith(CONTINUATION)
+    require(all(path in allowed_existing_docs or path in LATE_MAIN_DOCS
+                or path.startswith(CONTINUATION)
                 for path in subsequent), "Product changed after focused source freeze")
+    require(set(git("diff", "--name-only", QUALIFIED_MAIN, MAIN).decode().splitlines())
+            == LATE_MAIN_DOCS, "Latest main delta is not the reviewed validation-only change")
 
     entries = {}
     for item in git("ls-tree", "-rz", candidate).split(b"\0"):
@@ -260,6 +272,38 @@ def main():
     require(reconciliation["replay_script_sha256"] == digest(raw(
         CONTINUATION + "reconcile-current-refs.py")), "Reference replay script differs")
 
+    refresh = read(CONTINUATION + "publication-ref-refresh.json")
+    require(refresh["status"] == "passed" and refresh["required_main"] == MAIN,
+            "Final reference refresh failed")
+
+    def external_refs(data):
+        own = {"refs/heads/codex/mail-archive-resume-20261119", "refs/pull/212/head"}
+        result = {}
+        for line in data.decode().splitlines():
+            sha, ref = line.split()
+            if ref not in own and (ref.startswith("refs/heads/")
+                                    or (ref.startswith("refs/pull/") and ref.endswith("/head"))):
+                result[ref] = sha
+        return result
+
+    before_capture = raw(CONTINUATION + refresh["previous_capture"])
+    after_capture = raw(CONTINUATION + refresh["latest_capture"])
+    require(digest(before_capture) == refresh["previous_sha256"]
+            and digest(after_capture) == refresh["latest_sha256"], "Final ref capture bytes differ")
+    prior_refs, final_refs = external_refs(before_capture), external_refs(after_capture)
+    ref_changes = [{"ref": ref, "before": prior_refs.get(ref), "after": final_refs.get(ref)}
+                   for ref in sorted(prior_refs.keys() | final_refs.keys())
+                   if prior_refs.get(ref) != final_refs.get(ref)]
+    require(ref_changes == refresh["changes"] == [
+        {"ref": "refs/heads/main", "before": QUALIFIED_MAIN, "after": MAIN}]
+        and len(final_refs) == refresh["external_refs"] == reconciliation["external_reference_count"],
+        "Unreviewed branch or PR head appeared at publication")
+
+    for name, identity in receipt["native_assets_generated"].items():
+        data = Path(name).read_bytes()
+        require(len(data) == identity["bytes"] and digest(data) == identity["sha256"],
+                "Generated native asset differs: " + name)
+
     result = {
         "status": "passed",
         "verified_at_utc": datetime.now(timezone.utc).isoformat(),
@@ -280,9 +324,11 @@ def main():
         "historical_replay_sha256": digest(raw(CONTINUATION +
                                                "evidence-audit/published-acceptance-replay.json")),
         "reviewed_source_git_blobs_match": True,
-        "changes_after_source_freeze_only_milestone_documentation": True,
+        "changes_after_source_freeze_only_explicitly_reviewed_validation_documentation": True,
         "input_reverification": inventories,
         "external_refs_accounted": reconciliation["external_reference_count"],
+        "final_ref_refresh_verified": True,
+        "generated_native_assets_rehashed": len(receipt["native_assets_generated"]),
         "incoming_native_qualification_documents_match_main": True,
         "incoming_author_test_counts_added": False,
         "github_actions_used": False,

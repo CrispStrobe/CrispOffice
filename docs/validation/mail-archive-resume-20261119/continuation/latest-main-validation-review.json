@@ -1,0 +1,71 @@
+{
+  "status": "validation_only_incoming_main_reviewed",
+  "reviewed_at_utc": "2026-11-19T20:13:30.314Z",
+  "repository": "CrispStrobe/quds_office_suite",
+  "parent_main": "088d80905e3f76542dd9813e96584cd5c61454ff",
+  "incoming_main": "756885bc9cb1612f8d400889f8d3020cec9ad945",
+  "incoming_tree": "18d92844ecf0269477278bd7f2aae82b88fe1305",
+  "compare_url": "https://api.github.com/repos/CrispStrobe/quds_office_suite/compare/088d80905e3f76542dd9813e96584cd5c61454ff...756885bc9cb1612f8d400889f8d3020cec9ad945",
+  "files": [
+    {
+      "path": "docs/validation/language-downloads-20261119/README.md",
+      "git_blob_sha": "f304287b22e4bdfbaf7eaf84fd9c1f8261f2c3d3",
+      "status": "modified",
+      "changes": 22
+    },
+    {
+      "path": "docs/validation/language-downloads-20261119/docx-writer-acceptance.json",
+      "git_blob_sha": "da7e3b61a96dd1bf4630715c5e3ebd2f99aae286",
+      "status": "added",
+      "changes": 11
+    },
+    {
+      "path": "docs/validation/language-downloads-20261119/docx-writer-check.dart",
+      "git_blob_sha": "1751e711aa2a902b525e54d88d9731076e859858",
+      "status": "added",
+      "changes": 23
+    },
+    {
+      "path": "docs/validation/language-downloads-20261119/final-native-gate.txt",
+      "git_blob_sha": "dd916d173533bce8b09c4b6688477747629c3ec6",
+      "status": "added",
+      "changes": 5
+    },
+    {
+      "path": "docs/validation/language-downloads-20261119/final-preview-acceptance.json",
+      "git_blob_sha": "476bdf265f36d6c7203ca0b91992f5778f07bae5",
+      "status": "added",
+      "changes": 20
+    }
+  ],
+  "checks": {
+    "single_commit_child_of_prior_main": true,
+    "all_five_paths_under_language_download_validation": true,
+    "no_product_test_package_or_runtime_path_changed": true
+  },
+  "evidence_assessment": [
+    {
+      "file": "docx-writer-acceptance.json",
+      "reported_status": "passed",
+      "author_claim_scope": "LibreOffice Writer import/re-save, followed by Quds import/export/reopen. Fourteen total linked revisions across body and six header/footer stories, author/date checks, and accept-all/reject-all leave no remaining revision records.",
+      "excluded_scope": "Unanchored fixture notes/comments are omitted by Writer; Microsoft Word round-trip explicitly not performed.",
+      "replay_limits": "The added script uses absolute /tmp input/output paths. The external DOCX fixture is not included in this five-file delta. The script checks revision count after re-export and empty revision lists after accept/reject; it does not independently compare the final resolved text."
+    },
+    {
+      "file": "final-preview-acceptance.json",
+      "reported_status": "passed",
+      "author_claim_scope": "arm64 preview at source 088d8090: 20-second startup and signature verification, native German/English bundled worker gate, 15 setup tests and three comment tests.",
+      "count_boundary": "These are independent author/native results; they add zero tests to this continuation's local Linux acceptance."
+    },
+    {
+      "file": "final-native-gate.txt",
+      "reported_status": "one test passed",
+      "author_claim_scope": "A short retained native worker log showing German/English token and entity outputs from the bundled runtime.",
+      "replay_limits": "This review does not execute or independently replay the macOS app/model gate."
+    }
+  ],
+  "recommendation": "Preserve the five exact validation blobs and incoming commit ancestry. Verify that the accepted product/test/runtime/harness identities remain unchanged after the documentation integration; do not repeat an unaffected runtime gate.",
+  "runtime_tests_executed_by_this_review": 0,
+  "product_or_remote_mutated": false,
+  "github_actions_queried_or_awaited": false
+}

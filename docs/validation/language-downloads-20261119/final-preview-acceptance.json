@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "preview": "CrispOffice Proofing Preview 088d8090.app",
+  "bundleId": "com.CrispStrobe.crispoffice.proofingpreview20261119",
+  "sourceCommit": "088d8090",
+  "startupSeconds": 20,
+  "signatureVerified": true,
+  "architecture": "arm64",
+  "executableSha256": "b52f859de6aa5810dc19699ea848b46c4dcf9fd847caf94f84c67e6ad37633d3",
+  "nativeBundleGatePassed": true,
+  "firstAnalysisSetupTests": 15,
+  "commentTests": 3,
+  "incomingPrs": [
+    213,
+    214,
+    215
+  ],
+  "modelDataRoot": "/tmp/quds-language-live-models-9ceb",
+  "noDownloadedExecutablePackages": true
+}

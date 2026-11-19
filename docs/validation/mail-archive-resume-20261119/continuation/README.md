@@ -8,6 +8,14 @@ including PRs #214 and #215. Final publication and merge identities are
 recorded in [PR #212](https://github.com/CrispStrobe/quds_office_suite/pull/212).
 GitHub Actions were not queried, awaited or used as a gate.
 
+Publication additionally preserves main
+756885bc9cb1612f8d400889f8d3020cec9ad945. Its exact five-file delta from the
+qualified main contains only validation documents. Product, test, dependency
+and accepted harness inputs remain unchanged; no runtime gate is repeated.
+The [latest-main review](latest-main-validation-review.json) retains the
+author-evidence scope and the [ref refresh](publication-ref-refresh.json)
+confirms that all other external branch/PR heads stayed unchanged.
+
 ## Validation results
 
 | Evidence | Passed | Files | Required commands | Source binding |
@@ -103,7 +111,7 @@ Every continuation checkpoint uses a non-forced remote update with the expected
 previous head and an exact local/remote tree comparison. The checkpoint ledger
 records the source history; subsequent validation-only publication descendants
 remain in Git ancestry. The candidate verifier checks source, test, evidence,
-review, runner and audit bindings and permits only this milestone's validation
+review, runner and audit bindings and permits only explicitly reviewed validation
 documents after the final source freeze. The fetched main merge must have the
 same complete tree as the final candidate.
 
@@ -130,6 +138,7 @@ compile-cache files. No product test was removed, skipped or weakened.
 - [Fresh independent raw-event and identity audit](focused/independent-audit.json)
 - [Exact executed focused runner](focused/executed-runner.py)
 - [Current-reference reconciliation](current-reference-reconciliation.json)
+- [Published candidate verification](publication-verification.json)
 - [Runtime preparation](runtime-preparation/)
 - [Publication and merged-tree verifier](verify-continuation.py)
 

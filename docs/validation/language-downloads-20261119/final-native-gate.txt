@@ -1,0 +1,5 @@
+00:00 +0: loading /private/tmp/quds-proofing-language-20261119/packages/quds_office_editor/example/test/studio_spacy_bundle_native_gate.dart
+00:00 +0: the bundled spaCy library analyzes German and English from the app
+de: Angela/Angela/PROPN/pnc Merkel/Merkel/PROPN/sb besuchte/besuchen/VERB/ROOT gestern/gestern/ADV/mo die/der/DET/nk Universität/Universität/NOUN/oa in/in/ADP/mnr Berlin/Berlin/PROPN/nk ./--/PUNCT/punct | entities [PER:Angela Merkel, ORG:Universität, LOC:Berlin]
+en: Tim/Tim/PROPN Cook/Cook/PROPN visited/visit/VERB London/London/PROPN on/on/ADP Monday/Monday/PROPN ././PUNCT | entities [PERSON:Tim Cook, GPE:London, DATE:Monday]
+00:08 +1: All tests passed!

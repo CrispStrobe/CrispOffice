@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "externalApplication": "LibreOffice Writer",
+  "linkedStoryRevisions": 14,
+  "metadataPreserved": true,
+  "qudsReexportPreserved": true,
+  "acceptAll": true,
+  "rejectAll": true,
+  "scope": "body and six header/footer stories; fixture notes/comments are unreferenced and Writer omits them",
+  "microsoftWordTested": false
+}

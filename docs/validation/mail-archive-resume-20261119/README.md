@@ -17,6 +17,8 @@ records the exact four-file source/test delta, recovered full acceptance,
 227-ref reconciliation, and final publication verification. Mail source/tests
 remain unchanged. The original 2,243 executions below retain their original
 source binding and are not added to the overlapping continuation counts.
+The final publication also preserves validation-only main update `756885bc`;
+the accepted product, test, dependency and harness identities remain unchanged.
 
 ## Original complete acceptance and publication
 
