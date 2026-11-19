@@ -10,6 +10,7 @@ import 'package:quds_office_studio/studio_downloads_manager.dart';
 import 'package:quds_office_studio/studio_hunspell_host.dart';
 import 'package:quds_office_studio/studio_arabic_morph_host.dart';
 import 'package:quds_office_studio/studio_spacy_host.dart';
+import 'package:quds_office_studio/suite_workspace.dart';
 
 class _Dictionaries extends StudioHunspellHost {
   final calls = <String>[];
@@ -166,6 +167,20 @@ void main() {
       addTearDown(() => tester.binding.setSurfaceSize(null));
       await tester.pumpWidget(const QudsOfficeStudioApp());
       await tester.pump();
+      await tester.tap(find.byTooltip('Settings'));
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 400));
+      final appearance = find.byType(DropdownButtonFormField<SuiteLook>);
+      await tester.ensureVisible(appearance);
+      await tester.tap(appearance);
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 400));
+      await tester.tap(find.text('Dark').last);
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 400));
+      await tester.tap(find.widgetWithText(TextButton, 'Close'));
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 400));
       final editor = tester.widget<QudsWordEditor>(find.byType(QudsWordEditor));
       expect(editor.controller.document.proofingLanguage, 'en-GB');
       editor.controller.setProofingLanguage('fr-FR');
@@ -173,6 +188,12 @@ void main() {
       await tester.pump();
       await tester.pump(const Duration(milliseconds: 400));
       expect(find.byType(StudioDownloadsManager), findsOneWidget);
+      final theme = Theme.of(
+        tester.element(find.byType(StudioDownloadsManager)),
+      );
+      expect(theme.brightness, Brightness.dark);
+      expect(theme.colorScheme.surface.computeLuminance(), lessThan(0.15));
+      expect(theme.colorScheme.onSurface.computeLuminance(), greaterThan(0.6));
       expect(
         find.textContaining('does not provide a French spelling'),
         findsOneWidget,
