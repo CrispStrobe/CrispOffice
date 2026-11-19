@@ -21,9 +21,11 @@ The core suite has an engine, reports library, Flutter editor and desktop app. T
 The engine now supports [native macros and MCP](docs/MACROS.md): record and replay
 parameterized calls across 67 shared Word, spreadsheet, and presentation
 operations, with complete-output publication and a local MCP stdio bridge.
-Registered language compilers can lower source into the same bounded command
-plan. VBA projects remain inert and preserved; a VBA interpreter and macro
-ribbon UI are not included.
+The bundled [Excel VBA subset](docs/VBA_MACROS.md) compiles explicitly selected
+`.bas` source into the same bounded command plan, including variables, loops,
+worksheet/range bindings, cell writes, formulas, and formatting. VBA projects
+remain inert and preserved; full VBA execution and macro ribbon UI are not
+included.
 
 Word now includes an [offline English/German thesaurus](docs/roadmaps/thesaurus/README.md)
 with full OEWN 2025 and OpenThesaurus packs, alternatives grouped by meaning,

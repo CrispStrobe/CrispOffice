@@ -4,6 +4,17 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Add the `vba-excel` language compiler for an explicitly invoked Excel VBA
+  subset. Lower supported scalar expressions, variables, worksheet/range
+  bindings, conditions, and bounded loops into the existing native macro plan,
+  with source diagnostics and compile-time resource bounds.
+- Resolve worksheet names through the shared command handler, preserving native
+  zero-based indexes and translating VBA one-based indexes in the compiler.
+- Add `.bas` compile, validation, and execution CLI commands, default MCP
+  compilation, a monthly totals example, and portable JavaScript qualification.
+  Embedded projects remain inert; full VBA and document-dependent branching
+  remain unsupported.
+
 - Add `quds_office_automation.dart` with versioned, parameterized native macros,
   successful-call recording, detached document transactions, host operation
   allowlists, limits, cooperative cancellation, and a language-compiler registry
