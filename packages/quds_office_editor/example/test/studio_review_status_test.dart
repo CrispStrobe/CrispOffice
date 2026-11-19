@@ -40,11 +40,21 @@ Future<WordEditorController> _studio(
   WidgetTester tester,
   _StatusProvider provider, {
   int languageSteps = 0,
+  Size viewport = const Size(1440, 900),
 }) async {
-  await tester.binding.setSurfaceSize(const Size(1440, 900));
-  addTearDown(() => tester.binding.setSurfaceSize(null));
+  tester.view
+    ..devicePixelRatio = 1
+    ..physicalSize = viewport;
+  addTearDown(() {
+    tester.view.resetPhysicalSize();
+    tester.view.resetDevicePixelRatio();
+  });
   await tester.pumpWidget(const QudsOfficeStudioApp());
   await tester.pump();
+  expect(
+    MediaQuery.sizeOf(tester.element(find.byType(QudsWordEditor))),
+    viewport,
+  );
   final controller = tester
       .widget<QudsWordEditor>(find.byType(QudsWordEditor))
       .controller;
@@ -95,6 +105,23 @@ void _expectStatus(String label, IconData icon) {
     find.descendant(of: button, matching: find.byIcon(icon)),
     findsOneWidget,
   );
+}
+
+Finder _compactStatusButton(String label) => find.byWidgetPredicate(
+  (widget) =>
+      widget is IconButton &&
+      (widget.tooltip == label ||
+          (widget.tooltip?.startsWith('$label\n') ?? false)),
+);
+
+void _expectCompactStatus(String label, IconData icon) {
+  final button = _compactStatusButton(label);
+  expect(button, findsOneWidget);
+  expect(
+    find.descendant(of: button, matching: find.byIcon(icon)),
+    findsOneWidget,
+  );
+  expect(_statusButton(label), findsNothing);
 }
 
 void main() {
@@ -216,6 +243,85 @@ void main() {
       await _finish(tester, controller, pending);
       expect(controller.proofing.summary.complete, isTrue);
       _expectStatus('No writing issues', Icons.check_circle_outline);
+      await tester.pumpWidget(const SizedBox.shrink());
+      expect(tester.takeException(), isNull);
+    },
+  );
+
+  testWidgets(
+    'compact Arabic footer preserves partial and paused status tooltips',
+    (tester) async {
+      final provider = _StatusProvider(
+        status: OfficeProofingStatus.unavailable,
+      );
+      final controller = await _studio(
+        tester,
+        provider,
+        languageSteps: 2,
+        viewport: const Size(760, 900),
+      );
+      await _finish(tester, controller, controller.proofing.checkNow());
+      expect(provider.calls, 1);
+      expect(controller.proofing.summary.complete, isFalse);
+      expect(controller.proofing.summary.issues, isEmpty);
+      _expectCompactStatus('0 ملاحظات · تدقيق جزئي', Icons.info_outline);
+      final partial = tester.widget<IconButton>(
+        _compactStatusButton('0 ملاحظات · تدقيق جزئي'),
+      );
+      expect(partial.tooltip, contains('Dictionary unavailable'));
+      expect(_compactStatusButton('لا توجد ملاحظات'), findsNothing);
+      controller.proofing.enabled = false;
+      await tester.pump();
+      expect(controller.proofing.summary.hasResults, isTrue);
+      _expectCompactStatus(
+        'التدقيق التلقائي متوقف',
+        Icons.pause_circle_outline,
+      );
+      expect(_compactStatusButton('لا توجد ملاحظات'), findsNothing);
+      await tester.pumpWidget(const SizedBox.shrink());
+      expect(tester.takeException(), isNull);
+    },
+  );
+
+  testWidgets(
+    'compact footer distinguishes waiting, checking and completed results',
+    (tester) async {
+      final ordinary = _StatusProvider();
+      final controller = await _studio(
+        tester,
+        ordinary,
+        viewport: const Size(760, 900),
+      );
+      await _finish(tester, controller, controller.proofing.checkNow());
+      expect(controller.proofing.summary.complete, isTrue);
+      _expectCompactStatus('No writing issues', Icons.check_circle_outline);
+      final calls = ordinary.calls;
+      controller.insertText('More ');
+      await tester.pump();
+      expect(controller.proofing.summary.scheduled, isTrue);
+      expect(ordinary.calls, calls);
+      _expectCompactStatus('Waiting to check…', Icons.more_horiz);
+      expect(_compactStatusButton('No writing issues'), findsNothing);
+
+      final release = Completer<void>();
+      final blocked = _StatusProvider(id: 'compact-pending', release: release);
+      addTearDown(() {
+        controller.proofing.enabled = false;
+        if (!release.isCompleted) release.complete();
+      });
+      controller.proofing.configure(
+        OfficeProofingService(providers: [blocked]),
+      );
+      final pending = controller.proofing.checkNow();
+      await tester.pump(const Duration(milliseconds: 1));
+      expect(blocked.calls, 1);
+      expect(controller.proofing.summary.checking, isTrue);
+      _expectCompactStatus('Checking…', Icons.hourglass_top);
+      expect(_compactStatusButton('No writing issues'), findsNothing);
+      release.complete();
+      await _finish(tester, controller, pending);
+      expect(controller.proofing.summary.complete, isTrue);
+      _expectCompactStatus('No writing issues', Icons.check_circle_outline);
       await tester.pumpWidget(const SizedBox.shrink());
       expect(tester.takeException(), isNull);
     },

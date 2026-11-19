@@ -59,6 +59,35 @@ separate from this actual ancestry result.
   localized navigation, Zotero shortcuts and current PDF behavior. Incoming
   Settings test helpers remain available without double-running setup.
 
+## Rejected first combined attempt at `4b8b9e2e`
+
+The first full native attempt at `4b8b9e2ecec349542bd34bc7f983e1cf500e8cbf`
+was **rejected**: 1,390 successful application events and seven failed footer
+cases, with zero skips. All 151 strict analysis/format targets, whitespace and
+21 Python controls passed, but Node and browser phases did not start. Every
+source and runtime input remained unchanged. All counts are diagnostic and
+contribute **zero** to final acceptance.
+
+All seven failures used a text-button finder in a viewport whose `MediaQuery`
+reported 800 pixels, despite the fixture's requested 1,440-pixel surface. The
+footer correctly selected compact icon buttons and retained the expected status
+in their tooltips. The correction sets consistent test-view size and pixel
+ratio, preserves all seven original wide-layout state assertions, and adds
+compact status coverage. It changes test setup and coverage, not product status
+logic. Focused verification passes all nine footer cases and fifteen comment-draft
+cases, including narrow Arabic; those 24 development executions remain separate
+from the next complete run. The [repair evidence](footer-repair/evidence.tar.xz)
+and [index](footer-repair/evidence.index.json) preserve the diagnostic and corrected
+source. The complete original output and independent recount remain in the
+[rejected-attempt packet](attempt-4b8b9e2e/README.md).
+
+The [support archive](support/evidence.tar.xz) and its
+[index](support/evidence.index.json) preserve the reference captures, historical
+preservation and input-continuity audits, original development/preflight records,
+runtime recovery and fixture provenance. The separate earlier upstream capture
+adds twenty refs (four PR heads and sixteen tags), all ancestors of the frozen
+source and captured main; the direct 440-reference scope remains unchanged.
+
 ## Frozen selection
 
 The [native plan](native-plan.json) selects **78 unique suite files**:
