@@ -1,7 +1,9 @@
 # Arabic proofing roadmap
 
 Accepted: 19 November 2026. Scope: Arabic spelling first, then grammar rules,
-then optional model-backed analysis. Nothing here is enabled by default yet.
+then optional model-backed analysis. Built-in Arabic writing rules now run for
+Arabic-script Arabic paragraphs. Downloadable dictionary integration and
+model-backed analysis remain planned; no Arabic resource is downloaded by default.
 
 ## Constraints
 
@@ -45,7 +47,8 @@ then optional model-backed analysis. Nothing here is enabled by default yet.
    adds the MPL 1.1 text, a manifest and a card, and can publish the bundle to
    Hugging Face. Publishing includes only the manifest-listed files and
    `manifest.json`; unrelated files in a reused output directory are excluded.
-   The Hunspell adapter and in-app Arabic download workflow remain planned.
+   The Hunspell adapter package is implemented (step 2); host registration and
+   the in-app Arabic download workflow remain open.
    The upstream GitHub copy (`linuxscout/ayaspell`
    `36a90abb`) is not used: its `.dic` contains file-concatenation separators
    and its `.aff` differs, and Hunspell 1.7.2 rejects common forms such as
@@ -93,16 +96,19 @@ then optional model-backed analysis. Nothing here is enabled by default yet.
    - style: immediate repetition of 26 closed-class words;
    - style: numbers that mix Western and Arabic-Indic digits.
 
-   Matching ignores harakat and tatweel. Suggestions keep the writer's
-   harakat. Findings use original UTF-16 offsets, and links, email and code
+   Matching ignores harakat and tatweel while preserving combining maddah and
+   hamza (U+0653–U+0655) as spelling content. Correct decomposed spellings are
+   left unchanged. Suggestions keep the writer's harakat. Findings use original
+   UTF-16 offsets, and links, email and code
    spans are excluded. Ambiguous words are left out on purpose: `علي` (the
    name Ali), `فان` ("perishing"), indefinite `مدرسه` ("his teacher").
 
    Tests:
-   - 69 engine tests: 39 positive cases covering every rule, 23 zero-finding
+   - 73 engine tests: 39 positive cases covering every rule, 23 zero-finding
      controls (hamzat al-wasl words, names, emphatic repetition, consistent
      digits, Latin text, protected spans), plus ambiguity, offset, ignore,
-     language and dispose checks;
+     language and dispose checks, three decomposed hamza/maddah controls and a
+     correction-offset regression that preserves those spellings;
    - 2 editor integration tests: default session on an `ar-SA` run with an
      applied suggestion, and silence on German text.
 
@@ -115,6 +121,15 @@ then optional model-backed analysis. Nothing here is enabled by default yet.
 
    Interpreting LanguageTool's Arabic rules is assessed
    [below](#languagetool-arabic-assessment-v68).
+3b. **Clean-room extension (19 November 2026).** A separate "dirty-room"
+   agent studied LanguageTool ar v6.8, Fareh, Ghalatawi and the aghlat list and
+   wrote an abstract functional [specification](arabic-rule-spec.md) without
+   any copied lists, messages, examples, IDs or patterns (reviewed: it contains
+   no Arabic script, regexes, rule IDs or tag strings). An independent
+   implementer who has not seen those sources writes the MIT rules from it,
+   tier T1 first (no lexicon); T2 categories wait for the morphology lexicon
+   (Camel Morph MSA, CC BY 4.0, under consideration); T3 categories need a
+   disambiguator and are deferred.
 4. **Model-backed analysis (optional, owner decision).** Either accept the
    CAMeL weights' training-data risk and port them natively like the spaCy
    transformer pipelines, or train our own licence-clean models:
@@ -204,4 +219,3 @@ verb transitivity, number phrases), which need the GPL dictionary.
 most of the Arabic module) whether the Arramooz-derived dictionaries and
 Fareh could be offered under MPL-2.0 or LGPL. That would remove the
 GPL-download separation but would not reduce the engine work.
-

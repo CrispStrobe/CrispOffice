@@ -1,0 +1,185 @@
+{
+  "all_delta_paths_vs_main": [
+    "docs/PROOFING.md",
+    "docs/roadmaps/arabic-proofing.md",
+    "docs/validation/office-main-completion-20261119/README.md",
+    "docs/validation/office-main-completion-20261119/arabic-plan.json",
+    "docs/validation/office-main-completion-20261119/release/arabic-archive-audit.json",
+    "docs/validation/office-main-completion-20261119/release/arabic-audit-adapter-review.json",
+    "docs/validation/office-main-completion-20261119/release/arabic-main-tail-review.json",
+    "docs/validation/office-main-completion-20261119/release/arabic-proofing.index.json",
+    "docs/validation/office-main-completion-20261119/release/arabic-proofing.tar.xz",
+    "docs/validation/office-main-completion-20261119/release/arabic-publication-receipt.json",
+    "docs/validation/office-main-completion-20261119/release/audit_arabic_main_tail.py",
+    "docs/validation/office-main-completion-20261119/release/audit_arabic_qualification.py",
+    "docs/validation/office-main-completion-20261119/release/audit_mail_tail.py",
+    "docs/validation/office-main-completion-20261119/release/audit_proofing_tail.py",
+    "docs/validation/office-main-completion-20261119/release/build_arabic_archive.py",
+    "docs/validation/office-main-completion-20261119/release/check_proofing_output_guard.py",
+    "docs/validation/office-main-completion-20261119/release/independent-arabic-summary.json",
+    "docs/validation/office-main-completion-20261119/release/mail-tail-immutable-readback.json",
+    "docs/validation/office-main-completion-20261119/release/mail-tail-review.json",
+    "docs/validation/office-main-completion-20261119/release/proofing-output-guard.json",
+    "docs/validation/office-main-completion-20261119/release/proofing-tail-review.json",
+    "docs/validation/office-main-completion-20261119/release/publisher-main-controls/README.md",
+    "docs/validation/office-main-completion-20261119/release/publisher-main-controls/final-run/receipt.json",
+    "docs/validation/office-main-completion-20261119/release/publisher-main-controls/final-run/unittest.log",
+    "docs/validation/office-main-completion-20261119/release/publisher-main-controls/first-run/receipt.json",
+    "docs/validation/office-main-completion-20261119/release/publisher-main-controls/first-run/unittest.log",
+    "docs/validation/office-main-completion-20261119/release/publisher-main-controls/index.json",
+    "docs/validation/office-main-completion-20261119/release/publisher-main-controls/run_offline_publisher_tests.py",
+    "packages/quds_office_engine/lib/src/proofing/arabic_writing_rules.dart",
+    "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+    "tools/proofing/ayaspell/test_build_bundle_incoming.py"
+  ],
+  "all_other_non_documentation_entries_exact_to_main": 5283,
+  "ancestry": "Both incoming main and our publication are present in resolved merge history/parents",
+  "auditor_sha256": "8a20dc44f6b765a974b7c69398fea414b6a2ee1b3019cbd6cce8afce874a5bbf",
+  "failures": [],
+  "git_index_refs_or_worktree_source_modified": false,
+  "github_actions_queried_or_awaited": false,
+  "incoming_documentation_and_evidence_entries_preserved": 7484,
+  "incoming_scopes": {
+    "hunspell": {
+      "differences": [],
+      "entries": 29,
+      "exact_main_entries": 29
+    },
+    "macos_runner_and_example_analysis": {
+      "differences": [],
+      "entries": 31,
+      "exact_main_entries": 31
+    },
+    "mail_core_store_transport_ui_and_protocol": {
+      "differences": [],
+      "entries": 394,
+      "exact_main_entries": 394
+    },
+    "root_workspace_and_runtime_configs": {
+      "differences": [],
+      "entries": 9,
+      "exact_main_entries": 9
+    }
+  },
+  "non_documentation_delta": [
+    {
+      "main": {
+        "mode": "100644",
+        "oid": "a3a4e8b4769e34e3006f04255700f74c3dbb00f2"
+      },
+      "path": "packages/quds_office_engine/lib/src/proofing/arabic_writing_rules.dart",
+      "resolved": {
+        "mode": "100644",
+        "oid": "af14d68a9749f8519ed02483dffc4144b8625949"
+      },
+      "review": "Exact accepted Arabic repair at ba7c1e26cdc409915e04eba49dd1f1c002280cf8"
+    },
+    {
+      "main": {
+        "mode": "100644",
+        "oid": "c08612b6530ffa6cfd31cf85ea0f39d07b175fd8"
+      },
+      "path": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+      "resolved": {
+        "mode": "100644",
+        "oid": "cc754f016a4b886cc28d07e6f3063ce34a30f480"
+      },
+      "review": "Exact accepted Arabic repair at ba7c1e26cdc409915e04eba49dd1f1c002280cf8"
+    },
+    {
+      "main": {
+        "mode": "100644",
+        "oid": "674a138826c74df8c3a165871600943983d48857"
+      },
+      "path": "tools/proofing/ayaspell/test_build_bundle_incoming.py",
+      "resolved": {
+        "mode": "100644",
+        "oid": "141d109584099c51bed4f03bcd47054422ada9ad"
+      },
+      "review": "Single generated-card wording assertion; 17 offline publisher controls independently recounted"
+    }
+  ],
+  "our_prior_release_artifacts_preserved_exactly": 29,
+  "parents": [
+    "0e1e763b2366547f09b3d88197e31c39207db650",
+    "b655b8a37fddc874bd42a453c371eed6253e82d8"
+  ],
+  "pins": {
+    "accepted_arabic_source": "ba7c1e26cdc409915e04eba49dd1f1c002280cf8",
+    "accepted_mail_source": "5569c055a021c893e941fc54d40499ad9d96a5db",
+    "incoming_main": "b655b8a37fddc874bd42a453c371eed6253e82d8",
+    "our_previous_publication": "0e1e763b2366547f09b3d88197e31c39207db650"
+  },
+  "product_tests_run_by_this_audit": false,
+  "publisher_controls": {
+    "accepted_cases": 17,
+    "errors": 0,
+    "evidence_index_entries_verified": 6,
+    "excluded_first_attempt": "16 passed and one stale wording assertion failed; zero accepted cases",
+    "failed": 0,
+    "historical_seven_fresh_directory_controls": "Earlier implementation only; superseded by exact incoming main whitelist helper",
+    "network_attempts": 0,
+    "raw_unique_successes": 17,
+    "skipped": 0,
+    "source_binding": "Exact resolved helper/three-test SHA-256 values; executed on resolved working-tree bytes, not relabelled as a frozen commit run",
+    "source_sha256": {
+      "tools/proofing/ayaspell/build_bundle.py": "d34d326ff41709fd740f2324487487aaca2c6056381de0fb26c4b973bec12ec0",
+      "tools/proofing/ayaspell/test_build_bundle.py": "ace3e8d193360145c873291863be876533e4ea8ff2c9ad7fc63c44ce1e5646ef",
+      "tools/proofing/ayaspell/test_build_bundle_incoming.py": "3264f0ea59b6df6308bf8bf3e4dd08bdfcb7497570735c0afa9616b570e17524",
+      "tools/proofing/ayaspell/test_build_bundle_reproducibility.py": "9c170dced06105a0b019bb07e426bc82106a9c6bad1629820ab5aec6f72c4096"
+    },
+    "suite_files": 3
+  },
+  "retained_validation_boundaries": {
+    "historical_5033_and_5031_input_identity": "Historical source-specific audits only; no unchanged-input or runtime identity transfer to the late main aggregate",
+    "incoming_hunspell_and_macos": "Preserved byte-for-byte from main; not tested or independently qualified by this carryforward audit",
+    "incoming_native_checkpoint": {
+      "archive": "docs/validation/office-current-reconciliation-20261119/native/native-qualification.tar.xz",
+      "current_aggregate_qualification": false,
+      "passed": 602,
+      "source": "c268ce3bceb05f92b7868e90ba8ce7b9a5bbbe1e"
+    },
+    "incoming_socket": {
+      "current_aggregate_qualification": false,
+      "focused_cases": 433,
+      "receipt": "docs/validation/office-main-integration-20261119/socket-final/verification.json",
+      "reported_total": 632,
+      "source": "ac1e4c8c788ea608402c2260488235c0189efcba",
+      "store_executions_from_retained_report": 199
+    },
+    "incoming_uid_pagination": {
+      "final_product_gates_run": false,
+      "native_and_node_counts_are_plans": true,
+      "record": "docs/validation/mail-uid-pagination-20261119/README.md"
+    },
+    "no_combined_acceptance_total": "836/78, 179, 632, 602 and 17 belong to separately attributed scopes/sources and are not added together",
+    "our_arabic": {
+      "application_cases": 179,
+      "current_aggregate_qualification": false,
+      "repair_files_preserved_exactly": [
+        "packages/quds_office_engine/lib/src/proofing/arabic_writing_rules.dart",
+        "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart"
+      ],
+      "source": "ba7c1e26cdc409915e04eba49dd1f1c002280cf8",
+      "test_files": 9
+    },
+    "our_mail": {
+      "application_executions": 836,
+      "current_aggregate_qualification": false,
+      "python_controls": 78,
+      "source": "5569c055a021c893e941fc54d40499ad9d96a5db"
+    }
+  },
+  "reviewed_documentation_resolutions": [
+    "docs/PROOFING.md",
+    "docs/roadmaps/arabic-proofing.md",
+    "docs/validation/office-main-completion-20261119/README.md"
+  ],
+  "runtime_modified_or_claimed_current": false,
+  "schema": "quds.final_main_carryforward_review.v1",
+  "status": "PASS",
+  "target": "INDEX",
+  "target_entries": 12798,
+  "target_entry_sha256": "69b5c2f2af150c94afc26f275748760833952336f33b90cb93ba3b43ce770d58",
+  "target_tree": null
+}
